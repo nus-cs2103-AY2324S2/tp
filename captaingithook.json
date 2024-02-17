@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "pre-commit": "./gradlew build",
+    "pre-push": "./gradlew test"
+  }
+}
