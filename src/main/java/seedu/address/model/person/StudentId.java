@@ -12,6 +12,11 @@ public class StudentId {
     public static final String VALIDATION_REGEX = "\\d{5,5}";
     public final String value;
 
+    /**
+     * Constructor
+     *
+     * @param studentId studentId
+     */
     public StudentId(String studentId) {
         requireNonNull(studentId);
         checkArgument(isValidStudentId(studentId), MESSAGE_CONSTRAINTS);

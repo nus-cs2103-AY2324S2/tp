@@ -51,7 +51,12 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
-
+    /**
+     * Parses a {@code String studentId} into a {@code StudentId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code studentId} is invalid.
+     */
     public static StudentId parseStudentId(String studentId) throws ParseException {
         requireNonNull(studentId);
         String trimmedStudentId = studentId.trim();
