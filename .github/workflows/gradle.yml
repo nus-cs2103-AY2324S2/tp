@@ -39,6 +39,7 @@ jobs:
         run: ./gradlew check coverage
 
       - name: Upload coverage reports to Codecov
+        if: runner.os == 'Linux'
         uses: codecov/codecov-action@v4.0.1
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
