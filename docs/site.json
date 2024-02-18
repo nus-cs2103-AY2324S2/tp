@@ -1,6 +1,6 @@
 {
   "baseUrl": "",
-  "titlePrefix": "",
+  "titlePrefix": "PatientSync",
   "titleSuffix": "AddressBook Level-3",
   "faviconPath": "images/SeEduLogo.png",
   "style": {
