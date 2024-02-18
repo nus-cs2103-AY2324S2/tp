@@ -43,5 +43,3 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: AY2324S2-CS2103-F09-2/tp
-
