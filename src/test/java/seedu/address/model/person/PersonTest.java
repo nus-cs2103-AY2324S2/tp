@@ -44,7 +44,8 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).withStudentId(VALID_STUDENT_ID_AMY).build();
+        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase())
+                .withStudentId(VALID_STUDENT_ID_AMY).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
