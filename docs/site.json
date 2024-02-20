@@ -1,7 +1,7 @@
 {
   "baseUrl": "",
   "titlePrefix": "MediTrack",
-  "titleSuffix": "AddressBook Level-3",
+  "titleSuffix": "MediTrack",
   "faviconPath": "images/SeEduLogo.png",
   "style": {
     "codeTheme": "light"
