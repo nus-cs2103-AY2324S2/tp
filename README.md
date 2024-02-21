@@ -1,3 +1,8 @@
+Dear all, we have achieved CodeCov. Refer below.
+[![codecov](https://codecov.io/gh/AY2324S2-CS2103T-T10-2/tp/graph/badge.svg?token=1R92MZ3PFL)](https://codecov.io/gh/AY2324S2-CS2103T-T10-2/tp)
+Tks and rgds,
+jy
+
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
 ![Ui](docs/images/Ui.png)
