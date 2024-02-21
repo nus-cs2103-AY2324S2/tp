@@ -61,7 +61,6 @@ public class AppParameters {
 
     @Override
     public int hashCode() {
-        //
         return configPath.hashCode();
     }
 
