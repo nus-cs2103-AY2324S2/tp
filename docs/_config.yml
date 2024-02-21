@@ -1,5 +1,5 @@
 title: "AB-3"
-theme: cayman
+theme: jekyll-theme-cayman
 
 header_pages:
   - UserGuide.md
