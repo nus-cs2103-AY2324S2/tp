@@ -11,31 +11,41 @@ jobs:
 
     steps:
       - name: Set up repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
+
+      - name: Set up repository
+        uses: actions/checkout@main
         with:
-          ref: master # This ensures you're always checking out the master branch. Remove if you want to checkout the triggering commit.
+          ref: master
+
+      - name: Merge to master
+        run: git checkout --progress --force ${{ github.sha }}
+
+      - name: Run repository-wide tests
+        if: runner.os == 'Linux'
+        working-directory:  ${{ github.workspace }}/.github
+        run: ./run-checks.sh
 
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
 
       - name: Setup JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v1
         with:
-          distribution: 'adopt'
           java-version: '11'
+          java-package: jdk+fx
 
       - name: Build and check with Gradle
         run: ./gradlew check coverage
 
-      - name: Run repository-wide tests (Linux only)
+      - name: Upload coverage reports to Codecov
         if: runner.os == 'Linux'
-        run: ./run-checks.sh
-        working-directory: ${{ github.workspace }}
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./build/reports/coverage.xml # Update this path if your coverage report is generated elsewhere.
-          flags: unittests # Optional: Use if you want to categorize coverage reports.
-          name: codecov-umbrella # Optional: Custom name for the upload.
+          slug: AY2324S2-CS2103T-W13-3/tp
