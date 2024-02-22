@@ -4,9 +4,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
@@ -14,9 +14,6 @@ import seedu.address.commons.util.ToStringBuilder;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(LocalDateTime, LocalDateTime)}
  */
 public class Meeting {
-    public static final DateTimeFormatter DATE_TIME_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
     public static final String MESSAGE_CONSTRAINTS = "TODO";
 
     public final LocalDateTime start;
@@ -45,16 +42,12 @@ public class Meeting {
         return start.isBefore(end);
     }
 
-    private static String dateTimeToString(LocalDateTime dateTime) {
-        return dateTime.format(DATE_TIME_FORMAT);
-    }
-
     public String getStartString() {
-        return dateTimeToString(start);
+        return DateTimeUtil.dateTimeToString(start);
     }
 
     public String getEndString() {
-        return dateTimeToString(end);
+        return DateTimeUtil.dateTimeToString(end);
     }
 
     @Override
