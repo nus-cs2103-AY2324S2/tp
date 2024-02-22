@@ -40,7 +40,7 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
 
         if (!(argMultimap.getValue(PREFIX_START_DATETIME).isPresent()
                 && argMultimap.getValue(PREFIX_END_DATETIME).isPresent())) {
-            throw new ParseException(ScheduleCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
         }
 
         LocalDateTime startDateTime;
