@@ -62,6 +62,9 @@ public class ScheduleCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
+        if (personToEdit.getMeeting().isPresent()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
         Person editedPerson = createEditedPerson(personToEdit, meeting);
 
         assert !personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson);
