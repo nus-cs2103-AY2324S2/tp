@@ -12,15 +12,14 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Comment;
-import seedu.address.logic.Messages;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -37,7 +36,8 @@ public class CommentCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withComment(COMMENT_STUB).build();
 
-        CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON, new Comment(editedPerson.getComment().value));
+        CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON,
+                new Comment(editedPerson.getComment().value));
 
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, editedPerson);
 
@@ -68,11 +68,11 @@ public class CommentCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withComment(COMMENT_STUB).build();
+        Person editedPerson = new PersonBuilder(model.getFilteredPersonList()
+                .get(INDEX_FIRST_PERSON.getZeroBased())).withComment(COMMENT_STUB).build();
 
-        CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON, new Comment(editedPerson.getComment().value));
-
+        CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON,
+                new Comment(editedPerson.getComment().value));
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());

@@ -10,7 +10,9 @@ import seedu.address.logic.commands.CommentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Comment;
 
-
+/**
+ * Parses input arguments and creates a new CommentCommand object
+ */
 public class CommentCommandParser implements Parser<CommentCommand> {
     @Override
     public CommentCommand parse(String args) throws ParseException {

@@ -9,6 +9,11 @@ import static java.util.Objects.requireNonNull;
 public class Comment {
     public final String value;
 
+    /**
+     * Constructs an {@code Comment}.
+     *
+     * @param comment A string
+     */
     public Comment(String comment) {
         requireNonNull(comment);
         value = comment;
