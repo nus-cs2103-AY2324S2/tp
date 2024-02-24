@@ -72,7 +72,7 @@ public class CommentCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !comment.value.isEmpty() ? MESSAGE_ADD_COMMENT_SUCCESS : MESSAGE_DELETE_COMMENT_SUCCESS;
-        return String.format(message, Messages.format(personToEdit));
+        return String.format(message, personToEdit);
     }
 
     @Override
