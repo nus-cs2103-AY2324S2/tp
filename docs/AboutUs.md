@@ -21,15 +21,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Gautham Kailash
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kailashgautham.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.kailashgautham.com)]
+[[github](http://github.com/kailashgautham)]
+[[portfolio](team/kailashgautham.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: TBC
+* Responsibilities: TBC
 
 ### Johnny Doe
 
