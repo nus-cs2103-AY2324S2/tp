@@ -50,12 +50,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Chua Zi Long
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zilong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ChuaZiLong)]
+[[portfolio](team/zilong.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: README + Site-wide Settings + Exporting Data
