@@ -44,4 +44,3 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           slug: AY2324S2-CS2103T-F13-2/tp
-          
