@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,6 +46,37 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
+
+    /**
+     * Parses a {@code String industry} into a {@code Industry}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code industry} is invalid.
+     */
+    public static Industry parseIndustry(String industry) throws ParseException {
+        requireNonNull(industry);
+        String trimmedIndustry = industry.trim();
+        if (!Industry.isValidIndustry(trimmedIndustry)) {
+            throw new ParseException(Industry.MESSAGE_CONSTRAINTS);
+        }
+        return new Industry(trimmedIndustry);
+    }
+
+    /**
+     * Parses a {@code String fundingLevel} into a {@code FundingStage}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code fundingStage} is invalid.
+     */
+    public static FundingStage parseFundingStage(String fundingLevel) throws ParseException {
+        requireNonNull(fundingLevel);
+        String trimmedFundingLevel = fundingLevel.trim();
+        if (!FundingStage.isValidFundingLevel(fundingLevel)) {
+            throw new ParseException(FundingStage.MESSAGE_CONSTRAINTS);
+        }
+        return new FundingStage(trimmedFundingLevel);
+    }
+
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
