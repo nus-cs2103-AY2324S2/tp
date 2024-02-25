@@ -31,9 +31,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tan Qin Xu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qinxu.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/qinxutan)] [[portfolio](team/johndoe.md)]
 
 * Role: Documentation
 * Responsibilities: Responsible for the quality of various project documents, including README, User Guide and Developer Guide.
