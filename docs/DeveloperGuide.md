@@ -274,42 +274,54 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of students' contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage students'contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                                   | So that I can…​                                                         |
+|----------|---------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | TA      | add new students to a class                                                    |                                                                         |
+| `* * *`  | TA      | add partial info of students                                                   | I can still add students even if I don’t have all their information.    |
+| `* * *`  | TA      | delete a student from my class if they drop the module/class                   ||
+| `* * `   | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list |
+| `* * *`  | TA      | view all students and their particulars                                        |                                                                         |
+| `* *`    | TA      | add/remove different modules I am teaching                                     |                                                                         |
+| `* * *`  | TA      | view all the tutorial classes and their information                            |                                                                         |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TA Helper` and the **Actor** is the `TA`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Add new students**
+
+**Use case 2: Delete students**
+
+**Use case 3: Search for students**
+
+**Use case 4: View all students**
+
+**Use case 5: Add new tutorial class**
+
+**Use case 6: Delete tutorial class**
+
+**Use case 7: View all classes**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  TA requests to list classes
+2.  AddressBook shows a list of all available classes
 
     Use case ends.
 
@@ -319,11 +331,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+* *a. The input format is invalid.
 
-      Use case resumes at step 2.
+    * *a1. AddressBook shows an error message.
+
+      Use case resumes at next step.
 
 *{More to be added}*
 
