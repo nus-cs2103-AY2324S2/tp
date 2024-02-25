@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Whelan Low
 
-<img src="images/whelan-low.jpg" width="200px">
+<img src="images/whelan-low.png" width="200px">
 
 [[github](http://github.com/whelan-low)]
 [[portfolio](team/johndoe.md)]
