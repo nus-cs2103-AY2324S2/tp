@@ -66,6 +66,29 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+### Adding new students : `add`
+
+### Deleting students : `delete`
+
+### Searching for students : `search`
+
+### Listing all students : `list`
+
+### Adding new tutorial class : `add`
+
+### Deleting tutorial class : `delete`
+
+### Listing all classes: `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list_class`
+
+
+
+**BELOW ARE JUST FORMATS FROM ORIGINAL AD3.
+DELETE AFT LAST PERSON IS DONE WITH FEATURES.**
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -89,12 +112,6 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### Editing a person : `edit`
 
