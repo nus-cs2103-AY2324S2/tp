@@ -20,6 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final boolean isMet;
 
     // Data fields
     private final Address address;
@@ -28,6 +29,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
+
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -35,6 +37,16 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        isMet = false;
+    }
+    public Person(Name name, Phone phone, Email email, Address address, boolean met, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.isMet = met;
     }
 
     public Name getName() {
@@ -51,6 +63,18 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public boolean getHasMet() {
+        return this.isMet;
+    }
+
+    public String getHasMetString() {
+        if (this.isMet) {
+            return "Met";
+        } else {
+            return "Not Met";
+        }
     }
 
     /**
