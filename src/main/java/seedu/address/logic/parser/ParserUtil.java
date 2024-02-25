@@ -79,9 +79,6 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         String trimmedAddress = address.trim();
-//        if (!Address.isValidAddress(trimmedAddress)) {
-//            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-//        }
         return new Address(trimmedAddress);
     }
 
