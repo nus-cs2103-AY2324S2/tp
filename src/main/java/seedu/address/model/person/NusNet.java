@@ -50,7 +50,7 @@ public class NusNet {
         }
 
         NusNet otherNusNet = (NusNet) other;
-        return value.equals(otherNusNet.value);
+        return this.value.equalsIgnoreCase(otherNusNet.value); // case insensitive
     }
 
     @Override
