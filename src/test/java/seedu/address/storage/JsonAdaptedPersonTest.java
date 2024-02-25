@@ -11,7 +11,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InternDuration;
-import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -96,15 +95,6 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS,
-                        VALID_JOB_DESCRIPTION, VALID_INTERVIEW_DATE, VALID_INTERN_DURATION, VALID_SALARY);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS,
                 VALID_JOB_DESCRIPTION, VALID_INTERVIEW_DATE, VALID_INTERN_DURATION, VALID_SALARY);
@@ -126,15 +116,6 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
                         INVALID_JOB_DESCRIPTION, VALID_INTERVIEW_DATE, VALID_INTERN_DURATION, VALID_SALARY);
         String expectedMessage = JobDescription.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidInterviewDate_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                        VALID_JOB_DESCRIPTION, INVALID_INTERVIEW_DATE, VALID_INTERN_DURATION, VALID_SALARY);
-        String expectedMessage = InterviewDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

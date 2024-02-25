@@ -41,17 +41,27 @@ public class TypicalPersons {
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withTags("NR")
-            .withJobDescription("Software engineer developer intern").build();
+            .withJobDescription("Software engineer developer intern")
+            .withInternDuration("3 months")
+            .withSalary("1000").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withTags("NR")
-            .withJobDescription("Front End intern").build();
+            .withJobDescription("Front End intern")
+            .withInternDuration("3 months")
+            .withSalary("1200").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave")
+            .withEmail("werner@example.com")
             .withTags("NR")
-            .withJobDescription("Software engineer developer intern").build();
+            .withJobDescription("Software engineer developer intern")
+            .withInternDuration("3 months")
+            .withSalary("1000").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withEmail("lydia@example.com")
+            .withTags("NR")
+            .withJobDescription("Data science intern")
+            .withInternDuration("3 months")
+            .withSalary("1000").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withTags("F")
@@ -65,11 +75,15 @@ public class TypicalPersons {
             .withEmail("stefan@example.com").withAddress("little india")
             .withTags("F")
             .withJobDescription("Software engineer developer intern")
-            .withInterviewDate("2024-02-02 17:00").build();
+            .withInterviewDate("2024-02-02 17:00")
+            .withInternDuration("3 months")
+            .withSalary("1000").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave")
+            .withEmail("hans@example.com")
             .withTags("NR")
-            .withJobDescription("Full Stack intern").build();
+            .withJobDescription("Full Stack intern")
+            .withInternDuration("3 months")
+            .withSalary("1000").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
