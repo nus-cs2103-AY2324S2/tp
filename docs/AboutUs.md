@@ -27,7 +27,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/johndoe.md)]
 
 * Role: Code quality
-* Responsibilities: Responsible for the quality of various project documents, including README, User Guide and Developer Guide.
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
 
 ### Tan Qin Xu
 
@@ -36,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Documentation
-* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
+* Responsibilities: Responsible for the quality of various project documents, including README, User Guide and Developer Guide.
 
 ### Whelan Low
 
