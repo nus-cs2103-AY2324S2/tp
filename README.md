@@ -38,7 +38,3 @@ For detailed information on using InternHub, refer to our [User Guide](https://[
 
 InternHub is part of the se-education.org initiative, and contributions are welcome. For more information on how to contribute, please visit [se-education.org](https://se-education.org#https://se-education.org/#contributing).
 
-## Build Status
-
-[![CI Status](https://github.com/eunrcn/internhub/workflows/Java%20CI/badge.svg)](https://github.com/eunrcn/internhub/actions)
-
