@@ -40,5 +40,5 @@ InternHub is part of the se-education.org initiative, and contributions are welc
 
 ## Build Status
 
-[![CI Status](https://github.com/[Your GitHub Username]/internhub/workflows/Java%20CI/badge.svg)](https://github.com/[Your GitHub Username]/internhub/actions)
+[![CI Status](https://github.com/eunrcn/internhub/workflows/Java%20CI/badge.svg)](https://github.com/eunrcn/internhub/actions)
 
