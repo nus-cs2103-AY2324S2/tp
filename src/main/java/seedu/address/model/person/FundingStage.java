@@ -48,6 +48,6 @@ public class FundingStage {
 
     @Override
     public String toString() {
-        return "Series " + this.value;
+        return this.value;
     }
 }
