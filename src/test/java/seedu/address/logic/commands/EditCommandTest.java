@@ -77,7 +77,8 @@
 //        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
 //        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+//                Messages.format(editedPerson));
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //
