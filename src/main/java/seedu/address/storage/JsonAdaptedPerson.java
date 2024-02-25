@@ -1,17 +1,18 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.InternDuration;
+import seedu.address.model.person.InterviewDate;
+import seedu.address.model.person.JobDescription;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -116,7 +117,8 @@ class JsonAdaptedPerson {
         final Tag modelTag = new Tag(tag);
 
         if (jobDescription == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, JobDescription.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, JobDescription.class.getSimpleName()));
         }
         if (!JobDescription.isValidJobDescription(jobDescription)) {
             throw new IllegalValueException(JobDescription.MESSAGE_CONSTRAINTS);
@@ -124,7 +126,8 @@ class JsonAdaptedPerson {
         final JobDescription modelJobDescription = new JobDescription(jobDescription);
 
         if (interviewDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, InterviewDate.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InterviewDate.class.getSimpleName()));
         }
         if (!InterviewDate.isValidInterviewDate(interviewDate)) {
             throw new IllegalValueException(JobDescription.MESSAGE_CONSTRAINTS);
@@ -134,7 +137,8 @@ class JsonAdaptedPerson {
 
 
         if (internDuration == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, InternDuration.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InternDuration.class.getSimpleName()));
         }
         if (!InternDuration.isValidInternDuration(jobDescription)) {
             throw new IllegalValueException(InternDuration.MESSAGE_CONSTRAINTS);

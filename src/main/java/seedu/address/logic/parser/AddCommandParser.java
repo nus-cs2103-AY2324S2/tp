@@ -3,21 +3,27 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.InternDuration;
+import seedu.address.model.person.InterviewDate;
+import seedu.address.model.person.JobDescription;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,9 +52,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
-        JobDescription jobDescription = ParserUtil.parseJobDescription(argMultimap.getValue(PREFIX_JOB_DESCRIPTION).get());
-        InterviewDate interviewDate = ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get());
-        InternDuration internDuration = ParserUtil.parseInternDuration(argMultimap.getValue(PREFIX_INTERN_DURATION).get());
+        JobDescription jobDescription = ParserUtil.parseJobDescription(
+                argMultimap.getValue(PREFIX_JOB_DESCRIPTION).get());
+        InterviewDate interviewDate = ParserUtil.parseInterviewDate(
+                argMultimap.getValue(PREFIX_INTERVIEW_DATE).get());
+        InternDuration internDuration = ParserUtil.parseInternDuration(
+                argMultimap.getValue(PREFIX_INTERN_DURATION).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
 
         Person person = new Person(name, phone, email, address, tag,
