@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-
+* Responsibilities: Overall project coordination and ensure the team is doing well.
 ### Zack Tay
 
 <img src="images/johndoe.png" width="200px">
@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Code quality
-* Responsibilities: UI
+* Responsibilities: Responsible for the quality of various project documents, including README, User Guide and Developer Guide.
 
 ### Tan Qin Xu
 
@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Documentation
-* Responsibilities: Data
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
 
 ### Whelan Low
 
@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Deliverables and deadlines
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Ensure project deliverables are done on time and in the right format. In charge of submitting the deliverables
 
 ### Mahadhir
 
@@ -58,4 +58,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Code quality
-* Responsibilities: UI
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
