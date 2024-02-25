@@ -29,8 +29,8 @@ public class CommentCommand extends Command {
             + "m/ [comment]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "m/ Likes to swim.";
-    public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Person: %1$s";
+    public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Removed comment from Person: %1$s";
 
     private final Index index;
     private final Comment comment;
