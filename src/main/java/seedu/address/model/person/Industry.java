@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Industry {
 
     public static final String MESSAGE_CONSTRAINTS =
-      "Industry names should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Industry names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -19,6 +19,10 @@ public class Industry {
 
     public final String value;
 
+    /**
+     * Constructor for an industry.
+     * @param industry Name of the industry.
+     */
     public Industry(String industry) {
         requireNonNull(industry);
         checkArgument(isValidIndustry(industry), MESSAGE_CONSTRAINTS);
