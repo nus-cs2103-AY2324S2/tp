@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: FINDvisor
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
@@ -15,5 +15,5 @@ title: AddressBook Level-3
 
 
 **Acknowledgements**
-
+* Favicon used: <a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Maxim Basinski Premium - Flaticon</a>
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
