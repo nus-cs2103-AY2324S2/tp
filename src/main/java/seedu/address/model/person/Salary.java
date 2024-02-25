@@ -21,7 +21,6 @@ public class Salary {
      * @param salary A valid salary.
      */
     public Salary(String salary) {
-        requireNonNull(salary);
         checkArgument(isValidSalary(salary), MESSAGE_CONSTRAINTS);
         value = salary;
     }

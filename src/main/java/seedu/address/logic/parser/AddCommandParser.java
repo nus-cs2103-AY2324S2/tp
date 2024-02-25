@@ -41,7 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_JOB_DESCRIPTION, PREFIX_INTERVIEW_DATE, PREFIX_INTERN_DURATION, PREFIX_SALARY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
+                PREFIX_JOB_DESCRIPTION, PREFIX_INTERN_DURATION, PREFIX_SALARY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -50,12 +51,33 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+
+        Address address;
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            try {
+                address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+            } catch (ParseException e) {
+                throw new ParseException("Error parsing address: " + e.getMessage());
+            }
+        } else {
+            address = new Address(""); // Provide a default empty address if not provided
+        }
+
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         JobDescription jobDescription = ParserUtil.parseJobDescription(
                 argMultimap.getValue(PREFIX_JOB_DESCRIPTION).get());
-        InterviewDate interviewDate = ParserUtil.parseInterviewDate(
-                argMultimap.getValue(PREFIX_INTERVIEW_DATE).get());
+
+        InterviewDate interviewDate;
+        if (argMultimap.getValue(PREFIX_INTERVIEW_DATE).isPresent()) {
+            try {
+                interviewDate = ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get());
+            } catch (ParseException e) {
+                throw new ParseException("Error parsing interview date: " + e.getMessage());
+            }
+        } else {
+            interviewDate = new InterviewDate(null); // Provide a default empty interview date if not provided
+        }
+
         InternDuration internDuration = ParserUtil.parseInternDuration(
                 argMultimap.getValue(PREFIX_INTERN_DURATION).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());

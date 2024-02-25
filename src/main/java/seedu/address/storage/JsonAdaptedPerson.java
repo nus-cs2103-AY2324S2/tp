@@ -103,16 +103,13 @@ class JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
         final Address modelAddress = new Address(address);
 
         if (tag == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
         }
         if (!Tag.isValidTagName(tag)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
         final Tag modelTag = new Tag(tag);
 
@@ -128,9 +125,6 @@ class JsonAdaptedPerson {
         if (interviewDate == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, InterviewDate.class.getSimpleName()));
-        }
-        if (!InterviewDate.isValidInterviewDate(interviewDate)) {
-            throw new IllegalValueException(JobDescription.MESSAGE_CONSTRAINTS);
         }
 
         final InterviewDate modelInterviewDate = new InterviewDate(interviewDate);

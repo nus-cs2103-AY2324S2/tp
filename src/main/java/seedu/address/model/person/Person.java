@@ -32,7 +32,7 @@ public class Person {
     public Person(Name companyName, Phone phone, Email email, Address address, Tag tag,
                   JobDescription jobDescription, InterviewDate interviewDate,
                   InternDuration internDuration, Salary salary) {
-        requireAllNonNull(companyName, phone, email, tag, jobDescription, internDuration);
+        requireAllNonNull(companyName, phone, email, tag, jobDescription);
         this.companyName = companyName;
         this.phone = phone;
         this.email = email;

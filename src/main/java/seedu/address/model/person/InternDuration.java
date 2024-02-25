@@ -25,7 +25,6 @@ public class InternDuration {
      * @param internDuration A valid intern duration.
      */
     public InternDuration(String internDuration) {
-        requireNonNull(internDuration);
         checkArgument(isValidInternDuration(internDuration), MESSAGE_CONSTRAINTS);
         value = internDuration;
     }

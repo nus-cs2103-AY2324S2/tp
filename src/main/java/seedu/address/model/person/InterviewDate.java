@@ -1,23 +1,12 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidInterviewDate(String)}
+ * Represents a Person's interview date in the address book.
  */
 public class InterviewDate {
-
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
-
-    /*
-     * The first character of the interview date must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final LocalDateTime value;
 
@@ -29,21 +18,20 @@ public class InterviewDate {
      * @param interviewDate A valid interview date.
      */
     public InterviewDate(String interviewDate) {
-        checkArgument(isValidInterviewDate(interviewDate), MESSAGE_CONSTRAINTS);
-        value = LocalDateTime.parse(interviewDate, formatter);
-    }
-
-    /**
-     * Returns true if a given string is a valid email.
-     */
-    public static boolean isValidInterviewDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (interviewDate == null) {
+            value = null;
+        } else {
+            value = LocalDateTime.parse(interviewDate, formatter);
+        }
     }
 
     @Override
     public String toString() {
-
-        return value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        String str = "";
+        if (value != null) {
+            str = value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        }
+        return str;
     }
 
     @Override

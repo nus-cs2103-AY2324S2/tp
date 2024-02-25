@@ -79,9 +79,9 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
+//        if (!Address.isValidAddress(trimmedAddress)) {
+//            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+//        }
         return new Address(trimmedAddress);
     }
 
@@ -136,9 +136,6 @@ public class ParserUtil {
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
         String trimmedDateTime = interviewDate.trim();
-        if (!InterviewDate.isValidInterviewDate(trimmedDateTime)) {
-            throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
-        }
         return new InterviewDate(trimmedDateTime);
     }
 
