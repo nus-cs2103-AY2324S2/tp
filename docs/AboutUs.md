@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Jajared)]
 [[portfolio](team/johndoe.md)]
 
-* Role: ???
+* Role: Team Lead
 
 ### Zack Tay
 
@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
+* Role: Code quality
 * Responsibilities: UI
 
 ### Tan Qin Xu
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Documentation
 * Responsibilities: Data
 
 ### Whelan Low
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/whelan-low)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Deliverables and deadlines
 * Responsibilities: Dev Ops + Threading
 
 ### Mahadhir
@@ -57,5 +57,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Code quality
 * Responsibilities: UI
