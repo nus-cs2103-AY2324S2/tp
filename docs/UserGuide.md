@@ -60,8 +60,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will **not** be ignored.<br>
+  e.g. if the command specifies `help 123`, it will no longer be interpreted as `help` instead an error will be thrown.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -85,11 +85,21 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+
+### Tags:
+
+* n/NAME 
+* p/PHONE_NUMBER 
+* e/EMAIL 
+* a/ADDRESS 
+* t/TAG (Optional)
+* m/MATRICULATION_NUMBER (Optional)
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRIC_ID]…​`
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
 
 <box type="tip" seamless>
 
@@ -110,7 +120,8 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRIC_ID]…​`
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -123,23 +134,32 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Filtering Contacts using parameters: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons with paramters that match the given keyword
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find PARAMETER KEYWORD`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search will return any result that contains the keyword as a substring under that parameter. e.g. `hans` will match `hans@gmail.com` for an email search
+* Parameters that are supported include : /n, /p, /e, /a and /t
+* Only one parameter can be searched
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find \n John` returns `john` and `John Doe`
+* `find \n alex` returns `Alex Yeoh`, `Davis Alex`
+* `find \t student` returns all contacts tagged with `student` or any contacts with tags that has `student` as a substring
+* `find \p 1423` returns all contacts with phone number containing `1423`
+
+### Copy email addresses: `copy`
+
+Copies the emails of currently displayed contacts into your clipboard.
+
+Format: `copy`
+
+* Use `list` or `find` to get the list of people you would like to email.
+* The emails are copied into your clipboard such that you may easily broadcast emails
+  to specific groups of people.
 
 ### Deleting a person : `delete`
 
@@ -207,10 +227,12 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRIC_ID]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRIC_ID]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**   | `find PARAMETER KEYWORD`<br> e.g., `find James`
+**Copy**   | `copy`
 **List**   | `list`
 **Help**   | `help`
