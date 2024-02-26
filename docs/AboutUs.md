@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/lihaoquan.md)]
 
 * Role: Software Engineer
-* Responsibilities: Backend development
+* Responsibilities: Backend development, UI
