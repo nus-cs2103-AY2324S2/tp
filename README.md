@@ -4,5 +4,5 @@
 
 ## HRConnect
 
-The application for managing contacts for three main types of external liaisons; potential hires, hiring agencies,  
+The application for managing contacts for three main types of external liaisons; potential hires, hiring agencies,
 and legal consultants. Made for Recruiting HRs to help minimise time spent on searching for contact information.
