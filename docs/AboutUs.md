@@ -11,51 +11,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Johan Soo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/delishad21.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/delishad21)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Develop Code
 
-### Jean Doe
+### Ang Leng Khai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zer0legion.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zer0legion)] 
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Develop code
+
+### Loh Sze Han, Danielle
+
+<img src="images/danielleloh.png" width="200px">
+
+[[github](http://github.com/danielleloh)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Develop code
+
+### Pughal Raj
+
+<img src="images/pughal77.png" width="200px">
+
+[[github](http://github.com/Pughal77)]
+
+* Role: Developer
+* Responsibilities: Develop code
+
+### Castillo James
+
+<img src="images/jayllo-c.png" width="200px">
+
+[[github](http://github.com/jayllo-c)]
+
+* Role: Developer
+* Responsibilities: Develop Code
