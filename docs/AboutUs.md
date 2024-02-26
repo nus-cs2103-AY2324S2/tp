@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/xinen26.png" width="200px">
 
-[[github](http://github.com/xinen26)] 
+[[github](http://github.com/xinen26)]
 [[portfolio](team/xinen26.md)]
 
 * Role: Software Engineer
