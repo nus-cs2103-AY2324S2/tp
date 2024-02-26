@@ -35,15 +35,14 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Scheduling and Tracking
 
-### Jean Doe
+### Lim Yong En, Dominic
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Arixeyeion.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Arixeyeion)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
 ### James Doe
 
