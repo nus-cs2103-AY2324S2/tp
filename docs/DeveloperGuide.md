@@ -313,7 +313,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use Case: Scheduling a meeting with a new person**
+
+**MSS**
+
+1. User adds new person to AddressBook
+2. User requests to list persons
+3. AddressBook shows a list of persons
+4. User requests to schedule a meeting with a specific person in the lsit
+5. Meeting is scheduled
+
+**Extensions**
+
+* 1a. The given details for adding a new person is invalid.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 4a. The given index is invalid.
+
+    * 4a1. AddressBook shows an error message.
+
+      Use case resumes at step 3.
+
+* 4b. The given meeting datetime is invalid.
+
+    * 4b1. AddressBook shows an error message.
+
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
