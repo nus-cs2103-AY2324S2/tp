@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ang Leng Khai
 
-<img src="images/lengkhai.png" width="200px">
+<img src="images/zer0legion.png" width="200px">
 
 [[github](http://github.com/zer0legion)] 
 
