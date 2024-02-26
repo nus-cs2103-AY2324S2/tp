@@ -4,10 +4,7 @@
 
 ## HRConnect
 
-
-Product Name: HRConnect
-Target User Profile: HR Officer for Tech-Related Startup
-Value Proposition: HRConnect is designed for HR officers in tech startups, streamlining the management of external contacts. 
+HRConnect is designed for HR officers in tech startups, streamlining the management of external contacts. 
 It efficiently organizes contacts for potential hires, hiring agencies, and legal consultants, significantly reducing the time 
 spent searching for contact information, thereby optimizing the recruiting process.
 
