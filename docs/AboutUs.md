@@ -5,9 +5,11 @@
 
 # About Us
 
+<img src="images/dormie.png" width="200px">
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `dormie.cs2103T@gmail.com`
 
 ## Project team
 
@@ -15,47 +17,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/Donovan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[projects]()]
+[[github](https://github.com/donwong2308)]
+[[portfolio]()]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: TBC
 
 ### Laraine
 
 <img src="images/Laraine.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[projects](https://larainelwx.wixsite.com/digitalportfolio)]
+[[github](http://github.com/larainezo)]
+[[portfolio]()]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: TBC
 
 ### Pallon
 
 <img src="images/Pallon.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[projects]()]
+[[github](http://github.com/PallonCX)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: TBC
 
 ### Wei Hao
 
 <img src="images/Wei Hao.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[projects]()]
+[[github](http://github.com/JustWeiHao)]
+[[portfolio]()]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: TBC
 
 ### Zoe
 
 <img src="images/Zoe.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[projects]()]
+[[github](http://github.com/nyankoclaws)]
+[[portfolio]()]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: TBC
