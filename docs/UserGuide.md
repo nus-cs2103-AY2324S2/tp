@@ -74,12 +74,17 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<box type="info" seamless>
+
+**Important:** Each contact should have an unique email address. AB3 does not allow for duplicate email addressed to be added.
+
+</box>
 
 <box type="tip" seamless>
 
