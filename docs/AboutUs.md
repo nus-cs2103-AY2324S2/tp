@@ -37,7 +37,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lim Yong En, Dominic
 
-<img src="images/Arixeyeion.png" width="200px">
+<img src="images/arixeyeion.png" width="200px">
 
 [[github](http://github.com/Arixeyeion)]
 
