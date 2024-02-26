@@ -66,6 +66,43 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about input values format:**<br>
+
+* Spacing of values:
+  * Leading and trailing spaces of input values will be removed.
+  * Extra spaces between values will remain unless otherwise specified.
+
+* Case sensitivity:
+  * All input values are case-sensitive unless otherwise specified.
+
+* Duplicate contacts:
+  * Contacts are considered duplicates if they share the same phone number.
+
+* `NAME` format:
+  * Can only contain alphabetical characters and spaces.
+  * Cannot be blank.
+  * Extra spaces between values will be processed as a single space.
+
+* `PHONE_NUMBER` format:
+  * Must follow the standard Singapore telephone numbers (i.e. 9XXXXXXX or 8XXXXXXX).
+  * Spaces between numbers will be ignored.
+
+* `EMAIL` format:
+  * Must follow the standard email address format (i.e. example@example.com).
+
+* `ADDRESS` format:
+  * Can take any values.
+  * Cannot be blank.
+
+* `TAG` format:
+  * Can only consist of alphanumeric characters.
+
+* `DATETIME` format:
+  * Applies to all parameters with `DATETIME` postfix (i.e. `START_DATETIME` and `END_DATETIME`).
+  * Must follow the format `dd-MM-yyyy`T`HH:mm` (i.e. `23-02-2024T14:00`).
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
