@@ -35,15 +35,14 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Scheduling and Tracking
 
-### Jean Doe
+### David Zhu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dethada.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Dethada)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code quality
 
 ### James Doe
 
