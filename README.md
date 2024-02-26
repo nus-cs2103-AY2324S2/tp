@@ -6,8 +6,8 @@
 ![Ui](docs/images/Ui.png)
 
 ### About the App
-* The app allows Financial Advisors to keep track of the clients under them as well as the scheduled meeting with their
-* clients.
+* The app allows Financial Advisors to keep track of the clients under them as well as the scheduled meeting with their 
+clients.
   * It is **written in OOP fashion** and provides a **reasonably well-written** code base.
   * It comes with a **reasonable level of user and developer documentation**.
 
