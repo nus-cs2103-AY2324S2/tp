@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name companyName;
@@ -141,6 +141,18 @@ public class Person {
                 .add("intern duration", internDuration)
                 .add("salary", salary)
                 .toString();
+    }
+    @Override
+    public int compareTo(Person otherPerson) {
+        if (this.interviewDate.value != null && otherPerson.getInterviewDate().value != null) {
+            return this.interviewDate.value.compareTo(otherPerson.getInterviewDate().value);
+        } else if (this.interviewDate.value != null) {
+            return -1;
+        } else if (otherPerson.getInterviewDate().value != null) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }
