@@ -102,6 +102,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * `DATETIME` format:
   * Applies to all parameters with `DATETIME` postfix (i.e. `START_DATETIME` and `END_DATETIME`).
   * Must follow the format `dd-MM-yyyy`T`HH:mm` (i.e. `23-02-2024T14:00`).
+</div>
 
 ### Viewing help : `help`
 
