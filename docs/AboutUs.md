@@ -13,14 +13,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Johan Soo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/delishad21.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/delishad21)]
 
-* Role: 
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Develop Code
 
 ### Ang Leng Khai
 
@@ -30,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role:
-* Responsibilities: 
+* Responsibilities:
 
 ### Danielle Loh
 
@@ -38,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
 ### Pughal Raj
 
@@ -49,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role:
-* Responsibilities: 
+* Responsibilities:
 
 ### Castillo James
 
@@ -58,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
