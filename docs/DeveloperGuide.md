@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list persons.
-2. FINDVisor shows a list of persons.
+2. FINDvisor shows a list of persons.
 3. User requests to edit a specific person in the list and the fields to edit.
 4. FINDvisor edits the person.
 
