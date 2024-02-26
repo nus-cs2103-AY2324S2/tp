@@ -145,7 +145,7 @@ Examples:
 
 Finds persons with parameters that match the given keyword
 
-Format: `find [PARAMETER_KEYWORD]`
+Format: `find PARAMETER KEYWORD`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The search will return any result that contains the keyword as a substring under that parameter. e.g. `hans` will match `hans@gmail.com` for an email search
@@ -252,9 +252,9 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find [PARAMETER_KEYWORD]`<br> e.g., `find James`
+**Find**   | `find PARAMETER KEYWORD`<br> e.g., `find James`
 **Copy**   | `copy`
 **List**   | `list`
 **Help**   | `help`
 **Export to CSV** | `export to csv`
-**Import** | `import [FILEPATH]`
+**Import** | `import FILEPATH`
