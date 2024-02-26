@@ -5,28 +5,46 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INTERN_DURATION_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INTERN_DURATION_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INTERVIEW_DATE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INTERVIEW_DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTERN_DURATION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_JOB_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SALARY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.JOB_DESCRIPTION_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.JOB_DESCRIPTION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FIRST_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_NO_REPLY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERN_DURATION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NO_REPLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -36,9 +54,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InternDuration;
+import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -47,18 +68,22 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_NO_REPLY).build();
+        Person expectedPerson = new PersonBuilder(BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_NO_REPLY, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FIRST_INTERVIEW
+                + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, new AddCommand(expectedPerson));
 
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_NO_REPLY;
+                + ADDRESS_DESC_BOB + TAG_DESC_FIRST_INTERVIEW
+                + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -76,11 +101,29 @@ public class AddCommandParserTest {
         assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
+        // multiple job description
+        assertParseFailure(parser, JOB_DESCRIPTION_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_JOB_DESCRIPTION));
+
+        // multiple interview date
+        assertParseFailure(parser, INTERVIEW_DATE_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_INTERVIEW_DATE));
+
+        // multiple intern duration
+        assertParseFailure(parser, INTERN_DURATION_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_INTERN_DURATION));
+
+        // multiple salary
+        assertParseFailure(parser, SALARY_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SALARY));
+
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
+                        PREFIX_TAG, PREFIX_JOB_DESCRIPTION, PREFIX_INTERVIEW_DATE, PREFIX_INTERN_DURATION,
+                        PREFIX_SALARY));
 
         // invalid value followed by valid value
 
@@ -139,6 +182,29 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);
 
+        // missing tag prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+                expectedMessage);
+
+        // missing job description prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
+                + VALID_JOB_DESCRIPTION_BOB,
+                expectedMessage);
+
+        // missing interview date prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
+                + VALID_INTERVIEW_DATE_BOB,
+                expectedMessage);
+
+        // missing intern duration prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
+                + VALID_INTERN_DURATION_BOB,
+                expectedMessage);
+
+        // missing salary prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+                expectedMessage);
+
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);
@@ -148,21 +214,42 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + TAG_DESC_NO_REPLY, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + TAG_DESC_NO_REPLY, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + TAG_DESC_NO_REPLY, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_NO_REPLY, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, Tag.MESSAGE_CONSTRAINTS);
+
+        // invalid job description
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_FIRST_INTERVIEW + INVALID_JOB_DESCRIPTION_DESC + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, JobDescription.MESSAGE_CONSTRAINTS);
+
+        // invalid intern duration
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INVALID_INTERN_DURATION_DESC + SALARY_DESC_BOB, InternDuration.MESSAGE_CONSTRAINTS);
+
+        // invalid salary
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + INVALID_SALARY_DESC, Salary.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + INTERN_DURATION_DESC_BOB + INVALID_SALARY_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble

@@ -41,11 +41,14 @@ public class InterviewDate {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof InterviewDate)) {
-            return false;
-        }
+        //        if (!(other instanceof InterviewDate)) {
+        //            return false;
+        //        }
 
         InterviewDate otherInterviewDate = (InterviewDate) other;
+        if (value == null) {
+            return otherInterviewDate.value == null;
+        }
         return value.equals(otherInterviewDate.value);
     }
 

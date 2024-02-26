@@ -122,19 +122,18 @@ class JsonAdaptedPerson {
         }
         final JobDescription modelJobDescription = new JobDescription(jobDescription);
 
-        if (interviewDate == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InterviewDate.class.getSimpleName()));
+        final InterviewDate modelInterviewDate;
+        if (interviewDate.isEmpty()) {
+            modelInterviewDate = new InterviewDate(null);
+        } else {
+            modelInterviewDate = new InterviewDate(interviewDate);
         }
-
-        final InterviewDate modelInterviewDate = new InterviewDate(interviewDate);
-
 
         if (internDuration == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, InternDuration.class.getSimpleName()));
         }
-        if (!InternDuration.isValidInternDuration(jobDescription)) {
+        if (!InternDuration.isValidInternDuration(internDuration)) {
             throw new IllegalValueException(InternDuration.MESSAGE_CONSTRAINTS);
         }
         final InternDuration modelInternDuration = new InternDuration(internDuration);
@@ -143,7 +142,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
         }
         if (!Salary.isValidSalary(salary)) {
-            throw new IllegalValueException(InternDuration.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
         }
         final Salary modelSalary = new Salary(salary);
 

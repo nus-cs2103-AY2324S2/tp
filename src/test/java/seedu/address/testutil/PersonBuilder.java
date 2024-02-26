@@ -19,10 +19,10 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ADDRESS = "";
     public static final String DEFAULT_TAG = "F";
     public static final String DEFAULT_JOB_DESCRIPTION = "Software Developer Intern";
-    public static final String DEFAULT_INTERVIEW_DATE = "2024-03-01 10:00";
+    public static final String DEFAULT_INTERVIEW_DATE = null;
     public static final String DEFAULT_INTERN_DURATION = "6 months";
     public static final String DEFAULT_SALARY = "500";
 

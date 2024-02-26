@@ -4,10 +4,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERN_DURATION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERN_DURATION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_DESCRIPTION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIRST_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NO_REPLY;
 
@@ -24,10 +32,12 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
+            .withEmail("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111")
             .withTags("NR")
             .withJobDescription("Software engineer developer")
+            .withInterviewDate("03-01-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
@@ -35,7 +45,7 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("F")
             .withJobDescription("Software engineer developer intern")
-            .withInterviewDate("2024-02-02 10:00")
+            .withInterviewDate("03-03-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
@@ -66,7 +76,7 @@ public class TypicalPersons {
             .withEmail("anna@example.com").withAddress("4th street")
             .withTags("F")
             .withJobDescription("Software engineer developer intern")
-            .withInterviewDate("2024-02-02 17:00")
+            .withInterviewDate("03-01-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
 
@@ -75,7 +85,7 @@ public class TypicalPersons {
             .withEmail("stefan@example.com").withAddress("little india")
             .withTags("F")
             .withJobDescription("Software engineer developer intern")
-            .withInterviewDate("2024-02-02 17:00")
+            .withInterviewDate("03-01-2024 1700")
             .withInternDuration("3 months")
             .withSalary("1000").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
@@ -87,11 +97,13 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_NO_REPLY).build();
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_NO_REPLY)
+            .withJobDescription(VALID_JOB_DESCRIPTION_AMY).withInterviewDate(VALID_INTERVIEW_DATE_AMY)
+            .withInternDuration(VALID_INTERN_DURATION_AMY).withSalary(VALID_SALARY_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FIRST_INTERVIEW)
-            .build();
-
+            .withJobDescription(VALID_JOB_DESCRIPTION_BOB).withInterviewDate(VALID_INTERVIEW_DATE_BOB)
+            .withInternDuration(VALID_INTERN_DURATION_BOB).withSalary(VALID_SALARY_BOB).build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
