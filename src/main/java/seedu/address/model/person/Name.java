@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -22,23 +20,22 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    public final String name;
 
     /**
      * Constructs a {@code Name}.
      *
      * @param name A valid name.
      */
-    @JsonCreator
-    public Name(@JsonProperty String name) {
+    public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        this.name = name;
     }
 
     @JsonValue
-    public String get() {
-        return fullName;
+    private String get() {
+        return name;
     }
 
     /**
@@ -51,7 +48,7 @@ public class Name {
 
     @Override
     public String toString() {
-        return fullName;
+        return name;
     }
 
     @Override
@@ -66,12 +63,12 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        return name.equals(otherName.name);
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return name.hashCode();
     }
 
 }

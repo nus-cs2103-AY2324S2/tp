@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -21,23 +19,22 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String address;
 
     /**
      * Constructs an {@code Address}.
      *
      * @param address A valid address.
      */
-    @JsonCreator
-    public Address(@JsonProperty String address) {
+    public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        this.address = address;
     }
 
     @JsonValue
-    public String get() {
-        return value;
+    private String get() {
+        return address;
     }
 
     /**
@@ -49,7 +46,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return address;
     }
 
     @Override
@@ -64,12 +61,12 @@ public class Address {
         }
 
         Address otherAddress = (Address) other;
-        return value.equals(otherAddress.value);
+        return address.equals(otherAddress.address);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return address.hashCode();
     }
 
 }
