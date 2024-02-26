@@ -11,7 +11,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindPersonCommand> {
+public class FindPersonCommandParser implements Parser<FindPersonCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
