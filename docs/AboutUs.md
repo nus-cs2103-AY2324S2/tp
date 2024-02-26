@@ -31,9 +31,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Front-end, Documentation
 
 
-### Lanyu
+### Zhang Lanyu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhang_lanyu.png" width="auto">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
