@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Loh Sze Han, Danielle
 
-<img src="images/DanielleLoh.png" width="200px">
+<img src="images/danielleloh.png" width="200px">
 
 [[github](http://github.com/danielleloh)] [[portfolio](team/johndoe.md)]
 
