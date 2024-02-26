@@ -30,7 +30,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -66,6 +66,17 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+### Valid tags:
+
+A list of valid tags for a contact.
+
+* `n/NAME` 
+* `p/PHONE` 
+* `e/EMAIL` 
+* `a/ADDRESS` 
+* `t/TAG` 
+* `m/MATRIC_ID`
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -74,12 +85,11 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRIC_ID]…​`
 
 <box type="tip" seamless>
 
@@ -87,8 +97,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal m/A1234567Z`
 
 ### Listing all persons : `list`
 
@@ -100,7 +110,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRIC_ID]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -172,6 +182,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+### 
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -195,10 +207,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRIC_ID]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRIC_ID]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
