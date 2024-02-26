@@ -21,14 +21,6 @@ class JsonSerializableAddressBook {
     private final List<Person> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
-     */
-//    @JsonCreator
-//    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-//        this.persons.addAll(persons);
-//    }
-
-    /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
