@@ -22,22 +22,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ang Leng Khai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lengkhai.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zer0legion)] 
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Develop code
 
-### Danielle Loh
+### Loh Sze Han, Danielle
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/danielleloh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/danielleloh)] [[portfolio](team/johndoe.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Develop code
 
 ### Pughal Raj
 
@@ -51,10 +50,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Castillo James
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jayllo-c.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jayllo-c)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Develop Code
