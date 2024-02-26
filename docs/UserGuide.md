@@ -130,6 +130,16 @@ Examples:
 * `find \t student` returns all contacts tagged with `student` or any contacts with tags that has `student` as a substring
 * `find \p 1423` returns all contacts with phone number containing `1423`
 
+### Copy email addresses: `copy`
+
+Copies the emails of currently displayed contacts into your clipboard.
+
+Format: `copy`
+
+* Use `list` or `find` to get the list of people you would like to email.
+* The emails are copied into your clipboard such that you may easily broadcast emails
+  to specific groups of people.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -199,5 +209,6 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find PARAMETER KEYWORD`<br> e.g., `find James`
+**Copy**   | `copy`
 **List**   | `list`
 **Help**   | `help`
