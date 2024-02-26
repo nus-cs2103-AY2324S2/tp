@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/lengkhai.png" width="200px">
 
-[[github](http://github.com/zer0legion)]
+[[github](http://github.com/zer0legion)] 
 
 
 * Role: Developer
