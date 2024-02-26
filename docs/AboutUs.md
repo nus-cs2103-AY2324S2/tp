@@ -41,7 +41,7 @@ Hi, I’m Laraine, a year 2 Computer Science student. I like to wake up early to
 
 ### Pallon
 
-<img src="images/PallonCX.png" width="200px">
+<img src="images/palloncx.png" width="200px">
 
 Hi, I’m Chee Xiang, a year 2 Computer Science student. I’m from a country at North of Singapore, which is Malaysia. My hobby will be travelling around different countries (or locally), but I’m currently earning my travel expenses by studying (for a good income in the future) and working part-time.  
 
@@ -54,7 +54,7 @@ Hi, I’m Chee Xiang, a year 2 Computer Science student. I’m from a country at
 
 ### Wei Hao
 
-<img src="images/JustWeiHao.png" width="200px">
+<img src="images/justweihao.png" width="200px">
 
 Hi, I’m Wei Hao, a year 2 Computer Science Student. I’m from Malaysia. I play video games and watch animes during my free time.  
 
