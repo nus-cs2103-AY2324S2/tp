@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -24,10 +28,16 @@ public class Address {
      *
      * @param address A valid address.
      */
-    public Address(String address) {
+    @JsonCreator
+    public Address(@JsonProperty String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+    }
+
+    @JsonValue
+    public String get() {
+        return value;
     }
 
     /**
