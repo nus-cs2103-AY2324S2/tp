@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
@@ -13,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
+@JsonRootName(value = "addressbook")
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
@@ -29,6 +34,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public AddressBook() {}
+
+    @JsonCreator
+    public AddressBook(@JsonProperty("persons") List<Person> persons) {
+        this.persons.setPersons(persons);
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
