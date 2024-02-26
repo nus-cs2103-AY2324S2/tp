@@ -13,9 +13,9 @@ You can reach us at the email `dormie.cs2103T@gmail.com`
 
 ## Project team
 
-### Donovan
+### Donavon
 
-<img src="images/Donovan.png" width="200px">
+<img src="images/Donavon.png" width="200px">
 
 Hi, I am Donavon, currently a Year 2 Computer Science student. I enjoy bouldering in my free time.
 
