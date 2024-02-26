@@ -288,7 +288,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FINDvisor` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Edit a person**
+
+**MSS**
+
+1. User requests to list persons.
+2. FINDVisor shows a list of persons.
+3. User requests to edit a specific person in the list and the fields to edit.
+4. FINDvisor edits the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    
+    Use case ends.
+
+* 3a. The given index is invalid.
+  * 3a1. FINDvisor shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. No fields are given.
+  * 3b1. FINDvisor shows an error message.
+
+    Use case resumes at step 2.
+
+* 3c. Fields do not comply with stated formats and constraints.
+  * 3c1. FINDvisor shows an error message.
+
+    Use case resumes at step 2.
 
 **Use case: Delete a person**
 
