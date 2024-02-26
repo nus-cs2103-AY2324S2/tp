@@ -288,16 +288,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FINDvisor` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Edit a person**
+
+**MSS**
+
+1. User requests to list persons.
+2. FINDvisor shows a list of persons.
+3. User requests to edit a specific person in the list and the fields to edit.
+4. FINDvisor edits the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    
+    Use case ends.
+
+* 3a. The given index is invalid.
+  * 3a1. FINDvisor shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. No fields are given.
+  * 3b1. FINDvisor shows an error message.
+
+    Use case resumes at step 2.
+
+* 3c. Fields do not comply with stated formats and constraints.
+  * 3c1. FINDvisor shows an error message.
+
+    Use case resumes at step 2.
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  FINDvisor shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  FINDvisor deletes the person.
 
     Use case ends.
 
@@ -309,11 +341,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FINDvisor shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -325,8 +355,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, MacOS.
+* **Private contact detail**: A contact detail that is not meant to be shared with others.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -343,7 +373,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
