@@ -3,7 +3,6 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -22,7 +21,6 @@ public class Tag {
      *
      * @param tagName A valid tag name.
      */
-    @JsonCreator
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
@@ -30,7 +28,7 @@ public class Tag {
     }
 
     @JsonValue
-    public String getTagName() {
+    public String get() {
         return tagName;
     }
 

@@ -25,7 +25,7 @@ public class Phone {
      * @param phone A valid phone number.
      */
     @JsonCreator
-    public Phone(@JsonProperty("phone") String phone) {
+    public Phone(@JsonProperty String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
