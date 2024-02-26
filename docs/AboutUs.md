@@ -32,13 +32,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role:
 * Responsibilities: 
 
-### Danielle Loh
+### Loh Sze Han, Danielle
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/DanielleLoh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/danielleloh)] [[portfolio](team/johndoe.md)]
 
-* Role: 
+* Role: developer
 * Responsibilities: 
 
 ### Pughal Raj
