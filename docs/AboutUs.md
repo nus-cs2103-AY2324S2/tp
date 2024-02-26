@@ -23,10 +23,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wong Kai Li
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kaili.png" width="200px">
 
 [[github](https://github.com/garywongkai)]
 [[portfolio](team/johndoe.md)]
+[[Website](https://react-site-three.vercel.app)]
 
 * Role: Team Lead
 * Responsibilities: Testing
