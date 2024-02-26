@@ -32,11 +32,6 @@ public class Address {
         this.address = address;
     }
 
-    @JsonValue
-    private String get() {
-        return address;
-    }
-
     /**
      * Returns true if a given string is a valid email.
      */
@@ -45,6 +40,7 @@ public class Address {
     }
 
     @Override
+    @JsonValue
     public String toString() {
         return address;
     }

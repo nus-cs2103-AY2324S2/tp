@@ -27,11 +27,6 @@ public class Phone {
         this.phone = phone;
     }
 
-    @JsonValue
-    public String get() {
-        return phone;
-    }
-
     /**
      * Returns true if a given string is a valid phone number.
      */
@@ -40,6 +35,7 @@ public class Phone {
     }
 
     @Override
+    @JsonValue
     public String toString() {
         return phone;
     }

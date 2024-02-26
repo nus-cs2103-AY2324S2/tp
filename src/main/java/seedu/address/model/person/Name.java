@@ -33,11 +33,6 @@ public class Name {
         this.name = name;
     }
 
-    @JsonValue
-    private String get() {
-        return name;
-    }
-
     /**
      * Returns true if a given string is a valid name.
      */
@@ -45,8 +40,8 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
+    @JsonValue
     public String toString() {
         return name;
     }

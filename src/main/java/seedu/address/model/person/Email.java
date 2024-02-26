@@ -46,11 +46,6 @@ public class Email {
         this.email = email;
     }
 
-    @JsonValue
-    private String get() {
-        return email;
-    }
-
     /**
      * Returns if a given string is a valid email.
      */
@@ -59,6 +54,7 @@ public class Email {
     }
 
     @Override
+    @JsonValue
     public String toString() {
         return email;
     }
