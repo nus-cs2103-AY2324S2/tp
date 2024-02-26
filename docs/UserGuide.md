@@ -65,55 +65,51 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Add an interviewee: `add`
 
-### Adding a person: `add`
+Adds an interviewee to the address book.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add /n Name /p Phone_Number e/Email a/Address [/t Tag]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A interviewee can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add /n John Doe /p 98765432 /e johnDoegmail.com /a John street, block 123, #01-01 /t friend`
 
-### Listing all persons : `list`
+### Listing all interviewees : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing an interviewee : `edit`
 
-Edits an existing person in the address book.
+Edits an existing interviewee in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit Index [/n Name] [/p Phone] [/e Email] [/a Address] [/t Tag]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the interviewee at the specified `Index`. The index refers to the index number shown in the displayed interviewee list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the interviewee will be removed i.e adding of tags is not cumulative.
+* You can remove all the interviewee’s tags by typing `/t` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 /n 91234567 /e johndoe@example.com` Edits the phone number and email address of the 1st interviewee to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 /n Betsy Crower /t` Edits the name of the 2nd interviewee to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating interviewees by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find Keyword [More_Keywords]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -127,19 +123,29 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an interviewee : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified interviewee from the address book.
 
-Format: `delete INDEX`
+Format: `delete Index`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the interviewee at the specified `Index`.
+* The index refers to the index number shown in the displayed interviewee list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd interviewee in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st interviewee in the results of the `find` command.
+
+### Filtering interviewees by tag : `/filter`
+Filter through contact list based on what stage the interviewee is in.
+Format: `/filter <Tag>`
+
+* Filters the contact list based on the `<Tag>` provided.
+* Possible values for `<Tag>` are `initial_application`, `technical_assessment`, `interview`, `decision_and_offer`.
+
+Examples:
+* `/filter initial_application` filters the contact list to show only interviewees in the initial application stage.
 
 ### Clearing all entries : `clear`
 
@@ -166,33 +172,18 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add /n Name /p Phone_Number e/Email a/Address [/t Tag]…​`<br> e.g., `add /n John Doe /p 98765432 /e johnDoe@gmail.com /a John street, block 123, #01-01 /t friend`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit** | `edit Index [/n Name] [/p Phone] [/e Email] [/a Address] [/t Tag]…​`<br> e.g., `edit 2 /n Betsy Crower /t friend`
+**Find** | `find Keyword [More_Keywords]`<br> e.g., `find alice bob charlie`
 **List** | `list`
 **Help** | `help`
+**Exit** | `exit`
+**Filter** | `/filter <Tag>`  <br> e.g., `/filter initial_application`
