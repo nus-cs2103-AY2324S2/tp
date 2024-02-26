@@ -23,8 +23,8 @@ Hi, I am Donavon, currently a Year 2 Computer Science student. I enjoy boulderin
 [[github](https://github.com/donwong2308)]
 [[portfolio]()]
 
-* Role: Developer
-* Responsibilities: TBC
+* Role: Testing
+* Responsibilities: Exception handling, Assertions
 
 ### Laraine
 
@@ -36,8 +36,8 @@ Hi, I’m Laraine, a year 2 Computer Science student. I like to wake up early to
 [[github](http://github.com/larainezo)]
 [[portfolio]()]
 
-* Role: Developer
-* Responsibilities: TBC
+* Role: Team Lead
+* Responsibilities: Overall project coordination, Assignment of tasks, Keep track of team members' progress
 
 ### Pallon
 
@@ -49,8 +49,8 @@ Hi, I’m Chee Xiang, a year 2 Computer Science student. I’m from a country at
 [[github](http://github.com/PallonCX)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: TBC
+* Role: Scheduling and tracking
+* Responsibilities: Github Issue Tracker
 
 ### Wei Hao
 
@@ -62,8 +62,8 @@ Hi, I’m Wei Hao, a year 2 Computer Science Student. I’m from Malaysia. I pla
 [[github](http://github.com/JustWeiHao)]
 [[portfolio]()]
 
-* Role: Developer
-* Responsibilities: TBC
+* Role: Deliverables and deadlines
+* Responsibilities: Ensure project deliverables are done on time and in the right format
 
 ### Zoe
 
@@ -75,5 +75,5 @@ I’m a Y2 CS & Psych double major. I like to sleep at least 8hrs :)
 [[github](http://github.com/nyankoclaws)]
 [[portfolio]()]
 
-* Role: Developer
-* Responsibilities: TBC
+* Role: Code quality
+* Responsibilities: Gradle Stylecheck
