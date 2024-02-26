@@ -1,10 +1,10 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# Avengers Assemble Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -241,13 +241,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -274,27 +274,59 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* Name: Sarah Johnson
+* Age: 23
+* Occupation: Head Tutor for CS1101S
+
+* head tutor for CS1101S course
+* has a need to manage various aspects of course administration
+* has a need to schedule classes
+* has a need to coordinate with teaching assistants
+* has a need to effectively communicate with students
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* manage contacts faster than a typical mouse/GUI driven app
+* Centralised platform to store and manage contact details for all relevant individuals involved in course administration
+* Easier access to information through organising relevant contacts into different subgroups
+* Direct linkages to students’ schoolwork for easier tracking
+* Able to set up the address book through different data-loading options
+* Able to assist with management of large scale communication
+
+**Problem Scope**:
+
+* The CS1101S Head Tutor will face challenges in effectively organising and managing contact information within the department due to the large scale the course has to operate on. Existing methods, such as paper-based lists or basic digital spreadsheets, lack the necessary functionality to efficiently handle the diverse needs of proper contact management. There is a need for a user-friendly and offline-capable address book solution tailored specifically to the needs of a single user. This address book system should provide features such as easy contact entry and editing, quick search functionality, customizable categorization options, and the ability to add notes for each contact. Additionally, it should operate offline without requiring an internet connection and should not rely on complex database management systems.
+* While the address book system will greatly improve contact management and organisation for the CS1101S Head Tutor, it will not address broader departmental communication or collaboration needs beyond individual contact management since the address book is designed to be a single-user system. It will not facilitate communication between users or provide collaboration tools for group projects or tasks. Additionally, the address book system will not handle complex data analysis or reporting functions beyond basic contact information management. Finally, while the system will provide offline functionality, it will not offer real-time synchronisation with online databases or cloud storage solutions.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                           | So that I can…​                                                        |
+|----------|--------------------------------------------|----------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app           | see the app populated with sample data | immediately see an example of the app in use                           |
+| `* * *`  | new user                                   | easily clear the example data          | start using the app with real-life data                                |
+| `* * *`  | new user                                   | see usage instructions                 | refer to instructions when I forget how to use the App                 |
+| `* * *`  | new user                                   | add contacts with their details        | start populating the address book                                      |
+| `* * *`  | new user                                   | save the data I input into the app     | don't lose the information I've entered                                |
+| `* * *`  | user                                       | add a new person                       |                                                                        |
+| `* * *`  | user                                       | delete a person                        | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | update and edit contact details        | keep my address book accurate                                          |
+| `* * *`  | user                                       | find a person by name                  | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by name                  | locate details of persons without having to go through the entire list |
+| `* * *`  | head tutor using the app                   | categorise my contacts into groups     | manage different tutorial groups effectively                           |
+| `* * *`  | head tutor using the app                   | copy email addresses of a group        | effectively communicate with target groups                             |
+| `* * *`  | user                                       | find a person by name                  | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details           | minimize chance of someone else seeing them by accident                |
+| `* *`    | experienced user                           | use the address book offline           | update and interact with it anywhere                                   |
+| `*`      | user with many persons in the address book | sort persons by name                   | locate a person easily                                                 |
 
 *{More to be added}*
 
@@ -325,13 +357,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Help**
+
+**MSS**
+
+1.  User requests help information.
+2.  AddressBook displays help information.
+3.  User reads the help information.
+
+    Use case ends.
+
+**Use case: Add**
+
+**MSS**
+
+1.  User requests to add a new person.
+2.  AddressBook prompts the user to input details for the new person.
+3.  User inputs details for the new person.
+4.  AddressBook saves the new person's information.
+5.  AddressBook confirms the addition of the new person.
+
+    Use case ends.
+
+**Use case: List**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  AddressBook shows a list of persons.
+3.  User views the list of persons.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. AddressBook displays a message indicating that the list is empty.
+
+      Use case ends.
+
+**Use case: Edit**
+
+**MSS**
+
+1.  User requests to edit a specific person.
+2.  AddressBook prompts the user to select the person to edit.
+3.  User selects the person to edit.
+4.  AddressBook displays the details of the selected person.
+5.  User updates the details of the person.
+6.  AddressBook saves the updated details.
+7.  AddressBook confirms the successful update.
+
+    Use case ends.
+
+**Extensions**
+
+*   2a. The list is empty.
+
+    * 2a1. AddressBook displays a message indicating that the list is empty.
+
+    Use case ends.
+
+*   3a. The selected person does not exist.
+
+    * 3a1. AddressBook displays an error message indicating that the person does not exist.
+
+      Use case resumes at step 2.
+
+**Use case: Find**
+
+**MSS**
+
+1.  User requests to find a specific person.
+2.  AddressBook prompts the user to input search criteria.
+3.  User inputs search criteria.
+4.  AddressBook searches for persons matching the criteria.
+5.  AddressBook displays a list of persons matching the criteria.
+
+    Use case ends.
+
+**Extensions**
+
+*    5a. No persons match the search criteria.
+
+*   5a1. AddressBook displays a message indicating that no persons match the criteria.
+
+Use case ends.
+
+**Use case: Clear**
+
+**MSS**
+
+1.  User requests to clear all persons.
+2.  AddressBook prompts the user to confirm the action.
+3.  User confirms the action.
+4.  AddressBook clears all persons.
+
+    Use case ends.
+
+**Use case: Exit**
+
+**MSS**
+
+1.  User requests to exit the application.
+2.  AddressBook prompts the user to confirm the exit.
+3.  User confirms the exit.
+4.  AddressBook exits the application.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.   Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.   Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.   A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.   A user should be able to import up to 1000 contacts from an external source without a noticeable sluggishness in performance for typical usage.
+5.   The application should provide comprehensive documentation and help resources to assist users in understanding how to use the software effectively.
+
 
 *{More to be added}*
 
@@ -357,15 +500,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -374,16 +517,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -391,6 +534,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
