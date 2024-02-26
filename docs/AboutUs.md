@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Pughal Raj
 
-<img src="images/pughal.png" width="200px">
+<img src="images/Pughal77.png" width="200px">
 
 [[github](http://github.com/Pughal77)]
 
