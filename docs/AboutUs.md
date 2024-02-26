@@ -13,21 +13,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Johan Soo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/delishad21.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/delishad21)]
 
-* Role: 
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Develop Code
 
 ### Ang Leng Khai
 
 <img src="images/zer0legion.png" width="200px">
 
 [[github](http://github.com/zer0legion)] 
-
 
 * Role: Developer
 * Responsibilities: Develop code
