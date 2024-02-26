@@ -38,8 +38,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/danielleloh)] [[portfolio](team/johndoe.md)]
 
-* Role: developer
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Develop code
 
 ### Pughal Raj
 
