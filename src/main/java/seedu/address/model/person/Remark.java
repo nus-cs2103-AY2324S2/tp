@@ -30,4 +30,8 @@ public class Remark {
     public int hashCode() {
         return value.hashCode();
     }
+
+    public static boolean isValidRemark(String remark) {
+        return true;
+    }
 }
