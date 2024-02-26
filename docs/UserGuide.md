@@ -149,7 +149,7 @@ Format: `find PARAMETER KEYWORD`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The search will return any result that contains the keyword as a substring under that parameter. e.g. `hans` will match `hans@gmail.com` for an email search
-* Parameters that are supported include : /n, /p, /e, /a and /t
+* `PARAMETER` that is supported includes : /n, /p, /e, /a and /t
 * Only one parameter can be searched
 
 Examples:
