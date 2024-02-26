@@ -1,15 +1,15 @@
 ---
-name: "[Module] Feature"
+name: New feature
 about: Atomic features by module
-title: ''
+title: "[Module] Feature"
 labels: ''
-assignees: tankh99
+assignees: ''
 
 ---
 
-### User story
+### Feature description
 
-### Acceptance criteria
+### Acceptance criteria**
 
 ### Proposed implementation
 
