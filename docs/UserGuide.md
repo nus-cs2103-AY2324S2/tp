@@ -131,6 +131,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Copy email addresses: `copy`
+
+Copies the emails of currently displayed contacts into your clipboard.
+
+Format: `copy`
+
+* Use `list` or `find` to get the list of people you would like to email.
+* The emails are copied into your clipboard such that you may easily broadcast emails
+  to specific groups of people.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
