@@ -1,11 +1,9 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
 
@@ -25,9 +23,12 @@ public class Address {
      * @param address A valid address.
      */
     public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        if (address.isEmpty()) {
+            value = address;
+        } else {
+            checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+            value = address;
+        }
     }
 
     /**
