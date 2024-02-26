@@ -158,7 +158,7 @@ Format: `schedule INDEX s/START_DATETIME e/END_DATETIME`
 Examples:
 ```
 > schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00
-Scheduled meeting with John Doe from 2024-02-23 16:00 to 2024-02-23 17:00
+Scheduled meeting with John Doe from 23-02-2024 16:00 to 23-02-2024 17:00
 
 > schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00
 Error: cannot schedule more than 1 meeting with a contact!
