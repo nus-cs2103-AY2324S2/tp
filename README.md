@@ -1,15 +1,24 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 [![codecov](https://codecov.io/gh/AY2324S2-CS2103-F08-1/tp/graph/badge.svg?token=15QKN9GAV0)](https://codecov.io/gh/AY2324S2-CS2103-F08-1/tp)
 
+## FinCliQ, the one-stop client management application for Financial Advisors.
+
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
+### About the App
+* The app allows Financial Advisors to keep track of the clients under them as well as the scheduled meeting with their
+* clients.
+  * It is **written in OOP fashion** and provides a **reasonably well-written** code base.
   * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+* Example usages:
+  * Allows Financial Advisors to add new clients, delete existing clients
+  * Allows Financial Advisors to create meetings with existing clients
+  * Allows Financial Advisors to delete meetings with existing clients
+
+* We hope that through FinCliQ we can help Financial Advisors achieve financial freedom for all their customers by
+* providing an easy way to keep track of all clients and the meetings with them.
+
+### Acknowledgements
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
