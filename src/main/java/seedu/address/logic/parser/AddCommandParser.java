@@ -3,20 +3,27 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InternDuration;
+import seedu.address.model.person.InterviewDate;
+import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,21 +38,55 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+                        PREFIX_JOB_DESCRIPTION, PREFIX_INTERVIEW_DATE, PREFIX_INTERN_DURATION, PREFIX_SALARY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
+                PREFIX_JOB_DESCRIPTION, PREFIX_INTERN_DURATION, PREFIX_SALARY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_TAG, PREFIX_JOB_DESCRIPTION, PREFIX_INTERVIEW_DATE, PREFIX_INTERN_DURATION,
+                PREFIX_SALARY);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Address address;
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            try {
+                address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+            } catch (ParseException e) {
+                throw new ParseException("Error parsing address: " + e.getMessage());
+            }
+        } else {
+            address = new Address(""); // Provide a default empty address if not provided
+        }
+
+        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        JobDescription jobDescription = ParserUtil.parseJobDescription(
+                argMultimap.getValue(PREFIX_JOB_DESCRIPTION).get());
+
+        InterviewDate interviewDate = new InterviewDate(null);
+        if (argMultimap.getValue(PREFIX_INTERVIEW_DATE).isPresent()) {
+            try {
+                String givenDate = argMultimap.getValue(PREFIX_INTERVIEW_DATE).get();
+                if (!givenDate.isEmpty()) {
+                    interviewDate = ParserUtil.parseInterviewDate(givenDate);
+                }
+            } catch (ParseException e) {
+                throw new ParseException("Error parsing interview date: " + e.getMessage());
+            }
+        }
+
+        InternDuration internDuration = ParserUtil.parseInternDuration(
+                argMultimap.getValue(PREFIX_INTERN_DURATION).get());
+        Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
+
+        Person person = new Person(name, phone, email, address, tag,
+                jobDescription, interviewDate, internDuration, salary);
 
         return new AddCommand(person);
     }

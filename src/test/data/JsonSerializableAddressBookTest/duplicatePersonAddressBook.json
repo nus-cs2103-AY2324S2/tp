@@ -1,14 +1,23 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+  "persons" : [ {
+    "companyName" : "FoodPanda",
+    "phone" : "12345678",
+    "email" : "panda@food.com",
+    "address" : "CBD",
+    "tag" : "F",
+    "jobDescription" : "Front End Intern",
+    "interviewDate" : "15-04-2024 0900",
+    "internDuration" : "6 months",
+    "salary" : "500"
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
+    "companyName" : "FoodPanda",
+    "phone" : "12345678",
+    "email" : "panda@example.com",
+    "address" : "CBD",
+    "tag" : "F",
+    "jobDescription" : "Front End Intern",
+    "interviewDate" : "15-04-2024 0900",
+    "internDuration" : "6 months",
+    "salary" : "500"
   } ]
 }
