@@ -3,6 +3,8 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -19,6 +21,14 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<Person> persons = new ArrayList<>();
+
+    /**
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     */
+    @JsonCreator
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<Person> persons) {
+        this.persons.addAll(persons);
+    }
 
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
