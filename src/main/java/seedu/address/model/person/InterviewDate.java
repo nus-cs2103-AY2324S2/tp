@@ -45,6 +45,10 @@ public class InterviewDate {
         //            return false;
         //        }
 
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+
         InterviewDate otherInterviewDate = (InterviewDate) other;
         if (value == null) {
             return otherInterviewDate.value == null;

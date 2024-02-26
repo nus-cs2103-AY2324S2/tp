@@ -69,15 +69,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         JobDescription jobDescription = ParserUtil.parseJobDescription(
                 argMultimap.getValue(PREFIX_JOB_DESCRIPTION).get());
 
-        InterviewDate interviewDate;
+        InterviewDate interviewDate = new InterviewDate(null);
         if (argMultimap.getValue(PREFIX_INTERVIEW_DATE).isPresent()) {
             try {
-                interviewDate = ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get());
+                String givenDate = argMultimap.getValue(PREFIX_INTERVIEW_DATE).get();
+                if (!givenDate.isEmpty()) {
+                    interviewDate = ParserUtil.parseInterviewDate(givenDate);
+                }
             } catch (ParseException e) {
                 throw new ParseException("Error parsing interview date: " + e.getMessage());
             }
-        } else {
-            interviewDate = new InterviewDate(null); // Provide a default empty interview date if not provided
         }
 
         InternDuration internDuration = ParserUtil.parseInternDuration(
