@@ -11,6 +11,10 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
+/**
+ * Implements a custom deserializer for UniquePersonList,
+ * as Jackson does not support JavaFX collections.
+ */
 public class UniquePersonListDeserializer extends StdDeserializer<UniquePersonList> {
 
     public UniquePersonListDeserializer() {
