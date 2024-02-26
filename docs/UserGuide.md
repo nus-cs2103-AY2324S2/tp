@@ -86,7 +86,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Tags:
+### Parameters:
 
 * n/NAME 
 * p/PHONE_NUMBER 
@@ -94,12 +94,19 @@ Format: `help`
 * a/ADDRESS 
 * t/TAG (Optional)
 * m/MATRICULATION_NUMBER (Optional)
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
+
+<box type="info" seamless>
+
+**Important:** Each contact should have an unique email address. AB3 does not allow for duplicate email addressed to be added.
+
+</box>
 
 <box type="tip" seamless>
 
@@ -181,6 +188,12 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Exporting Data to a CSV file : `export to csv`
+
+Exports all contacts and their details to a CSV file.
+
+Format: `export to csv`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -236,3 +249,4 @@ Action     | Format, Examples
 **Copy**   | `copy`
 **List**   | `list`
 **Help**   | `help`
+**Export to CSV** | `export to csv`
