@@ -109,24 +109,21 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by person's information: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons based on a category of a person's information, e.g. name, email, phone number, or tags.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find n/NAME|e/EMAIL|p/PHONE|t/TAG`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the parameter specified in the command is searched.
+* For string related searches, i.e. `find n/NAME|e/EMAIL|p/PHONE|t/TAG`
+  * The search is case-insensitive. e.g `hans` will match `Hans`.
+  * Only full words will be matched. e.g. `Alex` will not match `Alex Tan`.
+  * Order of keywords matter. e.g. `Doe John` will not match `John Doe`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
+* `find t/PRUActiveCash` returns all persons with tag `PRUActiveCash`.
+* `find e/johnd@example.com` returns person with email `johnd@example.com`.
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
