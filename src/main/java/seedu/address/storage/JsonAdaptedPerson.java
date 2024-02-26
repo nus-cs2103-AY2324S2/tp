@@ -28,7 +28,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String nusnet;
+    private final String nusNet;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -37,12 +37,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("nusnet") String nusnet,
+            @JsonProperty("email") String email, @JsonProperty("nus_net") String nusNet,
             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.nusnet = nusnet;
+        this.nusNet = nusNet;
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -56,7 +56,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        nusnet = source.getNusNet().value;
+        nusNet = source.getNusNet().value;
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -98,13 +98,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (nusnet == null) {
+        if (nusNet == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NusNet.class.getSimpleName()));
         }
-        if (!NusNet.isValidNusNet(nusnet)) {
+        if (!NusNet.isValidNusNet(nusNet)) {
             throw new IllegalValueException(NusNet.MESSAGE_CONSTRAINTS);
         }
-        final NusNet modelNusNet = new NusNet(nusnet);
+        final NusNet modelNusNet = new NusNet(nusNet);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
