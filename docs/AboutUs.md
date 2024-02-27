@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Fu Ming Jun, Dominic
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dominic.png" width="200px">
 
 [[github](https://github.com/DominicFuMJ)]
 [[portfolio](team/johndoe.md)]
