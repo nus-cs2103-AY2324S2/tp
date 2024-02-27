@@ -95,25 +95,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Tags}.
      */
     public static Tags parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        return new Tags(tags.toArray(new String[0]));
+        try {
+            return new Tags(tags.toArray(new String[0]));
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
     }
+
 }
