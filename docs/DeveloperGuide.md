@@ -317,11 +317,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User adds new person to FINDvisor
-2. User requests to list persons
-3. FINDvisor shows a list of persons
-4. User requests to schedule a meeting with a specific person in the lsit
-5. Meeting is scheduled
+1. User adds new person to FINDvisor.
+2. User requests to list persons.
+3. FINDvisor shows a list of persons.
+4. User requests to schedule a meeting with a specific person in the list.
+5. Meeting is scheduled.
+
+    Use case ends.
 
 **Extensions**
 
