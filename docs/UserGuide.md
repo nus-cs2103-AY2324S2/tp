@@ -198,3 +198,4 @@ Action | Format, Examples
 **Help** | `help`
 **Exit** | `exit`
 **Filter** | `/filter <Tag>`  <br> e.g., `/filter initial_application`
+**Comment** | `/comment <ApplicationId> <comment-message>`  <br> e.g., `/comment 10 “S/Pass Holder”`
