@@ -152,7 +152,7 @@ Format: `schedule INDEX s/START_DATETIME e/END_DATETIME`
 
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* START_DATETIME must be after the current datetime
+* START_DATETIME must be after the system's current datetime.
 * END_DATETIME must be after START_DATETIME
 
 Examples:
