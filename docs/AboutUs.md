@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wong Kai Li
 
-<img src="images/kaili.png" width="200px">
+<img src="images/garywongkai.png" width="200px">
 
 [[github](https://github.com/garywongkai)]
 [[portfolio](team/johndoe.md)]
