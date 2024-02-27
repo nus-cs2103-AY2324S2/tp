@@ -371,13 +371,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a new person.
-2.  AddressBook prompts the user to input details for the new person.
-3.  User inputs details for the new person.
-4.  AddressBook saves the new person's information.
-5.  AddressBook confirms the addition of the new person.
+1.  User requests to add a new person and inputs details for the new person.
+2.  AddressBook saves the new person's information.
+3.  AddressBook confirms the addition of the new person.
 
     Use case ends.
+
+**Extensions**
+
+*  1a. User does not input enough parameters along with the contact.
+
+    *  1a1. AddressBook prompts the user on the proper usage of the command.
+
+        Use case resumes at step 2.
 
 **Use case: List**
 
@@ -401,47 +407,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to edit a specific person.
-2.  AddressBook prompts the user to select the person to edit.
-3.  User selects the person to edit.
-4.  AddressBook displays the details of the selected person.
-5.  User updates the details of the person.
-6.  AddressBook saves the updated details.
-7.  AddressBook confirms the successful update.
+1.  User requests to edit a specific person with updated details.
+2.  AddressBook saves the updated details.
+3.  AddressBook confirms the successful update.
 
     Use case ends.
 
 **Extensions**
 
-*   2a. The list is empty.
+*   1a. User does not input enough parameters along with the contact.
 
-    * 2a1. AddressBook displays a message indicating that the list is empty.
+    *  1a1. AddressBook prompts the user on the proper usage of the command.
 
-    Use case ends.
+       Use case resumes at step 2.
 
-*   3a. The selected person does not exist.
+*   1b. The selected person does not exist.
 
-    * 3a1. AddressBook displays an error message indicating that the person does not exist.
+    *  1b1. AddressBook displays an error message indicating that the person does not exist.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 **Use case: Find**
 
 **MSS**
 
-1.  User requests to find a specific person.
-2.  AddressBook prompts the user to input search criteria.
-3.  User inputs search criteria.
-4.  AddressBook searches for persons matching the criteria.
-5.  AddressBook displays a list of persons matching the criteria.
+1.  User requests to find a specific person matching the search criteria.
+2.  AddressBook displays a list of persons matching the criteria.
 
     Use case ends.
 
 **Extensions**
 
-*    5a. No persons match the search criteria.
+*    1a. No persons match the search criteria.
 
-*   5a1. AddressBook displays a message indicating that no persons match the criteria.
+     *   1a1. AddressBook displays a message indicating that no persons match the criteria.
 
 Use case ends.
 
@@ -450,22 +449,34 @@ Use case ends.
 **MSS**
 
 1.  User requests to clear all persons.
-2.  AddressBook prompts the user to confirm the action.
-3.  User confirms the action.
-4.  AddressBook clears all persons.
+2.  AddressBook clears all persons.
 
     Use case ends.
+
+**Extensions**
+
+*    1a. User inputs extraneous parameters.
+
+     *   1a1. AddressBook displays a message indicating that an extraneous parameter was found, and confirms User's intention.
+     
+         Use case ends.
 
 **Use case: Exit**
 
 **MSS**
 
 1.  User requests to exit the application.
-2.  AddressBook prompts the user to confirm the exit.
-3.  User confirms the exit.
-4.  AddressBook exits the application.
+2.  AddressBook exits the application.
 
     Use case ends.
+
+**Extensions**
+
+*    1a. User inputs extraneous parameters.
+
+     *   1a1. AddressBook displays a message indicating that an extraneous parameter was found, and confirms User's intention.
+
+         Use case ends.
 
 ### Non-Functional Requirements
 
