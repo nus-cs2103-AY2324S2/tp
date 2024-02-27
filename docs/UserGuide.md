@@ -66,6 +66,44 @@ FINDvisor is a **desktop app for financial advisors to manage contacts, optimize
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about input values format:**<br>
+
+* Spacing of values:
+  * Leading and trailing spaces of input values will be removed.
+  * Extra spaces between values will remain unless otherwise specified.
+
+* Case sensitivity:
+  * All input values are case-sensitive unless otherwise specified.
+
+* Duplicate contacts:
+  * Contacts are considered duplicates if they share the same phone number.
+
+* `NAME` format:
+  * Can only contain alphabetical characters and spaces.
+  * Cannot be blank.
+  * Extra spaces between values will be processed as a single space.
+
+* `PHONE_NUMBER` format:
+  * Must follow the standard Singapore telephone numbers (i.e. 9XXXXXXX or 8XXXXXXX).
+  * Spaces between numbers will be ignored.
+
+* `EMAIL` format:
+  * Must follow the standard email address format (i.e. example@example.com).
+
+* `ADDRESS` format:
+  * Can take any values.
+  * Cannot be blank.
+
+* `TAG` format:
+  * Can only consist of alphanumeric characters.
+
+* `DATETIME` format:
+  * Applies to all parameters with `DATETIME` postfix (i.e. `START_DATETIME` and `END_DATETIME`).
+  * Must follow the format `dd-MM-yyyy`T`HH:mm` (i.e. `23-02-2024T14:00`).
+</div>
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -150,6 +188,44 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `list` followed by `delete 2 3 4` deleted the 2nd, 3rd and 4th person in the contact list of FINDvisor
 
+### Scheduling a meeting : `schedule`
+
+Schedules a meeting with the specified person.
+
+Format: `schedule INDEX s/START_DATETIME e/END_DATETIME`
+
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* START_DATETIME must be after the system's current datetime.
+* END_DATETIME must be after START_DATETIME
+
+Examples:
+```
+> schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00
+Scheduled meeting with John Doe from 23-02-2024 16:00 to 23-02-2024 17:00
+
+> schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00
+Error: cannot schedule more than 1 meeting with a contact!
+```
+
+### Unscheduling a meeting : `unschedule`
+
+Unschedules a meeting with the specified person.
+
+Format: `unschedule INDEX`
+
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+```
+> unschedule 1
+Unscheduled meeting with John Doe
+
+> unschedule 1
+No scheduled meeting with John Doe!
+```
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list of FINDvisor.
@@ -204,4 +280,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Schedule** | `schedule INDEX s/START_DATETIME e/END_DATETIME`<br> e.g., `schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00`
+**Unschedule** | `unschedule INDEX`<br> e.g., `unschedule 1`
 **Help** | `help`
