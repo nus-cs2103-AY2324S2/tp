@@ -9,10 +9,10 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTimeUtil {
     public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+            DateTimeFormatter.ofPattern("dd-MM-yyyy'T'HH:mm");
 
     public static final DateTimeFormatter DATE_TIME_OUTPUT_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Converts a String into a LocalDateTime object. The expected format is yyyy-MM-dd'T'HH:mm. For

@@ -34,11 +34,12 @@ public class ScheduleCommand extends Command {
             + PREFIX_START_DATETIME + "START DATETIME "
             + PREFIX_END_DATETIME + "END DATETIME "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_START_DATETIME + "24-02-22T14:00 "
-            + PREFIX_END_DATETIME + "24-02-22T15:00 ";
+            + PREFIX_START_DATETIME + "22-02-2024T14:00 "
+            + PREFIX_END_DATETIME + "22-02-2024T15:00 ";
 
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Scheduled meeting with %1$s\n%2$s";
-    public static final String MESSAGE_NOT_EDITED = "Cannot schedule more than 1 meeting with a contact!";
+    public static final String MESSAGE_CANNOT_SCHEDULE_MULTIPLE_MEETINGS = "Cannot schedule more than 1"
+            + " meeting with a contact!";
 
     private final Index targetIndex;
     private final Meeting meeting;
@@ -63,7 +64,7 @@ public class ScheduleCommand extends Command {
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         if (personToEdit.getMeeting().isPresent()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
+            throw new CommandException(MESSAGE_CANNOT_SCHEDULE_MULTIPLE_MEETINGS);
         }
         Person editedPerson = createEditedPerson(personToEdit, meeting);
 
