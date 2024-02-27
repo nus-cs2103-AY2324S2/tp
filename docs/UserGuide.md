@@ -116,9 +116,9 @@ Finds persons based on a category of a person's information, e.g. name, email, p
 Format: `find n/NAME|e/EMAIL|p/PHONE|t/TAG`
 
 * Only the parameter specified in the command is searched. e.g. `find n/John` will only search for person's name.
-* The search is case-insensitive. e.g `hans` will match `Hans`.
-* Only full words will be matched. e.g. `Alex` will not match `Alex Tan`.
-* Order of keywords matter. e.g. `Doe John` will not match `John Doe`.
+* The search is case-insensitive. e.g `find n/hans` will match `Hans`.
+* Only full words will be matched. e.g. `find n/Alex` will **not match** `Alex Tan`.
+* Order of keywords matter. e.g. `find n/Doe John` will **not match** `John Doe`.
 
 Examples:
 * `find t/PRUActiveCash` returns all persons with tag `PRUActiveCash`.
