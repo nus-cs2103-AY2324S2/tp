@@ -1,12 +1,13 @@
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103-F08-1/tp/actions)
+[![codecov](https://codecov.io/gh/AY2324S2-CS2103-F08-1/tp/graph/badge.svg?token=15QKN9GAV0)](https://codecov.io/gh/AY2324S2-CS2103-F08-1/tp)
+
 ## FinCliQ, the one-stop client management application for Financial Advisors.
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/AY2324S2-CS2103-F08-1/tp/graph/badge.svg?token=KAYNMYZQ21)](https://codecov.io/gh/AY2324S2-CS2103-F08-1/tp)
 
 ![Ui](docs/images/Ui.png)
 
 ### About the App
-* The app allows Financial Advisors to keep track of the clients under them as well as the scheduled meeting with their 
-clients.
+* The app allows Financial Advisors to keep track of the clients under them as well as the scheduled meeting with their
+* clients.
   * It is **written in OOP fashion** and provides a **reasonably well-written** code base.
   * It comes with a **reasonable level of user and developer documentation**.
 
@@ -20,4 +21,3 @@ clients.
 
 ### Acknowledgements
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-

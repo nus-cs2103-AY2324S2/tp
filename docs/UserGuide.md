@@ -187,12 +187,34 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+
+## Command summary
+
+### Client Functions
+
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**   | `list`<br> e.g., `list`                                                                                                                                               |
+| **Edit**   | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
+| **Delete** | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                             <br/>                                                                          |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+
+### Meeting Functions
+
+### General Functions
+
+| Action     | Format, Examples                                                |
+|------------|-----------------------------------------------------------------|
+| **Add**    | `add CLIENT_INDEX n/NAME`<br>e.g., `add 1 n/James Ho`           |
+| **List**   | `list CLIENT_INDEX`<br>e.g., `list 2`                           |
+| **Edit**   | `edit CLIENT_INDEX MEETING_INDEX`<br>e.g.,`edit 1 2 n/Jamal Ho` |
+| **Delete** | `delete CLIENT_INDEX MEETING_INDEX`<br>e.g., `delete 3 1`       |
+
+
+### General Functions
+
+| Action    | Format, Examples |
+|-----------|------------------|
+| **Clear** | `clear`          |
+| **Help**  | `help`           |
