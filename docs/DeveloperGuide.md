@@ -280,10 +280,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | New user          | easily download and launch FINDvisor                                               | quickly start managing my client information                                    |
 | `* * *`  | New user          | know what are the available functionalities of FINDvisor                           |                                                                                 |
 | `* * *`  | New user          | know how to operate the basic functionalities of FINDvisor within the app         |                                                                                 |
-| `* * *`  | Financial Advisor | add contacts of my clients                                                         | keep a record of my clients' contact information.                                |
-| `* * *`  | Financial Advisor | find contacts of my clients                                                        | find information on a specific client.                                          |
-| `* * *`  | Financial Advisor | update client's contact information                                                | not need to delete and create new contact information.                           |
-| `* * *`  | Financial Advisor | remove contact information                                                         | reduce clutter in contact list with clients I have severed ties with.           |
+| `* * *`  | Financial Advisor | add contacts of my clients                                                         | keep a record of my clients' contact information                                |
+| `* * *`  | Financial Advisor | find contacts of my clients                                                        | find information on a specific client                                          |
+| `* * *`  | Financial Advisor | update client's contact information                                                | not need to delete and create new contact information                           |
+| `* * *`  | Financial Advisor | remove contact information                                                         | reduce clutter in contact list with clients I have severed ties with           |
 | `* * *`  | Financial Advisor | attach a meeting date and time to my client contact                                | know the next meeting plan with a specific client                               |
 | `* * *`  | Financial Advisor | filter contact list by tags                                                        | update the other parties under the same plan if they were not present in the meeting |
 | `* * *`  | Financial Advisor | delete a scheduled meeting                                                         | keep my schedule up-to-date                                                     |
@@ -292,8 +292,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Financial Advisor | filter contact list by meeting details                                             | find out who I'm meeting                                                        |
 | `* *`    | Financial Advisor | modify a scheduled meeting's details                                               | keep up-to-date with the meeting's details                                      |
 | `* *`    | Financial Advisor | shift clients into different groups                                                | reorganize in the event of changes                                              |
-| `* *`    | Financial Advisor | be able to add simple notes to my client contact information                       | know their financial goals to prepare me for my next meeting with them.         |
-| `*`      | New user          | import contact information in bulk to FINDvisor                                    | save time and ensure no client is overlooked.                                   |
+| `* *`    | Financial Advisor | be able to add simple notes to my client contact information                       | know their financial goals to prepare me for my next meeting with them         |
+| `*`      | New user          | import contact information in bulk to FINDvisor                                    | save time and ensure no client is overlooked                                   |
 | `*`      | Financial Advisor | filter for upcoming meet plans at given time                                       | know the meeting plans at the given time                                        |
 | `*`      | Financial Advisor | schedule recurring meeting plans                                                   | not have to manually add the meeting one by one                                 |
 | `*`      | Financial Advisor | group my clients into different groupings according to clients' relationships      | easily manage clients' that have relationships                                  |
