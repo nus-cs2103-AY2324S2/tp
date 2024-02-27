@@ -383,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     *  1a1. AddressBook prompts the user on the proper usage of the command.
 
-        Use case resumes at step 2.
+        Step 1a1 is repeated until the data entered is correct.
 
 **Use case: List**
 
@@ -419,13 +419,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     *  1a1. AddressBook prompts the user on the proper usage of the command.
 
-       Use case resumes at step 2.
+       Step 1a1 is repeated until the data entered is correct.
 
 *   1b. The selected person does not exist.
 
     *  1b1. AddressBook displays an error message indicating that the person does not exist.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: Find**
 
