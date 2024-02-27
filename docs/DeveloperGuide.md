@@ -314,7 +314,90 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HRConnect` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to add a specific person to the list
+4.  AddressBook adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given format is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+      
+* 3b. The contact details have been added before.
+
+    * 3b1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Clear**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to clear the list
+4.  AddressBook deletes all entries in list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+  
+**Use case: Add comment to contact**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to add a comment to a specific person in the list
+4.  AddressBook adds comment to the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given Application ID is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+      
+* 3b. The comment is empty.
+
+    * 3b1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The comment is a duplicate of a previous comment assigned to the specific person.
+
+    * 3c1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
 
 **Use case: Delete a person**
 
@@ -338,8 +421,6 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
