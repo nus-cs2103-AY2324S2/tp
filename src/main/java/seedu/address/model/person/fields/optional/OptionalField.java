@@ -1,2 +1,7 @@
-package seedu.address.model.person.fields.optional;public interface OptionalField {
+package seedu.address.model.person.fields.optional;
+
+/**
+ * Represents an interface for optional Person fields
+ */
+public interface OptionalField {
 }
