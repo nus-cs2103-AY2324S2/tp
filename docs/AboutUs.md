@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor
 
 ### Jane Doe
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Team Lead
+- Responsibilities: UI
 
 ### Kenneth Seet
 
@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/itstrueitstrueitsrealitsreal)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Project Management
+- Role: Developer
+- Responsibilities: Project Management
 
 ### Teo Hong Rui
 
@@ -45,15 +45,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/sethteo)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
 
-### James Doe
+### Chew Zi Xuuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chewbum.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/chewbum)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Model
