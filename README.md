@@ -4,7 +4,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-**FINDvisor aims to streamline client management for financial advisors with a tool that organizes contact information. Furthermore, it aims to simplify organising meetings, and tracks client goals for better timeline planning—all in one clutter-free interface.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+*FINDvisor aims to streamline client management for financial advisors with a tool that organizes contact information. Furthermore, it aims to simplify organising meetings, and tracks client goals for better timeline planning—all in one clutter-free interface.* While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 For the detailed documentation of this project, see the **[FINDvisor Product Website](https://nus-cs2103-ay2324s2.github.io/tp/)**.
 
