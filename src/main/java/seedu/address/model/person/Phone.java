@@ -3,17 +3,18 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+    public final String phone;
 
     /**
      * Constructs a {@code Phone}.
@@ -23,7 +24,7 @@ public class Phone {
     public Phone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+        this.phone = phone;
     }
 
     /**
@@ -34,8 +35,9 @@ public class Phone {
     }
 
     @Override
+    @JsonValue
     public String toString() {
-        return value;
+        return phone;
     }
 
     @Override
@@ -50,12 +52,12 @@ public class Phone {
         }
 
         Phone otherPhone = (Phone) other;
-        return value.equals(otherPhone.value);
+        return phone.equals(otherPhone.phone);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return phone.hashCode();
     }
 
 }
