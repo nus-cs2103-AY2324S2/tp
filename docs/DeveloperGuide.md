@@ -411,8 +411,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9.  Should store data locally in a human editable text file without the use of DBMS.
 10. Should be used by a single user.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS.
