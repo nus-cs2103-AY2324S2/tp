@@ -88,9 +88,9 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Show workers as a list. This can be used as “refresh” (e.g. after find command)
 
-Format: `list`
+**Format:** `list`
 
 ### Editing a person : `edit`
 
@@ -109,23 +109,26 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Searching Workers by keyword: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds workers that contains any of the given keywords. It can be `ID`, `NAME`, `EMAIL` or `PHONE NUMBER`.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+**Format:** 
+* `Find by name: /find :name [name]`
+* `Find by email: /find :email [email]`
+* `Find by phone number: /find :phone [phone number]`
+* `Find by worker’s ID: /find :ID [ID]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+**Acceptable Format:**
+* _Any letter cases are acceptable. e.g `Patrick` will match `patrick`_
+* _ID: must be 6 digits of numbers_
+* _Name: can be any case (Strings)_
+* _Phone: must be numbers (integers)_
+* _Email: must include “@”_
+* _Only full keywords will be matched. e.g `Patrick` will not match `patr`_
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find :name John` returns `john` and `John Doe`
 
 ### Deleting a person : `delete`
 
