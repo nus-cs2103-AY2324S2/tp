@@ -316,32 +316,28 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 (For all use cases below, the **System** is the `HRConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+**Use case: Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to add a specific person to the list
-4.  AddressBook adds the person
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to add a specific contact to the list
+4.  HRConnect adds the contact
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
-  Use case ends.
-
 * 3a. The given format is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
       
 * 3b. The contact details have been added before.
 
-    * 3b1. AddressBook shows an error message.
+    * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
@@ -349,10 +345,10 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
 3.  User requests to clear the list
-4.  AddressBook deletes all entries in list
+4.  HRConnect deletes all entries in list
 
     Use case ends.
 
@@ -367,10 +363,10 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
 3.  User requests to add a comment to a specific person in the list
-4.  AddressBook adds comment to the person
+4.  HRConnect adds comment to the person
 
     Use case ends.
 
@@ -382,31 +378,31 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 * 3a. The given Application ID is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
       
 * 3b. The comment is empty.
 
-    * 3b1. AddressBook shows an error message.
+    * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
-* 3c. The comment is a duplicate of a previous comment assigned to the specific person.
+* 3c. The comment is a duplicate of a previous comment assigned to the same contact.
 
-    * 3c1. AddressBook shows an error message.
+    * 3c1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to delete a specific contact on the list
+4.  HRConnect deletes the person
 
     Use case ends.
 
@@ -418,7 +414,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
       
@@ -427,10 +423,10 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
 3.  User requests to edit a specific person's details in the list
-4.  AddressBook edits the details belonging to the person
+4.  HRConnect edits the details belonging to the person
 
     Use case ends.
 
@@ -442,13 +438,13 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 * 3a. The given index of the person is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The given format of the command is invalid.
 
-    * 3b1. AddressBook shows an error message.
+    * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
@@ -456,10 +452,10 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
 3.  User requests to export contacts into a separate address book section.
-4.  AddressBook exports the specified range of contacts to the designated page.
+4.  HRConnect exports the specified range of contacts to the designated page.
 
     Use case ends.
 
@@ -471,13 +467,13 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 * 3a. The given format of the command is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
       
 * 3b. The given range is invalid.
 
-    * 3b1. AddressBook shows an error message.
+    * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
       
@@ -486,10 +482,10 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
 3.  User requests to filter through the contact list based on what stage the interviewee is in
-4.  AddressBook returns entries only for interviewees in that particular stage. 
+4.  HRConnect returns entries only for interviewees in that particular stage. 
 
     Use case ends.
 
@@ -501,13 +497,13 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 * 3a. The given format of the command is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
       
 * 3b. The tag does not exist.
 
-    * 3b1. AddressBook shows an error message.
+    * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
   
@@ -516,10 +512,10 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
 3.  User requests to find entries that match the keyword in the list
-4.  AddressBook returns entries that match the keyword
+4.  HRConnect returns entries that match the keyword
 
     Use case ends.
 
@@ -548,10 +544,10 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
 3.  User requests to add specific tags to specific contacts for easy filtering later.
-4.  AddressBook adds the specified tag to the designated contact.
+4.  HRConnect adds the specified tag to the designated contact.
 
     Use case ends.
 
@@ -561,13 +557,13 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 * 3a. The application ID does not exist.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The tag does not exist.
 
-    * 3b1. AddressBook shows an error message.
+    * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
