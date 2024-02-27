@@ -50,8 +50,10 @@ public class Person {
         this.phone = new Phone(phone);
         this.email = new Email(email);
         this.address = new Address(address);
-        for (String tagName : tagNames) {
-            this.tags.add(new Tag(tagName));
+        if (tagNames != null) {
+            for (String tagName : tagNames) {
+                this.tags.add(new Tag(tagName));
+            }
         }
     }
 
