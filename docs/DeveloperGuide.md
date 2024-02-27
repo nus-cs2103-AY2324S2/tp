@@ -410,6 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8.  Should not cause any resolution-related inconveniences to user.
 9.  Should store data locally in a human editable text file without the use of DBMS.
 10. Should be used by a single user.
+11. Command names should be representative of their actions.
 
 ### Glossary
 
