@@ -287,14 +287,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
+| Priority | As a …​ | I want to …​ | So that I can…​ |
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| `* * *` | busy student | quickly check my friends' schedules | can find a suitable time to plan a meetup. |
+| `* * *` | NUS student who likes **---** | find who has similar hobbies/interests with me | know who might want to go to a **---** related activities with me.|
+| `* * *` | NUS student who prefers command line interface | have a GUI to include commands | add details with convenience |
+| `* * *` | NUS student working part time | utilise Moddie to store contact details for team members, advisor | optimise my time management with school and work. |
+| `* * *` | student project team leader | check my teammates' schedule | conduct meetings with convenience |
+| `* * *` | international NUS student | find local friends that share similar schedules as me to aid me in easing into the university | build meaningful connections, navigate campus life more smoothly. |
+| `* * *` | unmotivated student who needs to catch up on my studies|manage my timetable with my friends |easily arrange a study session with them |
+| `* * *` | | | |
+| `* * *` | | | |
+| `* * *` | | | |
+| `* * *` | | | |
 
 *{More to be added}*
 
