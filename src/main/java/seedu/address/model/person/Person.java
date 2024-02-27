@@ -45,7 +45,6 @@ public class Person {
     private Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                    @JsonProperty("email") String email, @JsonProperty("address") String address,
                    @JsonProperty("tags") List<String> tagNames) {
-        requireAllNonNull(name, phone, email, address, tagNames);
         this.name = new Name(name);
         this.phone = new Phone(phone);
         this.email = new Email(email);
