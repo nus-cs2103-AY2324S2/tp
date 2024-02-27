@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Alvis Low Yue Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alvis.png" width="200px">
 
 [[github](https://github.com/beefsausagee)]
 [[portfolio](team/johndoe.md)]
