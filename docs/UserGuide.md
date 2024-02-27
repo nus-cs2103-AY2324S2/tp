@@ -182,6 +182,44 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Scheduling a meeting : `schedule`
+
+Schedules a meeting with the specified person.
+
+Format: `schedule INDEX s/START_DATETIME e/END_DATETIME`
+
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* START_DATETIME must be after the system's current datetime.
+* END_DATETIME must be after START_DATETIME
+
+Examples:
+```
+> schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00
+Scheduled meeting with John Doe from 23-02-2024 16:00 to 23-02-2024 17:00
+
+> schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00
+Error: cannot schedule more than 1 meeting with a contact!
+```
+
+### Unscheduling a meeting : `unschedule`
+
+Unschedules a meeting with the specified person.
+
+Format: `unschedule INDEX`
+
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+```
+> unschedule 1
+Unscheduled meeting with John Doe
+
+> unschedule 1
+No scheduled meeting with John Doe!
+```
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -236,4 +274,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Schedule** | `schedule INDEX s/START_DATETIME e/END_DATETIME`<br> e.g., `schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00`
+**Unschedule** | `unschedule INDEX`<br> e.g., `unschedule 1`
 **Help** | `help`
