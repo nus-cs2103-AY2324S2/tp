@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aw Joey
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/awjoey.jpg" width="200px">
 
 [[github](https://github.com/AwJoey)] [[portfolio](team/johndoe.md)]
 
