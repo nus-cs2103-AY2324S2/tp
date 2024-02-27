@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * financial advisors
-* has a need of scheduling meetings with a significant number of clients.
+* has a need of scheduling meetings with a significant number of clients
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
