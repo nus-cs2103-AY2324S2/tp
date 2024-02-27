@@ -14,7 +14,7 @@ FINDvisor is a **desktop app for financial advisors to manage contacts, optimize
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `findvisor.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `findvisor.jar` from [here](https://github.com/AY2324S2-CS2103-F15-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your FINDvisor.
 
@@ -120,8 +120,7 @@ Adds a person to the contact list in FINDvisor.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0) 
-pertaining to how many financial plans he/she is under
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -129,7 +128,7 @@ Examples:
 * `add n/Betsy Crowe t/PRUactiveCash e/betsycrowe@example.com a/Block 82 Marine Parade Central #01-600 p/9876 5432 t/PRUTravellerProtect`
 
 Specifications:
-* `p/PHONE_NUMBER` has to be unique from the other contacts in FINDVisor.
+* `p/PHONE_NUMBER` has to be unique from the other contacts in FINDvisor.
 
 ### Listing all persons : `list`
 
@@ -186,7 +185,7 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list of FINDvisor.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `list` followed by `delete 2 3 4` deleted the 2nd, 3rd and 4th person in the contact list of FINDvisor
+* `list` followed by `delete 2 3 4` deletes the 2nd, 3rd and 4th person in the contact list of FINDvisor
 
 ### Scheduling a meeting : `schedule`
 
@@ -240,14 +239,14 @@ Format: `exit`
 
 ### Saving the data
 
-FINDVisordata are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FINDvisor data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-FINDVisor data are saved automatically as a JSON file `[JAR file location]/data/FINDvisor.json`. Advanced users are welcome to update data directly by editing that data file.
+FINDvisor data are saved automatically as a JSON file `[JAR file location]/data/FINDvisor.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FINDVisor will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, FINDvisor will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the FINDvisor to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
