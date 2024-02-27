@@ -38,7 +38,7 @@ public class ScheduleCommand extends Command {
             + PREFIX_START_DATETIME + "22-02-2024T14:00 "
             + PREFIX_END_DATETIME + "22-02-2024T15:00 ";
 
-    public static final String MESSAGE_SCHEDULE_SUCCESS = "Scheduled meeting with %1$s\n%2$s";
+    public static final String MESSAGE_SCHEDULE_SUCCESS = "Scheduled meeting with %1$s from %2$s to %3$s";
     public static final String MESSAGE_CANNOT_SCHEDULE_MULTIPLE_MEETINGS = "Cannot schedule more than 1"
             + " meeting with a contact!";
     public static final String MESSAGE_CANNOT_SCHEDULE_MEETING_IN_THE_PAST = "Cannot schedule meeting that"
@@ -81,7 +81,9 @@ public class ScheduleCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_SCHEDULE_SUCCESS,
-                editedPerson.getName(), Messages.format(meeting)));
+                editedPerson.getName(),
+                DateTimeUtil.dateTimeToString(meeting.start),
+                DateTimeUtil.dateTimeToString(meeting.end)));
     }
 
     /**
