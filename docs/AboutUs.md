@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Kenneth Seet
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itstrueitstrueitsrealitsreal.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/itstrueitstrueitsrealitsreal)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Project Management
 
 ### Teo Hong Rui
 
