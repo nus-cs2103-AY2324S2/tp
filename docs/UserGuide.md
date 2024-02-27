@@ -115,15 +115,14 @@ Finds persons based on a category of a person's information, e.g. name, email, p
 
 Format: `find n/NAME|e/EMAIL|p/PHONE|t/TAG`
 
-* Only the parameter specified in the command is searched.
-* For string related searches, i.e. `find n/NAME|e/EMAIL|p/PHONE|t/TAG`
-  * The search is case-insensitive. e.g `hans` will match `Hans`.
-  * Only full words will be matched. e.g. `Alex` will not match `Alex Tan`.
-  * Order of keywords matter. e.g. `Doe John` will not match `John Doe`.
+* Only the parameter specified in the command is searched. e.g. `find n/John` will only search for person's name.
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* Only full words will be matched. e.g. `Alex` will not match `Alex Tan`.
+* Order of keywords matter. e.g. `Doe John` will not match `John Doe`.
 
 Examples:
 * `find t/PRUActiveCash` returns all persons with tag `PRUActiveCash`.
-* `find e/johnd@example.com` returns person with email `johnd@example.com`.
+* `find p/91234567` returns person with phone number `91234567`.
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
