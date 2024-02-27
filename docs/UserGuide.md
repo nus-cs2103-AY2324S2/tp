@@ -149,11 +149,11 @@ Examples:
 
 ### Adding notes to interviewees by tag : `/comment`
 Facilitates the addition of notes or comments to individual interviewee entries.
-Format: `/comment <ApplicationId> <comment-message>`
+Format: `/comment <ApplicationId> <Comment>`
 
 * Incorporate supplementary notes to enrich the interviewee's profile.
 * Possible values for `<ApplicationId>` are integers.
-* Possible values for <comment-message> are any non-empty string that provides relevant commentary.
+* Possible values for <Comment> are any non-empty string that provides relevant commentary.
 
 Examples:
 * `/comment 10 “S/Pass Holder”` will add the note “S/Pass Holder” to the applicant identified by ID 10.
@@ -198,4 +198,4 @@ Action | Format, Examples
 **Help** | `help`
 **Exit** | `exit`
 **Filter** | `/filter <Tag>`  <br> e.g., `/filter initial_application`
-**Comment** | `/comment <ApplicationId> <comment-message>`  <br> e.g., `/comment 10 “S/Pass Holder”`
+**Comment** | `/comment <ApplicationId> <Comment>`  <br> e.g., `/comment 10 “S/Pass Holder”`
