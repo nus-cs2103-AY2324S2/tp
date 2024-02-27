@@ -29,6 +29,9 @@ public class Tags implements OptionalField {
      * @param tagNames A list of strings, or null.
      */
     public Tags(String... tagNames) {
+        for (String name : tagNames) {
+            if (name.isEmpty()) System.out.println(tagNames.length);
+        }
         this.tags = Stream.of(tagNames)
                           .map(Tag::new)
                           .collect(Collectors.toUnmodifiableSet());

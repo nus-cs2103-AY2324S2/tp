@@ -33,7 +33,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Tags tags) {
-        requireAllNonNull(name, phone, email, address);
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,12 +45,12 @@ public class Person {
     private Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                    @JsonProperty("email") String email, @JsonProperty("address") String address,
                    @JsonProperty("tags") String[] tagNames) {
-        requireAllNonNull(name, phone, email, address);
+        requireAllNonNull(name, phone, email, address, tagNames);
         this.name = new Name(name);
         this.phone = new Phone(phone);
         this.email = new Email(email);
         this.address = new Address(address);
-        this.tags = tagNames == null ? null : new Tags(tagNames);
+        this.tags = new Tags(tagNames);
     }
 
     public Name getName() {
