@@ -366,6 +366,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use Case: Scheduling a meeting with a new person**
+
+**MSS**
+
+1. User adds new person to FINDvisor.
+2. User requests to list persons.
+3. FINDvisor shows a list of persons.
+4. User requests to schedule a meeting with a specific person in the list.
+5. Meeting is scheduled.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details for adding a new person is invalid.
+
+    * 1a1. FINDvisor shows an error message.
+
+      Use case resumes at step 1.
+
+* 4a. The given index is invalid.
+
+    * 4a1. FINDvisor shows an error message.
+
+      Use case resumes at step 3.
+
+* 4b. The given meeting datetime is invalid.
+
+    * 4b1. FINDvisor shows an error message.
+
+      Use case resumes at step 3.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
