@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -40,6 +41,8 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_SCHEDULE_SUCCESS = "Scheduled meeting with %1$s\n%2$s";
     public static final String MESSAGE_CANNOT_SCHEDULE_MULTIPLE_MEETINGS = "Cannot schedule more than 1"
             + " meeting with a contact!";
+    public static final String MESSAGE_CANNOT_SCHEDULE_MEETING_IN_THE_PAST = "Cannot schedule meeting that"
+            + " starts before the current time!";
 
     private final Index targetIndex;
     private final Meeting meeting;
@@ -69,6 +72,10 @@ public class ScheduleCommand extends Command {
         Person editedPerson = createEditedPerson(personToEdit, meeting);
 
         assert !personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson);
+
+        if (!DateTimeUtil.isAfterCurrentDateTime(meeting.start)) {
+            throw new CommandException(MESSAGE_CANNOT_SCHEDULE_MEETING_IN_THE_PAST);
+        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

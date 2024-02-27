@@ -38,10 +38,6 @@ public class Meeting {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidDateTime(LocalDateTime start, LocalDateTime end) {
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        if (!start.isAfter(currentDateTime)) {
-            return false;
-        }
         return start.isBefore(end);
     }
 

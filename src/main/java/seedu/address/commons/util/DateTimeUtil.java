@@ -48,4 +48,14 @@ public class DateTimeUtil {
         return dateTime.format(DATE_TIME_OUTPUT_FORMAT);
     }
 
+    /**
+     * Checks if the given LocalDateTime object is after the current date and time.
+     *
+     * @param dateTime The LocalDateTime object to be checked.
+     * @return True if the given LocalDateTime object is after the current date and time, false otherwise.
+     */
+    public static boolean isAfterCurrentDateTime(LocalDateTime dateTime) {
+        return dateTime.isAfter(LocalDateTime.now());
+    }
+
 }
