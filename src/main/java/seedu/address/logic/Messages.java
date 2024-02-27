@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,7 +29,10 @@ public class Messages {
         Set<String> duplicateFields =
                 Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
 
-        return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
+        ArrayList<String> duplicateFieldsArray = new ArrayList<>(duplicateFields);
+        duplicateFieldsArray.sort(String::compareToIgnoreCase);
+
+        return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFieldsArray);
     }
 
     /**
@@ -41,6 +45,8 @@ public class Messages {
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
+                .append("; NUSNET: ")
+                .append(person.getNusNet())
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Tags: ");
