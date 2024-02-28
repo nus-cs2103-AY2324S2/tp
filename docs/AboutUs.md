@@ -11,13 +11,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ryan Tan
 
-<img src="images/ryan.png" width="200px">
+<img src="images/chiralcentre.png" width="200px">
 
 [[github](https://github.com/chiralcentre)]
 [[portfolio](team/ryan.md)]
 
 * Role: Developer
 * Responsibilities: Backend, DevOps, Code Reviews, Project Coordination
+
+### Lee Wei Ming
+
+<img src="images/leeweiming3.png" width="200px">
+
+[[github](https://github.com/leeweiming3)]
+[[portfolio](team/leeweiming3.md)]
+
+* Role: Developer
+* Responsibilities: Frontend, Backend, DevOps, Code Reviews
 
 ### Jane Doe
 
@@ -29,11 +39,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Ikhoon Eom
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/acekhoon.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/acekhoon)] [[portfolio](team/ikhoon.md)]
 
 * Role: Developer
 * Responsibilities: Data
