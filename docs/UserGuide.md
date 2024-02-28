@@ -86,28 +86,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Editing a person : `Edit`
+### Listing all persons : `list`
 
-Edit the fields of the specified person in the address book.
+Shows a list of all persons in the address book.
 
-Format: `/edit ; name : [NAME] ; field { [FIELD] : [VALUE] }`
-
-* Edits the specified `field`(s) of the person with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
-* The name is case-insensitive but space-sensitive.
-* At least one field must be provided. 
-* More than one field can be updated at the same time.
-* The field(s) to be edited must be a valid field within their contact type, i.e. Pooch Staff, Pooch Supplier, Pooch Maintenance).
-* **_Caution_** : Editing `name` field to another name that already exists in Pooch Contact Book is strictly **not** allowed. 
-
-Examples: 
-* `edit ; name : Poochie ; field : { name : Mochie }`
-  
-  The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book. 
-
-* `edit ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
-
-  The above command edits the address of **_Thomas_** to **_Poochie Street 25_**.
-  The above command also edits the employment of **_Thomas_**, which **must** be a **_Pooch Staff_**, to **_full-time_**.
+Format: `list`
 
 ### Editing a person : `edit`
 
