@@ -288,31 +288,215 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+---
+**System**: `PoochPlanner`
 
-**MSS**
+**Use case**: `UC01 - Add Contact of a Person`
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Actor**: `User`
+
+**MSS**:
+
+1.  User chooses to add contact of a person.
+2.  PoochPlanner updates list of persons.
+3.  PoochPlanner confirms success update.
 
     Use case ends.
 
-**Extensions**
+**Extensions**:
 
-* 2a. The list is empty.
+* 1a. PoochPlanner detects a missing field in the entered input.
 
-  Use case ends.
+   * 1a1. PoochPlanner displays the error message.
+   * 1a2. User re-enters the correct command with the required field.
+   * Steps 1a1 - 1a2 are repeated until the input entered are correct.
+   * Use case resumes from step 2. 
 
-* 3a. The given index is invalid.
+* 1b. PoochPlanner detects a duplicate name entry.
 
-    * 3a1. AddressBook shows an error message.
+   * 1b1. PoochPlanner displays the error message.
+   * 1b2. User re-enters the correct command with another name.
+   * Steps 1b1 - 1b2 are repeated until there is no duplicate entry in input.
+   * Use case resumes from step 2. 
+---
+**System**: `PoochPlanner`
 
-      Use case resumes at step 2.
+**Use case**: `UC02 - Delete Contact of a Person`
 
+**Actor**: `User`
+
+**MSS**:
+
+1.  User chooses to delete contact of a person.
+2.  PoochPlanner removes person and updates list of persons.
+3.  PoochPlanner confirms successful deletion.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner detects a missing name field in the entered input.
+
+   * 1a1. PoochPlanner displays the error message.
+   * 1a2. User re-enters the correct command with the name field.
+   * Steps 1a1 - 1a2 are repeated until the input entered are correct.
+   * Use case resumes from step 2. 
+
+* 1b. PoochPlanner is unable to find the Person.
+
+   * 1b1. PoochPlanner displays the error message.
+   * 1b2. User re-enters a new command with another name.
+   * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
+   * Use case resumes from step 2. 
+---
+**System**: `PoochPlanner`
+
+**Use case**: `UC03 - Edit Contact of a Person`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User chooses to edit the field of a person.
+2.  PoochPlanner updates the field of specified person.
+3.  PoochPlanner confirms successful edit.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner detects a missing name field in the entered input.
+
+   * 1a1. PoochPlanner displays the error message.
+   * 1a2. User re-enters the correct command with the name field.
+   * Steps 1a1 - 1a2 are repeated until the input entered are correct.
+   * Use case resumes from step 2. 
+
+* 1b. PoochPlanner is unable to find the Person.
+
+   * 1b1. PoochPlanner displays the error message.
+   * 1b2. User re-enters a new command with another name.
+   * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
+   * Use case resumes from step 2. 
+
+* 1c. User wants to edit the name field to a name that already exists in PoochPlanner.
+
+   * 1c1. PoochPlanner displays the error message.
+   * 1c2. User re-enters the command with a diferent name.
+   * Steps 1c1 - 1c2 are repeated until the new name field is valid.
+   * Use case resumes from step 2. 
+
+* 1d. User did not specify the field that they want to edit.
+
+   * 1d1. PoochPlanner displays the error message.
+   * 1d2. User re-enters the command and specify the field/s to edit.
+   * Steps 1d1 - 1d2 are repeated until there exist a specified field to edit.
+   * Use case resumes from step 2. 
+
+
+* 1e. User specified an invalid field.
+
+   * 1e1. PoochPlanner displays the error message.
+   * 1e2. User re-enters the command and edits a different field.
+   * Steps 1e1 - 1e2 are repeated until there exist a valid field in the input.
+   * Use case resumes from step 2. 
+---
+**System**: `PoochPlanner`
+
+**Use case**: `UC04 - Search Contact of a Person`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User chooses to search for the contact of a person with a keyword for a specified field.
+2.  PoochPlanner confirms successful search.
+3.  PoochPlanner returns the sublist of contacts that contains the keyword specified by the user. 
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner detects a missing field in the entered input.
+
+   * 1a1. PoochPlanner displays the error message.
+   * 1a2. User re-enters the correct command with a specified field.
+   * Steps 1a1 - 1a2 are repeated until a valid field is inputted by the User.
+   * Use case resumes from step 2. 
+
+* 1b. PoochPlanner detects multiple fields in the entered input.
+
+   * 1b1. PoochPlanner displays the error message.
+   * 1b2. User re-enters a new command with only one field.
+   * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
+   * Use case resumes from step 2. 
+
+* 1c. PoochPlanner detects invalid field in the entered input.
+
+   * 1c1. PoochPlanner displays the error message.
+   * 1c2. User re-enters a new command with another field.
+   * Steps 1c1 - 1c2 are repeated until a valid field is inputted by the User.
+   * Use case resumes from step 2. 
+---
+**System**: `PoochPlanner`
+
+**Use case**: `UC05 - Help Tutorial`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User wants to learn more about the commands.
+2.  PoochPlanner displays the information on how to use the different commands.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. User wants to learn about available command.
+
+   * 1a1. PoochPlanner displays the list of all commands.
+   * 1a2. User specifies which command they wish to use.
+   * Use case resumes from step 1. 
+
+* 1b. User wants to learn about pooch-staff.
+
+   * 1b1. PoochPlanner displays information of pooch-staff.
+
+       Use case ends.
+
+* 1c. User wants to learn about pooch-supplier.
+
+   * 1c1. PoochPlanner displays information of pooch-supplier.
+
+       Use case ends.
+
+* 1d. User wants to learn about pooch-maintenance.
+
+   * 1d1. PoochPlanner displays information of pooch-maintenance.
+
+       Use case ends.
+   
+* 1e. User wants to learn about delete.
+
+   * 1d1. PoochPlanner displays information on how to use the delete command.
+
+       Use case ends.
+
+* 1f. User wants to learn about edit.
+
+   * 1f1. PoochPlanner displays information on how to use the edit command.
+
+       Use case ends.
+
+* 1g. User wants to learn about search.
+
+   * 1g1. PoochPlanner displays information on how to use the search command.
+
+       Use case ends.
+
+---
 *{More to be added}*
 
 ### Non-Functional Requirements
