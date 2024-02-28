@@ -51,8 +51,8 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can be used multiple times at least onxe.<br>
+  e.g. `[t/TAG]…​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order, if specified.<br>
   e.g. if the command specifies `:name :phone`, `:phone :name` is also acceptable.
@@ -129,15 +129,24 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `remove ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the person with the specified `ID`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `/remove 240001` deletes the person with `240001` ID.
+
+### Tagging a person: `tag`
+
+Tags the specified person from the address book.
+
+Format: `/tag ID t/TAG...`
+
+* Tags the person with the specified `ID`.
+* Allowed to have more than 1 tags per person.
+
+Examples:
+* `/tag 240001 t/finance t/manager` tags the person with `240001` ID with `finance` and `manager`.
 
 ### Clearing all entries : `clear`
 
