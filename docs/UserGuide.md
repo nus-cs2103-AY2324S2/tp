@@ -153,13 +153,18 @@ Format: `clear`
 
 Searches candidates whose attributes match the specified attributes in the search criteria.
 
-Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]…`
+Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
 
 * At least one of the optional fields must be provided.
 * The search is case-sensitive, e.g. `hans` will not match `Hans`.
 * For email, country, phone and interview status, only full words will be matched.
 * For name, comment and tags, partial words will be matched, e.g. `Han` will match `Hans`.
 * The search will fail if either of the email, country, phone or interview status is in an invalid format.
+* If multiple fields are specified, only candidates that match **all** the specified attributes will be returned.
+
+Examples:
+* `search n/John s/ACCEPTED` returns candidates whose names contain `John` and whose interview status is `ACCEPTED`.
+* `search t/Internal` returns candidates whose tags contain `Internal`.
 
 ### Exiting the program : `exit`
 
