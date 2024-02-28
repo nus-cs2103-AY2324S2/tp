@@ -274,7 +274,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* A real estate agent
+* has a need to manage a significant number of contacts of their clients
+* has to note down many details about each client
+* has to frequently add, delete, and search for clients
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -300,32 +303,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Realodex` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to delete
+2.  Realodex prompts "Please enter client's name"
+3.  User inputs client's name
+4.  Realodex deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The input name is not found
 
-  Use case ends.
+  Realodex shows an error message "NAME is not found".
 
-* 3a. The given index is invalid.
+**Use case: List**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  User requests to list
+2.  Realodex shows the list of all clients
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Realodex shows an empty list.
+
+**Use case: Find**
+
+**MSS**
+
+1.  User requests to find STRING
+2.  Realodex shows the list of all clients with name including the STRING
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. No contact found with a name including the STRING
+
+  Realodex shows an empty list.
+
 
 ### Non-Functional Requirements
 
