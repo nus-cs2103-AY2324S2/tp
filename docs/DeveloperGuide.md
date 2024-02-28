@@ -439,11 +439,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-*    5a. No persons match the search criteria.
+*   5a. No persons match the search criteria.
 
-*   5a1. AddressBook displays a message indicating that no persons match the criteria.
+    * 5a1. AddressBook displays a message indicating that no persons match the criteria.
 
-Use case ends.
+    Use case ends.
+
+**Use case: Copy**
+
+**MSS**
+
+1.  User requests to copy emails of currently displayed persons.
+2.  AddressBook copies the emails of currently displayed persons 
+into user's clipboard.
+3.  AddressBook notifies the user that emails have been copied.
+4.  User can paste emails when composing emails.
+
+    Use case ends.
+
+**Extensions**
+
+*   2a. No persons currently displayed.
+
+    * 2a1. AddressBook displays a message indicating that 
+    no persons are currently displayed.
+
+    Use case ends.
 
 **Use case: Clear**
 
