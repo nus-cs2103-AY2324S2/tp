@@ -7,17 +7,16 @@
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `cs2103t_w10_1[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### James Lau
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/appleraincoat.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/appleraincoat)]
+[[portfolio](team/appleraincoat)]
 
 * Role: Project Advisor
 
@@ -26,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/appleraincoat)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -35,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/appleraincoat)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -45,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/appleraincoat)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -55,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/appleraincoat)]
 
 * Role: Developer
 * Responsibilities: UI
