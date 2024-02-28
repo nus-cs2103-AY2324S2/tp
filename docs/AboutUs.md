@@ -11,51 +11,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ashley Goh
+
+<img src="images/ashleygoh1.png" width="200px">
+
+[[github](http://github.com/ashleygoh1)]
+[[portfolio](team/ashley.md)]
+
+* Role: Developer
+* Responsibilities: Model
+
+### Chai Ming How
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/minghowC)] 
+[[portfolio](team/minghow.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Chen Yixin
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chenyixin0)]
+[[portfolio](team/yixin.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Eunice Koh
+
+<img src="images/eunicekoh1.png" width="200px">
+
+[[github](http://github.com/eunrcn)]
+[[portfolio](team/eunice.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### Jawad Afthab
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Jawad280)]
+[[portfolio](team/jawad.md)]
 
 * Role: Developer
 * Responsibilities: UI
