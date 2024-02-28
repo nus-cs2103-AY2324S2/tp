@@ -11,9 +11,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Baizhou
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/windofbitter.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
