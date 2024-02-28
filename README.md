@@ -9,7 +9,9 @@ JENGA helps Genealogists keep track of details of relatives, and easy storage an
 - [User Guide](https://github.com/AY2324S2-CS2103T-T11-1/tp/blob/master/docs/UserGuide.md)
 - [Developer Guide](https://github.com/AY2324S2-CS2103T-T11-1/tp/blob/master/docs/DeveloperGuide.md)
 ---
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+**Acknowledgements**
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 
 
