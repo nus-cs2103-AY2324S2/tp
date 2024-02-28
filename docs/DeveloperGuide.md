@@ -297,7 +297,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 1. Add candidate
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
+
 **Use case**: UC01 - Add Candidate to the List
+
 **Actor**: Recruiter
 
 **MSS**
@@ -393,7 +395,9 @@ Use case ends.
 ### Edit candidate details
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
+
 **Use case**: UC03 - Edit Candidate from the List
+
 **Actor**: Recruiter
 
 **MSS**
@@ -460,7 +464,7 @@ Use case ends.
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
-**Use case**: UC03 - Edit Candidate from the List
+**Use case**: UC04 - Clear candidates from the list
 
 **Actor**: Recruiter
 
