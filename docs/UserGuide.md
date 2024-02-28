@@ -186,6 +186,29 @@ Examples:
 * `search n/John s/ACCEPTED` returns candidates whose names contain `John` and whose interview status is `ACCEPTED`.
 * `search t/Internal` returns candidates whose tags contain `Internal`.
 
+### Accessing by index: `get`
+
+Access candidates by index
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+
+Format: `get INDEX`
+
+Example:
+* `get 24` returns the candidate with index 24
+
+### Adding a comment on a candidate: `comment`
+
+Leaves comments on individual candidates’ interview status or important points to note down during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
+
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+* Any comment format is acceptable as long as comment is non-empty (i.e. user writes nothing in the comment field)
+
+Format: `comment INDEX m/COMMENT`
+
+Example:
+* `comment 3 m/Managed to solve every round 3 interview questions. He must be a strong candidate, potentially to be recruited as a quantitative research intern at Jane Street.`
+
+
 ### Tag a candidate: `tag`
 
 Appends the tag or tags to a candidate's list of tags.
