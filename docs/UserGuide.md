@@ -27,7 +27,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe e/johnd@example.com c/Hong Kong` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -55,7 +55,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -76,14 +76,14 @@ Format: `help`
 
 Adds a person to the candidate list.
 
-Format: `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG1] [t/TAG2]…​`
+Format: `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com c/Hong Kong block 123, #01-01`
+* `add n/John Doe e/johnd@example.com c/Hong Kong`
 * `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
 
 ### Listing all persons : `list`
@@ -165,7 +165,26 @@ This command removes the candidate at third position in the candidate list displ
 
 Clears all entries from the address book.
 
+* A confirmation message would be displayed. Type in "y" to confirm the deletion.
+
 Format: `clear`
+
+### Search for matching candidates : `search`
+
+Searches candidates whose attributes match the specified attributes in the search criteria.
+
+Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
+
+* At least one of the optional fields must be provided.
+* The search is case-sensitive, e.g. `hans` will not match `Hans`.
+* For email, country, phone and interview status, only full words will be matched.
+* For name, comment and tag, partial words will be matched, e.g. `Han` will match `Hans`.
+* The search will fail if either of the email, country, phone or interview status is in an invalid format.
+* If multiple fields are specified, only candidates that match **all** the specified attributes will be returned.
+
+Examples:
+* `search n/John s/ACCEPTED` returns candidates whose names contain `John` and whose interview status is `ACCEPTED`.
+* `search t/Internal` returns candidates whose tags contain `Internal`.
 
 ### Tag a candidate: `tag`
 
@@ -235,6 +254,9 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: What is the difference between `edit` and `tag`?<br>
+**A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/Quant Researcher` will change John's tags to just `Quant Researcher`, while `tag t/Quant Researcher` will change John's tags to `Internal`, `Waitlist` and `Quant Researcher`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -247,10 +269,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`<br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
+**Tag** | `tag INDEX [t/TAG] [t/TAG]…`<br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`
+**Status** | `status INDEX INTERVIEWSTATUS`<br> e.g., `status 24 IN_PROGRESS`
 **List** | `list`
 **Help** | `help`
