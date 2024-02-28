@@ -30,11 +30,12 @@ You can reach us at the email `cs2103t_w10_1[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Alicia Yap
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wapisai.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/appleraincoat)]
+[[github](http://github.com/wapisai)] [[portfolio](team/wapisai.md)]
+
 
 * Role: Developer
 * Responsibilities: Data
