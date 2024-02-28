@@ -1,7 +1,9 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -11,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Baizhou
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/windofbitter.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
@@ -19,15 +21,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Kintat
+### Ho Kin Tat
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/kt_profile.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](http://github.com/kintatho)]
+[[portfolio](team/kintat.md)]
+
+* Role: Team Troller
+* Responsibilities: Integration, Deliverable & Deadline
 
 ### Yiyang
 
@@ -48,12 +51,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Yizheng
 
-<img src="images/johndoe.png" width="200px">
+### Wu Yizheng
 
-[[github](http://github.com/johndoe)]
+
+<img src="images/Yizheng.png" width="200px">
+
+[[github](http://github.com/jessicawyz)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables
