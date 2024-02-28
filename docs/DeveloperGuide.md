@@ -274,7 +274,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* A real estate agent
+* has a need to manage a significant number of contacts of their clients
+* has to note down many details about each client
+* has to frequently add, delete, and search for clients
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
