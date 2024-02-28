@@ -35,6 +35,15 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Scheduling and Tracking
 
+### Lim Yong En, Dominic
+
+<img src="images/arixeyeion.png" width="200px">
+
+[[github](http://github.com/Arixeyeion)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
 ### David Zhu
 
 <img src="images/dethada.png" width="200px">
@@ -43,13 +52,3 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Code quality
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI

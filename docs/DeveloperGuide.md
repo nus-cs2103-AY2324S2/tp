@@ -262,29 +262,50 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* financial advisors
+* has a need of scheduling meetings with a significant number of clients
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: FINDvisor aims to streamline client management for financial advisors with a tool that organizes contact information. Furthermore, it aims to simplify organising meetings, and tracks client goals for better timeline planning—all in one clutter-free interface.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​            | I want to …​                                                                        | So that I can…​                                                                 |
+|----------|-------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| `* * *`  | New user          | easily download and launch FINDvisor                                               | quickly start managing my client information                                    |
+| `* * *`  | New user          | know what are the available functionalities of FINDvisor                           |                                                                                 |
+| `* * *`  | New user          | know how to operate the basic functionalities of FINDvisor within the app         |                                                                                 |
+| `* * *`  | Financial Advisor | add contacts of my clients                                                         | keep a record of my clients' contact information                                |
+| `* * *`  | Financial Advisor | find contacts of my clients                                                        | find information on a specific client                                          |
+| `* * *`  | Financial Advisor | update client's contact information                                                | not need to delete and create new contact information                           |
+| `* * *`  | Financial Advisor | remove contact information                                                         | reduce clutter in contact list with clients I have severed ties with           |
+| `* * *`  | Financial Advisor | attach a meeting date and time to my client contact                                | know the next meeting plan with a specific client                               |
+| `* * *`  | Financial Advisor | filter contact list by tags                                                        | update the other parties under the same plan if they were not present in the meeting |
+| `* * *`  | Financial Advisor | delete a scheduled meeting                                                         | keep my schedule up-to-date                                                     |
+| `* * *`  | Financial Advisor | group my clients into different groupings according to financial plans             | easily find target clients                                                      |
+| `* *`    | Financial Advisor | be able to view all my meetings for the day                                       | be prepared for my meetings of the day                                          |
+| `* *`    | Financial Advisor | filter contact list by meeting details                                             | find out who I'm meeting                                                        |
+| `* *`    | Financial Advisor | modify a scheduled meeting's details                                               | keep up-to-date with the meeting's details                                      |
+| `* *`    | Financial Advisor | shift clients into different groups                                                | reorganize in the event of changes                                              |
+| `* *`    | Financial Advisor | be able to add simple notes to my client contact information                       | know their financial goals to prepare me for my next meeting with them         |
+| `*`      | New user          | import contact information in bulk to FINDvisor                                    | save time and ensure no client is overlooked                                   |
+| `*`      | Financial Advisor | filter for upcoming meet plans at given time                                       | know the meeting plans at the given time                                        |
+| `*`      | Financial Advisor | schedule recurring meeting plans                                                   | not have to manually add the meeting one by one                                 |
+| `*`      | Financial Advisor | group my clients into different groupings according to clients' relationships      | easily manage clients' that have relationships                                  |
+| `*`      | Financial Advisor | able to attach a note about each meeting                                           | know what the meeting is about                                                  |
+| `*`      | Experienced User  | bulk remove old contact data that is no longer needed                              | reduce clutter                                                                   |
+| `*`      | Experienced User  | bulk remove past meeting data that is no longer needed                             | reduce clutter                                                                   |
+| `*`      | Experienced User  | be able to use shorthand commands                                                  | speed up my workflow                                                             |
+| `*`      | Experienced User  | set up shortcuts that I can run                                                    | speed up my workflow                                                             |
+| `*`      | Experienced User  | export my data                                                                     | backup my data                                                                   |
+| `*`      | Experienced User  | import my data                                                                     | restore my data from backup                                                      |
+| `*`      | Experienced User  | archive contact data that are not in use, but I still want to keep                 | reduce clutter                                                                   |
+| `*`      | Experienced User  | archive past meeting data that are not in use, but I still want to keep            | reduce clutter                                                                   |
 
 ### Use cases
 
@@ -344,6 +365,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FINDvisor shows an error message.
 
       Use case resumes at step 2.
+
+**Use Case: Scheduling a meeting with a new person**
+
+**MSS**
+
+1. User adds new person to FINDvisor.
+2. User requests to list persons.
+3. FINDvisor shows a list of persons.
+4. User requests to schedule a meeting with a specific person in the list.
+5. Meeting is scheduled.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details for adding a new person is invalid.
+
+    * 1a1. FINDvisor shows an error message.
+
+      Use case resumes at step 1.
+
+* 4a. The given index is invalid.
+
+    * 4a1. FINDvisor shows an error message.
+
+      Use case resumes at step 3.
+
+* 4b. The given meeting datetime is invalid.
+
+    * 4b1. FINDvisor shows an error message.
+
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
