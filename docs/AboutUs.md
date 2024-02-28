@@ -49,11 +49,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/eunice.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Model
 
 ### Jawad Afthab
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jawad280.png" width="200px">
 
 [[github](http://github.com/Jawad280)]
 [[portfolio](team/jawad.md)]
