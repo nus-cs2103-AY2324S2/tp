@@ -305,18 +305,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | NUS student who gets confused with commands| have an interface to assist me|know what commands I can use |
 | `* * *` |NUS student | exit the interface|properly close the application |
 | `* * *` |NUS student|clear my commands |clear command messages that I do not need anymore |
-| `* * ` | NUS graduate| save the contacts of my Lecturer and Tutor| stay in touch with them after graduation.|
-| `* * ` | NUS student who makes errors|have an interface to prompt me | prevent myself from typing the wrong command.|
-| `* * ` |NUS student who wants to join extracurricular activities |have a place to store my CCA events |easily make time for them. |
-| `* * ` |NUS student who would like timetable suggestions|see other people's schedules to see who is taking the same modules as me |see what other modules they are also planning to take in the semester. |
-| `* * ` |NUS student pursuing an internship | coordinate networking events and informational interviews with local professionals and industry experts|expand my professional network and efficiently manage my academic commitments. |
-| `* * ` | course coordinator at NUS|communicate announcements, updates, and assignment deadlines to my students | provide a convenient channel for information dissemination and student engagement.|
-| `* * ` |Lecturer | arrange the contacts of the TAs using a module tag| send the correct instructions for the module.|
-| `* * ` |NUS student |edit my schedule, in case of any changes | ensure that my calendar remains accurate and reflective of my current commitments and availability.|
-| `*  ` |NUS Student | see the schedule and interest of my classmates to know who would share the same interest as me|meet them for outings/lunch. |
-| `*  ` | project leader|have an interface to see the timetable of my group mates | synchronise meetings best fitted for everyone’s schedule.|
-| `*  ` | international student| know my groupmates’ schedules to better arrange my flights (to avoid missing any meeting)| successfully accommodate my travel plans.|
-| `*  ` |introverted NUS student|arrange meetings with my new groupmates without interacting with them| comfortably initiate group collaboration and fulfil project requirements.|
+| `* *` | NUS graduate| save the contacts of my Lecturer and Tutor| stay in touch with them after graduation.|
+| `* *` | NUS student who makes errors|have an interface to prompt me | prevent myself from typing the wrong command.|
+| `* *` |NUS student who wants to join extracurricular activities |have a place to store my CCA events |easily make time for them. |
+| `* *` |NUS student who would like timetable suggestions|see other people's schedules to see who is taking the same modules as me |see what other modules they are also planning to take in the semester. |
+| `* *` |NUS student pursuing an internship | coordinate networking events and informational interviews with local professionals and industry experts|expand my professional network and efficiently manage my academic commitments. |
+| `* *` | course coordinator at NUS|communicate announcements, updates, and assignment deadlines to my students | provide a convenient channel for information dissemination and student engagement.|
+| `* *` |Lecturer | arrange the contacts of the TAs using a module tag| send the correct instructions for the module.|
+| `* *` |NUS student |edit my schedule, in case of any changes | ensure that my calendar remains accurate and reflective of my current commitments and availability.|
+| `*` |NUS Student | see the schedule and interest of my classmates to know who would share the same interest as me|meet them for outings/lunch. |
+| `*` | project leader|have an interface to see the timetable of my group mates | synchronise meetings best fitted for everyone’s schedule.|
+| `*` | international student| know my groupmates’ schedules to better arrange my flights (to avoid missing any meeting)| successfully accommodate my travel plans.|
+| `*` |introverted NUS student|arrange meetings with my new groupmates without interacting with them| comfortably initiate group collaboration and fulfil project requirements.|
 
 ### Use cases
 
