@@ -20,15 +20,15 @@ You can reach us at the email `cs2103t_w10_1[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Tan Wee Kian, Justin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jyztintan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/appleraincoat)]
+[[github](http://github.com/jyztintan)]
+[[portfolio](team/jyztintan.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: TBC
 
 ### Alicia Yap
 
