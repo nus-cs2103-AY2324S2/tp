@@ -274,27 +274,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* a tutor that has a need to manage a significant number of contacts of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* Easier time managing their contacts (fast retrieval of relevant info)
+* More organization & personalisation
+* Easier time to track Student’s grades and weaknesses
+* Manage parent’s expectations
+* Easy tracking of payment
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                              | So that I can…​                                           |
+|----------|---------|-------------------------------------------|-----------------------------------------------------------|
+| `* * *`  | Tutor   | add a student                             | track the details of the student                          |
+| `* * *`  | Tutor   | view student details summary on main page | get a brief idea of the student while navigating the list |
+| `* * *`  | Tutor   | delete a person                           | remove entries that I no longer need                      |
+| `* * *`  | Tutor   | view single students detail               | see the individual detail for a single student            |
+| `* * *`  | Tutor   | view total number of students             | check if I have space for more students                   |
+
 
 *{More to be added}*
 
@@ -338,7 +345,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
