@@ -9,8 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -262,13 +261,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is an educator working with the education of primary / secondary students 
+* require fast and organized access to students' and parents' contact detail 
+* have many students' information to manage 
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Provide fast and organized access to students’ and parents’ contact details for the educator across multiple classes with large class sizes.
 
 
 ### User stories
@@ -278,13 +279,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | teacher                                       | view student and his/her parents’ contact records fully               | contact them when needed.     |
+|`* * *`   | teacher                                    | easily update students’ contact records via their ID              |track students’ latest contact information|
+| `* * *`  | teacher                                      | delete student contact records                | remove unnecessary data when a student graduates / drops out    |
+| `* * *` | teacher                       | easily identify duplicate entries | make sure there is no repetition of student records|
+| `* *` | teacher          | tag my students | find them easily|
+| `* *` | administrator | delete all student info in one go| delete the whole class in one command after each semester|
+| `* *`  | expert teacher user                   | search for students by tags          | view each class/CCA/tutoring group I am in charge of at a glance |
+| `* *`    | teacher                    | search for students by name   | find specific student's information by their name                |
+| `* *`      | teacher                  | search for students by id           | find specific students by their unique student id      |
+| `* *` | busy teacher (teaching multiple subjects at once) | obtain class lists per class easily||
+| `* *`      | teacher                  | view my class roster at a glance| |
+| `* *`      | careful teacher              |  back up my students’ information| avoid losing any student's information|
+| `* *`      | school staff member                  |export contact lists for emergency purposes| ensure student safety in case of emergencies |
+| `* *` | careless (but fast typing) teacher     | run the command with some minor typo | use the application with greater ease|
+| `* *`|  forgetful teacher | add notes or additional information to each student | remember important details about them |
+| `*` | careless teacher        | undo my previous command | avoid making mistake like delete the wrong student | 
+| `* ` | teacher                  | mark students’ attendance for each class session| |
+| `* ` | teacher                  |  set reminders for events such as parent-teacher/student-teacher meetings| I don't miss any important appointments|
+| `*` | teacher |  utilize the application to understand the geographic distribution of my students | planning school trips or outreach programs |
 
-*{More to be added}*
+
 
 ### Use cases
 
