@@ -198,7 +198,7 @@ Example:
 
 ### Adding a comment on a candidate: `comment`
 
-Leaves comments on individual candidates’ interview status or important points to note down during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
+Leaves comments on important points to note down for individual candidates during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
 
 * `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
 * Any comment format is acceptable as long as comment is non-empty (i.e. user writes nothing in the comment field)
