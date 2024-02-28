@@ -50,12 +50,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Shanmugam Udhaya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/udhayashan1.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/udhayashan1)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: TBC
