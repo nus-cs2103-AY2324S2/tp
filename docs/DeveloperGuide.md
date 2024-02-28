@@ -276,14 +276,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​            | I want to …​                                                        | So that I can…​                                                                                                           |
+|----------|--------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | recruiter          | update the contact details of potential candidates                  | quickly fix mistakes or update outdated data                                                                              |
+| `* * *`  | recruiter          | view the contact details of potential candidates in tabular format  | read the data more easily                                                                                                 |
+| `* * *`  | recruiter          | add new candidates to the database                                  | expand my network of contacts                                                                                             |
+| `* * *`  | recruiter          | delete candidates from the database                                 | comply with candidates' request to delete information in accordance with privacy acts or when the information is outdated |
+| `* * *`  | recruiter          | add tags to categorise candidates                                   | easily find candidates fulfilling a particular criteria (tag)                                                             |
+| `* * *`  | recruiter          | filter candidates by their attributes                               | easily seek out for the relevant candidates                                                                               |
+| `* * *`  | recruiter          | leave a comment on the candidate profile                            | take note of the important aspects of the candidate for future reference                                                  |
+| `* * *`  | recruiter          | keep track of the candidate's interview status                      | facilitate the interview process                                                                                          |
+| `* * *`  | recruiter          | clear the database in one single command                            | avoid typing multiple delete commands                                                                                     |
+| `* * *`  | recruiter          | view the details of a candidate of a particular row in the database | have an absolute reference of the singular candidate that I am interested in                                              |
+| `* *`    | careless recruiter | confirm the clearing of the database                                | avoid any accidental deletion of the database                                                                             |
 
 *{More to be added}*
 
