@@ -309,14 +309,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a Student**
+
+**MSS** (Main Success Story)
+
+1. User initiates the command to add a student by providing the student's name, address, contact number, subject, and level.
+
+2. The AddressBook processes the provided information, adds the student particulars into the system, and assigns a unique ID to the student.
+
+3. AddressBook displays a confirmation message along with the details of the newly added student at the top of the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs the command in an incorrect format.
+
+   * 1a1. AddressBook shows an error message and the correct command format.
+
+   Use case ends.
+
+* 1b. User enters a name that already exists in the AddressBook.
+
+   * 1b1. AddressBook generates and assigns a unique ID to the new student to avoid duplication.
+
+   Use case resumes at step 2.
+
+* 1c. User omits a required field in the command.
+
+   * 1c1. AddressBook shows an error message indicating the missing field.
+
+   Use case ends.
+
+**Use case: View Student Detail**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to view details of students either by listing all or searching by name or ID.
+
+2. AddressBook retrieves and shows the relevant student details based on the request.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The requested student does not exist or the list is empty.
+
+   * 2a1. AddressBook displays a message indicating no such student exists or the list is empty.
+
+   Use case ends.
+
+* 2b. User inputs an incorrect command format for viewing details.
+
+   * 2b1. AddressBook shows an error message and the correct command format.
+
+Use case ends.
+
+**Use case: View Summary Statistics**
+
+**MSS**
+
+1. User requests to view summary statistics of students.
+
+2. AddressBook processes the request and displays the total number of students along with other relevant statistics.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There is an error in processing the request.
+
+   * 2a1. AddressBook displays an error message in red.
+
+   Use case ends.
+
+**Use case: Delete a Student**
+
+**MSS**
+
+1.  User requests to list Student
+2.  AddressBook shows a list of Student
+3.  User requests to delete a specific Student in the list
+4.  AddressBook deletes the Student
 
     Use case ends.
 
@@ -332,7 +406,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+
+
+
 
 ### Non-Functional Requirements
 
