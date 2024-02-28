@@ -29,15 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Frontend, Backend, DevOps, Code Reviews
 
-### Jane Doe
+### Yan Jie
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/logical-1985516)]
+[[portfolio](team/yanjie.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Frontend, Documentation, Code Reviews
 
 ### Ikhoon Eom
 
