@@ -274,33 +274,52 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* A real estate agent
+* has a need to manage a significant number of contacts of their clients
+* has to note down many details about each client
+* has to frequently add, delete, and search for clients
 * prefer desktop apps over other types
 * can type fast
-* prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* is a real estate agent that wants to store relevant information about clients
+* able to store additional notes about contacts
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven applications. 
+* storing of information tailored to real-estate agents
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                    | I want to …​                                             | So that I can…​                                                                                   |
+|----------|----------------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *`  | first-time user            | receive a simple tutorial on app usage                    | easily navigate Realodex                                                                          |
+| `* * *`  | tech-savvy user            | use a command-line interface                              | navigate the app more efficiently due to my fast typing speed                                    |
+| `* * *`  | fast typer                 | quickly input various commands in the text box           | perform actions like adding new clients, editing profiles, finding clients, without using GUI    |
+| `* * *`  | real-estate agent user     | easily log personal notes after client interactions       | reference these in future conversations for more personalized communication                     |
+| `* * *`  | user with inactive clients | delete inactive clients permanently                      | remove them from my database and free up space                                                   |
+| `* *`    | real estate agent user     | search for clients interested in specific property listings | quickly match selling and buying clients                                                         |
+| `* *`    | real estate agent user     | record and access clients' preferred house types          | filter and match clients with relevant property listings                                         |
+| `* *`    | real estate agent user     | analyze trends in housing preferences                     | understand market demands and tailor my services                                                 |
+| `* *`    | efficient user             | filter clients by tag                                    | organize and access client information more efficiently                                           |
+| `* *`    | efficient user             | filter clients by categories                             | better categorize and manage client information based on personal attributes                     |
+| `* *`    | first-time user            | be guided through setting up my user profile              | save my details for future use                                                                   |
+| `* *`    | first-time user            | learn how to create and edit client profiles              | manage client information efficiently                                                            |
+| `* *`    | first-time user            | understand how to navigate the app and use CLI commands   | effectively use Realodex's features                                                              |
+| `* *`    | forgetful user             | get instructions on how to set up profiles and navigate  | refresh my memory on how to use Realodex when needed                                             |
+| `* *`    | user with inactive clients | archive inactive clients                                 | hide them from my active list while keeping their information for future reference               |
+| `* `     | real estate agent user     | be notified of upcoming client birthdays                  | send personalized greetings and strengthen my relationships                                      |
+| `*`      | real estate agent user     | be notified of upcoming holidays                          | prepare gifts for my clients and enhance our relationship                                        |
+| `*`      | real estate agent user     | be reminded of significant client milestones              | acknowledge these events and further personalize our relationship                                |
+| `*`      | tech-savvy user            | use tab to autofill parts of my command                  | speed up my use of the command line                                                              |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `Realodex` and the **Actor** is the `user`, unless specified otherwise)
+<<<<<<< HEAD
 
 **Use case: Creating a user profile**
 
@@ -397,39 +416,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to delete
+2.  Realodex prompts "Please enter client's name"
+3.  User inputs client's name
+4.  Realodex deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The input name is not found
 
-  Use case ends.
+  Realodex shows an error message "NAME is not found".
 
-* 3a. The given index is invalid.
+**Use case: List**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  User requests to list
+2.  Realodex shows the list of all clients
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Realodex shows an empty list.
+
+**Use case: Find**
+
+**MSS**
+
+1.  User requests to find STRING
+2.  Realodex shows the list of all clients with name including the STRING
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. No contact found with a name including the STRING
+
+  Realodex shows an empty list.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+3.  A real estate agent with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to have up to 500 profiles.
+5.  The response to any command should become visible within 5 seconds.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Client Profile**: Details of customer of the Real Esate Agent looking to buy / sell / rent a property
 
 --------------------------------------------------------------------------------------------------------------------
 

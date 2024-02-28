@@ -178,6 +178,20 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 _Details coming soon ..._
 
+### Deleting a person : `delete`
+
+Deletes the specified person from the address book.
+
+Format: `delete`
+
+enter client's `NAME` after prompt is shown
+
+* Deletes the person of the specified `NAME`.
+* If name is **not found**, error message will be shown `"NAME" is not found`.
+
+Examples:
+* `delete` followed by `Udhaya Shanmugam` deletes the person in the address book with the name "Udhaya Shanmugam.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
