@@ -55,7 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/udhayashan1.png" width="200px">
 
 [[github](http://github.com/udhayashan1)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/udhaya.md)]
 
 * Role: Developer
 * Responsibilities: TBC
