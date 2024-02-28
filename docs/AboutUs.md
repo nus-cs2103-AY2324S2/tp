@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Yan Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/logical-1985516.png" width="200px">
 
 [[github](http://github.com/logical-1985516)]
 [[portfolio](team/yanjie.md)]
