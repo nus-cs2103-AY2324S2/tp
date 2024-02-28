@@ -92,13 +92,13 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Edit Candidate Details: `edit`
+### Edit candidate details: `edit`
 
 Edits an existing candidate in the database.
 
 You can edit any of the valid candidate details including name, email, country and tags at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
-Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG1] [t/TAG2]…​`
+Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`
 
 ---
 
@@ -107,22 +107,22 @@ Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG1] [t/TAG2]�
 > 2. When **editing tags**, the existing tags of the candidate will be **removed**. Thus, you must specify **every tag** you want to keep on the candidate whenever you edit the candidate details.
 
 > [!WARNING]
-> **Comment** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing comments separately.
+> **Comment and Interview Status** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing them separately.
 
 ---
 
-*Example 1* : `edit 24 n/Johnny Doe e/[johnnydoe@gmail.com](mailto:johnnydoe@gmail.com) c/Singapore`
+*Example 1* : `edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
 
-This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, [johnnydoe@gmail.com](mailto:johnnydoe@gmail.com), and **Singapore**, respectively.
+This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, **johnnydoe@gmail.com**, and **Singapore**, respectively.
 
 
-*Example 2* : `edit 8 n/Jeb Song e/[jebsong@gmail.com](mailto:jebsong@gmail.com) t/Accepted`
+*Example 2* : `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMO Gold`
 
-This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, [jebsong@gmail.com](mailto:jebsong@gmail.com), and **Accepted**, respectively. Note that existing tag on this candidate is completely removed and new tag `accepted` if added.
+This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMO Gold**, respectively. Note that existing tag on this candidate is completely removed and new tag `IMO Gold` is added.
 
 ---
 
-If edit candidate command is successfully executed, the app will display the edited candidate with the edited attributes.
+If edit command is successfully executed, the app will display the edited candidate with the edited attributes.
 
 
 ### Locating persons by name: `find`
@@ -143,7 +143,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Delete Candidate: `delete`
+### Delete a candidate: `delete`
 
 Delete existing candidates in the database.
 
