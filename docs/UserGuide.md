@@ -75,6 +75,16 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
+### Name/Rename CS course : `setcrs`
+
+Names the course in question. 
+
+Format: `setcrs COURSE_NAME`
+
+Duplicate course are not allowed.
+Courses are case-insensitive.
+Course code should follow the format "XX1234Y", Y is optional.
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -95,6 +105,8 @@ Examples:
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+If there are additional arguments behind `list` we will simply ignore them.
 
 ### Editing a person : `edit`
 
