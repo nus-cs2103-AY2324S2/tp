@@ -23,6 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ho Kin Tat
 
+
 <img src="images/kt_profile.png" width="200px">
 
 [[github](http://github.com/kintatho)]
@@ -31,16 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Troller
 * Responsibilities: Integration, Deliverable & Deadline
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
+### Yiyang
 
 <img src="images/johndoe.png" width="200px">
 
@@ -50,7 +42,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
+### Marcus
+
+<img src="images/marcusgitty.png" width="200px">
+
+[[github](http://github.com/marcusgitty)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Data
+
+
 ### Wu Yizheng
+
 
 <img src="images/Yizheng.png" width="200px">
 
