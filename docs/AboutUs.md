@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Backend, DevOps, Code Reviews, Project Coordination
 
+### Lee Wei Ming
+
+<img src="images/leeweiming3.png" width="200px">
+
+[[github](https://github.com/leeweiming3)]
+[[portfolio](team/leeweiming3.md)]
+
+* Role: Developer
+* Responsibilities: Frontend, Backend, DevOps, Code Reviews
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
