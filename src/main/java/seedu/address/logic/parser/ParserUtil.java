@@ -15,6 +15,10 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -163,4 +167,24 @@ public class ParserUtil {
         }
         return new Salary(trimmedSalary);
     }
+
+    /**
+     * Parses a collection of {@code String tags} into a {@code Set<Tag>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any of the given {@code tags} is invalid.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        Set<Tag> tagSet = new HashSet<>();
+        for (String tag : tags) {
+            String trimmedTag = tag.trim();
+            if (!Tag.isValidTagName(trimmedTag)) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(trimmedTag));
+        }
+        return tagSet;
+    }
+
 }

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.person.Person;
 
 /**
@@ -127,6 +128,17 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    @Override
+    public Person choosePersonToView(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+
+        for (Person p : filteredPersons) {
+            if (predicate.test(p)) {
+                return p;
+            }
+        }
+        return null;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -144,5 +156,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }
