@@ -54,8 +54,8 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Parameters can be in any order, if specified.<br>
+  e.g. if the command specifies `:name :phone`, `:phone :name` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -72,19 +72,17 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a new employee: `/new`
 
-Adds a person to the address book.
+Adds a new employee to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format:
+* `/new NAME, PHONE_NUMBER, EMAIL, [YEAR_JOINED]`
+* `/new :name NAME :phone PHONE_NUMBER :email EMAIL [:year YEAR_JOINED]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `/new jennie, 12334546, 123@gmail.com, 2021`
+* `/new :name jennie :phone 12334546 :email 123@gmail.com :year 2021`
 
 ### Listing all persons : `list`
 
