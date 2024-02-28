@@ -86,7 +86,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Tags:
+### Parameters:
 
 * n/NAME 
 * p/PHONE_NUMBER 
@@ -94,12 +94,19 @@ Format: `help`
 * a/ADDRESS 
 * t/TAG (Optional)
 * m/MATRICULATION_NUMBER (Optional)
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
+
+<box type="info" seamless>
+
+**Important:** Each contact should have an unique email address. AB3 does not allow for duplicate email addressed to be added.
+
+</box>
 
 <box type="tip" seamless>
 
@@ -136,13 +143,13 @@ Examples:
 
 ### Filtering Contacts using parameters: `find`
 
-Finds persons with paramters that match the given keyword
+Finds persons with parameters that match the given keyword
 
 Format: `find PARAMETER KEYWORD`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The search will return any result that contains the keyword as a substring under that parameter. e.g. `hans` will match `hans@gmail.com` for an email search
-* Parameters that are supported include : /n, /p, /e, /a and /t
+* `PARAMETER` that is supported includes : /n, /p, /e, /a and /t
 * Only one parameter can be searched
 
 Examples:
@@ -180,6 +187,19 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Exporting Data to a CSV file : `export to csv`
+
+Exports all contacts and their details to a CSV file.
+
+Format: `export to csv`
+
+### Importing Data from a CSV file : `import`
+
+Imports all contacts and their details from a CSV file from a specified file path.
+
+Format: `import FILEPATH`
+- imports the contacts saved in `FILEPATH` to `addressBook.json`
 
 ### Exiting the program : `exit`
 
@@ -225,14 +245,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find PARAMETER KEYWORD`<br> e.g., `find James`
-**Copy**   | `copy`
-**List**   | `list`
-**Help**   | `help`
+| Action | Format, Examples                                                                                                                                                                          
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                                                   |
+| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                           |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
+| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                               |
+| **Copy**   | `copy`                                                                                                                                                                                    |
+| **List**   | `list`                                                                                                                                                                                    |
+| **Help**   | `help`                                                                                                                                                                                    |
+| **Export to CSV** | `export to csv`                                                                                                                                                                           |
+| **Import** | `import FILEPATH`                                                                                                                                                                         |
