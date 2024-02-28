@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Teo Hong Rui
 
-<img src="images/teohongrui.png" width="200px">
+<img src="images/sethteo.png" width="200px">
 
 [[github](https://github.com/sethteo)]
 [[portfolio](team/johndoe.md)]
