@@ -275,18 +275,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​            | I want to …​                                                       | So that I can…​                              |
-|----------|--------------------|--------------------------------------------------------------------|----------------------------------------------|
-| `* * *`  | recruiter          | update the contact details of potential candidates                 |                                              |
-| `* * *`  | recruiter          | view the contact details of potential candidates in tabular format |                                              |
-| `* * *`  | recruiter          | add new candidates to the database                                 |                                              |
-| `* * *`  | recruiter          | delete candidates from the database                                |                                              |
-| `* * *`  | recruiter          | add tags to categorise candidates                                  |                                              |
-| `* * *`  | recruiter          | filter candidates by tags                                          |                                              |
-| `* * *`  | recruiter          | edit tags                                                          |                                              |
-| `* * *`  | recruiter          | leave a comment on the candidate's interview status                |                                              |
-| `* * *`  | recruiter          | clear the database in one single command line                      |                                              |
-| `* *`    | careless recruiter | confirm the clearing of the database                               | I can avoid any accidental database clearing |
+| Priority | As a …​            | I want to …​                                                       | So that I can…​                                                                                                           |
+|----------|--------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | recruiter          | update the contact details of potential candidates                 | quickly fix mistakes or update outdated data                                                                              |
+| `* * *`  | recruiter          | view the contact details of potential candidates in tabular format | read the data more easily                                                                                                 |
+| `* * *`  | recruiter          | add new candidates to the database                                 | expand my network of contacts                                                                                             |
+| `* * *`  | recruiter          | delete candidates from the database                                | comply with candidates' request to delete information in accordance with privacy acts or when the information is outdated |
+| `* * *`  | recruiter          | add tags to categorise candidates                                  | easily find candidates fulfilling a particular criteria (tag)                                                             |
+| `* * *`  | recruiter          | filter candidates by tags                                          | easily seek out for the relevant candidates                                                                               |
+| `* * *`  | recruiter          | leave a comment on the candidate's interview status                | quickly remind of who the candidate was & their collective feedback faster                                                |
+| `* * *`  | recruiter          | clear the database in one single command line                      | avoid typing multiple delete commands                                                                                     |
+| `* *`    | careless recruiter | confirm the clearing of the database                               | avoid any accidental database clearing                                                                                    |
 
 *{More to be added}*
 
