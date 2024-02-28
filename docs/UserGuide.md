@@ -74,7 +74,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the candidate list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -94,7 +94,7 @@ Format: `list`
 
 ### Edit candidate details: `edit`
 
-Edits an existing candidate in the database.
+Edits an existing candidate in the list.
 
 You can edit any of the valid candidate details including name, email, country and tags at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
@@ -145,15 +145,15 @@ Examples:
 
 ### Delete a candidate: `delete`
 
-Delete existing candidates in the database.
+Deletes an existing candidate from the list.
 
-You can delete any of candidate in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from **1 to *n***, where ***n*** represents the **number of candidates** in the database.
+You can delete any candidates in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of candidates** in the database.
 
 Format: `delete INDEX`
 
 ---
 > [!NOTE]
-> If INDEX number provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion upon the successful execution of the command. If ***y*** is selected for the deletion, it will delete the candidate from the list and display the deleted candidate with attributes. If ***n*** is selected for the deletion, it will display that the delete operation is cancelled.
+> If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the candidate from the list and display the deleted candidate. If ***n*** is selected, it will display that the delete operation is cancelled.
 
 ---
 
