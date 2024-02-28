@@ -94,12 +94,11 @@ Format: `list`
 
 ### Edit Candidate Details: `edit`
 
-Edits an existing candidate in the database with command format and examples.
+Edits an existing candidate in the database.
 
 You can edit any of the valid candidate details including name, email, country and tags at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
-Here is a valid format of `edit` command:
-`edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG1] [t/TAG2]...`
+Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG1] [t/TAG2]…​`
 
 ---
 
@@ -146,13 +145,11 @@ Examples:
 
 ### Delete Candidate: `delete`
 
-Delete existing candidates in the database with command format and examples.
+Delete existing candidates in the database.
 
 You can delete any of candidate in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from **1 to *n***, where ***n*** represents the **number of candidates** in the database.
 
-Here is a valid format of `delete` command:
-
-`delete INDEX`
+Format: `delete INDEX`
 
 ---
 > [!NOTE]
