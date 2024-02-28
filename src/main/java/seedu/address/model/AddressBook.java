@@ -105,7 +105,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        ObservableList<Person> personList = persons.asUnmodifiableObservableList();
+        // Sort the list
+        personList = personList.sorted();
+        return personList;
     }
 
     @Override
