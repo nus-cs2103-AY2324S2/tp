@@ -76,11 +76,11 @@ Format: `help`
 
 Adds a project to the project manager.
 
-Format: `add <PROJECT_NAME>`
+Format: `add project <PROJECT_NAME>`
 
 Examples:
-* `add CS2103T Duke Chatbot Project`
-* `add CS2101 Presentation`
+* `add project CS2103T Duke Chatbot Project`
+* `add project CS2101 Presentation`
 
 Expected output:
 * Success: `<PROJECT_NAME> has been added to the project list.`
@@ -129,14 +129,14 @@ Examples:
 
 ### Deleting a project : `delete project`
 
-Deletes the specified project from the project manager.
+Deletes the specified project from the project list.
 
-Format: `delete <PROJECT_NAME>`
+Format: `delete project <PROJECT_NAME>`
 
-* The specified project name must exist in the project manager.
+* The specified project name must exist in the project list.
 
 Examples:
-* `delete CS2101 Presentation`
+* `delete project CS2101 Presentation`
 
 Expected output:
 * Successful deletion: `<PROJECT_NAME> has been deleted from the project list.`
@@ -190,9 +190,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add <PROJECT_NAME>` <br> e.g., `add CS2101 Presentation`
+**Add** | `add project <PROJECT_NAME>` <br> e.g., `add project CS2101 Presentation`
 **Clear** | `clear`
-**Delete** | `delete <PROJECT_NAME>`<br> e.g., `delete CS2101 Presentation`
+**Delete** | `delete project <PROJECT_NAME>`<br> e.g., `delete project CS2101 Presentation`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
