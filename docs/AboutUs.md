@@ -40,12 +40,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Allysa Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/4llysa.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/4llysa)]
+[[portfolio](team/4llysa.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
