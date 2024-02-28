@@ -21,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.InterviewDate;
 import seedu.address.model.tag.Tag;
 
 
@@ -67,19 +68,30 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_JOB_DESCRIPTION).isPresent()) {
-            editPersonDescriptor.setJobDescription(ParserUtil.parseJobDescription(argMultimap.getValue(PREFIX_JOB_DESCRIPTION).get()));
+            editPersonDescriptor.setJobDescription(
+                    ParserUtil.parseJobDescription(argMultimap.getValue(PREFIX_JOB_DESCRIPTION).get())
+            );
         }
         if (argMultimap.getValue(PREFIX_INTERVIEW_DATE).isPresent()) {
-            editPersonDescriptor.setInterviewDate(ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get()));
+            String givenDate = argMultimap.getValue(PREFIX_INTERVIEW_DATE).get();
+            if (!givenDate.isEmpty()) {
+                editPersonDescriptor.setInterviewDate(
+                        ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get())
+                );
+            } else {
+                editPersonDescriptor.setInterviewDate(new InterviewDate(null));
+            }
         }
         if (argMultimap.getValue(PREFIX_INTERN_DURATION).isPresent()) {
-            editPersonDescriptor.setInternDuration(ParserUtil.parseInternDuration(argMultimap.getValue(PREFIX_INTERN_DURATION).get()));
+            editPersonDescriptor.setInternDuration(
+                    ParserUtil.parseInternDuration(argMultimap.getValue(PREFIX_INTERN_DURATION).get())
+            );
         }
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             editPersonDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            editPersonDescriptor.setTags(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
+            editPersonDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
         }
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
