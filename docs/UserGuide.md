@@ -159,7 +159,7 @@ Format: `delete INDEX`
 
 *Example* : `delete 3`
 
-This command removes the candidate at third position in the candidate list displayed and returns you with the updated candidate list.
+This command removes the candidate at third position in the candidate list displayed.
 
 ### Clearing all entries : `clear`
 
