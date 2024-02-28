@@ -211,10 +211,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`<br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
 **List** | `list`
