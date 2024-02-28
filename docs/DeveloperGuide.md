@@ -290,27 +290,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                             | So that I can…​                                                                                   |
-|----------|--------------------------------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| `* * *`  | first-time user                            | receive a simple tutorial on app usage                    | easily navigate Realodex                                                                          |
-| `* * *`  | tech-savvy user                            | use a command-line interface                              | navigate the app more efficiently due to my fast typing speed                                    |
-| `* * *`  | fast typer                                 | quickly input various commands in the text box           | perform actions like adding new clients, editing profiles, finding clients, without using GUI    |
-| `* * *`  | real-estate agent user                     | easily log personal notes after client interactions       | reference these in future conversations for more personalized communication                     |
-| `* * *`  | user with inactive clients                 | delete inactive clients permanently                      | remove them from my database and free up space                                                   |
-| `* *`    | real-estate agent user                     | search for clients interested in specific property listings | quickly match selling and buying clients                                                         |
-| `* *`    | real-estate agent user                     | record and access clients' preferred house types          | filter and match clients with relevant property listings                                         |
-| `* *`    | real-estate agent user                     | analyze trends in housing preferences                     | understand market demands and tailor my services                                                 |
-| `* *`    | efficient real-estate agent user           | filter clients by tag                                    | organize and access client information more efficiently                                           |
-| `* *`    | efficient real-estate agent user           | filter clients by categories                             | better categorize and manage client information based on personal attributes                     |
-| `* *`    | first-time user                            | be guided through setting up my user profile              | save my details for future use                                                                   |
-| `* *`    | first-time user                            | learn how to create and edit client profiles              | manage client information efficiently                                                            |
-| `* *`    | first-time user                            | understand how to navigate the app and use CLI commands   | effectively use Realodex's features                                                              |
-| `* *`    | forgetful user                             | get instructions on how to set up profiles and navigate  | refresh my memory on how to use Realodex when needed                                             |
-| `* *`    | user with inactive clients                 | archive inactive clients                                 | hide them from my active list while keeping their information for future reference               |
-| `* `     | real-estate agent user                     | be notified of upcoming client birthdays                  | send personalized greetings and strengthen my relationships                                      |
-| `*`      | real-estate agent user                     | be notified of upcoming holidays                          | prepare gifts for my clients and enhance our relationship                                        |
-| `*`      | real-estate agent user                     | be reminded of significant client milestones              | acknowledge these events and further personalize our relationship                                |
-| `*`      | tech-savvy user                            | use tab to autofill parts of my command                  | speed up my use of the command line                                                              |
+| Priority | As a …​                    | I want to …​                                             | So that I can…​                                                                                   |
+|----------|----------------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *`  | first-time user            | receive a simple tutorial on app usage                    | easily navigate Realodex                                                                          |
+| `* * *`  | tech-savvy user            | use a command-line interface                              | navigate the app more efficiently due to my fast typing speed                                    |
+| `* * *`  | fast typer                 | quickly input various commands in the text box           | perform actions like adding new clients, editing profiles, finding clients, without using GUI    |
+| `* * *`  | real-estate agent user     | easily log personal notes after client interactions       | reference these in future conversations for more personalized communication                     |
+| `* * *`  | user with inactive clients | delete inactive clients permanently                      | remove them from my database and free up space                                                   |
+| `* *`    | real estate agent user     | search for clients interested in specific property listings | quickly match selling and buying clients                                                         |
+| `* *`    | real estate agent user     | record and access clients' preferred house types          | filter and match clients with relevant property listings                                         |
+| `* *`    | real estate agent user     | analyze trends in housing preferences                     | understand market demands and tailor my services                                                 |
+| `* *`    | efficient user             | filter clients by tag                                    | organize and access client information more efficiently                                           |
+| `* *`    | efficient user             | filter clients by categories                             | better categorize and manage client information based on personal attributes                     |
+| `* *`    | first-time user            | be guided through setting up my user profile              | save my details for future use                                                                   |
+| `* *`    | first-time user            | learn how to create and edit client profiles              | manage client information efficiently                                                            |
+| `* *`    | first-time user            | understand how to navigate the app and use CLI commands   | effectively use Realodex's features                                                              |
+| `* *`    | forgetful user             | get instructions on how to set up profiles and navigate  | refresh my memory on how to use Realodex when needed                                             |
+| `* *`    | user with inactive clients | archive inactive clients                                 | hide them from my active list while keeping their information for future reference               |
+| `* `     | real estate agent user     | be notified of upcoming client birthdays                  | send personalized greetings and strengthen my relationships                                      |
+| `*`      | real estate agent user     | be notified of upcoming holidays                          | prepare gifts for my clients and enhance our relationship                                        |
+| `*`      | real estate agent user     | be reminded of significant client milestones              | acknowledge these events and further personalize our relationship                                |
+| `*`      | tech-savvy user            | use tab to autofill parts of my command                  | speed up my use of the command line                                                              |
 
 
 ### Use cases
