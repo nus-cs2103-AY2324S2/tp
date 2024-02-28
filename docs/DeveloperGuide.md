@@ -304,10 +304,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use cases
-
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
 **Use case: Delete a student**
 
 **MSS**
@@ -386,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  Application to be accessible on devices commonly used by the educational institution, such as desktop computers, laptops, and tablet.
 4.  System to ensure data integrity, with a goal of zero data loss over the academic year.
 5.  Input validation to prevent errors due to incorrect data entry.
-6.  Application to handle common errors gracefully, such as incorrect data entry, without crashing or losing dat
+6.  Application to handle common errors gracefully, such as incorrect data entry, without crashing or losing data.
 
 *{More to be added}*
 
