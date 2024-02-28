@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Eunice Koh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eunicekoh1.png" width="200px">
 
 [[github](http://github.com/eunrcn)]
 [[portfolio](team/eunice.md)]
