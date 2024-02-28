@@ -39,22 +39,22 @@ You can reach us at the email `cs2103t_w10_1[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Allysa Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/4llysa.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/appleraincoat)]
+[[github](http://github.com/4llysa)]
+[[portfolio](team/4llysa.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Shanmugam Udhaya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/udhayashan1.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/appleraincoat)]
+[[github](http://github.com/udhayashan1)]
+[[portfolio](team/udhaya.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: TBC
