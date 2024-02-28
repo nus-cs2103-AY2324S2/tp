@@ -92,7 +92,7 @@ Edit the fields of the specified person in the address book.
 
 Format: `/edit ; name : [NAME] ; field { [FIELD] : [VALUE] }`
 
-* Edits the specified `field`(s) of the person with the specified `name`. 
+* Edits the specified `field`(s) of the person with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
 * The name is case-insensitive but space-sensitive.
 * At least one field must be provided. 
 * More than one field can be updated at the same time.
