@@ -274,7 +274,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Tech savvy 
+* tech savvy 
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
