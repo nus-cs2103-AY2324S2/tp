@@ -107,7 +107,6 @@ Examples:
 * `edit ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
   The above command edits the address of **_Thomas_** to **_Poochie Street 25_**.
-
   The above command also edits the employment of **_Thomas_**, which **must** be a **_Pooch Staff_**, to **_full-time_**.
 
 ### Editing a person : `edit`
