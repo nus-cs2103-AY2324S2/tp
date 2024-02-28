@@ -449,8 +449,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to copy emails of currently displayed persons.
-2.  AddressBook copies the emails of currently displayed persons 
+1.  User requests to copy emails of currently displayed contacts.
+2.  AddressBook copies the emails of currently displayed contacts 
 into user's clipboard.
 3.  AddressBook notifies the user that emails have been copied.
 4.  User can paste emails when composing emails.
@@ -459,10 +459,10 @@ into user's clipboard.
 
 **Extensions**
 
-*   2a. No persons currently displayed.
+*   2a. No contacts currently displayed.
 
     * 2a1. AddressBook displays a message indicating that 
-    no persons are currently displayed.
+    no contacts are currently displayed.
 
     Use case ends.
 
