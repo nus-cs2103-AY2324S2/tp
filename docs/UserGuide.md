@@ -94,9 +94,7 @@ Format: `list`
 
 ### Edit Candidate Details: `edit`
 
-In this section, we will learn about how to edit an existing candidate in the database with command format and examples.
-
-#### 1. How to use the `edit` command?
+Edits an existing candidate in the database with command format and examples.
 
 You can edit any of the valid candidate details including name, email, country and tags at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
@@ -112,17 +110,18 @@ Here is a valid format of `edit` command:
 > [!WARNING]
 > **Comment** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing comments separately.
 
-#### 2. Example usages of`edit` commands
+---
 
 *Example 1* : `edit 24 n/Johnny Doe e/[johnnydoe@gmail.com](mailto:johnnydoe@gmail.com) c/Singapore`
 
 This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, [johnnydoe@gmail.com](mailto:johnnydoe@gmail.com), and **Singapore**, respectively.
 
----
 
 *Example 2* : `edit 8 n/Jeb Song e/[jebsong@gmail.com](mailto:jebsong@gmail.com) t/Accepted`
 
 This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, [jebsong@gmail.com](mailto:jebsong@gmail.com), and **Accepted**, respectively. Note that existing tag on this candidate is completely removed and new tag `accepted` if added.
+
+---
 
 If edit candidate command is successfully executed, the app will display the edited candidate with the edited attributes.
 
@@ -147,9 +146,7 @@ Examples:
 
 ### Delete Candidate: `delete`
 
-In this section, we will learn about how to delete existing candidates in the database with command format and examples.
-
-#### 1. How to use the `delete` command?
+Delete existing candidates in the database with command format and examples.
 
 You can delete any of candidate in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from **1 to *n***, where ***n*** represents the **number of candidates** in the database.
 
@@ -161,7 +158,7 @@ Here is a valid format of `delete` command:
 > [!NOTE]
 > If INDEX number provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion upon the successful execution of the command. If ***y*** is selected for the deletion, it will delete the candidate from the list and display the deleted candidate with attributes. If ***n*** is selected for the deletion, it will display that the delete operation is cancelled.
 
-#### 2. Example usage of`delete` commands
+---
 
 *Example* : `delete 3`
 
