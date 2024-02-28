@@ -92,22 +92,40 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Edit Candidate Details: `edit`
 
-Edits an existing person in the address book.
+In this section, we will learn about how to edit an existing candidate in the database with command format and examples.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+#### 1. How to use the `edit` command?
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+You can edit any of the valid candidate details including name, email, country and tags at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Here is a valid format of `edit` command:
+`edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG1] [t/TAG2]...`
+
+---
+
+> [!NOTE]
+> 1. Even though you can edit multiple candidate details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
+> 2. When **editing tags**, the existing tags of the candidate will be **removed**. Thus, you must specify **every tag** you want to keep on the candidate whenever you edit the candidate details.
+
+> [!WARNING]
+> **Comment** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing comments separately.
+
+#### 2. Example usages of`edit` commands
+
+*Example 1* : `edit 24 n/Johnny Doe e/[johnnydoe@gmail.com](mailto:johnnydoe@gmail.com) c/Singapore`
+
+This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, [johnnydoe@gmail.com](mailto:johnnydoe@gmail.com), and **Singapore**, respectively.
+
+---
+
+*Example 2* : `edit 8 n/Jeb Song e/[jebsong@gmail.com](mailto:jebsong@gmail.com) t/Accepted`
+
+This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, [jebsong@gmail.com](mailto:jebsong@gmail.com), and **Accepted**, respectively. Note that existing tag on this candidate is completely removed and new tag `accepted` if added.
+
+If edit candidate command is successfully executed, the app will display the edited candidate with the edited attributes.
+
 
 ### Locating persons by name: `find`
 
@@ -127,19 +145,27 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Delete Candidate: `delete`
 
-Deletes the specified person from the address book.
+In this section, we will learn about how to delete existing candidates in the database with command format and examples.
 
-Format: `delete INDEX`
+#### 1. How to use the `delete` command?
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+You can delete any of candidate in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from **1 to *n***, where ***n*** represents the **number of candidates** in the database.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Here is a valid format of `delete` command:
+
+`delete INDEX`
+
+---
+> [!NOTE]
+> If INDEX number provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion upon the successful execution of the command. If ***y*** is selected for the deletion, it will delete the candidate from the list and display the deleted candidate with attributes. If ***n*** is selected for the deletion, it will display that the delete operation is cancelled.
+
+#### 2. Example usage of`delete` commands
+
+*Example* : `delete 3`
+
+This command removes the candidate at third position in the candidate list displayed and returns you with the updated candidate list.
 
 ### Clearing all entries : `clear`
 
