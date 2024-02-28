@@ -17,26 +17,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Project Advisor
+* Role: Project Advisor
 
-### Lin Shuang Shuang
+### Jane Doe
 
-<img src="images/Lin Shuang Shuang.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Team Lead
-- Responsibilities: UI
+* Role: Team Lead
+* Responsibilities: UI
 
-### Ananya Shahi
+### Thitipat Chaiyakul
 
-<img src="images/ananya.jpg" width="200px">
+<img src="images/thitipatc.png" width="200px">
 
-[[github](http://github.com/ananya21)]
+[[github](http://github.com/Thitipatc)] 
 
-- Role: Developer
-- Responsibilities: Data
+* Role: Developer
+* Responsibilities: Data
 
 ### Jean Doe
 
@@ -45,16 +45,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
-### Pawirunsiri Thanakorn (Modem)
+### James Doe
 
-<img src="images/modembcc.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/modembcc)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-<!-- [[portfolio](team/johndoe.md)] -->
-
-- Role: Developer
-- Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI
