@@ -296,8 +296,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | student project team leader | check my teammates' schedule | conduct meetings with convenience |
 | `* * *` | international NUS student | find local friends that share similar schedules as me to aid me in easing into the university | build meaningful connections, navigate campus life more smoothly. |
 | `* * *` | unmotivated student who needs to catch up on my studies|manage my timetable with my friends |easily arrange a study session with them |
-| `* * *` | lonely NUS Student| find contacts of people with similar interests as myself| would be able to get to know them better and make friends.|
-| `* * *` | NUS graduate|be able to find my lecturer’s contact email and phone number | ask them to be a reference in my resume when applying for a job.|
+| `* * *` | lonely NUS Student| find contacts of people with similar interests as myself| get to know them better and make friends.|
+| `* * *` | NUS graduate|find my lecturer’s contact email and phone number | ask them to be a reference in my resume when applying for a job.|
 | `* * *` |NUS Student| save my friends’ interests in the contact book| plan outings with them.|
 | `* * *` |busy NUS student | easily add my schedule to Moddie|efficiently manage my academic, extracurricular, and personal commitments in one centralized platform.|
 | `* * *` | NUS student| delete both my friends' and my own schedule details| maintain privacy and control over the information|
@@ -312,13 +312,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * ` |NUS student pursuing an internship | coordinate networking events and informational interviews with local professionals and industry experts|expand my professional network and efficiently manage my academic commitments. |
 | `* * ` | course coordinator at NUS|communicate announcements, updates, and assignment deadlines to my students | provide a convenient channel for information dissemination and student engagement.|
 | `* * ` |Lecturer | arrange the contacts of the TAs using a module tag| send the correct instructions for the module.|
-| `* * ` |NUS student |would like to edit my schedule, in case of any changes | ensure that my calendar remains accurate and reflective of my current commitments and availability.|
-| `*  ` |NUS Student | see the schedule and interest of my classmates to know who would share the same interest as me|could meet them for outings/lunch. |
+| `* * ` |NUS student |edit my schedule, in case of any changes | ensure that my calendar remains accurate and reflective of my current commitments and availability.|
+| `*  ` |NUS Student | see the schedule and interest of my classmates to know who would share the same interest as me|meet them for outings/lunch. |
 | `*  ` | project leader|have an interface to see the timetable of my group mates | synchronise meetings best fitted for everyone’s schedule.|
 | `*  ` | international student| know my groupmates’ schedules to better arrange my flights (to avoid missing any meeting)| successfully accommodate my travel plans.|
 | `*  ` |introverted NUS student|arrange meetings with my new groupmates without interacting with them| comfortably initiate group collaboration and fulfil project requirements.|
-
-*{More to be added}*
 
 ### Use cases
 
