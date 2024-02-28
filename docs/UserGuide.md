@@ -151,6 +151,30 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### View student statistics: View
+This would display the total number of students  
+Format: `View -statistics`
+
+### View student summary at home page: View
+This would display a summary of student particulars on the homepage.
+Format: `View -all`
+
+### View student particular by name: View 
+This will display a specific student particular by searching its name 
+Format: `View -name [name]`
+Examples:
+* `View -name Xiao Ming` would display the student particular of Xiao Ming if existed
+
+### VIew student particular by id: View 
+This will display a specific particular by searching for its id
+Format: `View -id [id]`
+Examples; 
+* `View -id 88888` would display the student particular for student whose id is 88888 if it exists.
+
+
+
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -196,9 +220,6 @@ _Details coming soon ..._
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+**View** | `View [-statistics] [-all] [-id ID] [-name NAME]
+
