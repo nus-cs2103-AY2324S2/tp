@@ -14,7 +14,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `hirehub.jar` from [here](https://github.com/se-edu/HireHub-level3/releases).
+1. Download the latest `hirehub.jar` from [here](https://github.com/AY2324S2-CS2103T-W08-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HireHub.
 
