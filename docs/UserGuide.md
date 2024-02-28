@@ -167,6 +167,44 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Tag a candidate: `tag`
+
+Appends the tag or tags to a candidate's list of tags.
+
+You can list any number of tags greater than 0, and all of them will be added to the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
+
+Format: `tag INDEX [t/TAG] [t/TAG]…​`
+
+*Example 1* : `tag 24 t/smart`
+
+This command adds the tag "smart" to the candidate with index 24.
+
+
+*Example 2* : `tag 8 t/Exceptional work t/IMO gold t/Male`
+
+This command adds the tags "Exceptional work", "IMO gold" and "Male" to the candidate with index 8.
+
+---
+
+If tag command is successfully executed, the app will display the candidate with the new tags.
+
+### Change status of a candidate: `status`
+
+Changes the interview status of a candidate.
+
+Interview status must be one of the following: PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED.
+When a candidate is added, by default it has status PRESCREEN.
+Format: `status INDEX INTERVIEWSTATUS`
+
+*Example 1* : `status 24 IN_PROGRESS`
+
+This command changes the status of the candidate with index 24 to "IN_PROGRESS".
+
+---
+
+If status command is successfully executed, the app will display the candidate with the new status.
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
