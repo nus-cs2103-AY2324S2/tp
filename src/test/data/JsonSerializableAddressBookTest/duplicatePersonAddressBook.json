@@ -4,11 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "studentId": "12345",
     "tags": [ "friends" ]
   }, {
-    "name": "Alice Pauline",
+    "name": "Bob ddd",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "studentId": "12345"
   } ]
 }
