@@ -96,6 +96,32 @@ Format: `Delete -id {id}`
 Examples:
 * `delete -id 88888` deletes the student with the id 8888
 
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### View student statistics: View
+This would display the total number of students  
+Format: `View -statistics`
+
+### View student summary at home page: View
+This would display a summary of student particulars on the homepage.
+Format: `View -all`
+
+### View student particular by name: View 
+This will display a specific student particular by searching its name 
+Format: `View -name [name]`
+Examples:
+* `View -name Xiao Ming` would display the student particular of Xiao Ming if existed
+
+### View student particular by id: View 
+This will display a specific particular by searching for its id
+Format: `View -id [id]`
+Examples; 
+* `View -id 88888` would display the student particular for student whose id is 88888 if it exists.
+
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -122,4 +148,6 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add -name {NAME} -address {S{PostalCode}} #{UnitNumber} -number {number} -subject {subject} -level {level}` <br> e.g., `add -name Xiao Ming -address S000000 #01-01 -number 88888888 -subject Math -level P1`
 **Delete** | `Delete -id {id}`<br> e.g., `delete -id 88888`
+**View** | `View [-statistics] [-all] [-id ID] [-name NAME]
+
 
