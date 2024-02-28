@@ -275,16 +275,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                       | So that I can…​                                                       |
-|----------| ------------------------------------------ |--------------------------------------------------------------------| --------------------------------------------------------------------- |
-| `* * *`  | recruiter                                  | update the contact details of potential candidates                 |                  |
-| `* * *`  | recruiter                                  | view the contact details of potential candidates in tabular format |                                                 |
-| `* * *`  | recruiter                                  | add new candidates to the database                                 |                          |
+| Priority | As a …​                                    | I want to …​                                                       | So that I can…​ |
+|----------| ------------------------------------------ |--------------------------------------------------------------------| ------- |
+| `* * *`  | recruiter                                  | update the contact details of potential candidates                 | |
+| `* * *`  | recruiter                                  | view the contact details of potential candidates in tabular format |         |
+| `* * *`  | recruiter                                  | add new candidates to the database                                 | |
 | `* * *`  | recruiter                                  | delete candidates from the database                                | |
-| `* * *`  | recruiter                                  | add tags to categorise candidates                                  |          |
-| `* * *`  | recruiter                                  | filter candidates by tags                                          |                                           |
-| `* * *`  | recruiter                                  | edit tags                                                          |                                                                       |
-| `* * *`  | recruiter                                  | leave a comment on the candidate's interview status                |                                   |
+| `* * *`  | recruiter                                  | add tags to categorise candidates                                  | |
+| `* * *`  | recruiter                                  | filter candidates by tags                                          |         |
+| `* * *`  | recruiter                                  | edit tags                                                          |         |
+| `* * *`  | recruiter                                  | leave a comment on the candidate's interview status                | |
+| `* * *`  | recruiter                                  | clear the database in one single command line                      | |
 
 *{More to be added}*
 
