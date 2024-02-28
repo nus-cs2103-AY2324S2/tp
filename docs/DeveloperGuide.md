@@ -320,6 +320,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Realodex` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Creating a user profile**
+
+**Actor: User**
+
+**Description: This use case outlines the steps involved in adding a new client profile to Realodex. The user initiates the process by executing the "Add client" command, and the system guides them through sequential steps to gather and confirm client details.**
+
+**MSS**
+
+1. User Executes "Add client" Command:
+2. Realodex Prompt for Client Name:
+3. User Provides Client Name:
+4. Realodex Prompt for Client Address:
+5. User Provides Client Address:
+6. Realodex Prompt for Family Size:
+7. User Provides Family Size:
+8. Realodex Prompt for Client Income:
+9. User Provides Client Income:
+10. Realodex Prompt for Additional Notes:
+11. User Provides Additional Notes (Optional):
+12. The system prints the termination message "Client profile creation complete. Returning back to the main screen."
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Name exceeds the length constraints.
+  * 3a1. Realodex throws an error and requests shorter name representation.
+  * 3a2. User enters new data.
+  * Steps 3a1-3a2 are repeated until name input is valid.
+  * Use case resumes from Step 4
+
+* 3b. Name Length is not fully English.
+    * 3b1. Realodex throws an error and requests for only English input.
+    * 3b2. User enters new data.
+    * Steps 3b1-3b2 are repeated until name input is valid.
+    * Use case resumes from Step 4
+
+* 3c. Name contains erraneous whitespace.
+    * 3c1. Realodex throws a warning and fixes this for user.
+    * Use case resumes from Step 4
+
+* 3d. Name is not capitalized.
+    * 3d1. Realodex throws a warning and fixes this for user.
+    * Use case resumes from Step 4
+
+* 3e. Name is not in expected format.
+    * 3e1. Realodex throws an error and highlights the format to user.
+    * 3e2. User enters new data.
+    * Steps 3e1-3e2 are repeated until name input is valid.
+    * Use case resumes from Step 4
+
+* 5a. Address is not fully English  
+    * 5a1. Realodex throws an error and requests for only English input.
+    * 5a2. User enters new data.
+    * Steps 5a1-5a2 are repeated until address input is valid.
+    * Use case resumes from Step 6
+
+* 5b. Address exceeds the length constraints
+    * 5b1. Realodex throws an error and requests shorter address representation.
+    * 5b2. User enters new data.
+    * Steps 5b1-5b2 are repeated until address input is valid.
+    * Use case resumes from Step 6
+
+* 5c. Address is not capitalized for each part.
+    * 5c1. Realodex throws a warning and fixes this for user.
+    * Use case resumes from Step 6
+
+* 7a. Family size is > 20
+    * 7a1. Realodex throws an error and requests a realistic family size value.
+    * 7a2. User enters new data.
+    * Steps 7a1-7a2 are repeated until family input is valid.
+    * Use case resumes from Step 8
+
+* 9a. Income is not in SGD
+    * 7a1. Realodex throws an error and requests a SGD value.
+    * 7a2. User enters new data.
+    * Steps 9a1-9a2 are repeated until SGD income input.
+    * Use case resumes from Step 10
+
+* 9b. Income is negative
+    * 9b1. Realodex throws an error and requests a positive income value.
+    * 9b2. User enters new data.
+    * Steps 9b1-9b2 are repeated until a positive value is input.
+    * Use case resumes from Step 10
+
+* 11a Additonal notes exceed length constraints.
+    * 11a1. Realodex throws an error and requests a shorter input.
+    * 11a2. User enters new data.
+    * Steps 11a1-11a2 are repeated until a positive value is input.
+    * Use case resumes from Step 12
+
 **Use case: Delete a person**
 
 **MSS**
