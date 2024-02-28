@@ -192,18 +192,17 @@ Appends the tag or tags to a candidate's list of tags.
 
 You can list any number of tags greater than 0, and all of them will be added to the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
-Format: `tag INDEX [t/TAG] [t/TAG]…​`
+Format: `tag INDEX [t/TAG]…​`
+
+At least one tag must be provided.
 
 *Example 1* : `tag 24 t/smart`
 
 This command adds the tag "smart" to the candidate with index 24.
 
-
 *Example 2* : `tag 8 t/Exceptional work t/IMO gold t/Male`
 
 This command adds the tags "Exceptional work", "IMO gold" and "Male" to the candidate with index 8.
-
----
 
 If tag command is successfully executed, the app will display the candidate with the new tags.
 
@@ -211,15 +210,13 @@ If tag command is successfully executed, the app will display the candidate with
 
 Changes the interview status of a candidate.
 
-Interview status must be one of the following: PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED.
-When a candidate is added, by default it has status PRESCREEN.
+Interview status must be one of the following: `PRESCREEN`, `IN_PROGRESS`, `WAITLIST`, `ACCEPTED`, `REJECTED`.
+When a candidate is added, by default it has status `PRESCREEN`.
 Format: `status INDEX INTERVIEWSTATUS`
 
 *Example 1* : `status 24 IN_PROGRESS`
 
-This command changes the status of the candidate with index 24 to "IN_PROGRESS".
-
----
+This command changes the status of the candidate with index 24 to `IN_PROGRESS`.
 
 If status command is successfully executed, the app will display the candidate with the new status.
 
@@ -275,7 +272,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`<br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
-**Tag** | `tag INDEX [t/TAG] [t/TAG]…`<br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`
+**Tag** | `tag INDEX [t/TAG]…`<br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`
 **Status** | `status INDEX INTERVIEWSTATUS`<br> e.g., `status 24 IN_PROGRESS`
 **List** | `list`
 **Help** | `help`
