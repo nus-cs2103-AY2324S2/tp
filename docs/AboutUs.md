@@ -9,22 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Project Advisor
 
 ### Lin Shuang Shuang
 
 <img src="images/Lin Shuang Shuang.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+
 
 - Role: Team Lead
 - Responsibilities: UI
@@ -38,12 +29,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Data
 
-### Jean Doe
+### Thitipat Chaiyakul
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thitipatc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ThitipatC)]
+
 
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
