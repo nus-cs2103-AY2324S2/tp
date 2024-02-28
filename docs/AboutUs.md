@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Jeremy Wang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/j-wang-csma.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/J-wang-CSMA)]
+[[portfolio](team/j-wang-csma.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer, Deliverables and deadlines
+* Responsibilities: Data + UI
 
 ### Johnny Doe
 
