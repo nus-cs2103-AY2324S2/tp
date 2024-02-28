@@ -9,25 +9,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Joseph Chan 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cyqjoseph.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cyqjoseph)]
 
-* Role: Project Advisor
+* Role: Developer 
 
-### Ujjwal Gaurav
+### Wang Minhong
 
-<img src="images/gauravuj.png" width="200px">
+<img src="images/chrysanthemumt.png" width="200px">
 
-[[github](http://github.com/gauravuj)]
-[[portfolio](team/gauravuj.md)]
+[[github](http://github.com/chrysanthemumt)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
 
 ### Jerremy Ng
 
@@ -38,15 +34,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code
 
-### Jean Doe
+### Ujjwal Gaurav
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gauravuj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gauravuj)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: 
+* Responsibilities: 
 
 ### James Doe
 
