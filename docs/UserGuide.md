@@ -158,7 +158,7 @@ Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIE
 * At least one of the optional fields must be provided.
 * The search is case-sensitive, e.g. `hans` will not match `Hans`.
 * For email, country, phone and interview status, only full words will be matched.
-* For name, comment and tags, partial words will be matched, e.g. `Han` will match `Hans`.
+* For name, comment and tag, partial words will be matched, e.g. `Han` will match `Hans`.
 * The search will fail if either of the email, country, phone or interview status is in an invalid format.
 * If multiple fields are specified, only candidates that match **all** the specified attributes will be returned.
 
@@ -216,6 +216,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]…`
+**Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
 **List** | `list`
 **Help** | `help`
