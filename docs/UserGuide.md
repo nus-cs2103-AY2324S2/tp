@@ -122,7 +122,7 @@ This command edits **name**, **email**, and the tag for **acceptance status** of
 
 ---
 
-If edit command is successfully executed, the app will display the edited candidate with the edited attributes.
+If edit command is successfully executed, the app will display the edited candidate with the new attributes.
 
 
 ### Locating persons by name: `find`
