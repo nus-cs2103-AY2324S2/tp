@@ -303,16 +303,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PedagoguePages` and the **Actor** is the `teacher`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: View the usage help list**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Teacher requests to view the user guide of PedagoguePages
+2.  PedagoguePages shows the user guide to teacher
+
+    Use case ends.
+
+
+**Use case: View the student list**
+
+**MSS**
+
+1.  Teacher requests to view all the info in PedagoguePages
+2.  PedagoguePages shows a list of students' info
+
+    Use case ends.
+
+
+**Use case: Delete a student**
+
+**MSS**
+
+1.  Teacher requests to find a student by his name
+2.  PedagoguePages shows a list of matched students
+3.  Teacher requests to delete a specific person in the list
+4.  PedagoguePages deletes the person
 
     Use case ends.
 
@@ -322,13 +342,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given student_id is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. PedagoguePages shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a student**
+
+**MSS**
+
+1. Teacher enter the student info
+2. PedagoguePages shows a success message and add the student's info
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Teacher enter a invalid command.
+    * 2a1. PedagoguePages shows an error message and give a hint.
+    
+        Use case ends.
+
+
+**Use case: Update the info of a student**
+
+**MSS**
+
+1.  Teacher requests to find a student by his name
+2.  PedagoguePages shows a list of matched students
+3.  Teacher requests to update the info of a specific person in the list
+4.  PedagoguePages update the info for the student
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given student_id is invalid.
+
+    * 3a1. PedagoguePages shows an error message.
+
+      Use case resumes at step 2.
+    
+* 3b. The updated field is in a wrong format
+    * 3b2. PedagoguePages shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: find a group of a students by tag**
+
+**MSS**
+
+1.  Teacher requests to find a group of students by specific tag
+2.  PedagoguePages shows a list of matched students
+
+    Use case ends.
+
+**Use case: find a specific student by name**
+
+**MSS**
+
+1.  Teacher requests to find a student by student's name
+2.  PedagoguePages shows a list of matched students
+3.  Teacher select the student from the list
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
