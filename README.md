@@ -18,21 +18,21 @@ InternHub is a comprehensive project designed to assist Computer Science (CS) st
 - **Name:** InternHub
 - **Type:** Desktop Application
 - **Initiative:** Part of the se-education.org initiative
-- **Documentation:** [InternHub Product Website](https://[Your Product Website URL])
+- **Documentation:** [InternHub Product Website](https://ay2324s2-cs2103t-f14-1.github.io/tp/index.html)
 
 ## Features
 
 InternHub is specifically tailored for CS students, offering the following features:
 
 - Organization and optimization of internship application details.
-- Seamless management of contacts, interview dates, and application information.
-- Customizable fields to match individual internship search criteria.
+- Seamless management of contacts, interview dates, internship duration, salary and job description.
+- Editable fields to meet sudden changes in attributes.
 - Tagging system to categorize and track the stages of each interview process.
 - Filtering and sorting capabilities for efficient access to relevant information.
 
 ## Getting Started
 
-For detailed information on using InternHub, refer to our [User Guide](https://[Your Product Website URL]/user-guide).
+For detailed information on using InternHub, refer to our [User Guide](https://ay2324s2-cs2103t-f14-1.github.io/tp/UserGuide.html).
 
 ## Contributing
 
