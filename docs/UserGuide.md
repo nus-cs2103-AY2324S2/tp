@@ -145,7 +145,21 @@ Examples:
 
 Clears all entries from the address book.
 
+* A confirmation message would be displayed. Type in "y" to confirm the deletion.
+
 Format: `clear`
+
+### Search for matching candidates : `search`
+
+Searches candidates whose attributes match the specified attributes in the search criteria.
+
+Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]…`
+
+* At least one of the optional fields must be provided.
+* The search is case-sensitive, e.g. `hans` will not match `Hans`.
+* For email, country, phone and interview status, only full words will be matched.
+* For name, comment and tags, partial words will be matched, e.g. `Han` will match `Hans`.
+* The search will fail if either of the email, country, phone or interview status is in an invalid format.
 
 ### Exiting the program : `exit`
 
@@ -177,6 +191,9 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: What is the difference between `edit` and `tag`?<br>
+**A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/Quant Researcher` will change John's tags to just `Quant Researcher`, while `tag t/Quant Researcher` will change John's tags to `Internal`, `Waitlist` and `Quant Researcher`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -194,5 +211,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]…`
 **List** | `list`
 **Help** | `help`
