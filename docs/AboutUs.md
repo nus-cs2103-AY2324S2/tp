@@ -43,12 +43,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: 
 * Responsibilities: 
 
-### James Doe
+### Low Zheng Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhenghuil.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/zhenghuil)]
 
 * Role: Developer
-* Responsibilities: UI
