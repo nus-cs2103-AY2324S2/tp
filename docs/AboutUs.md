@@ -18,7 +18,7 @@ You can reach us at the email `connect_care[at]comp.nus.edu.sg`
 
 ### Damith C. Rajapakse
 
-<img src="images/damith.png" width="200px">
+<img src="images/damithc.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/damithc)]
@@ -28,7 +28,7 @@ You can reach us at the email `connect_care[at]comp.nus.edu.sg`
 
 ### P J Anthony
 
-<img src="images/placeholder.png" width="200px">
+<img src="images/pjanthony2001.png" width="200px">
 
 [[github](http://github.com/pjanthony2001)]
 [[portfolio](team/anthony.md)]
@@ -38,7 +38,7 @@ You can reach us at the email `connect_care[at]comp.nus.edu.sg`
 
 ### Au Jun Ming Jeremiah
 
-<img src="images/placeholder.png" width="200px">
+<img src="images/jolonauh.png" width="200px">
 
 [[github](http://github.com/jolonauh)]
 [[portfolio](team/jeremiah.md)]
@@ -48,7 +48,7 @@ You can reach us at the email `connect_care[at]comp.nus.edu.sg`
 
 ### Rishit Khandelwal
 
-<img src="images/placeholder.png" width="200px">
+<img src="images/rishit02.png" width="200px">
 
 [[github](http://github.com/rishit02)] [[portfolio](team/rishit.md)]
 
@@ -57,7 +57,7 @@ You can reach us at the email `connect_care[at]comp.nus.edu.sg`
 
 ### Eliot Lee Leong Wern
 
-<img src="images/placeholder.png" width="200px">
+<img src="images/eliotlee68.png" width="200px">
 
 [[github](http://github.com/eliotlee68)]
 [[portfolio](team/eliot.md)]
@@ -67,7 +67,7 @@ You can reach us at the email `connect_care[at]comp.nus.edu.sg`
 
 ### Tejas Sadasivam
 
-<img src="images/placeholder.png" width="200px">
+<img src="images/tejas-1405.png" width="200px">
 
 [[github](http://github.com/tejas-1405)]
 [[portfolio](team/tejas.md)]
