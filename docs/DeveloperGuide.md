@@ -262,27 +262,53 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a small-medium scale bakery owner
+* has a need to manage a significant number of patrons' membership details
+* want to keep track of points for each member and can easily allow accumulation and redemption of points
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage membership subscriptions for a small-medium bakery shop faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                             | I want to …​                                                                                             | So that I can…​                                                            |
+|----------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | Potential user exploring the app                    | See the app populated with sample data                                                                   | I can easily see how the app will look like when it is in use              |
+| `* *`    | Potential user exploring the app                    | Access the user guide easily via a help button                                                           |                                                                            |
+| `* * *`  | User ready to start using the app                   | Purge all current data                                                                                   | I can get rid of the sample data and input my own                          |
+| `* * *`  | User learning to use the app                        | Add a new member                                                                                         |                                                                            |
+| `* *`    | User learning to use the app                        | Check whether a particular member exists                                                                 | I can verify if a patron is a member or not                                |
+| `* * *`  | User learning to use the app                        | Manually add points to a member                                                                          | I can reward them for their patronage                                      |
+| `* * *`  | User learning to use the app                        | Manually subtract points from a member                                                                   | The members can "spend" their points for discounts                         |
+| `* * *`  | User learning to use the app                        | Save all data on every command that changes the data                                                     | Closing the application (intended or not) will not lose my data            |
+| `* *`    | User learning to use the app                        | See help on proper usage when I wrongly use a command                                                    | Easily learn and correct my mistakes                                       |
+| `* * *`  | User slightly familiar with the app                 | Add orders to a particular member (saves current date/time)                                              | I can track their past orders                                              |
+| `* *`    | User slightly familiar with the app                 | Edit member details                                                                                      | When patrons change their name, address or contact, I can easily update it |
+| `* * *`  | User slightly familiar with the app                 | Delete members                                                                                           | I can remove a member from my list when they are not longer subscribed.    |
+| `* *`    | User who likes to be organised                      | Create Tags that can be attached to members                                                              | I can categorise members for different discounts etc.                      |
+| `* *`    | User who likes to be organised                      | Search for a member and see and overview of their profile                                                | I can see and easilly refer to their important details                     |
+| `* *`    | User looking to develop the business                | Count the number of members with a certain Tag                                                           | Make business decisions easier by observing my demographics                |
+| `* *`    | User looking to develop the business                | Check the past orders of a member                                                                        | I can refer back to past orders for marketing/accounting purposes          |
+| `* *`    | User with many orders                               | Create and add to a list of products, with the respective points they each reward when bought            | I can input multiple orders quickly                                        |
+| `* *`    | User with many orders                               | Add an order to a member which automatically adds points using one single command                        | I can input multiple orders quickly                                        |
+| `* *`    | User looking to be more efficient                   | Add an order to a member which automatically adds points, and can redeem points using one single command | I can input multiple orders even quicker                                   |
+| `* *`    | User looking to be more efficient                   | Use all points from a member with a feedback to let me know how many was used                            | I can add orders without even looking at how many points a member has      |
+| `* *`    | User looking to expand the business                 | Create membership tiers that increase the amount of points earned                                        | I can expand my loyalty program                                            |
+| `* *`    | User looking to expand the business                 | Seperate members into different tiers manually                                                           | I can expand my loyalty program                                            |
+| `* *`    | User looking to expand the business                 | Create different redemptions using points other than flat discounts (Eg. free small cake)                | I can expand my loyalty program                                            |
+| `* *`    | User looking for more complex membership structures | Create membership tiers using pre-built structures that define prerequisites for a tier                  | Automate the process of "tiering up"                                       |
+| `* *`    | User looking for more complex membership structures | Have members automatically "tier up" when they hit the prequisites for a tier                            | Automate the process of "tiering up"                                       |
+| `* *`    | User looking for more complex membership structures | Have points have an expiry date that I can decide on                                                     | Encourage patrons to spend their points by buying something                |
+| `*`      | User looking for more complex membership structures | Automatically SMS members when their points expire soon                                                  | Encourage patrons to spend their points by buying something                |
+| `*`      | User looking for more complex membership structures | Be able to send out announcements via SMS                                                                | Increase advertising to members                                            |
+| `* *`    | Experienced User who is organised                   | Split the graphical interface into different sections contaning members of different tiers               | Have an overview of the members in the different tiers                     |
+| `* *`    | Experienced User who is organised                   | See how many members of each tier there is                                                               | I can understand how my loyalty system is doing                            |
 
 *{More to be added}*
 
