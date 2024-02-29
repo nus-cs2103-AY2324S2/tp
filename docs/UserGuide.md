@@ -96,6 +96,15 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+### Viewing an internship entry's details
+
+This feature is accessible by clicking on an internship entry in the internship list.
+Click the back button to return to the previous view of internship entries.
+
+Shows the full details of an internship entry. This replaces the current view of internship entries.
+
+CLI input will be implemented in a future release.
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
