@@ -2,7 +2,7 @@
 
 Matchmate is a **desktop app to create groups among their friends / acquaintances,
 as well as to allow students to find balanced groups with diverse skillsets out of their own contact list.** 
-It is optimized for Command Line Interface(CLI) while still having the benefits of a Graphical User Interface (GUI). 
+It is optimized for Command Line Interface space(CLI) while still having the benefits of a Graphical User Interface (GUI). 
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -26,7 +26,7 @@ It is optimized for Command Line Interface(CLI) while still having the benefits 
 
    * `list` : Lists all contacts.
    
-   * `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`: Adds a contact named `John Doe` to the contact list
+   * `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`: Adds a contact named `John Doe` to the contact list.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -72,15 +72,13 @@ Format: `help`
 
 Adds a contact to the contact list. A name will be required, and all other information will be optional.
 
-
 Format: `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-s SKILL]...`
 
-
 Parameters:
-- `NAME`: Name of the contact. It can be any string except that it cannot start with the hashtag (#) symbol (Reason: To differentiate between indices and names, to be introduced later.), and words cannot start with the hyphen (-) character. (Reason: It will be mixed up with parameter tags.)
+- `NAME`: Name of the contact. It can be any string except that it cannot start with the hashtag (#) symbol , and words cannot start with the hyphen (-) character.
 - `PHONE_NUMBER` (optional): Phone number of the contact. Accepts strings with numeric characters only.
 - `EMAIL` (optional): Email of the contact. Accepts any strings without spaces.
-- `SKILL` (zero or multiple allowed): Skill(s) of the person. Accepts any strings, except that words cannot start with the hyphen (-) character. (Reason: It will be mixed up with parameter tags.)
+- `SKILL` (zero or multiple allowed): Skill(s) of the person. Accepts any strings, except that words cannot start with the hyphen (-) character. 
 
 <box type="tip" seamless>
 
@@ -92,17 +90,6 @@ Examples:
 
 - `add John Doe`
 - `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`
-
-Possible outputs:
-- `Message: Contact has been added`
-- `The contact will be added.`
-- `The newly added contact will be displayed on the detailed view panel.`
-- `Message: WARNING: the following skills has not been added to any other contacts, please ensure it is not misspelt: “V++”, “Leadershipp”.`
-- `Contact has been added`
-- `The newly added contact will be displayed on the detailed view panel.`
-- `Message: ERROR: There is another user with the exact same name. Differentiate them by maybe adding a suffix such as [WORK], [SCHOOL], [PERSONAL]`
-- `Message: ERROR: The name cannot start with a “#” symbol.`
-
 
 ### Listing all persons : `list`
 
@@ -161,15 +148,6 @@ Examples:
 - `edit #1 -n Joe Schmo`
 - `edit John -p 98765432 -e johndoe@gmail.com`
 
-Possible outputs:
-- `Message: Contact has been edited`
-- `The contact will be edited.`
-- `The edited contact will be displayed on the detailed view panel.`
-- `Message: ERROR: Cannot find contact with name “John Doe”.`
-- `Message: ERROR: Cannot find contact with index “#10”.`
-- `Message: ERROR: There is another user with the exact same name. Differentiate them by maybe adding a suffix such as [WORK], [SCHOOL], [PERSONAL]`
-- `Message: ERROR: The name cannot start with a “#” symbol.`
-
 ### Add a skill to a contact : `add-skill`
 Adds a skill to a contact.
 
@@ -177,7 +155,7 @@ Format: `add-skill NAME [-s SKILL]...`
 
 Parameters:
 - `NAME`: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).
-- `SKILL` (zero or multiple allowed): Skill(s) of the person. Accepts any strings, except that words cannot start with the hyphen (-) character. (Reason: It will be mixed up with parameter tags.)
+- `SKILL` (zero or multiple allowed): Skill(s) of the person. Accepts any strings, except that words cannot start with the hyphen (-) character.
 
 Examples:
 - `add-skill John Doe -s C++ -s Leadership`
@@ -214,18 +192,6 @@ Examples:
 
     This command does nothing but it will be executed successfully.
 
-Possible outputs:
-- `Message: Skill(s) have been deleted`
-
-    The skills will be deleted.
-
-    The edited contact will be displayed on the detailed view panel.
-- `Message: ERROR: “John Doe” does not have the skill(s): “C++”, “Leadership”.`
-- `Message: ERROR: Cannot find contact with name “Jane Doe”.`
-- `Message: ERROR: Cannot find contact with index “#10”.`
-
-
-
 ### Search contacts with a keyword: `find`
 Searches contacts that include a matching keyword, in their name, skills or groups. More relevant fields can be supported in the future.
 
@@ -241,11 +207,6 @@ Examples:
 - `find C++`
 - `find CS2103T_G18`
 
-Possible outputs:
-- `Message: Found 2 matching contact(s)`
-- `The matching contact(s) will be displayed in the contact list panel.`
-- `Message: NOTICE: Cannot find any contacts with “John”.`
-
 ### Deleting a contact : `delete`
 
 Deletes a contact with a given name.
@@ -259,12 +220,6 @@ Examples:
 - `delete ##`
 - `delete John`
 
-Possible outputs:
-- `Message: Contact “John Doe” has been deleted.`
-- `The contact will be deleted.`
-- `Message: ERROR: Cannot find contact with name “Jane Doe”.`
-- `Message: ERROR: Cannot find contact with index “#10”.`
-
 ### Create group project: `create-group`
 
 Creates an empty group project. Other team members can then be added once the group has been created.
@@ -275,10 +230,6 @@ Parameters:
 - `GROUP_NAME`: The group name. Accepts any strings, except that words cannot start with the hyphen (-) character.
 
 Example: `create-group CS2103T_G18`
-
-Possible outputs:
-- `Message: Successfully created the group “CS2103T_G18”`
-- `Message: ERROR: The group “CS2103T_G18” already exists.`
 
 ### Add contacts to group: `add-member`
 Adds a team member to an existing group.
@@ -297,13 +248,6 @@ Examples:
 **Tip:**
 Different from names from the contact list, group names must be an exact match.
 
-
-Possible outputs:
-- `Message: Successfully added “Ivan Tan” to “CS2103T_G18”`
-- `Message: ERROR: Cannot find contact with name “Ivan”.`
-- `Message: ERROR: Cannot find contact with index “#10”.`
-- `Message: ERROR: “Ivan Tan” is already in group “CS2103T_G18”.`
-
 ### Delete a group: `delete-group`
 Deletes a group
 
@@ -313,10 +257,6 @@ Example: `delete-group CS2103T_G18`
 
 Parameters:
 - `GROUP_NAME`: Name of the existing group.
-
-Possible outputs:
-- `Message: Successfully deleted the group “CS2103T_G18”`
-- `Message: ERROR: Cannot find group with name “CS2103T_G18”.`
 
 
 ### Clearing all entries : `clear`
