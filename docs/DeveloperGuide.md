@@ -262,23 +262,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Dr. Emily Chen is a General Practitioner
+* She aims to enhance clinical efficiency and maintain high-quality care
+* Challenges include time constraints and documentation overload
+* She needs seamless workflow management and a keyboard-driven system
+* Her personality is dedicated and empathetic, with a focus on patient care
+* Can type fast hence loves to play type racer during her free time
+* Prefers to type over mouse interactions
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage patient medical records faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                        | So that I can…​                             |
-| -------- | ------------------------------------------ |-------------------------------------|---------------------------------------------|
-| `* * *`  | user                                       | add a patient's appointment note    | record keep the details of each appointment |
-| `* * *`  | user                                       | delete a patient's appointment note | remove entries that I no longer need        |
+| Priority | As a …​                                    | I want to …​                          | So that I can…​                                          |
+| -------- | ------------------------------------------ |---------------------------------------|----------------------------------------------------------|
+| `* * *`  | user                                       | view all my patient's medical records | have a clear overview of all my records                  |
+| `* * *`  | user                                       | add a patient's medical record     | record new patients I work with                          |
+| `* * *`  | user                                       | edit a patient's medical record     | ammend necessary details of a medical record when needed |
+| `* * *`  | user                                       | add a patient's appointment note      | record keep the details of each appointment              |
+| `* * *`  | user                                       | delete a patient's appointment note   | remove entries that I no longer need                     |
 
 *{More to be added}*
 
