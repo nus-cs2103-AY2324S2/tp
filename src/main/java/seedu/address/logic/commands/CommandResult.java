@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 
@@ -20,6 +21,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
     private final Person viewPerson;
+    private final FilteredList<Person> viewList;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -29,6 +31,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.viewPerson = null;
+        this.viewList = null;
     }
 
     /**
@@ -47,6 +50,15 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.viewPerson = viewPerson;
+        this.viewList = null;
+    }
+
+    public CommandResult(String feedbackToUser, FilteredList<Person> viewList) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.viewPerson = null;
+        this.viewList = viewList;
     }
 
     public String getFeedbackToUser() {
@@ -54,6 +66,9 @@ public class CommandResult {
     }
     public Person getViewPerson() {
         return this.viewPerson;
+    }
+    public FilteredList<Person> getViewList() {
+        return this.viewList;
     }
 
     public boolean isShowHelp() {

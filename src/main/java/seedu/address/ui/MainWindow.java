@@ -170,11 +170,18 @@ public class MainWindow extends UiPart<Stage> {
      * Views the person on the View Panel.
      */
     @FXML
-    private void handleView(Person p) {
-        ViewPanel viewPanel = new ViewPanel(p);
-        viewPanelPlaceHolder.getChildren().clear();
+    private void handleView(Person p, int displayIndex) {
+        PersonCard viewPanel = new PersonCard(p, displayIndex);
+        //ViewPanel viewPanel = new ViewPanel(p);
+        //viewPanelPlaceHolder.getChildren().clear();
         viewPanelPlaceHolder.getChildren().add(viewPanel.getRoot());
     }
+
+//        private void handleView(Person p) {
+//            ViewPanel viewPanel = new ViewPanel(p);
+//            //viewPanelPlaceHolder.getChildren().clear();
+//            viewPanelPlaceHolder.getChildren().add(viewPanel.getRoot());
+//        }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -197,7 +204,16 @@ public class MainWindow extends UiPart<Stage> {
             }
             if (commandResult.getViewPerson() != null) {
                 Person p = commandResult.getViewPerson();
-                handleView(p);
+                //handleView(p);
+                handleView(p, 1);
+            }
+            if(commandResult.getViewList() != null) {
+                int index = 1;
+                for (Person p : commandResult.getViewList()) {
+                    //handleView(p);
+                    handleView(p, index);
+                    index++;
+                }
             }
 
             if (commandResult.isExit()) {

@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 
@@ -85,4 +86,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
     Person choosePersonToView(Predicate<Person> predicate);
+
+    FilteredList<Person> generateNewFilteredPersonList(Predicate<Person> predicate);
 }

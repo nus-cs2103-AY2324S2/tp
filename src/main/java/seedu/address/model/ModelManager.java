@@ -128,6 +128,14 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public FilteredList<Person> generateNewFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return new FilteredList<>(filteredPersons, predicate);
+        //return filteredPersons;
+    }
+
     @Override
     public Person choosePersonToView(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -139,6 +147,8 @@ public class ModelManager implements Model {
         }
         return null;
     }
+
+
 
     @Override
     public boolean equals(Object other) {
