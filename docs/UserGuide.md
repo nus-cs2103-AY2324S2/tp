@@ -312,6 +312,8 @@ Format: `addSched INDEX [MORE_INDEX] SCHEDULE_NAME from/DATE_TIME to/TIME`
 * The SCHEDULE_NAME **must not have any special characters** e.g. !, @, #, $, …​
 * The DATE_TIME must be in the format of ddmmyyyy HHmm in 24-hour time
 * The TIME must be in the format of HHmm, but **not before the time from DATE_TIME** e.g. 0000-2359
+* `find Betsy` followed by `addSched 1 Exam 05032024 1600 1800` adds the 1st person in 
+the results of the `find` command to the event stated.
 
 Examples:
 * `addSched 4 Exam 05032024 1600 1800` will add the 4th person in the address list to the `Exam` event which 
