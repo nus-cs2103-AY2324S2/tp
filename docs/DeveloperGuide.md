@@ -447,54 +447,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**:
 
 1.  User requests to learn more about the commands.
-2.  PoochPlanner displays the information on how to use the different commands.
+2.  PoochPlanner displays a tutorial information.
 
     Use case ends.
 
 **Extensions**:
 
-* 1a. User requests to learn about available command.
+* 1a. User requests to learn about an invalid command.
 
-   * 1a1. PoochPlanner displays the list of all commands.
-   * 1a2. User specifies which command they wish to use.
-   * Use case resumes from step 1. 
-
-* 1b. User requests to learn about pooch-staff.
-
-   * 1b1. PoochPlanner displays information of pooch-staff.
-
-       Use case ends.
-
-* 1c. User requests to learn about pooch-supplier.
-
-   * 1c1. PoochPlanner displays information of pooch-supplier.
-
-       Use case ends.
-
-* 1d. User requests to learn about pooch-maintenance.
-
-   * 1d1. PoochPlanner displays information of pooch-maintenance.
-
-       Use case ends.
-   
-* 1e. User requests to learn about delete.
-
-   * 1d1. PoochPlanner displays information on how to use the delete command.
-
-       Use case ends.
-
-* 1f. User requests to learn about edit.
-
-   * 1f1. PoochPlanner displays information on how to use the edit command.
-
-       Use case ends.
-
-* 1g. User requests to learn about search.
-
-   * 1g1. PoochPlanner displays information on how to use the search command.
-
-       Use case ends.
-
+   * 1a1. PoochPlanner displays the error message.
+   * 1a2. User re-enters the command and request to learn about a valid command.
+   * Steps 1a1 - 1a2 are repeated until a valid command is inputted by the User.
+   * Use case resumes from step 2. 
 ---
 *{More to be added}*
 
