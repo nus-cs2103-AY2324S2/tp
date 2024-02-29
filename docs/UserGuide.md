@@ -27,9 +27,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `add id/A01234567H n/John Doe e/e0123456@u.nus.edu` : Adds a student named `John Doe` to the list.
+
+   * `delete A0123456X` : Deletes the student with student id A0123456X from the list.
 
    * `clear` : Deletes all contacts.
 
@@ -129,17 +130,17 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified student from the list.
 
-Format: `delete INDEX`
+Format: `delete STUDENT_ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the person at the specified `STUDENT_ID`.
+* The STUDENT_ID refers to the id corresponding to the student in the list.
+* The STUDENT_ID is case-insensitive, must be a String starting with ‘A’ and ending with any letter, with a total length of 9
+
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete A0123456X` deletes the student with student id  A0123456X from the list.
 
 ### Clearing all entries : `clear`
 
