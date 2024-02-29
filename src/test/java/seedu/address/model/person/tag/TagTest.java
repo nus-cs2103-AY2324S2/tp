@@ -1,8 +1,9 @@
-package seedu.address.model.tag;
+package seedu.address.model.person.tag;
 
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.person.tag.Tag;
 
 public class TagTest {
 
