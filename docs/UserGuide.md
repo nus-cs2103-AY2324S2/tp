@@ -178,7 +178,7 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                         |
 |------------|--------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add id/STUDENT_ID n/NAME e/EMAIL g/GRADE [t/TAG]​​` <br> e.g., `add id/A01234567X n/James Ho e/james.ho@u.nus.edu g/B+` |
+| **Add**    | `add id/STUDENT_ID n/NAME e/EMAIL g/GRADE [t/TAG]​​` <br> e.g., `add id/A01234567X n/James Ho e/e0123456@u.nus.edu g/B+` |
 | **Delete** | `delete id/STUDENT_ID`<br> e.g., `delete A01234567X`                                                                     |
 | **Edit**   | `edit id/STUDENT_ID [g/GRADE] `<br> e.g.,`edit A0123466C g/A+`                                                           |
 | **View**   | `view id/STUDENT_ID`<br> e.g., `find A0123466D`                                                                          |
