@@ -3,8 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
+**HealthSync** helps optimize clinical efficiency with a keyboard-driven system for doctors to manage patient records, notes, medical certificates, and medication dispensing, all in one streamlined interface, enhancing care quality and focus in a busy clinical setting. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 * Table of Contents
 {:toc}
 
@@ -14,11 +13,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `healthsync.jar` from [here](https://github.com/AY2324S2-CS2103-F09-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your HealthSync.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar healthsync.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -141,6 +140,35 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding an appointment note: `add-an`
+
+Adds an appointment note to a patient. Please note that the time parameter is in 24-hour format.
+
+Format: `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of appointment record (including 0)
+</div>
+
+Examples:
+* `add-an d/19-02-2024 t/1130 n/General Flu`
+* `add-an d/30-12-2023 t/2100 n/Headache`
+
+### Deleting an appointment note : `delete-an`
+
+Deletes the specified appointment note from a patient.
+
+Format: `delete-an PATIENT_INDEX INDEX`
+
+* Deletes the appointment record at the specified `INDEX` for given patient from `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list-an` followed by `delete 1 2` deletes the 2nd appointment note from the 1st patient.
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -155,15 +183,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HealthSync data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HealthSync data are saved automatically as a JSON file `[JAR file location]/data/HealthSync.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, HealthSync will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the HealthSync to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -175,7 +203,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HealthSync home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -194,5 +222,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add Appointment Note** | `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `add-an d/30-12-2023 t/2100 n/Headache`
+**Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete 1 2`
 **List** | `list`
 **Help** | `help`
