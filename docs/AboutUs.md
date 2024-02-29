@@ -11,51 +11,56 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ethan Wei Yuxin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ethanwei.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[homepage](http://www.ethanwei.me)]
+[[github](https://github.com/belligerentbeagle)]
+[[portfolio](team/ethanwei.md)]
+
+* Role: Software Engineer
+* Responsibilities: Software Development
+
+### Sai UtKarsh
+
+<img src="images/sai.png" width="200px">
+
+[[github](https://github.com/saiutkarsh33)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### Jane Doe
+### Titus Chew 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/titus.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tituschewxj)] 
+[[portfolio](team/titus.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Wu Xiao Yun
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/xiaoyun.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Data
+[[github](http://github.com/ForAeons)]
+[[portfolio](team/xiaoyun.md)]
 
-### Jean Doe
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Anant Shanker
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/anant.png" width="200px">
 
-### James Doe
+[[github](http://github.com/anant1902)]
+[[portfolio](team/anant.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
