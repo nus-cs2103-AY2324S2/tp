@@ -11,11 +11,11 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.fields.mandatory.Address;
-import seedu.address.model.person.fields.mandatory.Email;
-import seedu.address.model.person.fields.mandatory.Name;
-import seedu.address.model.person.fields.mandatory.Phone;
-import seedu.address.model.person.fields.optional.Tags;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {

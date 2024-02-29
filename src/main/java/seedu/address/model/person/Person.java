@@ -8,11 +8,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.fields.mandatory.Address;
-import seedu.address.model.person.fields.mandatory.Email;
-import seedu.address.model.person.fields.mandatory.Name;
-import seedu.address.model.person.fields.mandatory.Phone;
-import seedu.address.model.person.fields.optional.Tags;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Represents a Person in the address book.

@@ -1,4 +1,4 @@
-package seedu.address.model.person.fields.optional;
+package seedu.address.model.person.fields;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Represents an abstraction for a list of tags.
  */
-public class Tags implements OptionalField {
+public class Tags implements Field {
 
     private final Set<Tag> tags;
 

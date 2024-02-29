@@ -2,11 +2,11 @@ package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.mandatory.Address;
-import seedu.address.model.person.fields.mandatory.Email;
-import seedu.address.model.person.fields.mandatory.Name;
-import seedu.address.model.person.fields.mandatory.Phone;
-import seedu.address.model.person.fields.optional.Tags;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

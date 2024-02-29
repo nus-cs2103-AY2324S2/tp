@@ -19,11 +19,11 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.mandatory.Address;
-import seedu.address.model.person.fields.mandatory.Email;
-import seedu.address.model.person.fields.mandatory.Name;
-import seedu.address.model.person.fields.mandatory.Phone;
-import seedu.address.model.person.fields.optional.Tags;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Edits the details of an existing person in the address book.

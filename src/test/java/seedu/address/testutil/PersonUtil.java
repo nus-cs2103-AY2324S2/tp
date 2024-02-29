@@ -27,10 +27,10 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME).append(person.getName().toString()).append(" ");
-        sb.append(PREFIX_PHONE).append(person.getPhone().toString()).append(" ");
-        sb.append(PREFIX_EMAIL).append(person.getEmail().toString()).append(" ");
-        sb.append(PREFIX_ADDRESS).append(person.getAddress().toString()).append(" ");
+        sb.append(PREFIX_NAME).append(person.getName()).append(" ");
+        sb.append(PREFIX_PHONE).append(person.getPhone()).append(" ");
+        sb.append(PREFIX_EMAIL).append(person.getEmail()).append(" ");
+        sb.append(PREFIX_ADDRESS).append(person.getAddress()).append(" ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
         );

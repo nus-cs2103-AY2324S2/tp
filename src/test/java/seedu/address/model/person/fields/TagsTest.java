@@ -1,4 +1,4 @@
-package seedu.address.model.person.fields.optional;
+package seedu.address.model.person.fields;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

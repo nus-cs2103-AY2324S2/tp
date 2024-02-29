@@ -3,11 +3,11 @@ package seedu.address.model.util;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.mandatory.Address;
-import seedu.address.model.person.fields.mandatory.Email;
-import seedu.address.model.person.fields.mandatory.Name;
-import seedu.address.model.person.fields.mandatory.Phone;
-import seedu.address.model.person.fields.optional.Tags;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
