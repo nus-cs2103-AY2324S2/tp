@@ -23,14 +23,14 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.JobDescription;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.InternDuration;
 import seedu.address.model.person.InterviewDate;
-import seedu.address.model.person.Salary;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.JobDescription;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -108,11 +108,17 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        JobDescription updatedJobDescription = editPersonDescriptor.getJobDescription().orElse(personToEdit.getJobDescription());
-        InterviewDate updatedInterviewDate = editPersonDescriptor.getInterviewDate().orElse(personToEdit.getInterviewDate());
-        InternDuration updatedInternDuration = editPersonDescriptor.getInternDuration().orElse(personToEdit.getInternDuration());
+        JobDescription updatedJobDescription = editPersonDescriptor
+                .getJobDescription()
+                .orElse(personToEdit.getJobDescription());
+        InterviewDate updatedInterviewDate = editPersonDescriptor
+                .getInterviewDate()
+                .orElse(personToEdit.getInterviewDate());
+        InternDuration updatedInternDuration = editPersonDescriptor
+                .getInternDuration()
+                .orElse(personToEdit.getInternDuration());
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
-        Tag updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTag());
+        Tag updatedTags = editPersonDescriptor.getTag().orElse(personToEdit.getTag());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                 updatedJobDescription, updatedInterviewDate,
@@ -152,7 +158,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Tag tags;
+        private Tag tag;
         private JobDescription jobDescription;
         private InternDuration internDuration;
         private InterviewDate interviewDate;
@@ -170,7 +176,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
             setJobDescription(toCopy.jobDescription);
             setInternDuration(toCopy.internDuration);
             setInterviewDate(toCopy.interviewDate);
@@ -181,7 +187,9 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(
+                    name, phone, email, address, tag, jobDescription, interviewDate, internDuration, salary
+            );
         }
 
         public void setName(Name name) {
@@ -248,12 +256,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(salary);
         }
 
-        public void setTags(Tag tag) {
-            this.tags = tag;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
-        public Optional<Tag> getTags() {
-            return Optional.ofNullable(tags);
+        public Optional<Tag> getTag() {
+            return Optional.ofNullable(tag);
         }
 
         @Override
@@ -272,7 +280,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(tag, otherEditPersonDescriptor.tag)
                     && Objects.equals(jobDescription, otherEditPersonDescriptor.jobDescription)
                     && Objects.equals(internDuration, otherEditPersonDescriptor.internDuration)
                     && Objects.equals(interviewDate, otherEditPersonDescriptor.interviewDate)
@@ -286,11 +294,11 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("tags", tags)
-                    .add("tags", jobDescription)
-                    .add("tags", internDuration)
-                    .add("tags", interviewDate)
-                    .add("tags", salary)
+                    .add("tag", tag)
+                    .add("job description", jobDescription)
+                    .add("intern duration", internDuration)
+                    .add("interview date", interviewDate)
+                    .add("salary", salary)
                     .toString();
         }
     }
