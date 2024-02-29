@@ -40,6 +40,7 @@ public class Note {
         if (this == o) {
             return true;
         }
+
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
@@ -49,14 +50,13 @@ public class Note {
         if (!Objects.equals(dateTime, note.dateTime)) {
             return false;
         }
+
         return Objects.equals(description, note.description);
     }
 
     @Override
     public int hashCode() {
-        int result = dateTime != null ? dateTime.hashCode() : 0;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        return result;
+        return Objects.hash(dateTime, description);
     }
 
     @Override

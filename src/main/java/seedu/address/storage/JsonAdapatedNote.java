@@ -45,9 +45,11 @@ public class JsonAdapatedNote {
         if (this.description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+
         if (!Description.isValid(this.description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
+
         final Description description = new Description(this.description);
 
         return new Note(dateTime, description);

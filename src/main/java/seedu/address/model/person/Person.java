@@ -114,7 +114,6 @@ public class Person {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags, notes);
     }
 
@@ -217,6 +216,7 @@ public class Person {
         public Builder setTags(Set<Tag> tags) {
             requireNonNull(tags);
 
+            this.tags.clear();
             this.tags.addAll(tags);
             return this;
         }
@@ -224,6 +224,7 @@ public class Person {
         public Builder setNotes(ObservableList<Note> notes) {
             requireNonNull(notes);
 
+            this.notes.clear();
             this.notes.addAll(notes);
             return this;
         }

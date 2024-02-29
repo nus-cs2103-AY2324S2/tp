@@ -33,6 +33,7 @@ public class Description {
         if (this == o) {
             return true;
         }
+
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
@@ -44,7 +45,7 @@ public class Description {
 
     @Override
     public int hashCode() {
-        return description != null ? description.hashCode() : 0;
+        return Objects.hash(description);
     }
 
     @Override
