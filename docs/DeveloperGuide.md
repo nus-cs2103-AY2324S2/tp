@@ -273,7 +273,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
+* Teaching Assistant for a Computer Science module in NUS 
 * tech savvy 
 * prefer desktop apps over other types
 * can type fast
@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a student, providing the name and nusnet id as compulsory information, with the phone number being optional.
+1. User requests to add a student, providing the name and NUSNet ID as compulsory information, with the phone number being optional.
 
    Use case ends.
 
@@ -340,15 +340,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to mark attendance for a student by providing the student's nusnet id; specifying the week is optional.
+1. User requests to mark attendance for a student by providing the student's NUSNet ID; specifying the week is optional.
 
    Use case ends.
 
-**Use case: Unmark Attendance**
+**Use case: Un-mark Attendance**
 
 **MSS**
 
-1. User requests to unmark attendance for a student by providing the student's nusnet id; specifying the week is optional.
+1. User requests to un-mark attendance for a student by providing the student's NUSNet ID; specifying the week is optional.
 
    Use case ends.
 
@@ -389,6 +389,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **CS**: Computer Science
+* **NUS**: National University of Singapore
+* **TA**: Teaching Assistant
 
 --------------------------------------------------------------------------------------------------------------------
 
