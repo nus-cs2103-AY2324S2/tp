@@ -274,33 +274,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a financial advisor
+* is currently studying at the same time
+* has a need to manage over 50 clients while juggling with school commitments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and revolutionizes client engagement for financial advisors by facilitating strategic communication and personalized service.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                     | I want to …​                 | So that I can…​                                                        |
+|---------|---------------------------------------------|------------------------------|------------------------------------------------------------------------|
+| `* * *` | new user                                    | see usage instructions       | refer to instructions when I forget how to use the App                 |
+| `* * *` | user                                        | add a new person             |                                                                        |
+| `* * *` | user                                        | delete a person              | remove entries that I no longer need                                   |
+| `* * *` | user                                        | find a person by name        | locate details of persons without having to go through the entire list |
+| `* * *` | financial advisor with more than 50 clients | easily identity those that I haven't reach out to for a long time        | contact them and check on their progress as well as well-being |
+| `* * *` | financial advisor with many upcoming meeting | easily view my schedule        | plan and prepare the respective information for the respective meetings, serving the client more effectively |
+| `* * *` | financial advisor who provides multiple plans for my clients | tag clients based on their existing plans        | provide personalised service to the respective policy holders |
+| `* * *` | financial advisor with more than 50 clients | view a client's profile with a few simple commands        | have the relevant information at hand when planning and during the consultations |
+| `* * `  | financial advisor with more than 50 clients | set reminders for all the clients' birthday        | build personal connection through timely greetings |
+| `*`     | user with many persons in the address book  | sort persons by name         | locate a person easily                                                 |
+| `*`     | financial advisor who wants to help my clients reach their goals  | keep track of their goals and financial progress         | provide a more curated and personalized service                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FAPro` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -310,6 +317,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  AddressBook shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Viewing a client's profile**
+
+**MSS**
+
+1.  User requests to list persons
+2.  FAPro shows a list of persons
+3.  User requests to view the profile of the client in the list
+4.  FAPro shows the detailed profile of the client
 
     Use case ends.
 
