@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.NUSNET_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSNET_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEEK_NUMBER_1;
+import static seedu.address.logic.commands.CommandTestUtil.WEEK_NUMBER_DESC_1;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 

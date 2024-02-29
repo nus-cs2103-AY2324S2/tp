@@ -10,10 +10,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSNET_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSNET_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_WEEK_NUMBER_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_WEEK_NUMBER_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEEK_NUMBER_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEEK_NUMBER_4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
