@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to delete a specific student based on nusnet id.
+1. User requests to delete a specific student based on NUSNet ID.
 
    Use case ends.
 
