@@ -277,8 +277,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                             | I want to …​                                       | So that I can…​                                    |
 |----------|-------------------------------------|----------------------------------------------------|----------------------------------------------------|
-| `* * *`  | Course Instructor who can type fast | enter new students’ information using command line | I can store the information efficiently            |
-| `* * *`  | Course Instructor                   | put students into groups                           | I can tell which group each of the students are in |
+| `* * *`  | Course Instructor who can type fast | enter new students’ information using command line | store the information efficiently            |
+| `* * *`  | Course Instructor                   | put students into groups                           |  tell which group each of the students are in |
 | `* * *`  | Course Instructor                   | access student’s contact information               | communicate with them easily                       |
 | `* *`    | Course Instructor                   | delete student details on command line             | I can remove students no longer in class           |
 | `* * *`  | Seasoned Course Instructor          | view a single student’s details                    | to identify students of note                       |
