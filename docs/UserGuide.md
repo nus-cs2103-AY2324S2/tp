@@ -90,7 +90,7 @@ Examples:
 
 Edits an existing person in the address book.
 
-Format: `edit [id/STUDENT_ID] [e/EMAIL] [g/GRADE]…​`
+Format: `edit [id/STUDENT_ID] [e/EMAIL] `
 
 * Edits the person with the specified `STUDENT_ID`. The STUDENT_ID refers to the unique alphanumeric sequence assigned to a person shown in the displayed person list. The student_id **must be 9 digits long
 * Only 1 field may be provided.
