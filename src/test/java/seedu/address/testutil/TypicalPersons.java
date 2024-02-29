@@ -45,38 +45,42 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("F")
             .withJobDescription("Software engineer developer intern")
-            .withInterviewDate("03-03-2024 1000")
+            .withInterviewDate("03-02-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withTags("NR")
             .withJobDescription("Software engineer developer intern")
+            .withInterviewDate("03-03-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withTags("NR")
             .withJobDescription("Front End intern")
+            .withInterviewDate("03-04-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1200").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com")
             .withTags("NR")
             .withJobDescription("Software engineer developer intern")
+            .withInterviewDate("03-05-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com")
             .withTags("NR")
             .withJobDescription("Data science intern")
+            .withInterviewDate("03-06-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withTags("F")
             .withJobDescription("Software engineer developer intern")
-            .withInterviewDate("03-01-2024 1000")
+            .withInterviewDate("03-07-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
 
@@ -85,13 +89,14 @@ public class TypicalPersons {
             .withEmail("stefan@example.com").withAddress("little india")
             .withTags("F")
             .withJobDescription("Software engineer developer intern")
-            .withInterviewDate("03-01-2024 1700")
+            .withInterviewDate("03-08-2024 1700")
             .withInternDuration("3 months")
             .withSalary("1000").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com")
             .withTags("NR")
             .withJobDescription("Full Stack intern")
+            .withInterviewDate("03-09-2024 1000")
             .withInternDuration("3 months")
             .withSalary("1000").build();
 
