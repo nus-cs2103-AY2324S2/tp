@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.weekNumber.WeekNumber;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * Jackson-friendly version of {@link WeekNumber}.
@@ -25,9 +25,9 @@ class JsonAdaptedWeekNumber {
      * Converts a given {@code WeekNumber} into this class for Jackson use.
      */
     public JsonAdaptedWeekNumber(WeekNumber source) {
-        weekNumber = source.toString(); // Assuming toString() method returns the string representation of the week number
+        // Assuming toString() method returns the string representation of the week number
+        weekNumber = source.toString();
     }
-
     @JsonValue
     public String getWeekNumber() {
         return weekNumber;

@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.model.weekNumber.WeekNumber;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * A utility class to help with building Person objects.

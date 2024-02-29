@@ -4,11 +4,12 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEK;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.MarkAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NusNet;
-import seedu.address.model.weekNumber.WeekNumber;
-import java.util.stream.Stream;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * Parses input arguments and creates a new MarkAttendanceCommand object
@@ -24,9 +25,10 @@ public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NUSNET, PREFIX_WEEK);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NUSNET, PREFIX_WEEK) ||
-                !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAttendanceCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_NUSNET, PREFIX_WEEK)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MarkAttendanceCommand.MESSAGE_USAGE));
         }
 
         NusNet nusNet = ParserUtil.parseNusNet(argMultimap.getValue(PREFIX_NUSNET).get());

@@ -9,7 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.weekNumber.WeekNumber;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * Represents a Person in the address book.

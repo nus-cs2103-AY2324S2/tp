@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.MarkAttendanceCommand;
 import seedu.address.model.person.NusNet;
-import seedu.address.model.weekNumber.WeekNumber;
+import seedu.address.model.weeknumber.WeekNumber;
 
 public class MarkAttendanceCommandParserTest {
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,9 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.NusNet;
-import java.util.Optional;
+import seedu.address.model.person.Person;
+
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -151,10 +152,10 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
-//    //Used for Debugging purposes. Consider creating more robust toString()
-//    @Override
-//    public String toString() {
-//        return addressBook.toString() + filteredPersons.toString();
-//    }
+    //    //Used for Debugging purposes. Consider creating more robust toString()
+    //    @Override
+    //    public String toString() {
+    //        return addressBook.toString() + filteredPersons.toString();
+    //    }
 
 }

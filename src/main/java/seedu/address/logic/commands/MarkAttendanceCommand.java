@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEK;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -13,7 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
-import seedu.address.model.weekNumber.WeekNumber;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * Marks attendance of an existing person in the address book.
@@ -30,7 +31,8 @@ public class MarkAttendanceCommand extends Command {
             + PREFIX_WEEK + "WEEK";
 
     public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked Attendance for Person: %1$s";
-    public static final String MESSAGE_DUPLICATE_WEEK = "This week's attendance has already been marked for the person.";
+    public static final String MESSAGE_DUPLICATE_WEEK = "This week's attendance"
+            + "has already been marked for the person.";
 
     private final NusNet nusNet;
     private final WeekNumber weekNumber;
@@ -65,8 +67,8 @@ public class MarkAttendanceCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_WEEK);
         }
 
-        Person updatedPerson = new Person(personToMark.getName(), personToMark.getPhone(), personToMark.getEmail()
-                ,personToMark.getNusNet(), personToMark.getAddress(), updatedWeekAttendance, personToMark.getTags());
+        Person updatedPerson = new Person(personToMark.getName(), personToMark.getPhone(), personToMark.getEmail(),
+                personToMark.getNusNet(), personToMark.getAddress(), updatedWeekAttendance, personToMark.getTags());
 
         model.setPerson(personToMark, updatedPerson);
         return new CommandResult(String.format(MESSAGE_MARK_ATTENDANCE_SUCCESS, updatedPerson));
@@ -84,8 +86,8 @@ public class MarkAttendanceCommand extends Command {
         }
 
         MarkAttendanceCommand otherMarkAttendanceCommand = (MarkAttendanceCommand) other;
-        return nusNet.equals(otherMarkAttendanceCommand.nusNet) &&
-                weekNumber.equals(otherMarkAttendanceCommand.weekNumber);
+        return nusNet.equals(otherMarkAttendanceCommand.nusNet)
+                && weekNumber.equals(otherMarkAttendanceCommand.weekNumber);
     }
 
     @Override
