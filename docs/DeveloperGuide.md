@@ -288,16 +288,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TeachStack` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
+2.  TeachStack shows a list of students
+3.  User requests to delete a specific student in the list
+4.  TeachStack deletes the student
 
     Use case ends.
 
@@ -307,13 +307,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given student id is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeachStack displays an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a student**
+
+**MSS**
+
+1.  User requests to add a student
+2.  TeachStack adds a new student to the list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The value given for any parameter is invalid.
+    * 1a1. TeachStack displays an error message.
+
+      Use case ends.
+
+**Use case: Form a group of students**
+
+**MSS**
+
+1.  User requests to list students
+2.  TeachStack shows a list of students
+3.  User requests to group specific students in the list
+4.  TeachStack groups the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given student id is invalid.
+
+    * 3a1. TeachStack displays an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
