@@ -249,8 +249,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Add Patient Medical Record** | `add ic/NRIC n/NAME p/PHONE_NUMBER [g/GENDER] b/BIRTHDATE i/ILLNESS_CATEGORY [d/DRUG_ALLERGIES]` <br> e.g. `add ic/S9974944F n/John Doe p/91234567 g/Male b/11-11-1990 i/Infectious Disease d/Paracetamol Allergy`
+**List All Patient Medical Records** | `list`
+**Edit Patient Medical Record** | `edit PATIENT_INDEX [ic/NRIC] [n/NAME] [p/PHONE_NUMBER] [g/GENDER] [b/BIRTHDATE] [i/ILLNESS_CATEGORY] [d/DRUG_ALLERGIES]` <br> e.g. `edit 1 g/Male b/11-07-1999`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
@@ -258,3 +259,4 @@ Action | Format, Examples
 **Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete 1 2`
 **List** | `list`
 **Help** | `help`
+**Clear** | `clear`
