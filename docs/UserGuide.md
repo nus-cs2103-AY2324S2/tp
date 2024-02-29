@@ -186,7 +186,7 @@ Format: `delete-an PATIENT_INDEX INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list-an` followed by `delete 1 2` deletes the 2nd appointment note from the 1st patient.
+* `list-an` followed by `delete-an 1 2` deletes the 2nd appointment note from the 1st patient.
 
 ``
 ### Clearing all entries : `clear`
