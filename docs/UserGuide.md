@@ -96,7 +96,7 @@ Format: `edit [id/STUDENT_ID] [e/EMAIL] `
 * Only 1 field may be provided.
 * Existing value will be updated to the input value.
 * Name can be case-insensitive, eg. john doe, JOHN DOE same as John Doe
-* Email must have the correct format and string length of 8 for the email username eg. e0000000@u.nus.edu
+* Email must have the correct domain (@u.nus.edu) and string length of 8 for the email username eg. e0000000@u.nus.edu
 * Grade may be of values:  [A+, A, A-, B+, B, B-, C+, C, D+, D, F]
 
 Examples:
