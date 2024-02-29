@@ -262,27 +262,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has many family members to keep track off
+* Wants to keep various information about these different family members 
+* Wants to visualize connections between family members
+* Often only has provisional or partial information about their family members
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
+**Value proposition**: JENGA puts connections between people at the forefront.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                    | So that I can…​                                                        |
+|----------|--------| ----------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | user   | Create a new person with a Unique User ID        | Ensure every person in my address book is distinct                 |
+| `* * *`  | user   | Add custom attributes to each person              |Store personal information relevant to each individual                                                                        |
+| `* * *`  | user   | Establish and record relationships between people               | Visualize connections between people                                   |
+| `* * *`  | user   | Find the relationship path between people        | Understand how everyone is connected |
+| `* *`    | user   | Have clear success or failure messages after actions | Ensure that the intended action has taken place                |
+| `* *`    | user   | Sort and search a person by their attributes       | Find specific individuals more easily                                                |
+ | `* * *`  | user   | Have my data automatically saved once i exit the app and loaded once i start the app        | Seamless experience across different sessions |
 
 *{More to be added}*
 
