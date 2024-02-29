@@ -140,6 +140,12 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Listing all appointment notes: `list-an`
+
+Shows a list of all appointment notes.
+
+Format: `list-an`
+
 ### Adding an appointment note: `add-an`
 
 Adds an appointment note to a patient. Please note that the time parameter is in 24-hour format.
@@ -148,11 +154,25 @@ Format: `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of appointment record (including 0)
-</div>
+</div>``
 
 Examples:
-* `add-an d/19-02-2024 t/1130 n/General Flu`
-* `add-an d/30-12-2023 t/2100 n/Headache`
+* `add-an 1 d/19-02-2024 t/1130 n/General Flu`
+* `add-an 1 d/30-12-2023 t/2100 n/Headache`
+
+### Editing an appointment note: `edit-an`
+
+Edits an appointment note to a patient. Please note that the time parameter is in 24-hour format.
+
+Format: `edit-an PATIENT_INDEX NOTE_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Each appointment note has a unique index, which can be retrieved when listing all appointment notes. 
+</div>``
+
+Examples:
+* `edit-an 1 1 d/19-02-2024 t/1230 n/General Flu`
+* `edit-an 1 2 d/30-12-2023 t/2100 n/Stomach Virus`
 
 ### Deleting an appointment note : `delete-an`
 
@@ -168,7 +188,7 @@ Format: `delete-an PATIENT_INDEX INDEX`
 Examples:
 * `list-an` followed by `delete 1 2` deletes the 2nd appointment note from the 1st patient.
 
-
+``
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
