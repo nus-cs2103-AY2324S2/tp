@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**:
 
-1.  User chooses to add contact of a person.
+1.  User requests to add contact of a person.
 2.  PoochPlanner updates list of persons.
 3.  PoochPlanner confirms success update.
 
@@ -328,7 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**:
 
-1.  User chooses to delete contact of a person.
+1.  User requests to delete contact of a person.
 2.  PoochPlanner removes person and updates list of persons.
 3.  PoochPlanner confirms successful deletion.
 
@@ -358,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**:
 
-1.  User chooses to edit the field of a person.
+1.  User requests to edit the field of a person.
 2.  PoochPlanner updates the field of specified person.
 3.  PoochPlanner confirms successful edit.
 
@@ -380,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
    * Use case resumes from step 2. 
 
-* 1c. User wants to edit the name field to a name that already exists in PoochPlanner.
+* 1c. User requests to edit the name field to a name that already exists in PoochPlanner.
 
    * 1c1. PoochPlanner displays the error message.
    * 1c2. User re-enters the command with a diferent name.
@@ -392,8 +392,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1d1. PoochPlanner displays the error message.
    * 1d2. User re-enters the command and specify the field/s to edit.
    * Steps 1d1 - 1d2 are repeated until there exist a specified field to edit.
-   * Use case resumes from step 2. 
-
+   * Use case resumes from step 2.
 
 * 1e. User specified an invalid field.
 
@@ -410,7 +409,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**:
 
-1.  User chooses to search for the contact of a person with a keyword for a specified field.
+1.  User requests to search for the contact of a person with a keyword for a specified field.
 2.  PoochPlanner confirms successful search.
 3.  PoochPlanner returns the sublist of contacts that contains the keyword specified by the user. 
 
@@ -447,50 +446,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**:
 
-1.  User wants to learn more about the commands.
+1.  User requests to learn more about the commands.
 2.  PoochPlanner displays the information on how to use the different commands.
 
     Use case ends.
 
 **Extensions**:
 
-* 1a. User wants to learn about available command.
+* 1a. User requests to learn about available command.
 
    * 1a1. PoochPlanner displays the list of all commands.
    * 1a2. User specifies which command they wish to use.
    * Use case resumes from step 1. 
 
-* 1b. User wants to learn about pooch-staff.
+* 1b. User requests to learn about pooch-staff.
 
    * 1b1. PoochPlanner displays information of pooch-staff.
 
        Use case ends.
 
-* 1c. User wants to learn about pooch-supplier.
+* 1c. User requests to learn about pooch-supplier.
 
    * 1c1. PoochPlanner displays information of pooch-supplier.
 
        Use case ends.
 
-* 1d. User wants to learn about pooch-maintenance.
+* 1d. User requests to learn about pooch-maintenance.
 
    * 1d1. PoochPlanner displays information of pooch-maintenance.
 
        Use case ends.
    
-* 1e. User wants to learn about delete.
+* 1e. User requests to learn about delete.
 
    * 1d1. PoochPlanner displays information on how to use the delete command.
 
        Use case ends.
 
-* 1f. User wants to learn about edit.
+* 1f. User requests to learn about edit.
 
    * 1f1. PoochPlanner displays information on how to use the edit command.
 
        Use case ends.
 
-* 1g. User wants to learn about search.
+* 1g. User requests to learn about search.
 
    * 1g1. PoochPlanner displays information on how to use the search command.
 
