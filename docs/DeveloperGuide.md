@@ -384,6 +384,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     *  1a1. AddressBook prompts the user on the proper usage of the command.
 
         Step 1a1 is repeated until the data entered is correct.
+   
+*  1b. User tries to add a contact with an existing email address.
+
+    *  1b1. AddressBook displays and error message informing the user that the email address already exists.
+    
+        Step 1b1 is repeated until a valid email address if entered.
 
 **Use case: UC04 — List all contacts**
 
