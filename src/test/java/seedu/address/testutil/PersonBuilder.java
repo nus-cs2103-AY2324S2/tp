@@ -70,7 +70,8 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code notes} into a {@code ObservableList<Note>} and set it to the {@code Person} that we are building.
+     * Parses the {@code notes} into a {@code ObservableList<Note>} and set it to the {@code Person} that we are
+     * building.
      */
     public PersonBuilder withNotes(Note[] notes) {
         this.notes = SampleDataUtil.getNotes(notes);

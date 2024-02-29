@@ -1,6 +1,7 @@
 package seedu.address.model.person.note;
 
 import static seedu.address.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
