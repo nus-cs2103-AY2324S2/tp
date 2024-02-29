@@ -3,9 +3,9 @@ layout: page
 title: Yi Lin's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: PoochPlanner
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+PoochPlanner is a desktop application to track details of various groups (vendors, staff) that dog cafe owners have to regularly interact with. The app is optimised for use using Command Line Interface (CLI) while still encompassing a user-friend Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
