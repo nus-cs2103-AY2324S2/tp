@@ -82,18 +82,38 @@ Help not available. Please try again.
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the address book with their information.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<box type="tip" seamless>
+* Phone number **must be a valid Singapore number** (i.e. 8 digits, starts with either 6, 8 or 9)
+* Email **must include @ character**
+* Address **must include and be ordered in street name, block number, and unit number (note: include # symbol)**, 
+separated with comma
+* If multiple `tag` are added, separate with comma
 
 **Tip:** A person can have any number of tags (including 0)
-</box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+Expected success outcome:
+```
+New contact added!
+```
+
+Expected failure outcome:
+```
+Values not accepted.
+```
+
+Potential Errors:
+* Phone number format is wrong (i.e. not a Singapore number)
+* Email format is wrong (i.e. no @)
+* Address format is wrong
+* An existing contact with same name and phone number is found in address book
+
 
 ### Listing all persons : `list`
 
@@ -101,9 +121,21 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+Expected success outcome:
+```
+List of contacts:
+...
+```
+
+Expected failure outcome:
+```
+No contacts added yet.
+```
+
+
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person's information in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -113,10 +145,33 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+* Adding a person's format for **phone number, email, and address** applies here as well.
+* 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+Expected success outcome:
+```
+Contact is updated!
+```
+
+Expected failure outcome:
+```
+Values not accepted.
+```
+OR
+```
+Contact not found in address book
+```
+
+Potential Errors:
+* [if applicable] Phone number format is wrong (i.e. not a Singapore number)
+* [if applicable] Email format is wrong (i.e. no @)
+* [if applicable] Address format is wrong
+* An existing contact with same name and phone number is found in address book
+
 
 ### Locating persons by name : `find`
 
@@ -136,6 +191,18 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+Expected success outcome:
+```
+Contacts found:
+...
+```
+
+Expected failure outcome:
+```
+No contact found.
+```
+
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -149,6 +216,21 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+Expected success outcome:
+```
+Contact is updated!
+```
+
+Expected failure outcome:
+```
+Values not accepted.
+```
+OR
+```
+Contact not found in address book
+```
+
 
 ### Clearing all entries : `clear`
 
@@ -296,13 +378,13 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Help**   | `help`
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List**   | `list`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear**  | `clear`
 **Interest Tagging**   | `interest INDEX INTEREST [MORE_INTERESTS]` <br> e.g. `interest 3 swimming cooking`
 **Find Interest**   | `findInterest INTEREST [MORE_INTEREST]` <br> e.g. `findInterest cooking music`
 **Add Schedule**   | `addSched INDEX [MORE_INDEX] SCHEDULE_NAME` <br> e.g. `addSched 1,2,3 CSMeeting 18032024 1500 1900`
