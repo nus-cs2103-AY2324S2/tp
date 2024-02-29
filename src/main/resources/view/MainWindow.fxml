@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -57,11 +58,17 @@
 
           <VBox styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="300">
 
-            <VBox fx:id="viewPanelPlaceHolder" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-            </VBox>
+            <ScrollPane fx:id="viewPanelPlaceHolder">
+              <content>
+                <VBox>
+                  <!-- Add padding to the VBox -->
+                  <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+                </VBox>
+              </content>
+            </ScrollPane>
+
 
           </VBox>
         </SplitPane>
