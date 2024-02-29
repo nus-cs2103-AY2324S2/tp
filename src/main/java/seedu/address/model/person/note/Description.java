@@ -1,15 +1,23 @@
 package seedu.address.model.person.note;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
+/**
+ * Represents a Note's description.
+ */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS = "Note should not be blank";
 
     public final String description;
 
+    /**
+     * Constructs a {@code Description}.
+     *
+     * @param description A valid description.
+     */
     public Description(String description) {
         requireNonNull(description);
         checkArgument(isValid(description), MESSAGE_CONSTRAINTS);
@@ -22,8 +30,12 @@ public class Description {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Description that = (Description) o;
 

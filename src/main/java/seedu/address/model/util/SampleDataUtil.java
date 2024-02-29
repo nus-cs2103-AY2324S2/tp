@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import static javafx.collections.FXCollections.observableList;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
@@ -64,7 +63,7 @@ public class SampleDataUtil {
                 getTags("colleagues"), getNotes(
                     new Note[]{
                         new Note(LocalDateTime.of(2023, 8, 16, 14, 45), new Description("Mental health consultation")),
-                        new Note(LocalDateTime.of(2024, 1, 28, 10, 15), new Description("Blood sugar monitoring review")),
+                        new Note(LocalDateTime.of(2024, 1, 28, 10, 15), new Description("Blood sugar review")),
                         new Note(LocalDateTime.of(2024, 4, 5, 16, 0), new Description("Sore throat and fever")),
                     }))
         };

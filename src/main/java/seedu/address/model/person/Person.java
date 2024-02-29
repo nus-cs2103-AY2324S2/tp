@@ -85,7 +85,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -105,11 +105,11 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags)
-                && notes.equals(otherPerson.notes);
+            && phone.equals(otherPerson.phone)
+            && email.equals(otherPerson.email)
+            && address.equals(otherPerson.address)
+            && tags.equals(otherPerson.tags)
+            && notes.equals(otherPerson.notes);
     }
 
     @Override
@@ -121,15 +121,18 @@ public class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .add("notes", notes)
-                .toString();
+            .add("name", name)
+            .add("phone", phone)
+            .add("email", email)
+            .add("address", address)
+            .add("tags", tags)
+            .add("notes", notes)
+            .toString();
     }
 
+    /**
+     * Represents a builder for a {@link Person}.
+     */
     public static class Builder {
         private Name name;
         private Phone phone;
@@ -138,7 +141,11 @@ public class Person {
         private Set<Tag> tags = new HashSet<>();
         private ObservableList<Note> notes = FXCollections.observableArrayList();
 
-        public Builder(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ObservableList<Note> notes) {
+        /**
+         * Creates a {@code Builder} with the given parameters.
+         */
+        public Builder(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                       ObservableList<Note> notes) {
             this.name = name;
             this.phone = phone;
             this.email = email;
@@ -147,8 +154,12 @@ public class Person {
             this.notes.addAll(notes);
         }
 
+        /**
+         * Initializes the {@code Builder} with the data of {@code person}.
+         */
         public Builder(Person person) {
-            this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(), person.getNotes());
+            this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(),
+                person.getNotes());
         }
 
         public Name getName() {
@@ -217,6 +228,9 @@ public class Person {
             return this;
         }
 
+        /**
+         * Builds a {@link Person} with the latest values.
+         */
         public Person build() {
             return new Person(name, phone, email, address, tags, notes);
         }

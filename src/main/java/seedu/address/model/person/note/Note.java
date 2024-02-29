@@ -1,16 +1,25 @@
 package seedu.address.model.person.note;
 
-import seedu.address.commons.util.ToStringBuilder;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.ToStringBuilder;
 
+/**
+ * Represents an Appointment Note.
+ */
 public class Note {
     private final LocalDateTime dateTime;
     private final Description description;
 
+    /**
+     * Constructs a {@code Note}.
+     *
+     * @param dateTime A date and time.
+     * @param description A valid description.
+     */
     public Note(LocalDateTime dateTime, Description description) {
         requireAllNonNull(dateTime, description);
 
@@ -28,12 +37,18 @@ public class Note {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Note note = (Note) o;
 
-        if (!Objects.equals(dateTime, note.dateTime)) return false;
+        if (!Objects.equals(dateTime, note.dateTime)) {
+            return false;
+        }
         return Objects.equals(description, note.description);
     }
 
