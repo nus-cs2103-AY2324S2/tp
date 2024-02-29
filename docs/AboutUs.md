@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sai Utkarsh
 
-<img src="images/my_face.png" width="200px">
+<img src="images/saiutkarsh.png" width="200px">
 
 [[github](https://github.com/saiutkarsh33)]
 
