@@ -9,25 +9,28 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+
 ### Eu Jia Xin
 
 <img src="images/jiaxineu.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/JiaXinEu)]
 [[portfolio](team/jiaxineu.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+### Yashma Sonara
 
-[[github](http://github.com/johndoe)]
+<img src="images/yashma-sonara.png" width="200px">
+
+
+[[github](https://github.com/yashma-sonara)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
+
 
 ### Ronn Ng
 
@@ -37,6 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
+
 
 ### Wong Qing Yee
 
