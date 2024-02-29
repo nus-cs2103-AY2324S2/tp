@@ -102,23 +102,18 @@ Examples:
 *  `edit id/A2233445X n/Betsy Crower` Edits the name of the person with student_id = A2233445X to be `Betsy Crower`.
 
 
-### Locating persons by name: `find`
+### Viewing students by name: `view`
 
-Finds persons whose names contain any of the given keywords.
+Shows the detailed information of the student with the specified student_id.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `view STUDENT_ID`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Returns the detailed information of the student with the corresponding `STUDENT_ID`.
+* The `STUDENT_ID` is case-insensitive.
+* The `STUDENT_ID` starts with A and ends with a letter and it must be 9 characters long.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `view A0123456X` Shows the detailed information of the student with `STUDENT_ID = A0123456X`
 
 ### Deleting a person : `delete`
 
