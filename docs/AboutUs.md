@@ -19,43 +19,48 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/belligerentbeagle)]
 [[portfolio](team/ethanwei.md)]
 
-* Role: Developer
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### Jane Doe
+### Sai UtKarsh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sai.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/saiutkarsh33)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### Johnny Doe
+### Titus Chew 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/titus.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/tituschewxj)] 
+[[portfolio](team/titus.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### Wu Xiao Yun
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/xiaoyun.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/ForAeons)]
+[[portfolio](team/xiaoyun.md)]
 
-### James Doe
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Anant Shanker
 
-* Role: Developer
-* Responsibilities: UI
+<img src="images/anant.png" width="200px">
+
+[[github](http://github.com/anant1902)]
+[[portfolio](team/anant.md)]
+
+* Role: Software Engineer
+* Responsibilities: Software Development
+

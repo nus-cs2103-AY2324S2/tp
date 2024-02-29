@@ -1,6 +1,6 @@
 ---
-  layout: default.md
-  title: "Ethan Wei's Project Portfolio Page"
+layout: default.md
+title: "Titus' Project Portfolio Page"
 ---
 
 ### Project: AddressBook Level 3
@@ -9,7 +9,7 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
 
 * **Code contributed**: [RepoSense link]()
 
@@ -18,8 +18,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
 
 * **Documentation**:
-  * User Guide:
-  * Developer Guide:
+    * User Guide:
+    * Developer Guide:
 
 * **Community**:
 
