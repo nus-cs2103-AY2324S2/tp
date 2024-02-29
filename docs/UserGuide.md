@@ -27,7 +27,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe e/johnd@example.com c/Hong Kong` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -55,7 +55,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -65,7 +65,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -74,17 +74,17 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the candidate list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe e/johnd@example.com c/Hong Kong`
+* `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
 
 ### Listing all persons : `list`
 
@@ -92,22 +92,38 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Edit candidate details: `edit`
 
-Edits an existing person in the address book.
+Edits an existing candidate in the list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+You can edit any of the valid candidate details including name, email, country and tags at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+---
+
+> [!NOTE]
+> 1. Even though you can edit multiple candidate details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
+> 2. When **editing tags**, the existing tags of the candidate will be **removed**. Thus, you must specify **every tag** you want to keep on the candidate whenever you edit the candidate details.
+
+> [!WARNING]
+> **Comment and Interview Status** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing them separately.
+
+---
+
+*Example 1* : `edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
+
+This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, **johnnydoe@gmail.com**, and **Singapore**, respectively.
+
+
+*Example 2* : `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMO Gold`
+
+This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMO Gold**, respectively. Note that existing tag on this candidate is completely removed and new tag `IMO Gold` is added.
+
+---
+
+If edit command is successfully executed, the app will display the edited candidate with the new attributes.
+
 
 ### Locating persons by name: `find`
 
@@ -127,25 +143,106 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Delete a candidate: `delete`
 
-Deletes the specified person from the address book.
+Deletes an existing candidate from the list.
+
+You can delete any candidates in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of candidates** in the database.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+---
+> [!NOTE]
+> If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the candidate from the list and display the deleted candidate. If ***n*** is selected, it will display that the delete operation is cancelled.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+---
+
+*Example* : `delete 3`
+
+This command removes the candidate at third position in the candidate list displayed.
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
+* A confirmation message would be displayed. Type in "y" to confirm the deletion.
+
 Format: `clear`
+
+### Search for matching candidates : `search`
+
+Searches candidates whose attributes match the specified attributes in the search criteria.
+
+Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
+
+* At least one of the optional fields must be provided.
+* The search is case-sensitive, e.g. `hans` will not match `Hans`.
+* For email, country, phone and interview status, only full words will be matched.
+* For name, comment and tag, partial words will be matched, e.g. `Han` will match `Hans`.
+* The search will fail if either of the email, country, phone or interview status is in an invalid format.
+* If multiple fields are specified, only candidates that match **all** the specified attributes will be returned.
+
+Examples:
+* `search n/John s/ACCEPTED` returns candidates whose names contain `John` and whose interview status is `ACCEPTED`.
+* `search t/Internal` returns candidates whose tags contain `Internal`.
+
+### Accessing by index: `get`
+
+Access candidates by index
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+
+Format: `get INDEX`
+
+Example:
+* `get 24` returns the candidate with index 24
+
+### Adding a comment on a candidate: `comment`
+
+Leaves comments on important points to note down for individual candidates during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
+
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+* Any comment format is acceptable as long as comment is non-empty (i.e. user writes nothing in the comment field)
+
+Format: `comment INDEX m/COMMENT`
+
+Example:
+* `comment 3 m/Managed to solve every round 3 interview questions. He must be a strong candidate, potentially to be recruited as a quantitative research intern at Jane Street.`
+
+
+### Tag a candidate: `tag`
+
+Appends the tag or tags to a candidate's list of tags.
+
+You can list any number of tags greater than 0, and all of them will be added to the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
+
+Format: `tag INDEX [t/TAG]…​`
+
+At least one tag must be provided.
+
+*Example 1* : `tag 24 t/smart`
+
+This command adds the tag "smart" to the candidate with index 24.
+
+*Example 2* : `tag 8 t/Exceptional work t/IMO gold t/Male`
+
+This command adds the tags "Exceptional work", "IMO gold" and "Male" to the candidate with index 8.
+
+If tag command is successfully executed, the app will display the candidate with the new tags.
+
+### Change status of a candidate: `status`
+
+Changes the interview status of a candidate.
+
+Interview status must be one of the following: `PRESCREEN`, `IN_PROGRESS`, `WAITLIST`, `ACCEPTED`, `REJECTED`.
+When a candidate is added, by default it has status `PRESCREEN`.
+Format: `status INDEX INTERVIEWSTATUS`
+
+*Example 1* : `status 24 IN_PROGRESS`
+
+This command changes the status of the candidate with index 24 to `IN_PROGRESS`.
+
+If status command is successfully executed, the app will display the candidate with the new status.
+
 
 ### Exiting the program : `exit`
 
@@ -177,6 +274,9 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: What is the difference between `edit` and `tag`?<br>
+**A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/Quant Researcher` will change John's tags to just `Quant Researcher`, while `tag t/Quant Researcher` will change John's tags to `Internal`, `Waitlist` and `Quant Researcher`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -189,10 +289,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`<br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
+**Tag** | `tag INDEX [t/TAG]…`<br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`
+**Status** | `status INDEX INTERVIEWSTATUS`<br> e.g., `status 24 IN_PROGRESS`
 **List** | `list`
 **Help** | `help`

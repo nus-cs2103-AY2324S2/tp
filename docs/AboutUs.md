@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ryan Tan
 
-<img src="images/ryan.png" width="200px">
+<img src="images/chiralcentre.png" width="200px">
 
 [[github](https://github.com/chiralcentre)]
 [[portfolio](team/ryan.md)]
@@ -19,21 +19,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Backend, DevOps, Code Reviews, Project Coordination
 
-### Jane Doe
+### Lee Wei Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/leeweiming3.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/leeweiming3)]
+[[portfolio](team/leeweiming3.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Frontend, Backend, DevOps, Code Reviews
 
-### Johnny Doe
+### Yan Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/logical-1985516.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/logical-1985516)]
+[[portfolio](team/yanjie.md)]
+
+* Role: Developer
+* Responsibilities: Frontend, Documentation, Code Reviews
+
+### Ikhoon Eom
+
+<img src="images/acekhoon.png" width="200px">
+
+[[github](https://github.com/acekhoon)] [[portfolio](team/ikhoon.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -48,12 +58,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Oliver Kong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Oliverkong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/0liverkong)]
+[[portfolio](team/0liverkong.md)]
 
 * Role: Developer
 * Responsibilities: UI

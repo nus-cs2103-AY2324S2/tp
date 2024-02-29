@@ -262,64 +262,239 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of candidates to fill vacancies
+* wants to oversee and provide updates to candidates in the interview pipeline
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage and track candidates throughout the interview process, faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​            | I want to …​                                                        | So that I can…​                                                                                                           |
+|----------|--------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | recruiter          | update the contact details of potential candidates                  | quickly fix mistakes or update outdated data                                                                              |
+| `* * *`  | recruiter          | view the contact details of potential candidates in tabular format  | read the data more easily                                                                                                 |
+| `* * *`  | recruiter          | add new candidates to the database                                  | expand my network of contacts                                                                                             |
+| `* * *`  | recruiter          | delete candidates from the database                                 | comply with candidates' request to delete information in accordance with privacy acts or when the information is outdated |
+| `* * *`  | recruiter          | add tags to categorise candidates                                   | easily find candidates fulfilling a particular criteria (tag)                                                             |
+| `* * *`  | recruiter          | filter candidates by their attributes                               | easily seek out for the relevant candidates                                                                               |
+| `* * *`  | recruiter          | leave a comment on the candidate profile                            | take note of the important aspects of the candidate for future reference                                                  |
+| `* * *`  | recruiter          | keep track of the candidate's interview status                      | facilitate the interview process                                                                                          |
+| `* * *`  | recruiter          | clear the database in one single command                            | avoid typing multiple delete commands                                                                                     |
+| `* * *`  | recruiter          | view the details of a candidate of a particular row in the database | have an absolute reference of the singular candidate that I am interested in                                              |
+| `* *`    | careless recruiter | confirm the clearing of the database                                | avoid any accidental deletion of the database                                                                             |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+### 1. Add candidate
 
-**Use case: Delete a person**
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC01 - Add Candidate to the List
+
+**Actor**: Recruiter
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Recruiter enters the details of the candidate to be added to the list
+2.  Hirehub adds the candidate with the corresponding details as requested
+3.  Hirehub displays the details of the added candidate.
 
-    Use case ends.
+Use case ends.
+
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Recruiter enters invalid email address
+    - 2a1. Hirehub raises an error and asks recruiter to provide valid email address
+    - 2a2. Recruiter attempts to add the candidate with valid email address
+    - Steps 2a1-2a2 are repeated until the email address entered is in a correct format.
+    - Use case resumes from step 2.
 
-  Use case ends.
 
-* 3a. The given index is invalid.
+* 2b. Recruiter enters invalid phone number
+    - 2b1. Hirehub raises an error and asks recruiter to provide phone number in a correct format
+    - 2b2. Recruiter attempts to add the candidate with valid phone number
+    - Steps 2b1-2b2 are repeated until the phone number entered is in the correct format.
+    - Use case resumes from step 2.
 
-    * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
+* 2c. Recruiter enters invalid country name
+    - 2c1. Hirehub raises an error and asks recruiter to provide available country name listed in the user guide
+    - 2c2. Recruiter attempts to add the candidate with valid country name
+    - Steps 2c1-2c2 are repeated until the country name entered is in the list of available country names in the user guide.
+    - Use case resumes from step 2.
 
-*{More to be added}*
+
+* 2d. Recruiter attempts to add the comment field of candidate
+    - 2d1. Hirehub raises an error and asks recruiter to use other method to add candidate comment
+    - 2d2. Recruiter attempts to add the candidate without the comment field
+    - Steps 2d1-2d2 are repeated until the recruiter stops attempting to add the comment field.
+    - Use case resumes from step 2.
+
+
+* 2e. Recruiter does not enter either name, email or country in the attribute field
+    - 2e1. Hirehub raises an error and asks the recruiter to provide name, email and country of the candidate to be added
+    - 2e2. Recruiter attempts to add the candidate with name, email and country
+    - Steps 2e1-2e2 are repeated until the recruiter enters name, email and country.
+    - Use case resumes from step 2.
+
+---
+
+### Delete candidate
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC02 - Delete Candidate from the List
+
+**Actor**: Recruiter
+
+**MSS**
+
+1. Recruiter finds a candidate number to delete from the list displayed in the app
+2. Recruiter deletes the candidate
+3. Hirehub requests the recruiter to confirm the deletion
+4. Recruiter confirms deletion
+5. Hirehub deletes the candidate from the list and displays the deleted candidate with its attributes
+
+
+**Extensions**
+
+* 2a. Recruiter enters invalid candidate number
+    - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate number
+    - 2a2. Recruiter attempts to delete the candidate with valid candidate number
+    - Steps 2a1-2a2 are repeated until the candidate number entered is correct.
+    - Use case resumes from step 2.
+
+
+* 4a. Recruiter cancels deletion in confirmation stage
+    - 4a1. Hirehub exits the deletion process
+    - 4a2. Recruiter re-attempts to delete the candidate
+    - Use case 4a is repeated if the recruiter cancels the deletion again.
+    - If the recruiter enters invalid candidate number, the use case resumes from 2a.
+    - Use case resumes from step 4.
+
+
+* 4b. Recruiter enters invalid input for confirmation page
+    - 4b1. Hirehub exists the deletion process
+    - 4b2. Recruiter re-attempts to delete the candidate
+    - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
+    - If the recruiter enters invalid candidate number, the use case resumes from 2a.
+    - Use case resumes from step 4
+
+---
+
+### Edit candidate details
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC03 - Edit Candidate from the List
+
+**Actor**: Recruiter
+
+**MSS**
+
+1. Recruiter finds a candidate number to edit from the list displayed in the app
+2. Recruiter enters the candidate details to update in the list
+3. Hirehub updates the candidate details as requested
+4. Hirehub displays the edited candidate with the edited attributes
+
+
+**Extensions**
+
+* 3a. Recruiter enters invalid candidate number
+    - 3a1. Hirehub raises an error and asks recruiter to provide valid candidate number
+    - 3a2. Recruiter attempts to delete the candidate with valid candidate number
+    - Steps 3a1-3a2 are repeated until the candidate number entered is correct.
+    - Use case resumes from step 2.
+
+
+* 3b. Recruiter enters invalid email address
+    - 3b1. Hirehub raises an error and asks recruiter to provide valid email address
+    - 3b2. Recruiter attempts to edit the candidate with valid email address
+    - Steps 3b1-3b2 are repeated until the email address entered is in a correct format.
+    - Use case resumes from step 2.
+
+
+* 3c. Recruiter enters invalid phone number
+    - 3c1. Hirehub raises an error and asks recruiter to provide phone number in a correct format
+    - 3c2. Recruiter attempts to edit the candidate with valid phone number
+    - Steps 3c1-3c2 are repeated until the phone number entered is in the correct format.
+    - Use case resumes from step 2.
+
+
+* 3d. Recruiter enters invalid country name
+    - 3d1. Hirehub raises an error and asks recruiter to provide available country name listed in the user guide
+    - 3d2. Recruiter attempts to edit the candidate with valid country name
+    - Steps 3d1-3d2 are repeated until the country name entered is in the list of available country names in the user guide.
+    - Use case resumes from step 2.
+
+
+* 3e. Recruiter attempts to edit the comment field of candidate
+    - 3e1. Hirehub raises an error and asks recruiter to use other method to update candidate comment
+    - 3e2. Recruiter attempts to edit the candidate without the comment field
+    - Steps 3e1-3e2 are repeated until the recruiter stops attempting to update the comment field.
+    - Use case resumes from step 2.
+
+
+* 3f. No attributes are provided by recruiter to update in the attribute field
+    - 3f1. Hirehub raises an error and asks the recruiter to provide at least one attribute to update
+    - 3f2. Recruiter attempts to edit the candidate with at least one attribute to update
+    - Steps 3f1-3f2 are repeated until recruiter enters at least one attribute to update
+    - Use case resumes from step 2.
+
+
+* 3g. Recruiter enters invalid candidate number
+    - 3g1. Hirehub raises an error and asks the recruiter to provide correct candidate number from 1 to the number of candidates in the list
+    - 3g2. Recruiter attempts to edit the candidate with valid candidate number within the range
+    - Steps 3g1-3g2 are repeated until recruiter enters valid candidate number
+    - Use case resumes from step 2.
+
+---
+
+### Clear
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC04 - Clear candidates from the list
+
+**Actor**: Recruiter
+
+**MSS**
+
+1. Recruiter enters the command to clear the database
+2. Confirmation window opens
+3. Recruiter enters ‘Y’ into the confirmation window to confirm the clearing
+4. The database is cleared and the success message is displayed in the result display text field
+
+**Extensions**
+
+4a. Recruiter types in additional stuff after ‘clear’ e.g. ‘clear 1’
+- 4a1. Confirmation window opens as usual. Use case resumes from MSS step 3.
+
+4b. Recruiter opens the confirmation window and tries to enter additional commands in the command box
+- 4b1. The command box is disabled and he finds that he cannot enter new commands until the confirmation is done. Use case resumes from MSS step 3
+
+4c. Recruiter opens the confirmation window and tries to close the window via the x button
+- 4c1. The confirmation window closes and the command box reenables.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should respond immediately to user input, as user will most likely be using a chain of commands
+5.  Should be able to use offline
+6.  The UI should be resizable as users will likely be referencing other tabs while using this product.
 
 *{More to be added}*
 
