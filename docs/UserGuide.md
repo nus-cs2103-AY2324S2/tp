@@ -51,11 +51,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Parameters must be in specified order.<br>
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -74,17 +70,19 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds student details to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add id/STUDENT_ID n/NAME e/EMAIL g/GRADE [t/TAG]​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Name, student_id, grade, and email must have.
+* Name can be case-insensitive, eg. john doe, JOHN DOE same as John Doe
+* Email must have the correct format and string length of 8 for the email username eg. e0000000@u.nus.edu
+* Grade: [A+, A, A-, B+, B, B-, C+, C, D+, D, F]
+* Student_id must start with A and end with a letter, string length of 9 eg. A0000000X
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add id/A01234567H n/John Doe e/e0123456@u.nus.edu`
+
 
 ### Listing all persons : `list`
 
