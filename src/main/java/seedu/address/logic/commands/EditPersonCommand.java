@@ -22,13 +22,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NusNet;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.weekNumber.WeekNumber;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -104,9 +100,11 @@ public class EditPersonCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         NusNet updatedNusNet = editPersonDescriptor.getNusNet().orElse(personToEdit.getNusNet());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<WeekNumber> attendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedNusNet, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedNusNet,
+                updatedAddress, attendance, updatedTags);
     }
 
     @Override
@@ -143,6 +141,7 @@ public class EditPersonCommand extends Command {
         private Email email;
         private NusNet nusNet;
         private Address address;
+        private Set<WeekNumber> attendance;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -157,6 +156,7 @@ public class EditPersonCommand extends Command {
             setEmail(toCopy.email);
             setNusNet(toCopy.nusNet);
             setAddress(toCopy.address);
+            setAttendance(toCopy.attendance);
             setTags(toCopy.tags);
         }
 
@@ -208,11 +208,28 @@ public class EditPersonCommand extends Command {
         }
 
         /**
+         * Sets {@code attendance} to this object's {@code attendance}.
+         * A defensive copy of {@code attendance} is used internally.
+         */
+        public void setAttendance(Set<WeekNumber> attendance) {
+            this.attendance = (attendance != null) ? new HashSet<>(attendance) : null;
+        }
+
+        /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable WeekNumber set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code attendance} is null.
+         */
+        public Optional<Set<WeekNumber>> getAttendance() {
+            return (attendance != null) ? Optional.of(Collections.unmodifiableSet(attendance)) : Optional.empty();
         }
 
         /**
@@ -251,6 +268,7 @@ public class EditPersonCommand extends Command {
                     .add("email", email)
                     .add("nusNet", nusNet)
                     .add("address", address)
+                    .add("attendance", attendance)
                     .add("tags", tags)
                     .toString();
         }

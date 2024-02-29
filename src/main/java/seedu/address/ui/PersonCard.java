@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label nusNet;
     @FXML
+    private FlowPane attendance;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -55,6 +57,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         nusNet.setText(person.getNusNet().value);
+        person.getAttendance().stream()
+                .sorted(Comparator.comparing(weekNumber -> weekNumber.value))
+                .forEach(weekNumber -> attendance.getChildren().add(new Label("w" + weekNumber.value)));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -12,7 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-
+import seedu.address.model.person.NusNet;
+import java.util.Optional;
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -111,6 +112,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public Optional<Person> getPersonByNusNet(NusNet nusNet) {
+        requireNonNull(nusNet);
+        return addressBook.getPersonByNusNet(nusNet);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -144,5 +150,11 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
+//    //Used for Debugging purposes. Consider creating more robust toString()
+//    @Override
+//    public String toString() {
+//        return addressBook.toString() + filteredPersons.toString();
+//    }
 
 }

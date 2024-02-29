@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 
 /**
@@ -75,6 +77,13 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns the person in the address book whose NusNet ID matches the given NusNet.
+     * @param nusNet The NusNet ID to search for.
+     * @return An Optional containing the matched person if found, or an empty Optional otherwise.
+     */
+    Optional<Person> getPersonByNusNet(NusNet nusNet);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
