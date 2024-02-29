@@ -164,11 +164,12 @@ Examples:
 
 Edits an appointment note to a patient. Please note that the time parameter is in 24-hour format.
 
-Format: `edit-an PATIENT_INDEX NOTE_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
+Format: `edit-an PATIENT_INDEX INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Each appointment note has a unique index, which can be retrieved when listing all appointment notes. 
-</div>``
+* Edits the appointment record at the specified `INDEX` for given patient from `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `edit-an 1 1 d/19-02-2024 t/1230 n/General Flu`
@@ -242,7 +243,9 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Appointment Note** | `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `add-an d/30-12-2023 t/2100 n/Headache`
-**Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete 1 2`
+**List Appointment Note** | `list-an`
+**Add Appointment Note** | `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `add-an 1 d/30-12-2023 t/2100 n/Headache`
+**Edit Appointment Note** | `edit-an PATIENT_INDEX INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `edit-an 1 1 d/19-02-2024 t/1230 n/General Flu`
+**Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete-an 1 2`
 **List** | `list`
 **Help** | `help`
