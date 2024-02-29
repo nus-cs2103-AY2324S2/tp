@@ -3,7 +3,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **an Address Book application** that is made for Computer Science Tutors for managing their students contact and performance details.<br>
+* TAPro is **a Contact Book application** that is made for Computer Science Tutors for managing their students contact and performance details.<br>
   Example usages:
   * Add a student's contact details.
   * Record attendance of the student.
