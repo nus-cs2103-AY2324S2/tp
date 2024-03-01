@@ -274,14 +274,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* CS Students who need to keep track of contacts of companies & interview dates during thier internship hunt
+* Prefer a one-stop, centralised dashboard to manage all contact details of companies
+* Is reasonably comfortable in using a more CLI based app
+* Wants to be better organized
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+Ultimate companion for Computer Science (CS) students embarking on their internship journey !
 
 ### User stories
 
