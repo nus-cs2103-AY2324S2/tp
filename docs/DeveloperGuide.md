@@ -340,7 +340,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Command**: A user input that will cause the application to perform an operation according to the MatchMate UserGuide
+* **Coursemate**: A friend or classmate that you expect to form a _group_ based on certain _skills_ they might have
+* **Group**: A grouping/team of _coursemates_ for a course, project, or activity
+* **Skill**: Knowledge, ability, or experience that a _coursemate_ has 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
