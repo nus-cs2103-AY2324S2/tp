@@ -23,14 +23,14 @@ public class Phone implements Field {
      */
     public Phone(String phone) {
         requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(phone), MESSAGE_CONSTRAINTS);
         this.phone = phone;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    private static boolean isValidPhone(String test) {
+    private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

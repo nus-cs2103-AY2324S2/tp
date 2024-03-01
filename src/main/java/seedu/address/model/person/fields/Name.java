@@ -29,14 +29,14 @@ public class Name implements Field {
      */
     public Name(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(name), MESSAGE_CONSTRAINTS);
         this.name = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    private static boolean isValidName(String test) {
+    private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

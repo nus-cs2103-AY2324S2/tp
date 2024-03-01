@@ -28,14 +28,14 @@ public class Address implements Field {
      */
     public Address(String address) {
         requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(address), MESSAGE_CONSTRAINTS);
         this.address = address;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    private static boolean isValidAddress(String test) {
+    private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

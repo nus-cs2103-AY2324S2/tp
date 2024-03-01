@@ -42,14 +42,14 @@ public class Email implements Field {
      */
     public Email(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(email), MESSAGE_CONSTRAINTS);
         this.email = email;
     }
 
     /**
      * Returns if a given string is a valid email.
      */
-    private static boolean isValidEmail(String test) {
+    private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

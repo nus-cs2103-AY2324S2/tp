@@ -24,7 +24,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         tagName = tagName.trim();
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
 
@@ -36,7 +36,7 @@ public class Tag {
     /**
      * Returns true if a given string is a valid tag name.
      */
-    private static boolean isValidTagName(String test) {
+    private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
