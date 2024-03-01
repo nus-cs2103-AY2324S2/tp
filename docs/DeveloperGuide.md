@@ -364,21 +364,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1h. Address is not capitalized for each part.
     * 1h1. Realodex throws a warning and fixes this for user.
 
-* 1i. Family size is > 20
-    * 1i1. Realodex throws an error and requests a realistic family size value.
+* 1i. Income is not in SGD
+    * 1i. Realodex throws an error and requests a SGD value.
     * 1i2. User enters new data.
 
-* 1j. Income is not in SGD
-    * 1j. Realodex throws an error and requests a SGD value.
+* 1j. Income is negative
+    * 1j1. Realodex throws an error and requests a positive income value.
     * 1j2. User enters new data.
 
-* 1k. Income is negative
-    * 1k1. Realodex throws an error and requests a positive income value.
+* 1k. Additonal notes exceed length constraints.
+    * 1k1. Realodex throws an error and requests a shorter input.
     * 1k2. User enters new data.
-
-* 1m. Additonal notes exceed length constraints.
-    * 1m1. Realodex throws an error and requests a shorter input.
-    * 1m2. User enters new data.
 
 **Use case: Delete a person**
 
