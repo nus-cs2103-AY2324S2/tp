@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
 # AB-3 Developer Guide
@@ -235,7 +235,6 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -302,30 +301,132 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Input Company Contact Information**
 
-**MSS**
+**Actor:** Internship Applicant
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Main Success Scenario (MSS):**
 
-    Use case ends.
+1. Internship Applicant inputs contact information of internship company.
+2. IH stores the contact information.
+3. Use case ends.
 
-**Extensions**
+**Extensions:**
 
-* 2a. The list is empty.
+* 1a. IH detects an error in the entered data.
+    * 1a1. IH requests for the correct data.
+    * 1a2. Internship Applicant enters new data.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
 
-  Use case ends.
+* *a. At any time, Internship Applicant chooses to cancel the input.
+    * Use case ends.
 
-* 3a. The given index is invalid.
+---
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: Delete Company Contact Information**
 
-      Use case resumes at step 2.
+**Actor:** Internship Applicant
 
-*{More to be added}*
+**Main Success Scenario (MSS):**
+
+1. Internship Applicant inputs index of contact to be deleted.
+2. IH deletes the relevant contact information.
+3. Use case ends.
+
+**Extensions:**
+
+* 1a. IH detects an error in index of contact
+    * 1a1. IH requests for proper input of index (1 to current number of contacts)
+    * 1a2. Internship Applicant enters the correct index.
+    * Steps 1a1-1a2 are repeated until the selection is correct.
+    * Use case resumes from step 2.
+
+* *a. At any time, the Internship Applicant chooses to cancel to detect contact.
+    * *a1. IH cancels deletion of contact.
+    * Use case ends.
+
+---
+
+**Use Case: Edit Contacts Info**
+
+**Actor:** Internship Applicant
+
+**Main Success Scenario (MSS):**
+
+1. Internship Applicant chooses contact to edit by its index and enters relevant fields to be modified
+2. IH modifies that corresponding field of that contact
+3. Use case ends
+
+**Extensions:**
+
+* 1a. IH detects an error in index of contact
+    * 1a1. IH requests for proper input of index (1 to current number of contacts)
+    * 1a2. Internship Applicant enters the correct index.
+    * Steps 1a1-1a2 are repeated until the selection is correct.
+    * Use case resumes from step 2.
+
+* 1a. IH detects an error in the fields to be edited (No fields at all or incorrect field prefixes)
+    * 1a1. IH requests for proper input of fields and correct prefix
+    * 1a2. Internship Applicant enters the fields to be edited.
+    * Steps 1a1-1a2 are repeated until the selection is correct.
+    * Use case resumes from step 2.
+
+* *a. At any time, the Internship Applicant chooses to cancel to edit contact.
+    * *a1. IH cancels edit of contact.
+    * Use case ends.
+
+---
+
+**Use Case: Filter Contacts by Tag**
+
+**Actor:** Internship Applicant
+
+**Main Success Scenario (MSS):**
+
+1. Internship Applicant chooses to filter contacts by tag.
+2. Internship Applicant inputs the tag.
+3. IH filters the contacts associated with the selected tag.
+4. IH displays the filtered contacts.
+5. Use case ends.
+
+**Extensions:**
+
+* 2a. IH detects an error in tag to be filtered
+    * 2a1. IH requests for proper input of tag (One of existing tags)
+    * 2a2. Internship Applicant enters the correct tag.
+    * Steps 2a1-2a2 are repeated until the selection is correct.
+    * Use case resumes from step 3.
+
+* *a. At any time, the Internship Applicant chooses to cancel the filtering.
+    * *a1. System cancels the filtering.
+    * Use case ends.
+
+---
+
+**Use Case: View information of a contact**
+
+**Actor:** Internship Applicant
+
+**Main Success Scenario (MSS):**
+
+1. Internship Applicant chooses contact to be viewed on view panel.
+2. IH requests for the specific contact index.
+3. Internship Applicant enters the contact index.
+4. IH views the relevant contact on the view panel.
+5. Use case ends.
+
+**Extensions:**
+
+* 3a. IH detects an error in index of contact
+    * 3a1. IH requests for proper input of index (1 to current number of contacts)
+    * 3a2. Internship Applicant enters the correct index.
+    * Steps 3a1-3a2 are repeated until the selection is correct.
+    * Use case resumes from step 3.
+
+* *a. At any time, Internship Applicant chooses to cancel to view contact.
+    * *a1. IH cancels viewing of contact.
+    * Use case ends.
 
 ### Non-Functional Requirements
 
@@ -346,12 +447,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<box type="info" seamless>
 
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</box>
 
 ### Launch and shutdown
 

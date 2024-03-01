@@ -53,6 +53,10 @@ public class CommandResult {
         this.viewList = null;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, FilteredList<Person> viewList) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
