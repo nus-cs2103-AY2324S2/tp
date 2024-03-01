@@ -31,6 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private EventListPanel eventListPanel;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -40,6 +41,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane eventListPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -112,6 +116,23 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        eventListPanel = new EventListPanel(logic.getFilteredEventlist());
+
+        if (eventListPanelPlaceholder != null) {
+            eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+         } else {
+             // Log an error or appropriate message:
+             System.out.println("eventListPanelPlaceholder is Null!");
+         }
+        try {
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("TRACE ON");
+            e.printStackTrace();
+        }
+
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -161,6 +182,10 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    public EventListPanel getEventListPanel() {
+        return eventListPanel;
     }
 
     public PersonListPanel getPersonListPanel() {

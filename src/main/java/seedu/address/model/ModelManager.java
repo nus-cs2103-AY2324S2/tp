@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,8 +21,10 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final EventBook eventBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Event> filteredEvents;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -31,8 +35,10 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.eventBook = new EventBook();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredEvents = new FilteredList<>(this.eventBook.getEventList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -109,6 +115,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+
+    //=========== Filtered Event List Accessors =============================================================
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
     }
 
     //=========== Filtered Person List Accessors =============================================================
