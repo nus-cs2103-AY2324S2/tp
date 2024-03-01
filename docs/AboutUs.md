@@ -51,7 +51,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/chiageng.png" width="200px">
 
 [[github](http://github.com/chiageng)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/chiageng.md)]
 
 * Role: Developer
 * Responsibilities: Integration
