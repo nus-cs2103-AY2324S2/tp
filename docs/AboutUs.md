@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Yixin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chenyixin0.jpg" width="200px">
 
 [[github](http://github.com/chenyixin0)]
 [[portfolio](team/yixin.md)]
