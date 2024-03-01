@@ -66,7 +66,7 @@ Examples:
 
 Deletes the specified client from the address book.
 
-Format: `delete`
+Format: `delete NAME`
 
 enter client's `NAME` after prompt is shown
 
