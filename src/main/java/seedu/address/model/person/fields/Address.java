@@ -17,9 +17,9 @@ public class Address implements Field {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    private static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String address;
+    private final String address;
 
     /**
      * Constructs an {@code Address}.
@@ -35,7 +35,7 @@ public class Address implements Field {
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    private static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

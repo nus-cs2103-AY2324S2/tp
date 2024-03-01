@@ -13,8 +13,8 @@ public class Phone implements Field {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String phone;
+    private static final String VALIDATION_REGEX = "\\d{3,}";
+    private final String phone;
 
     /**
      * Constructs a {@code Phone}.
@@ -30,7 +30,7 @@ public class Phone implements Field {
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
+    private static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
