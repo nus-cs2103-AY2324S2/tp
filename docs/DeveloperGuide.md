@@ -300,45 +300,188 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `CulinaryContacts` and the **Actor** is the `user`, unless 
+specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - View help**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to see the help menu.
+1. CulinaryContacts opens up the help window, displaying the command summary.
 
-    Use case ends.
+   Use case ends.
+
+**Use case: UC02 - Add a person**
+
+**MSS**
+
+1. User requests to add a new person.
+1. CulinaryContacts adds the new person to the list.
+
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The provided field(s) is/are invalid.
+
+    * 1a1. CulinaryContacts shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. Compulsory field(s) is/are missing. 
+
+    * 1b1. CulinaryContacts shows an error message.
+
+      Use case resumes from step 1.
+
+**Use case: UC03 - List all persons**
+
+**MSS**
+
+1. User requests to show all contacts in the list.
+1. CulinaryContacts shows all persons in the list.
+
+   Use case ends.
+
+**Use case: UC04 - Edit a person**
+
+**MSS**
+
+1. User requests to <u>list all persons (UC03)</u>.
+1. User requests to edit the fields of a specific person in the list.
+1. CulinaryContacts edits the fields of the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 2a1. CulinaryContacts shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 2b. The new field value(s) is/are invalid.
+
+    * 2b1. CulinaryContacts shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. No fields to edit are provided.
+
+    * 2c1. CulinaryContacts shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC05 - Find a person**
+
+**MSS**
+
+1. User requests to find all persons with names matching the input keyword(s).
+1. CulinaryContacts shows all persons with matching names.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keywords are provided.
+
+    * 1a1. CulinaryContacts shows an error message.
+
+      Use case resumes from step 1.
+
+**Use case: UC06 - Filter persons by tag**
+
+**MSS**
+
+1. User requests to find all persons with specific tag(s).
+1. CulinaryContacts shows all persons with a matching tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No tags are provided.
+
+    * 1a1. CulinaryContacts shows an error message.
+
+      Use case resumes from step 1.
+
+**Use case: UC07 - Delete a person**
+
+**MSS**
+
+1. User requests to <u>list all persons (UC03)</u>.
+1. User requests to delete a specific person in the list.
+1. CulinaryContacts deletes the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. CulinaryContacts shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC08 - Clear all entries**
+
+**MSS**
+
+1. User requests to clear all entries.
+1. CulinaryContacts asks for confirmation to clear all entries.
+1. User confirms to clear all entries.
+1. CulinaryContacts clears all entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Confirmation is not given.
+
+    * 2a1. CulinaryContacts cancels the clear action.
+
+      Use case ends.
+
+**Use case UC09: Exit program**
+
+**MSS**
+
+1. User requests to exit the program.
+1. CulinaryContacts exits.
+
+   Use case ends.
+
+
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical 
+    usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin 
+   commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. New users should be able to perform basic operations (add, edit, list, delete contacts) with some 
+   guidance from the help documentation.
+1. The product is not required to handle financial or inventory aspects of managing a restaurant.
+1. All text must be at least font size 12 to ensure readability.
+1. Comprehensive documentation, including user guides and developer guides should be updated with each 
+   release.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
