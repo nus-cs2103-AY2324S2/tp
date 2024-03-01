@@ -5,7 +5,7 @@
 
 ###Eventy
 
-* This CLI application serves as an address book tailored for formal event planners in halls, facilitating efficient management of participants and events. This is a CLI application that is desgined for users who type fast<br>
+* This CLI application serves as an address book tailored for event planners in halls, facilitating efficient management of participants and events. This is a CLI application that is desgined for users who type fast<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
   * as a case study
