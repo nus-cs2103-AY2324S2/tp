@@ -1,6 +1,6 @@
 ---
   layout: default.md
-    title: "Jerome-j's Project Portfolio Page"
+  title: "Jerome-j's Project Portfolio Page"
 ---
 
 ### Jerome-j's Project Portfolio Page
