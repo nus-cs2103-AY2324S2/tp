@@ -38,22 +38,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Jm San Diego ⚡️
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jmsandiegoo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jmsandiegoo)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Developer
 
-### James Doe
+### Joe Kawai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joenus.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/joenus)]
+[[portfolio](team/joe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Lead, Developer
+* Responsibilities: Developer
