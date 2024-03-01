@@ -532,6 +532,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  All code snippets presented in the developer guides shall follow a consistent coding style and formatting, adhering to the company's coding standards and best practices.
 5.  The developer guides shall undergo regular content audits, with outdated or deprecated information flagged for removal or revision, and new features or updates documented within one week of release.
+6.  The system should respond within 2 seconds.
+7.  The data should store locally and not accessible from other device for privacy issue.
+8.  The project is expected to adhere to schedule closely to deliver new feature.
 
 *{More to be added}*
 
