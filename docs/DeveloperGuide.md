@@ -378,11 +378,20 @@ typing the command subpoints
 
 ### Non-Functional Requirements
 
+#### Usability
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should operate efficiently in a small business' technical environment i.e. should require minimal hardware resources.
 
-*{More to be added}*
+#### Performance:
+1.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  Ensure that all commands are executed and feedback is provided within 2 seconds during normal operation.
+
+#### Accessibility:
+1.  Should support users with different abilities to effectively interact with the system.
+
+#### Security:
+1.  Data stored should not be easily modified by non-authorised users of the application.
 
 ### Glossary
 
