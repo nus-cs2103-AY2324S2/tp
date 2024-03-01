@@ -451,32 +451,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
      Use case ends.
 
 
-**Use case: Import**
+**Use case: UC07 — Import contacts**
 
 **MSS**
-1. User imports contacts from a csv file
-2. AddressBook displays a message that all contacts have been imported
-3. User is able to see all the contacts imported when a list of contacts is requested
-   Use case ends
+1. User requests to import contacts from a csv file.
+2. AddressBook displays a message that all contacts have been imported.
+3. User is able to see all the contacts imported when a list of contacts is requested.
+   Use case ends.
 
 **Extension**
 
-*   1a. AddressBook cannot find file to be imported
+*   1a. AddressBook cannot find file to be imported.
 
-    *   1a1. AddressBook displays a message indicating that the file is not recognised
+    *   1a1. AddressBook displays a message indicating that the file is not recognised.
 
     Use case ends.
 
-*   1b. The file to be imported is not a csv file
+*   1b. The file to be imported is not a csv file.
 
     *  1b1. AddressBook displays an error message indicating that the file type is not recognised and should be a csv file
 
     Use case ends.
 
 
-**Use case UC07: Copy**
+**Use case: UC08 — Copy email addresses**
 
-**MSS**
+**MSS:**
 
 1.  User requests to copy emails of currently displayed contacts.
 2.  AddressBook copies the emails of currently displayed contacts 
@@ -486,7 +486,7 @@ into user's clipboard.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 *   2a. No contacts currently displayed.
 
@@ -495,12 +495,12 @@ into user's clipboard.
 
     Use case ends.
 
-**Use case: UC08 — Clear all contacts**
+**Use case: UC09 — Clear all contacts**
 
 **MSS:**
 
 1.  User requests to clear all contacts.
-2.  AddressBook clears all contacts 
+2.  AddressBook clears all contacts.
 3.  AddressBook displays a message indicating that all contacts have been cleared.
 
     Use case ends.
@@ -513,7 +513,7 @@ into user's clipboard.
      
          Use case ends.
 
-**Use case: UC09 — Export contacts to CSV**
+**Use case: UC10 — Export contacts to CSV**
 
 **MSS:**
 
@@ -523,7 +523,7 @@ into user's clipboard.
     
     Use case ends.
 
-**Use case: UC10 — Exit application**
+**Use case: UC11 — Exit application**
 
 **MSS:**
 
