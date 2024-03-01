@@ -16,6 +16,8 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Deliverables and deadlines
 
+### Koh Guan Zeh
+
 <img src="images/kohguanzeh.png" width="200px">
 
 [[github](https://github.com/KohGuanZeh)]
