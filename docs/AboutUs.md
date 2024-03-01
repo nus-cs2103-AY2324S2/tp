@@ -28,11 +28,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities:
 
-### Johnny Doe
+### Khushi Bhagwat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/khushibhagwat.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/kab-dot)] 
+[[portfolio](team/khushibhagwat.md)]
 
 * Role: Developer
 * Responsibilities: Data
