@@ -328,105 +328,71 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User Executes "Add client" Command:
-2. Realodex Prompt for Client Name:
-3. User Provides Client Name:
-4. Realodex Prompt for Client Address:
-5. User Provides Client Address:
-6. Realodex Prompt for Family Size:
-7. User Provides Family Size:
-8. Realodex Prompt for Client Income:
-9. User Provides Client Income:
-10. Realodex Prompt for Additional Notes:
-11. User Provides Additional Notes (Optional):
-12. The system prints the termination message "Client profile creation complete. Returning back to the main screen."
+1. User Executes "Add client...." Command:
+2. System adds use profile to local storage and replies to user with success message.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. Name exceeds the length constraints.
-  * 3a1. Realodex throws an error and requests shorter name representation.
-  * 3a2. User enters new data.
-  * Steps 3a1-3a2 are repeated until name input is valid.
-  * Use case resumes from Step 4
+* 1a. Name exceeds the length constraints.
+  * 1a1. Realodex throws an error and requests shorter name representation.
+  * 1a2. User enters new data.
 
-* 3b. Name Length is not fully English.
-    * 3b1. Realodex throws an error and requests for only English input.
-    * 3b2. User enters new data.
-    * Steps 3b1-3b2 are repeated until name input is valid.
-    * Use case resumes from Step 4
+* 1b. Name Length is not fully English.
+    * 1b1. Realodex throws an error and requests for only English input.
+    * 1b2. User enters new data.
 
-* 3c. Name contains erraneous whitespace.
-    * 3c1. Realodex throws a warning and fixes this for user.
-    * Use case resumes from Step 4
+* 1c. Name contains erraneous whitespace.
+    * 1c1. Realodex throws a warning and fixes this for user.
 
-* 3d. Name is not capitalized.
-    * 3d1. Realodex throws a warning and fixes this for user.
-    * Use case resumes from Step 4
+* 1d. Name is not capitalized.
+    * 1d1. Realodex throws a warning and fixes this for user.
 
-* 3e. Name is not in expected format.
-    * 3e1. Realodex throws an error and highlights the format to user.
-    * 3e2. User enters new data.
-    * Steps 3e1-3e2 are repeated until name input is valid.
-    * Use case resumes from Step 4
+* 1e. Name is not in expected format.
+    * 1e1. Realodex throws an error and highlights the format to user.
+    * 1e2. User enters new data.
 
-* 5a. Address is not fully English  
-    * 5a1. Realodex throws an error and requests for only English input.
-    * 5a2. User enters new data.
-    * Steps 5a1-5a2 are repeated until address input is valid.
-    * Use case resumes from Step 6
+* 1f. Address is not fully English  
+    * 1f1. Realodex throws an error and requests for only English input.
+    * 1f2. User enters new data.
 
-* 5b. Address exceeds the length constraints
-    * 5b1. Realodex throws an error and requests shorter address representation.
-    * 5b2. User enters new data.
-    * Steps 5b1-5b2 are repeated until address input is valid.
-    * Use case resumes from Step 6
+* 1g. Address exceeds the length constraints
+    * 1g1. Realodex throws an error and requests shorter address representation.
+    * 1g2. User enters new data.
 
-* 5c. Address is not capitalized for each part.
-    * 5c1. Realodex throws a warning and fixes this for user.
-    * Use case resumes from Step 6
+* 1h. Address is not capitalized for each part.
+    * 1h1. Realodex throws a warning and fixes this for user.
 
-* 7a. Family size is > 20
-    * 7a1. Realodex throws an error and requests a realistic family size value.
-    * 7a2. User enters new data.
-    * Steps 7a1-7a2 are repeated until family input is valid.
-    * Use case resumes from Step 8
+* 1i. Family size is > 20
+    * 1i1. Realodex throws an error and requests a realistic family size value.
+    * 1i2. User enters new data.
 
-* 9a. Income is not in SGD
-    * 7a1. Realodex throws an error and requests a SGD value.
-    * 7a2. User enters new data.
-    * Steps 9a1-9a2 are repeated until SGD income input.
-    * Use case resumes from Step 10
+* 1j. Income is not in SGD
+    * 1j. Realodex throws an error and requests a SGD value.
+    * 1j2. User enters new data.
 
-* 9b. Income is negative
-    * 9b1. Realodex throws an error and requests a positive income value.
-    * 9b2. User enters new data.
-    * Steps 9b1-9b2 are repeated until a positive value is input.
-    * Use case resumes from Step 10
+* 1k. Income is negative
+    * 1k1. Realodex throws an error and requests a positive income value.
+    * 1k2. User enters new data.
 
-* 11a Additonal notes exceed length constraints.
-    * 11a1. Realodex throws an error and requests a shorter input.
-    * 11a2. User enters new data.
-    * Steps 11a1-11a2 are repeated until a positive value is input.
-    * Use case resumes from Step 12
+* 1m. Additonal notes exceed length constraints.
+    * 1m1. Realodex throws an error and requests a shorter input.
+    * 1m2. User enters new data.
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to delete
-2.  Realodex prompts "Please enter client's name"
-3.  User inputs client's name
-4.  Realodex deletes the person
+1.  User requests to delete user
+2.  Realodex deletes the person with success message
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The input name is not found
-
-  Realodex shows an error message "NAME is not found".
+ * 2a1. Realodex shows an error message "<Name> is not found".
 
 **Use case: List**
 
@@ -440,23 +406,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty
-
-  Realodex shows an empty list.
+  * 2a1. Realodex shows an empty list.
 
 **Use case: Find**
 
 **MSS**
 
-1.  User requests to find STRING
-2.  Realodex shows the list of all clients with name including the STRING
+1.  User requests to find user
+2.  Realodex shows the list of all clients with name including the name input
 
     Use case ends.
 
 **Extensions**
 
-* 2a. No contact found with a name including the STRING
-
-  Realodex shows an empty list.
+* 2a. No contact found with a name including the name input
+  * 2a1. Realodex shows an empty list.
 
 
 ### Non-Functional Requirements
