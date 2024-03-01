@@ -8,6 +8,10 @@ src/main/resources/docs/
 /out/
 /*.iml
 
+# Compiled class files
+bin/
+*.class
+
 # Storage/log files
 /data/
 /config.json
