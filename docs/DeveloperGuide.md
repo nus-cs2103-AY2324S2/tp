@@ -314,16 +314,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SweetRewards` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Delete a member**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list customers
+2.  SweetRewards shows a list of customers
+3.  User requests to delete a specific customer in the list
+4.  AddressBook deletes the customer
 
     Use case ends.
 
@@ -335,7 +335,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SweetRewards shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 2: Add a member**
+
+**MSS**
+
+1.  User requests to add a customer by typing the command addmember
+2.  SweetRewards shows member added successfully
+3.  User can view added member successfully
+
+    Use case ends.
+
+**Extensions**
+
+
+* 2a. The compulsory fields are empty
+
+    * 2a1. SweetRewards shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 3: Add an order for a member**
+
+**MSS**
+
+1.  User requests to add a order to a member by typing the command addorder
+2.  SweetRewards shows order added successfully
+3.  User can view added member successfully
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The order list is empty for the member.
+
+  Use case ends.
+
+* 2a. The compulsory fields are empty
+
+    * 2a1. SweetRewards shows an error message.
+
+      Use case resumes at step 2.
+  
+
+**Use case 4: Delete points for a member**
+
+**MSS**
+
+1.  User requests to delete "x" number of points for a member by 
+typing the command subpoints
+2.  SweetRewards shows "x" points deleted for member
+3.  User can view the number of points left for member
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The current number of points is zero
+
+    * 2a1. SweetRewards shows an error message.
 
       Use case resumes at step 2.
 
