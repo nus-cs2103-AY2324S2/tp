@@ -450,7 +450,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case ends.
 
-**Use case: Copy**
+
+**Use case: Import**
+
+**MSS**
+1. User imports contacts from a csv file
+2. AddressBook displays a message that all contacts have been imported
+3. User is able to see all the contacts imported when a list of contacts is requested
+   Use case ends
+
+**Extension**
+
+*   1a. AddressBook cannot find file to be imported
+
+    *   1a1. AddressBook displays a message indicating that the file is not recognised
+
+    Use case ends.
+
+*   1b. The file to be imported is not a csv file
+
+    *  1b1. AddressBook displays an error message indicating that the file type is not recognised and should be a csv file
+
+    Use case ends.
+
+
+**Use case UC07: Copy**
 
 **MSS**
 
@@ -471,7 +495,7 @@ into user's clipboard.
 
     Use case ends.
 
-**Use case: UC07 — Clear all contacts**
+**Use case: UC08 — Clear all contacts**
 
 **MSS:**
 
@@ -489,7 +513,7 @@ into user's clipboard.
      
          Use case ends.
 
-**Use case: UC08 — Export contacts to CSV**
+**Use case: UC09 — Export contacts to CSV**
 
 **MSS:**
 
@@ -499,7 +523,7 @@ into user's clipboard.
     
     Use case ends.
 
-**Use case: UC09 — Exit application**
+**Use case: UC10 — Exit application**
 
 **MSS:**
 
