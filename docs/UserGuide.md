@@ -93,6 +93,17 @@ Shows a list of all contacts in the address book sorted in ascending order of in
 
 Format: `list`
 
+### Viewing a contact : `view`
+
+Views the details of the contact on the view panel in address book.
+
+Format: `View INDEX`
+
+* Views the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+*  `view 3` Shows the company name of the 3rd contact on the view panel.
+  
 ### Editing a contact : `edit`
 
 Edits an existing contact detail in the address book.
@@ -197,4 +208,5 @@ _Details coming soon ..._
 | **Edit**   | `Edit INDEX c/[COMPANY_NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] t/[TAG] jd/[JOB_DESCRIPTION] d/[INTERVIEW_DATE] id/[INTERN_DURATION] s/[salary]`<br> e.g.,`Edit 2 p/9998765`                                                                           |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find foodpanda`                                                                                                                                                                                                  |
 | **List**   | `list`                                                                                                                                                                                                                                                     |
+| **View**   | `view INDEX`<br> e.g., `view 3`                                                                                                                                                                                                                            |
 | **Help**   | `help`                                                                                                                                                                                                                                                     |
