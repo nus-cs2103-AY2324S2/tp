@@ -32,7 +32,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL).append(person.getEmail()).append(" ");
         sb.append(PREFIX_ADDRESS).append(person.getAddress()).append(" ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
+            s -> sb.append(PREFIX_TAG).append(s.get()).append(" ")
         );
         return sb.toString();
     }
@@ -48,8 +48,9 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address).append(" "));
         if (descriptor.getTags().isPresent()) {
             sb.append(PREFIX_TAG);
-            descriptor.getTags().get().stream().forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            descriptor.getTags().get().stream().forEach(s -> sb.append(PREFIX_TAG).append(s.get()).append(" "));
         }
         return sb.toString();
     }
+
 }
