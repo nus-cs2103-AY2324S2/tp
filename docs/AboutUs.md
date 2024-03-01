@@ -46,12 +46,12 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Chng Chia Geng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chiageng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/chiageng)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration
