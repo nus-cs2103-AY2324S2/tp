@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Loh Jun Heng Donovan
+### John Doe
 
-<img src="images/captainkeqing.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/CaptainKeqing)]
-[[portfolio](team/captainkeqing.md)]
+[[github](https://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-* Role: Code Quality Manager
+* Role: Project Advisor
 
 ### Jane Doe
 
