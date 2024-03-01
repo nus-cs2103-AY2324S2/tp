@@ -44,6 +44,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/sebin0817)]
 [[portfolio](team/sebin.md)]
 
+### Jm San Diego ⚡️
+
+<img src="images/jmsandiegoo.png" width="200px">
+
+[[github](http://github.com/jmsandiegoo)]
+[[portfolio](team/johndoe.md)]
+
 * Role: Developer
 * Responsibilities: Developer
 
@@ -54,5 +61,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/joenus)]
 [[portfolio](team/joe.md)]
 
-* Role: Developer
+* Role: Team Lead, Developer
 * Responsibilities: Developer
