@@ -330,12 +330,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 100 internship entries without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Storage of data should be in a format that is easy to read and write by humans, and easy to parse by machines.
-5.  System should be backward compatible with data produced by earlier versions of the system.
-6.  System is expected to be used by a single user on a machine, and does not need to support multiple users on the same machine.
-7.  System should launch within 2 seconds on any modern machine.
 
 *{More to be added}*
 
