@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    private static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     private static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String tagName;
