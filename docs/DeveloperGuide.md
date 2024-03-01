@@ -274,14 +274,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Jim is an undergraduate student enrolled in NUS College and wants to network with his batchmates who stay in the 
+same dorm as him.
+* He likes to interact with students from other floors. Every year, the students will change rooms and new students 
+will come in as well.
+* When unsure of his work, he tends to look for his peers for help.
+* Jim also enjoys celebrating milestones, especially birthdays.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: Jim will be able to create and update student contacts quickly. 
+He will be able to add many personal details to the contacts as well. It is optimized to search for contacts quickly. 
+It will also include settings to create a custom look for the application.
 
 ### User stories
 
