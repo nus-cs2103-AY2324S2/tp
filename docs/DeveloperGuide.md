@@ -448,9 +448,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      *   1a1. AddressBook displays a message indicating that no contacts match the criteria.
 
-Use case ends.
+     Use case ends.
 
-**Use case: UC07 — Clear all contacts**
+
+**Use case: Import**
+
+**MSS**
+1. User imports contacts from a csv file
+2. AddressBook displays a message that all contacts have been imported
+3. User is able to see all the contacts imported when a list of contacts is requested
+   Use case ends
+
+**Extension**
+
+*   1a. AddressBook cannot find file to be imported
+
+    *   1a1. AddressBook displays a message indicating that the file is not recognised
+
+    Use case ends.
+
+*   1b. The file to be imported is not a csv file
+
+    *  1b1. AddressBook displays an error message indicating that the file type is not recognised and should be a csv file
+
+    Use case ends.
+
+
+**Use case UC07: Copy**
+
+**MSS**
+
+1.  User requests to copy emails of currently displayed contacts.
+2.  AddressBook copies the emails of currently displayed contacts 
+into user's clipboard.
+3.  AddressBook notifies the user that emails have been copied.
+4.  User can paste emails when composing emails.
+
+    Use case ends.
+
+**Extensions**
+
+*   2a. No contacts currently displayed.
+
+    * 2a1. AddressBook displays a message indicating that 
+    no contacts are currently displayed.
+
+    Use case ends.
+
+**Use case: UC08 — Clear all contacts**
 
 **MSS:**
 
@@ -468,7 +513,7 @@ Use case ends.
      
          Use case ends.
 
-**Use case: UC08 — Export contacts to CSV**
+**Use case: UC09 — Export contacts to CSV**
 
 **MSS:**
 
@@ -478,7 +523,7 @@ Use case ends.
     
     Use case ends.
 
-**Use case: UC09 — Exit application**
+**Use case: UC10 — Exit application**
 
 **MSS:**
 
