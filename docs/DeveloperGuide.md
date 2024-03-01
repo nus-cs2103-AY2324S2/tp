@@ -287,16 +287,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 
-*{More to be added}*
+| Priority | As an …​                                    | I want to …​                 | So that I can…​                                                        |
+|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
+| `* * *`  |internship applicant                       | see usage instructions       | refer to instructions when I forget how to use the App                 |
+| `* * *`  | internship applicant                       | assign tags to contacts      | categorize and easily identify and prepare for the interview           |
+| `* * *`  | internship applicant                       | customize tag colors         | visually differentiate between different stages                      |
+| `* * *`  | internship applicant                       | sort contacts by dates       | prioritize and plan for upcoming interviews                          |
+| `* * *`  | internship applicant                       | filter contacts by date      | quickly access contacts associated with a specific date                |
+| `* * *`  | internship applicant                       | filter contacts by tag       | easily find and manage contacts within specific categories             |
+| `* * *`  | internship applicant                       | add a time to a contact      | record when a specific task or interaction needs to be done            |
+| `* * *`  | internship applicant                       | add notes to contacts        | include important details or information about specific users         |
+
 
 ### Use cases
 
