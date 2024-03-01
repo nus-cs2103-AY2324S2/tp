@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Ho Kin Tat
 
 
-<img src="images/kt_profile.png" width="200px">
+<img src="images/kintatho.png" width="200px">
 
 [[github](http://github.com/kintatho)]
 [[portfolio](team/kintat.md)]
@@ -56,7 +56,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Wu Yizheng
 
 
-<img src="images/Yizheng.png" width="200px">
+<img src="images/jessicawyz.png" width="200px">
 
 [[github](http://github.com/jessicawyz)]
 [[portfolio](team/johndoe.md)]
