@@ -18,15 +18,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jane Doe
+### Billy Ho Cheng En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/billyho.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/billyhoce)]
+[[portfolio](team/billyho.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities:
 
 ### Khushi Bhagwat
 
