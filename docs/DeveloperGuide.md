@@ -442,7 +442,28 @@ x
 
      *   1a1. AddressBook displays a message indicating that no contacts match the criteria.
 
-Use case ends.
+     Use case ends.
+
+**Use case: Copy**
+
+**MSS**
+
+1.  User requests to copy emails of currently displayed contacts.
+2.  AddressBook copies the emails of currently displayed contacts 
+into user's clipboard.
+3.  AddressBook notifies the user that emails have been copied.
+4.  User can paste emails when composing emails.
+
+    Use case ends.
+
+**Extensions**
+
+*   2a. No contacts currently displayed.
+
+    * 2a1. AddressBook displays a message indicating that 
+    no contacts are currently displayed.
+
+    Use case ends.
 
 **Use case: Clear**
 
