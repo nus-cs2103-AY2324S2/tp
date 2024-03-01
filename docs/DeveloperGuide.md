@@ -296,6 +296,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Actor**: `User`
 
+**Guarantee**: `If MSS reach step 3, a new contact is added into list`
+
 **MSS**:
 
 1.  User requests to add contact of a person.
@@ -319,12 +321,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1b2. User re-enters the correct command with another name.
    * Steps 1b1 - 1b2 are repeated until there is no duplicate entry in input.
    * Use case resumes from step 2. 
+
+* 1c. PoochPlanner detects wrong format for email.
+
+   * 1b1. PoochPlanner displays the error message.
+   * 1b2. User re-enters the correct command with another name.
+   * Steps 1b1 - 1b2 are repeated until there is no error in input.
+   * Use case resumes from step 2.
+* 1d. PoochPlanner detect unknown input for employment.
+
+  * 1b1. PoochPlanner displays the error message.
+  * 1b2. User re-enters the correct command with another name.
+  * Steps 1b1 - 1b2 are repeated until there is no error in input.
+  * Use case resumes from step 2.
+
+* 1e. PoochPlanner receive wrong command format.
+
+    * 1b1. PoochPlanner displays the error message.
+    * 1b2. User re-enters with correct command format.
+    * Steps 1b1 - 1b2 are repeated until the command format is correct.
+    * Use case resumes from step 2.
+
 ---
 **System**: `PoochPlanner`
 
 **Use case**: `UC02 - Delete Contact of a Person`
 
 **Actor**: `User`
+
+**Guarantee**: `If MSS reach step 3, a contact is deleted from list`
 
 **MSS**:
 
@@ -349,12 +374,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1b2. User re-enters a new command with another name.
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
    * Use case resumes from step 2. 
+
+* 1c. PoochPlanner receive wrong command format.
+
+    * 1b1. PoochPlanner displays the error message.
+    * 1b2. User re-enters with correct command format.
+    * Steps 1b1 - 1b2 are repeated until the command format is correct.
+    * Use case resumes from step 2.
 ---
 **System**: `PoochPlanner`
 
 **Use case**: `UC03 - Edit Contact of a Person`
 
 **Actor**: `User`
+
+**Guarantee**: `If MSS reach step 3, a contact is edited successfully in the list`
 
 **MSS**:
 
@@ -400,6 +434,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1e2. User re-enters the command and edits a different field.
    * Steps 1e1 - 1e2 are repeated until there exist a valid field in the input.
    * Use case resumes from step 2. 
+
+* 1f. PoochPlanner detects wrong format for email.
+
+    * 1b1. PoochPlanner displays the error message.
+    * 1b2. User re-enters the correct command with another name.
+    * Steps 1b1 - 1b2 are repeated until there is no error in input.
+    * Use case resumes from step 2.
+
+* 1g. PoochPlanner receive wrong command format.
+
+    * 1b1. PoochPlanner displays the error message.
+    * 1b2. User re-enters with correct command format.
+    * Steps 1b1 - 1b2 are repeated until the command format is correct.
+    * Use case resumes from step 2.
+
 ---
 **System**: `PoochPlanner`
 
@@ -437,6 +486,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1c2. User re-enters a new command with another field.
    * Steps 1c1 - 1c2 are repeated until a valid field is inputted by the User.
    * Use case resumes from step 2. 
+
+* 1d. PoochPlanner receive wrong command format.
+
+    * 1b1. PoochPlanner displays the error message.
+    * 1b2. User re-enters with correct command format.
+    * Steps 1b1 - 1b2 are repeated until the command format is correct.
+    * Use case resumes from step 2.
 ---
 **System**: `PoochPlanner`
 
@@ -459,6 +515,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a2. User re-enters the command and request to learn about a valid command.
    * Steps 1a1 - 1a2 are repeated until a valid command is inputted by the User.
    * Use case resumes from step 2. 
+
+* 1b. PoochPlanner receive wrong command format.
+
+    * 1b1. PoochPlanner displays the error message.
+    * 1b2. User re-enters with correct command format.
+    * Steps 1b1 - 1b2 are repeated until the command format is correct.
+    * Use case resumes from step 2.
 ---
 *{More to be added}*
 
