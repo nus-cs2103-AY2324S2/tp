@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Wu Yizheng
 
 
-<img src="images/Yizheng.png" width="200px">
+<img src="images/jessicawyz.png" width="200px">
 
 [[github](http://github.com/jessicawyz)]
 [[portfolio](team/johndoe.md)]
