@@ -171,21 +171,21 @@ public class MainWindow extends UiPart<Stage> {
      * Views the person on the View Panel.
      */
     @FXML
-//    private void handleView(Person p, int displayIndex) {
-//        PersonCard viewPanel = new PersonCard(p, displayIndex);
-//        //ViewPanel viewPanel = new ViewPanel(p);
-//        //viewPanelPlaceHolder.getChildren().clear();
-//        viewPanelPlaceHolder.getChildren().add(viewPanel.getRoot());
-//    }
+    //    private void handleView(Person p, int displayIndex) {
+    //        PersonCard viewPanel = new PersonCard(p, displayIndex);
+    //        //ViewPanel viewPanel = new ViewPanel(p);
+    //        //viewPanelPlaceHolder.getChildren().clear();
+    //        viewPanelPlaceHolder.getChildren().add(viewPanel.getRoot());
+    //    }
 
-        private void handleView(Person p) {
-            ViewPanel viewPanel = new ViewPanel(p);
-            //viewPanelPlaceHolder.getChildren().clear();
-            VBox holder = viewPanelPlaceHolder.getContent() == null ? new VBox()
-                    : (VBox) viewPanelPlaceHolder.getContent();
-            holder.getChildren().add(viewPanel.getRoot());
-            viewPanelPlaceHolder.setContent(holder);
-        }
+    private void handleView(Person p) {
+        ViewPanel viewPanel = new ViewPanel(p);
+        //viewPanelPlaceHolder.getChildren().clear();
+        VBox holder = viewPanelPlaceHolder.getContent() == null ? new VBox()
+                : (VBox) viewPanelPlaceHolder.getContent();
+        holder.getChildren().add(viewPanel.getRoot());
+        viewPanelPlaceHolder.setContent(holder);
+    }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
