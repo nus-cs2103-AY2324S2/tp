@@ -12,7 +12,7 @@ title: User Guide
   - [Add patient medical record](#adding-a-patient-medical-record-add)
   - [Listing all patient medical records](#listing-all-patient-medical-records--list)
   - [Editing a patient medical record](#editing-a-patient-medical-record--edit)
-  - [Deleting a patient medical record](#deleting-a-person--delete)
+  - [Deleting a patient medical record](#deleting-a-patient-medical-record--delete)
   - [Adding an appointment note](#adding-an-appointment-note-add-an)
   - [Deleting an appointment note](#deleting-an-appointment-note--delete-an)
   - [Clearing all entries](#clearing-all-entries--clear)
@@ -174,7 +174,7 @@ medical record that has the `PATIENT_INDEX` of 1.
 
 [//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
-### Deleting a person : `delete`
+### Deleting a patient medical record : `delete`
 
 Deletes a particular patient's medical records.
 
