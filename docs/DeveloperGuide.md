@@ -334,13 +334,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The application should be backward compatible with data produced by earlier versions of the application.
+5.  The product should respond within one second.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GUI**: Graphical User Interface, the visual interface through which users interact with the application.
+* **Performance**: The speed at which the application responds to user input.
+* **Command**: A text-based instruction given to the application to perform a specific task.
+* **Telegram**: A messaging app.
+* **Telegram handle**: A unique identifier for a user in Telegram.
+* **Instagram**: A social media platform.
+* **Instagram handle**: A unique identifier for a user in Instagram.
+* **Facebook**: A social media platform.
+* **Facebook handle**: A unique identifier for a user in Facebook.
+* **LinkedIn**: A professional networking platform.
+* **LinkedIn Link**: The link to the profile of a user in LinkedIn.
 
 --------------------------------------------------------------------------------------------------------------------
 
