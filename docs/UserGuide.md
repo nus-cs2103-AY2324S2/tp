@@ -95,6 +95,36 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+### Adding orders to a person: `addorder`
+
+Adds an order to an existing person in the address book.
+
+Format: `addorder n/MEMBER_NAME o/ORDER_DETAILS`
+
+* The order will be added to the person with the closest resembling name to `MEMBER_NAME`.
+* If no person with a resembling name is found, no order will be added to any person.
+* All persons are considered, not just those in the displayed person list
+* `ORDER_DETAILS` must not be empty
+
+Examples:
+* `addorder n/John Doe o/Butter Cake` Adds an order of `Butter Cake` to `John Doe`
+* `addorder n/Betsy o/200g Macadamia Nut Cookies` Adds of order of `200g Macadamia Nut Cookies` to `Besty Crower`
+
+### Deleting orders of a person: `delorder`
+
+Adds an order to an existing person in the address book.
+
+Format: `delorder n/MEMBER_NAME i/ORDER_INDEX`
+
+* The order with corresponding `ORDER_INDEX` will be removed from the person with the closest resembling name to `MEMBER_NAME`.
+* If no person with a resembling name is found, no order will be removed from any person.
+* All persons are considered, not just those in the displayed person list
+* `ORDER_INDEX` **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+* `delorder n/John Doe i/1` deletes the first order of `John Doe`
+
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -198,6 +228,8 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Order** | `addorder n/MEMBER_NAME o/ORDER_DETAILS` <br> e.g., `addorder n/John Doe o/Butter Cake`
+**Delete Order** | `delorder n/MEMBER_NAME i/ORDER_INDEX` <br> e.g., `delorder n/John Doe i/1`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
