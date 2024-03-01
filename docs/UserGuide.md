@@ -65,14 +65,20 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Initializing program with seed data : `seedData`
 
-### Adding a person: `add`
+Adds a set of pre-defined sample data into the application.
+
+Format: `seedData`
+* If there is existing data, it will retain the current data on top of the new sample data to be added
+
+### Adding a person : `add`
 
 Adds a person to the address book.
 
@@ -109,7 +115,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -146,6 +152,11 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+* Will clear:
+  * Contacts added by users
+  * Seed data added from `seedData` command
+* User will be prompted to verify the clear command, before carrying out the clearing.
+* To bypass the verification prompt, the user can follow `clear` with `--force`. This will clear the address book without additional prompting.
 
 ### Exiting the program : `exit`
 
