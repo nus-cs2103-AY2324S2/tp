@@ -71,60 +71,92 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
 
-Adds a person to the address book.
+### Adding a patient medical record: `add`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Adds a patient medical record to the system.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add ic/NRIC n/NAME p/PHONE_NUMBER [g/GENDER] b/BIRTHDATE i/ILLNESS_CATEGORY [d/DRUG_ALLERGIES]`
+
+* `NRIC` must be an alphanumeric and it must follow Singapore's NRIC format
+* `NAME` can contain an alphanumeric, spaces, special characters.
+* `PHONE_NUMBER` numeric characters and must follow the format "+65 XXXXXXXX".
+* `GENDER` Male or M, Female F or exclude from the command for Prefer not to say option.
+* `BIRTHDATE` must be in the form of DD-MM-YYYY and must not be in the future.
+* `ILLNESS` one of the following options - Infectious Disease, Chronic Conditions, Autoimmune Disorders, 
+Genetic Disorders, Mental Health Disorders, Neurological Disorders, Metabolic Disorder, Nutritional Deficiencies, 
+Environmental Illnesses, Degenerative Diseases or Others.
+* `DRUG_ALLERGIES` can contain an alphanumeric, spaces, special characters.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add ic/S9974944F n/John Doe p/91234567 g/Male b/11-11-1990 i/Infectious Disease d/Paracetamol Allergy` Adds a new 
+patient record with nric of `S9974944F` name of `John Doe`, phone no. of `+65 91234567`, gender of `Male`, 
+birthdate of `11-11-1990`, llness of `Infectious Disease` and allergy of `Paracetamol Allergy`.
+### Listing all patient medical records : `list`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
+Displays the list of patients in the application. Each row of patients displays a basic details of the patients 
+(e.g. name, gender, age, illness, phone number)
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a patient medical record : `edit`
 
-Edits an existing person in the address book.
+Edits a particular patient medical record. Users can select which particular detail to be updated.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit PATIENT_
+INDEX [ic/NRIC] [n/NAME] [p/PHONE_NUMBER] [g/GENDER] [b/BIRTHDATE] [i/ILLNESS_CATEGORY] 
+[d/DRUG_ALLERGIES]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Edit should have atleast one parameter / detail to update.
+</div>
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Edits the medical record at the specified `PATIENT_INDEX`. The index refers to the index number shown in the 
+displayed patient medical record list. The index **must be a positive integer** 1, 2, 3, …​
+* `NRIC` must be an alphanumeric and it must follow Singapore's NRIC format
+* `NAME` can contain an alphanumeric, spaces, special characters.
+* `PHONE_NUMBER` numeric characters and must follow the format "+65 XXXXXXXX".
+* `GENDER` Male or M, Female F or exclude from the command for Prefer not to say option.
+* `BIRTHDATE` must be in the form of DD-MM-YYYY and must not be in the future.
+* `ILLNESS` one of the following options - Infectious Disease, Chronic Conditions, Autoimmune Disorders,
+  Genetic Disorders, Mental Health Disorders, Neurological Disorders, Metabolic Disorder, Nutritional Deficiencies,
+  Environmental Illnesses, Degenerative Diseases or Others.
+* `DRUG_ALLERGIES` can contain an alphanumeric, spaces, special characters.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+*  `edit 1 n/Mark Tan p/94505333 g/Female b/11-11-1991 i/Genetic Disorders d/Antibiotic Allergy` Edit the whole patient 
+medical record that has the `PATIENT_INDEX` of 1.
+*  `edit 1 g/Male b/11-07-1999` Edits patient medical record that has the `PATIENT_INDEX` of 1 to have a gender of 
+`Male` and birthdate of `11-07-1999`.
+
+[//]: # (### Locating persons by name: `find`)
+
+[//]: # ()
+[//]: # (Finds persons whose names contain any of the given keywords.)
+
+[//]: # (Format: `find KEYWORD [MORE_KEYWORDS]`)
+
+[//]: # ()
+[//]: # (* The search is case-insensitive. e.g `hans` will match `Hans`)
+
+[//]: # (* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`)
+
+[//]: # (* Only the name is searched.)
+
+[//]: # (* Only full words will be matched e.g. `Han` will not match `Hans`)
+
+[//]: # (* Persons matching at least one keyword will be returned &#40;i.e. `OR` search&#41;.)
+
+[//]: # (  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+
+[//]: # ()
+[//]: # (Examples:)
+
+[//]: # (* `find John` returns `john` and `John Doe`)
+
+[//]: # (* `find alex david` returns `Alex Yeoh`, `David Li`<br>)
+
+[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
 ### Deleting a person : `delete`
 
@@ -217,8 +249,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Add Patient Medical Record** | `add ic/NRIC n/NAME p/PHONE_NUMBER [g/GENDER] b/BIRTHDATE i/ILLNESS_CATEGORY [d/DRUG_ALLERGIES]` <br> e.g. `add ic/S9974944F n/John Doe p/91234567 g/Male b/11-11-1990 i/Infectious Disease d/Paracetamol Allergy`
+**List All Patient Medical Records** | `list`
+**Edit Patient Medical Record** | `edit PATIENT_INDEX [ic/NRIC] [n/NAME] [p/PHONE_NUMBER] [g/GENDER] [b/BIRTHDATE] [i/ILLNESS_CATEGORY] [d/DRUG_ALLERGIES]` <br> e.g. `edit 1 g/Male b/11-07-1999`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
@@ -226,3 +259,4 @@ Action | Format, Examples
 **Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete 1 2`
 **List** | `list`
 **Help** | `help`
+**Clear** | `clear`
