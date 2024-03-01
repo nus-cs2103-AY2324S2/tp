@@ -69,7 +69,7 @@ Hi, I’m Wei Hao, a year 2 Computer Science Student. I’m from Malaysia. I pla
 
 <img src="images/nyankoclaws.png" width="200px">
 
-I’m a Y2 CS & Psych double major. I like to sleep at least 8hrs :) 
+I’m a Y2 CS & Psych double major. I like to sleep at least 8hrs :)
 
 [[projects]()]
 [[github](http://github.com/nyankoclaws)]
