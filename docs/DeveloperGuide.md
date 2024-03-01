@@ -401,10 +401,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+2.  Should work without requiring an installer.
+3.  Should be packaged into a single jar file.
+4.  Should be below the size limit of 100MB for FINDvisor and 15MB for Docs.
+5.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+6.  Should not depend on a remote server.
+7.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+8.  Should not cause any resolution-related inconveniences to user.
+9.  Should store data locally in a human editable text file without the use of DBMS.
+10. Should be used by a single user.
+11. Command names should be representative of their actions.
 
 ### Glossary
 
