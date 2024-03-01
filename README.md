@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2324S2-CS2103T-F11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103T-F11-4/tp/actions)
 
 # Dormie
 <img src="docs/images/dormie.png" width="250">
@@ -15,7 +15,7 @@ P.S. It is named `Dormie` because it is a playful and friendly abbreviation of "
   - Create a new contact
   - Edit a current contact
   - Delete an old contact
-* For the detailed documentation of this project, see the **[Dormie Product Website]()**.
+* For the detailed documentation of this project, see the **[Dormie Product Website](https://ay2324s2-cs2103t-f11-4.github.io/tp/)**.
 
 ## Additional Information
 * This is **a sample project for Software Engineering (SE) students**.<br>
@@ -25,4 +25,3 @@ P.S. It is named `Dormie` because it is a playful and friendly abbreviation of "
 * The project simulates an ongoing software project for a desktop application (called _Dormie_) used for managing contact details.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
