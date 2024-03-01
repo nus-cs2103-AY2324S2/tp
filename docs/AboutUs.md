@@ -15,8 +15,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/kokerinks)] [[linkedin](https://www.linkedin.com/in/lim-kok-liang/)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing, Integration
+* Responsibilities:
 
 ### Billy Ho Cheng En
 
@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/billyhoce)]
 [[portfolio](team/billyho.md)]
 
-* Role: Developer
+* Role: Team lead, Deliverables and dealines
 * Responsibilities:
 
 ### Khushi Bhagwat
@@ -35,25 +35,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/kab-dot)] 
 [[portfolio](team/khushibhagwat.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Documentation, Scheduling
+* Responsibilities:
 
 ### Kinjal Agarwal
 
 <img src="images/kinjalagarwal1810.png" width="200px">
 
 [[github](http://github.com/kinjalagarwal1810)]
+[[portfolio](team/kinjalagarwal1810.md)]
 
-
-* Role:
+* Role: Code Quaility
 * Responsibilities:
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
