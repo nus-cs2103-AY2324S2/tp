@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# MatchMate Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,29 +274,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+John in a NUS computer science student taking various courses with a group project component. He wishes to create groups among his friends / acquaintances and find balanced groups with diverse skillsets out of his own contact list.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+To allow students to find balanced groups with diverse skillsets out of their own contact list.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                         | I want to …​                 | So that I can…​                                                        |
+|----------|------------------------------------------------|------------------------------|------------------------------------------------------------------------|
+| `* * *`  | student | easily add new coursemates with their information |  |
+| `* * *`  | careless user | edit information in the coursemate list | fix typos or inaccurate information about my friends mistakenly inputted into the app |
+| `* * *`  | careless user | delete an entry from the coursemate list | remove information mistakenly added to the app |
+| `* * *`  | student | add or remove skills of a coursemate | remember the strengths of each coursemate and consider them during team formation |
+| `* * *`  | lazy user | search through my list using specific keywords | avoid scrolling through the entire list |
+| `* * *`  | student finding group project partners | search for coursemates out of my contact list with a specific skillset | find a partner who is interested in or good at that particular course or subject |
+| `* * *`  | student forming group project teams | create a group project within the app and add coursemates to the group | remember who is already in the team |
+| `* * *`  | student forming group project teams | remove coursemates from a group | maintain information correctness after some coursemates are mistakenly added to the group |
+| `* *`    | user who may not have the best eyesight | change the font size of texts in the app | I can adjust to a size most suited to me |
+| `* *`    | clueless student new to using the app | know what skills I should look out for in my friends | |
+| `* *`    | lazy user | autocomplete some commands with possible inputs | complete my tasks faster |
+| `* *`    | busy user | use the "up" arrow key for the app to display the previous command | save time typing a series of similar commands with common substrings |
+| `* *`    | new user | easily find a list of commands and how they are used | start using the app without difficulties |
+| `* *`    | student finding group project partners among acquaintances | maintain the contact details of my friends (telegram handles) in the app | easily contact potential groupmates who I don't frequently contact |
+| `* *`    | student finding group project partners | input the courses each of my friends are planning to take or confirmed to take | limit my search to friends taking that specific course only |
+| `* *`    | student finding group project partners | mark coursemates as either friends or acquaintances | prioritise creating groups with some friends over acquaintances |
+| `* *`    | student forming a group | set some skills as extremely important | prioritise those skills while searching for team members |
+| `* *`    | student creating a group | search for possible combinations that match the required types of roles and skills | form project groups that require different kinds of roles or skills per member |
+| `* *`    | student forming a group | save a certain filter or search setting with a label | reuse my past search setting when I take courses of similar nature |
+| `* *`    | student forming a group | save the set of friends I already contacted with and their respective outcomes | know who else to consider and contact |
+| `* *`    | user who primarily used other formats to organize contacts | import data from a file | save the hassle of manually adding to the contact list |
+| `*`      | student bidding for tutorials of courses with group projects | maintain each potential partners' availability for different tutorial slots | decide on a common tutorial slot to bid for |
+| `*`      | student with past group project experiences | rate and review my group members after completing a project together | remember their skills, work ethics and collaboration styles during the next team formation |
+| `*`      | user with colour vision deficiency | customize the app's colour palette | better suit my visual needs and ensure that important elements and information are easily distinguishable |
+| `*`      | busy user | create alias commands | run long repetitive commands using a shorter self-made command |
 
-*{More to be added}*
+
 
 ### Use cases
 
