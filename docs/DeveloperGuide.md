@@ -334,18 +334,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a contact**
+**Use case: UC01 — Delete a contact**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list contacts
+1.  User !!requests to list contacts (UC04)!!
 2.  AddressBook shows a list of contacts
 3.  User requests to delete a specific contact in the list
 4.  AddressBook deletes the contact
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -357,9 +357,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Help**
+**Use case: UC02 — Help**
 
-**MSS**
+**MSS:**
 
 1.  User requests help information.
 2.  AddressBook displays help information.
@@ -367,9 +367,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add**
+**Use case: UC03 — Add a contact**
 
-**MSS**
+**MSS:**
 
 1.  User requests to add a new contact and inputs details for the new contact.
 2.  AddressBook saves the new contact's information.
@@ -377,25 +377,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
-*  1a. User does not input enough parameters along with the contact.
+*  1a. User does not input all compulsory parameters along with the contact.
 
     *  1a1. AddressBook prompts the user on the proper usage of the command.
 
         Step 1a1 is repeated until the data entered is correct.
+   
+*  1b. User tries to add a contact with an existing email address.
 
-**Use case: List**
+    *  1b1. AddressBook displays and error message informing the user that the email address already exists.
+    
+        Step 1b1 is repeated until a valid email address if entered.
 
-**MSS**
+**Use case: UC04 — List all contacts**
+
+**MSS:**
 
 1.  User requests to list contacts.
-2.  AddressBook shows a list of contacts.
+2.  AddressBook shows the list of contacts.
 3.  User views the list of contacts.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -403,17 +409,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Edit**
+**Use case: UC05 — Edit a contact's details**
 
-**MSS**
+**MSS:**
 
 1.  User requests to edit a specific contact with updated details.
 2.  AddressBook saves the updated details.
 3.  AddressBook confirms the successful update.
 
     Use case ends.
-x
-**Extensions**
+
+**Extensions:**
 
 *   1a. User does not input enough parameters along with the contact.
 
@@ -427,16 +433,16 @@ x
 
       Use case ends.
 
-**Use case: Find**
+**Use case: UC06 — Find contacts**
 
-**MSS**
+**MSS:**
 
 1.  User requests to find a specific contact matching the search criteria.
 2.  AddressBook displays a list of contacts matching the criteria.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 *    1a. No contacts match the search criteria.
 
@@ -465,16 +471,17 @@ into user's clipboard.
 
     Use case ends.
 
-**Use case: Clear**
+**Use case: UC07 — Clear all contacts**
 
-**MSS**
+**MSS:**
 
 1.  User requests to clear all contacts.
-2.  AddressBook clears all contacts and displays a message indicating that all contacts have been cleared.
+2.  AddressBook clears all contacts 
+3.  AddressBook displays a message indicating that all contacts have been cleared.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 *    1a. User inputs extraneous parameters.
 
@@ -482,16 +489,26 @@ into user's clipboard.
      
          Use case ends.
 
-**Use case: Exit**
+**Use case: UC08 — Export contacts to CSV**
 
-**MSS**
+**MSS:**
+
+1.  User requests to export all contacts and details to a CSV file.
+2.  AddressBook exports the contacts to a CSV file.
+3.  AddressBook displays a message to confirm that all contacts have been exported to a CSV file.
+    
+    Use case ends.
+
+**Use case: UC09 — Exit application**
+
+**MSS:**
 
 1.  User requests to exit the application.
 2.  AddressBook exits the application.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 *    1a. User inputs extraneous parameters.
 
