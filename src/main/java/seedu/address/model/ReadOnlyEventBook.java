@@ -3,7 +3,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 
 
-interface ReadOnlyEventBook {
+public interface ReadOnlyEventBook {
 
     /**
      * Returns an unmodifiable view of the events list.

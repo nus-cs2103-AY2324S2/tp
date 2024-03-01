@@ -86,6 +86,18 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void setEventBook(ReadOnlyEventBook eventBook);
+
+    ReadOnlyEventBook getEventBook();
+
+    boolean hasEvent(Event event);
+
+    void deleteEvent(Event target);
+
+    void addEvent(Event event);
+
+    void setEvent(Event target, Event editedEvent);
+
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 }

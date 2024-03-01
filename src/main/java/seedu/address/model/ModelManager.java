@@ -117,13 +117,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-
-    //=========== Filtered Event List Accessors =============================================================
-    @Override
-    public ObservableList<Event> getFilteredEventList() {
-        return filteredEvents;
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -156,6 +149,48 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    //=========== EventBook ================================================================================
+
+    @Override
+    public void setEventBook(ReadOnlyEventBook eventBook) {
+        this.eventBook.resetData(eventBook);
+    }
+
+    @Override
+    public ReadOnlyEventBook getEventBook() {
+        return eventBook;
+    }
+
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return eventBook.hasEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        eventBook.removeEvent(target);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        eventBook.addEvent(event);
+        // updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        eventBook.setEvent(target, editedEvent);
+    }
+
+
+    //=========== Filtered Event List Accessors =============================================================
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
     }
 
 }
