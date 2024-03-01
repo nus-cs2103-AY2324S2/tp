@@ -29,9 +29,9 @@ If you can type fast, RDX can get your contact management tasks done faster than
 
 1. Some example commands you can try:
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd client contact shown in the current list.
+   * `delete John Doe` : Deletes the client with name `John Doe` from the current list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -47,10 +47,7 @@ If you can type fast, RDX can get your contact management tasks done faster than
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -59,24 +56,25 @@ If you can type fast, RDX can get your contact management tasks done faster than
 
 Adds a client to the Realodex.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INCOME fs/FAMILY_SIZE an/ADDITIONAL_NOTES`
+Format: `add n/NAME a/ADDRESS i/INCOME fs/FAMILY_SIZE an/ADDITIONAL_NOTES`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.`
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 i/$0 fs/1 an/NIL.`
+* `add n/John Doe a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.`
+* `add n/Betsy Crowe a/Newgate Prison i/$0 fs/1 an/NIL.`
 
 ### Deleting a client : `delete`
 
 Deletes the specified client from the address book.
 
-Format: `delete INDEX`
+Format: `delete`
 
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+enter client's `NAME` after prompt is shown
+
+* Deletes the client of the specified `NAME`.
+* If name is **not found**, error message will be shown `"NAME" is not found`.
 
 Examples:
-* `delete 2` deletes the 2nd client in the Realodex.
+* `delete` followed by `Udhaya Shanmugam` deletes the client in the address book with the name "Udhaya Shanmugam.
 
 ### Exiting the program : `exit`
 
@@ -103,19 +101,6 @@ Furthermore, certain edits can cause the Realodex to behave in unexpected ways (
 
 _Details coming soon ..._
 
-### Deleting a client : `delete`
-
-Deletes the specified client from the address book.
-
-Format: `delete`
-
-enter client's `NAME` after prompt is shown
-
-* Deletes the client of the specified `NAME`.
-* If name is **not found**, error message will be shown `"NAME" is not found`.
-
-Examples:
-* `delete` followed by `Udhaya Shanmugam` deletes the client in the address book with the name "Udhaya Shanmugam.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -136,5 +121,5 @@ Examples:
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INCOME fs/FAMILY_SIZE an/ADDITIONAL_NOTES` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Add**    | `add n/NAME a/ADDRESS i/INCOME fs/FAMILY_SIZE an/ADDITIONAL_NOTES` <br> e.g., `add n/John Doe a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.`
+**Delete** | `delete NAME`<br> e.g., `delete John`
