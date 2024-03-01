@@ -43,10 +43,11 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        try {
+            return new Name(trimmedName);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return new Name(trimmedName);
     }
 
     /**

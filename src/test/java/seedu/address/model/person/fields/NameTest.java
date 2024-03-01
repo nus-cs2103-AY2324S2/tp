@@ -1,5 +1,6 @@
 package seedu.address.model.person.fields;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -15,27 +16,19 @@ public class NameTest {
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
+        assertThrows(IllegalArgumentException.class, () -> new Name("")); // empty string
+        assertThrows(IllegalArgumentException.class, () -> new Name(" ")); // spaces only
+        assertThrows(IllegalArgumentException.class, () -> new Name("^")); // only non-alphanumeric characters
+        assertThrows(IllegalArgumentException.class, () -> new Name("peter*")); // contains non-alphanumeric characters
     }
 
     @Test
-    public void isValidName() {
-        // null name
-        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
-
-        // invalid name
-        assertFalse(Name.isValidName("")); // empty string
-        assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
-
-        // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    public void constructor_validName_success() {
+        assertDoesNotThrow(() -> new Name("peter jack")); // alphabets only
+        assertDoesNotThrow(() -> new Name("12345")); // numbers only
+        assertDoesNotThrow(() -> new Name("peter the 2nd")); // alphanumeric characters
+        assertDoesNotThrow(() -> new Name("Capital Tan")); // with capital letters
+        assertDoesNotThrow(() -> new Name("David Roger Jackson Ray Jr 2nd")); // long names
     }
 
     @Test
@@ -57,4 +50,5 @@ public class NameTest {
         // different values -> returns false
         assertFalse(name.equals(new Name("Other Valid Name")));
     }
+
 }

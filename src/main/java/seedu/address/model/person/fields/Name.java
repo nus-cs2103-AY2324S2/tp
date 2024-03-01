@@ -18,9 +18,9 @@ public class Name implements Field {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String name;
+    private final String name;
 
     /**
      * Constructs a {@code Name}.
@@ -36,7 +36,7 @@ public class Name implements Field {
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    private static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
