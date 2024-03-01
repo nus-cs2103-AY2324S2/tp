@@ -329,11 +329,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. **Environment**: Should work on any _mainstream_ OS as long as it has Java `11` or above installed.
+2. **Performance**: Should respond to user interaction within 3 seconds at most for typical usage (unless it is lagging due to reasons external to the app).
+3. **Performance**: Should be able to hold up to 1000 _coursemates_ without a noticeable sluggishness in performance (as specified above) for typical usage.
+4. **Resilience**: Should gracefully handle commonly anticipated errors (e.g. incorrect _command_ input) without crashing or losing saved data.
+5. **Accessibility**: Should notify the user whether a _command_ is successful or has failed.
+6. **Accessibility**: Should be accessible to English speakers with average typing speed.
+7. **Accessibility**: Usage of basic _commands_ (e.g. add, edit) should be learnable within a day.
 
 ### Glossary
 
