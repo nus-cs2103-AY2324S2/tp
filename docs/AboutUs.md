@@ -7,55 +7,32 @@
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Tan Zhi Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanzhiheng26.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/Tanzhiheng26)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
+### Zhu Yi Cheng
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/zhuuyicheng)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
+### Xu Zi Qi
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ziiqii)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Wong Xu Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ksswsept20.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/KSSWSept20)]
 [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
