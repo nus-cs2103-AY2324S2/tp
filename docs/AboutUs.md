@@ -29,6 +29,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/kintatho)]
 [[portfolio](team/kintat.md)]
 
+* Role: Developer
+* Responsibilities: Integration
+
 
 ### Liu Yiyang
 
