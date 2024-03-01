@@ -235,7 +235,8 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-#### Design considerations:
+
+### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -287,16 +288,19 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As an …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  |internship applicant                       | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | internship applicant                       | assign tags to contacts      | categorize and easily identify and prepare for the interview           |
-| `* * *`  | internship applicant                       | customize tag colors         | visually differentiate between different stages                      |
-| `* * *`  | internship applicant                       | sort contacts by dates       | prioritize and plan for upcoming interviews                          |
-| `* * *`  | internship applicant                       | filter contacts by date      | quickly access contacts associated with a specific date                |
-| `* * *`  | internship applicant                       | filter contacts by tag       | easily find and manage contacts within specific categories             |
-| `* * *`  | internship applicant                       | add a time to a contact      | record when a specific task or interaction needs to be done            |
-| `* * *`  | internship applicant                       | add notes to contacts        | include important details or information about specific users         |
+| Priority | As an …​             | I want to …​                                            | So that I can…​                                                                                   |
+|----------|----------------------|---------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *`  | internship applicant | add contact information of internship companies         | easily access their details when needed                                                           |
+| `* * *`  | internship applicant | delete contact information of internship companies      | easily remove any old or irrelevant company contacts                                              |
+| `* * *`  | internship applicant | edit contact information of internship companies        | easily update any details on the go                                                               |
+| `* * *`  | internship applicant | see usage instructions                                  | refer to instructions when I forget how to use the AddressBook                                    |
+| `* * *`  | internship applicant | find the contact information of a certain company       | easily search which company contact I want by name                                                |
+| `* * *`  | internship applicant | keep track of the status of each internship application | categorize and easily follow up accordingly                                                       |
+| `* * *`  | internship applicant | sort company contacts by dates                          | prioritize and plan for upcoming interviews                                                       |
+| `* * `   | internship applicant | filter company contacts by date                         | quickly access contacts associated with a specific date                                           |
+| `* * `   | internship applicant | filter company contacts by tag                          | easily find and manage contacts within specific categories                                        |
+| `* * `   | internship applicant | add a time to a company contact                         | record when a specific task or interaction needs to be done                                       |
+| `* `     | internship applicant | add notes to company contacts                           | include important details or information about specific interviews and what I can learn from them |
 
 
 ### Use cases
@@ -310,13 +314,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. Internship Applicant inputs contact information of internship company.
-2. IH stores the contact information.
+2. System stores the contact information.
 3. Use case ends.
 
 **Extensions:**
 
-* 1a. IH detects an error in the entered data.
-    * 1a1. IH requests for the correct data.
+* 1a. System detects an error in the entered data.
+    * 1a1. System requests for the correct data.
     * 1a2. Internship Applicant enters new data.
     * Steps 1a1-1a2 are repeated until the data entered are correct.
     * Use case resumes from step 2.
@@ -333,19 +337,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. Internship Applicant inputs index of contact to be deleted.
-2. IH deletes the relevant contact information.
+2. System deletes the relevant contact information.
 3. Use case ends.
 
 **Extensions:**
 
-* 1a. IH detects an error in index of contact
-    * 1a1. IH requests for proper input of index (1 to current number of contacts)
+* 1a. System detects an error in index of contact
+    * 1a1. System requests for proper input of index (1 to current number of contacts)
     * 1a2. Internship Applicant enters the correct index.
     * Steps 1a1-1a2 are repeated until the selection is correct.
     * Use case resumes from step 2.
 
 * *a. At any time, the Internship Applicant chooses to cancel to detect contact.
-    * *a1. IH cancels deletion of contact.
+    * *a1. System cancels deletion of contact.
     * Use case ends.
 
 ---
@@ -357,25 +361,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. Internship Applicant chooses contact to edit by its index and enters relevant fields to be modified
-2. IH modifies that corresponding field of that contact
+2. System modifies that corresponding field of that contact
 3. Use case ends
 
 **Extensions:**
 
-* 1a. IH detects an error in index of contact
-    * 1a1. IH requests for proper input of index (1 to current number of contacts)
+* 1a. System detects an error in index of contact
+    * 1a1. System requests for proper input of index (1 to current number of contacts)
     * 1a2. Internship Applicant enters the correct index.
     * Steps 1a1-1a2 are repeated until the selection is correct.
     * Use case resumes from step 2.
 
-* 1a. IH detects an error in the fields to be edited (No fields at all or incorrect field prefixes)
-    * 1a1. IH requests for proper input of fields and correct prefix
+* 1a. System detects an error in the fields to be edited (No fields at all or incorrect field prefixes)
+    * 1a1. System requests for proper input of fields and correct prefix
     * 1a2. Internship Applicant enters the fields to be edited.
     * Steps 1a1-1a2 are repeated until the selection is correct.
     * Use case resumes from step 2.
 
 * *a. At any time, the Internship Applicant chooses to cancel to edit contact.
-    * *a1. IH cancels edit of contact.
+    * *a1. System cancels edit of contact.
     * Use case ends.
 
 ---
@@ -388,14 +392,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Internship Applicant chooses to filter contacts by tag.
 2. Internship Applicant inputs the tag.
-3. IH filters the contacts associated with the selected tag.
-4. IH displays the filtered contacts.
+3. System filters the contacts associated with the selected tag.
+4. System displays the filtered contacts.
 5. Use case ends.
 
 **Extensions:**
 
-* 2a. IH detects an error in tag to be filtered
-    * 2a1. IH requests for proper input of tag (One of existing tags)
+* 2a. System detects an error in tag to be filtered
+    * 2a1. System requests for proper input of tag (One of existing tags)
     * 2a2. Internship Applicant enters the correct tag.
     * Steps 2a1-2a2 are repeated until the selection is correct.
     * Use case resumes from step 3.
@@ -413,30 +417,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. Internship Applicant chooses contact to be viewed on view panel.
-2. IH requests for the specific contact index.
+2. System requests for the specific contact index.
 3. Internship Applicant enters the contact index.
-4. IH views the relevant contact on the view panel.
+4. System views the relevant contact on the view panel.
 5. Use case ends.
 
 **Extensions:**
 
 * 3a. IH detects an error in index of contact
-    * 3a1. IH requests for proper input of index (1 to current number of contacts)
+    * 3a1. System requests for proper input of index (1 to current number of contacts)
     * 3a2. Internship Applicant enters the correct index.
     * Steps 3a1-3a2 are repeated until the selection is correct.
     * Use case resumes from step 3.
 
 * *a. At any time, Internship Applicant chooses to cancel to view contact.
-    * *a1. IH cancels viewing of contact.
+    * *a1. System cancels viewing of contact.
     * Use case ends.
+
+---
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
