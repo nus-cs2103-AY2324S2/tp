@@ -1,16 +1,30 @@
 ---
-  layout: default.md
-  title: "User Guide"
-  pageNav: 3
+layout: default.md
+title: "User Guide"
+pageNav: 3
 ---
 
-# AB-3 User Guide
+# CulinaryContacts User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+CulinaryContacts is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
-<page-nav-print />
-
+* [Quickstart](#quick-start)
+* [Features](#features)
+    * [Viewing help:`help`](#viewing-help--help)
+    * [Adding a person: `add`](#adding-a-person-add)
+    * [Listing all persons: `list`](#listing-all-persons--list)
+    * [Editing a person: `edit`](#editing-a-person--edit)
+    * [Locating persons by name: `find`](#locating-persons-by-name-find)
+    * [Filtering persons by tag: `filter`](#filtering-persons-by-tag-filter)
+    * [Deleting a person: `delete`](#deleting-a-person--delete)
+    * [Exiting the program: `exit`](#exiting-the-program--exit)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#saving-the-data)
+    * [Archiving datafiles `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+* [FAQ](#faq)
+* [Known issues](#known-issues)
+* [Command summary](#command-summary)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -68,7 +82,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows the full command summary of CulinaryContacts at a glance. 
 
 ![help message](images/helpMessage.png)
 
@@ -128,8 +142,26 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find alex david` returns `Alex Yeoh` and `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Filtering persons by tag: `filter`
+
+Finds persons that are tagged with any of the given tags.
+
+Format: `filter TAG [MORE_TAGS]`
+
+* The search is case-insensitive. e.g `friends` will match with `Friends`.
+* The order of the tags does not matter. e.g. `friends family` will match `family friends`.
+* Only the tag is searched.
+* Only full tags will be matched e.g. `friend` will not match `friends`
+* Persons matching at least one tag will be returned (i.e. `OR` search).
+  e.g. `friends family` will return persons with either the `friends` tag or `family` tag, or both `friends` and `family` tag.
+
+Examples:
+* `filter friends` returns `Alex Yeoh` and `Bernice Yu`
+* `filter family criminal` returns `David Li` and `Crowe`<br>
+  ![result for 'filter family criminal'](images/filterFamilyCriminal.png)
 
 ### Deleting a person : `delete`
 
@@ -151,6 +183,11 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+* A pop-up confirmation message will appear, where the user must confirm their choice `Are you sure you want to clear ALL contacts? [y/n]`.<br>
+  ![result for 'clear'](images/clearConfirmationMessage.png)
+  * If user types `y`, all contacts will be cleared and a success message will be shown: `Address book has been cleared!`.
+  * If user types `n` or anything else, the clear command will be cancelled and a message will be shown: `Clear cancelled!`.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -166,7 +203,6 @@ AddressBook data are saved in the hard disk automatically after any command that
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
-
 **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
