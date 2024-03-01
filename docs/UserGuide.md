@@ -150,7 +150,7 @@ Format: `mark_payment INDEX`
 * Marks payment of student at the specified `INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1,2,3, ...
-* It is encouraged to use the ![find](#locating-persons-by-name-find) command to search for a particular student for his/her index.
+* It is encouraged to use the [find](#locating-persons-by-name-find) command to search for a particular student for his/her index.
 
 Examples:
 * `find john doe` returns `John Doe` with an index 2.
