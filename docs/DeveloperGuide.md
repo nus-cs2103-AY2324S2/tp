@@ -274,13 +274,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of clients for social work, that is dynamically changing
+* has a need to efficiently track cases and get important information at a glance
+* has a need to easily add notes and observations during visits to record important details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage and view client information more efficiently than a standard word-editor/address book/spreadsheet
 
 
 ### User stories
