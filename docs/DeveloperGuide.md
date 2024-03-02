@@ -408,7 +408,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  Should be able to display multiple lists of applicants/interviews/interviewers without a noticeable sluggishness in performance for typical usage.
+4.  Should be responsive in all functionality, especially updating and displaying the list after each request.
+5.  Should be able to reliably preserve application data across multiple sessions without risk of data loss/corruption.
+6.  Should not leak applicant details, especially email and phone number, outside the application.
+7.  Should provide specific error messages to guide users on intended usage of features.
+8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
