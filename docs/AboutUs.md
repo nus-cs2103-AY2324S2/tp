@@ -5,7 +5,7 @@
 
 # About Us
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team taking the Software Engineering (CS2310T) course offered by [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
 
@@ -13,26 +13,27 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/tanzhiheng26.png" width="200px">
 
+email address: `e0957625@u.nus.edu`<br>
 [[github](https://github.com/Tanzhiheng26)]
-[[portfolio](team/johndoe.md)]
 
 ### Zhu Yi Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhuuyicheng.png" width="200px">
 
+email address: `e0957889@u.nus.edu`<br>
 [[github](https://github.com/zhuuyicheng)]
-[[portfolio](team/johndoe.md)]
 
 ### Xu Zi Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ziiqii.png" width="200px">
 
-[[github](https://github.com/ziiqii)] [[portfolio](team/johndoe.md)]
+email address: `e0957458@u.nus.edu`<br>
+[[github](https://github.com/ziiqii)] 
 
 
 ### Wong Xu Cheng
 
 <img src="images/ksswsept20.png" width="200px">
 
+email address: 'e1075556@u.nus.edu`<br>
 [[github](http://github.com/KSSWSept20)]
-[[portfolio](team/johndoe.md)]
