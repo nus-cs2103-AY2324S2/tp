@@ -274,7 +274,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* CS students 
+* CS students
 * has a need to keep track of contacts of companies and interview dates during thier internship hunt
 * prefer a one-stop, centralised dashboard to manage all contact details of companies
 * is reasonably comfortable in using a more CLI based app
