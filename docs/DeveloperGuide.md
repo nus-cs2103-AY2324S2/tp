@@ -331,7 +331,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  The system should be responsive, with a maximum response time of 3 seconds for any user action
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  The application should be able to handle concurrent users without any significant performance degradation
+6.  The user interface should be intuitive and easy to navigate, requiring minimal training for social workers to use effectively.
+7.  The system should work without access to the internet
 
 *{More to be added}*
 
@@ -339,6 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Command Line Interface (CLI)**: A CLI is a text-based interface used to run programs, manage computer file sand interact with the computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
