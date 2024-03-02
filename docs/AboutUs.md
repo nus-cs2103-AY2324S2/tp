@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Hariprasath S/O R Mohan
 
-<img src="images/HM33-Stu.PNG" width="200px">
+<img src="images/HM33-Stu.png" width="200px">
 
 [[github](http://github.com/HM33-Stu)]
 [[portfolio](team/HM33-Stu.md)]
