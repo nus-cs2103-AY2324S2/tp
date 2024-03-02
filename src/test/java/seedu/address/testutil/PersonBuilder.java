@@ -27,6 +27,9 @@ public class PersonBuilder {
     private Remark remark;
     private Set<Tag> tags;
 
+    /**
+     * Initializes the PersonBuilder.
+     */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
@@ -86,7 +89,10 @@ public class PersonBuilder {
         return this;
     }
 
-
+    /**
+     * Builds the {@code Person} with the given {@code Name}, {@code Phone},
+     * {@code Email},{@code Remark} and {@code Tags}.
+     */
     public Person build() {
         return new Person(name, phone, email, remark, tags);
     }
