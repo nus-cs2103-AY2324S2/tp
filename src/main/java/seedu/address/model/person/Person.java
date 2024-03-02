@@ -18,22 +18,24 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final StudentId studentId;
+    private final TelegramHandle telegramHandle;
+    //private final Phone phone;
     private final Email email;
 
     // Data fields
-    private final Address address;
+    //private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Set<Tag> tags) {
+        requireAllNonNull(name, studentId, email, telegramHandle, tags);
         this.name = name;
-        this.phone = phone;
+        this.studentId = studentId;
         this.email = email;
-        this.address = address;
+        this.telegramHandle = telegramHandle;
         this.tags.addAll(tags);
     }
 
@@ -41,16 +43,16 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public StudentId getStudentId() {
+        return studentId;
     }
 
     public Email getEmail() {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public TelegramHandle getTelegramHandle() {
+        return telegramHandle;
     }
 
     /**
@@ -71,7 +73,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getStudentId().equals(getStudentId());
     }
 
     /**
@@ -91,25 +94,25 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
+                && studentId.equals(otherPerson.studentId)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && telegramHandle.equals(otherPerson.telegramHandle)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, studentId, email, telegramHandle, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
+                .add("student id", studentId)
                 .add("email", email)
-                .add("address", address)
+                .add("telegram handle", telegramHandle)
                 .add("tags", tags)
                 .toString();
     }
