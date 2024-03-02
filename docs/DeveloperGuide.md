@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# CulinaryContacts Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,29 +274,53 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* small family restaurant owners
+* has a need to manage a significant number of contacts such as suppliers, employees and customers
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+This app offers streamlined contact and reservation management for small family-owned restaurants, enhancing operational efficiency without covering financial or inventory aspects. It also categorises and stores detailed information about suppliers and the food that they sell to help owners keep track of volatile contacts.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                 | I want to …​                                                                                  | So that I can…​                                                    |
+|----------|-------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | new user                | view the user guide easily                                                                    | learn more about the app as and when I need                        |
+| `* * *`  | new user                | use a command to exit the program                                                             | close the application without moving my mouse                      |
+| `* * *`  | new user                | add new contacts                                                                              | save their contact details                                         |
+| `* * *`  | new user                | tag new contacts as 'supplier', 'customer' or 'employees'                                     | keep my contact list organized from the start                      |
+| `* * *`  | new user                | view all the contacts that I currently have in my address book                                | see all my contacts at a glance                                    |
+| `* * *`  | new user                | delete existing contacts                                                                      | remove any unwanted or experimental contacts                       |
+| `* * *`  | new user                | find specific contact(s) by name                                                              | find the person I want to contact                                  |
+| `* * *`  | intermediate user       | edit existing contacts                                                                        | update contacts easily without deleting and recreating a new one   |
+| `* * *`  | intermediate user       | filter my contacts by specific tag(s)                                                         | easily find contacts with specific tag(s)                          |
+| `* * *`  | clumsy user             | get a confirmation message when clearing the entire address book                              | avoid accidentally deleting all contacts                           |
+| `* *`    | new user                | see a helpful message when my command is not formatted correctly                              | figure out how to fix my command                                   |
+| `* *`    | new user                | try out the features with some sample data                                                    | understand what each feature does                                  |
+| `* *`    | new user                | tag suppliers with the types of food they supply                                              | easily find the right supplier for specific ingredients            |
+| `* *`    | new user                | tag employees as 'full time' or 'part time'                                                   | easily find the contacts of part time employees during peak period |
+| `* *`    | clumsy user             | see all commands I entered this session                                                       | check what I did previously                                        |
+| `* *`    | clumsy user             | undo my last command                                                                          | undo an erroneous command                                          |
+| `* *`    | user with poor eyesight | view the contact details in a larger window when I click on a contact                         | more easily see the contact details                                |
+| `* *`    | user with poor eyesight | have tags with different colors                                                               | easily differentiate tags                                          |
+| `* *`    | intermediate user       | sort reservations by date and time                                                            | plan the seating arrangement and kitchen workload effectively      |
+| `* *`    | intermediate user       | toggle between previous commands by pressing up and down arrows                               | save time typing commands                                          |
+| `* *`    | intermediate user       | delete multiple contacts in 1 command                                                         | remove contacts more quickly                                       |
+| `* *`    | intermediate user       | see upcoming reservations/events in a dashboard                                               | anticipate and prepare for such events                             |
+| `* *`    | intermediate user       | add special requests (e.g. dietary restrictions) to reservations                              | provide personalized service to my customers                       |
+| `* *`    | expert user             | archive contacts of employees/suppliers whose contracts have expired                          | declutter my contact list                                          |
+| `* *`    | expert user             | create my own aliases and shortcuts                                                           | reduce time spent typing commands                                  |
+| `*`      | clumsy user             | find contacts that match the keyword partially                                                | avoid retyping the command when I make a typo                      |
+| `*`      | intermediate user       | import contacts from other sources                                                            | quickly populate the app with existing information                 |
+| `*`      | intermediate user       | have autocomplete when typing commands                                                        | finish typing the command faster                                   |
+| `*`      | intermediate user       | automatically create a blank email addressed to a contact when I click on his/her email field | email contacts more quickly                                        |
+| `*`      | expert user             | access the app from multiple devices                                                          | manage my contacts and reservations on the go                      |
 
-*{More to be added}*
 
 ### Use cases
 
