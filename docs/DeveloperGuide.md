@@ -343,8 +343,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Command Line Interface (CLI)**: A CLI is a text-based interface used to run programs, manage computer file sand interact with the computer.
-
+* **Command Line Interface (CLI)**: A CLI is a text-based interface used to run programs, manage computer file sand interact with the computer
+* **Main Success Scenario (MSS)**: The primary sequence of steps in a use case that describes the ideal path of interaction between a user and the system without encountering any errors
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
