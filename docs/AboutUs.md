@@ -22,21 +22,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role:
 * Responsibilities:
 
-### Jane Doe
+### Leong Heng Yew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aureliony.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/aureliony)]
+[[portfolio](team/aureliony.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Java Expert
+* Responsibilities: Helps other team members with matters related to the Java programming language.
 
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
