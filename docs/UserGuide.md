@@ -15,12 +15,12 @@ CulinaryContacts is a **desktop app for managing contacts, optimized for use via
     * [Adding a person: `add`](#adding-a-person-add)
     * [Listing all persons: `list`](#listing-all-persons--list)
     * [Editing a person: `edit`](#editing-a-person--edit)
-    * [Locating persons by name: `find`](#locating-persons-by-name-find)
+    * [Finding persons by name: `find`](#finding-persons-by-name-find)
     * [Filtering persons by tag: `filter`](#filtering-persons-by-tag-filter)
     * [Deleting a person: `delete`](#deleting-a-person--delete)
     * [Exiting the program: `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
-    * [Editing the data file](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
     * [Archiving datafiles `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
@@ -97,7 +97,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A person can have any number of tags (including 0).
 </box>
 
 Examples:
@@ -127,22 +127,22 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Finding persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh` and `David Li`<br>
+* `find John` returns `john` and `John Doe`.
+* `find alex david` returns `Alex Yeoh` and `David Li`.<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Filtering persons by tag: `filter`
@@ -154,13 +154,13 @@ Format: `filter TAG [MORE_TAGS]`
 * The search is case-insensitive. e.g `friends` will match with `Friends`.
 * The order of the tags does not matter. e.g. `friends family` will match `family friends`.
 * Only the tag is searched.
-* Only full tags will be matched e.g. `friend` will not match `friends`
+* Only full tags will be matched e.g. `friend` will not match `friends`.
 * Persons matching at least one tag will be returned (i.e. `OR` search).
   e.g. `friends family` will return persons with either the `friends` tag or `family` tag, or both `friends` and `family` tag.
 
 Examples:
-* `filter friends` returns `Alex Yeoh` and `Bernice Yu`
-* `filter family criminal` returns `David Li` and `Crowe`<br>
+* `filter friends` returns `Alex Yeoh` and `Bernice Yu`.
+* `filter family criminal` returns `David Li` and `Crowe`.<br>
   ![result for 'filter family criminal'](images/filterFamilyCriminal.png)
 
 ### Deleting a person : `delete`
