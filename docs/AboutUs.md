@@ -32,7 +32,7 @@ You can reach us at the email `cs2103t_w11_1[at]comp.nus.edu.sg`
 
 <img src="images/LWS49.png" width="200px">
 
-[[github](http://github.com/LWS49)] [[portfolio](team/LWS49.md)]
+[[github](http://github.com/LWS49)] [[portfolio](team/lws49.md)]
 
 * Role: Tech Lead, Scheduling and Tracking
 
