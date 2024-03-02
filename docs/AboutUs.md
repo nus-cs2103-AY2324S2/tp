@@ -45,10 +45,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Axel Teo
 
-<img src="images/axel.png" width="200px">
+<img src="images/teojunda.png" width="200px">
 
 [[github](http://github.com/teojunda)]
-[[portfolio](team/axel.md)]
+[[portfolio](team/teojunda.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
