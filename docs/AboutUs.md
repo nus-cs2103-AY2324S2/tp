@@ -40,12 +40,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ong Zhi Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhikaiong2001.PNG" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/zhikaiong2001)]
+[[portfolio](team/zhikaiong2001.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
