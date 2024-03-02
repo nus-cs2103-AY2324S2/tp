@@ -22,6 +22,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role:
 * Responsibilities:
 
+### Leong Heng Yew
+
+<img src="images/aureliony.png" width="200px">
+
+[[github](http://github.com/aureliony)]
+[[portfolio](team/aureliony.md)]
+
+* Role: Java Expert
+* Responsibilities: Helps other team members with matters related to the Java programming language.
+=======
+
 ### Yee Jun Hyeok Bryan
 
 <img src="images/bryanyee33.png" width="200px">
@@ -36,7 +47,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
