@@ -30,9 +30,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wei Sheng
 
-<img src="images/LWS49.png" width="200px">
+<img src="images/lws49.png" width="200px">
 
-[[github](http://github.com/LWS49)] [[portfolio](team/LWS49.md)]
+[[github](http://github.com/LWS49)] [[portfolio](team/lws49)]
 
 * Role: Tech Lead, Scheduling and Tracking
 
