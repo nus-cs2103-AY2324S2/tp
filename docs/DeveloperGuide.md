@@ -324,23 +324,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. PoochPlanner detects wrong format for email.
 
-   * 1b1. PoochPlanner displays the error message.
-   * 1b2. User re-enters the correct command with another name.
-   * Steps 1b1 - 1b2 are repeated until there is no error in input.
+   * 1c1. PoochPlanner displays the error message.
+   * 1c2. User re-enters the correct email format.
+   * Steps 1c1 - 1c2 are repeated until there is no error in input.
    * Use case resumes from step 2.
+
 * 1d. PoochPlanner detect unknown input for employment.
 
-  * 1b1. PoochPlanner displays the error message.
-  * 1b2. User re-enters the correct command with another name.
-  * Steps 1b1 - 1b2 are repeated until there is no error in input.
+  * 1d1. PoochPlanner displays the error message.
+  * 1d2. User re-enters the correct input for employment.
+  * Steps 1d1 - 1d2 are repeated until there is no error in input.
   * Use case resumes from step 2.
-
-* 1e. PoochPlanner receive wrong command format.
-
-    * 1b1. PoochPlanner displays the error message.
-    * 1b2. User re-enters with correct command format.
-    * Steps 1b1 - 1b2 are repeated until the command format is correct.
-    * Use case resumes from step 2.
 
 ---
 **System**: `PoochPlanner`
@@ -375,12 +369,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
    * Use case resumes from step 2. 
 
-* 1c. PoochPlanner receive wrong command format.
-
-    * 1b1. PoochPlanner displays the error message.
-    * 1b2. User re-enters with correct command format.
-    * Steps 1b1 - 1b2 are repeated until the command format is correct.
-    * Use case resumes from step 2.
 ---
 **System**: `PoochPlanner`
 
@@ -417,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. User requests to edit the name field to a name that already exists in PoochPlanner.
 
    * 1c1. PoochPlanner displays the error message.
-   * 1c2. User re-enters the command with a diferent name.
+   * 1c2. User re-enters the command with a different name.
    * Steps 1c1 - 1c2 are repeated until the new name field is valid.
    * Use case resumes from step 2. 
 
@@ -437,16 +425,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1f. PoochPlanner detects wrong format for email.
 
-    * 1b1. PoochPlanner displays the error message.
-    * 1b2. User re-enters the correct command with another name.
-    * Steps 1b1 - 1b2 are repeated until there is no error in input.
-    * Use case resumes from step 2.
-
-* 1g. PoochPlanner receive wrong command format.
-
-    * 1b1. PoochPlanner displays the error message.
-    * 1b2. User re-enters with correct command format.
-    * Steps 1b1 - 1b2 are repeated until the command format is correct.
+    * 1f1. PoochPlanner displays the error message.
+    * 1f2. User re-enters the correct email format.
+    * Steps 1f1 - 1f2 are repeated until there is no error in input.
     * Use case resumes from step 2.
 
 ---
@@ -487,12 +468,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * Steps 1c1 - 1c2 are repeated until a valid field is inputted by the User.
    * Use case resumes from step 2. 
 
-* 1d. PoochPlanner receive wrong command format.
-
-    * 1b1. PoochPlanner displays the error message.
-    * 1b2. User re-enters with correct command format.
-    * Steps 1b1 - 1b2 are repeated until the command format is correct.
-    * Use case resumes from step 2.
 ---
 **System**: `PoochPlanner`
 
@@ -516,12 +491,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * Steps 1a1 - 1a2 are repeated until a valid command is inputted by the User.
    * Use case resumes from step 2. 
 
-* 1b. PoochPlanner receive wrong command format.
-
-    * 1b1. PoochPlanner displays the error message.
-    * 1b2. User re-enters with correct command format.
-    * Steps 1b1 - 1b2 are repeated until the command format is correct.
-    * Use case resumes from step 2.
 ---
 *{More to be added}*
 

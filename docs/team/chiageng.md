@@ -22,4 +22,4 @@ Given below are my contributions to the project.
         * Added documentation for the features `add` [\#72]()
     * Developer Guide:
         * Added non functional requirements.
-        * Updated use cases for PoochPlanner
+        * Updated use cases for PoochPlanner.
