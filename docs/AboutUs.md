@@ -9,25 +9,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Loh Jun Heng Donovan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/captainkeqing.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/CaptainKeqing)]
+[[portfolio](team/captainkeqing.md)]
 
-* Role: Project Advisor
+* Role: Code Quality Manager
 
-### Jane Doe
+### Hariprasath S/O R Mohan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hm33-stu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/HM33-Stu)]
+[[portfolio](team/hm33-stu.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation, Deliverables and Deadlines
 
 ### Johnny Doe
 
