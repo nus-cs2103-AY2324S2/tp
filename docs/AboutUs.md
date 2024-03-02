@@ -47,12 +47,11 @@ You can reach us at the email `cs2103t_w11_1[at]comp.nus.edu.sg`
 * Role: Developer
 
 
-### James Doe
+### Rajendran Ramesh Babu Manoj Narender
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/theman-oj10.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/theman-oj10)]
+[[portfolio](team/theman-oj10.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Integration, Testing
