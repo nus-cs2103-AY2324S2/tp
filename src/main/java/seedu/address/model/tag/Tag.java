@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric or alphanumeric-alphanumeric like strong-student";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tags names should be alphanumeric or with a '-' between two alphanumeric description";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)?";
 
     public final String tagName;

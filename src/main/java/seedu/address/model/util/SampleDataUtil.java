@@ -23,9 +23,9 @@ public class SampleDataUtil {
                 new TelegramHandle("@alyeoh"),
                 getTagSet("tutorial-1")),
 
-            new Person(new Name("John Smith"), new StudentId("A9876543Y"), new Email("johnsmith@example.com"), 
-            new TelegramHandle("@johnsmith"),
-            getTagSet("tutorial-2", "weak-student")),
+            new Person(new Name("John Smith"), new StudentId("A9876543Y"), new Email("johnsmith@example.com"),
+                new TelegramHandle("@johnsmith"),
+                getTagSet("tutorial-2", "weak-student")),
 
             new Person(new Name("Emily Davis"), new StudentId("A5678901Z"), new Email("emilydavis@example.com"),
                 new TelegramHandle("@davemily"),

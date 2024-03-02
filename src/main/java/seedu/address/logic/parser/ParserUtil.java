@@ -78,7 +78,7 @@ public class ParserUtil {
             throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
         return new TelegramHandle(trimmedHandle);
-    } 
+    }
 
     /**
      * Parses a {@code String email} into an {@code Email}.
