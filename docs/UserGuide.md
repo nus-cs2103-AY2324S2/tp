@@ -142,16 +142,16 @@ Edits an existing person in the contact list of FINDvisor.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* Input values will overwrite **all** existing values that were assigned to the field.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* This command will check for duplicate contact before edit is executed. Check will be conduct on whether `p/PHONE_NUMBER` already exists on another contact if it is edited. If the new edited phone number is the same as the old one, the command will go through.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 3 n/Bobby Tay e/bobbytay@u.nus.edu` Edits contact displayed at index 3 and changes the name of the contact to `Bobby Tay` and email to `bobbytay@u.nus.edu` respectively.
+*  `edit 1 t/PRUActive Saver III t/PRUActive Cash` Edits contact displayed at index 1 to change its tags to only `PRUActive Saver III` and `PRUActive Cash`. It will remove all other previous tags that are previously associated with the contact.
 
 ### Locating persons by person's information: `find`
 
