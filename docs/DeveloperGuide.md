@@ -262,13 +262,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* has a need to manage a significant number of clients
+* has a need to manage a significant number of meetings
+* has a need to classify clients into different categories
+* prefers desktop apps over other types of apps
+* can type fast (50 wpm or more)
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: A CLI designed specifically for financial advisors to revolutionise the way they manage, schedule, filter and rank their clients. Addresses the day-to-day challenges faced by financial advisors but also provides strategic value through its ranking and leaderboard features. It's a companion that empowers financial advisors to scale to new heights.
 
 
 ### User stories

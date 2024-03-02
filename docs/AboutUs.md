@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/itstrueitstrueitsrealitsreal.png" width="200px">
 
-[[github](http://github.com/itstrueitstrueitsrealitsreal)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/itstrueitstrueitsrealitsreal)] [[portfolio](team/kenneth.md)]
 
 - Role: Developer
 - Responsibilities: Project Management
@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: UI
 
-### Chew Zi Xuuan
+### Chew Zi Xuan
 
 <img src="images/chewbum.png" width="200px">
 
