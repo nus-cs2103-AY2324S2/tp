@@ -303,7 +303,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `ConnectCare` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a client**
+
+**MSS**
+
+1.  User requests to add a client
+2.  ConnectCare adds the client
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The details of the client is incorrect
+
+    * 1a1. ConnectCare shows an error message.
+
+        Use case ends.
+
+**Use case: Update client details**
+
+**MSS**
+
+1.  User requests to update a client 
+2.  ConnectCare updates the client with new details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The client to update is not found
+
+    * 1a1. ConnectCare shows an error message.
+
+      Use case ends.
+
+* 1b. The client details given to update is incorrect
+
+    * 1b1. ConnectCare shows an error message.
+
+      Use case ends.
 
 **Use case: Delete a person**
 
@@ -328,7 +368,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Find client**
+
+**MSS**
+
+1.  User requests to find a client
+2.  ConnectCare lists all clients that match the keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no given keyword.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+**Use case: Clear all clients**
+
+**MSS**
+
+1.  User requests to clear all clients
+2.  ConnectCare clears all clients
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+**Use case: Exit the application**
+
+**MSS**
+
+1.  User requests to exit the application
+2.  ConnectCare exits
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
