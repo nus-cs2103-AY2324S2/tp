@@ -30,7 +30,7 @@ You can reach us at the email `cs2103t_w11_1[at]comp.nus.edu.sg`
 
 ### Wei Sheng
 
-<img src="images/LWS49.png" width="200px">
+<img src="images/lws49.png" width="200px">
 
 [[github](http://github.com/LWS49)] [[portfolio](team/lws49.md)]
 
