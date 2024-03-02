@@ -28,6 +28,15 @@ You can reach us at the email `cs2103t_w11_1[at]comp.nus.edu.sg`
 
 * Role: Documentation, Deliverables and Deadlines
 
+### Wei Sheng
+
+<img src="images/lws49.png" width="200px">
+
+[[github](http://github.com/LWS49)] 
+[[portfolio](team/lws49.md)]
+
+* Role: Tech Lead, Scheduling and Tracking
+
 ### Boh Jie Qi
 
 <img src="images/jieqiboh.png" width="200px">
@@ -37,22 +46,13 @@ You can reach us at the email `cs2103t_w11_1[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jieqiboh)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/jieqiboh)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: UI
