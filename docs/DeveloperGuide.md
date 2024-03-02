@@ -300,46 +300,171 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+**System: EduConnect**
 
-**Use case: Delete a person**
+**Use Case: UC1 - Import students from local file**
 
-**MSS**
+Actor: TA
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**MSS:**
 
-    Use case ends.
+1. TA enters import command with the specified file location
+2. EduConnect imports all student contact info from the file
 
-**Extensions**
+**Extensions:**
+* 1a. EduConnect cannot find the file with specified location
+* 1a1. EduConnect outputs error message to user
 
-* 2a. The list is empty.
+**System: EduConnect**
 
-  Use case ends.
+**Use Case: UC2 - Adding a class of students (tagged by class)**
 
-* 3a. The given index is invalid.
+**Actor: TA**
 
-    * 3a1. AddressBook shows an error message.
+**MSS:**
 
-      Use case resumes at step 2.
+1. TA enters command to add student S1 with class A tag
+2. EduConnect creates student S1
+3. TA repeats step 1 for all students to be added under class A
 
-*{More to be added}*
+Use case ends.
+
+**Extensions:**
+* 1a. EduConnect detects an invalid student ID, email, etc.
+* 1a1. EduConnect informs TA of the invalid field entered.
+* 1a2. TA enters new student data.
+* 1a3. Steps 1a1-1a2 are repeated until the student is added successfully.
+* 1a4. Use case resumes from step 3.
+
+
+**System: EduConnect**
+
+**Use Case: UC3 - Giving reminders for an assignment due**
+
+**Actor: TA**
+
+**MSS:**
+
+1. TA enters a command to filter addresses by tags
+2. EduConnect returns addresses with the filtered tags
+3. TA copies the returned addresses, paste the addresses in the email and sends the reminder for assignment submission
+
+**Extensions:**
+* 2a. EduConnect detects no known tags
+* 2a1. EduConnect outputs no known tags error message to user
+* 2a2. User enters new tags.
+* Steps 2a1-2a2 are repeated until the tags entered are correct or the user decides to stop.
+
+Use Case ends
+
+**System: EduConnect**
+
+**Use Case: UC4 - List all student contacts in a tutorial class**
+
+**Actor: TA**
+
+**MSS:**
+
+1. TA enters filter command with specified tutorial class name
+2. Educonnect returns list of all students  in the tutorial class
+
+**Extensions:**
+* 1a. The tutorial class name is not valid
+* 1a1. EduConnect outputs error message to user
+* 1b. EduConnect detects an error in the command format
+* 1b1. EduConnect outputs error message to user
+
+Use Case ends
+
+**System: EduConnect**
+
+**Use Case: UC5 - Delete students from existing contacts in a tutorial class**
+
+**Actor: TA**
+
+**MSS:**
+
+1. TA enters the remove command to delete an existing student info in a tutorial class
+2. EduConnect returns the deleted student name and id
+
+**Extensions:**
+* 1a. The student is not in the tutorial class
+* 1a1. EduConnect outputs error message to user
+* 1b. EduConnect detects an error in the command format
+* 1b1. EduConnect outputs error message to user
+
+**System: EduConnect**
+
+**Use Case: UC6 - Find students from existing contacts by their name**
+
+**Actor: TA**
+
+**MSS:**
+
+1. TA enters the find command to find an existing student info
+2. EduConnect returns the students with a matching/partially matching word(s)
+
+**Extensions:**
+* 1a. EduConnect cannot find the student with specified name
+* 1a1. EduConnect outputs no match error message to user
+* 1b. EduConnect detects an error in the command format
+* 1b1. EduConnect outputs error message to user
+
+Use Case ends
+
+**System: EduConnect**
+
+**Use Case: UC7 - TA finds a common time slot amongst one class of students**
+
+**Actor: TA**
+
+1. TA opens the application.
+2. TA keys in the command to find a common time slot for a specific class.
+3. EduConnect finds a common time slot using the student’s timetable.
+
+Use case ends.
+
+**Extensions:**
+
+* 3a. EduConnect is unable to find a common timeslot.
+* 3a1. EduConnect shows an error message.
+Use case ends.
+
+**System: EduConnect**
+
+**Use Case: UC8 - Exploring the application for the first time**
+
+**Actor: TA (First-time user of the product)**
+
+**MSS:**
+
+1. TA opens the application.
+2. TA is able to see a set of sample contacts pre-loaded into the application as examples.
+3. TA keys in ‘help’ command.
+4. EduConnect brings up a list of commands that it accepts.
+5. TA keys in various commands. (Refer to UC2, UC4, UC5, UC6 …)
+6. TA keys in ‘wipe’ command.
+7. EduConnect erases all data.
+
+Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Program should be able to handle multiple classes (at least 5) with each having more than 50 students
+3.  The system should be able to be used by a novice who has never used the product before.
+4.  The system should respond within 2 seconds after a command.
 
-*{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **CS2040**: Data Structures and Algorithms Course in School of Computing, NUS
+* **Kattis**: Website with competitive programming problems, used by CS2040 students for their take-home assignments
+* **NUS**: National University of Singapore
+* **SoC**: School of Computing
+* **Skill group**: Students who are grouped similarly by their ability and score in CS2040
+* **TAs**: Teaching assistants
+* **Telegram**: Preferred online messaging application used amongst students and TAs.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
