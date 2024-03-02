@@ -23,12 +23,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jane Doe
 
-<img src="images/darrylchan.png" width="200px">
+<img src="images/darryl-chan.png" width="200px">
 
 [[github](http://github.com/darryl-chan)]
-[[portfolio](team/darrylchan.md)]
+[[portfolio](team/darryl-chan.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
