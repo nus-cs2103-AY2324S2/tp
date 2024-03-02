@@ -22,15 +22,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role:
 * Responsibilities:
 
-### Jane Doe
+### Yee Jun Hyeok Bryan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bryanyee33.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bryanyee33)]
+[[portfolio](team/bryanyee33.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: UI & UX expert
+* Responsibilities: Manages things related to the UI & UX such as JavaFX and design.
 
 ### Johnny Doe
 
