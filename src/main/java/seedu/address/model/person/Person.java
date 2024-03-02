@@ -2,17 +2,17 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Represents a Person in the address book.
@@ -27,33 +27,30 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tags tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Tags tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tags = tags;
     }
 
     @JsonCreator
     private Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                    @JsonProperty("email") String email, @JsonProperty("address") String address,
-                   @JsonProperty("tags") List<String> tagNames) {
+                   @JsonProperty("tags") String[] tagNames) {
+        requireAllNonNull(name, phone, email, address, tagNames);
         this.name = new Name(name);
         this.phone = new Phone(phone);
         this.email = new Email(email);
         this.address = new Address(address);
-        if (tagNames != null) {
-            for (String tagName : tagNames) {
-                this.tags.add(new Tag(tagName));
-            }
-        }
+        this.tags = new Tags(tagNames);
     }
 
     public Name getName() {
@@ -72,12 +69,8 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tags getTags() {
+        return tags;
     }
 
     /**
