@@ -284,6 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | edit a patient's medical record     | ammend necessary details of a medical record when needed |
 | `* * *`  | user                                       | add a patient's appointment note      | record keep the details of each appointment              |
 | `* * *`  | user                                       | delete a patient's appointment note   | remove entries that I no longer need                     |
+| `* * *`  | user                                       | access a help page for quick reference  | have a better idea where to get started                     |
 
 *{More to be added}*
 
