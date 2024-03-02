@@ -287,16 +287,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a…​                                    | I want to…​                      | So that I can…​                                                         |
+|----------|-------------------------------------------|---------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | fast typing user                         | have a CLI                                               | use the app more efficiently                                            |
+| `* * *`  | busy user                                | clear all my data quickly                                | quickly restart a new list of contacts                                  |
+| `* * *`  | intermediate user                        | see my relationship with my contacts                     | know who they are                                                       |
+| `* * *`  | intermediate user                        | find a certain client based on a keyword                 | easier to find the client                                               |
+| `* * *`  | intermediate user                        | save and retrieve information                           | use the app in multiple sessions                                        |
+| `* * *`  | intermediate user                        | add data about clients to the application               | record information about my client                                      |
+| `* *`    | exploring the app                        | see what the app will look like with sample data          | more easily understand the potential features                           |
+| `* *`    | exploring the app                        | have a tutorial of the basic features                     | get started with using the app                                          |
+| `* *`    | exploring the app                        | access a help page with basic commands                    | familiarize myself with how to use the app                              |
+| `* *`    | exploring the app                        | track my client information                               | manage my work using the app more efficiently                           |
+| `* *`    | exploring the app                        | access past activity since app installation              | see my current progress                                                 |
+| `* *`    | intermediate user                        | save similar client information data into a group        | manage them easily                                                      |
+| `* *`    | intermediate user                        | reorganize my list of contacts                           | access them more clearly and efficiently                                |
+| `* *`    | intermediate user                        | edit my contacts as a group                              | easier to implement changes if something in common in the group changes |
+| `* *`    | careless user                            | have an undo command                                     | prevent doing some mistake                                              |
+| `* *`    | intermediate user                        | filter client information                                | sort my client information according to some condition                  |
+| `*`      | intermediate user                        | record if I am successful in securing an agreement       | know I have succeeded at my job                                         |
+| `*`      | busy user                                | autocomplete my commands                                 | type commands faster                                                    |
+| `*`      | intermediate user                        | tag my clients                                           | classify common groups                                                  |
+| `*`      | intermediate user                        | have common use shortcut keys command                    | access the app more efficiently                                         |
+| `*`      | intermediate user                        | track progress of engagements via tags                   | monitor the progress of different engagements with clients              |
+| `*`      | intermediate user                        | copy information/features to another client              | reduce the time used                                                    |
+| `*`      | intermediate user                        | quickly differentiate between clients and business partners | differentiate between them                                              |
+| `*`      | intermediate user                        | rate clients for effective feedback                     | provide feedback efficiently                                            |
+| `*`      | intermediate user                        | customize the app’s theme                                | better suits my preferences                                             |
+| `*`      | expert user                              | create shortcuts for tasks                               | save time on frequently performed tasks                                 |
+| `*`      | long-time user                           | archive/hide unused data                                 | not distracted by irrelevant data                                       |
+| `*`      | frequent user                             | have templates for adding contacts                       | contacts are standardized and easier to read                            |
+| `*`      | frequent user                             | schedule weekly check-ins with clients                   | do not forget about them                                                |
+| `*`      | expert user                              | have reminders for meetings with clients                 | organize and plan my time well                                          |
+| `*`      | expert user                              | create automated task workflows                          | save time on performing repeated tasks                                  |
+| `*`      | expert user                              | see a competency rating based on past successes         | know if I need to improve                                               |
+| `*`      | expert user                              | find clients based on different filters                  | better focus on one particular group                                    |
+| `*`      | expert user                              | disable unnecessary features                             | the application is more customized and simpler to use                   |
 
-*{More to be added}*
 
 ### Use cases
 
