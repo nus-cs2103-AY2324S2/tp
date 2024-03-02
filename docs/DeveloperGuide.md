@@ -260,58 +260,203 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: People sourcing for internships (specifically, CS students)
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of internship applications
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+``` plaintext
+Effortlessly manage, search, and sift through your various internship applications. 
+Enter details rapidly using CLI, and avoid losing track of crucial information. 
+Targeted to those with numerous applications to keep track of and prefer using CLI. 
+Your all-in-one solution for seamless application management.
+```
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (Must-Have) - `* * *`, Medium (Nice-To-Have) - `* *`, Low (Not Useful) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a/an …​      | I want to …​                                     | So that I can…​                                               |
+|----------|-----------------|--------------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | impatient user  | Enter internship information from the main page  | Quickly note down potential internships at a career fair      |
+| `* * *`  | savvy user      | Access all commands via a text-based input       | Add, delete, and modify entries without using my mouse        |
+| `* * *`  | beginner user   | Access sample data in the app                    | Play around with the features to get the hang of them         |
+| `* * *`  | up-to-date user | Modify internship details                        | Keep myself updated on changing details                       |
+| `* * *`  | regular user    | View all internship details                      | Easily view all details in one screen.                        |
+| `* * *`  | detailed user   | Add information to the notes section of an entry | Customise to see internships that fall under specific fields. |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `CareerSync` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Enter Internship Information From The Main Page**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User accesses the main page. 
+2. User selects the option to enter internship information. 
+3. System prompts the user to input internship details such as title, company, start/end dates, etc. 
+4. User inputs the required internship details. 
+5. System validates the input data. 
+6. System saves the internship information. 
+7. System displays a confirmation message indicating successful submission.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User is unable to access the main page.
+    *1a1. System displays an error message.
+* 2a. User cancels entering internship information.
+  * 2a1. System cancels the entry process and returns the user to the main page.
+* 5a. User inputs invalid internship details.
+  * 5a1. System displays an error message indicating the specific validation error(s).
+* 6a. System fails to save the internship information.
+  * 6a1. System displays an error message and prompts the user to retry or cancel the submission.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: Access All Commands Via A Text-Based Input**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User accesses the main page. 
+2. System displays a prompt for text-based input. 
+3. User enters a command using text-based input. 
+4. System recognizes and processes the entered command. 
+5. System executes the requested action corresponding to the entered command. 
+6. User receives feedback or output based on the executed command.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User is unable to access the main page.
+  * 1a1. System displays an error message.
+* 3a. User enters an invalid command.
+  * 3a1. System displays an error message indicating that the command is not recognized.
+* 4a. System fails to recognize or process the entered command.
+  * 4a1. System displays an error message and prompts the user to retry or enter a different command.
+* 5a. System encounters an error while executing the requested action.
+  * 5a1. System displays an error message and prompts the user to retry or perform a different action.
+
+    Use case ends.
+
+**Use case: Access Sample Data In The App**
+
+**MSS**
+
+1. User accesses the main page. 
+2. User selects the option to access sample data. 
+3. System retrieves and displays sample internship data. 
+4. User views the sample internship data presented by the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User is unable to access the main page.
+  * 1a1. System displays an error message.
+* 2a. User cancels accessing sample data.
+  * 2a1. System cancels the process and returns the user to the main page.
+* 3a. System fails to retrieve sample data.
+  * 3a1. System displays an error message and prompts the user to retry or exit.
+* 4a. User encounters issues while viewing the sample data.
+  * 4a1. System displays an error message and prompts the user to retry or exit.
+
+    Use case ends.
+
+**Use case: Modify Internship Details**
+
+**MSS**
+
+1. User accesses the main page. 
+2. User selects the option to view all internship details. 
+3. System retrieves and displays a list of all entered internship details. 
+4. User selects the internship entry to be modified. 
+5. System presents the selected internship details for editing. 
+6. User modifies the necessary internship details. 
+7. System validates the modified data.
+8. System saves the updated internship information. 
+9. System displays a confirmation message indicating successful modification.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User is unable to access the main page.
+  * 1a1. System displays an error message.
+* 2a. User cancels viewing all internship details.
+  * 2a1. System cancels the process and returns the user to the main page.
+* 4a. User cancels selecting the internship entry to be modified.
+  * 4a1. System cancels the modification process and returns the user to the list of internship details.
+* 6a. User inputs invalid internship details.
+  * 6a1. System displays an error message indicating the specific validation error(s).
+* 7a. System fails to validate the modified data.
+  * 7a1. System displays an error message and prompts the user to correct the data.
+* 8a. System fails to save the updated internship information.
+  * 8a1. System displays an error message and prompts the user to retry or exit.
+
+    Use case ends.
+
+**Use case: View All Internship Details**
+
+**MSS**
+
+1. User accesses the main page. 
+2. User selects the option to view all internship details. 
+3. System retrieves and displays a list of all entered internship details. 
+4. User views the list of internship details presented by the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User is unable to access the main page.
+  * 1a1. System displays an error message.
+* 2a. User cancels viewing all internship details.
+  * 2a1. System cancels the process and returns the user to the main page.
+* 3a. System fails to retrieve all internship details.
+  * 3a1. System displays an error message and prompts the user to retry or exit.
+
+    Use case ends.
+
+**Use case: Add Information To The Notes Section Of An Entry**
+
+**MSS**
+
+1. User accesses the main page. 
+2. User selects the option to view all internship details. 
+3. System retrieves and displays a list of all entered internship details. 
+4. User selects the internship entry to which notes will be added. 
+5. System presents the selected internship details along with the current notes section.
+6. User enters additional information in the notes section.
+7. System saves the updated notes.
+8. System displays a confirmation message indicating successful addition of notes.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User is unable to access the main page.
+  * 1a1. System displays an error message.
+* 2a. User cancels viewing all internship details.
+  * 2a1. System cancels the process and returns the user to the main page.
+* 4a. User cancels selecting the internship entry to add notes.
+  * 4a1. System cancels the process and returns the user to the list of internship details.
+* 6a. User encounters an error while adding notes.
+  * 6a1. System displays an error message and prompts the user to retry or exit.
+* 7a. System fails to save the updated notes.
+  * 7a1. System displays an error message and prompts the user to retry or exit.
+
+    Use case ends.
 
 *{More to be added}*
 
