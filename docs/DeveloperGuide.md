@@ -343,8 +343,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Application Status**: These statuses comprise resume review, pending interview, completed interview, accepted, rejected and waiting list.
+* **Application Tracking System**: A software application used by organizations to manage and streamline the recruitment and hiring process
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Person**: A person can refer to either an `Applicant` or an `Interviewer`
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
