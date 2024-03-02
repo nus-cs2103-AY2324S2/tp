@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,11 +14,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `hirehub.jar` from [here](https://github.com/AY2324S2-CS2103T-W08-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your HireHub.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hirehub.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -124,25 +124,6 @@ This command edits **name**, **email**, and the tag for **acceptance status** of
 
 If edit command is successfully executed, the app will display the edited candidate with the new attributes.
 
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Delete a candidate: `delete`
 
 Deletes an existing candidate from the list.
@@ -235,7 +216,7 @@ Changes the interview status of a candidate.
 
 Interview status must be one of the following: `PRESCREEN`, `IN_PROGRESS`, `WAITLIST`, `ACCEPTED`, `REJECTED`.
 When a candidate is added, by default it has status `PRESCREEN`.
-Format: `status INDEX INTERVIEWSTATUS`
+Format: `status INDEX INTERVIEW_STATUS`
 
 *Example 1* : `status 24 IN_PROGRESS`
 
@@ -252,15 +233,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HireHub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HireHub data are saved automatically as a JSON file `[JAR file location]/data/hirehub.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, HireHub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -272,7 +253,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HireHub home folder.
 
 **Q**: What is the difference between `edit` and `tag`?<br>
 **A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/Quant Researcher` will change John's tags to just `Quant Researcher`, while `tag t/Quant Researcher` will change John's tags to `Internal`, `Waitlist` and `Quant Researcher`.
@@ -291,11 +272,13 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
 **Clear** | `clear`
+**Comment** | `comment INDEX m/COMMENT`<br> e.g., `comment 3 m/Managed to solve every round 3 interview questions.`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`<br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Get** | `get INDEX`<br> e.g., `get 24`
 **Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
 **Tag** | `tag INDEX [t/TAG]…`<br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`
-**Status** | `status INDEX INTERVIEWSTATUS`<br> e.g., `status 24 IN_PROGRESS`
+**Status** | `status INDEX INTERVIEW_STATUS`<br> e.g., `status 24 IN_PROGRESS`
 **List** | `list`
 **Help** | `help`
