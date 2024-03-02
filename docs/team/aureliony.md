@@ -5,11 +5,7 @@
 
 ### Project: AssetBook3
 
-AssetBook3 allows organisations to easily track sponsors, sponsored assets and point-of-contacts (POCs).
-
-Each sponsor could have multiple POCs assigned by the organisation.
-
-Sponsored assets may have logistical tracking with IDs. Users can search information by sponsors, assets, POCs or tags.
+AssetBook-3 is a desktop application for logistics managers to keep track point-of-contacts' (POCs) contact information, along with their relevant assets. It is meant for those who have too many POCs and assets, and wish to easily retrieve contact details based on name, tag, or asset ID.
 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
