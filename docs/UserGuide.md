@@ -174,14 +174,20 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I use the app?<br>
+**A**: This app is designed to help you keep track of your clients and meetings with them. <br>
+        To keep track of your clients/meetings, you can follow the various commands in the user guide and enter the commands according to the specified format.
+
+**Q**: Is there a limit to the number of clients/meetings I can store in the app<br>
+**A**: No, there is no limit to the number.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+2. **When entering a command with an invalid format**, the application will prompt you to re-enter the command while providing the correct format to follow.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
