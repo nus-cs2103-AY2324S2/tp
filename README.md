@@ -3,14 +3,14 @@
 
 ![Ui](docs/images/Ui.png)
 
-###Eventy
+### Eventy
 
 * This CLI application serves as an address book tailored for event planners in halls, facilitating efficient management of participants and events. This is a CLI application that is desgined for users who type fast<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
   * as a case study
   
-###What does this do
+### What does this do
 * The project is tailored specifically for student event organizers and offers a new standard of convenient and easy event planning.
 * The application is targeted towards users who type fast and are used to CLI application.    
 * The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
