@@ -4,7 +4,7 @@ title: "Developer Guide"
 pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# InternHub Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,14 +274,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* CS Students who need to keep track of contacts of companies & interview dates during thier internship hunt
-* Prefer a one-stop, centralised dashboard to manage all contact details of companies
-* Is reasonably comfortable in using a more CLI based app
-* Wants to be better organized
+* CS students
+* has a need to keep track of contacts of companies and interview dates during thier internship hunt
+* prefer a one-stop, centralised dashboard to manage all contact details of companies
+* is reasonably comfortable in using a more CLI based app
+* wants to be better organized
 
-**Value proposition**: 
-
-Ultimate companion for Computer Science (CS) students embarking on their internship journey !
+**Value proposition**: Ultimate companion for Computer Science (CS) students embarking on their internship journey !
 
 ### User stories
 

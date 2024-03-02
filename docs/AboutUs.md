@@ -23,9 +23,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chai Ming How
 
-<img src="images/minghowC.png" width="200px">
+<img src="images/minghowc.png" width="200px">
 
-[[github](http://github.com/minghowC)] 
+[[github](http://github.com/minghowC)]
 [[portfolio](team/minghow.md)]
 
 * Role: Developer

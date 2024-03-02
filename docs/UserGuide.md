@@ -103,7 +103,7 @@ Format: `View INDEX`
 
 Example:
 *  `view 3` Shows the company name of the 3rd contact on the view panel.
-  
+
 ### Editing a contact : `edit`
 
 Edits an existing contact detail in the address book.
@@ -113,7 +113,7 @@ Format: `Edit INDEX c/[COMPANY_NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] t/[T
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* For `[INTERVIEW_DATE]`, if you want to remove a date, just enter `d/` and it will remove that field. 
+* For `[INTERVIEW_DATE]`, if you want to remove a date, just enter `d/` and it will remove that field.
 
 Examples:
 *  `edit 1 p/91234567 e/foodpanda@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `foodpanda@example.com` respectively.
