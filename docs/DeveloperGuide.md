@@ -300,16 +300,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TalentTracker` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  System shows a list of persons
+3.  User requests to add a new person to the list
+4.  System adds the person and updates the displayed list
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Any of the given name, email, phone number are invalid.
+
+    * 3a1. System shows an error message indicating invalid name/email/phone number.
+
+      Use case resumes at step 2.
+  
+**Use case: UC02 - Delete a person by phone number**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  System deletes the person
 
     Use case ends.
 
@@ -317,11 +336,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. System shows an error message indicating no person in list.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 2.
 
-    * 3a1. AddressBook shows an error message.
+* 3a. The given phone number is invalid.
+
+    * 3a1. System shows an error message indicating person not found.
+
+      Use case resumes at step 2.
+
+**Use case: UC03 - Tag an applicant**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
+3.  User requests to tag a specific applicant, using their name/email, with an application status
+4.  System tags the requested applicant with the given application status
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. System shows an error message indicating no applicant in list.
+
+      Use case resumes at step 2.
+
+* 3a. The given name/email is invalid.
+
+    * 3a1. System shows an error message indicating applicant not found.
+
+      Use case resumes at step 2.
+  
+* 4a. The tag is already added for the applicant.
+
+    * 4a1. System shows an error message indicating tag is already added.
+
+      Use case resumes at step 2.
+  
+**Use case: UC04 - Find a person by name/email**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
+3.  User requests to find a specific person in the list by their name or email
+4.  System updates the list to only display the requested person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. TalentTracker shows an error message indicating no person in list.
+
+      Use case resumes at step 2.
+
+* 3a. The given name/email is invalid.
+
+    * 3a1. TalentTracker shows an error message indicating person not found.
 
       Use case resumes at step 2.
 
