@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tejas Garrepally
 
-<img src="images/tejas.png" width="200px">
+<img src="images/g-tejas.png" width="200px">
 
 [[homepage](http://www.gtejas.com)]
 [[github](https://github.com/g-tejas)]
@@ -43,12 +43,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: TBC
 * Responsibilities: TBC
 
-### Jean Doe
+### Axel Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/axel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/teojunda)]
+[[portfolio](team/axel.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
