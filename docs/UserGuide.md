@@ -28,13 +28,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all persons.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z` : Adds a person named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd person shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all persons.
 
    * `exit` : Exits the app.
 
@@ -52,14 +52,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 * Here are a list of valid prefixes and what they each refer to.
 
-| Prefix | What it refers to |
-|--------|-------------------|
-|n/| Name of the contact     |
-|p/| Phone number of contact |
-|e/| Email of contact        |
-|a/| Address of contact      |
-|t/| Tags of contact         |
-|m/| Matriculation number of contact|
+| Prefix | What it refers to         |
+|--------|---------------------------|
+|n/      | Name of the person        |
+|p/      | Phone number of person    |
+|e/      | Email of person           |
+|a/      | Address of person         |
+|t/      | Tags of person            |
+|m/      | Matriculation ID of person|
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -98,60 +98,60 @@ Format: `help`
 * t/TAG (Optional)
 * m/MATRICULATION_NUMBER (Optional)
 
-### Adding a contact: `add`
+### Adding a person: `add`
 
-Adds a contact to the address book.
+Adds a person to the address book.
 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
 
 <box type="info" seamless>
 
-**Important:** Each contact should have an unique email address. AB3 does not allow for duplicate email addressed to be added.
+**Important:** Each person should have an unique email address. AB3 does not allow for duplicate email addressed to be added.
 
 </box>
 
 <box type="tip" seamless>
 
-**Tip:** A contact can have any number of tags (including 0)
+**Tip:** A person can have any number of tags (including 0)
 </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal m/A1234567Z`
 
-### Listing all contacts : `list`
+### Listing all persons : `list`
 
-Shows a list of all contacts in the address book.
+Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a contact : `edit`
+### Editing a person : `edit`
 
-Edits an existing contact in the address book.
+Edits an existing person in the address book.
 
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`
 
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing `t/` without
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Filtering Contacts: `find`
+### Filtering persons: `find`
 
-* Filter contacts based on specific criteria within their records.
+* Filter persons based on specific criteria within their records.
 
 Format: `find PREFIX/KEYWORD`
 
-* This command searches for contacts using a specific aspect of their details, as specified by the prefix.
-* The search will return any result that contains the keyword as a substring under the indicated prefix. e.g. `find e/hans` will find any contact that contains `hans` in their email.
+* This command searches for persons using a specific aspect of their details, as specified by the prefix.
+* The search will return any result that contains the keyword as a substring under the indicated prefix. e.g. `find e/hans` will find any person that contains `hans` in their email.
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
 * prefixes that are supported includes : n/, p/, e/, a/, m/ and t/.
 * Only one prefix can be used for filtering at a time.
@@ -159,12 +159,12 @@ Format: `find PREFIX/KEYWORD`
 Examples:
 * `find n/John` returns `john` and `John Doe`.
 * `find n/alex` returns `Alex Yeoh`, `Davis Alex`.
-* `find t/student` returns all contacts tagged with `student` or any contacts with tags that has `student` as a substring.
-* `find p/1423` returns all contacts with phone number containing `1423`.
+* `find t/student` returns all persons tagged with `student` or any persons with tags that has `student` as a substring.
+* `find p/1423` returns all persons with phone number containing `1423`.
 
 ### Copy email addresses: `copy`
 
-Copies the emails of currently displayed contacts into your clipboard.
+Copies the emails of currently displayed persons into your clipboard.
 
 Format: `copy`
 
@@ -172,19 +172,19 @@ Format: `copy`
 * The emails are copied into your clipboard such that you may easily broadcast emails
   to specific groups of people.
 
-### Deleting a contact : `delete`
+### Deleting a person : `delete`
 
-Deletes the specified contact from the address book.
+Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -194,16 +194,16 @@ Format: `clear`
 
 ### Exporting Data to a CSV file : `export to csv`
 
-Exports all contacts and their details to a CSV file.
+Exports all persons and their details to a CSV file.
 
 Format: `export to csv`
 
 ### Importing Data from a CSV file : `import`
 
-Imports all contacts and their details from a CSV file from a specified file path.
+Imports all persons and their details from a CSV file from a specified file path.
 
 Format: `import FILEPATH`
-- imports the contacts saved in `FILEPATH` to `addressBook.json`
+- imports the persons saved in `FILEPATH` to `addressBook.json`
 
 ### Exiting the program : `exit`
 
