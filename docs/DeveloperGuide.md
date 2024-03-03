@@ -318,10 +318,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 persons and relationships without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  User actions should prompt responses within 5 seconds, maintaining acceptable performance standards.
+5.  The user interface must be intuitive for users of varying technical proficiency levels, enhancing usability.
+6.  The codebase should be well-documented and maintainable to facilitate future updates and enhancements.
+7.  Comprehensive documentation should be provided for developers, administrators, and end-users, supporting ease of use.
+8.  The system should be able to handle data corruption or loss gracefully, minimizing the impact on users.
+9.  The system architecture should support future extensions or customizations, allowing for easy addition of new features.
+10. Interoperability with other systems should be supported through standard protocols and formats, promoting seamless integration.
+11. The system should be designed with testability in mind, allowing for comprehensive testing of all components, features, and scenarios.
 
 ### Glossary
 
