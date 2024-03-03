@@ -329,11 +329,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+4. Should respond to user actions within 5 seconds under normal load conditions.
+5. Should be designed to use system resources (e.g. CPU) efficiently to minimise its impact on the host environment.
+6. User interface should be intuitive and easy for users with varying levels of technical expertise.
+7. Codebase should be well-documented and follow best practices to facilitate future maintenance and enhancements.
+8. Should be easy for developers to add new features or make changes to existing ones without causing unintended side effects.
+9. Should comply with relevant data privacy regulations (e.g. PDPA) and ensure user data is stored and processed securely.
+10. Should be able to be used alongside other systems and services commonly used in healthcare settings, such as electronic health record (EHR) systems.
 
 ### Glossary
 
