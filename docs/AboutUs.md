@@ -8,8 +8,7 @@
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 We are a group of Computer Science students undertaking CS2103T.
 
-LookMeUp is an address
-book application that allows students to seamlessly save contacts of their peers in school. The team hopes that
+LookMeUp is an address book application that allows students to seamlessly save contacts of their peers in school. The team hopes that
 this product will serve student better convenience in connecting with their friends!
 
 For more enquiries, you can reach us at the email:
@@ -21,48 +20,59 @@ For more enquiries, you can reach us at the email:
 
 ## Project Team
 
-### Zhuo Hui(http://github.com/smolegz)
+### Zhuo Hui Koo (Ivan)
 
 <img src="images/zhuohui.png" width="200px">
 
-[[github](http://github.com/smolegz)]
+[[Github](http://github.com/smolegz)]
+
+Y2 CS student. My hobby is to drink w/ my besties; I am always the “take care of other ppl” 😊
 
 * Role: Team Lead
 * Responsibilities: Testing
 
-### Kervyn
+### Kervyn Tan
 
 <img src="images/kervyn.png" width="200px" height="240px">
 
-[[github](http://github.com/kervyntan)]
+[[Github](http://github.com/kervyntan)]
+
+Y2, CS Major.
+Love cycling on the weekends and playing LoL when I have time (basically never)
 
 * Role: Developer
 * Responsibilities: Data
 
-### Lynnette
+### Lynnette Ong
 
 <img src="images/lynnette.png" width="200px" >
 
-[[github](http://github.com/lynnetteeee)]
+[[Github](http://github.com/lynnetteeee)]
+
+Y2, CS, I love to travel (esp cold weather) and play squash!
+I think coding without a deadline is >>>>>>>> ! Lowkey therapeutic... but once theres deadline... >.<
 
 * Role: Developer
 * Responsibilities: Code Quality
 
-### Aiden
+### Aiden Lee
 
 <img src="images/aiden.png" width="200px" height="240px">
 
-[[github](http://github.com/aidenlyt)]
-[[portfolio](team/johndoe.md)]
+[[Github](http://github.com/aidenlyt)]
+
+Year 2 CS student. I eat ice cream with chopsticks.
 
 * Role: Developer
 * Responsibilities: Scheduling & Tracking
 
-### Run Jia
+### RunJia Chen
 
 <img src="images/runjia.png" width="200px" height="240px" >
 
-[[github](http://github.com/RunjiaChen)]
+[[Github](http://github.com/RunjiaChen)]
+
+Y1 CS, like to watch Marvel shows like Loki, What if
 
 * Role: Developer
 * Responsibilities: UI
