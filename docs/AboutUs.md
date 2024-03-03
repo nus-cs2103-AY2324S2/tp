@@ -26,14 +26,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Everything
 
-### For Dylan
+### Dylan Wong
 
-<img src="images/shamesjen.png" width="200px">
+<img src="images/dylan.png" width="200px">
 
-[[github](http://github.com/shamesjen)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/thewongdylan)]
 
 * Role: Developer
-* Responsibilities: Search Features
+* Responsibilities: Everything
+>>>>>>> origin/master
 
 ### James Shen
 
