@@ -141,6 +141,21 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Remove a tag : `Remove Tag`
+
+Deletes the specified person from the address book.
+
+Format: `Remove Tag INDEX [t/TAG]…`
+
+* Removes tags of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The tag must exist on the person
+
+Examples:
+* `list` followed by `Remove Tag 2 t/friend` Removes the friend tag from the 2nd person in the address book.
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
