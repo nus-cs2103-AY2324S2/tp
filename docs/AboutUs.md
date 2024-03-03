@@ -11,7 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Sim Han Kiong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/simhankiong.png" width="200px">
 
 [[github](https://github.com/SimHanKiong)]
 [[portfolio](team/simhankiong.md)]
