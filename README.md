@@ -10,7 +10,7 @@ P.S. It is named `Dormie` because it is a playful and friendly abbreviation of "
 ## Our Easy-to-Use Interface
 ![Ui](docs/images/Ui.png)
 
-* Key Features
+* Key Features 
   - View all contacts
   - Create a new contact
   - Edit a current contact
