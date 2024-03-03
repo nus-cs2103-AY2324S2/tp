@@ -31,7 +31,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Java Expert
 * Responsibilities: Helps other team members with matters related to the Java programming language.
-=======
 
 ### Yee Jun Hyeok Bryan
 
