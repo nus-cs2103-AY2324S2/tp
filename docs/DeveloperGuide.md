@@ -288,16 +288,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Elder Scrolls` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add contact, entering contact information
+2. Elder Scrolls adds the contact
+3. Elder Scrolls displays the details of the contact added
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given contact details are invalid.
+
+  * 2a1. Elder Scrolls shows an error message.
+  
+    Use case ends.
+
+* 3a. The given contact details are already in the contact book
+
+    * 3a1. Elder scrolls shows an error message.
+  
+     Use case ends.
+  
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to list all contacts
+2.  Elder Scrolls shows a list of all contacts
+3.  User requests to delete a specific contact using its unique ID (UID)
+4.  Elder Scrolls deletes the contact based on its UID
 
     Use case ends.
 
@@ -305,16 +329,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+  * 2a1. Elder Scrolls shows an error message.
 
-* 3a. The given index is invalid.
+    Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+* 3a. The given UID is invalid.
+
+    * 3a1. Elder Scrolls shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 4a. The contact requested to be deleted is still paired.
 
+  * 4a1. Elder Scrolls shows an error message.
+  
+    Use case resumes at step 2.
+
+
+
+**Use case: List all contacts**
+
+**MSS**
+
+1. User requests to list all contacts
+2. Elder Scrolls shows a list of all contacts
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. Elder Scrolls shows an error message.
+
+      Use case ends.
+
+**Use case: List all volunteer contacts**
+
+**MSS**
+
+1. User requests to list all volunteer contacts
+2. Elder Scrolls shows a list of all volunteer contacts
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. Elder Scrolls shows an error message.
+
+      Use case ends.
+  
+* 3a. The incorrect filtering parameter used, ie. 'vol' not used
+
+  * 3a1. Elder Scrolls shows an error message.
+  
+    Use case ends.
+
+**Use case: List all befriendee contacts**
+
+**MSS**
+
+1. User requests to list all befriendee contacts
+2. Elder Scrolls shows a list of all befriendee contacts
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. Elder Scrolls shows an error message.
+
+      Use case ends.
+
+* 3a. The incorrect filtering parameter used, ie. 'bef' is not used
+
+    * 3a1. Elder Scrolls shows an error message.
+
+      Use case ends.
+      
+*{More to be added}*
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
