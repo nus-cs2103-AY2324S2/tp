@@ -48,6 +48,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **Notes about the command format:**<br>
 
+* Some commands require you to include parameters. These parameters are identified by prefixes.
+
+* Here are a list of valid prefixes and what they each refer to.
+
+| Prefix | What it refers to |
+|--------|-------------------|
+|n/| Name of the contact     |
+|p/| Phone number of contact |
+|e/| Email of contact        |
+|a/| Address of contact      |
+|t/| Tags of contact         |
+|m/| Matriculation number of contact|
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -66,16 +79,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Valid tags:
-
-A list of valid parameters for a contact.
-
-* `n/NAME` 
-* `p/PHONE` 
-* `e/EMAIL` 
-* `a/ADDRESS` 
-* `t/TAG` 
-* `m/MATRIC_ID`
 
 ### Viewing help : `help`
 
@@ -88,16 +91,16 @@ Format: `help`
 
 ### Parameters:
 
-* n/NAME 
-* p/PHONE_NUMBER 
-* e/EMAIL 
-* a/ADDRESS 
+* n/NAME
+* p/PHONE_NUMBER
+* e/EMAIL
+* a/ADDRESS
 * t/TAG (Optional)
 * m/MATRICULATION_NUMBER (Optional)
 
-### Adding a person: `add`
+### Adding a contact: `add`
 
-Adds a person to the address book.
+Adds a contact to the address book.
 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
@@ -110,53 +113,54 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NU
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A contact can have any number of tags (including 0)
 </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal m/A1234567Z`
 
-### Listing all persons : `list`
+### Listing all contacts : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all contacts in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a contact : `edit`
 
-Edits an existing person in the address book.
+Edits an existing contact in the address book.
 
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
+* You can remove all the contact’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-### Filtering Contacts using parameters: `find`
+### Filtering Contacts: `find`
 
-Finds persons with parameters that match the given keyword
+* Filter contacts based on specific criteria within their records.
 
-Format: `find PARAMETER KEYWORD`
+Format: `find PREFIX/KEYWORD`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The search will return any result that contains the keyword as a substring under that parameter. e.g. `hans` will match `hans@gmail.com` for an email search
-* `PARAMETER` that is supported includes : /n, /p, /e, /a and /t
-* Only one parameter can be searched
+* This command searches for contacts using a specific aspect of their details, as specified by the prefix.
+* The search will return any result that contains the keyword as a substring under the indicated prefix. e.g. `find e/hans` will find any contact that contains `hans` in their email.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* prefixes that are supported includes : n/, p/, e/, a/, m/ and t/.
+* Only one prefix can be used for filtering at a time.
 
 Examples:
-* `find \n John` returns `john` and `John Doe`
-* `find \n alex` returns `Alex Yeoh`, `Davis Alex`
-* `find \t student` returns all contacts tagged with `student` or any contacts with tags that has `student` as a substring
-* `find \p 1423` returns all contacts with phone number containing `1423`
+* `find n/John` returns `john` and `John Doe`.
+* `find n/alex` returns `Alex Yeoh`, `Davis Alex`.
+* `find t/student` returns all contacts tagged with `student` or any contacts with tags that has `student` as a substring.
+* `find p/1423` returns all contacts with phone number containing `1423`.
 
 ### Copy email addresses: `copy`
 
@@ -168,19 +172,19 @@ Format: `copy`
 * The emails are copied into your clipboard such that you may easily broadcast emails
   to specific groups of people.
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified contact from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd contact in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -222,7 +226,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### 
+###
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -245,7 +249,7 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format, Examples                                                                                                                                                                          
+| Action | Format, Examples
 |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                                                   |
