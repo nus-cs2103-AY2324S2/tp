@@ -285,7 +285,7 @@ will come in as well.
 He will be able to add many personal details to the contacts as well. It is optimized to search for contacts quickly. 
 It will also include settings to create a custom look for the application.
 
-### User stories  
+### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
