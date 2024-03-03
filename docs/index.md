@@ -10,10 +10,10 @@
 
 ![Ui](images/Ui.png)
 
-**AssetBook is a desktop application for keeping track of your assets and details of point-of-contacts (POCs).** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**AssetBook-3 is a desktop application for logistics managers to keep track point-of-contacts' (POCs) contact information, along with their relevant assets.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using AssetBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AssetBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using AssetBook-3, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing AssetBook-3, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
