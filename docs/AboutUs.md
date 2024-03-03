@@ -26,17 +26,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+### Darylgolden
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darylgolden.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/darylgolden)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: -
+* Responsibilities: -
 
 ### Jean Doe
 
