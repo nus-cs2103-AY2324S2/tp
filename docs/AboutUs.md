@@ -34,7 +34,7 @@ You can reach us at the email `connect_care[at]comp.nus.edu.sg`
 [[portfolio](team/anthony.md)]
 
 * Role: Team Lead
-* Responsibilities: TBD
+* Responsibilities: Manages the project
 
 ### Au Jun Ming Jeremiah
 
@@ -73,4 +73,4 @@ You can reach us at the email `connect_care[at]comp.nus.edu.sg`
 [[portfolio](team/tejas.md)]
 
 * Role: Developer
-* Responsibilities: TBD
+* Responsibilities: Documentation
