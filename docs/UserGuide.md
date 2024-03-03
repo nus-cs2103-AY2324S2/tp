@@ -147,7 +147,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Input values will overwrite **all** existing values that were assigned to the specified field.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-* This command will check for duplicate contact before edit is executed. Check will be conduct on whether `p/PHONE_NUMBER` already exists on another contact if it is edited. If the new edited phone number is the same as the old one, the command will go through.
+* This command will check for duplicate phone number before edit is executed. If the new phone number is used by another person, the command will not be executed.
 
 Examples:
 *  `edit 3 n/Bobby Tay e/bobbytay@u.nus.edu` Edits contact displayed at index 3 and changes the name of the contact to `Bobby Tay` and email to `bobbytay@u.nus.edu` respectively.
