@@ -18,11 +18,6 @@
 
 **Devplan Pro** is a project management app that is catered towards project managers who love typing. It allows the user to keep track of their various projects, the ongoing tasks within the projects, and people who are responsible for those tasks. Every action is executed through the input box using an intuitive [list of commands](https://github.com/othneildrew/Best-README-Template). Download now get a boost to your productivity.
 
-### Built With
-
-- Java
-- JavaFX
-
 ### Installation
 
 - Still in development
@@ -31,3 +26,4 @@
 
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 - This README is based on the [Best-README-Template](https://github.com/othneildrew/Best-README-Template) template.
+- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
