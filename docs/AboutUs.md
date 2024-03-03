@@ -28,31 +28,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: -
 * Responsibilities: -
 
-### Johnny Doe
+### Darylgolden
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darylgolden.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/darylgolden)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: -
+* Responsibilities: -
 
-### Jean Doe
+### Aidan Goh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/topkec.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/TopKec)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: -
+* Responsibilities: -
 
-### James Doe
+### Tan Qin Yong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanqinyong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tanqinyong)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: -
+* Responsibilities: -
