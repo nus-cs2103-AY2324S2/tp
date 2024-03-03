@@ -147,6 +147,17 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Filtering by tags
+
+Filters all entries with specified tags.
+
+Format: `filter [all/any] NUMBEROFTAGS TAGNAME [TAGNAME]`
+
+- If `filter all` is used and more than 1 tag is used to filter, only entries that match all tags will be shown.
+- If `filter any` is used and more than 1 tag is used to filter, all entries that match any one of the tags will be shown.
+- Tags are case insensitive.
+- The number of tags cannot be `0`.
+
 ### Exiting the program : `exit`
 
 Exits the program.
