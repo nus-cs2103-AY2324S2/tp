@@ -24,10 +24,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Ho Kin Tat
 
 
-<img src="images/kt_profile.png" width="200px">
+<img src="images/kintatho.png" width="200px">
 
 [[github](http://github.com/kintatho)]
 [[portfolio](team/kintat.md)]
+
+* Role: Developer
+* Responsibilities: Integration
 
 
 ### Liu Yiyang
