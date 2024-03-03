@@ -262,13 +262,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a manager of a befriending volunteer organisation
+* has a need to keep track of many befriendees/elderly of the volunteer programme
+* has a need to keep track of volunteers in the organisation
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage the volunteer organisation faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -317,11 +319,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should have a simple menu structure with clear labels, guiding users to key actions without extensive tutorials.
+5. Should have graceful error handling with clear human-readable messages to the user in case of unexpected issues.
+6. Ability to filter contacts based on relevant criteria (location, demographics, skills, availability) to aid in pairing.
+7. Should have a robust data storage mechanism that can handle data corruption and large data sets.
 
 ### Glossary
 
