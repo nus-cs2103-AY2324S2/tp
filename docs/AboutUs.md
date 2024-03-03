@@ -5,7 +5,7 @@
 
 # About Us
 
-We are a team taking the Software Engineering (CS2310T) course offered by [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team taking the Software Engineering (CS2103T) course offered by [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
 
@@ -16,14 +16,14 @@ We are a team taking the Software Engineering (CS2310T) course offered by [Schoo
 email address: `e0957625@u.nus.edu`<br>
 [[github](https://github.com/Tanzhiheng26)]
 
-### Zhu Yi Cheng
+### Zhu Yicheng
 
 <img src="images/zhuuyicheng.png" width="200px">
 
 email address: `e0957889@u.nus.edu`<br>
 [[github](https://github.com/zhuuyicheng)]
 
-### Xu Zi Qi
+### Xu Ziqi
 
 <img src="images/ziiqii.png" width="200px">
 
