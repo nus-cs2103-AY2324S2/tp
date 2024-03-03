@@ -6,4 +6,4 @@
 * The project simulates an ongoing software project for a desktop application (called _CulinaryContacts_) specially designed for family-owned restaurant owners or managers to manage contact details.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
-* For the detailed documentation of this project, see the **[CulinaryContacts Product Website](https://nus-cs2103-ay2324s2.github.io/tp/)**.
+* For the detailed documentation of this project, see the **[CulinaryContacts Product Website](https://ay2324s2-cs2103t-w09-3.github.io/tp/)**.
