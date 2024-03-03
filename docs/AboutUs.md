@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aidan Goh
 
-<img src="images/AidanGoh.png" width="200px">
+<img src="images/TopKec.png" width="200px">
 
 [[github](https://github.com/TopKec)]
 
