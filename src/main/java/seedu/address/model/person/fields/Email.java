@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public class Email implements Field {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
+    private static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
@@ -33,7 +33,7 @@ public class Email implements Field {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
-    public final String email;
+    private final String email;
 
     /**
      * Constructs an {@code Email}.
@@ -42,14 +42,14 @@ public class Email implements Field {
      */
     public Email(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        checkArgument(isValid(email), MESSAGE_CONSTRAINTS);
         this.email = email;
     }
 
     /**
      * Returns if a given string is a valid email.
      */
-    public static boolean isValidEmail(String test) {
+    private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

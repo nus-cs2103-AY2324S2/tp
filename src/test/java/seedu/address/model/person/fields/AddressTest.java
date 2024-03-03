@@ -1,5 +1,6 @@
 package seedu.address.model.person.fields;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -15,23 +16,17 @@ public class AddressTest {
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
+        assertThrows(IllegalArgumentException.class, () -> new Address("")); // empty string
+        assertThrows(IllegalArgumentException.class, () -> new Address(" ")); // spaces only
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
-        assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
-
-        // invalid addresses
-        assertFalse(Address.isValidAddress("")); // empty string
-        assertFalse(Address.isValidAddress(" ")); // spaces only
-
+    public void constructor_validAddress_success() {
         // valid addresses
-        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertDoesNotThrow(() -> new Address("Blk 456, Den Road, #01-355"));
+        assertDoesNotThrow(() -> new Address("-")); // one character
+        assertDoesNotThrow(() ->
+                           new Address("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
 
     @Test
@@ -53,4 +48,5 @@ public class AddressTest {
         // different values -> returns false
         assertFalse(address.equals(new Address("Other Valid Address")));
     }
+
 }
