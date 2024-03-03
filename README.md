@@ -5,7 +5,7 @@
 ![Ui](docs/images/Ui.png)
 
 ## What is it? 
-**FAPro** is a desktop application for financial advsisors to manage the contacts of their clients. This is especially built for those with more than 50 clients to handle.
+**FAPro** is a desktop application for financial advisors to manage the contacts of their clients. This is especially built for those with more than 50 clients to handle.
 
 ## What value it brings?
 This application revolutionizes client engagement for financial advisors by facilitating strategic communication and personalized service.
