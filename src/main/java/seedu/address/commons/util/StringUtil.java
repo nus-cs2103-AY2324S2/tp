@@ -42,11 +42,11 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(word);
 
-        if(word.isBlank()){
-            return true;
-        } else {
+//        if(word.isBlank()){
+//            return true;
+//        } else {
             return sentence.toLowerCase().contains(word.toLowerCase());
-        }
+//        }
     }
 
     /**

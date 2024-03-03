@@ -11,7 +11,9 @@ import seedu.address.model.tag.Tag;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Lists all persons in the address book to the user.
@@ -36,20 +38,19 @@ public class ListCommand extends Command {
             + PREFIX_ALIAS + "owesMoney";
 
 
-    private final NameContainsKeywordsPredicate predicate;
-    private final PhoneContainsKeywordsPredicate phonePredicate;
+    private final Predicate<Person> predicates;
 
-    public ListCommand(NameContainsKeywordsPredicate predicate, PhoneContainsKeywordsPredicate phonePredicate) {
-        this.predicate = predicate;
-        this.phonePredicate = phonePredicate;
+    public ListCommand(Predicate<Person> predicates) {
+        this.predicates = predicates;
     }
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        model.updateFilteredPersonList(phonePredicate);
+
+        model.updateFilteredPersonList(predicates);
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
