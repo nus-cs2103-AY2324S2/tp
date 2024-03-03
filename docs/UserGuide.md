@@ -28,13 +28,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all persons.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z` : Adds a person named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd person shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all persons.
 
    * `exit` : Exits the app.
 
@@ -47,6 +47,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
+
+* Some commands require you to include parameters. These parameters are identified by prefixes.
+
+* Here are a list of valid prefixes and what they each refer to.
+
+| Prefix | What it refers to         |
+|--------|---------------------------|
+|n/      | Name of the person        |
+|p/      | Phone number of person    |
+|e/      | Email of person           |
+|a/      | Address of person         |
+|t/      | Tags of person            |
+|m/      | Matriculation ID of person|
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -66,16 +79,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Valid tags:
-
-A list of valid parameters for a contact.
-
-* `n/NAME` 
-* `p/PHONE` 
-* `e/EMAIL` 
-* `a/ADDRESS` 
-* `t/TAG` 
-* `m/MATRIC_ID`
 
 ### Viewing help : `help`
 
@@ -88,10 +91,10 @@ Format: `help`
 
 ### Parameters:
 
-* n/NAME 
-* p/PHONE_NUMBER 
-* e/EMAIL 
-* a/ADDRESS 
+* n/NAME
+* p/PHONE_NUMBER
+* e/EMAIL
+* a/ADDRESS
 * t/TAG (Optional)
 * m/MATRICULATION_NUMBER (Optional)
 
@@ -104,7 +107,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NU
 
 <box type="info" seamless>
 
-**Important:** Each contact should have an unique email address. AB3 does not allow for duplicate email addressed to be added.
+**Important:** Each person should have an unique email address. AB3 does not allow for duplicate email addressed to be added.
 
 </box>
 
@@ -141,26 +144,27 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Filtering Contacts using parameters: `find`
+### Filtering persons: `find`
 
-Finds persons with parameters that match the given keyword
+* Filter persons based on specific criteria within their records.
 
-Format: `find PARAMETER KEYWORD`
+Format: `find PREFIX/KEYWORD`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The search will return any result that contains the keyword as a substring under that parameter. e.g. `hans` will match `hans@gmail.com` for an email search
-* `PARAMETER` that is supported includes : /n, /p, /e, /a and /t
-* Only one parameter can be searched
+* This command searches for persons using a specific aspect of their details, as specified by the prefix.
+* The search will return any result that contains the keyword as a substring under the indicated prefix. e.g. `find e/hans` will find any person that contains `hans` in their email.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* prefixes that are supported includes : n/, p/, e/, a/, m/ and t/.
+* Only one prefix can be used for filtering at a time.
 
 Examples:
-* `find \n John` returns `john` and `John Doe`
-* `find \n alex` returns `Alex Yeoh`, `Davis Alex`
-* `find \t student` returns all contacts tagged with `student` or any contacts with tags that has `student` as a substring
-* `find \p 1423` returns all contacts with phone number containing `1423`
+* `find n/John` returns `john` and `John Doe`.
+* `find n/alex` returns `Alex Yeoh`, `Davis Alex`.
+* `find t/student` returns all persons tagged with `student` or any persons with tags that has `student` as a substring.
+* `find p/1423` returns all persons with phone number containing `1423`.
 
 ### Copy email addresses: `copy`
 
-Copies the emails of currently displayed contacts into your clipboard.
+Copies the emails of currently displayed persons into your clipboard.
 
 Format: `copy`
 
@@ -190,16 +194,16 @@ Format: `clear`
 
 ### Exporting Data to a CSV file : `export to csv`
 
-Exports all contacts and their details to a CSV file.
+Exports all persons and their details to a CSV file.
 
 Format: `export to csv`
 
 ### Importing Data from a CSV file : `import`
 
-Imports all contacts and their details from a CSV file from a specified file path.
+Imports all persons and their details from a CSV file from a specified file path.
 
 Format: `import FILEPATH`
-- imports the contacts saved in `FILEPATH` to `addressBook.json`
+- imports the persons saved in `FILEPATH` to `addressBook.json`
 
 ### Exiting the program : `exit`
 
@@ -222,7 +226,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### 
+###
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -245,7 +249,7 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format, Examples                                                                                                                                                                          
+| Action | Format, Examples
 |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                                                   |
