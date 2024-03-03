@@ -97,7 +97,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all people : `list`
 
 Shows a list of all people in FAPro.
 
@@ -120,9 +120,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating people by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds people whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -138,6 +138,20 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Locating people by tag : `tagfind`
+
+Finds people who are associated with the specified tag.
+
+Format: `tagfind TAG`
+
+* The search is case-insensitive. e.g. `CaR` will match `car`.
+* As long as the person has 1 tag that matches, the person will be listed.
+* Only full words will be matched e.g. `cars` will not match `car`.
+
+Examples:
+* `tagfind car` returns all people with a `car` tag.
+* `tagfind HOUSING` returns all people with a `housing` tag.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from FAPro.
@@ -152,7 +166,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in FAPro.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Viewing the deatiled profile a person : `select`
+### Viewing the detailed profile a person : `select`
 
 View a more detailed profile of the specified person from FAPro.
 
@@ -212,11 +226,12 @@ Furthermore, certain edits can cause FAPro to behave in unexpected ways (e.g., i
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**TagFind**| `tagfind TAG` <br> e.g. `tagfind car`
 **List**   | `list`
-**Select** | `select INDEX`<br> e.g., `select 1`
+**Select** | `select INDEX`<br> e.g. `select 1`
 **Help**   | `help`
