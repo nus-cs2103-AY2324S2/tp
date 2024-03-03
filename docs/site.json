@@ -1,8 +1,8 @@
 {
   "baseUrl": "",
-  "titlePrefix": "ClinicMate",
-  "titleSuffix": "AddressBook Level-3",
-  "faviconPath": "images/SeEduLogo.png",
+  "titlePrefix": "ClinicMate Docs",
+  "titleSuffix": "ClinicMate",
+  "faviconPath": "images/ClinicMateLogo2.png",
   "style": {
     "codeTheme": "light"
   },
