@@ -275,14 +275,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​   | I want to …​                                      | So that I can…​                                               |
+|-----|-----------|---------------------------------------------------|---------------------------------------------------------------|
+| `* * *` | manager   | add volunteers’ and elderly befriendees’ contacts |                                                               |
+| `* * *` | manager   | edit volunteers’ and elderly befriendees’ details |                                                               |
+| `* * *` | manager   | view list of volunteers and elderly befriendees   | keep track of the roster                                      |
+| `* * *` | manager   | delete volunteer and elderly befriendee contacts  |                                                               |
+| `* * *` | manager   | tag elderly befriendees with relevant details     | accommodate for any special circumstances                     |
+| `* * *` | manager   | pair volunteers with befriendee contacts          | assign the pairings                                           |
+| `* * *` | manager   | view paired details of elderly befriendee         | know the address and case details                             |
+| `* *` | first-time user   | access a help page          | refer to the features that come along with the application    |
+| `* *` | manager   | have a one-stop view of all the important information about the elderly and volunteers         | contact each person easily    |
+| `* *` | manager   | see a timetable with meeting details         | quickly see the planned meeting sessions                                    |
+| `* *` | manager   | search for specific contact based on keywords         | quickly see contact details of specific people                   |
+| `*` | first-time user   | see sample befriendee and volunteer profiles      | try out the features with pre-loaded data                     |
+| `*` | first-time user   | follow a guided tour         | be aware of how to use and access features in the application |
 
 *{More to be added}*
 
@@ -325,8 +332,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Befriendee**: Elderly person seeking companionship
+* **Befriending Volunteer Organisations**: An organisation that aims to provide companionship to seniors by pairing them with volunteers
+* **Pairing**: Assigning of a volunteer to a befriendee so that they become a pair
+* **Tagging**: Adding an arbitrary detail to a volunteer or befriendee profile
 
 --------------------------------------------------------------------------------------------------------------------
 
