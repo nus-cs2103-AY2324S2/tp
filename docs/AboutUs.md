@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chin Zhe Ning
 
-<img src="images/chinzhening.png" width="200px">
+<img src="images/biinnnggggg.png" width="200px">
 
 [[github](https://github.com/biinnnggggg)]
 
