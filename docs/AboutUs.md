@@ -11,31 +11,44 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tang Yetong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darkvoid32.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://darkvoid32.github.io/)]
+[[github](https://github.com/darkvoid32)]
+[[portfolio](team/tangyetong.md)]
 
-* Role: Project Advisor
+* Role:
+* Responsibilities:
 
-### Jane Doe
+### Leong Heng Yew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aureliony.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/aureliony)]
+[[portfolio](team/aureliony.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Java Expert
+* Responsibilities: Helps other team members with matters related to the Java programming language.
+=======
+
+### Yee Jun Hyeok Bryan
+
+<img src="images/bryanyee33.png" width="200px">
+
+[[github](http://github.com/bryanyee33)]
+[[portfolio](team/bryanyee33.md)]
+
+* Role: UI & UX expert
+* Responsibilities: Manages things related to the UI & UX such as JavaFX and design.
 
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
