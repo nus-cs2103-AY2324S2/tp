@@ -1,12 +1,11 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonDetailContainsKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -19,15 +18,24 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, FindCommand.ACCEPTED_PREFIXES);
+
+        if (!argMultimap.verifySinglePrefix()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        // Finds the prefix input for the command
+        for (Prefix prefix : FindCommand.ACCEPTED_PREFIXES) {
+            if (argMultimap.getValue(prefix).isPresent() && !argMultimap.getValue(prefix).get().isEmpty()) {
+                return new FindCommand(
+                    new PersonDetailContainsKeywordPredicate(prefix, argMultimap.getValue(prefix).get()));
+            }
+        }
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
 }

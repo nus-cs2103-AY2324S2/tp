@@ -75,4 +75,11 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Returns true if the ArgumentMultimap contains a single prefix-argument pair and an empty preamble.
+     */
+    public boolean verifySinglePrefix() {
+        return argMultimap.size() == 2 && getPreamble().isEmpty();
+    }
 }
