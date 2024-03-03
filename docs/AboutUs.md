@@ -5,11 +5,11 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0970466@comp.nus.edu.sg`
 
 ## Project team
 
-### Drustan Yeo 
+### Yeo Jun Teng Drustan
 
 <img src="images/drustanyjt.png" width="200px">
 
@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead
 
-### Jayne Chen 
+### Chen Jiaying Jayne
 
 <img src="images/jayne1010.png" width="200px">
 
@@ -37,11 +37,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Integration
 
-### Charmaine Teng Shi Rou
+### Teng Shi Rou Charmaine
 
 <img src="images/tengcharmaine.png" width="200px">
 
 [[github](http://github.com/tengcharmaine)]
+[[linkedin](https://www.linkedin.com/in/charmaine-teng/)]
+
 
 * Role: Developer
 * Responsibilities: Scheduling and tracking
