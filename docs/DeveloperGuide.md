@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# Insura-Connect Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -367,11 +367,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Filter the list of clients**
+
+**MSS**
+
+1.  User requests to filter list of persons
+2.  AddressBook shows a list of persons that satisfy the filter
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+4. The response to any use action should become visible within 5 seconds.
+5. Should have a user-friendly interface that is easy to navigate and understand.
+6. Should be stable and not crash or lose data under normal use.
+
 
 *{More to be added}*
 
