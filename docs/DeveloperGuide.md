@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# Insura-Connect Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -358,6 +358,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  AddressBook shows a list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Filter the list of clients**
+
+**MSS**
+
+1.  User requests to filter list of persons
+2.  AddressBook shows a list of persons that satisfy the filter
 
     Use case ends.
 
