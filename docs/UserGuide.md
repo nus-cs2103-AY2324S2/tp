@@ -6,7 +6,7 @@
 
 # Clinic Mate User Guide
 
-Clinic Mate is a **desktop app for managing contacts in a clinic, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Clinic Mate can get manage your patients' contact faster than traditional GUI apps.
+Clinic Mate is a **desktop app for managing contacts in a clinic, optimized for use via a  **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Clinic Mate can get manage your patients' contact faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
