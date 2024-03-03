@@ -17,43 +17,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor
 
-### Jane Doe
+### Timothy Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/timothy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/timothysashimi)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
 
-### Johnny Doe
+### Kenneth Seet
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itstrueitstrueitsrealitsreal.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/itstrueitstrueitsrealitsreal)] [[portfolio](team/kenneth.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Project Management
 
-### Jean Doe
+### Teo Hong Rui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sethteo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/sethteo)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: UI
 
-### James Doe
+### Chew Zi Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chewbum.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/chewbum)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Model

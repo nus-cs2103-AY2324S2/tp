@@ -262,27 +262,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* has a need to manage a significant number of clients
+* has a need to manage a significant number of meetings
+* has a need to classify clients into different categories
+* prefers desktop apps over other types of apps
+* can type fast (50 wpm or more)
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: A CLI designed specifically for financial advisors to revolutionise the way they manage, schedule, filter and rank their clients. Addresses the day-to-day challenges faced by financial advisors but also provides strategic value through its ranking and leaderboard features. It's a companion that empowers financial advisors to scale to new heights.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                | I want to …​                         | So that I can…​                            |
+|----------|------------------------|--------------------------------------|--------------------------------------------|
+| `* * *`  | As a financial advisor | add new clients profiles to my list  | keep track of the clients under me         |
+| `* * *`  | As a financial advisor | edit the profiles of my clients      | keep their information up to date          |
+| `* * *`  | As a financial advisor | delete the clients under me          | remove clients that are no longer under me |
+| `* * *`  | As a financial advisor | view all my client profiles          | track all my clients in one place          |
+| `* * *`  | As a financial advisor | add client meetings                  | keep track of my schedule                  |
+| `* * *`  | As a financial advisor | view upcoming meetings               | so I can prepare for them accordingly      |
+| `* *`    | As a financial advisor | search my meetings by date or agenda | locate meetings with specific filters      |
+| `* *`    | As a financial advisor | filter my meetings by date           | so I can know the meetings of that day     |
+| `*`      | As a financial advisor | sort persons by name                 | locate a person easily                     |
 
 *{More to be added}*
 
@@ -318,10 +323,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for 
+    typical usage.
+1. Should be able to hold up to 10 meetings per client without a noticeable sluggishness in 
+   performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system 
+   admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. A user should be able to use the system without much guidance.
+1. The application should only require a standalone executable file to run. No other software should be required to be installed.
+1. The system should respond within 3 seconds to ensure smooth user experience.
 
 ### Glossary
 
