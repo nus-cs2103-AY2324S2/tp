@@ -1,5 +1,5 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/AY2324S2-CS2103T-F14-2/tp/graph/badge.svg?token=T5H5FY1BYS)](https://codecov.io/gh/AY2324S2-CS2103T-F14-2/tp) 
+[![codecov](https://codecov.io/gh/AY2324S2-CS2103T-F14-2/tp/graph/badge.svg?token=T5H5FY1BYS)](https://codecov.io/gh/AY2324S2-CS2103T-F14-2/tp)
 
 ![Ui](docs/images/Ui.png)
 
@@ -8,7 +8,7 @@ The project simulates an ongoing software project for a desktop application (cal
 * It comes with a **reasonable level of user and developer documentation**.
 
 Clinic Mate is an **address book for managing user's contacts, optimised for use via a Command Line Interface** (CLI) while
-still having the benefits of a Graphical User Interface (GUI). 
+still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Clinic Mate can manage your contacts faster than traditional GUI apps.
 
 Clinic Mate aims to make it easy for **General Practitioners** (GPs) in private family clinics to view patient contacts at
