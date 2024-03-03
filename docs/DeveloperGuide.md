@@ -293,30 +293,98 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FinCliQ` and the **Actor** is the `targeted financial advisor`, unless specified otherwise)
 
 **Use case: Delete a person**
 
-**MSS**
+**Use Case: Add New Client Profiles**
+**MSS:**
+1. Financial advisor requests to add a new client profile to their list.
+2. ClientCatalog adds the new client profile to the advisor's list.
+3. ClientCatalog confirms the successful addition of the client profile.
+   - Use case ends.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Extensions:**
+- 1a. The financial advisor does not provide necessary client information.
+   - 1a1. ClientCatalog detects missing information.
+   - 1a2. ClientCatalog prompts the financial advisor to provide the missing information.
+   - Use case resumes from step 1.
+- 1b. The financial advisor attempts to add a client profile that already exists.
+   - 1b1. ClientCatalog detects duplicate profile.
+   - 1b2. ClientCatalog notifies the financial advisor about the existing profile.
+   - Use case ends.
 
-    Use case ends.
+**Use Case: Edit Client Profiles**
+**MSS:**
+1. Financial advisor requests to edit the profile of a client.
+2. ClientCatalog retrieves the client's profile for editing.
+3. Financial advisor updates the necessary information.
+4. ClientCatalog saves the changes to the client's profile.
+5. ClientCatalog confirms the successful update of the client's profile.
+   - Use case ends.
 
-**Extensions**
+**Extensions:**
+- 1a. The financial advisor tries to edit a non-existent client profile.
+   - 1a1. ClientCatalog detects the absence of the client profile.
+   - 1a2. ClientCatalog notifies the financial advisor about the non-existence of the client profile.
+   - Use case ends.
+- 1b. The financial advisor attempts to edit the profile with invalid information.
+   - 1b1. ClientCatalog detects invalid information.
+   - 1b2. ClientCatalog prompts the financial advisor to provide valid information.
+   - Use case resumes from step 3.
 
-* 2a. The list is empty.
+**Use Case: Delete Clients**
+**MSS:**
+1. Financial advisor requests to delete a client from their list.
+2. ClientCatalog removes the specified client from the advisor's list.
+3. ClientCatalog confirms the successful deletion of the client.
+   - Use case ends.
 
-  Use case ends.
+**Extensions:**
+- 1a. The financial advisor tries to delete a non-existent client.
+   - 1a1. ClientCatalog detects the absence of the client.
+   - 1a2. ClientCatalog notifies the financial advisor about the non-existence of the client.
+   - Use case ends.
 
-* 3a. The given index is invalid.
+**Use Case: View All Client Profiles**
+**MSS:**
+1. Financial advisor requests to view all client profiles.
+2. ClientCatalog retrieves and displays all client profiles associated with the advisor.
+   - Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: Add Client Meetings**
+**MSS:**
+1. Financial advisor requests to add a meeting with a client to their schedule.
+2. MeetingScheduler schedules the meeting with the specified client.
+3. MeetingScheduler confirms the successful addition of the meeting to the advisor's schedule.
+   - Use case ends.
 
-      Use case resumes at step 2.
+**Use Case: View Upcoming Meetings**
+**MSS:**
+1. Financial advisor requests to view all upcoming meetings.
+2. MeetingScheduler retrieves and displays all upcoming meetings scheduled for the advisor.
+   - Use case ends.
+
+**Use Case: Search Meetings by Date or Agenda**
+**MSS:**
+1. Financial advisor requests to search for meetings based on date or agenda.
+2. MeetingScheduler filters meetings based on the specified date or agenda.
+3. MeetingScheduler displays the filtered meetings to the advisor.
+   - Use case ends.
+
+**Use Case: Filter Meetings by Date**
+**MSS:**
+1. Financial advisor requests to filter meetings by date.
+2. MeetingScheduler filters meetings based on the specified date.
+3. MeetingScheduler displays the filtered meetings to the advisor.
+   - Use case ends.
+
+**Use Case: Sort Persons by Name**
+**MSS:**
+1. Financial advisor requests to sort persons by name.
+2. ClientCatalog sorts the list of persons alphabetically by name.
+3. ClientCatalog displays the sorted list to the financial advisor.
+   - Use case ends.
 
 *{More to be added}*
 
