@@ -37,9 +37,11 @@ public class ListCommand extends Command {
 
 
     private final NameContainsKeywordsPredicate predicate;
+    private final PhoneContainsKeywordsPredicate phonePredicate;
 
-    public ListCommand(NameContainsKeywordsPredicate predicate) {
+    public ListCommand(NameContainsKeywordsPredicate predicate, PhoneContainsKeywordsPredicate phonePredicate) {
         this.predicate = predicate;
+        this.phonePredicate = phonePredicate;
     }
 
 
@@ -47,6 +49,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+        model.updateFilteredPersonList(phonePredicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
