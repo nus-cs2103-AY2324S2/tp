@@ -29,11 +29,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### S Devi Harshitha
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sdevih.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/sdevih)] [[portfolio](team/sdevih.md)]
 
 * Role: Developer
 * Responsibilities: Data
