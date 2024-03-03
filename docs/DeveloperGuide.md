@@ -274,42 +274,85 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of clients for social work, that is dynamically changing
+* has a need to efficiently track cases and get important information at a glance
+* has a need to easily add notes and observations during visits to record important details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage and view client information more efficiently than a standard word-editor/address book/spreadsheet
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | social worker                              | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | social worker                              | create a new client          | keep track of their information efficiently                            |
-| `* * *`  | social worker                              | delete a person              | remove client entries that I no longer need                            |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                         | I want to …​                 | So that I can…​                                                        |
+|----------|---------------------------------|------------------------------|------------------------------------------------------------------------|
+| `* * *`  | social worker                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
+| `* * *`  | social worker                   | create a new client          | keep track of their information efficiently                            |
+| `* * *`  | social worker                   | delete a client              | remove client entries that I no longer need                            |
+| `* * *`  | social worker                   | find a client by name        | locate details of clients without having to go through the entire list |
+| `* *`    | social worker                   | hide private contact details | minimize chance of someone else seeing them by accident                |
+| `*`      | social worker with many clients | sort persons by name         | locate a person easily                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `ConnectCare` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a client**
+
+**MSS**
+
+1.  User requests to add a client
+2.  ConnectCare adds the client
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The details of the client is incorrect
+
+    * 1a1. ConnectCare shows an error message.
+
+        Use case ends.
+
+**Use case: Update client details**
+
+**MSS**
+
+1.  User requests to update a client 
+2.  ConnectCare updates the client with new details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The client to update is not found
+
+    * 1a1. ConnectCare shows an error message.
+
+      Use case ends.
+
+* 1b. The client details given to update is incorrect
+
+    * 1b1. ConnectCare shows an error message.
+
+      Use case ends.
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ConnectCare shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  ConnectCare deletes the person
 
     Use case ends.
 
@@ -321,11 +364,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ConnectCare shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Find client**
+
+**MSS**
+
+1.  User requests to find a client
+2.  ConnectCare lists all clients that match the keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no given keyword.
+
+    * 1a1. ConnectCare shows an error message.
+
+      Use case ends.
+
+**Use case: Clear all clients**
+
+**MSS**
+
+1.  User requests to clear all clients
+2.  ConnectCare requests for confirmation
+3.  User confirms
+4.  ConnectCare clears all clients
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. ConnectCare shows an error message.
+
+      Use case ends.
+
+* 3a. The user does not confirm
+
+    * 3a1. ConnectCare informs user of the cancellation
+
+      Use case ends.
+
+**Use case: Exit the application**
+
+**MSS**
+
+1.  User requests to exit the application
+2.  ConnectCare exits
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
