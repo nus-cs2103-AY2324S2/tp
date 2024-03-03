@@ -17,15 +17,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Jane Doe
+### Ryo Seah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Ryo-Seah)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Everything
 
 ### Johnny Doe
 
