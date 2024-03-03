@@ -37,7 +37,7 @@ FAPro can get your client management tasks done faster than traditional GUI apps
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FAPro.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to FAPro.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -84,7 +84,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the FAPro.
+Adds a person to FAPro.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -99,13 +99,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the FAPro.
+Shows a list of all people in FAPro.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the FAPro.
+Edits an existing person in FAPro.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -140,7 +140,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the FAPro.
+Deletes the specified person from FAPro.
 
 Format: `delete INDEX`
 
@@ -149,12 +149,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the FAPro.
+* `list` followed by `delete 2` deletes the 2nd person in FAPro.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Viewing the deatiled profile a person : `select`
 
-View a more detailed profile of the specified person from the FAPro.
+View a more detailed profile of the specified person from FAPro.
 
 Format: `select INDEX`
 
@@ -163,12 +163,12 @@ Format: `select INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `select 2` shows the detailed profile of the 2nd person in the FAPro.
+* `list` followed by `select 2` shows the detailed profile of the 2nd person in FAPro.
 * `find Betsy` followed by `select 1` shows the detailed profile of the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the FAPro.
+Clears all entries from FAPro.
 
 Format: `clear`
 
@@ -190,7 +190,7 @@ FAPro data are saved automatically as a JSON file `[JAR file location]/data/addr
 
 **Caution:**
 If your changes to the data file makes its format invalid, FAPro will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the FAPro to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause FAPro to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
