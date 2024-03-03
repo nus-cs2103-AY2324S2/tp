@@ -144,7 +144,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Input values will overwrite **all** existing values that were assigned to the field.
+* Input values will overwrite **all** existing values that were assigned to the specified field.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * This command will check for duplicate contact before edit is executed. Check will be conduct on whether `p/PHONE_NUMBER` already exists on another contact if it is edited. If the new edited phone number is the same as the old one, the command will go through.
