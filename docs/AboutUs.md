@@ -21,8 +21,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Ho Kin Tat
 
+### Ho Kin Tat
 
 <img src="images/kintatho.png" width="200px">
 
@@ -51,6 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
+
 
 
 ### Wu Yizheng
