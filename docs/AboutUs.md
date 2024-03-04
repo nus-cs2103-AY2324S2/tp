@@ -17,41 +17,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Jane Doe
+### Ryo Seah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Ryo-Seah)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Everything
 
-### Jean Doe
+### Dylan Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dylan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/thewongdylan)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Everything
+
+### James Shen
+
+<img src="images/shamesjen.png" width="200px">
+
+[[github](http://github.com/shamesjen)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Search Features
