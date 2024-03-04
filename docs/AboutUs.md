@@ -1,61 +1,65 @@
 ---
   layout: default.md
-  title: "About Us"
+    title: "About Us"
 ---
 
 # About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Cheah Tze Juen
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/cheahtj.png" width="200px">
 
-* Role: Project Advisor
+[[github](https://github.com/cheahTJ)]
+[[portfolio](team/cheahtj.md)]
 
-### Jane Doe
+* Roles: Team Lead
+* Responsibilities:
+    * Dedicates tasks among team and facilitate coordination among team members
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Tan Hong Jun
 
-* Role: Team Lead
-* Responsibilities: UI
+<img src="images/hjuntan.png" width="200px">
 
-### Johnny Doe
+[[github](http://github.com/hjuntan)]
+[[portfolio](team/hjuntan.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Documentation
+* Responsibilities: Ensures that all documentation are up-to-date and are specific to the user
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+### Loh Jin Hun
 
-* Role: Developer
-* Responsibilities: Data
+<img src="images/Ragnapop.png" width="200px">
 
-### Jean Doe
+[[github](http://github.com/Ragnapop)] [[portfolio](team/ragnapop.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Testing
+* Responsibilities: Ensures that all features are properly tested, even on edge cases
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Chen Kuan Min
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/Rikko1204.png" width="200px">
 
-### James Doe
+[[github](http://github.com/Rikko1204)]
+[[portfolio](team/rikko1204.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Scheduling and tracking
+* Responsibilities: Ensures that the team is on pace with the 2 weeks sprint and helps assign
+  task equally to members
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Guo Yuhao
 
-* Role: Developer
-* Responsibilities: UI
+<img src="images/ringoftheking.png" width="200px">
+
+[[github](http://github.com/RingoftheKing)]
+[[portfolio](team/ringoftheking.md)]
+
+* Role: Deliverables and deadlines
+* Responsibilities: Ensures that the team is focussed on the individual task and is able to deliver the
+  intended feature
