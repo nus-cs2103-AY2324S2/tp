@@ -45,6 +45,12 @@ public class ListCommandParser implements Parser<ListCommand>{
             predicates.add(new PhoneContainsKeywordsPredicate(Collections.singletonList(phone.value)));
         }
 
+
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            String email = argMultimap.getValue(PREFIX_EMAIL).get();
+            predicates.add(new EmailContainsKeywordPredicate(Collections.singletonList(email)));
+        }
+
         // Combine predicates with AND logic
         Predicate<Person> combinedPredicate = predicates.stream()
                 .reduce(p -> true, Predicate::and);
