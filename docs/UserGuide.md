@@ -4,9 +4,12 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# TuteeTally User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TuteeTally is a **desktop app for managing student contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TuteeTally can make student management much easier and faster than traditional GUI apps.
+
+The system includes features for adding students, viewing student details, viewing summary statistics, and deleting student entries. All inputs are case-insensitive, enhancing user accessibility.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -66,84 +69,32 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+### Adding a student: `add`
 
-![help message](images/helpMessage.png)
+Adds a student particulars into address book.
 
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add -name {NAME} -address {S{PostalCode}} #{UnitNumber} -number {number} -subject {subject} -level {level}`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** If addition is successful, the new student record will be shown at the top of the list.
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add -name Xiao Ming -address S000000 #01-01 -number 88888888 -subject Math -level P1`
 
-### Listing all persons : `list`
+### Deleting a student : `Delete`
 
-Shows a list of all persons in the address book.
+Deletes the specified student from the address book.
 
-Format: `list`
+Format: `Delete -id {id}`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* Deletes the person at the specified `id`.
+* The index refers to the 5-digit code attached to each student entry.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete -id 88888` deletes the student with the id 8888
 
 ### Clearing all entries : `clear`
 
@@ -151,26 +102,26 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### View student statistics: View
+This would display the total number of students  
+Format: `View -statistics`
 
-Exits the program.
+### View student summary at home page: View
+This would display a summary of student particulars on the homepage.
+Format: `View -all`
 
-Format: `exit`
+### View student particular by name: View 
+This will display a specific student particular by searching its name 
+Format: `View -name [name]`
+Examples:
+* `View -name Xiao Ming` would display the student particular of Xiao Ming if existed
 
-### Saving the data
+### View student particular by id: View 
+This will display a specific particular by searching for its id
+Format: `View -id [id]`
+Examples; 
+* `View -id 88888` would display the student particular for student whose id is 88888 if it exists.
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -195,10 +146,8 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+**Add**    | `add -name {NAME} -address {S{PostalCode}} #{UnitNumber} -number {number} -subject {subject} -level {level}` <br> e.g., `add -name Xiao Ming -address S000000 #01-01 -number 88888888 -subject Math -level P1`
+**Delete** | `Delete -id {id}`<br> e.g., `delete -id 88888`
+**View** | `View [-statistics] [-all] [-id ID] [-name NAME]
+
+
