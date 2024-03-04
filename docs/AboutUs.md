@@ -50,14 +50,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/rizkidelta.md)]
 
 * Roles: Developer & Designer
-* Responsibilities: Full-stack developer, and design UI mockups or other components that are used in the application.
+* Responsibilities: Full-stack development and designing UI mockups or other components 
+that are used in the application.
 
 ### Guk Yi Siong
 
 <img src="images/yisiox.png" width="200px">
 
 [[github](http://github.com/yisiox)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yisiox.md)]
 
 * Role: Developer & Taskmaster
 * Responsibilities: Full-stack development and documentation.
