@@ -272,44 +272,69 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-
-* has a need to manage a significant number of contacts
+**Target user profile**: <br>
+Hiring manager who:
+* cannot afford a professional Applicant Tracking System (ATS)
+* has a need to manage a significant number of job applicants and their interview details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: <br>
+Free alternative for tracking interview datetimes, applicant contacts and their application statuses.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                                                       | I want to …​                             | So that I can…​                                                           |
+|----------|-------------------------------------------------------------------------------|------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user                                                                      | see usage instructions                   | refer to instructions when I forget how to use the Talent Tracker         |
+| `* * *`  | user                                                                          | add a new person (applicant/interviewer) |                                                                           |
+| `* * *`  | user                                                                          | delete a person (applicant/interviewer)  | remove person entries that I no longer need                               |
+| `* * *`  | user                                                                          | add a new interview                      |                                                                           |
+| `* * *`  | user                                                                          | delete an interviewer                    | remove interview entries that I no longer need                            |
+| `* *`    | user with many persons in the Talent Tracker                                  | find a person by name/email              | locate details of a person without having to go through the entire list   |
+| `* *`    | user with many interviews in the Talent Tracker                               | filter interviews by date                | locate details of interviews without having to go through the entire list |
+| `* *`    | user with many applicants of varying application status in the Talent Tracker | tag applicants                           | identify applicant's application progress                                 |
+| `* `     | user collaborating with other Talent Tracker users                            | share an applicant's details             | update other hiring managers on applicant details                         |
+| `* `     | user who does not want to clutter local hard drive with files                 | store applicant's resume                 | view applicant's resume in the Talent Tracker                             |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TalentTracker` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  System shows a list of persons
+3.  User requests to add a new person to the list
+4.  System adds the person and updates the displayed list
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Any of the given name, email, phone number are invalid.
+
+    * 3a1. System shows an error message indicating invalid name/email/phone number.
+
+      Use case resumes at step 2.
+  
+**Use case: UC02 - Delete a person by phone number**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  System deletes the person
 
     Use case ends.
 
@@ -317,11 +342,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. System shows an error message indicating no person in list.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 2.
 
-    * 3a1. AddressBook shows an error message.
+* 3a. The given phone number is invalid.
+
+    * 3a1. System shows an error message indicating person not found.
+
+      Use case resumes at step 2.
+
+**Use case: UC03 - Tag an applicant**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
+3.  User requests to tag a specific applicant, using their name/email, with an application status
+4.  System tags the requested applicant with the given application status
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. System shows an error message indicating no applicant in list.
+
+      Use case resumes at step 2.
+
+* 3a. The given name/email is invalid.
+
+    * 3a1. System shows an error message indicating applicant not found.
+
+      Use case resumes at step 2.
+  
+* 4a. The tag is already added for the applicant.
+
+    * 4a1. System shows an error message indicating tag is already added.
+
+      Use case resumes at step 2.
+  
+**Use case: UC04 - Find a person by name/email**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
+3.  User requests to find a specific person in the list by their name or email
+4.  System updates the list to only display the requested person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. TalentTracker shows an error message indicating no person in list.
+
+      Use case resumes at step 2.
+
+* 3a. The given name/email is invalid.
+
+    * 3a1. TalentTracker shows an error message indicating person not found.
 
       Use case resumes at step 2.
 
@@ -331,14 +414,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  Should be able to display multiple lists of applicants/interviews/interviewers without a noticeable sluggishness in performance for typical usage.
+4.  Should be responsive in all functionality, especially updating and displaying the list after each request.
+5.  Should be able to reliably preserve application data across multiple sessions without risk of data loss/corruption.
+6.  Should not leak applicant details, especially email and phone number, outside the application.
+7.  Should provide specific error messages to guide users on intended usage of features.
+8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
 ### Glossary
 
+* **Application Status**: These statuses comprise resume review, pending interview, completed interview, accepted, rejected and waiting list.
+* **Application Tracking System**: A software application used by organizations to manage and streamline the recruitment and hiring process
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Person**: A person can refer to either an `Applicant` or an `Interviewer`
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 

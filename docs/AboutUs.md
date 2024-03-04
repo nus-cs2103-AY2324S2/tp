@@ -7,55 +7,62 @@
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the respective emails
 
 ## Project team
 
-### John Doe
+### Yashwit Polapragada
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yashpola.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://yashwit.com)]
+[[github](https://github.com/yashpola)]
+[[portfolio](team/yashwit.md)]
+[[email](yashwit@u.nus.edu)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilites: UI, Docs, Coding
 
-### Jane Doe
+### Ryan Chiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/macareonie.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/macareonie)]
+[[portfolio](team/ryanchiang.md)]
+[[email](e0958490@u.nus.edu)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI, Documentation, Coding
 
-### Johnny Doe
+### Jiang Bowei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gingerbreaf.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/gingerbreaf)]
+[[portfolio](team/jiangbowei.md)]
+[[email](boweij@u.nus.edu)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ong Zhi Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhikaiong2001.PNG" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/zhikaiong2001)]
+[[portfolio](team/zhikaiong2001.md)]
+[[email](e0968830@u.nus.edu)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Ui, Docs, Coding
+
+### Wesley Weishen Yu
+
+<img src="images/headcube1.png" width="200px">
+
+[[github](https://github.com/headcube1)]
+[[portfolio](team/wesleyyu.md)]
+[[email] (e0959950@u.nus.edu)]
+
+* Role: Developer
+* Responsibilities: UI, Docs, Coding
