@@ -210,3 +210,4 @@ Action | Format, Examples
 **Exit** | `exit`
 **Filter** | `/filter <Tag>`  <br> e.g., `/filter initial_application`
 **Comment** | `/comment <ApplicationId> <Note>`  <br> e.g., `/comment 10 “S/Pass Holder”`
+**Export** | `/export <ContactRange> <pageId>` <br> e.g., `/export [0:10] 1`
