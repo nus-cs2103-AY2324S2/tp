@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Mashfi Ishtiaque
 
-<img src="images/johndoe.png" width="200px">
+<img src="docs/images/miffi.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/miffi)]
+[[portfolio](team/miffi.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Leong Jia Hao, Derek
 
-<img src="images/johndoe.png" width="200px">
+<img src="docs/images/derekljh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/derekljh)]
+[[portfolio](team/derekljh.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Mahindroo Aashim
 
-<img src="images/johndoe.png" width="200px">
+<img src="docs/images/radeon2525.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/radeon2525)] [[portfolio](team/radeon2525.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Kyaw Swar Myint
 
-<img src="images/johndoe.png" width="200px">
+<img src="docs/images/jukeboxk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jukeboxk)]
+[[portfolio](team/jukeboxk.png.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Dude Lorenz Leonardo Crescenzio
 
-<img src="images/johndoe.png" width="200px">
+<img src="docs/images/the-dudeski.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/the-dudeski)]
+[[portfolio](team/the-dudeski.md)]
 
 * Role: Developer
 * Responsibilities: UI
