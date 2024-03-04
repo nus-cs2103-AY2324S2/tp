@@ -21,14 +21,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Ge Shuqing
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/getsquared.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/getsquared)]
+[[portfolio](team/shuqing.md)]
 
-* Role: Team Lead
+* Role: Integration + Documentation
 * Responsibilities: UI
 
 ### Johnny Doe
