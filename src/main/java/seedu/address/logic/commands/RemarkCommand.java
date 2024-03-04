@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
 import java.util.List;
-import seedu.address.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Person;
+import seedu.address.model.Model;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.core.Messages;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -15,9 +15,6 @@ import seedu.address.commons.core.Messages;
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
-    private final Index index;
-
-    private final Remark remark;
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -34,6 +31,9 @@ public class RemarkCommand extends Command {
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Remark command not implemented yet";
+    private final Index index;
+
+    private final Remark remark;
 
     /**
      * @param index of the person in the filtered person list to edit the remark
