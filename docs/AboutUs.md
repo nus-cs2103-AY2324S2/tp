@@ -11,51 +11,46 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ang Zi Jun Dayn
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dayn-1.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/dayn-1)]
 
 * Role: Team Lead
+
+### Chee Wei Xiong Clifton
+
+<img src="images/cliftonchee.png" width="200px">
+
+[[github](http://github.com/cliftonchee)]
+
+* Role: Documentation
 * Responsibilities: UI
 
-### Johnny Doe
+### Jaime Ng Jia Min
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thatgirljam.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/thatgirljam)]
 
-* Role: Developer
+* Role: Testing
 * Responsibilities: Data
 
-### Jean Doe
+### Lim Rik
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/limrik.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/limrik)]
 
-* Role: Developer
+* Role: Code quality, Integration
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Low Xue Ling
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xuelinglow.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/xuelinglow)]
 
-* Role: Developer
+* Role: Deliverables and deadlines
 * Responsibilities: UI
