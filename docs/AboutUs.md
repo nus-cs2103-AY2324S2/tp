@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### John Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/azumieflare.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/azumieflare)] [[portfolio](team/azumieflare.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables and deadlines
+* Responsibilities: Ensuring project deliverables are done on time and in the right format.
 
 ### Jean Doe
 
