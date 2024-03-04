@@ -63,8 +63,6 @@ It is optimized for Command Line Interface space(CLI) while still having the ben
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
 
