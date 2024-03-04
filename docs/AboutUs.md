@@ -61,5 +61,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/ringoftheking.md)]
 
 * Role: Deliverables and deadlines
-* Responsibilities: Ensures that the team is focussed on the individual task and is able to deliver the
-  intended feature
+* Responsibilities: Ensures that the team is focussed on the individual task and is able to deliver the intended feature
+
