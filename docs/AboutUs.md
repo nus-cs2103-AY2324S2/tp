@@ -19,24 +19,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Ma Yuehan
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/MaYuehan)]
+[[portfolio](team/mayuehan.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: 
+
+### Mu Zhaoyu
+
+<img src="images/ella-e.png" width="200px">
+
+[[github](http://github.com/Ella-e)] 
+[[portfolio](team/ella-e.md)]
+
+* Role: Developer
+* Responsibilities: Command implementation, documentation
 
 ### Jean Doe
 
