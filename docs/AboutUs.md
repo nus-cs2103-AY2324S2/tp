@@ -46,9 +46,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/zhikaiong2001)]
 [[portfolio](team/zhikaiong2001.md)]
+[[email](e0968830@u.nus.edu)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Ui, Docs, Coding
 
 ### James Doe
 
