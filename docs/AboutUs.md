@@ -7,9 +7,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## Project team - ClickConnect
 
-### John Doe
+### Tan Kah Ho Dillon
 
 <img src="images/johndoe.png" width="200px">
 
@@ -17,17 +17,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities:
 
-### Jane Doe
+### Baskar Gopinath
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities:
 
 ### Johnny Doe
 
@@ -36,19 +37,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities:
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
+### Ng Wei Han, Ryan
 
 <img src="images/johndoe.png" width="200px">
 
@@ -56,4 +47,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+
+### Chee Jing Jie
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities:
+
+
+### Tay Rui-Jie
+
+<img src="images/ruijietay.png" width="200px">
+
+[[github](http://github.com/ruijietay)]
+[[linkedin](https://www.linkedin.com/in/tayruijie/)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities:
