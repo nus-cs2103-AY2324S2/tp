@@ -474,8 +474,11 @@ Priorities: High (Must-Have) - `* * *`, Medium (Nice-To-Have) - `* *`, Low (Not 
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **API**: Application Programming Interface. The entirety of published methods, properties and other means for software developers to access an application through software they write using this application.
+* **GUI**: Graphical User Interface.  A graphical user interface uses graphical representations of commands, status feedbacks and data of an application, and offers methods to interact with it through graphical devices, such as a mouse or tablets.
+* **Mainstream OS**: Mainstream Operating Systems. Refers to Windows, Linux, Unix and MacOS.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **UI**: User Interface. The point where a user and a software application meet and interact.
 
 --------------------------------------------------------------------------------------------------------------------
 
