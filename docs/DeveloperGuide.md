@@ -314,32 +314,128 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (good
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `VitalConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
-
+**Use case: UC1 - Add a patient**
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
+1.  User requests to add a patient by keying the patient's name and NRIC in the command.
+2.  VitalConnect adds the patient's name and NRIC.
+Use case ends.
 **Extensions**
+* 1a. The NRIC already exists in the system.
+      * 1a1. VitalConnect displays warning message and the existing patient's information.
+      Use case ends.
+* 1b. The NRIC or name entered is invalid.
+      * 1b1. VitalConnect shows an error message.
+      Use case ends.
 
-* 2a. The list is empty.
+**Use case: UC2 - Delete a patient**
+**MSS**
+1.  User requests to delete a patient by keying the patient's name or NRIC in the command.
+2.  VitalConnect deletes the patient from database.
+Use case ends.
+**Extensions**
+* 1a. The patient doesn't exist in the system.
+      * 1a1. VitalConnect displays an error message.
+      Use case ends.
 
-  Use case ends.
+**Use case: UC3 - Add an appointment**
+**MSS**
+1.  User requests to add an appointment for a patient.
+2.  VitalConnect add the appointment to the database under this patient's NRIC.
+Use case ends.
+**Extensions**
+* 1a. Critical information (time and doctor) missing in the appointment.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
+* 1b. The assigned patient doesn't exist in the database.
+      * 1b1. VitalConnect displays a warning message.
+      Use case ends.
+* 1c. The appointment time crashes with existing time.
+      * 1c1. VitalConnect displays a warning message.
+      * 1c1. VitalConnect displays the appointment with crashing time.
+      Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC4 - Delete an appointment**
+**MSS**
+1.  User requests to delete an appointment for a patient.
+2.  VitalConnect removes the appointment from the database.
+Use case ends.
+**Extensions**
+* 1a. The assigned patient or the appointment doesn't exist in the database.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC5 - Modify an appointment**
+**MSS**
+1.  User requests to modify an appointment for a patient by keying the appointment's id.
+2.  VitalConnect displays the detail of the appointment to be modified.
+3.  User specify which field to be modified and enters the new information.
+4.  VitalConnect saves the new appointment information.
+5.  VitalConnect displays the updated detail of the appointment modified.
+Use case ends.
+**Extensions**
+* 1a. The appointment refered by the id doesn't exist in the database.
+      * 1a1. VitalConnect displays an error message.
+      Use case ends.
+* 1b. The id is not a valid number.
+      * 1b1. VitalConnect displays an error message.
+      Use case ends.
+* 3a. The field to be modified is unrecognized.
+      * 3a1. VitalConnect displays an error message.
+      * 3a2. VitalConnect request for valid field information.
+      * 3a3. User enters new field information.
+      Steps 3a1-3a3 are repeated until the data entered are correct.
+      Use case resumes from step 4.
+* 3b. The new information is in invalid form or contains invalid character.
+      * 3b1. VitalConnect displays an error message.
+      * 3b2. VitalConnect request for valid data entry.
+      * 3b3. User enters new field information.
+      Steps 3b1-3b3 are repeated until the data entered are valid.
+      Use case resumes from step 4.
+* 3c. The appointment time crashes with existing time.
+      * 3c1. VitalConnect displays an error message.
+      * 3c2. VitalConnect displays the appointment with crashing time.
+      * 3c3. VitalConnect request for valid data entry.
+      * 3c4. User enters new field information.
+      Steps 3c1-3c4 are repeated until the time doesn't crash.
+      Use case resumes from step 4.
 
-      Use case resumes at step 2.
+**Use case: UC6 - Add contact information**
+**MSS**
+1.  User requests to add contact information for a patient.
+2.  VitalConnect save the contact information to the database.
+Use case ends.
+**Extensions**
+* 1a. The patient doesn't exist in the database.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
+* 1b. The contact information is invalid.
+      * 1b1. VitalConnect displays a warning message.
+      Use case ends.
 
-*{More to be added}*
+**Use case: UC7 - Delete contact information**
+**MSS**
+1.  User requests to delete contact information for a patient.
+2.  VitalConnect remove the contact information to the database.
+Use case ends.
+**Extensions**
+* 1a. The patient or contact information doesn't exist in the database.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
+
+**Use case: UC8 - Modify contact information**
+**MSS**
+1.  User requests to modify contact information for a patient.
+2.  VitalConnect displays the updated contact information of the patient.
+Use case ends.
+**Extensions**
+* 1a. The patient or contact information doesn't exist in the database.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
+* 1b. The contact information is invalid.
+      * 1b1. VitalConnect displays a warning message.
+      Use case ends.
 
 ### Non-Functional Requirements
 
