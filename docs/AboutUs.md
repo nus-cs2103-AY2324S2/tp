@@ -21,15 +21,16 @@ You can reach us at the respective emails
 
 * Role: Project Advisor
 
-### Jane Doe
+### Ryan Chiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/macareonie.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/macareonie)]
+[[portfolio](team/ryanchiang.md)]
+[[email](e0958490@u.nus.edu)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI, Documentation, Coding
 
 ### Jiang Bowei
 
