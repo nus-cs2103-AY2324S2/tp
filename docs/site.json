@@ -1,7 +1,7 @@
 {
   "baseUrl": "",
-  "titlePrefix": "EduLink NUS",
-  "titleSuffix": "AddressBook Level-3",
+  "titlePrefix": "",
+  "titleSuffix": "EduLink NUS",
   "faviconPath": "images/SeEduLogo.png",
   "style": {
     "codeTheme": "light"
