@@ -273,18 +273,44 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (good to but might not have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* * *`  | new user | have a comprehensive document that details every possible feature. | learn how to use a particular feature |
+| `* * *`  | user | add new patient, either with or without further information about the patient | |
+| `* * *`  | user | delete patient | free storage resources |
+| `* * *`  | user | be able to add the contact information of my patient into the database | I can get in touch with them when needed or under emergency situation |
+| `* * *`  | user | be able to  delete the contact information for a particular patient when the information is outdated | I can keep in touch with my patient |
+| `* * *`  | user | list all patients and their contacts | |
+| `* * *`  | intermediate user | add appointment to free time slot | easily schedule an appointment and find free time slot for it |
+| `* * *`  | intermediate user | delete appointment to free time slot | remove reservation if the patient is unable to attend |
+| `* * *`  | intermediate user | list appointments | I can see all the appointments. |
+| `* * *`  | user | add medication instructions for the patient | have a better understanding of the medication history of my patient |
+| `* * *`  | user | list all information about specific patient | see the detail information of the patient |
+| `* *`  | user | be able to modify/update the information of a particular patient | I can keep the most-updated information |
+| `* *`  | user | be able to modify an appointment details of a patient | I can keep the most-updated appointment information |
+| `* *`  | new user | option for undo most precent change | I can quickly fix my mistyped command |
+| `* *`  | beginner | set the reminder for an appointment | remind me when Im busy with work |
+| `* *`  | user | mark a reminder as done | better track the undo work |
+| `* *`  | user | mark some of the patients as the special focus | better track the state of illness of patients who are in a very serious state |
+| `* *`  | expert user | have short forms of existing commands | save time on typing the commands |
+| `* *`  | new user | interactive guide with sample data | quickly understand app's capabilities |
+| `* *`  | Doctor who is colaborating with other doctor | ability to leave comments or annotations on shared patient records | communicate specific insights or recommendations to my colleague |
+| `* *`  | intermediate user | see the previous doage that the patient take in his medical record page | Adjust the dosage for the patient according to his/her state of illness |
+| `* *`  | intermediate user | search about the patient's allergy history | Prescribing safe medication for patients |
+| `* *`  | intermediate user | know about the previous illnesses of the patient | help to diagnose causes more accurately |
+| `* *`  | intermediate user | be able to update the patient's condition upon the previous appointment | better track the sate of illness of the patient |
+| `*`  | new user | suggestion on correction for mistyped commands | avoid typing wrong comands |
+| `*`  | user | have a way to assign specific colors to specific tags | better differentiate the existing tags |
+| `*`  | user | have a icon or button beside a feature that shows a tooltip when hovered |  quickly find out information about the feature without needing other references |
+| `*`  | user | have a method of giving feedback to the developers | share aspects of the product that I would like changes to |
+| `*`  | new user | have the ability to switch to a more simplified and beginner friendly UI | more effectively learn the basics |
+| `*`  | trainee doctor | be able to refer to similar previous cases | study treatment that helps with this kind of cases |
+| `*`  | experienced user | an efficient way to export and backup patient data | ensure the safety and accessibility of important information |
+| `*`  | intermediate user | export selected patient's information | give the patient their personal information after they change their doctors, and delete the patient's information from the database safely |
+| `*`  | intermediate user | export selected medical instructions | The patient can follow my medical instructions closely |
+| `*`  | intermediate user | see the list of patients based on the next follow-up meeting/calling time | have a better plan for my time and know which patient needs my attention next |
 
 ### Use cases
 
