@@ -63,13 +63,16 @@ title: User Guide
 </div>
 
 ### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Displays a comprehensive list of available commands within the application, assisting users in navigating and utilizing Healthsync effectively for managing patient medical and appointment records.
 
 Format: `help`
 
+- This command does not require any parameters.
+- Upon execution, it presents a list of commands along with their formats, example usages, and descriptions.
+
+Example:
+
+- Entering `help` in Healthsync will produce a list of commands as shown above, guiding users through the process of managing patient records and appointments within the system.
 
 
 ### Adding a patient medical record: `add`
