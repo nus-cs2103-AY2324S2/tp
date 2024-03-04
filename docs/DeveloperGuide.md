@@ -273,47 +273,169 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (good to but might not have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* * *`  | new user | have a comprehensive document that details every possible feature. | learn how to use a particular feature |
+| `* * *`  | user | add new patient, either with or without further information about the patient | |
+| `* * *`  | user | delete patient | free storage resources |
+| `* * *`  | user | be able to add the contact information of my patient into the database | I can get in touch with them when needed or under emergency situation |
+| `* * *`  | user | be able to  delete the contact information for a particular patient when the information is outdated | I can keep in touch with my patient |
+| `* * *`  | user | list all patients and their contacts | |
+| `* * *`  | intermediate user | add appointment to free time slot | easily schedule an appointment and find free time slot for it |
+| `* * *`  | intermediate user | delete appointment to free time slot | remove reservation if the patient is unable to attend |
+| `* * *`  | intermediate user | list appointments | I can see all the appointments. |
+| `* * *`  | user | add medication instructions for the patient | have a better understanding of the medication history of my patient |
+| `* * *`  | user | list all information about specific patient | see the detail information of the patient |
+| `* *`  | user | be able to modify/update the information of a particular patient | I can keep the most-updated information |
+| `* *`  | user | be able to modify an appointment details of a patient | I can keep the most-updated appointment information |
+| `* *`  | new user | option for undo most precent change | I can quickly fix my mistyped command |
+| `* *`  | beginner | set the reminder for an appointment | remind me when Im busy with work |
+| `* *`  | user | mark a reminder as done | better track the undo work |
+| `* *`  | user | mark some of the patients as the special focus | better track the state of illness of patients who are in a very serious state |
+| `* *`  | expert user | have short forms of existing commands | save time on typing the commands |
+| `* *`  | new user | interactive guide with sample data | quickly understand app's capabilities |
+| `* *`  | Doctor who is colaborating with other doctor | ability to leave comments or annotations on shared patient records | communicate specific insights or recommendations to my colleague |
+| `* *`  | intermediate user | see the previous doage that the patient take in his medical record page | Adjust the dosage for the patient according to his/her state of illness |
+| `* *`  | intermediate user | search about the patient's allergy history | Prescribing safe medication for patients |
+| `* *`  | intermediate user | know about the previous illnesses of the patient | help to diagnose causes more accurately |
+| `* *`  | intermediate user | be able to update the patient's condition upon the previous appointment | better track the sate of illness of the patient |
+| `*`  | new user | suggestion on correction for mistyped commands | avoid typing wrong comands |
+| `*`  | user | have a way to assign specific colors to specific tags | better differentiate the existing tags |
+| `*`  | user | have a icon or button beside a feature that shows a tooltip when hovered |  quickly find out information about the feature without needing other references |
+| `*`  | user | have a method of giving feedback to the developers | share aspects of the product that I would like changes to |
+| `*`  | new user | have the ability to switch to a more simplified and beginner friendly UI | more effectively learn the basics |
+| `*`  | trainee doctor | be able to refer to similar previous cases | study treatment that helps with this kind of cases |
+| `*`  | experienced user | an efficient way to export and backup patient data | ensure the safety and accessibility of important information |
+| `*`  | intermediate user | export selected patient's information | give the patient their personal information after they change their doctors, and delete the patient's information from the database safely |
+| `*`  | intermediate user | export selected medical instructions | The patient can follow my medical instructions closely |
+| `*`  | intermediate user | see the list of patients based on the next follow-up meeting/calling time | have a better plan for my time and know which patient needs my attention next |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `VitalConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
-
+**Use case: UC1 - Add a patient**
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
+1.  User requests to add a patient by keying the patient's name and NRIC in the command.
+2.  VitalConnect adds the patient's name and NRIC.
+Use case ends.
 **Extensions**
+* 1a. The NRIC already exists in the system.
+      * 1a1. VitalConnect displays warning message and the existing patient's information.
+      Use case ends.
+* 1b. The NRIC or name entered is invalid.
+      * 1b1. VitalConnect shows an error message.
+      Use case ends.
 
-* 2a. The list is empty.
+**Use case: UC2 - Delete a patient**
+**MSS**
+1.  User requests to delete a patient by keying the patient's name or NRIC in the command.
+2.  VitalConnect deletes the patient from database.
+Use case ends.
+**Extensions**
+* 1a. The patient doesn't exist in the system.
+      * 1a1. VitalConnect displays an error message.
+      Use case ends.
 
-  Use case ends.
+**Use case: UC3 - Add an appointment**
+**MSS**
+1.  User requests to add an appointment for a patient.
+2.  VitalConnect add the appointment to the database under this patient's NRIC.
+Use case ends.
+**Extensions**
+* 1a. Critical information (time and doctor) missing in the appointment.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
+* 1b. The assigned patient doesn't exist in the database.
+      * 1b1. VitalConnect displays a warning message.
+      Use case ends.
+* 1c. The appointment time crashes with existing time.
+      * 1c1. VitalConnect displays a warning message.
+      * 1c1. VitalConnect displays the appointment with crashing time.
+      Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC4 - Delete an appointment**
+**MSS**
+1.  User requests to delete an appointment for a patient.
+2.  VitalConnect removes the appointment from the database.
+Use case ends.
+**Extensions**
+* 1a. The assigned patient or the appointment doesn't exist in the database.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC5 - Modify an appointment**
+**MSS**
+1.  User requests to modify an appointment for a patient by keying the appointment's id.
+2.  VitalConnect displays the detail of the appointment to be modified.
+3.  User specify which field to be modified and enters the new information.
+4.  VitalConnect saves the new appointment information.
+5.  VitalConnect displays the updated detail of the appointment modified.
+Use case ends.
+**Extensions**
+* 1a. The appointment refered by the id doesn't exist in the database.
+      * 1a1. VitalConnect displays an error message.
+      Use case ends.
+* 1b. The id is not a valid number.
+      * 1b1. VitalConnect displays an error message.
+      Use case ends.
+* 3a. The field to be modified is unrecognized.
+      * 3a1. VitalConnect displays an error message.
+      * 3a2. VitalConnect request for valid field information.
+      * 3a3. User enters new field information.
+      Steps 3a1-3a3 are repeated until the data entered are correct.
+      Use case resumes from step 4.
+* 3b. The new information is in invalid form or contains invalid character.
+      * 3b1. VitalConnect displays an error message.
+      * 3b2. VitalConnect request for valid data entry.
+      * 3b3. User enters new field information.
+      Steps 3b1-3b3 are repeated until the data entered are valid.
+      Use case resumes from step 4.
+* 3c. The appointment time crashes with existing time.
+      * 3c1. VitalConnect displays an error message.
+      * 3c2. VitalConnect displays the appointment with crashing time.
+      * 3c3. VitalConnect request for valid data entry.
+      * 3c4. User enters new field information.
+      Steps 3c1-3c4 are repeated until the time doesn't crash.
+      Use case resumes from step 4.
 
-      Use case resumes at step 2.
+**Use case: UC6 - Add contact information**
+**MSS**
+1.  User requests to add contact information for a patient.
+2.  VitalConnect save the contact information to the database.
+Use case ends.
+**Extensions**
+* 1a. The patient doesn't exist in the database.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
+* 1b. The contact information is invalid.
+      * 1b1. VitalConnect displays a warning message.
+      Use case ends.
 
-*{More to be added}*
+**Use case: UC7 - Delete contact information**
+**MSS**
+1.  User requests to delete contact information for a patient.
+2.  VitalConnect remove the contact information to the database.
+Use case ends.
+**Extensions**
+* 1a. The patient or contact information doesn't exist in the database.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
+
+**Use case: UC8 - Modify contact information**
+**MSS**
+1.  User requests to modify contact information for a patient.
+2.  VitalConnect displays the updated contact information of the patient.
+Use case ends.
+**Extensions**
+* 1a. The patient or contact information doesn't exist in the database.
+      * 1a1. VitalConnect displays a warning message.
+      Use case ends.
+* 1b. The contact information is invalid.
+      * 1b1. VitalConnect displays a warning message.
+      Use case ends.
 
 ### Non-Functional Requirements
 
