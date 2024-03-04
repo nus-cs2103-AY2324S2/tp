@@ -299,9 +299,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `EstateEase` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC03 - Delete a person**
 
-**MSS**
+**MSS:**
 
 1.  User requests to list persons
 2.  EstateEase shows a list of persons
@@ -321,6 +321,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. EstateEase shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC05 - Save to storage**
+
+**Actor: EstateEase**
+
+**Preconditions: The user initiates an add or delete command**
+
+**MSS:**
+
+1.  EstateEase processes the add (UC01) or delete (UC03) command and updates the address book accordingly.
+2.  EstateEase attempts to update the JSON file accordingly.
+3.  EstateEase successfully updates the JSON file.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. EstateEase is unable to write to the JSON file due to file permission issue.
+  * 2a1. EstateEase shows error message regarding the insufficient file permission to the user.
+
+    Use case ends.
+  
+* 2b. EstateEase is unable to write to the JSON file due to some IOException.
+    * 2b1. EstateEase shows error message regarding the IOException to the user.
+      Use case ends.
+
 
 *{More to be added}*
 
