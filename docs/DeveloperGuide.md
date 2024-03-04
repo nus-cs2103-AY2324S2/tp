@@ -274,42 +274,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is the director/in-charge of a band
+* has a need to manage a significant number of band members
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Our app is specifically designed for a director/in-charge of a band with a seamless and efficient way to manage and access their members' details. Also, our app is able to extend capabilities that help make managing a band easier. Makes 
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                       | So that I can…​                                 |
+|----------|--------------------------------------------|------------------------------------|-------------------------------------------------|
+| `* * *`  | user                                       | create contact information         | keep track of members in the band               |
+| `* * *`  | user                                       | view contact & address information | organise transportation by area of residence    |
+| `* * *`  | user                                       | update contact information         | keep the address book current                   | `* *`    | user                                       | hide private contact details  | minimize chance of someone else seeing them by accident                |
+| `* * *`  | user                                       | delete contact information         | keep address book updated                       |
+| `* *`    | user                                       | indicate birthday information      | coordinate celebrations for the members         |
+| `* *`    | user                                       | view attendance history            | Monitor participation and follow up as necessary |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `BandBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a member**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list members
+2.  BandBook shows a list of members
+3.  User requests to delete a specific members in the list
+4.  AddressBook deletes the members
 
     Use case ends.
 
@@ -321,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. BandBook shows an error message.
 
       Use case resumes at step 2.
 
