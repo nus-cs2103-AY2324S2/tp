@@ -2,7 +2,7 @@
   "baseUrl": "",
   "titlePrefix": "",
   "titleSuffix": "EduLink NUS",
-  "faviconPath": "images/SeEduLogo.png",
+  "faviconPath": "images/favicon.png",
   "style": {
     "codeTheme": "light"
   },
