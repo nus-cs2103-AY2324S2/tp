@@ -38,6 +38,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
+### Aum Sebin
+<img src="images/sebinaum.png" width="200px">
+
+[[github](http://github.com/sebin0817)]
+[[portfolio](team/sebin.md)]
+
 ### Jm San Diego ⚡️
 
 <img src="images/jmsandiegoo.png" width="200px">
