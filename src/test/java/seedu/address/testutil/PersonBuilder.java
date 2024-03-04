@@ -3,12 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.note.Note;
+import seedu.address.model.person.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -25,7 +28,8 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Tag> tags = new HashSet<>();
+    private ObservableList<Note> notes = FXCollections.observableArrayList();
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +39,6 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
     }
 
     /**
@@ -46,7 +49,8 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        this.tags.addAll(personToCopy.getTags());
+        this.notes.addAll(personToCopy.getNotes());
     }
 
     /**
@@ -61,7 +65,16 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = SampleDataUtil.getTags(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code notes} into a {@code ObservableList<Note>} and set it to the {@code Person} that we are
+     * building.
+     */
+    public PersonBuilder withNotes(Note[] notes) {
+        this.notes = SampleDataUtil.getNotes(notes);
         return this;
     }
 
@@ -90,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, notes);
     }
 
 }
