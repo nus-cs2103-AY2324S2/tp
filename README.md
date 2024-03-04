@@ -9,7 +9,5 @@ Effortlessly manage, search, and sift through your various internship applicatio
 avoid losing track of crucial information. Targeted to those with numerous applications to keep track of and prefer 
 using CLI. Your all-in-one solution for seamless application management.
 
-* For the detailed documentation of this project, see the **[CareerSync Product Guide](docs/Documentation.md)**.
-* For details of our members who developed this app, see the **[About Us](docs/AboutUs.md)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, 
-see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* For the detailed documentation of this project, see the **[CareerSync Product Guide](https://ay2324s2-cs2103t-w11-1.github.io/tp/DeveloperGuide.html)**.
+* For details of our members who developed this app, see the **[About Us](https://ay2324s2-cs2103t-w11-1.github.io/tp/AboutUs.html)**.
