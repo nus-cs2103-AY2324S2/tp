@@ -31,11 +31,13 @@ You can reach us at the respective emails
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Jiang Bowei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gingerbreaf.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/gingerbreaf)]
+[[portfolio](team/jiangbowei.md)]
+[[email](boweij@u.nus.edu)]
 
 * Role: Developer
 * Responsibilities: Data
