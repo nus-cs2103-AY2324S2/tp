@@ -317,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `MatchMate` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `MatchMate` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a new contact**
 
@@ -351,6 +351,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MatchMate shows a message indicating that the contact cannot be found.
 
       Use case resumes at step 1.
+* 1b. User inputs a name of which multiple contacts have the specified name as a substring.
+  * 1b1. MatchMate filters and lists the contacts that has the name.
+
+    Use case resumes at step 1.
 
 **Use case: List all contacts**
 
@@ -381,6 +385,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. MatchMate shows a message indicating the data is invalid or incomplete.
 
       Use case resumes at step 1.
+* 1c. User inputs a name of which multiple contacts have the specified name as a substring.
+    * 1c1. MatchMate filters and lists the contacts that has the name.
+
+      Use case resumes at step 1.
 
 **Use case: Add skills to a contact**
 
@@ -404,8 +412,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
   
-* 1c. User inputs a skill that does not exist in the database.
-    * 1c1. MatchMate shows a message indicating that the skill cannot be found.
+* 1c. User inputs a skill that does not exist yet.
+    * 1c1. MatchMate shows a warning message indicating that the skill is a new entry.
+
+      Use case ends.
+
+* 1d. User inputs a name of which multiple contacts have the specified name as a substring.
+    * 1d1. MatchMate filters and lists the contacts that has the name.
 
       Use case resumes at step 1.
 
@@ -431,8 +444,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 1c. User inputs a skill that does not exist in the database.
+* 1c. User inputs a skill the contact does not have.
     * 1c1. MatchMate shows a message indicating that the skill cannot be found.
+
+      Use case resumes at step 1.
+
+* 1d. User inputs a name of which multiple contacts have the specified name as a substring.
+    * 1d1. MatchMate filters and lists the contacts that has the name.
 
       Use case resumes at step 1.
 
@@ -465,6 +483,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User inputs a group name that already exists.
     * 1a1. MatchMate shows a message indicating the group already exists.
+
+      Use case resumes at step 1.
+
+**Use case: Delete a group**
+
+**MSS**
+
+1. User requests to delete a group.
+2. MatchMate deletes the group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs a group that does not exist.
+    * 1a1. MatchMate shows a message indicating that the group cannot be found.
 
       Use case resumes at step 1.
 
