@@ -19,8 +19,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/darkvoid32)]
 [[portfolio](team/darkvoid32.md)]
 
-* Role: Developer and Tester
-* Responsibilities: Full-stack software engineer and writing tests.
+* Roles: Developer & Tester
+* Responsibilities: Full-stack development and writing tests.
 
 ### Leong Heng Yew
 
@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/aureliony)]
 [[portfolio](team/aureliony.md)]
 
-* Role: Java Expert
+* Roles: Java Expert
 * Responsibilities: Helps other team members with matters related to the Java programming language.
 
 ### Yee Jun Hyeok Bryan
@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/bryanyee33)]
 [[portfolio](team/bryanyee33.md)]
 
-* Role: UI & UX expert
+* Roles: UI & UX expert
 * Responsibilities: Manages things related to the UI & UX such as JavaFX and design.
 
 ### Muhammad Rizki Bayuaji
@@ -49,25 +49,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/rizkidelta)]
 [[portfolio](team/rizkidelta.md)]
 
-* Role: Developer, Designer
+* Roles: Developer & Designer
 * Responsibilities: Full-stack developer, and design UI mockups or other components that are used in the application.
 
-### Jean Doe
+### Guk Yi Siong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yisiox.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/yisiox)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer & Taskmaster
+* Responsibilities: Full-stack development and documentation.
+In charge of defining, assigning, and tracking project tasks.
 
-### James Doe
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
