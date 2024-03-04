@@ -287,16 +287,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                                                       | I want to …​                                                 | So that I can…​                                                        |
+|----------|-------------------------------------------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                                                      | see usage instructions                                       | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Teaching Assistant                                                            | add a new student, prof, TA                                  | know how to contact them                                               |
+| `* * *`  | user                                                                          | delete a person                                              | remove entries that I no longer need                                   |
+| `* * *`  | Teaching Assistant                                                            | find a student by name or class                              | locate details of persons without having to go through the entire list |
+| `* * *`  | Teaching Assistant                                                            | Group students into classes                                  | know which class my student is in                                      |
+| `* * *`  | Teaching assistant                                                            | find my supervisor(s)                                        | Report any admin issues my students would raise                        |
+| `* * *`  | University student with different friend groups                               | Tag or categorize my contacts                                | Search by the friend groups I'm concerned with                         |
+| `* * *`  | Teaching Assistant who wants to meet up with Profs and students               | Schedule events to do so                                     | remind myself to meet up or know my free times.                        |
+| `* * *`  | Teaching Assistant with important people to report to or stay in contact with | pin important contacts                                       |                                                                        |
+| `* * *`  | Teaching Assistant who needs to announce information to his students          | copy a (group of) student(s)' contact info onto my clipboard | announce a message efficiently to many students                        |
+| `* *`    | Forgetful Teaching Assistant                                                  | A check for addition of duplicate contacts                   | can reduce clutter of my list                                          |
+| `* *`    | Teaching assistant who might mistype                                          | Have a Confirm Delete warning when doing deletions           | Provide a safety net in case I accidentally delete important info      |
+| `* *`    | Teaching assistant with many students                                         | Personalize contacts with photos                             | Attribute names to faces and distinguish similar names.                |
+| `* *`    | user                                                                          | hide private contact details                                 | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book                                    | sort persons by name                                         | locate a person easily                                                 |
+| `*`      | detail-oriented Teaching Assistant                                            | Add a note with additional information about the contact     | remind myself of things I may need to follow up on                     |
+| `*`      | Teaching assistant who tires from work                                        | use an app with a cheerful interface                         | feel encouraged / at peace                                             |
+| `*`      | Teaching assistant                                                            | import and export contact details to/from the app            | can easily shift to using this app, or another                         |
 
-*{More to be added}*
+
 
 ### Use cases
 
