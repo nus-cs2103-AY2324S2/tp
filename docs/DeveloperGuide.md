@@ -272,29 +272,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-
-* has a need to manage a significant number of contacts
+**Target user profile**: <br>
+Hiring manager who:
+* cannot afford a professional Applicant Tracking System (ATS)
+* has a need to manage a significant number of job applicants and their interview details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: <br>
+Free alternative for tracking interview datetimes, applicant contacts and their application statuses.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                                                       | I want to …​                             | So that I can…​                                                           |
+|----------|-------------------------------------------------------------------------------|------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user                                                                      | see usage instructions                   | refer to instructions when I forget how to use the Talent Tracker         |
+| `* * *`  | user                                                                          | add a new person (applicant/interviewer) |                                                                           |
+| `* * *`  | user                                                                          | delete a person (applicant/interviewer)  | remove person entries that I no longer need                               |
+| `* * *`  | user                                                                          | add a new interview                      |                                                                           |
+| `* * *`  | user                                                                          | delete an interviewer                    | remove interview entries that I no longer need                            |
+| `* *`    | user with many persons in the Talent Tracker                                  | find a person by name/email              | locate details of a person without having to go through the entire list   |
+| `* *`    | user with many interviews in the Talent Tracker                               | filter interviews by date                | locate details of interviews without having to go through the entire list |
+| `* *`    | user with many applicants of varying application status in the Talent Tracker | tag applicants                           | identify applicant's application progress                                 |
+| `* `     | user collaborating with other Talent Tracker users                            | share an applicant's details             | update other hiring managers on applicant details                         |
+| `* `     | user who does not want to clutter local hard drive with files                 | store applicant's resume                 | view applicant's resume in the Talent Tracker                             |
 
 *{More to be added}*
 
@@ -337,8 +343,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Application Status**: These statuses comprise resume review, pending interview, completed interview, accepted, rejected and waiting list.
+* **Application Tracking System**: A software application used by organizations to manage and streamline the recruitment and hiring process
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Person**: A person can refer to either an `Applicant` or an `Interviewer`
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
