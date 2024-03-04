@@ -577,8 +577,18 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Searches, additions, and updates to contacts should be processed within 2 seconds under normal operational conditions.
+5. HRConnect should feature an intuitive user interface for easy management of contacts without prior training.
+6. The system should provide clear error messages and guidance for correcting invalid inputs.
+7. User data, including contacts, notes, and tags, must be securely handled both in transit and at rest.
+8. The system should be designed to scale horizontally to accommodate growing numbers of users and contacts.
+9. It should maintain performance and usability as data volume and number of concurrent users increase.
+10. HRConnect should be available 24/7 with a target uptime of 99.9%, excluding scheduled maintenance.
+11. It should include mechanisms for data backup and recovery to prevent data loss.
+12. The system should be compatible with major operating systems (Windows, macOS, Linux) and browsers (Chrome, Firefox, Safari).
+13. The application should be built using modular, well-documented code to facilitate maintenance and future updates.
+14. It should allow for the easy addition of new features without significant restructuring of the existing codebase.
 
-*{More to be added}*
 
 ### Glossary
 
