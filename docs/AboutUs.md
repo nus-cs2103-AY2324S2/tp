@@ -18,8 +18,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[homepage](https://yashwit.com)]
 [[github](https://github.com/yashpola)]
 [[portfolio](team/yashwit.md)]
+[[email](yashwit@u.nus.edu)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilites: UI, Docs, Coding
 
 ### Jane Doe
 
