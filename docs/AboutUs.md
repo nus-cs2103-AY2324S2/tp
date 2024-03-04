@@ -30,15 +30,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Li Guohuang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/guohuang88.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/guohuang88)]
+[[portfolio](https://ay2324s2-cs2103-f09-2.github.io/tp/)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing
+* Responsibilities: Ensure project is tested properly and on time.
 
 ### Tan Zhi Wei
 
