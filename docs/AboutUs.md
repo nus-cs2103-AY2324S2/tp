@@ -27,9 +27,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/macareonie)]
 [[portfolio](team/ryanchiang.md)]
+[[email](e0958490@u.nus.edu)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI, Documentation, Coding
 
 ### Johnny Doe
 
