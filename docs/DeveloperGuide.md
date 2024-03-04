@@ -389,7 +389,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
     
 * 3b. The updated field is in a wrong format
-    * 3b2. PedagoguePages shows an error message.
+    * 3b1. PedagoguePages shows an error message.
 
       Use case resumes at step 2.
 
@@ -401,6 +401,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  PedagoguePages shows a list of matched students
 
     Use case ends.
+
+**Extensions**
+
+* 2a. The tag is invalid
+    * 2a1. PedagoguePages shows an error message.
+
+        Use case ends.
 
 **Use case: find a specific student by name**
 
