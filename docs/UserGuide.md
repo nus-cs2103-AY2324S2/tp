@@ -57,7 +57,7 @@ If you can type fast, TalentTracker can get your hiring management tasks done fa
   </box>
 
 
-### Adding an applicant: `add applicant`
+## Adding an applicant: `add applicant`
 
 Adds an applicant to the hiring tracker.
 
@@ -71,7 +71,7 @@ Examples:
 
 * `add applicant John Doe, johndoe123@gmail.com, 81239123`
 
-### Adding a interviewer: `add interviewer`
+## Adding a interviewer: `add interviewer`
 
 Adds an interviewer to the hiring tracker.
 
@@ -85,7 +85,7 @@ Examples:
 
 * `add interviewer John Doe, johndoe123@gmail.com, 81239123`
 
-### Adding a interview: `add interview`
+## Adding a interview: `add interview`
 
 Adds an interview to the hiring tracker.
 
@@ -122,18 +122,18 @@ Examples:
 
 * `delete interview 1` would delete the first interview in the hiring tracker.
 
-### Exiting the program : `exit`
+## Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+## Saving the data
 
 TalentTracker data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
-### More features to come `[coming in v2.0]`
+## More features to come `[coming in v2.0]`
 
 _Details coming soon ..._
 
