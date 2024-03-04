@@ -317,11 +317,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+# Technical Requirements
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
-*{More to be added}*
+# Performance Requirements
+1. Should be able to hold up to 100 patients with 1000 appointments without a noticeable sluggishness in performance for typical usage.
+2. The system should respond within 3 seconds.
+
+# Quality Requirements
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. System should be robust for any form of data file crashes and invalid user input.
+
+# Scope
+1. The product will <strong>NOT</strong> enforce any form of protection of the generated data file containing patients' information. The organization should be responsible for ensuring the safety of their patient's data.
+
+# Process Requirements
+1. The project is expected to grow in breadth-first iterative process.
 
 ### Glossary
 
