@@ -11,25 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Neo Haowei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/neohw.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/NeoHW)]
+[[portfolio](https://ay2324s2-cs2103-f09-2.github.io/tp/)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Overall project coordination, code review
 
 ### Johnny Doe
 
