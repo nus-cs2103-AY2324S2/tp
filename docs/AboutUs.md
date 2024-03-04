@@ -7,18 +7,17 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team - ClickConnect
+## ClickConnect
 
 ### Tan Kah Ho Dillon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dillontkh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/dillontkh)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities:
+* Responsibilities: Overall project coordination.
 
 ### Baskar Gopinath
 
@@ -26,15 +25,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities:
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities:
