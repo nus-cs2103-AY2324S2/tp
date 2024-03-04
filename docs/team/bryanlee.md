@@ -10,10 +10,10 @@ TaskMasterPro is a desktop address book application used for organising team mem
 Given below are my contributions to the project.
 
 * **New Feature**: Description of the feature.
-    * What it does: 
-    * Justification: 
-    * Highlights: 
-    * Credits: 
+    * What it does:
+    * Justification:
+    * Highlights:
+    * Credits:
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
