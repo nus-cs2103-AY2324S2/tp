@@ -29,14 +29,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Developer
 
-### Johnny Doe
+### Rick Koh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rickkoh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/rickkoh)]
+[[portfolio](team/rickkoh.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: QA, Developer
+* Responsibilities: Developer
+
+### Aum Sebin
+<img src="images/sebinaum.png" width="200px">
+
+[[github](http://github.com/sebin0817)]
+[[portfolio](team/sebin.md)]
 
 ### Jm San Diego ⚡️
 

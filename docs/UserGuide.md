@@ -79,13 +79,16 @@ title: User Guide
 </div>
 
 ### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Displays a comprehensive list of available commands within the application, assisting users in navigating and utilizing Healthsync effectively for managing patient medical and appointment records.
 
 Format: `help`
 
+- This command does not require any parameters.
+- Upon execution, it presents a list of commands along with their formats, example usages, and descriptions.
+
+Example:
+
+- Entering `help` in Healthsync will produce a list of commands as shown above, guiding users through the process of managing patient records and appointments within the system.
 
 
 ### Adding a patient medical record: `add`
@@ -187,6 +190,12 @@ Format: `delete PATIENT_INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient medical record in the patient list.
 
+### Listing all appointment notes: `list-an`
+
+Shows a list of all appointment notes.
+
+Format: `list-an`
+
 ### Adding an appointment note: `add-an`
 
 Adds an appointment note to a patient. Please note that the time parameter is in 24-hour format.
@@ -195,11 +204,26 @@ Format: `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of appointment record (including 0)
-</div>
+</div>``
 
 Examples:
-* `add-an d/19-02-2024 t/1130 n/General Flu`
-* `add-an d/30-12-2023 t/2100 n/Headache`
+* `add-an 1 d/19-02-2024 t/1130 n/General Flu`
+* `add-an 1 d/30-12-2023 t/2100 n/Headache`
+
+### Editing an appointment note: `edit-an`
+
+Edits an appointment note to a patient. Please note that the time parameter is in 24-hour format.
+
+Format: `edit-an PATIENT_INDEX INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
+
+* Edits the appointment record at the specified `INDEX` for given patient from `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `edit-an 1 1 d/19-02-2024 t/1230 n/General Flu`
+* `edit-an 1 2 d/30-12-2023 t/2100 n/Stomach Virus`
 
 ### Deleting an appointment note : `delete-an`
 
@@ -213,9 +237,9 @@ Format: `delete-an PATIENT_INDEX INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list-an` followed by `delete 1 2` deletes the 2nd appointment note from the 1st patient.
+* `list-an` followed by `delete-an 1 2` deletes the 2nd appointment note from the 1st patient.
 
-
+``
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -270,8 +294,10 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Appointment Note** | `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `add-an d/30-12-2023 t/2100 n/Headache`
-**Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete 1 2`
+**List Appointment Note** | `list-an`
+**Add Appointment Note** | `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `add-an 1 d/30-12-2023 t/2100 n/Headache`
+**Edit Appointment Note** | `edit-an PATIENT_INDEX INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `edit-an 1 1 d/19-02-2024 t/1230 n/General Flu`
+**Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete-an 1 2`
 **List** | `list`
 **Help** | `help`
 **Clear** | `clear`

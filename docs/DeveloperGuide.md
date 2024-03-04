@@ -283,14 +283,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a patient's medical record     | record new patients I work with                          |
 | `* * *`  | user                                       | edit a patient's medical record     | amend necessary details of a medical record when needed |
 | `* * *`  | user                                       | delete a patient's medical record     | remove patient's medical record that I no longer need |
+| `* * *`  | user                                       | list all patients' appointment notes | view all existing appointment notes         |
 | `* * *`  | user                                       | add a patient's appointment note      | record keep the details of each appointment              |
+| `* * *`  | user                                       | edit a patient's appointment note    | update the details of an appointment        |
 | `* * *`  | user                                       | delete a patient's appointment note   | remove entries that I no longer need                     |
+| `* * *`  | user                                       | access a help page for quick reference  | have a better idea where to get started                     |
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `HealthSync` and the **Actor** is the `user`, unless specified otherwise)
+
+#### Use case: List all patients' appointment notes
+
+**MSS**
+
+1.  User requests to list patients
+2.  HealthSync shows a list of patients
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of patients is empty.
+
+  Use case ends.
 
 #### Use case: Add a patient's appointment note
 
@@ -312,6 +330,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given patient index is invalid.
 
     * 3a1. HealthSync shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: Edit a patient's appointment note
+
+**MSS**
+
+1.  User requests to list patients
+2.  HealthSync shows a list of patients
+3.  User requests to edit an appointment note for a given patient
+4.  HealthSync edits the appointment note
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of patients is empty.
+
+  Use case ends.
+
+* 3a. The given patient index is invalid.
+
+    * 3a1. HealthSync shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given appointment note index is invalid.
+
+    * 3b1. HealthSync shows an error message.
 
       Use case resumes at step 2.
 
