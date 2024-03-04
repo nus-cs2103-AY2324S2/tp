@@ -155,9 +155,9 @@ Format: `mark_payment INDEX`
 Examples:
 * `find john doe` returns `John Doe` with an index 2.
 * `mark_payment 2` will return this success message, when `John Doe` has outstanding fees. <br>
-  !['mark_payment n/John Doe' on success](images/paymentJohnDoeSuccess.png)
+  !['mark_payment 2' on success](images/paymentJohnDoeSuccess.png)
 * Otherwise, if `John Doe` does not have any fees due, it would return a failure message. <br>
-  !['mark_payment n/John Doe' on failure](images/paymentJohnDoeFailure.png)
+  !['mark_payment 2' on failure](images/paymentJohnDoeFailure.png)
 
 
 ### View outstanding payments: `payment_list`
@@ -221,5 +221,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Mark payment**|`mark_payment n/NAME` <br> e.g. `mark_payment n/John Doe`
+**Mark payment**|`mark_payment INDEX` <br> e.g. `mark_payment 2`
 **payment_list**|`payment_list`
