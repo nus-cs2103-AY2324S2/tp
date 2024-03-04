@@ -317,32 +317,188 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MatchMate` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a new contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new contact along with the data.
+2. MatchMate adds the contact to the list.
+3. MatchMate shows the updated list of contacts.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User inputs invalid or incomplete data. 
+    * 1a1. MatchMate shows a message indicating the data is invalid or incomplete.
+    
+      Use case resumes at step 1.
 
-  Use case ends.
+**Use case: Delete a contact**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User requests to delete a contact.
+2. MatchMate deletes the contact.
 
-      Use case resumes at step 2.
+    Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+* 1a. User inputs a contact that does not exist.
+    * 1a1. MatchMate shows a message indicating that the contact cannot be found.
+
+      Use case resumes at step 1.
+
+**Use case: List all contacts**
+
+**MSS**
+
+1. User requests to list all contacts.
+2. MatchMate shows all contacts.
+
+    Use case ends.
+
+**Use case: Edit a contact**
+
+**MSS**
+
+1. User requests to edit a contact along with the new data.
+2. MatchMate adds the contact to the list.
+3. MatchMate shows the updated list of contacts.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to edit a contact that does not exist.
+    * 1a1. MatchMate shows a message indicating that the contact cannot be found.
+      
+      Use case resumes at step 1.
+* 1b. User inputs invalid or incomplete data.
+    * 1b1. MatchMate shows a message indicating the data is invalid or incomplete.
+
+      Use case resumes at step 1.
+
+**Use case: Add skills to a contact**
+
+**MSS**
+
+1. User requests to add skills to a contact.
+2. MatchMate appends the skills to the contact.
+3. MatchMate shows the updated list of contacts.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete data.
+    * 1a1. MatchMate shows a message indicating incomplete data.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a contact that does not exist.
+    * 1b1. MatchMate shows a message indicating that the contact cannot be found.
+
+      Use case resumes at step 1.
+  
+* 1c. User inputs a skill that does not exist in the database.
+    * 1c1. MatchMate shows a message indicating that the skill cannot be found.
+
+      Use case resumes at step 1.
+
+**Use case: Delete skills from a contact**
+
+**MSS**
+
+1. User requests to delete existing skills from a contact.
+2. MatchMate removes the specified skills from the contact.
+3. MatchMate shows the updated list of contacts.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete data.
+    * 1a1. MatchMate shows a message indicating incomplete data.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a contact that does not exist.
+    * 1b1. MatchMate shows a message indicating that the contact cannot be found.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a skill that does not exist in the database.
+    * 1c1. MatchMate shows a message indicating that the skill cannot be found.
+
+      Use case resumes at step 1.
+
+**Use case: Filter contacts based on keyword**
+
+**MSS**
+
+1. User requests to find contacts with the specified keyword.
+2. MatchMate shows a list of the filtered contacts.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No contacts fulfill the filter search.
+    * 1a1. MatchMate shows a message indicating no contacts can be found.
+
+      Use case ends.
+
+**Use case: Create a group**
+
+**MSS**
+
+1. User requests to create a group with a specified name.
+2. MatchMate acknowledges the creation of the group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs a group name that already exists.
+    * 1a1. MatchMate shows a message indicating the group already exists.
+
+      Use case resumes at step 1.
+
+**Use case: Add a contact to a group**
+
+**MSS**
+
+1. User requests to add a contact to a group with a specified name or index from the displayed list.
+2. MatchMate adds the contact to the group.
+3. MatchMate shows the updated list of contacts in the specified group.
+
+   Use case ends.
+
+**Extensions**
+  
+* 1a. User inputs a name or index no contacts correspond to.
+    * 1a1. MatchMate shows a message indicating the contact doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a group name that doesn't exist.
+    * 1b1. MatchMate shows a message indicating the group doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a name of which multiple contacts have the specified name as a substring.
+    * 1c1. MatchMate filters and lists the contacts that has the name.
+
+      Use case resumes at step 1.
+
+* 1d. The contact is already in the group.
+    * 1d1. MatchMate shows a message indicating the contact is already in the group.
+
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
