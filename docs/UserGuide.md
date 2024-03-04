@@ -4,8 +4,24 @@ title: User Guide
 ---
 
 **HealthSync** helps optimize clinical efficiency with a keyboard-driven system for doctors to manage patient records, notes, medical certificates, and medication dispensing, all in one streamlined interface, enhancing care quality and focus in a busy clinical setting. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
-* Table of Contents
-{:toc}
+
+# Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Help](#viewing-help--help)
+  - [Add patient medical record](#adding-a-patient-medical-record-add)
+  - [Listing all patient medical records](#listing-all-patient-medical-records--list)
+  - [Editing a patient medical record](#editing-a-patient-medical-record--edit)
+  - [Deleting a patient medical record](#deleting-a-patient-medical-record--delete)
+  - [Adding an appointment note](#adding-an-appointment-note-add-an)
+  - [Deleting an appointment note](#deleting-an-appointment-note--delete-an)
+  - [Clearing all entries](#clearing-all-entries--clear)
+  - [Exiting the program](#exiting-the-program--exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -161,19 +177,18 @@ medical record that has the `PATIENT_INDEX` of 1.
 
 [//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
-### Deleting a person : `delete`
+### Deleting a patient medical record : `delete`
 
-Deletes the specified person from the address book.
+Deletes a particular patient's medical records.
 
-Format: `delete INDEX`
+Format: `delete PATIENT_INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient medical record at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd patient medical record in the patient list.
 
 ### Listing all appointment notes: `list-an`
 

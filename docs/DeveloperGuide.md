@@ -281,7 +281,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ |---------------------------------------|----------------------------------------------------------|
 | `* * *`  | user                                       | view all my patient's medical records | have a clear overview of all my records                  |
 | `* * *`  | user                                       | add a patient's medical record     | record new patients I work with                          |
-| `* * *`  | user                                       | edit a patient's medical record     | ammend necessary details of a medical record when needed |
+| `* * *`  | user                                       | edit a patient's medical record     | amend necessary details of a medical record when needed |
+| `* * *`  | user                                       | delete a patient's medical record     | remove patient's medical record that I no longer need |
 | `* * *`  | user                                       | list all patients' appointment notes | view all existing appointment notes         |
 | `* * *`  | user                                       | add a patient's appointment note      | record keep the details of each appointment              |
 | `* * *`  | user                                       | edit a patient's appointment note    | update the details of an appointment        |
@@ -400,6 +401,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Patient's medical record**: Essential information about a patient, including name, NRIC, phone number and other relevant details
+* **Patient's appointment note**: Information on a scheduled patient appointment, including date, time and assessment
 
 
 --------------------------------------------------------------------------------------------------------------------
