@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/fy17ohhh.png" width="200px">
 
 [[github](http://github.com/fy17ohhh)]
-[[portfolio](team/fy17ohhh.md)]
+[[portfolio](team/feiyang.md)]
 
 * Role: Developer
 * Responsibilities: UI + Scheduling and tracking
