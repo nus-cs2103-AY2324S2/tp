@@ -157,6 +157,17 @@ Format: `/comment <ApplicationId> <Note>`
 
 Examples:
 * `/comment 10 “S/Pass Holder”` will add the note “S/Pass Holder” to the applicant identified by ID 10.
+
+### Exporting interviewees contacts by pageId : `/export`
+Extracts interviewees contacts into a separate address book identified by a pageId
+Format: /export <ContactRange> <pageId>
+
+* Achieve an additional layer of organisation to properly arrange contacts
+* Possible values for `<pageId>` are integers.
+* Possible values for ContactRange are two integers denoting start:end indices.
+
+Examples:
+*  `/export [0:10] 1` will append contacts 0 to 10 inclusive onto page identified by ID 1.
   
 ### Clearing all entries : `clear`
 
