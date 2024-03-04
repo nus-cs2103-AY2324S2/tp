@@ -116,23 +116,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
         eventListPanel = new EventListPanel(logic.getFilteredEventlist());
-
-        if (eventListPanelPlaceholder != null) {
-            eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
-         } else {
-             // Log an error or appropriate message:
-             System.out.println("eventListPanelPlaceholder is Null!");
-         }
-        try {
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("TRACE ON");
-            e.printStackTrace();
-        }
-
-
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
