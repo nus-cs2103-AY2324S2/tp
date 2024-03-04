@@ -262,27 +262,42 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-savvy tutors who:
+  * has a need to manage a significant number of contacts
+  * prefer desktop apps over other types
+  * can type fast
+  * prefers typing to mouse interactions
+  * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Allows tutors to view details of students that they are currently teaching, in a simple GUI application that favors CLI experience.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​   | I want to …​                                | So that I can…​                                                         |
+|---------|-----------|---------------------------------------------|-------------------------------------------------------------------------|
+| `* * *` | new tutor | see usage instructions                      | refer to instructions when I forget how to use the App                  |
+| `* * *` | tutor     | add a new tutor                             | manage the new tutor's schedule                                         |
+| `* * *` | tutor     | delete a student                            | remove entries that I no longer need                                    |
+| `* * *` | tutor     | find a student by name                      | locate details of students without having to go through the entire list |
+| `* * *` | tutor     | add a student                               | register a student for tutoring                                         |
+| `* * *` | tutor     | list all students                           | view all registered students                                            |
+| `* * *` | tutor     | edit details of a student                   | update whenever their contact details changes                           |
+| `* * *` | tutor     | edit my own details                         | update whenever my contact details changes                              |
+| `* *`   | tutor     | filter my students by subject / grade level | tailor my teaching approach according to students' needs                |
+| `* *`   | tutor     | mark students' monthly payments             | keep track of any payments left unpaid                                  |
+| `* *`   | tutor     | view all outstanding payments               | remind their parents of their tuition fees                              |
+| `* *`   | tutor     | sort the students by grade level            | tailor my teaching approach according to students' needs                |
+| `* *`   | tutor     | view my schedules                           | get to the appointed lessons on time                                    |
+| `* *`   | tutor     | get reminders incoming weekly sessions      | remember my upcoming lessons                                            |
+| `*`     | tutor     | communicate with my students on the App     | update them on any academic details I missed during lessons             |
+| `*`     | tutor     | track attendence of students                | monitor their commitment to tutoring sessions                           |
+| `*`     | tutor     | reschedule sessions with my students        | accomodate changes in availability                                      |
+| `*`     | tutor     | track attendence of students                | monitor their commitment to tutoring sessions                           |
+| `*`     | tutor     | make session notes for students             | keep track of lesson details                                            |
+| `*`     | tutor     | track attendence of students                | monitor their commitment to tutoring sessions                           |
 
 *{More to be added}*
 
