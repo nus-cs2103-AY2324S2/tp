@@ -7,7 +7,7 @@
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the respective emails
 
 ## Project team
 
@@ -56,6 +56,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/headcube1)]
 [[portfolio](team/wesleyyu.md)]
+[[email] (e0959950@u.nus.edu)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Docs, Coding
