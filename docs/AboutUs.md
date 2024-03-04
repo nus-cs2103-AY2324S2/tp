@@ -38,14 +38,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/tanjiajiajun)] [[portfolio](team/jiajun.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation + Code Quality
 
-### Jean Doe
+### Marcus Lam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marclamp.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/marclamp)]
+[[portfolio](team/marcuslam.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
