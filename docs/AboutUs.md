@@ -33,7 +33,7 @@ You can reach us at the email `e0970466@comp.nus.edu.sg`
 
 <img src="images/jiahui0309.png" width="200px">
 
-[[github](http://github.com/jiahui0309)] 
+[[github](http://github.com/jiahui0309)]
 [[linkedin](https://www.linkedin.com/in/song-jia-hui/)]
 
 * Role: Developer
