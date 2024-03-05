@@ -274,13 +274,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Active members of university clubs and societies or school event committees
+* Tech-savvy and reasonably comfortable with digital tools
+* Fast typer
+* Managing multiple events that range from small-scale meetings to large school-wide events
+* Frequently communicating and coordinating with a variety of contacts including vendors, participants, volunteers, and school administrators
+* Task driven with a need to balance multiple deadlines and responsibilities simultaneously
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition:**
+
+The evolved AB3 contact management application, tailored specifically for student event organizers, offers a new standard of streamlined and automated contact organization. It serves as your single source of truth for storing, managing, and retrieving all contact-related information.
 
 
 ### User stories
@@ -289,12 +292,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| `* * *`  | user                                       | create a new event           | plan and manage all the events that in one place                       |
+| `* * *`  | user                                       | add a new person             | manage all my contacts in one place                                    |
+| `* * *`  | user                                       | add participant to an event  | manage and plan all the participant for a specific event               |
+| `* * *`  | user                                       | delete a person              | remove contacts that I no longer need                                  |
+| `* * *`  | user                                       | remove specific participant  | remove a specific participant from a specific event                    |
+| `* *`    | diligent user                              | edit contact information     | update contact information whenever necessary                          |
+| `* *`    | user                                       | select a specific event      | search events by name without having to manually search                |
 
 *{More to be added}*
 
