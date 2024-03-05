@@ -290,14 +290,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a patient**
+
+**Actor: 33**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Hospital clerk gets a request to add new patient
+2.  Hospital clerk enters patient data
+4.  mediCLI adds the patient into database
+
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a patient**
+
+**MSS**
+
+1.  Hospital clerk requests to list persons
+2.  mediCLI shows a list of persons
+3.  Hospital clerk requests to delete a specific patient in the list
+4.  mediCLI deletes the patient
 
     Use case ends.
 
@@ -309,7 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. mediCLI shows an error message.
 
       Use case resumes at step 2.
 
