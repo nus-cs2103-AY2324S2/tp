@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://gitea.ts.yadunut.com)]
 [[github](http://github.com/yadunut)] 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yadunut.md)]
 
 * Role: Developer
 * Responsibilities: Code Writer
