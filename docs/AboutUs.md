@@ -28,7 +28,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Scheduling and tracking
 
-### Ma Zexuan
+### Ma Ze Xuan
 
 <img src="images/mazexuan.png" width="200px">
 
