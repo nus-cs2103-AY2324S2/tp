@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Regan Choy
+### Regan Choy Test
 
 <img src="images/reganchoy.png" width="200px">
 
