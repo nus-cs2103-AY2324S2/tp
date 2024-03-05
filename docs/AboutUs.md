@@ -31,14 +31,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Code Quality / Integration
 * Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 
-### Johnny Doe
+### Lim Jia Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kappaccinoh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Kappaccinoh)] [[portfolio](https://www.linkedin.com/in/jia-wei-lim-747037181/)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Scheduling / Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time. In charge of defining, assigning, and tracking project tasks.
 
 ### Jean Doe
 
