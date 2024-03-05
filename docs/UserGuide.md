@@ -36,7 +36,7 @@ Clinic Mate is a **desktop app for managing contacts in a clinic, optimized for 
 
    * `find T0123456A` : Find the contact with the IC 'T0123456A' shown in the current list.
 
-   * `addnote patient i/T0123456A n/Patient has diabetes` : Add a note: 'Patient has diabetes' for the contact with the IC 'T0123456A' as shown in current list.
+   * `addnote i/T0123456A n/Patient has diabetes` : Add a note: 'Patient has diabetes' for the contact with the IC 'T0123456A' as shown in current list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
