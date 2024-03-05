@@ -11,15 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Doye Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/doyelee0313.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/doyelee0313)]
+[[portfolio](team/doyelee0313.md)]
 
 * Role: Project Advisor
+* Responsibilities: Development + UI + Documentation
 
 ### Jane Doe
 
@@ -41,16 +41,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Dev Ops + Development + UI
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Toh Li Heng
 
