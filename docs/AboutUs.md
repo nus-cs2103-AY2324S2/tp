@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jun Heng
 
-<img src="images/austintjh19.jpg" width="200px">
+<img src="images/austintjh19.png" width="200px">
 
 [[github](http://github.com/Austintjh19)] [[portfolio](https://austintanjunheng.netlify.app/)]
 
