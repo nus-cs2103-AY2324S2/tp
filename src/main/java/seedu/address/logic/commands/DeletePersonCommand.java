@@ -9,6 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 
 /**
@@ -16,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class DeletePersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delstu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
@@ -25,22 +26,48 @@ public class DeletePersonCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private final Index targetIndex;
+//    private final Index targetIndex;
 
-    public DeletePersonCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    private final NusNet targetNusNet;
+
+//    public DeletePersonCommand(Index targetIndex) {
+//        this.targetIndex = targetIndex;
+//    }
+
+    public DeletePersonCommand(NusNet targetNusNet) {
+        this.targetNusNet = targetNusNet;
     }
+//
+//    @Override
+//    public CommandResult execute(Model model) throws CommandException {
+//        requireNonNull(model);
+//        List<Person> lastShownList = model.getFilteredPersonList();
+//
+//        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        }
+//
+//        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+//        model.deletePerson(personToDelete);
+//        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+//    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetNusNet == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Person personToDelete = lastShownList.stream()
+                .filter(person -> person.getNusNet().equals(targetNusNet))
+                .findFirst()
+                .orElse(null);
+
+        assert(personToDelete != null);
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
@@ -57,13 +84,22 @@ public class DeletePersonCommand extends Command {
         }
 
         DeletePersonCommand otherDeleteCommand = (DeletePersonCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+
+//        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        return targetNusNet.equals(otherDeleteCommand.targetNusNet);
     }
+
+//    @Override
+//    public String toString() {
+//        return new ToStringBuilder(this)
+//                .add("targetIndex", targetIndex)
+//                .toString();
+//    }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add("targetNusNet", targetNusNet)
                 .toString();
     }
 }
