@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This developer guide is adapted from [AB-3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,27 +262,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Bob is a 22 year old NUS SOC student who often struggles with finding details about his professors' and tutors' consultation hours.
+He prefers certain professors and tutors but often misplaces their contact information
+as such information can be hard to find online. He also has difficulty identifying his professors and changing tutors.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+StaffConnect offers convenience and efficiency for a forgetful tech-savvy student.
+StaffConnect allows users to easily identify and connect with educators by providing visual cues alongside their contact details, supported by an easy-to-use filtering system.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                     | I want to …​                    | So that I can…​                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | sociable user                              | save a contact's name, email, phone number, title in one line | save time per entry                     |
+| `* * *`  | disorganised student                       | store a professor's name       | recall how to address the professor                                    |
+| `* * *`  | forgetful user                             | store a professor's faculty    | see the faculty that a professor belongs to                            |
+| `* * *`  | student who get lost easily                | view the locations of my meetings/classes | search the locations for my meetings easily                 |
+| `* * *`  | disorganised student                       | store a professor's consultation hours | arrange times to meet my professor for consultation            |
+| `* * *`  | slow reader                                | filter through contact entry by their name | not waste time in finding a specific contact/s and access their info easily |
+| `* * *`  | slow reader                                | filter through contact entry by their availability | not waste time in finding a specific contact/s and access their info easily |
+| `* * *`  | slow reader                                | filter through contact entry by their module | not waste time in finding a specific contact/s and access their info easily |
+| `* * *`  | disorganised student                       | store the modules a professor is teaching  | contact the professors who teach a module which I am currently taking       |
+| `* * *`  | slow reader                                | filter through contact entry by their module | not waste time in finding a specific contact/s and access their info easily |
+| `* * *`  | forgetful user                             | filter the professors by their faculty or the course they teach | not waste time in finding a specific contact/s and access their info easily |
 
 *{More to be added}*
 
