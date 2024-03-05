@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.Prefix;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonDetailContainsKeywordPredicateTest {
@@ -24,14 +25,13 @@ public class PersonDetailContainsKeywordPredicateTest {
             new PersonDetailContainsKeywordPredicate(PREFIX_NAME, firstPredicateKeyword);
         PersonDetailContainsKeywordPredicate secondPredicate =
             new PersonDetailContainsKeywordPredicate(PREFIX_NAME, secondPredicateKeyword);
+        PersonDetailContainsKeywordPredicate thirdPredicate =
+            new PersonDetailContainsKeywordPredicate(PREFIX_EMAIL, firstPredicateKeyword);
+        PersonDetailContainsKeywordPredicate fourthPredicate =
+            new PersonDetailContainsKeywordPredicate(PREFIX_EMAIL, secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
-
-        // same values -> returns true
-        PersonDetailContainsKeywordPredicate firstPredicateCopy =
-            new PersonDetailContainsKeywordPredicate(PREFIX_NAME, firstPredicateKeyword);
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
@@ -39,8 +39,20 @@ public class PersonDetailContainsKeywordPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // same values -> returns true
+        PersonDetailContainsKeywordPredicate firstPredicateCopy =
+            new PersonDetailContainsKeywordPredicate(PREFIX_NAME, firstPredicateKeyword);
+        assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        // same prefix, different keyword -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+
+        // same keyword, different prefix -> returns false
+        assertFalse(firstPredicate.equals(thirdPredicate));
+
+        // different prefix and keyword -> returns false
+        assertFalse(firstPredicate.equals(fourthPredicate));
+
     }
 
     @Test
@@ -166,6 +178,17 @@ public class PersonDetailContainsKeywordPredicateTest {
         predicate = new PersonDetailContainsKeywordPredicate(PREFIX_TAG, "Main Street");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("Friend").build()));
+    }
+
+    @Test
+    public void test_invalidPrefix_returnsFalse() {
+        // Non-matching keyword
+
+        Prefix invalidPrefix = new Prefix("i/");
+        PersonDetailContainsKeywordPredicate predicate =
+            new PersonDetailContainsKeywordPredicate(invalidPrefix, "abc");
+
+        assertFalse(predicate.test(new PersonBuilder().withTags("Family").build()));
     }
 
     @Test

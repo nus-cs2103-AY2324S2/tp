@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.Prefix;
@@ -27,6 +29,8 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts with a specified aspect"
             + " containing specified keyword (case-insensitive) and"
             + " displays them as a list with index numbers.\n"
+            + " The currently supported prefixes are: "
+            + Arrays.toString(ACCEPTED_PREFIXES) + "\n"
             + "Parameters: PREFIX/KEYWORD\n"
             + "Example: " + COMMAND_WORD + " n/Alice";
 

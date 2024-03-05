@@ -22,16 +22,25 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, FindCommand.ACCEPTED_PREFIXES);
 
-        if (!argMultimap.verifySinglePrefix()) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
+        Prefix prefix = extractPrefixForFindCommand(argMultimap);
 
-        // Finds the prefix input for the command
-        for (Prefix prefix : FindCommand.ACCEPTED_PREFIXES) {
-            if (argMultimap.getValue(prefix).isPresent() && !argMultimap.getValue(prefix).get().isEmpty()) {
-                return new FindCommand(
-                    new PersonDetailContainsKeywordPredicate(prefix, argMultimap.getValue(prefix).get()));
+        return new FindCommand(
+            new PersonDetailContainsKeywordPredicate(prefix, argMultimap.getValue(prefix).get()));
+    }
+
+    /**
+     * Checks if the given ArgumentMultimap contains only one valid, non-empty prefix for the FindCommand
+     * and returns the found prefix.
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    private Prefix extractPrefixForFindCommand(ArgumentMultimap argMultimap) throws ParseException {
+
+        if (argMultimap.verifySinglePrefix()) {
+            for (Prefix prefix : FindCommand.ACCEPTED_PREFIXES) {
+                if (argMultimap.getValue(prefix).isPresent()
+                    && !argMultimap.getValue(prefix).get().isEmpty()) {
+                    return prefix;
+                }
             }
         }
 
