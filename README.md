@@ -1,14 +1,24 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
+# InsureBook
+
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.
-* ``InsureBook`` is a simple GUI application with CLI-based user interactions, that allows insurance agents to easily keep track of potential and existing clients, their policies, and scheduled appointment dates. <br>
-  Example usages:
-  * as a tracking tool for insurance agents to manage their clients and appointments.
-  * as a reminders tool for insurance agents to keep track of their appointments. <br>
-* The project simulates an ongoing software project for a desktop application (called _InsureBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* For the detailed documentation of this project, see the **[InsureBook Product Website](https://ay2324s2-cs2103t-w09-4.github.io/tp/)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+## Description
+``InsureBook`` is a simple desktop application that allows insurance agents to easily keep track of potential and existing clients, their policies, and scheduled appointment dates. <br> It is a GUI application with user interactions that are mostly CLI-based.
+
+## Features
+* Add & delete clients' information (Name, phone number, email address, policy information)
+* View list of clients in the main GUI window, including their name, phone number, and email address
+* View a client's policy information in a separate pop-up window
+* Track scheduled meetings and appointments
+
+## Site Map
+* **[InsureBook Product Website](https://ay2324s2-cs2103t-w09-4.github.io/tp/)**.
+* **[InsureBook - User Guide](https://ay2324s2-cs2103t-w09-4.github.io/tp/UserGuide.html)**
+* **[InsureBook - Developer Guide](https://ay2324s2-cs2103t-w09-4.github.io/tp/DeveloperGuide.html)**
+* **[InsureBook - About Us](https://ay2324s2-cs2103t-w09-4.github.io/tp/AboutUs.html)**
+
+## Credits & Acknowledgements
+- This project was made as part of CS2103T in AY23/24 S2.
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
