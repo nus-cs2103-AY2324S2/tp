@@ -70,9 +70,7 @@ InsureBook is a **desktop app for managing contacts, optimized for use via a  Li
 
 Adds a client, together with their name, phone number and email into the address book.
 
-Format: `add n/<name> p/<phone number> e/<email> 
-
-<box type="tip" seamless>
+Format: add n/NAME p/PHONENUMBER e/EMAIL
 
 Examples:
 * `add n/Gregorius p/91234567 e/giddy@gmail.com`
@@ -89,15 +87,29 @@ Format: `list`
 
 Removes an existing client based on their index from the address book.
 
-Format: `delete <person index>`
+Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer between the numeric range of contacts in the address book.** 
 
 Examples:
 * `delete 2`
 * `delete 4`
+
+### Adding a new policy to a person : `addPolicy`
+
+Adds new insurance policy to a specific client
+
+Format: `addPolicy i/INDEX n/POLICY`
+
+* Adds a policy to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer between the numeric range of contacts in the address book.**
+* `POLICY` is the name of the policy to be added
+
+Examples:
+* `addPolicy i/10 n/SuperSaver`
 
 --------------------------------------------------------------------------------------------------------------------
 
