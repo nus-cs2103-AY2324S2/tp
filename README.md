@@ -5,7 +5,7 @@
 ![Ui](docs/images/Ui.png)
 
 ## Description
-``InsureBook`` is a simple desktop application that allows insurance agents to easily keep track of potential and existing clients, their policies, and scheduled appointment dates. <br> It is a GUI application with user interactions that are mostly CLI-based.
+``InsureBook`` is a simple desktop application that allows insurance agents to easily keep track of potential and existing clients, their policies, and scheduled appointment dates. <br> It is a GUI application, but user interactions with the application are mostly CLI-based.
 
 ## Features
 * Add & delete clients' information (Name, phone number, email address, policy information)
