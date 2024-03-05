@@ -24,4 +24,7 @@ docs/_site/
 docs/_markbind/logs/
 
 # Compiled files
-*.class
+/*.class
+
+# Binaries
+/bin/
