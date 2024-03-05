@@ -50,12 +50,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead, Documentation
 * Responsibilities: Coordinating with team members, ensuring code is well documented.
 
-### James Doe
+### Eugene Luke Sim Ek Jin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alteqa.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/alteqa)]
+[[portfolio](https://www.linkedin.com/in/eugene-sim-866677188/)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation, Testing, Intellij / Github Expert
+* Responsibilities: Ensures the testing of the project is done properly and on time. Responsible for the quality of various project documents. 
+* Helps other team member with matters related to Intellij, Github and Sourcetree tool.
