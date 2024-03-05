@@ -98,7 +98,6 @@ public class ModelManager implements Model {
         addressBook.removePerson(target);
     }
 
-
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
