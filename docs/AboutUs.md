@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Timothy Chan
 
-<img src="images/timothy.png" width="200px">
+<img src="images/timothysashimi.png" width="200px">
 
 [[github](http://github.com/timothysashimi)]
 [[portfolio](team/johndoe.md)]
