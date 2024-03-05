@@ -100,7 +100,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags, 1);
     }
 
     @Override
@@ -137,6 +137,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private int id;
 
         public EditPersonDescriptor() {}
 

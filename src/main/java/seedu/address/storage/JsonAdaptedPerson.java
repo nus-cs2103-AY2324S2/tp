@@ -27,6 +27,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+    private final int sid;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -35,10 +36,11 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("sid") int sid) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.sid = sid;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,6 +56,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        sid = source.getSid();
     }
 
     /**
@@ -92,7 +95,10 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+
+//        final int sid = new Integer(toModelType().getSid());
+        // TODO: Dummy value for ID
+        return new Person(modelName, modelPhone, modelEmail, modelTags, sid);
     }
 
 }

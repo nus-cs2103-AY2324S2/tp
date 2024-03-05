@@ -60,6 +60,7 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
+        // TODO: Probably can inject the tracking of ID here
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);

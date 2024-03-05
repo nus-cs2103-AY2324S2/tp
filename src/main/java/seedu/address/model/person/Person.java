@@ -24,15 +24,20 @@ public class Person {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
+    private final int id;
+
+    public static int idTracker = 1;
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email,  tags);
+    public Person(Name name, Phone phone, Email email, Set<Tag> tags, int id) {
+        requireAllNonNull(name, phone, email,  tags, id);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
+        this.id = id;
     }
 
     public Name getName() {
@@ -45,6 +50,9 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+    public int getSid() {
+        return id;
     }
 
     /**
