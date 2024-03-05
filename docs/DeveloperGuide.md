@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent | delete a client                            | remove clients that are leaving                                       |
 | `* * *`  | insurance agent | find a client by name                      | locate details of client without having to go through the entire list |
 | `* * *`  | insurance agent | list all clients                           | see all clients at a glance                                           |
-| `* *`    | insurance agent | view client information                    | know and check client details                                         |
+| `* * *`  | insurance agent | view client information                    | know and check client details                                         |
 | `* *`    | insurance agent | check schedules with clients on a date     | keep track of what I have to do in a day                              |
 | `* *`    | insurance agent | add the birthday of my clients             | wish them happy birthday to keep in contact with them                 |
 | `* *`    | insurance agent | delete policy details for a client         | remove expired policies of the client                                 |
