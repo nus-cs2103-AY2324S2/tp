@@ -22,19 +22,35 @@ public class Person {
     private final Email email;
 
     // Data fields
+
+    private final FundingStage fundingStage;
+
+    private final Industry industry;
+
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, FundingStage fundingStage, Industry industry,
+                  Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, fundingStage, industry, phone, email, address, tags);
         this.name = name;
+        this.fundingStage = fundingStage;
+        this.industry = industry;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    public FundingStage getFundingStage() {
+        return this.fundingStage;
+    }
+
+    public Industry getIndustry() {
+        return this.industry;
     }
 
     public Name getName() {
@@ -91,6 +107,8 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
+                && industry.equals(otherPerson.industry)
+                && fundingStage.equals(otherPerson.fundingStage)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
@@ -107,6 +125,8 @@ public class Person {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("industry", industry)
+                .add("funding stage", fundingStage)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
