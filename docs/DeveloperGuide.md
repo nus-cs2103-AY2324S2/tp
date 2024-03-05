@@ -288,16 +288,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ClinicMate` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ClinicMate shows a list of persons
 3.  User requests to add a specific person in the list
-4.  AddressBook adds the person
+4.  ClinicMate adds the person
 
     Use case ends.
 
@@ -309,13 +309,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given command format is wrong.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
 * 4a. There is an existing user in the database.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
@@ -324,9 +324,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ClinicMate shows a list of persons
 3.  User requests to add notes for a specific person in the list
-4.  AddressBook adds notes for the person
+4.  ClinicMate adds notes for the person
 
     Use case ends.
 
@@ -338,13 +338,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given command format is wrong.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
-* 4a. The given IC is invalid.
+* 4a. The given IC number is invalid.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
@@ -355,9 +355,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ClinicMate shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  ClinicMate deletes the person
 
     Use case ends.
 
@@ -367,15 +367,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given IC is invalid.
+* 3a. The given IC number is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
 * 4a. The given command format is wrong.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
@@ -384,9 +384,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ClinicMate shows a list of persons
 3.  User requests to find a specific person in the list
-4.  AddressBook finds the person
+4.  ClinicMate finds the person
 
     Use case ends.
 
@@ -396,15 +396,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given IC is invalid.
+* 3a. The given IC number is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
 * 4a. The given command format is wrong.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
