@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# InsureBook Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -272,31 +272,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: An insurance Agent who
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts and their policies
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* Needs a one application to schedule his appointments and reminds him about it
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Assist Insurance Agent keep track of their clients and new clients. 
+This provides them with a 1 application to add details about their clients insurance plans and 
+set reminders for meetups with clients.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                      | I can …​                                                                                                                                                                                       | So that I can…​                                                                                                |
+|----------|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `* * *`  | insurance agent              | add clients contact details into the address book                                                                                                                                              | I can keep track of my clients                                                                                 |
+| `* * *`  | insurance agent              | delete clients contact details in the address book                                                                                                                                             |                                                                                                                |
+| `* * *`  | insurance agent              | edit details of the contact                                                                                                                                                                    | I can update clients detail                                                                                    |
+| `* * *`  | insurance agent              | search for contact details                                                                                                                                                                     |                                                                                                                |
+| `* *`    | insurance agent              | add clients insurances and policies                                                                                                                                                            | I can keep track of my clients policies and insurances                                                         |
+| `*`      | organised insurance agent    | tag different clients in the contact details as different tiers                                                                                                                                | I can focus on bigger clients, i.e. Clients with higher premium policies will have higher priority over others |
+|          | insurance agent	             | delete clients insurances and policies                                                                                                                                                         |                                                                                                                |
+|          | insurance agent	             | untag clients in contact details                                                                                                                                                               |                                                                                                                |
+|          | insurance agent	             | search for clients with specified policies	I can keep track of who has the specified policies which may have an update                                                                         |                                                                                                                |
+|          | insurance agent	             | edit details of the client's policies and insurances	I can update myself on any changes made when my clients' update their policies                                                            |                                                                                                                |
+|          | experienced insurance agent	 | make notes about my clients	I can remember details about my clients and better connect to them and their needs when we meet up                                                                 |                                                                                                                |
+|          | insurance agent	             | automatically calculate my clients' total coverages	I can easily check if they have any shortfall in coverage                                                                                  |                                                                                                                |
+|          | forgetful insurance agent    | 	add meeting date/time in the address book	I can organise my day and meeting time with the client                                                                                              |                                                                                                                |
+|          | organised insurance agent    | 	form a organisational chart of my clients	I can easily see which of my clients are giving more referrals                                                                                      |                                                                                                                |
+|          | inexperienced tech user      | 	perform actions such as adding and deleting details with ease	I can focus on my work as an agent and not worry about having to troubleshoot technical problems                                |                                                                                                                |
+|          | forgetful insurance agent    | 	set weekly/monthly reminders to set up meetings with particular clients	I won't forget about not setting up meetings with my clients to check on their life updates and review their policies |                                                                                                                |
+|          | organised insurance agent    | 	have todo lists for each of my clients	I can keep track of the things I have to do for each client                                                                                            |                                                                                                                |
+|          | forgetful insurance agent    | 	add deadlines to tasks in my clients' todo list	I can be aware of when these tasks need to be completed                                                                                       |                                                                                                                |
+|          | efficient insurance agent    | 	sort my tasks by deadline	I can quickly see my most urgent tasks at a glance and get them done first                                                                                          |                                                                                                                |
+|          | organised insurance agent    | 	sort my clients by their insurance companies	I can group clients under the same company together and possibly complete overlapping tasks involving the company                                |                                                                                                                |
 
 ### Use cases
 
