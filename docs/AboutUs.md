@@ -17,18 +17,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/alfaloo)]
 [[portfolio](https://github.com/alfaloo/CV/blob/main/Zhiyang_Lu_Resume.pdf)]
 
-* Role: Developer, Project Architect
-* Responsibilities: Backend
+* Role: Deliverables and Deadline / Integration
+* Responsibilities: Ensure project deliverables are done on time and in the right format. In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 
-### Jane Doe
+### Cheng-Yu Dong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/officialchengyud.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](https://github.com/officialchengyud)]
+[[portfolio](www.linkedin.com/in/dongchengyu)]
+
+* Role: Code Quality / Integration
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 
 ### Johnny Doe
 
