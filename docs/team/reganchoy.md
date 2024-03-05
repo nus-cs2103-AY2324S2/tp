@@ -1,6 +1,6 @@
 ---
 layout: default.md
-title: "Regan Choy's Project Portfolio Page"
+title: "Regan's Project Portfolio Page"
 ---
 
 ### Project: ClientCare
