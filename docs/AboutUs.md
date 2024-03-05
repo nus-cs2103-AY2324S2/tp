@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ng Wei Chong Javier
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/javierng2knus.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/javierng2knus)]
+[[portfolio](team/javier.md)]
 
-* Role: Project Advisor
+* Role: Team lead
+* Responsibilities: <Will be reassigned on a later date>
 
 ### Ma Yuehan
 
