@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Bryan Lee
 
-<img src="images/bryanlee.png" width="200px">
+<img src="images/bryanl2303.png" width="200px">
 
 [[github](http://github.com/BryanL2303)]
 [[portfolio](team/bryanlee.md)]
