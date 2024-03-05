@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# TA Toolkit Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,33 +274,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a CS2103T TA in NUS School of Computing
+* has a need to manage a significant number of contacts over different communication channels
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
+* prefers to use a separate app that is made to manage student contacts efficiently
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* TA Toolkit is a desktop app that helps the user manage a large number of student contacts 
+across different communication channels efficiently. It is optimised for use via a Command
+Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)
+* It categorises contacts into their tutorial group, allowing for easier management of contacts
+* It allows the user to add, delete, edit, find and view student contacts
+* Users are able to take notes on specific students and keep track of tasks associated to students
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                           | So that I can…​                                          |
+|----------|---------|--------------------------------------------------------|----------------------------------------------------------|
+| `* * *`  | TA      | add a student contact                                  | keep track of my students when I need to                 |
+| `* * *`  | TA      | delete a student contact                               | remove students from the database if they drop the class |
+| `* * *`  | TA      | view all student contacts                              | see a list of all my students                            |
+| `* *`    | TA      | edit a student contact                                 | update a students’s details should they change           |
+| `* *`    | TA      | categorise contacts by class and project group         | organise student contact details correctly               |
+| `* `     | TA      | take notes on students                                 | keep track of their strengths and weaknesses             |
+| `* `     | TA      | mark student attendance                                | be aware of who is missing lessons                       |
+| `* `     | TA      | allocate tasks related to different contacts           | remember my tasks associated with each student           |
+| `* `     | TA      | view all my tasks                                      | see a list of all my tasks                               |
+| `* `     | TA      | mark completion of tasks related to different contacts | keep track of my task progress                           |
+| `* `     | TA      | delete a task                                          | remove tasks that are no longer relevant                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TA Toolkit` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -331,15 +344,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  All functions within the application must provide responses to user queries within a timeframe of 2 seconds. 
+5.  The applications does not support concurrent usage by multiple users. 
+6.  The application does not offer support for languages aside from English.
+7.  The application should be able to handle most common user input errors and provide meaningful error messages.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **CLI**: Command Line Interface: A way of interacting with a computer program where the user issues commands to the
+program in the form of successive lines of text (command lines). It emphasises text-based user interaction over graphical user interfaces.
+* **TA**: Teaching Assistant
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
