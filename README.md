@@ -10,7 +10,7 @@
 ## Features
 * Add & delete clients' information (Name, phone number, email address, policy information)
 * View list of clients in the main GUI window, including their name, phone number, and email address
-* View a client's policy information in a separate pop-up window
+* View client's policy information in a separate pop-up window
 * Track scheduled meetings and appointments
 
 ## Site Map
