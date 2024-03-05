@@ -43,14 +43,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Deliverables + Deadline + Scheduling
 * Responsibilities: Model
 
-### Johnny Doe
+### Solomon Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/solomonng2001.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/solomonng2001)] [[portfolio](team/solomonng.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing
+* Responsibilities: Storage
 
 ### Jean Doe
 
