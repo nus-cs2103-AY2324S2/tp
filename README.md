@@ -1,14 +1,11 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI Status](https://github.com/AY2324S2-CS2103T-F13-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S2-CS2103T-F13-3/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
+* This is the software engineering project done by group F13 for [CS2103T](https://nus-cs2103-ay2324s2.github.io/website/admin/index.html)
+* The project simulates an ongoing software project for a desktop application (called _MatchMate_) used for managing classmate contacts, their skills, and forming teams.
+  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* It is built off the AddressBook-Level3 project, simulating the brownfield process of working with an existing codebase.
+* For the detailed documentation of this project, see the **[MatchMate Product Website](https://nus-cs2103-ay2324s2.github.io/tp/)**.
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
