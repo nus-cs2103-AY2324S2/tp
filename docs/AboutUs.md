@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Zhiyang Lu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alfaloo.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](www.linkedin.com/in/zhiyanglu)]
+[[github](https://github.com/alfaloo)]
+[[portfolio](https://github.com/alfaloo/CV/blob/main/Zhiyang_Lu_Resume.pdf)]
 
-* Role: Project Advisor
+* Role: Developer, Project Architect
+* Responsibilities: Backend
 
 ### Jane Doe
 
