@@ -31,6 +31,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Integration + Documentation
 * Responsibilities: UI
 
+* Role: Project Advisor
+
+### Regan Choy
+
+<img src="images/reganchoy.png" width="200px">
+
+[[github](http://github.com/ReganChoy)]
+[[portfolio](team/reganchoy.md)]
+
+* Role: Deliverables + Deadline + Scheduling
+* Responsibilities: Model
+
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
