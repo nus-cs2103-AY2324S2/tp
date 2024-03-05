@@ -31,14 +31,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Stella Lye Si Yu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/STELLA-LYE.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[homepage](http://STELLA-LYE.github.io)]
+[[github](https://github.com/STELLA-LYE)] 
+[[portfolio](team/STELLA-LYE.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Dev Ops + Development + UI
 
 ### Jean Doe
 
