@@ -11,10 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tu Jia En
 
-<img src="images/tujiaen.png" width="200px">
+<img src="images/chaaaaun.png" width="200px">
 
 [[github](https://github.com/chaaaaun)]
-[[portfolio](team/tujiaen.md)]
+[[portfolio](team/chaaaaun.md)]
 
 * Role: Developer
 
@@ -32,7 +32,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/sdevih.png" width="200px">
 
-[[github](http://github.com/sdevih)] [[portfolio](team/sdevih.md)]
+[[github](http://github.com/sdevih)]
+[[portfolio](team/sdevih.md)]
 
 * Role: Developer
 * Responsibilities: Data
