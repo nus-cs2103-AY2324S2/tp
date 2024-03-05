@@ -29,14 +29,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code Quality
 
-### Johnny Doe
+### Yadunand Prem
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yadunut.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[homepage](https://gitea.ts.yadunut.com)]
+[[github](http://github.com/yadunut)] 
+[[portfolio](team/yadunut.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Writer
 
 ### Jean Doe
 
