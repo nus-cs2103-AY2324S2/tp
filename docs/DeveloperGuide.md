@@ -274,42 +274,65 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of clients for insurance policies
+* has a need to organise schedules with clients and their details in one place
+* has a need for reminders to keep in touch with clients
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: conveniently manage client details and schedules faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​         | I want to …​                                                  | So that I can…​                                                       |
+|----------|-----------------|---------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | insurance agent | see usage instructions                                        | refer to instructions when I forget how to use the App                |
+| `* * *`  | insurance agent | add a new client contact details                              | keep track of the clients I have                                      |
+| `* * *`  | insurance agent | delete a client                                               | remove clients that are leaving                                       |
+| `* * *`  | insurance agent | find a client by name                                         | locate details of client without having to go through the entire list |
+| `* *`    | insurance agent | view client information                                       | know and check client details                                         |
+| `* *`    | insurance agent | check what schedules I have with clients on a particular date | keep track of what I have to do in a day                              |
+| `* *`    | insurance agent | add the birthday of my clients                                | wish them happy birthday to keep in contact with them                 |
+| `* *`    | insurance agent | delete policy details for a client                            | remove expired policies of the client                                 |
+| `* *`    | insurance agent | see when I last met a client                                  | check in on a client that I have not met for a long time              |
+| `* *`    | insurance agent | mark that a schedule is completed                             | know that i fulfilled the appointment scheduled                       |
+| `*`      | insurance agent | sort clients by priority                                      | deal with client with higher priority status first                    |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ClientCare` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Find a client by name**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to find a specific client in the list by name
+2.  ClientCare shows list of client that matches the name
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty as there is no matching name found.
+
+  Use case ends.
+
+
+**Use case: Delete a client**
+
+**MSS**
+
+1.  User requests to list clients or find client by name
+2.  ClientCare shows a list of clients
+3.  User requests to delete a specific client in the list by index
+4.  ClientCare deletes the client
 
     Use case ends.
 
@@ -321,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClientCare shows an error message.
 
       Use case resumes at step 2.
 
@@ -332,13 +355,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond to user input within 2 seconds.
 
 *{More to be added}*
 
 ### Glossary
 
+* **Client**: Customers or potential customers the insurance agent wants to keep in contact with
+* **Command Line Interface (CLI)**: A text-based interface to input commands to interact with the system
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **AddressBook**: The underlying system that ClientCare is built on. Interchangeable with ClientCare.
 
 --------------------------------------------------------------------------------------------------------------------
 
