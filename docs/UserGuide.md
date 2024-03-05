@@ -178,4 +178,3 @@ Action     | Format, Examples
 **AddNote**   | `addnote i/IC_NUMBER n/NOTE`<br> e.g., `addnote i/T0123456A n/Patient has diabetes`
 **Find**   | `find IC_NUMBER`<br> e.g., `find T0123456A`
 **Help**   | `help`
-
