@@ -300,7 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PressPlanner` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -324,6 +324,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC01 - Add an article**
+
+**MSS**
+1. User requests to add article
+2. PressPlanner adds article
+3. PressPlanner displays success message to User.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Command was invalid.
+    *2a1. PressPlanner shows an error message.
+     
+     Use case ends
+
+**Use case: UC02 - List all articles**
+
+**MSS**
+1. User requests to list articles
+2. PressPlanner lists out all articles
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  2a1. PressPlanner returns an error message.
 
 *{More to be added}*
 
