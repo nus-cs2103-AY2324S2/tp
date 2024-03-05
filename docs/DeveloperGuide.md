@@ -274,27 +274,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* regularly receives deliveries of supplies from different suppliers
+* troublesome to make orders when supplies are running low
+* has some favorite and some not great customers
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* Our product is specifically tailored to restaurant owners like Bob who juggle multiple suppliers and customer relationships by streamlining daily delivery management, simplifying tracking supplier schedules and enabling personalised engagement with regulars.
+* Focusing on a small number of stable suppliers, it centralises contacts and smoothens day-to-day tasks.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                          | I want to …​                                                                                                                                | So that I can…​                                                                                |
+|----------|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `* * *`  | restaurant owner                 | add contacts with detailed information                                                                                                      | better manage relationship with suppliers and customers                                        |
+| `* * *`  | restaurant owner                 | immediately see a list of contact                                                                                                           | contact / check on these parties quickly                                                       |
+| `* * *`  | restaurant owner                 | search by name                                                                                                                              | quickly find the person I want to contact                                                      |
+| `* * *`  | long time user                   | delete contacts                                                                                                                             | keep my address book relevant and clean                                                        |
+| `* *`    | potential user exploring the app | see examples with sample data on the app                                                                                                    | easily visualize how the app will look like when handling data that is typical for my use case |
+| `* *`    | potential user exploring the app | delete all sample data                                                                                                                      | easily add my own data to a clean slate                                                        |
+| `* *`    | long time user                   | edit contact details                                                                                                                        | keep my address book up to date                                                                |
+| `* *`    | restaurant owner                 | keep track of temporary contacts                                                                                                            | easily check on the status of my incoming deliveries with the deliverymen responsible          |
+| `* *`    | frequent user                    | immediately see a list of important / frequent contacts that I view                                                                         | contact / check on these parties quickly                                                       |
+| `* *`    | restaurant owner                 | favourite certain contacts                                                                                                                  | have quicker and more efficient access to contact                                              |
+| `* *`    | long time user                   | search by notes or tag to quickly find specific details about customer preferences (i.e allergies) and delivery details (i.e slow delivery) |                                                                                                |
+| `* *`    | long time user                   | filter search base on a specific criteria (like vegan supplier) to better plan deliveries                                                   |                                                                                                |
+| `*`      | careless user                    | undo my orders/contacts                                                                                                                     | reduces the number of actions I have to take                                                   |
 
 *{More to be added}*
 
