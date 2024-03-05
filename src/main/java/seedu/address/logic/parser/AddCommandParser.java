@@ -46,7 +46,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+            PREFIX_FUNDING_STAGE, PREFIX_INDUSTRY);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         FundingStage fundingStage = ParserUtil.parseFundingStage(argMultimap.getValue(PREFIX_FUNDING_STAGE).get());
         Industry industry = ParserUtil.parseIndustry(argMultimap.getValue(PREFIX_INDUSTRY).get());
