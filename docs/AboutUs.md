@@ -31,11 +31,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doei
 
-<img src="images/johndoe.png" width="200px">
+### Loh Yu Tong
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/youdonnnn.png" width="200px">
+
+[[github](https://github.com/youdonnnn)]
 
 * Role: Developer
 * Responsibilities: Data
