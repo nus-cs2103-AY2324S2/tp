@@ -382,6 +382,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Add a new person**
+
+**MSS**
+
+1.  User requests to add a new person.
+2.  AddressBook prompts the user to enter the details of the person.
+3. User enters the details of the person.
+4. AddressBook adds the new person to the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The user enters invalid details.
+
+    * 3a1. AddressBook shows an error message.
+    * 3a2. AddressBook prompts the user to enter the details again.
+    
+  Use case resumes at step 3.
+
+**Use case: Update a person's details**
+
+**MSS**
+
+1.  User requests to list persons..
+2.  AddressBook shows a list of persons.
+3. User requests to update the details of a specific person in the list.
+4. AddressBook prompts the user to enter the new details.
+5. User enters the new details.
+6. AddressBook updates the person's details.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid..
+
+    * 3a1. AddressBook shows an error message.
+  
+      Use case resumes at step 2.
+
+* 5a. The user enters invalid details.
+
+    * 5a1. AddressBook shows an error message.
+    * 5a2. AddressBook prompts the user to enter the details again.
+      
+  Use case resumes at step 4.
+  
+
+
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
