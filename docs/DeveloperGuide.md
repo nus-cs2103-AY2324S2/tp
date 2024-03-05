@@ -300,16 +300,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ClinicMate` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  ClinicMate shows a list of persons
+3.  User requests to add a specific person in the list
+4.  ClinicMate adds the person
 
     Use case ends.
 
@@ -319,13 +319,108 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given command format is wrong.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClinicMate shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 4a. There is an existing user in the database.
+
+    * 4a1. ClinicMate shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add notes for a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  ClinicMate shows a list of persons
+3.  User requests to add notes for a specific person in the list
+4.  ClinicMate adds notes for the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given command format is wrong.
+
+    * 3a1. ClinicMate shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The given IC number is invalid.
+
+    * 4a1. ClinicMate shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Delete a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  ClinicMate shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  ClinicMate deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given IC number is invalid.
+
+    * 3a1. ClinicMate shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The given command format is wrong.
+
+    * 4a1. ClinicMate shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  ClinicMate shows a list of persons
+3.  User requests to find a specific person in the list
+4.  ClinicMate finds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given IC number is invalid.
+
+    * 3a1. ClinicMate shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The given command format is wrong.
+
+    * 4a1. ClinicMate shows an error message.
+
+      Use case resumes at step 2.
+
+
 
 ### Non-Functional Requirements
 
