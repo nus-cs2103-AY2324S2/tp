@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Solomon Ng
 
-<img src="images/solomonng.png" width="200px">
+<img src="images/solomonng2001.png" width="200px">
 
 [[github](http://github.com/solomonng2001)] [[portfolio](team/solomonng.md)]
 
