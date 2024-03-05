@@ -287,14 +287,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                                                                              | So that I can…​                                                             |
+|----------|---------------------|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| `* * `   | Rainbow Dragon user | create and manage multiple character profiles, including their names, classes, and progress  | keep track of my gaming experience for different games                         |
+| `* * `   | Rainbow Dragon user | add custom notes or tags to character profiles                                               | jot down important details or strategies for future reference                  |
+| `* * `   | Rainbow Dragon user | learn comprehensive help documentation and tutorials accessible within the interface         | learn its features and commands more efficiently                               |
+| `* * `   | Rainbow Dragon user | easily search for specific characters or games within the CLI tool                           | quickly access the information I need without navigating through complex menus |
+| `* * `   | Rainbow Dragon user | gain insights and analytics about my gaming habits and progress from the CLI tool            | identify areas for improvement and set goals for future gameplay               |
 
 *{More to be added}*
 
@@ -339,6 +338,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **AddressBook**: A software application used to store and manage contact information, such as names, phone numbers, and email addresses.
+* **Actor**: In the context of use cases, an actor is a user or system component that interacts with the system to achieve a specific goal.
+* **Use Case**: A description of how a system interacts with its users or other systems to achieve a particular goal.
+* **MSS**: Stands for Main Success Scenario, which outlines the basic steps that should occur when a use case is executed successfully.
+* **Extension**: Describes alternative paths or exceptional conditions that may occur during the execution of a use case.
+* **GUI**: Stands for Graphical User Interface, which is a visual way for users to interact with a software application using graphical elements such as windows, buttons, and menus.
+* **CLI**: Stands for Command Line Interface, which is a text-based way for users to interact with a software application by typing commands into a terminal or command prompt.
+* **Timestamp**: A record of the date and time when an event occurred, often used for tracking changes or actions in a system.
+* **Status Bar**: A horizontal bar typically located at the bottom of a window or application interface, providing information about the current status or state of the system.
+* **Exploratory Testing**: A testing approach where testers explore the software application freely, without predefined test cases, to discover bugs or issues.
+* **Jar file**: Stands for Java Archive file, which is a compressed file format used to package Java applications, libraries, or components.
+* **Prerequisites**: Conditions or actions that must be met or completed before a test case can be executed.
+* **Test Case**: A detailed description of steps to be followed and expected outcomes to be observed when testing a specific aspect or feature of a software application.
+* **Corrupted Data File**: A file that has been damaged or altered in such a way that it cannot be read or processed correctly by the software application.
+* **Status Message**: Information displayed to the user indicating the outcome or result of an action performed by the system.
 
 --------------------------------------------------------------------------------------------------------------------
 
