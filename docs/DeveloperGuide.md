@@ -390,6 +390,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. The response to any use action should become visible within 5 seconds.
 5. Should have a user-friendly interface that is easy to navigate and understand.
 6. Should be stable and not crash or lose data under normal use.
+7. Should be able to handle increasing amounts of data and users without significant degradation in performance (Scalability).
+8. Should protect sensitive data and prevent unauthorized access, ensuring data integrity and confidentiality (Security).
+9. Should be easy to maintain, with clear documentation and a modular design that allows for easy updates and fixes .
+10. Should be accessible to users with disabilities, following guidelines such as the Web Content Accessibility Guidelines (WCAG).
 
 
 *{More to be added}*
