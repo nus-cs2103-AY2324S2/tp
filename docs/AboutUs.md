@@ -52,15 +52,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Testing
 * Responsibilities: Storage
 
-### Jean Doe
+### Chia York Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yorklim.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yorklim)]
+[[portfolio](team/yorklim.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team lead + Code quality
+* Responsibilities: Dev Ops
 
 ### James Doe
 
