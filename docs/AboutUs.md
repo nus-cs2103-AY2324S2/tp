@@ -9,51 +9,49 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tu Jia En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chaaaaun.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/chaaaaun)]
+[[portfolio](team/chaaaaun.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
-### Jane Doe
+### Soh Soon Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/soons1.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/soons1)]
+[[portfolio](team/soons1.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### S Devi Harshitha
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sdevih.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/sdevih)]
+[[portfolio](team/sdevih.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Chong Jer Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cjerrong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/CJerrong)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Chan Ger Teck
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gerteck.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/gerteck)]
+[[portfolio](team/gerteck.md)]
 
 * Role: Developer
-* Responsibilities: UI

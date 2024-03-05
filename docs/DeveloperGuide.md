@@ -262,27 +262,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a manager of a befriending volunteer organisation
+* has a need to keep track of many befriendees/elderly of the volunteer programme
+* has a need to keep track of volunteers in the organisation
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage the volunteer organisation faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​   | I want to …​                                                                           | So that I can…​                                               |
+|-----|-----------|----------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| `* * *` | manager   | add volunteers’ and elderly befriendees’ contacts                                      |                                                               |
+| `* * *` | manager   | edit volunteers’ and elderly befriendees’ details                                      |                                                               |
+| `* * *` | manager   | delete volunteer and elderly befriendee contacts                                       |                                                               |
+| `* * *` | manager   | view list of volunteers and elderly befriendees                                        | keep track of the roster                                      |
+| `* * *` | manager   | tag elderly befriendees with relevant details                                          | accommodate for any special circumstances                     |
+| `* * *` | manager   | pair volunteers with befriendee contacts                                               | assign the pairings                                           |
+| `* * *` | manager   | view details of elderly befriendee                                                     | know the address and case details                             |
+| `* * *` | manager   | view details of volunteer befriender                                                   | know the details of the volunteer                             |
+| `* *` | first-time user   | access a help page                                                                     | refer to the features that come along with the application    |
+| `* *` | manager   | have a one-stop view of all the important information about the elderly and volunteers | contact each person easily                                    |
+| `* *` | manager   | see a timetable with meeting details                                                   | quickly see the planned meeting sessions                      |
+| `* *` | manager   | search for specific contact based on keywords                                          | quickly see contact details of specific people                |
+| `* *` | manager   | add details directly to pairings                                                       | add information specific to pairings                          |
+| `* *` | manager   | search for specific contact based on keywords                                          | quickly see contact details of specific people                |
+| `*` | first-time user   | see sample befriendee and volunteer profiles                                           | try out the features with pre-loaded data                     |
+| `*` | first-time user   | follow a guided tour                                                                   | be aware of how to use and access features in the application |
 
 *{More to be added}*
 
@@ -290,6 +302,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Elder Scrolls` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a contact**
+
+**MSS**
+
+1. User requests to add contact, entering contact information
+2. Elder Scrolls adds the contact
+3. Elder Scrolls displays the details of the contact added
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given contact details are invalid.
+
+  * 2a1. Elder Scrolls shows an error message.
+  
+    Use case ends.
+
+* 3a. The given contact details are already in the contact book
+
+    * 3a1. Elder scrolls shows an error message.
+  
+     Use case ends.
+  
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to list all contacts
+2.  Elder Scrolls shows a list of all contacts
+3.  User requests to delete a specific contact using its unique ID (UID)
+4.  Elder Scrolls deletes the contact based on its UID
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  * 2a1. Elder Scrolls shows an error message.
+
+    Use case ends.
+
+* 3a. The given UID is invalid.
+
+    * 3a1. Elder Scrolls shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The contact requested to be deleted is still paired.
+
+  * 4a1. Elder Scrolls shows an error message.
+  
+    Use case resumes at step 2.
+
+**Use case: List all contacts**
+
+**MSS**
+
+1. User requests to list all contacts
+2. Elder Scrolls shows a list of all contacts
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. Elder Scrolls shows an error message.
+
+      Use case ends.
+
+**Use case: List all volunteer contacts**
+
+**MSS**
+
+1. User requests to list all volunteer contacts
+2. Elder Scrolls shows a list of all volunteer contacts
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. Elder Scrolls shows an error message.
+
+      Use case ends.
+  
+* 3a. The incorrect filtering parameter used, ie. 'vol' not used
+
+  * 3a1. Elder Scrolls shows an error message.
+  
+    Use case ends.
+
+**Use case: List all befriendee contacts**
+
+**MSS**
+
+1. User requests to list all befriendee contacts
+2. Elder Scrolls shows a list of all befriendee contacts
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. Elder Scrolls shows an error message.
+
+      Use case ends.
+
+* 3a. The incorrect filtering parameter used, ie. 'bef' is not used
+
+    * 3a1. Elder Scrolls shows an error message.
+
+      Use case ends.
+      
 **Use case: Pair a volunteer and befriendee**
 
 **MSS**
@@ -299,18 +429,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to pair a specific volunteer and befriendee in the list.
 4.  Elder Scrolls pairs the specified volunteer and befriendee.
 
-    Use case ends.
+        Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  Use case ends.
+  * 2a1. Elder Scrolls shows an error message.
+
+    Use case ends.
 
 * 3a. The given UID is invalid.
 
-    * 3a1. Elder Scrolls shows an error message.
-
+    * 3a1. Elder Scrolls shows an error message. 
+   
       Use case resumes at step 2.
 
 * 3b. The given UIDs are both volunteers or both befriendees.
@@ -340,21 +472,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Elder Scrolls shows an error message.
 
-      Use case resumes at step 2.
-
-
+      Use case resumes at step 2. 
+      
+*{More to be added}*
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should have a simple menu structure with clear labels, guiding users to key actions without extensive tutorials.
+5. Should have graceful error handling with clear human-readable messages to the user in case of unexpected issues.
+6. Ability to filter contacts based on relevant criteria (location, demographics, skills, availability) to aid in pairing.
+7. Should have a robust data storage mechanism that can handle data corruption and large data sets.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Befriendee**: Elderly person seeking companionship
+* **Befriending Volunteer Organisations**: An organisation that aims to provide companionship to seniors by pairing them with volunteers
+* **Pairing**: Assigning of a volunteer to a befriendee so that they become a pair
+* **Tagging**: Adding an arbitrary detail to a volunteer or befriendee profile
 
 --------------------------------------------------------------------------------------------------------------------
 
