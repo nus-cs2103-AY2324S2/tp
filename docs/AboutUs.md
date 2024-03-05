@@ -38,22 +38,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Deliverables and deadlines
 * Responsibilities: Ensuring project deliverables are done on time and in the right format.
 
-### Jean Doe
+### Bryan Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bryanl2303.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/BryanL2303)]
+[[portfolio](team/bryanlee.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Scheduling and tracking
+* Responsibilities: In charge of defining, assigning, and tracking project tasks
