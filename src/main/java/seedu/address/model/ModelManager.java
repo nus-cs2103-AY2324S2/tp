@@ -104,6 +104,7 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -126,6 +127,20 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public String getNextUniqueId() {
+        int uniqueId = 0;
+        // get max unique id with int parse
+        for (Person person : addressBook.getPersonList()) {
+            int currentId = Integer.parseInt(person.getUniqueId());
+            if (currentId > uniqueId) {
+                uniqueId = currentId;
+            }
+        }
+        // return 6 digit and append leading 0 if necessary
+        return String.format("%06d", uniqueId + 1);
     }
 
     @Override
