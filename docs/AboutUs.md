@@ -21,14 +21,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Backend, UI, DevOps
 
-### Johnny Doe
+### Tan Jun Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/austintjh19.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Austintjh19)] [[portfolio](https://austintanjunheng.netlify.app/)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Backend, UI, DevOps
 
 ### Jean Doe
 
