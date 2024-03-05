@@ -275,16 +275,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                        | So that I can…​                                                   |
-|---------|---------------------------------------------|-------------------------------------|-------------------------------------------------------------------|
-| `* * *` | new user                                    | see usage instructions              | refer to instructions when I forget how to use the App            |
-| `* * *` | basic user                                  | can delete contact                  | remove them once I'm done dealing with them                       |
-| `* * *` | basic user                                  | add a client name and phonen number | quickly take down contact details even in a rush.                 |
-| `* * *` | basic user                                  | can display all contact             | I can see all my contacts (clients) at a glance.                  |
-| `* * *` | user with many contacts in the address book | search for contacts by their name   | retrieve that contact's (client's) information                    |
-| `* * *` | intermediate user                           | add a note for each contact         | store additional information associated with the contact (client) |
-| `*`     | intermediate user                           | hide private contact details        | minimize chance of someone else seeing them by accident           |
-| `*`     | user with many persons in the address book  | sort persons by name                | locate a person easily                                            |
+| Priority | As a …​                                     | I want to …​                       | So that I can…​                                         |
+|----------|---------------------------------------------|------------------------------------|---------------------------------------------------------|
+| `* * *`  | new user                                    | see usage instructions             | refer to instructions when I forget how to use the App  |
+| `* * *`  | basic user                                  | delete contact                     | remove them once I'm done dealing with them             |
+| `* * *`  | basic user                                  | add a client name and phone number | quickly take down contact details even in a rush.       |
+| `* * *`  | basic user                                  | display all contacts               | I can see all my clients at a glance.                   |
+| `* * *`  | user with many contacts in the address book | search for contacts by their name  | retrieve that contact's information                     |
+| `* * *`  | intermediate user                           | add a note for each contact        | store additional information associated with the client |
+| `*`      | intermediate user                           | hide private contact details       | minimize chance of someone else seeing them by accident |
+| `*`      | user with many persons in the address book  | sort contacts by name              | locate a person easily                                  |
 
 *{More to be added}*
 
