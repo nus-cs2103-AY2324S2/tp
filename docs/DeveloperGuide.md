@@ -289,19 +289,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                                  | So that I can…​                                                       |
-|----------|-----------------|---------------------------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | insurance agent | see usage instructions                                        | refer to instructions when I forget how to use the App                |
-| `* * *`  | insurance agent | add a new client contact details                              | keep track of the clients I have                                      |
-| `* * *`  | insurance agent | delete a client                                               | remove clients that are leaving                                       |
-| `* * *`  | insurance agent | find a client by name                                         | locate details of client without having to go through the entire list |
-| `* *`    | insurance agent | view client information                                       | know and check client details                                         |
-| `* *`    | insurance agent | check what schedules I have with clients on a particular date | keep track of what I have to do in a day                              |
-| `* *`    | insurance agent | add the birthday of my clients                                | wish them happy birthday to keep in contact with them                 |
-| `* *`    | insurance agent | delete policy details for a client                            | remove expired policies of the client                                 |
-| `* *`    | insurance agent | see when I last met a client                                  | check in on a client that I have not met for a long time              |
-| `* *`    | insurance agent | mark that a schedule is completed                             | know that i fulfilled the appointment scheduled                       |
-| `*`      | insurance agent | sort clients by priority                                      | deal with client with higher priority status first                    |
+| Priority | As a …​         | I want to …​                               | So that I can…​                                                       |
+|----------|-----------------|--------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | insurance agent | see usage instructions                     | refer to instructions when I forget how to use the App                |
+| `* * *`  | insurance agent | add a new client contact details           | keep track of the clients I have                                      |
+| `* * *`  | insurance agent | delete a client                            | remove clients that are leaving                                       |
+| `* * *`  | insurance agent | find a client by name                      | locate details of client without having to go through the entire list |
+| `* *`    | insurance agent | view client information                    | know and check client details                                         |
+| `* *`    | insurance agent | check schedules with clients on a date     | keep track of what I have to do in a day                              |
+| `* *`    | insurance agent | add the birthday of my clients             | wish them happy birthday to keep in contact with them                 |
+| `* *`    | insurance agent | delete policy details for a client         | remove expired policies of the client                                 |
+| `* *`    | insurance agent | see when I last met a client               | check in on a client that I have not met for a long time              |
+| `* *`    | insurance agent | mark that a schedule is completed          | know that i fulfilled the appointment scheduled                       |
+| `* *`    | insurance agent | add policy details of a client             | keep track of clients and their policies                              |
+| `* *`    | insurance agent | schedule checkup date and time for clients | so I know when to follow-up with them                                 |
+| `*`      | insurance agent | sort clients by priority                   | deal with client with higher priority status first                    |
+| `*`      | insurance agent | track deals that I have closed             | track my current progress                                             |
+| `*`      | insurance agent | edit my client's details                   | update my client's details                                            |
+| `*`      | insurance agent | reschedule my appointments                 | change the date and time of appointments with clients                 |
+| `*`      | insurance agent | filter clients by importance               | decide on who to prioritise on                                        |
+| `*`      | insurance agent | get help                                   | use the app when I am lost or confused                                |
+
 
 *{More to be added}*
 
@@ -347,6 +355,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ClientCare shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Schedule**
+
+**MSS**
+
+1.  User schedules a date and time to meet with a client
+2.  ClientCare sets up the appointment
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Date and time is invalid.
+
+    * 1a1. ClientCare shows an error message.
+
+  Use case ends.
+
+* 1b. Date and time has past.
+
+    * 1b1. ClientCare shows an error message.
+
+  Use case ends.
+
+**Use case: Last Met**
+
+**MSS**
+
+1.  User marks a client as met
+2.  ClientCare updates Last Met date of client
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Client does not exist.
+
+    * 1a1. ClientCare shows an error message.
+
+  Use case ends.
+
+**Use case: Mark**
+
+**MSS**
+
+1.  User marks an appointment with client as done
+2.  ClientCare updates appointment has done
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Appointment does not exist.
+
+    * 1a1. ClientCare shows an error message.
+
+  Use case ends.
 
 *{More to be added}*
 
