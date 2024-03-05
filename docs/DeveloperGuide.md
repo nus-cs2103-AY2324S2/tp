@@ -280,7 +280,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * Easier time managing their contacts (fast retrieval of relevant info)
 * More organization & personalisation

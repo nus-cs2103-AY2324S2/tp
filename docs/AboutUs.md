@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/0nesheep.png" width="200px">
 
-[[github](https://github.com/0nesheep/)] 
+[[github](https://github.com/0nesheep/)]
 [[portfolio](team/yiyang.md)]
 
 * Role: Developer
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/marcusgitty.png" width="200px">
 
-[[github](http://github.com/marcusgitty)] 
+[[github](http://github.com/marcusgitty)]
 [[portfolio](team/marcus.md)]
 
 * Role: Developer
