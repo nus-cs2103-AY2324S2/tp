@@ -275,14 +275,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority  | As a …​                                    | I want to …​                               | So that I can…​                                                   |
+|-----------|--------------------------------------------|--------------------------------------------|-------------------------------------------------------------------|
+| `* * *`   | hospital clerk                             | add patients                               | handle incoming patients when handling emergency call-ins         |
+| `* * *`   | hospital clerk                             | delete patients                            | remove old patients to prevent clogging of system                 |
+| `* * *`   | hospital clerk                             | add doctors                                | register new doctors as they get hired                            |
+| `* * *`   | hospital clerk                             | delete doctors                             | remove previous doctors that have left the hospital               |
+| `* * *`   | hospital clerk                             | create appointments                        | arrange a meeting time between a doctor and a patient             |
+| `* * *`   | hospital clerk                             | delete appointments                        | remove a meeting time if either party becomes unavailable         |
+| `* * *`   | hospital clerk                             | query patient by name                      | retrieve their relevant information                               |
+| `* * *`   | hospital clerk                             | query doctor by name                       | retrieve their relevant information                               |
+| `* *`     | hospital clerk                             | query appointment by patient               | look up what appointments a patient has to attend                 |
+| `* *`     | hospital clerk                             | query appointment by doctor                | look up what appointments a doctor has to service                 |
+| `*`       | hospital clerk                             | query patient by other fields              | retrieve patient information through other fields if they call-in |
+| `*`       | hospital clerk                             | find available timings to book appointment | schedule a time that suits both the patient and doctor            |
 
 *{More to be added}*
 

@@ -40,15 +40,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Scheduling / Testing
 * Responsibilities: Ensures the testing of the project is done properly and on time. In charge of defining, assigning, and tracking project tasks.
 
-### Jean Doe
+### Archit Goswami
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ararchch.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ararchch)]
+[[portfolio](https://www.linkedin.com/in/architgos)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team Lead, Documentation
+* Responsibilities: Coordinating with team members, ensuring code is well documented.
 
 ### James Doe
 
