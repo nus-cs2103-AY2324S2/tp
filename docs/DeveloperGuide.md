@@ -275,21 +275,24 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                      | So that I can…​                                               |
-|-----|-----------|---------------------------------------------------|---------------------------------------------------------------|
-| `* * *` | manager   | add volunteers’ and elderly befriendees’ contacts |                                                               |
-| `* * *` | manager   | edit volunteers’ and elderly befriendees’ details |                                                               |
-| `* * *` | manager   | view list of volunteers and elderly befriendees   | keep track of the roster                                      |
-| `* * *` | manager   | delete volunteer and elderly befriendee contacts  |                                                               |
-| `* * *` | manager   | tag elderly befriendees with relevant details     | accommodate for any special circumstances                     |
-| `* * *` | manager   | pair volunteers with befriendee contacts          | assign the pairings                                           |
-| `* * *` | manager   | view paired details of elderly befriendee         | know the address and case details                             |
-| `* *` | first-time user   | access a help page          | refer to the features that come along with the application    |
-| `* *` | manager   | have a one-stop view of all the important information about the elderly and volunteers         | contact each person easily    |
-| `* *` | manager   | see a timetable with meeting details         | quickly see the planned meeting sessions                                    |
-| `* *` | manager   | search for specific contact based on keywords         | quickly see contact details of specific people                   |
-| `*` | first-time user   | see sample befriendee and volunteer profiles      | try out the features with pre-loaded data                     |
-| `*` | first-time user   | follow a guided tour         | be aware of how to use and access features in the application |
+| Priority | As a …​   | I want to …​                                                                           | So that I can…​                                               |
+|-----|-----------|----------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| `* * *` | manager   | add volunteers’ and elderly befriendees’ contacts                                      |                                                               |
+| `* * *` | manager   | edit volunteers’ and elderly befriendees’ details                                      |                                                               |
+| `* * *` | manager   | delete volunteer and elderly befriendee contacts                                       |                                                               |
+| `* * *` | manager   | view list of volunteers and elderly befriendees                                        | keep track of the roster                                      |
+| `* * *` | manager   | tag elderly befriendees with relevant details                                          | accommodate for any special circumstances                     |
+| `* * *` | manager   | pair volunteers with befriendee contacts                                               | assign the pairings                                           |
+| `* * *` | manager   | view details of elderly befriendee                                                     | know the address and case details                             |
+| `* * *` | manager   | view details of volunteer befriender                                                   | know the details of the volunteer                             |
+| `* *` | first-time user   | access a help page                                                                     | refer to the features that come along with the application    |
+| `* *` | manager   | have a one-stop view of all the important information about the elderly and volunteers | contact each person easily                                    |
+| `* *` | manager   | see a timetable with meeting details                                                   | quickly see the planned meeting sessions                      |
+| `* *` | manager   | search for specific contact based on keywords                                          | quickly see contact details of specific people                |
+| `* *` | manager   | add details directly to pairings                                                       | add information specific to pairings                          |
+| `* *` | manager   | search for specific contact based on keywords                                          | quickly see contact details of specific people                |
+| `*` | first-time user   | see sample befriendee and volunteer profiles                                           | try out the features with pre-loaded data                     |
+| `*` | first-time user   | follow a guided tour                                                                   | be aware of how to use and access features in the application |
 
 *{More to be added}*
 
