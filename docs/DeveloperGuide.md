@@ -9,19 +9,19 @@ pageNav: 3
 <!-- * Table of Contents -->
 <page-nav-print />
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Acknowledgements**
 
 _{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
@@ -29,35 +29,36 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
-* At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
-* At shut down, it shuts down the other components and invokes cleanup methods where necessary.
+
+- At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
+- At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
 The bulk of the app's work is done by the following four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -77,10 +78,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -112,21 +113,22 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
@@ -136,7 +138,6 @@ The `Model` component,
 
 </box>
 
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -144,15 +145,16 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -164,9 +166,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -193,7 +195,6 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
 
 <box type="info" seamless>
 
@@ -240,11 +241,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
+
 * **Alternative 1 (current choice):** Saves the entire address book.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
@@ -255,18 +257,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -274,14 +275,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of students' contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- has a need to manage a significant number of students' contacts
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**: manage students'contacts faster than a typical mouse/GUI driven app
-
 
 ### User stories
 
@@ -297,142 +297,154 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | TA      | add/remove different modules I am teaching                                     | manage my teaching assignments efficiently.                             |
 | `* * *`  | TA      | view all the tutorial classes and their information                            | visibility into the schedule and details of all tutorial classes.       |
 
-
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
 (For all use cases below, the **System** is the `TA Helper` and the **Actor** is the `TA`, unless specified otherwise)
 
-**Use case 1: Add new students**
+#### Use case 1: Add new students
 
 **MSS:**
-1. TA specifies the student to be added.
-2. TAHelper adds the student to the TA's list of students.
+
+1. User specifies the student to be added.
+2. System adds the student to the list of students.
+3. System indicates successful addition of new student.
+Use case ends.
 
 **Extensions:**
-- 1a: Student's name, email, id is not specified.
-    - 1a1. Returns an error that tells the TA to specify the missing field.
-    - Use case ends.
 
+- 1a. Student's name, email, id is not specified.
+  - 1a1. Returns an error that informs the user to specify the missing field(s).
+  - Use case ends.
+- 1b. The specified email and/or id is tagged to an existing student in the list.
+  - 1b1. Returns an error indicating that there is an existing entry with the same value.
+  - Use case ends.
+- 1c. Invalid input command.
+  - 1c1. Return an error indicating that command is not recognised and provides the correct command format.
+  - Use case ends.
+- 2a. Student's tutorial class is not specified.
+  - 2a1. System adds student into the list of students.
+  - 2a2. Student will not be placed under any tutorial group.
+  - Use case ends.
 
-- 1b: The current email or id already exists in the list.
-    - 1b1. Returns an error indicating that there is an existing entry with the same value.
-    - Use case ends.
+<br>
 
-
-- 2a: Student's tutorial class is not specified.
-    - 2a1. TAHelper adds this student into a list of all students the TA has.
-    - 2a2. Student will not be placed under any tutorial group.
-    - Use case ends.
-
-
-- 2b: The input command /add_student is wrongly specified.
-    - 2b1. Return an error indicating command not recognised.
-    - Use case ends.
-
-**Use case 2: Delete students**
+#### Use case 2: Delete students
 
 **MSS:**
-1. TA specifies the student to be deleted, either by student_id or student_email.
-2. TAHelper deletes the student from the TA's list of students and tutorial group (if it is specified).
+
+1. User enters the command `/delete_student` and specifies the student to be deleted by the specified parameter.
+2. System deletes the student from the list of students and tutorial group (if any).
+Use case ends.
 
 **Extensions:**
-- 2a: The attribute value specified does not exist in the system.
-    - 2a1: Returns an error indicating that the value does not exist.
 
+- 1a. User specifies to delete student by student ID.
+  - 1a1. Student ID does not exist in the system.
+    - 1a1.1: Returns an error indicating that the student with the provided ID does not exist.
+    - Use case ends.
+- 1b. User specifies to delete student by email.
+  - 1b1. Email does not exist in the system.
+    - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
+    - Use case ends.
+- 1c. Invalid input command. - 1c1: Returns an error indicating command not recognised and provides the correct command format.
+  <br>
 
-- 2b: The input command /delete_student is wrongly specified.
-    - 2b1: Returns an error indicating command not recognised.
-
-**Use case 3: Search for students**
+#### Use case 3: Search for students
 
 **MSS:**
-1. TA specifies the student's attribute to search by.
-2. TA specifies the attribute value to search by.
-3. TAHelpers generate a list of matching entries according to attribute and attribute value.
+
+1. User enters the command `/search_student` and specifies the student to be searched by the specified parameter.
+2. System generates a list of matching entries according to specified parameters.
+Use case ends.
 
 **Extensions:**
-- 1a/2a: The attribute or attribute value is not specified.
-    - 1a1/2a1. Returns an error that tells the TA to specify the missing field.
-    - Use case ends.
 
+- 1a. Parameter not specified
+  - 1a1/2a1. Returns an error indicating that the user needs to specify valid fields.
+  - Use case ends.
+- 1b. Invalid input command.
+  - 1b1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 2a. Partial match for specified parameter. - 2a1. System will display all matching results for the specified value.
+  <br>
 
-- 3a: Partial match
-    - 3a1. will be processed accordingly
-    - 3a2. TAHelper will display all matching results for that attribute value.
-    - Use case ends.
-
-
-- 3b: The input command /search_student is wrongly specified.
-    - 3b1. Return an error indicating command not recognised.
-    - Use case ends.
-
-**Use case 4: View all students**
+#### Use case 4: View all students
 
 **MSS:**
-1. TA specifies the command /list_students and enters.
-2. TAHelper displays student's name, email, student id and tutorial class for each student.
+
+1. User enters the command `/list_student`
+2. System displays all students information (name, email, student id and tutorial class).
+Use case ends.
 
 **Extensions:**
-- 1a: The input command /list_student is wrongly specified.
-    - 1a1. Returns an error indicating command not recognised.
-    - Use case ends.
 
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Additional arguments are specified after the command.
+  - 1b1. System will ignore those arguments and execute /list_students as usual.
+- 2a. No existing students in the list.
+  - 2a1. System will return a message indicating that there are no students in the list.  
+  <br>
 
-- 2a: Additional arguments is specified after the command.
-    - 2a1: TAHelper will ignore those arguments and execute /list_students as usual.
-    - Use case ends.
-
-
-**Use case 5: Add new tutorial class**
+#### Use case 5: Add new tutorial class
 
 **MSS:**
-1. TA specifies the tutorial class to be added
-2. TAHelper adds the tutorial class
+
+1. User enters the command `/add_class` and specifies the tutorial class details to be added.
+2. System adds the tutorial class.
+Use case ends.
 
 **Extensions:**
-- 2a: The tutorial class is not specified.
-    - 2a1: Returns an error indicating that user has to specify tutorial class.
-    - Use case ends
 
-**Use case 6: Delete tutorial class**
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Invalid tutorial class attributes are specified.
+  - 2a1. Returns an error indicating that user has to specify tutorial class in the correct format.
+  - Use case ends.
+- 1c. The specified tutorial class already exists. - 1c1: Returns an error indicating that the tutorial class already exists. - Use case ends.
+  <br>
+
+#### Use case 6: Delete tutorial class
 
 **MSS:**
-1. User specifies the tutorial class to be deleted
-2. TAHelper deletes the tutorial class
+
+1. User enters the command `/delete_class` and specifies the tutorial class to be deleted.
+2. System deletes the tutorial class.
+Use case ends.
 
 **Extensions:**
-- 2a: The tutorial class is not specified.
-    - Returns an error. Use case ends.
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. The tutorial class specified does not exist.
+  - 1b1. Returns an error indicating invalid tutorial class and shows the list of tutorial classes available.
+  - Use case ends.
+<br>
 
-
-- 3a: The tutorial class does not exist.
-    -  Returns an error, and shows the list of tutorial classes available for that module. Use case ends.
-
-**Use case 7: View all classes**
+#### Use case 7: View all classes
 
 **MSS**
-
-1.  TA requests to list classes
-2.  AddressBook shows a list of all available classes
-
-    Use case ends.
+1. User enters the command `/list_class`.
+2. System shows a list of all available classes.
+Use case ends.
 
 **Extensions**
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Additional arguments are specified after the command.
+  - 1b1. System will ignore those arguments and execute /list_students as usual.
+- 2a. There are no existing classes.
+  - 2a1. System will return a message indicating that there are no existing classes in the list.
 
-* 2a. The list is empty.
-
-  Use case ends.
 
 
-* *a. The input format is invalid.
 
-    * *a1. AddressBook shows an error message.
-
-      Use case resumes at next step.
-
-*{More to be added}*
+_{More to be added}_
 
 ### Non-Functional Requirements
 
@@ -447,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9.  Should provide a comprehensive and well-designed user documentation to guide users on how to use TAHelper.
 10.  Should provide a comprehensive and well-designed developer documentation to guide developer on how to improve and develop TAHelper further.
 
-*{More to be added}*
+_{More to be added}_
 
 ### Glossary
 
@@ -458,7 +470,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: Graphical User Interface
 * **MSS**: Main Success Scenario
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -467,7 +479,7 @@ Given below are instructions to test the app manually.
 <box type="info" seamless>
 
 **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+testers are expected to do more _exploratory_ testing.
 
 </box>
 
