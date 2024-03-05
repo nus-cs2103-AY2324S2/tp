@@ -68,6 +68,10 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " "
         + CliSyntax.PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_INDUSTRY_DESC = " " + CliSyntax.PREFIX_INDUSTRY + "";
+
+    public static final String INVALID_FUNDING_DESC = " " + CliSyntax.PREFIX_FUNDING_STAGE + "D";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

@@ -6,55 +6,54 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class PhoneTest {
+public class FundingStageTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Phone(null));
+        assertThrows(NullPointerException.class, () -> new FundingStage(null));
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidFundingStage_throwsIllegalArgumentException() {
         String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new Phone(invalidPhone));
+        assertThrows(IllegalArgumentException.class, () -> new FundingStage(invalidPhone));
     }
 
     @Test
-    public void isValidPhone() {
-        // null phone number
-        assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
+    public void isValidFundingStage() {
+        // null funding
+        assertThrows(NullPointerException.class, () -> FundingStage.isValidFundingLevel(null));
 
-        // invalid phone numbers
-        assertFalse(Phone.isValidPhone("")); // empty string
-        assertFalse(Phone.isValidPhone(" ")); // spaces only
-        assertFalse(Phone.isValidPhone("91")); // less than 3 numbers
-        assertFalse(Phone.isValidPhone("phone")); // non-numeric
-        assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
-        assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
+        // invalid funding levels
+        assertFalse(FundingStage.isValidFundingLevel("")); // empty string
+        assertFalse(FundingStage.isValidFundingLevel(" ")); // spaces only
+        assertFalse(FundingStage.isValidFundingLevel("AB")); // invalid funding level
+        assertFalse(FundingStage.isValidFundingLevel("1")); // numbers
+        assertFalse(FundingStage.isValidFundingLevel("D")); // invalid funding level
 
-        // valid phone numbers
-        assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+        // valid funding levels
+        assertTrue(FundingStage.isValidFundingLevel("A"));
+        assertTrue(FundingStage.isValidFundingLevel("B"));
+        assertTrue(FundingStage.isValidFundingLevel("C"));
     }
 
     @Test
     public void equals() {
-        Phone phone = new Phone("999");
+        FundingStage fundingStage = new FundingStage("A");
 
         // same values -> returns true
-        assertTrue(phone.equals(new Phone("999")));
+        assertTrue(fundingStage.equals(new FundingStage("A")));
 
         // same object -> returns true
-        assertTrue(phone.equals(phone));
+        assertTrue(fundingStage.equals(fundingStage));
 
         // null -> returns false
-        assertFalse(phone.equals(null));
+        assertFalse(fundingStage.equals(null));
 
         // different types -> returns false
-        assertFalse(phone.equals(5.0f));
+        assertFalse(fundingStage.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(phone.equals(new Phone("995")));
+        assertFalse(fundingStage.equals(new FundingStage("B")));
     }
 }
