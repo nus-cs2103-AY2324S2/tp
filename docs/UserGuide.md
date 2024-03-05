@@ -20,26 +20,20 @@ The system includes features for adding students, viewing student details, viewi
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `tuteetally.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tuteetally.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
+   * `add` - adding student to list
+   * `delete` - deleting student from list
+   * `view` - viewing student overview or details
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -51,20 +45,13 @@ The system includes features for adding students, viewing student details, viewi
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Words in `{UPPER_CASE}` are the parameters to be supplied by the user.<br>
+  e.g. in `-name/{NAME}`, `NAME` is a parameter which can be used as `add -name John Doe`.
+* `{PREFIX{FIELD}}` indicates parameters in `FIELD` need to be preceded with `PREFIX` <br>
+e.g. in `{S{POSTAL_CODE}}`, `S` is the compulsory prefix and inputs should always start with S (e.g. `S123456`, `S888888`)
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if the command specifies `-name {NAME} -address {S{POSTALCODE}}`, `-address {S{POSTALCODE}} -name {NAME}` is also acceptable.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -74,10 +61,9 @@ The system includes features for adding students, viewing student details, viewi
 
 Adds a student particulars into address book.
 
-Format: `add -name {NAME} -address {S{PostalCode}} #{UnitNumber} -number {number} -subject {subject} -level {level}`
+Format: `add -name {NAME} -address {S{POSTAL_CODE}} #{UNIT_NUMBER} -number {NUMBER} -subject {SUBJECT} -level {LEVEL}`
 
 <box type="tip" seamless>
-
 **Tip:** If addition is successful, the new student record will be shown at the top of the list.
 </box>
 
@@ -88,7 +74,7 @@ Examples:
 
 Deletes the specified student from the address book.
 
-Format: `Delete -id {id}`
+Format: `Delete -id {ID}`
 
 * Deletes the person at the specified `id`.
 * The index refers to the 5-digit code attached to each student entry.
@@ -96,29 +82,23 @@ Format: `Delete -id {id}`
 Examples:
 * `delete -id 88888` deletes the student with the id 8888
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### View student statistics: View
+### View student statistics: `View`
 This would display the total number of students  
 Format: `View -statistics`
 
-### View student summary at home page: View
+### View student summary at home page: `View`
 This would display a summary of student particulars on the homepage.
 Format: `View -all`
 
-### View student particular by name: View 
+### View student particular by name: `View` 
 This will display a specific student particular by searching its name 
-Format: `View -name [name]`
+Format: `View -name {NAME}`
 Examples:
 * `View -name Xiao Ming` would display the student particular of Xiao Ming if existed
 
-### View student particular by id: View 
+### View student particular by id: `View`
 This will display a specific particular by searching for its id
-Format: `View -id [id]`
+Format: `View -id {ID}`
 Examples; 
 * `View -id 88888` would display the student particular for student whose id is 88888 if it exists.
 
@@ -144,10 +124,10 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add -name {NAME} -address {S{PostalCode}} #{UnitNumber} -number {number} -subject {subject} -level {level}` <br> e.g., `add -name Xiao Ming -address S000000 #01-01 -number 88888888 -subject Math -level P1`
-**Delete** | `Delete -id {id}`<br> e.g., `delete -id 88888`
-**View** | `View [-statistics] [-all] [-id ID] [-name NAME]
+| Action     | Format, Examples                                                                                                                                                                                               |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add -name {NAME} -address {S{PostalCode}} #{UnitNumber} -number {number} -subject {subject} -level {level}` <br> e.g., `add -name Xiao Ming -address S000000 #01-01 -number 88888888 -subject Math -level P1` |
+| **Delete** | `Delete -id {id}`<br> e.g., `delete -id 88888`                                                                                                                                                                 |
+| **View**   | `View [-statistics] [-all] [-id ID] [-name NAME]`                                                                                                                                                              |
 
 
