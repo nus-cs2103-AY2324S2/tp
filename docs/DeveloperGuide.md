@@ -385,6 +385,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3q1. EstateEase shows an error message regarding the entry of incorrect priority level. <br>
       Use case resumes from step 2.
 
+**Use case: UC02 - View all**
+
+**MSS:**
+
+1.  User requests to list persons 
+2.  EstateEase shows a list of persons
+
+    Use case ends.
+
+**Extensions**
+
+*2a. The list is empty
+   * 2a1. EstateEast displays a message stating that the list is empty.
+
+     Use case ends.
+
 **Use case: UC03 - Delete a person**
 
 **MSS:**
