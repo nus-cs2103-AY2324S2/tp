@@ -48,7 +48,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * When users input a command along with its arguments, it will be trimmed (remove leading whitespace, trailing whitespace, and whitespace in between words when there are more than one space) and converted to lowercase for parsing.
 
 * When parsing arguments: “John Doe “, “John   Doe”, and “   John   Doe” will all be converted to “john doe”.
-* 
+
 * When parsing commands: “/FILTER”, “/FILTER   stage_one ”, “    /FILTER STAGE_ONE   ” will all be converted to “/filter stage_one”.
 
 * Words in angle brackets `<>` are the parameters to be supplied by the user.<br>
