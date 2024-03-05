@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation and organisation
 
-### Johnny Doe
+### Li Xinyi 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/iynixil.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/iynixil)] [[portfolio](team/iynixil.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation Quality Assurance
 
 ### Jean Doe
 
