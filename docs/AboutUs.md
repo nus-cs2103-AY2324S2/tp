@@ -1,6 +1,6 @@
 ---
   layout: default.md
-    title: "About Us"
+  title: "About Us"
 ---
 
 # About Us
@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Yeung Man Tsung (Benson)
 
-<img src="images/benson1029.png" width="200px">
+<img src="images/benson1029.png" width="200px" alt="benson1029 profile picture">
 
 [[github](https://github.com/benson1029)]
 
@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Maximilliano Utomo Quok
 
-<img src="images/tzaph.png" width="200px">
+<img src="images/tzaph.png" width="200px" alt="tzaph profile picture">
 
 [[github](https://github.com/tzaph)]
 
@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Narita Yuhi
 
-<img src="images/yuhinarita.png" width="200px">
+<img src="images/yuhinarita.png" width="200px" alt="yuhinarita profile picture">
 
 [[github](https://github.com/yuhinarita)]
 
@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ryan Reno Lim
 
-<img src="images/ryan-reno.png" width="200px">
+<img src="images/ryan-reno.png" width="200px" alt="ryan-reno profile picture">
 
 [[github](https://github.com/Ryan-Reno)]
 
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Frederick Ivan Tiong
 
-<img src="images/ivan24004.png" width="200px">
+<img src="images/ivan24004.png" width="200px" alt="ivan24004 profile picture">
 
 [[github](https://github.com/ivan24004)]
 
