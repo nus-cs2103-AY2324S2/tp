@@ -357,8 +357,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case resumes at step 2.
 
-
-
 **Use case: List all contacts**
 
 **MSS**
@@ -421,6 +419,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Elder Scrolls shows an error message.
 
       Use case ends.
+      
+**Use case: Pair a volunteer and befriendee**
+
+**MSS**
+
+1.  User requests to list all persons.
+2.  Elder Scrolls shows a list of persons.
+3.  User requests to pair a specific volunteer and befriendee in the list.
+4.  Elder Scrolls pairs the specified volunteer and befriendee.
+
+        Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  * 2a1. Elder Scrolls shows an error message.
+
+    Use case ends.
+
+* 3a. The given UID is invalid.
+
+    * 3a1. Elder Scrolls shows an error message. 
+   
+      Use case resumes at step 2.
+
+* 3b. The given UIDs are both volunteers or both befriendees.
+
+    * 3b1. Elder Scrolls shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Tag contacts**
+
+**MSS**
+
+1.  User requests to list all persons.
+2.  Elder Scrolls shows a list of persons.
+3.  User requests to tag a specific person with a property.
+4.  Elder Scrolls tags the specified person in the list with that specified property.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given UID is invalid.
+
+    * 3a1. Elder Scrolls shows an error message.
+
+      Use case resumes at step 2. 
       
 *{More to be added}*
 ### Non-Functional Requirements
