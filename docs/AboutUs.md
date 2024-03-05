@@ -59,4 +59,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Documentation
-* Responsibilities: Responsible for the quality of the project website as well as various project documents.
+* Responsible for the quality of the project website as well as various project documents.
