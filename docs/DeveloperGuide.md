@@ -274,6 +274,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* insurance agents
 * has a need to manage a significant number of clients for insurance policies
 * has a need to organise schedules with clients and their details in one place
 * has a need for reminders to keep in touch with clients
@@ -282,8 +283,14 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: conveniently manage client details and schedules faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+* conveniently manage client details and schedules faster than a typical mouse/GUI driven app
+* Convenient tracking of when agent last checked up on clients (eg. reminders)
+* Organise client contacts details
+* Optimization by client’s importance (VIP status etc)
+* Monitor client’s insurance policies
+* Scheduler to manage appointment to ensure timely follow-up
 
 ### User stories
 
@@ -295,7 +302,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent | add a new client contact details                              | keep track of the clients I have                                      |
 | `* * *`  | insurance agent | delete a client                                               | remove clients that are leaving                                       |
 | `* * *`  | insurance agent | find a client by name                                         | locate details of client without having to go through the entire list |
-| `* *`    | insurance agent | view client information                                       | know and check client details                                         |
+| `* * *`  | insurance agent | list all clients                                              | see all clients at a glance                                           |
+| `* * *`  | insurance agent | view client information                                       | know and check client details                                         |
 | `* *`    | insurance agent | check what schedules I have with clients on a particular date | keep track of what I have to do in a day                              |
 | `* *`    | insurance agent | add the birthday of my clients                                | wish them happy birthday to keep in contact with them                 |
 | `* *`    | insurance agent | delete policy details for a client                            | remove expired policies of the client                                 |
@@ -309,43 +317,76 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ClientCare` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Find a client by name**
+**Use case: UC01 - Add a new client**
 
 **MSS**
+1. User requests to add new client, by entering name, contact number, email, date of birth and priority level.
+2. ClientCare adds the new client to the list.
+3. ClientCare shows a success message and <u>display view of new client details and policies (UC02)</u>.<br>
+   Use case ends.
 
-1.  User requests to find a specific client in the list by name
-2.  ClientCare shows list of client that matches the name
+**Extensions**
+* 1a. ClientCare detects invalid command usage or information.
+    * 1a1. ClientCare shows an error message.
+    * 1a2. User enters new data.<br>
+    Steps 1a1-1a2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.
 
+
+**Use case: UC02 - View client details and policies**
+
+**MSS**
+1.  User requests to view a client's details and policies.
+2.  ClientCare shows that client's details and policies.<br>
     Use case ends.
 
 **Extensions**
+* 1a. ClientCare detects that the client does not exist or invalid command usage.
+    * 1a1. ClientCare shows an error message.<br>
+    * 1a2. User enters new data.<br>
+      Steps 1a1-1a2 are repeated until the data entered are correct.<br>
+      Use case resumes from step 2.
 
-* 2a. The list is empty as there is no matching name found.
 
+**Use case: UC03 - List all clients**
+
+**MSS**
+1.  User requests to view all clients.
+2.  ClientCare shows a list of all clients.<br>
+    Use case ends.
+
+**Extensions**
+* 1a. The list is empty as no clients have been added at all.<br>
+    * 1a1. ClientCare notifies that the list is empty.<br>
+      Use case ends.
+
+
+**Use case: Find a client by name**
+
+**MSS**
+1.  User requests to find a specific client in the list by name
+2.  ClientCare shows list of client that matches the name<br>
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty as there is no matching name found.<br>
   Use case ends.
 
 
 **Use case: Delete a client**
 
 **MSS**
-
 1.  User requests to list clients or find client by name
 2.  ClientCare shows a list of clients
 3.  User requests to delete a specific client in the list by index
-4.  ClientCare deletes the client
-
+4.  ClientCare deletes the client<br>
     Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
+* 2a. The list is empty.<br>
   Use case ends.
-
 * 3a. The given index is invalid.
-
-    * 3a1. ClientCare shows an error message.
-
+    * 3a1. ClientCare shows an error message.<br>
       Use case resumes at step 2.
 
 *{More to be added}*
@@ -355,7 +396,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The system should respond to user input within 2 seconds.
+4.  The system should respond to user input within 2 seconds.
+5.  The user interface should be intuitive and easy to use, even for users with limited technical knowledge. This includes providing clear and concise instructions, organizing information logically, and offering helpful error messages and tooltips.
+6.  The codebase should be well-structured, modular, and documented to facilitate future maintenance and enhancements. This includes adhering to coding standards, using version control, and providing comprehensive developer documentation.
 
 *{More to be added}*
 
@@ -363,8 +406,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Client**: Customers or potential customers the insurance agent wants to keep in contact with
 * **Command Line Interface (CLI)**: A text-based interface to input commands to interact with the system
+* **Graphical User Interface (GUI)**: A visual interface to interact with the system
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **AddressBook**: The underlying system that ClientCare is built on. Interchangeable with ClientCare.
+* **AddressBook**: The underlying system that ClientCare is built on. Interchangeable with ClientCare
+* **Client Priority**: The level of importance or significance assigned to a client, which may influence the order of interactions or services provided
+* **Policy**: An agreement or contract between an insurance company and a client, specifying the terms and conditions of insurance coverage
+* **Scheduler**: A feature of the ClientCare application that allows users to manage and organize appointments and follow-ups with clients
+* **Reminder**: A notification or alert generated by the ClientCare application to remind users of upcoming appointments or follow-ups with clients
+* **Last Met**: The date on which the user last interacted with a client, used for tracking and monitoring client interactions
+* **Refresh**: A command or action that updates the information displayed in the ClientCare application to reflect the most recent data
+* **Help**: A feature of the ClientCare application that provides assistance, guidance, or instructions to users on how to use the application
 
 --------------------------------------------------------------------------------------------------------------------
 
