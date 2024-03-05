@@ -73,7 +73,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME i/IC_NUMBER ag/AGE s/GENDER a/ADDRESS`
+Format: `add n/NAME i/IC_NUMBER ag/AGE s/SEX a/ADDRESS`
 
 <box type="tip" seamless>
 
@@ -91,7 +91,7 @@ Format: `addnote i/IC_NUMBER n/NOTE`
 
 * Adds a note to the person with the specified `IC_NUMBER`. The IC number refers to the IC number shown in the displayed person list. The IC_NUMBER **must be the FULL IC NUMBER**.
 * Existing values will be updated to the input values.
-* When adding notes, the existing note of the person will be removed i.e adding of note is not cumulative.
+* When adding notes, the new note added will be appended to the current note of the person. i.e. current note is preserved
 
 Examples:
 *  `addnote i/T0123456A n/Patient has diabetes` Adds a note `Patient has diabetes` to the person with the IC number `T0123456A` in the address book.
@@ -172,7 +172,7 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME i/IC_NUMBER ag/AGE s/GENDER a/ADDRESS` <br> e.g., `add n/John Doe i/T0123456A ag/12 s/Male a/John street, block 123, #01-01`
+**Add**    | `add n/NAME i/IC_NUMBER ag/AGE s/SEX a/ADDRESS` <br> e.g., `add n/John Doe i/T0123456A ag/12 s/Male a/John street, block 123, #01-01`
 **Clear**  | `clear`
 **Delete** | `delete IC_NUMBER`<br> e.g., `delete T0123456A`
 **AddNote**   | `addnote i/IC_NUMBER n/NOTE`<br> e.g., `addnote i/T0123456A n/Patient has diabetes`
