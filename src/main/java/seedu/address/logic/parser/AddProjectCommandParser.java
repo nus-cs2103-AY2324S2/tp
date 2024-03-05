@@ -18,15 +18,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddProjectCommand parse(String args) throws ParseException {
-
         String projectName = args;
-
         Name name = ParserUtil.parseName(projectName);
-
-//        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Person person = new Person(name);
-
         return new AddProjectCommand(person);
     }
 
