@@ -66,6 +66,50 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+### Adding new students : `add`
+
+### Deleting students : `delete`
+
+### Searching for students : `search`
+
+### Listing all students : `list`
+
+### Adding new tutorial class : `add_class`
+
+Adds a tutorial class with the specified module code and name.
+
+Format: `/add_class MODULE_CODE TUTORIAL_CLASS`
+
+- If none of the parameters is specified, or if only one is specified, returns an error.
+
+Examples:
+- `/add_class CS2103T T10`
+- `/add_class CS2109S T01`
+
+### Deleting tutorial class : `delete_class`
+
+Deletes a specified tutorial class from the list of classes.
+
+Format: `/delete_class MODULE_CODE TUTORIAL_CLASS`
+
+- If the module code does not exist, it returns an error.
+- If the tutorial class within that module code does not exist, it returns an error and the list of tutorial classes in that module code.
+- If no parameters are specified, returns an error
+
+Examples:
+- `/delete_class CS2103T T10`
+- `/delete_class CS2109S T01`
+### Listing all classes: `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list_class`
+
+
+
+**BELOW ARE JUST FORMATS FROM ORIGINAL AD3.
+DELETE AFT LAST PERSON IS DONE WITH FEATURES.**
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -89,12 +133,6 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### Editing a person : `edit`
 
@@ -157,24 +195,11 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Viewing all classes
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Shows all tutorial classes available.
 
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+Format: `list`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -195,10 +220,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+**Add New Students**    | `add_student /name <student_name> /email <student_email> /id <student_id> /tc <tutorial_class>` <br> e.g., `add_student /name Dohn Joe /email johndoe@gmail.com /id A0123456A /tc CS2103T T09`
+**Delete students** | `delete_student </id, /email> <id or email>`<br> e.g., `delete_student /id A0259209B` or `/delete_student email johndoe@gmail.com`
+**Search for students**   | `search_student </id, /email, /tc, /name> <search_query>`<br> e.g.,`search_student /id A0123456A`
+**View all students**   | `list_student`
+**Add new tutorial class**   | `add_class <module_code> <tutorial_class>` <br> e.g., `add_class CS2103T T09`
+**Delete tutorial class**   | `delete_class <module_code> <tutorial_class>` <br> e.g., `delete_class CS2103T T09`
+**View all classes**   | `list_class`

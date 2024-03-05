@@ -274,42 +274,148 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of students' contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage students'contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                                   | So that I can…​                                                         |
+|----------|---------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | TA      | add new students to a class                                                    |                                                                         |
+| `* * *`  | TA      | add partial info of students                                                   | I can still add students even if I don’t have all their information.    |
+| `* * *`  | TA      | delete a student from my class if they drop the module/class                   ||
+| `* * `   | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list |
+| `* * *`  | TA      | view all students and their particulars                                        |                                                                         |
+| `* *`    | TA      | add/remove different modules I am teaching                                     |                                                                         |
+| `* * *`  | TA      | view all the tutorial classes and their information                            |                                                                         |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TA Helper` and the **Actor** is the `TA`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Add new students**
+
+**MSS:**
+1. TA specifies the student to be added.
+2. TAHelper adds the student to the TA's list of students.
+
+**Extensions:**
+- 1a: Student's name, email, id is not specified.
+    - 1a1. Returns an error that tells the TA to specify the missing field.
+    - Use case ends.
+
+
+- 1b: The current email or id already exists in the list.
+    - 1b1. Returns an error indicating that there is an existing entry with the same value.
+    - Use case ends.
+
+
+- 2a: Student's tutorial class is not specified.
+    - 2a1. TAHelper adds this student into a list of all students the TA has.
+    - 2a2. Student will not be placed under any tutorial group.
+    - Use case ends.
+
+
+- 2b: The input command /add_student is wrongly specified.
+    - 2b1. Return an error indicating command not recognised.
+    - Use case ends.
+
+**Use case 2: Delete students**
+
+**MSS:**
+1. TA specifies the student to be deleted, either by student_id or student_email.
+2. TAHelper deletes the student from the TA's list of students and tutorial group (if it is specified).
+
+**Extensions:**
+- 2a: The attribute value specified does not exist in the system.
+    - 2a1: Returns an error indicating that the value does not exist.
+
+
+- 2b: The input command /delete_student is wrongly specified.
+    - 2b1: Returns an error indicating command not recognised.
+
+**Use case 3: Search for students**
+
+**MSS:**
+1. TA specifies the student's attribute to search by.
+2. TA specifies the attribute value to search by.
+3. TAHelpers generate a list of matching entries according to attribute and attribute value.
+
+**Extensions:**
+- 1a/2a: The attribute or attribute value is not specified.
+    - 1a1/2a1. Returns an error that tells the TA to specify the missing field.
+    - Use case ends.
+
+
+- 3a: Partial match
+    - 3a1. will be processed accordingly
+    - 3a2. TAHelper will display all matching results for that attribute value.
+    - Use case ends.
+
+
+- 3b: The input command /search_student is wrongly specified.
+    - 3b1. Return an error indicating command not recognised.
+    - Use case ends.
+
+**Use case 4: View all students**
+
+**MSS:**
+1. TA specifies the command /list_students and enters.
+2. TAHelper displays student's name, email, student id and tutorial class for each student.
+
+**Extensions:**
+- 1a: The input command /list_student is wrongly specified.
+    - 1a1. Returns an error indicating command not recognised.
+    - Use case ends.
+
+
+- 2a: Additional arguments is specified after the command.
+    - 2a1: TAHelper will ignore those arguments and execute /list_students as usual.
+    - Use case ends.
+
+
+**Use case 5: Add new tutorial class**
+
+**MSS:**
+1. TA specifies the tutorial class to be added
+2. TAHelper adds the tutorial class
+
+**Extensions:**
+- 2a: The tutorial class is not specified.
+    - 2a1: Returns an error indicating that user has to specify tutorial class.
+    - Use case ends
+
+**Use case 6: Delete tutorial class**
+
+**MSS:**
+1. User specifies the tutorial class to be deleted
+2. TAHelper deletes the tutorial class
+
+**Extensions:**
+- 2a: The tutorial class is not specified.
+    - Returns an error. Use case ends.
+
+
+- 3a: The tutorial class does not exist.
+    -  Returns an error, and shows the list of tutorial classes available for that module. Use case ends.
+
+**Use case 7: View all classes**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  TA requests to list classes
+2.  AddressBook shows a list of all available classes
 
     Use case ends.
 
@@ -319,11 +425,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+* *a. The input format is invalid.
 
-      Use case resumes at step 2.
+    * *a1. AddressBook shows an error message.
+
+      Use case resumes at next step.
 
 *{More to be added}*
 

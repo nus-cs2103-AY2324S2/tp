@@ -21,9 +21,9 @@ We are a team based in the [School of Computing, National University of Singapor
 * Responsibilities: Overall project coordination and ensure the team is doing well.
 ### Zack Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zacktay.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Zack-Tay)] 
 [[portfolio](team/johndoe.md)]
 
 * Role: Code quality
@@ -31,9 +31,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tan Qin Xu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qinxu.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/qinxutan)] [[portfolio](team/johndoe.md)]
 
 * Role: Documentation
 * Responsibilities: Responsible for the quality of various project documents, including README, User Guide and Developer Guide.
@@ -50,9 +50,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Mahadhir
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mahadhir247.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/mahadhir247)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Code quality
