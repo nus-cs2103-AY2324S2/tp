@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# ClinicMate Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -343,7 +343,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GP**: General Practitioner, a general physician who provides primary care (usually in a clinic)
+* **Taking History**: A medical term for recording a patient's symptoms, medical history, and other relevant information
+* **Differential Diagnosis**: A medical term for a possible alternative diagnosis for a patient's symptoms
+* **IC Number**: Short for NRIC (National Registration Identity Card) Number, a unique identifier for Singapore citizens and permanent residents
 
 --------------------------------------------------------------------------------------------------------------------
 
