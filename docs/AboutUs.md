@@ -40,6 +40,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation + Code Quality
 
+### Jeremiah Lim Zhi Zhong
+
+<img src="images/jeremiahlzz.png" width="200px">
+
+[[github](http://github.com/jeremiahlzz)]
+[[portfolio](team/jeremiah.md)]
+
+* Role: Developer
+* Responsibilities: Integration
+
 ### Marcus Lam
 
 <img src="images/marclamp.png" width="200px">
@@ -48,7 +58,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/marcuslam.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities:
 
 ### James Doe
 
