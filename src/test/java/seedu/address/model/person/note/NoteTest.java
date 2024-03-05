@@ -71,10 +71,10 @@ public class NoteTest {
         @Test
         public void hashCode_different() {
             LocalDateTime dateTime = LocalDateTime.now();
-            Description description = new Description("Test description");
-            Note note1 = new Note(dateTime, description);
-            Note note2 = new Note(dateTime, description);
-            assertEquals(note1.hashCode(), note2.hashCode());
+            Note note1 = new Note(dateTime, new Description("Test description"));
+            Note note2 = new Note(dateTime, new Description("Another description"));
+
+            assertNotEquals(note1.hashCode(), note2.hashCode());
         }
     }
 
