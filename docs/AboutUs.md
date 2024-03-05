@@ -29,21 +29,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Member
 * Responsibilities: Deliver the project tasks on time and ensure the quality of the project.
 
-### Johnny Doe
+### John Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/azumieflare.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/azumieflare)] [[portfolio](team/azumieflare.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables and deadlines
+* Responsibilities: Ensuring project deliverables are done on time and in the right format.
 
-### Jean Doe
+### Bryan Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bryanl2303.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/BryanL2303)]
+[[portfolio](team/bryanlee.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Scheduling and tracking
+* Responsibilities: In charge of defining, assigning, and tracking project tasks
+
