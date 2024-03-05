@@ -304,8 +304,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | TA      | categorise contacts by class and project group         | organise student contact details correctly               |
 | `* *`    | TA      | take notes on students                                 | keep track of their strengths and weaknesses             |
 | `* *`    | TA      | delete notes on students                               | remove notes that are no longer relevant                 |
-| `* *`    | TA      | mark student attendance                                | be aware of who is missing lessons                       |
-| `* *`    | TA      | unmark student attendance                              | correct mistakes in attendance marking                   |
+| `* *`    | TA      | mark student as absent for a specific class            | be aware of who is missing lessons                       |
+| `* *`    | TA      | unmark student as absent for a specific class          | correct mistakes in attendance marking                   |
 | `* `     | TA      | allocate tasks related to different contacts           | remember my tasks associated with each student           |
 | `* `     | TA      | view all my tasks                                      | see a list of all my tasks                               |
 | `* `     | TA      | mark completion of tasks related to different contacts | keep track of my task progress                           |
