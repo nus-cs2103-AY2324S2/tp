@@ -290,49 +290,142 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`       | hospital clerk                             | query patient by other fields              | retrieve patient information through other fields if they call-in |
 | `*`       | hospital clerk                             | find available timings to book appointment | schedule a time that suits both the patient and doctor            |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `mediCLI` and the **Actor** is the `hospital clerk`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Hospital clerk enters patient data
+2.  mediCLI adds the patient into database
 
-    Use case ends.
+Use case ends.
+
+**Extensions**
+
+* 1a. The entered patient data is not in the correct format
+  * *1a1. mediCLI shows an error message
+
+
+Use case ends.
+
+
+
+
+**Use case: Delete a patient**
+
+
+**MSS**
+
+
+1.  Hospital clerk requests to list persons
+2.  mediCLI shows a list of persons
+3.  Hospital clerk requests to delete a specific patient in the list
+4.  mediCLI deletes the patient
+
+Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
+
 
 * 3a. The given index is invalid.
+  * 3a1. mediCLI shows an error message.
 
-    * 3a1. AddressBook shows an error message.
+    Use case ends.
 
-      Use case resumes at step 2.
+**Use case: Create an appointment**
 
-*{More to be added}*
+**MSS**
+
+1.  Hospital clerk needs to create appointment between doctor and patient
+2.  Hospital clerk enters doctor and patient details
+3.  mediCLI creates the appointment
+
+Use case ends.
+
+**Use case: Delete an appointment**
+
+**MSS**
+
+1.  Hospital clerk needs to delete appointment between doctor and patient
+2.  Hospital clerk enters appointment id
+3.  mediCLI deletes the appointment
+
+Use case ends.
+
+**Use case: Query patient by name**
+
+**MSS**
+
+1.  Hospital clerk needs to search for patient
+2.  Hospital clerk enters patient name
+3.  mediCLI lists patients with supplied name
+
+Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty
+
+  Use case ends.
+
+**Use case: Query appointments by patient**
+
+**MSS**
+
+1.  Hospital clerk needs to search for appointment by patient
+2.  Hospital clerk enters patient name
+3.  mediCLI lists relevant appointments
+
+Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty
+
+  Use case ends.
+
+**Use case: Query appointments by doctor**
+
+**MSS**
+
+1.  Hospital clerk needs to search for appointment by doctor
+2.  Hospital clerk enters doctor name
+3.  mediCLI lists relevant appointments
+
+Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty
+
+Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 medical staff without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  mediCLI should be easy to integrate with existing medical database systems so that staff can immediately switch to the new app.
+5.  Comprehensive documentation should be provided, including user guides, command references, and troubleshooting resources.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private contact detail**: A contact detail that is not meant to be shared with others.
+* **CLI**: Command Line Interface, a way of interacting with a computer program where the user enters commands into a terminal or command prompt.
+* **GUI**: Graphical User Interface, a way of interacting with a computer program using graphical elements such as windows, buttons, and menus.
+* **JSON**: JSON: JavaScript Object Notation, a lightweight data interchange format used to store and exchange data.
+* **API**: Application Programming Interface, a set of rules and protocols for building and interacting with software applications.
+* **UI**: User Interface, the visual part of a computer program that allows users to interact with it.
+* **XML**: Extensible Markup Language, a markup language that defines rules for encoding documents in a format that is both human-readable and machine-readable.
+* **MSS**: Main Success Scenario, the primary flow of events in a use case that leads to the desired outcome.
 
 --------------------------------------------------------------------------------------------------------------------
 
