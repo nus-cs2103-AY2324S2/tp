@@ -332,14 +332,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …                                      | I want to …                                    | So that I can…                                                                                                                                              |
+|----------|---------------------------------------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | Small business owner                        | easily add new customers to my address book    | keep track of all my clients' information in one place.                                                                                                    |
+| `* * *`  | Crocheter                                   | have a search function                         | quickly find specific customers when I need to reference their details.                                                                                   |
+| `* * *`  | Busy entrepreneur                           | be accessible via a command-line interface     | efficiently manage my customer list without navigating through complex menus.                                                                              |
+| `* * *`  | Crochet business owner                      | have customizable fields                       | record specific details about each customer, such as their favorite colors or special requests.                                                            |
+| `* * *`  | Small business owner | be cost-effective and easy to use              | maximize productivity without investing in expensive CRM systems.                                                                                          |
+| `* * *`  | Crochet business owner                      | have data backup and synchronization capabilities | access my customer information from multiple devices and ensure its security.                                                                            |
+| `* * *`  | Small business owner                        | have secure access controls and permissions settings | restrict sensitive information and ensure data privacy compliance.                                                                                     |
+| `* *`    | Crochet business owner                      | categorize my customers                        | tailor my marketing efforts accordingly based on factors like their preferred crochet items or past purchases.                                            |
+| `* *`    | Small business owner                        | generate reports on customer activity         | analyze trends and make informed business decisions based on order history and frequency of purchases.                                                     |
+| `* *`    | Small business owner                        | have a reminder feature                        | stay organized and follow up with customers on important dates, such as birthdays or anniversaries.                                                       |
+| `* *`    | Small business owner                        | have customizable templates for invoices and receipts | easily generate and send professional-looking documents to my customers.                                                                              |
+| `* *`    | Crocheter offering custom orders            | have a notes section for each customer        | record specific preferences and requirements for their projects.                                                                                           |
+| `* *`    | Small business owner                        | integrate with accounting software            | easily track expenses related to each customer and maintain accurate financial records.                                                                    |
+| `*`      | Crocheter | have a mobile-friendly interface              | easily access customer information on the go and process orders efficiently.                                                                               |
+| `*`      | Crocheter | integrate with my email client                | send personalized messages and promotions to my customers directly from the platform.                                                                     |
+| `*`      | Crocheter  | integrate with e-commerce platforms         | automatically sync customer data and manage orders efficiently when participating in online marketplaces.                                                                                            |
+| `*`      | Crochet business owner                      | track communication history with customers    | provide personalized and timely customer service including emails and phone calls.                                                                        |
+| `*`      | Crochet business owner  | support multiple user accounts with shared access | my team members can collaborate on managing customer relationships.                                                       |
+| `*`      | Crocheter    | have a scheduling feature                     | manage registrations and communicate updates with attendees seamlessly.                                                                                    |
+| `*`      | Crocheter            | have a feature for scanning and capturing customer contact information | grow my mailing list and follow up with potential leads quickly.                                  |
+| `*`      | Crocheter       | integrate with social media platforms         | easily connect with customers and engage with them through various channels.                                                                               |
+| `*`      | Crochet business owner                      | provide insights into customer demographics and preferences | tailor my product offerings and marketing campaigns to target specific audiences effectively.  |
+| `*`      | Small business owner                        | provide analytics and insights on customer behavior | continuously improve my products and services to meet customer needs based on purchase patterns and feedback.  |
+| `*`      | Crochet business owner                      | provide insights into customer satisfaction through feedback and reviews | address any concerns and improve the overall customer experience.                                 |
+| `*`      | Small business owner                        | offer customizable tags or labels for customers | segment my audience and target specific groups with tailored marketing campaigns.                 |
+| `*`      | Busy entrepreneur                           | have a good out of the box experience         | immediately use the application without needing to configure it for my own needs.                                                                          |
 
 *{More to be added}*
 
