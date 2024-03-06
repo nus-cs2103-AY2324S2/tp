@@ -8,7 +8,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidMatric(String)}
  */
 public class Matric {
-    public static final String MESSAGE_CONSTRAINTS = "Matriculation numbers should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Matriculation numbers in the style of A1234567Z are accepted."
+            + "The first character must be an uppercase letter,"
+            + "followed by 7 digits and ending with an uppercase letter.";
     public static final String VALIDATION_REGEX = "[A-Z][0-9]{7}[A-Z]";
     public final String matricNumber;
 
