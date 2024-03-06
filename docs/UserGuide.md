@@ -28,7 +28,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the HRConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -72,7 +72,7 @@ Format: `help`
 
 ### Add an interviewee: `add`
 
-Adds an interviewee to the address book.
+Adds an interviewee to the HRConnect.
 
 Format: `add /n Name /p Phone_Number e/Email a/Address [/t Tag]…​`
 
@@ -85,13 +85,13 @@ Examples:
 
 ### Listing all interviewees : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the HRConnect.
 
 Format: `list`
 
 ### Editing an interviewee : `edit`
 
-Edits an existing interviewee in the address book.
+Edits an existing interviewee in the HRConnect.
 
 Format: `edit Index [/n Name] [/p Phone] [/e Email] [/a Address] [/t Tag]…​`
 
@@ -126,7 +126,7 @@ Examples:
 
 ### Deleting an interviewee : `delete`
 
-Deletes the specified interviewee from the address book.
+Deletes the specified interviewee from the HRConnect.
 
 Format: `delete Index`
 
@@ -135,7 +135,7 @@ Format: `delete Index`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd interviewee in the address book.
+* `list` followed by `delete 2` deletes the 2nd interviewee in the HRConnect.
 * `find Betsy` followed by `delete 1` deletes the 1st interviewee in the results of the `find` command.
 
 ### Filtering interviewees by tag : `/filter`
@@ -160,7 +160,7 @@ Examples:
 * `/comment 10 “S/Pass Holder”` will add the note “S/Pass Holder” to the applicant identified by ID 10.
 
 ### Exporting interviewees contacts by pageId : `/export`
-Extracts interviewees contacts into a separate address book identified by a pageId
+Extracts interviewees contacts into a separate HRConnect identified by a pageId
 Format: /export <ContactRange> <pageId>
 
 * Achieve an additional layer of organisation to properly arrange contacts
@@ -172,7 +172,7 @@ Examples:
   
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the HRConnect.
 
 Format: `clear`
 
