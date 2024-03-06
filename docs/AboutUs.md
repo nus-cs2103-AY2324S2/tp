@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Neo Tahnya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tahnya.png" width="200px">
 
 [[github](http://github.com/tahnya)]
 [[portfolio](team/johndoe.md)]
