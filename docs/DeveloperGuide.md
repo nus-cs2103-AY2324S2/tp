@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. StaffConnect shows a list of persons
 2. User requests to filter the list by a specific attribute
-3. StaffConnect shows a sorted list of persons
+3. StaffConnect shows a filtered list of persons
 
    Use case ends.
 
@@ -374,7 +374,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. StaffConnect shows a list of persons
 2. User requests to edit a specific person in the list
-3. AddressBook deletes the person
+3. AddressBook edits the person
 
    Use case ends.
 
