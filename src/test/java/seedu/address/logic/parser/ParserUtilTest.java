@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.matric.Matric;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -27,12 +28,15 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
+    private static final String INVALID_MATRIC = "zz";
+
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_MATRIC = "A1234567M";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +196,16 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseMatric_validMatric_success() throws ParseException {
+        Matric expected = new Matric(VALID_MATRIC);
+        assertEquals(expected, ParserUtil.parseMatric(VALID_MATRIC));
+    }
+
+    @Test
+    public void parseMatric_invalidMatric_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMatric(INVALID_MATRIC));
     }
 }
