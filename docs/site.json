@@ -1,8 +1,8 @@
 {
   "baseUrl": "",
   "titlePrefix": "EffiTrack",
-  "titleSuffix": "AddressBook Level-3",
-  "faviconPath": "images/SeEduLogo.png",
+  "titleSuffix": "EffiTrack",
+  "faviconPath": "images/ET_logo.jpeg",
   "style": {
     "codeTheme": "light"
   },
