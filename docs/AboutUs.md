@@ -21,10 +21,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Calista Wong
 
-<img src="images/calistaWong.png" width="200px">
+<img src="images/whitesnowx.png" width="200px">
 
 [[github](https://github.com/whitesnowx)]
-[[portfolio](team/calistaWong.md)]
+[[portfolio](team/calistawong)]
 
 * Role: Developer
 * Responsibilities: Documentation and organisation
@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jerry Wang
 
-<img src="images/jerryWang.jpg" width="200px">
+<img src="images/jerrywang0000.jpg" width="200px">
 
 [[github](http://github.com/JerryWang0000)]
-[[portfolio](team/jerryWang.md)]
+[[portfolio](team/jerrywang)]
 
 * Role: Backend Developer
 * Responsibilities: Development of Functionalities
