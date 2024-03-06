@@ -260,60 +260,85 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target User Profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- Bob is the coordinator of a volunteer befriending organization.
+- He can type fast due to his 20 years of experience working in an office job.
+- He has carpal tunnel and would appreciate tools to reduce typing.
+- His day-to-day job involves matching volunteers and beneficiaries based on availability.
+- He is forgetful and often forgets the assignments he has made.
+- He has bad eyesight and cannot see small or low-contrast texts.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value Proposition**:
 
+Match streamlines volunteer management, facilitating efficient scheduling and coordination of volunteers, ultimately saving time and resources for organizations focused on social impact. It helps Bob efficiently manage a diverse group of volunteers by tracking their availability.
 
-### User stories
+**User Stories**:
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priority: High (must have) - `*`, Medium (nice to have) - `*`, Low (unlikely to have) - `_`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a … | I want to … | So that I can… |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*` | new user | see usage instructions | refer to instructions when I forget how to use the App |
+| `***` | coordinator | add a new volunteer | keep track of all volunteers in the organization |
+| `***` | coordinator | view a volunteer's details | match volunteers with beneficiaries based on their availability, skills, and interests |
+| `***` | coordinator | update a volunteer's information | keep volunteer information up-to-date |
+| `***` | coordinator | delete a volunteer | remove volunteers who are no longer with the organization |
+| `***` | coordinator | find volunteers by name | quickly locate a specific volunteer's information |
+| `**` | coordinator | view a list of all volunteers | have an overview of all registered volunteers |
+| `**` | coordinator | find volunteers by availability | match volunteers with beneficiaries based on their availability |
+| `*` | coordinator | use a GUI with large fonts and high contrast | easily view information with my bad eyesight |
+| `*` | coordinator | use keyboard shortcuts | reduce typing due to my carpal tunnel |
 
-*{More to be added}*
+**Use Cases**:
 
-### Use cases
+**Use case: Add a Volunteer**
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+**Actor**: Coordinator (Bob)
 
-**Use case: Delete a person**
+**Precondition**: Coordinator has launched the application and is on the main screen.
 
-**MSS**
+**Main Success Scenario**:
+1. Coordinator selects the "Add Volunteer" option.
+2. The system prompts the coordinator to enter the volunteer's name, phone number, email and availability.
+3. Coordinator enters the required information in the correct format.
+4. The system validates the input and displays a confirmation message: "Volunteer [volunteer_name] has been added successfully."
+5. The new volunteer's information is displayed in the GUI.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Extensions**:
+3a. The coordinator enters invalid data for any of the fields.
+    3a1. The system displays an error message indicating the nature of the error (e.g., "[Parameter] is invalid," "[Parameter] is missing," "[Parameter] is specified multiple times").
+    3a2. The coordinator corrects the input and continues from step 3.
 
-    Use case ends.
+**Use case: Find a Volunteer's Information**
 
-**Extensions**
+**Actor**: Coordinator (Bob)
 
-* 2a. The list is empty.
+**Precondition**: Coordinator has launched the application and is on the main screen.
 
-  Use case ends.
+**Main Success Scenario**:
+1. Coordinator selects the "Find Volunteer" option.
+2. The system prompts the coordinator to enter the volunteer's name.
+3. Coordinator enters the volunteer's name (or a part of it).
+4. The system displays all volunteers whose names contain the entered keywords.
 
-* 3a. The given index is invalid.
+**Extensions**:
+4a. No volunteers match the entered name.
+    4a1. The system displays an error message: "No volunteers found."
 
-    * 3a1. AddressBook shows an error message.
+**Use case: View Entire List of Volunteers**
 
-      Use case resumes at step 2.
+**Actor**: Coordinator (Bob)
 
-*{More to be added}*
+**Precondition**: Coordinator has launched the application and is on the main screen.
+
+**Main Success Scenario**:
+1. Coordinator selects the "List Volunteers" option.
+2. The system displays the entire list of volunteers, along with their details, in the GUI.
+
+**Extensions**:
+2a. There are no volunteers in the address book.
+    2a1. The system displays a message: "There are no volunteers in the address book."
 
 ### Non-Functional Requirements
 
