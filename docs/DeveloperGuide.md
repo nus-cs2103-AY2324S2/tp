@@ -390,7 +390,7 @@ otherwise)
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
 1. Should provide an intuitive and user-friendly interface. Users should be able to easily and quickly navigate the user interface to identify crucial information at a glance.
-1. Should have a shallow learning curve. New users (including the non technically savvy) should be able to pick up and start using the application efficiently within a week.
+1. Should have a shallow learning curve. New users (including the non-technically savvy) should be able to pick up and start using the application efficiently within a week.
 1. Should be optimized to run smoothly on low-end devices with limited processing power and memory. Users on older hardware should be able to use the application as long as it meets [requirement 1](#nfr-1).
 
 ### Glossary
