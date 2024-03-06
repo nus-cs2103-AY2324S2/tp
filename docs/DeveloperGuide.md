@@ -543,7 +543,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case ends.
 
-**Use case: UC06 - Delete a person**
+**Use case: UC06 - View home-buyer requirements**
+
+**MSS:**
+
+1. User enters the command to view the specific buyer's requirements.
+2. EstateEase processes the view command with home-buyer as filter.
+3. EstateEase displays the home-buyer's requirements.
+   Use case ends.
+
+**Extensions**
+
+* 2a. EstateEase detects an invalid name.
+  * 2a1. EstateEase shows an error message regarding an invalid entry.
+    Use case ends.
+* 2b. Command does not match EstateEase's registered command spelling.
+  * 2b1. EstateEase shows an error message regarding an invalid command.
+    Use case ends.
+
+**Use case: UC07 - View home-seller requirements**
+
+**MSS:**
+
+1. User enters the command to view the specific seller's requirements.
+2. EstateEase processes the view command with home-seller as filter.
+3. EstateEase displays the home-seller's requirements.
+   Use case ends.
+
+**Extensions**
+
+* 2a. EstateEase detects an invalid name.
+    * 2a1. EstateEase shows an error message regarding an invalid entry.
+      Use case ends.
+* 2b. Command does not match EstateEase's registered command spelling.
+    * 2b1. EstateEase shows an error message regarding an invalid command.
+      Use case ends.
+
+**Use case: UC08 - Delete a person**
 
 **MSS:**
 
@@ -566,7 +602,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC07 - Load contact data from file**
+**Use case: UC09 - Load contact data from file**
 
 **Actor: EstateEase**
 
@@ -611,7 +647,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         * 1d3b. EstateEase proceeds to load contact and address data from the newly created JSON file.
           Use case continues from step 2.
 
-**Use case: UC08 - Save to storage**
+**Use case: UC10 - Save to storage**
 
 **Actor: EstateEase**
 
