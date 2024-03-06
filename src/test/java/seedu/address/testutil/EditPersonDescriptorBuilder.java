@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FundingStage;
+import seedu.address.model.person.Industry;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -33,6 +35,8 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
+        descriptor.setIndustry(person.getIndustry());
+        descriptor.setFundingStage(person.getFundingStage());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
@@ -44,6 +48,22 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code FundingStage} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withFundingStage(String fundingLevel) {
+        descriptor.setFundingStage(new FundingStage(fundingLevel));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Industry} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withIndustry(String industry) {
+        descriptor.setIndustry(new Industry(industry));
         return this;
     }
 

@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FUNDING_STAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDUSTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,6 +25,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FundingStage;
+import seedu.address.model.person.Industry;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -40,6 +44,8 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_INDUSTRY + "INDUSTRY" + "] "
+            + "[" + PREFIX_FUNDING_STAGE + "FUNDING STAGE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -97,11 +103,15 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        FundingStage updatedFundingStage = editPersonDescriptor.getFundingStage().orElse(
+            personToEdit.getFundingStage());
+        Industry updatedIndustry = editPersonDescriptor.getIndustry().orElse(personToEdit.getIndustry());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedFundingStage, updatedIndustry,
+            updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -134,6 +144,11 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+
+        private Industry industry;
+
+        private FundingStage fundingStage;
+
         private Phone phone;
         private Email email;
         private Address address;
@@ -147,6 +162,8 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setFundingStage(toCopy.fundingStage);
+            setIndustry(toCopy.industry);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -157,7 +174,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, industry, fundingStage, phone, email, address, tags);
+        }
+
+        public void setIndustry(Industry industry) {
+            this.industry = industry;
+        }
+
+        public void setFundingStage(FundingStage fundingStage) {
+            this.fundingStage = fundingStage;
         }
 
         public void setName(Name name) {
@@ -166,6 +191,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public Optional<Industry> getIndustry() {
+            return Optional.ofNullable(industry);
+        }
+
+        public Optional<FundingStage> getFundingStage() {
+            return Optional.ofNullable(fundingStage);
         }
 
         public void setPhone(Phone phone) {
@@ -223,6 +256,8 @@ public class EditCommand extends Command {
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
+                    && Objects.equals(fundingStage, otherEditPersonDescriptor.fundingStage)
+                    && Objects.equals(industry, otherEditPersonDescriptor.industry)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
@@ -232,6 +267,8 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
+                    .add("industry", industry)
+                    .add("funding stage", fundingStage)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
