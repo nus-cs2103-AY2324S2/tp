@@ -384,6 +384,8 @@ _{More to be added}_
 
 ### Non-Functional Requirements
 
+<a id="nfr-1"></a>
+
 1. Should work on any _mainstream OS_ (Windows, macOS and Linux) as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. Should provide responsive performance, users should experience minimal delays in critical functionalities such as searching and updating contacts (feedback should be within 1 second).
@@ -391,7 +393,7 @@ _{More to be added}_
    able to accomplish most of the tasks faster using commands than using the mouse.
 5. Should provide an intuitive and user-friendly interface. Users should be able to easily and quickly navigate the user interface to identify crucial information at a glance.
 6. Should have a shallow learning curve. New users (including the non technically savvy) should be able to pick up and start using the application efficiently within a week.
-7. Should be optimized to run smoothly on low-end devices with limited processing power and memory. Users on older hardware should be able to use the application as long as it meets requirement 1.
+7. Should be optimized to run smoothly on low-end devices with limited processing power and memory. Users on older hardware should be able to use the application as long as it meets [requirement 1](#nfr-1).
 
 ### Glossary
 
