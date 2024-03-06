@@ -555,11 +555,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. EstateEase detects an invalid name.
-  * 2a1. EstateEase shows an error message regarding an invalid entry.
-    Use case ends.
+  *   2a1. EstateEase shows an error message regarding an invalid entry.
+      Use case ends.
 * 2b. Command does not match EstateEase's registered command spelling.
-  * 2b1. EstateEase shows an error message regarding an invalid command.
-    Use case ends.
+  *   2b1. EstateEase shows an error message regarding an invalid command.
+      Use case ends.
 
 **Use case: UC07 - View home-seller requirements**
 
@@ -578,6 +578,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. Command does not match EstateEase's registered command spelling.
     * 2b1. EstateEase shows an error message regarding an invalid command.
       Use case ends.
+
+**Use case: UC08 - Differentiate home-seller requirements**
+
+**MSS:**
+
+1.  User opens the app
+2.  User filters for home-sellers
+3.  EstateEase displays home-sellers. Free home-sellers are highlighted in green.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Pending home-sellers are displayed in red.
+  *   3a1. User clicks on one of the pending home-sellers. The home-seller's status is set to pending.
+      Use case ends.
+
+* 3b. User clicks on one of the free home-sellers. The home-seller's status is set to free.
+      Use case ends.
+
 
 **Use case: UC08 - Delete a person**
 
