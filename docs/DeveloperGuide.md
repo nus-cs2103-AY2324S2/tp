@@ -332,36 +332,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                                      | I want to …                                    | So that I can…                                                                                                                                              |
-|----------|---------------------------------------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | Small business owner                        | easily add new customers to my address book    | keep track of all my clients' information in one place.                                                                                                    |
-| `* * *`  | Crocheter                                   | have a search function                         | quickly find specific customers when I need to reference their details.                                                                                   |
-| `* * *`  | Busy entrepreneur                           | be accessible via a command-line interface     | efficiently manage my customer list without navigating through complex menus.                                                                              |
-| `* * *`  | Crochet business owner                      | have customizable fields                       | record specific details about each customer, such as their favorite colors or special requests.                                                            |
-| `* * *`  | Small business owner | be cost-effective and easy to use              | maximize productivity without investing in expensive CRM systems.                                                                                          |
-| `* * *`  | Crochet business owner                      | have data backup and synchronization capabilities | access my customer information from multiple devices and ensure its security.                                                                            |
-| `* * *`  | Small business owner                        | have secure access controls and permissions settings | restrict sensitive information and ensure data privacy compliance.                                                                                     |
-| `* *`    | Crochet business owner                      | categorize my customers                        | tailor my marketing efforts accordingly based on factors like their preferred crochet items or past purchases.                                            |
-| `* *`    | Small business owner                        | generate reports on customer activity         | analyze trends and make informed business decisions based on order history and frequency of purchases.                                                     |
-| `* *`    | Small business owner                        | have a reminder feature                        | stay organized and follow up with customers on important dates, such as birthdays or anniversaries.                                                       |
-| `* *`    | Small business owner                        | have customizable templates for invoices and receipts | easily generate and send professional-looking documents to my customers.                                                                              |
-| `* *`    | Crocheter offering custom orders            | have a notes section for each customer        | record specific preferences and requirements for their projects.                                                                                           |
-| `* *`    | Small business owner                        | integrate with accounting software            | easily track expenses related to each customer and maintain accurate financial records.                                                                    |
-| `*`      | Crocheter | have a mobile-friendly interface              | easily access customer information on the go and process orders efficiently.                                                                               |
-| `*`      | Crocheter | integrate with my email client                | send personalized messages and promotions to my customers directly from the platform.                                                                     |
-| `*`      | Crocheter  | integrate with e-commerce platforms         | automatically sync customer data and manage orders efficiently when participating in online marketplaces.                                                                                            |
-| `*`      | Crochet business owner                      | track communication history with customers    | provide personalized and timely customer service including emails and phone calls.                                                                        |
-| `*`      | Crochet business owner  | support multiple user accounts with shared access | my team members can collaborate on managing customer relationships.                                                       |
-| `*`      | Crocheter    | have a scheduling feature                     | manage registrations and communicate updates with attendees seamlessly.                                                                                    |
-| `*`      | Crocheter            | have a feature for scanning and capturing customer contact information | grow my mailing list and follow up with potential leads quickly.                                  |
-| `*`      | Crocheter       | integrate with social media platforms         | easily connect with customers and engage with them through various channels.                                                                               |
-| `*`      | Crochet business owner                      | provide insights into customer demographics and preferences | tailor my product offerings and marketing campaigns to target specific audiences effectively.  |
-| `*`      | Small business owner                        | provide analytics and insights on customer behavior | continuously improve my products and services to meet customer needs based on purchase patterns and feedback.  |
-| `*`      | Crochet business owner                      | provide insights into customer satisfaction through feedback and reviews | address any concerns and improve the overall customer experience.                                 |
-| `*`      | Small business owner                        | offer customizable tags or labels for customers | segment my audience and target specific groups with tailored marketing campaigns.                 |
-| `*`      | Busy entrepreneur                           | have a good out of the box experience         | immediately use the application without needing to configure it for my own needs.                                                                          |
-
-*{More to be added}*
+| Priority | As a …                           | I want to …                                                              | So that I can…                                                                                                 |
+|----------|----------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `* * *`  | Small business owner             | easily add new customers to my address book                              | keep track of all my clients' information in one place.                                                        |
+| `* * *`  | Crocheter                        | have a search function                                                   | quickly find specific customers when I need to reference their details.                                        |
+| `* * *`  | Busy entrepreneur                | be accessible via a command-line interface                               | efficiently manage my customer list without navigating through complex menus.                                  |
+| `* * *`  | Crochet business owner           | have customizable fields                                                 | record specific details about each customer, such as their favorite colors or special requests.                |
+| `* * *`  | Small business owner             | be cost-effective and easy to use                                        | maximize productivity without investing in expensive CRM systems.                                              |
+| `* * *`  | Crochet business owner           | have data backup and synchronization capabilities                        | access my customer information from multiple devices and ensure its security.                                  |
+| `* * *`  | Small business owner             | have secure access controls and permissions settings                     | restrict sensitive information and ensure data privacy compliance.                                             |
+| `* *`    | Crochet business owner           | categorize my customers                                                  | tailor my marketing efforts accordingly based on factors like their preferred crochet items or past purchases. |
+| `* *`    | Small business owner             | generate reports on customer activity                                    | analyze trends and make informed business decisions based on order history and frequency of purchases.         |
+| `* *`    | Small business owner             | have a reminder feature                                                  | stay organized and follow up with customers on important dates, such as birthdays or anniversaries.            |
+| `* *`    | Small business owner             | have customizable templates for invoices and receipts                    | easily generate and send professional-looking documents to my customers.                                       |
+| `* *`    | Crocheter offering custom orders | have a notes section for each customer                                   | record specific preferences and requirements for their projects.                                               |
+| `* *`    | Small business owner             | integrate with accounting software                                       | easily track expenses related to each customer and maintain accurate financial records.                        |
+| `*`      | Crocheter                        | have a mobile-friendly interface                                         | easily access customer information on the go and process orders efficiently.                                   |
+| `*`      | Crocheter                        | integrate with my email client                                           | send personalized messages and promotions to my customers directly from the platform.                          |
+| `*`      | Crocheter                        | integrate with e-commerce platforms                                      | automatically sync customer data and manage orders efficiently when participating in online marketplaces.      |
+| `*`      | Crochet business owner           | track communication history with customers                               | provide personalized and timely customer service including emails and phone calls.                             |
+| `*`      | Crochet business owner           | support multiple user accounts with shared access                        | my team members can collaborate on managing customer relationships.                                            |
+| `*`      | Crocheter                        | have a scheduling feature                                                | manage registrations and communicate updates with attendees seamlessly.                                        |
+| `*`      | Crocheter                        | have a feature for scanning and capturing customer contact information   | grow my mailing list and follow up with potential leads quickly.                                               |
+| `*`      | Crocheter                        | integrate with social media platforms                                    | easily connect with customers and engage with them through various channels.                                   |
+| `*`      | Crochet business owner           | provide insights into customer demographics and preferences              | tailor my product offerings and marketing campaigns to target specific audiences effectively.                  |
+| `*`      | Small business owner             | provide analytics and insights on customer behavior                      | continuously improve my products and services to meet customer needs based on purchase patterns and feedback.  |
+| `*`      | Crochet business owner           | provide insights into customer satisfaction through feedback and reviews | address any concerns and improve the overall customer experience.                                              |
+| `*`      | Small business owner             | offer customizable tags or labels for customers                          | segment my audience and target specific groups with tailored marketing campaigns.                              |
+| `*`      | Busy entrepreneur                | have a good out of the box experience                                    | immediately use the application without needing to configure it for my own needs.                              |
 
 ### Use cases
 
@@ -372,10 +370,10 @@ otherwise)
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
+1. User requests to list persons.
+2. AddressBook shows a list of persons.
+3. User requests to delete a specific person in the list.
+4. AddressBook deletes the person.
 
    Use case ends.
 
@@ -395,9 +393,9 @@ otherwise)
 
 **MSS**
 
-1. User requests to add a person
-2. AddressBook adds a person
-3. AddressBook shows the added person
+1. User requests to add a person.
+2. AddressBook adds a person.
+3. AddressBook shows the added person.
 
    Use case ends.
 
@@ -415,12 +413,42 @@ otherwise)
 
       Use case resumes at step 1.
 
+**Use case: Edit a person**
+
+**MSS**
+
+1. User requests to edit a person.
+2. AddressBook shows the person to be edited.
+3. User edits the person.
+4. AddressBook shows the edited person.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The person does not exist.
+
+    * 2a1. AddressBook shows an error message.
+    * 2a2. AddressBook shows a list of persons with similar names.
+
+      Use case resumes at step 1.
+* 3a. The person details are invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The person details are unchanged.
+
+    * 3b1. AddressBook shows a message indicating no changes are made.
+
+      Use case resumes at step 2.
+
 **Use case: Find a person**
 
 **MSS**
 
-1. User requests to find a person by name
-2. AddressBook shows a list of persons whose names contain the given keyword
+1. User requests to find a person by name.
+2. AddressBook shows a list of persons whose names contain the given keyword.
 
    Use case ends.
 
@@ -429,7 +457,7 @@ otherwise)
 * 2a. No person is found.
 
     * 2a1. AddressBook shows a message indicating no person is found.
-    * 2a2. AddressBook shows the list of persons with similar names
+    * 2a2. AddressBook shows the list of persons with similar names.
 
   Use case ends.
 
@@ -437,8 +465,17 @@ otherwise)
 
 **MSS**
 
-1. User requests to filter categories
-2. AddressBook shows a list of persons with the given category
+1. User requests to filter categories.
+2. AddressBook shows a list of persons with the given category.
+
+   Use case ends.
+
+**Use case: Sort by order**
+
+**MSS**
+
+1. User requests to sort by order.
+2. AddressBook shows a list of persons sorted by the given order.
 
    Use case ends.
 
@@ -446,8 +483,8 @@ otherwise)
 
 **MSS**
 
-1. User requests to show help
-2. AddressBook shows a help page
+1. User requests to show help.
+2. AddressBook shows a help page.
 
    Use case ends.
 
@@ -455,8 +492,8 @@ otherwise)
 
 **MSS**
 
-1. User requests to clear all entries
-2. AddressBook clears all entries
+1. User requests to clear all entries.
+2. AddressBook clears all entries.
 
    Use case ends.
 
@@ -464,23 +501,120 @@ otherwise)
 
 **MSS**
 
-1. User requests to exit the program
-2. AddressBook exits
+1. User requests to exit the program.
+2. AddressBook exits.
 
    Use case ends.
 
-**Use case: Export data**
+**Use case: Import data**
 
 **MSS**
 
-1. User requests to export data
-2. AddressBook opens location of saved data
+1. User requests to view locally saved data.
+2. AddressBook opens location of saved data.
+3. User stores new data to local file.
+4. AddressBook imports data from file.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The data is invalid.
+* 4a. The data is invalid.
+
+    * 4a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Export data**
+
+**MSS**
+
+1. User requests to export data.
+2. AddressBook opens locally saved file.
+
+   Use case ends.
+
+**Use case: Add order**
+
+**MSS**
+
+1. User requests to add an order.
+2. AddressBook adds an order.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The order already exists.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+* 2b. The order details are invalid.
+
+    * 2b1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Edit order**
+
+**MSS**
+
+1. User requests to edit an order.
+2. AddressBook shows the order to be edited.
+3. User edits the order.
+4. AddressBook shows the edited order.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The order does not exist.
+
+    * 2a1. AddressBook shows an error message.
+    * 2a2. AddressBook shows a list of orders with similar names.
+
+      Use case resumes at step 1.
+* 3a. The order details are invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The order details are unchanged.
+
+    * 3b1. AddressBook shows a message indicating no changes are made.
+
+      Use case resumes at step 2.
+
+**Use case: Delete order**
+
+**MSS**
+
+1. User requests to delete an order.
+2. AddressBook deletes the order.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The order does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Prioritize order**
+
+**MSS**
+
+1. User requests to prioritize an order.
+2. AddressBook shows the prioritized order.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The order does not exist.
 
     * 2a1. AddressBook shows an error message.
 
