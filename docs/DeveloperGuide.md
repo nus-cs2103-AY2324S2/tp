@@ -274,105 +274,135 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* logistic managers
+* has a need to manage a significant number of POCs & assets
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* manage contacts & assets faster than a typical mouse/GUI driven app
+* easily search for information by any category
+* easily copy contact information to clipboard
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​ | So that I can…​ |
+|---|---|---|---|
+| `* * *` | user | add new contacts and assets | keep track of these details |
+| `* * *` | user | add tags to contacts | categorize them according to my preferences and workflow |
+| `* * *` | user | delete contacts | update the list if a PoC’s details are no longer needed |
+| `* * *` | user | edit contacts/tags | change details without recreating contacts, as there are too many details to re-add |
+| `* * *` | user | easily view my existing contacts from the GUI | visually find the contacts I'm looking for |
+| `* * *` | user | easily navigate between sponsors, assets, and PoCs | access relevant information quickly |
+| `* * *` | user | search contacts by name, asset, or tag | easily find the relevant PoC |
+| `* *` | new user | view a drop-down suggestion of commands | efficiently navigate and utilize the app without extensive prior knowledge |
+| `* *` | user | see no advertisements | not be distracted from my tasks |
+| `* *` | user | add secondary personnel associated with an asset | have a backup contact if the main person is unreachable |
+| `* *` | user | toggle between light/dark theme | customize the app to my preferences |
+| `* *` | user | resize the app’s window | easily use multiple apps at once |
+| `* *` | user | change the profile picture of each contact | easily identify them |
+| `* *` | user | easily search within the system even if I mistype a few words | more easily locate relevant information |
+| `* *` | hurried user | type commands even with extra whitespaces | won’t have to waste time retyping commands |
+| `* *` | advanced user | type shorter commands | type commands faster |
+| `* *` | advanced user | use keyboard shortcuts | use the app more efficiently |
+| `*` | advanced user | add custom fields | add more information to contacts |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `AssetBook-3 (AB3)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
-
+**Use case: UC1 - Add a contact**
 **MSS**
+1. User requests to add a contact.
+2. User specifies details of the contact.
+3. AB3 adds the contact.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+Use case ends.
 
-    Use case ends.
+
+**Use case: UC2 - Add an asset**
+**MSS**
+1. User requests to add an asset.
+2. User specifies details of the asset.
+3. AB3 adds the asset.
+
+Use case ends.
+
+
+**Use case: UC3 - Assign assets to a contact**
+**MSS**
+1. User requests to assign an asset to the contact.
+2. User specifies the contact.
+3. User specifies the asset.
+4. AB3 assigns the asset to the contact.
+
+Steps 1-4 are repeated until all the assets are assigned to the contact.
+Use case ends.
 
 **Extensions**
+* 2a. Contact was not created.
+    * 2a1. User exits assign request.
+    * 2a2. User creates the contact (UC1).
+    Use case resumes from step 1.
+* 3a. Asset was not created.
+    * 3a1. User exits assign request.
+    * 3a2. User creates the asset (UC2).
+    Use case resumes from step 1.
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
 #### Product Design
-1.  Target user is clearly narrowed down to logistics managers.
-1.  Majority of the target users are likely to find the app worth using.
-1.  Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-1.  Features should fit together cohesively.
+1. Target user is clearly narrowed down to logistics managers.
+1. Majority of the target users are likely to find the app worth using.
+1. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Features should fit together cohesively.
 
 #### Codebase
-1.  Must follow CS2103/T coding standards and code quality guidelines.
-1.  Must demonstrate evidence of:
-   1. logging
-   1. exceptions
-   1. assertions
-   1. defensive coding
-1.  Should have Single Level of Abstraction Principle (SLAP) applied at a reasonable level.
-1.  Should not have any noticeable code duplication.
-1.  Should be easily extensible for new features.
-1.  Should have high level testability with good coverage.
-1.  Should have little to no bugs.
+1. Must follow CS2103/T coding standards and code quality guidelines.
+1. Must demonstrate evidence of:
+   * logging
+   * exceptions
+   * assertions
+   * defensive coding
+1. Should have Single Level of Abstraction Principle (SLAP) applied at a reasonable level.
+1. Should not have any noticeable code duplication.
+1. Should be easily extensible for new features.
+1. Should have high level testability with good coverage.
+1. Should have little to no bugs.
 
 #### Program
-1.  Should be optimized for the target user (logistics managers).
-1.  Should work on any mainstream OS as long as it has Java `11` or above installed.
-1.  Should work without internet access.
-1.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-1.  Should not crash under typical usage.
-1.  Should not log or collect any unnecessary user data.
-1.  Response time for all commands and operations should be less than 1 second.
+1. Should be optimized for the target user (logistics managers).
+1. Should work on any mainstream OS as long as it has Java `11` or above installed.
+1. Should work without internet access.
+1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+1. Should not crash under typical usage.
+1. Should not log or collect any unnecessary user data.
+1. Response time for all commands and operations should be less than 1 second.
 
 #### Documentation
-1.  The target user should understand how to use the product easily by reading the User Guide.
-1.  User Guide should have higher overall quality compared to AddressBook-Level3 (AB3).
-1.  A new team member should understand the product's internal design easily by reading the Developer Guide.
-1.  Developer Guide should have higher overall quality compared to AB3.
+1. The target user should understand how to use the product easily by reading the User Guide.
+1. User Guide should have higher overall quality compared to AddressBook-Level3 (AB3).
+1. A new team member should understand the product's internal design easily by reading the Developer Guide.
+1. Developer Guide should have higher overall quality compared to AB3.
 
 #### Project Management
-1.  Project should be done iteratively and incrementally.
-1.  Project should demonstrate good use of these GitHub mechanisms:
-   1. milestones
-   1. releases
-   1. issue tracker (with good task definition, assignment, and tracking)
-   1. PRs, and PR reviews
-1.  Project should demonstrate good use of version control.
-1.  Developers should attempt to use the forking workflow at least for the early stages of the project.
-1.  Developers should make good use of time buffers.
+1. Project should be done iteratively and incrementally.
+1. Project should demonstrate good use of these GitHub mechanisms:
+   * milestones
+   * releases
+   * issue tracker (with good task definition, assignment, and tracking)
+   * PRs, and PR reviews
+1. Project should demonstrate good use of version control.
+1. Developers should attempt to use the forking workflow at least for the early stages of the project.
+1. Developers should make good use of time buffers.
 
 ### Glossary
 
