@@ -289,16 +289,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                               | So that I can…​                                                                                                                         |
+|----------|--------------------------------------------|------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `***`    | Nurse                                      | easily view the user guide                                 | learn more about the product and how to use whenever I need to                                                                          |
+| `***`    | Nurse                                      | add patient's information                                  | add new patients and easily remember their preferences to make a personalized connection                                                |
+| `***`    | Nurse                                      | delete patient's information                               | remove patients who have been discharged                                                                                                |
+| `***`    | Nurse                                      | list all patient's information                             | easily find the details of my patients                                                                                                  |
+| `***`    | Nurse                                      | add important dates for my patients                       | keep track of my patients' appointments and see my overall schedule                                                                     |
+| `***`    | Nurse                                      | delete important dates for my patients                    | delete my patients' appointments if they are canceled                                                                                   |
+| `***`    | Nurse                                      | add tags to my patients                                    | group the patients into categories                                                                                                      |
+| `***`    | Nurse                                      | find patient with a specific tag                            | quickly locate individuals with similar conditions, treatments, or requirements without having to scroll through the entire patient list |
+| `***`    | Nurse                                      | save all previously added patients                         | ensure details of the patient would not be lost                                                                                         |
+| `**`     | Nurse                                      | edit patient's information                                 | have the most updated information of my patients at all times                                                                           |
+| `**`     | Nurse                                      | edit important dates for my patients                      | edit my patients' appointments if they are changed                                                                                      |
+| `**`     | Nurse                                      | edit tags from my patients                                 | edit mistyped tags                                                                                         |
+| `**`     | Nurse                                      | delete tags from my patients                               | delete the tag if it no longer applies                                                                                                  |
 
-*{More to be added}*
+
 
 ### Use cases
 
