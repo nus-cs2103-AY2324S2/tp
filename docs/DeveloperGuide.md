@@ -531,15 +531,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1.  User requests to list persons 
-2.  EstateEase shows a list of persons
+1.  User requests to list all of his/her contacts. 
+2.  EstateEase displays a list of contacts, each with their details 
+and an indication of whether they are a buyer or seller.
 
     Use case ends.
 
 **Extensions**
 
-*2a. The list is empty
-   * 2a1. EstateEast displays a message stating that the list is empty.
+* 2a. The list is empty.
+   * 2a1. EstateEase displays a message stating that the list is empty.
 
      Use case ends.
 
@@ -547,10 +548,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1.  User requests to list persons
-2.  EstateEase shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  EstateEase deletes the person
+1.  User requests to list persons.
+2.  EstateEase shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  EstateEase deletes the person.
 
     Use case ends.
 
@@ -637,6 +638,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
+**Use case: UC09 - Edit contacts**
+
+**MSS:**
+
+1.  User requests to <u>view all his/her contacts (UC05)</u>.
+2.  EstateEase shows a list of all his/her contacts.
+3.  User requests to edit the details of a specific person in the list.
+4.  EstateEase updates the details of the specific person selected by the user.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+    * 3a1. EstateEase shows an error message.
+
+      Use case ends.
+
+* 3b. The new value for the field being updated is not valid. 
+    * 3b1. EstateEase shows error message, indicating the nature of the invalid input.
+
+      Use case ends.
+
+**Use case: UC10 - Filter out buyers**
+
+**MSS:**
+
+1.  User requests to view only buyers that are still looking for a houses or those that 
+have already gotten their house.
+2.  EstateEase shows a list of all his/her house buyers based on the filter
+(i.e. still looking for a house).
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no buyers that match the filter.
+    * 1a1. EstateEase displays a message stating that the list is empty.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
