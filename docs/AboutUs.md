@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chia York Lim
 
-<img src="images/yorklim.jpg" width="200px">
+<img src="images/yorklim.png" width="200px">
 
 [[github](http://github.com/yorklim)]
 [[portfolio](team/yorklim.md)]
