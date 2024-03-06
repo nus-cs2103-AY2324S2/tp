@@ -265,8 +265,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * Dog cafe owners who need to manage a team of staff, F&B vendors & a dog maintainence team.
 * Prefer typing over other types and is comfortable using CLI applications.
 
-**Value proposition**: PoochPlanner is a desktop application to track details of various groups (vendors, staff, dog maintainence) that dog cafe owners have to regularly interact with. The app is optimised for use using
-Command Line Interface (CLI) while still encompassing a user-friend Graphical User Interface (GUI).
+**Value proposition**: PoochPlanner is a desktop application to track details of various groups (vendors, staff, dog maintainence) that dog cafe owners have to regularly interact with. 
+The app is optimised for use using Command Line Interface (CLI) while still encompassing a user-friendly Graphical User Interface (GUI).
 
 
 ### User stories
@@ -275,12 +275,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority      | <div style="width:50px">As a …​</div> | I want to …​                                               | So that I can…​                                             |
 |---------------|---------------------------------------|------------------------------------------------------------|-------------------------------------------------------------|
-| `* * *`       | well connected user                   | search contacts                                            | I can save time                                             |
-| `* * *`       | well connected user                   | add contacts                                               | I can have the address to contact others in the future      |
-| `* * *`       | cafe owner user                       | delete the contacts of people                              | I can keep my contacts updated and remove outdated contacts |
+| `* * *`       | well connected user                   | search contacts                                            | save time                                             |
+| `* * *`       | well connected user                   | add contacts                                               | have the address to contact others in the future      |
+| `* * *`       | cafe owner user                       | delete the contacts of people                              | keep my contacts updated and remove outdated contacts |
 | `* * *`       | long-term user                        | edit contacts                                              | update some contact information                             |
-| `* * *`       | first-time user                       | get help about what commnads I can use on the contact book | I can easily know how to navigate the system                |
-| `**`          | frugal user                           | sort my vendors in ascending order of price                | I can view the vendors selling the cheapest products easily |
+| `* * *`       | first-time user                       | get help about what commnads I can use on the contact book | easily know how to navigate the system                |
+| `**`          | frugal user                           | sort my vendors in ascending order of price                | view the vendors selling the cheapest products easily |
 
 
 *{More to be added}*
