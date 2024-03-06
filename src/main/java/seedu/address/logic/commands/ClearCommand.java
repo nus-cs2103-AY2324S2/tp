@@ -27,9 +27,9 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         if (!(isForced)) {
-            return new CommandResult("Are you sure you want to clear the address book? Use\n" +
-                    "clear --force\n" +
-                    "to confirm clearing of the address book.");
+            return new CommandResult("Are you sure you want to clear the address book? Use\n"
+                    + "clear --force\n"
+                    + "to confirm clearing of the address book.");
         }
         model.setAddressBook(new AddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
