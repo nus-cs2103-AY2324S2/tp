@@ -93,16 +93,16 @@ Examples:
 
 Search for a student's contact based on specified query.
 
-Format: `/search_student </id> </email> </tc> </name> SEARCH_QUERY`
+Format: `/search_student [id/STUDENT_ID] [email/EMAIL] [tc/TUTORIAL_CLASS] [name/NAME]`
 
 - At least one of the optional attributes must be provided.
 - The search query is case-insensitive. e.g. `ian` will match `Ian`
-- The search query will match information corresponding to the optional attribute. e.g. `/id` will only search for IDs
+- The search query will match information corresponding to the optional attribute. e.g. `id/` will only search for IDs
 - Partial matches will also be displayed e.g. `@gmail` will return **ALL** emails containing `@gmail`
 
 Examples:
-- `/search_student /id A012345A` Returns student with corresponding id
-- `/search_student /email GMAIL` Returns all students who have `gmail` in their email
+- `/search_student id/A012345A` Returns student with corresponding id
+- `/search_student email/@GMAIL` Returns all students who have `@gmail` in their email
 
 ### Listing all students : `list_student`
 
