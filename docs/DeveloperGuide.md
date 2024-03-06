@@ -366,10 +366,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to be used for long periods without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Should respond within one seconds.
+5.  Documentation should be easy for users that are inexperienced in command line to follow.
+6.  User Interface should be straightforward and inutitive to navigate even for first-time users.
+7.  Should be able to store more than 10,000 tasks.
+8.  Should lose no more than 1-action worth of work in case of an app crash.
+9.  Should work without internet access.
 
 ### Glossary
 
