@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -172,25 +172,24 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private String executeCommand(String commandText) throws CommandException, ParseException {
+        String commandResult;
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            return commandResult;
+            commandResult = logic.execute(commandText);
+            logger.info("Result: " + commandResult);
+            resultDisplay.setFeedbackToUser(commandResult);
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+
+        if (commandResult.equals(Messages.MESSAGE_SHOWING_HELP)) {
+            handleHelp();
+        }
+        if (commandResult.equals(Messages.MESSAGE_EXIT_ACKNOWLEDGEMENT)) {
+            handleExit();
+        }
+        return commandResult;
     }
 }
