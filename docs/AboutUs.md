@@ -13,9 +13,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/zhangtianyao1.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://github.com/ZHANGTIANYAO1)]
+[[github](https://github.com/ZHANGTIANYAO1)]
+[[portfolio](team/zhangtianyao.md)]
 
 * Role: Project Advisor
 
