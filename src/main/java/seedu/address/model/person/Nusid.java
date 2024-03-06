@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's Nusid in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNusId(String)}
+ */
 public class Nusid {
 
     public static final String MESSAGE_CONSTRAINTS = "NusID is of the form EXXXXXXX, and it should not be blank";
@@ -21,14 +25,14 @@ public class Nusid {
      */
     public Nusid(String nusid) {
         requireNonNull(nusid);
-        checkArgument(isValidId(nusid), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidNusId(nusid), MESSAGE_CONSTRAINTS);
         value = nusid;
     }
 
     /**
      * Returns true if a given string is a valid nusid.
      */
-    public static boolean isValidId(String test) {
+    public static boolean isValidNusId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
