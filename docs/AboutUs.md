@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Billy Ho Cheng En
 
-<img src="images/billyho.png" width="200px">
+<img src="images/billyhoce.png" width="200px">
 
 [[github](http://github.com/billyhoce)]
 [[portfolio](team/billyho.md)]
