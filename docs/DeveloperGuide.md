@@ -300,32 +300,197 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Connectify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a contact
+2.  Connectify adds the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
 
-  Use case ends.
+* 1a. The given contact name is already in the contact list.
 
-* 3a. The given index is invalid.
+    * 1a1. Connectify shows an error message and requests for the user to give a different contact name.
+    * 1a2. User enters new data.
+    * Steps 1a1-1a2 are repeated until the data entered is correct.
 
-    * 3a1. AddressBook shows an error message.
+      Use case resumes from step 2.
 
-      Use case resumes at step 2.
+* 1b. Connectify detects an error in the entered data.
 
-*{More to be added}*
+    * 1b1. Connectify requests for the correct data.
+    * 1b2. User enters new data
+    * Steps 1b1-1b2 are repeated until the data entered is correct.
+
+      Use case resumes from step 2.
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to delete a specific person from the contact list
+2.  Connectify deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: List contacts**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Connectify shows a list of contacts
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The list is empty.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case ends.
+
+**Use case: Edit contacts**
+
+**MSS**
+
+1.  User requests to edit a specific contact
+2.  Connectify edits the contact information and displays the full updated contact information
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. Connectify detects an error in the entered data.
+
+    * 1b1. Connectify requests for the correct data.
+    * 1b2. User enters new data
+    * Steps 1b1-1b2 are repeated until the data entered is correct.
+
+      Use case resumes from step 2.
+
+* 1c. The contact information to be updated is unchanged from the original.
+
+    * 1c1. Connectify shows an error message.
+
+      Use case ends.
+
+**Use case: Categorize contacts**
+
+**MSS**
+
+1.  User requests to categorize a specific contact into a specific group name
+2.  Connectify adds the given category to the contact and displays the full updated contact information
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The contact already has an existing category
+
+    * 1b1. Connectify informs the user the category that the contact currently is under and requests for confirmation
+      to update the current category to the newly given one.
+    * 1b2a. User confirms the update.
+        * 1b2a1. Connectify updates the current category of the given contact to the new one.
+
+          Use Case ends
+    * 1b2b. User cancels the update.
+        * 1b2b1. Connectify does not update the information.
+
+          Use case ends.
+
+**Use case: Tag contacts with their company's name**
+
+**MSS**
+
+1.  User requests to tag a specific contact with a specific company's name
+2.  Connectify adds the company's name tag to the contact and displays the full updated contact information
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The contact already has an existing company tag.
+
+    * 1b1. Connectify informs the user the company tag that the contact currently has and requests for confirmation
+      to update the current company tag to the newly given one.
+    * 1b2a. User confirms the update.
+      * 1b2a1. Connectify updates the current company tag of the given contact to the new one.
+      
+        Use Case ends
+    * 1b2b. User cancels the update.
+      * 1b2b1. Connectify does not update the information.
+
+        Use case ends.
+
+**Use case: Assign priorities to contacts**
+
+**MSS**
+
+1.  User requests to assign a specific contact with low/medium/high priority
+2.  Connectify adds the given priority to the contact and displays the full updated contact information
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The contact already has an existing priority label.
+
+    * 1b1. Connectify informs the user the priority label that the contact currently has and requests for confirmation
+      to update the current priority level to the newly given one.
+    * 1b2a. User confirms the update.
+        * 1b2a1. Connectify updates the current priority label of the given contact to the new one.
+
+          Use Case ends
+    * 1b2b. User cancels the update.
+        * 1b2b1. Connectify does not update the information.
+
+          Use case ends.
+
 
 ### Non-Functional Requirements
 
