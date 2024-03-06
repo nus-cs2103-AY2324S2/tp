@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# AssetBook-3 User Guide
 
 AssetBook-3 is a desktop application for logistics managers to keep track point-of-contacts' (POCs) contact information, along with their relevant assets. It is meant for those who have too many POCs and assets, and wish to easily retrieve contact details based on name, tag, or asset ID.
 
