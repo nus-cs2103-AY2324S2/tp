@@ -14,11 +14,11 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `payback.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar payback.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -30,10 +30,6 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
    * `/new jennie, 12334546, 123@gmail.com, 2021` : Adds a contact named `jennie` to the Address Book.
 
    * `/remove 240001` : Deletes the contact with id 240001.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -57,7 +53,7 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 * Parameters can be in any order, if specified.<br>
   e.g. if the command specifies `:name :phone`, `:phone :name` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `/help`, `/list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -126,13 +122,13 @@ Finds workers that contains any of the given keywords. It can be `ID`, `NAME`, `
 * _Only full keywords will be matched. e.g `Patrick` will not match `patr`_
 
 Examples:
-* `find :name John` returns `john` and `John Doe`
+* `/find :name John` returns `john` and `John Doe`
 
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
-Format: `remove ID`
+Format: `/remove ID`
 
 * Deletes the person with the specified `ID`.
 
@@ -151,58 +147,27 @@ Format: `/tag ID t/TAG...`
 Examples:
 * `/tag 240001 t/finance t/manager` tags the person with `240001` ID with `finance` and `manager`.
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved automatically as a JSON file `[JAR file location]/data/payback.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If modifications to the data file result in an invalid format, PayBack will discard all data and initiate the next run with an empty data file. 
+Therefore, it is advisable to create a backup of the file before making any edits. 
+Additionally, specific changes may lead to unexpected behavior in PayBack, such as if a value entered falls outside the acceptable range. Hence, proceed with editing the data file only if you are certain that you can make accurate updates.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**New** | `/new :name NAME :phone PHONE :email EMAIL [year joined] <br> e.g., `/new jennie, 12334546, 123@gmail.com, 2021`
+**Delete** | `/remove ID`<br> e.g., `/remove 240001`
+**Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:tag TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
+**Find** | `/find :KEYWORD [KEYWORDS]`<br> e.g., `find :name John`
+**List** | `/list`
+**Help** | `/help`
