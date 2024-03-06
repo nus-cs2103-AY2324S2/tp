@@ -301,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PressPlanner` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -326,6 +326,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+    
+
+**Use case: UC01 - Add an article**
+
+**MSS**
+1. User requests to add article
+2. PressPlanner adds article
+3. PressPlanner displays success message to User.
+
+    Use case ends.
+
+* 1a. Command was invalid.
+  * 1a1. PressPlanner shows an error message.
+    
+    Use case ends.
+
+
+
+**Use case: UC02 - List all articles**
+
+**MSS**
+1. User requests to list articles
+2. PressPlanner lists out all articles
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. PressPlanner returns an error message.
+
+    Use case ends.
+
+
 
 **Use case: UC03 - Edit an article**
 
@@ -334,11 +368,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list articles
 1. PressPlanner shows a list of articles
 1. User requests to edit a specific article in the list
-by providing at least one change to an attribute of the article
+   by providing at least one change to an attribute of the article
 1. PressPlanner updates the article with the changes requested
 1. PressPlanner shows the updated article to user
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -353,6 +387,7 @@ by providing at least one change to an attribute of the article
     * 3b1. PressPlanner shows an error message.
 
       Use case resumes at step 2.
+
 
 
 **Use case: UC04 - Delete an article**
@@ -382,6 +417,10 @@ by providing at least one change to an attribute of the article
       Use case resumes at step 2.
 
     
+
+
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
