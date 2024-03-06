@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the following emails `simkianseng28@gmail.com`, `bensonang36@gmail.com`, `ho.xu.wen@gmail.com`, `ziyitay1@gmail.com`, `kangyow4@gmail.com`.
 
-## Project team
+## Project Team
 
-### John Doe
+### Sim Kian Seng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/team/simkianseng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/SimKianSeng)]
+[[portfolio](team/simkianseng)]
 
-* Role: Project Advisor
+* Role: Team Lead/ Developer
+* Responsibilities: In charge of project coordination, documentation
 
-### Jane Doe
+### Benson Ang Wei Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/team/bensonangweikiat.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Benson15912)]
+[[portfolio](team/bensonangweikiat)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of components integration
 
-### Jean Doe
+### Ho Xu Wen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/team/hoxuwen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/xuwen-ho)]
+[[portfolio](team/hoxuwen)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of deliverables and deadlines
+
+### Tay Zi Yi
+
+<img src="images/team/tayziyi.png" width="200px">
+
+[[github](http://github.com/tayziyi)]
+[[portfolio](team/tayziyi)]
+
+* Role: Developer
+* Responsibilities: In charge of code quality
+
+### Yow Siao Kang
+
+<img src="images/team/yowsiaokang.png" width="200px">
+
+[[github](http://github.com/YowSiaoKang)]
+[[portfolio](team/yowsiaokang)]
+
+* Role: Developer
+* Responsibilities: In charge of testing
