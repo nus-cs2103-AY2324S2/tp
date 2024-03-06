@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# CulinaryContacts Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,71 +274,238 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* small family restaurant owners
+* has a need to manage a significant number of contacts such as suppliers, employees and customers
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+This app offers streamlined contact and reservation management for small family-owned restaurants, enhancing operational efficiency without covering financial or inventory aspects. It also categorises and stores detailed information about suppliers and the food that they sell to help owners keep track of volatile contacts.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                 | I want to …​                                                                                  | So that I can…​                                                    |
+|----------|-------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | new user                | view the user guide easily                                                                    | learn more about the app as and when I need                        |
+| `* * *`  | new user                | use a command to exit the program                                                             | close the application without moving my mouse                      |
+| `* * *`  | new user                | add new contacts                                                                              | save their contact details                                         |
+| `* * *`  | new user                | tag new contacts as 'supplier', 'customer' or 'employees'                                     | keep my contact list organized from the start                      |
+| `* * *`  | new user                | view all the contacts that I currently have in my address book                                | see all my contacts at a glance                                    |
+| `* * *`  | new user                | delete existing contacts                                                                      | remove any unwanted or experimental contacts                       |
+| `* * *`  | new user                | find specific contact(s) by name                                                              | find the person I want to contact                                  |
+| `* * *`  | intermediate user       | edit existing contacts                                                                        | update contacts easily without deleting and recreating a new one   |
+| `* * *`  | intermediate user       | filter my contacts by specific tag(s)                                                         | easily find contacts with specific tag(s)                          |
+| `* * *`  | clumsy user             | get a confirmation message when clearing the entire address book                              | avoid accidentally deleting all contacts                           |
+| `* *`    | new user                | see a helpful message when my command is not formatted correctly                              | figure out how to fix my command                                   |
+| `* *`    | new user                | try out the features with some sample data                                                    | understand what each feature does                                  |
+| `* *`    | new user                | tag suppliers with the types of food they supply                                              | easily find the right supplier for specific ingredients            |
+| `* *`    | new user                | tag employees as 'full time' or 'part time'                                                   | easily find the contacts of part time employees during peak period |
+| `* *`    | clumsy user             | see all commands I entered this session                                                       | check what I did previously                                        |
+| `* *`    | clumsy user             | undo my last command                                                                          | undo an erroneous command                                          |
+| `* *`    | user with poor eyesight | view the contact details in a larger window when I click on a contact                         | more easily see the contact details                                |
+| `* *`    | user with poor eyesight | have tags with different colors                                                               | easily differentiate tags                                          |
+| `* *`    | intermediate user       | sort reservations by date and time                                                            | plan the seating arrangement and kitchen workload effectively      |
+| `* *`    | intermediate user       | toggle between previous commands by pressing up and down arrows                               | save time typing commands                                          |
+| `* *`    | intermediate user       | delete multiple contacts in 1 command                                                         | remove contacts more quickly                                       |
+| `* *`    | intermediate user       | see upcoming reservations/events in a dashboard                                               | anticipate and prepare for such events                             |
+| `* *`    | intermediate user       | add special requests (e.g. dietary restrictions) to reservations                              | provide personalized service to my customers                       |
+| `* *`    | expert user             | archive contacts of employees/suppliers whose contracts have expired                          | declutter my contact list                                          |
+| `* *`    | expert user             | create my own aliases and shortcuts                                                           | reduce time spent typing commands                                  |
+| `*`      | clumsy user             | find contacts that match the keyword partially                                                | avoid retyping the command when I make a typo                      |
+| `*`      | intermediate user       | import contacts from other sources                                                            | quickly populate the app with existing information                 |
+| `*`      | intermediate user       | have autocomplete when typing commands                                                        | finish typing the command faster                                   |
+| `*`      | intermediate user       | automatically create a blank email addressed to a contact when I click on his/her email field | email contacts more quickly                                        |
+| `*`      | expert user             | access the app from multiple devices                                                          | manage my contacts and reservations on the go                      |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `CulinaryContacts` and the **Actor** is the `user`, unless 
+specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - View help**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to see the help menu.
+1. CulinaryContacts opens up the help window, displaying the command summary.
 
-    Use case ends.
+   Use case ends.
+
+**Use case: UC02 - Add a person**
+
+**MSS**
+
+1. User requests to add a new person.
+1. CulinaryContacts adds the new person to the list.
+
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The provided field(s) is/are invalid.
+
+    * 1a1. CulinaryContacts shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. Compulsory field(s) is/are missing. 
+
+    * 1b1. CulinaryContacts shows an error message.
+
+      Use case resumes from step 1.
+
+**Use case: UC03 - List all persons**
+
+**MSS**
+
+1. User requests to show all contacts in the list.
+1. CulinaryContacts shows all persons in the list.
+
+   Use case ends.
+
+**Use case: UC04 - Edit a person**
+
+**MSS**
+
+1. User requests to <u>list all persons (UC03)</u>.
+1. User requests to edit the fields of a specific person in the list.
+1. CulinaryContacts edits the fields of the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 2a1. CulinaryContacts shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 2b. The new field value(s) is/are invalid.
+
+    * 2b1. CulinaryContacts shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. No fields to edit are provided.
+
+    * 2c1. CulinaryContacts shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC05 - Find a person**
+
+**MSS**
+
+1. User requests to find all persons with names matching the input keyword(s).
+1. CulinaryContacts shows all persons with matching names.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keywords are provided.
+
+    * 1a1. CulinaryContacts shows an error message.
+
+      Use case resumes from step 1.
+
+**Use case: UC06 - Filter persons by tag**
+
+**MSS**
+
+1. User requests to find all persons with specific tag(s).
+1. CulinaryContacts shows all persons with a matching tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No tags are provided.
+
+    * 1a1. CulinaryContacts shows an error message.
+
+      Use case resumes from step 1.
+
+**Use case: UC07 - Delete a person**
+
+**MSS**
+
+1. User requests to <u>list all persons (UC03)</u>.
+1. User requests to delete a specific person in the list.
+1. CulinaryContacts deletes the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. CulinaryContacts shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC08 - Clear all entries**
+
+**MSS**
+
+1. User requests to clear all entries.
+1. CulinaryContacts asks for confirmation to clear all entries.
+1. User confirms to clear all entries.
+1. CulinaryContacts clears all entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Confirmation is not given.
+
+    * 2a1. CulinaryContacts cancels the clear action.
+
+      Use case ends.
+
+**Use case UC09: Exit program**
+
+**MSS**
+
+1. User requests to exit the program.
+1. CulinaryContacts exits.
+
+   Use case ends.
+
+
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical 
+    usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin 
+   commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. New users should be able to perform basic operations (add, edit, list, delete contacts) with some 
+   guidance from the help documentation.
+1. The product is not required to handle financial or inventory aspects of managing a restaurant.
+1. All text must be at least font size 12 to ensure readability.
+1. Comprehensive documentation, including user guides and developer guides should be updated with each 
+   release.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 

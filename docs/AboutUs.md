@@ -5,57 +5,35 @@
 
 # About Us
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are a team taking the Software Engineering (CS2103T) course offered by [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
 
-### John Doe
+### Tan Zhi Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanzhiheng26.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+email address: `e0957625@u.nus.edu`<br>
+[[github](https://github.com/Tanzhiheng26)]
 
-* Role: Project Advisor
+### Zhu Yicheng
 
-### Jane Doe
+<img src="images/zhuuyicheng.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+email address: `e0957889@u.nus.edu`<br>
+[[github](https://github.com/zhuuyicheng)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Xu Ziqi
 
-* Role: Team Lead
-* Responsibilities: UI
+<img src="images/ziiqii.png" width="200px">
 
-### Johnny Doe
+email address: `e0957458@u.nus.edu`<br>
+[[github](https://github.com/ziiqii)] 
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+### Wong Xu Cheng
 
-* Role: Developer
-* Responsibilities: Data
+<img src="images/ksswsept20.png" width="200px">
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+email address: 'e1075556@u.nus.edu`<br>
+[[github](http://github.com/KSSWSept20)]
