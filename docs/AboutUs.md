@@ -5,50 +5,47 @@ title: "About Us"
 
 # About Us
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are the developer team of event management app Eventy, based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
 
 ### Nigel Lee
 
-<img src="images/apzure.png" width="200px">
+<img src="images/apzure.png" width="200px" height="250px">
 
 [[github](https://github.com/Apzure)]
 
-* Role: Team Lead
+* Roles: Team Lead and Scheduling and Tracking, in charge of Model
 
 ### Han Taeweon
 
-<img src="images/taeewonnn.png" width="200px">
+<img src="images/taeewonnn.png" width="200px" height="250px">
 
 [[github](https://github.com/taeewonnn)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Roles: Documentation, Deliverables and Deadlines, Git Expert
 
 ### Max Yang
 
-<img src="images/myang2020.png" width="200px">
+<img src="images/myang2020.png" width="200px" height="250px">
 
-[[github](https://github.com/myang2020)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/myang2020)] 
 
-* Role: Developer
-* Responsibilities: Data
+* Roles: Testing, in charge of Logic
 
 ### Liu Yifan
 
-<img src="images/nusliuyifan.png" width="200px">
+<img src="images/nusliuyifan.png" width="200px" height="250px">
 
 [[github](https://github.com/nusliuyifan)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Roles: Integration, in charge of Storage
 
-### James Doe
+### Yichao Song
 
-<img src="images/chocoragdoll.png" width="200px">
+<img src="images/chocoragdoll.png" width="200px" height="250px">
 
 [[github](https://github.com/ChocoRagdoll]
 
-* Role: Developer
-* Responsibilities: UI
+* Roles: Code Quality, in charge of UI
+
