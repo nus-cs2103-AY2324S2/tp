@@ -17,7 +17,7 @@ Our app will aim to record employers’ emails, job descriptions and application
 1. Ensure that Java 11 is available on your machine.
 2. Download the jar file from here.
 3. Navigate to the file's location in the shell of your choice.
-4.Run the jar file with the follow command
+4. Run the jar file with the follow command
 ```shell
 java -jar internBook.jar
 ```
