@@ -136,6 +136,45 @@ Format: `deletetask TASK_ID`
 Examples:
 * `listtasks` followed by `deletetask 2` deletes the task with id 2 in TaskMasterPro.
 
+### Assign a task to employee : `assigntask`
+
+Assigns a task object to employee.
+
+Format: `assigntask t/TASK_ID  e/EMPLOYEE_ID`
+
+* Assigns a task object with id `TASK_ID` to an employee with id `EMPLOYEE_ID`.
+
+Examples:
+* `assigntask` followed by `2 3` assigns task object with id 2 to an employee with id 3.
+
+### Mark a task : `mark`
+
+Marks a task as done.
+
+Format: `mark TASK_ID`
+
+* Marks a specified task with id `TASK_ID`.
+
+Examples:
+* `mark` followed by a valid integer `TASK_ID` which corresponds to a real task in the database.
+* `mark 1`
+* `mark 2`
+
+### Unmark a task : `unmark`
+
+Unmarks a task.
+
+Format: `unmark TASK_ID`
+
+* Unmarks a specified task with id `TASK_ID`.
+* task to be unmarked should be marked as done before.
+
+Examples:
+* `unmark` followed by a valid integer `TASK_ID` which corresponds to a real task in the database.
+* `unmark 1`
+* `unmark 2`
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from TaskMasterPro.
