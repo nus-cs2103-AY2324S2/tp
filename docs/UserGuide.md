@@ -21,32 +21,34 @@ It is optimized for a _Command Line Interface_ (CLI), but you can still use the 
 ## Getting Started!
 
 > [!IMPORTANT]
-> Ensure you have Java `11`  installed in your computer. If you do not have it installed, download it from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
+> Ensure you have Java `11`  installed in your computer. If you do not have it installed, download it from [here.](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
 1. Download the latest `internbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Internbook.
+2. Copy the file to the folder you want to use as the _home folder_ for your Internbook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar internbook.jar` command to run the application.<br><br>
+3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar internbook.jar` command to run the application.
+> [!TIP]
+> If you are struggling to figure out the path to `cd` into, you can use the File Explorer in your OS to copy the file path and directly `cd` to that.<br><br>
    
-    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
+  A GUI similar to the one displayed below should appear in a few seconds. Note how the app already contains some sample data.<br><br>
    ![Ui](images/Ui.png)<br><br>
 
-    > [!TIP] 
-   > If you are struggling to figure out the path to ``cd`` into, you can use the File Explorer in your OS to copy the file path and directly ``cd`` to that.
 
-1. Try out a command! <br>
+
+4. Try out a command! <br>
    For instance, typing **`help`** and pressing Enter will open the help window.<br>
  You can also try out the following commands:
 
    * `list` : Lists all contacts.
 
-   * `add Company -e company@gmail.com -n 61234567`: Adds a company contact with name ``Company``, email ``company@gmail.com`` and number ``61234567``
+   * `add Company -e company@gmail.com -n 61234567`: Adds a company contact with name ``Company``, email ``company@gmail.com`` and number ``61234567``.
 
    * `del Company` : Deletes the contact with name ``'Company'``.
 
    * `exit` : Exits the app.<br><br>
 
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
