@@ -302,15 +302,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Assigns a task**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1.  User requests to list of contacts
+2.  TeamTracker shows a list of contacts
+3.  User requests to assign a task to a contact
+4.  TeamTracker assigns the task to the contact
     Use case ends.
 
 **Extensions**
@@ -319,13 +318,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+* 4a. The task given does not exist.
+* 4a1. TeamTracker shows an error message.
+
+  Use case ends.
+
+**Use case: Delete a task**
+
+**MSS**
+
+1. User requests to list tasks
+2. TeamTracker shows a list of tasks
+3. User requests to delete a specific task in the list
+4. TeamTracker deletes the task
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+
 * 3a. The given index is invalid.
+* 3a1. TeamTracker shows an error message.
 
-    * 3a1. AddressBook shows an error message.
+   Use case resumes at step 2.
 
-      Use case resumes at step 2.
+**Use case: Add a task**
 
-*{More to be added}*
+**MSS**
+
+1. User requests to add a task to the list of tasks
+2. TeamTracker adds to the list
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given parameters is invalid.
+* 2a1. TeamTracker shows an error message.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
