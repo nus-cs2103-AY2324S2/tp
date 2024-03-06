@@ -274,29 +274,33 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* **Manages a Substantial Contact Network:** Connectify's target users have a need to manage a significant number of contacts within their professional network.
+* **Prefers Desktop Applications:** These users prefer desktop applications over other types of software solutions.
+* **Proficient Typists:** Connectify's target users are proficient typists who can type quickly and accurately. They prefer typing over mouse interactions.
+* **Comfortable with Command-Line Interfaces (CLI):** While they may not be experts, Connectify's target users are reasonably comfortable using command-line interfaces (CLI) and appreciate the efficiency and control that CLI applications offer.
+* **Value Efficiency and Organization:** Connectify's target users value efficiency and organization in managing their professional contacts.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Tailored specifically for computing students, our team project, Connectify, optimises networking for future career opportunities. Connectify seamlessly organises contact details, efficiently manages professional relationships and simplifies event and meeting planning. Designed for seamless usage via Command Line Interface (CLI), Connectify’s ease of use sets up computing students for success.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​           | I want to …​                                                                                              | So that I can…​                                                                      |
+|----------|-------------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | user              | add a new contact easily                                                                                  |                                                                                      |
+| `* * *`  | user              | edit the details that I’ve added                                                                          | my application will contain the most updated and accurate information                |
+| `* * *`  | user              | list all my contacts                                                                                      | remember whom I’ve met at a glance                                                   |
+| `* * *`  | user              | delete a contact                                                                                          | only keep those that are necessary                                                   |
+| `* *`    | computing student | categorise the people I meet into interns, recruiters, alumni, students, professors, employees and others | remember the people whom I’ve met and easily find them again                         |
+| `* *`    | computing student | search a contact using key word                                                                           | find the contact quickly                                                             |
+| `* *`    | user              | differentiate which companies my professional contacts are from                                           | know which company I am connecting with                                              |
+| `* *`    | computing student | assign priority levels to my contacts                                                                     | prioritise certain contacts in my network who would be more beneficial for my career |
+| `*`      | computing student | filter my contacts by priority                                                                            | identify high-priority contacts at a glance                                          |
+| `*`      | user              | have a "favourites" or "star" feature for important contacts                                              | easily access them without scrolling through the entire list                         |
+| `*`      | user              | know the number of contacts quickly                                                                       | get a sensing of how many people are in my network                                   |
 
-*{More to be added}*
 
 ### Use cases
 
