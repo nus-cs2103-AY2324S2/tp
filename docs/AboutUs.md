@@ -40,15 +40,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Fang Ruoqing
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fangruoqing.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/FangRuoqing)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing
+* Responsibilities: Test
 
 ### James Doe
 
