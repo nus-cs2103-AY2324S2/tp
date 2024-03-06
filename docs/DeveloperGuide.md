@@ -388,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3q1. EstateEase shows an error message regarding the entry of incorrect priority level. <br>
       Use case resumes from step 2.
 
-**Use case: UC00 - Add home-buyer to user’s contact list**
+**Use case: UC02 - Add home-buyer to user’s contact list**
 
 **MSS:**
 
@@ -447,7 +447,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3k1. EstateEase shows an error message regarding the entry of incorrect role. <br>
       Use case resumes from step 2.
 
-**Use case: UC00 - Add more homes to home-seller**
+**Use case: UC03 - Add more homes to home-seller**
 
 **MSS:**
 
@@ -512,7 +512,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3k1. EstateEase shows an error message regarding incorrect format for postal code. <br>
       Use case resumes from step 2.
 
-**Use case: UC00 - Viewing of homes based on home-seller's priority**
+**Use case: UC04 - Viewing of homes based on home-seller's priority**
 
 **Preconditions:**
 - The user initialises a view command with home-seller as a filter
@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. EstateEase shows an error message stating that the contact list does not have home-seller. <br>
       Use case ends.
 
-**Use case: UC02 - View all**
+**Use case: UC05 - View all**
 
 **MSS:**
 
@@ -543,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case ends.
 
-**Use case: UC03 - Delete a person**
+**Use case: UC06 - Delete a person**
 
 **MSS:**
 
@@ -566,7 +566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC04 - Load contact data from file**
+**Use case: UC07 - Load contact data from file**
 
 **Actor: EstateEase**
 
@@ -611,7 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         * 1d3b. EstateEase proceeds to load contact and address data from the newly created JSON file.
           Use case continues from step 2.
 
-**Use case: UC05 - Save to storage**
+**Use case: UC08 - Save to storage**
 
 **Actor: EstateEase**
 
