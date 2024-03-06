@@ -38,7 +38,7 @@ You can reach us at the email `chujie[at]comp.nus.edu.sg`
 
 ### Lee Xin Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xinyuan.png" width="200px">
 
 [[github](http://github.com/agreatdayy)]
 [[portfolio](team/xinyuan.md)]
