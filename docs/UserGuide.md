@@ -4,9 +4,11 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# BandBook User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+BandBook is your all-in-one software designed to streamline the management of band members' contact details and information. It offers a user-friendly platform to **create, edit and delete** members' contact information, along with optional fields such as tag and birthday information.
+
+Moreover, you can **indicate and view** the attendance history of your members, ensuring that they stay on track with the band's activities. Optimised for use via a Command Line Interface (CLI), BandBook can assist you in managing your members' details faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
