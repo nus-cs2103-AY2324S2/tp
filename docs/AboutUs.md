@@ -9,12 +9,12 @@ You can reach us at the email `[insert email]`
 
 ## Project team
 
-### Carsten Joe
+### Carsten Joe Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/carsten.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wyrkx)]
+[[portfolio](team/carsten.md)]
 
 - Role: Team Lead
 - Responsibilities: UI
