@@ -326,7 +326,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Librarian**: Main target user of My Bookshelf (community library manager)
+* **Borrower**: People who borrow books from library that we need to keep track of contact details
+* **Book**: Contains details relating to book lent to the Borrower
+* **Borrow**: Borrower takes a book from the community library
+* **Return**: Borrower gives back the book they borrowed to the community library
 
 --------------------------------------------------------------------------------------------------------------------
 
