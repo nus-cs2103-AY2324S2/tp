@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -67,13 +67,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103T-W09-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,7 +84,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -116,7 +116,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
@@ -139,7 +139,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
@@ -220,7 +220,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone InsureBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
@@ -268,7 +268,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix A: Requirements**
 
 ### Product scope
 
@@ -290,74 +290,255 @@ set reminders for meetups with clients.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                      | I can …​                                                                                                                                                                                       | So that I can…​                                                                                                |
-|----------|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| `* * *`  | insurance agent              | add clients contact details into the address book                                                                                                                                              | I can keep track of my clients                                                                                 |
-| `* * *`  | insurance agent              | delete clients contact details in the address book                                                                                                                                             |                                                                                                                |
-| `* * *`  | insurance agent              | edit details of the contact                                                                                                                                                                    | I can update clients detail                                                                                    |
-| `* * *`  | insurance agent              | search for contact details                                                                                                                                                                     |                                                                                                                |
-| `* *`    | insurance agent              | add clients insurances and policies                                                                                                                                                            | I can keep track of my clients policies and insurances                                                         |
-| `*`      | organised insurance agent    | tag different clients in the contact details as different tiers                                                                                                                                | I can focus on bigger clients, i.e. Clients with higher premium policies will have higher priority over others |
-|          | insurance agent	             | delete clients insurances and policies                                                                                                                                                         |                                                                                                                |
-|          | insurance agent	             | untag clients in contact details                                                                                                                                                               |                                                                                                                |
-|          | insurance agent	             | search for clients with specified policies	I can keep track of who has the specified policies which may have an update                                                                         |                                                                                                                |
-|          | insurance agent	             | edit details of the client's policies and insurances	I can update myself on any changes made when my clients' update their policies                                                            |                                                                                                                |
-|          | experienced insurance agent	 | make notes about my clients	I can remember details about my clients and better connect to them and their needs when we meet up                                                                 |                                                                                                                |
-|          | insurance agent	             | automatically calculate my clients' total coverages	I can easily check if they have any shortfall in coverage                                                                                  |                                                                                                                |
-|          | forgetful insurance agent    | 	add meeting date/time in the address book	I can organise my day and meeting time with the client                                                                                              |                                                                                                                |
-|          | organised insurance agent    | 	form a organisational chart of my clients	I can easily see which of my clients are giving more referrals                                                                                      |                                                                                                                |
-|          | inexperienced tech user      | 	perform actions such as adding and deleting details with ease	I can focus on my work as an agent and not worry about having to troubleshoot technical problems                                |                                                                                                                |
-|          | forgetful insurance agent    | 	set weekly/monthly reminders to set up meetings with particular clients	I won't forget about not setting up meetings with my clients to check on their life updates and review their policies |                                                                                                                |
-|          | organised insurance agent    | 	have todo lists for each of my clients	I can keep track of the things I have to do for each client                                                                                            |                                                                                                                |
-|          | forgetful insurance agent    | 	add deadlines to tasks in my clients' todo list	I can be aware of when these tasks need to be completed                                                                                       |                                                                                                                |
-|          | efficient insurance agent    | 	sort my tasks by deadline	I can quickly see my most urgent tasks at a glance and get them done first                                                                                          |                                                                                                                |
-|          | organised insurance agent    | 	sort my clients by their insurance companies	I can group clients under the same company together and possibly complete overlapping tasks involving the company                                |                                                                                                                |
+| Priority | As a …​                      | I can …​                                                                  | So that I can…​                                                                                                                                    |
+|----------|------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | insurance agent              | add clients contact details into the address book                         | keep track of my clients                                                                                                                           |
+| `* * *`  | insurance agent              | delete clients contact details in the address book                        | remove previous clients                                                                                                                            |
+| `* * *`  | insurance agent              | edit details of the contact                                               | update clients detail                                                                                                                              |
+| `* * *`  | insurance agent              | search for contact details                                                | find client's information                                                                                                                          |
+| `* * *`  | insurance agent              | add clients insurances and policies                                       | keep track of my clients policies and insurances                                                                                                   |
+| `* *`    | new insurance agent          | view all commands                                                         | figure out how to use the application                                                                                                              |
+| `* *`    | organised insurance agent    | tag different clients in the contact details as different tiers           | focus on bigger clients, i.e. Clients with higher premium policies will have higher priority over others                                           |
+| `* * *`  | insurance agent	             | delete clients insurances and policies                                    | remove client's previous policies                                                                                                                  |
+| `*`      | insurance agent	             | untag clients in contact details                                          | organise my list of client's contact                                                                                                               |
+| `* *`    | insurance agent	             | search for clients with specified policies	                               | keep track of who has the specified policies which may have an update                                                                              |
+| `* *`    | insurance agent	             | edit details of the client's policies and insurances	                     | update myself on any changes made when my clients' update their policies                                                                           |
+| `*`      | experienced insurance agent	 | make notes about my clients	                                              | remember details about my clients and better connect to them and their needs when we meet up                                                       |
+| `*`      | insurance agent	             | automatically calculate my clients' total coverages	                      | easily check if they have any shortfall in coverage                                                                                                |
+| `* * *`  | forgetful insurance agent    | 	add meeting date/time in the address book                                | organise my day and meeting time with the client                                                                                                   |
+| `*`      | organised insurance agent    | 	form a organisational chart of my clients	                               | easily see which of my clients are giving more referrals                                                                                           |
+| `* *`    | organised insurance agent    | 	view upcoming meetings in a dashboard	                                   | anticipate and prepare for upcoming meetings                                                                                                       |
+| `* * *`  | forgetful insurance agent    | 	set weekly/monthly reminders to set up meetings with particular clients	 | I won't forget about not setting up meetings with my clients to check on their life updates and review their policies                              |
+| `* * *`  | organised insurance agent    | 	have todo lists for each of my clients	                                  | keep track of the things                                                                                              I have to do for each client |
+| `* * *`  | forgetful insurance agent    | 	add deadlines to tasks in my clients' todo list	                         | be aware of when these tasks need to be completed                                                                                                  |
+| `* *`    | efficient insurance agent    | 	sort my tasks by deadline	                                               | quickly see my most urgent tasks at a glance and get them done first                                                                               |
+| `* *`    | organised insurance agent    | 	sort my clients by their insurance companies	                            | group clients under the same company together and possibly complete overlapping tasks involving the company                                        |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InsureBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - View help**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to see the help.
+2. InsureBook opens up the help window, displaying the command summary.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
+
+**Use case: UC02 - Add a client**
+
+**MSS**
+
+1. User requests to add a new client.
+2. InsureBook adds the new client to the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The provided field(s) is/are invalid.
+
+	* 1a1. InsureBook shows an error message.
+
+	  Use case resumes from step 1.
+
+* 1b. Compulsory field(s) is/are missing.
+
+	* 1b1. InsureBook shows an error message.
+
+	  Use case resumes from step 1.
+  
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
+
+**Use case: UC03 - List all clients**
+
+**MSS**
+
+1. User requests to show all clients in the list.
+2. InsureBook shows all clients in the list.
+
+   Use case ends.
+
+**Extensions**
+
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
+
+**Use case: UC04 - Edit a client**
+
+**MSS**
+
+1. User requests to <u>list all clients</u>(UC03).
+2. InsureBook displays the list of clients.
+3. User requests to edit the fields of a specific client in the list.
+4. InsureBook edits the fields of the client.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+	* 3a1. InsureBook shows an error message.
 
-      Use case resumes at step 2.
+	  Use case resumes at step 3.
 
-*{More to be added}*
+* 3b. The new field value(s) is/are invalid.
+
+	* 3b1. InsureBook shows an error message.
+
+	  Use case resumes at step 3.
+
+* 3c. No fields to edit are provided.
+
+	* 3c1. InsureBook shows an error message.
+
+	  Use case resumes at step 3.
+
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
+
+**Use case: UC05 - Find a client**
+
+**MSS**
+
+1. User requests to find all clients with names matching the input keyword(s).
+2. InsureBook shows all clients with matching names.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keywords are provided.
+
+	* 1a1. InsureBook shows an error message.
+
+	  Use case resumes from step 1.
+
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
+
+**Use case: UC06 - Filter client by tag**
+
+**MSS**
+
+1. User requests to find all clients with specific tag(s).
+2. InsureBook shows all clients with a matching tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No tags are provided.
+
+	* 1a1. InsureBook shows an error message.
+
+	  Use case resumes from step 1.
+
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
+
+**Use case: UC07 - Delete a client**
+
+**MSS**
+
+1. User requests to <u>list all clients</u> (UC03).
+2. User requests to delete a specific client in the list.
+3. InsureBook deletes the clients.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+	* 2a1. InsureBook shows an error message.
+
+	  Use case resumes at step 2.
+
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
+
+**Use case: UC08 - Clear all entries**
+
+**MSS**
+
+1. User requests to clear all entries.
+2. InsureBook asks for confirmation to clear all entries.
+3. User confirms to clear all entries.
+4. InsureBook clears all entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Confirmation is not given.
+
+	* 2a1. InsureBook cancels the clear action.
+
+	  Use case ends.
+
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
+
+**Use case UC09: Exit program**
+
+**MSS**
+
+1. User requests to exit the program.
+2. InsureBook exits.
+
+   Use case ends.
+
+*a. At any time, user inputs an invalid command/syntax.
+
+*a1. InsureBook shows an error message.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should work without internet connection.
+5.	For any command, the system should respond within 2 seconds.
+6.  Should provide comprehensive documentation for users to learn how to use the command-line interface effectively.
+7.  Should provide clear and user-friendly error messages, guiding users on how to rectify issues.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command Line Interface 
+* **GUI**: Graphical User Interface
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix B: Instructions for manual testing**
 
   
 
@@ -401,34 +582,34 @@ testers are expected to do more *exploratory* testing.
   
 
 3.  Exiting the Application (Shutdown)
-	1. Type in "Exit" in the main command bar of the AddressBook.
+	1. Type in "Exit" in the main command bar of the InsureBook.
 	
 	2. Else, manually close the Application
 
   
 
-### Deleting a person
+### Deleting a client
 
   
 
-1. Deleting a person while all persons are being shown
+1. Deleting a client while all clients are being shown
 
-	  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+	  1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
 	  2. Test case: `delete 1`<br>
-		Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+		Expected: First client's contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
 	  3. Test case: `delete 0`<br>
 
-			Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+			Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
 	  4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
 		Expected: Similar to previous.
 
   
 
-2.  Deleting a person from an empty AddressBook
-	1. Prerequisites: List all persons using the `list` command. The list should be empty.
+2.  Deleting a client from an empty InsureBook
+	1. Prerequisites: List all clients using the `list` command. The list should be empty.
 	
 	2. Test case: `delete x`
 		
@@ -443,8 +624,8 @@ testers are expected to do more *exploratory* testing.
 
 	  1.  Stimulating a corrupted/missing data file
 		  1. Close the application if it's running.
-		  2. Navigate to the file containing the data of the AddressBook which is located in `/data/addressbook.json`
+		  2. Navigate to the file containing the data of the InsureBook which is located in `/data/addressbook.json`
 		  3. Delete or rename this json file and this will corrupt it
 		  4. Exit and relaunch the application
 			  
-			  Expected: The application should detect that the data file is missing and the whole addressbook would be empty, and the commands will still be working in the empty AddressBook without any crashes. This ensures that the application can still be used even if the data file gets deleted.
+			  Expected: The application should detect that the data file is missing and the whole InsureBook would be empty, and the commands will still be working in the empty InsureBook without any crashes. This ensures that the application can still be used even if the data file gets deleted.
