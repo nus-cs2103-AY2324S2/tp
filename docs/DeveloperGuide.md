@@ -353,8 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Teaching Assistant (TA)**: A student-tutor hired by NUS. TAs are responsible for conducting tutorial lessons and assist in the students' learning whenever required.
 
 --------------------------------------------------------------------------------------------------------------------
 
