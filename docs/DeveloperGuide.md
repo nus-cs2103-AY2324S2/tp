@@ -326,6 +326,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+    
+
 **Use case: UC01 - Add an article**
 
 **MSS**
@@ -338,9 +340,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Command was invalid.
-    *1a1. PressPlanner shows an error message.
-     
-     Use case ends
+  * 1a1. PressPlanner shows an error message.
+    
+    Use case ends.
+
+
 
 **Use case: UC02 - List all articles**
 
@@ -348,12 +352,76 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list articles
 2. PressPlanner lists out all articles
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-    1a1. PressPlanner returns an error message.
+  * 1a1. PressPlanner returns an error message.
+
+    Use case ends.
+
+
+
+**Use case: UC03 - Edit an article**
+
+**MSS**
+
+1. User requests to list articles
+1. PressPlanner shows a list of articles
+1. User requests to edit a specific article in the list
+   by providing at least one change to an attribute of the article
+1. PressPlanner updates the article with the changes requested
+1. PressPlanner shows the updated article to user
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. No changes to an attribute of the article is specified.
+
+    * 3b1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: UC04 - Delete an article**
+
+**MSS**
+
+1. User requests to list articles
+1. PressPlanner shows a list of articles
+1. User requests to delete a specific article in the list
+1. PressPlanner deletes the article 
+1. PressPlanner shows delete success message to user
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. A find command is used to find articles with given keywords.
+
+    * 2a1. PressPlanner displays a filtered list of articles found.
+
+      Use case resumes at step 2.
+
+* 3a. The given index is invalid.
+
+    * 3a1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
+
+    
+
+
+
 
 *{More to be added}*
 
