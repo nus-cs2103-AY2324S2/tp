@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Isaac Ong 
+### Isaac Ong
 
 <img src="images/cocoanautz.png" width="200px">
 
