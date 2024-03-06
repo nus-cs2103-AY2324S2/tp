@@ -21,11 +21,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Chong Chin Herng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chin-herng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/chin-herng)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
