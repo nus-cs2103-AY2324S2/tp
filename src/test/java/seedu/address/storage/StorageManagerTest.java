@@ -2,9 +2,11 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.model.util.SampleDataUtil.getSampleAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,6 +65,24 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void readInitialAddressBook_noDataFile_sampleAddressBook() {
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(Paths.get("unavailable"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
+        assertEquals(getSampleAddressBook(), retrieved);
+    }
+
+    @Test
+    public void readInitialAddressBook_corruptedDataFile_emptyAddressBook() {
+        // Only testable if allowed to change file permissions.
+        if (getTempFilePath("ab").toFile().setReadable(false)) {
+            ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
+            assertEquals(new AddressBook(), new AddressBook(retrieved));
+        }
     }
 
 }

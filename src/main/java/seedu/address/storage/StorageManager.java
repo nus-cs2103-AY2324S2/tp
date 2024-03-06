@@ -11,11 +11,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-<<<<<<< Updated upstream
 import seedu.address.model.util.SampleDataUtil;
-=======
 import seedu.address.storage.exceptions.StorageException;
->>>>>>> Stashed changes
 
 /**
  * Manages storage of AddressBook data in local storage.
