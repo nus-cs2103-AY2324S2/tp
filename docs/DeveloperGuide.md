@@ -274,58 +274,88 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* logistic managers
+* has a need to manage a significant number of POCs & assets
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* manage contacts & assets faster than a typical mouse/GUI driven app
+* easily search for information by any category
+* easily copy contact information to clipboard
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​ | So that I can…​ |
+|---|---|---|---|
+| `* * *` | user | add new contacts and assets | keep track of these details |
+| `* * *` | user | add tags to contacts | categorize them according to my preferences and workflow |
+| `* * *` | user | delete contacts | update the list if a PoC’s details are no longer needed |
+| `* * *` | user | edit contacts/tags | change details without recreating contacts, as there are too many details to re-add |
+| `* * *` | user | easily view my existing contacts from the GUI | visually find the contacts I'm looking for |
+| `* * *` | user | easily navigate between sponsors, assets, and PoCs | access relevant information quickly |
+| `* * *` | user | search contacts by name, asset, or tag | easily find the relevant PoC |
+| `* *` | new user | view a drop-down suggestion of commands | efficiently navigate and utilize the app without extensive prior knowledge |
+| `* *` | user | see no advertisements | not be distracted from my tasks |
+| `* *` | user | add secondary personnel associated with an asset | have a backup contact if the main person is unreachable |
+| `* *` | user | toggle between light/dark theme | customize the app to my preferences |
+| `* *` | user | resize the app’s window | easily use multiple apps at once |
+| `* *` | user | change the profile picture of each contact | easily identify them |
+| `* *` | user | easily search within the system even if I mistype a few words | more easily locate relevant information |
+| `* *` | hurried user | type commands even with extra whitespaces | won’t have to waste time retyping commands |
+| `* *` | advanced user | type shorter commands | type commands faster |
+| `* *` | advanced user | use keyboard shortcuts | use the app more efficiently |
+| `*` | advanced user | add custom fields | add more information to contacts |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `AssetBook-3 (AB3)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
-
+**Use case: UC1 - Add a contact**
 **MSS**
+1. User requests to add a contact.
+2. User specifies details of the contact.
+3. AB3 adds the contact.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+Use case ends.
 
-    Use case ends.
+
+**Use case: UC2 - Add an asset**
+**MSS**
+1. User requests to add an asset.
+2. User specifies details of the asset.
+3. AB3 adds the asset.
+
+Use case ends.
+
+
+**Use case: UC3 - Assign assets to a contact**
+**MSS**
+1. User requests to assign an asset to the contact.
+2. User specifies the contact.
+3. User specifies the asset.
+4. AB3 assigns the asset to the contact.
+
+Steps 1-4 are repeated until all the assets are assigned to the contact.
+Use case ends.
 
 **Extensions**
+* 2a. Contact was not created.
+    * 2a1. User exits assign request.
+    * 2a2. User creates the contact (UC1).
+    Use case resumes from step 1.
+* 3a. Asset was not created.
+    * 3a1. User exits assign request.
+    * 3a2. User creates the asset (UC2).
+    Use case resumes from step 1.
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
