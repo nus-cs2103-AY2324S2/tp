@@ -2,13 +2,34 @@
 [![codecov](https://codecov.io/gh/AY2324S2-CS2103-F09-2/tp/graph/badge.svg?token=AX3SGG0FMX)](https://codecov.io/gh/AY2324S2-CS2103-F09-2/tp)  
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+**PatientSync is a desktop application meticulously crafted for nurses who prioritize the well-being of their patients above all else.**  
+It allows you to input intimate details about your patients, such as food preferences and family conditions. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+
+## User Profile
+
+**Target Users:** Nurses in a hospital setting
+
+**Key Challenges:**
+- Managing diverse patient needs and preferences.
+- Providing personalized care while juggling a busy schedule.
+- Ensuring accurate and up-to-date patient information is readily accessible.
+
+
+## Value Proposition
+
+**PatientSync** is meticulously crafted for nurses who prioritize the well-being of their patients above all else. It allows nurses to input intimate details about their patients, such as food preferences and family conditions. This personalized approach enables nurses to deliver tailored care that meets the unique needs of each individual.
+
+
+|      Project Links      |                            Description                            |
+|-------------------------|------------------------------------------------------------------|
+| [Project Website](https://ay2324s2-cs2103-f09-2.github.io/tp/) | Official website for the PatientSync desktop application.       |
+| [User Guide](UserGuide.html#quick-start)               | Quick Start guide for users interested in using PatientSync.    |
+| [Developer Guide](DeveloperGuide.html)                 | Comprehensive guide for developers interested in contributing to PatientSync. |
+| [About Us](AboutUs.html)                              | Learn more about the team behind the PatientSync project.        |
+
+
+**Acknowledgements**  
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+
