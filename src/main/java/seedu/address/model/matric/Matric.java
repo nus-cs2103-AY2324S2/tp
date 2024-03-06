@@ -20,8 +20,16 @@ public class Matric {
      */
     public Matric(String matricNumber) {
         requireNonNull(matricNumber);
-        checkArgument(isValidMatric(matricNumber), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidConstructorParam(matricNumber), MESSAGE_CONSTRAINTS);
         this.matricNumber = matricNumber;
+    }
+
+    public static boolean isValidConstructorParam(String matricNumber) {
+        return isValidMatric(matricNumber) || isEmptyMatric(matricNumber);
+    }
+
+    private static boolean isEmptyMatric(String matricNumber) {
+        return matricNumber.isBlank();
     }
 
     /**
@@ -29,7 +37,7 @@ public class Matric {
      * @param test String to be tested
      * @return true if the string is a valid matriculation number
      */
-    public static boolean isValidMatric(String test) {
+    private static boolean isValidMatric(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -55,7 +63,7 @@ public class Matric {
      * @return String representation of the matriculation number
      */
     public String toString() {
-        return matricNumber;
+        return isEmptyMatric(matricNumber) ? "No matriculation number" : matricNumber;
     }
 
 }

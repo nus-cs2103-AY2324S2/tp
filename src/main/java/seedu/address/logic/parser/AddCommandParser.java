@@ -38,22 +38,33 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MATRIC_NUMBER);
 
         if (!arePrefixesPresent(
-                argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MATRIC_NUMBER)
+                argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        argMultimap.verifyNoDuplicatePrefixesFor(
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_MATRIC_NUMBER);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Matric matric = ParserUtil.parseMatric(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get());
+        
+        Matric matric = handleOptionalMatric(argMultimap);
 
         Person person = new Person(name, phone, email, address, tagList, matric);
 
         return new AddCommand(person);
+    }
+
+    private static Matric handleOptionalMatric(ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_MATRIC_NUMBER)) {
+            return ParserUtil.parseMatric("");
+        } else {
+            return ParserUtil.parseMatric(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get());
+        }
     }
 
     /**
