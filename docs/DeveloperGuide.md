@@ -335,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  Should respond within one seconds.
 5.  Documentation should be easy for users that are inexperienced in command line to follow.
 6.  User Interface should be straightforward and inutitive to navigate even for first-time users.
-7.  System should be able to store more than 10,000 tasks.
+7.  Should be able to store more than 10,000 tasks.
 8.  Should lose no more than 1-action worth of work in case of an app crash.
 9.  Should work without internet access.
 
