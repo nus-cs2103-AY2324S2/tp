@@ -40,8 +40,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Yong Li An
 
-<img src="![DSCF9956online](https://github.com/wolffe88/tp/assets/38790326/c5e4ab24-d644-4897-ab0c-47782b417649)
-" width="200px">
+<img src="images/wolffe88.png" width="200px">
 
 [[github](http://github.com/wolffe88)]
 [[portfolio](team/johndoe.md)]
