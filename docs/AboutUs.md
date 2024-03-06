@@ -3,9 +3,9 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+<!-- @format -->
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## ClickConnect
 
@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/dillontkh)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: Overall project coordination.
+- Role: Team Lead
+- Responsibilities: Overall project coordination.
 
 ### Baskar Gopinath
 
@@ -26,18 +26,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities:
+- Role: Developer
+- Responsibilities:
 
 ### Ng Wei Han, Ryan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryanngwh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ryanngwh)]
+[[linkedin](https://www.linkedin.com/in/ryan-ngwh)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities:
+- Role: Testing Lead
+- Responsible for the quality and timeliness of the project testing.
 
 ### Chee Jing Jie
 
@@ -46,9 +47,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities:
-
+- Role: Developer
+- Responsibilities:
 
 ### Tay Rui-Jie
 
@@ -58,5 +58,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[linkedin](https://www.linkedin.com/in/tayruijie/)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities:
+- Role: Developer
+- Responsibilities:
