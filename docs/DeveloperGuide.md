@@ -274,19 +274,14 @@ _{Explain here how the data archiving feature will be implemented}_
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-As a , I want to record the phone number of the borrower so that I can 
-As a community library manager, I want to record the email address of the borrower so that I can send an email reminders to notify them that someone else is looking for the book
-As a community library manager, I want to record the postal address of the borrower so that I can send a warning letter when breach community guidelines
-As a community library manager, I want to record the title of the book so that I can know which book they are borrowing
-As a community library manager, I want to record the date the borrower borrowed the book so that I can calculate when they need to return the book by
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | community library manager                  | record the phone number of the borrower         | send SMS reminders to notify them that someone else is looking for the book|
-| `* * *`  | community library manager                  | add a new person               |                                                                        |
-| `* * *`  | community library manager                  | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | community library manager                  | find a person by name          | locate details of persons without having to go through the entire list |
-| `* * *`  | community library manager                  | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| Priority | As a …​                      | I want to …​                                      | So that I can…​                                                                   |
+| -------- | --------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------- |
+| `* * *`  | community library manager   | record the phone number of the borrower          | send SMS reminders to notify them that someone else is looking for the book      |
+| `* * *`  | community library manager   | record the email address of the borrower         | send an email reminders to notify them that someone else is looking for the book |
+| `* * *`  | community library manager   | record the postal address of the borrower        | send a warning letter when breach community guidelines                           |
+| `* * *`  | community library manager   | record the title of the book                     | know which book they are borrowing                                               |
+| `* * *`  | community library manager   | record the date the borrower borrowed the book   | calculate when they need to return the book                                      |
 
 *{More to be added}*
 
