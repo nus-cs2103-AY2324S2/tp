@@ -15,17 +15,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/biinnnggggg)]
 
-* Role: -
-* Responsibilities: -
-
+* Roles: Documentation, In charge of `Logic`
+* Responsibilities: looks after quality of various project documents, diagrams and the `Logic` component
 ### Jonathan Chong
 
 <img src="images/jonchong98.png" width="200px">
 
 [[github](http://github.com/jonchong98)]
 
-* Role: -
-* Responsibilities: -
+* Roles: User Interface design and implementation
+* Responsibilities: creating UI mockups and implementing design into product
+
 
 ### Darylgolden
 
@@ -33,8 +33,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/darylgolden)]
 
-* Role: -
-* Responsibilities: -
+* Roles: Git expert, Testing, Integration
+* Responsibilities: helps other team member with Git matters, ensures
+  the testing of the project is timely and done properly, In charge of
+  versioning of the code, maintaining the code repository, integrating
+  various parts of the software to create a whole.
 
 ### Aidan Goh
 
@@ -42,8 +45,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/TopKec)]
 
-* Role: -
-* Responsibilities: -
+* Role: Code Quality, In charge of `Model` package
+* Responsibilities: looks after code quality, ensures adherence to coding
+standards, etc., looks after quality of `Model` package
 
 ### Tan Qin Yong
 
@@ -51,5 +55,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/tanqinyong)]
 
-* Role: -
-* Responsibilities: -
+* Role:  Scheduling and Tracking
+* Responsibilities: in charge of defining, assigning and tracking of tasks
