@@ -21,3 +21,6 @@ _site/
 .vscode/
 .idea/*
 *.iml
+
+# Java class files
+.class
