@@ -212,5 +212,11 @@ Action | Format, Examples
 **Add task** | `task TASK_DESCRIPTION` <br> e.g., `task Weekly meeting`
 **List tasks** | `listtasks`
 **Delete task** | `deletetask TASK_ID`<br> e.g., `deletetask 3`
+**Assign employee to a task** | `assigntask t/TASK_ID  e/EMPLOYEE_ID` <br> e.g., `assigntask t/1 e/2`
+**Remove employee froma  task** | `removetask t/ TASK_ID e/EMPLOYEE_ID` <br> e.g., `removetask t/1 e/1`
+**List all tasks and employees assigned to them** | `listassignments`
+**Mark a task as completed** | `mark TASK_ID` <br> e.g, `mark 1`
+**Mark a task as not completed** | `unmark TASK_ID` <br> e.g, `unmark 1`
 **Clear** | `clear`
+**Save the current state** | `save`
 **Help** | `help`
