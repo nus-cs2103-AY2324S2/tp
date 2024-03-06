@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/whitesnowx.png" width="200px">
 
 [[github](https://github.com/whitesnowx)]
-[[portfolio](team/calistawong)]
+[[portfolio](team/whitesnowx)]
 
 * Role: Developer
 * Responsibilities: Documentation and organisation
@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jerry Wang
 
-<img src="images/jerrywang0000.jpg" width="200px">
+<img src="images/jerrywang0000.png" width="200px">
 
 [[github](http://github.com/JerryWang0000)]
-[[portfolio](team/jerrywang)]
+[[portfolio](team/jerrywang0000)]
 
 * Role: Backend Developer
 * Responsibilities: Development of Functionalities
