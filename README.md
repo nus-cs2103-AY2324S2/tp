@@ -22,14 +22,14 @@ The project simulates an ongoing software project for a desktop application (cal
 * It provides a reasonably well-written code base bigger (around 6 KLoC)
 * It comes with a reasonable level of user and developer documentation.
 
-This project is based on the AddressBook Level-3 project and is a part of the [se-education.org](https://se-education.org/addressbook-level3) initiative
+This project is based on the AddressBook Level-3 project and is a part of the [se-education.org](https://se-education.org/addressbook-level3) initiative.
 
 # Features
 
 ## Customer Feature
 
 ### 1. Add Customer
-Adds a customer to the customer's storage
+Adds a customer to the customer's storage.
 
 Example: `add <customer name>`
 
@@ -39,7 +39,7 @@ Successfully added <customer name> to your list!
 ```
 
 ### 2. Delete Customer
-Delete selected customer from the customer's storage
+Delete selected customer from the customer's storage.
 
 Example: `delete <customer name>`
 
@@ -50,7 +50,7 @@ Successfully removed <customer name> from the list
 
 ### 3. Edit Customer
 Edit selected customer information by adding more information such as Age, Phone Number, Past purchased record, 
-Birthday, Address
+Birthday, Address.
 
 Example: `edit <customer name>`
 
@@ -60,7 +60,7 @@ Successfully edit <customer name> information
 ```
 
 ### 4. VIP Customer
-Indicating that this specific customer is important
+Indicating that this specific customer is important.
 
 Example: `vip <customer name>`
 
@@ -72,7 +72,7 @@ Successfully set <customer name> as VIP
 ## Order Feature
 
 ### 1. Add Order
-Adds a order into the order's storage, together with the customer name
+Adds a order into the order's storage, together with the customer name.
 
 Example: `add <customer name, order, due date>`
 
@@ -82,7 +82,7 @@ An order has been added for <customer name>
 ```
 
 ### 2. Delete Order
-Delete order of the specific customer
+Delete order of the specific customer.
 
 Example: `delete <customer name, order>`
 
@@ -92,7 +92,7 @@ Expected output:
 ```
 
 ### 3. Edit Order
-Edit the customer's order
+Edit the customer's order.
 
 Example: `edit <customer name, old order, new order>`
 
@@ -102,7 +102,7 @@ Successfully edit <customer name> order
 ```
 
 ### 4. Prioritize Order
-Prioritize the customer' order
+Prioritize the customer' order.
 
 Example: `prioritize <customer name, order>`
 
@@ -114,7 +114,7 @@ Successfully prioritized <customer name, order>
 ## Viewing Feature
 
 ### 1. View Customer Detail
-View customer information, such as Name, Age, Phone Number, Past purchase record, Birthday, Address
+View customer information, such as Name, Age, Phone Number, Past purchase record, Birthday, Address.
 
 Example: `view <customer name>`
 
@@ -125,7 +125,7 @@ Tan Qing Yong info : [...]
 ```
 
 ### 2. View Order Detail
-View Order information, such as order by when, who order, quantity
+View Order information, such as order by when, who order, quantity.
 
 Example: `view <order>`
 
@@ -138,7 +138,7 @@ Frog Crochet:
 ```
 
 ### 3. View Statistics
-Show how many orders has been completed
+Show how many orders has been completed.
 
 Example: `stat`
 
@@ -148,7 +148,7 @@ Expected output:
 ```
 
 ### 4. View Ranking
-View which crochet sell the best and total sell quantity
+View which crochet sell the best and total sell quantity.
 
 Example: `view ranking`
 
@@ -161,7 +161,7 @@ Top 1: Frog Crochet, total sold of <quantity>
 ## Sorting Feature
 
 ### 1. Sort Order by Date
-Sort when the order is due based on the date (excluding prioritize order)
+Sort when the order is due based on the date (excluding prioritize order).
 
 Example: `sort orderdate`
 
@@ -173,7 +173,7 @@ Expected output:
 ```
 
 ### 2. Sort Order by order type
-Sort depending on what kind of order
+Sort depending on what kind of order.
 
 Example: `sort ordertype`
 
@@ -186,7 +186,7 @@ Frog Crochet:
 ```
 
 ### 3. Sort Customer name by alphabetical order
-sort the customer list
+sort the customer list.
 
 Example: `sort customer`
 
@@ -200,10 +200,10 @@ Expected output:
 ## Notification/ Reminder/ Deadline/ Progress Tracker
 
 ### 1. Deadline approaching soon for an order (within a week)
-Send notification when order is due within a week
+Send notification when order is due within a week.
 
 ### 2. Progress Bar
-Show how many order left to be done
+Show how many order left to be done.
 
 Example: `progress`
 
@@ -217,7 +217,7 @@ Pending <Quantity>"
 ## Usage Help
 
 ### 1. Autocomplete
-Show all possible next commands based on currently keyed in values
+Show all possible next commands based on currently keyed in values.
 
 Expected output:
 ```
@@ -225,7 +225,7 @@ Expected output:
 ```
 
 ### 2. User manual
-Shows a list of commands that can be used
+Shows a list of commands that can be used.
 
 Example: `help`
 
