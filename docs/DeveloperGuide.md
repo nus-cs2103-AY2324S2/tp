@@ -268,7 +268,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage employee information more efficiently and clearly than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -288,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PayBack` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -313,15 +313,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Edit an employee**
+
+**MSS**
+
+1.  User requests to edit an employee's information
+2.  User enters the employee's ID and fields that need to be updated
+3.  PayBack changes the employee's information accordingly
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The ID is invalid.
+  * 2a1. PayBack shows an error message.
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The system should provide real-time access to employee information with response times not exceeding 2 seconds for any query.
+5.  The app should have an intuitive user interface, allowing users to easily navigate and perform tasks without extensive training.
 
 ### Glossary
 
