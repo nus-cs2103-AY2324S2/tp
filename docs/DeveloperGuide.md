@@ -339,10 +339,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4. Should operate without the need for internet access to fulfill its core purpose.
+5. Should be designed to be usable by a person new to patient management without extensive training.
+6. Should provide clear, comprehensive error messages in plain language, guiding users on how to recover from errors due to incorrect inputs. 
+7. Should offer comprehensive, well-organized user documentation that guides users on how to effectively use PatientSync.
+8. Should provide detailed developer documentation for those looking to enhance, customize, or develop extensions. 
 
 ### Glossary
 
