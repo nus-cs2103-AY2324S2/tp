@@ -337,6 +337,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Extensions**
+
 * 1a. Command was invalid.
   * 1a1. PressPlanner shows an error message.
     
