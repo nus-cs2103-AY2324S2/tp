@@ -19,8 +19,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/darkvoid32)]
 [[portfolio](team/darkvoid32.md)]
 
-* Roles: Developer & Tester
-* Responsibilities: Full-stack development and writing tests.
+* Roles: UI & UX Expert
+* Responsibilities: Designs and implements frontend for the application, and 
+maintains user documentation.
 
 ### Leong Heng Yew
 
@@ -29,8 +30,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/aureliony)]
 [[portfolio](team/aureliony.md)]
 
-* Roles: Java Expert
-* Responsibilities: Helps other team members with matters related to the Java programming language.
+* Roles: Git & Integration Expert
+* Responsibilities: Defines and assigns technical project tasks. In charge of 
+versioning, maintaining the code, and vets all changes to the code.
 
 ### Yee Jun Hyeok Bryan
 
@@ -39,8 +41,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/bryanyee33)]
 [[portfolio](team/bryanyee33.md)]
 
-* Roles: UI & UX expert
-* Responsibilities: Manages things related to the UI & UX such as JavaFX and design.
+* Roles: Backend Expert
+* Responsibilities: In charge of backend implementation and associated technical
+documentation.
 
 ### Muhammad Rizki Bayuaji
 
@@ -49,9 +52,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/rizkidelta)]
 [[portfolio](team/rizkidelta.md)]
 
-* Roles: Developer & Designer
-* Responsibilities: Full-stack development and designing UI mockups or other components 
-that are used in the application.
+* Roles: UI & UX Expert
+* Responsibilities: Designs and implements frontend for the application, and
+maintains user documentation.
 
 ### Guk Yi Siong
 
@@ -60,8 +63,8 @@ that are used in the application.
 [[github](http://github.com/yisiox)]
 [[portfolio](team/yisiox.md)]
 
-* Role: Developer & Taskmaster
-* Responsibilities: Full-stack development and documentation.
-In charge of defining, assigning, and tracking project tasks.
+* Role: Taskmaster & QA Expert
+* Responsibilities: In charge of overall coordination, tracking deadlines and 
+deliverables, testing of code, and ensuring code and documentation quality.
 
 
