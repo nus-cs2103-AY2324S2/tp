@@ -75,15 +75,15 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a contact: `add`
 
-Adds a person to the address book.
+Adds a contact to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GITHUB_LINK [t/TAG] [ts/TECH_STACK]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags and tech stack (including 0)
+**Tip:** A contact can have any number of tags and tech stack (including 0)
 </box>
 
 Examples:
