@@ -337,8 +337,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Command was invalid.
-    *2a1. PressPlanner shows an error message.
+* 1a. Command was invalid.
+    *1a1. PressPlanner shows an error message.
      
      Use case ends
 
@@ -352,8 +352,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
-  2a1. PressPlanner returns an error message.
+* 1a. The list is empty.
+    1a1. PressPlanner returns an error message.
 
 *{More to be added}*
 
