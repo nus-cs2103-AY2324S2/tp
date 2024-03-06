@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sindhura Rajiv Jain
 
-<img src="images/sindhura.png" width="200px">
+<img src="images/sindhurajain.png" width="200px">
 
 [[github](https://github.com/sindhurajain)]
 [[portfolio](team/johndoe.md)]
