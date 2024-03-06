@@ -374,6 +374,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2/4.
 
+**Use case: Mark/unmark a task as done/not done**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TaskMasterPro shows a list of tasks with their ids
+3.  User requests to mark/unmark a specific task in the list by their id as done/not done
+4.  TaskMasterPro marks/unmarks that task as done/not done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given id is invalid.
+
+    * 3a1. TaskMasterPro shows an error message.
+
+      Use case resumes at step 2.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
