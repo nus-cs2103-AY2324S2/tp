@@ -66,11 +66,21 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message of how to write commands for all commands or a specfic command.
 
-![help message](images/helpMessage.png)
-
+### Get help for all commands
 Format: `help`
+
+### Get help for a specific command
+Format: `help ; command : [command type]`
+
+Examples:
+* `/help ; command : pooch-staff`
+* `/help ; command : pooch-supplier`
+* `/help ; command : pooch-maintenance`
+* `/help ; command : delete`
+* `/help ; command : edit`
+* `/help ; command : search`
 
 
 ### Adding a contact: `Add`
@@ -80,7 +90,7 @@ Adds a staff / supplier / helper to the address book.
 #### Adds a staff
 Format: `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full] ;`
 
-#### Adds a supplier 
+#### Adds a supplier
 Format: `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price] ;`
 
 #### Adds a helper
@@ -91,7 +101,7 @@ Examples:
 * `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag ;`
 * `/pooch-maintenance ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr ;`
 
-Constaints :
+Constraints :
 * `Duplicate name will not be allowed`
 * `For instance, to check whether a name is unique (case-insensitive), we parse in the .lower() String method to convert all fields to lowercase.`
 * `Name field is case-insensitive but space-sensitive`
@@ -104,15 +114,15 @@ Format: `/edit ; name : [NAME] ; field { [FIELD] : [VALUE] }`
 
 * Edits the specified `field`(s) of the person with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
 * The name is a compulsory field that is case-insensitive but space-sensitive.
-* At least one field must be provided. 
+* At least one field must be provided.
 * More than one field can be updated at the same time.
 * The field(s) to be edited must be a valid field within their contact type, i.e. Pooch Staff, Pooch Supplier, Pooch Maintenance).
-* **_Caution_** : Editing `name` field to another name that already exists in Pooch Contact Book is strictly **not** allowed. 
+* **_Caution_** : Editing `name` field to another name that already exists in Pooch Contact Book is strictly **not** allowed.
 
-Examples: 
+Examples:
 * `edit ; name : Poochie ; field : { name : Mochie }`
-  
-  The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book. 
+
+  The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book.
 
 * `edit ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
