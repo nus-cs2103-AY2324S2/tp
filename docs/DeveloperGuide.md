@@ -320,13 +320,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* prefers typing over mouse interactions (i.e. should be able to type fast)
 * is reasonably comfortable using CLI apps
+* has many clients to manage, with each of them having different requirements
+* is a freelance photographer
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: The target user is communicating with many clients, who all have different project requirements
+and deadlines. Having some task management capabilities could be beneficial to them. For example, each contact have
+tasks with deadlines, meetings, and other relevant info tagged to them.
 
 ### User stories
 
