@@ -296,6 +296,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Actor**: `User`
 
+**Guarantee**: `If MSS reach step 3, a new contact is added into list`
+
 **MSS**:
 
 1.  User requests to add contact of a person.
@@ -319,12 +321,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1b2. User re-enters the correct command with another name.
    * Steps 1b1 - 1b2 are repeated until there is no duplicate entry in input.
    * Use case resumes from step 2. 
+
+* 1c. PoochPlanner detects wrong format for email.
+
+   * 1c1. PoochPlanner displays the error message.
+   * 1c2. User re-enters the correct email format.
+   * Steps 1c1 - 1c2 are repeated until there is no error in input.
+   * Use case resumes from step 2.
+
+* 1d. PoochPlanner detect unknown input for employment.
+
+  * 1d1. PoochPlanner displays the error message.
+  * 1d2. User re-enters the correct input for employment.
+  * Steps 1d1 - 1d2 are repeated until there is no error in input.
+  * Use case resumes from step 2.
+
 ---
 **System**: `PoochPlanner`
 
 **Use case**: `UC02 - Delete Contact of a Person`
 
 **Actor**: `User`
+
+**Guarantee**: `If MSS reach step 3, a contact is deleted from list`
 
 **MSS**:
 
@@ -349,12 +368,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1b2. User re-enters a new command with another name.
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
    * Use case resumes from step 2. 
+
 ---
 **System**: `PoochPlanner`
 
 **Use case**: `UC03 - Edit Contact of a Person`
 
 **Actor**: `User`
+
+**Guarantee**: `If MSS reach step 3, a contact is edited successfully in the list`
 
 **MSS**:
 
@@ -383,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. User requests to edit the name field to a name that already exists in PoochPlanner.
 
    * 1c1. PoochPlanner displays the error message.
-   * 1c2. User re-enters the command with a diferent name.
+   * 1c2. User re-enters the command with a different name.
    * Steps 1c1 - 1c2 are repeated until the new name field is valid.
    * Use case resumes from step 2. 
 
@@ -400,6 +422,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1e2. User re-enters the command and edits a different field.
    * Steps 1e1 - 1e2 are repeated until there exist a valid field in the input.
    * Use case resumes from step 2. 
+
+* 1f. PoochPlanner detects wrong format for email.
+
+    * 1f1. PoochPlanner displays the error message.
+    * 1f2. User re-enters the correct email format.
+    * Steps 1f1 - 1f2 are repeated until there is no error in input.
+    * Use case resumes from step 2.
+
 ---
 **System**: `PoochPlanner`
 
@@ -437,6 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1c2. User re-enters a new command with another field.
    * Steps 1c1 - 1c2 are repeated until a valid field is inputted by the User.
    * Use case resumes from step 2. 
+
 ---
 **System**: `PoochPlanner`
 
@@ -459,6 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a2. User re-enters the command and request to learn about a valid command.
    * Steps 1a1 - 1a2 are repeated until a valid command is inputted by the User.
    * Use case resumes from step 2. 
+
 ---
 *{More to be added}*
 
@@ -467,13 +499,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  All code snippets presented in the developer guides shall follow a consistent coding style and formatting, adhering to the company's coding standards and best practices.
+5.  The developer guides shall undergo regular content audits, with outdated or deprecated information flagged for removal or revision, and new features or updates documented within one week of release.
+6.  The system should respond within 2 seconds.
+7.  The data should store locally and not accessible from other device for privacy issue.
+8.  The project is expected to adhere to schedule closely to deliver new feature.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **PoochPlanner**: An address book CLI software that stores contacts.
+* **PoochContact**: A contact that is stored in PoochPlanner.
 
 --------------------------------------------------------------------------------------------------------------------
 
