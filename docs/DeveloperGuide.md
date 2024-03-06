@@ -288,16 +288,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorRev` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
+2.  TutorRec shows a list of students
+3.  User requests to delete a specific student in the list
+4.  TutorRec deletes the student
 
     Use case ends.
 
@@ -309,9 +309,237 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorRec shows an error message.
 
       Use case resumes at step 2.
+
+
+**Use case: Viewing appointments**
+
+**MSS**
+
+1. User requests to view current appointments for the day
+2. TutorRec shows a list of appointments for the day
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+    Use case ends.
+
+* 1b. User inputs an invalid day format as an input
+    
+    * 1b1. TutorRec shows an error message
+
+    Use case ends
+
+
+**Use case: Sorting students**
+
+**MSS**
+
+1. User requests to view students of a particular category
+2. TutorRec shows a filtered list containing only students with this category
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+    Use case ends.
+
+* 1b. The given category does not have any students assigned to it
+
+    * 1b1. TutorRec shows an empty list
+
+    Use case ends.
+
+* 1c. User inputs an invalid category
+    
+    * 1c1. TutorRec shows an error message
+
+    Use case ends.
+
+
+**Use case: Editing a student's details**
+
+**MSS**
+
+1. User requests to list students
+2. TutorRec displays a list of students
+3. User requests to edit the details of a specific  student in the list
+4. TutorRec updates the details of this student
+5. TutorRec displays the updated information of this student
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs a field that does not exist (e.g. adding a nonexistent /q field)
+
+    * 3b1. TutorRec shows an error message
+
+        Use case resumes at step 2.
+
+
+**Use case: Finding a student**
+
+**MSS**
+
+1. User requests to list all students with a particular name
+2. TutorRec displays a reduced list containing all students that meet the criteria of the name requested
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    
+    Use case ends.
+
+* 1b. No students exist with the given name
+
+    * 1b1. TutorRec displays an empty list
+    
+        Use case ends.
+
+**Use case: Checking improvements of a student**
+
+**MSS**
+
+1. User requests to list students
+2. TutorRec displays a list of students
+3. User updates a specific student's grades for a given test
+4. TutorRec updates the grades for this student
+5. TutorRec displays that the student's grades has been updated
+6. User requests to view a list of a specific student's grades
+7. TutorRec displays a history of this student's grades
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. An invalid score is listed as the input.
+
+    * 3b1. TutorRec shows an error message.
+
+        Use case resumes at step 2.
+
+* 6a. The given index is invalid.
+
+    * 6a1. TutorRec shows an error message.
+        
+        Use case resumes at step 2.
+
+* 6b. The student has no grades saved
+
+    * 6b1. TutorRec displays nothing.
+
+        Use case resumes at step 2.
+
+**Use case: Updating payment status**
+
+**MSS**
+
+1. User requests to list students
+2. TutorRec displays a list of students
+3. User chooses to mark a specific student as having made their payment
+4. TutorRec updates the payment status of this student to be complete
+5. User chooses to mark a specific as not having made their payment
+6. TutorRec updates the payment status of this student to be incomplete
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The student selected already has had their payment marked as made.
+
+    * 3b1. TutorRec shows an error message.
+
+        Use case resumes at step 3.
+
+* 5a. The given index is invalid.
+
+    * 5a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 5b. The student selected already has had their payment marked as made.
+
+    * 5b1. TutorRec shows an error message.
+
+      Use case resumes at step 3.
+
+
+**Use case: Creating an appointment**
+
+**MSS**
+
+1. User requests to list students
+2. TutorRec displays a list of students
+3. User sets a specific student to have an appointment at a particular time and date
+4. TutorRec updates details about this student
+5. TutorRec displays details of appointment to user
+
+    End of use case.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Insufficient information is given to make an appointment
+
+    * 3b1. TutorRec shows an error message.
+
+        Use case resumes at step 2.
+
+* 3c. The time and date inputted by the user clashes with an existing appointment previously made by the user.
+
+    * 3c1. TutorRec shows an error message.
+    * 3c2. TutorRec displays information of student which has an appointment that resulted in the timing clash, and the date and time of this appointment.
+
+        Use case resumes at step 2.
 
 *{More to be added}*
 
