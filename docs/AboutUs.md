@@ -42,13 +42,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Chee Jing Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jjchee77.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/jjchee77)]
+[[linkedin](https://www.linkedin.com/in/absythe/)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities:
+- Role: Code Quality and Integration Lead
+- Responsible for the code quality and software integration.
 
 ### Tay Rui-Jie
 
