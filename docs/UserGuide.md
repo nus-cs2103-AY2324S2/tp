@@ -83,15 +83,15 @@ Examples:
 * `delete -id 88888` deletes the student with the id 8888
 
 ### View student statistics: `View`
-This would display the total number of students  
+This would display the total number of students
 Format: `View -statistics`
 
 ### View student summary at home page: `View`
 This would display a summary of student particulars on the homepage.
 Format: `View -all`
 
-### View student particular by name: `View` 
-This will display a specific student particular by searching its name 
+### View student particular by name: `View`
+This will display a specific student particular by searching its name
 Format: `View -name {NAME}`
 Examples:
 * `View -name Xiao Ming` would display the student particular of Xiao Ming if existed
@@ -99,7 +99,7 @@ Examples:
 ### View student particular by id: `View`
 This will display a specific particular by searching for its id
 Format: `View -id {ID}`
-Examples; 
+Examples;
 * `View -id 88888` would display the student particular for student whose id is 88888 if it exists.
 
 
