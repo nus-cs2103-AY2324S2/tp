@@ -283,17 +283,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: Urgent (must-must have) - `* * * *`, High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​           | I want to …​                                                 | So that I can…​                                                              |
-|----------|-------------------|--------------------------------------------------------------|------------------------------------------------------------------------------|
-| `* * *`  | real estate agent | add home-owners                                              | keep track of their contact details and the properties that they are selling |
-| `* * *`  | real estate agent | view a list of all contacts stored, along with their details | quickly find the contact I need                                              |
-| `* * *`  | real estate agent | delete contacts                                              | remove outdated or irrelevant contacts                                       |
-| `* *`    | real estate agent | be able to import my existing contact and address data       | seamlessly transition to using EstateEase                                    |
-| `* *`    | real estate agent | save any changes or updates made to the contact details      | ensure that my data is always up-to-date                                     |
+| Priority  | As a …​                     | I want to …​                                                                                  | So that I can…​                                                              |
+|-----------|-----------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `* * * *` | real estate agent           | add home-owners clients                                                                       | keep track of their contact details and the properties that they are selling |
+| `* * * *` | real estate agent           | add home-buyer clients                                                                        | keep track of their contact details and requirements                         |
+| `* * * *` | real estate agent           | view the list of all contacts stored                                                          | quickly find the contact I need                                              |
+| `* * * *` | real estate agent           | delete the contact that I want to remove                                                      | remove outdated or irrelevant contacts                                       |
+| `* * * *` | real estate agent           | be able to exit the program when I want to                                                    | close the application                                                        |
+| `* * * *` | real estate agent           | be able to automatically save the data I added, changed, and deleted                          | load the data when I open the application, with the saved data, next time    |
+| `* * *`   | real estate agent           | find for a specific contact                                                                   | access their details without scrolling through a long list                   |
+| `* * *`   | real estate agent           | easily update or modify existing contact information                                          | have accurate and up-to-date records                                         |
+| `* * *`   | real estate agent           | add new houses to the home-sellers                                                            | keep track of the houses the home-sellers have                               |
+| `* * *`   | real estate agent           | have whatever contacts I add load to the laptop I am using                                    | do not need to re-enter all the details whenever I open the app              |
+| `* *`     | busy real estate agent      | be able to view specific buyer's requirements                                                 | understand what are their needs quickly                                      |
+| `* *`     | busy real estate agent      | be able to view specific seller's properties                                                  | effectively assess their listings quickly                                    |
+| `* *`     | busy real estate agent      | match the buyer with sellers based on the buyer's requirements                                | quickly identify properties that align with the buyers' preferences          |
+| `* *`     | busy real estate agent      | be able to tell at a glance whether the contact is a buyer or seller                          | do not need to remember their identity                                       |
+| `* *`     | forgetful real estate agent | filter my contacts based on buyers who do not have a pending or done deal status              | easily identify and manage active buyer contacts                             |
+| `* *`     | forgetful real estate agent | link a buyer to sellers with the properties they are interested in buying                     | push them towards making a transaction                                       |
+| `*`       | busy real estate agent      | be able to add notes about clients when talking to them                                       | do not need to consolidate afterwards                                        |
+| `*`       | real estate agent           | differentiate between home-buyers who are looking for houses and finalizing a deal            | manage them effectively                                                      |
+| `*`       | real estate agent           | differentiate between home-sellers who are looking to sell their houses and finalizing a deal | manage them effectively.                                                     |
+| `*`       | real estate agent           | see the priority of home-sellers after filtering out their selling requirements               | determine who I should prioritize in handling the transactions first         |
 
-*{More to be added}*
 
 ### Use cases
 
