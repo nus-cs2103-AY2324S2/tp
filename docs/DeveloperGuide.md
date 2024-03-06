@@ -274,13 +274,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Professors and Teaching Assistants at the National University of Singapore seeking a streamlined platform to manage past and current students.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* EduLink NUS offers National University of Singapore professors and teaching assistants a centralised platform for effortless connection and search capabilities regarding past and current students. By streamlining communication and data retrieval, it enhances efficiency in academic engagement and administrative tasks.
+* manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -333,8 +335,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
@@ -345,6 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
+
 
 <box type="info" seamless>
 
