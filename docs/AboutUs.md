@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Toh Li Heng
 
-<img src="images/tohlh.jpg" width="200px">
+<img src="images/tohlh.png" width="200px">
 
 [[homepage](http://tohlh.github.io)]
 [[github](http://github.com/tohlh)]
