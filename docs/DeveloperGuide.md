@@ -274,13 +274,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* General Practitioners working in their own private GP Clinics
+* short staffed with minimal assistants for administrative tasks
+* annoyed by relying on pen and paper to track patient contacts
 * can type fast
+* prefer desktop apps over other types
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Quick and easy management of patient contacts, including important patient information.
 
 
 ### User stories
