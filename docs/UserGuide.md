@@ -26,13 +26,13 @@ It is optimized for a _Command Line Interface_ (CLI), but you can still use the 
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Internbook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br><br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar internbook.jar` command to run the application.<br><br>
    
     A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)<br><br>
 
-    > [!TIP]
-    > If you are struggling to evaluate the path to ``cd`` into, you can use the File Explorer in your OS to copy the file path and directly ``cd`` to that    
+    > [!TIP] 
+   > If you are struggling to figure out the path to ``cd`` into, you can use the File Explorer in your OS to copy the file path and directly ``cd`` to that.
 
 1. Try out a command! <br>
    For instance, typing **`help`** and pressing Enter will open the help window.<br>
@@ -44,7 +44,7 @@ It is optimized for a _Command Line Interface_ (CLI), but you can still use the 
 
    * `del Company` : Deletes the contact with name ``'Company'``.
 
-   * `exit` : Exits the app.<Br><br>
+   * `exit` : Exits the app.<br><br>
 
 1. Refer to the [Features](#features) below for details of each command.
 
