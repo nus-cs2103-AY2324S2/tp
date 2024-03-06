@@ -287,32 +287,80 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a…    | I can…                                                                                                             | So that I can…                                                                                |
+|----------|----------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `**`     | new user | access a help guide that provides detailed instructions                                                            | effectively utilize the platform's features and functionalities                               |
+| `*`      | user     | export student data to a .csv, .json or pdf file                                                                   | perform analytics work, such as data analysis and statistical modeling                        |
+| `**`     | user     | import student data from .txt, .csv and .json file                                                                 | eliminate the need to input every piece of information individually                           |
+| `***`    | user     | view a list of student                                                                                             | Easily reach out to them for academic support or research opportunities                       |
+| `***`    | user     | add new student information to the system (Grade, Cohort, Module, Contact Information)                             | keep the database up-to-date with the latest student records                                  |
+| `***`    | user     | delete a student information from the system when necessary                                                        | ensure outdated or incorrect records are removed efficiently and accurately                   |
+| `***`    | user     | edit the information of a student in the system                                                                    | update their details accurately as needed                                                     |
+| `**`     | user     | sort student data by various criteria such as grade and cohort                                                     | organize student information efficiently and make informed decisions                          |
+| `**`     | user     | filter data based on specific criteria                                                                             | tailor information retrieval to meet diverse academic and administrative needs                |
+| `***`    | user     | search for students by their name or Student ID                                                                    | quickly locate specific individuals within the system                                         |
+| `***`    | user     | add tags to students and classify them based on various criteria such as “Potential Teaching Assistant”            | easily identify and group students based on specific attributes or characteristics            |
+| `*`      | user     | check the number of students in the database based on specific criteria, such as those belonging to a specific tag | assess the scope and distribution of students across various criteria                         |
+| `*`      | user     | add notes or comments to a student's profile                                                                       | maintain a comprehensive record of student achievements, and challenges                       |
+| `*`      | user     | have automatic tagging, e.g. students below a certain grade threshold are tagged with "high priority student"      | save time and resources by automating the identification and classification of students       |
+| `***`    | user     | enjoy the benefit of automatic prevention of duplicate entries                                                     | ensure data integrity                                                                         |
+| `***`    | user     | retrieve specific information based on tags                                                                        | streamline communication with a huge number of students                                       |
+| `*`      | user     | automatically updates student information using the system, e.g. student year group based on current datetime      | ensure data accuracy and reduce manual data editing                                           |
+| `***`    | user     | view all contact information for students in an organized and accessible format within the system (Nice GUI)       | look for students easily                                                                      |
+| `*`      | user     | filter data by multiple criteria simultaneously within the system                                                  | refine and narrow down the displayed information                                              |
+| `*`      | user     | perform bulk deletion of data based on specific criteria within the system                                         | efficiently remove outdated or irrelevant records in large quantities                         |
+| `*`      | user     | undo previous actions within the system                                                                            | revert changes or mistakes made, providing a safety net for data integrity                    |
+| `*`      | user     | view the history of changes within the system                                                                      | restore previous versions of data or records in case of accidental changes                    |
+| `**`     | user     | add group tags to multiple students simultaneously within the system                                               | streamline the process of categorizing and organizing student data                            |
+| `***`    | user     | enjoy a user-friendly interface (UI) when interacting with the system                                              | reduce cognitive load                                                                         |
+| `***`    | user     | efficiently navigate and interact with the system using typed user commands                                        | access features swiftly, and accomplish tasks with ease                                       |
+| `***`    | user     | automatically save my modifications every time I make a change within the system                                   | ensure contacts and information are consistently backed up, preventing any major loss of data |
+| `*`      | user     | manage multiple databases within the system                                                                        | organize and segregate data into distinct databases                                           |
+| `*`      | user     | view my most recent searches within the system                                                                     | access previously searched items, saving time and effort                                      |
+| `*`      | user     | calculate statistical measures for specific data stored within the system                                          | analyze the distribution and central tendencies of the data                                   |
+| `*`      | user     | calculate statistical measures for specific filtered data stored within the system                                 | analyze the distribution and central tendencies of the data of certain groups                 |
+| `*`      | user     | enjoy autocomplete suggestions for commands or queries as I type                                                   | improve efficiency and accuracy                                                               |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Add a Tag to a Student's Profile**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User requests to add tag a specific student by inputting that student's ID and tag information.
+5.  The tag is successfully added to that student.
 
     Use case ends.
 
+**Use Case: Edit the Information of a Student**
+
+**MSS**
+
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User prompt to edit a specific student by inputting that student's ID and updated information.
+5.  The student's information is successfully changed.
+
+    Use case ends.
+
+**Use Case: Delete a Student**
+
+**MSS**
+
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User prompt to delete that student by its ID.
+5.  That student is successfully deleted.
+
+    Use case ends.
 **Extensions**
 
 * 2a. The list is empty.
