@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Sun Ruiheng
 
-<img src="images/sunruiheng.png" width="200px">
+<img src="images/sun-ruiheng.png" width="200px">
 
 [[github](https://github.com/sun-ruiheng)]
 
@@ -21,7 +21,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Gavin Goh
 
-<img src="images/gavingoh.png" width="200px">
+<img src="images/gavingoh99.png" width="200px">
 
 [[github](http://github.com/gavingoh99)]
 
@@ -30,7 +30,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ma Ze Xuan
 
-<img src="images/mazexuan.png" width="200px">
+<img src="images/maze508.png" width="200px">
 
 [[github](http://github.com/maze508)]
 
@@ -39,7 +39,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tan Guan Quan
 
-<img src="images/tanguanquan.png" width="200px">
+<img src="images/guanquann.png" width="200px">
 
 [[github](http://github.com/guanquann)]
 
