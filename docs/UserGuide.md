@@ -6,7 +6,7 @@ title: User Guide
 TaskMasterPro is a **desktop app for managing team members and group tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskMasterPro can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,15 +25,15 @@ TaskMasterPro is a **desktop app for managing team members and group tasks, opti
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -65,16 +65,47 @@ TaskMasterPro is a **desktop app for managing team members and group tasks, opti
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Adding an employee: `add`
+
+Adds an employee to TaskMasterPro.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Make sure that your parameter's formats are valid!
+</div>
+
+Examples:
+* `add n/AikenDueet p/12311231 e/aiken@example.com a/Dueet street, block 123, #01-01`
+* `add n/Ben Diddle t/friend e/bendiddle@example.com a/Newgate Prison p/21092109 t/criminal`
+
+### Listing all employees: `list`
+
+Shows a list of all employees in TaskMasterPro.
+
+Format: `listemployees`
+
+### Deleting an employee: `delete`
+
+Deletes the specified employee from TaskMasterPro.
+
+Format: `delete EMPLOYEE_ID`
+
+* The `EMPLOYEE_ID` refers to the index number shown in the displayed employee list.
+  Make sure that its valid!
+
+Examples:
+* `listemployees` followed by `delete 3` deletes the employee with id 3 in TaskMasterPro.
 
 ### Adding a task: `task`
 
-Adds a task to the address book.
+Adds a task to TaskMasterPro.
 
 Format: `task TASK_DESCRIPTION`
 
@@ -88,13 +119,13 @@ Examples:
 
 ### Listing all tasks : `listtasks`
 
-Shows a list of all tasks in the address book.
+Shows a list of all tasks in TaskMasterPro.
 
 Format: `listtasks`
 
 ### Deleting a task : `deletetask TASK_ID`
 
-Deletes the specified task from the address book.
+Deletes the specified task from TaskMasterPro.
 
 Format: `deletetask TASK_ID`
 
@@ -103,11 +134,11 @@ Format: `deletetask TASK_ID`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listtasks` followed by `deletetask 2` deletes the task with id 2 in the address book.
+* `listtasks` followed by `deletetask 2` deletes the task with id 2 in TaskMasterPro.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from TaskMasterPro.
 
 Format: `clear`
 
@@ -136,6 +167,9 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
+**Add employee** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Ben Diddle t/friend e/bendiddle@example.com a/Newgate Prison p/21092109 t/criminal`
+**List employees** | `listemployees`
+**Delete employee** | `delete EMPLOYEE_ID` <br> e.g., `delete 2`
 **Add task** | `task TASK_DESCRIPTION` <br> e.g., `task Weekly meeting`
 **List tasks** | `listtasks`
 **Delete task** | `deletetask TASK_ID`<br> e.g., `deletetask 3`
