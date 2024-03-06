@@ -363,7 +363,7 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 
 1. User searches for specific student.
 2. CogniCare shows a list of students that meet the criteria.
-3. User requests to list all appointments using the student index.
+3. User requests to list all appointments at the given the student index.
 4. CogniCare shows a list of appointments that meet the criteria.
 5. User requests to find an appointment at the given student and appointment.
 6. CogniCare shows the appointment that meets the criteria.
@@ -418,6 +418,7 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
   Use case ends.
 
 * 2a. User does not want to delete.
+
     * 2a1. CogniCare shows an error message that the user cancelled the delete operation.
 
   Use case ends.
