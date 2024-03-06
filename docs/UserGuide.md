@@ -149,17 +149,45 @@ Examples:
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PayBack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/payback.json`. Advanced users are welcome to update data directly by editing that data file.
+PayBack data are saved automatically as a JSON file `[JAR file location]/data/payback.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If modifications to the data file result in an invalid format, PayBack will discard all data and initiate the next run with an empty data file. 
 Therefore, it is advisable to create a backup of the file before making any edits. 
 Additionally, specific changes may lead to unexpected behavior in PayBack, such as if a value entered falls outside the acceptable range. Hence, proceed with editing the data file only if you are certain that you can make accurate updates.
 </div>
+
+### Archiving data files `[coming in v2.0]`
+
+
+_Details coming soon ..._
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## Q&A
+
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PayBack home folder.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## Known issues
+
+
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## Command summary
 
