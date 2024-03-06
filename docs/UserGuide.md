@@ -185,6 +185,31 @@ Format: `clear`
 * User will be prompted to verify the clear command, before carrying out the clearing.
 * To bypass the verification prompt, the user can follow `clear` with `--force`. This will clear the address book without additional prompting.
 
+### Adding points: `addpoints`
+
+Adds points for a member in the loyalty program.
+
+Format: `addpoints n/MEMBER_NAME p/POINTS`
+
+* Adds the corresponding number of points for a memeber based on their name.
+* The points **must be a positive integer** 1, 2, 3, … 200
+
+Examples:
+* `addpoints n/John Doe p/50`
+
+### Subtracting points: `subpoints`
+
+Subtracts points for a member in the loyalty program.
+
+Format: `subpoints n/MEMBER_NAME p/POINTS`
+
+* Subtracts the corresponding number of points for a memeber based on their name.
+* The points **must be a positive integer** 1, 2, 3, … [current number of points the member has currently]
+
+Examples:
+* `subpoints n/John Doe p/50`
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
