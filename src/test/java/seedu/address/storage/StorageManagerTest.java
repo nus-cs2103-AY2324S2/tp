@@ -22,12 +22,19 @@ public class StorageManagerTest {
     @TempDir
     public Path testFolder;
 
+    private Path ab;
+    private Path prefs;
+    private JsonAddressBookStorage addressBookStorage;
+    private JsonUserPrefsStorage userPrefsStorage;
+
     private StorageManager storageManager;
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        ab = getTempFilePath("ab");
+        prefs = getTempFilePath("prefs");
+        addressBookStorage = new JsonAddressBookStorage(ab);
+        userPrefsStorage = new JsonUserPrefsStorage(prefs);
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
 
@@ -68,9 +75,13 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
     public void readInitialAddressBook_noDataFile_sampleAddressBook() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(Paths.get("unavailable"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        addressBookStorage = new JsonAddressBookStorage(Paths.get("unavailable"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
         ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
         assertEquals(getSampleAddressBook(), retrieved);
@@ -79,10 +90,11 @@ public class StorageManagerTest {
     @Test
     public void readInitialAddressBook_corruptedDataFile_emptyAddressBook() {
         // Only testable if allowed to change file permissions.
-        if (getTempFilePath("ab").toFile().setReadable(false)) {
-            ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
-            assertEquals(new AddressBook(), new AddressBook(retrieved));
+        if (!ab.toFile().setReadable(false)) {
+            return;
         }
+        ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
+        assertEquals(new AddressBook(), new AddressBook(retrieved));
     }
 
 }
