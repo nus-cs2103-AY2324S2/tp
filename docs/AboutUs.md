@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jerome Goh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaejayrome.png" width="200px">
 
 [[github](https://github.com/jaejayrome)]
 [[portfolio](team/johndoe.md)]
