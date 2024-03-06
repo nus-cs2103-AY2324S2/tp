@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jerry Wang
 
-<img src="images/JerryWang0000.jpg" width="200px">
+<img src="images/jerrywang0000.jpg" width="200px">
 
 [[github](http://github.com/JerryWang0000)]
 [[portfolio](team/jerrywang)]
