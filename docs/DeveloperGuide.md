@@ -333,6 +333,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Edit an employee**
+
+**MSS**
+
+1.  User requests to edit an employee's information
+2.  User enters the employee's ID and fields that need to be updated
+3.  PayBack changes the employee's information accordingly
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The ID is invalid.
+    * 2a1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
