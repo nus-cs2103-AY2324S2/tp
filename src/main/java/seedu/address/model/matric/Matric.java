@@ -37,7 +37,7 @@ public class Matric {
      * @param test String to be tested
      * @return true if the string is a valid matriculation number
      */
-    private static boolean isValidMatric(String test) {
+    static boolean isValidMatric(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
