@@ -323,8 +323,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  TutorRec is not required to handle multiple users (i.e. multi-user product), it is a single-user product.
 5.  TutorRec needs to be developed in a breadth-first incremental manner, with weekly updates.
 6.  TutorRec's data should be stored locally and should be in a human editable text file.
-7. TutorRec should not use a DBMS to store data.
-8. TutorRec should work without requiring an installer.
+7.  TutorRec should not use a DBMS to store data.
+8.  TutorRec should work without requiring an installer.
 9.  TutorRec should be packaged into a single JAR file for releases. 
 10. TutorRec's JAR files should not exceed 100MB.
 11. The development of TutorRec should follow the Object-oriented paradigm.
