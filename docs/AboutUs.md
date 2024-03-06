@@ -9,20 +9,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-
 ### Lin Shuang Shuang
 
-<img src="images/Lin Shuang Shuang.png" width="200px">
+<img src="images/lin-shuang-shuang.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-
 
 - Role: Team Lead
 - Responsibilities: UI
 
 ### Ananya Shahi
 
-<img src="images/ananya.jpg" width="200px">
+<img src="images/ananya21.png" width="200px">
 
 [[github](http://github.com/ananya21)]
 
@@ -34,7 +32,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/thitipatc.png" width="200px">
 
 [[github](http://github.com/ThitipatC)]
-
 
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
