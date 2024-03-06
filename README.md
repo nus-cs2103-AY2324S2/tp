@@ -11,4 +11,4 @@ The main way to interact with ClickConnect is via the keyboard. This allows phot
 their clients, while still having a GUI that provides a visually pleasing experience to the user.
 
 * For the detailed documentation of this project, see the **[ClickConnect Product Website](https://ay2324s2-cs2103t-t17-3.github.io/tp/)**.
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
