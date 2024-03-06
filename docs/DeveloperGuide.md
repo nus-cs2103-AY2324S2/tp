@@ -300,16 +300,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | TA      | add a student contact                                  | keep track of my students when I need to                 |
 | `* * *`  | TA      | delete a student contact                               | remove students from the database if they drop the class |
 | `* * *`  | TA      | view all student contacts                              | see a list of all my students                            |
+| `* *`    | TA      | view a students' detailed information                  | see all the information related to a student             |
 | `* *`    | TA      | edit a student contact                                 | update a students’s details should they change           |
-| `* *`    | TA      | categorise contacts by class and project group         | organise student contact details correctly               |
+| `* *`    | TA      | assign student to project team                         | organise students according to their project team        |
 | `* *`    | TA      | take notes on students                                 | keep track of their strengths and weaknesses             |
 | `* *`    | TA      | delete notes on students                               | remove notes that are no longer relevant                 |
-| `* *`    | TA      | mark student as absent for a specific class            | be aware of who is missing lessons                       |
-| `* *`    | TA      | unmark student as absent for a specific class          | correct mistakes in attendance marking                   |
-| `* `     | TA      | allocate tasks related to different contacts           | remember my tasks associated with each student           |
-| `* `     | TA      | view all my tasks                                      | see a list of all my tasks                               |
-| `* `     | TA      | mark completion of tasks related to different contacts | keep track of my task progress                           |
-| `* `     | TA      | delete a task                                          | remove tasks that are no longer relevant                 |
+| `*`      | TA      | mark student as absent for a specific class            | be aware of who is missing lessons                       |
+| `*`      | TA      | unmark student as absent for a specific class          | correct mistakes in attendance marking                   |
+| `* `     | TA      | view all student contacts for a project team           | see a list of students in a project team                 |
 
 *{More to be added}*
 
@@ -317,28 +315,277 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TA Toolkit` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Adding a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters command to add a student
+2. TA Toolkit adds the student to the list of students
+3. TA Toolkit displays a success message along with the student’s contact details
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The add student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+  
+      Use case resumes at step 1.
 
-  Use case ends.
+* 2a. Student already exists in the list of students.
+    * 2a1. TA Toolkit shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+---
 
-      Use case resumes at step 2.
+**Use case: UC02 - Deleting a student**
+
+**MSS**
+
+1. User enters command to delete a student
+2. TA Toolkit requests for confirmation
+3. User confirms
+4. TA Toolkit deletes the student’s contact and displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. TA Toolkit does not contain the student specified
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The User chooses to cancel the deletion of the student
+    * 3a1. TA Toolkit cancels the deletion
+
+      Use case ends.
+
+---
+
+**Use case: UC03 - Update a student**
+
+**MSS**
+
+1. User enters the command to update a student’s details
+2. TA Toolkit modifies the values that user intended to replace
+3. TA Toolkit displays a success message along with the student’s updated contact details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The update student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. Student does not exist in the list of students.
+    * 2a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC04 - Viewing students overview**
+
+**MSS**
+
+1. User requests to view all student
+2. TA Toolkit shows a list of all members
+3. TA Toolkit displays a success message
+
+    Use case ends.
+
+---
+
+**Use case: UC05 - View a student detailed**
+
+**MSS**
+
+1. User requests to view the detailed information of a student
+2. TA Toolkit shows the detailed information of the student
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The view student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC06 - Assign student to project team**
+
+**MSS**
+
+1. User requests to assign student to project team
+2. TA Toolkit adds the project team tag to the student
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The group student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The student is already assigned a project team tag.
+    * 2b1. TA Toolkit shows a message asking whether to replace or keep the existing tag.
+        * 2b1a. User decides to replace the existing tag.
+            * 2b1a1. TA Toolkit removes the current project team tag from the student.
+              
+              Use case resumes at step 2.
+
+        * 2b1b. User decides to keep the existing tag.
+        
+          Use case ends.
+
+---
+
+**Use case: UC07 - Add note on student**
+
+**MSS**
+
+1. User requests to add a note regarding a student
+2. TA Toolkit adds the note to the student’s list of notes
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The add note command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC08 - Delete note on student**
+
+**MSS**
+
+1. User requests to delete a note regarding a student
+2. TA Toolkit removes the note from the student’s list of notes
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The delete note command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The note requested to be deleted is invalid.
+    * 2a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC09 - Mark student as absent from a specific class**
+
+**MSS**
+
+1. Use requests to mark student as absent for a class
+2. TA Toolkit marks the student as absent for that class
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The mark student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC10 - Unmark student as absent for a class**
+
+**MSS**
+
+1. User requests to mark student as absent for a class
+2. TA Toolkit marks the student as absent for that class
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The unmark student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The requested student is not currently marked as absent for the class.
+    * 2a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC11 - View all students by project team tag**
+
+**MSS**
+
+1. User requests to view all students with a specified project team tag
+2. TA Toolkit displays a list of all members with that project team tag
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The view student by tag command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested tag is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
