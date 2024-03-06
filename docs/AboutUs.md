@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Features and Documentation
 
-### Jean Doe
+### Tan Yi-Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Ty-stan0417.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Ty-stan0417)]
+[[portfolio](team/Ty-stan0417.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Features and Documentation
 
 ### James Doe
 
