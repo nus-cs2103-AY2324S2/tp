@@ -262,13 +262,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* hospital clerks who deal with hospital related registration/administrative/management tasks
+* has a need to manage a significant number of client details (patients/doctors/appointments)
+* deals with many real time live updates, some being time-critical
 * prefer desktop apps over other types
-* can type fast
+* can type fast and accurately
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manages the hospital database (querying/updating/creating/deleting) faster than a typical mouse/GUI driven database management app
 
 
 ### User stories
