@@ -262,13 +262,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* busy home tutor
+* has a need to manage a large number of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: provides easy access to client info and organizes it in an efficient and readable way for day-to-day use, optimized for tutors that prefer CLI.
 
 
 ### User stories
@@ -277,12 +278,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *`  | new home tutor                                   | have adding information be intuitive and logical         | use the app without hassle                 |
+| `* *`  | new user                                       | have a quick start guide              | learn how to use the app                                                                      |
+| `* *`  | new home tutor                                       | follow a set syllabus for my clients                |                                    |
+| `* *`  | new home tutor                                   | be able to quickly create a student’s profile with their relevant information          | |
+| `* *`    | new home tutor                                      | track the performance of my students   | prove to their parents that they are improving and my effectiveness as a tutor                |
+| `* * *`     | new home tutor | track all my appointments          | reduce the chance I forget or double book myself                                               |
+| `* *`      | new home tutor | keep track of my finances–such as which client has paid me for my work over a month | reduce my stress when it comes to keeping track of who has paid me for my work, and so forth. |
+| `* *`      | busy home tutor | seamlessly create new tasks | quickly and efficiently set up my daily routine |
+| `* *` | busy home tutor | be reminded about my upcoming appointments for the day | not accidentally forget |
+| `* *` | returning home tutor | re-implementation of more information in a large amount to be easy | add information en masse without stress |
+| `* *` | home tutor with clients who are nearing exam season | properly ensure that they are improving as planned, and also allow them to set benchmarks that I can remember | |
+| `* *` | busy home tutor | block certain times out for lunch and dinner | not accidentally overwrite those times with an additional client |
+| `* * *` | experienced home tutor | delete students I am no longer teaching on TutorRec | unclutter my interface |
+| `* * *` | experienced home tutor | update student information and details | ensure accurate records are maintained |
+| `* * *` | passionate home tutor | TutorRec to keep notes for each student | tailor my teaching style accordingly |
+| `* *` | experienced home tutor with many students | ability to categorise students by skill level, subject or group (p1, p2, p3…) | quickly locate their information when needed |
+| `* *` | experienced home tutor | flexibility to choose what to teach my students (custom lessons) | personalise each lesson for different students |
+| `* *` | experienced home tutor | easily identify students with weak performance | focus on weaker students |
+| `* *` | experienced home tutor | view a student’s records for the length of time I have tutored them | |
+| `* *` | experienced home tutor | get some insights and analytics on a student’s performance over time | further refine my teaching methods accordingly |
+| `* *` | busy home tutor | quickly reschedule my appointments with my clients | fit my ever-changing schedule, preventing a large amount of hassle |
+| `* *` | tutor who just received a new wave of clients | separate my old and new clients | keep the interface orderly and easy-to-follow |
+| `* * *` | busy home tutor | make quick notes about my students | keep track of information specific to each client |
+| `* *` | assignment-ridden home tutor | note cancellations in my schedule due to increased workload from my end | my schedule is accurate to reality |
+| `* *` | wary home tutor | backup and import data | safeguard myself against potential data corruption and/or physical destruction of my devices |
+| `* *` | home tutor with a new device | quickly transfer data from one device to another | prevent the pain of having to input previous data manually |
+| `* *` | online tutor | organize sessions with students in a different country and automatically convert dates and times to my time zone | |
+| `* *` | online home tutor | keep Zoom links with sessions and other information about the student in one place | |
+| `* *` | online home tutor with students who are abroad | convert time at a glance | be on time for my student’s lessons |
+| `* * *` | home tutor who just moved abroad | remove previous clients I cannot tutor due to the distance gap | keep my schedule clean |
+| `* *` | home tutor who just moved abroad | ways of tagging my students | keep track of different needs arising due to cultural differences |
 
 *{More to be added}*
 
