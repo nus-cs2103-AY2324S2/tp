@@ -94,6 +94,11 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Matric} of the {@code Person} that we are building.
+     * @param matric matric number
+     * @return PersonBuilder
+     */
     public PersonBuilder withMatric(String matric) {
         this.matric = new Matric(matric);
         return this;
