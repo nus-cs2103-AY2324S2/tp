@@ -344,8 +344,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  A novice user should be able to learn basic operations (add, delete, search entries) within 30 minutes of using the documentation.
+5.  The system should respond within two seconds.
+6.  The system should be backward compatible with data produced by earlier versions of the system
+7.  The system should smoothly handle user input errors and system issues, providing meaningful error messages without crashing.
+8.  Comply with relevant data protection regulations, Personal Data Protection Act (PDPA) in handling personal information.
+9.  Adhere to recommended coding standards, such as readability, modularity, and application of design patterns, to make upgrades and maintenance simpler.
 
 ### Glossary
 
