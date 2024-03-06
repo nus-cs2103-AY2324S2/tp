@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/tahnya)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
+* Role: Documentation & Code Quality
 * Responsibilities: UI
 
 ### Johnny Doe
