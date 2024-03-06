@@ -300,16 +300,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `RainbowDragon` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  RainbowDragon shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  RainbowDragon deletes the person
 
     Use case ends.
 
@@ -321,11 +321,99 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. RainbowDragon shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  RainbowDragon prompts user to enter person's details
+3.  User enters person's details
+4.  RainbowDragon validates the details
+5.  RainbowDragon adds the person to the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. User cancels the operation.
+
+  Use case ends.
+
+* 4b. User enters invalid details.
+
+    * 4b1. RainbowDragon shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit a person's details**
+
+**MSS**
+
+1.  User requests to edit a person's details
+2.  RainbowDragon prompts user to select a person from the list
+3.  User selects a person from the list
+4.  RainbowDragon shows the person's details.
+5.  User edits the details
+6.  RainbowDragon validates the edited details
+7.  RainbowDragon updates the person's details
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty.
+
+  Use case ends.
+
+* 5a. User cancels the operation.
+
+  Use case ends.
+
+* 6a. User enters invalid details.
+
+    * 6a1. RainbowDragon shows an error message.
+
+      Use case resumes at step 5.
+
+**Use case: View all persons**
+
+**MSS**
+
+1.  User requests to view all persons
+2.  RainbowDragon shows a list of all persons.
+
+    Use case ends.
+
+**Use case: Search for a person**
+
+**MSS**
+
+1.  User requests to search for a person
+2.  RainbowDragon prompts user to enter search keyword
+3.  User enters search keyword
+4.  RainbowDragon searches for persons matching the keyword
+5.  RainbowDragon shows a list of matching persons
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User cancels the operation.
+
+  Use case ends.
+
+**Use case: View all persons**
+
+**MSS**
+
+1.  User requests to view all persons
+2.  RainbowDragon shows a list of all persons
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
