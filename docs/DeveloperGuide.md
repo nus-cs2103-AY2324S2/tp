@@ -262,42 +262,56 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Private tutors who prefer CLI over GUI
+* Private tutors who go to tutees' houses and teach one-to-one
+* Private tutors who teach multiple subjects
+* Private tutors who teach multiple levels or a specific level, e.g. primary school students
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Allows for easy track and management of tutees, e.g. grades, addresses, deadlines
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​       | I want to …​                                            | So that I can…​                                    |
+|----------|---------------|---------------------------------------------------------|----------------------------------------------------|
+| `* * *`  | private tutor | track my tutee's grades, addresses and deadlines easily | efficiently manage my tutoring sessions            |
+| `* * *`  | private tutor | input new tutees' progress seamlessly                   | add new tutees' information                        |
+| `* * *`  | private tutor | delete previously created inputs                        | remove information that I no longer need           |
+| `* * *`  | private tutor | track my project tasks and timelines seamlessly         | effectively manage my workflow and deliver on time |
+| `* *`    | private tutor | set reminders for important deadlines and milestones    | never miss a crucial event                         |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `TutorPro` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. The user requests to add a specific student
+2. TutorPro adds the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The student has the same details as someone already in the list.
+  * 2a1. TutorPro shows an error message.
+
+    Use case ends.
+
+
+**Use case: Delete a student**
+
+**MSS**
+
+1.  The user requests to list students
+2.  TutorPro shows a list of students
+3.  User requests to delete a specific student in the list
+4.  TutorPro deletes the student
 
     Use case ends.
 
@@ -308,25 +322,206 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
+    * 3a1. TutorPro shows an error message.
+  
+    Use case resumes at step 2.
 
-    * 3a1. AddressBook shows an error message.
+* 3b. The given student does not exist in the list.
+  * 3b1. TutorPro displays an error message.
+  
+  Use case resumes at step 2.
 
-      Use case resumes at step 2.
+**Use case: Find a student**
 
-*{More to be added}*
+**MSS**
+
+1. The user requests to find a specific student.
+2. TutorPro displays a list of students whose details match the user input.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified student does not exist in the list.
+    * 2a1. TutorPro shows an error message.
+
+      Use case ends.
+
+**Use case: Update a student's progress/particulars**
+
+**MSS**
+
+1. The user requests to update a specific student’s progress/particulars.
+2. TutorPro updates the student’s progress/particulars.
+3. TutorPro displays the updated information to the user for verification.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified student does not exist in the list.
+    * 2a1. TutorPro shows an error message.
+
+      Use case ends.
+
+* 2b. The given category is not one of the available categories.
+    * 2b1. TutorPro shows an error message.
+
+      Use case ends.
+
+* 2c. Given new information to update does not match the input format for the particular category.
+    * 2c1. TutorPro shows an error message.
+
+      Use case ends.
+
+**Use case: Setting a reminder**
+
+**MSS**
+
+1. The user requests to set a reminder.
+2. TutorPro sets the reminder.
+3. TutorPro displays a list of currently scheduled reminders.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given date or time is in an incorrect format.
+    * 2a1. TutorPro shows an error message.
+
+      Use case ends.
+
+
+**Use case: Create a tag**
+
+**MSS**
+
+1. The user requests to create a tag.
+2. TutorPro creates the specified tag.
+3. TutorPro displays a list of created tags.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified tag to create already exists.
+    * 2a1. TutorPro shows an error message.
+
+      Use case ends.
+
+
+**Use case: Tag a student**
+
+**MSS**
+
+1. The user requests to tag a student.
+2. TutorPro tags the student.
+3. TutorPro displays the list of students who have the same tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified student does not exist in the list.
+    * 2a1. TutorPro displays an error message.
+
+      Use case ends.
+
+* 2b. The specified tag does not exist.
+    * 2b1. TutorPro displays an error message.
+
+      Use case ends.
+
+
+**Use case: Display the user's schedule**
+
+**MSS**
+
+1. The user requests to display their current schedule.
+2. TutorPro displays the user’s current schedule
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user has nothing in their schedule.
+    * 2a1. TutorPro shows an error message.
+
+      Use case ends.
+
+
+**Use case: Set a recurring event**
+
+**MSS**
+
+1. The user requests to set an event that recurs weekly.
+2. TutorPro sets the event.
+3. TutorPro displays the list of the user’s weekly recurring events.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Given day(s) is/are in the wrong input format.
+    * 2a1. TutorPro shows an error message.
+
+      Use case ends.
+
+* 2b. Given student does not exist in the list.
+    * 2b1. TutorPro shows an error message.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Security:
+* The application must ensure secure storage and transmission of sensitive student data, such as grades and contact information, adhering to industry-standard _encryption_ protocols.
+* Access to student records must be restricted to authorized users only, with role-based access control mechanisms in place.
 
-*{More to be added}*
+2. Privacy:
+* The application should comply with relevant privacy regulations (e.g., GDPR, HIPAA) to safeguard students' personal information.
+* Student data should only be accessible to the student, their assigned tutor, and authorized administrative staff.
+
+3. Scalability:
+* The system must be able to handle a growing number of students and tutors without a significant decrease in performance.
+* It should support concurrent access by multiple users without degradation in response time or system stability.
+
+4. Reliability:
+* The application should have minimal downtime and be available for use during critical academic periods, such as exam periods or assignment deadlines.
+* It should have mechanisms in place to recover from failures gracefully, ensuring _data integrity_ and continuity of service.
+
+5. Interoperability:
+* The application should be compatible with various devices and _operating systems_ commonly used by both tutors and students, such as laptops, tablets, and smartphones.
+* It should support integration with other academic systems or tools, such as learning management systems or scheduling software.
+
+6. Usability:
+* The application interface should be intuitive and user-friendly, requiring minimal training for tutors and students to navigate and use effectively.
+* It should provide clear instructions and guidance for inputting and accessing academic information and contact details.
+
+7. Performance:
+* The system should respond promptly to user actions, such as loading student profiles, updating grades, or scheduling tutoring sessions, aiming for sub-second response times.
+* It should efficiently manage database queries and data retrieval to prevent delays in accessing information.
+
+8. Maintainability:
+* The application codebase should be well-documented and _modular_, facilitating ease of maintenance and future enhancements.
+* It should support version control and have mechanisms for bug tracking and resolution.
+
+9. Accessibility:
+* The application interface should be accessible to users with disabilities, following web accessibility guidelines such as WCAG.
+* It should support alternative input methods, screen readers, and keyboard navigation for users with visual or motor impairments.
+
+10. Backup and Disaster Recovery:
+* Regular backups of student data should be performed, with procedures in place for data restoration in case of accidental deletion or system failure.
+* The application should have disaster recovery measures to ensure minimal data loss and service disruption in the event of server or infrastructure failures.
+
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Encryption** - The process of converting information or data into a code, especially to prevent unauthorized access.
+* **Data integrity** - The accuracy, completeness, and quality of data as it’s maintained over time and across formats.
+* **Operating system** - Mainstream operating systems are: Windows, Linux, Unix, MacOS
+* **Modular** - By modularizing a codebase you will define more clear boundaries between different clusters of objects that make up a screen of feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
