@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/jerome-j.png" width="200px">
 
-[[github](http://github.com/Jerome-j] [[portfolio](team/vnnamng.md)]
+[[github](http://github.com/Jerome-j] [[portfolio](team/jerome-j.md)]
 
 * Role: Developer
 * Responsibilities: Integration
