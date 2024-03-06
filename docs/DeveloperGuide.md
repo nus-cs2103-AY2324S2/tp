@@ -299,26 +299,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `EstateEase` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add home-owners to user’s contact list**
+**Use case: UC01 - Add home-seller to user’s contact list**
 
 **MSS:**
 
-1. User chooses to add home-owner.
-2. EstateEase requests for the details of the home-owner.
+1. User chooses to add home-seller.
+2. EstateEase requests for the details of the home-seller.
 3. User enters the requested details.
-4. EstateEase adds the home-owner and displays the newly added home-owner. <br>
+4. EstateEase adds the home-seller and displays the newly added home-seller. <br>
     Use case ends.
 
-**Precondition for Extension 3i:** EstateEase has received the details of the home-owner from the user. <br>
+**Precondition for Extension 3i:** EstateEase has received the details of the home-seller from the user. <br>
 **Trigger:** EstateEase validates the entered details and detects that the block number is missing when the housing type is HDB/Condo.
 
-**Precondition for Extension 3k and 3l:** EstateEase has received the details of the home-owner from the user. <br>
+**Precondition for Extension 3k and 3l:** EstateEase has received the details of the home-seller from the user. <br>
 **Trigger:** EstateEase validates the entered details and detects that the unit number is missing when the housing type is HDB/Condo.
+
+**Precondition for Extension 3i, 3j, 3k, 3l, 3m, 3n:** EstateEase has received the details of the home-seller from the user. <br>
+**Trigger:** EstateEase validates the entered details and detects missing block number, street name, unit number and postal code in the entered data when he is a home-seller.
 
 **Extensions**
 
 * 3a. EstateEase detects missing name in the entered data. <br>
-  * 3a1. EstateEase shows an error message regarding missing name. <br>
+    * 3a1. EstateEase shows an error message regarding missing name. <br>
   Use case resumes from step 2.
 
 * 3b. EstateEase detects duplicate name in the entered data. <br>
@@ -350,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 
 * 3i. EstateEase detects missing block number in the entered data. <br>
-    * 	3i1. EstateEase shows an error message regarding missing block number. <br>
+    * 3i1. EstateEase shows an error message regarding missing block number. <br>
       Use case resumes from step 2.
 
 * 3j. EstateEase detects missing street name in the entered data. <br>
@@ -385,7 +388,146 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3q1. EstateEase shows an error message regarding the entry of incorrect priority level. <br>
       Use case resumes from step 2.
 
-**Use case: UC02 - View all**
+**Use case: UC02 - Add home-buyer to user’s contact list**
+
+**MSS:**
+
+1. User chooses to add home-buyer.
+2. EstateEase requests for the details of the home-buyer.
+3. User enters the requested details.
+4. EstateEase adds the home-buyer and displays the newly added home-buyer. <br>
+   Use case ends.
+
+**Precondition for Extension 3i:** EstateEase has received the details of the home-buyer from the user. <br>
+**Trigger:** EstateEase validates the entered details and detects block number, street name, unit number and postal code in the entered data when he is a home-buyer.
+
+**Extensions**
+
+* 3a. EstateEase detects missing name in the entered data. <br>
+    * 3a1. EstateEase shows an error message regarding missing name. <br>
+      Use case resumes from step 2.
+  
+* 3b. EstateEase detects duplicate name in the entered data. <br>
+    * 3b1. EstateEase shows an error message regarding duplicate name. <br>
+      Use case ends.
+
+* 3c. EstateEase detects missing phone number in the entered data. <br>
+    * 3c1. EstateEase shows an error message regarding missing phone number. <br>
+      Use case resumes from step 2.
+
+* 3d. EstateEase detects incorrect format for phone number in the entered data. <br>
+    * 3d1. EstateEase shows an error message regarding incorrect format for phone number. <br>
+      Use case resumes from step 2.
+
+* 3e. EstateEase detects missing email in the entered data. <br>
+    * 3e1. EstateEase shows an error message regarding missing email. <br>
+      Use case resumes from step 2.
+
+* 3f. EstateEase detects incorrect format for email in the entered data. <br>
+    * 3f1. EstateEase shows an error message regarding incorrect format for email. <br>
+      Use case resumes from step 2.
+
+* 3g. EstateEase detects missing housing type (requirement for filter) in the entered data. <br>
+    * 3g1. EstateEase shows an error message regarding missing housing type. <br>
+      Use case resumes from step 2.
+
+* 3h. EstateEase detects incorrect housing type (requirement for filter) in the entered data. <br>
+    * 3h1. EstateEase shows an error message regarding the entry of incorrect of housing type. <br>
+      Use case resumes from step 2.
+
+* 3i. EstateEase detects block number, street name, unit number and postal code in the entered data. <br>
+    * 3i1. EstateEase shows an error message regarding the entry of housing details because home-buyer should not have a home yet. <br>
+      Use case resumes from step 2.
+
+* 3j. EstateEase detects missing role in the entered data. <br>
+    * 3j1. EstateEase shows an error message regarding missing role. <br>
+      Use case resumes from step 2.
+
+* 3k. EstateEase detects incorrect role in the entered data. <br>
+    * 3k1. EstateEase shows an error message regarding the entry of incorrect role. <br>
+      Use case resumes from step 2.
+
+**Use case: UC03 - Add more homes to home-seller**
+
+**MSS:**
+
+1. User chooses to add new home to home-seller.
+2. EstateEase requests for the details of the home.
+3. User enters requested details.
+4. EstateEase adds the new home and displays the newly added home of the home-seller. <br>
+   Use case ends.
+
+**Precondition for Extension 3i:** EstateEase has received the details of the home from the user. <br>
+**Trigger:** EstateEase validates the entered details and detects that the block number is missing when the housing type is HDB/Condo.
+
+**Precondition for Extension 3k and 3l:** EstateEase has received the details of the home from the user. <br>
+**Trigger:** EstateEase validates the entered details and detects that the unit number is missing when the housing type is HDB/Condo.
+
+**Extensions**
+* 1a. The contact list does not have any home-seller. <br>
+    * 1a1. EstateEase shows an error message stating that the contact list does not have home-seller. <br>
+      Use case ends.
+
+* 3a. EstateEase detects missing name of the home-seller in the entered data. <br>
+    * 3a1. EstateEase shows an error message regarding missing name. <br>
+      Use case resumes from step 2.
+
+* 3b. EstateEase detects invalid name of the home-seller in the entered data. <br>
+    * 3b1. EstateEase shows an error message regarding invalid name. <br>
+      Use case ends.
+
+* 3c. EstateEase detects that the name does not belong to home-seller, but to home-buyer instead. <br>
+    * 3c1. EstateEase shows an error message regarding home can only be attached to home-seller, instead of home-buyer. <br>
+      Use case resumes from step 2.
+
+* 3d. EstateEase detects missing housing type in the entered data. <br>
+    * 3d1. EstateEase shows an error message regarding missing housing type. <br>
+      Use case resumes from step 2.
+
+* 3e. EstateEase detects incorrect housing type in the entered data. <br>
+    * 3e1. EstateEase shows an error message regarding the entry of incorrect of housing type. <br>
+      Use case resumes from step 2.
+
+* 3f. EstateEase detects missing block number in the entered data. <br>
+    * 3f1. EstateEase shows an error message regarding missing block number. <br>
+         Use case resumes from step 2.
+
+* 3g. EstateEase detects missing street name in the entered data. <br>
+    * 3g1. EstateEase shows an error message regarding missing street name. <br>
+      Use case resumes from step 2.
+
+* 3h. EstateEase detects missing unit number in the entered data. <br>
+    * 3h1. EstateEase shows an error message regarding missing unit number. <br>
+      Use case resumes from step 2.
+
+* 3i. EstateEase detects incorrect format for unit number in the entered data. <br>
+    * 3i1. EstateEase shows an error message regarding incorrect format for unit number. <br>
+      Use case resumes from step 2.
+
+* 3j. EstateEase detects missing postal code in the entered data. <br>
+    * 3j1. EstateEase shows an error message regarding missing postal code. <br>
+      Use case resumes from step 2.
+
+* 3k. EstateEase detects incorrect format for postal code in the entered data. <br>
+    * 3k1. EstateEase shows an error message regarding incorrect format for postal code. <br>
+      Use case resumes from step 2.
+
+**Use case: UC04 - Viewing of homes based on home-seller's priority**
+
+**Preconditions:**
+- The user initialises a view command with home-seller as a filter
+
+**MSS:**
+1.  EstateEase process the view command with home-seller as filter.
+2.  EstateEase shows a list of home-sellers, arranged based on their priority. <br>
+    Use case ends.
+
+**Extensions**
+* 1a. The contact list does not have any home-seller. <br>
+    * 1a1. EstateEase shows an error message stating that the contact list does not have home-seller. <br>
+      Use case ends.
+
+**Use case: UC05 - View all**
 
 **MSS:**
 
@@ -401,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case ends.
 
-**Use case: UC03 - Delete a person**
+**Use case: UC06 - Delete a person**
 
 **MSS:**
 
@@ -424,7 +566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC04 - Load contact data from file**
+**Use case: UC07 - Load contact data from file**
 
 **Actor: EstateEase**
 
@@ -469,7 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         * 1d3b. EstateEase proceeds to load contact and address data from the newly created JSON file.
           Use case continues from step 2.
 
-**Use case: UC05 - Save to storage**
+**Use case: UC08 - Save to storage**
 
 **Actor: EstateEase**
 
@@ -495,20 +637,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. The program should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. The program should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. The program should be capable of running both online and offline.
+4. The program should be able to recover from common errors and not crash without user intervention.
+5. The program should provide meaningful error messages that guide the user to resolve issues.
+6. The program should be able to respond to any user input within at most 2 seconds.
+7. The program must perform consistently across different devices and operating systems with a reliability rate of 99%.
+8. The program only supports one user at a time.
+9. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+* **Index**: A number that references the position of the contact in the contact list
+* **Unique ID**: An attribute that uniquely identifies the contacts and houses in the contact list
+* **Home-buyer**: The contact who wants to buy a house
+* **Home-seller**: The contact who wants to sell their houses.
+* **Contact**: Home-buyer/Home-seller who is added to the list, containing details of name, phone number etc.
+* **Home**: Details of the homes by the home-seller
 
 --------------------------------------------------------------------------------------------------------------------
 
