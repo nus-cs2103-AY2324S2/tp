@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lim Rui Ting Valencia
 
-<img src="images/valencialim.jpeg" width="200px">
+<img src="images/valencialim.png" width="200px">
 
 [[github](http://github.com/ValenciaLim)]
 [[portfolio](https://valencialim.github.io/)]
