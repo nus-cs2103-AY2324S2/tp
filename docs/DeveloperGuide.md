@@ -326,17 +326,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Add a Tag to a Student's Profile**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User requests to add tag a specific student by inputting that student's ID and tag information.
+5.  The tag is successfully added to that student.
 
     Use case ends.
 
+**Use Case: Edit the Information of a Student**
+
+**MSS**
+
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User prompt to edit a specific student by inputting that student's ID and updated information.
+5.  The student's information is successfully changed.
+
+    Use case ends.
+
+**Use Case: Delete a Student**
+
+**MSS**
+
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User prompt to delete that student by its ID.
+5.  That student is successfully deleted.
+
+    Use case ends.
 **Extensions**
 
 * 2a. The list is empty.
