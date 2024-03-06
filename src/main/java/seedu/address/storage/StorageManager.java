@@ -7,9 +7,11 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -73,6 +75,34 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    /**
+     * Returns a {@code ReadOnlyAddressBook} with the initial data from {@code addressBookStorage}. <br>
+     * The data from the sample address book will be used instead if {@code addressBookStorage}'s address book is not
+     * found, or an empty address book will be used instead if errors occur when reading {@code addressBookStorage}'s
+     * address book.
+     */
+    @Override
+    public ReadOnlyAddressBook readInitialAddressBook() {
+        logger.info("Using data file : " + getAddressBookFilePath());
+
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook initialAddressBook;
+        try {
+            addressBookOptional = readAddressBook();
+            if (addressBookOptional.isEmpty()) {
+                logger.info("Creating a new data file " + getAddressBookFilePath()
+                        + " populated with a sample AddressBook.");
+            }
+            initialAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + getAddressBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AddressBook.");
+            initialAddressBook = new AddressBook();
+        }
+
+        return initialAddressBook;
     }
 
 }

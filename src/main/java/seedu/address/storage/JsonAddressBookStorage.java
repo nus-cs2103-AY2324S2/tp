@@ -46,10 +46,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         Optional<AddressBook> addressBook = JsonUtil.readJsonFile(filePath, AddressBook.class);
-        if (!addressBook.isPresent()) {
-            return Optional.empty();
-        }
-        return Optional.of(addressBook.get());
+        return addressBook.map(value -> value);
     }
 
     @Override
