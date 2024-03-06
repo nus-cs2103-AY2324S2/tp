@@ -24,7 +24,7 @@ Together we made ````Moddie!``
 
 ### Alvis Low Yue Han
 
-<img src="images/alvis.png" width="200px">
+<img src="images/alvislow.png" width="200px">
 
 [[github](https://github.com/beefsausagee)]
 [[portfolio](team/johndoe.md)]
@@ -43,7 +43,7 @@ Together we made ````Moddie!``
 
 ### Fu Ming Jun, Dominic
 
-<img src="images/dominic.png" width="200px">
+<img src="images/dominicfumj.png" width="200px">
 
 [[github](https://github.com/DominicFuMJ)]
 [[portfolio](team/johndoe.md)]
@@ -53,7 +53,7 @@ Together we made ````Moddie!``
 
 ### Wu Jinyan
 
-<img src="images/Wu Jinyan.png" width="200px">
+<img src="images/morninggloryyy.png" width="200px">
 
 [[github](https://github.com/Morninggloryyy)]
 [[portfolio](team/johndoe.md)]

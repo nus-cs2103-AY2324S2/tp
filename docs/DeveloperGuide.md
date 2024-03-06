@@ -279,6 +279,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* uses application to track schedule of contacts
+* prefer a simple UI
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
@@ -320,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Moddie` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
