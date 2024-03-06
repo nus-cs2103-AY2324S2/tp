@@ -6,7 +6,12 @@
 
 # InternBook
 
-As a student looking for internships, it is often hard to keep track of the many different internship applications. One of the solutions is to do so in an excel sheet, but such a user interface can become very hard to manage when there are many concurrent applications going on. Thus, having a CLI based interface can make it much easier for data input and query. Our app hopes to reduce the effort needed to track internships, so that students can spend the time searching instead. Our app will aim to record employers’ emails, job descriptions and application dates.
+As a student looking for internships, it is often hard to keep track of the many different internship applications.
+One of the solutions is to do so in an excel sheet, 
+but such a user interface can become very hard to manage when there are many concurrent applications going on.
+Thus, having a CLI based interface can make it much easier for data input and query.
+Our app hopes to reduce the effort needed to track internships, so that students can spend the time searching instead. 
+Our app will aim to record employers’ emails, job descriptions and application dates.
 
 ## Getting Started
 1. Ensure that Java 11 is available on your machine.
