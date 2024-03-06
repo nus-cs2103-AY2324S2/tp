@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/SherisseTJW)] [[portfolio](https://ay2324s2-cs2103-f09-2.github.io/tp/)]
 
 * Role: Integration
-* Responsibilities: In charge of versioning of the code, maintaining the code repository, 
+* Responsibilities: In charge of versioning of the code, maintaining the code repository,
 integrating various parts of the software to create a whole.
 
 ### Li Guohuang
