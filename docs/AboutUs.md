@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/doyelee0313)]
 [[portfolio](team/doyelee0313.md)]
 
-* Role: Project Advisor
+* Role: Developer
 * Responsibilities: Development + UI + Documentation
 
 ### Jane Doe
