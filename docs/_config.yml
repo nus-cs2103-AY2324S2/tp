@@ -1,7 +1,7 @@
 # @format
 
 title: "ClickConnect"
-theme: jekyll-theme-minima
+theme: minima
 
 header_pages:
   - UserGuide.md

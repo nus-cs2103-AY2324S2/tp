@@ -17,7 +17,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/johndoe.md)]
 
 - Role: Team Lead
-- Responsibilities: Overall project coordination.
+- Responsible for overall project coordination.
 
 ### Baskar Gopinath
 
@@ -58,5 +58,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[linkedin](https://www.linkedin.com/in/tayruijie/)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities:
+- Role: Documentation Lead
+- Responsible for the quality of the project website as well as various project documents.
