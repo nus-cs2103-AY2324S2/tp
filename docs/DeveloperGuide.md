@@ -312,14 +312,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the correct command with the required field.
    * Steps 1a1 - 1a2 are repeated until the input entered are correct.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1b. PoochPlanner detects a duplicate name entry.
 
    * 1b1. PoochPlanner displays the error message.
    * 1b2. User re-enters the correct command with another name.
    * Steps 1b1 - 1b2 are repeated until there is no duplicate entry in input.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1c. PoochPlanner detects wrong format for email.
 
@@ -359,14 +359,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the correct command with the name field.
    * Steps 1a1 - 1a2 are repeated until the input entered are correct.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1b. PoochPlanner is unable to find the Person.
 
    * 1b1. PoochPlanner displays the error message.
    * 1b2. User re-enters a new command with another name.
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 ---
 **System**: `PoochPlanner`
@@ -392,21 +392,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the correct command with the name field.
    * Steps 1a1 - 1a2 are repeated until the input entered are correct.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1b. PoochPlanner is unable to find the Person.
 
    * 1b1. PoochPlanner displays the error message.
    * 1b2. User re-enters a new command with another name.
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1c. User requests to edit the name field to a name that already exists in PoochPlanner.
 
    * 1c1. PoochPlanner displays the error message.
    * 1c2. User re-enters the command with a different name.
    * Steps 1c1 - 1c2 are repeated until the new name field is valid.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1d. User did not specify the field that they want to edit.
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1e1. PoochPlanner displays the error message.
    * 1e2. User re-enters the command and edits a different field.
    * Steps 1e1 - 1e2 are repeated until there exist a valid field in the input.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1f. PoochPlanner detects wrong format for email.
 
@@ -440,7 +440,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to search for the contact of a person with a keyword for a specified field.
 2.  PoochPlanner confirms successful search.
-3.  PoochPlanner returns the sublist of contacts that contains the keyword specified by the user. 
+3.  PoochPlanner returns the sublist of contacts that contains the keyword specified by the user.
 
     Use case ends.
 
@@ -451,21 +451,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the correct command with a specified field.
    * Steps 1a1 - 1a2 are repeated until a valid field is inputted by the User.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1b. PoochPlanner detects multiple fields in the entered input.
 
    * 1b1. PoochPlanner displays the error message.
    * 1b2. User re-enters a new command with only one field.
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1c. PoochPlanner detects invalid field in the entered input.
 
    * 1c1. PoochPlanner displays the error message.
    * 1c2. User re-enters a new command with another field.
    * Steps 1c1 - 1c2 are repeated until a valid field is inputted by the User.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 ---
 **System**: `PoochPlanner`
@@ -488,7 +488,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the command and request to learn about a valid command.
    * Steps 1a1 - 1a2 are repeated until a valid command is inputted by the User.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 ---
 *{More to be added}*
