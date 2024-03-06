@@ -275,14 +275,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​     | I want to …​                                      | So that I can…​                                                                   |
+| -------- | ---------- | ------------------------------------------------ | -------------------------------------------------------------------------------- |
+| `* * *`  | libarian   | record the phone number of the borrower          | send SMS reminders to notify them that someone else is looking for the book      |
+| `* * *`  | libarian   | record the email address of the borrower         | send an email reminders to notify them that someone else is looking for the book |
+| `* * *`  | libarian   | record the postal address of the borrower        | send a warning letter when breach community guidelines                           |
+| `* * *`  | libarian   | record how many books the borrower has borrowed  | keep track the position of the books                                             |
+| `* * *`  | libarian   | record the date the borrower borrowed the book   | calculate when they need to return the book                                      |
 
 *{More to be added}*
 
