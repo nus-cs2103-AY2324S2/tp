@@ -274,13 +274,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* freelance journalists
+* has a need to manage a significant number of contacts for different facets of business
+* prefer using text-based commands than multi-step GUI
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* value speed and efficiency
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: An app for freelance journalists that can streamline their workflow by organizing sources, tracking outlets interested in their stories, and managing collaborations with peers/editors. With features like tagging and grouping contacts, it facilitates efficient research, ensuring reporters can quickly reach out and report on breaking stories.
+
 
 
 ### User stories
@@ -368,6 +369,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Story**: A story written by interviewing the person
+* **Tag**: Additional information about the person on level of how helpful the person was for a journal.
 
 --------------------------------------------------------------------------------------------------------------------
 
