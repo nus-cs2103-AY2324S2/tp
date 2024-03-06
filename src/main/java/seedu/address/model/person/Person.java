@@ -51,7 +51,9 @@ public class Person {
         return email;
     }
 
-    public Remark getRemark() { return remark;}
+    public Remark getRemark() {
+        return remark;
+    }
 
     public Address getAddress() {
         return address;
