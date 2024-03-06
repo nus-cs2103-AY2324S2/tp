@@ -9,17 +9,17 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
-### John Doe
+### Yap Ho Wen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/howen02.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/howen02)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Git expert, Code Quality
 
-### Jane Doe
+### Yeo Zi Yi
 
 <img src="images/johndoe.png" width="200px">
 
