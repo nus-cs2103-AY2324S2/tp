@@ -1,11 +1,15 @@
 package seedu.address.model.internship;
 
-import seedu.address.commons.util.ToStringBuilder;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.ToStringBuilder;
 
+/**
+ * Represents an Internship in the internship book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Internship {
     // Identity fields
     private final CompanyName companyName;
@@ -18,7 +22,9 @@ public class Internship {
     private final ContactEmail contactEmail;
     private final ContactNumber contactNumber;
     private final ApplicationStatus applicationStatus;
-
+    /**
+     * Every field must be present and not null.
+     */
     public Internship(CompanyName companyName, ContactName contactName, ContactEmail contactEmail,
                       ContactNumber contactNumber, Location location, ApplicationStatus applicationStatus,
                       Description description, Role role) {

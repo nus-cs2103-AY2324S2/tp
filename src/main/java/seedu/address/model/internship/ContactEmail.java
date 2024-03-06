@@ -3,6 +3,9 @@ package seedu.address.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Internship Contact's email in the internship book.
+ */
 public class ContactEmail {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";

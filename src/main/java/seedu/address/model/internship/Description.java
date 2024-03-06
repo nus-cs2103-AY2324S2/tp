@@ -2,6 +2,9 @@ package seedu.address.model.internship;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents an Internship's description in the internship book.
+ */
 public class Description {
 
     public final String description;

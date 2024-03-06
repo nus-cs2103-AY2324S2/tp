@@ -48,7 +48,8 @@ public class ContactNumber {
             return false;
         }
 
-        seedu.address.model.internship.ContactNumber otherContactNumber = (seedu.address.model.internship.ContactNumber) other;
+        seedu.address.model.internship.ContactNumber otherContactNumber =
+                (seedu.address.model.internship.ContactNumber) other;
         return value.equals(otherContactNumber.value);
     }
 

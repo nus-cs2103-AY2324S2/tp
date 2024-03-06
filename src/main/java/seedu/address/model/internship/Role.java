@@ -2,6 +2,9 @@ package seedu.address.model.internship;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represent's an internship's role in the internship book
+ */
 public class Role {
 
     public final String role;

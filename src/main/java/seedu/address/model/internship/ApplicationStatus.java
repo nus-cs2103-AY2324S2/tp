@@ -1,8 +1,10 @@
 package seedu.address.model.internship;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Internship's application status in the internship book.
+ */
 public class ApplicationStatus {
     /**
      * Enum of statuses
@@ -30,18 +32,18 @@ public class ApplicationStatus {
     @Override
     public String toString() {
         switch (applicationStatus) {
-            case TO_APPLY:
-                return "To Apply";
-            case PENDING:
-                return "Pending";
-            case REJECTED:
-                return "Rejected";
-            case ACCEPTED:
-                return "Accepted";
-            case ONGOING:
-                return "Ongoing";
-            default:
-                throw new IllegalArgumentException("Unexpected application status: " + applicationStatus);
+        case TO_APPLY:
+            return "To Apply";
+        case PENDING:
+            return "Pending";
+        case REJECTED:
+            return "Rejected";
+        case ACCEPTED:
+            return "Accepted";
+        case ONGOING:
+            return "Ongoing";
+        default:
+            throw new IllegalArgumentException("Unexpected application status: " + applicationStatus);
         }
     }
 
