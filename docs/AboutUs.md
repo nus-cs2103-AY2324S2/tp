@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jae Geun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alphajae11.png" width="200px">
 
 [[github](http://github.com/alphajae11)]
 [[portfolio](team/alphajae11.md)]
