@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# TeamTracker Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -311,6 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  TeamTracker shows a list of contacts
 3.  User requests to assign a task to a contact
 4.  TeamTracker assigns the task to the contact
+
     Use case ends.
 
 **Extensions**
@@ -370,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should respond within one seconds.
 5.  Documentation should be easy for users that are inexperienced in command line to follow.
-6.  User Interface should be straightforward and inutitive to navigate even for first-time users.
+6.  User Interface should be straightforward and intuitive to navigate even for first-time users.
 7.  Should be able to store more than 10,000 tasks.
 8.  Should lose no more than 1-action worth of work in case of an app crash.
 9.  Should work without internet access.
@@ -378,7 +379,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **System admin commands**: commands or instructions that are used through a command-line interface (CLI) 
+or a terminal window
+* **Action**: The AddressBook processing a user command
 
 --------------------------------------------------------------------------------------------------------------------
 
