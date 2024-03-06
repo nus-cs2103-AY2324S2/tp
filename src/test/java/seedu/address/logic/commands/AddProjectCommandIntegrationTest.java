@@ -42,7 +42,7 @@ public class AddProjectCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new AddProjectCommand(personInList), model,
-                AddProjectCommand.MESSAGE_DUPLICATE_PERSON);
+                String.format(AddProjectCommand.MESSAGE_DUPLICATE_PERSON, Messages.format(personInList)));
     }
 
 }

@@ -50,7 +50,8 @@ public class AddProjectCommandTest {
         AddProjectCommand addProjectCommand = new AddProjectCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddProjectCommand.MESSAGE_DUPLICATE_PERSON, () ->
+        assertThrows(CommandException.class, String.format(AddProjectCommand.MESSAGE_DUPLICATE_PERSON,
+                Messages.format(validPerson)), () ->
                 addProjectCommand.execute(modelStub));
     }
 

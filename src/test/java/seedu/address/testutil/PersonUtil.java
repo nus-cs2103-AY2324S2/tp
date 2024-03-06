@@ -30,7 +30,7 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
+        sb.append(person.getName().fullName);
         return sb.toString();
     }
 
