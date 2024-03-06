@@ -326,7 +326,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **PoochPlanner**: An address book CLI software that stores contacts.
-* **PoochContact**: A contact that is stored in PoochPlanner.
+* **Pooch Contact**: A contact that is stored in PoochPlanner.
+* **Pooch Owner**: The target user of PoochPlanner; Dog Cafe owners.
+* **Pooch Client**: Patrons of the Dog Cafe.
+* **Pooch Supplier**: External suppliers that sell the logistics required for the sustenance of Dog Cafe operations, for example Pooch Food, to the Pooch Cafe Owners at a fixed price.
+* **Pooch Staff**: Employees of the Dog Cafe that handle the running of the cafe.
+* **Pooch Maintenance Staff**: Specialised external workers that take special care and maintenance of dogs.
 
 --------------------------------------------------------------------------------------------------------------------
 
