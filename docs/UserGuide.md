@@ -180,6 +180,23 @@ Examples:
 * `list` followed by `select 2` shows the detailed profile of the 2nd person in FAPro.
 * `find Betsy` followed by `select 1` shows the detailed profile of the 1st person in the results of the `find` command.
 
+### Tag a client's profile as last contacted : `lastcontact`
+
+Adds a client to the recently contacted list in FAPro.
+
+Format: `lastcontact NAME [d/DATE] [tm/TIME]`
+
+* The input is case-insensitive. e.g. `JoHn Doe` will match `john doe`.
+* In case of duplicate names, all matching names will be listed with their ID code and other details.
+* User will need to add the respective ID code to existing input in case of duplicate.
+* `DATE` and `TIME` format should be in `DD-MM-YYYY` and `HHMM` respectively.
+
+Example:
+* `lastcontact John doe d/05-09-2024 tm/1955` tags the client with name `john doe` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
+
+Example (For duplicate names):
+* `lastcontact John doe#0005 d/05-09-2024 tm/1955` tags the client with name `john doe#0005` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from FAPro.
