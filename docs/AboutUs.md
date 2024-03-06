@@ -1,8 +1,3 @@
----
-    layout: default.md
-    title: "About Us"
----
-
 # About Us
 
 We are the developer team of event management app Eventy, based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
