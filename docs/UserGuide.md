@@ -25,19 +25,6 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Asset Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -48,7 +35,7 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 
 **Notes about the command format:**<br>
 
-* Commands parameters with whitespaces should be inside quotation marks.
+* Command parameters with whitespaces must be inside quotation marks.
   e.g. `--name John Doe` must be written as `--name "John Doe"` instead.
 
 * Items in square brackets are optional.<br>
@@ -60,25 +47,17 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `--name NAME --phone PHONE_NUMBER`, `--phone PHONE_NUMBER --name NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 ### Adding a person: `add`
 
 Adds a new contact or asset to the system.
 
-Format for adding a new contact: `add --name <name> [--email <email> --phone <phone>] [--tag <tag> [...]]`
+Format for adding a new contact: `add --name <name> [--email <email> --phone <phone>] [--tag <tag>]...`
 
 Format for adding a new asset: `add --id <asset id> --location <location>`
 
@@ -88,7 +67,7 @@ Format for adding a new asset: `add --id <asset id> --location <location>`
 </box>
 
 #### Examples
-* Add a contact: `add --name John Doe --email johndoe@example.com --phone +12345678 --tag friend`
+* Add a contact: `add --name "John Doe" --email johndoe@example.com --phone +12345678 --tag friend`
 * Add an asset: `add --id 001 --location WarehouseA`
 
 #### Options
@@ -134,7 +113,7 @@ Example: `delete a123` deletes the asset with id `a123`.
 
 Edit existing contacts or assets without recreating them.
 
-Format: `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name> ...]]] | [--location <location>]`
+Format: `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>]...]] | [--location <location>]`
 
 Example: `edit c123 --email newemail@example.com` edits the contact with id `123`, changing its email to `newemail@example.com`.
 
@@ -194,8 +173,8 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add --name <name> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name> ...]]] | [--id <asset id> --location <location>]` <br> e.g. `add --name John Doe --email johndoe@example.com --phone 87654321`, `add --id <asset id> --location <location>`
-**Delete** | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name> ...]]] | [--location <location>]`<br> e.g. `edit c123 --email newemail@example.com`
-**Edit**   | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name> ...]]] | [--location <location>]`<br> e.g. `edit c123 --email newemail@example.com`
+**Add**    | `add --name <name> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] | [--id <asset id> --location <location>]` <br> e.g. `add --name John Doe --email johndoe@example.com --phone 87654321`, `add --id <asset id> --location <location>`
+**Delete** | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] | [--location <location>]`<br> e.g. `edit c123 --email newemail@example.com`
+**Edit**   | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] | [--location <location>]`<br> e.g. `edit c123 --email newemail@example.com`
 **Search**   | `search` `search [--contact] [--asset] [--tag] <string>`<br> e.g. `search --tag Marketing`
 **Exit**   | `exit`
