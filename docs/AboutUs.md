@@ -17,8 +17,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/cocoanautz)]
 
-* Role: Developer
-* Responsibilities: Dev Ops
+- Role: Developer
+- Responsibilities: Dev Ops
 
 ### Ajay Arvind
 
@@ -27,34 +27,34 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/AjayArvind2207)]
 [[portfolio](team/ajay.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Team Lead
+- Responsibilities: UI
 
-### Johnny Doe
+### Sherwyn Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sherwynng.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/SherwynNg)] [[portfolio](team/sherwyn.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
-### Jean Doe
+### Jasper
+
+<img src="images/jasper.png" width="200px">
+
+[[github](https://github.com/jasperng-nus)] 
+[[portfolio](team/jasper.md)]
+
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
+
+### Felix
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
