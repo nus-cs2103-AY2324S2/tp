@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### XU HANXIAO
 
-<img src="Desktop/cs2103/mytpfork/docs/images/wallacexuhanxiao.png" width="200px">
+<img src="images/wallacexuhanxiao.png" width="200px">
 
 [[github](https://github.com/wallacexuhanxiao] [[portfolio](team/johndoe.md)]
 
