@@ -279,22 +279,23 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* are currently managing people for groups
+* has a tendency to forget tasks to complete
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: This app aims to help leaders to keep track of members of formed groups and their contact information. This app helps to keep track of individual and group tasks, deadlines and meetings, thus allowing them to have a better overview of the structure.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                     | I want to …​                                     | So that I can…​                                                         |
+|----------|--------------------------------------------|-------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | student                                    | add personal tasks                              | keep up to date with the different tasks to complete                   |
+| `* * *`  | student                                    | delete tasks                                    |                                                                        |
+| `* * *`  | student                                    | mark/unmark the tasks as done/not done          | keep track of tasks that are completed                                 |
+| `* *`    | group leader                               | assign tasks to individuals within the group    | manage individual tasks                                                |
+| `* *`    | busy group leader                          | see an overview of all the saved task           | save time                                                              |
 
 *{More to be added}*
 
