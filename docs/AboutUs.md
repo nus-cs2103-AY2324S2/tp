@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: Overall project coordination.
+* Responsible for overall project coordination.
 
 ### Baskar Gopinath
 
@@ -58,5 +58,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[linkedin](https://www.linkedin.com/in/tayruijie/)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities:
+* Role: Documentation Lead
+* Responsible for the quality of the project website as well as various project documents.
