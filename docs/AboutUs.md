@@ -11,15 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chia York Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yorklim.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yorklim)]
+[[portfolio](team/yorklim.md)]
 
-* Role: Project Advisor
+* Role: Team lead + Code quality
+* Responsibilities: Dev Ops
 
 ### Ge Shuqing
 
@@ -47,27 +47,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/solomonng2001.png" width="200px">
 
-[[github](http://github.com/solomonng2001)] [[portfolio](team/solomonng.md)]
+[[github](http://github.com/solomonng2001)]
+[[portfolio](team/solomonng.md)]
 
 * Role: Testing
 * Responsibilities: Storage
-
-### Chia York Lim
-
-<img src="images/yorklim.jpg" width="200px">
-
-[[github](http://github.com/yorklim)]
-[[portfolio](team/yorklim.md)]
-
-* Role: Team lead + Code quality
-* Responsibilities: Dev Ops
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
