@@ -50,11 +50,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### Felix Wang Wei Ze
+### James Doe
 
-<img src="images/xilef121.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/Xilef121)]
+[[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
