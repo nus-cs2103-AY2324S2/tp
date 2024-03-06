@@ -9,22 +9,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lim Xiu Jia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tsulim.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/tsulim)]
+[[portfolio](team/tsulim.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Scheduling and tracking
 
 ### Calista Wong
 
-<img src="images/calistaWong.png" width="200px">
+<img src="images/whitesnowx.png" width="200px">
 
 [[github](https://github.com/whitesnowx)]
-[[portfolio](team/calistaWong.md)]
+[[portfolio](team/whitesnowx)]
 
 * Role: Developer
 * Responsibilities: Documentation and organisation
@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation Quality Assurance
 
-### Jean Doe
+### Jerry Wang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jerrywang0000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/JerryWang0000)]
+[[portfolio](team/jerrywang0000)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Backend Developer
+* Responsibilities: Development of Functionalities
 
 ### James Doe
 
