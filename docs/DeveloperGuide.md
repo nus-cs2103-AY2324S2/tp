@@ -324,10 +324,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | colleague       | import someone's contact list                         | take over his clients                                                 |
 | `*`      | insurance agent | report issues/bugs                                    | get someone to fix bugs                                               |
 | `*`      | developer	      | get a log list of user activity                       | view user activity to bug fix                                         |
-      | `*`      | manager         | view all my subordinates' clients                     | be aware of their progress and client base                            |
-      | `*`      | insurance agent | get reminders of client birthday                      | send birthday message                                                 |
+| `*`      | manager         | view all my subordinates' clients                     | be aware of their progress and client base                            |
+| `*`      | insurance agent | get reminders of client birthday                      | send birthday message                                                 |
 
-      *{More to be added}*
+*{More to be added}*
 
 ### Use cases
 
@@ -343,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The list is empty as no clients have been added at all.<br>
   * 1a1. ClientCare notifies that the list is empty.<br>
-  Use case ends.
+    Use case ends.
 
 
 **Use case: UC02 - View client details and policies**
@@ -357,8 +357,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. ClientCare detects that the client does not exist or invalid command usage.
   * 1a1. ClientCare shows an error message.<br>
   * 1a2. User enters new data.<br>
-  Steps 1a1-1a2 are repeated until the data entered are correct.<br>
-  Use case resumes from step 2.
+    Steps 1a1-1a2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.
 
 
 **Use case: UC03 - Add a new client**
@@ -373,8 +373,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. ClientCare detects invalid command usage or information.
   * 1a1. ClientCare shows an error message.
   * 1a2. User enters new data.<br>
-  Steps 1a1-1a2 are repeated until the data entered are correct.<br>
-  Use case resumes from step 2.
+    Steps 1a1-1a2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.
 
 
 **Use case: UC04 - Find a client by name**
@@ -403,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 * 3a. The given index is invalid.
   * 3a1. ClientCare shows an error message.<br>
-  Use case resumes at step 2.
+    Use case resumes at step 2.
 
 
 **Use case: UC06 - Schedule an appointment with client**
@@ -416,10 +416,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. Date and time is invalid.
   * 1a1. ClientCare shows an error message.<br>
-  Use case ends.
+    Use case ends.
 * 1b. Date and time has past.
   * 1b1. ClientCare shows an error message.<br>
-  Use case ends.
+    Use case ends.
 
 
 **Use case: UC07 - Update client as met**
@@ -432,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. Client does not exist.
   * 1a1. ClientCare shows an error message.<br>
-  Use case ends.
+    Use case ends.
 
 
 **Use case: UC08 - Mark appointment**
@@ -445,7 +445,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. Appointment does not exist.
   * 1a1. ClientCare shows an error message.<br>
-  Use case ends.
+    Use case ends.
 
 *{More to be added}*
 
