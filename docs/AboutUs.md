@@ -23,28 +23,28 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jun Heng
 
-<img src="images/austintjh19.jpg" width="200px">
+<img src="images/austintjh19.png" width="200px">
 
 [[github](http://github.com/Austintjh19)] [[portfolio](https://austintanjunheng.netlify.app/)]
 
 * Role: Developer
 * Responsibilities: Backend, UI, DevOps
 
-### Jean Doe
+### Lim Rui Ting Valencia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/valencialim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ValenciaLim)]
+[[portfolio](https://valencialim.github.io/)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Li Zizhen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/li_zizhen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/Li-Zizhen)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
