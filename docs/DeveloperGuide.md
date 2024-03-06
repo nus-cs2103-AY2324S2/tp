@@ -296,27 +296,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                               | So that I can…​                                                       |
-|----------|-----------------|--------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | insurance agent | see usage instructions                     | refer to instructions when I forget how to use the App                |
-| `* * *`  | insurance agent | add a new client contact details           | keep track of the clients I have                                      |
-| `* * *`  | insurance agent | delete a client                            | remove clients that are leaving                                       |
-| `* * *`  | insurance agent | find a client by name                      | locate details of client without having to go through the entire list |
-| `* * *`  | insurance agent | list all clients                           | see all clients at a glance                                           |
-| `* * *`  | insurance agent | view client information                    | know and check client details                                         |
-| `* *`    | insurance agent | check schedules with clients on a date     | keep track of what I have to do in a day                              |
-| `* *`    | insurance agent | add the birthday of my clients             | wish them happy birthday to keep in contact with them                 |
-| `* *`    | insurance agent | delete policy details for a client         | remove expired policies of the client                                 |
-| `* *`    | insurance agent | see when I last met a client               | check in on a client that I have not met for a long time              |
-| `* *`    | insurance agent | mark that a schedule is completed          | know that i fulfilled the appointment scheduled                       |
-| `* *`    | insurance agent | add policy details of a client             | keep track of clients and their policies                              |
-| `* *`    | insurance agent | schedule checkup date and time for clients | so I know when to follow-up with them                                 |
-| `*`      | insurance agent | sort clients by priority                   | deal with client with higher priority status first                    |
-| `*`      | insurance agent | track deals that I have closed             | track my current progress                                             |
-| `*`      | insurance agent | edit my client's details                   | update my client's details                                            |
-| `*`      | insurance agent | reschedule my appointments                 | change the date and time of appointments with clients                 |
-| `*`      | insurance agent | filter clients by importance               | decide on who to prioritise on                                        |
-| `*`      | insurance agent | get help                                   | use the app when I am lost or confused                                |
+| Priority | As a …​         | I want to …​                                          | So that I can…​                                                       |
+|----------|-----------------|-------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | insurance agent | see usage instructions                                | refer to instructions when I forget how to use the App                |
+| `* * *`  | insurance agent | add a new client contact details                      | keep track of the clients I have                                      |
+| `* * *`  | insurance agent | delete a client                                       | remove clients that are leaving                                       |
+| `* * *`  | insurance agent | find a client by name                                 | locate details of client without having to go through the entire list |
+| `* * *`  | insurance agent | list all clients                                      | see all clients at a glance                                           |
+| `* * *`  | insurance agent | view client information                               | know and check client details                                         |
+| `* *`    | insurance agent | check schedules with clients on a date                | keep track of what I have to do in a day                              |
+| `* *`    | insurance agent | add the birthday of my clients                        | wish them happy birthday to keep in contact with them                 |
+| `* *`    | insurance agent | delete policy details for a client                    | remove expired policies of the client                                 |
+| `* *`    | insurance agent | see when I last met a client                          | check in on a client that I have not met for a long time              |
+| `* *`    | insurance agent | mark that a schedule is completed                     | know that i fulfilled the appointment scheduled                       |
+| `* *`    | insurance agent | add policy details of a client                        | keep track of clients and their policies                              |
+| `* *`    | insurance agent | schedule checkup date and time for clients            | so I know when to follow-up with them                                 |
+| `*`      | insurance agent | sort clients by priority                              | deal with client with higher priority status first                    |
+| `*`      | insurance agent | track deals that I have closed                        | track my current progress                                             |
+| `*`      | insurance agent | edit my client's details                              | update my client's details                                            |
+| `*`      | insurance agent | reschedule my appointments                            | change the date and time of appointments with clients                 |
+| `*`      | insurance agent | filter clients by importance                          | decide on who to prioritise on                                        |
+| `*`      | insurance agent | get help                                              | use the app when I am lost or confused                                |
+| `*`      | insurance agent | can sort clients by the expected revenue of the deals | know which clients to prioritise                                      |
+| `*`      | insurance agent | set the policy payment due dates                      | remind my clients.                                                    |
+| `*`      | insurance agent | add the maturity date of my client’s policy           | update them and plan for future policies                              |
+| `*`      | developer       | view list of all bugs reported by users               | conveniently view all reported bugs and fix them                      |
+| `*`      | colleague       | import someone's contact list                         | take over his clients                                                 |
+| `*`      | insurance agent | report issues/bugs                                    | get someone to fix bugs                                               |
+| `*`      | developer	      | get a log list of user activity                       | view user activity to bug fix                                         |
+| `*`      | manager         | view all my subordinates' clients                     | be aware of their progress and client base                            |
+| `*`      | insurance agent | get reminders of client birthday                      | send birthday message                                                 |
 
 *{More to be added}*
 
