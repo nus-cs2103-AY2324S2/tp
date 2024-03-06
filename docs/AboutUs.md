@@ -57,3 +57,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### John Yoo
+
+<img src="images/johnyoozhengxian.png" width="200px">
+
+[[github](http://github.com/johnyoozhengxian)]
+[[portfolio](team/johnyoozhengxian.md)]
+
+* Role: Developer
+* Responsibilities: UI
