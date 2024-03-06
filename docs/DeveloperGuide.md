@@ -325,15 +325,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The list is empty
+* 1a. The list is empty.
 
     Use case ends.
 
-* 1b. User inputs an invalid day format as an input
+* 1b. User inputs an invalid day format as an input.
     
-    * 1b1. TutorRec shows an error message
+    * 1b1. TutorRec shows an error message.
 
-    Use case ends
+    Use case ends.
 
 
 **Use case: Sorting students**
@@ -347,19 +347,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The list is empty
+* 1a. The list is empty.
 
     Use case ends.
 
-* 1b. The given category does not have any students assigned to it
+* 1b. The given category does not have any students assigned to it.
 
-    * 1b1. TutorRec shows an empty list
+    * 1b1. TutorRec shows an empty list.
 
     Use case ends.
 
-* 1c. User inputs an invalid category
+* 1c. User inputs an invalid category.
     
-    * 1c1. TutorRec shows an error message
+    * 1c1. TutorRec shows an error message.
 
     Use case ends.
 
@@ -388,9 +388,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. User inputs a field that does not exist (e.g. adding a nonexistent /q field)
+* 3b. User inputs a field that does not exist (e.g. adding a nonexistent /q field).
 
-    * 3b1. TutorRec shows an error message
+    * 3b1. TutorRec shows an error message.
 
         Use case resumes at step 2.
 
@@ -410,9 +410,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-* 1b. No students exist with the given name
+* 1b. No students exist with the given name.
 
-    * 1b1. TutorRec displays an empty list
+    * 1b1. TutorRec displays an empty list.
     
         Use case ends.
 
@@ -454,7 +454,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
         Use case resumes at step 2.
 
-* 6b. The student has no grades saved
+* 6b. The student has no grades saved.
 
     * 6b1. TutorRec displays nothing.
 
@@ -528,7 +528,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. Insufficient information is given to make an appointment
+* 3b. Insufficient information is given to make an appointment.
 
     * 3b1. TutorRec shows an error message.
 
