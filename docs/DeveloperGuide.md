@@ -320,7 +320,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  TutorRec should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  TutorRec should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  TutorRec is not required to handle multiple users (i.e. multi-user product), it is a single-user product.
+4.  TutorRec is not required to handle multiple users (i.e. multi-user product); it is a single-user product.
 5.  TutorRec needs to be developed in a breadth-first incremental manner, with weekly updates.
 6.  TutorRec's data should be stored locally and should be in a human editable text file.
 7. TutorRec should not use a DBMS to store data.
