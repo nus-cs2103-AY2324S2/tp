@@ -4,41 +4,51 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# InternBook User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Welcome to InternBook!
+
+InternBook is your go-to fast, reliable and customizable **desktop app for tracking internship details**
+
+It is optimized for a _Command Line Interface_ (CLI), but you can still use the advantages of a _Graphical User Interface_ (GUI). 
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started!
 
-1. Ensure you have Java `11` or above installed in your Computer.
+> [!IMPORTANT]
+> Ensure you have Java `11`  installed in your computer. If you do not have it installed, download it from [here.](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
+1. Download the latest `internbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Copy the file to the folder you want to use as the _home folder_ for your Internbook.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar internbook.jar` command to run the application.
+> [!TIP]
+> If you are struggling to figure out the path to `cd` into, you can use the File Explorer in your OS to copy the file path and directly `cd` to that.<br><br>
+   
+  A GUI similar to the one displayed below should appear in a few seconds. Note how the app already contains some sample data.<br><br>
+   ![Ui](images/Ui.png)<br><br>
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+
+4. Try out a command! <br>
+   For instance, typing **`help`** and pressing Enter will open the help window.<br>
+ You can also try out the following commands:
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add Company -e company@gmail.com -n 61234567`: Adds a company contact with name ``Company``, email ``company@gmail.com`` and number ``61234567``.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `del Company` : Deletes the contact with name ``'Company'``.
 
-   * `clear` : Deletes all contacts.
+   * `exit` : Exits the app.<br><br>
 
-   * `exit` : Exits the app.
+5. Refer to the [Features](#features) below for details of each command.
 
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
