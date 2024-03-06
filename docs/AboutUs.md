@@ -17,7 +17,7 @@ You can reach us at the email `chujie[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor
 
 ### Carsten Joe
 
@@ -26,17 +26,15 @@ You can reach us at the email `chujie[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Team Lead
+- Responsibilities: UI
 
-### Tarin
+### Pairor Tarin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/TarinPairorProfile.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
+[[github](http://github.com/TarinPairor)]
+[[portfolio](team/johndoe.md)]
 
 ### Lee Xin Yuan
 
@@ -45,5 +43,5 @@ You can reach us at the email `chujie[at]comp.nus.edu.sg`
 [[github](http://github.com/agreatdayy)]
 [[portfolio](team/xinyuan.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops
+- Role: Developer
+- Responsibilities: Dev Ops
