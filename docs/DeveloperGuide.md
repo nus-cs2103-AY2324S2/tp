@@ -360,49 +360,49 @@ Use case ends.
 ### Non-Functional Requirements
 
 #### Product Design
-1.  Target user is clearly narrowed down to logistics managers.
-1.  Majority of the target users are likely to find the app worth using.
-1.  Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-1.  Features should fit together cohesively.
+1. Target user is clearly narrowed down to logistics managers.
+1. Majority of the target users are likely to find the app worth using.
+1. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Features should fit together cohesively.
 
 #### Codebase
-1.  Must follow CS2103/T coding standards and code quality guidelines.
-1.  Must demonstrate evidence of:
-   1. logging
-   1. exceptions
-   1. assertions
-   1. defensive coding
-1.  Should have Single Level of Abstraction Principle (SLAP) applied at a reasonable level.
-1.  Should not have any noticeable code duplication.
-1.  Should be easily extensible for new features.
-1.  Should have high level testability with good coverage.
-1.  Should have little to no bugs.
+1. Must follow CS2103/T coding standards and code quality guidelines.
+1. Must demonstrate evidence of:
+   * logging
+   * exceptions
+   * assertions
+   * defensive coding
+1. Should have Single Level of Abstraction Principle (SLAP) applied at a reasonable level.
+1. Should not have any noticeable code duplication.
+1. Should be easily extensible for new features.
+1. Should have high level testability with good coverage.
+1. Should have little to no bugs.
 
 #### Program
-1.  Should be optimized for the target user (logistics managers).
-1.  Should work on any mainstream OS as long as it has Java `11` or above installed.
-1.  Should work without internet access.
-1.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-1.  Should not crash under typical usage.
-1.  Should not log or collect any unnecessary user data.
-1.  Response time for all commands and operations should be less than 1 second.
+1. Should be optimized for the target user (logistics managers).
+1. Should work on any mainstream OS as long as it has Java `11` or above installed.
+1. Should work without internet access.
+1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+1. Should not crash under typical usage.
+1. Should not log or collect any unnecessary user data.
+1. Response time for all commands and operations should be less than 1 second.
 
 #### Documentation
-1.  The target user should understand how to use the product easily by reading the User Guide.
-1.  User Guide should have higher overall quality compared to AddressBook-Level3 (AB3).
-1.  A new team member should understand the product's internal design easily by reading the Developer Guide.
-1.  Developer Guide should have higher overall quality compared to AB3.
+1. The target user should understand how to use the product easily by reading the User Guide.
+1. User Guide should have higher overall quality compared to AddressBook-Level3 (AB3).
+1. A new team member should understand the product's internal design easily by reading the Developer Guide.
+1. Developer Guide should have higher overall quality compared to AB3.
 
 #### Project Management
-1.  Project should be done iteratively and incrementally.
-1.  Project should demonstrate good use of these GitHub mechanisms:
-   1. milestones
-   1. releases
-   1. issue tracker (with good task definition, assignment, and tracking)
-   1. PRs, and PR reviews
-1.  Project should demonstrate good use of version control.
-1.  Developers should attempt to use the forking workflow at least for the early stages of the project.
-1.  Developers should make good use of time buffers.
+1. Project should be done iteratively and incrementally.
+1. Project should demonstrate good use of these GitHub mechanisms:
+   * milestones
+   * releases
+   * issue tracker (with good task definition, assignment, and tracking)
+   * PRs, and PR reviews
+1. Project should demonstrate good use of version control.
+1. Developers should attempt to use the forking workflow at least for the early stages of the project.
+1. Developers should make good use of time buffers.
 
 ### Glossary
 
