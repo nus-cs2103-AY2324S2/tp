@@ -33,7 +33,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tiong Chuan Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/colex2000.png" width="200px">
 
 [[github](http://github.com/Colex2000)] 
 [[portfolio](team/tiongchuanyao.md)]
