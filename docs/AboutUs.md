@@ -21,15 +21,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Development + UI + Documentation
 
-### Jane Doe
+### Soh Kia Hwee Jocelyn
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jocelyn-soh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jocelyn-soh)]
+[[portfolio](team/jocelyn-soh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Dev Ops + Development + Code Quality  
 
 ### Stella Lye Si Yu
 
