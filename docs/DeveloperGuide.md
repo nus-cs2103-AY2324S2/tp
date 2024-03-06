@@ -275,13 +275,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                      | I want to …​                                      | So that I can…​                                                                   |
-| -------- | --------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------- |
-| `* * *`  | community library manager   | record the phone number of the borrower          | send SMS reminders to notify them that someone else is looking for the book      |
-| `* * *`  | community library manager   | record the email address of the borrower         | send an email reminders to notify them that someone else is looking for the book |
-| `* * *`  | community library manager   | record the postal address of the borrower        | send a warning letter when breach community guidelines                           |
-| `* * *`  | community library manager   | record the title of the book                     | know which book they are borrowing                                               |
-| `* * *`  | community library manager   | record the date the borrower borrowed the book   | calculate when they need to return the book                                      |
+| Priority | As a …​     | I want to …​                                      | So that I can…​                                                                   |
+| -------- | ---------- | ------------------------------------------------ | -------------------------------------------------------------------------------- |
+| `* * *`  | libarian   | record the phone number of the borrower          | send SMS reminders to notify them that someone else is looking for the book      |
+| `* * *`  | libarian   | record the email address of the borrower         | send an email reminders to notify them that someone else is looking for the book |
+| `* * *`  | libarian   | record the postal address of the borrower        | send a warning letter when breach community guidelines                           |
+| `* * *`  | libarian   | record how many books the borrower has borrowed  | keep track the position of the books                                             |
+| `* * *`  | libarian   | record the date the borrower borrowed the book   | calculate when they need to return the book                                      |
 
 *{More to be added}*
 
