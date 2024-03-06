@@ -388,6 +388,13 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CCA Manager**: The name used to refer to this project
+* **CCA**: Refers to the student organisation which `CCA Manager` intends to simplify the administration of. 
+* **EXCO Member**: A target user group. Refers to a member that is in-charge of the organisation of a `CCA`.
+* **CCA Member**: A target user group. Refers to a member that partakes in the activities of a `CCA`.
+* **Contact**: An object that refers to a person. It is the core object of administration in **CCA Manager**. 
+* **Role**: Part of the metadata of a `contact`. It classifies a `contact` based on their responsibilities in the CCA.
+* **Group**: Part of the metadata of a `contact`. It allows `contact`s to be organised in groups the user can manage seperately.
 
 --------------------------------------------------------------------------------------------------------------------
 
