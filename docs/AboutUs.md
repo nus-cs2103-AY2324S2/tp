@@ -11,15 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sindhura Rajiv Jain
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sindhura.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/sindhurajain)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Scheduling and Tracking & Deliverables and Deadlines
+* Responsibilities: UI
 
 ### Neo Tahnya
 
