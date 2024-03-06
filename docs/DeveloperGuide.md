@@ -309,16 +309,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Nurse requests to add a patient
+2.  PatientSync adds the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The information key in is wrong.
+    * 2a1. PatientSync shows an error message.
+
+      Use case ends.
+
+
+**Use case: Delete a patient**
+
+**MSS**
+
+1.  Nurse requests to list patients
+2.  PatientSync shows a list of patients
+3.  Nurse requests to delete a specific patient in the list
+4.  PatientSync deletes the patient
 
     Use case ends.
 
@@ -330,11 +347,139 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. PatientSync shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: List all patients**
+
+**MSS**
+
+1.  Nurse requests to list patients
+2.  PatientSync shows a list of patients
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Add important date for a patient**
+
+**MSS**
+
+1.  Nurse requests to list patients
+2.  PatientSync shows a list of patients
+3.  Nurse requests to add an important date for a specific patient in the list
+4.  PatientSync adds an important date for the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. PatientSync shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete an important date for a patient**
+
+**MSS**
+
+1.  Nurse requests to list patients
+2.  PatientSync shows a list of patients
+3.  Nurse requests to delete an important date for a specific patient in the list
+4.  PatientSync deletes an important date the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. PatientSync shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add tag to a patient**
+
+**MSS**
+
+1.  Nurse requests to list patients
+2.  PatientSync shows a list of patients
+3.  Nurse requests to add a tag to a specific patient in the list
+4.  PatientSync add a tag to the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. PatientSync shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete tag from a patient**
+
+**MSS**
+
+1.  Nurse requests to list patients
+2.  PatientSync shows a list of patients
+3.  Nurse requests to delete a tag from a specific patient in the list
+4.  PatientSync deletes a tag from the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. PatientSync shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find patients by a tag**
+
+**MSS**
+
+1.  Nurse requests to list patients
+2.  PatientSync shows a list of patients
+3.  Nurse requests to find patients with a specific tag in the list
+4.  PatientSync finds patients with the tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. PatientSync shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
