@@ -293,18 +293,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `StaffConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. StaffConnect shows a list of persons
+2. User requests to add a new person
 
-    Use case ends.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case resumes at step 2.
+
+**Use case: Sort the list**
+
+**MSS**
+
+1. StaffConnect shows a list of persons
+2. User requests to sort the list by a specific attribute
+3. StaffConnect shows a sorted list of persons
+
+   Use case ends.
 
 **Extensions**
 
@@ -312,11 +326,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: Sort the list**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. StaffConnect shows a list of persons
+2. User requests to sort the list by a specific attribute
+3. StaffConnect shows a sorted list of persons
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Delete a person**
+
+**MSS**
+
+1. StaffConnect shows a list of persons
+2. User requests to delete a specific person in the list
+3. AddressBook deletes the person
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. StaffConnect shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Edit a person**
+
+**MSS**
+
+1. StaffConnect shows a list of persons
+2. User requests to edit a specific person in the list
+3. AddressBook deletes the person
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. StaffConnect shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
