@@ -180,6 +180,17 @@ Examples:
 * `list` followed by `select 2` shows the detailed profile of the 2nd person in FAPro.
 * `find Betsy` followed by `select 1` shows the detailed profile of the 1st person in the results of the `find` command.
 
+### View contacts of all upcoming appointments: `upcoming`
+
+View all the contacts of all upcoming appointments ordered by date (earliest to latest)
+
+Format: `upcoming`
+  
+- `upcoming` displays all upcoming appointments
+
+Examples:
+- `upcoming` would show the 3 contacts if there are 3 contacts with upcoming appointments
+
 ### Clearing all entries : `clear`
 
 Clears all entries from FAPro.
@@ -232,6 +243,7 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **TagFind**| `tagfind TAG` <br> e.g. `tagfind car`
+**Upcoming**| `upcoming`
 **List**   | `list`
 **Select** | `select INDEX`<br> e.g. `select 1`
 **Help**   | `help`
