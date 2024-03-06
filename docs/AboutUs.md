@@ -11,15 +11,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Isaac Ong 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cocoanautz.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cocoanautz)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Dev Ops
 
 ### Jane Doe
 
