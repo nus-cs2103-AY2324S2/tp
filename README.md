@@ -3,9 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 # EventBook
-As a student leader overseeing various events, it can be challenging to stay organized with numerous contacts across different events. EventBook is designed to simplify the management of contacts across various events. 
-
-With EventBook, you can effortlessly organize and access contact details of individuals in different events, streamlining the process of communication and coordination.
+As a student leader overseeing various events, it can be challenging to stay organized with numerous contacts across different events. EventBook is designed to simplify the management of contacts across various events. With EventBook, you can effortlessly organize and access contact details of individuals in different events, streamlining the process of communication and coordination.
 
 ## Documentation
 For the detailed documentation of this project, see the **[Event Book Product Website](https://ay2324s2-cs2103t-t11-3.github.io/tp/index.html)**.
