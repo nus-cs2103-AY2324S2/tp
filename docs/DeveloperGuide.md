@@ -511,34 +511,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1. User enters the 'link' command followed by the property information, buyer ID, and seller ID in the specified format: `link [property_info] [buyer_id] [seller_id]` to initiate the process of linking a buyer to sellers for a specific property.
+1. User initiates the process of linking a buyer to sellers for a specific property.
 2. EstateEase validates the provided property information, buyer ID, and seller ID.
 3. If the provided information is valid, EstateEase proceeds to link the buyer to the specified seller(s) for the given property.
 4. Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid 'link' command format.
-    * 1a1. EstateEase displays an error message indicating the incorrect format.
-      Use case ends.
-
-* 2a. User provides invalid property information, buyer ID, or seller ID.
-    * 2a1. EstateEase displays an error message indicating the invalid input.
-      Use case ends.
-
-* 3a. User attempts to link a buyer to a seller for a property that does not exist.
-    * 3a1. EstateEase displays an error message indicating the non-existent property.
-      Use case ends.
-
-* 3b. User attempts to link a buyer to a seller who does not exist in the system.
-    * 3b1. EstateEase displays an error message indicating the non-existent seller.
+* 1a. User provides invalid input for linking.
+    * 1a1. EstateEase displays an error message indicating the issue with the input.
       Use case ends.
 
 **Use case: Adding Notes about Clients**
 
 **MSS:**
 
-1. User enters the remark command in the format: `remark [INDEX of client] [REMARK]`.
+1. User enters a remark regarding a client.
 2. EstateEase adds the provided remark to the client identified by the specified index.
 3. Use case ends.
 
