@@ -50,6 +50,8 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Adding a person: `add`
 
 Adds a new contact or asset to the system.
@@ -74,39 +76,44 @@ Format for adding a new asset: `add --id <asset id> --location <location>`
 * Leading and trailing spaces are automatically removed.
 * Multiple people with the same name are allowed.
 
-`Email`
+`--email`
 * Email of the contact.
 * Must have ‘@’.
 
-`Phone`
+`--phone`
 * Phone number of the contact.
 * Only digits and ‘+’ is allowed.
 * Any number of digits are allowed.
 * ‘+’ is optional and must be the first character.
 
-`Tag`
+`--tag`
 * Tag associated with contact.
 * Contact can be created first without tags, then tags can be added later.
 * Case sensitive, i.e. NUS != nus.
 * Must have no spaces.
 
-`ID`
+`--id`
 * An ID associated with the asset.
 * Not necessarily unique.
 
-`Location`
+`--location`
 * The location associated with the asset.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Delete a contact or asset : `delete`
 
 Delete a contact or asset from the system by specifying its ID.
-Format: `delete <id>`
-Example: `delete a123` deletes the asset with id `a123`.
 
-* Deletes the person at the specified `INDEX`.
+Format: `delete <id>`
 * The id refers to the unique id shown in the GUI.
 
-### Editing a person : `edit`
+#### Examples
+`delete a123` deletes the asset with id `a123`.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing an entity : `edit`
 
 Edit existing contacts or assets without recreating them.
 
@@ -121,10 +128,17 @@ Example: `edit c123 --email newemail@example.com` edits the contact with id `123
 * You can remove all the person’s tags by typing `--tag` without
     specifying any tags after it.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Search : `search`
+
 Search contacts, assets or tags by any of their metadata.
+
 Format: `search [--contact] [--asset] [--tag] <string>`
+
 Example: `search --tag Marketing` searches all tags for the term `Marketing`.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Exiting the program : `exit`
 
@@ -132,9 +146,13 @@ Exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Saving the data
 
 AssetBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing the data file
 
@@ -146,6 +164,8 @@ AssetBook data are saved automatically as a JSON file `[JAR file location]/data/
 If your changes to the data file makes its format invalid, AssetBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AssetBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -168,10 +188,10 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add --name <name> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] | [--id <asset id> --location <location>]` <br> e.g. `add --name John Doe --email johndoe@example.com --phone 87654321`, `add --id <asset id> --location <location>`
-**Delete** | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] | [--location <location>]`<br> e.g. `edit c123 --email newemail@example.com`
-**Edit**   | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] | [--location <location>]`<br> e.g. `edit c123 --email newemail@example.com`
-**Search**   | `search` `search [--contact] [--asset] [--tag] <string>`<br> e.g. `search --tag Marketing`
-**Exit**   | `exit`
+Action     | Format      |        Examples
+-----------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**    | `add --name <name> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] [--id <asset id> --location <location>]` | `add --name John Doe --email johndoe@example.com --phone 87654321` <br> `add --id <asset id> --location <location>`
+**Delete** | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] [--location <location>]` | `edit c123 --email newemail@example.com`
+**Edit**   | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] [--location <location>]` | `edit c123 --email newemail@example.com`
+**Search**   | `search [--contact] [--asset] [--tag] <string>` | `search --tag Marketing`
+**Exit**   | `exit` | `exit`
