@@ -2,7 +2,7 @@
 
 [![codecov badge](https://codecov.io/gh/nus-cs2103-AY2324S2/tp/graph/badge.svg?token=PBBJNYE8U5)](https://codecov.io/gh/nus-cs2103-AY2324S2/tp)
 
-![Ui](docs/images/mockUi.png)
+![MockUi](docs/images/mockUi.png)
 
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
