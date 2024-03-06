@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's Nusid in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidNusId(String)}
  */
-public class Nusid {
+public class NusId {
 
     public static final String MESSAGE_CONSTRAINTS = "NusID is of the form EXXXXXXX, and it should not be blank";
 
@@ -23,7 +23,7 @@ public class Nusid {
      *
      * @param nusid A valid nusid.
      */
-    public Nusid(String nusid) {
+    public NusId(String nusid) {
         requireNonNull(nusid);
         checkArgument(isValidNusId(nusid), MESSAGE_CONSTRAINTS);
         value = nusid;
@@ -47,11 +47,11 @@ public class Nusid {
             return true;
         }
 
-        if (!(other instanceof Nusid)) {
+        if (!(other instanceof NusId)) {
             return false;
         }
 
-        Nusid otherNusid = (Nusid) other;
+        NusId otherNusid = (NusId) other;
         return value.equals(otherNusid.value);
     }
 
