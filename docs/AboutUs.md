@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/billyhoce)]
 [[portfolio](team/billyho.md)]
 
-* Role: Team lead, Deliverables and dealines
+* Role: Team lead, Deliverables and deadlines
 * Responsibilities:
 
 ### Khushi Bhagwat
@@ -45,5 +45,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/kinjalagarwal1810)]
 [[portfolio](team/kinjalagarwal1810.md)]
 
-* Role: Code Quaility
+* Role: Code Quality
 * Responsibilities:
