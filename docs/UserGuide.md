@@ -93,7 +93,7 @@ Examples:
 
 Search for a student's contact based on specified query.
 
-Format: `/search_student [id/STUDENT_ID] [email/EMAIL] [tc/TUTORIAL_CLASS] [name/NAME]`
+Format: `/search_student [id/STUDENT_ID] [email/EMAIL] [class/TUTORIAL_CLASS] [name/NAME]`
 
 - At least one of the optional attributes must be provided.
 - The search query is case-insensitive. e.g. `ian` will match `Ian`
