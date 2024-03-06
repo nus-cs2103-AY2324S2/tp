@@ -274,13 +274,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+Experienced managers who:
+* oversees contact relations with suppliers, customers and employees
+* has to manage a significant number of contacts
+* works independently in a supervisory role
+* has average IT skills
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: provides managers a platform to manage employee, client and partner contact information
+easily, and to keep track of past interactions.
 
 
 ### User stories
