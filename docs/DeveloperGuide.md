@@ -327,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 - Add a new client**
 
 **MSS**
-1. User requests to add new client, by entering name, contact number, email, date of birth and priority level.
+1. User requests to add new client.
 2. ClientCare adds the new client to the list.
 3. ClientCare shows a success message and <u>display view of new client details and policies (UC02)</u>.<br>
    Use case ends.
