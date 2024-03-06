@@ -315,6 +315,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+**Use case: Borrower returns a book to the library**
+
+**MSS**
+
+1.  Borrower requests to return a book.
+2.  Librarian requests to list borrowers.
+3.  MyBookshelf shows a list of borrowers.
+4.  Librarian removes the book from the borrower.
+5.  MyBookshelf updates the borrower's details. 
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. The given index is invalid.
+
+    * 4a1. AddressBook shows an error message.
+
+      Use case resumes at step 3.
+
+*{More to be added}*
 
 ### Non-Functional Requirements
 
