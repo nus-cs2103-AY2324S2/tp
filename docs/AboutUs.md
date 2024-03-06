@@ -49,7 +49,7 @@ You can reach us at the email
 
 ### Jasper Tan Zu Xiang
 
-<img src="images/jaspetzx.png" width="200px" height="225px">
+<img src="images/Jaspetzx.png" width="200px" height="225px">
 
 [[github](https://github.com/Jaspertzx)]
 
