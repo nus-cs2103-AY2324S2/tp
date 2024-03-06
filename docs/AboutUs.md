@@ -58,5 +58,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[linkedin](https://www.linkedin.com/in/tayruijie/)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Documentation lead
+* Role: Documentation Lead
 * Responsible for the quality of the project website as well as various project documents.
