@@ -636,6 +636,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. EstateEase shows error message regarding the IOException to the user.
       Use case ends.
 
+**Use case: UC06 - Exit Application**
+
+**MSS:**
+
+1. User enters the 'exit' command.
+2. EstateEase immediately closes the application.
+
+**Extensions**
+
+* 1a. User enters an unrecognized command.
+    * 1a1. EstateEase displays a message "Unknown command".
+      Use case resumes from the previous step.
+
+**Use case: UC07 - Linking Buyers to Sellers**
+
+**MSS:**
+
+1. User initiates the process of linking a buyer to sellers for a specific property.
+2. EstateEase validates the provided property information, buyer ID, and seller ID.
+3. EstateEase proceeds to link the buyer to the specified seller(s) for the given property.
+4. Use case ends.
+
+**Extensions**
+
+* 1a. User provides invalid input for linking.
+    * 1a1. EstateEase displays an error message indicating the issue with the input.
+      Use case ends.
+
+**Use case: UC08 - Adding Notes about Clients**
+
+**MSS:**
+
+1. User enters a remark regarding a client.
+2. EstateEase adds the provided remark to the client identified by the specified index.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid index or remark format.
+    * 1a1. EstateEase displays an error message indicating the invalid input.
+      Use case ends.
 
 
 ### Non-Functional Requirements
