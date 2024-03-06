@@ -17,24 +17,24 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Code Quality
 
-### Jane Doe
+### James Sin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jamessinmaojun.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jamessinmaojun)]
+[[portfolio](team/jamessinmaojun.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation
+
+### Leong Jia Yi, Janna
+
+<img src="images/jannaleong.png" width="200px">
+
+[[github](http://github.com/jannaleong)] [[portfolio](team/jannaleong.md)]
+
+* Role: Team Lead
+* Responsibilities: Overall project coordination, deliverables and deadlines
 
 ### Joshua Yip Sujun
 

@@ -1,5 +1,6 @@
 ### PoochPlanner
 
+<<<<<<< HEAD
 [![CI Status](https://github.com/AY2324S2-CS2103T-W10-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103T-W10-2/tp/actions)
 
 ![Ui](docs/images/Ui.png)
@@ -15,3 +16,6 @@
 **Project notes** (internal): see [here](https://docs.google.com/document/d/1Bgu3XEZ0F9Oq_5j4ah-QYcVjI2HHqYcvZwoivr9yC40/edit)
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+=======
+PoochPlanner is team W10-2's iteration of CS2103T's AY23/24 AB3 Team Project.
+>>>>>>> 90567398bf81518b3c54e6064273d40b94bb747f
