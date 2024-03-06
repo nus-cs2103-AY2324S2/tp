@@ -321,8 +321,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user    | add notes to a patient                                                             | include other additional information                                             |
 | `*`      | user    | easily generate reports of the patient details and export it to the doctor/patient | have easy access                                                                 |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
@@ -353,17 +351,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Patients should not have overlapping appointments
+2. Appointments cannot be backdated or scheduled for past dates
+3. Should be compatible with any _mainstream OS_ with Java `11` or above installed.
+4. Should load patient records and appointment details within three seconds
+5. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+7. The project is expected to adhere to a schedule that delivers a feature set for each milestone
+8. The product is not required to have mouse-click navigation 
+9. The product is not required to integrate with other systems 
+10. The product should avoid terminology or graphics that are insensitive to patients 
+11. The product should be for a single user (not a multi-user product)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Appointment**: A designated time slot for a patient to visit the clinic
+* **Appointment Type**: Categorises the purpose of visit eg. Vaccination, Medical Check-up, etc 
+* **Insurance Type**: Categorises insurance schemes applicable to the patient eg. Medisave, ElderShield, etc.
+* **Medical Records**: Refer to details of patients' medical allergies only (as at v1.2)
+* **Recurring Appointments**: Refer to appointments that occur regularly eg. weekly or monthly
 
 --------------------------------------------------------------------------------------------------------------------
 
