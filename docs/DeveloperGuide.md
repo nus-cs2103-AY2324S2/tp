@@ -262,13 +262,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* currently in NUS school of computing
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* needs to book many consultations and meetings with professors/students
+* has a busy schedule which constantly changes
+* frequently needs a quick overview of their schedule
+* prefer desktop apps
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Help students manage booking consultations/meeting with professors/students.
 
 
 ### User stories
