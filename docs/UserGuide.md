@@ -217,8 +217,6 @@ Action | Format, Examples
 **Assign task to an employee** | `assigntask t/TASK_ID  e/EMPLOYEE_ID` <br> e.g., `assigntask t/1 e/2`
 **Remove employee from a task** | `removetask t/ TASK_ID e/EMPLOYEE_ID` <br> e.g., `removetask t/1 e/1`
 **List all tasks and employees assigned to them** | `listassignments`
-**Mark a task as completed** | `mark TASK_ID` <br> e.g, `mark 1`
-**Mark a task as not completed** | `unmark TASK_ID` <br> e.g, `unmark 1`
 **Clear** | `clear`
 **Save the current state** | `save`
 **Help** | `help`
