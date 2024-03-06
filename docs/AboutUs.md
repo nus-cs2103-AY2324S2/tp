@@ -13,7 +13,7 @@ You can reach us at our respective emails.
 
 ### Yashwit Polapragada
 
-<img src="images/yashpola.png" width="200px" height ="300px">
+<img src="images/yashpola.png" width="150px" height ="200px">
 
 [[homepage](https://yashwit.com)]
 [[github](https://github.com/yashpola)]
@@ -25,7 +25,7 @@ You can reach us at our respective emails.
 
 ### Ryan Chiang
 
-<img src="images/macareonie.png" width="200px" height ="300px">
+<img src="images/macareonie.png" width="150px" height ="200px">
 
 [[github](http://github.com/macareonie)]
 [[portfolio](team/ryanchiang.md)]
@@ -36,7 +36,7 @@ You can reach us at our respective emails.
 
 ### Jiang Bowei
 
-<img src="images/gingerbreaf.png" width="200px" height ="300px">
+<img src="images/gingerbreaf.png" width="150px" height ="200px">
 
 [[github](http://github.com/gingerbreaf)]
 [[portfolio](team/jiangbowei.md)]
@@ -47,7 +47,7 @@ You can reach us at our respective emails.
 
 ### Ong Zhi Kai
 
-<img src="images/zhikaiong2001.PNG" width="200px" height ="300px">
+<img src="images/zhikaiong2001.png" width="150px" height ="200px">
 
 [[github](https://github.com/zhikaiong2001)]
 [[portfolio](team/zhikaiong2001.md)]
@@ -58,7 +58,7 @@ You can reach us at our respective emails.
 
 ### Wesley Weishen Yu
 
-<img src="images/headcube1.png" width="200px" height ="300px">
+<img src="images/headcube1.png" width="150px" height ="200px">
 
 [[github](https://github.com/headcube1)]
 [[portfolio](team/wesleyyu.md)]
