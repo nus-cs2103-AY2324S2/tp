@@ -11,13 +11,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Abdul Khaliq
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/github_breezetall.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/breezetall)]
 
 * Role: Project Advisor
 
@@ -50,9 +48,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Yong Shi Kang
 
-<img src="images/shikang.jpg" width="200px">
+<img src="images/github_yskie.png" width="200px">
 
 [[github](http://github.com/yskie)]
 
