@@ -38,15 +38,15 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Scheduling and tracking, Deliverables and deadlines, UI
 
-### Jean Doe
+### Yong Li An
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wolffe88.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/wolffe88)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Task Management, Deliverables and deadlines, UI
 
 ### James Doe
 
