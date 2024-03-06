@@ -385,6 +385,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3q1. EstateEase shows an error message regarding the entry of incorrect priority level. <br>
       Use case resumes from step 2.
 
+**Use case: UC02 - View all**
+
+**MSS:**
+
+1.  User requests to list persons 
+2.  EstateEase shows a list of persons
+
+    Use case ends.
+
+**Extensions**
+
+*2a. The list is empty
+   * 2a1. EstateEast displays a message stating that the list is empty.
+
+     Use case ends.
+
 **Use case: UC03 - Delete a person**
 
 **MSS:**
@@ -407,6 +423,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. EstateEase shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC04 - Load contact data from file**
+
+**Actor: EstateEase**
+
+**Preconditions:**
+- EstateEase is initialized.
+- The user starts the application.
+
+**MSS:**
+
+1. EstateEase automatically loads existing contact and address data from a JSON file stored in the "data" folder at the same directory level as the application.
+2. EstateEase parses the JSON file and imports the contact and address data into the application's memory.
+3. EstateEase displays the imported contact and address data to the user.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. EstateEase detects that the JSON file in the "data" folder is missing or inaccessible.
+    * 1a1. EstateEase attempts to create an empty JSON file named "addressbook.json" in the "data" folder.
+    * 1a2. If EstateEase fails to create the JSON file:
+        * 1a2a. EstateEase displays an error message indicating that the contact and address data could not be loaded, and the "data" folder could not be accessed.
+          Use case ends.
+    * 1a3. If EstateEase successfully creates the JSON file:
+        * 1a3a. EstateEase proceeds to load contact and address data from the newly created JSON file.
+          Use case continues from step 2.
+
+* 1b. EstateEase detects that the JSON file in the "data" folder is empty.
+    * 1b1. EstateEase displays a message indicating that there are no contacts with address data to load.
+      Use case resumes from step 2.
+
+* 1c. EstateEase detects that the JSON file in the "data" folder has incorrect format.
+    * 1c1. EstateEase displays an error message indicating that the contact and address data could not be loaded due to incorrect file format.
+      Use case ends.
+
+* 1d. EstateEase detects that the "data" folder does not exist.
+    * 1d1. EstateEase attempts to create the "data" folder.
+    * 1d2. If EstateEase fails to create the "data" folder:
+        * 1d2a. EstateEase displays an error message indicating that the "data" folder could not be created.
+          Use case ends.
+    * 1d3. If EstateEase successfully creates the "data" folder:
+        * 1d3a. EstateEase proceeds to create an empty JSON file named "addressbook.json" in the "data" folder.
+        * 1d3b. EstateEase proceeds to load contact and address data from the newly created JSON file.
+          Use case continues from step 2.
 
 **Use case: UC05 - Save to storage**
 
@@ -496,10 +557,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### Loading and Saving Data
 
-1. Dealing with missing/corrupted data files
+1. **Dealing with Missing/Created Data Folder**
+    - **Loading Data:**
+        - _{Explain how to simulate a missing data folder during loading, and the expected behavior}_
+    - **Saving Data:**
+        - _{Explain how to simulate a missing data folder during saving, and the expected behavior}_
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2.  **Dealing with Missing/Corrupted Data Files**
+    - **Loading Data:**
+        - _{Explain how to simulate a missing or corrupted data file during loading, and the expected behavior}_
+    - **Saving Data:**
+        - _{Explain how to simulate a missing or corrupted data file during saving, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
