@@ -262,27 +262,26 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Dog cafe owners who need to manage a team of staff, F&B vendors & a dog maintainence team.
+* Prefer typing over other types and is comfortable using CLI applications.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: PoochPlanner is a desktop application to track details of various groups (vendors, staff, dog maintainence) that dog cafe owners have to regularly interact with. The app is optimised for use using
+Command Line Interface (CLI) while still encompassing a user-friend Graphical User Interface (GUI).
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority      | <div style="width:50px">As a …​</div> | I want to …​                                               | So that I can…​                                             |
+|---------------|---------------------------------------|------------------------------------------------------------|-------------------------------------------------------------|
+| `* * *`       | well connected user                   | search contacts                                            | I can save time                                             |
+| `* * *`       | well connected user                   | add contacts                                               | I can have the address to contact others in the future      |
+| `* * *`       | cafe owner user                       | delete the contacts of people                              | I can keep my contacts updated and remove outdated contacts |
+| `* * *`       | long-term user                        | edit contacts                                              | update some contact information                             |
+| `* * *`       | first-time user                       | get help about what commnads I can use on the contact book | I can easily know how to navigate the system                |
+| `**`          | frugal user                           | sort my vendors in ascending order of price                | I can view the vendors selling the cheapest products easily |
+
 
 *{More to be added}*
 
