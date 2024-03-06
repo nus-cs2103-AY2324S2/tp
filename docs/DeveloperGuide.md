@@ -274,27 +274,52 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of patient information
+* has a need to schedule patients for appointments
+* prefers to manage patient information and appointments in one application
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage patient appointments faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                                       | So that I can…​                                                                  |
+|----------|---------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | user    | add a new patient                                                                  |                                                                                  |
+| `* * *`  | user    | delete a patient                                                                   |                                                                                  |
+| `* * *`  | user    | schedule an appointment for a patient                                              |                                                                                  |
+| `* * *`  | user    | cancel an appointment                                                              | account for changes in scheduling                                                |
+| `* * *`  | user    | have an overall view of upcoming patient appointments                              | have situational awareness of the schedule for the day                           |
+| `* * *`  | user    | mark patients who have been seen for the day                                       | track patient's appointment attendance                                           |
+| `* *`    | user    | update a patient's information                                                     | keep the database up to date                                                     |
+| `* *`    | user    | easily filter the patients by their medical records                                | see which is in need of more assistance or follow up care                        |
+| `* *`    | user    | search for patients by their name                                                  | look up their appointment information quickly                                    |
+| `* *`    | user    | update the details of the appointment                                              | reschedule appointments as needed                                                |
+| `* *`    | user    | view the list of patients for the given hour                                       | see the immediate schedule                                                       |
+| `* *`    | user    | tag appointments based on appointment type                                         | I can categorize which appointments require test or room bookings                |
+| `* *`    | user    | tag appointments based on insurance type                                           | prepare necessary insurance documents before patient’s appointments              |
+| `* *`    | user    | input commands without having inputs to be in a specific order                     | key in commands fast in busy periods                                             |
+| `*`      | user    | sort the time to a patient's appointment                                           | remind patients of their appointment                                             |
+| `*`      | user    | see how long it has been since a patient's last appointment                        | remind patients to come for another checkup                                      |
+| `*`      | user    | see what appointments are overlapping                                              | ensure the patients have enough time to be seen for their different appointments |
+| `*`      | user    | set notifications for upcoming appointments                                        | staff and patients can be well informed early in advance                         |
+| `*`      | user    | track if the patients have been sent reminders on their appointments               | patients do not get spammed with reminders                                       |
+| `*`      | user    | be notified of upcoming appointments on entry into the system                      | will not miss approaching deadlines                                              |
+| `*`      | user    | easily contact the patients via SMS or email through the program                   | update patients about their details and upcoming appointments                    |
+| `*`      | user    | quickly navigate the CLI with intuitive commands                                   | increase my efficiency                                                           |
+| `*`      | user    | check if patients are related to one another                                       | have alternate contacts                                                          |
+| `*`      | user    | update or create new records in bulk                                               | process a family more efficiently                                                |
+| `*`      | user    | set recurring tasks                                                                | I do not have to keep scheduling recurring appointments                          |
+| `*`      | user    | retrieve past records or revert changes easily                                     | revert my changes if I accidentally delete or wrongly edit a patient’s records   |
+| `*`      | user    | select what information is available when I view the list of patients              | cater the view to my needs                                                       |
+| `*`      | user    | add notes to a patient                                                             | include other additional information                                             |
+| `*`      | user    | easily generate reports of the patient details and export it to the doctor/patient | have easy access                                                                 |
 
 *{More to be added}*
 
