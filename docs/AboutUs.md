@@ -21,13 +21,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ma Yuehan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mayuehan.png" width="200px">
 
 [[github](https://github.com/MaYuehan)]
 [[portfolio](team/mayuehan.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities: Command implementation, documentation, Ui
 
 ### Mu Zhaoyu
 
@@ -48,13 +48,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
