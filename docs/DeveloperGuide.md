@@ -298,6 +298,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | social worker                   | find a client by name        | locate details of clients without having to go through the entire list |
 | `* *`    | social worker                   | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | social worker with many clients | sort persons by name         | locate a person easily                                                 |
+| `*`      | social worker with colleagues   | switch between profiles      | manage my own set of clients on the same machine                       |
+| `*`      | social worker                   | undo and redo my commands    | easily rectify a mistaken command                                      |
 
 *{More to be added}*
 
@@ -443,10 +445,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Given below are instructions to test the app manually.
 
 <box type="info" seamless>
-
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </box>
 
 ### Launch and shutdown
