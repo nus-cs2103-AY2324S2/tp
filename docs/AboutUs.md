@@ -1,6 +1,6 @@
 ---
-layout: default.md
-title: "About Us"
+    layout: default.md
+    title: "About Us"
 ---
 
 # About Us
@@ -45,7 +45,7 @@ We are the developer team of event management app Eventy, based in the [School o
 
 <img src="images/chocoragdoll.png" width="200px" height="250px">
 
-[[github](https://github.com/ChocoRagdoll]
+[[github](https://github.com/ChocoRagdoll)]
 
 * Roles: Code Quality, in charge of UI
 
