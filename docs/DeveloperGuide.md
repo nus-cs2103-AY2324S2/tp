@@ -494,7 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. EstateEase shows error message regarding the IOException to the user.
       Use case ends.
 
-**Use case: Exit Application**
+**Use case: UC06 - Exit Application**
 
 **MSS:**
 
@@ -507,13 +507,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. EstateEase displays a message "Unknown command".
       Use case resumes from the previous step.
 
-**Use case: Linking Buyers to Sellers**
+**Use case: UC07 - Linking Buyers to Sellers**
 
 **MSS:**
 
 1. User initiates the process of linking a buyer to sellers for a specific property.
 2. EstateEase validates the provided property information, buyer ID, and seller ID.
-3. If the provided information is valid, EstateEase proceeds to link the buyer to the specified seller(s) for the given property.
+3. EstateEase proceeds to link the buyer to the specified seller(s) for the given property.
 4. Use case ends.
 
 **Extensions**
@@ -522,7 +522,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. EstateEase displays an error message indicating the issue with the input.
       Use case ends.
 
-**Use case: Adding Notes about Clients**
+**Use case: UC08 - Adding Notes about Clients**
 
 **MSS:**
 
