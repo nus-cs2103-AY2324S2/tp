@@ -295,19 +295,20 @@ Line Interface (CLI) while still having the benefits of a Graphical User Interfa
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                           | So that I can…​                                          |
-|----------|---------|--------------------------------------------------------|----------------------------------------------------------|
-| `* * *`  | TA      | add a student contact                                  | keep track of my students when I need to                 |
-| `* * *`  | TA      | delete a student contact                               | remove students from the database if they drop the class |
-| `* * *`  | TA      | view all student contacts                              | see a list of all my students                            |
-| `* *`    | TA      | view a students' detailed information                  | see all the information related to a student             |
-| `* *`    | TA      | edit a student contact                                 | update a students’s details should they change           |
-| `* *`    | TA      | assign student to project team                         | organise students according to their project team        |
-| `* *`    | TA      | take notes on students                                 | keep track of their strengths and weaknesses             |
-| `* *`    | TA      | delete notes on students                               | remove notes that are no longer relevant                 |
-| `*`      | TA      | mark student as absent for a specific class            | be aware of who is missing lessons                       |
-| `*`      | TA      | unmark student as absent for a specific class          | correct mistakes in attendance marking                   |
-| `* `     | TA      | view all student contacts for a project team           | see a list of students in a project team                 |
+| Priority | As a …​ | I want to …​                                  | So that I can…​                                          |
+|----------|---------|-----------------------------------------------|----------------------------------------------------------|
+| `* * *`  | TA      | add a student contact                         | keep track of my students when I need to                 |
+| `* * *`  | TA      | delete a student contact                      | remove students from the database if they drop the class |
+| `* * *`  | TA      | view all student contacts                     | see a list of all my students                            |
+| `* *`    | TA      | view a students' detailed information         | see all the information related to a student             |
+| `* *`    | TA      | edit a student contact                        | update a students’s details should they change           |
+| `* *`    | TA      | assign student to project team                | organise students according to their project team        |
+| `* *`    | TA      | take notes on students                        | keep track of their strengths and weaknesses             |
+| `* *`    | TA      | delete notes on students                      | remove notes that are no longer relevant                 |
+| `*`      | TA      | mark student as absent for a specific class   | be aware of who is missing lessons                       |
+| `*`      | TA      | unmark student as absent for a specific class | correct mistakes in attendance marking                   |
+| `* `     | TA      | view all student contacts for a project team  | see a list of students in a project team                 |
+| `* `     | TA      | view summary of all students attendance       | get a quick overview of class attendance                 |
 
 *{More to be added}*
 
@@ -586,6 +587,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. TA Toolkit shows an error message.
 
       Use case resumes at step 1.
+
+---
+
+**Use case: UC12 - View summary of students attendance**
+
+**MSS**
+
+1. User requests to view a summary of all students attendance
+2. TA Toolkit displays a summary of all students attendance
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no students in storage.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 
