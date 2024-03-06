@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation Quality Assurance
 
-### Jean Doe
+### Jerry Wang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jerryWang.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/JerryWang0000)]
+[[portfolio](team/jerryWang.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Backend Developer
+* Responsibilities: Development of Functionalities
 
 ### James Doe
 
