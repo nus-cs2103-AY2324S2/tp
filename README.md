@@ -31,3 +31,5 @@ managing your contacts seamlessly.
 To begin your journey with NetConnect, simply download the latest release from the [here]() and refer to the [User Guide](docs/UserGuide.md)
 for detailed guidance in using the application.
 
+For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
+* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
