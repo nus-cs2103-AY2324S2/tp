@@ -22,3 +22,7 @@ src/test/data/sandbox/
 .DS_Store
 docs/_site/
 bin/
+
+# Ignore Bin Class Files
+/bin/test/seedu/
+/bin/main/seedu/

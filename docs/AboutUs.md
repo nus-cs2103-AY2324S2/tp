@@ -9,19 +9,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Jerome Goh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaejayrome.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/jaejayrome)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Project Advisor
+- Role: Developer
+- Responsibilities: Model
 
 ### Timothy Chan
 
-<img src="images/timothy.png" width="200px">
+<img src="images/timothysashimi.png" width="200px">
 
 [[github](http://github.com/timothysashimi)]
 [[portfolio](team/johndoe.md)]
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/itstrueitstrueitsrealitsreal.png" width="200px">
 
-[[github](http://github.com/itstrueitstrueitsrealitsreal)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/itstrueitstrueitsrealitsreal)] [[portfolio](team/kenneth.md)]
 
 - Role: Developer
 - Responsibilities: Project Management
@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: UI
 
-### Chew Zi Xuuan
+### Chew Zi Xuan
 
 <img src="images/chewbum.png" width="200px">
 
