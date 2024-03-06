@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/AY2324S2-CS2103T-T13-2/tp/graph/badge.svg?token=X8FVKZE2OZ)](https://codecov.io/gh/AY2324S2-CS2103T-T13-2/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/Ui2.png)
 
 # InternBook
 
