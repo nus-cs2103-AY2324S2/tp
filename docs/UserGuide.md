@@ -35,11 +35,8 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 
 **Notes about the command format:**<br>
 
-* Command parameters with whitespaces must be inside quotation marks.
-  e.g. `--name John Doe` must be written as `--name "John Doe"` instead.
-
 * Items in square brackets are optional.<br>
-  e.g `--name NAME [--tag TAG]` can be used as `--name "John Doe" --tag friend` or as `--name "John Doe"`.
+  e.g `--name NAME [--tag TAG]` can be used as `--name John Doe --tag friend` or as `--name John Doe`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[--tag <tag>]…` can be used as `` (i.e. 0 times), `--tag friend`, `--tag friend --tag family` etc.
@@ -67,13 +64,13 @@ Format for adding a new asset: `add --id <asset id> --location <location>`
 </box>
 
 #### Examples
-* Add a contact: `add --name "John Doe" --email johndoe@example.com --phone +12345678 --tag friend`
+* Add a contact: `add --name John Doe --email johndoe@example.com --phone +12345678 --tag friend`
 * Add an asset: `add --id 001 --location WarehouseA`
 
 #### Options
 `--name`
 * Name of the contact.
-* Case sensitive, i.e. "John Doe" != "john doe".
+* Case sensitive, i.e. John Doe != John Doe.
 * Leading and trailing spaces are automatically removed.
 * Multiple people with the same name are allowed.
 
