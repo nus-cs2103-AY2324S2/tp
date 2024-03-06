@@ -275,29 +275,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​             | I want to …​                                | So that I can…​                                                      |
+| -------- |---------------------|---------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | New Company Manager | read the instructions of the program        | Learn or remember the lists of commands or methods to use the system |
+| `* * *`  | Company Manager     | add a new employee                          | ensure they are officially recorded                                  |
+| `* * *`  | Company Manager     | remove/delete a employee                    | have an updated list of employees when they leave the company        |
+| `* * *`  | Company Manager     | find a employee by ID, name, phone or email | retrieve details of employee(s) without looking entire workers       |
+| `* *`    | Company Manager     | edit information of a employee              | rectify any incorrect inputs entered into the system                 |
+| `* *`    | Company Manager     | list entire employees                       | see entire employees                                                 |
+| `*`      | Company Manager     | create a tag to employee                    | recognize all types of attention                                     |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PayBack` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PayBack` and the **Actor** is the `Company Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Find a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  PayBack shows a list of employees
+3.  User requests to find a specific employee in the list
+4.  PayBack finds the employee
 
     Use case ends.
 
@@ -307,29 +306,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given entered format is incorrect.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. PayBack shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Edit an employee**
+* 3b. There are no employees found.
+
+    * 3b1. PayBack shows a not found message.
+
+      Use case resumes at Step 2.
+
+**Use case: List entire employees**
 
 **MSS**
 
-1.  User requests to edit an employee's information
-2.  User enters the employee's ID and fields that need to be updated
-3.  PayBack changes the employee's information accordingly
+1.  User requests to list employees
+2.  PayBack shows a list of employees
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The ID is invalid.
-  * 2a1. PayBack shows an error message.
+* 2a. The list is empty.
 
-    Use case ends.
-
+  Use case ends.
 
 ### Non-Functional Requirements
 
