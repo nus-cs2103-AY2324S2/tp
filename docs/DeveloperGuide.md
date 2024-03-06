@@ -464,7 +464,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+**Use case: schedules an event with a contact**
 
+**MSS**
+
+1.  User requests to schedule an event with a specific contact.
+2.  User inputs all necessary information into AddressBook in order for the event to be scheduled.
+3.  AddressBook creates the event and classifies it under the contact.
+
+**Extensions**
+
+* 1a. User uses the wrong format in his request.
+
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
+
+      Use case resumes at step 2.
+
+* 2a. The contact does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. The information required is not sufficiently inputted.
+
+    * 2a1. AddressBook shows an error message.
+    * 2a2. User has to request the classification again using a correct classifier
+
+      Use case resumes at step 1.
 
 
 ### Non-Functional Requirements
