@@ -55,7 +55,7 @@ CCA Manager is a **desktop app for managing contacts, optimized for use via a  L
    * $${\color{green}More \space features \space will \space be \space coming \space in \space v1.2}$$
 
 ### Further Help
- Refer to the [Features](#features) below for details of each command.⬇️⬇️⬇️
+ Refer to the [Features](#features) below for details of each command.⬇️⬇️⬇️⬇️
 
 --------------------------------------------------------------------------------------------------------------------
 
