@@ -489,7 +489,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3b1. TutorRec shows an error message.
 
-        Use case resumes at step 3.
+        Use case resumes at step 2.
 
 * 5a. The given index is invalid.
 
@@ -501,7 +501,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 5b1. TutorRec shows an error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 
 **Use case: Creating an appointment**
