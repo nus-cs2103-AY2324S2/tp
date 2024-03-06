@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jocelyn-soh.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Development + Code Quality  
+* Responsibilities: Dev Ops + Development + Code Quality
 
 ### Stella Lye Si Yu
 
 <img src="images/stella_lye.png" width="200px">
 
 [[homepage](http://STELLA-LYE.github.io)]
-[[github](https://github.com/STELLA-LYE)] 
+[[github](https://github.com/STELLA-LYE)]
 [[portfolio](team/stella_lye.md)]
 
 * Role: Developer
