@@ -18,19 +18,22 @@
 >Format: `view`
 
 #### Add New Contacts
->Format: `add id/NUSID n/NAME e/EMAIL [p/PHONE]`
+>Format: `id/NUSID n/NAME p/PHONE [e/EMAIL] [t/TAG]`
 
 #### Edit Existing Contacts
->Format: `edit /id NUSID [/n NEWNAME] [/pNEWPHONE] [e/NEWEMAIL]`
+>Format: `edit id/NUSID [n/NEWNAME] [p/NEWPHONE] [e/NEWEMAIL]`
 
 #### Delete Existing Contacts
->Format: `delete /id NUSID`
+>Format: `delete id/NUSID`
 
 #### Filtering Existing Contacts
->Format: `filter [/n NAME] [/p PHONE] [/e EMAIL] [/g GROUP]`
+>Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [g/GROUP] [t/TAG]`
 
 #### Assign contacts a tutorial group
->Format: `assign /id NUSID  [/g GROUP]  [t/ TAG]`
+>Format: `assign id/NUSID [g/GROUP] [t/TAG]`
+
+#### Add Schedule
+>Format: `schedule id/NUSID d/DATE from/FROM [to/TO] [t/TAG] [r/REMARK]`
 
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
