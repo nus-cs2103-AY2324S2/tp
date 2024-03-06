@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Abdul Khaliq
 
-<img src="images/github_breezetall.png" width="200px">
+<img src="images/breezetall.png" width="200px">
 
 [[github](https://github.com/breezetall)]
 
@@ -29,15 +29,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
 ### Dinh Tran Hai Chien
 
 <img src="images/kaya3842.png" width="200px">
@@ -48,9 +39,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
+### Tang Hao Liang
+
+<img src="images/nobodyishappy.png" width="200px">
+
+[[github](http://github.com/nobodyishappy)]
+
+* Role: Developer
+* Responsibilities: Mark/Unmark Feature
+
+
 ### Yong Shi Kang
 
-<img src="images/github_yskie.png" width="200px">
+<img src="images/yskie.png" width="200px">
 
 [[github](http://github.com/yskie)]
 
