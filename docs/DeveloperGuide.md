@@ -310,17 +310,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
-**Use case: Sort the list**
+**Use case: Filter the list**
 
 **MSS**
 
 1. StaffConnect shows a list of persons
-2. User requests to sort the list by a specific attribute
+2. User requests to filter the list by a specific attribute
 3. StaffConnect shows a sorted list of persons
 
    Use case ends.
 
 **Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
 
 * 2a. The list is empty.
 
@@ -338,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
