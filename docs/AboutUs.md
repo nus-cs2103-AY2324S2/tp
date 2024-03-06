@@ -36,15 +36,15 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Joshua Yip Sujun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joshuayip.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/joshuayip.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
 ### Chng Chia Geng
 

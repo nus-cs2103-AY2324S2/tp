@@ -156,6 +156,39 @@ Examples:
    The above command deletes the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book
 
 
+### Searching a contact : `search`
+
+Searches through the address book using specified fields and keyword.
+
+Formats:
+```
+/search ; name : [full/partial name]
+/search ; phone : [full/partial phone]
+/search ; address : [full/partial address]
+/search ; email : [full/partial email]
+/search ; product : [full/partial product name]
+/search ; employment : [employment]
+```
+
+* Searches the person by specifying field (i.e. `name`, `phone`, `address`, etc.), followed by the partial or full keyword
+* Current feature does not allow users to search for `commission`, `salary`, and `price`
+* All fields are **case-insensitive**.
+For instance, to check whether a name is unique (case-insensitive)
+  * Eg : `Janna` and `janna` are both equivalent
+* Spaces within each input are considered
+  * Eg: `Tom Tan Er` is different from `Tom Taner`
+
+
+Examples:
+```
+/search ; name : Poochie
+/search ; phone : 98765432
+/search ; address : Poochie Street 21
+/search ; email : ilovecatstoo@gmail.com
+/search ; address : Pooch
+/search ; description : Food
+```
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
