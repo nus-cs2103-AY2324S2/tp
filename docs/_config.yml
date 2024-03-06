@@ -1,4 +1,6 @@
-title: "AB-3"
+# @format
+
+title: "ClickConnect"
 theme: jekyll-theme-cayman
 
 header_pages:
@@ -8,7 +10,7 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2324S2-CS2103T-T17-3/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
