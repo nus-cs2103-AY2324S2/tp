@@ -460,6 +460,23 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Acronym for Command Line Interface, a text-based interface where users interact with the application by typing commands.
+* **VitalConnect**: The system being described, representing the medical management application.
+* **User**: The person interacting with the VitalConnect system to perform various actions.
+* **Use Case**: A specific scenario or situation in which a user interacts with the VitalConnect system to achieve a specific goal.
+* **MSS (Main Success Scenario)**: The primary sequence of steps in a use case that represents the successful accomplishment of the user's goal.
+* **Extensions**: Additional scenarios that may occur during the execution of a use case, usually describing alternative paths or error-handling situations.
+* **NRIC**: National Registration Identity Card, a unique identification number used in some countries.
+* **Database**: A structured set of data stored electronically, in this context, referring to the storage system for patient and appointment information.
+* **Appointment**: A scheduled meeting or arrangement, often referring to a scheduled medical consultation in the context of VitalConnect.
+* **Field**: In the context of modifying an appointment, a specific piece of information within the appointment details that the user can choose to modify (e.g., time, doctor).
+* **ID (Identification Number)**: A unique identifier associated with a specific appointment, used to distinguish and reference individual appointments.
+* **Contact Information**: Information related to how the system can reach or contact a patient, such as phone number or email address.
+* **Warning Message**: An alert displayed by the VitalConnect system to notify the user of a potential issue or discrepancy.
+* **Error Message**: A notification displayed by the VitalConnect system to inform the user about a critical issue or mistake.
+* **Crashing Time**: A situation where the proposed time for an appointment conflicts with an existing appointment time in the system.
+* **Invalid Data Entry**: Information entered by the user that does not meet the required format or criteria.
+* **Valid Data Entry**: Information entered by the user that meets the required format or criteria.
 
 --------------------------------------------------------------------------------------------------------------------
 
