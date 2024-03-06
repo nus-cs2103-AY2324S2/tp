@@ -1,59 +1,51 @@
 ---
-layout: page
-title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+## CS2103T T11-2 Team Members
 
-## Project team
+### Reet Mitra
 
-### John Doe
+<img src="images/reetmitra.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[Github](https://github.com/reetmitra)]
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: Developer
+* Responsibilities: Documentation
 
-* Role: Project Advisor
+### Bui Hong Duc
 
-### Jane Doe
+<img src="images/e0735389.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[Github](https://github.com/E0735389)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
+* Role: Team Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Chong Chan How
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chillinrage.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[Github](https://github.com/ChillinRage)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Timothy Soh Yee Song
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/largecrowd.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](https://github.com/LargeCrowd)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Yang Heebom
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hibeom0929.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](https://github.com/Hibeom0929)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines 
