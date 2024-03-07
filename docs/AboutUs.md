@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: 
 
-### Jane Doe
+### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/yyccbb)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
 ### Wong Kai Jie
 
@@ -38,15 +38,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Yong Kotaro
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yongkotaro.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/yyccbb)]
+[[github](http://github.com/yongkotaro)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI
 
 ### Yu Chenbo
 
