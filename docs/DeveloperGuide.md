@@ -437,7 +437,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
   Use case resumes at step 4.
   
+**Use case: Clear AddressBook**
 
+**MSS**
+
+1. User requests to clear the AddressBook
+2. AddressBook shows the empty AddressBook
+
+    use case ends
 
 
 
