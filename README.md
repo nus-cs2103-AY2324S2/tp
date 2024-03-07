@@ -4,8 +4,6 @@
 
 ![Ui](docs/images/Ui.png)
 
-## StaffConnects offers a quick and easy way to store and review contacts of professors/tutors.<br>
-
 StaffConnect offers convenience and peace of mind to a struggling student with memory recollection issues.
 This product allows users to easily identify and connect with educators by providing visual cues alongside contact
 details, supported by a quick and easy filter system. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
@@ -22,7 +20,6 @@ details, supported by a quick and easy filter system. While it has a GUI, most o
         
 # Credits
 StaffConnect is an ongoing software project for a desktop application used for managing contact details.
-* It is **written in OOP fashion**. It provides a **reasonably well-written** code base **currently** (around 6 KLoC).
 * For the detailed documentation of this project, see the **[StaffConnect Product Website](https://ay2324s2-cs2103-f08-3.github.io/tp/)**.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
