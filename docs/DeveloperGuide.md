@@ -317,16 +317,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  **(Technical)** Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  **(Quality)** A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  **(Quality)** The user interface and commands should be intuitive and user-friendly, requiring minimal time to learn.
+4.  **(Quality)** The app should provide clear and informative error messages in case of invalid inputs or command failures.
+5.  **(Performance)** The app should respond to user actions within 0.5 seconds, ensuring smooth navigation and interaction.
+6.  **(Performance)** The app should be able to support at minimum a contacts list of 200 without affecting performance.
+7.  **(Performance)** The app should be able to run smoothly even on low-end hardware configurations.
+8.  **(Process)** The project is expected to adhere to a schedule that adds updates incrementally at least once every two weeks.
+9.  **(Project scope)** The product should be focused on the needs of our target user, head teaching assistants.
+10. **(Documentation)** Comprehensive user guide should be provided, with detailed instructions on how to use each command.
+11. **(Documentation)** Comprehensive developer guide should be created to facilitate ongoing maintenance of the app.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tutor**: A teaching assistant for CS2103T
+* **Student**: A student taking CS2103T
+* **Tag**: A label that can be attached to the student. It is used to mark the attendance for a specific week.
+* **Attendance Status**: The current state of a student's attendance. 
+* **Contact Entry**: Contact information of either a student or a tutor, containing the name, phone number, email, and attendance status.
 
 --------------------------------------------------------------------------------------------------------------------
 
