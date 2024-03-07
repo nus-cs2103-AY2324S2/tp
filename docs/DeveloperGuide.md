@@ -348,9 +348,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+3.  A user not familiar with CLI but has an above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  All user operations should completed within 3 seconds.
+5.  Should lose no more than 2 user operations worth of work in case of system crash.
+6.  Should not take memory more than 200 MB while in operation.
+7.  Will not use a DataBase Management System e.g., MySQL, and PostgreSQL to store data. And hence, will use flat file as a storage.
+8.  Should be portable (able to work without requiring an installer).
+9.  Should not use or depend on a remote server.
 *{More to be added}*
 
 ### Glossary
