@@ -21,7 +21,7 @@ For more enquiries, you can reach us at the email:
 
 ### Zhuo Hui Koo (Ivan)
 
-<img src="images/zhuohui.png" width="200px" style="border-radius:5%">
+<img src="images/smolegz.png" width="200px" style="border-radius:5%">
 
 [[Github](http://github.com/smolegz)]
 
@@ -32,7 +32,7 @@ Y2 CS student. My hobby is to drink w/ my besties; I am always the “take care 
 
 ### Kervyn Tan
 
-<img src="images/kervyn.png" width="200px" height="240px" style="border-radius:5%">
+<img src="images/kervyntan.png" width="200px" height="240px" style="border-radius:5%">
 
 [[Github](http://github.com/kervyntan)]
 
@@ -40,11 +40,11 @@ Y2, CS Major.
 Love cycling on the weekends and playing LoL when I have time (basically never)
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Integration
 
 ### Lynnette Ong
 
-<img src="images/lynnette.png" width="200px" style="border-radius:5%">
+<img src="images/lynnetteeee.png" width="200px" style="border-radius:5%">
 
 [[Github](http://github.com/lynnetteeee)]
 
@@ -56,7 +56,7 @@ I think coding without a deadline is >>>>>>>> ! Lowkey therapeutic... but once t
 
 ### Aiden Lee
 
-<img src="images/aiden.png" width="200px" height="240px" style="border-radius:5%">
+<img src="images/aidenlyt.png" width="200px" height="240px" style="border-radius:5%">
 
 [[Github](http://github.com/aidenlyt)]
 
@@ -67,11 +67,11 @@ Year 2 CS student. I eat ice cream with chopsticks.
 
 ### RunJia Chen
 
-<img src="images/runjia.png" width="200px" height="240px" style="border-radius:5%">
+<img src="images/runjiachen.png" width="200px" height="240px" style="border-radius:5%">
 
 [[Github](http://github.com/RunjiaChen)]
 
 Y1 CS, like to watch Marvel shows like Loki, What if
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
