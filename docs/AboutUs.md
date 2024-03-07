@@ -4,56 +4,54 @@ title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+[[Project Website](https://ay2324s2-cs2103t-t08-2.github.io/tp/)]
+## Strack.io
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+### Nigel Lim
 
-## Project team
+<img src="images/nigel27022001.png.jpg" width="200px">
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/nigel27022001)]
+[[portfolio](team/nigel.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking, Deliverables and deadlines
 
-### Johnny Doe
+### Joel Wang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joelwang22.png.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/joelwang22)]
+[[portfolio](team/joel.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
-### James Doe
+### Isaac Chong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chonghaoen.png.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chonghaoen)] [[portfolio](team/isaac.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing
+
+### Yang Yibai
+
+<img src="images/0-yibai.png.jpg" width="200px">
+
+[[github](http://github.com/0-yibai)]
+[[portfolio](team/yibai.md)]
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Bertrand Ong
+
+<img src="images/bertrandong.png.jpg" width="200px">
+
+[[github](http://github.com/bertrandong)]
+[[portfolio](team/bertrand.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality
