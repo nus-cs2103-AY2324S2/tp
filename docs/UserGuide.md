@@ -133,17 +133,36 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified individual from the EduLink NUS system.
 
-Format: `delete INDEX`
+Format: `delete INDEX` **OR** `delete id/STUDENT_ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the person at the specified `INDEX` or deletes the person identified by the specified `STUDENT_ID`.
+* The INDEX refers to the index number shown in the displayed person list.
+* The STUDENT_ID refers to the unique identification string associated with individuals stored in EduLink NUS.
+* The INDEX **must be a positive integer** 1, 2, 3, …​ 
+* The STUDENT_ID **must exist within the system** 
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete id/A026273X` deletes the person with Student ID A026273X.
+
+### Filtering displayed list : `filter`
+
+Filter displayed list of students based on a tag or tags.
+
+Format: `filter t/TAG [t/TAG] …​` 
+
+* Tag names are case-sensitive. e.g `TA` will **NOT** match `Ta`
+* The order of the tags does not matter. e.g. result for `TA` and `Knowledgeable` will match `Knowledgeable` and `TA`.
+* Only full words will be matched e.g. `High Priority` will not match `High Achieving`.
+* Persons matching all tags listed will be returned. E.g. Person with `TA` tag only will not be returned, if tags 
+  specified includes `TA` and `Year 2`.
+
+Examples:
+* `filter t/CS2103T` will display only people that have been tagged with `CS2103T`.
+* `filter t/CS2103T t/TA` wil display only people that have been tagged with `CS2103T` and `TA`.
 
 ### Clearing all entries : `clear`
 
