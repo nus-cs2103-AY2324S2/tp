@@ -20,16 +20,18 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+    private boolean view;
     private final Person viewPerson;
     private final FilteredList<Person> viewList;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean view) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.view = view;
         this.viewPerson = null;
         this.viewList = null;
     }
@@ -39,8 +41,9 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
+
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
@@ -50,6 +53,7 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.viewPerson = viewPerson;
+        this.view = false;
         this.viewList = null;
     }
 
@@ -61,6 +65,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
+        this.view = false;
         this.viewPerson = null;
         this.viewList = viewList;
     }
@@ -81,6 +86,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isView() {
+        return view;
     }
 
 

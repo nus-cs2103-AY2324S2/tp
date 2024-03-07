@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -115,7 +116,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        viewPanelPlaceHolder.setStyle("-fx-background: #383838");
+        viewPanelPlaceHolder.setVisible(false);
+        //viewPanelPlaceHolder.setStyle("-fx-background: #383838");
+        //viewPanelPlaceHolder.setContent(null);
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -183,6 +186,7 @@ public class MainWindow extends UiPart<Stage> {
     //    }
 
     private void handleView(Person p) {
+        viewPanelPlaceHolder.setVisible(true);
         ViewPanel viewPanel = new ViewPanel(p);
         //viewPanelPlaceHolder.getChildren().clear();
         VBox holder = viewPanelPlaceHolder.getContent() == null ? new VBox()
@@ -210,13 +214,20 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
+            if (commandResult.isView()) {
+                viewPanelPlaceHolder.setVisible(false);
+            }
             if (commandResult.getViewPerson() != null) {
                 Person p = commandResult.getViewPerson();
                 handleView(p);
             }
             if (commandResult.getViewList() != null) {
-                for (Person p : commandResult.getViewList()) {
-                    handleView(p);
+                if (commandResult.getViewList().isEmpty()) {
+                    viewPanelPlaceHolder.setVisible(false);
+                } else {
+                    for (Person p : commandResult.getViewList()) {
+                        handleView(p);
+                    }
                 }
             }
 
@@ -228,6 +239,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            viewPanelPlaceHolder.setVisible(false);
             throw e;
         }
     }
