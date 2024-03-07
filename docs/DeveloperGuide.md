@@ -283,23 +283,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: Urgent (must-must have) - `* * * *`, High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​           | I want to …​                                                 | So that I can…​                                                              |
-|----------|-------------------|--------------------------------------------------------------|------------------------------------------------------------------------------|
-| `* * *`  | real estate agent | add home-owners                                              | keep track of their contact details and the properties that they are selling |
-| `* * *`  | real estate agent | view a list of all contacts stored, along with their details | quickly find the contact I need                                              |
-| `* * *`  | real estate agent | delete contacts                                              | remove outdated or irrelevant contacts                                       |
-| `* *`    | real estate agent | be able to import my existing contact and address data       | seamlessly transition to using EstateEase                                    |
-| `* *`    | real estate agent | save any changes or updates made to the contact details      | ensure that my data is always up-to-date                                     |
+| Priority  | As a …​                     | I want to …​                                                                                  | So that I can…​                                                              |
+|-----------|-----------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `* * * *` | real estate agent           | add home-owners clients                                                                       | keep track of their contact details and the properties that they are selling |
+| `* * * *` | real estate agent           | add home-buyer clients                                                                        | keep track of their contact details and requirements                         |
+| `* * * *` | real estate agent           | view the list of all contacts stored                                                          | quickly find the contact I need                                              |
+| `* * * *` | real estate agent           | delete the contact that I want to remove                                                      | remove outdated or irrelevant contacts                                       |
+| `* * * *` | real estate agent           | be able to exit the program when I want to                                                    | close the application                                                        |
+| `* * * *` | real estate agent           | be able to automatically save the data I added, changed, and deleted                          | load the data when I open the application, with the saved data, next time    |
+| `* * *`   | real estate agent           | find for a specific contact                                                                   | access their details without scrolling through a long list                   |
+| `* * *`   | real estate agent           | easily update or modify existing contact information                                          | have accurate and up-to-date records                                         |
+| `* * *`   | real estate agent           | add new houses to the home-sellers                                                            | keep track of the houses the home-sellers have                               |
+| `* * *`   | real estate agent           | have whatever contacts I add load to the laptop I am using                                    | do not need to re-enter all the details whenever I open the app              |
+| `* *`     | busy real estate agent      | be able to view specific buyer's requirements                                                 | understand what are their needs quickly                                      |
+| `* *`     | busy real estate agent      | be able to view specific seller's properties                                                  | effectively assess their listings quickly                                    |
+| `* *`     | busy real estate agent      | match the buyer with sellers based on the buyer's requirements                                | quickly identify properties that align with the buyers' preferences          |
+| `* *`     | busy real estate agent      | be able to tell at a glance whether the contact is a buyer or seller                          | do not need to remember their identity                                       |
+| `* *`     | forgetful real estate agent | filter my contacts based on buyers who do not have a pending or done deal status              | easily identify and manage active buyer contacts                             |
+| `* *`     | forgetful real estate agent | link a buyer to sellers with the properties they are interested in buying                     | push them towards making a transaction                                       |
+| `*`       | busy real estate agent      | be able to add notes about clients when talking to them                                       | do not need to consolidate afterwards                                        |
+| `*`       | real estate agent           | differentiate between home-buyers who are looking for houses and finalizing a deal            | manage them effectively                                                      |
+| `*`       | real estate agent           | differentiate between home-sellers who are looking to sell their houses and finalizing a deal | manage them effectively.                                                     |
+| `*`       | real estate agent           | see the priority of home-sellers after filtering out their selling requirements               | determine who I should prioritize in handling the transactions first         |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `EstateEase` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add home-seller to user’s contact list**
+**Use case: UC01 - Add a home-seller to contact list**
 
 **MSS:**
 
@@ -388,7 +402,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3q1. EstateEase shows an error message regarding the entry of incorrect priority level. <br>
       Use case resumes from step 2.
 
-**Use case: UC02 - Add home-buyer to user’s contact list**
+**Use case: UC02 - Add a home-buyer to contact list**
 
 **MSS:**
 
@@ -447,20 +461,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3k1. EstateEase shows an error message regarding the entry of incorrect role. <br>
       Use case resumes from step 2.
 
-**Use case: UC03 - Add more homes to home-seller**
+**Use case: UC03 - Add more houses to home-seller**
 
 **MSS:**
 
-1. User chooses to add new home to home-seller.
-2. EstateEase requests for the details of the home.
+1. User chooses to add new house to home-seller.
+2. EstateEase requests for the details of the house.
 3. User enters requested details.
-4. EstateEase adds the new home and displays the newly added home of the home-seller. <br>
+4. EstateEase adds the new house and displays the newly added house of the home-seller. <br>
    Use case ends.
 
-**Precondition for Extension 3i:** EstateEase has received the details of the home from the user. <br>
+**Precondition for Extension 3i:** EstateEase has received the details of the house from the user. <br>
 **Trigger:** EstateEase validates the entered details and detects that the block number is missing when the housing type is HDB/Condo.
 
-**Precondition for Extension 3k and 3l:** EstateEase has received the details of the home from the user. <br>
+**Precondition for Extension 3k and 3l:** EstateEase has received the details of the house from the user. <br>
 **Trigger:** EstateEase validates the entered details and detects that the unit number is missing when the housing type is HDB/Condo.
 
 **Extensions**
@@ -512,118 +526,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3k1. EstateEase shows an error message regarding incorrect format for postal code. <br>
       Use case resumes from step 2.
 
-**Use case: UC04 - Viewing of homes based on home-seller's priority**
 
-**Preconditions:**
-- The user initialises a view command with home-seller as a filter
-
-**MSS:**
-1.  EstateEase process the view command with home-seller as filter.
-2.  EstateEase shows a list of home-sellers, arranged based on their priority. <br>
-    Use case ends.
-
-**Extensions**
-* 1a. The contact list does not have any home-seller. <br>
-    * 1a1. EstateEase shows an error message stating that the contact list does not have home-seller. <br>
-      Use case ends.
-
-**Use case: UC05 - View all**
+**Use case: UC04 - View all contacts**
 
 **MSS:**
 
-1.  User requests to list all of his/her contacts. 
-2.  EstateEase displays a list of contacts, each with their details 
-and an indication of whether they are a buyer or seller.
+1.  User requests to list all of his/her contacts.
+2.  EstateEase displays a list of contacts, each with their details
+    and an indication of whether they are a buyer or seller.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-   * 2a1. EstateEase displays a message stating that the list is empty.
+    * 2a1. EstateEase displays a message stating that the list is empty.
 
-     Use case ends.
+      Use case ends.
 
-**Use case: UC06 - View home-buyer requirements**
+
+**Use case: UC05 - Delete a contact**
 
 **MSS:**
 
-1. User enters the command to view the specific buyer's requirements.
-2. EstateEase processes the view command with home-buyer as filter.
-3. EstateEase displays the home-buyer's requirements.
-   Use case ends.
-
-**Extensions**
-
-* 2a. EstateEase detects an invalid name.
-  *   2a1. EstateEase shows an error message regarding an invalid entry.
-      Use case ends.
-* 2b. Command does not match EstateEase's registered command spelling.
-  *   2b1. EstateEase shows an error message regarding an invalid command.
-      Use case ends.
-
-**Use case: UC07 - View home-seller requirements**
-
-**MSS:**
-
-1. User enters the command to view the specific seller's requirements.
-2. EstateEase processes the view command with home-seller as filter.
-3. EstateEase displays the home-seller's requirements.
-   Use case ends.
-
-**Extensions**
-
-* 2a. EstateEase detects an invalid name.
-    * 2a1. EstateEase shows an error message regarding an invalid entry.
-      Use case ends.
-* 2b. Command does not match EstateEase's registered command spelling.
-    * 2b1. EstateEase shows an error message regarding an invalid command.
-      Use case ends.
-
-**Use case: UC08 - Differentiate home-seller requirements**
-
-**MSS:**
-
-1.  User opens the app
-2.  User filters for home-sellers
-3.  EstateEase displays home-sellers. Free home-sellers are highlighted in green.
+1.  User requests to <u>view all contacts (UC04)</u>.
+2.  User requests to delete a specific contact in the contact list.
+3.  EstateEase deletes the contact.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. Pending home-sellers are displayed in red.
-  *   3a1. User clicks on one of the pending home-sellers. The home-seller's status is set to pending.
-      Use case ends.
-
-* 3b. User clicks on one of the free home-sellers. The home-seller's status is set to free.
-      Use case ends.
-
-
-**Use case: UC08 - Delete a person**
-
-**MSS:**
-
-1.  User requests to list persons.
-2.  EstateEase shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  EstateEase deletes the person.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
+* 1a. The contact list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid input type.
+    * 2a1. EstateEase shows an error message regarding the invalid input type.
 
-    * 3a1. EstateEase shows an error message.
+      Use case resumes at step 1.
 
-      Use case resumes at step 2.
+* 2b. The given index is out of range.
+    * 2b1. EstateEase shows an error message regarding the out of range.
 
-**Use case: UC09 - Load contact data from file**
+      Use case resumes at step 1.
+
+**Use case: UC06 - Load contact data from file**
 
 **Actor: EstateEase**
 
@@ -668,7 +616,7 @@ and an indication of whether they are a buyer or seller.
         * 1d3b. EstateEase proceeds to load contact and address data from the newly created JSON file.
           Use case continues from step 2.
 
-**Use case: UC10 - Save to storage**
+**Use case: UC07 - Save to storage**
 
 **Actor: EstateEase**
 
@@ -679,34 +627,155 @@ and an indication of whether they are a buyer or seller.
 1.  EstateEase processes the add (UC01) or delete (UC03) command and updates the address book accordingly.
 2.  EstateEase attempts to update the JSON file accordingly.
 3.  EstateEase successfully updates the JSON file.
-    
+
     Use case ends.
 
 **Extensions**
 
 * 2a. EstateEase is unable to write to the JSON file due to file permission issue.
-  * 2a1. EstateEase shows error message regarding the insufficient file permission to the user.
+    * 2a1. EstateEase shows error message regarding the insufficient file permission to the user.
 
-    Use case ends.
-  
+      Use case ends.
+
 * 2b. EstateEase is unable to write to the JSON file due to some IOException.
     * 2b1. EstateEase shows error message regarding the IOException to the user.
       Use case ends.
 
-**Use case: UC06 - Exit Application**
+
+**Use case: UC08 - Search a contact**
 
 **MSS:**
 
-1. User enters the 'exit' command.
-2. EstateEase immediately closes the application.
+1. User requests to search for a contact.
+2. EstateEase displays all the contacts that match the inputted contact name.
+
+    Use case ends.
 
 **Extensions**
 
-* 1a. User enters an unrecognized command.
-    * 1a1. EstateEase displays a message "Unknown command".
-      Use case resumes from the previous step.
+* 1a. The given contact name does not match any contact names in the contact list.
+    * 1a1. EstateEase shows an error message indicating no matches found.
+    
+      Use case ends.
 
-**Use case: UC07 - Linking Buyers to Sellers**
+
+**Use case: UC09 - View a home-buyer's requirements**
+
+**MSS:**
+
+1. User enters the command to view the specific buyer's requirements.
+2. EstateEase processes the view command with home-buyer as filter.
+3. EstateEase displays the home-buyer's requirements.
+   Use case ends.
+
+**Extensions**
+
+* 2a. EstateEase detects an invalid name.
+    *   2a1. EstateEase shows an error message regarding an invalid entry.
+        Use case ends.
+* 2b. Command does not match EstateEase's registered command spelling.
+    *   2b1. EstateEase shows an error message regarding an invalid command.
+        Use case ends.
+
+**Use case: UC10 - View a home-seller's properties**
+
+**MSS:**
+
+1. User enters the command to view the specific seller's requirements.
+2. EstateEase processes the view command with home-seller as filter.
+3. EstateEase displays the home-seller's requirements.
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. EstateEase detects an invalid name.
+    * 2a1. EstateEase shows an error message regarding an invalid entry.
+      
+      Use case ends.
+* 2b. Command does not match EstateEase's registered command spelling.
+    * 2b1. EstateEase shows an error message regarding an invalid command.
+      
+      Use case ends.
+
+
+**Use case: UC11 - Edit contact details**
+
+**MSS:**
+
+1.  User requests to <u>view all contacts (UC04)</u>.
+2.  User requests to edit the details of a specific person in the list.
+3.  EstateEase updates the details of the specific person selected by the user.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. EstateEase shows an error message.
+
+      Use case ends.
+
+* 2b. The new value for the field being updated is not valid.
+    * 2b1. EstateEase shows error message, indicating the nature of the invalid input.
+
+      Use case ends.
+
+**Use case: UC12 - Filter out buyers**
+
+**MSS:**
+
+1.  User requests to view only buyers that are still looking for a houses or those that
+    have already gotten their house.
+2.  EstateEase shows a list of all his/her house buyers based on the filter
+    (i.e. still looking for a house).
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no buyers that match the filter.
+    * 1a1. EstateEase displays a message stating that the list is empty.
+
+      Use case ends.
+
+**Use case: UC13 - Find matching sellers for a buyer**
+
+**MSS:**
+1. User requests to <u>filter out buyers (UC12)</u>.
+2. User requests to find all the matching sellers for a buyer based on their requirements.
+3. EstateEase displays the list of sellers who have properties that match the buyer's requirements.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  
+  Use case ends.
+
+* 2a. The given index for the buyer is invalid input type.
+    * 2a1. EstateEase shows an error message indicating the invalid input type.
+      
+      Use case resumes at step 1.
+
+* 2b. The given index for the buyer is out of range.
+    * 2b1. EstateEase shows an error message indicating the out of range for the index.
+      
+      Use case resumes at step 1.
+
+* 3a. There are no sellers in the contact list.
+    * 3a1. EstateEase shows a message indicating there is no sellers in the contact list.
+      
+      Use case ends.
+
+* 3b. There are no matching properties based on the buyer's requirements.
+    * 3b1. EstateEase shows a message indicating there is no matching results.
+      
+      Use case ends.
+
+
+**Use case: UC14 - Link Buyer to Seller**
 
 **MSS:**
 
@@ -721,13 +790,65 @@ and an indication of whether they are a buyer or seller.
     * 1a1. EstateEase displays an error message indicating the issue with the input.
       Use case ends.
 
-**Use case: UC08 - Adding Notes about Clients**
+
+**Use case: UC15 - View home sellers by priority**
+
+**Preconditions:**
+- The user initialises a view command with home-seller as a filter
+
+**MSS:**
+1.  EstateEase process the view command with home-seller as filter.
+2.  EstateEase shows a list of home-sellers, arranged based on their priority. <br>
+    Use case ends.
+
+**Extensions**
+* 1a. The contact list does not have any home-seller. <br>
+    * 1a1. EstateEase shows an error message stating that the contact list does not have home-seller. <br>
+      Use case ends.
+
+      
+
+**Use case: UC16 - Differentiate home-seller status**
+
+**MSS:**
+
+1. User filters for home-sellers
+2. EstateEase displays home-sellers. Free home-sellers are highlighted in green.
+
+    Use case ends.
+
+
+**Extensions**
+
+* 2a. Pending home-sellers are displayed in red.
+  *   2a1. User clicks on one of the pending home-sellers. The home-seller's status is set to pending.
+      
+       Use case ends.
+
+* 2b. User clicks on one of the free home-sellers. The home-seller's status is set to free.
+
+  Use case ends.
+
+
+**Use case: UC17 - Differentiate home-buyer status**
+
+**MSS:**
+
+1.  User requests to <u>view all contacts</u>.
+2.  EstateEase displays and highlights the home-buyers who are still looking for houses in green, 
+    and the home-buyers who are pending in finalizing a deal or done deal in red.
+    
+    Use case ends.
+
+
+**Use case: UC18 - Adding notes about clients**
 
 **MSS:**
 
 1. User enters a remark regarding a client.
 2. EstateEase adds the provided remark to the client identified by the specified index.
-3. Use case ends.
+   
+   Use case ends.
 
 **Extensions**
 
@@ -735,46 +856,23 @@ and an indication of whether they are a buyer or seller.
     * 1a1. EstateEase displays an error message indicating the invalid input.
       Use case ends.
 
-**Use case: UC09 - Edit contacts**
+
+
+**Use case: UC19 - Exit application**
 
 **MSS:**
 
-1.  User requests to <u>view all his/her contacts (UC05)</u>.
-2.  EstateEase shows a list of all his/her contacts.
-3.  User requests to edit the details of a specific person in the list.
-4.  EstateEase updates the details of the specific person selected by the user.
-
-    Use case ends.
+1. User enters the 'exit' command.
+2. EstateEase immediately closes the application.
+   
+   Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid.
-    * 3a1. EstateEase shows an error message.
+* 1a. User enters an unrecognized command.
+    * 1a1. EstateEase displays a message "Unknown command".
+      Use case resumes from the previous step.
 
-      Use case ends.
-
-* 3b. The new value for the field being updated is not valid. 
-    * 3b1. EstateEase shows error message, indicating the nature of the invalid input.
-
-      Use case ends.
-
-**Use case: UC10 - Filter out buyers**
-
-**MSS:**
-
-1.  User requests to view only buyers that are still looking for a houses or those that 
-have already gotten their house.
-2.  EstateEase shows a list of all his/her house buyers based on the filter
-(i.e. still looking for a house).
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. There are no buyers that match the filter.
-    * 1a1. EstateEase displays a message stating that the list is empty.
-
-      Use case ends.
 
 ### Non-Functional Requirements
 
