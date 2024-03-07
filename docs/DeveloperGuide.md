@@ -274,13 +274,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Professors and Teaching Assistants at the National University of Singapore seeking a streamlined platform to manage past and current students.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* EduLink NUS offers National University of Singapore professors and teaching assistants a centralised platform for effortless connection and search capabilities regarding past and current students. By streamlining communication and data retrieval, it enhances efficiency in academic engagement and administrative tasks.
+* manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -326,26 +328,94 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Add a Tag to a Student's Profile**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User requests to add tag a specific student by inputting that student's ID and tag information.
+5.  The tag is successfully added to that student.
 
     Use case ends.
+**Extensions**
+* 2a. The list is empty.
 
+  Use case ends.
+
+* 4a. Invalid student ID entered
+
+    * 4a1. AddressBook inform user that student does not exist
+    * 4a2. User enters new student ID and tag information
+      Steps 4a1 - 4a2 are repeated till a valid student ID is given
+
+      Use case resumes at step 5
+
+* 4b. Duplicate tag found
+
+    * 4b1. AddressBook inform user that tag already exist for the student specified
+
+      Use case ends
+
+**Use Case: Edit the Information of a Student**
+
+**MSS**
+
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User prompt to edit a specific student by inputting that student's ID and updated information.
+5.  The student's information is successfully changed.
+
+    Use case ends.
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. Invalid student ID entered
+
+    * 4a1. AddressBook inform user that student does not exist
+    * 4a2. User enters new student ID and updated information
+      Steps 4a1 - 4a2 are repeated till a valid student ID is given
+
+      Use case resumes at step 5.
+
+* 4b. detect error in any updated information entered
+
+    * 4b1. inform user on the information that does not meet requirement
+    * 4c1. user enters new updated information (all information)
+      Steps 4b1 - 4b2 are repated till the data entered are correct.
+
+      Use case resumes at step 5.
+   
+* 4c. updated information is the same as current information
+
+    * 4c1. No changes made to information
+
+      Use case ends.
+
+**Use Case: Delete a Student**
+
+**MSS**
+
+1.  User request to list students.
+2.  AddressBook shows a list of all students.
+3.  User get to know the name or ID of a specific student.
+4.  User prompt to delete that student by its ID.
+5.  That student is successfully deleted.
+
+    Use case ends.
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given student ID is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. AddressBook inform user that student does not exist.
 
       Use case resumes at step 2.
 
@@ -356,19 +426,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4. The system should have a user-friendly interface with clear navigation and easily understandable actions.
+5. Powerful search features that allow users to find students based on various criteria (name, module, year of study, etc.), including flexible filtering and sorting options.
+6. The system architecture should allow for increases in user base and data volume without impacting performance.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Data Integrity**: Maintaining the accuracy, consistency, and lack of corruption within the student data.
+* **Duplicate Prevention**: Measures taken within the system to prevent the creation of redundant student records.
+* **Student ID**: A unique identifier assigned to each student for precise reference and modification within the system.
+* **Tag**: A customizable label or keyword attached to student profiles. Tags are used for categorizing, searching, and filtering students based on shared attributes or characteristics.
+* **Automatic Tagging**: The application of tags to student records based on predefined rules or conditions.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
+
 
 <box type="info" seamless>
 
