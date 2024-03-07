@@ -288,26 +288,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (unlikely to have) - `* *`, Not essential (implement only if got time) - ` * `
 
-| Priority  | As a …​          | I want to …​                                                      | So that I can…​                                                                                                                                                                       |
-|-----------|------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `* * * *` | Counsellor       | create new patients                                               | store their data for future sessions.                                                                                                                                                 |
-| `* * * *` | Counsellor       | view patient data                                                 | view their contact information and contact them.                                                                                                                                      |
-| `* * * *` | Counsellor       | delete patient data at a given index                              | discharge the patient.                                                                                                                                                                |
-| `* * * *` | Counsellor       | search for a patient                                              | quickly access and review patient status.                                                                                                                                             |
-| `* * * *` | Counsellor       | list patient at the given index                                   | quickly access patients that come regularly.                                                                                                                                          |
-| `* * * *` | Counsellor       | schedule appointments                                             | avoid scheduling overlapping appointments with other patients.                                                                                                                        |
-| `* * * *` | Counsellor       | delete an appointment for a specific patient                      | appointments can be changed in cases of cancellation.                                                                                                                                 |
-| `* * * *` | Counsellor       | view one appointment for a specified patient                      | quickly find and review the appointment notes.                                                                                                                                        |
-| `* * * *` | Counsellor       | view all appointments for a specified patient                     | quickly view all appointments related to a student without having to remember the appointment ID or dates.                                                                            |
-| `* * *`   | Counsellor       | to categorise / tag my patients                                   | patients with more serious issues can be attended to first.                                                                                                                           |
-| `* * * `  | Counsellor       | know how many patients I am seeing in a week                      | better manage my own time and emotions.                                                                                                                                               |
-| `* * *`   | Counsellor       | know what mistakes I make when creating patients                  | easily understand how to rectify my mistakes                                                                                                                                          |
-| `* * *`   | Counsellor       | know know what mistakes I make when creating appointments         | easily understand how to rectify my mistakes                                                                                                                                          |
-| `* * *`   | Counsellor       | be able to mark whether a patient attended a session              | properly document patients’ attendance                                                                                                                                                |
-| `* * *`   | New User         | have a help function                                              | so that I know how to use the application.                                                                                                                                            |
-| `* *`     | Counsellor       | sort patients based on their priority tag                         | more serious patients can be attended first.                                                                                                                                          |
-| `* *`     | Experienced User | navigate through my history of written commands                   | avoid retyping a command just to make minor modifications to a previous command.                                                                                                      |
-| `*`       | Experienced User | mass delete patient data                                          | patient data is not compromised.                                                                                                                                                      |
+| Priority  | As a …​          | I want to …​                                              | So that I can…​                                                                                            |
+|-----------|------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| `* * * *` | Counsellor       | create new patients                                       | store their data for future sessions.                                                                      |
+| `* * * *` | Counsellor       | view patient data                                         | view their contact information and contact them.                                                           |
+| `* * * *` | Counsellor       | delete patient data at a given index                      | discharge the patient.                                                                                     |
+| `* * * *` | Counsellor       | search for a patient                                      | quickly access and review patient status.                                                                  |
+| `* * * *` | Counsellor       | list patient at the given index                           | quickly access patients that come regularly.                                                               |
+| `* * * *` | Counsellor       | schedule appointments                                     | avoid scheduling overlapping appointments with other patients.                                             |
+| `* * * *` | Counsellor       | delete an appointment for a specific patient              | appointments can be changed in cases of cancellation.                                                      |
+| `* * * *` | Counsellor       | view one appointment for a specified patient              | quickly find and review the appointment notes.                                                             |
+| `* * * *` | Counsellor       | view all appointments for a specified patient             | quickly view all appointments related to a student without having to remember the appointment ID or dates. |
+| `* * * *` | Counsellor       | view patient case logs                                    | understand where I left off with the patient last time.                                                    |
+| `* * * *` | Counsellor       | create patient logs                                       | note down what I went through with the patient during the session.                                         |
+| `* * * *` | Counsellor       | update counselling sessions                               | fix mistakes for a prior counselling session.                                                              |
+| `* * *`   | Counsellor       | to categorise / tag my patients                           | patients with more serious issues can be attended to first.                                                |
+| `* * * `  | Counsellor       | know how many patients I am seeing in a week              | better manage my own time and emotions.                                                                    |
+| `* * *`   | Counsellor       | know what mistakes I make when creating patients          | easily understand how to rectify my mistakes                                                               |
+| `* * *`   | Counsellor       | know know what mistakes I make when creating appointments | easily understand how to rectify my mistakes                                                               |
+| `* * *`   | Counsellor       | be able to mark whether a patient attended a session      | properly document patients’ attendance                                                                     |
+| `* * *`   | New User         | have a help function                                      | so that I know how to use the application.                                                                 |
+| `* *`     | Counsellor       | sort patients based on their priority tag                 | more serious patients can be attended first.                                                               |
+| `* *`     | Experienced User | navigate through my history of written commands           | avoid retyping a command just to make minor modifications to a previous command.                           |
+| `*`       | Experienced User | mass delete patient data                                  | patient data is not compromised.                                                                           |
 
 
 ### Use cases
@@ -424,6 +427,168 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 * 2a. User does not want to delete.
 
     * 2a1. CogniCare shows an error message that the user cancelled the delete operation.
+
+  Use case ends.
+
+**Use case: View one case log of an appointment of a specific student**
+
+**MSS**
+
+1. User searches for specific student.
+2. CogniCare shows a list of students that meet the criteria.
+3. User requests to list all appointments at the given the student index.
+4. CogniCare shows a list of appointments that meet the criteria.
+5. User requests to find the case log of the appointment at the given student and appointment.
+6. CogniCare shows the case log that meets the criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The query has missing parameters
+
+    * 1a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 2a. The list of students is empty.
+
+  Use case ends.
+
+* 3a. The query has missing parameters
+
+    * 3a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 4a. The list of appointments is empty.
+
+  Use case ends.
+
+* 5a. The query has missing/out of bound parameters
+
+    * 5a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 6a. There is no case log for such appointment
+
+    * 6a1. CogniCare shows an error message.
+
+  Use case ends.
+
+**Use case: View many case logs of a specific student**
+
+**MSS**
+
+1. User searches for specific student.
+2. CogniCare shows a list of students that meet the criteria.
+3. User requests to see all appointments' case log at the given the student index.
+4. CogniCare shows a list of all appointments' case log that meet the criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The query has missing parameters
+
+    * 1a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 2a. The list of students is empty.
+
+  Use case ends.
+
+* 3a. The query has missing parameters
+
+    * 3a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 4a. The list of appointments is empty.
+
+  Use case ends.
+
+**Use case: Edit one case log of an appointment of a specific student**
+
+**MSS**
+
+1. User searches for specific student.
+2. CogniCare shows a list of students that meet the criteria.
+3. User requests to see all appointments' case log at the given the student index.
+4. CogniCare shows a list of all appointments' case log that meet the criteria.
+5. User requests to edit the case log of the appointment at the given student and appointment.
+6. CogniCare edits the case log for the specified appointment and student.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The query has missing parameters
+
+    * 1a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 2a. The list of students is empty.
+
+  Use case ends.
+
+* 3a. The query has missing parameters
+
+    * 3a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 4a. The list of appointments is empty.
+
+  Use case ends.
+
+* 5a. The query has missing/out of bound parameters
+
+    * 5a1. CogniCare shows an error message.
+
+    Use case ends.
+
+**Use case: Create one case log of a appointment of a specific student**
+
+**MSS**
+
+1. User searches for specific student.
+2. CogniCare shows a list of students that meet the criteria.
+3. User requests to list all appointments at the given the student index.
+4. CogniCare shows a list of appointments that meet the criteria.
+5. User requests to create the case log of the appointment at the given student and appointment.
+6. CogniCare create the case log for the specified appointment and student.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The query has missing parameters
+
+    * 1a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 2a. The list of students is empty.
+
+  Use case ends.
+
+* 3a. The query has missing parameters
+
+    * 3a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 4a. The list of appointments is empty.
+
+  Use case ends.
+
+* 5a. The query has missing/out of bound parameters
+
+    * 5a1. CogniCare shows an error message.
 
   Use case ends.
 
