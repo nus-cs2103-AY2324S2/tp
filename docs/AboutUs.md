@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zhou Yang
 
-<img src="images/ZhouYang.png" width="200px">
+<img src="images/samuelzero1.png" width="200px">
 
 [[github](http://github.com/SamuelZero1)] [[portfolio](team/johndoe.md)]
 * Role: Integration
