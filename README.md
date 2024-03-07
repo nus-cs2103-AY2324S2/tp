@@ -28,7 +28,7 @@ With a robust error handling system, clear error and resolution messages will gu
 managing your contacts seamlessly.
 
 ## Getting Started
-To begin your journey with NetConnect, simply download the latest release from the [here]() and refer to the [User Guide](docs/UserGuide.md)
+To begin your journey with NetConnect, simply download the latest release from [here]() and refer to the [User Guide](docs/UserGuide.md)
 for detailed guidance in using the application.
 
 For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
