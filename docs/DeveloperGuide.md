@@ -395,8 +395,29 @@ otherwise)
 
 ### Glossary
 
+* **AddressBook**: A personal management tool used to store contact details, such as names and phone numbers
+* **API(Application Programming Interface)**: Defines how software components interact with each other
+* **Architecture**: The high-level design and structure of the application consisting of components such as UI, Model and Storage
+* **CLI (Command Line Interface)**: A user interface that is based on interaction with the terminal or console
+* **Commons**: A collection of shared resources or classes used by multiple parts of the application
+* **Command**: An object representing a user commend, created by parsing user input.
+* **GUI (Graphical User Interface)**: The visual interface of the AddressBook that users interact with
+* **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug client applications
+* **JSON (JavaScript Object Notation)**:  A lightweight data-interchange format used for storing and transporting data
+* **Logic**: Refers to the component responsible for interpreting and executing user inputs
+* **Low-end devices**: Computers or devices with limited processing power, memory, and hardware
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Model**: In the context of AddressBook, it refers to the component that holds and manages application data
+* **ObservableList**: A unmodifiable list that automatically notifies to UI to update whenever the data changes
+* **PlantUML**: A tool for creating UML diagrams from plaint text
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Parser**: A class responsible for parsing user input into command objects
+* **Storage**: Responsible for reading and writing data to and from the hard disk
+* **Sequence Diagram**: A UML diagram that depicts how objects interact with each other in a sequence
+* **UI (User Interface)**: Manages user interactions with graphic interface elements
+* **UniquePersonList**: List that stores non-duplicate person objects 
+* **UserPref**: Stores the user's preferences 
+* **VersionedAddressBook**: A version of the AddressBook that supports undo and redo operations
 
 --------------------------------------------------------------------------------------------------------------------
 
