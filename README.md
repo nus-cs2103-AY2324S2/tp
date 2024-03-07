@@ -7,8 +7,8 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 # BistroBoss
 BistroBoss is a desktop application for managing staff and operations in a restaurant.
-It streamlines the process of salary distribution, shift scheduling, and manpower allocation for various staff roles. 
-With the high turnover rate in the F&B industry, particularly among part-time student employees, 
+It streamlines the process of salary distribution, shift scheduling, and manpower allocation for various staff roles.
+With the high turnover rate in the F&B industry, particularly among part-time student employees,
 the tool also features an archiving function to retain ex-staff records for potential future reemployment.
 
 Example usages:
