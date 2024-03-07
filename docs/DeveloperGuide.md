@@ -288,14 +288,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​           | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------|------------------------------------------------------------------------|
-| `* * *`  | user                                       | add detail of company  | easily keep track of companies i am interested in                      |
-| `* * *`  | user                                       | list companies added   | view all the companies that i am currently interested in               |
-| `* * *`  | user                                       | delete a company       | remove company that i am no longer interested in                       |
-| `* * *`  | user                                       | save my data           | view my list from previous sessions without reentering my list         |
-| `* *`    | user                                       | find a company by name | locate details of company without having to go through the entire list |
-| `* *`    | user with many persons in the address book | sort companies         | view the list in my preferred order                                    |
+| Priority | As a …​                                  | I want to …​           | So that I can…​                                                        |
+|----------|------------------------------------------|------------------------|------------------------------------------------------------------------|
+| `* * *`  | user                                     | add detail of company  | easily keep track of companies i am interested in                      |
+| `* * *`  | user                                     | list companies added   | view all the companies that i am currently interested in               |
+| `* * *`  | user                                     | delete a company       | remove company that i am no longer interested in                       |
+| `* * *`  | user                                     | save my data           | view my list from previous sessions without reentering my list         |
+| `* *`    | user                                     | find a company by name | locate details of company without having to go through the entire list |
+| `* *`    | user who is interested in many companies | sort companies         | view the list in my preferred order                                    |
 
 *{More to be added}*
 
