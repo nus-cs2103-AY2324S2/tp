@@ -395,8 +395,14 @@ otherwise)
 
 ### Glossary
 
+* **Above average typing speed**: Typing speed of more than 40 words per minute
+* **Archive**: Moving a contact to a secondary address book of less
+* **Client**: A customer of the target user (ie. people engaging the services of a Freelance Photographer)
+* **Contact**: A person of whose details are stored in the address book
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Responsive performance**: No noticeable delay of the address book during execution
+* **Usage instructions**: Documentation detailing the address book's features and how to navigate them
 
 --------------------------------------------------------------------------------------------------------------------
 
