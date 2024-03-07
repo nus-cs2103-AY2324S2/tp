@@ -6,6 +6,8 @@
 * It helps to keep track of book transactions within the library.
 * This helps to prevent irresponsible behaviour that violates the library's borrowing guidelines, easing management duties.
 <br>
+
+## Project Details
   * The project is CLI based to make it quick to use and  easy for users who prefer typing commands over mouse operations.
   * The user can add, edit, find or delete borrowers in order to keep track of who is using their library
   * The user can also keep track of borrow and return transactions.
