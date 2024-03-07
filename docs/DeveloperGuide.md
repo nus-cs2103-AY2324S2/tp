@@ -337,6 +337,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  The tag is successfully added to that student.
 
     Use case ends.
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. Invalid student ID entered
+
+    * 4a1. AddressBook inform user that student does not exist
+    * 4a2. User enters new student ID and tag information
+      Steps 4a1 - 4a2 are repeated till a valid student ID is given
+
+      Use case resumes at step 5
+
+* 4b. Duplicate tag found
+
+    * 4b1. AddressBook inform user that tag already exist for the student specified
+
+      Use case ends
 
 **Use Case: Edit the Information of a Student**
 
@@ -349,6 +367,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  The student's information is successfully changed.
 
     Use case ends.
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. Invalid student ID entered
+
+    * 4a1. AddressBook inform user that student does not exist
+    * 4a2. User enters new student ID and updated information
+      Steps 4a1 - 4a2 are repeated till a valid student ID is given
+
+      Use case resumes at step 5.
+
+* 4b. detect error in any updated information entered
+
+    * 4b1. inform user on the information that does not meet requirement
+    * 4c1. user enters new updated information (all information)
+      Steps 4b1 - 4b2 are repated till the data entered are correct.
+
+      Use case resumes at step 5.
+   
+* 4c. updated information is the same as current information
+
+    * 4c1. No changes made to information
+
+      Use case ends.
 
 **Use Case: Delete a Student**
 
@@ -367,9 +411,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given student ID is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. AddressBook inform user that student does not exist.
 
       Use case resumes at step 2.
 
