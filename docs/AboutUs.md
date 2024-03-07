@@ -24,10 +24,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jun Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chengjunyuan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/chengjunyuan)] [[linkedin](https://www.linkedin.com/in/jun-yuan-cheng-2867931a9/)]
+
+Interested in computational biology and bioinformatics!
 
 * Role: Team Lead
 * Responsibilities: UI
