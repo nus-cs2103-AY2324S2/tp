@@ -324,8 +324,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Actor: User**
 
-**Description: This use case outlines the steps involved in adding a new client profile to Realodex. The user initiates the process by executing the "Add client" command, and the system guides them through sequential steps to gather and confirm client details.**
-
 **MSS**
 
 1. User Executes "Add client...." Command:
@@ -337,44 +335,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Name exceeds the length constraints.
   * 1a1. Realodex throws an error and requests shorter name representation.
-  * 1a2. User enters new data.
+  * 1a2. User enters new data. 
+  * Use case resumes from step 1.
 
 * 1b. Name Length is not fully English.
     * 1b1. Realodex throws an error and requests for only English input.
-    * 1b2. User enters new data.
+    * 1b2. User enters new data. 
+    * Use case resumes from step 1.
 
 * 1c. Name contains erraneous whitespace.
-    * 1c1. Realodex throws a warning and fixes this for user.
+    * 1c1. Realodex throws a warning and fixes this for user. 
+    * Use case ends.
 
 * 1d. Name is not capitalized.
-    * 1d1. Realodex throws a warning and fixes this for user.
+    * 1d1. Realodex throws a warning and fixes this for user. 
+    * Use case ends.
 
 * 1e. Name is not in expected format.
     * 1e1. Realodex throws an error and highlights the format to user.
-    * 1e2. User enters new data.
+    * 1e2. User enters new data. 
+    * Use case resumes from step 1.
 
 * 1f. Address is not fully English  
     * 1f1. Realodex throws an error and requests for only English input.
-    * 1f2. User enters new data.
+    * 1f2. User enters new data. 
+    * Use case resumes from step 1.
 
 * 1g. Address exceeds the length constraints
     * 1g1. Realodex throws an error and requests shorter address representation.
     * 1g2. User enters new data.
+    * Use case resumes from step 1.
 
 * 1h. Address is not capitalized for each part.
-    * 1h1. Realodex throws a warning and fixes this for user.
+    * 1h1. Realodex throws a warning and fixes this for user. 
+    * Use case ends.
 
 * 1i. Income is not in SGD
     * 1i. Realodex throws an error and requests a SGD value.
     * 1i2. User enters new data.
+    * Use case ends.
 
 * 1j. Income is negative
     * 1j1. Realodex throws an error and requests a positive income value.
-    * 1j2. User enters new data.
+    * 1j2. User enters new data. 
+    * Use case ends.
 
 * 1k. Additonal notes exceed length constraints.
     * 1k1. Realodex throws an error and requests a shorter input.
-    * 1k2. User enters new data.
+    * 1k2. User enters new data. 
+    * Use case ends.
 
 **Use case: Delete a person**
 
@@ -388,8 +397,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The input name is not found
- * 2a1. Realodex shows an error message "<Name> is not found".
-
+ * 2a1. Realodex shows an error message "<Name> is not found". 
+ * Use case ends.
 **Use case: List**
 
 **MSS**
@@ -402,7 +411,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty
-  * 2a1. Realodex shows an empty list.
+  * 2a1. Realodex shows an empty list. 
+  * Use case ends.
 
 **Use case: Find**
 
@@ -416,7 +426,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. No contact found with a name including the name input
-  * 2a1. Realodex shows an empty list.
+  * 2a1. Realodex shows an empty list. 
+  * Use case ends.
 
 
 ### Non-Functional Requirements
@@ -424,13 +435,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A real estate agent with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be able to have up to 500 profiles.
+4.  Should be able to have up to 500 client profiles.
 5.  The response to any command should become visible within 5 seconds.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Client Profile**: Details of customer of the Real Esate Agent looking to buy / sell / rent a property
+* **Command Line Interface (CLI)**: A text-based interface used to interact with the software by entering commands into a terminal or console window, typically preferred by users who prefer efficiency and automation.
 
 --------------------------------------------------------------------------------------------------------------------
 
