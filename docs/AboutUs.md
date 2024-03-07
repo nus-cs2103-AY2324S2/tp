@@ -50,6 +50,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Testing
 * Responsibilities: Test
 
+### Zhou Yang
+
+<img src="images/ZhouYang.png" width="200px">
+
+[[github](http://github.com/SamuelZero1)] [[portfolio](team/johndoe.md)]
+* Role: Integration
+* Responsibilities: Integrate the software components
+
 ### James Doe
 
 <img src="images/johndoe.png" width="200px">
