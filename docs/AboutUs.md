@@ -27,6 +27,15 @@ You can reach us at the email `e0960005@comp.nus.edu`
 * Role: Developer
 * Responsibilities: Scheduling and Tracking + Model
 
+### Go Song Ying
+
+<img src="images/gosongying.png" width="200px">
+
+[[github](https://github.com/gosongying)]
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines + UI
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
