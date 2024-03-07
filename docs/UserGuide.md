@@ -113,23 +113,25 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Search students by name or ID: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds students whose names contain any of the given keywords or whose ID matches givens student ID
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Formats: 
+* search by name: `find [n/NAME]`
+* search by student ID: `find [id/STUDENT_ID]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `john` will match `John`, `a1234567x` will match `A1234567X`
+* Only the name or student id is searched.
+* The search by name supports partial word matching e.g. `John` will match `Jonathan`
+* only full ID will be matched for search by student ID e.g. `A123` will not match `A1234567X`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find John` returns `john`, `John Doe`, `Jonathan`
+* `find alex david` returns `Alex Yeoh`, `David Li`
+* `find id/A1234567X` returns `Hannah Neo with ID A12345678X`
 
 ### Deleting a person : `delete`
 
