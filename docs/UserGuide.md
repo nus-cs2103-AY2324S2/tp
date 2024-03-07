@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "User Guide"
-  pageNav: 3
+layout: default.md
+title: "User Guide"
+pageNav: 3
 ---
 
 # AB-3 User Guide
@@ -69,18 +69,18 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Add person to selected event: `add`
 
+**Format:** `add -i <index>`
+
+**Description:**
 Add participants from the global participant list to the selected event.
 
-Format: `add -i INDEX`
+**Caution:**
+* `<index>` should be within valid range of global participants
+* Duplicate participants is **not allowed.**
 
-Examples:
-* `add -i 5`
+**Examples:**
+- `add -i 5` Adds participant indexed 5 to selected event.
 
-<box type="warning" seamless>
-**Caution:** 
-* `<index>` should be within valid range
-* Duplicate participants within event is **not allowed.**
-</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
