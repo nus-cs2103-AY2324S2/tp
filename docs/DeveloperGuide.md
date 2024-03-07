@@ -341,9 +341,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. The list is empty as no clients have been added at all.<br>
-  * 1a1. ClientCare notifies that the list is empty.<br>
+* 1a. The list is empty as no clients have been added at all.
+  * 1a1. ClientCare lets user know that the list is empty.<br>
     Use case ends.
+* 1b. Invalid command usage in the request.
+  * 1b1. ClientCare shows command usage.
+  * 1b2. User enters new data.<br>
+    Steps 1b1-1b2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.
 
 
 **Use case: UC02 - View client details and policies**
@@ -354,10 +359,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. ClientCare detects that the client does not exist or invalid command usage.
-  * 1a1. ClientCare shows an error message.<br>
+* 1a. ClientCare detects that the client does not exist.
+  * 1a1. ClientCare lets user know that client does not exist.
   * 1a2. User enters new data.<br>
     Steps 1a1-1a2 are repeated until the data entered are correct.<br>
+    Use case ends.
+* 1b. Invalid command usage in the request.
+  * 1b1. ClientCare shows command usage.
+  * 1b2. User enters new data.<br>
+    Steps 1b1-1b2 are repeated until the data entered are correct.<br>
     Use case resumes from step 2.
 
 
@@ -370,10 +380,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. ClientCare detects invalid command usage or information.
-  * 1a1. ClientCare shows an error message.
+* 1a. ClientCare detects invalid user information.
+  * 1a1. ClientCare shows what is wrong with various invalid user information.
   * 1a2. User enters new data.<br>
     Steps 1a1-1a2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.
+* 1b. Invalid command usage in the request.
+    * 1b1. ClientCare shows command usage.
+    * 1b2. User enters new data.<br>
+      Steps 1b1-1b2 are repeated until the data entered are correct.<br>
+      Use case resumes from step 2.
+* 1c. Client name already exists.
+  * 1c1. ClientCare lets user know that duplicate names are not allowed.
+  * 1c2. User enters new data.<br>
+    Steps 1c1-1c2 are repeated until the data entered are correct.<br>
     Use case resumes from step 2.
 
 
@@ -386,7 +406,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty as there is no matching name found.<br>
-  Use case ends.
+  * 2a1. ClientCare lets user know that the list is empty.<br>
+    Use case ends.
+* 2b. Invalid command usage in the request.
+  * 2b1. ClientCare shows command usage.
+  * 2b2. User enters new data.<br>
+    Steps 2b1-2b2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.
 
 
 **Use case: UC05 - Delete a client**
@@ -400,10 +426,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.<br>
-  Use case ends.
+  * 2a1. ClientCare lets user know that the list is empty.<br>
+    Use case ends.
 * 3a. The given index is invalid.
-  * 3a1. ClientCare shows an error message.<br>
+  * 3a1. ClientCare lets user know that client index should be a number.
+  * 3a2. User enters new data.<br>
+    Steps 3a1-3a2 are repeated until the data entered are correct.<br>
     Use case resumes at step 2.
+* 3b. Invalid command usage in the request.
+  * 3b1. ClientCare shows command usage.
+  * 3b2. User enters new data.<br>
+    Steps 3b1-3b2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.
+* 3c. Client does not exist.
+  * 3c1. ClientCare lets user know that client does not exist.
+  * 3c2. User enters new data.<br>
+    Steps 3c1-3c2 are repeated until the data entered are correct.<br>
+    Use case ends.
 
 
 **Use case: UC06 - Schedule an appointment with client**
@@ -415,10 +454,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. Date and time is invalid.
-  * 1a1. ClientCare shows an error message.<br>
+  * 1a1. ClientCare lets user know of valid date and time format.
+  * 1a2. User enters new data.<br>
+    Steps 1a1-1a2 are repeated until the data entered are correct.<br>
     Use case ends.
 * 1b. Date and time has past.
-  * 1b1. ClientCare shows an error message.<br>
+  * 1b1. ClientCare lets user know that it is not possible to schedule an appointment in the past.
+  * 1b2. User enters new data.<br>
+    Steps 1b1-1b2 are repeated until the data entered are correct.<br>
+    Use case ends.
+* 1c. Invalid command usage in the request.
+  * 1c1. ClientCare shows command usage.
+  * 1c2. User enters new data.<br>
+    Steps 1c1-1c2 are repeated until the data entered are correct.<br>
     Use case ends.
 
 
@@ -431,21 +479,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. Client does not exist.
-  * 1a1. ClientCare shows an error message.<br>
+  * 1a1. ClientCare lets user know that client does not exist.
+  * 1a2. User enters new data.<br>
+    Steps 1a1-1a2 are repeated until the data entered are correct.<br>
     Use case ends.
+* 1b. Invalid date and time.
+  * 1b1. ClientCare lets user know of correct date and time format.
+  * 1b2. User enters new data.<br>
+    Steps 1b1-1b2 are repeated until the data entered are correct.<br>
+    Use case ends.
+* 1c. Date and time is before the last met date.
+  * 1c1. ClientCare confirms if user wants to change last met to an earlier date.
+  * 1c2. User confirms or rejects.<br>
+    Use case ends.
+* 1d. Invalid command usage in the request.
+    * 1d1. ClientCare shows command usage.
+    * 1d2. User enters new data.<br>
+        Steps 1d1-1d2 are repeated until the data entered are correct.<br>
+        Use case ends.
 
 
 **Use case: UC08 - Mark appointment**
 
 **MSS**
 1.  User marks an appointment with client as done.
-2.  ClientCare updates appointment has done.<br>
+2.  ClientCare updates appointment has done and updates last met.<br>
     Use case ends.
 
 **Extensions**
-* 1a. Appointment does not exist.
-  * 1a1. ClientCare shows an error message.<br>
+* 1a. Appointment does not exist or is already marked.
+  * 1a1. ClientCare lets user know that there is no open appointment for this client.<br>
     Use case ends.
+* 1b. The client does not exist.
+  * 1b1. ClientCare shows an error message.
+  * 1b2. User enters new data.<br>
+    Steps 1b1-1b2 are repeated until the data entered are correct.<br>
+    Use case ends.
+* 1c. Appointment is in the future.
+  * 1c1. ClientCare lets user know that future appointment cannot be marked.
+  * 1c2. User enters new data.<br>
+    Steps 1c1-1c2 are repeated until the data entered are correct.<br>
+    Use case ends.
+* 1d. Invalid command usage in the request.
+    * 1d1. ClientCare shows command usage.
+    * 1d2. User enters new data.<br>
+        Steps 1d1-1d2 are repeated until the data entered are correct.<br>
+        Use case ends.
 
 *{More to be added}*
 
