@@ -71,10 +71,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Matthew Elmer Ken
 
-<img src="images/matthewken.png" width="200px">
+<img src="images/matthewken19.png" width="200px">
 
 [[github](http://github.com/matthewken19)]
-[[portfolio](team/matthewken.md)]
+[[portfolio](team/matthewken19.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines
