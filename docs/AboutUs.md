@@ -15,8 +15,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/Ko-Khan)]
 
-* Role: Project Advisor
-* Responsibilities: Data
+* Role: Developer
+* Responsibilities: Testing
 
 ### Benny Loh Choon Keong
 
@@ -34,8 +34,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/H4mes)]
 
 * Role: Developer
-* Responsibilities: Data
-
+* Responsibilities: Documentation + Code Quality
 ### Hyun Eunkyu
 
 <img src="images/howlong11.png" width="200px">
