@@ -277,15 +277,25 @@ _{Explain here how the data archiving feature will be implemented}_
 * logistics managers who have a need to manage a significant number of contacts
 responsible for logistical assets
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* can type fast and prefers typing to other forms of input
 
 **Value proposition**:
 
-* manage contacts & their associated assets faster than a typical mouse/GUI driven app
+Logistics managers often have to keep track of many contacts such as
+* PiCs of inventory items, amenities or transport
+* PoCs of departments, external suppliers or maintenance services
+
+This is usually done with general purpose software like Microsoft Excel, which
+may be cumbersome to use as they
+* take up excessive storage
+* are not optimised for typing only
+
+Therefore, the application aims to deliver the following:
+* manage contacts and associated assets faster than a typical mouse/GUI driven app
+* easily annotate contacts and assets with details
 * easily search for information by any category
 * easily copy contact information to clipboard
+* is lightweight and able to import/export data in easy-to-view format
 
 
 ### User stories
@@ -406,14 +416,15 @@ Use case ends.
 
 ### Glossary
 
-* **Asset**: An item of logistical significance that is owned or maintained by a company or person.
-* **Clipboard**: The computer's storage for data that is copied and that will be produced by the paste command.
-* **Command**: Text that a user inputs to interact with the application.
-* **Command Line Interface(CLI)**: An interface where text commands are inputted by users to interact with the computer.
-* **Graphical User Interface(GUI)**: The visual display of an application through which a user interacts with the computer.
-* **Logistics Manager**: Anyone who manages inventory or amenities in a professional capacity.
+* **Asset**: An item of logistical significance, may be amenities or inventory
+* **Clipboard**: The computer's storage for data that is copied and that will be produced by the paste command
+* **Command**: Text that a user inputs to interact with the application
+* **Command Line Interface(CLI)**: An interface where text commands are inputted by users to interact with the computer
+* **Graphical User Interface(GUI)**: The visual display of an application through which a user interacts with the computer
+* **Logistics Manager**: Anyone who manages inventory or amenities in a professional capacity
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Point-of-Contact(PoC)**: A contact responsible for a certain asset or representing a responsible entity
+* **Person-in-Charge(PiC)**: A contact responsible for an asset
+* **Point-of-Contact(PoC)**: A contact representing a responsible entity like a department or external business
 * **Tag**: User added information associated to a contact e.g. `retired`, `temp staff`, …
 
 --------------------------------------------------------------------------------------------------------------------
