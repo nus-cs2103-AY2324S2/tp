@@ -87,12 +87,12 @@ Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUM
 </box>
 
 Examples:
-* `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/98 t/Honors`
+* `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
 * `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all Students in the EduLink NUS.
 
 Format: `list`
 
