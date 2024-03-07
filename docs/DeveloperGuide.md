@@ -304,46 +304,203 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+--------------------------------------------------------
 
-**Use case: Delete a person**
+### Creating an Event
+
+**Use Case: UC01 - Create an event**
+
+**Actor:** User
+
+**MSS:**
+1. User provides the details of an event to be created.
+2. Eventy displays the details of the event added by the User in the Event List. 
+
+*Use case ends*
+
+**Extensions:**
+
+1a. Details provided by User are incomplete or invalid.
+- 1a1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+
+1b. Event to be added already exists in Eventy.
+- 1b1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+  
+### Deleting an event
+
+**Use case: UC02 - Delete an event**
+
+**Actor:** User
+
+**Preconditions:** User has added at least one event.
+
+**Guarantees:**
+A successful deletion deletes an event from the event list.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Eventy shows a list of events.
+2.  User requests to delete a specific event in the list.
+3.  Eventy deletes the event.
 
-    Use case ends.
+*Use case ends*
 
-**Extensions**
+**Extensions:**
 
-* 2a. The list is empty.
+1a. The list is empty. </br>
+- 1a1. Eventy displays an error message to alert the User. </br>
+*Use case ends*
 
-  Use case ends.
+2a.  Details provided by User are incomplete or invalid.
+- 2a1. Eventy displays an error message to alert the User. </br>
+  *Use case resumes at step 2.*
 
-* 3a. The given index is invalid.
+### Adding participants contact to the global list
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC03 - Add participants contact**
 
-      Use case resumes at step 2.
+**Actor:** User
 
-*{More to be added}*
+**Guarantees:**
+A successful addition adds a participant to the global list.
+
+**MSS**
+
+1.  User provides the detail of the contact to be added.
+2.  Eventy displays the details of the contact added by the user. </br>
+    
+*Use case ends*
+
+**Extensions:**
+
+1a.  Details provided by User are incomplete or invalid
+- 1a1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+
+### Deleting participant
+
+**Use Case: UC04 - Delete a participant from the global participant list**
+
+**Actor:** User
+
+**Preconditions:** 
+User has added one or more participant to the global participant list.
+
+**Guarantees:**
+A successful deletion deletes the participant from both the global list and all the events he participates in.
+
+**MSS:**
+
+1. User deletes a participant.
+2. Eventy displays the updated global participant list. </br>
+   *Use case ends*
+
+**Extensions:**
+
+1a. Participant index provided by the User is invalid.
+- 1a1. Eventy displays an error message to alert the User. </br>
+  *Use case resumes at step 2.*
+  
+### Removing participants from a specific event
+
+**Use case: UC05 - Remove a participant from the specified event**
+
+**Actor:** User
+
+**Preconditions:** User has added one or more participant to the specified event.
+
+**MSS:**
+1. User requests to remove a participant from a certain event.
+2. Eventy remove the participant from the event. </br>
+   *Use case ends*
+
+**Extensions:**
+
+1a. The event index provided by the User is invalid.
+- 1a1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+
+1b. Participant index provided by the User is invalid.
+- 1a1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+
+### Selecting an event
+
+**Use Case: UC06 - Select an event from the event list**
+
+**Actor:** User
+
+**Preconditions:** User has added one or more events to the event list.
+
+**Guarantees:**
+A successful selection displays the event details.
+
+**MSS:**
+
+1. User selects an event.
+2. Eventy displays the details of the selected event. </br>
+   *Use case ends*
+
+**Extensions:**
+
+1a. Event index provided by User is invalid.
+- 1a1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+
+### Add a participant to an event
+
+**Use Case: UC07 - Add a participant to an event**
+
+**Actor:** User
+
+**Preconditions:**
+User has added one or more contacts to the global contact list.
+
+**Guarantees:**
+A successful addition adds a participant from the global list to the selected event.
+
+**MSS:**
+1. User inputs the index of participant to be added.
+2. Eventy displays the added participant in the panel showing list of participants in selected event. </br>
+   *Use case ends*
+
+**Extensions:**
+
+1a. Index provided by user is invalid/out of range of global contact list.
+- 1a1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+
+1b. Contact to be added already exists in selected event.
+- 1b1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+
+1b. User does not provide an index.
+- 1b1. Eventy displays an error message to alert the User. </br>
+  *Use case ends*
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. The user should be able to use the application smoothly with a device running mainstream OS with Java 11 or above installed.
+2. The application should be able to store up to 1000 participants and 50 events without a reduction in speed.
+3. A user familiar with CLI applications with a reasonable typing speed should be able to navigate commands faster than using the mouse.
+4. The user interface should be simple, clear, easily understandable and fast to navigate.
+5. The application should gracefully handle errors by displaying error messages to prevent system crashes and data corruption.
+6. The application should be released as a free application to the general public.
+7. The average command response time of Eventy should be less than a second.
+8. The application should consume no more than 200Mb of memory when holding less than 1000 participants and 50 events.
+9. The application should launch in less than 5 seconds.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Mainstream OS:** Windows, Linux, Unix, OS-X
+* **Eventy:** Name of the application.
+* **Global participant list:** List of participants that are saved in the application.
+* **Event list:** List of events created in the application to be managed.
+* **Event participant list:** List of participants in the specific event.
+* **Participant:** The contact whose information is stored in the application storage.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
