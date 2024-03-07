@@ -300,7 +300,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  AddressBook deletes the person
 
     Use case ends.
-
 **Extensions**
 
 * 2a. The list is empty.
@@ -312,6 +311,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+  
+
+
+**Use case: Add a contact**
+
+**MSS**
+
+1.  User requests to add a person along with details 
+2.  AddressBook adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given format is invalid.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
