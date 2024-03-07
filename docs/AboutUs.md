@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shawn Lim
 
-<img src="images/shawn.png" width="200px">
+<img src="images/shawnnlimm.png" width="200px">
 
 [[github](https://github.com/shawnnlimm)]
 
@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ryo Seah
 
-<img src="images/ryo.png" width="200px">
+<img src="images/Ryo-Seah.png" width="200px">
 
 [[github](http://github.com/Ryo-Seah)]
 
@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Dylan Wong
 
-<img src="images/dylan.png" width="200px">
+<img src="images/thewongdylan.png" width="200px">
 
 [[github](http://github.com/thewongdylan)]
 
