@@ -274,72 +274,241 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* **Manages a Substantial Contact Network:** Connectify's target users have a need to manage a significant number of contacts within their professional network.
+* **Prefers Desktop Applications:** These users prefer desktop applications over other types of software solutions.
+* **Proficient Typists:** Connectify's target users are proficient typists who can type quickly and accurately. They prefer typing over mouse interactions.
+* **Comfortable with Command-Line Interfaces (CLI):** While they may not be experts, Connectify's target users are reasonably comfortable using command-line interfaces (CLI) and appreciate the efficiency and control that CLI applications offer.
+* **Value Efficiency and Organization:** Connectify's target users value efficiency and organization in managing their professional contacts.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Tailored specifically for computing students, our team project, Connectify, optimises networking for future career opportunities. Connectify seamlessly organises contact details, efficiently manages professional relationships and simplifies event and meeting planning. Designed for seamless usage via Command Line Interface (CLI), Connectify’s ease of use sets up computing students for success.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​           | I want to …​                                                                                              | So that I can…​                                                                      |
+|----------|-------------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | user              | add a new contact easily                                                                                  |                                                                                      |
+| `* * *`  | user              | edit the details that I’ve added                                                                          | my application will contain the most updated and accurate information                |
+| `* * *`  | user              | list all my contacts                                                                                      | remember whom I’ve met at a glance                                                   |
+| `* * *`  | user              | delete a contact                                                                                          | only keep those that are necessary                                                   |
+| `* *`    | computing student | categorise the people I meet into interns, recruiters, alumni, students, professors, employees and others | remember the people whom I’ve met and easily find them again                         |
+| `* *`    | computing student | search a contact using key word                                                                           | find the contact quickly                                                             |
+| `* *`    | user              | differentiate which companies my professional contacts are from                                           | know which company I am connecting with                                              |
+| `* *`    | computing student | assign priority levels to my contacts                                                                     | prioritise certain contacts in my network who would be more beneficial for my career |
+| `*`      | computing student | filter my contacts by priority                                                                            | identify high-priority contacts at a glance                                          |
+| `*`      | user              | have a "favourites" or "star" feature for important contacts                                              | easily access them without scrolling through the entire list                         |
+| `*`      | user              | know the number of contacts quickly                                                                       | get a sensing of how many people are in my network                                   |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Connectify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a contact
+2.  Connectify adds the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
 
-  Use case ends.
+* 1a. The given contact name is already in the contact list.
 
-* 3a. The given index is invalid.
+    * 1a1. Connectify shows an error message and requests for the user to give a different contact name.
+    * 1a2. User enters new data.
+    * Steps 1a1-1a2 are repeated until the data entered is correct.
 
-    * 3a1. AddressBook shows an error message.
+      Use case resumes from step 2.
 
-      Use case resumes at step 2.
+* 1b. Connectify detects an error in the entered data.
 
-*{More to be added}*
+    * 1b1. Connectify requests for the correct data.
+    * 1b2. User enters new data
+    * Steps 1b1-1b2 are repeated until the data entered is correct.
+
+      Use case resumes from step 2.
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to delete a specific person from the contact list
+2.  Connectify deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: List contacts**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Connectify shows a list of contacts
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The list is empty.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case ends.
+
+**Use case: Edit contacts**
+
+**MSS**
+
+1.  User requests to edit a specific contact
+2.  Connectify edits the contact information and displays the full updated contact information
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. Connectify detects an error in the entered data.
+
+    * 1b1. Connectify requests for the correct data.
+    * 1b2. User enters new data
+    * Steps 1b1-1b2 are repeated until the data entered is correct.
+
+      Use case resumes from step 2.
+
+* 1c. The contact information to be updated is unchanged from the original.
+
+    * 1c1. Connectify shows an error message.
+
+      Use case ends.
+
+**Use case: Categorize contacts**
+
+**MSS**
+
+1.  User requests to categorize a specific contact into a specific group name
+2.  Connectify adds the given category to the contact and displays the full updated contact information
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The contact already has an existing category
+
+    * 1b1. Connectify informs the user the category that the contact currently is under and requests for confirmation
+      to update the current category to the newly given one.
+    * 1b2a. User confirms the update.
+        * 1b2a1. Connectify updates the current category of the given contact to the new one.
+
+          Use Case ends
+    * 1b2b. User cancels the update.
+        * 1b2b1. Connectify does not update the information.
+
+          Use case ends.
+
+**Use case: Tag contacts with their company's name**
+
+**MSS**
+
+1.  User requests to tag a specific contact with a specific company's name
+2.  Connectify adds the company's name tag to the contact and displays the full updated contact information
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The contact already has an existing company tag.
+
+    * 1b1. Connectify informs the user the company tag that the contact currently has and requests for confirmation
+      to update the current company tag to the newly given one.
+    * 1b2a. User confirms the update.
+      * 1b2a1. Connectify updates the current company tag of the given contact to the new one.
+      
+        Use Case ends
+    * 1b2b. User cancels the update.
+      * 1b2b1. Connectify does not update the information.
+
+        Use case ends.
+
+**Use case: Assign priorities to contacts**
+
+**MSS**
+
+1.  User requests to assign a specific contact with low/medium/high priority
+2.  Connectify adds the given priority to the contact and displays the full updated contact information
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The contact already has an existing priority label.
+
+    * 1b1. Connectify informs the user the priority label that the contact currently has and requests for confirmation
+      to update the current priority level to the newly given one.
+    * 1b2a. User confirms the update.
+        * 1b2a1. Connectify updates the current priority label of the given contact to the new one.
+
+          Use Case ends
+    * 1b2b. User cancels the update.
+        * 1b2b1. Connectify does not update the information.
+
+          Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
-
+4.  The application should implement certain security measures to protect the users' private contact details from unauthorized access. This includes the encryption of sensitive data and preventing unauthorized access to the application's database.
+5.  The application should be convenient enough for the users(including those that are disabled).
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Favorites**: The users can mark some users as favorites. This will increase the user’s efficiency when finding the people they like to contact
+* **Tags**: The users can classify different contacts as from different groupings
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
