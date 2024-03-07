@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Gerard Jeremiah Matthew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gerardjm018.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/GERARDJM018)]
 
-* Role: Project Advisor
+* Role: Developer, Scheduling and Tracking
+* Responsibilities: Model
 
 ### Jane Doe
 
