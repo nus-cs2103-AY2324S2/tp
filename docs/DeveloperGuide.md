@@ -400,6 +400,10 @@ Use case ends.
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A user should be able to add contacts even if they are not IT-savvy.
+5.  Any operation executed on the app (list, delete, add, etc) should not take more than 10 minutes to process.
+6.  The startup time for the application should not take more than 10 minutes.
+7.  Side pop-up windows should not interfere with the execution of commands in the main window.
 
 *{More to be added}*
 
@@ -407,6 +411,9 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **IT-savvy**: The user is not familiar with the exact format of the add command. 
+* **Side pop-up window**: Additional windows that can be opened by the user during usage of the software(e.g. the help window).
+* 
 
 --------------------------------------------------------------------------------------------------------------------
 

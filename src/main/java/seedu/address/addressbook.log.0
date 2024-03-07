@@ -1,0 +1,28 @@
+Mar 06, 2024 1:31:52 PM seedu.address.Main main
+WARNING: The warning about Unsupported JavaFX configuration below can be ignored.
+Mar 06, 2024 1:31:52 PM seedu.address.MainApp init
+INFO: =============================[ Initializing AddressBook ]===========================
+Mar 06, 2024 1:31:52 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 06, 2024 1:31:52 PM seedu.address.MainApp initConfig
+INFO: Creating new config file config.json
+Mar 06, 2024 1:31:52 PM seedu.address.commons.core.LogsCenter init
+INFO: Log level will be set as: INFO
+Mar 06, 2024 1:31:52 PM seedu.address.MainApp initPrefs
+INFO: Using preference file : preferences.json
+Mar 06, 2024 1:31:52 PM seedu.address.MainApp initPrefs
+INFO: Creating new preference file preferences.json
+Mar 06, 2024 1:31:52 PM seedu.address.MainApp initModelManager
+INFO: Using data file : data/addressbook.json
+Mar 06, 2024 1:31:52 PM seedu.address.MainApp initModelManager
+INFO: Creating a new data file data/addressbook.json populated with a sample AddressBook.
+Mar 06, 2024 1:31:52 PM seedu.address.MainApp start
+INFO: Starting AddressBook V0.2.2ea
+Mar 06, 2024 1:31:52 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 06, 2024 1:31:57 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][al;sdkjfa]
+Mar 06, 2024 1:31:57 PM seedu.address.ui.MainWindow executeCommand
+INFO: An error occurred while executing command: al;sdkjfa
+Mar 06, 2024 1:32:19 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping Address Book ] =============================
