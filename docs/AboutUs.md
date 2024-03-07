@@ -33,11 +33,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Stella Lye Si Yu
 
-<img src="images/stella_lye.png" width="200px">
+<img src="images/stella-lye.png" width="200px">
 
 [[homepage](http://STELLA-LYE.github.io)]
 [[github](https://github.com/STELLA-LYE)]
-[[portfolio](team/stella_lye.md)]
+[[portfolio](team/stella-lye.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Development + UI
