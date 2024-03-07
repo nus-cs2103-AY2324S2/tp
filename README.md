@@ -1,6 +1,6 @@
 # InternHub
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2324S2-CS2103T-F14-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S2-CS2103T-F14-1/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/Ui.png)
 
@@ -36,5 +36,4 @@ For detailed information on using InternHub, refer to our [User Guide](https://a
 
 ## Contributing
 
-InternHub is part of the se-education.org initiative, and contributions are welcome. For more information on how to contribute, please visit [se-education.org](https://se-education.org#https://se-education.org/#contributing).
-
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

@@ -13,7 +13,7 @@ Given below are my contributions to the project.
   * What it does: Allow user to add the internship information that they applied for
   * Justification: This feature allow users to conveniently store all relevant internship details in one centralized location alongside their other contacts. This helps them stay organized and easily access internship information when needed.
   * Credits: The feature builds upon the robust foundation of AB3, optimizing code to accommodate new parameters.
- 
+
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:

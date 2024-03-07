@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/minghowc.png" width="200px">
 
-[[github](http://github.com/minghowC)] 
+[[github](http://github.com/minghowC)]
 [[portfolio](team/minghow.md)]
 
 * Role: Developer
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Yixin
 
-<img src="images/chenyixin0.jpg" width="200px">
+<img src="images/chenyixin0.png" width="200px">
 
 [[github](http://github.com/chenyixin0)]
 [[portfolio](team/yixin.md)]

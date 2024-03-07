@@ -1,10 +1,10 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# InternHub Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -236,7 +236,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <puml src="diagrams/CommitActivityDiagram.puml" width="250" />
 
-#### Design considerations:
+### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -274,66 +274,172 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* CS students
+* has a need to keep track of contacts of companies and interview dates during thier internship hunt
+* prefer a one-stop, centralised dashboard to manage all contact details of companies
+* is reasonably comfortable in using a more CLI based app
+* wants to be better organized
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: Ultimate companion for Computer Science (CS) students embarking on their internship journey !
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 
-*{More to be added}*
+| Priority | As an …​             | I want to …​                                            | So that I can…​                                                                                   |
+|----------|----------------------|---------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *`  | internship applicant | add contact information of internship companies         | easily access their details when needed                                                           |
+| `* * *`  | internship applicant | delete contact information of internship companies      | easily remove any old or irrelevant company contacts                                              |
+| `* * *`  | internship applicant | edit contact information of internship companies        | easily update any details on the go                                                               |
+| `* * *`  | internship applicant | see usage instructions                                  | refer to instructions when I forget how to use the AddressBook                                    |
+| `* * *`  | internship applicant | find the contact information of a certain company       | easily search which company contact I want by name                                                |
+| `* * *`  | internship applicant | keep track of the status of each internship application | categorize and easily follow up accordingly                                                       |
+| `* * *`  | internship applicant | sort company contacts by dates                          | prioritize and plan for upcoming interviews                                                       |
+| `* * `   | internship applicant | filter company contacts by date                         | quickly access contacts associated with a specific date                                           |
+| `* * `   | internship applicant | filter company contacts by tag                          | easily find and manage contacts within specific categories                                        |
+| `* * `   | internship applicant | add a time to a company contact                         | record when a specific task or interaction needs to be done                                       |
+| `* `     | internship applicant | add notes to company contacts                           | include important details or information about specific interviews and what I can learn from them |
+
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Input Company Contact Information**
 
-**MSS**
+**Actor:** Internship Applicant
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Main Success Scenario (MSS):**
 
-    Use case ends.
+1. Internship Applicant inputs contact information of internship company.
+2. System stores the contact information.
+3. Use case ends.
 
-**Extensions**
+**Extensions:**
 
-* 2a. The list is empty.
+* 1a. System detects an error in the entered data.
+    * 1a1. System requests for the correct data.
+    * 1a2. Internship Applicant enters new data.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
 
-  Use case ends.
+* *a. At any time, Internship Applicant chooses to cancel the input.
+    * Use case ends.
 
-* 3a. The given index is invalid.
+---
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: Delete Company Contact Information**
 
-      Use case resumes at step 2.
+**Actor:** Internship Applicant
 
-*{More to be added}*
+**Main Success Scenario (MSS):**
+
+1. Internship Applicant inputs index of contact to be deleted.
+2. System deletes the relevant contact information.
+3. Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in index of contact
+    * 1a1. System requests for proper input of index (1 to current number of contacts)
+    * 1a2. Internship Applicant enters the correct index.
+    * Steps 1a1-1a2 are repeated until the selection is correct.
+    * Use case resumes from step 2.
+
+* *a. At any time, the Internship Applicant chooses to cancel to detect contact.
+    * *a1. System cancels deletion of contact.
+    * Use case ends.
+
+---
+
+**Use Case: Edit Contacts Info**
+
+**Actor:** Internship Applicant
+
+**Main Success Scenario (MSS):**
+
+1. Internship Applicant chooses contact to edit by its index and enters relevant fields to be modified
+2. System modifies that corresponding field of that contact
+3. Use case ends
+
+**Extensions:**
+
+* 1a. System detects an error in index of contact
+    * 1a1. System requests for proper input of index (1 to current number of contacts)
+    * 1a2. Internship Applicant enters the correct index.
+    * Steps 1a1-1a2 are repeated until the selection is correct.
+    * Use case resumes from step 2.
+
+* 1a. System detects an error in the fields to be edited (No fields at all or incorrect field prefixes)
+    * 1a1. System requests for proper input of fields and correct prefix
+    * 1a2. Internship Applicant enters the fields to be edited.
+    * Steps 1a1-1a2 are repeated until the selection is correct.
+    * Use case resumes from step 2.
+
+* *a. At any time, the Internship Applicant chooses to cancel to edit contact.
+    * *a1. System cancels edit of contact.
+    * Use case ends.
+
+---
+
+**Use Case: Filter Contacts by Tag**
+
+**Actor:** Internship Applicant
+
+**Main Success Scenario (MSS):**
+
+1. Internship Applicant chooses to filter contacts by tag.
+2. Internship Applicant inputs the tag.
+3. System filters the contacts associated with the selected tag.
+4. System displays the filtered contacts.
+5. Use case ends.
+
+**Extensions:**
+
+* 2a. System detects an error in tag to be filtered
+    * 2a1. System requests for proper input of tag (One of existing tags)
+    * 2a2. Internship Applicant enters the correct tag.
+    * Steps 2a1-2a2 are repeated until the selection is correct.
+    * Use case resumes from step 3.
+
+* *a. At any time, the Internship Applicant chooses to cancel the filtering.
+    * *a1. System cancels the filtering.
+    * Use case ends.
+
+---
+
+**Use Case: View information of a contact**
+
+**Actor:** Internship Applicant
+
+**Main Success Scenario (MSS):**
+
+1. Internship Applicant chooses contact to be viewed on view panel.
+2. System requests for the specific contact index.
+3. Internship Applicant enters the contact index.
+4. System views the relevant contact on the view panel.
+5. Use case ends.
+
+**Extensions:**
+
+* 3a. IH detects an error in index of contact
+    * 3a1. System requests for proper input of index (1 to current number of contacts)
+    * 3a2. Internship Applicant enters the correct index.
+    * Steps 3a1-3a2 are repeated until the selection is correct.
+    * Use case resumes from step 3.
+
+* *a. At any time, Internship Applicant chooses to cancel to view contact.
+    * *a1. System cancels viewing of contact.
+    * Use case ends.
+
+---
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -346,12 +452,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<box type="info" seamless>
 
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</box>
 
 ### Launch and shutdown
 
