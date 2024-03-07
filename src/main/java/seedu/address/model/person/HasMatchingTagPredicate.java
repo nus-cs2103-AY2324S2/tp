@@ -17,9 +17,9 @@ public class HasMatchingTagPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        // Check if each filterTag matches any of the Person's tags
+        // Check if person has all filterTags
         return filterTags.stream()
-                .anyMatch(filterTag -> person.getTags().stream()
+                .allMatch(filterTag -> person.getTags().stream()
                         .anyMatch(personTag -> personTag.tagName.equalsIgnoreCase(filterTag)));
     }
 

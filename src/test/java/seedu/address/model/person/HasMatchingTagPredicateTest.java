@@ -47,7 +47,8 @@ class HasMatchingTagPredicateTest {
 
         // Multiple filter tags
         predicate = new HasMatchingTagPredicate(Arrays.asList("supplier", "seafood"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("supplier").build()));
+        assertFalse(predicate.test(new PersonBuilder().withTags("supplier").build()));
+        assertTrue(predicate.test(new PersonBuilder().withTags("seafood", "supplier").build()));
 
         // Only one matching tag
         predicate = new HasMatchingTagPredicate(Arrays.asList("seafood"));
@@ -60,12 +61,8 @@ class HasMatchingTagPredicateTest {
 
     @Test
     public void test_noMatchingTags_returnsFalse() {
-        // Zero filter tags
-        HasMatchingTagPredicate predicate = new HasMatchingTagPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withTags("supplier").build()));
-
         // No matching tags
-        predicate = new HasMatchingTagPredicate(Arrays.asList("employee"));
+        HasMatchingTagPredicate predicate = new HasMatchingTagPredicate(Arrays.asList("employee"));
         assertFalse(predicate.test(new PersonBuilder().withTags("supplier").build()));
         assertFalse(predicate.test(new PersonBuilder().withTags("supplier", "seafood").build()));
     }

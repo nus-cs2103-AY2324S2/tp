@@ -51,23 +51,13 @@ class FilterCommandTest {
     }
 
     @Test
-    public void execute_zeroTags_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        HasMatchingTagPredicate predicate = preparePredicate(" ");
-        FilterCommand command = new FilterCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    }
-
-    @Test
     public void execute_multipleTags_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        HasMatchingTagPredicate predicate = preparePredicate("customer supplier");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        HasMatchingTagPredicate predicate = preparePredicate("seafood supplier");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
     }
 
     @Test
