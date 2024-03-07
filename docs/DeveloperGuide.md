@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# TutorTrack Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -274,27 +274,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* a tutor who has many students 
+* currently busy studying
+* wants a solution for smoother academic interactions with his students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and provides tutors a 
+streamlined approach to communicate with and track information about their students.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                 | So that I can…​                                                    |
+|----------|--------------------------------------------|----------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | user                                       | add a student's contact                      |                                                                    |
+| `* * *`  | user                                       | delete a student's contact                   | remove entries of students that I no longer need to keep track of  |
+| `* * *`  | user                                       | edit a student's contact                     | correct mistakes i made when adding a contact                      |
+| `* * *`  | user                                       | search for a student's contact               | I can find a student's contact                                     |
+| `* * *`  | user with many persons in the address book | view all students' contact                   |                                                                    |
+| `* * `   | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App             |
+| `* * `   | new user                                   | try out the programme with sample data       | I can explore the functionalities of the product                   |
+| `* * `   | advanced user                              | create shortcuts for commands                | I can more efficiently type commands                               |
+| `* `     | administrative tutor                       | broadcast information to groups of students  | I can quickly relay information to my tutees                       |
+| `* * `   | forgetful tutor                            | attach tags to tutees                        | I can quickly access important information related to them         |
+| `* * `   | proactive tutor                            | get a summary of my tutees current abilities | I can better prepare for classes                                   |
+| `* * `   | forgetful tutor                            | set and get reminders on lessons             | I will not miss any lessons                                        |
+| `* * `   | tutor                                      | group students by tags                       | I can easily communicate with different teams indicated by tags    |
+| `* * `   | clumsy typer                               | do fuzzy search                              | I can quickly find the record I need even if there are some typos  |
+ 
 
 *{More to be added}*
 
