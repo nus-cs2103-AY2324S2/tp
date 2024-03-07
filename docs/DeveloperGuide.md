@@ -274,13 +274,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* needs to manage contacts of a growing population of employees
+* prefers to use CLI over GUI
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* values efficiency, transparency, and effective communication
+* wants an app that works with different OS
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts in an efficient manner using CLI app
 
 
 ### User stories
