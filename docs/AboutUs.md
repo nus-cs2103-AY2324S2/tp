@@ -11,51 +11,48 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Guo Yang
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/tanguoyang.png" width="200px">
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
+[[github](http://github.com/tanguoyang)]
+    
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Tracking deliverables
 
-### Johnny Doe
+### Song Yee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/angsongyee.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/angsongyee)] 
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Git Expert
+* Responsibilities: Ensure that good Git practices are adhered to
 
-### Jean Doe
+### Tresa
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Teee728.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Teee728)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing IC
+* Responsibilities: Ensure features are well tested
 
-### James Doe
+### Sumaiya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maiyasaliha.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/maiyasaliha)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality IC
+* Responsibilities: Ensures that good code quality
+
+### Yuechen
+
+<img src="images/yuechen2001.png" width="200px">
+
+[[github](http://github.com/yuechen2001)]
+
+* Role: Documentation IC
+* Responsibilities: Ensures that features are well documented
