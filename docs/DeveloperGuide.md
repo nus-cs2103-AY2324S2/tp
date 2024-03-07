@@ -352,19 +352,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
-otherwise)
-
-**Use case: Delete a person**
+**Use case**: UC01 - Delete a person
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
+1. User requests to view list
+2. ClickConnect shows a list of persons
 3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
-
-   Use case ends.
+4. ClickConnect deletes the person 
+5. Use case ends.
 
 **Extensions**
 
@@ -374,11 +370,63 @@ otherwise)
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClickConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**System**: ClickConnect
+
+**Use case**: UC02 - See usage instructions
+
+**Actor**: User
+
+**MSS**
+
+1. User requests to view usage instructions
+2. ClickConnect displays the usage instructions such as how to add, edit, delete or search for contacts
+3. User reads the instructions to understand how to use the ClickConnect
+4. Use case ends
+
+
+**System**: ClickConnect
+
+**Use case**: UC03 - Add new contact
+
+**Actor**: User
+
+**MSS**
+
+1. User requests to add a new contact
+2. ClickConnect displays a success message after the new contact is successfully added 
+3. Use case ends
+
+**Extensions**
+
+* 1a. User enters an invalid command 
+    * 1a1. ClickConnect alerts the user that the command is invalid and displays the correct format
+    * Use case resumes
+* 1b. User tries to add a contact that already exists in ClickConnect
+    * 1b1. ClickConnect alerts the user that a user with that name and details already exists
+    * 1b2. ClickConnect provides possible solutions (use different details if the contact name is the same)
+    * Use case resumes
+
+**Use case**: UC04 - Display all contacts
+
+**Actor**: User
+
+**MSS**
+
+1. User requests to see a list of all contacts
+2. ClickConnect displays a success message followed by the list of contacts
+3. User views the list
+4. Use case ends
+
+**Extensions**
+
+* 2a. User enters an invalid command
+    * 2b1. ClickConnect alerts the user that the command is invalid and displays the correct format
+    * Use case resumes
+
 
 ### Non-Functional Requirements
 
