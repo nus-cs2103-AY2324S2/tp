@@ -306,8 +306,8 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 | `* * *`   | Counsellor       | be able to mark whether a patient attended a session              | properly document patients’ attendance                                                                                                                                                |
 | `* * *`   | New User         | have a help function                                              | so that I know how to use the application.                                                                                                                                            |
 | `* *`     | Counsellor       | sort patients based on their priority tag                         | more serious patients can be attended first.                                                                                                                                          |
-| `*`       | Experienced User | mass delete patient data                                          | patient data is not compromised.                                                                                                                                                      |
 | `* *`     | Experienced User | navigate through my history of written commands                   | avoid retyping a command just to make minor modifications to a previous command.                                                                                                      |
+| `*`       | Experienced User | mass delete patient data                                          | patient data is not compromised.                                                                                                                                                      |
 
 
 ### Use cases
