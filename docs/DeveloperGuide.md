@@ -289,6 +289,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PayBack` and the **Actor** is the `Company Manager`, unless specified otherwise)
 
+**Use case: Add a new employee**
+
+**MSS**
+
+1.  User requests to add a new employee
+2.  User enters the name, phone number, email, and optionally, year joined
+3.  PayBack adds the new employee to the employee list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The fields other than the year joined are not specified.
+
+    * 2a1. PayBack shows an error message.
+    
+      Use case resumes at Step 2.
+
+* 2b. The parameters are not specified in the correct order.
+
+    * 2b1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2c. Some parameters are specified, some are not.
+
+    * 2c1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2d. The information entered is not in the correct format.
+
+    * 2d1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
 **Use case: Find a person**
 
 **MSS**
