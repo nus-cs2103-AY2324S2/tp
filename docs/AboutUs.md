@@ -41,7 +41,7 @@ You can reach us at the following emails `simkianseng28@gmail.com`, `bensonang36
 
 ### Tay Zi Yi
 
-<img src="images/team/tayziyi.png" width="200px">
+<img src="images/tayziyi.png" width="200px">
 
 [[github](http://github.com/tayziyi)]
 [[portfolio](team/tayziyi)]
