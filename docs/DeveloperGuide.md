@@ -450,6 +450,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 2b1-2b2 are repeated until the data entered are valid.
       Use case resumes at step 2.
 
+**Use case: Finding all upcoming contacts with appointments**
+
+**MSS**
+
+1.  User requests to find people containing an upcoming appointment
+2.  AddressBook shows a list of people
+
+**Extensions**
+* 1a. Able to set additional date filter, eg only show upcoming appointment in the next `x` days
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
