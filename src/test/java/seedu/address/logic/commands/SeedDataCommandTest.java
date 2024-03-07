@@ -2,7 +2,11 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Address;
@@ -11,9 +15,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class SeedDataCommandTest {
 
@@ -79,7 +80,7 @@ public class SeedDataCommandTest {
     }
 
     @Test
-    public void execute_AddressBookWithSomeContacts_success() {
+    public void execute_addressBookWithSomeContacts_success() {
         Model model = new ModelManager();
         model.addPerson(ALICE);
         model.addPerson(BERNICE);
@@ -90,7 +91,7 @@ public class SeedDataCommandTest {
     }
 
     @Test
-    public void execute_AddressBookWithAllContacts_failure() {
+    public void execute_addressBookWithAllContacts_failure() {
         Model model = new ModelManager();
         model.addPerson(ALICE);
         model.addPerson(BERNICE);
