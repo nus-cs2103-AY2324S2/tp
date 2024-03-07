@@ -24,16 +24,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yyccbb)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Wong Kai Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wongkj12.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/wongkj12)] [[portfolio](team/wongkj12.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -43,17 +43,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yyccbb)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Yu Chenbo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yyccbb.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yyccbb)]
+[[portfolio](team/yyccbb)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Project Structure
