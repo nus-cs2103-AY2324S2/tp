@@ -291,16 +291,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NUSContacts` and the **Actor** is the `student`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC1: Add a tutor**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a tutor
+2.  User provides the tutor's details
+3.  NUSContacts adds the tutor
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The tutor already exists.
+    * 2a1. NUSContacts informs the student of the error.
+
+      Use case ends.
+
+**UC2: Delete a tutor**
+
+**MSS**
+
+1.  User requests to list tutors
+2.  NUSContacts shows a list of tutors
+3.  User requests to delete a specific tutor in the list
+4.  NUSContacts deletes the tutor
 
     Use case ends.
 
@@ -312,9 +329,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NUSContacts shows an error message.
 
       Use case resumes at step 2.
+
+**UC3 Find a tutor by name**
+
+**MSS**
+
+1.  User requests to find a tutor
+2.  NUSContacts prompts search criterion (name or course code)
+3.  User provides the search criterion
+4.  NUSContacts shows the tutor(s) that match the criterion
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. No tutor matches the criterion.
+    * 4a1. NUSContacts informs the student of the error.
+
+      Use case ends.
 
 *{More to be added}*
 
