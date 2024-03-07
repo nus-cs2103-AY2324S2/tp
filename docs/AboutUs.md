@@ -9,13 +9,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 ## Project team
 
 ### Teoh Kai Yi
 
 <img src="images/kaiyi27.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+
 [[github](https://github.com/kaiyi27)]
 [[portfolio](team/johndoe.md)]
 
