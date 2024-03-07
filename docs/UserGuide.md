@@ -183,14 +183,14 @@ Examples:
 
 ### View contacts of all upcoming appointments: `upcoming`
 
-View all the contacts of all upcoming appointments ordered by date (earliest to latest)
+View all the contacts of all upcoming appointments ordered by date (earliest to latest).
 
 Format: `upcoming`
   
-- `upcoming` displays all upcoming appointments
+- `upcoming` displays all upcoming appointments.
 
 Examples:
-- `upcoming` would show the 3 contacts if there are 3 contacts with upcoming appointments
+- `upcoming` would show the 3 contacts if there are 3 contacts with upcoming appointments.
 
 ### Tag a client's profile as last contacted : `lastcontact`
 
@@ -255,13 +255,14 @@ Furthermore, certain edits can cause FAPro to behave in unexpected ways (e.g., i
 ## Command summary
 
 Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **TagFind**| `tagfind TAG` <br> e.g. `tagfind car`
+**Lastcontact**| `lastcontact NAME [d/DATE] [tm/TIME]` <br> e.g. `lastcontact John doe d/05-09-2024 tm/1955`
 **Upcoming**| `upcoming`
 **List**   | `list`
 **Select** | `select INDEX`<br> e.g. `select 1`
