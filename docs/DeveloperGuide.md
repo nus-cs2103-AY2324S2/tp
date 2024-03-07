@@ -365,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. The user decides to add a new contact with the company’s name info to their address book.
 2. User inputs the 'add' command with the company’s name in the correct format.
 3. System validates the salary format and range.
-4. System adds or updates the salary information for the contact and displays a success message.
+4. System adds or updates the company’s name information for the contact and displays a success message.
 
       Use case ends.
 
@@ -378,6 +378,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+**Use case: Add Programming Language to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the programming language  info to their address book.
+2. User inputs the 'add' command with the programming language detail in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the programming language information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the  programming language detail is invalid:
+   * 3a1. AB3 shows an error message indicating the validation failure and an error message about the format or character limit.
+
+      Use case resumes at step 2.
+
+---
 *{More to be added}*
 
 ### Non-Functional Requirements
