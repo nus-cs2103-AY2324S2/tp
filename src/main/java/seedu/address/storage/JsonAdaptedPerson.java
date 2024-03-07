@@ -118,7 +118,7 @@ class JsonAdaptedPerson {
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description("Description placeholder");
+        final Description modelDescription = new Description(description);
 
         if (nextOfKin == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -127,7 +127,7 @@ class JsonAdaptedPerson {
         if (!NextOfKin.isValidNextOfKin(nextOfKin)) {
             throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
-        final NextOfKin modelNextOfKin = new NextOfKin("Next of kin placeholder");
+        final NextOfKin modelNextOfKin = new NextOfKin(nextOfKin);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelDescription, modelNextOfKin, modelTags);

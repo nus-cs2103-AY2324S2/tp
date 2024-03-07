@@ -5,16 +5,16 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "description": "Description placeholder",
-    "nextOfKin": "Next of kin placeholder",
+    "description": "A young adult experiencing anxiety and depression after leaving an abusive relationship.",
+    "nextOfKin": "Sam Sung",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "description": "Description placeholder",
-    "nextOfKin": "Next of kin placeholder",
+    "description": "A new immigrant seeking assistance with acclimating to a new culture and finding employment.",
+    "nextOfKin": "Alexander Maximilian Bartholomew Fitzwilliam III",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",

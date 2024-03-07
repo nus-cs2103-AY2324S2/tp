@@ -33,7 +33,7 @@ public class DescriptionTest {
                 + "depression after leaving an abusive relationship."));
         assertTrue(Description.isValidDescription("-")); // one character
         assertTrue(Description.isValidDescription(
-                "A new immigrant family seeking assistance with acclimating to a new "
+                "A new immigrant seeking assistance with acclimating to a new "
                         + "culture and finding employment.")); // long description
     }
 
