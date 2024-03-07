@@ -12,10 +12,11 @@ You can reach us at the email `e0960005@comp.nus.edu`
 ### Lim Zi Jia
 
 <img src="images/limzijia.png" width="200px">
-* Role: Developer
-* Responsibilities: Testing + logic
 
 [[github](https://github.com/limzijia)]
+
+* Role: Developer
+* Responsibilities: Testing + logic
 
 ### Gerard Jeremiah Matthew
 
