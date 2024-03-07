@@ -21,13 +21,13 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Yeo Zi Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ziyi22.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Code Quality, Deliverables and deadlines, UI
 
 ### Tsui Yi Wern
 
