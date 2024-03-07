@@ -6,7 +6,9 @@
 
 # CodeConnect User Guide
 
-CodeConnect (CC) is a **desktop app for managing student contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CC can get your contact management tasks done faster than traditional GUI apps.
+
+CodeConnect aims to let student developers keep track of and reach out easily to other student developers with relevant skills for collaboration opportunities or recommendations.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
