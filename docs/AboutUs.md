@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ye Si Fan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yesifan.png" width="200px">
 
 [[github](http://github.com/yespiggy)] [[portfolio](team/sifan.md)]
 
