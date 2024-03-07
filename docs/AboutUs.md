@@ -11,7 +11,7 @@ You can reach us at the following emails `simkianseng28@gmail.com`, `bensonang36
 
 ### Sim Kian Seng
 
-<img src="images/team/simkianseng.png" width="200px">
+<img src="images/simkianseng.png" width="200px">
 
 [[github](https://github.com/SimKianSeng)]
 [[portfolio](team/simkianseng)]
