@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Backend Developer
 * Responsibilities: Development of Functionalities
 
-### James Doe
+### Norton Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pluiexo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Pluiexo)]
+[[portfolio](team/pluiexo.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Development of UI/UX and Integration, Lead
