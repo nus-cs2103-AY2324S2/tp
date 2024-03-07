@@ -290,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: List all contacts**
+**Use case: UC01 - View contacts**
 
 **MSS**
 
@@ -299,7 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add a person**
+**Use case: UC02 - Add a person**
 
 **MSS**
 
@@ -316,11 +316,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Delete a person**
+**Use case: US03 - Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
+1.  User requests to view contacts(UC01)
 2.  AddressBook shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
