@@ -31,10 +31,10 @@ You can reach us at the following emails `simkianseng28@gmail.com`, `bensonang36
 
 ### Ho Xu Wen
 
-<img src="images/team/hoxuwen.png" width="200px">
+<img src="images/xuwen-ho.png" width="200px">
 
 [[github](http://github.com/xuwen-ho)]
-[[portfolio](team/hoxuwen)]
+[[portfolio](team/xuwen-ho)]
 
 * Role: Developer
 * Responsibilities: In charge of deliverables and deadlines
