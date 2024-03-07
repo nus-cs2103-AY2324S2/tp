@@ -21,15 +21,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Jane Doe
+### Daniel Wang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wangwenkaidaniel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/shuheng.md)]
+[[github](http://github.com/dwangwk)]
+[[portfolio](team/danielwang.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Data
 
 ### Johnny Doe
 
