@@ -290,43 +290,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - View contacts**
 
 **MSS**
 
 1.  User requests to list persons
 2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+
+    Use case ends.
+
+**Use case: UC02 - Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  AddressBook adds the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given person details are invalid.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+**Use case: US03 - Delete a person**
+
+**MSS**
+
+1.  User requests to view contacts(UC01)
+2.  User requests to delete a specific person in the list 
+3.  AddressBook deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 2a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The user interface should be intuitive and easy to navigate.
+5.  The codebase should be well-structured and well-documented to facilitate future maintenance and enhancements.
+6.  The application should only support a single user.
+7.  The product needs to be developed in a breadth-first incremental manner over the project duration.
+8.  The data should be stored locally and should be in a human editable text file.
+9.  The software should follow the Object-oriented paradigm primarily.
+10.  The software should work without requiring an installer.
+11.  The software should not depend on a specific remote server.
+12.  The GUI should work well for standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%.
+13.  The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
+     resolutions 1280x720 and higher, and, for screen scales 150%.
+14.  The product should be available as a single JAR file of size 100MB or below.
+15.  The web documents saved should be a PDF file of size 15MB or below.
+16.  The final JAR/PDF files should not be bloated unnecessarily.
+17.  The DG and UG should be PDF-friendly, without any expandable panels, embedded videos, animated GIFs etc.
+18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this 
+     doesn't apply to services), and have permissive license terms; do not require any installation by the user; do 
+     not violate other constraints.
+19.  The product should process a user input command within 1 second.
+20.  The system must perform without failure in 95 percent of use cases during a month.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **DG**: Developer guide
+* **UG**: User guide
 
 --------------------------------------------------------------------------------------------------------------------
 
