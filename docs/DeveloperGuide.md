@@ -465,6 +465,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 people without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The data in FAPro should be stored locally and should be in a human editable text file.
+5.  Should not use a _DBMS_ to store data.
+6.  Should work without requiring an installer.
+7.  Should not depend on any _remote server_.
+8.  _GUI_ should work well for standard screen resolutions 1920x080 and higher, and, for screen scales 100% and 125%.
+9.  The size of the documents should not exceed 15MB/file.
+10. The size of the final FAPro product should not exceed 100MB.
 
 *{More to be added}*
 
@@ -472,6 +479,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **DBMS**: Database Management System, a software suite that facilitates the creation, management, and manipulation of databases.
+* **Remote server**: A computer system or software application that provides services or resources to other computers or clients over a network, typically the internet.
+* **GUI**: Graphic User Interface, a visual interface that allows users to interact with electronic devices or software using graphical icons, menus, and other graphical elements, rather than text-based commands
 
 --------------------------------------------------------------------------------------------------------------------
 
