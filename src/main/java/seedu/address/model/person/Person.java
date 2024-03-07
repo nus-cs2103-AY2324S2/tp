@@ -126,7 +126,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("description", description)
-                .add("next of kin", nextOfKin)
+                .add("nextOfKin", nextOfKin)
                 .add("tags", tags)
                 .toString();
     }
