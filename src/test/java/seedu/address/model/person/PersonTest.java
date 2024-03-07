@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
+import java.util.Objects;
+
 public class PersonTest {
 
     @Test
@@ -88,6 +90,15 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        int expected = Objects.hash(
+                ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
+                ALICE.getAddress(), ALICE.getTags(), ALICE.getMatric());
+        int actual = ALICE.hashCode();
+        assertEquals(expected, actual);
     }
 
     @Test
