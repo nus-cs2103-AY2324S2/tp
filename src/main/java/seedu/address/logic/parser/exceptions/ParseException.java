@@ -5,13 +5,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 /**
  * Represents a parse error encountered by a parser.
  */
-public class CommandException extends IllegalValueException {
+public class ParseException extends IllegalValueException {
 
-    public CommandException(String message) {
+    public ParseException(String message) {
         super(message);
     }
 
-    public CommandException(String message, Throwable cause) {
+    public ParseException(String message, Throwable cause) {
         super(message, cause);
     }
 }
