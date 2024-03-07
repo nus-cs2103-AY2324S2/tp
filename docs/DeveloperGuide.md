@@ -278,7 +278,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
 
-**Value proposition**: Our app helps you, an active TA, manage contact details of students in both big or small tutorial 
+**Value proposition**: Our app helps you, an active TA, manage contact details of students in both big or small tutorial
 classes. Keep track of student progress, access links to their projects, or simply de-conflict class schedules.
 
 

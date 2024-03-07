@@ -1,14 +1,15 @@
 ---
   layout: default.md
-  title: "John Doe's Project Portfolio Page"
+  title: "Matthew Ken's Project Portfolio Page"
 ---
 
-### Project: AddressBook Level 3
+### Project: EduConnect
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+EduConnect is a desktop contact management application used for teaching assistants to manage a few different courses or classes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. (to be finalised)
 
 Given below are my contributions to the project.
 
+<!---
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
@@ -44,3 +45,4 @@ Given below are my contributions to the project.
   * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
+--->
