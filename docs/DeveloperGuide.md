@@ -273,14 +273,12 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+NUS students who stay on campus
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+## User Stories
+**Value proposition**:
+1. Keeps track of the location and details of upcoming meetings specific to each contact, knowing when and who to make calls with
+2. Given how students who stay on campus find themselves in many different committees and interest groups, our Address Book seeks to provide features that allows them to compartmentalise their contacts and access various groups easily
 
 
 ### User stories
@@ -289,12 +287,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| `* * *`  | Student in a lot of committees | Access my contacts by groups | Easily identify the people in their different committees and CCAs                 |
+| `* * *`  | Student                                       | Sort the contacts alphabetically | Easily navigate the address book                                                        |
+
 
 *{More to be added}*
 
@@ -302,30 +297,103 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case:** UC1 - Add a contact\
+**Actor:** User\
+**Person that can play this role:** Student in a lot of committees
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1. User type add contact command.
+2. LookMeUp prompts for details.
+3. User enters the requested details.
+4. LookMeUp add the contact and displays the new contact in the database.\
     Use case ends.
 
 **Extensions**
+* 1a. User typed an invalid command
+    * 1a1. LookMeUp displays the error and shows a list of commands it supports.
+    * 1a2. User enters the correct command.
 
-* 2a. The list is empty.
+  Steps 1a1-1a2 are repeated until the command entered is correct.\
+  Use case resumes from step 2.
 
-  Use case ends.
+* 3a. LookMeUp detects an error in the entered data.
+  * 3a1. LookMeUp displays the error and requests for the correct data.
+  * 3a2. User enters the new data.
+  
+  Steps 3a1-3a2 are repeated until the data entered are correct.\
+  Use case resumes from step 4.
 
-* 3a. The given index is invalid.
+**Use case:** UC2 - Remove a contact\
+**Actor:** User\
+**Person that can play this role:** Student in a lot of committees
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User type remove contact command 
+2. LookMeUp prompts for details 
+3. User enters the requested details 
+4. LookMeUp requests for confirmation. 
+5. LookMeUp removes the contact and displays an execution success message.\
+   Use case ends.
 
-*{More to be added}*
+
+**Extensions**
+* 1a. User typed an invalid command
+    * 1a1. LookMeUp displays the error and shows a list of commands it supports.
+    * 1a2. User enters the correct command.
+
+  Steps 1a1-1a2 are repeated until the command entered is correct.\
+  Use case resumes from step 2.
+
+
+* 3a. LookMeUp detects an error in the entered data.
+    * 3a1. LookMeUp displays the error and requests for the correct data.
+    * 3a2. User enters the new data.
+
+  Steps 3a1-3a2 are repeated until the data entered are correct.\
+  Use case resumes from step 4.
+
+
+* 4a. User declines the removal of contact.
+    * 4a1, LookMeUp confirms user's selection.\
+      Use case ends.
+
+**Use case:** UC3 - Filter contacts by tags\
+**Actor:** User\
+**Person that can play this role:** Student in a lot of committees
+
+**MSS**
+
+1. User type filter contacts command 
+2. LookMeUp displays the contact in the database\
+Use case ends.
+
+**Extensions**
+* 1a. User typed an invalid command
+    * 1a1. LookMeUp displays the error and shows a list of commands it supports.
+    * 1a2. User enters the correct command.
+
+  Steps 1a1-1a2 are repeated until the command entered is correct.\
+  Use case resumes from step 2.
+
+**Use case:** UC4 - Sort contacts by tags\
+**Actor:** User\
+**Person that can play this role:** Student in a lot of committees
+
+**MSS**
+
+1. User type sort contacts command
+2. LookMeUp displays the contact in the database\
+Use case ends.
+
+**Extensions**
+* 1a. User typed an invalid command
+    * 1a1. LookMeUp displays the error and shows a list of commands it supports.
+    * 1a2. User enters the correct command.
+
+  Steps 1a1-1a2 are repeated until the command entered is correct.\
+  Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
