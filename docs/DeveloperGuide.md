@@ -262,13 +262,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* currently in NUS school of computing
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* needs to book many consultations and meetings with professors/students
+* has a busy schedule which constantly changes
+* frequently needs a quick overview of their schedule
+* prefer desktop apps
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Help students manage booking consultations/meeting with professors/students.
 
 
 ### User stories
@@ -276,13 +279,24 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| -------- | ------------------------------ | ----------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                       | see usage instructions              | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                           | add a contact                       |                                                                        |
+| `* * *`  | user                           | delete a contact                    | remove entries that I no longer need                                   |
+| `* * *`  | user                           | update a contact                    |                                                                        |
+| `*`      | user                           | delete all contacts                 |                                                                        | 
+| `* * *`  | user                           | view porfessors calendar            | see the available timings                                              |
+| `* * *`  | user                           | view porfessors's office hours      | know when to contact them                                              |
+| `* * *`  | user                           | view porfessors's office location   | know where to find them                                                | 
+| `* * *`  | user                           | find a proff by name                | locate details of persons without having to go through the entire list |
+| `* *`    | user                           | hide private contact details        | minimize chance of someone else seeing them by accident                |
+| `*`      | user                           | update my calendar                  | change my schedule                                                     |
+| `*`      | user                           | create event/consultations          | it can be recorded                                                     |
+| `*`      | user                           | delete event                        |                                                                        |
+| `*`      | user                           | update event                        |                                                                        |
+| `*`      | user                           | view the current week's consults    | change my schedule                                                     |
+| `*`      | user                           | view a TA's calendar                | book a consult                                                         |
+| `*`      | user                           | generate email to contact           | easily send out communications                                         |
 
 *{More to be added}*
 
