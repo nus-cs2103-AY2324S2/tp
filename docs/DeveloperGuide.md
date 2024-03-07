@@ -274,13 +274,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Professors and Teaching Assistants at the National University of Singapore seeking a streamlined platform to manage past and current students.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* EduLink NUS offers National University of Singapore professors and teaching assistants a centralised platform for effortless connection and search capabilities regarding past and current students. By streamlining communication and data retrieval, it enhances efficiency in academic engagement and administrative tasks.
+* manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -324,7 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EduLink NUS` and the **Actor** is the `National University of Singapore professors and teaching assistants`, unless specified otherwise)
 
 **Use Case: Add a Tag to a Student's Profile**
 
@@ -424,19 +426,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
-
+4.  Should be responsive to user input, as user might have a series of commands to execute.
+5.  Should have a resizable UI as the user might work on different programs in parallel.
+6.  Should be able to use Offline (without Internet Connection).
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Student ID**: A unique identifier assigned to each student for precise reference and modification within the system.
+* **Tag**: A customizable label or keyword attached to student profiles.
+* **Data Integrity**: Maintaining the accuracy, consistency, and lack of corruption within the student data.
+* **Commands**: The input typed by the user in the application.
+* **Autocomplete**: Functionality that suggests relevant commands or queries as the user types, for greater speed and accuracy.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
+
 
 <box type="info" seamless>
 
