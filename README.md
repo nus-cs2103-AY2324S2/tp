@@ -3,6 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 
+
 **Product Name**
 >CodeConnect
 
@@ -16,4 +17,3 @@ Project notes (internal): [see here](https://docs.google.com/document/d/1wDRApxj
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-    
