@@ -79,8 +79,17 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a student: `addstu`
+### Name/Rename CS course : `setcrs`
 
+Names the course in question. 
+
+Format: `setcrs COURSE_NAME`
+
+Duplicate course are not allowed.
+Courses are case-insensitive.
+Course code should follow the format "XX1234Y", Y is optional.
+
+### Adding a student: `addstu`
 Adds a student to the address book.
 
 Format: `addstu n/NAME p/PHONE_NUMBER e/EMAIL nn/NUSNET_ID a/ADDRESS [t/TAG]…​`
@@ -100,7 +109,9 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a student : `edit`
+If there are additional arguments behind `list` we will simply ignore them.
+
+### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
