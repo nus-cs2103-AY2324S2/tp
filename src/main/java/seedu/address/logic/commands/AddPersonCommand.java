@@ -1,12 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.commands.util.CommandUtil.generateMessageUsage;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_ADDRESS;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_EMAIL;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_NAME;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_NUSNET;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_PHONE;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -21,22 +22,16 @@ public class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "addstu";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_NUSNET + "NUSNET "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_NUSNET + "e0123456 "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+    public static final String MESSAGE_USAGE = generateMessageUsage(
+            COMMAND_WORD,
+            "Adds a person to the address book. ",
+            PARAMETER_NAME,
+            PARAMETER_PHONE,
+            PARAMETER_EMAIL,
+            PARAMETER_NUSNET,
+            PARAMETER_ADDRESS,
+            PARAMETER_TAG.asMultiple(2)
+    );
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
