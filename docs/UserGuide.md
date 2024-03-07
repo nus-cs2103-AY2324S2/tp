@@ -67,25 +67,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 </box>
 
 
-### Adding a person: `add`
+### Add person to selected event: `add`
 
-Adds new participant to overall app so user can add automatically to an event.
+Add participants from the global participant list to the selected event.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL t/TYPE d/DIETARY`
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com t/L d/H`
-* `add n/Max Yang p/11111111 e/myang@example.com t/R d/N`
-
-### Create an event: `new_event`
-
-Creates a new event in Eventee.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL t/TYPE d/DIETARY`
+Format: `add -i INDEX`
 
 Examples:
-* `new_event n/Orientation camp`
-* `new_event n/Cluster pizza gathering`
+* `add -i 5`
+
+
+<box type="warning" seamless>
+**Warning:** Ensure you have selected an event
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -106,8 +100,7 @@ Examples:
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL t/TYPE d/DIETARY` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com t/L d/H`
-**Create Event**  | `new_event n/EVENT_NAME` <br> e.g., `new_event n/Orientation camp`
+**Add to Event**    | `add -i INDEX` <br> e.g., `add -i 5`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
