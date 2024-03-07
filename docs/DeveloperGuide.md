@@ -304,8 +304,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Small business owner                        | offer customizable tags or labels for customers | segment my audience and target specific groups with tailored marketing campaigns.                 |
 | `*`      | Busy entrepreneur                           | have a good out of the box experience         | immediately use the application without needing to configure it for my own needs.                                                                          |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
