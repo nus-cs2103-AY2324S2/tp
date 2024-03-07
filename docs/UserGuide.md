@@ -131,6 +131,86 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Search by tag: find_by_tag
+What it does:
+* Finds users by tag, optionally with another filter based on their other personal details.
+
+Format: `find_by_tag TAG [n/NAME] [a/ADDRESS]`
+
+Acceptable values for each parameter:
+* `TAG` needs to be a tag
+* `NAME` needs to be a substring of a person's name
+* `ADDRESS` needs to be a substring of a person's address
+
+Example commands
+* `find_by_tag cs2103t`
+* `find_by_tag n/zilong`
+* `find_by_tag a/ang mo kio avenue 10 `
+Expected outputs when the command succeeds
+* The contacts listed on the app will only include those with the given tag (and name and/or address, if the extra parameters are given).
+* Extra spaces present at the beginning and/or end of the command will be removed.
+* Console will display that the command is successful and that N contacts have been found to match the tag.
+Expected outputs when the command fails
+* If no contacts with the given tag (and name and/or address) are found, then the user is alerted that there are no such contacts.
+* If the user specifies multiple parameters for either TAG, NAME, or ADDRESS, then the command is rejected and the user is notified to correct their input format.
+* Rationale behind decisions
+* Optional extra parameters NAME and ADDRESS are added to provide the user with more refined inputs if they have more input information.
+* Extra spaces are removed to allow for a better user experience when entering extra spaces.
+
+### Exporting a subset of data
+What it does
+Exports the users that are filtered by a tag and other optional parameters.
+
+Format: `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`
+
+Acceptable values for each parameter
+* `TAG` needs to be a tag
+* `NAME` needs to be a substring of a person's name
+* `ADDRESS` needs to be a substring of a person's address
+* `FILENAME` needs to be a valid filename
+
+Example commands
+* `find_and_export cs2103t`
+* `find_and_export cs2103t n/john a/olive street 42 o/output1`
+
+Expected outputs when the command succeeds:
+* The contacts listed on the app will only include those with the given tag (and name and/or address, if the extra parameters are given).
+* The app will also create a new file if there is at least 1 contact returned and displayed on the app by the command.
+* If no FILENAME argument is given, then the output uses the default filename of export (as a JSON file).
+* Console will say that export is successful.
+Expected outputs when the command fails:
+* If no contacts with the given tag (and name and/or address) are found, then the user is alerted that there are no such contacts.
+* If the user specifies multiple parameters for either TAG, NAME, ADDRESS, or FILENAME, then the command is rejected and the user is notified to correct their input format.
+Rationale behind decisions:
+Optional extra parameters NAME and ADDRESS are added to provide the user with more refined inputs if they have more input information. Extra spaces are removed to provide a better user experience.
+
+### Importing a datafile
+What it does:
+Imports contact details from a JSON file with filename specified.
+
+Format: `import FILENAME [FILENAME_2] [FILENAME_3] …`
+
+Acceptable values for each parameter:
+* `FILENAME` needs to be a valid filename that is found in the `./data/` directory
+
+Example commands
+* import export
+* import contacts_export
+* import contacts_export1 contacts_export2
+
+Expected outputs when the command succeeds:
+* The contacts will be added into the contact manager.
+* Extra spaces at the beginning and end of the command are removed.
+* Console will say that importing was successful.
+
+Expected outputs when the command fails:
+* If there are FILENAMEs that are not detected in the ./data/ directory, then such files will not be imported into the contact manager.
+The user will be notified of which files failed to be imported.
+* If there are FILENAMEs that are not in the right data format (e.g., non-JSON files), then such files will not be imported into the contact manager.
+* The user will be notified of which files failed to be imported.
+Rationale behind decisions:
+Multiple imports are allowed to provide the user with a better user experience. File extensions are not required as the original application stores its data in a JSON file, and we would like to use the same format for consistency
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
