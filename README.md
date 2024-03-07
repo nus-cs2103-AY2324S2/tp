@@ -4,10 +4,10 @@
 
 # EduConnect
 
-* EduConnect is a contact management program for Teaching Assistants (TAs) in SoC, NUS to manage their classes and 
-  students effectively. 
+* EduConnect is a contact management program for Teaching Assistants (TAs) in SoC, NUS to manage their classes and
+  students effectively.
 * It manages the student's particulars, timetables, and class progress, all in one program.
-* EduConnect is optimized for those who prefer to work with a Command Line Interface (CLI) while still having a simple 
+* EduConnect is optimized for those who prefer to work with a Command Line Interface (CLI) while still having a simple
   and clean Graphical User Interface (GUI).
 
 ## Site Map
