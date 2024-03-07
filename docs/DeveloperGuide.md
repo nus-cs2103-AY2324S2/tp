@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# CapitalConnect Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -272,31 +272,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: A venture capital portfolio manager who
 
-* has a need to manage a significant number of contacts
+* has a need to keep a significant amount of startup investments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Venture capital firms manage diverse portfolios of startup 
+investments across various industries. The app streamlines the management of startup
+investments, enabling VC firms to easily add, categorize, and track a diverse 
+portfolio of investments in various industries and funding stages.
+
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority  | As a …​           | I want to …​                                          | So that I can…​                                                          |
+|-----------|-------------------|-------------------------------------------------------|--------------------------------------------------------------------------|
+| `* * *`   | new user          | see usage instructions                                | refer to instructions when I forget how to use the App                   |
+| `* * *`   | user              | view the startup investments in my portfolio          | see the list of startup investments that I'm interested in               |
+| `* * *`   | user              | add a new startup investment to my portfolio          | save the details of the new startup investment                           |
+| `* * *`   | user              | delete a startup investment to my portfolio           | remove the startup investment that I am no longer interested in          |
+| `* *`     | user              | find a startup investment by name                     | locate a startup investment without having to go through the entire list |
+| `* *`     | intermediate user | assign funding stages to startup investments          | know more about the startup investment when checking it through the app  |
+| `* *`     | intermediate user | find a startup investment by industry & funding stage | locate a startup investment without having to go through the entire list |
 
-*{More to be added}*
+
+
 
 ### Use cases
 
