@@ -299,30 +299,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+#### **Use Case: Add Contact for ContactSwift v1.2**
 
-**Use case: Delete a person**
+**System:** ContactSwift v1.2
 
-**MSS**
+**Actor:** User
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. **User adds a new contact:**
+   - Command: `add contact /name Jane Smith /email jane@example.com /number 9876543210`
 
-    Use case ends.
+2. **ContactSwift processes the command:**
+   - Validates the command format and required details.
+   - Generates a unique ID for the new contact.
 
-**Extensions**
+3. **ContactSwift updates the address book:**
+   - Adds the contact details to the in-memory database.
+   - Sends a success message to the user.
 
-* 2a. The list is empty.
+4. **User verifies the addition:**
+   - Command: `list all`
+   - ContactSwift displays the updated list with Jane Smith's details.
 
-  Use case ends.
+#### **Use Case: Delete Contact for ContactSwift v1.2**
 
-* 3a. The given index is invalid.
+**System:** ContactSwift v1.2
 
-    * 3a1. AddressBook shows an error message.
+**Actor:** User
 
-      Use case resumes at step 2.
+1. **User identifies the contact to delete:**
+   - Command: `list all`
+
+2. **ContactSwift displays the contact list:**
+   - User identifies the contact to delete, e.g., with the ID 5678.
+
+3. **User initiates the deletion:**
+   - Command: `delete contact /id 5678`
+
+4. **ContactSwift processes the deletion:**
+   - Verifies the command format and the contact ID.
+   - Deletes the contact if conditions are met.
+
+5. **ContactSwift updates the address book:**
+   - Removes the contact from the in-memory database.
+   - Sends a confirmation message to the user.
+
+6. **User verifies the deletion:**
+   - Command: `list all`
+   - ContactSwift displays the updated list without the deleted contact.
+
+#### **Use Case: Quick Contact Addition for ContactSwift v1.2**
+
+**System:** ContactSwift v1.2
+
+**Actor:** User
+
+1. **User meets a new contact at a networking event:**
+   - Command: `add contact /name Sam Johnson /email sam@example.com /number 5551234567`
+
+2. **ContactSwift processes the command:**
+   - Validates the command format and required details.
+   - Generates a unique ID for the new contact.
+
+3. **ContactSwift updates the address book:**
+   - Adds the contact details to the in-memory database.
+   - Sends a success message to the user.
+
+4. **User verifies the addition:**
+   - Command: `list all`
+   - ContactSwift displays the updated list with Sam Johnson's details.
 
 *{More to be added}*
 
