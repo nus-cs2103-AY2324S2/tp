@@ -28,7 +28,8 @@ public class MarkAttendanceCommand extends Command {
             + "by adding the specified week to their attendance set. "
             + "Parameters: "
             + PREFIX_NUSNET + "NUSNET "
-            + PREFIX_WEEK + "WEEK";
+            + PREFIX_WEEK + "WEEK\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NUSNET + "e0123456 " + PREFIX_WEEK + " 1";
 
     public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked Attendance for Person: %1$s";
     public static final String MESSAGE_DUPLICATE_WEEK = "This week's attendance"
@@ -53,13 +54,11 @@ public class MarkAttendanceCommand extends Command {
         requireNonNull(model);
 
         Optional<Person> optionalPersonToMark = model.getPersonByNusNet(nusNet);
-        Person personToMark;
 
-        if (optionalPersonToMark.isPresent()) {
-            personToMark = optionalPersonToMark.get();
-        } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_NUSNET_FOR_MARK);
+        if (!optionalPersonToMark.isPresent()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_NUSNET);
         }
+        Person personToMark = optionalPersonToMark.get();
 
         Set<WeekNumber> updatedWeekAttendance = new HashSet<>(personToMark.getAttendance());
 
@@ -93,8 +92,8 @@ public class MarkAttendanceCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("nusNetToMark", nusNet)
-                .add("week", weekNumber)
+                .add("nusNet", nusNet)
+                .add("weekNumber", weekNumber)
                 .toString();
     }
 }

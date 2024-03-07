@@ -19,8 +19,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_INVALID_NUSNET_FOR_MARK =
-            "There is no student of this nusNet!";
+    public static final String MESSAGE_INVALID_NUSNET =
+            "There is no student with this NUSNet ID!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

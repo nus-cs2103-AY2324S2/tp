@@ -32,6 +32,20 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, NusNet nusNet,
+                  Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, attendance, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.nusNet = nusNet;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+    /**
+     * Every field must be present and not null. Alternate constructor to instantiate a person with
+     * an existing attendance.
+     */
+    public Person(Name name, Phone phone, Email email, NusNet nusNet,
                   Address address, Set<WeekNumber> attendance, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, attendance, tags);
         this.name = name;

@@ -12,7 +12,7 @@ import seedu.address.model.person.NusNet;
 import seedu.address.model.weeknumber.WeekNumber;
 
 /**
- * Parses input arguments and creates a new MarkAttendanceCommand object
+ * Parses input arguments and creates a new MarkAttendanceCommand object.
  */
 public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand> {
 
@@ -25,7 +25,7 @@ public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NUSNET, PREFIX_WEEK);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NUSNET, PREFIX_WEEK)
+        if (!ArgumentMultimap.arePrefixesPresent(argMultimap, PREFIX_NUSNET, PREFIX_WEEK)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MarkAttendanceCommand.MESSAGE_USAGE));
@@ -35,13 +35,5 @@ public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand
         WeekNumber weekNumber = ParserUtil.parseWeekNumber(argMultimap.getValue(PREFIX_WEEK).get());
 
         return new MarkAttendanceCommand(nusNet, weekNumber);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
