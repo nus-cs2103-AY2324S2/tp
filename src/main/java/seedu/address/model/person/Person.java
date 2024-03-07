@@ -27,18 +27,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
     private final ObservableList<Note> notes = FXCollections.observableArrayList();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ObservableList<Note> notes) {
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, ObservableList<Note> notes) {
         requireAllNonNull(name, phone, email, address, tags, notes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
         this.notes.addAll(notes);
     }
@@ -58,6 +60,8 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
+    public Remark getRemark() { return remark; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -108,6 +112,7 @@ public class Person {
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
             && address.equals(otherPerson.address)
+            && remark.equals(otherPerson.remark)
             && tags.equals(otherPerson.tags)
             && notes.equals(otherPerson.notes);
     }
@@ -137,18 +142,20 @@ public class Person {
         private Phone phone;
         private Email email;
         private Address address;
+        private Remark remark;
         private Set<Tag> tags = new HashSet<>();
         private ObservableList<Note> notes = FXCollections.observableArrayList();
 
         /**
          * Creates a {@code Builder} with the given parameters.
          */
-        public Builder(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                       ObservableList<Note> notes) {
+        public Builder(Name name, Phone phone, Email email, Address address, Remark remark,
+                       Set<Tag> tags, ObservableList<Note> notes) {
             this.name = name;
             this.phone = phone;
             this.email = email;
             this.address = address;
+            this.remark = remark;
             this.tags.addAll(tags);
             this.notes.addAll(notes);
         }
@@ -157,8 +164,8 @@ public class Person {
          * Initializes the {@code Builder} with the data of {@code person}.
          */
         public Builder(Person person) {
-            this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(),
-                person.getNotes());
+            this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getRemark(),
+                    person.getTags(), person.getNotes());
         }
 
         public Name getName() {
@@ -176,6 +183,8 @@ public class Person {
         public Address getAddress() {
             return address;
         }
+
+        public Remark getRemark() { return remark; }
 
         public Set<Tag> getTags() {
             return tags;
@@ -213,6 +222,13 @@ public class Person {
             return this;
         }
 
+        public Builder setRemark(Remark remark) {
+            requireAllNonNull(remark);
+
+            this.remark = remark;
+            return this;
+        }
+
         public Builder setTags(Set<Tag> tags) {
             requireNonNull(tags);
 
@@ -233,7 +249,7 @@ public class Person {
          * Builds a {@link Person} with the latest values.
          */
         public Person build() {
-            return new Person(name, phone, email, address, tags, notes);
+            return new Person(name, phone, email, address, remark, tags, notes);
         }
     }
 }
