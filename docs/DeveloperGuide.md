@@ -348,11 +348,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `LoanGuard Pro` and the **Actor** is the `user`, unless specified
 otherwise)
 
-#### <u>Use case: UC - Delete a contact</u>
+#### Use case: UC1 - Delete a contact
+
+Precondition: `list` command shows a numbered list of contacts.
 
 #### MSS
 
-1. User issues `delete` command with the index of the contact to be deleted.
+1. User requests to delete a contact, specifying the index.
 2. System deletes the contact from the address book.
 3. System shows the contact that was deleted in the status message.
    Use case ends.
@@ -363,29 +365,29 @@ otherwise)
 1a1. System shows an error message in the status message.
 Use case ends.
 
-#### <u>Use case: UC - Find a person by name</u>
+#### Use case: UC2 - Find a person by name
 
 #### MSS
 
-1. User issues `find` command with desired prompt.
+1. User searches for a contact with desired prompt.
 2. System shows the list of contacts that match the prompt.
    Use case ends.
 
 #### Extensions
 
-1a. User issues `find` command with an empty prompt.  
+1a. User searches for a contact using an empty prompt.  
 1a1. System shows an error message in the status message.
 Use case ends.
 
-1a. No contact matches the prompt.
+1a. No contact matches the prompt.  
 1a1. System shows a message in the status message that no contact matches the prompt.
 Use case ends.
 
-#### <u>Use case: UC - Link a loan to contact</u>
+#### Use case: UC3 - Link a loan to contact
 
 #### MSS
 
-1. User issues `link` command with the name of contact and the loan details to be linked.
+1. User links a contact with a loan, specifying the contact name and loan details.
 2. System links the loan to the contact.
 3. System shows the contact and the loan that was linked successfully in the status message.
    Use case ends.
@@ -396,54 +398,22 @@ Use case ends.
 1a1. System shows an error message that no contact with the name exists.
 Use case ends.
 
-1a. Loan details are invalid (e.g. empty, incomplete, wrong format).
+1a. Loan details are invalid (e.g. empty, incomplete, wrong format).  
 1a1. System shows an error message that the loan details are invalid.
 Use case ends.
 
-1a. Multiple contacts with the same name exist.
-1a1. System shows list of contacts with the same name and asks user to choose one by index.
-1a2. User chooses a contact by index.
-1a3. System links the loan to the chosen contact.
-1a4. System shows the contact and the loan that was linked successfully in the status message.
+1a. Multiple contacts with the same name exist.  
+1a1. System shows list of contacts with the same name and asks user to choose one by index.  
+1a2. User chooses a contact by index.  
+1a3. System links the loan to the chosen contact.  
+1a4. System shows the contact and the loan that was linked successfully in the status message.  
 Use case ends.
 
-#### <u>Use case: UC - Clear a loan from contact</u>
+#### Use case: UC4 - View all loans linked to particular contact
 
 #### MSS
 
-1. User <u>views all loans linked to the contact</u>.
-2. User issues `clear` command with the name of contact and the index of loan to be cleared.
-3. System clears the loan from the contact.
-4. System shows the contact and the loan that was cleared successfully in the status message.
-   Use case ends.
-
-#### Extensions
-
-1a. Index is invalid (e.g. negative, zero, or larger than the list size)
-1a1. System shows an error message that the index is invalid.
-Use case ends.
-
-#### <u>Use case: UC - Mark a loan as returned</u>
-
-#### MSS
-
-1. User <u>views all loans linked to the contact</u>.
-2. User marks a loan as returned specifying contact name and loan index.
-3. System marks the loan as returned.
-4. System shows the contact and the loan that was marked as returned successfully in the status message.
-   Use case ends.
-
-#### Extensions
-
-1a. Index is invalid (e.g. negative, zero, or larger than the list size)
-1a1. System shows an error message that the index is invalid.
-Use case ends.
-
-#### <u>Use case: UC - View all loans linked to particular contact</u>
-
-#### MSS
-
-1. User issues `viewloans` command with the name of contact.
+1. User requests to view all loans linked to a particular contact.
 2. System shows the list of loans linked to the contact.
    Use case ends.
 
@@ -457,6 +427,38 @@ Use case ends.
 1a1. System shows list of contacts with the same name and asks user to choose one by index.
 1a2. User chooses a contact by index.
 1a3. System shows the list of loans linked to the chosen contact.
+Use case ends.
+
+#### Use case: UC5 - Clear a loan from contact
+
+#### MSS
+
+1. User <u>views all loans linked to the contact (UC4)</u>.
+2. User issues `clear` command with the name of contact and the index of loan to be cleared.
+3. System clears the loan from the contact.
+4. System shows the contact and the loan that was cleared successfully in the status message.  
+   Use case ends.
+
+#### Extensions
+
+1a. Index is invalid (e.g. negative, zero, or larger than the list size)
+1a1. System shows an error message that the index is invalid.  
+Use case ends.
+
+#### Use case: UC6 - Mark a loan as returned
+
+#### MSS
+
+1. User <u>views all loans linked to the contact (UC4)</u>.
+2. User marks a loan as returned specifying contact name and loan index.
+3. System marks the loan as returned.
+4. System shows the contact and the loan that was marked as returned successfully in the status message.  
+   Use case ends.
+
+#### Extensions
+
+1a. Index is invalid (e.g. negative, zero, or larger than the list size)  
+1a1. System shows an error message that the index is invalid.  
 Use case ends.
 
 ### Non-Functional Requirements
