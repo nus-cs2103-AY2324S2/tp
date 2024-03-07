@@ -19,7 +19,6 @@ Tutor: Tan Wei Zhe
 <img src="images/khai.png" width="200px">
 
 [[github](https://github.com/bachletuankhai)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Model
@@ -29,7 +28,6 @@ Tutor: Tan Wei Zhe
 <img src="images/julia.png" width="200px">
 
 [[github](https://github.com/julia-cp)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: UI
@@ -39,7 +37,6 @@ Tutor: Tan Wei Zhe
 <img src="images/donghyun.png" width="200px">
 
 [[github](https://github.com/dhlee03)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -49,7 +46,6 @@ Tutor: Tan Wei Zhe
 <img src="images/meenu.png" width="200px">
 
 [[github](https://github.com/meenulekha)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Storage
