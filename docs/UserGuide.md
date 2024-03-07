@@ -6,9 +6,9 @@
 
 # BandBook User Guide
 
-BandBook is your all-in-one software designed to streamline the management of band members' contact details and information. It offers a user-friendly platform to **create, edit and delete members' contact information**, along with optional fields such as **tag and birthday information**.
+BandBook is your all-in-one software designed to streamline the management of band members' contact details and information. It offers a user-friendly platform to **create, edit and delete** members' contact information, along with optional fields such as tag and birthday information.
 
-Moreover, you can **indicate and view the attendance history of your members**, ensuring that they stay on track with the band's activities. Optimised for use via a Command Line Interface (CLI), BandBook can assist you in managing your members' details faster than traditional GUI apps.
+Moreover, you can **indicate and view** the attendance history of your members, ensuring that they stay on track with the band's activities. Optimised for use via a Command Line Interface (CLI), BandBook can assist you in managing your members' details faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
