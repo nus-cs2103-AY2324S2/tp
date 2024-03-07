@@ -28,6 +28,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,8 +106,10 @@ public class EditPersonCommand extends Command {
         NusNet updatedNusNet = editPersonDescriptor.getNusNet().orElse(personToEdit.getNusNet());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Remark updatedRemarks = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedNusNet, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail,
+                updatedNusNet, updatedAddress, updatedTags, updatedRemarks);
     }
 
     @Override
@@ -144,6 +147,7 @@ public class EditPersonCommand extends Command {
         private NusNet nusNet;
         private Address address;
         private Set<Tag> tags;
+        private Remark remark;
 
         public EditPersonDescriptor() {}
 
@@ -158,6 +162,7 @@ public class EditPersonCommand extends Command {
             setNusNet(toCopy.nusNet);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setRemark(toCopy.remark);
         }
 
         /**
@@ -205,6 +210,14 @@ public class EditPersonCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         /**
