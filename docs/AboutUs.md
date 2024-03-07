@@ -1,46 +1,58 @@
+User
 # About Us
 
-We are the developer team of event management app Eventy, based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are the developer team of Eventy, an event management app, based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-## Project team
+## Project Team
 
 ### Nigel Lee
 
-<img src="images/apzure.png" width="200px" height="250px">
+<img src="images/apzure.png" width="200px" height="200px">
 
-[[github](https://github.com/Apzure)]
+[GitHub: Apzure](https://github.com/Apzure)
 
-* Roles: Team Lead and Scheduling and Tracking, in charge of Model
+| **Roles**               | **Responsibilities** |
+|-------------------------|----------------------|
+| Team Lead <br/>Scheduling and Tracking              | Model                |
 
-### Han Taeweon
 
-<img src="images/taeewonnn.png" width="200px" height="250px">
+### Han Taewon
 
-[[github](https://github.com/taeewonnn)]
+<img src="images/taeewonnn.png" width="200px" height="200px">
 
-* Roles: Documentation, Deliverables and Deadlines, Git Expert
+[GitHub: taeewonnn](https://github.com/taeewonnn)
+
+| **Roles**       | **Responsibilities** |
+|-----------------|----------------------|
+| Documentation <br/>Deliverables and Deadlines  | Git Expert           |
+                    
 
 ### Max Yang
 
-<img src="images/myang2020.png" width="200px" height="250px">
+<img src="images/myang2020.png" width="200px" height="200px">
 
-[[github](https://github.com/myang2020)] 
+[GitHub: myang2020](https://github.com/myang2020)
 
-* Roles: Testing, in charge of Logic
+| **Roles** | **Responsibilities** |
+|-----------|----------------------|
+| Testing   | Logic                |
 
 ### Liu Yifan
 
-<img src="images/nusliuyifan.png" width="200px" height="250px">
+<img src="images/nusliuyifan.png" width="200px" height="200px">
 
-[[github](https://github.com/nusliuyifan)]
+[GitHub: nusliuyifan](https://github.com/nusliuyifan)
 
-* Roles: Integration, in charge of Storage
+| **Roles**   | **Responsibilities** |
+|-------------|----------------------|
+| Integration | Storage              |
 
 ### Yichao Song
 
-<img src="images/chocoragdoll.png" width="200px" height="250px">
+<img src="images/chocoragdoll.png" width="200px" height="200px">
 
-[[github](https://github.com/ChocoRagdoll)]
+[GitHub: ChocoRagdoll](https://github.com/ChocoRagdoll)
 
-* Roles: Code Quality, in charge of UI
-
+| **Roles**    | **Responsibilities** |
+|--------------|----------------------|
+| Code Quality | UI                   |
