@@ -332,14 +332,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
-
+4.  The application should implement certain security measures to protect the users' private contact details from unauthorized access. This includes the encryption of sensitive data and preventing unauthorized access to the application's database.
+5.  The application should be convenient enough for the users(including those that are disabled).
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Favorites**: The users can mark some users as favorites. This will increase the user’s efficiency when finding the people they like to contact
+* **Tags**: The users can classify different contacts as from different groupings
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
