@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jia Jun
 
-<img src="images/tanjiajun.png" width="200px">
+<img src="images/tanjiajiajun.png" width="200px">
 
 [[github](https://github.com/tanjiajiajun)] [[portfolio](team/jiajun.md)]
 
