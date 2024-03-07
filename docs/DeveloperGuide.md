@@ -378,9 +378,19 @@ Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Compatibility:
+    1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Performance:
+    1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+    1. GUI should respond/provide feedback within 2s.
+1. Usability:
+    1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+    1. A new user should be able to navigate the functionality of the program with ease.
+    1. The GUI should be readable with sufficient contrast between UI elements.
+1. Process:
+    1. The project is expected to adhere to a schedule that delivers a feature set every one month.
+1. Constraints:
+    1. The project should be implementable in 4 weeks.
 
 *{More to be added}*
 
