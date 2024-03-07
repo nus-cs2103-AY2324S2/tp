@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/wongkj12.jpg" width="200px">
 
-[[github](http://github.com/wongkj12)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/wongkj12)] [[portfolio](team/wongkj12.md)]
 
 * Role: Developer
 * Responsibilities: Data
