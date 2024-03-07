@@ -278,69 +278,221 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------ | ----------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                       | see usage instructions              | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                           | add a contact                       |                                                                        |
-| `* * *`  | user                           | delete a contact                    | remove entries that I no longer need                                   |
-| `* * *`  | user                           | update a contact                    |                                                                        |
-| `*`      | user                           | delete all contacts                 |                                                                        | 
-| `* * *`  | user                           | view porfessors calendar            | see the available timings                                              |
-| `* * *`  | user                           | view porfessors's office hours      | know when to contact them                                              |
-| `* * *`  | user                           | view porfessors's office location   | know where to find them                                                | 
-| `* * *`  | user                           | find a proff by name                | locate details of persons without having to go through the entire list |
-| `* *`    | user                           | hide private contact details        | minimize chance of someone else seeing them by accident                |
-| `*`      | user                           | update my calendar                  | change my schedule                                                     |
-| `*`      | user                           | create event/consultations          | it can be recorded                                                     |
-| `*`      | user                           | delete event                        |                                                                        |
-| `*`      | user                           | update event                        |                                                                        |
-| `*`      | user                           | view the current week's consults    | change my schedule                                                     |
-| `*`      | user                           | view a TA's calendar                | book a consult                                                         |
-| `*`      | user                           | generate email to contact           | easily send out communications                                         |
-
+| Priority | As a …​                                    | I want to …​                      | So that I can…​                                                        |
+| -------- | ------------------------------ |-----------------------------------| ---------------------------------------------------------------------- |
+| `* * *`  | new user                       | see usage instructions            | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                           | add a contact                     |                                                                        |
+| `* * *`  | user                           | delete a contact                  | remove entries that I no longer need                                   |
+| `* * *`  | user                           | update a contact                  |                                                                        |
+| `* * *`  | user                           | view professors calendar          | see the available timings                                              |
+| `* * *`  | user                           | view professors's office hours    | know when to contact them                                              |
+| `* * *`  | user                           | view professors's office location | know where to find them                                                | 
+| `* * *`  | user                           | find a prof by name               | locate details of persons without having to go through the entire list |
+| `* *`    | user                           | hide private contact details      | minimize chance of someone else seeing them by accident                |
+| `*`      | user                           | update my calendar                | change my schedule                                                     |
+| `*`      | user                           | create event/consultations        | it can be recorded                                                     |
+| `*`      | user                           | delete event                      |                                                                        |
+| `*`      | user                           | update event                      |                                                                        |
+| `*`      | user                           | view the current week's consults  | change my schedule                                                     |
+| `*`      | user                           | view a TA's calendar              | book a consult                                                         |
+| `*`      | user                           | generate email to contact         | easily send out communications                                         |
+| `*`      | user                           | delete all contacts               |                                                                        | 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Dook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a contact
+2. Dook adds the contact
+3. Dook displays the details of the contact added
 
-    Use case ends.
+   Use case ends
 
 **Extensions**
+* **2a. The contact details are invalid**
+    * **2a1. Dook shows an error message**
+    
+    Use Case ends
+* **3a. Duplicate contact added**
+    * **3a1. Dook shows an error message**
+    
+    Use case ends
 
-* 2a. The list is empty.
+**Use Case: Delete a Contact**
 
-  Use case ends.
+**MSS**
 
-* 3a. The given index is invalid.
+1. User requests to delete a contact by name or index.
+2. Dook confirms the deletion request (if applicable).
+3. Dook deletes the contact.
+4. Dook confirms the contact has been deleted.
 
-    * 3a1. AddressBook shows an error message.
+   Use case ends.
+
+**Extensions**
+* **2a. User requests to delete all contacts.**
+    - **2a1. Dook asks for confirmation.**
+    - **2a2. If confirmed, Dook deletes all contacts and confirms deletion.**
+    - **2a3. If not confirmed, Dook cancels the deletion process.**
+
+      Use case ends.
+* **3a. The specified contact does not exist.**
+    - **3a1. Dook shows an error message.**
+
+      Use case ends.
+* **3b. The contact index is out of range.**
+    - **3b1. Dook shows an error message.**
+
+      Use case ends.
+
+**Use Case: View All Contacts**
+
+**MSS**
+
+1. User requests to view all contacts.
+2. Dook retrieves and displays all contacts.
+
+   Use case ends.
+
+**Extensions**
+* **2a. There are no contacts to display.**
+    - **2a1. Dook shows a message indicating there are no contacts.**
+
+      Use case ends.
+* **2b. An unexpected error occurs while fetching contacts.**
+    - **2b1. Dook shows an error message.**
+
+      Use case ends.
+
+**Use Case: Find Contacts**
+
+**MSS**
+
+1. User requests to find contacts by name or contact type.
+2. Dook searches and displays matching contacts.
+
+   Use case ends.
+
+**Extensions**
+* **2a. No contacts match the search criteria.**
+    - **2a1. Dook shows a message indicating no matches found.**
+
+      Use case ends.
+* **2b. An error occurs during the search.**
+    - **2b1. Dook shows an error message.**
+
+      Use case ends.
+
+### Booking System Use Cases
+
+**Use case: Book a Consultation Slot**
+
+**MSS**
+
+1. User inputs `/book` command with necessary details.
+2. Dook schedules the booking.
+3. Dook confirms the booking details to the user.
+
+   Use case ends.
+
+**Extensions**
+* **2a. The booking details are invalid.**
+    * **2a1. Dook shows an error message.**
+
+      Use Case ends.
+* **2b. The requested time slot overlaps with an existing booking.**
+    * **2b1. Dook shows an error message.**
+
+      Use case ends.
+* **2c. The specified user does not match any contacts.**
+    * **2c1. Dook prompts the user to select a valid contact.**
 
       Use case resumes at step 2.
+
+**Use Case: View All Bookings**
+
+**MSS**
+
+1. User requests to view all bookings.
+2. Dook retrieves and displays all bookings.
+
+   Use case ends.
+
+**Extensions**
+* **2a. Unable to retrieve bookings.**
+    * **2a1. Dook shows an error message.**
+
+      Use case ends.
+
+**Use Case: Cancel Bookings**
+
+**MSS**
+
+1. User requests to cancel a booking or all bookings.
+2. Dook asks for confirmation (if applicable).
+3. User confirms cancellation.
+4. Dook cancels the booking(s) and confirms to the user.
+
+   Use case ends.
+
+**Extensions**
+* **2a. User decides not to cancel after all.**
+    * **2a1. Dook cancels the cancellation process.**
+
+      Use case ends.
+* **3a. The specified booking does not exist.**
+    * **3a1. Dook shows an error message.**
+
+      Use case ends.
+* **4a. Error in deleting bookings.**
+    * **4a1. Dook shows an error message.**
+
+      Use case ends.
+
+**Use Case: Find Free Time**
+
+**MSS**
+
+1. User requests to find free time for a contact.
+2. Dook retrieves and displays available time slots.
+
+   Use case ends.
+
+**Extensions**
+* **2a. No free time slots are available.**
+    * **2a1. Dook shows a message indicating no available time slots.**
+
+      Use case ends.
+* **2b. The specified contact does not exist.**
+    * **2b1. Dook prompts the user to select a valid contact.**
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system architecture should be designed to efficiently handle growth in data volume, capable of supporting at least 10 times the initial data volume without a complete overhaul.
+5. The system should include automated backup capabilities to prevent data loss and provide options for data recovery in case of system failure.
+6. Application should be able to use online and offline. 
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Professor**: Lecturer / Researcher in the National University of Singapore 
+* **SoC**: School of Computing in NUS
+* **Tutor**: Professor or Teaching Assistant in NUS SoC
+* **Consultation slot**: Time interval dedicated to a meeting
 
 --------------------------------------------------------------------------------------------------------------------
 
