@@ -361,6 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Small business owner             | offer customizable tags or labels for customers                          | segment my audience and target specific groups with tailored marketing campaigns.                              |
 | `*`      | Busy entrepreneur                | have a good out of the box experience                                    | immediately use the application without needing to configure it for my own needs.                              |
 
+
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
@@ -622,17 +623,20 @@ otherwise)
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should provide clear and informative error messages to users in case of unexpected errors. Additionally, detailed logs should be maintained for system administrators to troubleshoot issues effectively.
+5. Application architecture should be scalable to accommodate future growth in terms of users and data volume, without compromising performance.
+6. Automated backups of critical data should be performed, and there should be a documented and tested procedure for data recovery in case of system failures or data loss.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Application architecture**: Describes the patterns and techniques used to design and build an application
+* **System administrators**: Professionals responsible for managing, configuring, and ensuring the proper operation of computer systems and servers
+* **Detailed logs**: Records that track events, operations, errors, and other significant activities that occur within a software system or application.
 
 --------------------------------------------------------------------------------------------------------------------
 

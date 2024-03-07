@@ -42,21 +42,20 @@ our application is faster and more efficient than inputting data into other syst
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email 
+You can reach us at the email  
 `jaspertan@u.nus.edu` `e0967851@u.nus.edu` `ian.tung@u.nus.edu` `e0959354@u.nus.edu`
 
 ## Project team
 
 ### Jasper Tan Zu Xiang
 
-<img src="images/Jaspetzx.png" width="200px" height="225px">
+<img src="images/jaspertzx.png" width="200px" height="225px">
 
 [[github](https://github.com/Jaspertzx)]
 
 * Role: Front-End Developer
 * Responsibilities: Specialize in creating the user interface and user experience of the BookKeeper application. Ensure 
 that the application is visually appealing, responsive, and easy to navigate for users.
-
 
 
 ### Goh Ying Xuan, Shavonne
