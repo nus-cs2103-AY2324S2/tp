@@ -52,4 +52,4 @@ We are the developer team of Eventy, an event management app, based in the [Scho
 **Roles and Responsibilities:**
 - Code Quality
     - Ensures adherence to coding standards
-<br>
+
