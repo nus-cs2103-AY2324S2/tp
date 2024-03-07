@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### ReflectiveObsidian
 
-<img src="images/reflective_obsidian.png" width="200px">
+<img src="images/reflectiveobsidian.png" width="200px">
 
 [[github](https://github.com/ReflectiveObsidian)]
 
