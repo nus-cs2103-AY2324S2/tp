@@ -22,11 +22,11 @@ CCA Manager is a **desktop app for managing contacts, optimized for use via a  L
 
 **Notes about how to use:**<br>
 
-* 1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+* 1. Download the latest `<TODO>.jar` from [here](https://github.com/AY2324S2-CS2103T-W11-2/tp/releases).
 
-* 2. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+* 2. Copy the file to the folder you want to use as the _home folder_ for your CCA Manager.
 
-* 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+* 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar <TODO>.jar` command to run the application.<br>
 
    ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
    **A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.**<br>
@@ -104,7 +104,7 @@ _Shows a message explaning how to access the help page._
 
 ###  <span id='feature-add'> Adding a person: `add` </span>
 
-_Adds a person to the address book._
+_Adds a person to the CCA Manager._
 
 **Format**: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -120,13 +120,13 @@ _Adds a person to the address book._
 
 ### <span id='feature-list'> Listing all persons : `list` </span>
 
-_Shows a list of all persons in the address book._
+_Shows a list of all persons in the CCA Manager._
 
 **Format**: `list`
 
 ### <span id='feature-edit'> Editing a person : `edit` </span>
 
-_Edits an existing person in the address book._
+_Edits an existing person in the CCA Manager._
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -161,7 +161,7 @@ _Finds persons whose names contain any of the given keywords._
 
 ### <span id='feature-delete'> Deleting a person : `delete` </span>
 
-_Deletes the specified person from the address book._
+_Deletes the specified person from the CCA Manager._
 
 **Format**: `delete INDEX`
 
@@ -170,12 +170,12 @@ _Deletes the specified person from the address book._
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the CCA Manager.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### <span id='feature-clear'> Clearing all entries : `clear` </span>
 
-_Clears all entries from the address book._
+_Clears all entries from the CCA Manager._
 
 **Format**: `clear`
 
@@ -187,17 +187,17 @@ _Exits the program._
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CCA Manager data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+CCA Manager data are saved automatically as a JSON file `[JAR file location]/data/<TODO>.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 >[!CAUTION]
-> If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+> If your changes to the data file makes its format invalid, CCA Manager will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the CCA Manager to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Assign roles to contacts`[coming in v1.2]`
@@ -218,7 +218,7 @@ _Associate who belongs to what CCA_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CCA Manager home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
