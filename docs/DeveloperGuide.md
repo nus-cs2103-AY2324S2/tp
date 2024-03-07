@@ -325,6 +325,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at Step 2.
 
+**Use case: Remove a person**
+
+**MSS**
+
+1. User requests to remove an employee
+2. User enters employee ID
+3. Payback displays details of the employee for confirmation
+4. User confirms removal of employee
+
+   Use case ends.
+
+**Extension**
+
+* 2a. Employee ID entered is invalid.
+
+  * 2a1. Payback shows an error message.
+    
+    Use case resumes at Step 2.
+
+* 4a. User cancels the removal of employee.
+
+  * 4a1. Payback acknowledges the cancellation.
+    
+    Use case ends.
+
+**Use case: Tag a person**
+
+**MSS**
+
+1. User requests to tag an employee
+2. User enters employee id and tags
+3. Payback displays details of the employee and tags to be added for confirmation
+4. User confirms tagging of employee
+
+   Use case ends.
+
+**Extension**
+
+* 2a. Employee ID entered is invalid.
+
+  * 2a1. Payback shows an error message.
+  
+    Use case resumes at step 2.
+  
+* 2b. Tag parameter(s) is/are not specified.
+
+  * 2b1. Payback shows an error message.
+    
+    Use case resumes at step 2.
+
+* 4a. User cancels tagging of employee.
+
+  * 4a1. Payback acknowledges the cancellation.
+    
+    Use case ends.
+  
+
+
+
 **Use case: Find a person**
 
 **MSS**
