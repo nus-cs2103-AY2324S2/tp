@@ -56,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/pluiexo.md)]
 
 * Role: Developer
-* Responsibilities: UI/UX, Integration,Lead
+* Responsibilities: Development of UI/UX and Integration, Lead
