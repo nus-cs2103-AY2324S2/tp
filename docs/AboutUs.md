@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ajay Arvind
 
-<img src="images/ajay.png" width="200px">
+<img src="images/ajayarvind2207.png" width="200px">
 
 [[github](https://github.com/AjayArvind2207)]
 [[portfolio](team/ajay.md)]
