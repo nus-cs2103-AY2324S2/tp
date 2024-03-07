@@ -356,12 +356,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
+1. User requests to view list
+2. ClickConnect shows a list of persons
 3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
-
-   Use case ends.
+4. ClickConnect deletes the person 
+5. Use case ends.
 
 **Extensions**
 
@@ -383,18 +382,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User opens ClickConnect application
-2. User selects option to view usage instructions from main menu
-3. ClickConnect displays the usage instructions such as how to add, edit, delete or search for contacts
-4. User reads the instructions to understand how to use the ClickConnect
-5. Use case ends
+1. User requests to view usage instructions
+2. ClickConnect displays the usage instructions such as how to add, edit, delete or search for contacts
+3. User reads the instructions to understand how to use the ClickConnect
+4. Use case ends
 
-**Extensions**
-
-* 2a. The application does not have a direct link to usage instructions visible:
-  
-    * 2a1. ClickConnect guides the user to the help section where instructions can be found
-    * Use case resumes
 
 **System**: ClickConnect
 
@@ -404,22 +396,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User opens ClickConnect application
-2. User requests to add a new contact
-3. ClickConnect displays a success message after the new contact is successfully added
-4. Use case ends
+1. User requests to add a new contact
+2. ClickConnect displays a success message after the new contact is successfully added 
+3. Use case ends
 
 **Extensions**
 
-* 2a. User does not know what to type to add a contact
-    * 2a1. ClickConnect guides the user to the help section where instructions can be found
+* 1a. User enters an invalid command 
+    * 1a1. ClickConnect alerts the user that the command is invalid and displays the correct format
     * Use case resumes
-* 2b. User enters an invalid command 
-    * 2b1. ClickConnect alerts the user that the command is invalid and displays the correct format
-    * Use case resumes
-* 2c. User tries to add a contact that already exists in ClickConnect
-    * 2c1. ClickConnect alerts the user that a user with that name and details already exists
-    * 2c1. ClickConnect provides possible solutions (use different details if the contact name is the same)
+* 1b. User tries to add a contact that already exists in ClickConnect
+    * 1b1. ClickConnect alerts the user that a user with that name and details already exists
+    * 1b2. ClickConnect provides possible solutions (use different details if the contact name is the same)
     * Use case resumes
 
 **Use case**: UC04 - Display all contacts
@@ -428,19 +416,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User opens the ClickConnect application
-2. User requests to see a list of all contacts
-3. ClickConnect displays a success message followed by the list of contacts
-4. User views the list
-5. User exists ClickConnect
-6. Use case ends
+1. User requests to see a list of all contacts
+2. ClickConnect displays a success message followed by the list of contacts
+3. User views the list
+4. Use case ends
 
 **Extensions**
 
-* 2a. User does not know what to type to view a list
-    * 2a1. ClickConnect guides the user to the help section where instructions can be found
-    * Use case resumes
-* 2b. User enters an invalid command
+* 2a. User enters an invalid command
     * 2b1. ClickConnect alerts the user that the command is invalid and displays the correct format
     * Use case resumes
 
