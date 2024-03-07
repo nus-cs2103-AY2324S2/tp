@@ -279,37 +279,41 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* student leaders planning school events
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Easy way to share _project hierarchy_ / Manage project details and personnel / Quick onboarding of new team members
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a(n) …​             | I want to …​                                        | So that I can…​                                   |
+|----------|------------------------|-----------------------------------------------------|---------------------------------------------------|
+| `* * *`  | user                   | include tags when adding people                     | tag people based on their roles                   |
+| `* * *`  | user                   | search by tags                                      | find groups of people                             |
+| `* * *`  | user                   | have different tagging options                      | keep my contacts organised and search effectively |
+| `* *`    | user                   | delete by name OR index                             | manage my contacts easier                         |
+| `* *`    | user                   | add contacts with partial information               | keep my contacts as up to date as possible        |
+| `*`      | user                   | sort my tags based on event (and subsequently role) | visualise my contacts in a neat way               |
+| `* *`    | user                   | have a space to write notes for each contact        | note my thoughts in an organised way              |
+| `* *`    | user proficient in CLI | have short form commands                            | use the programe faster                           |
+
 
 *{More to be added}*
 
-### Use cases
+### Use cases (UC)
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EventBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**<u>Use case 1: Delete a person</u>**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  EventBook shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  EventBook deletes the person
 
     Use case ends.
 
@@ -321,9 +325,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. EventBook shows an error message.
 
       Use case resumes at step 2.
+
+**<u>Use case 2: Add a person</u>**
+
+**MSS**
+
+1.  User adds person to EventBook
+2.  EventBook shows a list of persons with added person
+3. 
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given parameters for the person is invalid.
+  * 1a1. EventBook shows an error message.
+
+    Use case ends.
+
+**<u>Use case 3: Search by tag</u>**
+
+**MSS**
+
+1.  User requests a search based on tag options
+2.  EventBook shows a list of persons with given tag options
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given tag options are invalid.
+  * 1a1. EventBook shows an error message.
+
+    Use case ends.
+* 2a. The list is empty. 
+  
+    Use case ends.
 
 *{More to be added}*
 
@@ -339,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Project hierarchy**: The structure of a project team, including team members and organisational structure
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
