@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Min Rei
 
-<img src="images/minrei_profile.png" width="200px">
+<img src="images/minreiseah.png" width="200px">
 
 [[github](http://github.com/minreiseah)] [[portfolio](team/minrei.md)]
 
