@@ -288,43 +288,77 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                  | I want to …​           | So that I can…​                                                        |
+|----------|------------------------------------------|------------------------|------------------------------------------------------------------------|
+| `* * *`  | user                                     | add details of company | easily keep track of companies I am interested in                      |
+| `* * *`  | user                                     | list companies added   | view all the companies that I am currently interested in               |
+| `* * *`  | user                                     | delete a company       | remove company that I am no longer interested in                       |
+| `* * *`  | user                                     | save my data           | view my list from previous sessions without re-entering my list        |
+| `* *`    | user                                     | find a company by name | locate details of company without having to go through the entire list |
+| `* *`    | user who is interested in many companies | sort companies         | view the list in my preferred order                                    |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InternBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a company (UC-01)**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a company
+2.  InternBook shows User the company it is going to add
+3.  InternBook adds company
 
     Use case ends.
 
 **Extensions**
 
+* 1a. The given input is invalid.
+
+    * 1a1. InternBook shows an error message.
+
+      Use case ends.
+
+
+**Use case: Delete a company (UC-02)**
+
+**MSS**
+
+1.  User requests to list companies
+2.  InternBook shows User a list of companies
+3.  User requests to delete a specific company in the list
+4.  InternBook deletes the company
+
+    Use case ends.
+
+**Extensions**
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends
+
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
-
+    * 3a1. InternBook shows an error message.
+  
       Use case resumes at step 2.
+
+**Use case: List all companies (UC-03)**
+
+**MSS**
+
+1.  User requests to list companies
+2.  InternBook shows User a list of companies
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends
+
 
 *{More to be added}*
 
