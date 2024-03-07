@@ -307,10 +307,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  AddressBook shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  AddressBook deletes the person.
 
     Use case ends.
 
@@ -319,6 +319,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
   Use case ends.
+
 
 * 3a. The given index is invalid.
 
@@ -331,8 +332,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 - Add an article**
 
 **MSS**
-1. User requests to add article
-2. PressPlanner adds article
+1. User requests to add article.
+2. PressPlanner adds article.
 3. PressPlanner displays success message to User.
 
     Use case ends.
@@ -349,8 +350,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC02 - List all articles**
 
 **MSS**
-1. User requests to list articles
-2. PressPlanner lists out all articles
+1. User requests to list articles.
+2. PressPlanner lists out all articles.
 
    Use case ends.
 
@@ -367,26 +368,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list articles
-1. PressPlanner shows a list of articles
+1. User requests to <u>list all articles (UC02)</u>.
 1. User requests to edit a specific article in the list
-   by providing at least one change to an attribute of the article
-1. PressPlanner updates the article with the changes requested
-1. PressPlanner shows the updated article to user
+   by providing at least one change to an attribute of the article.
+1. PressPlanner updates the article with the changes requested.
+1. PressPlanner shows the updated article to user.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. PressPlanner shows an error message.
+    * 2a1. PressPlanner shows an error message.
+    * 2a2. PressPlanner lists out all articles again.
 
       Use case resumes at step 2.
 
-* 3b. No changes to an attribute of the article is specified.
 
-    * 3b1. PressPlanner shows an error message.
+* 2b. No changes to an attribute of the article is specified.
+
+    * 2b1. PressPlanner shows an error message.
+    * 2b2. PressPlanner lists out all articles again.
 
       Use case resumes at step 2.
 
@@ -396,33 +399,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list articles
-1. PressPlanner shows a list of articles
-1. User requests to delete a specific article in the list
-1. PressPlanner deletes the article 
-1. PressPlanner shows delete success message to user
+1. User requests to <u>list all articles (UC02)</u>.
+1. User requests to delete a specific article in the list.
+1. PressPlanner deletes the article.
+1. PressPlanner shows delete success message to user.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. A find command is used to find articles with given keywords.
+* 1a. User <u>find articles (UC05)</u>.
 
-    * 2a1. PressPlanner displays a filtered list of articles found.
+    Use case resumes at step 2.
+
+
+* 2a. The given index is invalid.
+
+    * 2a1. PressPlanner shows an error message.
+    * 2a2. PressPlanner lists out all articles again.
 
       Use case resumes at step 2.
 
-* 3a. The given index is invalid.
 
-    * 3a1. PressPlanner shows an error message.
+
+**Use case: UC05 - Find articles**
+
+**MSS**
+
+1. User requests to <u>list all articles (UC02)</u>.
+1. User requests to find articles with given keywords.
+1. PressPlanner displays a filtered list of articles found, 
+each containing at least one of the given keywords.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No keywords are specified.
+
+    * 2a1. PressPlanner shows an error message.
+    * 2a2. PressPlanner lists out all articles again.
 
       Use case resumes at step 2.
+
+
+* 2b. Only invalid keywords are specified.
+
+    * 2b1. PressPlanner shows an error message.
+    * 2b2. PressPlanner lists out all articles again.
+
+      Use case resumes at step 2.
+
+
+* 2c. No articles are found with the given keywords.
+
+    * 2c1. PressPlanner shows an error message.
+    * 2c2. PressPlanner lists out all articles again.
+
+      Use case resumes at step 2.
+
+      
+
 
     
-
-
-
-
 *{More to be added}*
 
 ### Non-Functional Requirements
