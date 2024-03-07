@@ -309,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `FAPro` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FAPro` and the **Actor** is the `financial advisor`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -319,20 +319,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  AddressBook shows a list of people
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
-
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. AddressBook shows an error message.
-
       Use case resumes at step 2.
+
+**Use case: Adding a client**
+
+**MSS**
+
+1.  User add a new client by providing the necessary information including the person's name, phone number, email, address, and optional tags.
+2.  FAPro validates the provided information and adds the person to the address book.
+3.  FAPro shows the client information in the list.
+    Use case ends.
+
+**Use case: Edit a client's info**
+
+**MSS**
+
+1.  User edits an existing client's information in FAPro by providing the updated information.
+2.  FAPro validates the provided information and edits the information.
+3.  FAPro shows the updated client information in the list.
+    Use case ends.
+
+**Use case: Find a client by name**
+
+**MSS**
+
+1.  User provides one or more keywords for the seach.
+2.  FAPro performs a case-insensitive search for people whose names contain any of the provided keywords.
+3.  FAPro returns a list of people matching at least one keyword.
+    Use case ends.
 
 **Use case: Viewing a client's profile**
 
@@ -342,19 +365,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FAPro shows a list of people
 3.  User requests to view the profile of the client in the list
 4.  FAPro shows the detailed profile of the client
-
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. AddressBook shows an error message.
-
       Use case resumes at step 2.
 
 **Use case: Tagging a client**
@@ -454,11 +473,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find people containing an upcoming appointment
-2.  AddressBook shows a list of people
+1.  User requests to find people containing an upcoming appointment. 
+2.  AddressBook retrieves a list of people who have upcoming appointments. 
+3.  AddressBook shows the list of people to the user.
 
 **Extensions**
-* 1a. Able to set additional date filter, eg only show upcoming appointment in the next `x` days
+* 2a. Client name does not exist.
+    * 2a1. The system shows an error message.
+      Use case resumes at step 1.
+* 2b. The system found more than 1 matching name.
+    * 2b1. The system lists all matching clients' name with their ID code and other details for identification.
+    * 2b2. User enters the ID code shown from the list.
+      Steps 2b1-2b2 are repeated until the data entered are valid.
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
