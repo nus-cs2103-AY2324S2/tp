@@ -78,7 +78,7 @@ Examples:
 
 
 <box type="warning" seamless>
-**Tip:** Ensure you have selected an event
+**Caution:** Ensure you have selected an event.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
