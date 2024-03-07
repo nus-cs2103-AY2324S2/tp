@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/ziyi22.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ziyi22)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
