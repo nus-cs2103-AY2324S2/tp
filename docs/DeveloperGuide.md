@@ -337,8 +337,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Efficiency**: The employee's default efficiency score is 80% and capped at 100%. Efficiency will increase by 1% when the employee completes an assigned task within the deadline and decrease by 1% for each subsequent day the deadline is exceeded.
+* **Efficiency Threshold**: A user-defined benchmark in the app, classifying employee performance. For instance, a threshold below 20% indicates poor performance, while 20-50% suggests problematic performance requiring attention.
+* **Fire list**: List of employees who are below the efficiency threshold.
+* **Key Performance Indicators (KPIs)**: Quantifiable measures used to evaluate the success of an employee or a department in achieving specific objectives.
 
 --------------------------------------------------------------------------------------------------------------------
 
