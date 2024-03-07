@@ -41,7 +41,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### Yang Heebom
+### Yang Heebeom
 
 <img src="images/hibeom0929.png" width="200px">
 
