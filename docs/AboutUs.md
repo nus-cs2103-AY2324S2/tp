@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: 
 
-### Jean Doe
+### Wang Xinrong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wang-xinrong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/yyccbb)]
+[[github](http://github.com/wang-xinrong)]
+[[portfolio](team/wangxinrong.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI
 
 ### Wong Kai Jie
 
