@@ -288,22 +288,26 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (unlikely to have) - `* *`, Not essential (implement only if got time) - ` * `
 
-| Priority  | As a …​          | I want to …​                                         | So that I can…​                                                |
-|-----------|------------------|------------------------------------------------------|----------------------------------------------------------------|
-| `* * * *` | Counsellor       | create new patients                                  | store their data for future sessions.                          |
-| `* * * *` | Counsellor       | view patient data                                    | view their contact information and contact them.               |
-| `* * * *` | Counsellor       | delete patient data at a given index                 | discharge the patient.                                         |
-| `* * * *` | Counsellor       | search for a patient                                 | quickly access and review patient status.                      |
-| `* * * *` | Counsellor       | list patient at the given index                      | quickly access patients that come regularly.                   |
-| `* * * *` | Counsellor       | schedule appointments                                | avoid scheduling overlapping appointments with other patients. |
-| `* * * *` | Counsellor       | delete an appointment for a specific patient         | appointments can be changed in cases of cancellation.          |
-| `* * * *` | Counsellor       | view one appointment for a specified patient         | quickly find and review the appointment notes.                 |
-| `* * *`   | Counsellor       | to categorise / tag my patients                      | patients with more serious issues can be attended to first.    |
-| `* * * `  | Counsellor       | know how many patients I am seeing in a week         | better manage my own time and emotions.                        |
-| `* * *`   | Counsellor       | be able to mark whether a patient attended a session | properly document patients’ attendance                         |
-| `* * *`   | New User         | have a help function                                 | so that I know how to use the application.                     |
-| `* *`     | Counsellor       | sort patients based on their priority tag            | more serious patients can be attended first.                   |
-| `*`       | Experienced User | mass delete patient data                             | patient data is not compromised.                               |
+| Priority  | As a …​          | I want to …​                                                      | So that I can…​                                                                                                                                                                       |
+|-----------|------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * * *` | Counsellor       | create new patients                                               | store their data for future sessions.                                                                                                                                                 |
+| `* * * *` | Counsellor       | view patient data                                                 | view their contact information and contact them.                                                                                                                                      |
+| `* * * *` | Counsellor       | delete patient data at a given index                              | discharge the patient.                                                                                                                                                                |
+| `* * * *` | Counsellor       | search for a patient                                              | quickly access and review patient status.                                                                                                                                             |
+| `* * * *` | Counsellor       | list patient at the given index                                   | quickly access patients that come regularly.                                                                                                                                          |
+| `* * * *` | Counsellor       | schedule appointments                                             | avoid scheduling overlapping appointments with other patients.                                                                                                                        |
+| `* * * *` | Counsellor       | delete an appointment for a specific patient                      | appointments can be changed in cases of cancellation.                                                                                                                                 |
+| `* * * *` | Counsellor       | view one appointment for a specified patient                      | quickly find and review the appointment notes.                                                                                                                                        |
+| `* * * *` | Counsellor       | view all appointments for a specified patient                     | quickly view all appointments related to a student without having to remember the appointment ID or dates.                                                                            |
+| `* * *`   | Counsellor       | to categorise / tag my patients                                   | patients with more serious issues can be attended to first.                                                                                                                           |
+| `* * * `  | Counsellor       | know how many patients I am seeing in a week                      | better manage my own time and emotions.                                                                                                                                               |
+| `* * *`   | Counsellor       | know what mistakes I make when creating patients                  | easily understand how to rectify my mistakes                                                                                                                                          |
+| `* * *`   | Counsellor       | know know what mistakes I make when creating appointments         | easily understand how to rectify my mistakes                                                                                                                                          |
+| `* * *`   | Counsellor       | be able to mark whether a patient attended a session              | properly document patients’ attendance                                                                                                                                                |
+| `* * *`   | New User         | have a help function                                              | so that I know how to use the application.                                                                                                                                            |
+| `* *`     | Counsellor       | sort patients based on their priority tag                         | more serious patients can be attended first.                                                                                                                                          |
+| `* *`     | Experienced User | navigate through my history of written commands                   | avoid retyping a command just to make minor modifications to a previous command.                                                                                                      |
+| `*`       | Experienced User | mass delete patient data                                          | patient data is not compromised.                                                                                                                                                      |
 
 
 ### Use cases
