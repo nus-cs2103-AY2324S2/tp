@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Greg Tan
 
-<img src="images/greg_tan.jpg" width="200px">
+<img src="images/greg-tan.png" width="200px">
 
 [[github](http://github.com/Greg-Tan)]
 [[portfolio](team/greg.md)]
