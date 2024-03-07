@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ibnu2651.png" width="200px">
 
 [[github](https://github.com/ibnu2651)]
-
+[[portfolio](team/johndoe.md)]
 * Role: Developer
 * Responsibilities:
 
