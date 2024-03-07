@@ -118,8 +118,8 @@ Examples:
 Finds students whose names contain any of the given keywords or whose ID matches givens student ID
 
 Formats: 
-* search by name: `find n/KEYWORD [MORE_KEYWORDS]`
-* search by student ID: `find id/STUDENT_ID`
+* search by name: `find [n/NAME]`
+* search by student ID: `find [id/STUDENT_ID]`
 
 * The search is case-insensitive. e.g `john` will match `John`, `a1234567x` will match `A1234567X`
 * Only the name or student id is searched.
