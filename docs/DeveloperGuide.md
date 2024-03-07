@@ -444,6 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Client Profile**: Details of customer of the Real Esate Agent looking to buy / sell / rent a property
+* **Command Line Interface (CLI)**: A text-based interface used to interact with the software by entering commands into a terminal or console window, typically preferred by users who prefer efficiency and automation.
 
 --------------------------------------------------------------------------------------------------------------------
 
