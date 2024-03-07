@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ethan Wei Yuxin
 
-<img src="images/ethanwei.png" width="200px">
+<img src="images/belligerentbeagle.png" width="200px">
 
 [[homepage](http://www.ethanwei.me)]
 [[github](https://github.com/belligerentbeagle)]
@@ -22,19 +22,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Software Engineer
 * Responsibilities: Software Development
 
-### Sai UtKarsh
+### Sai Utkarsh
 
-<img src="images/sai.png" width="200px">
+<img src="images/saiutkarsh33.png" width="200px">
 
 [[github](https://github.com/saiutkarsh33)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/sai.md)]
 
 * Role: Software Engineer
 * Responsibilities: Software Development
 
 ### Titus Chew 
 
-<img src="images/titus.png" width="200px">
+<img src="images/tituschewxj.png" width="200px">
 
 [[github](http://github.com/tituschewxj)] 
 [[portfolio](team/titus.md)]
@@ -43,9 +43,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Software Development
 
 
-### Wu Xiao Yun
+### Wu Xiaoyun
 
-<img src="images/xiaoyun.png" width="200px">
+<img src="images/foraeons.png" width="200px">
 
 [[github](http://github.com/ForAeons)]
 [[portfolio](team/xiaoyun.md)]
@@ -56,7 +56,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Anant Shanker
 
-<img src="images/anant.png" width="200px">
+<img src="images/anant1902.png" width="200px">
 
 [[github](http://github.com/anant1902)]
 [[portfolio](team/anant.md)]
