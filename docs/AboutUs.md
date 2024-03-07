@@ -11,15 +11,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Damith C. Rajapakse
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/damithc.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/damithc)]
 
 * Role: Project Advisor
+
+### Darryl Chan
+
+<img src="images/darryl-chan.png" width="200px">
+
+[[github](http://github.com/darryl-chan)]
+[[portfolio](team/darryl-chan.md)]
+
+* Role: Developer
+* Responsibilities: model
 
 ### Shang Feiyang
 
@@ -33,29 +42,39 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jia Jun
 
-<img src="images/tanjiajun.png" width="200px">
+<img src="images/tanjiajiajun.png" width="200px">
 
 [[github](https://github.com/tanjiajiajun)] [[portfolio](team/jiajun.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation + Code Quality
 
-### Jean Doe
+### Jeremiah Lim Zhi Zhong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jeremiahlzz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jeremiahlzz)]
+[[portfolio](team/jeremiah.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration
+
+### Marcus Lam
+
+<img src="images/marclamp.png" width="200px">
+
+[[github](http://github.com/marclamp)]
+[[portfolio](team/marcuslam.md)]
+
+* Role: Developer
+* Responsibilities:
+
+### Matthew Elmer Ken
+
+<img src="images/matthewken19.png" width="200px">
+
+[[github](http://github.com/matthewken19)]
+[[portfolio](team/matthewken19.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
