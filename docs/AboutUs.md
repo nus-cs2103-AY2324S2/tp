@@ -7,7 +7,7 @@ We are the developer team of Eventy, an event management app, based in the [Scho
 ### Nigel Lee
 <img src="images/apzure.png" width="180px" height="200px">
 
-[github](https://github.com/Apzure)
+[[github](https://github.com/Apzure)]
 
 **Roles and Responsibilities:**
 - Team Lead, Scheduling and Tracking
@@ -17,7 +17,7 @@ We are the developer team of Eventy, an event management app, based in the [Scho
 ### Han Taewon
 <img src="images/taeewonnn.png" width="180px" height="200px">
 
-[github](https://github.com/taeewonnn)
+[[github](https://github.com/taeewonnn)]
 
 **Roles and Responsibilities:**
 - Documentation, Deliverables and Deadlines
@@ -27,7 +27,7 @@ We are the developer team of Eventy, an event management app, based in the [Scho
 ### Max Yang
 <img src="images/myang2020.png" width="180px" height="200px">
 
-[github](https://github.com/myang2020)
+[[github](https://github.com/myang2020)]
 
 **Roles and Responsibilities:**
 - Testing
@@ -36,7 +36,7 @@ We are the developer team of Eventy, an event management app, based in the [Scho
 ### Liu Yifan
 <img src="images/nusliuyifan.png" width="180px" height="200px">
 
-[github](https://github.com/nusliuyifan)
+[[github](https://github.com/nusliuyifan)]
 
 **Roles and Responsibilities:**
 - Integration
@@ -47,7 +47,7 @@ We are the developer team of Eventy, an event management app, based in the [Scho
 ### Yichao Song
 <img src="images/chocoragdoll.png" width="180px" height="200px">
 
-[github](https://github.com/ChocoRagdoll)
+[[github](https://github.com/ChocoRagdoll)]
 
 **Roles and Responsibilities:**
 - Code Quality
