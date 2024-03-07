@@ -2,6 +2,7 @@ package educonnect.ui;
 
 import java.util.logging.Logger;
 
+import educonnect.MainApp;
 import educonnect.commons.core.LogsCenter;
 import educonnect.commons.util.StringUtil;
 import educonnect.logic.Logic;
@@ -10,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import educonnect.MainApp;
 
 /**
  * The manager of the UI component.

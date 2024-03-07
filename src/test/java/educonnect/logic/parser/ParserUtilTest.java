@@ -1,10 +1,10 @@
 package educonnect.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static educonnect.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static educonnect.testutil.Assert.assertThrows;
 import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,9 +1,8 @@
 package educonnect.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static educonnect.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
-import educonnect.commons.util.AppUtil;
 
 /**
  * Represents a Person's name in the address book.
@@ -29,7 +28,7 @@ public class Name {
      */
     public Name(String name) {
         requireNonNull(name);
-        AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
 

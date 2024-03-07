@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import educonnect.commons.exceptions.DataLoadingException;
 import educonnect.commons.core.Config;
-
+import educonnect.commons.exceptions.DataLoadingException;
 /**
  * A class for accessing the Config File.
  */

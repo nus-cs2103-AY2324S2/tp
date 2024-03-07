@@ -1,10 +1,10 @@
 package educonnect.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static educonnect.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static educonnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static educonnect.testutil.Assert.assertThrows;
 import static educonnect.testutil.TypicalPersons.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -14,9 +14,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import educonnect.logic.commands.CommandTestUtil;
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.commands.CommandResult;
+import educonnect.logic.commands.CommandTestUtil;
 import educonnect.logic.commands.ListCommand;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.logic.parser.exceptions.ParseException;
@@ -43,7 +43,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonAddressBookStorage(temporaryFolder.resolve("educonnect.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);

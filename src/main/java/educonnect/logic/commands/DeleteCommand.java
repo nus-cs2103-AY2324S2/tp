@@ -6,10 +6,10 @@ import java.util.List;
 
 import educonnect.commons.core.index.Index;
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.logic.Messages;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.Model;
 import educonnect.model.person.Person;
-import educonnect.logic.Messages;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

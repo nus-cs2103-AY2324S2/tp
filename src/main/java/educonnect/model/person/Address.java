@@ -1,7 +1,6 @@
 package educonnect.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static educonnect.commons.util.AppUtil.checkArgument;
 
 import educonnect.commons.util.AppUtil;
 

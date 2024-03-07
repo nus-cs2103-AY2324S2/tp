@@ -1,7 +1,5 @@
 package educonnect.logic.commands;
 
-import static educonnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-
 import org.junit.jupiter.api.Test;
 
 import educonnect.model.AddressBook;

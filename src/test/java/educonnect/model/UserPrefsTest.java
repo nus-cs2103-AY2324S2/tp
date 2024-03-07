@@ -1,7 +1,5 @@
 package educonnect.model;
 
-import static educonnect.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
 
 import educonnect.testutil.Assert;

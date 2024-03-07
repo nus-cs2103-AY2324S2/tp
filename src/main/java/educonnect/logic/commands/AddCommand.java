@@ -1,17 +1,17 @@
 package educonnect.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static educonnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.logic.Messages;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.Model;
 import educonnect.model.person.Person;
-import educonnect.logic.Messages;
 
 /**
  * Adds a person to the address book.

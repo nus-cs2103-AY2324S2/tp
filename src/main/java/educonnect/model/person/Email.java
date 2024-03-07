@@ -1,9 +1,7 @@
 package educonnect.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static educonnect.commons.util.AppUtil.checkArgument;
-
-import educonnect.commons.util.AppUtil;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's email in the address book.
@@ -42,7 +40,7 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        AppUtil.checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
     }
 

@@ -1,7 +1,7 @@
 package educonnect.logic.commands.exceptions;
 
 /**
- * Represents an error which occurs during execution of a {@link Command}.
+ * Represents an error which occurs during execution of a {@link educonnect.logic.commands.Command}.
  */
 public class CommandException extends Exception {
     public CommandException(String message) {

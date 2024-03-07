@@ -1,9 +1,7 @@
 package educonnect.model.tag;
 
-import static java.util.Objects.requireNonNull;
 import static educonnect.commons.util.AppUtil.checkArgument;
-
-import educonnect.commons.util.AppUtil;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Tag in the address book.
@@ -23,7 +21,7 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        AppUtil.checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
 

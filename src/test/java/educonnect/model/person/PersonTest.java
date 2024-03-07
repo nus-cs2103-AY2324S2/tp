@@ -1,10 +1,5 @@
 package educonnect.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static educonnect.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +25,8 @@ public class PersonTest {
         Assertions.assertFalse(TypicalPersons.ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_BOB)
+        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_BOB)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         Assertions.assertTrue(TypicalPersons.ALICE.isSamePerson(editedAlice));
 
@@ -39,7 +35,8 @@ public class PersonTest {
         Assertions.assertFalse(TypicalPersons.ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(TypicalPersons.BOB).withName(CommandTestUtil.VALID_NAME_BOB.toLowerCase()).build();
+        Person editedBob = new PersonBuilder(TypicalPersons.BOB)
+                .withName(CommandTestUtil.VALID_NAME_BOB.toLowerCase()).build();
         Assertions.assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
@@ -89,8 +86,10 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + TypicalPersons.ALICE.getName() + ", phone=" + TypicalPersons.ALICE.getPhone()
-                + ", email=" + TypicalPersons.ALICE.getEmail() + ", address=" + TypicalPersons.ALICE.getAddress() + ", tags=" + TypicalPersons.ALICE.getTags() + "}";
+        String expected = Person.class.getCanonicalName() + "{name=" + TypicalPersons.ALICE.getName()
+                + ", phone=" + TypicalPersons.ALICE.getPhone()
+                + ", email=" + TypicalPersons.ALICE.getEmail() + ", address="
+                + TypicalPersons.ALICE.getAddress() + ", tags=" + TypicalPersons.ALICE.getTags() + "}";
         Assertions.assertEquals(expected, TypicalPersons.ALICE.toString());
     }
 }

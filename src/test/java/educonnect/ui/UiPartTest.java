@@ -1,8 +1,8 @@
 package educonnect.ui;
 
+import static educonnect.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static educonnect.testutil.Assert.assertThrows;
 
 import java.net.URL;
 import java.nio.file.Path;
@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import javafx.fxml.FXML;
 import educonnect.MainApp;
+import javafx.fxml.FXML;
 
 public class UiPartTest {
 
@@ -84,7 +84,7 @@ public class UiPartTest {
 
     /**
      * UiPart used for testing.
-     * It should only be used with invalid FXML files or the valid file located at {@link VALID_FILE_PATH}.
+     * It should only be used with invalid FXML files or the valid file located at {@link #VALID_FILE_PATH}.
      */
     private static class TestUiPart<T> extends UiPart<T> {
 

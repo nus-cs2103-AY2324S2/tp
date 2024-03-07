@@ -1,11 +1,11 @@
 package educonnect.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static educonnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,6 +17,7 @@ import java.util.Set;
 import educonnect.commons.core.index.Index;
 import educonnect.commons.util.CollectionUtil;
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.logic.Messages;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.Model;
 import educonnect.model.person.Address;
@@ -25,7 +26,6 @@ import educonnect.model.person.Name;
 import educonnect.model.person.Person;
 import educonnect.model.person.Phone;
 import educonnect.model.tag.Tag;
-import educonnect.logic.Messages;
 
 /**
  * Edits the details of an existing person in the address book.

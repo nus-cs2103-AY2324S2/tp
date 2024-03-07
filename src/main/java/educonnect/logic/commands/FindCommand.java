@@ -3,9 +3,9 @@ package educonnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.logic.Messages;
 import educonnect.model.Model;
 import educonnect.model.person.NameContainsKeywordsPredicate;
-import educonnect.logic.Messages;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

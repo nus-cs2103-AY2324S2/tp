@@ -8,12 +8,12 @@ import java.util.Set;
 
 import educonnect.commons.core.index.Index;
 import educonnect.commons.util.StringUtil;
+import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.person.Address;
 import educonnect.model.person.Email;
 import educonnect.model.person.Name;
 import educonnect.model.person.Phone;
 import educonnect.model.tag.Tag;
-import educonnect.logic.parser.exceptions.ParseException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

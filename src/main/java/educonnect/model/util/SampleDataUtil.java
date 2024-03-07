@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import educonnect.model.AddressBook;
+import educonnect.model.ReadOnlyAddressBook;
 import educonnect.model.person.Address;
 import educonnect.model.person.Email;
 import educonnect.model.person.Name;
 import educonnect.model.person.Person;
 import educonnect.model.person.Phone;
-import educonnect.model.AddressBook;
-import educonnect.model.ReadOnlyAddressBook;
 import educonnect.model.tag.Tag;
 
 /**
