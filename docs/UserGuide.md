@@ -96,9 +96,9 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit c/CUSTOMER_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person of the specified `CUSTOMER_ID`. The customer_id refers to the number shown in the person's contact under "customer id". The customer id **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -106,40 +106,99 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit c/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with customer_id of 1 to be `91234567` and `johndoe@example.com` respectively.
+*  `edit c/2 n/Betsy Crower t/` Edits the name of the person with customer_id of 2 to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons based on name, phone number or customer id.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME] [c/CUSTOMER_ID] [p/PHONE_NUMBER]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* At least one of the optional fields must be provided.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Persons matching at least one of the specified information will be returned (i.e. `OR` search).
+  Examples:
+* `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* `n/Hans Bo c/12` will return `Hans Bo`, as well as person with customer id `12`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find c/John` returns `john` and `John Doe`
+* `find c/alex` returns `Alex`<br>
+  ![result for 'find alex'](images/findAlexResult.png)
+* `find c/ 19` returns person with customer id of `19`
+* `find p/85012345` returns person with phone number of `85012345`
 
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete c/CUSTOMER_ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the person of the specified `CUSTOMER_ID`.
+* The customer_id refers to the number shown under customer id in the displayed person contact.
+* The customer_id **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete c/2` deletes the person with customer_id of `2` in the address book.
+* `find Betsy` followed by `delete c/1` deletes the person with customer_id of `1` in the results of the `find` command.
+
+### Creating of orders : `order`
+
+Assigns an order to a specified person in the address book.
+
+Format: `order p/PHONE_NUMBER`
+
+* Orders are assigned to person with specified `PHONE_NUMBER`.
+* Strack will prompt `Input Products`.
+* Follow up with products to be added to the order using the following format. Format: `pn/PRODUCT_NAME pq/PRODUCT_QUANTITY`.
+* This can be repeated as many times as necessary.
+* When done adding products, simply type `done`,
+
+Examples:
+* `order p/99887766` will create an order for person with phone number `99887766` followed by `pn/Cupcake pq/2` and `pn/Cookie pq/2` ending with `done` <br>
+![result for creating order for alex](images/addOrderResult.png) 
+<br>![system interaction for order creation](images/systemCreateOrder.png)
+
+### Editing of orders `edit`
+
+Edits an existing order of a specific person in the address book.
+
+Format: `edit o/ORDER_ID pn/PRODUCT_NAME pq/PRODUCT_QUANTITY`
+
+* `ORDER_ID` is a unique number for each order.
+* The order id refers to the number shown under order id in the displayed persons contact.
+* Products are edited based on `PRODUCT_NAME`.
+* To remove product from order, specify `PRODUCT_QUANTITY` as `0`.
+
+Example:
+* `edit o/1 pn/Chicken Pie pq/2 pn/Macaron pq/6` will edit the order with order id of 1 and change `Chiken Pie` quantity to `2` and `Macaron` quantity to `6`.
+
+### Listing of orders: `list orders`
+
+Lists all ongoing orders in the address book.
+
+Format: `list orders`
+
+* ongoing orders will be displayed sorted by `ORDER_ID`.
+* The order id refers to the number shown under order id in the displayed persons contact.
+
+Example:
+* `list orders` might display the following:
+![result for listing orders](images/listOrderResult.png)
+ 
+### Deleting of orders: `delete`
+
+Deletes an ongoing order in the address book.
+
+Format: `delete o/ORDER_ID`
+
+* `ORDER_ID` refers to the number shown under order id in the displayed persons contact.
+
+Example:
+* `delete o/19` will delete order with `ORDER_ID` of `19`.
 
 ### Clearing all entries : `clear`
 
@@ -191,8 +250,12 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Delete customer** | `delete c/CUSTOMER_ID`<br> e.g., `delete c/3`
+**Edit customer** | `edit c/CUSTOMER_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find [n/NAME] [c/CUSTOMER_ID] [p/PHONE_NUMBER]`<br> e.g., `find James Jake`
+**List contacts** | `list`
+**List orders** | `list orders`
+**Create order** | `order`
+**Delete order** | `delete o/ORDER_ID`
+**Edit order** | `edit o/ORDER_ID pn/PRODUCT_NAME pq/PRODUCT_QUANTITY`
 **Help** | `help`
