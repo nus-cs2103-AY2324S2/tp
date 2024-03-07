@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Justin Lim Chong Hwei
 
-<img src="images/justin.png" width="200px">
+<img src="images/justincred.png" width="200px">
 
 [[github](http://github.com/justincred)]
 * Role: Developer
