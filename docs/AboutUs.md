@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Yi-Sheng
 
-<img src="images/Ty-stan0417.png" width="200px">
+<img src="images/ty-stan0417.png" width="200px">
 
 [[github](http://github.com/Ty-stan0417)]
 [[portfolio](team/Ty-stan0417.md)]
@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Features and Documentation
 
-### James Doe
+### Shenoy Suraj Bantwal
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darkarche3.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Darkarche3)]
+[[portfolio](team/Darkarche3.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing
