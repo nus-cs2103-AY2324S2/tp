@@ -19,12 +19,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Ho Kai Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kaiting.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kaitinghh)]
+[[portfolio](https://www.linkedin.com/in/kai-ting-ho-425181268/)]
 
 * Role: Team Lead
 * Responsibilities: UI
