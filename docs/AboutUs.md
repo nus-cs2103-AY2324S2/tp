@@ -15,8 +15,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/Ko-Khan)]
 
-* Role: Project Advisor
-* Responsibilities: Data
+* Role: Developer
+* Responsibilities: Testing
 
 ### Benny Loh Choon Keong
 
@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/bennyLCK)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Integration
 
 ### Hamish Stewart Dawe
 
@@ -34,8 +34,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/H4mes)]
 
 * Role: Developer
-* Responsibilities: Data
-
+* Responsibilities: Deliverables + Deadlines
 ### Hyun Eunkyu
 
 <img src="images/howlong11.png" width="200px">
@@ -43,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/Howlong11)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Scheduling + Tracking
 
 ### Murugan Maniish
 
@@ -52,4 +51,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/Murugan-Maniish)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality
