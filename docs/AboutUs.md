@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Wang Junwu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/narwhalsilent.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/narwhalsilent)]
+[[portfolio](http://github.com/narwhalsilent)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: TBC
 
 ### James Doe
 
