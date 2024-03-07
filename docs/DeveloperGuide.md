@@ -396,8 +396,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Actor**: A user or any other system that interacts with the system being described
+* **API**: Abbreviation for Application Programming Interface, a set of rules and protocols that allows different software applications to communicate with each other
+* **Aspect**: A particular feature or consideration that needs to be taken into account when designing or implementing a system
+* **CLI**: Abbreviation for Command Line Interface, a text-based interface used for entering commands to interact with the application
+* **DevOps**: A set of practices that combines software development (Dev) and IT operations (Ops), aimed at shortening the systems development life cycle and providing continuous delivery with high software quality
+* **GUI**: Abbreviation for Graphical User Interface, a type of user interface that allows users to interact with the application through graphical icons and visual indicators, as opposed to text-based interfaces like command-line interfaces (CLI)
+* **JSON**: Abbreviation for JavaScript Object Notation, a lightweight data-interchange format that uses key-value pairs
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **MSS**: Abbreviation for Main Success Scenario, the main flow of events in a use case
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tag**: A label or identifier associated with a particular record or entity in the application
+* **UI**: Abbreviation for User Interface, refers to the interface through which users interact with the application
 
 --------------------------------------------------------------------------------------------------------------------
 
