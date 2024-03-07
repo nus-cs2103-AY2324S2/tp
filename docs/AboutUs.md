@@ -9,44 +9,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ho Kai Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kaiting.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/yyccbb)]
+[[github](https://github.com/kaitinghh)]
+[[portfolio](team/kaiting.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: 
 
-### Jane Doe
+### Wang Xinrong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wang-xinrong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/yyccbb)]
+[[github](http://github.com/wang-xinrong)]
+[[portfolio](team/wangxinrong.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Wong Kai Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wongkj12.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/yyccbb)]
+[[github](http://github.com/wongkj12)] [[portfolio](team/wongkj12.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Yong Kotaro
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yongkotaro.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/yyccbb)]
+[[github](http://github.com/yongkotaro)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI
 
 ### Yu Chenbo
 
