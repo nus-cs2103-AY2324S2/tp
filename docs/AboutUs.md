@@ -19,7 +19,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### James Sin
 
-<img src="images/jamessinmaojun.jpg" width="200px">
+<img src="images/jamessinmaojun.png" width="200px">
 
 [[github](http://github.com/jamessinmaojun)]
 [[portfolio](team/jamessinmaojun.md)]
