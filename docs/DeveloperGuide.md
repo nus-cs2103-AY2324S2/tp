@@ -467,8 +467,16 @@ Use case ends.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4. Should be able to handle up to 100 active (not archived) loans per contact without a noticeable sluggishness in
+   performance for typical
+   usage.
+5. Returned loans should be archived instead of deleted for future reference.
+6. The archived data should be stored for at least 3 years.
+7. Should be able to support multiple user sessions with password authentication on the same device.
+8. Archived data should be encrypted and only accessible by authorized users (admin and the user who created the data).
+9. Loan amounts should be in a single currency (e.g. USD, SGD, EUR, etc.) and should be formatted as per the currency
+   standards.
+10. Loan deadlines should not be more than 100 years from the date of loan creation.
 
 ### Glossary
 
