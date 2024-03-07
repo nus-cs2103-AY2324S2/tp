@@ -115,6 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        viewPanelPlaceHolder.setStyle("-fx-background: #383838");
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -126,6 +128,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+
     }
 
     /**
@@ -171,21 +175,21 @@ public class MainWindow extends UiPart<Stage> {
      * Views the person on the View Panel.
      */
     @FXML
-//    private void handleView(Person p, int displayIndex) {
-//        PersonCard viewPanel = new PersonCard(p, displayIndex);
-//        //ViewPanel viewPanel = new ViewPanel(p);
-//        //viewPanelPlaceHolder.getChildren().clear();
-//        viewPanelPlaceHolder.getChildren().add(viewPanel.getRoot());
-//    }
+    //    private void handleView(Person p, int displayIndex) {
+    //        PersonCard viewPanel = new PersonCard(p, displayIndex);
+    //        //ViewPanel viewPanel = new ViewPanel(p);
+    //        //viewPanelPlaceHolder.getChildren().clear();
+    //        viewPanelPlaceHolder.getChildren().add(viewPanel.getRoot());
+    //    }
 
-        private void handleView(Person p) {
-            ViewPanel viewPanel = new ViewPanel(p);
-            //viewPanelPlaceHolder.getChildren().clear();
-            VBox holder = viewPanelPlaceHolder.getContent() == null ? new VBox()
-                    : (VBox) viewPanelPlaceHolder.getContent();
-            holder.getChildren().add(viewPanel.getRoot());
-            viewPanelPlaceHolder.setContent(holder);
-        }
+    private void handleView(Person p) {
+        ViewPanel viewPanel = new ViewPanel(p);
+        //viewPanelPlaceHolder.getChildren().clear();
+        VBox holder = viewPanelPlaceHolder.getContent() == null ? new VBox()
+                : (VBox) viewPanelPlaceHolder.getContent();
+        holder.getChildren().add(viewPanel.getRoot());
+        viewPanelPlaceHolder.setContent(holder);
+    }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -209,14 +213,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.getViewPerson() != null) {
                 Person p = commandResult.getViewPerson();
                 handleView(p);
-                //handleView(p, 1);
             }
             if (commandResult.getViewList() != null) {
-                //int index = 1;
                 for (Person p : commandResult.getViewList()) {
                     handleView(p);
-                    //handleView(p, index);
-                    //index++;
                 }
             }
 
