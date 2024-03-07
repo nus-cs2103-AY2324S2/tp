@@ -21,13 +21,13 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Baskar Gopinath
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bgopi23.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/bgopi23)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities:
+- Role: Deadlines, deliverables and IntelliJ Expert
+- Responsibilities: Ensure project deliverables are done in time and help others with any IntelliJ issues
 
 ### Ng Wei Han, Ryan
 
