@@ -281,23 +281,23 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Our app is specifically designed for a director/in-charge of a band with a seamless and efficient way to manage and access their members' details. Also, our app is able to extend capabilities that help make managing a band easier. Makes 
+**Value proposition**: Our app is specifically designed for a director/in-charge of a band with a seamless and efficient way to manage and access their members' details. Also, our app is able to extend capabilities that help make managing a band easier. 
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                       | So that I can…​                                 |
-|----------|--------------------------------------------|------------------------------------|-------------------------------------------------|
-| `* * *`  | user                                       | create contact information         | keep track of members in the band               |
-| `* * *`  | user                                       | view contact & address information | organise transportation by area of residence    |
-| `* * *`  | user                                       | update contact information         | keep the address book current                   | `* *`    | user                                       | hide private contact details  | minimize chance of someone else seeing them by accident                |
-| `* * *`  | user                                       | delete contact information         | keep address book updated                       |
-| `* *`    | user                                       | indicate birthday information      | coordinate celebrations for the members         |
-| `* *`    | user                                       | view attendance history            | Monitor participation and follow up as necessary |
+| Priority | As a …​                                   | I want to …​                       | So that I can…​                                  |
+|----------|-------------------------------------------|------------------------------------|--------------------------------------------------|
+| `* * *`  | user                                      | create contact information         | keep track of members in the band                |
+| `* * *`  | user                                      | view contact & address information | organise transportation by area of residence     |
+| `* * *`  | user                                      | update contact information         | keep the address book current                    | `* *`    | user                                       | hide private contact details  | minimize chance of someone else seeing them by accident                |
+| `* * *`  | user                                      | delete contact information         | keep address book updated                        |
+| `* *`    | user                                      | indicate birthday information      | coordinate celebrations for the members          |
+| `* *`    | user                                      | view attendance history            | monitor participation and follow up as necessary |
+| `* *`    | user                                      | update attendance history          | have updated attendance records                  |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -310,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list members
 2.  BandBook shows a list of members
 3.  User requests to delete a specific members in the list
-4.  AddressBook deletes the members
+4.  BandBook deletes the members
 
     Use case ends.
 
@@ -326,15 +326,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a birthday to a member**
+
+**MSS**
+
+1.  User requests to list members
+2.  BandBook shows a list of members
+3.  User requests to add a birthday to a specific member in the list
+4.  BandBook updates the member's info to reflect their birthday
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. BandBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Mark attendance for a member**
+
+**MSS**
+
+1.  User requests to list members
+2.  BandBook shows a list of members
+3.  User requests to mark the attendance of specific members in the list
+4.  BandBook updates the members' info to reflect their attendance for a specific day
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given indexes are invalid.
+
+    * 3a1. BandBook shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+2.  Should be able to hold up to 1000 members without a noticeable sluggishness in performance for typical usage.
+3.  Functions should return results within 2 seconds to prevent the app from feeling too slow and irritating to use. 
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
