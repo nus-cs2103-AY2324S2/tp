@@ -53,7 +53,7 @@ integrating various parts of the software to create a whole.
 
 ### Choo Weng Yan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/choowengyan.png" width="200px">
 
 [[github](http://github.com/choowengyan)] 
 [[portfolio](https://ay2324s2-cs2103-f09-2.github.io/tp/)]
