@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Li Zizhen
 
-<img src="images/li_zizhen.png" width="200px">
+<img src="images/li-zizhen.png" width="200px">
 
 [[github](https://github.com/Li-Zizhen)]
 [[portfolio](team/johndoe.md)]
