@@ -20,7 +20,7 @@ clients, as well as suppliers, **all in one place** ☝🏻.
     * Search by name: Find a profile by their name.
     * Search by contact: Find a profile by their contact number.
 
-## User-Freindly Commands
+## User-Friendly Commands
 NetConnect uses simple CLI commands to make it easy for you to manage your contacts.
 
 ## Error Handling
