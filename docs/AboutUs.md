@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/wang-xinrong.png" width="200px">
 
-[[github](http://github.com/wnag-xinrong)]
+[[github](http://github.com/wang-xinrong)]
 [[portfolio](team/wangxinrong.md)]
 
 * Role: Developer
