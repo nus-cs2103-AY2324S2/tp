@@ -1,6 +1,6 @@
 ---
   layout: default.md
-  "About Us"
+  title: "About Us"
 ---
 
 # About Us
