@@ -12,11 +12,19 @@ You can reach us at the email `e0960005@comp.nus.edu`
 ### Lim Zi Jia
 
 <img src="images/limzijia.png" width="200px">
+* Role: Developer
+* Responsibilities: Testing + logic
 
 [[github](https://github.com/limzijia)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+### Gerard Jeremiah Matthew
+
+<img src="images/gerardjm018.png" width="200px">
+
+[[github](https://github.com/GERARDJM018)]
+
+* Role: Developer
+* Responsibilities: Scheduling and Tracking + Model
 
 ### Jane Doe
 

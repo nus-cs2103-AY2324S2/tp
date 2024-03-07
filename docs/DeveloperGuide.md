@@ -262,29 +262,59 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a busy operator of a housekeeping company
+* makes and receives calls to clients/housekeepers
+* is responsible for managing a team of housekeepers
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* works alone
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: HouseKeeping Hub is designed to revolutionise the way housekeeping companies manage their client relationships. By focusing on storing and organising client and housekeeper contacts, our system offers unparalleled efficiency and convenience for housekeeping customer service admins, leading to improved service delivery and customer satisfaction.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a/an …​              | I can …​                                                                 | So that …​                                                                        |
+|----------|-------------------------|--------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | operator                | view the list of contacts                                                | I can manage calling them if I have to.                                           |
+| `* * *`  | operator                | load contacts from a saved file                                          | I can maintain my contact list.                                                   |
+| `* * *`  | operator                | add/save the details of a new client/housekeeper                         | I can keep track of the list of the client/housekeeper.                           |
+| `* * *`  | operator                | remove the contact of clients/housekeepers by some criteria              | I can maintain a up-to-date and organised contact list.                           |
+| `* *`    | operator                | update a client/housekeeper's information                                | I will not get details wrong even if they change.                                 |
+| `* *`    | operator                | remove the whole contact list with one click                             | I can remove all dummy data that I have added for trial.                          |
+| `* *`    | operator                | retrieve details from specified contacts by their name or other criteria | I can save a lot of time to find specific clients and housekeepers.               |
+| `* *`    | operator                | check if clients that want a cleaning                                    | I can provide timely housekeeping services and get more revenue for the business. |
+| `* *`    | careless operator       | undo any accidental deletion or change made to the contact list          | I will not mess the contact list up.                                              |
+| `* *`    | operator                | check the preferred housekeeper and their availability                   | I can inform the client whether the service could be operated or no.              |
+| `* *`    | operator                | retrieve details of a scheduled service                                  | I can rectify on the ground situations.                                           |
+| `* *`    | operator                | check if a housekeeper is available                                      | I can schedule for cleaning in emergency scenarios.                               |
+| `* *`    | fast-typing operator    | quickly type CLI commands                                                | I can perform my task efficiently.                                                |
+| `* *`    | novice operator         | use the easy-to-remember and well defined commands                       | I can adapt to the role of the operator quickly.                                  |
+| `* *`    | operator                | access to the contact list from different devices or platforms           | I can manage the contact list on-the-go.                                          |
+| `* *`    | novice operator         | query for a help list of commands and how to use them                    | I can learn the functionalities of the app quickly.                               |
+| `* *`    | impatient operator      | the command to response quickly                                          | I can finish my job fast.                                                         |
+| `* *`    | operator                | diffrentiate between the clients and housekeeper data                    | I will not be confused by the data.                                               |
+| `* *`    | large company operator  | to be able to save more than 1000 client's data/contact                  | I can list all the company's client.                                              |
+| `* *`    | operator                | the company clients' data safe                                           | the clients can feel assured to give us their data.                               |
+| `* *`    | not tech savvy operator | the program to be easy to use                                            | I don't need extra time to study how to use the program.                          |
+| `* *`    | operator                | search and retrieve information quickly                                  | I can relay information in real time.                                             |
+| `* *`    | operator                | Save housekeeping session details                                        | I can prove a housekeeper has done the job.                                       |
+| `* *`    | operator                | sort the contact list by days to next preferred cleaning date            | I can remind clients to book their next service soon.                             |
+| `* *`    | operator                | sort the contact list by some parameters                                 | I can have a better visualisation of the data.                                    |
+| `* *`    | operator                | filter for housekeepers from some parameters                             | it is easier for me to schedule appointments.                                     |
+| `*`      | forgetful operator      | add tags to contacts                                                     | I can make notes on what I want to do with the contact.                           |
+| `*`      | operator                | import a contact list from an external file                              | I can easily transform existing contact information from other sources.           |
+| `*`      | Anxious Operator        | the program to have auto-save function                                   | I can feel assured if anything happen to my device.                               |
+| `*`      | Expert CLI user         | Define my own command aliases                                            | I can better optimise the speed of my work.                                       |
+| `*`      | operator                | Add multiple of each action at once                                      | I can improve my work flow.                                                       |
+| `*`      | operator                | group clients/housekeepers by certain features (area)                    | I can organise the data better and make better client-housekeeper matches.        |
 
-*{More to be added}*
+
 
 ### Use cases
 
@@ -318,15 +348,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+3.  A user not familiar with CLI but has an above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  All user operations should completed within 3 seconds.
+5.  Should lose no more than 2 user operations worth of work in case of system crash.
+6.  Should not take memory more than 200 MB while in operation.
+7.  Will not use a DataBase Management System e.g., MySQL, and PostgreSQL to store data. And hence, will use flat file as a storage.
+8.  Should be portable (able to work without requiring an installer).
+9.  Should not use or depend on a remote server.
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Short for Command Line Interface. User's of our application mainly interact with our program by typing commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
