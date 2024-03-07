@@ -275,7 +275,7 @@ Match streamlines volunteer management, facilitating efficient scheduling and co
 
 **User Stories**:
 
-Priority: High (must have) - `*`, Medium (nice to have) - `*`, Low (unlikely to have) - `_`
+Priority: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
 | Priority | As a … | I want to … | So that I can… |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
