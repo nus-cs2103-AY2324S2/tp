@@ -287,16 +287,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                                                       | I want to …​                                                 | So that I can…​                                                        |
+|----------|-------------------------------------------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                                                      | see usage instructions                                       | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Teaching Assistant                                                            | add a new student, prof, TA                                  | know how to contact them                                               |
+| `* * *`  | user                                                                          | delete a person                                              | remove entries that I no longer need                                   |
+| `* * *`  | Teaching Assistant                                                            | find a student by name or class                              | locate details of persons without having to go through the entire list |
+| `* * *`  | Teaching Assistant                                                            | Group students into classes                                  | know which class my student is in                                      |
+| `* * *`  | Teaching assistant                                                            | find my supervisor(s)                                        | Report any admin issues my students would raise                        |
+| `* * *`  | University student with different friend groups                               | Tag or categorize my contacts                                | Search by the friend groups I'm concerned with                         |
+| `* * *`  | Teaching Assistant who wants to meet up with Profs and students               | Schedule events to do so                                     | remind myself to meet up or know my free times.                        |
+| `* * *`  | Teaching Assistant with important people to report to or stay in contact with | pin important contacts                                       |                                                                        |
+| `* * *`  | Teaching Assistant who needs to announce information to his students          | copy a (group of) student(s)' contact info onto my clipboard | announce a message efficiently to many students                        |
+| `* *`    | Forgetful Teaching Assistant                                                  | A check for addition of duplicate contacts                   | can reduce clutter of my list                                          |
+| `* *`    | Teaching assistant who might mistype                                          | Have a Confirm Delete warning when doing deletions           | Provide a safety net in case I accidentally delete important info      |
+| `* *`    | Teaching assistant with many students                                         | Personalize contacts with photos                             | Attribute names to faces and distinguish similar names.                |
+| `* *`    | user                                                                          | hide private contact details                                 | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book                                    | sort persons by name                                         | locate a person easily                                                 |
+| `*`      | detail-oriented Teaching Assistant                                            | Add a note with additional information about the contact     | remind myself of things I may need to follow up on                     |
+| `*`      | Teaching assistant who tires from work                                        | use an app with a cheerful interface                         | feel encouraged / at peace                                             |
+| `*`      | Teaching assistant                                                            | import and export contact details to/from the app            | can easily shift to using this app, or another                         |
 
-*{More to be added}*
+
 
 ### Use cases
 
@@ -339,6 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. AddressBook shows an error message.
 
       Use case resumes at step 1.
+      
 * 2b. The given information is insufficient to form a contact.
 
     * 2b1. AddressBook shows an error message.
@@ -362,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. AddressBook shows an error message.
 
       Use case resumes at step 1.
-
+      
 * 2a. The contact does not exist.
 
     * 2a1. AddressBook shows an error message.
@@ -477,6 +490,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
+**Use case: schedules an event with a contact**
+
+**MSS**
+
+1.  User requests to schedule an event with a specific contact.
+2.  User inputs all necessary information into AddressBook in order for the event to be scheduled.
+3.  AddressBook creates the event and classifies it under the contact.
+
+**Extensions**
+
+* 1a. User uses the wrong format in his request.
+
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
+
+      Use case resumes at step 2.
+
+* 2a. The contact does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. The information required is not sufficiently inputted.
+
+    * 2a1. AddressBook shows an error message.
+    * 2a2. User has to request the classification again using a correct classifier
+
+      Use case resumes at step 1.
+
 
 
 ### Non-Functional Requirements
@@ -484,13 +527,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  A novice user should be able to learn basic operations (add, delete, search entries) within 30 minutes of using the documentation.
+5.  The system should respond within two seconds.
+6.  The system should be backward compatible with data produced by earlier versions of the system
+7.  The system should smoothly handle user input errors and system issues, providing meaningful error messages without crashing.
+8.  Comply with relevant data protection regulations, Personal Data Protection Act (PDPA) in handling personal information.
+9.  Adhere to recommended coding standards, such as readability, modularity, and application of design patterns, to make upgrades and maintenance simpler.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Teaching Assistant (TA)**: A student-tutor hired by NUS. TAs are responsible for conducting tutorial lessons and assist in the students' learning whenever required.
 
 --------------------------------------------------------------------------------------------------------------------
 

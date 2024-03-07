@@ -79,16 +79,16 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A person can have 0 or 1 tag
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add id/E1234567 n/John Doe p/98765432 e/johnd@example.com`
+* `add id/E7654321 n/Betsy Crowe t/student e/betsycrowe@example.com p/1234567`
 
 ### Listing all persons : `list`
 
