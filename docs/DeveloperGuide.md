@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should have an intuitive and user-friendly interface, making it easy for the user to navigate, input, and retrieve client information and appoinments efficiently.
+4.  Should have an intuitive and user-friendly interface, making it easy for the user to navigate, input, and retrieve client information and appointments efficiently.
 5.  Should come with comprehensive documentation and user support to assist users in using the app effectively and troubleshooting any issues that may arise.
 6.  Should be stable and dependable, minimizing the risk of crashes or data loss, and ensuring that appointments and client information are accurately stored and retrieved.
 7.  Should be able to accomodate the growing number of clients and appointments without a significant decrease in performance or usability.
