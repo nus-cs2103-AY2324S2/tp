@@ -76,9 +76,10 @@ Format: `add -i INDEX`
 Examples:
 * `add -i 5`
 
-
 <box type="warning" seamless>
-**Caution:** Ensure you have selected an event.
+**Caution:** 
+* `<index>` should be within valid range
+* Duplicate participants within event is **not allowed.**
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
