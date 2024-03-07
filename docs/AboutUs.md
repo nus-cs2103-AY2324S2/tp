@@ -51,11 +51,13 @@ integrating various parts of the software to create a whole.
 * Role: Deliverables and deadlines
 * Responsibilities: Ensure project deliverables are done on time and in the right format.
 
-### Johnny Doe
+### Choo Weng Yan
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/choowengyan)] 
+[[portfolio](https://ay2324s2-cs2103-f09-2.github.io/tp/)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Scheduling and tracking
+* Responsibilities: Ensure that team's task is scheduled properly based on each iteration and milestone, 
+optimizing project timeline, updating task status and providing accurate information.
