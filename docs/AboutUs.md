@@ -13,6 +13,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jay Hong
 
+<img src="images/hjungwoo01.png" width="200px">
+
+[[github](https://github.com/hjungwoo01)] [[portfolio](team/hjungwoo01.md)]
+
+- Role: Developer
+- Responsibilities: Team lead, Integration, Deliverables and deadlines
+
 ### Priyansh Bimbisariye
 
 <img src="images/priyanshbimbisariye.png" width="200px">
@@ -30,3 +37,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Developer
 - Responsibilities: Documentation, Deliverables and deadlines
+
+### Que Linxiao
+
+<img src="images/quelinxiao.png" width="200px">
+
+[[github](http://github.com/quelinxiao)] [[portfolio](team/quelinxiao.md)]
+
+- Role: Developer
+- Responsibilities: Testing, Deliverables and deadlines
+
