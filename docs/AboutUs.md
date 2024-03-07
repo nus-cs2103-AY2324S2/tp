@@ -31,9 +31,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Yi Jing
 
-<img src="images/yj.png" width="200px">
+<img src="images/lalelulilulela.png" width="200px">
 
-[[github](http://github.com/Lalelulilulela)] [[portfolio](team/yj.md)]
+[[github](http://github.com/Lalelulilulela)] [[portfolio](team/Lalelulilulela.md)]
 
 * Role: Developer
 * Responsibilities: Data
