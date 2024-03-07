@@ -9,19 +9,19 @@
 <!-- * Table of Contents -->
 <page-nav-print />
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Acknowledgements**
 
 _{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
@@ -29,35 +29,36 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
-* At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
-* At shut down, it shuts down the other components and invokes cleanup methods where necessary.
+
+- At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
+- At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
 The bulk of the app's work is done by the following four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -77,10 +78,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -112,21 +113,22 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
@@ -136,7 +138,6 @@ The `Model` component,
 
 </box>
 
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -144,15 +145,16 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -164,9 +166,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -193,7 +195,6 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
 
 <box type="info" seamless>
 
@@ -240,14 +241,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -255,18 +257,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -274,28 +275,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* needs to manage contacts of a growing population of employees
-* prefers to use CLI over GUI
-* can type fast
-* values efficiency, transparency, and effective communication
-* wants an app that works with different OS
+- needs to manage contacts of a growing population of employees
+- prefers to use CLI over GUI
+- can type fast
+- values efficiency, transparency, and effective communication
+- wants an app that works with different OS
 
 **Value proposition**: manage contacts in an efficient manner using CLI app
-
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                      | So that I can…​                                       |
-|----------|--------------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------|
-| `* * *`  | small business owner                       | easily add new contacts to my database  | quickly message and nurture my employees              |
-| `* * *`  | busy professional                          | access my contact information from my computer                    | stay organized and responsive even when I'm on the go |
-| `* * *`  | user                                       | add new contacts to my address book                               | easily store their information                        |
-| `* * *`  | user                                       | delete contacts I no longer need                                  | keep my address book organized                        |
-| `* * *`  | user                                       | view a complete list of all my contacts                           | browse through them easily                            |
+| Priority | As a …​              | I want to …​                                   | So that I can…​                                       |
+| -------- | -------------------- | ---------------------------------------------- | ----------------------------------------------------- |
+| `* * *`  | small business owner | easily add new contacts to my database         | quickly message and nurture my employees              |
+| `* * *`  | busy professional    | access my contact information from my computer | stay organized and responsive even when I'm on the go |
+| `* * *`  | user                 | add new contacts to my address book            | easily store their information                        |
+| `* * *`  | user                 | delete contacts I no longer need               | keep my address book organized                        |
+| `* * *`  | user                 | view a complete list of all my contacts        | browse through them easily                            |
 
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
@@ -306,13 +306,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Actor:** User
 
 1. **User adds a new contact:**
+
    - Command: `add contact /name Jane Smith /email jane@example.com /number 9876543210`
 
 2. **ContactSwift processes the command:**
+
    - Validates the command format and required details.
    - Generates a unique ID for the new contact.
 
 3. **ContactSwift updates the address book:**
+
    - Adds the contact details to the in-memory database.
    - Sends a success message to the user.
 
@@ -327,19 +330,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Actor:** User
 
 1. **User identifies the contact to delete:**
+
    - Command: `list all`
 
 2. **ContactSwift displays the contact list:**
+
    - User identifies the contact to delete, e.g., with the ID 5678.
 
 3. **User initiates the deletion:**
+
    - Command: `delete contact /id 5678`
 
 4. **ContactSwift processes the deletion:**
+
    - Verifies the command format and the contact ID.
    - Deletes the contact if conditions are met.
 
 5. **ContactSwift updates the address book:**
+
    - Removes the contact from the in-memory database.
    - Sends a confirmation message to the user.
 
@@ -354,13 +362,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Actor:** User
 
 1. **User meets a new contact at a networking event:**
+
    - Command: `add contact /name Sam Johnson /email sam@example.com /number 5551234567`
 
 2. **ContactSwift processes the command:**
+
    - Validates the command format and required details.
    - Generates a unique ID for the new contact.
 
 3. **ContactSwift updates the address book:**
+
    - Adds the contact details to the in-memory database.
    - Sends a success message to the user.
 
@@ -368,48 +379,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    - Command: `list all`
    - ContactSwift displays the updated list with Sam Johnson's details.
 
-*{More to be added}*
+_{More to be added}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Cross-Platform Compatibility: Must be executable on any mainstream operating system (Windows, macOS, Linux) with Java Runtime Environment (JRE) version 11 or above installed. This ensures that the application can serve a wide user base without being restricted by their OS choice.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The design and user interaction model of the software should cater to users with above-average typing speeds for regular English text. It implies that the command-line interface (CLI) or similar input methods should allow for faster task accomplishment compared to traditional graphical user interface (GUI) interactions involving the mouse. This would include quick command shortcuts for adding, deleting, and searching for contacts, among other actions.
+5.  Intuitive User Interface: Despite the focus on efficiency and command-line usage, the software should still offer an intuitive interface for those moments when a user prefers or needs to interact with the software in a more traditional manner. This includes clear visual cues, easy navigation, and minimalistic design to reduce cognitive load.
+6.  Data Security: The software should ensure that private contact details are stored securely and are not accessible to unauthorized users. This includes encryption of sensitive data and secure access control mechanisms.
+7.  Data Integrity: The software should ensure that contact details are stored accurately and are not lost or corrupted due to software errors or hardware failures. This includes regular data backups and error-checking mechanisms.
+8.  Portability: As a Java application packaged in a .jar file, it should ensure that all dependencies are included or easily resolvable, making the application easily portable and runnable across different systems without additional setup.
+9.  All operations should run in under 0.5 seconds for a typical user with a typical address book size (1000 persons).
+10. Should work well with 500 MB of memory, and should not consume more than 0.5 GB of memory for a typical user with a typical address book size (50k persons).
 
-*{More to be added}*
+<!-- *{More to be added}* -->
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Quick Contact Addition**: Allows users to rapidly add new contacts to their address book during networking events. Generates a unique ID for each contact.
+- **Mainstream OS**: Windows, Linux, Unix, MacOS
+- **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Quick Contact Addition**: Allows users to rapidly add new contacts to their address book during networking events. Generates a unique ID for each contact.
 
-* **Command Format**: The syntax used to input commands in ContactSwift. Example commands include adding or deleting contacts, and the format must be followed for successful execution.
+- **Command Format**: The syntax used to input commands in ContactSwift. Example commands include adding or deleting contacts, and the format must be followed for successful execution.
 
-* **Contact Deletion**: Enables users to remove contacts they no longer need, contributing to the organization of their address book. Requires a valid contact ID for deletion.
+- **Contact Deletion**: Enables users to remove contacts they no longer need, contributing to the organization of their address book. Requires a valid contact ID for deletion.
 
-* **Contact Information Storage**: Allows users to store detailed information about their contacts for easy reference. In the initial version, information is stored in memory to simulate a database, text file, or CSV file.
+- **Contact Information Storage**: Allows users to store detailed information about their contacts for easy reference. In the initial version, information is stored in memory to simulate a database, text file, or CSV file.
 
-* **All Contacts List Display**: Provides users with a complete list of all their contacts for easy browsing and reference. Users can request the display of all contacts with their details in a user-friendly format.
+- **All Contacts List Display**: Provides users with a complete list of all their contacts for easy browsing and reference. Users can request the display of all contacts with their details in a user-friendly format.
 
-* **Contact ID**: A unique identifier assigned to each contact. Used in commands such as deleting a contact to specify the target contact.
+- **Contact ID**: A unique identifier assigned to each contact. Used in commands such as deleting a contact to specify the target contact.
 
-* **Acceptable Values**: The valid input criteria for various fields such as contact name, email, and phone number. Ensures that the entered data meets the required format.
+- **Acceptable Values**: The valid input criteria for various fields such as contact name, email, and phone number. Ensures that the entered data meets the required format.
 
-* **Expected Outputs**: The successful outcomes or confirmation messages expected after executing specific commands, such as adding or deleting contacts.
+- **Expected Outputs**: The successful outcomes or confirmation messages expected after executing specific commands, such as adding or deleting contacts.
 
-* **Failure Outputs**: Error messages generated when there are issues, such as missing details or incorrect command formats. Communicates problems to the user for troubleshooting.
+- **Failure Outputs**: Error messages generated when there are issues, such as missing details or incorrect command formats. Communicates problems to the user for troubleshooting.
 
-* **Mainstream OS**: Refers to widely used operating systems including Windows, Linux, Unix, and MacOS. ContactSwift is designed to work seamlessly across these platforms.
+- **Mainstream OS**: Refers to widely used operating systems including Windows, Linux, Unix, and MacOS. ContactSwift is designed to work seamlessly across these platforms.
 
-* **Private Contact Detail**: A contact detail that is not meant to be shared with others. Ensures the confidentiality of certain information stored in the address book.
+- **Private Contact Detail**: A contact detail that is not meant to be shared with others. Ensures the confidentiality of certain information stored in the address book.
 
-* **Must-have Features**: Quick Contact Addition, Contact Deletion, Contact Information Storage, and All Contacts List Display. Core functionalities essential for addressing the needs of business owners and managers.
+- **Must-have Features**: Quick Contact Addition, Contact Deletion, Contact Information Storage, and All Contacts List Display. Core functionalities essential for addressing the needs of business owners and managers.
 
-* **Good to Have Features**: Additional functionalities that enhance user experience, such as tags and remarks while adding contacts, searching specific contacts, filtering based on tags, and a favorites option for quick lookup.
+- **Good to Have Features**: Additional functionalities that enhance user experience, such as tags and remarks while adding contacts, searching specific contacts, filtering based on tags, and a favorites option for quick lookup.
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -418,7 +435,7 @@ Given below are instructions to test the app manually.
 <box type="info" seamless>
 
 **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+testers are expected to do more _exploratory_ testing.
 
 </box>
 
@@ -435,7 +452,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
