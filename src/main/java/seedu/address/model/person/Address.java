@@ -22,6 +22,7 @@ public class Address {
     /**
      * Constructs an {@code Address}.
      *
+     *
      * @param address A valid address.
      */
     public Address(String address) {
