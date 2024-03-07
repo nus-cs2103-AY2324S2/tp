@@ -11,25 +11,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Jay Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hjungwoo01.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/hjungwoo01)] [[portfolio](team/hjungwoo01.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: Team lead, Integration, Deliverables and deadlines
 
-### Jane Doe
+### Priyansh Bimbisariye
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/priyanshbimbisariye.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/PyromancerBoom)] [[portfolio](team/priyanshbimbisariye.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Scheduling and Tracking, Deliverables and deadlines
 
 ### Shayaan Sultan
 
@@ -37,18 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/shayaansultan)] [[portfolio](team/shayaansultan.md)]
 
-* Role: Developer
-* Responsibilities: Documentation, Deliverables and deadlines
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Documentation, Deliverables and deadlines
 
 ### Que Linxiao
 
@@ -56,5 +44,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/quelinxiao)] [[portfolio](team/quelinxiao.md)]
 
-* Role: Developer
-* Responsibilities: Testing, Deliverables and deadlines
+- Role: Developer
+- Responsibilities: Testing, Deliverables and deadlines
+

@@ -274,13 +274,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* needs to manage contacts of a growing population of employees
+* prefers to use CLI over GUI
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* values efficiency, transparency, and effective communication
+* wants an app that works with different OS
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts in an efficient manner using CLI app
 
 
 ### User stories
@@ -299,30 +299,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+#### **Use Case: Add Contact for ContactSwift v1.2**
 
-**Use case: Delete a person**
+**System:** ContactSwift v1.2
 
-**MSS**
+**Actor:** User
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. **User adds a new contact:**
+   - Command: `add contact /name Jane Smith /email jane@example.com /number 9876543210`
 
-    Use case ends.
+2. **ContactSwift processes the command:**
+   - Validates the command format and required details.
+   - Generates a unique ID for the new contact.
 
-**Extensions**
+3. **ContactSwift updates the address book:**
+   - Adds the contact details to the in-memory database.
+   - Sends a success message to the user.
 
-* 2a. The list is empty.
+4. **User verifies the addition:**
+   - Command: `list all`
+   - ContactSwift displays the updated list with Jane Smith's details.
 
-  Use case ends.
+#### **Use Case: Delete Contact for ContactSwift v1.2**
 
-* 3a. The given index is invalid.
+**System:** ContactSwift v1.2
 
-    * 3a1. AddressBook shows an error message.
+**Actor:** User
 
-      Use case resumes at step 2.
+1. **User identifies the contact to delete:**
+   - Command: `list all`
+
+2. **ContactSwift displays the contact list:**
+   - User identifies the contact to delete, e.g., with the ID 5678.
+
+3. **User initiates the deletion:**
+   - Command: `delete contact /id 5678`
+
+4. **ContactSwift processes the deletion:**
+   - Verifies the command format and the contact ID.
+   - Deletes the contact if conditions are met.
+
+5. **ContactSwift updates the address book:**
+   - Removes the contact from the in-memory database.
+   - Sends a confirmation message to the user.
+
+6. **User verifies the deletion:**
+   - Command: `list all`
+   - ContactSwift displays the updated list without the deleted contact.
+
+#### **Use Case: Quick Contact Addition for ContactSwift v1.2**
+
+**System:** ContactSwift v1.2
+
+**Actor:** User
+
+1. **User meets a new contact at a networking event:**
+   - Command: `add contact /name Sam Johnson /email sam@example.com /number 5551234567`
+
+2. **ContactSwift processes the command:**
+   - Validates the command format and required details.
+   - Generates a unique ID for the new contact.
+
+3. **ContactSwift updates the address book:**
+   - Adds the contact details to the in-memory database.
+   - Sends a success message to the user.
+
+4. **User verifies the addition:**
+   - Command: `list all`
+   - ContactSwift displays the updated list with Sam Johnson's details.
 
 *{More to be added}*
 
@@ -338,6 +382,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Quick Contact Addition**: Allows users to rapidly add new contacts to their address book during networking events. Generates a unique ID for each contact.
+
+* **Command Format**: The syntax used to input commands in ContactSwift. Example commands include adding or deleting contacts, and the format must be followed for successful execution.
+
+* **Contact Deletion**: Enables users to remove contacts they no longer need, contributing to the organization of their address book. Requires a valid contact ID for deletion.
+
+* **Contact Information Storage**: Allows users to store detailed information about their contacts for easy reference. In the initial version, information is stored in memory to simulate a database, text file, or CSV file.
+
+* **All Contacts List Display**: Provides users with a complete list of all their contacts for easy browsing and reference. Users can request the display of all contacts with their details in a user-friendly format.
+
+* **Contact ID**: A unique identifier assigned to each contact. Used in commands such as deleting a contact to specify the target contact.
+
+* **Acceptable Values**: The valid input criteria for various fields such as contact name, email, and phone number. Ensures that the entered data meets the required format.
+
+* **Expected Outputs**: The successful outcomes or confirmation messages expected after executing specific commands, such as adding or deleting contacts.
+
+* **Failure Outputs**: Error messages generated when there are issues, such as missing details or incorrect command formats. Communicates problems to the user for troubleshooting.
+
+* **Mainstream OS**: Refers to widely used operating systems including Windows, Linux, Unix, and MacOS. ContactSwift is designed to work seamlessly across these platforms.
+
+* **Private Contact Detail**: A contact detail that is not meant to be shared with others. Ensures the confidentiality of certain information stored in the address book.
+
+* **Must-have Features**: Quick Contact Addition, Contact Deletion, Contact Information Storage, and All Contacts List Display. Core functionalities essential for addressing the needs of business owners and managers.
+
+* **Good to Have Features**: Additional functionalities that enhance user experience, such as tags and remarks while adding contacts, searching specific contacts, filtering based on tags, and a favorites option for quick lookup.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
