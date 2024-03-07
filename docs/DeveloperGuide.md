@@ -326,7 +326,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tutor**: A teaching assistant for CS2103T
+* **Student**: A student taking CS2103T
+* **Tag**: A label that can be attached to the student. It is used to mark the attendance for a specific week.
+* **Attendance Status**: The current state of a student's attendance. 
+* **Contact Entry**: Contact information of either a student or a tutor, containing the name, phone number, email, and attendance status.
 
 --------------------------------------------------------------------------------------------------------------------
 
