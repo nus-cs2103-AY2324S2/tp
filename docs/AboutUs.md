@@ -40,7 +40,7 @@ You can reach us at the email `xxxxxx@u.nus.edu`
 
 ### Ong Zhi Li
 
-<img src="images/ongzhili.PNG" width="200px">
+<img src="images/ongzhili.png" width="200px">
 
 [[github](http://github.com/ongzhili)]
 [[portfolio](team/ongzhili.md)]
