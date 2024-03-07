@@ -333,20 +333,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ClientCare` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add a new client**
+**Use case: UC01 - List all clients**
 
 **MSS**
-1. User requests to add new client.
-2. ClientCare adds the new client to the list.
-3. ClientCare shows a success message and <u>display view of new client details and policies (UC02)</u>.<br>
-   Use case ends.
+1.  User requests to view all clients.
+2.  ClientCare shows a list of all clients.<br>
+    Use case ends.
 
 **Extensions**
-* 1a. ClientCare detects invalid command usage or information.
-    * 1a1. ClientCare shows an error message.
-    * 1a2. User enters new data.<br>
-    Steps 1a1-1a2 are repeated until the data entered are correct.<br>
-    Use case resumes from step 2.
+* 1a. The list is empty as no clients have been added at all.<br>
+  * 1a1. ClientCare notifies that the list is empty.<br>
+    Use case ends.
 
 
 **Use case: UC02 - View client details and policies**
@@ -358,30 +355,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. ClientCare detects that the client does not exist or invalid command usage.
-    * 1a1. ClientCare shows an error message.<br>
-    * 1a2. User enters new data.<br>
-      Steps 1a1-1a2 are repeated until the data entered are correct.<br>
-      Use case resumes from step 2.
+  * 1a1. ClientCare shows an error message.<br>
+  * 1a2. User enters new data.<br>
+    Steps 1a1-1a2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.
 
 
-**Use case: UC03 - List all clients**
+**Use case: UC03 - Add a new client**
 
 **MSS**
-1.  User requests to view all clients.
-2.  ClientCare shows a list of all clients.<br>
+1.  User requests to add new client.
+2.  ClientCare adds the new client to the list.
+3.  ClientCare shows a success message and <u>display view of new client details and policies (UC02)</u>.<br>
     Use case ends.
 
 **Extensions**
-* 1a. The list is empty as no clients have been added at all.<br>
-    * 1a1. ClientCare notifies that the list is empty.<br>
-      Use case ends.
+* 1a. ClientCare detects invalid command usage or information.
+  * 1a1. ClientCare shows an error message.
+  * 1a2. User enters new data.<br>
+    Steps 1a1-1a2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.
 
 
-**Use case: Find a client by name**
+**Use case: UC04 - Find a client by name**
 
 **MSS**
-1.  User requests to find a specific client in the list by name
-2.  ClientCare shows list of client that matches the name<br>
+1.  User requests to find a specific client in the list by name.
+2.  ClientCare shows list of client that matches the name.<br>
     Use case ends.
 
 **Extensions**
@@ -389,78 +389,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: Delete a client**
+**Use case: UC05 - Delete a client**
 
 **MSS**
-1.  User requests to list clients or find client by name
-2.  ClientCare shows a list of clients
-3.  User requests to delete a specific client in the list by index
-4.  ClientCare deletes the client<br>
+1.  User requests to <u>list all clients (UC01)</u> or <u>find client by name (UC04)</u>.
+2.  ClientCare shows a list of clients.
+3.  User requests to delete a specific client in the list by index.
+4.  ClientCare deletes the client.<br>
     Use case ends.
 
 **Extensions**
 * 2a. The list is empty.<br>
   Use case ends.
 * 3a. The given index is invalid.
-    * 3a1. ClientCare shows an error message.<br>
-      Use case resumes at step 2.
+  * 3a1. ClientCare shows an error message.<br>
+    Use case resumes at step 2.
 
-**Use case: Schedule**
+
+**Use case: UC06 - Schedule an appointment with client**
 
 **MSS**
-
-1.  User schedules a date and time to meet with a client
-2.  ClientCare sets up the appointment
-
+1.  User schedules a date and time to meet with a client.
+2.  ClientCare sets up the appointment.<br>
     Use case ends.
 
 **Extensions**
-
 * 1a. Date and time is invalid.
-
-    * 1a1. ClientCare shows an error message.
-
-  Use case ends.
-
+  * 1a1. ClientCare shows an error message.<br>
+    Use case ends.
 * 1b. Date and time has past.
+  * 1b1. ClientCare shows an error message.<br>
+    Use case ends.
 
-    * 1b1. ClientCare shows an error message.
 
-  Use case ends.
-
-**Use case: Last Met**
+**Use case: UC07 - Update client as met**
 
 **MSS**
-
-1.  User marks a client as met
-2.  ClientCare updates Last Met date of client
-
+1.  User marks a client as met.
+2.  ClientCare updates Last Met date of client.<br>
     Use case ends.
 
 **Extensions**
-
 * 1a. Client does not exist.
+  * 1a1. ClientCare shows an error message.<br>
+    Use case ends.
 
-    * 1a1. ClientCare shows an error message.
 
-  Use case ends.
-
-**Use case: Mark**
+**Use case: UC08 - Mark appointment**
 
 **MSS**
-
-1.  User marks an appointment with client as done
-2.  ClientCare updates appointment has done
-
+1.  User marks an appointment with client as done.
+2.  ClientCare updates appointment has done.<br>
     Use case ends.
 
 **Extensions**
-
 * 1a. Appointment does not exist.
-
-    * 1a1. ClientCare shows an error message.
-
-  Use case ends.
+  * 1a1. ClientCare shows an error message.<br>
+    Use case ends.
 
 *{More to be added}*
 
