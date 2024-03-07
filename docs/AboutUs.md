@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Rahul
 
-<img src="images/rah.png" width="200px">
+<img src="images/rahhulleee.png" width="200px">
 
 [[github](https://github.com/rahhulleee)]
 [[portfolio](team/rahul.md)]
@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Greg Tan
 
-<img src="images/greg.jpg" width="200px">
+<img src="images/greg_tan.jpg" width="200px">
 
 [[github](http://github.com/Greg-Tan)]
 [[portfolio](team/greg.md)]
