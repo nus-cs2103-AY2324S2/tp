@@ -305,16 +305,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Strack.io` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Adding a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User chooses to add a new customer and specifies the required details.
+2.  Strack.io displays the added customer contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Strack.io detects an error in the entered data.
+    * 1a1. Strack.io shows the missing/incorrect field.
+    * 1a2. User enters new data.
+
+        Steps 1a1-1a2 are repeated until the data entered are correct.
+
+        Use case resumes from step 2.
+
+**Use case: UC2 - Delete a contact**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  Strack.io shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  Strack.io requests for confirmation.
+5.  User confirms.
+6.  Strack.io deletes the contact, displaying the deleted contact.
 
     Use case ends.
 
@@ -326,7 +347,96 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Strack.io shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC3 - Edit a contact**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  Strack.io shows a list of persons.
+3.  User requests to edit the details of a specific person in the list.
+4.  Strack.io edits the details of the person and displays the new contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Strack.io shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Strack.io detects an error in the entered data.
+    * 3b1. Strack.io shows the missing/incorrect field.
+    * 3b2. User enters new data.
+
+        Steps 3b1-3b2 are repeated until the data entered are correct.
+
+        Use case resumes from step 4.
+
+**Use case: UC4 - Searching for a contact**
+
+**MSS**
+
+1.  User requests to search for contact based on keyword.
+2.  Strack.io shows a list of matching persons.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list of matching persons is empty.
+
+  Use case ends.
+
+**Use case: UC5 - Creating an order**
+
+**MSS**
+
+1.  User chooses to create an order for an existing person and specifies the required details.
+2.  Strack.io displays the added order.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Strack.io detects an error in the entered data.
+    * 1a1. Strack.io shows the missing/incorrect field.
+    * 1a2. User enters new data.
+
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 2.
+
+**Use case: UC6 - Delete an order**
+
+**MSS**
+
+1.  User requests to list orders.
+2.  Strack.io shows a list of orders.
+3.  User requests to delete a specific order in the list.
+4.  Strack.io requests for confirmation.
+5.  User confirms.
+6.  Strack.io deletes the order, displaying the deleted order.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Strack.io shows an error message.
 
       Use case resumes at step 2.
 
