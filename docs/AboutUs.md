@@ -48,3 +48,10 @@ You can reach us at the email `xxxxxx@u.nus.edu`
 * Role: Developer
 * Responsibilities: UI + Logic handling
 
+### Seng Zhen Hong
+
+<img src="images/iamzhenhong.png" width="200px">
+
+[[github](http://github.com/IamZhenHong)]
+[[portfolio](team/iamzhenhong.md)]
+
