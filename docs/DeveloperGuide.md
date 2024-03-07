@@ -318,16 +318,98 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HouseKeeping Hub` and the **Actor** is the `operator`, unless specified otherwise)
 
-**Use case: Delete a person**
+Preconditions: Operator is logged in.
+
+**Use case: UC01 - List clients**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Operator requests to list clients
+2. HouseKeeping Hub shows the list of clients
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  * 2a1. HouseKeeping Hub shows a message that the list is empty.
+
+    Use case ends.
+
+**Use case: UC02 - List housekeepers**
+
+**MSS**
+
+1. Operator requests to list housekeepers
+2. HouseKeeping Hub shows the list of housekeepers
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. HouseKeeping Hub shows a message that the list is empty. 
+
+      Use case ends.
+
+**Use case: UC03 - Add client**
+
+**MSS**
+
+1. Operator requests to add a client
+2. HouseKeeping Hub adds the client
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. An [/argument] is spelled incorrectly.
+
+    * 1a1. HouseKeeping Hub shows an error message.
+
+      Use case ends.
+
+* 1a. A given argument is invalid.
+
+    * 1a1. HouseKeeping Hub shows an error message.
+
+      Use case ends.
+
+**Use case: UC04 - Add housekeeper**
+
+**MSS**
+
+1. Operator requests to add a housekeeper
+2. HouseKeeping Hub adds the housekeeper
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. An [/argument] is spelled incorrectly.
+
+    * 1a1. HouseKeeping Hub shows an error message.
+
+      Use case ends.
+
+* 1a. A given argument is invalid.
+
+    * 1a1. HouseKeeping Hub shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Delete client**
+
+**MSS**
+
+1.  Operator requests to list clients
+2.  HouseKeeping Hub shows the list of clients
+3.  Operator requests to delete a specific client in the list
+4.  HouseKeeping Hub deletes the client
 
     Use case ends.
 
@@ -339,11 +421,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HouseKeeping Hub shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC06 - Delete housekeeper**
+
+**MSS**
+
+1.  Operator requests to list housekeepers
+2.  HouseKeeping Hub shows the list of housekeepers
+3.  Operator requests to delete a specific housekeeper in the list
+4.  HouseKeeping Hub deletes the housekeeper
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. HouseKeeping Hub shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
