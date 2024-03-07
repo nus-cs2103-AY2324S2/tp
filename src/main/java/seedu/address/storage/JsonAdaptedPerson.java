@@ -87,7 +87,7 @@ class JsonAdaptedPerson {
         if (!StudentId.isValidStudentId(studentId)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        final StudentId modelPhone = new StudentId(studentId);
+        final StudentId modelstudentId = new StudentId(studentId);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -105,10 +105,10 @@ class JsonAdaptedPerson {
         if (!TelegramHandle.isValidTelegramHandle(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
-        final TelegramHandle modelAddress = new TelegramHandle(telegramHandle);
+        final TelegramHandle modeltelegramHandle = new TelegramHandle(telegramHandle);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelstudentId, modelEmail, modeltelegramHandle, modelTags);
     }
 
 }

@@ -30,11 +30,11 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withTelegramHandle("@benmeier")
             .withEmail("johnd@example.com").withStudentId("A1235678J")
-            .withTags("owesMoney", "friends").build();
+            .withTags("tutorial-2", "strong-student").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withStudentId("A9876543N")
             .withEmail("heinz@example.com").withTelegramHandle("@wallstreet").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withStudentId("A1357924D")
-            .withEmail("cornelia@example.com").withTelegramHandle("@danelia").withTags("friends").build();
+            .withEmail("cornelia@example.com").withTelegramHandle("@danelia").withTags("tutorial-3").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withStudentId("A9482224Y")
             .withEmail("werner@example.com").withTelegramHandle("@michegan").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withStudentId("A9482427K")
