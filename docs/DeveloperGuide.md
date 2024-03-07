@@ -427,6 +427,128 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 
   Use case ends.
 
+**Use case: View one case log of a appointment of a specific student**
+
+**MSS**
+
+1. User searches for specific student.
+2. CogniCare shows a list of students that meet the criteria.
+3. User requests to list all appointments at the given the student index.
+4. CogniCare shows a list of appointments that meet the criteria.
+5. User requests to find the case log of the appointment at the given student and appointment.
+6. CogniCare shows the case log that meets the criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The query has missing parameters
+
+    * 1a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 2a. The list of students is empty.
+
+  Use case ends.
+
+* 3a. The query has missing parameters
+
+    * 3a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 4a. The list of appointments is empty.
+
+  Use case ends.
+
+* 5a. The query has missing/out of bound parameters
+
+    * 5a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 6a. There is no case log for such appointment
+
+    * 6a1. CogniCare shows an error message.
+
+  Use case ends.
+
+**Use case: View many case logs of a specific student**
+
+**MSS**
+
+1. User searches for specific student.
+2. CogniCare shows a list of students that meet the criteria.
+3. User requests to see all appointments' case log at the given the student index.
+4. CogniCare shows a list of all appointments' case log that meet the criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The query has missing parameters
+
+    * 1a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 2a. The list of students is empty.
+
+  Use case ends.
+
+* 3a. The query has missing parameters
+
+    * 3a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 4a. The list of appointments is empty.
+
+  Use case ends.
+
+
+**Use case: Create one case log of a appointment of a specific student**
+
+**MSS**
+
+1. User searches for specific student.
+2. CogniCare shows a list of students that meet the criteria.
+3. User requests to list all appointments at the given the student index.
+4. CogniCare shows a list of appointments that meet the criteria.
+5. User requests to create the case log of the appointment at the given student and appointment.
+6. CogniCare create the case log for the specified appointment and student.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The query has missing parameters
+
+    * 1a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 2a. The list of students is empty.
+
+  Use case ends.
+
+* 3a. The query has missing parameters
+
+    * 3a1. CogniCare shows an error message.
+
+  Use case ends.
+
+* 4a. The list of appointments is empty.
+
+  Use case ends.
+
+* 5a. The query has missing/out of bound parameters
+
+    * 5a1. CogniCare shows an error message.
+
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
