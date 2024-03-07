@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
 otherwise)
 
-**Use case: Delete a person**
+**Use case**: UC01 - Delete a person
 
 **MSS**
 
@@ -378,7 +378,75 @@ otherwise)
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**System**: AddressBook
+
+**Use case**: UC02 - See usage instructions
+
+**Actor**: User
+
+**MSS**
+
+1. User opens AddressBook application
+2. User selects option to view usage instructions from main menu
+3. AddressBook displays the usage instructions such as how to add, edit, delete or search for contacts
+4. User reads the instructions to understand how to use the AddressBook
+5. Use case ends
+
+**Extensions**
+
+* 2a. The application does not have a direct link to usage instructions visible:
+  
+    * 2a1. AddressBook guides the user to the help section where instructions can be found
+    * Use case resumes
+
+**System**: AddressBook
+
+**Use case**: UC03 - Add new contact
+
+**Actor**: User
+
+**MSS**
+
+1. User opens AddressBook application
+2. User requests to add a new contact
+3. AddressBook displays a success message after the new contact is successfully added
+4. Use case ends
+
+**Extensions**
+
+* 2a. User does not know what to type to add a contact
+    * 2a1. AddressBook guides the user to the help section where instructions can be found
+    * Use case resumes
+* 2b. User enters an invalid command 
+    * 2b1. AddressBook alerts the user that the command is invalid and displays the correct format
+    * Use case resumes
+* 2c. User tries to add a contact that already exists in the address book
+    * 2c1. AddressBook alerts the user that a user with that name and details already exists
+    * 2c1. AddressBook provides possible solutions (use different details if the contact name is the same)
+    * Use case resumes
+
+**Use case**: UC04 - Display all contacts
+
+**Actor**: User
+
+**MSS**
+
+1. User opens the AddressBook application
+2. User requests to see a list of all contacts
+3. AddressBook displays a success message followed by the list of contacts
+4. User views the list
+5. User exists AddressBook
+6. Use case ends
+
+**Extensions**
+
+* 2a. User does not know what to type to view a list
+    * 2a1. AddressBook guides the user to the help section where instructions can be found
+    * Use case resumes
+* 2b. User enters an invalid command
+    * 2b1. AddressBook alerts the user that the command is invalid and displays the correct format
+    * Use case resumes
+
 
 ### Non-Functional Requirements
 
