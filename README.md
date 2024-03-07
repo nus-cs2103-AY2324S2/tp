@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2324S2-CS2103T-F11-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S2-CS2103T-F11-2/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/Ui.png)
 ## About MyBookshelf
@@ -6,6 +6,8 @@
 * It helps to keep track of book transactions within the library.
 * This helps to prevent irresponsible behaviour that violates the library's borrowing guidelines, easing management duties.
 <br>
+
+## Project Details
   * The project is CLI based to make it quick to use and  easy for users who prefer typing commands over mouse operations.
   * The user can add, edit, find or delete borrowers in order to keep track of who is using their library
   * The user can also keep track of borrow and return transactions.
