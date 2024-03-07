@@ -273,16 +273,16 @@ The app is optimised for use using Command Line Interface (CLI) while still enco
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority      | <div style="width:50px">As a …​</div> | I want to …​                                               | So that I can…​                                             |
-|---------------|---------------------------------------|------------------------------------------------------------|-------------------------------------------------------------|
-| `* * *`       | well connected user                   | search contacts                                            | save time                                             |
-| `* * *`       | well connected user                   | add contacts                                               | have the address to contact others in the future      |
-| `* * *`       | cafe owner user                       | delete the contacts of people                              | keep my contacts updated and remove outdated contacts |
-| `* * *`       | long-term user                        | edit contacts                                              | update some contact information                             |
-| `* * *`       | first-time user                       | get help about what commnads I can use on the contact book | easily know how to navigate the system                |
-| `**`          | frugal user                           | sort my vendors in ascending order of price                | view the vendors selling the cheapest products easily |
-
-
+| Priority      | <div style="width:50px">As a …​</div>  | I want to …​                                               | So that I can…​                                       |
+|---------------|----------------------------------------|------------------------------------------------------------|-------------------------------------------------------|
+| `* * *`       | well connected user                    | search contacts                                            | save time                                             |
+| `* * *`       | well connected user                    | add contacts                                               | have the address to contact others in the future      |
+| `* * *`       | cafe owner user                        | delete the contacts of people                              | keep my contacts updated and remove outdated contacts |
+| `* * *`       | long-term user                         | edit contacts                                              | update some contact information                       |
+| `* * *`       | first-time user                        | get help about what commnads I can use on the contact book | easily know how to navigate the system                |
+| `**`          | frugal user                            | sort my vendors in ascending order of price                | view the vendors selling the cheapest products easily |
+| `**`          | careless user                          | undo my commands                                           | fix mistakes easily                                   |
+| `**`          | forgetful user                         | star contacts that are important                           | remember to contact them easily                       |
 *{More to be added}*
 
 ### Use cases
