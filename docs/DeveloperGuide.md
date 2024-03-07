@@ -267,8 +267,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* needs to keep track of which borrower borrowed which book
+* needs to keep track of which borrower returned which book
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage borrowers and keepts track of borrowing and returning of books faster than a typical mouse/GUI driven app
 
 
 ### User stories
