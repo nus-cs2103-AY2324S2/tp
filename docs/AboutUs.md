@@ -12,12 +12,13 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Rahul
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Rah.png" width="200px">
 
 [[github](https://github.com/rahhulleee)]
 [[portfolio](team/rahul.md)]
 
-* Role: Project Advisor
+* Role: Developer
+  Responsibilities: Testing
 
 ### Greg Tan
 
