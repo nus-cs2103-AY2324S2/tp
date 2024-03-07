@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-StaffConnect (SF) is a **desktop app for managing contacts of Professors and Tutors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SF can get your contact management tasks done faster than traditional GUI apps.
+StaffConnect (SC) is a **desktop app for managing contacts of Professors and Tutors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SC can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -27,7 +27,7 @@ StaffConnect (SF) is a **desktop app for managing contacts of Professors and Tut
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the StaffConnect contacts.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
