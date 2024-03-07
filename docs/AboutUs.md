@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: TBC
 
-### Jane Doe
+### Kyal Sin Min Thet
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcus-ny.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/marcus-ny)]
+[[portfolio](http://github.com/marcus-ny)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: TBC
 
 ### Teoh Tze Tzun
 
