@@ -24,13 +24,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sai Utkarsh
 
-<img src="images/saiutkarsh.png" width="200px">
-
-[[github](https://github.com/saiutkarsh33)]
-
-* Role: Software Engineer
-* Responsibilities: SWE
-=======
 <img src="images/saiutkarsh33.png" width="200px">
 
 [[github](https://github.com/saiutkarsh33)]
@@ -38,7 +31,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Software Engineer
 * Responsibilities: Software Development
-
 
 ### Titus Chew 
 
@@ -49,7 +41,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Software Engineer
 * Responsibilities: Software Development
-
 
 ### Wu Xiaoyun
 
