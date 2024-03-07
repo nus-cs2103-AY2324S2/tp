@@ -24,10 +24,21 @@ public class Matric {
         this.matricNumber = matricNumber;
     }
 
-    public static boolean isValidConstructorParam(String matricNumber) {
+    /**
+     * Returns true if a given string is a valid matriculation number for constructing a new Matric.
+     * @param matricNumber String to be tested
+     * @return true if the string is a valid matriculation number
+     */
+    static boolean isValidConstructorParam(String matricNumber) {
         return isValidMatric(matricNumber) || isEmptyMatric(matricNumber);
     }
 
+    /**
+     * Returns true if a given string is an empty matriculation number. Only used when the prefix
+     * for matric is absent from a user command.
+     * @param matricNumber String to be tested
+     * @return true if the string is an empty matriculation number
+     */
     private static boolean isEmptyMatric(String matricNumber) {
         return matricNumber.isBlank();
     }
@@ -37,7 +48,7 @@ public class Matric {
      * @param test String to be tested
      * @return true if the string is a valid matriculation number
      */
-    static boolean isValidMatric(String test) {
+    public static boolean isValidMatric(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

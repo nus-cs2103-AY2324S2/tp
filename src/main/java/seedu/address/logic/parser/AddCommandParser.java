@@ -60,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
     private static Matric handleOptionalMatric(ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_MATRIC_NUMBER)) {
-            return ParserUtil.parseMatric("");
+            return new Matric("");
         } else {
             return ParserUtil.parseMatric(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get());
         }

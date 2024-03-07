@@ -44,7 +44,7 @@ public class ParserUtil {
      */
     public static Matric parseMatric(String matric) throws ParseException {
         String trimmedMatric = matric.trim();
-        if (!Matric.isValidConstructorParam(trimmedMatric)) {
+        if (!Matric.isValidMatric(trimmedMatric)) {
             throw new ParseException(Matric.MESSAGE_CONSTRAINTS);
         }
         return new Matric(trimmedMatric);
