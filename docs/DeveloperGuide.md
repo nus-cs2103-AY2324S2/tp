@@ -290,6 +290,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+---
+
 **Use case: Delete a person**
 
 **MSS**
@@ -313,7 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a person**
+---
+
+**Use case: Add a Contact with Detailed Information**
 
 **MSS**
 
@@ -332,7 +336,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a person**
+---
+
+**Use case: Add Salary Range to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the salary or salary range info to their address book.
+2. User inputs the 'add' command with the salary detail in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the salary information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the salary detail is invalid:
+   * 3a1. AB3 shows an error message indicating the validation failure and the correct format of the command.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Add the Company’s Name to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the company’s name info to their address book.
+2. User inputs the 'add' command with the company’s name in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the salary information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the company’s name is bigger than 100 characters:
+   * 3a1. AB3 shows an error message indicating the validation failure and the limit characters number.
+
+      Use case resumes at step 2.
+
+---
 
 *{More to be added}*
 
