@@ -1,6 +1,6 @@
 ---
 layout: default.md
-title: "Xiao Yun's Project Portfolio Page"
+title: "Xiaoyun's Project Portfolio Page"
 ---
 
 ### Project: AddressBook Level 3
@@ -14,6 +14,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
+    * Set up github milestones
+    * Create and assign issues to team members
 
 * **Enhancements to existing features**:
 
