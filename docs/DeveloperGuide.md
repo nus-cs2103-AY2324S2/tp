@@ -288,14 +288,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TrAcker`, the **Actor** is the `user` and **persons** can be both a student and a TA unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  TrAcker shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 
@@ -309,11 +309,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TrAcker shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a person**
+
+**MSS**
+
+1. User requests to add a person with relevant entries such as name, phone number and email
+2. TrAcker adds the entry to its contact list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User inputs information in incorrect format
+
+    * 1a1. TrAcker shows an error message.
+    
+      Use case resumes at step 1
+
+**Use case: Search a contact**
+
+**MSS**
+
+1.  User requests to search a contact by keywords (for names)
+2.  TrAcker shows a list of contacts whose names match the keywords
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No contacts have names including the specified keywords.
+
+    *1a1. TrAcker shows an empty list
+
+  Use case ends.
+
+**Use case: Edit a contact**
+
+**MSS**
+
+1.  User requests to edit a contact with new information
+2.  TrAcker updates the contact with specified new information
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User inputs new information in incorrect format
+
+    * 1a1. TrAcker shows an error message.
+
+      Use case resumes at step 1
 
 ### Non-Functional Requirements
 
