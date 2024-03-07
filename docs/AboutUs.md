@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: TBC
 
-### James Doe
+### Zhang Xiaorui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xiaorui-ui.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/xiaorui-ui)]
+[[portfolio](https://github.com/xiaorui-ui)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: TBC
