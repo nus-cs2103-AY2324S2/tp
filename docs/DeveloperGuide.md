@@ -334,11 +334,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should have a user-friendly interface with clear navigation and easily understandable actions.
+5. Powerful search features that allow users to find students based on various criteria (name, module, year of study, etc.), including flexible filtering and sorting options.
+6. The system architecture should allow for increases in user base and data volume without impacting performance.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Data Integrity**: Maintaining the accuracy, consistency, and lack of corruption within the student data.
+* **Duplicate Prevention**: Measures taken within the system to prevent the creation of redundant student records.
+* **Student ID**: A unique identifier assigned to each student for precise reference and modification within the system.
+* **Tag**: A customizable label or keyword attached to student profiles. Tags are used for categorizing, searching, and filtering students based on shared attributes or characteristics.
+* **Automatic Tagging**: The application of tags to student records based on predefined rules or conditions.
 
 --------------------------------------------------------------------------------------------------------------------
 
