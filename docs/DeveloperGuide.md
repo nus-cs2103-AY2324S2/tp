@@ -306,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters new data.
 
         Steps 1a1-1a2 are repeated until the data entered are correct.
-    
+
         Use case resumes from step 2.
 
 **Use case: UC2 - Delete a contact**
@@ -356,13 +356,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Strack.io shows an error message.
 
       Use case resumes at step 2.
-  
+
 * 3b. Strack.io detects an error in the entered data.
     * 3b1. Strack.io shows the missing/incorrect field.
     * 3b2. User enters new data.
-      
+
         Steps 3b1-3b2 are repeated until the data entered are correct.
-        
+
         Use case resumes from step 4.
 
 **Use case: UC4 - Searching for a contact**
