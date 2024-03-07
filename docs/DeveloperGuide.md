@@ -275,14 +275,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                       | So that I can…​                                                         |
+| -------- | ------------------------------------------ | ------------------------------                   | ---------------------------------------------------------------------- |
+| `* * *`  | Student Hackathon Organizer                | Add new participants to the contact managing app | Have a centralized database of all hackathon attendees.                |
+| `* * *`  | Student Hackathon Organizer                | Update and edit participant contact details      | Ensure accurate and up-to-date information.                            |
+| `* * *`  | Student Hackathon Organizer                | Add notes or comments to contact                 | Provide additional context or reminders for each contact.              |
+| `* * *`  | Student Hackathon Organizer                | View contact count in the database               | Know the number of participants, staff, etc. in the event              |
+| `* * *`  | Student Hackathon Organizer                | List out members                                 | See all the members in one go                                          |
+| `* * *`  |  Student Hackathon Organizer               | Remove specific participants                     | remove participants who signed up but unable to participate.           |
 
 *{More to be added}*
 
@@ -290,43 +290,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a Contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new contact.
+2. System prompts for contact details: name, email, phone, category.
+3. User provides valid information.
+4. System validates input and adds the contact to the list.
+5. System displays a success message.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+3a. Invalid input provided.
+   - System displays an error message.
+   - Use case ends.
+     
+**Use case: View Participant List**
 
-  Use case ends.
+**MSS**
 
-* 3a. The given index is invalid.
+1. User requests to view the list of all participants.
+2. System displays the list with relevant information.
+3. System shows the total count of participants.
 
-    * 3a1. AddressBook shows an error message.
+    Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
 
-*{More to be added}*
+**Use case:Update Participant Contact Details**
+
+**MSS**
+
+1. User requests to update contact details for a specific participant.
+2. System prompts for the participant's name and the field to update.
+3. User provides valid information.
+4. System validates input and updates the contact details.
+5. System displays a success message.
+
+    Use case ends.
+
+**Extensions**
+3a. Invalid input provided.
+   - System displays an error message.
+   - Use case ends.
+
+**Use case: Comment**
+
+**MSS**
+
+1. User requests to add notes or comments to a participant.
+2. System prompts for the participant's name and the notes.
+3. User provides notes.
+4. System adds the notes to the participant's profile.
+5. System displays a success message.
+
+
+    Use case ends.
+
+**Extensions**
+3a. No notes provided.
+   - System displays an error message.
+   - Use case ends.
+     
+**Use case:  Remove Participant**
+
+**MSS**
+
+1. User requests to remove a specific participant.
+2. System prompts for the participant's ID.
+3. User provides the ID.
+4. System deletes the participant.
+5. System displays a success message.
+
+
+    Use case ends.
+
+**Extensions**
+3a. Participant not found.
+   - System displays an error message.
+   - Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The application should be designed to scale gracefully, accommodating an increase in the number of participants or contacts without significant degradation in performance.
+5.  The codebase should follow best practices and be well-documented to facilitate future maintenance and updates by developers.
+6.  The system should provide clear and user-friendly error messages for invalid inputs or failed operations, aiding users in understanding and resolving issues.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Java 11: A version of the Java programming language and runtime environment, required for running the application
+* **Participant: An individual registered to participate in the hackathon
+* **ID: A unique identifier assigned to each participant in the system
+* 
 
 --------------------------------------------------------------------------------------------------------------------
 
