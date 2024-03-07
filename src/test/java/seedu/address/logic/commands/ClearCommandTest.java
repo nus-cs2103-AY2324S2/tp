@@ -11,6 +11,15 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
+    @Test
+    public void execute_withoutForce_success() {
+        Model model = new ModelManager();
+        Model expectedModel = new ModelManager();
+
+        assertCommandSuccess(new ClearCommand(), model, "Are you sure you want to clear the address book? Use\n"
+                + "clear --force\n"
+                + "to confirm clearing of the address book.", expectedModel);
+    }
 
     @Test
     public void execute_emptyAddressBook_success() {
