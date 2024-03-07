@@ -290,6 +290,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: List all contacts**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+
+    Use case ends.
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  AddressBook adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given person details are invalid.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
 **Use case: Delete a person**
 
 **MSS**
@@ -312,8 +338,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
