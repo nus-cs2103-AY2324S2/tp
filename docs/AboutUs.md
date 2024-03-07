@@ -9,22 +9,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Ho Kai Ting
 
 <img src="images/kaiting.png" width="200px">
 
-[[github](http://github.com/kaitinghh)]
-[[portfolio](https://www.linkedin.com/in/kai-ting-ho-425181268/)]
+[[github](https://github.com/kaitinghh)]
+[[portfolio](team/kaiting.md)]
+
+* Role: Developer
+* Responsibilities: 
+
+### Jane Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
