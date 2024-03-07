@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
+### Ho Jin Han
+
+<img src="images/jinhanfromnus.png" width="200px">
+
+[[github](http://github.com/jinhanfromNUS)]
+[[portfolio](team/jinhanfromNUS.md)]
+
+* Role: Developer
+* Responsibilities: Features and Documentation
+
 ### Khoo Jing Xiang
 
 <img src="images/meowwtama.png" width="200px">
