@@ -272,6 +272,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
+
 **Target user profile**: A venture capital portfolio manager who
 
 * has a need to keep a significant amount of startup investments
@@ -284,8 +285,6 @@ _{Explain here how the data archiving feature will be implemented}_
 investments across various industries. The app streamlines the management of startup
 investments, enabling VC firms to easily add, categorize, and track a diverse 
 portfolio of investments in various industries and funding stages.
-
-
 
 
 ### User stories
@@ -304,48 +303,163 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a startup investment**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a new startup investment to their portfolio.
+2.  CapitalConnect dashboard prompts the user to provide details including:
+    * Startup name
+    * Industry
+    * Funding stage
+    * Address
+    * Contact information
+3.  User provides the necessary details.
+4.  CapitalConnect verifies the input for validity.
+5.  CapitalConnect adds the new startup investment to the user's portfolio in the dashboard.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 4a. Invalid input or missing parameters.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+    * 4a1. CapitalConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 4b. Startup name already exists in the portfolio.
+
+    * 4b1. CapitalConnect notifies the user about the duplicate entry.
+
+      Use case resumes at step 2.
+
+
+**Use case: Search for startup investments by industry & funding stage**
+
+**MSS**
+
+1.  User requests to search for startup investments by industry and funding stage.
+2.  CapitalConnect dashboard prompts the user to input the industry and funding stage.
+3.  User provides the industry and funding stage.
+4.  CapitalConnect verifies the input for validity.
+5.  CapitalConnect searches for startup investments matching the specified industry and funding stage in the user's portfolio.
+6.  CapitalConnect displays the startup investments matching the search criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. Invalid input or missing parameters.
+
+    * 4a1. CapitalConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 6a. No startup investments match the search criteria.
+
+    * 6a1. CapitalConnect shows an error message indicating no matches found.
+
+      Use case ends.
+
+
+**Use case: Search for startup investments by name**
+
+**MSS**
+
+1.  User requests to search for startup investments by name.
+2.  CapitalConnect dashboard prompts the user to input the name of the startup.
+3.  User provides the name of the startup.
+4.  CapitalConnect verifies the input for validity.
+5.  CapitalConnect searches for startup investments matching the specified name in the user's portfolio.
+6.  CapitalConnect displays the startup investments matching the search criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. Invalid input or missing parameters.
+
+    * 4a1. CapitalConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 6a. No startup investments match the provided name.
+
+    * 6a1. CapitalConnect shows an error message indicating no matches found.
+
+      Use case ends.
+
+
+**Use case: Save the current state of CapitalConnect dashboard**
+
+**MSS**
+
+1.  CapitalConnect automatically saves the state of the dashboard after every add and delete operation.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Issue with saving the dashboard state.
+
+    * 1a1. CapitalConnect shows an error message indicating the issue with saving the dashboard state.
+
+      Use case ends.
+
+
+**Use case: Delete a startup investment from the portfolio**
+
+**MSS**
+
+1.  User requests to delete a specific startup investment from their portfolio.
+2.  CapitalConnect dashboard prompts the user to input the index of the startup investment to be deleted.
+3.  User provides the index of the startup investment.
+4.  CapitalConnect verifies the input for validity.
+5.  CapitalConnect deletes the startup investment at the specified index from the user's portfolio.
+6.  CapitalConnect displays a confirmation message indicating successful deletion of the startup investment.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. Invalid input or missing parameters.
+
+    * 4a1. CapitalConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 5a. Specified index is out of range or no startup investments at the specified index.
+
+    * 5a1. CapitalConnect shows an error message indicating the issue.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 startups without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should have a response time of less than 1 second for common operations, such as adding or deleting a startup investment, to provide a smooth user experience.
+5.  The application should provide clear and user-friendly error messages in case of invalid input or system errors to assist users in troubleshooting issues efficiently.
+6.  The dashboard interface should be responsive and adapt to different screen sizes, ensuring a seamless user experience across devices such as desktops, laptops, tablets, and smartphones.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CapitalConnect dashboard**: The user interface of the CapitalConnect application where users can manage their startup investments, perform searches, and view their portfolio.
+* **Startup investment**: An investment made by a user in a startup company, typically including details such as the startup name, industry, funding stage, address, and contact information.
+* **Industry**: The sector or field in which a startup operates, such as Tech, Biotech, or Finance.
+* **Funding stage**: The development stage of a startup at which it has received a certain level of investment, such as Seed, Series A, or Series B.
+* **Dashboard state**: The current configuration and data displayed in the CapitalConnect dashboard, including startup investments and any applied filters or search results.
+* **Index**: A numeric value representing the position of an item within a list, used in commands to reference specific startup investments in the portfolio.
+* **Confirmation message**: A notification displayed to the user indicating the successful completion of an action, such as adding or deleting a startup investment.
 
 --------------------------------------------------------------------------------------------------------------------
 

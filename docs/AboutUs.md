@@ -21,41 +21,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Jane Doe
+### Daniel Wang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wangwenkaidaniel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/shuheng.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/shuheng.md)]
+[[github](http://github.com/dwangwk)]
+[[portfolio](team/danielwang.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ye Si Fan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yesifan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/shuheng.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/shuheng.md)]
+[[github](http://github.com/yespiggy)] [[portfolio](team/sifan.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Natasya Hadiatullah Buhari
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/menatahari)]
+[[portfolio](team/natasya.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops
