@@ -94,7 +94,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
-<box type="info" seamless>
+< type="info" seamless>
 
 **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </box>
@@ -274,42 +274,59 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of patient details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: MediTrack can manage patient details faster than a typical mouse/GUI driven app.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​      | I want to …​                     | So that I can…​                                                          |
+|----------|--------------|----------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | receptionist | see usage instructions           | refer to instructions when I forget how to use the App                   |
+| `* * *`  | receptionist | see the list of patients         | check the index of all patients                                          |
+| `* * *`  | receptionist | add a new patient                |                                                                          |
+| `* * *`  | receptionist | delete a patient                 | remove entries that are outdated                                         |
+| `* * *`  | receptionist | find a patient by name           | locate details of a patient without having to go through the entire list |
+| `* *`    | receptionist | find a patient by contact number | look for a specific patient without worrying about duplicate names       |
+| `* *`    | receptionist | delete all patients              | easily reset the list to a blank state                                   |
+| `* *`    | receptionist | exit  with a command             | close the application with keyboard inputs only                          |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MediTrack` and the **Actor** is the `receptionist`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a patient**
+
+**MSS**  
+1. Receptionist requests to add a patient’s data in the list.
+2. MediTrack adds the patient’s data into the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a.  There is already a patient with the same phone number.  
+
+  Use case ends.
+
+**Use case: UC02 - Delete a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Receptionist requests to list patients.
+2.  MediTrack shows a list of patients.
+3.  Receptionist requests to delete a specific patient in the list.
+4.  MediTrack deletes the patient.
 
     Use case ends.
 
@@ -321,24 +338,82 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MediTrack shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC03 - Find a patient**
+
+**MSS**
+
+1.  Receptionist requests for a patient's information.
+2.  MediTrack returns the patient's information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The patient's information is not found in the list.
+
+  Use case ends.
+
+**Use case: UC04 - Exit**
+
+**MSS**
+
+1.  Receptionist requests to exit the program.
+
+    Use case ends.
+
+**Use case: UC05 - Delete all patients**
+
+**MSS**
+
+1.  Receptionist requests to delete all patients.
+2.  MediTrack asks for confirmation.
+3.  Receptionist confirms.
+4.  MediTrack deletes all patient information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no patient information.
+
+  Use case ends.
+
+* 3a. Receptionist cancels.
+
+  Use case ends.
+
+**Use case: UC06 - Start the system**
+
+**MSS**
+
+1.  Receptionist starts the program
+2.  MediTrack shows a list of patients
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 patients without a noticeable lag in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should work without internet connection.
+5. Can only be used by a registered receptionist.
+6. Each command should take no more than 1 second until a response is displayed.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, MacOS
+* **Patient**: A person who has visited the clinic at least once due to an illness
+* **Receptionist** The user operating MediTrack
+* **Patient information**: Name, contact number, address, email, date of birth, symptoms, date of visit 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -352,6 +427,7 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </box>
+
 
 ### Launch and shutdown
 
