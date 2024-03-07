@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jeong Jaeho
 
-<img src="images/jeong-jaeho.png" width="200px">
+<img src="images/jeong-jaeho.png" width="200px">  
 
 [[github](http://github.com/jeong-jaeho)]
 [[portfolio](team/johndoe.md)]
