@@ -278,20 +278,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                                   |
 |----------|--------------------------------------------|----------------------------------|-----------------------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions           | refer to instructions when I forget how to use the App                            |
-| `* * *`  | student                                    | add a new tutor                  |                                                                                   |
-| `* * *`  | student                                    | delete a tutor                   | remove entries that I no longer need                                              |
-| `* * *`  | student                                    | find a tutor by name             | locate details of tutors without having to go through the entire list             |
-| `* * *`  | student                                    | find a tutor by course code      | locate tutors from a specific module without having to go through the entire list |
-| `* *`    | student                                    | hide private contact details     | minimize chance of someone else seeing them by accident                           |
-| `* *`    | student                                    | edit a tutor                     | change incorrect or new information about a tutor                                 |
+| `* * *`  | user                                       | add a new tutor                  |                                                                                   |
+| `* * *`  | user                                       | delete a tutor                   | remove entries that I no longer need                                              |
+| `* * *`  | user                                       | find a tutor by name             | locate details of tutors without having to go through the entire list             |
+| `* * *`  | user                                       | find a tutor by course code      | locate tutors from a specific module without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details     | minimize chance of someone else seeing them by accident                           |
+| `* *`    | user                                       | edit a tutor                     | change incorrect or new information about a tutor                                 |
 | `*`      | user with many persons in the address book | sort tutor by name               | locate a tutor easily                                                             |
-| `*`      | student                                    | add a tutor to a favourites list | access the details of my most frequently contacted tutors easily                  |
+| `*`      | user                                       | add a tutor to a favourites list | access the details of my most frequently contacted tutors easily                  |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `NUSContacts` and the **Actor** is the `student`, unless specified otherwise)
+(For all use cases below, the **System** is the `NUSContacts` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC1: Add a tutor**
 
@@ -306,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The tutor already exists.
-    * 2a1. NUSContacts informs the student of the error.
+    * 2a1. NUSContacts informs the user of the error.
 
       Use case ends.
 
@@ -333,13 +333,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC3 Find a tutor by name**
+**UC3: Find a tutor by name**
 
 **MSS**
 
 1.  User requests to find a tutor
 2.  NUSContacts prompts search criterion (name or course code)
-3.  User provides the search criterion
+3.  User provides the search criterion (name)
 4.  NUSContacts shows the tutor(s) that match the criterion
 
     Use case ends.
@@ -347,7 +347,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 4a. No tutor matches the criterion.
-    * 4a1. NUSContacts informs the student of the error.
+    * 4a1. NUSContacts informs the user of the error.
+
+      Use case ends.
+
+**UC4: Find a tutor by course code**
+
+**MSS**
+
+1.  User requests to find a tutor
+2.  NUSContacts prompts search criterion (name or course code)
+3.  User provides the search criterion (course code)
+4.  NUSContacts shows the tutor(s) that match the criterion
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. No tutor matches the criterion.
+    * 4a1. NUSContacts informs the user of the error.
 
       Use case ends.
 
