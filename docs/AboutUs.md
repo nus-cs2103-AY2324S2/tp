@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `xxxxxx@u.nus.edu`
 
 ## Project team
 
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/wallacexuhanxiao.png" width="200px">
 
-[[github](https://github.com/wallacexuhanxiao] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/wallacexuhanxiao] [[portfolio](team/wallacexuhanxiao.md)]
 
 * Role: Developer
 * Responsibilities: Develop
