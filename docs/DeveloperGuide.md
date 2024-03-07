@@ -374,8 +374,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Error messages displayed to application window should be easily understood by most users.
+5.  System should respond to user actions within 1 second.
+6.  For databases with less than 1000 contacts, fetching and saving of contacts to/from it should not exceed 200 milliseconds.
+7.  System should handle data corruption or loss without crashing the application.
+8.  System architecture should support future updates and extensions without major restructures.
+9.  System should support comprehensive testing for all components and features.
 
 *{More to be added}*
 
