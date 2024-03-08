@@ -35,6 +35,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/sebin0817)]
 [[portfolio](team/sebin.md)]
 
+* Role: Developer
+* Responsibilities: Developer
+
 ### Jm San Diego ⚡️
 
 <img src="images/jmsandiegoo.png" width="200px">
