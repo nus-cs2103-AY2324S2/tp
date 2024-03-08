@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Joel Goh
 
-<img src="images/joelgoh.png" width="200px">
+<img src="images/joelgoh1.png" width="200px">
 
 [[github](http://github.com/joelgoh1)]
 [[portfolio](team/joelgoh.md)]
