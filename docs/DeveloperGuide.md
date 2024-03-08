@@ -439,6 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should provide an intuitive and user-friendly interface. Users should be able to easily and quickly navigate the user interface to identify crucial information (E.g Name, Contact, Health information) at a glance.
 1. Should have a shallow learning curve. New users (including the non-technically savvy) should be able to pick up and start using the application efficiently within a week.
 1. Should be optimized to run smoothly on low-end devices with limited processing power and memory. Users on older hardware should be able to use the application as long as it meets [this requirement](#nfr-1).
+1. Should provide full offline functionality. Users should be able to access all functionality of FitBook even when the device is not connected to the internet.
 
 ### Glossary
 
