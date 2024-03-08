@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project was adapted from [AB3](https://se-education.org/addressbook-level3/), the source code of which can be found [here](https://github.com/nus-cs2103-AY2324S2/tp).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,9 +329,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should save backups of patient and appointment data at regular intervals (once every time the app is opened), in order to facilitate disaster recovery processes.
+3. Should work on any *mainstream OS* as long as it has Java `11` or above installed. For Mac users, it should minimally work on any Mac which has been set up according to the advisory [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html#programming-language).
+4. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+5. Should be able to hold up to 10000 appointments without a noticeable sluggishness in performance for typical usage.
+6. Should have the ability to import patient and appointment data stored in common formats, such as CSV or JSON.
+7. Should have comprehensive documentation for both users and developers in the form of a User and Developer Guide respectively.
 
 *{More to be added}*
 
