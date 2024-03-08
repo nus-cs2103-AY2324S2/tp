@@ -77,7 +77,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 - The KEYWORD searched is case-insensitive.
 - Order of keywords does not matter.
-- Possible keyword types: 
+- Possible keyword types:
     - NAME
     - PHONE_NUMBER
     - ADDRESS
@@ -132,7 +132,7 @@ Format: `find appt KEYWORD [MORE_KEYWORDS]`
 
 - The KEYWORD searched is case-insensitive.
 - Order of keywords does not matter.
-- Possible keyword types: 
+- Possible keyword types:
     - NAME
     - PHONE_NUMBER
     - ADDRESS
