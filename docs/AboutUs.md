@@ -13,10 +13,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Boan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qinboan.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/qinboan)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Algorithms & Data Structures
@@ -54,10 +54,10 @@ Interested in computational biology and bioinformatics!
 
 ### Shuyuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/legionlegion.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/legionlegion)]
+[[portfolio](team/legionlegion.md)]
 
 * Role: Developer
 * Responsibilities: UI

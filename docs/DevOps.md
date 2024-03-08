@@ -11,6 +11,24 @@
 
 <!-- -------------------------------------------------------------------------------------------------------------------- -->
 
+## Github Forking Workflow
+
+### Making Changes
+1. Create branch on fork (local)
+2. Push branch to fork (remote: github)
+3. Create pr from fork (remote) to main (remote)
+4. Merge pr onto main (remote)
+
+Note:
+- When to create PRs? ONLY from FORK's feature-branch to MAIN. there is no need to make PRs WITHIN the fork, only from fork -> main.
+
+### Updating Local Fork
+1. First, ensure that you did git remote add upstream https://github.com/AY2324S2-CS2103T-T10-2/tp.git
+    - So now you have two remotes on github (origin: the fork, upstream: the main)
+2. To update your local forked branch: git pull upstream main. 
+    - If you're working on a branch, then make sure you merge changes from main to that branch; i.e. git checkout that branch, then git merge main.
+3. Once you're ready, just push the BRANCH to your fork (remote).
+
 ## Build automation
 
 This project uses Gradle for **build automation and dependency management**. **You are recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
