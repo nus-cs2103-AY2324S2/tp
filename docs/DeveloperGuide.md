@@ -353,16 +353,25 @@ as we focus solely on business loans and contact management for a select client 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                            | I want to …​                                            | So that I can…​                                                  |
+|----------|------------------------------------|---------------------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | User who loans items out regularly | Add loan details (item name/cash amount) to the contact | remember to collect debts at a later time                        |
+| `* * *`  | User who loans items out regularly | Add a deadline to a loan                                | chase after people more easily                                   |
+| `* *`    | User who loans items out regularly | View my past loans                                      | know how much money to expect in the near future                 |
+| `* * *`  | User who loans items out regularly | View my past loans                                      | decide whether to loan to a client again                         |
+| `* *`    | User who loans items out regularly | See the overdue loans easily                            | chase after people more easily                                   |
+| `* * *`  | Busy user                          | Keep track of all my loanees(view)                      | save time and use it for more meaningful activities              |
+| `* * *`  | Busy user                          | quickly view a summary of all outstanding loans(view)   | have an overview without going through each contact individually 
+| `* * *`  | user who loans money               | track partial repayments                                | maintain accurate records of the outstanding balance             
+| `* * *`  | user with a dynamic network        | delete loan                                             | my records always reflect the current status of each loan        |
+| `* *`    | First time user                    | See the available commands/usage manual                 | familiarize with the command structure                           |
+| `*`      | Intermediate user                  | Learn shortcuts to commands                             | save time in the future                                          |
+| `* *`    | Experienced user                   | Omit certain parts of the CLI commands                  | perform tasks more efficiently and quickly                       |
 
-*{More to be added}*
+| `* *`    | Forgetful user                     | Get reminders to collect loaned items                   | collect loaned items promptly                                    |
+| `* *`    | Organised user                     | Have a system to manage my loanees                      |                                                                  |
+
+
 
 ### Use cases
 
