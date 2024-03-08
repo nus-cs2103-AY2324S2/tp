@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.exceptions.StorageException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -172,13 +173,13 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private String executeCommand(String commandText) throws CommandException, ParseException {
+    private String executeCommand(String commandText) throws CommandException, ParseException, StorageException {
         String commandResult;
         try {
             commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult);
             resultDisplay.setFeedbackToUser(commandResult);
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | StorageException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
