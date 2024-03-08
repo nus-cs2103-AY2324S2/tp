@@ -274,13 +274,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* A clinical counter clerk in charge of administrative tasks and contact tracing that involves both patients and staff.
+* Very fast typer due to years of experience with excel sheets
+* Tasked with managing large volumes of patient data, including contact histories, contact number, date of visit, across various settings.
+* Responsible for swiftly identifying potential transmission chains to prevent outbreaks within the community.
+* Requires an interface that allows for quick navigation and manipulation of datasets without relying on a mouse, favoring keyboard commands for efficiency.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: 
+
+A simple and intuitive GUI with a keyboard-driven interface that mirrors the efficiency of Vim.
+
+RapidTracer is a more user-friendly tool than Excel for managing large volumes of patient records and data; optimized patient care and outbreak management workflows designed to reduce administrative burdens. For healthcare professionals engaged in contact tracing, RapidTracer combines:
+
+* Simple and intuitive GUI
+* Quick to use for fast typers
+* Instead of using Excel spreadsheets which tends to end up with too much redundant information (everything for everyone), and offers way too many features that a specific user like Dr Surya will not * use, RapidTracer is catered to Dr Surya’s context and field of work (everything for someone).
+* Swiftly navigation through complex patient data and contact histories.
+* A keyboard-driven interface that mirrors the efficiency of Vim
+* The ability to load and store large datasets
+* Optimized workflows designed to reduce administrative burdens, allowing healthcare professionals to concentrate on critical aspects of patient care and outbreak management.
+
 
 
 ### User stories
@@ -289,41 +303,185 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​           | So that I can…​                                                        |
 |----------|--------------------------------------------|------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person       |                                                                        |
-| `* * *`  | user                                       | delete a person        | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name  | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | update contact details | keep track of their current details                                    |
-| `*`      | user with many persons in the address book | sort persons by name   | locate a person easily                                                 |
+| `* * *`  | new clinic clerk                                      | see usage instructions | refer to instructions when I forget how to use the App                 |
+| `* * *`  | clinic clerk                                          | add a new patient       | keep track of clinical records                                               |
+| `* * *`  | clinic clerk                                          | delete a patient        | remove entries that I no longer need                                   |
+| `* * *`  | clinic clerk                                          | find a patient by name  | locate details of patient without having to go through the entire list |
+| `* * *`  | clinic clerk                                          | update contact details | keep track of their current details                                    |
+| `* * *`  | clinic clerk                               | create contacts for new patients | store their patient data |
+| `* * *`  | clinic clerk                               | update existing patient contacts | keep track of their current information |
+| `* * *`  | clinic clerk                               | delete patient contacts | abide by PDPA regulations |
+| `* * *`  | clinic clerk                               | see the records of existing patient contacts | see their relevant information for administrative use |
+| `* * *`  | clinic clerk                               | search my patient records | find a specific patient without scrolling through every single patient record |
+| `* * *`  | clinic clerk                               | make an appointment for an existing contact | keep track of upcoming visits |
+| `* * *`  | clinic clerk                               | update existing appointments | help my patients reschedule their appointments |
+| `* * *`  | clinic clerk                               | delete upcoming appointments | help my patients reschedule their appointments |
+| `* * *`  | clinic clerk                               | see the details of an appointment | maintain patient records |
+| `* * *`  | clinic clerk                               | search my appointments | find a specific appointment without scrolling through every appointment |
+| `* * *`  | clinic clerk                               | tag patients which have contracted infectious diseases such as COVID | keep track of their immunity period |
+| `* * *`  | clinic clerk                               | see which patients have visited the clinic on the same day as each other | facilitate close contact tracing |
+| `* *`    | clinic clerk                               | leave notes and remarks on patient contacts | take note of them for future appointments |
+| `* *`    | clinic clerk                               | leave notes and remarks on appointment records | take note of important details for subsequent appointments |
+| `* *`    | clinic clerk                               | navigate to an appointment record from a patient record | see the details of a specific appointment |
+| `* *`    | clinic clerk                               | navigate to a patient contact from an appointment record | see the details of that specific patient |
+| `* *`    | fast typer                                 | have an undo function (similar to "Ctrl + Z") | undo mistakes if I make a typo |
+| `*`      | clinic clerk                               | have a calendar view of all my appointments | collect data on clinic popularity over time |
+| `*`      | clinic clerk                               | download and save all my patient and appointment data | transfer my work to a new laptop |
+| `*`      | clinic clerk                               | upload all my patient and appointment data | continue working when I switch to a new device |
+| `*`      | clinic clerk with many patients in the address book | sort patient by name   | locate a patient easily                                                 |
+| `*`      | normal guy just chilling                   | be able to click buttons | navigate the system even if I am not familiar with a CLI |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+As Rapid Tracer is meant to be single-user, the System and Actor for all use cases will be RapidTracer and Clinic Clerk (Mr. Surya) respectively, unless otherwise specified.
 
-**Use case: Delete a person**
+#### General Use Cases
+
+**Use Case: G01 - Exit System**
 
 **MSS**
+1. Actor requests to exit the System.
+2. System saves current patient and appointment data to a file.
+3. System exits.
+4. Use case ends.
 
-1.  User requests to list persons
-2.  Rapid Tracer shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Rapid Tracer deletes the person
+## Use Case: G02 - Display Help Message
 
-    Use case ends.
+**MSS**
+1. Actor requests to display a help message.
+2. System displays a help message.
+3. Use case ends.
+
+# Contact Use Cases
+
+**Use Case: C01 - Add New Contact**
+
+**MSS**
+1. Actor enters the details required to make a new contact.
+2. System saves the contact details and displays a confirmation message.
+3. Use case ends.
 
 **Extensions**
+- 1a. System detects an error in the entered data.
+    1. System displays a help message with the correct data entry format.
+    2. System requests for new data.
+    3. Actor enters new data.
+    - Steps 1a1-1a3 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
 
-* 2a. The list is empty.
+**Use Case: C02 - Edit an Existing Contact**
 
-  Use case ends.
+**MSS**
+1. Actor enters the details required to edit an existing contact.
+2. System saves the updated contact details and displays a confirmation message.
+3. Use case ends.
 
-* 3a. The given index is invalid.
+**Extensions**
+- 1a. System detects an error in the entered data.
+    1. System displays a help message with the correct data entry format.
+    2. System requests for new data.
+    3. Actor enters new data.
+    - Steps 1a1-1a3 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
 
-    * 3a1. Rapid Tracer shows an error message.
+**Use Case: C03 - Find a Contact**
 
-      Use case resumes at step 2.
+**MSS**
+1. Actor requests to find a contact and enters the contact’s details.
+2. System shows a list of contacts with matching details.
+3. Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+    - Use case ends.
+
+**Use Case: C04 - Delete a Contact**
+
+**MSS**
+1. Actor requests to delete a specific person in the list of contacts currently displayed.
+2. System deletes the person.
+3. Use case ends.
+
+**Extensions**
+- 1a. The given index is invalid.
+    1. System shows an error message.
+    - Use case resumes at step 1.
+
+**Use Case: C05 - List All Contacts**
+
+**MSS**
+1. Actor requests to list all contacts.
+2. System lists all contacts.
+3. Use case ends.
+
+**Use Case: C06 - Conduct Contact Tracing**
+
+**MSS**
+1. Actor requests to list all contacts with appointments in a specific window of time.
+2. System shows a list of contacts with matching details.
+3. Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+    - Use case ends.
+
+# Appointment Use Cases
+
+**Use Case: A01 - Add Appointment**
+
+**MSS:**
+1. Actor enters appointment details for a patient visit.
+2. System saves the appointment details.
+3. Use case ends.
+
+**Extensions**
+- 1a. System detects an error in the entered data.
+    1. System displays a help message with the correct data entry format.
+    2. System requests for new data.
+    3. Actor enters new data.
+    - Steps 1a1-1a3 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
+
+**Use Case: A02 - Edit an Appointment**
+
+**MSS**
+1. Actor enters the details required to edit an existing appointment.
+2. System saves the updated appointment details and displays a confirmation message.
+3. Use case ends.
+
+**Extensions**
+- 1a. System detects an error in the entered data.
+    1. System displays a help message with the correct data entry format.
+    2. System requests for new data.
+    3. Actor enters new data.
+    - Steps 1a1-1a3 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
+
+**Use Case: A03 - Delete an Appointment**
+
+**MSS**
+1. Actor requests to delete a specific appointment in the list of appointments currently displayed.
+2. System deletes the appointment.
+3. Use case ends.
+
+**Extensions**
+- 1a. The given index is invalid.
+    1. System shows an error message.
+    - Use case resumes at step 1.
+
+**Use Case: A04 - List All Appointments**
+
+**MSS**
+1. Actor requests to list all appointments.
+2. System lists all contacts.
+3. Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+    - Use case ends.
+
 
 *{More to be added}*
 
