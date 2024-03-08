@@ -48,12 +48,12 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Task Management, Deliverables and deadlines, UI
 
-### James Doe
+### Khoo Kiat Lun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/KiatLun.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/KiatLun)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation, Deliverables and deadlines, UI
