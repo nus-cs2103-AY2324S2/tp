@@ -357,9 +357,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view list
-2. ClickConnect shows a list of persons
+2. FitBook shows a list of persons
 3. User requests to delete a specific person in the list
-4. ClickConnect deletes the person 
+4. FitBook deletes the person
 5. Use case ends.
 
 **Extensions**
@@ -370,11 +370,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. ClickConnect shows an error message.
+    * 3a1. FitBook shows an error message.
 
       Use case resumes at step 2.
 
-**System**: ClickConnect
+**System**: FitBook
 
 **Use case**: UC02 - See usage instructions
 
@@ -383,12 +383,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view usage instructions
-2. ClickConnect displays the usage instructions such as how to add, edit, delete or search for contacts
-3. User reads the instructions to understand how to use the ClickConnect
+2. FitBook displays the usage instructions such as how to add, edit, delete or search for contacts
+3. User reads the instructions to understand how to use the FitBook
 4. Use case ends
 
 
-**System**: ClickConnect
+**System**: FitBook
 
 **Use case**: UC03 - Add new contact
 
@@ -397,17 +397,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a new contact
-2. ClickConnect displays a success message after the new contact is successfully added 
+2. FitBook displays a success message after the new contact is successfully added
 3. Use case ends
 
 **Extensions**
 
-* 1a. User enters an invalid command 
-    * 1a1. ClickConnect alerts the user that the command is invalid and displays the correct format
+* 1a. User enters an invalid command
+    * 1a1. FitBook alerts the user that the command is invalid and displays the correct format
     * Use case resumes
-* 1b. User tries to add a contact that already exists in ClickConnect
-    * 1b1. ClickConnect alerts the user that a user with that name and details already exists
-    * 1b2. ClickConnect provides possible solutions (use different details if the contact name is the same)
+* 1b. User tries to add a contact that already exists in FitBook
+    * 1b1. FitBook alerts the user that a user with that name and details already exists
+    * 1b2. FitBook provides possible solutions (use different details if the contact name is the same)
     * Use case resumes
 
 **Use case**: UC04 - Display all contacts
@@ -417,14 +417,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to see a list of all contacts
-2. ClickConnect displays a success message followed by the list of contacts
+2. FitBook displays a success message followed by the list of contacts
 3. User views the list
 4. Use case ends
 
 **Extensions**
 
 * 2a. User enters an invalid command
-    * 2b1. ClickConnect alerts the user that the command is invalid and displays the correct format
+    * 2b1. FitBook alerts the user that the command is invalid and displays the correct format
     * Use case resumes
 
 
@@ -435,11 +435,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ (Windows, macOS and Linux) as long as it has Java `11` or above installed.
 1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 1. Should provide responsive performance, users should experience minimal delays in critical functionalities such as searching and updating contacts (feedback should be within 1 second).
-1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
-1. Should provide an intuitive and user-friendly interface. Users should be able to easily and quickly navigate the user interface to identify crucial information at a glance.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should provide an intuitive and user-friendly interface. Users should be able to easily and quickly navigate the user interface to identify crucial information (E.g Name, Contact, Health information) at a glance.
 1. Should have a shallow learning curve. New users (including the non-technically savvy) should be able to pick up and start using the application efficiently within a week.
-1. Should be optimized to run smoothly on low-end devices with limited processing power and memory. Users on older hardware should be able to use the application as long as it meets [requirement 1](#nfr-1).
+1. Should be optimized to run smoothly on low-end devices with limited processing power and memory. Users on older hardware should be able to use the application as long as it meets [this requirement](#nfr-1).
 
 ### Glossary
 
@@ -448,18 +447,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Architecture**: The high-level design and structure of the application consisting of components such as UI, Model and Storage
 * **Archive**: Moving a contact to a secondary space in the address book of less importance
 * **CLI (Command Line Interface)**: A user interface that is based on interaction with the terminal or console
-* **ClickConnect**: A client management tool used to store contact details, such as names and phone numbers
 * **Client**: A customer of the target user (ie. people engaging the services of a Freelance Photographer)
 * **Command**: An object representing a user commend, created by parsing user input
 * **Commons**: A collection of shared resources or classes used by multiple parts of the application
 * **Contact**: A person of whose details are stored in the address book
-* **GUI (Graphical User Interface)**: The visual interface of the ClickConnect that users interact with
+* **GUI (Graphical User Interface)**: The visual interface of the FitBook that users interact with
 * **JSON (JavaScript Object Notation)**:  A lightweight data-interchange format used for storing and transporting data
 * **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug client applications
 * **Logic**: Refers to the component responsible for interpreting and executing user inputs
 * **Low-end devices**: Computers or devices with limited processing power, memory, and hardware
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Model**: In the context of ClickConnect, it refers to the component that holds and manages application data
+* **Model**: In the context of FitBook, it refers to the component that holds and manages application data
 * **ObservableList**: A unmodifiable list that automatically notifies to UI to update whenever the data changes
 * **Parser**: A class responsible for parsing user input into command objects
 * **PlantUML**: A tool for creating UML diagrams from plain text
@@ -468,10 +466,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Sequence Diagram**: A UML diagram that depicts how objects interact with each other in a sequence
 * **Storage**: A class responsible for reading and writing data to and from the hard disk
 * **UI (User Interface)**: Manages user interactions with graphic interface elements
-* **UniquePersonList**: List that stores non-duplicate person objects 
+* **UniquePersonList**: List that stores non-duplicate person objects
 * **Usage instructions**: Documentation detailing the address book's features and how to navigate them
-* **UserPref**: Stores the user's preferences 
-* **VersionedAddressBook**: An extension of extends ClickConnect that adds undo/redo functionality
+* **UserPref**: Stores the user's preferences
+* **VersionedAddressBook**: An extension of extends FitBook that adds undo/redo functionality
 
 --------------------------------------------------------------------------------------------------------------------
 
