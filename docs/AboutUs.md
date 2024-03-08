@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chua Joon Peng, Gabriel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gabrielchua.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.linkedin.com/in/gabriel-chua-087543229/)]
+[[github](https://github.com/1rbg)]
+[[portfolio](team/gabrielchua.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Documentation + UI
 
 ### Jane Doe
 
