@@ -22,9 +22,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Priyansh Bimbisariye
 
-<img src="images/priyanshbimbisariye.png" width="200px">
+<img src="images/pyromancerboom.png" width="200px">
 
-[[github](https://github.com/PyromancerBoom)] [[portfolio](team/priyanshbimbisariye.md)]
+[[github](https://github.com/PyromancerBoom)] [[portfolio](team/pyromancerboom.md)]
 
 - Role: Developer
 - Responsibilities: Scheduling and Tracking, Deliverables and deadlines
@@ -46,4 +46,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Developer
 - Responsibilities: Testing, Deliverables and deadlines
-
