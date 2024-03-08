@@ -17,7 +17,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: Git expert, Code Quality
+* Responsibilities: Git expert, Code Quality, Testing
 
 ### Yeo Zi Yi
 
