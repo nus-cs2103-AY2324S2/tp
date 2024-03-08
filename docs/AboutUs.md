@@ -11,10 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ho Kai Ting
 
-<img src="images/kaiting.png" width="200px">
+<img src="images/kaitinghh.png" width="200px">
 
 [[github](https://github.com/kaitinghh)]
-[[portfolio](team/kaiting.md)]
+[[portfolio](team/kaitinghh.md)]
 
 * Role: Developer
 * Responsibilities: 
