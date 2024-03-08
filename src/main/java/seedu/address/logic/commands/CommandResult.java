@@ -20,7 +20,6 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
-    private boolean view;
     private final Person viewPerson;
     private final FilteredList<Person> viewList;
 
@@ -31,7 +30,6 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.view = view;
         this.viewPerson = null;
         this.viewList = null;
     }
@@ -53,7 +51,6 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.viewPerson = viewPerson;
-        this.view = false;
         this.viewList = null;
     }
 
@@ -65,7 +62,6 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
-        this.view = false;
         this.viewPerson = null;
         this.viewList = viewList;
     }
@@ -86,10 +82,6 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
-    }
-
-    public boolean isView() {
-        return view;
     }
 
 

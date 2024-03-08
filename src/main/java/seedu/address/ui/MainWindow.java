@@ -213,14 +213,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-            if (commandResult.isView()) {
-                viewPanelPlaceHolder.setVisible(false);
-            }
             if (commandResult.getViewPerson() != null) {
                 Person p = commandResult.getViewPerson();
                 handleView(p);
-            }
-            if (commandResult.getViewList() != null) {
+            } else if (commandResult.getViewList() != null) {
                 if (commandResult.getViewList().isEmpty()) {
                     viewPanelPlaceHolder.setVisible(false);
                 } else {
@@ -228,6 +224,8 @@ public class MainWindow extends UiPart<Stage> {
                         handleView(p);
                     }
                 }
+            } else {
+                viewPanelPlaceHolder.setVisible(false);
             }
 
             if (commandResult.isExit()) {
