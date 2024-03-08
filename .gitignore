@@ -33,3 +33,4 @@ docs/_markbind/logs/
 /.settings
 /.classpath
 /.project
+*sublime*
