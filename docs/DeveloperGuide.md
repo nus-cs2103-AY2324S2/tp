@@ -330,15 +330,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Should take less than 3 seconds for the application to finish processing a command and display the results.
+5.  Should work on any 32 bit or 64 bit OS.
+6.  Should be usable by any regular employee with little to no technical expertise.
+7.  Should have no differences in behaviour or performance between Windows 10 and 11.
+8.  A HR employee should not be able to see sensitive information but an executive or someone with higher system authority can.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Mainstream OS**: Operating Systems (OS) such as Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **HR**: Human Resource, a department associated with managing employee benefits and recruitment
+* **MSS**: Main Success Scenario, the main flow of events in a use case
+* **Technical expertise**: Any relevant experience in using a computer and software on it
+* **Sensitive information**: Important information relating to a person that may cause privacy concerns such as ID details or bank account details.
 
 --------------------------------------------------------------------------------------------------------------------
 
