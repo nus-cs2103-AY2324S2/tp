@@ -9,16 +9,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Rayson Chia
 
 <img src="images/raysonchia.png" width="200px">
@@ -40,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Developer
 
 ### Aum Sebin
-<img src="images/sebinaum.png" width="200px">
+<img src="images/sebin0817.png" width="200px">
 
 [[github](http://github.com/sebin0817)]
 [[portfolio](team/sebin.md)]
