@@ -6,6 +6,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -38,11 +39,13 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Tag tag = new Tag("staff");
+        Set<Tag> tags = new HashSet<>();
+        tags.add(tag);
         Employment employment = ParserUtil.parseEmployment(argMultimap.getValue(PREFIX_EMPLOYMENT).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
 
-        Staff person = new Staff(name, phone, email, address, tagList, salary, employment);
+        Staff person = new Staff(name, phone, email, address, tags, salary, employment);
 
         return new AddStaffCommand(person);
     }
