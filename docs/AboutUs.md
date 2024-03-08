@@ -34,7 +34,7 @@ Together we made ````Moddie!``
 
 ### Aw Joey
 
-<img src="images/awjoey.jpg" width="200px">
+<img src="images/awjoey.png" width="200px">
 
 [[github](https://github.com/AwJoey)] [[portfolio](team/johndoe.md)]
 
