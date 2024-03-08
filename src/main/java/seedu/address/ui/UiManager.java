@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
@@ -39,6 +40,15 @@ public class UiManager implements Ui {
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
+        // load fonts
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Hack/Hack-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Hack/Hack-Bold.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Hack/Hack-Italic.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Hack/Hack-BoldItalic.ttf"), 14);
+
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Source Pro/SourceCodePro-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Source Pro/SourceCodePro-Medium.ttf"), 14);
+
         try {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
@@ -65,7 +75,7 @@ public class UiManager implements Ui {
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
                                                String contentText) {
         final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+        alert.getDialogPane().getStylesheets().add("view/styleSheets/DarkTheme.css");
         alert.initOwner(owner);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
