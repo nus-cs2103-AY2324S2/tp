@@ -320,13 +320,25 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Small business owners in the crochet industry.
+* Prefers efficient ways to manage customer lists.
+* Values productivity and time-saving solutions.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app.
+**User Needs and Preferences**:
+
+* Efficient Customer Management:
+  * Can organize and manage customer lists effectively.
+  * Prefers streamlined processes for handling customer information.
+  * Values tools that optimize workflows and save time.
+* Mobile Accessibility:
+  * Appreciates the ability to access customer information on the go.
+  * Values mobile-friendly features for managing orders and inquiries efficiently.
+* Data Security and Backup:
+  * Values secure access controls and data privacy compliance.
+  * Prefers applications with backup and synchronization capabilities for data integrity.
+
+**Value proposition**:
+* manage contacts faster than a typical mouse/GUI driven app.
 
 ### User stories
 
