@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Staff's salary in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
+ */
 public class Salary {
     public static final String MESSAGE_CONSTRAINTS =
             "Salary should in this format of ${amount}/h";
@@ -39,7 +43,7 @@ public class Salary {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Email)) {
+        if (!(other instanceof Salary)) {
             return false;
         }
 

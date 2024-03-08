@@ -8,25 +8,25 @@ import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-public class Staff extends Person{
+public class Supplier extends Person{
     // Data fields
-    private final Salary salary;
-    private final Employment employment;
+    private final Product product;
+    private final Price price;
 
-    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                 Salary salary, Employment employment) {
+    public Supplier(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                    Product product, Price price) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(salary, employment);
-        this.salary = salary;
-        this.employment = employment;
+        requireAllNonNull(product, price);
+        this.product = product;
+        this.price = price;
     }
 
-    public Salary getSalary() {
-        return salary;
+    public Price getPrice() {
+        return price;
     }
 
-    public Employment getEmployment() {
-        return employment;
+    public Product getProduct() {
+        return product;
     }
 
     /**
@@ -40,27 +40,27 @@ public class Staff extends Person{
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Staff)) {
+        if (!(other instanceof Supplier)) {
             return false;
         }
 
-        Staff otherPerson = (Staff) other;
+        Supplier otherPerson = (Supplier) other;
         return super.equals(otherPerson)
-                && salary.equals(otherPerson.salary)
-                && employment.equals(otherPerson.employment);
+                && product.equals(otherPerson.product)
+                && price.equals(otherPerson.price);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(super.hashCode(), salary, employment);
+        return Objects.hash(super.hashCode(), product, price);
     }
 
     @Override
     public String toString() {
         return super.toString() + new ToStringBuilder(this)
-                .add("salary", salary)
-                .add("employment", employment)
+                .add("product", product)
+                .add("price", price)
                 .toString();
     }
 }

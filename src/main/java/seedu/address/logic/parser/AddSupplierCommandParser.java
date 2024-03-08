@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStaffCommand;
+import seedu.address.logic.commands.AddSupplierCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
@@ -16,39 +16,39 @@ import static seedu.address.logic.parser.CliSyntax.*;
 /**
  * Parses input arguments and creates a new AddStaffCommand object
  */
-public class AddStaffCommandParser implements Parser<AddStaffCommand> {
+public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddStaffCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddStaffCommand parse(String args) throws ParseException {
+    public AddSupplierCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_SALARY, PREFIX_EMPLOYMENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_PRODUCT, PREFIX_PRICE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_EMPLOYMENT, PREFIX_SALARY)
+                PREFIX_PRODUCT, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_SALARY, PREFIX_EMPLOYMENT);
+                PREFIX_PRODUCT, PREFIX_PRICE);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Tag tag = new Tag("staff");
+        Tag tag = new Tag("supplier");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
-        Employment employment = ParserUtil.parseEmployment(argMultimap.getValue(PREFIX_EMPLOYMENT).get());
-        Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
+        Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
+        Product product = ParserUtil.parseProduct(argMultimap.getValue(PREFIX_PRODUCT).get());
 
-        Staff person = new Staff(name, phone, email, address, tags, salary, employment);
+        Supplier person = new Supplier(name, phone, email, address, tags, product, price);
 
-        return new AddStaffCommand(person);
+        return new AddSupplierCommand(person);
     }
 
     /**

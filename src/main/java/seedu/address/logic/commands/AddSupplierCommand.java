@@ -5,6 +5,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
@@ -12,35 +13,35 @@ import static seedu.address.logic.parser.CliSyntax.*;
 /**
  * Adds a person to the address book.
  */
-public class AddStaffCommand extends Command {
+public class AddSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = "/pooch-staff";
+    public static final String COMMAND_WORD = "/pooch-supplier";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a supplier to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_SALARY + "SALARY "
-            + PREFIX_EMPLOYMENT + "EMPLOYMENT "
+            + PREFIX_PRODUCT + "PRODUCT "
+            + PREFIX_PRICE + "PRICE \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe staff "
+            + PREFIX_NAME + "John Doe supplier "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_SALARY + "$50/hr "
-            + PREFIX_EMPLOYMENT + "part-time";
+            + PREFIX_PRODUCT + "poochie food "
+            + PREFIX_PRICE + "$50/bag";
 
-    public static final String MESSAGE_SUCCESS = "New staff is added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New supplier is added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This supplier already exists in the address book";
 
-    private final Staff toAdd;
+    private final Supplier toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddStaffCommand(Staff person) {
+    public AddSupplierCommand(Supplier person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -64,11 +65,11 @@ public class AddStaffCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddStaffCommand)) {
+        if (!(other instanceof AddSupplierCommand)) {
             return false;
         }
 
-        AddStaffCommand otherAddCommand = (AddStaffCommand) other;
+        AddSupplierCommand otherAddCommand = (AddSupplierCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 

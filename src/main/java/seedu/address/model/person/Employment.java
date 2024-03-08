@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Staff's employment status in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidEmployment(String)} )}
+ */
 public class Employment {
     public static final String MESSAGE_CONSTRAINTS =
             "Employment should be either full-time or part-time";
@@ -11,7 +15,7 @@ public class Employment {
     public final String employment;
 
     /**
-     * Constructs an {@code Salary}.
+     * Constructs an {@code Employment}.
      *
      * @param employment A valid employment either part-time or full-time.
      */
@@ -40,7 +44,7 @@ public class Employment {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Email)) {
+        if (!(other instanceof Employment)) {
             return false;
         }
 
