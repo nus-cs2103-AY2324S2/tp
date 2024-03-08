@@ -300,7 +300,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Hi:Re` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC1 - Add a contact**
+
+**MSS**
+
+1. User requests to add a new contact and input the contact information
+2. Hi:Re adds the person to the database
+3. Hi:Re shows a message to for the successful addition
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The input format is wrong and cannot be accepted
+
+    * 1a1. Hi:Re shows an error message
+  
+      Use case ends.
+
 
 **Use case: Delete a person**
 
