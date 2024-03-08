@@ -12,5 +12,4 @@
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base.
   * It comes with a **reasonable level of user and developer documentation**.
 
-* We hope that the application will help all SoC students to achieve better mental health, and BS to spend more time to help students instead of wasting time on administrative work
-* by helping BS keep track of student information.
+* We hope that the application will help all SoC students to achieve better mental health, and counsellors to spend more time to help students instead of wasting time on administrative work by helping them keep track of student information.
