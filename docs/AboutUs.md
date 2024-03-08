@@ -36,6 +36,15 @@ You can reach us at the email `e0960005@comp.nus.edu`
 * Role: Developer
 * Responsibilities: Deliverables and deadlines + UI
 
+### Huang Zhuoyan, Celeste
+
+<img src="images/moguries.png" width="200px">
+
+[[github](https://github.com/moguries)]
+
+* Role: Developer
+* Responsibilities: Code quality and Integration + Storage
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
