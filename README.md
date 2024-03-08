@@ -4,7 +4,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is our **CogniCare appliction**. pu<br>
+* This is our **CogniCare application**. pu<br>
   Example usages:
   * allows BS to create contacts in the CogniCare application
   * allows BS to track his student's mental health progress
