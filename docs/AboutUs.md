@@ -11,51 +11,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Puri Virakarin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/purivirakarin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/purivirakarin)]
+[[portfolio](team/purivirakarin.md)]
 
-* Role: Project Advisor
+* Role: Developer 
+* Responsibilities: 
 
-### Jane Doe
+### Rungrawin Chowiwattana
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nuyer.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nuyer)]
+[[portfolio](team/nuyer.md)]
+
+* Role: Developer
+* Responsibilities: 
+
+### Sia Zhong Qing
+
+<img src="images/starsia.png" width="200px">
+
+[[github](http://github.com/starsia)]
+[[portfolio](team/starsia.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: 
 
-### Johnny Doe
+### Shaun Lee Xuan Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shaunlxw.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/shaunlxw)]
+[[portfolio](team/shaunlxw.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: 
 
-### James Doe
+### Tan Jie Ling
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanjieling0.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tanjieling0)]
+[[portfolio](team/tanjieling0.md)]
 
 * Role: Developer
 * Responsibilities: UI
