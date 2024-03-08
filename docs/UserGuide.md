@@ -16,7 +16,7 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 
 1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your PoochPlanner.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -25,19 +25,15 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
-
    * `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/h ; employment : part-time`  : Adds a staff contact named `Poochie` to the Pooch Planner.
 
    * `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`  : Adds a supplier contact named `PetCo` to the Pooch Planner.
 
    * `/pooch-maintenance ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`  : Adds a helper contact named `Tom Tan` to the Pooch Planner.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `/delete ; name : Poochie` : Deletes the contact with associated contact name.
 
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
+   * `/exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -52,14 +48,11 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 * Words in `[parameter name]` are the parameters to be supplied by the user.<br>
   e.g. in `/pooch-staff ; name : [name]`, `[name]` is a parameter which can be used as `/pooch-staff ; name : Poochie`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `name : [name] ; phone : [phone]`, `phone : [phone] ; name : [name]` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `/list`, `/exit`) will be ignored.<br>
+  e.g. if the command specifies `/list 123`, it will be interpreted as `/list`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
@@ -69,10 +62,10 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 Shows a message of how to write commands for all commands or a specfic command.
 
 ### Get help for all commands
-Format: `help`
+Format: `/help`
 
 ### Get help for a specific command
-Format: `help ; command : [command type]`
+Format: `/help ; command : [command type]`
 
 Examples:
 * `/help ; command : pooch-staff`
@@ -85,7 +78,7 @@ Examples:
 
 ### Adding a contact: `Add`
 
-Adds a staff / supplier / helper to the address book.
+Adds a staff / supplier / helper to the Pooch Planner.
 
 #### Adds a staff
 Format: `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full] ;`
@@ -108,9 +101,9 @@ Constraints :
 
 ### Editing a person : `Edit`
 
-Edit the fields of the specified person in the address book.
+Edit the fields of the specified person in the Pooch Planner.
 
-Format: `/edit ; name : [NAME] ; field { [FIELD] : [VALUE] }`
+Format: `/edit ; name : [name] ; field { [field] : [value] }`
 
 * Edits the specified `field`(s) of the person with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
 * The name is a compulsory field that is case-insensitive but space-sensitive.
@@ -120,48 +113,30 @@ Format: `/edit ; name : [NAME] ; field { [FIELD] : [VALUE] }`
 * **_Caution_** : Editing `name` field to another name that already exists in Pooch Contact Book is strictly **not** allowed.
 
 Examples:
-* `edit ; name : Poochie ; field : { name : Mochie }`
+* `/edit ; name : Poochie ; field : { name : Mochie }`
 
   The above command edits the name of the person, from **_Poochie_** to **_Mochie_**, given that there are no other persons with the name, **_Mochie_**, in the Pooch Contact Book.
 
-* `edit ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
+* `/edit ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
   The above command edits the address of **_Thomas_** to **_Poochie Street 25_**.
   The above command also edits the employment of **_Thomas_**, which **must** be a **_Pooch Staff_**, to **_full-time_**.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the Pooch Planner.
 
-Format: `/delete ; name : [NAME]`
+Format: `/delete ; name : [name]`
 
 * Deletes the contact with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
 * The name is a compulsory field that is case-insensitive but space-sensitive.
 
 Examples:
-* `delete ; name : Poochie`
+* `/delete ; name : Poochie`
 
    The above command deletes the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
   
-* `delete ; name : Moochie`
+* `/delete ; name : Moochie`
 
    The above command deletes the contact with name **_Moochie_**, provided **_Moochie_** exists as a name of a contact in Pooch Contact Book
 
@@ -199,17 +174,11 @@ Examples:
 /search ; description : Food
 ```
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+Format: `/exit`
 
 ### Saving the data
 
@@ -220,8 +189,8 @@ AddressBook data are saved in the hard disk automatically after any command that
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, PoochPlanner will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the PoochPlanner to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -233,7 +202,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PoochPlanner home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -247,10 +216,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Add Staff** | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]` <br> e.g., `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/h ; employment : part-time`
+**Add Supplier** | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]` <br> e.g., `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
+**Add Helper** | `/pooch-maintenance ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-maintenance ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
+**Delete** | `/delete name : [name] `<br> e.g., `delete ; name : Poochie`
+**Edit** | `/edit ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
+**Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
+**List** | `/list`
+**Help** | `/help`
+**Help Command Format** | `/help ; command : [command]` <br> e.g., `/help ; command : pooch-staff` <br> e.g., `/help ; command : delete`
+`

@@ -19,7 +19,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### James Sin
 
-<img src="images/jamessinmaojun.jpg" width="200px">
+<img src="images/jamessinmaojun.png" width="200px">
 
 [[github](http://github.com/jamessinmaojun)]
 [[portfolio](team/jamessinmaojun.md)]
@@ -38,10 +38,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Joshua Yip Sujun
 
-<img src="images/joshuayip.png" width="200px">
+<img src="images/joshy837.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/joshuayip.md)]
+[[github](http://github.com/joshy837)]
+[[portfolio](team/joshy837.md)]
 
 * Role: Developer
 * Responsibilities: Testing
