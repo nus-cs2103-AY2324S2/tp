@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the patient in the {@code model}'s patient list at {@code index}.
      */
-    public static Patient getPerson(Model model, Index index) {
+    public static Patient getPatient(Model model, Index index) {
         return model.getFilteredPatientList().get(index.getZeroBased());
     }
 }
