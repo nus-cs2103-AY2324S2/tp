@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the tags given.
+ * Tests that a {@code Person}'s tag set contains all the filter tag(s).
  */
 public class HasMatchingTagPredicate implements Predicate<Person> {
     private final List<String> filterTags;

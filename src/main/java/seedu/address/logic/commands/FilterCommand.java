@@ -7,11 +7,15 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.HasMatchingTagPredicate;
 
+/**
+ * Finds all contacts with tags matching ALL the tags entered (case-insensitive)
+ * and displays them as a list with index numbers.
+ */
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts that have at least "
-            + "one matching tag (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts with tags matching ALL the tags "
+            + "entered (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: TAG [MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " supplier seafood";
 
