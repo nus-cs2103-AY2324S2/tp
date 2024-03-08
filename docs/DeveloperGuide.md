@@ -352,19 +352,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
-otherwise)
-
-**Use case: Delete a person**
+**Use case**: UC01 - Delete a person
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
+1. User requests to view list
+2. ClickConnect shows a list of persons
 3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
-
-   Use case ends.
+4. ClickConnect deletes the person 
+5. Use case ends.
 
 **Extensions**
 
@@ -374,11 +370,63 @@ otherwise)
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClickConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**System**: ClickConnect
+
+**Use case**: UC02 - See usage instructions
+
+**Actor**: User
+
+**MSS**
+
+1. User requests to view usage instructions
+2. ClickConnect displays the usage instructions such as how to add, edit, delete or search for contacts
+3. User reads the instructions to understand how to use the ClickConnect
+4. Use case ends
+
+
+**System**: ClickConnect
+
+**Use case**: UC03 - Add new contact
+
+**Actor**: User
+
+**MSS**
+
+1. User requests to add a new contact
+2. ClickConnect displays a success message after the new contact is successfully added 
+3. Use case ends
+
+**Extensions**
+
+* 1a. User enters an invalid command 
+    * 1a1. ClickConnect alerts the user that the command is invalid and displays the correct format
+    * Use case resumes
+* 1b. User tries to add a contact that already exists in ClickConnect
+    * 1b1. ClickConnect alerts the user that a user with that name and details already exists
+    * 1b2. ClickConnect provides possible solutions (use different details if the contact name is the same)
+    * Use case resumes
+
+**Use case**: UC04 - Display all contacts
+
+**Actor**: User
+
+**MSS**
+
+1. User requests to see a list of all contacts
+2. ClickConnect displays a success message followed by the list of contacts
+3. User views the list
+4. Use case ends
+
+**Extensions**
+
+* 2a. User enters an invalid command
+    * 2b1. ClickConnect alerts the user that the command is invalid and displays the correct format
+    * Use case resumes
+
 
 ### Non-Functional Requirements
 
@@ -395,27 +443,33 @@ otherwise)
 
 ### Glossary
 
-* **ClickConnect**: A client management tool used to store contact details, such as names and phone numbers
 * **API(Application Programming Interface)**: Defines how software components interact with each other
+* **Above average typing speed**: Typing speed of more than 40 words per minute
 * **Architecture**: The high-level design and structure of the application consisting of components such as UI, Model and Storage
+* **Archive**: Moving a contact to a secondary space in the address book of less importance
 * **CLI (Command Line Interface)**: A user interface that is based on interaction with the terminal or console
-* **Commons**: A collection of shared resources or classes used by multiple parts of the application
+* **ClickConnect**: A client management tool used to store contact details, such as names and phone numbers
+* **Client**: A customer of the target user (ie. people engaging the services of a Freelance Photographer)
 * **Command**: An object representing a user commend, created by parsing user input
+* **Commons**: A collection of shared resources or classes used by multiple parts of the application
+* **Contact**: A person of whose details are stored in the address book
 * **GUI (Graphical User Interface)**: The visual interface of the ClickConnect that users interact with
-* **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug client applications
 * **JSON (JavaScript Object Notation)**:  A lightweight data-interchange format used for storing and transporting data
+* **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug client applications
 * **Logic**: Refers to the component responsible for interpreting and executing user inputs
 * **Low-end devices**: Computers or devices with limited processing power, memory, and hardware
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Model**: In the context of ClickConnect, it refers to the component that holds and manages application data
 * **ObservableList**: A unmodifiable list that automatically notifies to UI to update whenever the data changes
+* **Parser**: A class responsible for parsing user input into command objects
 * **PlantUML**: A tool for creating UML diagrams from plain text
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Parser**: A class responsible for parsing user input into command objects
-* **Storage**: A class responsible for reading and writing data to and from the hard disk
+* **Responsive performance**: No noticeable delay of the address book during execution
 * **Sequence Diagram**: A UML diagram that depicts how objects interact with each other in a sequence
+* **Storage**: A class responsible for reading and writing data to and from the hard disk
 * **UI (User Interface)**: Manages user interactions with graphic interface elements
 * **UniquePersonList**: List that stores non-duplicate person objects 
+* **Usage instructions**: Documentation detailing the address book's features and how to navigate them
 * **UserPref**: Stores the user's preferences 
 * **VersionedAddressBook**: An extension of extends ClickConnect that adds undo/redo functionality
 
