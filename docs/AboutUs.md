@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/dayn-1)]
 
-* Role: Team Lead
+* Role: Testing
 
 ### Chee Wei Xiong Clifton
 
@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/thatgirljam)]
 
-* Role: Testing
+* Role: Scheduling and Tracking
 * Responsibilities: Data
 
 ### Lim Rik
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/limrik)]
 
-* Role: Code quality, Integration
+* Role: Code quality
 * Responsibilities: Dev Ops + Threading
 
 ### Low Xue Ling
@@ -52,5 +52,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/xuelinglow)]
 
-* Role: Deliverables and deadlines
+* Role: Integration
 * Responsibilities: UI
