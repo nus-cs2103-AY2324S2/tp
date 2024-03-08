@@ -2,7 +2,10 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
-</VBox>
+  <ListView fx:id="appointmentListView" VBox.vgrow="ALWAYS" />
+  <ListView fx:id="caseLogListView" VBox.vgrow="ALWAYS" />
+</HBox>
