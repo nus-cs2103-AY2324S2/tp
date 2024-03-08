@@ -1,7 +1,7 @@
 {
   "baseUrl": "",
-  "titlePrefix": "DevelopersCo.",
-  "titleSuffix": "AddressBook Level-3",
+  "titlePrefix": "CS2103 T12-1",
+  "titleSuffix": "CodeConnect",
   "faviconPath": "images/SeEduLogo.png",
   "style": {
     "codeTheme": "light"
