@@ -108,19 +108,29 @@ Format: `delete <id>`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Editing an entity : `edit`
+### Editing a contact : `edit`
 
-Edit existing contacts or their associated assets without recreating them.
+Edit existing contacts without recreating them.
 
 Format: `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...`
 
 Example: `edit 1 --email newemail@example.com` edits the contact with id `123`, changing its email to `newemail@example.com`.
 
-* Edits the entity with the specified `id`. The `id` refers to the unique contact id shown by the GUI in the contacts list.
+* Edits the contact with the specified `id`. The `id` refers to the unique contact id shown by the GUI in the contacts list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing assets, the existing assets of the person will be removed i.e adding of assets is not cumulative.
 * You can remove all the person’s assets by typing `--asset` without specifying any assets after it.
+
+### Editing an asset: `edita`
+
+Edit existing assets without recreating them.
+
+Format: `edita <asset> <new_asset_name>`
+
+Example: `edita L293D L293E` edits the asset `L293D`, changing its name to `L293E`.
+
+* The asset will be renamed for all contacts linked to it.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -186,6 +196,7 @@ Action     | Format      |        Examples
 -----------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add --name <name> [--email <email>] [--phone <phone>] [--address <address>] [--asset <asset>]...` | `add --name John Doe --email johndoe@example.com --phone +12345678 --asset L293D`
 **Delete** | `delete <id>` | `delete 1`
-**Edit**   | `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...` | `edit 1 --email newemail@example.com`
+**Edit contact**   | `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...` | `edit 1 --email newemail@example.com`
+**Edit asset**   | `edita <asset> <new_asset_name>` | `edita L293D L293E`
 **Search**   | `search <string>` | `search John`
 **Exit**   | `exit` | `exit`
