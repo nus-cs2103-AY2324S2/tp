@@ -359,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to view list
 2. ClickConnect shows a list of persons
 3. User requests to delete a specific person in the list
-4. ClickConnect deletes the person 
+4. ClickConnect deletes the person
 5. Use case ends.
 
 **Extensions**
@@ -397,12 +397,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a new contact
-2. ClickConnect displays a success message after the new contact is successfully added 
+2. ClickConnect displays a success message after the new contact is successfully added
 3. Use case ends
 
 **Extensions**
 
-* 1a. User enters an invalid command 
+* 1a. User enters an invalid command
     * 1a1. ClickConnect alerts the user that the command is invalid and displays the correct format
     * Use case resumes
 * 1b. User tries to add a contact that already exists in ClickConnect
@@ -445,23 +445,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **API(Application Programming Interface)**: Defines how software components interact with each other
 * **Above average typing speed**: Typing speed of more than 40 words per minute
-* **Architecture**: The high-level design and structure of the application
-* **Archive**: Moving a contact to a secondary space in the address book of less importance
+* **Architecture**: The high-level design and code structure of FitBook
+* **Archive**: Moving a contact to a secondary space in FitBook that is of less importance
 * **CLI (Command Line Interface)**: A user interface that is based on interaction with the terminal or console
-* **ClickConnect**: An address book with client management capabilities
-* **Client**: A customer of the target user (ie. people engaging the services of a Freelance Photographer)
-* **Contact**: A person whose details are stored in the address book
-* **GUI (Graphical User Interface)**: The visual interface of the address book that users interact with
+* **FitBook**: An address book with additional capabilities for managing personal training clients
+* **Client**: A personal training customer of the target user (ie. people engaging the services of a Personal Trainer)
+* **Contact**: A person whose details are stored in FitBook
+* **GUI (Graphical User Interface)**: The visual interface of FitBook that users interact with
 * **JSON (JavaScript Object Notation)**:  A lightweight data-interchange format used for storing and transporting data
-* **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug client applications
+* **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug applications
 * **Low-end devices**: Computers with lesser than average hardware resources such as processing power and memory
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **PlantUML**: A tool for creating UML diagrams from plain text
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Responsive performance**: No noticeable delay of the address book during execution
+* **Responsive performance**: No noticeable delay of FitBook during user interaction
 * **Sequence Diagram**: A UML diagram that depicts how objects interact with each other in a sequence
 * **UI (User Interface)**: Manages user interactions with graphic interface elements
-* **Usage instructions**: Documentation detailing the address book's features and how to navigate about them
+* **Usage instructions**: Documentation detailing FitBook's features and how to navigate about them
 
 --------------------------------------------------------------------------------------------------------------------
 
