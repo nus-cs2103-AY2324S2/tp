@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ClickConnect 
+title: FitBook
 ---
 
 [![CI Status](https://github.com/AY2324S2-CS2103T-T17-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S2-CS2103T-T17-3/tp/actions/workflows/gradle.yml)
@@ -8,10 +8,10 @@ title: ClickConnect
 
 ![Ui](images/Ui.png)
 
-**ClickConnect is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**FitBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using ClickConnect, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing ClickConnect, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using FitBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing FitBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
