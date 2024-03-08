@@ -6,7 +6,7 @@
 
 * This is our **CogniCare application**. pu<br>
   Example usages:
-  * allows BS to create contacts in the CogniCare application
+  * allows counsellors to create contacts in the CogniCare application
   * allows BS to track his student's mental health progress
 * The project is an ongoing software project for a desktop application (called _CongiCare_) which is used for managing student contact details.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base.
