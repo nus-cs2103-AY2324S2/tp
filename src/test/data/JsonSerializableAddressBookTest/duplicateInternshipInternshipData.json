@@ -1,0 +1,22 @@
+{
+  "internships" : [ {
+    "companyName" : "Microsoft",
+    "contactName" : "Alice Pauline",
+    "contactEmail" : "alice@example.com",
+    "contactNumber" : "94351253",
+    "location" : "remote",
+    "status" : "ongoing",
+    "description" : "Use Figma to design User-friendly web interfaces",
+    "role" : "Frontend Engineer"
+  }, {
+    "companyName" : "Microsoft",
+    "contactName" : "Alice Pauline",
+    "contactEmail" : "alice@example.com",
+    "contactNumber" : "94351253",
+    "location" : "remote",
+    "status" : "ongoing",
+    "description" : "Use Figma to design User-friendly web interfaces",
+    "role" : "Frontend Engineer"
+  }
+  ]
+}
