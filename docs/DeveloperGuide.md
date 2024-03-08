@@ -494,6 +494,10 @@ As Rapid Tracer is meant to be single-user, the System and Actor for all use cas
 5. Should be able to hold up to 10000 appointments without a noticeable sluggishness in performance for typical usage.
 6. Should have the ability to import patient and appointment data stored in common formats, such as CSV or JSON.
 7. Should have comprehensive documentation for both users and developers in the form of a User and Developer Guide respectively.
+8. Should respond to user commands within a reasonable timeframe( less than 1s)
+9. Should be available during clinic operating hours with minimal downtime.
+10. Should have mechanisms in place to prevent data loss or corruption, such as regular backups.
+11. Should be able to recover from failures, minimizing downtime.
 
 *{More to be added}*
 
