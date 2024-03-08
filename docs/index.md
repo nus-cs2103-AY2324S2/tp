@@ -3,10 +3,10 @@
   title: ""
 ---
 
-# Address Book
+# Rapid Tracer
 
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2324S2-CS2103T-T10-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103T-T10-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2324S2-CS2103T-T10-2/tp/graph/badge.svg?token=1R92MZ3PFL)](https://codecov.io/gh/AY2324S2-CS2103T-T10-2/tp)
 
 ![Ui](images/Ui.png)
