@@ -65,6 +65,7 @@ class HasMatchingTagPredicateTest {
         HasMatchingTagPredicate predicate = new HasMatchingTagPredicate(Arrays.asList("employee"));
         assertFalse(predicate.test(new PersonBuilder().withTags("supplier").build()));
         assertFalse(predicate.test(new PersonBuilder().withTags("supplier", "seafood").build()));
+        assertFalse(predicate.test(new PersonBuilder().build()));
     }
 
     @Test
