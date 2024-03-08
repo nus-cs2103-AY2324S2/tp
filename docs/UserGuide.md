@@ -4,9 +4,10 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# PatientSync User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+PatientSync is a **desktop app made for nurses to manage patient, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PatientSync allows you to add and view patients intimate details tasks done faster than traditional GUI apps.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
