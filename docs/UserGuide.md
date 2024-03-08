@@ -159,6 +159,9 @@ Format: `delete INDEX`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Copy paste.
 
+**Q**: A command is not working, what am I doing wrong?<br>
+**A**: There's a chance that the feature is still under development. We will fix it!
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -171,3 +174,4 @@ Format: `delete INDEX`
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+WIP | WIP
