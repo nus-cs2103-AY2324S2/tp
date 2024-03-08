@@ -274,13 +274,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* has a need to manage all the employees in company.
+* has a need to check employees' efficiency.
+* can generate a fire list to cut company costs.
+* prefers smooth and eye-catching GUI.
+* prefers typing to mouse interactions.
+* is reasonably comfortable using CLI apps.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: EffiTrack simplifies the task of measuring and monitoring employee efficiency for 
+HR departments. </br> Instead of using time-consuming and error-prone methods like manual documentation or 
+outdated systems, EffiTrack offers a centralized platform for easy and accurate monitoring of employee performance.
 
 
 ### User stories
