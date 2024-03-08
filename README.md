@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103T-F10-2/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
@@ -49,5 +49,5 @@ This app is targeted towards student tutors who are more tech savvy, tapping int
 
 _Commands are designed with user ease and intuitive process flows in mind._
 
-* For the detailed documentation of this project, see the **[TuteeTally Product Website](https://ay2324s2-cs2103t-f10-1.github.io/tp/)**.
+* For the detailed documentation of this project, see the **[TuteeTally Product Website](https://ay2324s2-cs2103t-f10-2.github.io/tp/)**.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
