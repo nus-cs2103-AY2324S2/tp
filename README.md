@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 * **TrAcker** is a student software engineering project that aims to create an application to help Head Teaching
-  Assistants (Head TAs) track the records of other teaching assistants (TAs) and students.
+  Assistants (Head TAs) track the records of other Teaching Assistants (TAs) and students.
   Example usages:
   * Add/delete contact details of TAs and students
   * Update contact details of TAs and students
