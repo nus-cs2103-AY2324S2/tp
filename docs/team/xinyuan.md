@@ -9,16 +9,16 @@ TutorPro - Level 1 is a desktop contact management application used for managing
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-  * 
+* **New Feature**:
+
 
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-    * 
+
 
 * **Enhancements to existing features**:
-    * 
+
 
 * **Documentation**:
     * README:
@@ -27,7 +27,7 @@ Given below are my contributions to the project.
         * Acknowledge the original source of the code.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): 
+    * PRs reviewed (with non-trivial review comments):
     * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
     * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
 
