@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a new contact and input the contact information
 2. Hi:Re adds the person to the database
-3. Hi:Re shows a message to for the successful addition
+3. Hi:Re shows a message for the successful addition
 
    Use case ends.
 
@@ -321,30 +321,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: Delete a person**
+**Use case: UC2 - Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to delete a specific person in the database and input the details
+2. Hi:Re deletes the person
+3. Hi:Re shows a message for the successful deletion
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given details is invalid.
 
-  Use case ends.
+    * 1a1. Hi:Re shows an error message
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
