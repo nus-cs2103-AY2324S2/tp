@@ -443,14 +443,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **API(Application Programming Interface)**: Defines how software components interact with each other
 * **Above average typing speed**: Typing speed of more than 40 words per minute
+* **Architecture**: The high-level design and structure of the application consisting of components such as UI, Model and Storage
 * **Archive**: Moving a contact to a secondary space in the address book of less importance
+* **CLI (Command Line Interface)**: A user interface that is based on interaction with the terminal or console
+* **ClickConnect**: A client management tool used to store contact details, such as names and phone numbers
 * **Client**: A customer of the target user (ie. people engaging the services of a Freelance Photographer)
+* **Command**: An object representing a user commend, created by parsing user input
+* **Commons**: A collection of shared resources or classes used by multiple parts of the application
 * **Contact**: A person of whose details are stored in the address book
+* **GUI (Graphical User Interface)**: The visual interface of the ClickConnect that users interact with
+* **JSON (JavaScript Object Notation)**:  A lightweight data-interchange format used for storing and transporting data
+* **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug client applications
+* **Logic**: Refers to the component responsible for interpreting and executing user inputs
+* **Low-end devices**: Computers or devices with limited processing power, memory, and hardware
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Model**: In the context of ClickConnect, it refers to the component that holds and manages application data
+* **ObservableList**: A unmodifiable list that automatically notifies to UI to update whenever the data changes
+* **Parser**: A class responsible for parsing user input into command objects
+* **PlantUML**: A tool for creating UML diagrams from plain text
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Responsive performance**: No noticeable delay of the address book during execution
+* **Sequence Diagram**: A UML diagram that depicts how objects interact with each other in a sequence
+* **Storage**: A class responsible for reading and writing data to and from the hard disk
+* **UI (User Interface)**: Manages user interactions with graphic interface elements
+* **UniquePersonList**: List that stores non-duplicate person objects 
 * **Usage instructions**: Documentation detailing the address book's features and how to navigate them
+* **UserPref**: Stores the user's preferences 
+* **VersionedAddressBook**: An extension of extends ClickConnect that adds undo/redo functionality
 
 --------------------------------------------------------------------------------------------------------------------
 
