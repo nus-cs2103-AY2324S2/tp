@@ -9,13 +9,9 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Staff;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,19 +25,50 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private String employment;
+    private String salary;
+    private String product;
+    private String price;
+    private String skill;
+    private String commission;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
+//    @JsonCreator
+//    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+//            @JsonProperty("email") String email, @JsonProperty("address") String address,
+//            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+//        this.name = name;
+//        this.phone = phone;
+//        this.email = email;
+//        this.address = address;
+//        if (tags != null) {
+//            this.tags.addAll(tags);
+//        }
+//    }
+
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("salary") String salary,
+                             @JsonProperty("employment") String employment,
+                             @JsonProperty("product") String product,
+                             @JsonProperty("price") String price,
+                             @JsonProperty("skill") String skill,
+                             @JsonProperty("commission") String commission) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.salary = salary;
+        this.employment = employment;
+        this.product = product;
+        this.price = price;
+        this.skill = skill;
+        this.commission = commission;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,6 +85,13 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+    }
+
+    /**
+     * Extracts type of Person.
+     */
+    public String getType() {
+        return tags.get(0).getTagName();
     }
 
     /**
@@ -104,6 +138,45 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        if (salary != null && employment != null) {
+            if (!Salary.isValidSalary(salary)) {
+                throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
+            }
+            if (!Employment.isValidEmployment(employment)) {
+                throw new IllegalValueException(Employment.MESSAGE_CONSTRAINTS);
+            }
+            final Salary modelSalary = new Salary(salary);
+            final Employment modelEmployment = new Employment(employment);
+            return new Staff(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSalary, modelEmployment);
+        }
+
+        if (product != null && price != null) {
+            if (!Product.isValidProduct(product)) {
+                throw new IllegalValueException(Product.MESSAGE_CONSTRAINTS);
+            }
+            if (!Price.isValidPrice(price)) {
+                throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+            }
+            final Product modelProduct = new Product(product);
+            final Price modelPrice = new Price(price);
+            return new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                    modelProduct, modelPrice);
+        }
+
+        if (skill != null && commission != null) {
+            if (!Skill.isValidSkill(skill)) {
+                throw new IllegalValueException(Skill.MESSAGE_CONSTRAINTS);
+            }
+            if (!Commission.isValidCommission(commission)) {
+                throw new IllegalValueException(Commission.MESSAGE_CONSTRAINTS);
+            }
+            final Skill modelSkill = new Skill(skill);
+            final Commission modelCommission = new Commission(commission);
+            return new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                    modelSkill, modelCommission);
+        }
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 

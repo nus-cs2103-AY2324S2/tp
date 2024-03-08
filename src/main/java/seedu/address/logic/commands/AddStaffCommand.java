@@ -23,7 +23,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_SALARY + "SALARY "
-            + PREFIX_EMPLOYMENT + "EMPLOYMENT "
+            + PREFIX_EMPLOYMENT + "EMPLOYMENT \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe staff "
             + PREFIX_PHONE + "98765432 "

@@ -7,7 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -39,6 +42,20 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label salary;
+    @FXML
+    private Label employment;
+    @FXML
+    private Label product;
+    @FXML
+    private Label price;
+    @FXML
+    private Label skill;
+    @FXML
+    private Label commission;
+    @FXML
+    private Label className;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -55,5 +72,30 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (person instanceof Staff) {
+            Staff staff = (Staff) person;
+            salary.setText(staff.getSalary().value);
+            employment.setText(staff.getEmployment().employment);
+            salary.setManaged(true);
+            employment.setManaged(true);
+            salary.setVisible(true);
+            employment.setVisible(true);
+        } else if (person instanceof Supplier) {
+            Supplier supplier = (Supplier) person;
+            product.setText(supplier.getProduct().product);
+            price.setText(supplier.getPrice().price);
+            product.setManaged(true);
+            price.setManaged(true);
+            product.setVisible(true);
+            price.setVisible(true);
+        } else if (person instanceof Maintainer) {
+            Maintainer maintainer = (Maintainer) person;
+            skill.setText(maintainer.getSkill().skill);
+            commission.setText(maintainer.getCommission().commission);
+            skill.setManaged(true);
+            commission.setManaged(true);
+            skill.setVisible(true);
+            commission.setVisible(true);
+        }
     }
 }
