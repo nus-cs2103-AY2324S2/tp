@@ -8,6 +8,7 @@
 EduConnect is a desktop contact management application used for teaching assistants to manage a few different courses or classes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about [] kLoC. (to be finalised)
 
 Given below are my contributions to the project.
+
 <!---
 * **New Feature**: Added the ability to undo/redo previous commands.
     * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.

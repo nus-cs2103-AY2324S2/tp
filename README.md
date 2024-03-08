@@ -1,13 +1,13 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2324S2-CS2103-T14-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103-T14-1/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
 # EduConnect
 
-* EduConnect is a contact management program for Teaching Assistants (TAs) in SoC, NUS to manage their classes and 
-  students effectively. 
+* EduConnect is a contact management program for Teaching Assistants (TAs) in SoC, NUS to manage their classes and
+  students effectively.
 * It manages the student's particulars, timetables, and class progress, all in one program.
-* EduConnect is optimized for those who prefer to work with a Command Line Interface (CLI) while still having a simple 
+* EduConnect is optimized for those who prefer to work with a Command Line Interface (CLI) while still having a simple
   and clean Graphical User Interface (GUI).
 
 ## Site Map
