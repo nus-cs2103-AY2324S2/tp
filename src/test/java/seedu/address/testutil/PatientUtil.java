@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class for Patient.
  */
-public class PersonUtil {
+public class PatientUtil {
 
     /**
      * Returns an add command string for adding the {@code patient}.
