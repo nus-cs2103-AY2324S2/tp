@@ -274,8 +274,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* logistic managers
-* has a need to manage a significant number of POCs & assets
+* logistics managers who have a need to manage a significant number of contacts
+responsible for logistical assets
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -283,7 +283,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 
-* manage contacts & assets faster than a typical mouse/GUI driven app
+* manage contacts & their associated assets faster than a typical mouse/GUI driven app
 * easily search for information by any category
 * easily copy contact information to clipboard
 
@@ -292,26 +292,26 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​ | So that I can…​ |
-|---|---|---|---|
-| `* * *` | user | add new contacts and assets | keep track of these details |
-| `* * *` | user | add tags to contacts | categorize them according to my preferences and workflow |
-| `* * *` | user | delete contacts | update the list if a PoC’s details are no longer needed |
-| `* * *` | user | edit contacts/tags | change details without recreating contacts, as there are too many details to re-add |
-| `* * *` | user | easily view my existing contacts from the GUI | visually find the contacts I'm looking for |
-| `* * *` | user | easily navigate between sponsors, assets, and PoCs | access relevant information quickly |
-| `* * *` | user | search contacts by name, asset, or tag | easily find the relevant PoC |
-| `* *` | new user | view a drop-down suggestion of commands | efficiently navigate and utilize the app without extensive prior knowledge |
-| `* *` | user | see no advertisements | not be distracted from my tasks |
-| `* *` | user | add secondary personnel associated with an asset | have a backup contact if the main person is unreachable |
-| `* *` | user | toggle between light/dark theme | customize the app to my preferences |
-| `* *` | user | resize the app’s window | easily use multiple apps at once |
-| `* *` | user | change the profile picture of each contact | easily identify them |
-| `* *` | user | easily search within the system even if I mistype a few words | more easily locate relevant information |
-| `* *` | hurried user | type commands even with extra whitespaces | won’t have to waste time retyping commands |
-| `* *` | advanced user | type shorter commands | type commands faster |
-| `* *` | advanced user | use keyboard shortcuts | use the app more efficiently |
-| `*` | advanced user | add custom fields | add more information to contacts |
+| Priority | As a …        | I want to …                                                   | So that I can …                                                                     |
+|----------|---------------|---------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `* * *`  | user          | add new contacts and assets                                   | keep track of these details                                                         |
+| `* * *`  | user          | add tags to contacts                                          | categorize them according to my preferences and workflow                            |
+| `* * *`  | user          | delete contacts                                               | update the list if a PoC’s details are no longer needed                             |
+| `* * *`  | user          | edit contacts/tags                                            | change details without recreating contacts, as there are too many details to re-add |
+| `* * *`  | user          | easily view my existing contacts from the GUI                 | visually find the contacts I'm looking for                                          |
+| `* * *`  | user          | easily navigate between sponsors, assets, and PoCs            | access relevant information quickly                                                 |
+| `* * *`  | user          | search contacts by name, asset, or tag                        | easily find the relevant PoC                                                        |
+| `* *`    | new user      | view a drop-down suggestion of commands                       | efficiently navigate and utilize the app without extensive prior knowledge          |
+| `* *`    | user          | see no advertisements                                         | not be distracted from my tasks                                                     |
+| `* *`    | user          | add secondary personnel associated with an asset              | have a backup contact if the main person is unreachable                             |
+| `* *`    | user          | toggle between light/dark theme                               | customize the app to my preferences                                                 |
+| `* *`    | user          | resize the app’s window                                       | easily use multiple apps at once                                                    |
+| `* *`    | user          | change the profile picture of each contact                    | easily identify them                                                                |
+| `* *`    | user          | easily search within the system even if I mistype a few words | more easily locate relevant information                                             |
+| `* *`    | hurried user  | have commands even with extra whitespaces accepted            | not waste time retyping commands                                                    |
+| `* *`    | advanced user | type shorter commands                                         | type commands faster                                                                |
+| `* *`    | advanced user | use keyboard shortcuts                                        | use the app more efficiently                                                        |
+| `*`      | advanced user | add custom fields                                             | add more information to contacts                                                    |
 
 
 ### Use cases
@@ -406,8 +406,15 @@ Use case ends.
 
 ### Glossary
 
+* **Asset**: An item of logistical significance that is owned or maintained by a company or person.
+* **Clipboard**: The computer's storage for data that is copied and that will be produced by the paste command.
+* **Command**: Text that a user inputs to interact with the application.
+* **Command Line Interface(CLI)**: An interface where text commands are inputted by users to interact with the computer.
+* **Graphical User Interface(GUI)**: The visual display of an application through which a user interacts with the computer.
+* **Logistics Manager**: Anyone who manages inventory or amenities in a professional capacity.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Point-of-Contact(PoC)**: A contact responsible for a certain asset or representing a responsible entity
+* **Tag**: User added information associated to a contact e.g. `retired`, `temp staff`, …
 
 --------------------------------------------------------------------------------------------------------------------
 
