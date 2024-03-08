@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Daniel Wang
 
-<img src="images/wangwenkaidaniel.png" width="200px">
+<img src="images/dwangwk.png" width="200px">
 
 [[github](http://github.com/dwangwk)]
 [[portfolio](team/danielwang.md)]
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ye Si Fan
 
-<img src="images/yesifan.png" width="200px">
+<img src="images/yespiggy.png" width="200px">
 
 [[github](http://github.com/yespiggy)] [[portfolio](team/sifan.md)]
 
@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Natasya Hadiatullah Buhari
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/menatahari.png" width="200px">
 
 [[github](http://github.com/menatahari)]
 [[portfolio](team/natasya.md)]
