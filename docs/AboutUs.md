@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sherisse Tan Jing Wen
 
-<img src="images/sherissetjw.PNG" width="200px">
+<img src="images/sherissetjw.png" width="200px">
 
 [[github](http://github.com/SherisseTJW)] [[portfolio](https://ay2324s2-cs2103-f09-2.github.io/tp/)]
 
