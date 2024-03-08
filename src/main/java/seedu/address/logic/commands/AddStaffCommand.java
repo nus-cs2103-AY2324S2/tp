@@ -33,7 +33,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_EMPLOYMENT + "part-time";
 
     public static final String MESSAGE_SUCCESS = "New staff is added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person's name already exists in the address book";
 
     private final Staff toAdd;
 

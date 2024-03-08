@@ -153,6 +153,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String price} into an {@code Skill}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code skill} is invalid.
+     */
+    public static Skill parseSkill(String skill) throws ParseException {
+        requireNonNull(skill);
+        String trimmedSkill = skill.trim();
+        if (!Skill.isValidSkill(trimmedSkill)) {
+            throw new ParseException(Skill.MESSAGE_CONSTRAINTS);
+        }
+        return new Skill(trimmedSkill);
+    }
+
+    /**
+     * Parses a {@code String price} into an {@code Commission}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code commission} is invalid.
+     */
+    public static Commission parseCommission(String commission) throws ParseException {
+        requireNonNull(commission);
+        String trimmedCommission = commission.trim();
+        if (!Commission.isValidCommission(trimmedCommission)) {
+            throw new ParseException(Commission.MESSAGE_CONSTRAINTS);
+        }
+        return new Commission(trimmedCommission);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *

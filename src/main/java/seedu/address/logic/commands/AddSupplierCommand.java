@@ -34,7 +34,7 @@ public class AddSupplierCommand extends Command {
             + PREFIX_PRICE + "$50/bag";
 
     public static final String MESSAGE_SUCCESS = "New supplier is added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This supplier already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person's name already exists in the address book";
 
     private final Supplier toAdd;
 

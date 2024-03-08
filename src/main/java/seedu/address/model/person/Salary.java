@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Salary {
     public static final String MESSAGE_CONSTRAINTS =
-            "Salary should in this format of ${amount}/h";
+            "Salary should in this format of ${amount}/hr";
     public static final String VALIDATION_REGEX = "^\\$\\d+/hr$";
     public final String value;
 

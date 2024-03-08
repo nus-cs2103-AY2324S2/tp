@@ -8,11 +8,18 @@ import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Represents a Supplier in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Supplier extends Person{
     // Data fields
     private final Product product;
     private final Price price;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Supplier(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                     Product product, Price price) {
         super(name, phone, email, address, tags);

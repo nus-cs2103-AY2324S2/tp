@@ -8,11 +8,18 @@ import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Represents a Staff in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Staff extends Person{
     // Data fields
     private final Salary salary;
     private final Employment employment;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                  Salary salary, Employment employment) {
         super(name, phone, email, address, tags);
