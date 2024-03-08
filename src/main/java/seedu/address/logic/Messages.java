@@ -19,6 +19,10 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_SHOWING_HELP = "Opened help window.";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
