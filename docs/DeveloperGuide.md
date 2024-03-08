@@ -334,21 +334,22 @@ tasks with deadlines, meetings, and other relevant info tagged to them.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                               | So that I can…​                                                                              |
-|----------|-----------------------------------------------|--------------------------------------------|----------------------------------------------------------------------------------------------|
-| `* * *`  | user                                          | see usage instructions                     | refer to instructions when I forget how to use the App                                       |
-| `* * *`  | user                                          | add a client name and phone number         | quickly take down contact details even in a rush.                                            |
-| `* * *`  | user                                          | delete contact                             | remove them once I'm done dealing with them                                                  |
-| `* * *`  | user                                          | display all contacts                       | I can see all my clients at a glance.                                                        |
-| `* * *`  | user                                          | add a note for each contact                | store additional information associated with the client                                      |
-| `* * *`  | user                                          | find a person by name                      | locate details of persons without having to go through the entire list                       |
-| `* * *`  | user with many contacts in the address book   | search for contacts by their name          | retrieve that contact's information                                                          |
-| `* *`    | user                                          | add a picture to my contacts               | easily identify my contacts and add a personal touch to them                                 |
-| `* *`    | user                                          | hide private contact details               | minimize chance of someone else seeing them by accident                                      |
-| `* *`    | user                                          | update a person's contact information      | keep my address book relevant and up-to-date                                                 |
-| `*`      | user who has completed dealings with a client | archive contacts                           | remove them from the contact list but still have their contact information in case I need it |
-| `*`      | user with many ongoing projects               | filter contacts based on project deadlines | prioritise the clients with approaching deadlines                                            |
-| `*`      | user with many persons in the address book    | sort contacts by name                      | locate a person easily                                                                       |
+| Priority | As a …​                                       | I want to …​                                                                                 | So that I can…​                                                                              |
+|----------|-----------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `* * *`  | user                                          | see usage instructions                                                                       | refer to instructions when I forget how to use the application                               |
+| `* * *`  | user                                          | add a client name and phone number                                                           | quickly take down contact details even in a rush                                             |
+| `* * *`  | user                                          | delete contact                                                                               | remove them when I no longer need to contact them                                            |
+| `* * *`  | user                                          | display all contacts                                                                         | I can see all my clients at a glance.                                                        |
+| `* * *`  | user                                          | add personal health information for each contact                                             | store additional information associated with the client                                      |
+| `* * *`  | user                                          | find a person by name                                                                        | locate details of persons without having to go through the entire list                       |
+| `* * *`  | user with many contacts in the address book   | search for contacts by their name                                                            | retrieve that contact's information                                                          |
+| `* *`    | user                                          | add a picture to my contacts                                                                 | easily identify my contacts and add a personal touch to them                                 |
+| `* *`    | user                                          | hide private contact details                                                                 | minimize chance of someone else seeing them by accident                                      |
+| `* *`    | user                                          | update a person's contact information                                                        | keep my address book relevant and up-to-date                                                 |
+| `*`      | user                                          | Have a graphical overview of the changes of my client's health details over a certain period | easily keep track of my client's progress                                                    |
+| `*`      | user who has completed dealings with a client | archive contacts                                                                             | remove them from the contact list but still have their contact information in case I need it |
+| `*`      | user with many clients                        | sort contacts based on next session                                                          | easily locate the details of the client I am going to meet next                              |
+| `*`      | user with many contacts in the address book   | sort contacts by name                                                                        | locate a person easily                                                                       |
 
 ### Use cases
 
