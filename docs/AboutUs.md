@@ -50,7 +50,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Khoo Kiat Lun
 
-<img src="images/KiatLun.png" width="200px">
+<img src="images/kiatlun.png" width="200px">
 
 [[github](http://github.com/KiatLun)]
 [[portfolio](team/johndoe.md)]
