@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ys112.md)]
 
 * Role: Software Engineer
-* Responsibilities: Backend development
+* Responsibilities: Deliverables and deadlines, Integration
 
 ### Yuv Bindal
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/yuvbindal.md)]
 
 * Role: Software Engineer
-* Responsibilities: Backend development
+* Responsibilities: Testing
 
 ### Lee Xin En
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/xinen26.md)]
 
 * Role: Software Engineer
-* Responsibilities: Backend development
+* Responsibilities: Scheduling and tracking
 
 ### Ho Wei Herng, Christopher
 
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/chrisho1341.md)]
 
 * Role: Software Engineer
-* Responsibilities: Backend development
+* Responsibilities: Documentation and code quality
 
 ### Li Haoquan
 
@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/lihaoquan.md)]
 
 * Role: Software Engineer
-* Responsibilities: Backend development, UI
+* Responsibilities: Integration, UI
