@@ -196,7 +196,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    public CommandResult execute(Model model) throws CommandException {
        ...
        Person patientToEdit = lastShownList.get(index.getZeroBased());
-       Person editedPatient = createEditedPerson(patientToEdit, editPersonDescriptor);
+       Person editedPatient = createEditedPerson(patientToEdit, editPatientDescriptor);
        if (!patientToEdit.isSamePerson(editedPatient) && model.hasPerson(editedPatient)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
