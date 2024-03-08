@@ -11,15 +11,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chua Zen Khoon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chuazenkhoon.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ChuaZenKhoon)]
 
-* Role: Project Advisor
+ Y2 CS student. I do creative works such as writing and worldbuilding in my free time!
+
+* Role: Project Planner
+* Responsibilities: Deliverables and Deadlines, Scheduling and Tracking
 
 ### Jane Doe
 
