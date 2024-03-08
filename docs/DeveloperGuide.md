@@ -320,13 +320,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+The target user is businessman who satisfies the following criteria
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
+and wants to manage contacts faster than a typical mouse/GUI driven app. Typically,
+they want to answer the following questions quickly:
+* How much money was loaned?
+* To whom it was loaned to?
+* When the person is due to return the loan?
+* When did the person last loan?
+
+
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+Our address book is tailored for business owners whose job might involve loaning items on a 
+regular basis. It simplifies loan categorization and tracks product quality post-return, 
+ensuring efficient decision-making. Some boundaries include no detailed client reviews or 
+personal loan management, as we focus solely on business loans and contact management for 
+a select client group.
+
+Our software streamlines loanee management, preventing profit loss and enhancing partner relations.
+It simplifies loan categorization and tracks product quality post-return, ensuring efficient 
+decision-making. Some boundaries include no detailed client reviews or personal loan management, 
+as we focus solely on business loans and contact management for a select client group.
+
 
 ### User stories
 
