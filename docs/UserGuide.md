@@ -85,7 +85,6 @@ Format: `add --name <name> [--email <email>] [--phone <phone>] [--address <addre
 
 `--address`
 * Address of the contact.
-* Only ASCII characters are allowed.
 
 `--asset`
 * Asset(s) associated with contact.
