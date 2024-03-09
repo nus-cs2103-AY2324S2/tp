@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Nigel Lim
 
-<img src="images/nigel27022001.png.jpg" width="200px">
+<img src="images/nigel27022001.png" width="200px">
 
 [[github](https://github.com/nigel27022001)]
 [[portfolio](team/nigel.md)]
