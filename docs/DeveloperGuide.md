@@ -414,7 +414,23 @@ Use case ends
 
     Use case resumes at step 2
 
-*{More to be added}*
+
+**Use case: View contacts**
+
+**MSS**
+
+1.  User opens application
+2.  The system displays the contacts in a sidebar
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user filters by tags
+
+    * 1a1. Only contacts with corresponding tags will be displayed
+
+      Use case ends
 
 ### Non-Functional Requirements
 
