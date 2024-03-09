@@ -323,44 +323,46 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefer desktop apps over other types
 * prefers typing over mouse interactions (i.e. should be able to type fast)
 * is reasonably comfortable using CLI apps
-* has many clients to manage, with each of them having different requirements
-* is a freelance photographer
+* is a personal trainer
 
-**Value proposition**: The target user is communicating with many clients, who all have different project requirements
-and deadlines. Having some task management capabilities could be beneficial to them. For example, each contact have
-tasks with deadlines, meetings, and other relevant info tagged to them.
+**Value proposition**: FitBook will help to keep track of client-specific information such as progress, goals, and preferences all in one place, allowing the user to organize and manage their clients' information efficiently.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                               | So that I can…​                                                                              |
-|----------|-----------------------------------------------|--------------------------------------------|----------------------------------------------------------------------------------------------|
-| `* * *`  | user                                          | see usage instructions                     | refer to instructions when I forget how to use the App                                       |
-| `* * *`  | user                                          | add a client name and phone number         | quickly take down contact details even in a rush.                                            |
-| `* * *`  | user                                          | delete contact                             | remove them once I'm done dealing with them                                                  |
-| `* * *`  | user                                          | display all contacts                       | I can see all my clients at a glance.                                                        |
-| `* * *`  | user                                          | add a note for each contact                | store additional information associated with the client                                      |
-| `* * *`  | user                                          | find a person by name                      | locate details of persons without having to go through the entire list                       |
-| `* * *`  | user with many contacts in the address book   | search for contacts by their name          | retrieve that contact's information                                                          |
-| `* *`    | user                                          | add a picture to my contacts               | easily identify my contacts and add a personal touch to them                                 |
-| `* *`    | user                                          | hide private contact details               | minimize chance of someone else seeing them by accident                                      |
-| `* *`    | user                                          | update a person's contact information      | keep my address book relevant and up-to-date                                                 |
-| `*`      | user who has completed dealings with a client | archive contacts                           | remove them from the contact list but still have their contact information in case I need it |
-| `*`      | user with many ongoing projects               | filter contacts based on project deadlines | prioritise the clients with approaching deadlines                                            |
-| `*`      | user with many persons in the address book    | sort contacts by name                      | locate a person easily                                                                       |
+| Priority | As a …​                                       | I want to …​                                                                                 | So that I can…​                                                                              |
+|----------|-----------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `* * *`  | user                                          | see usage instructions                                                                       | refer to instructions when I forget how to use the application                               |
+| `* * *`  | user                                          | add a client name and phone number                                                           | quickly take down contact details even in a rush                                             |
+| `* * *`  | user                                          | delete contact                                                                               | remove them when I no longer need to contact them                                            |
+| `* * *`  | user                                          | display all contacts                                                                         | I can see all my clients at a glance.                                                        |
+| `* * *`  | user                                          | add personal health information for each contact                                             | store additional information associated with the client                                      |
+| `* * *`  | user                                          | find a person by name                                                                        | locate details of persons without having to go through the entire list                       |
+| `* * *`  | user with many contacts in the address book   | search for contacts by their name                                                            | retrieve that contact's information                                                          |
+| `* *`    | user                                          | add a picture to my contacts                                                                 | easily identify my contacts and add a personal touch to them                                 |
+| `* *`    | user                                          | hide private contact details                                                                 | minimize chance of someone else seeing them by accident                                      |
+| `* *`    | user                                          | update a person's contact information                                                        | keep my address book relevant and up-to-date                                                 |
+| `*`      | user                                          | Have a graphical overview of the changes of my client's health details over a certain period | easily keep track of my client's progress                                                    |
+| `*`      | user who has completed dealings with a client | archive contacts                                                                             | remove them from the contact list but still have their contact information in case I need it |
+| `*`      | user with many clients                        | sort contacts based on next session                                                          | easily locate the details of the client I am going to meet next                              |
+| `*`      | user with many contacts in the address book   | sort contacts by name                                                                        | locate a person easily                                                                       |
 
 ### Use cases
 
-**Use case**: UC01 - Delete a person
+**System**: FitBook
+
+**Use case**: UC01 - Delete a client
+
+**Actor**: User
 
 **MSS**
 
 1. User requests to view list
-2. ClickConnect shows a list of persons
-3. User requests to delete a specific person in the list
-4. ClickConnect deletes the person
-5. Use case ends.
+2. FitBook shows a list of clients
+3. User requests to delete a specific client in the list
+4. FitBook deletes the client from the list
+5. Use case ends
 
 **Extensions**
 
@@ -370,11 +372,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. ClickConnect shows an error message.
+    * 3a1. FitBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2
+  
+<hr>
 
-**System**: ClickConnect
+**System**: FitBook
 
 **Use case**: UC02 - See usage instructions
 
@@ -383,12 +387,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view usage instructions
-2. ClickConnect displays the usage instructions such as how to add, edit, delete or search for contacts
-3. User reads the instructions to understand how to use the ClickConnect
+2. FitBook displays the usage instructions such as how to add, edit, delete or search for clients
+3. User reads the instructions to understand how to use the FitBook
 4. Use case ends
 
+<hr>
 
-**System**: ClickConnect
+**System**: FitBook
 
 **Use case**: UC03 - Add new contact
 
@@ -396,37 +401,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a new contact
-2. ClickConnect displays a success message after the new contact is successfully added
+1. User requests to add a new client
+2. FitBook displays a success message after the new client is successfully added
 3. Use case ends
 
 **Extensions**
 
 * 1a. User enters an invalid command
-    * 1a1. ClickConnect alerts the user that the command is invalid and displays the correct format
+    * 1a1. FitBook alerts the user that the command is invalid and displays the correct format
     * Use case resumes
-* 1b. User tries to add a contact that already exists in ClickConnect
-    * 1b1. ClickConnect alerts the user that a user with that name and details already exists
-    * 1b2. ClickConnect provides possible solutions (use different details if the contact name is the same)
+* 1b. User tries to add a client that already exists in FitBook
+    * 1b1. FitBook alerts the user that a client with that name and details already exists
+    * 1b2. FitBook provides possible solutions (use different details if the client name is the same)
     * Use case resumes
 
-**Use case**: UC04 - Display all contacts
+<hr>
+
+**System**: FitBook
+
+**Use case**: UC04 - Display all clients
 
 **Actor**: User
 
 **MSS**
 
-1. User requests to see a list of all contacts
-2. ClickConnect displays a success message followed by the list of contacts
+1. User requests to see a list of all clients
+2. FitBook displays a success message followed by the list of clients
 3. User views the list
 4. Use case ends
 
 **Extensions**
 
 * 2a. User enters an invalid command
-    * 2b1. ClickConnect alerts the user that the command is invalid and displays the correct format
+    * 2b1. FitBook alerts the user that the command is invalid and displays the correct format
     * Use case resumes
 
+<hr>
 
 ### Non-Functional Requirements
 
@@ -435,11 +445,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ (Windows, macOS and Linux) as long as it has Java `11` or above installed.
 1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 1. Should provide responsive performance, users should experience minimal delays in critical functionalities such as searching and updating contacts (feedback should be within 1 second).
-1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
-1. Should provide an intuitive and user-friendly interface. Users should be able to easily and quickly navigate the user interface to identify crucial information at a glance.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should provide an intuitive and user-friendly interface. Users should be able to easily and quickly navigate the user interface to identify crucial information (E.g Name, Contact, Health information) at a glance.
 1. Should have a shallow learning curve. New users (including the non-technically savvy) should be able to pick up and start using the application efficiently within a week.
-1. Should be optimized to run smoothly on low-end devices with limited processing power and memory. Users on older hardware should be able to use the application as long as it meets [requirement 1](#nfr-1).
+1. Should be optimized to run smoothly on low-end devices with limited processing power and memory. Users on older hardware should be able to use the application as long as it meets [this requirement](#nfr-1).
+1. Should provide full offline functionality. Users should be able to access all functionality of FitBook even when the device is not connected to the internet.
 
 ### Glossary
 
@@ -456,6 +466,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **JavaFX**: A set of graphics and media packages that enables developers to design, create, test and debug applications
 * **Low-end devices**: Computers with lesser than average hardware resources such as processing power and memory
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Model**: In the context of FitBook, it refers to the component that holds and manages application data
+* **ObservableList**: A unmodifiable list that automatically notifies to UI to update whenever the data changes
+* **Parser**: A class responsible for parsing user input into command objects
 * **PlantUML**: A tool for creating UML diagrams from plain text
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Responsive performance**: No noticeable delay of FitBook during user interaction
