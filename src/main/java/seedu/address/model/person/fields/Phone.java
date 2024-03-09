@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
@@ -32,6 +34,22 @@ public class Phone implements Field {
      */
     private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Phone of(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        try {
+            return new Phone(trimmedPhone);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     @Override

@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -51,6 +53,22 @@ public class Email implements Field {
      */
     private static boolean isValid(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Email of(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        try {
+            return new Email(trimmedEmail);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     @Override
