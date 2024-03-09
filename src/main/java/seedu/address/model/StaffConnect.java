@@ -13,7 +13,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the fundamental level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class StaffConnect implements ReadOnlyAddressBook {
+public class StaffConnect implements ReadOnlyStaffConnect {
 
     private final UniquePersonList persons;
 
@@ -33,7 +33,7 @@ public class StaffConnect implements ReadOnlyAddressBook {
     /**
      * Creates an StaffConnect using the Persons in the {@code toBeCopied}
      */
-    public StaffConnect(ReadOnlyAddressBook toBeCopied) {
+    public StaffConnect(ReadOnlyStaffConnect toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,7 +51,7 @@ public class StaffConnect implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code StaffConnect} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyStaffConnect newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());

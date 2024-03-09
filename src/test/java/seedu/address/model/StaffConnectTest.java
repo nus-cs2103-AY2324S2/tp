@@ -90,9 +90,9 @@ public class StaffConnectTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyStaffConnect whose persons list can violate interface constraints.
      */
-    private static class StaffConnectStub implements ReadOnlyAddressBook {
+    private static class StaffConnectStub implements ReadOnlyStaffConnect {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
         StaffConnectStub(Collection<Person> persons) {

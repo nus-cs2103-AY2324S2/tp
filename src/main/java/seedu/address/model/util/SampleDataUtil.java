@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.ReadOnlyStaffConnect;
 import seedu.address.model.StaffConnect;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,12 +40,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        StaffConnect sampleAb = new StaffConnect();
+    public static ReadOnlyStaffConnect getSampleAddressBook() {
+        StaffConnect sampleSc = new StaffConnect();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleSc.addPerson(samplePerson);
         }
-        return sampleAb;
+        return sampleSc;
     }
 
     /**

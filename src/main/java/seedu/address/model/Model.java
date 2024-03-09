@@ -47,10 +47,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyStaffConnect staffConnect);
 
     /** Returns the StaffConnect */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyStaffConnect getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

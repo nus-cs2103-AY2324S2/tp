@@ -26,12 +26,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given staffConnect and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyStaffConnect staffConnect, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(staffConnect, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + staffConnect + " and user prefs " + userPrefs);
 
-        this.staffConnect = new StaffConnect(addressBook);
+        this.staffConnect = new StaffConnect(staffConnect);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.staffConnect.getPersonList());
     }
@@ -78,12 +78,12 @@ public class ModelManager implements Model {
     //=========== StaffConnect ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.staffConnect.resetData(addressBook);
+    public void setAddressBook(ReadOnlyStaffConnect staffConnect) {
+        this.staffConnect.resetData(staffConnect);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyStaffConnect getAddressBook() {
         return staffConnect;
     }
 
