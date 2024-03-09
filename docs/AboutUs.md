@@ -30,7 +30,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tresa
 
-<img src="images/Teee728.png" width="200px">
+<img src="images/teee728.png" width="200px">
 
 [[github](http://github.com/Teee728)]
 
