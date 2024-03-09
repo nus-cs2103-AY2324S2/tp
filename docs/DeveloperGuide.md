@@ -594,6 +594,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Time-to-fill**: The time taken to find and hire a new candidate
 
 --------------------------------------------------------------------------------------------------------------------
 
