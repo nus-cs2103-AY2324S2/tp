@@ -29,7 +29,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Isaac Chong
 
-<img src="images/chonghaoen.png.jpg" width="200px">
+<img src="images/chonghaoen.png" width="200px">
 
 [[github](http://github.com/chonghaoen)] [[portfolio](team/isaac.md)]
 
