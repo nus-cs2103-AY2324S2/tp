@@ -85,7 +85,21 @@ public class ParserUtil {
         if (!StudentId.isValidStudentId(trimmedId)) {
             throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new StudentId(trimmedId);
+        String capitalised = createCapitalStudentId(trimmedId);
+        return new StudentId(capitalised);
+    }
+
+    /**
+     * Capitalises the 'A' at the start of the Student Id
+     * @param trimmedId
+     * @return Capitalised String of Student ID
+     */
+    public static String createCapitalStudentId(String trimmedId) {
+        StringBuilder result = new StringBuilder();
+        result.append(Character.toUpperCase(trimmedId.charAt(0)));
+        result.append(trimmedId.substring(1));
+        String capitalised = result.toString();
+        return capitalised;
     }
 
     /**
