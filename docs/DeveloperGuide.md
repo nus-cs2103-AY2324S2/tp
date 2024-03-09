@@ -318,7 +318,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Secretary of a tech company
 
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
@@ -326,20 +326,19 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Categorise people according to their department/origin, making it easier to assign tasks or get all the emails.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                          | So that I can…​                            |
+|----------|--------------------------------------------|---------------------------------------|--------------------------------------------|
+| `* * *`  | secretary                                  | view the added contact list           | I can see the details of the added contact |
+| `* * *`  | secretary                                  | add contacts to a list                | I can record contact details               |
+| `* * *`  | secretary                                  | remove contacts from a list           | I can clean up old/unused records          |
+| `* *`    | secretary                                  | tag individual contacts               | I can organize the contact based on tags   |
+| `* *`    | secretary                                  | delete a tag of an individual contact | the tag only is for the necessary users    |
 
 *{More to be added}*
 
