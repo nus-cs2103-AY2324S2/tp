@@ -297,6 +297,7 @@ Therefore, the application aims to deliver the following:
 * easily copy contact information to clipboard
 * is lightweight and able to import/export data in easy-to-view format
 
+---
 
 ### User stories
 
@@ -324,6 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`     | advanced user | use keyboard shortcuts                                            | use the app more efficiently                                                        |
 | `*`       | advanced user | add custom fields                                                 | add more information to contacts                                                    |
 
+---
 
 ### Use cases
 
@@ -345,12 +347,16 @@ Use case ends.
 &emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 2.
 
+--- {.dotted}
+
 **Use case: UC2 - List contacts**
 **MSS**
 1. User requests to list contacts.
 2. System displays all contacts.
 
 Use case ends.
+
+--- {.dotted}
 
 **Use case: UC3 - Search contacts**
 **MSS**
@@ -367,6 +373,8 @@ Use case ends.
 &emsp;2a2. User enters new input. <br>
 &emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 2. 
+
+--- {.dotted}
 
 **Use case: UC4 - Edit contacts**
 **MSS**
@@ -387,6 +395,8 @@ Use case ends.
 &emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 3. <br>
 
+--- {.dotted}
+
 **Use case: UC5 - Delete contact**
 **MSS**
 1. User !!lists contacts(UC2)!!.
@@ -403,6 +413,8 @@ Use case ends.
 &emsp;3a2. User enters new input. <br>
 &emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 3. <br>
+
+---
 
 ### Non-Functional Requirements
 
