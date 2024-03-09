@@ -98,4 +98,12 @@ public class PersonCard extends UiPart<Region> {
             commission.setVisible(true);
         }
     }
+
+    public Label getSalary() {
+        return salary;
+    }
+
+    public Label getEmployment() {
+        return employment;
+    }
 }
