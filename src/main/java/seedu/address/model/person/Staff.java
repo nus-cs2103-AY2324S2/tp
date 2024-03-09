@@ -1,18 +1,18 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Staff in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Staff extends Person{
+public class Staff extends Person {
     // Data fields
     private final Salary salary;
     private final Employment employment;

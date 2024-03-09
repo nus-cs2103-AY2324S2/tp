@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
-import seedu.address.Main;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Maintainer;
-import seedu.address.model.person.Supplier;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Adds a person to the address book.
@@ -24,7 +27,7 @@ public class AddMaintainerCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_SKILL+ "SKILL "
+            + PREFIX_SKILL + "SKILL "
             + PREFIX_COMMISSION + "COMMISSION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe trainer "

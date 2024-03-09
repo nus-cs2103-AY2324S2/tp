@@ -9,9 +9,21 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.fasterxml.jackson.annotation.JsonSetter;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Commission;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Employment;
+import seedu.address.model.person.Maintainer;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Price;
+import seedu.address.model.person.Product;
+import seedu.address.model.person.Salary;
+import seedu.address.model.person.Skill;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,19 +48,6 @@ class JsonAdaptedPerson {
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
-//    @JsonCreator
-//    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-//            @JsonProperty("email") String email, @JsonProperty("address") String address,
-//            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-//        this.name = name;
-//        this.phone = phone;
-//        this.email = email;
-//        this.address = address;
-//        if (tags != null) {
-//            this.tags.addAll(tags);
-//        }
-//    }
-
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
