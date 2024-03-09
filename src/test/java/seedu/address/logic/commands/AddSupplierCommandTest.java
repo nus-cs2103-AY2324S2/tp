@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICESTAFF;
+import static seedu.address.testutil.TypicalPersons.ALICESUPPLIER;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -24,23 +24,25 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 import seedu.address.testutil.StaffBuilder;
+import seedu.address.testutil.SupplierBuilder;
 
-public class AddStaffCommandTest {
+public class AddSupplierCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddStaffCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddSupplierCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Staff validPerson = new StaffBuilder().build();
+        Supplier validPerson = new SupplierBuilder().build();
 
-        CommandResult commandResult = new AddStaffCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddSupplierCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddStaffCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -57,16 +59,16 @@ public class AddStaffCommandTest {
 
     @Test
     public void equals() {
-        Staff alice = new StaffBuilder().withName("Alice").build();
-        Staff bob = new StaffBuilder().withName("Bob").build();
-        AddStaffCommand addAliceCommand = new AddStaffCommand(alice);
-        AddStaffCommand addBobCommand = new AddStaffCommand(bob);
+        Supplier alice = new SupplierBuilder().withName("Alice").build();
+        Supplier bob = new SupplierBuilder().withName("Bob").build();
+        AddSupplierCommand addAliceCommand = new AddSupplierCommand(alice);
+        AddSupplierCommand addBobCommand = new AddSupplierCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddStaffCommand addAliceCommandCopy = new AddStaffCommand(alice);
+        AddSupplierCommand addAliceCommandCopy = new AddSupplierCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -81,8 +83,8 @@ public class AddStaffCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddStaffCommand addCommand = new AddStaffCommand(ALICESTAFF);
-        String expected = AddStaffCommand.class.getCanonicalName() + "{toAdd=" + ALICESTAFF + "}";
+        AddSupplierCommand addCommand = new AddSupplierCommand(ALICESUPPLIER);
+        String expected = AddSupplierCommand.class.getCanonicalName() + "{toAdd=" + ALICESUPPLIER + "}";
         assertEquals(expected, addCommand.toString());
     }
 
