@@ -21,7 +21,7 @@ public class MaintainerBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TAG = "staff";
+    public static final String DEFAULT_TAG = "maintainer";
     public static final String DEFAULT_SKILL = "train dog";
     public static final String DEFAULT_COMMISSION = "$50/hr";
 
