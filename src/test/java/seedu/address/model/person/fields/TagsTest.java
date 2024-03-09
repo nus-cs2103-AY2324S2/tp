@@ -29,22 +29,22 @@ class TagsTest {
 
     @Test
     public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Tags.parseTags(null));
+        assertThrows(NullPointerException.class, () -> Tags.of(null));
     }
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> Tags.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> Tags.of(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
     }
 
     @Test
     public void parseTags_emptyCollection_returnsEmptyTags() throws Exception {
-        assertEquals(new Tags(new Tag[0]), Tags.parseTags(Collections.emptyList()));
+        assertEquals(new Tags(new Tag[0]), Tags.of(Collections.emptyList()));
     }
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Tags actualTags = Tags.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Tags actualTags = Tags.of(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
         Tags expectedTags = new Tags(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2));
 
         assertEquals(expectedTags, actualTags);

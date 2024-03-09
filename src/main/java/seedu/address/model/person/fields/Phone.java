@@ -42,7 +42,7 @@ public class Phone implements Field {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static Phone of(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         try {

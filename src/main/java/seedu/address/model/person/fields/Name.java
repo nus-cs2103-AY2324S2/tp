@@ -48,7 +48,7 @@ public class Name implements Field {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static Name of(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         try {

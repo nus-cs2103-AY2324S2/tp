@@ -38,25 +38,25 @@ public class AddressTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Address.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> Address.of((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> Address.parseAddress(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> Address.of(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, Address.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedAddress, Address.of(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, Address.parseAddress(addressWithWhitespace));
+        assertEquals(expectedAddress, Address.of(addressWithWhitespace));
     }
 
     @Test

@@ -38,11 +38,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-        Name name = Name.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = Phone.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = Email.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = Address.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Tags tags = Tags.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Name name = Name.of(argMultimap.getValue(PREFIX_NAME).get());
+        Phone phone = Phone.of(argMultimap.getValue(PREFIX_PHONE).get());
+        Email email = Email.of(argMultimap.getValue(PREFIX_EMAIL).get());
+        Address address = Address.of(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Tags tags = Tags.of(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, address, tags);
 

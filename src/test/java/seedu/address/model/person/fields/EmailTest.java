@@ -86,25 +86,25 @@ public class EmailTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Email.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> Email.of((String) null));
     }
 
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> Email.parseEmail(INVALID_EMAIL));
+        assertThrows(ParseException.class, () -> Email.of(INVALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, Email.parseEmail(VALID_EMAIL));
+        assertEquals(expectedEmail, Email.of(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, Email.parseEmail(emailWithWhitespace));
+        assertEquals(expectedEmail, Email.of(emailWithWhitespace));
     }
 
     @Test

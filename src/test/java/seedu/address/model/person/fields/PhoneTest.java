@@ -40,25 +40,25 @@ public class PhoneTest {
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Phone.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> Phone.of((String) null));
     }
 
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> Phone.parsePhone(INVALID_PHONE));
+        assertThrows(ParseException.class, () -> Phone.of(INVALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
         Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, Phone.parsePhone(VALID_PHONE));
+        assertEquals(expectedPhone, Phone.of(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, Phone.parsePhone(phoneWithWhitespace));
+        assertEquals(expectedPhone, Phone.of(phoneWithWhitespace));
     }
 
     @Test

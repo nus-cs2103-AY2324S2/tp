@@ -40,25 +40,25 @@ public class NameTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Name.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> Name.of((String) null));
     }
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> Name.parseName(INVALID_NAME));
+        assertThrows(ParseException.class, () -> Name.of(INVALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, Name.parseName(VALID_NAME));
+        assertEquals(expectedName, Name.of(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, Name.parseName(nameWithWhitespace));
+        assertEquals(expectedName, Name.of(nameWithWhitespace));
     }
 
     @Test

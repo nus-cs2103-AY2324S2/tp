@@ -61,7 +61,7 @@ public class Email implements Field {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static Email of(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         try {

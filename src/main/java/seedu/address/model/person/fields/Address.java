@@ -47,7 +47,7 @@ public class Address implements Field {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static Address of(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         try {
