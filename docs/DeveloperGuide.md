@@ -469,7 +469,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **JSON (JavaScript Object Notation)**:  A lightweight data-interchange format used for storing and transporting data
 * **Low-end devices**: Computers with lesser than average hardware resources such as processing power and memory
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Model**: In the context of FitBook, it refers to the component that holds and manages application data
 * **Personal Health Information**: Details such as weight, body mass index, allergies, medical history etc.
 * **Personal Trainer (PT)**: A person who helps others plan and implement a fitness regime
 * **PlantUML**: A tool for creating UML diagrams from plain text
