@@ -365,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FitBook shows a list of clients
 3. User requests to delete a specific client in the list
 4. FitBook deletes the client from the list
-5. Use case ends.
+5. Use case ends
 
 **Extensions**
 
@@ -377,7 +377,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. FitBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2
+  
+<hr>
 
 **System**: FitBook
 
@@ -392,6 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User reads the instructions to understand how to use the FitBook
 4. Use case ends
 
+<hr>
 
 **System**: FitBook
 
@@ -415,6 +418,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b2. FitBook provides possible solutions (use different details if the client name is the same)
     * Use case resumes
 
+<hr>
+
 **System**: FitBook
 
 **Use case**: UC04 - Display all clients
@@ -434,6 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. FitBook alerts the user that the command is invalid and displays the correct format
     * Use case resumes
 
+<hr>
 
 ### Non-Functional Requirements
 
