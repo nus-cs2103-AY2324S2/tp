@@ -1,8 +1,3 @@
----
-  layout: default.md
-    title: "User Guide"
-    pageNav: 3
----
 
 # TalentTracker User Guide
 
@@ -37,7 +32,7 @@ If you can type fast, TalentTracker can get your hiring management tasks done fa
 
 ## Features
 
-<box type="info" seamless>
+
 
 **Notes about the command format:**<br>
 
@@ -63,9 +58,6 @@ Adds an applicant to the hiring tracker.
 
 Format: `add applicant <name>, <email>,<phone number>`
 
-<box type="tip" seamless>
-
-</box>
 
 Examples:
 
@@ -77,9 +69,7 @@ Adds an interviewer to the hiring tracker.
 
 Format: `add interviewer <name>, <email>,<phone number>`
 
-<box type="tip" seamless>
 
-</box>
 
 Examples:
 
@@ -90,10 +80,6 @@ Examples:
 Adds an interview to the hiring tracker.
 
 Format: `add interview <description>, <start>, <end>, <applicant phone number>, <interviewer phone number>`
-
-<box type="tip" seamless>
-
-</box>
 
 Examples:
 
