@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_CLASS;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,24 +8,28 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.TutorialClass;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
+import seedu.address.logic.Messages;
 public class AddClassCommand extends Command {
 
-    public static final String MESSAGE_ARGUMENTS = "Module Code: %1$s, Tutorial Class: %2$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added module %1$s";
+    public static final String MESSAGE_DUPLICATE_CLASS = "Duplicate tutorial class!";
 
-    private final Module module_code;
-    private final TutorialClass tutorial_class;
+    private final Module module;
 
     public static final String COMMAND_WORD = "/add_class";
 
     /**
-     * @param module_code of the tutorial class to be added
-     * @param tutorial_class the name of the tutorial class to be added.
+     * @param module of the tutorial class to be added
      */
-    public AddClassCommand(Module module_code, TutorialClass tutorial_class) {
-        requireAllNonNull(module_code, tutorial_class);
+    public AddClassCommand(Module module) {
+        requireAllNonNull(module);
 
-        this.module_code = module_code;
-        this.tutorial_class = tutorial_class;
+        this.module = module;
     }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class with the module code specified\n"
@@ -36,8 +41,22 @@ public class AddClassCommand extends Command {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Add Class command not implemented yet";
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(
-                String.format(MESSAGE_ARGUMENTS, module_code, tutorial_class));
+        requireNonNull(model);
+
+        if (model.hasModule(module)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CLASS);
+        }
+
+        model.addModule(module);
+        return new CommandResult(MESSAGE_ADD_REMARK_SUCCESS);
+    }
+
+    /**
+     * Generates a command execution success message based on whether the remark is added to or removed from
+     * {@code personToEdit}.
+     */
+    private String generateSuccessMessage(Module module) {
+        return String.format(MESSAGE_ADD_REMARK_SUCCESS, module.getName().fullName);
     }
 
     @Override
@@ -52,7 +71,6 @@ public class AddClassCommand extends Command {
         }
 
         AddClassCommand e = (AddClassCommand) other;
-        return module_code.equals(e.module_code)
-                && tutorial_class.equals(e.tutorial_class);
+        return module.equals(e.module);
     }
 }

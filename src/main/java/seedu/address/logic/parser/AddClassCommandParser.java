@@ -28,6 +28,6 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         String module_code = argMultimap.getValue(PREFIX_MODULE_CODE).orElse("");
         String tutorial_class = argMultimap.getValue(PREFIX_TUTORIAL_CLASS).orElse("");
 
-        return new AddClassCommand(new Module(new Name(module_code)), new TutorialClass(new Name(tutorial_class)));
+        return new AddClassCommand(new Module(new Name(module_code), new TutorialClass(new Name(tutorial_class))));
     }
 }

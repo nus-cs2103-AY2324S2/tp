@@ -25,13 +25,14 @@ public class AddClassCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClassCommand.MESSAGE_USAGE);
 
         String userInput = PREFIX_MODULE_CODE + module_code + " " + PREFIX_TUTORIAL_CLASS + nonEmptyTutorialClass;
-        AddClassCommand expectedCommand = new AddClassCommand(new Module(new Name(module_code)),
-                new TutorialClass(new Name(nonEmptyTutorialClass)));
+        AddClassCommand expectedCommand = new AddClassCommand(new Module(new Name(module_code),
+                new TutorialClass(new Name(nonEmptyTutorialClass))));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no tutorial class
         userInput =  PREFIX_MODULE_CODE + module_code + " " + PREFIX_TUTORIAL_CLASS;
-        expectedCommand = new AddClassCommand(new Module(new Name(module_code)), new TutorialClass(new Name("")));
+        expectedCommand = new AddClassCommand(new Module(new Name(module_code),
+                new TutorialClass(new Name(""))));
         assertParseFailure(parser, userInput, expectedMessage);
     }
 
