@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Bajaj Aditya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/adityab4.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/AdityaB4)]
+[[portfolio](team/adityab4.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilites: Code Writer and Scheduling
 
 ### Brandon Lau
 
