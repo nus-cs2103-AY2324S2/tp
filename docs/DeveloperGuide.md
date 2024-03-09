@@ -324,9 +324,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Mainstream OS**: Windows, Linux, Unix, MacOS 
+* * **Course**: A course with a program and syllabus. e.g. CS2030S
+* **Class**: A group of students attending a particular course. e.g. G13
+* **Teaching Assistant (TA)**: A tutor attached to class
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
