@@ -299,11 +299,10 @@ Priority: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely 
 **Precondition**: Coordinator has launched the application and is on the main screen.
 
 **Main Success Scenario**:
-1. Coordinator selects the "Add Volunteer" option.
-2. The system prompts the coordinator to enter the volunteer's name, phone number, email and availability.
+1. Coordinator adds a new volunteer.
+2. Coordinator is required to enter the volunteer's name, phone number, email and availability.
 3. Coordinator enters the required information in the correct format.
 4. The system validates the input and displays a confirmation message: "Volunteer [volunteer_name] has been added successfully."
-5. The new volunteer's information is displayed in the GUI.
 
 **Extensions**:
 3a. The coordinator enters invalid data for any of the fields.
@@ -342,11 +341,10 @@ Priority: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely 
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any *mainstream OS* as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to run the application without internet connection.
 
 ### Glossary
 
