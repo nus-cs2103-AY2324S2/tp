@@ -23,9 +23,9 @@ public class CommentCommandParser implements Parser<CommentCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CommentCommand.MESSAGE_USAGE), ive);
+                    CommentCommand.MESSAGE_USAGE), pe);
         }
 
         Comment comment = new Comment(argMultimap.getValue(PREFIX_COMMENT).orElse(""));

@@ -39,7 +39,8 @@ public class CommentCommandTest {
         CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON,
                 new Comment(editedPerson.getComment().value));
 
-        String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS,
+                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -53,9 +54,10 @@ public class CommentCommandTest {
         Person editedPerson = new PersonBuilder(firstPerson).withComment("").build();
 
         CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON,
-                new Comment(editedPerson.getComment().toString()));
+                new Comment(editedPerson.getComment().value));
 
-        String expectedMessage = String.format(CommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(CommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS,
+                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -73,7 +75,8 @@ public class CommentCommandTest {
 
         CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON,
                 new Comment(editedPerson.getComment().value));
-        String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS,
+                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);

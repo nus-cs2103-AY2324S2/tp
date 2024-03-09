@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
+import com.sun.scenario.effect.impl.prism.PrRenderInfo;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,9 +28,9 @@ public class CommentCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing comment will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "m/ [comment]\n"
+            + PREFIX_COMMENT + "[comment]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "m/ Likes to swim.";
+            + PREFIX_COMMENT + "Likes to swim.";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Person: %1$s";
     public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Removed comment from Person: %1$s";
 
@@ -72,7 +74,7 @@ public class CommentCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !comment.value.isEmpty() ? MESSAGE_ADD_COMMENT_SUCCESS : MESSAGE_DELETE_COMMENT_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, Messages.format(personToEdit));
     }
 
     @Override
