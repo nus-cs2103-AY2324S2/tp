@@ -87,13 +87,6 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Extracts type of Person.
-     */
-    public String getType() {
-        return tags.get(0).getTagName();
-    }
-
-    /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
