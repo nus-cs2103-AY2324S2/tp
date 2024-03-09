@@ -1,13 +1,20 @@
 package seedu.address.model.person.fields;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class EmailTest {
+
+    private static final String WHITESPACE = " \t\r\n";
+    private static final String INVALID_EMAIL = "example.com";
+    private static final String VALID_EMAIL = "rachel@example.com";
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -75,6 +82,29 @@ public class EmailTest {
         assertDoesNotThrow(() -> new Email("peter_jack@very-very-very-long-example.com")); // long domain name
         assertDoesNotThrow(() -> new Email("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertDoesNotThrow(() -> new Email("e1234567@u.nus.edu")); // more than one period in domain
+    }
+
+    @Test
+    public void parseEmail_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> Email.of((String) null));
+    }
+
+    @Test
+    public void parseEmail_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> Email.of(INVALID_EMAIL));
+    }
+
+    @Test
+    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, Email.of(VALID_EMAIL));
+    }
+
+    @Test
+    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, Email.of(emailWithWhitespace));
     }
 
     @Test
