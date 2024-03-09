@@ -47,7 +47,7 @@ You can reach us at the following emails `simkianseng28@gmail.com`, `bensonang36
 [[portfolio](team/tayziyi)]
 
 - Role: Developer
-- Responsibilities: In charge of code quality
+- Responsibilities: In charge of coding quality
 
 ### Yow Siao Kang
 
