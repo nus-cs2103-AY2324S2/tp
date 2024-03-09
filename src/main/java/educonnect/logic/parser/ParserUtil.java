@@ -9,10 +9,10 @@ import java.util.Set;
 import educonnect.commons.core.index.Index;
 import educonnect.commons.util.StringUtil;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.person.Address;
 import educonnect.model.person.Email;
 import educonnect.model.person.Name;
-import educonnect.model.person.Phone;
+import educonnect.model.person.StudentId;
+import educonnect.model.person.TelegramHandle;
 import educonnect.model.tag.Tag;
 
 /**
@@ -47,37 +47,74 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        String capitalName = createCapitalName(trimmedName);
+        return new Name(capitalName);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * Capitalises the names separated by a space
+     * Removes unecessary spaces in between names
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static String createCapitalName(String trimmedName) {
+        String[] words = trimmedName.split(" ");
+        StringBuilder result = new StringBuilder();
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                if (result.length() > 0) {
+                    result.append(" ");
+                }
+                result.append(Character.toUpperCase(word.charAt(0)));
+                if (word.length() > 1) {
+                    result.append(word.substring(1));
+                }
+            }
         }
-        return new Phone(trimmedPhone);
+        String capitalised = result.toString();
+        return capitalised;
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String studentId} into a {@code StudentId}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code studentId} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedId = studentId.trim();
+        if (!StudentId.isValidStudentId(trimmedId)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        String capitalised = createCapitalStudentId(trimmedId);
+        return new StudentId(capitalised);
+    }
+
+    /**
+     * Capitalises the 'A' at the start of the Student Id
+     * @param trimmedId
+     * @return Capitalised String of Student ID
+     */
+    public static String createCapitalStudentId(String trimmedId) {
+        StringBuilder result = new StringBuilder();
+        result.append(Character.toUpperCase(trimmedId.charAt(0)));
+        result.append(trimmedId.substring(1));
+        String capitalised = result.toString();
+        return capitalised;
+    }
+
+    /**
+     * Parses a {@code telegramHandle} into a {@code TelegramHandle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code telegramHandle} is invalid.
+     */
+    public static TelegramHandle parseTelegramHandle(String telegramHandle) throws ParseException {
+        requireNonNull(telegramHandle);
+        String trimmedHandle = telegramHandle.trim();
+        if (!TelegramHandle.isValidTelegramHandle(trimmedHandle)) {
+            throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        }
+        return new TelegramHandle(trimmedHandle);
     }
 
     /**

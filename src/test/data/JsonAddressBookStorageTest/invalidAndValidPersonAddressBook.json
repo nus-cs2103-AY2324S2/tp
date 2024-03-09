@@ -1,13 +1,13 @@
 {
   "persons": [ {
     "name": "Valid Person",
-    "phone": "9482424",
+    "studentId": "A1234567P",
     "email": "hans@example.com",
-    "address": "4th street"
+    "telegramHandle": "@hans"
   }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
+    "name": "Person With Invalid student Id Field",
+    "studentId": "AA123456P",
     "email": "hans@example.com",
-    "address": "4th street"
+    "telegramHandle": "@studentT"
   } ]
 }

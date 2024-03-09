@@ -3,11 +3,11 @@ package educonnect.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import educonnect.model.person.Address;
 import educonnect.model.person.Email;
 import educonnect.model.person.Name;
 import educonnect.model.person.Person;
-import educonnect.model.person.Phone;
+import educonnect.model.person.StudentId;
+import educonnect.model.person.TelegramHandle;
 import educonnect.model.tag.Tag;
 import educonnect.model.util.SampleDataUtil;
 
@@ -17,14 +17,14 @@ import educonnect.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_STUDENT_ID = "A1234567X";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TELEGRAM_HANDLE = "@Beeam";
 
     private Name name;
-    private Phone phone;
+    private StudentId studentId;
     private Email email;
-    private Address address;
+    private TelegramHandle telegramHandle;
     private Set<Tag> tags;
 
     /**
@@ -32,9 +32,9 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        studentId = new StudentId(DEFAULT_STUDENT_ID);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         tags = new HashSet<>();
     }
 
@@ -43,9 +43,9 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+        studentId = personToCopy.getStudentId();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        telegramHandle = personToCopy.getTelegramHandle();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -68,16 +68,16 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withTelegramHandle(String telegramHandle) {
+        this.telegramHandle = new TelegramHandle(telegramHandle);
         return this;
     }
 
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withStudentId(String studentId) {
+        this.studentId = new StudentId(studentId);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, studentId, email, telegramHandle, tags);
     }
 
 }

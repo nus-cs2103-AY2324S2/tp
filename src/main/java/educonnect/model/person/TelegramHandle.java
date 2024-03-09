@@ -7,12 +7,12 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class TelegramHandle {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Telegram handles should start with @";
+    public static final String VALIDATION_REGEX = "^@.*";
     public final String value;
 
     /**
@@ -20,16 +20,16 @@ public class Phone {
      *
      * @param phone A valid phone number.
      */
-    public Phone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public TelegramHandle(String handle) {
+        requireNonNull(handle);
+        checkArgument(isValidTelegramHandle(handle), MESSAGE_CONSTRAINTS);
+        value = handle;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidTelegramHandle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,12 +45,12 @@ public class Phone {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Phone)) {
+        if (!(other instanceof TelegramHandle)) {
             return false;
         }
 
-        Phone otherPhone = (Phone) other;
-        return value.equals(otherPhone.value);
+        TelegramHandle otherHandle = (TelegramHandle) other;
+        return value.equals(otherHandle.value);
     }
 
     @Override
