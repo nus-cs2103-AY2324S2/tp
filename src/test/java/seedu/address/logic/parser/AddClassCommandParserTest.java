@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddClassCommand;
+import seedu.address.model.person.Name;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.TutorialClass;
 
 public class AddClassCommandParserTest {
     private AddClassCommandParser parser = new AddClassCommandParser();
@@ -22,12 +25,13 @@ public class AddClassCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClassCommand.MESSAGE_USAGE);
 
         String userInput = PREFIX_MODULE_CODE + module_code + " " + PREFIX_TUTORIAL_CLASS + nonEmptyTutorialClass;
-        AddClassCommand expectedCommand = new AddClassCommand(module_code, nonEmptyTutorialClass);
+        AddClassCommand expectedCommand = new AddClassCommand(new Module(new Name(module_code)),
+                new TutorialClass(new Name(nonEmptyTutorialClass)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no tutorial class
         userInput =  PREFIX_MODULE_CODE + module_code + " " + PREFIX_TUTORIAL_CLASS;
-        expectedCommand = new AddClassCommand(module_code, "");
+        expectedCommand = new AddClassCommand(new Module(new Name(module_code)), new TutorialClass(new Name("")));
         assertParseFailure(parser, userInput, expectedMessage);
     }
 

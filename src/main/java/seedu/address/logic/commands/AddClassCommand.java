@@ -4,14 +4,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_CLASS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.TutorialClass;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 public class AddClassCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Module Code: %1$s, Tutorial Class: %2$s";
 
-    private final String module_code;
-    private final String tutorial_class;
+    private final Module module_code;
+    private final TutorialClass tutorial_class;
 
     public static final String COMMAND_WORD = "/add_class";
 
@@ -19,7 +20,7 @@ public class AddClassCommand extends Command {
      * @param module_code of the tutorial class to be added
      * @param tutorial_class the name of the tutorial class to be added.
      */
-    public AddClassCommand(String module_code, String tutorial_class) {
+    public AddClassCommand(Module module_code, TutorialClass tutorial_class) {
         requireAllNonNull(module_code, tutorial_class);
 
         this.module_code = module_code;
