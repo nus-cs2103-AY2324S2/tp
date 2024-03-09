@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.BENSONMAINTAINER;
 import static seedu.address.testutil.TypicalPersons.BENSONSTAFF;
 import static seedu.address.testutil.TypicalPersons.BENSONSUPPLIER;
 
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Commission;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employment;
 import seedu.address.model.person.Name;
@@ -22,6 +24,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Price;
 import seedu.address.model.person.Product;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.Skill;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -33,6 +36,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_PRODUCT = " ";
     private static final String INVALID_EMPLOYMENT = "employment";
     private static final String INVALID_PRICE = "20";
+    private static final String INVALID_SKILL = " ";
+    private static final String INVALID_COMMISSION = "20";
     private static final String NULL = null;
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -42,6 +47,8 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_EMPLOYMENT = BENSONSTAFF.getEmployment().toString();
     private static final String VALID_PRODUCT = BENSONSUPPLIER.getProduct().toString();
     private static final String VALID_PRICE = BENSONSUPPLIER.getPrice().toString();
+    private static final String VALID_SKILL = BENSONMAINTAINER.getSkill().toString();
+    private static final String VALID_COMMISSION = BENSONMAINTAINER.getCommission().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -51,6 +58,27 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
     }
+
+    /*
+    @Test
+    public void toModelType_validStaffDetails_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedStaff(BENSONSTAFF);
+        assertEquals(BENSONSTAFF, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_validSupplierDetails_returnsPerson() throws Exception {
+        JsonAdaptedSupplier person = new JsonAdaptedSupplier(BENSONSUPPLIER);
+        assertEquals(BENSONSUPPLIER, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_validMaintainerDetails_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedMaintainer(BENSONMAINTAINER);
+        assertEquals(BENSONMAINTAINER, person.toModelType());
+    }
+     */
+
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
@@ -153,6 +181,24 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
                         NULL, NULL, VALID_PRODUCT, INVALID_PRICE, NULL, NULL);
         String expectedMessage = Price.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidSkill_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+                        NULL, NULL, NULL, NULL, INVALID_SKILL, VALID_COMMISSION);
+        String expectedMessage = Skill.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidCommission_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+                        NULL, NULL, NULL, NULL, VALID_SKILL, INVALID_COMMISSION);
+        String expectedMessage = Commission.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

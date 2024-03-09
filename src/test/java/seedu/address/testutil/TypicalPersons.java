@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
@@ -43,6 +44,13 @@ public class TypicalPersons {
             .withTags("friends")
             .withProduct("pooch food")
             .withPrice("$50/bag").build();
+
+    public static final Maintainer ALICEMAINTAINER = new MaintainerBuilder().withName("Alice Pauline")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withPhone("94351253")
+            .withTags("friends")
+            .withSkill("train dog")
+            .withCommission("$50/hr").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -61,6 +69,13 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends")
             .withProduct("pooch medicine")
             .withPrice("$50/injection").build();
+
+    public static final Maintainer BENSONMAINTAINER = new MaintainerBuilder().withName("Benson Meier")
+            .withAddress("311, Clementi Ave 2, #02-25")
+            .withEmail("johnd@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends")
+            .withSkill("train dog")
+            .withCommission("$50/hr").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")

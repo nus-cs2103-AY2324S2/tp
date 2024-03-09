@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICESUPPLIER;
+import static seedu.address.testutil.TypicalPersons.ALICEMAINTAINER;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,51 +22,51 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Supplier;
-import seedu.address.testutil.SupplierBuilder;
+import seedu.address.testutil.MaintainerBuilder;
 
-public class AddSupplierCommandTest {
+public class AddMaintainerCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddSupplierCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddMaintainerCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Supplier validPerson = new SupplierBuilder().build();
+        Maintainer validPerson = new MaintainerBuilder().build();
 
-        CommandResult commandResult = new AddSupplierCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddMaintainerCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddMaintainerCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Supplier validPerson = new SupplierBuilder().build();
-        AddSupplierCommand addCommand = new AddSupplierCommand(validPerson);
+        Maintainer validPerson = new MaintainerBuilder().build();
+        AddMaintainerCommand addCommand = new AddMaintainerCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class,
-                AddSupplierCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                AddMaintainerCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Supplier alice = new SupplierBuilder().withName("Alice").build();
-        Supplier bob = new SupplierBuilder().withName("Bob").build();
-        AddSupplierCommand addAliceCommand = new AddSupplierCommand(alice);
-        AddSupplierCommand addBobCommand = new AddSupplierCommand(bob);
+        Maintainer alice = new MaintainerBuilder().withName("Alice").build();
+        Maintainer bob = new MaintainerBuilder().withName("Bob").build();
+        AddMaintainerCommand addAliceCommand = new AddMaintainerCommand(alice);
+        AddMaintainerCommand addBobCommand = new AddMaintainerCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddSupplierCommand addAliceCommandCopy = new AddSupplierCommand(alice);
+        AddMaintainerCommand addAliceCommandCopy = new AddMaintainerCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -81,8 +81,9 @@ public class AddSupplierCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddSupplierCommand addCommand = new AddSupplierCommand(ALICESUPPLIER);
-        String expected = AddSupplierCommand.class.getCanonicalName() + "{toAdd=" + ALICESUPPLIER + "}";
+        AddMaintainerCommand addCommand = new AddMaintainerCommand(ALICEMAINTAINER);
+        String expected = AddMaintainerCommand.class.getCanonicalName()
+                + "{toAdd=" + ALICEMAINTAINER + "}";
         assertEquals(expected, addCommand.toString());
     }
 
