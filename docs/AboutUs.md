@@ -48,7 +48,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Bertrand Ong
 
-<img src="images/bertrandong.png.jpg" width="200px">
+<img src="images/bertrandong.png" width="200px">
 
 [[github](http://github.com/bertrandong)]
 [[portfolio](team/bertrand.md)]
