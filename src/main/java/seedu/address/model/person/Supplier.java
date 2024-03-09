@@ -65,7 +65,12 @@ public class Supplier extends Person {
 
     @Override
     public String toString() {
-        return super.toString() + new ToStringBuilder(this)
+        return new ToStringBuilder(this)
+                .add("name", getName())
+                .add("phone", getPhone())
+                .add("email", getEmail())
+                .add("address", getAddress())
+                .add("tags", getTags())
                 .add("product", product)
                 .add("price", price)
                 .toString();
