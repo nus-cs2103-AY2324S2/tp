@@ -353,7 +353,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
+**System**: FitBook
+
 **Use case**: UC01 - Delete a client
+
+**Actor**: User
 
 **MSS**
 
@@ -410,6 +414,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. FitBook alerts the user that a client with that name and details already exists
     * 1b2. FitBook provides possible solutions (use different details if the client name is the same)
     * Use case resumes
+
+**System**: FitBook
 
 **Use case**: UC04 - Display all clients
 
