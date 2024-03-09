@@ -350,15 +350,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-**Use case**: UC01 - Delete a person
+**System**: FitBook
+
+**Use case**: UC01 - Delete a client
+
+**Actor**: User
 
 **MSS**
 
 1. User requests to view list
-2. FitBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. FitBook deletes the person
-5. Use case ends.
+2. FitBook shows a list of clients
+3. User requests to delete a specific client in the list
+4. FitBook deletes the client from the list
+5. Use case ends
 
 **Extensions**
 
@@ -370,7 +374,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. FitBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2
+  
+<hr>
 
 **System**: FitBook
 
@@ -381,10 +387,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view usage instructions
-2. FitBook displays the usage instructions such as how to add, edit, delete or search for contacts
+2. FitBook displays the usage instructions such as how to add, edit, delete or search for clients
 3. User reads the instructions to understand how to use the FitBook
 4. Use case ends
 
+<hr>
 
 **System**: FitBook
 
@@ -394,8 +401,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a new contact
-2. FitBook displays a success message after the new contact is successfully added
+1. User requests to add a new client
+2. FitBook displays a success message after the new client is successfully added
 3. Use case ends
 
 **Extensions**
@@ -403,19 +410,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User enters an invalid command
     * 1a1. FitBook alerts the user that the command is invalid and displays the correct format
     * Use case resumes
-* 1b. User tries to add a contact that already exists in FitBook
-    * 1b1. FitBook alerts the user that a user with that name and details already exists
-    * 1b2. FitBook provides possible solutions (use different details if the contact name is the same)
+* 1b. User tries to add a client that already exists in FitBook
+    * 1b1. FitBook alerts the user that a client with that name and details already exists
+    * 1b2. FitBook provides possible solutions (use different details if the client name is the same)
     * Use case resumes
 
-**Use case**: UC04 - Display all contacts
+<hr>
+
+**System**: FitBook
+
+**Use case**: UC04 - Display all clients
 
 **Actor**: User
 
 **MSS**
 
-1. User requests to see a list of all contacts
-2. FitBook displays a success message followed by the list of contacts
+1. User requests to see a list of all clients
+2. FitBook displays a success message followed by the list of clients
 3. User views the list
 4. Use case ends
 
@@ -425,6 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. FitBook alerts the user that the command is invalid and displays the correct format
     * Use case resumes
 
+<hr>
 
 ### Non-Functional Requirements
 
