@@ -395,6 +395,35 @@ Use case ends
 
     Use case resumes at step 2
 
+**Use case: Deleting a tag**
+
+**MSS**
+
+1. User requests to list people
+2. OfficeHarbor shows a list of people
+3. User requests to delete a specific tag of a person from the list.
+4. OfficeHarbor deletes the specified tag of that person
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. OfficeHarbor shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The specified tag does not exist.
+
+    * 3b1. OfficeHarbor shows an error message.
+
+      Use case resumes at step 2.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
