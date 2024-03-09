@@ -326,7 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS 
 * * **Course**: A course with a program and syllabus. e.g. CS2030S
-* **Class**: A group of students attending a particular course. e.g. G13
+* **Tutorial Group (TG)**: A group of students from a particular course. e.g. G13
 * **Teaching Assistant (TA)**: A tutor attached to class
 --------------------------------------------------------------------------------------------------------------------
 
