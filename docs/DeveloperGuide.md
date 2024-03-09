@@ -29,7 +29,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
-
+c
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
@@ -271,9 +271,9 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 ``` plaintext
-Effortlessly manage, search, and sift through your various internship applications. 
-Enter details rapidly using CLI, and avoid losing track of crucial information. 
-Targeted to those with numerous applications to keep track of and prefer using CLI. 
+Effortlessly manage, search, and sift through your various internship applications.
+Enter details rapidly using CLI, and avoid losing track of crucial information.
+Targeted to those with numerous applications to keep track of and prefer using CLI.
 Your all-in-one solution for seamless application management.
 ```
 
@@ -433,9 +433,9 @@ Priorities: High (Must-Have) - `* * *`, Medium (Nice-To-Have) - `* *`, Low (Not 
 **MSS**
 
 1. User accesses the main page. 
-2. User selects the option to view all internship details. 
-3. System retrieves and displays a list of all entered internship details. 
-4. User selects the internship entry to which notes will be added. 
+2. User selects the option to view all internship details.
+3. System retrieves and displays a list of all entered internship details.
+4. User selects the internship entry to which notes will be added.
 5. System presents the selected internship details along with the current notes section.
 6. User enters additional information in the notes section.
 7. System saves the updated notes.
@@ -474,8 +474,11 @@ Priorities: High (Must-Have) - `* * *`, Medium (Nice-To-Have) - `* *`, Low (Not 
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **API**: Application Programming Interface. The entirety of published methods, properties and other means for software developers to access an application through software they write using this application.
+* **GUI**: Graphical User Interface.  A graphical user interface uses graphical representations of commands, status feedbacks and data of an application, and offers methods to interact with it through graphical devices, such as a mouse or tablets.
+* **Mainstream OS**: Mainstream Operating Systems. Refers to Windows, Linux, Unix and MacOS.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **UI**: User Interface. The point where a user and a software application meet and interact.
 
 --------------------------------------------------------------------------------------------------------------------
 

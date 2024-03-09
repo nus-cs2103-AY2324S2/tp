@@ -1,0 +1,31 @@
+{
+  "_comment": "InternshipData save file which contains the same Internship values as in TypicalInternships#getTypicalInternshipData()",
+  "internships" : [ {
+    "companyName" : "Microsoft",
+    "contactName" : "Alice Pauline",
+    "contactEmail" : "alice@example.com",
+    "contactNumber" : "94351253",
+    "location" : "remote",
+    "status" : "ongoing",
+    "description" : "Use Figma to design User-friendly web interfaces",
+    "role" : "Frontend Engineer"
+  }, {
+    "companyName" : "Google",
+    "contactName" : "Benson Meier",
+    "contactEmail" : "benson@example.com",
+    "contactNumber" : "98765432",
+    "location" : "local",
+    "status" : "pending",
+    "description" : "Write REST APIs for services",
+    "role" : "Backend Engineer"
+  }, {
+    "companyName" : "OpenAI",
+    "contactName" : "Carl Kurz",
+    "contactEmail" : "carl@google.com",
+    "contactNumber" : "95352563",
+    "location" : "overseas",
+    "status" : "rejected",
+    "description" : "Enter prompts into ChatGPT",
+    "role" : "Prompt Engineer"
+  } ]
+}
