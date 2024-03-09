@@ -278,14 +278,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                 | I want to …​                                      | So that I can…​                                                                   |
+|----------|---------------------------------------------------------|---------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | Social Worker                                           | Add a new client                                  | Store my new client's information                                                 |
+| `* * *`  | Social Worker                                           | Delete a client                                   | Remove clients that I no longer work with                                         |
+| `* * *`  | Social Worker                                           | View a client's information                       | Conveniently access client's details in a easily readable manner                  |
+| `* * *`  | Social Worker                                           | List out all current client's contacts            | View all of the current contacts I have saved                                     |
+| `* * *`  | Social Worker who has physical meetings with my clients | Add appointments that I have with each client     | Keep track of the physical meetings I have with my clients                        |
+| `* * *`  | Social Worker who has physical meetings with my clients | Delete appointments that I have with each client  | Remove any appointments that I no longer have                                     |
+| `* * *`  | Social Worker who has physical meetings with my clients | View an appointment's information                 | Be informed of the details that the appointment involves                          |
+| `* * *`  | Social Worker who has physical meetings with my clients | List out my appointments in chronological order   | Keep track of my upcoming appointments and which one to prepare for               |
+| `* *`    | Social Worker with a diverse range of clients           | Add a tag to selected clients                     | Highlight any important information about the client's current status             |
+| `* *`    | Social Worker with a diverse range of clients           | Delete tags from selected clients                 | Remove any tags which no longer apply to the client                               |
+| `* *`    | Social Worker with a diverse range of clients           | View the tag attached to the selected clients     | Readily identify the information I wanted to highlight about the client           |
+| `* *`    | Social Worker who has clients with specific needs       | Add a tag to selected appointments                | Highlight the type and nature of appointment                                      |
+| `* *`    | Social Worker who has clients with specific needs       | Delete tags from selected appointments            | Remove any tags that are not relevant to the appointment anymore                  |
+| `* *`    | Social Worker who has clients with specific needs       | View the tag attached to the specific appointment | Readily identify the type and nature of appointment                               |
+| `* *`    | Social Worker                                           | Edit a client's information                       | Update the contact if there are any changes to a client's information             |
+| `* *`    | Social Worker                                           | Edit an appointment's information                 | Update the appointment if there are any changes to its details                    |
+| `*`      | Social Worker with many clients                         | Search for a client by name                       | Efficiently find a client without having to scroll through the address book       |
+| `*`      | Social Worker with many clients                         | Search for clients by their tags                  | Categorise clients who share a common tag                                         |
+| `*`      | Social Worker with many appointments                    | Search for an appointment by name                 | Efficiently find an appointment without having to scroll through the address book |
+| `*`      | Social Worker with many appointments                    | Search for appointments by their tags             | Categorise appointments who share a common tag                                    |
+| `*`      | Social Worker with clients that have medical records    | Add information of their medical history          | Keep track of any known conditions, allergies or medications                      |
 
 *{More to be added}*
 
