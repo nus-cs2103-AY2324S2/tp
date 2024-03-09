@@ -36,7 +36,7 @@ Together we made ````Moddie!``
 
 <img src="images/awjoey.png" width="200px">
 
-[[github](https://github.com/AwJoey)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/AwJoey)] [[portfolio](https://awjoey26.wixsite.com/website)]
 
 * Role: Developer
 * Responsibilities: Data
