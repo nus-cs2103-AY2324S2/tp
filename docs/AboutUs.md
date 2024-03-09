@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `e0959970@u.nus.edu`
+You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -13,48 +13,47 @@ You can reach us at the email `e0959970@u.nus.edu`
 
 <img src="images/evedaktyl.png" width="200px">
 
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/evedaktyl)]
-[[portfolio](team/evedaktyl.md)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 
-### Ryan Chia
+### John Doe
 
-<img src="images/chiaryan.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/chiaryan)]
-[[portfolio](team/chiaryan.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
+* Role: Team Lead
+* Responsibilities: UI
 
-* Role: Code Integration
-* Responsibilities: 
+### Johnny Doe
 
-### Laksh
+<img src="images/johndoe.png" width="200px">
 
-<img src="images/r-laksh.png" width="200px">
-
-[[github](http://github.com/r-laksh)] 
-[[portfolio](team/r-laksh.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Kai
+### Jean Doe
 
-<img src="images/c-wenlong.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/c-wenlong)]
-[[portfolio](team/c-wenlong.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI Design
+* Responsibilities: Dev Ops + Threading
 
-### Kwun
+### James Doe
 
-<img src="images/kwuunnn.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/kwuunnn)]
-[[portfolio](team/kwuunnn.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: UI
