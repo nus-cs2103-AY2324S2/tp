@@ -323,12 +323,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefer desktop apps over other types
 * prefers typing over mouse interactions (i.e. should be able to type fast)
 * is reasonably comfortable using CLI apps
-* has many clients to manage, with each of them having different requirements
-* is a freelance photographer
+* is a personal trainer
 
-**Value proposition**: The target user is communicating with many clients, who all have different project requirements
-and deadlines. Having some task management capabilities could be beneficial to them. For example, each contact have
-tasks with deadlines, meetings, and other relevant info tagged to them.
+**Value proposition**: FitBook will help to keep track of client-specific information such as progress, goals, and preferences all in one place, allowing the user to organize and manage their clients' information efficiently.
 
 ### User stories
 
