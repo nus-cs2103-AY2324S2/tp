@@ -47,7 +47,30 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        String capitalName = createCapitalName(trimmedName);
+        return new Name(capitalName);
+    }
+
+    /**
+     * Capitalises the names separated by a space
+     * Removes unecessary spaces in between names
+     */
+    public static String createCapitalName(String trimmedName) {
+        String[] words = trimmedName.split(" ");
+        StringBuilder result = new StringBuilder();
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                if (result.length() > 0) {
+                    result.append(" ");
+                }
+                result.append(Character.toUpperCase(word.charAt(0)));
+                if (word.length() > 1) {
+                    result.append(word.substring(1));
+                }
+            }
+        }
+        String capitalised = result.toString();
+        return capitalised;
     }
 
     /**
