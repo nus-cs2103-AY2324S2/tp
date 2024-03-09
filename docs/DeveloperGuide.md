@@ -263,12 +263,15 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of contacts
+* has to keep track of a significant number of client appointments and statuses
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven app
+* centralized and organized platform for storing and managing contact information and critical stakeholder details
 
 
 ### User stories
@@ -290,14 +293,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list clients
+2.  AddressBook shows a list of clients
+3.  User requests to delete a specific client in the list
+4.  AddressBook deletes the client
 
     Use case ends.
 
@@ -320,13 +323,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should have an intuitive and user-friendly interface, making it easy for the user to navigate, input, and retrieve client information and appointments efficiently.
+5.  Should come with comprehensive documentation and user support to assist users in using the app effectively and troubleshooting any issues that may arise.
+6.  Should be stable and dependable, minimizing the risk of crashes or data loss, and ensuring that appointments and client information are accurately stored and retrieved.
+7.  Should be able to accomodate the growing number of clients and appointments without a significant decrease in performance or usability.
 
 *{More to be added}*
 
 ### Glossary
 
+* **CLI**: Command Line Interface, User interact with SWEE by typing commands
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Client**: People who are experiencing various challenges in life and receiving assistance by working with the User
+* **Appointment**: When User meets with the client to assist them
 
 --------------------------------------------------------------------------------------------------------------------
 
