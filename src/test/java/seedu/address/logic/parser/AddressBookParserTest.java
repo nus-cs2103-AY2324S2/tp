@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -90,9 +91,15 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_remark() throws Exception {
-        assertTrue(parser.parseCommand(AddClassCommand.COMMAND_WORD) instanceof AddClassCommand);
+    public void parseCommand_add_class() throws Exception {
+        final String module_code = "CS2103T";
+        final String tutorial_class = "T09";
+        AddClassCommand command = (AddClassCommand) parser.parseCommand(AddClassCommand.COMMAND_WORD + " "
+                + PREFIX_MODULE_CODE + module_code + " " + PREFIX_TUTORIAL_CLASS + tutorial_class);
+        assertEquals(new AddClassCommand(module_code, tutorial_class), command);
     }
+
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
