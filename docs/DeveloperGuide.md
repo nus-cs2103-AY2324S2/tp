@@ -361,9 +361,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | User who loans items out regularly | View my past loans                                      | decide whether to loan to a client again                         |
 | `* *`    | User who loans items out regularly | See the overdue loans easily                            | chase after people more easily                                   |
 | `* * *`  | Busy user                          | Keep track of all my loanees(view)                      | save time and use it for more meaningful activities              |
-| `* * *`  | Busy user                          | quickly view a summary of all outstanding loans(view)   | have an overview without going through each contact individually 
-| `* * *`  | user who loans money               | track partial repayments                                | maintain accurate records of the outstanding balance             
-| `* * *`  | user with a dynamic network        | delete loan                                             | my records always reflect the current status of each loan        |
+| `* * *`  | Busy user                          | Quickly view a summary of all outstanding loans(view)   | have an overview without going through each contact individually 
+| `* * *`  | User who loans money               | Track partial repayments                                | maintain accurate records of the outstanding balance             
+| `* * *`  | User with a dynamic network        | Delete loan                                             | my records always reflect the current status of each loan        |
 | `* *`    | First time user                    | See the available commands/usage manual                 | familiarize with the command structure                           |
 | `*`      | Intermediate user                  | Learn shortcuts to commands                             | save time in the future                                          |
 | `* *`    | Experienced user                   | Omit certain parts of the CLI commands                  | perform tasks more efficiently and quickly                       |
