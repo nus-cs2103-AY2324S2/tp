@@ -33,6 +33,10 @@ public class DateUtil {
      * @return true if the string is a parsable date
      */
     public static boolean isParsableDateString(String test) {
+        if (test == null || test.isEmpty()) {
+            return false;
+        }
+
         try {
             LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_FORMAT));
             return true;
@@ -63,6 +67,9 @@ public class DateUtil {
      * @return the LocalDate object
      */
     public static LocalDate parseStringToDate(String date) throws DateTimeParseException {
+        if (date == null || date.isEmpty()) {
+            throw new DateTimeParseException("Date string is empty", date, 0);
+        }
         return LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 
