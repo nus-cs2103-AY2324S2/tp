@@ -70,25 +70,50 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
+Expected success outcome:
+![help message](images/helpMessage.png)
+
+Expected failure outcome:
+```
+Help not available. Please try again.
+```
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the address book with their information.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<box type="tip" seamless>
+* Phone number **must be a valid Singapore number** (i.e. 8 digits, starts with either 6, 8 or 9)
+* Email **must include @ character**
+* Address **must include and be ordered in street name, block number, and unit number (note: include # symbol)**, 
+separated with comma
+* If multiple `tag` are added, separate with comma
 
 **Tip:** A person can have any number of tags (including 0)
-</box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+Expected success outcome:
+```
+New contact added!
+```
+
+Expected failure outcome:
+```
+Values not accepted.
+```
+
+Potential Errors:
+* Phone number format is wrong (i.e. not a Singapore number)
+* Email format is wrong (i.e. no @)
+* Address format is wrong
+* An existing contact with same name and phone number is found in address book
+
 
 ### Listing all persons : `list`
 
@@ -96,9 +121,21 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+Expected success outcome:
+```
+List of contacts:
+...
+```
+
+Expected failure outcome:
+```
+No contacts added yet.
+```
+
+
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person's information in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -108,12 +145,35 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+* Adding a person's format for **phone number, email, and address** applies here as well.
+* 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+Expected success outcome:
+```
+Contact is updated!
+```
+
+Expected failure outcome:
+```
+Values not accepted.
+```
+OR
+```
+Contact not found in address book
+```
+
+Potential Errors:
+* [if applicable] Phone number format is wrong (i.e. not a Singapore number)
+* [if applicable] Email format is wrong (i.e. no @)
+* [if applicable] Address format is wrong
+* An existing contact with same name and phone number is found in address book
+
+
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -131,6 +191,18 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+Expected success outcome:
+```
+Contacts found:
+...
+```
+
+Expected failure outcome:
+```
+No contact found.
+```
+
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -145,11 +217,124 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+Expected success outcome:
+```
+Contact is updated!
+```
+
+Expected failure outcome:
+```
+Values not accepted.
+```
+OR
+```
+Contact not found in address book
+```
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+Expected success outcome: 
+```
+History cleared
+```
+
+Expected failure outcome:
+```
+History not cleared
+```
+
+### Adding interest tag : `interest`
+
+Adding an interest tag to a specified person from the address book
+
+Format: `interest INDEX INTEREST [MORE_INTEREST]`
+
+* Adds an interest to the person at the specified 'INDEX'
+* The index refers to the index number shown in the displayed person list
+* The index **must be a positive integer** 1, 2, 3, …​
+* The interest **must not have any special characters** e.g. !, @, #, $, …​
+
+Examples:
+* `interest 3 swimming` adds the interest tag `swimming` to the 3rd person in the address book
+* `interest 1 cooking cycling` adds the interest tags `cooking` and `cycling` to the 1st person in the address book
+
+Expected success outcome:
+```
+Tagged on contact 1
+```
+
+Expected failure outcome:
+```
+Contact not available
+```
+
+### Locating persons by interest : `findInterest`
+
+Find persons whose interest tag contains any of the given keywords
+
+Format: `findInterest INTEREST [MORE_INTEREST]`
+
+* The search is case-insensitive. e.g. `cooking` will match `Cooking`
+* The order of the keywords does not matter. e.g. `cycling bikes` will match `bikes cycling`
+* Only the interest tag is searched
+* Only full words will be matched e.g. `Cycle` will not match `Cycling`
+* Persons matching at least one keyword will be returned (i.e. `OR` search)
+  e.g. `Ice Skating` will return `Ice Sculpting`, `Rollor Skating`
+* The interest **must not have any special characters** e.g. !, @, #, $, …​
+
+Examples:
+* `findInterest swimming` returns `Joseph Schooling` and `Joscelin Yeo Wei Ling` with tags for `swimming`
+* `findInterest cooking cycling` returns `Lance Armstrong` for `cycling`, `Andre Chiang` for `cooking`
+
+Expected success outcome:
+```
+Interests found:
+...
+```
+
+Expected failure outcome:
+```
+Interests not found
+```
+
+### Adding persons to schedule : `addSched`
+
+Adds an event with contact from specified date with time
+
+Format: `addSched INDEX [MORE_INDEX] SCHEDULE_NAME from/DATE_TIME to/TIME`
+
+* The INDEX **must be a positive integer** 1, 2, 3, …​
+* The SCHEDULE_NAME **must not have any special characters** e.g. !, @, #, $, …​
+* The DATE_TIME must be in the format of ddmmyyyy HHmm in 24-hour time
+* The TIME must be in the format of HHmm, but **not before the time from DATE_TIME** e.g. 0000-2359
+* `find Betsy` followed by `addSched 1 Exam 05032024 1600 1800` adds the 1st person in 
+the results of the `find` command to the event stated.
+
+Examples:
+* `addSched 4 Exam 05032024 1600 1800` will add the 4th person in the address list to the `Exam` event which 
+would take place on 5th March 2024 from 4pm - 6pm
+* `addSched 1,2,3 CSMeeting 18032024 1500 1900` will add the 1st, 2nd and 3rd persons in the address list 
+to the `CSMeeting` event which would take place on 18th March 2024 from 3pm - 7pm
+
+Expected success outcome:
+```
+Added schedule with ...
+```
+
+Expected failure outcome:
+```
+Schedule failed to be added.
+```
+
+Potential Errors:
+* Time format is wrong!
+* Date format is wrong
+* Contact not found in address book
 
 ### Exiting the program : `exit`
 
@@ -195,10 +380,14 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Help**   | `help`
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List**   | `list`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear**  | `clear`
+**Interest Tagging**   | `interest INDEX INTEREST [MORE_INTERESTS]` <br> e.g. `interest 3 swimming cooking`
+**Find Interest**   | `findInterest INTEREST [MORE_INTEREST]` <br> e.g. `findInterest cooking music`
+**Add Schedule**   | `addSched INDEX [MORE_INDEX] SCHEDULE_NAME` <br> e.g. `addSched 1,2,3 CSMeeting 18032024 1500 1900`
+**Exit**   | `exit`

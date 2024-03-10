@@ -34,16 +34,16 @@ Together we made ````Moddie!``
 
 ### Aw Joey
 
-<img src="images/awjoey.jpg" width="200px">
+<img src="images/awjoey.png" width="200px">
 
-[[github](https://github.com/AwJoey)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/AwJoey)] [[portfolio](https://awjoey26.wixsite.com/website)]
 
 * Role: Developer
 * Responsibilities: Data
 
 ### Fu Ming Jun, Dominic
 
-<img src="images/dominic.png" width="200px">
+<img src="images/dominicfumj.png" width="200px">
 
 [[github](https://github.com/DominicFuMJ)]
 [[portfolio](team/johndoe.md)]
@@ -53,7 +53,7 @@ Together we made ````Moddie!``
 
 ### Wu Jinyan
 
-<img src="images/Wu Jinyan.png" width="200px">
+<img src="images/morninggloryyy.png" width="200px">
 
 [[github](https://github.com/Morninggloryyy)]
 [[portfolio](team/johndoe.md)]
