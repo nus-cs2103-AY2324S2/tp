@@ -7,6 +7,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.person.Loan;
 
+/**
+ * Jackson-friendly version of {@link Loan}.
+ */
 public class JsonAdaptedLoan {
 
     private final float amount;
@@ -50,5 +53,5 @@ public class JsonAdaptedLoan {
         }
         return new Loan(id, amount, DateUtil.parse(startDate), DateUtil.parse(endDate));
     }
-    
+
 }

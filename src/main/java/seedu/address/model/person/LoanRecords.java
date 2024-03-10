@@ -45,6 +45,7 @@ public class LoanRecords {
      */
     private void addLoan(Loan loan) {
         loans.add(loan);
+        updateNextLoanId();
     }
 
     /**
@@ -55,7 +56,6 @@ public class LoanRecords {
      */
     public void addLoan(float amount, Date startDate, Date endDate) {
         Loan loan = new Loan(nextLoanId, amount, startDate, endDate);
-        updateNextLoanId();
         addLoan(loan);
     }
 
@@ -103,7 +103,7 @@ public class LoanRecords {
      * @return The id of the next loan.
      */
     public int getNextLoanId() {
-        return nextLoanId;  
+        return nextLoanId;
     }
 
     /**

@@ -11,7 +11,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Loan;
 import seedu.address.model.person.LoanRecords;
 
-
+/**
+ * Jackson-friendly version of {@link LoanRecords}.
+ */
 public class JsonAdaptedLoanRecords {
 
     public static final String MISSING_MESSAGE = "LoanRecords' loans field is missing!";
@@ -33,10 +35,15 @@ public class JsonAdaptedLoanRecords {
      * Converts a given {@code LoanRecords} into this class for Jackson use.
      */
     public JsonAdaptedLoanRecords(LoanRecords source) {
-        loans = source.getLoanList().stream()
+        if (source != null) {
+            loans = source.getLoanList().stream()
                 .map(JsonAdaptedLoan::new)
                 .collect(Collectors.toList());
-        nextLoanId = source.getNextLoanId();
+            nextLoanId = source.getNextLoanId();
+        } else {
+            loans = null;
+            nextLoanId = 0;
+        }
     }
 
     /**
@@ -48,7 +55,7 @@ public class JsonAdaptedLoanRecords {
         if (loans == null) {
             throw new IllegalValueException(MISSING_MESSAGE);
         }
-        
+
         ArrayList<Loan> loanList = new ArrayList<>();
         for (JsonAdaptedLoan loan : loans) {
             loanList.add(loan.toModelType());

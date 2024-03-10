@@ -109,7 +109,10 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (loanRecords == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LoanRecords.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                                                MISSING_FIELD_MESSAGE_FORMAT,
+                                                "LoanRecords"
+                                            ));
         }
         final LoanRecords modelLoanRecords = loanRecords.toModelType();
 
