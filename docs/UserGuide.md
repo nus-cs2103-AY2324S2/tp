@@ -67,19 +67,33 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 </box>
 
 
-### Add person to selected event: `add`
+### Invite person to selected event: `invite`
 
-**Format:** `add -i <index>`
+**Format:** `invite INDEX`
 
 **Description:**
-Add participants from the global participant list to the selected event.
+Invite participants from the global participant list to the selected event.
 
 **Caution:**
-* `<index>` should be within valid range of global participants
+* `INDEX` should be within valid range of global participants
 * Duplicate participants is **not allowed.**
 
 **Examples:**
-- `add -i 5` Adds participant indexed 5 to selected event.
+- `invite 5` Adds participant indexed 5 to selected event.
+
+
+### Edit existing participant: `editp`
+
+**Format:** `editp PARTICIPANT_INDEX -n PARTICIPANT_NAME -p PHONE -e EMAIL`
+
+**Description:**
+Updates the contact information of a participant in the app.
+
+**Caution:**
+* `INDEX` should be within valid range of global participants
+
+**Examples:**
+- `editp 5 -n Max -p 00000000 -e test@gmail.com` Edits contact details of participant indexed 5.
 
 
 --------------------------------------------------------------------------------------------------------------------
