@@ -295,6 +295,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new person             |                                                                        |
 | `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | search for a contact         | find their information when I need it.                                 |
+| `* * *`  | user                                       | import contact information   | easily add multiple contacts at once.                                  |
+| `* * *`  | user                                       | export contacts              | easily integrate existing data.                                        |
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 
@@ -327,6 +330,96 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: `find_by_tag`**
+
+**MSS**
+
+1. User requests to search for users by a specific tag.
+2. The application displays a list of users who are tagged with the specified tag.
+3. User reviews the list to find the desired contact(s).
+
+Use case ends.
+
+**Extensions**
+
+2a. No users are found with the given tag.
+
+2a1. The application notifies the user that no contacts were found with the specified tag.
+
+Use case ends.
+
+1a. The user enters extra spaces before or after the command.
+
+1a1. The application automatically trims the extra spaces and processes the command.
+
+Use case resumes at step 2.
+
+1b. The user specifies multiple tags or incorrect parameters.
+
+1b1. The application shows an error message and instructions for correct input format.
+
+**Use case: `find_and_export`**
+
+**MSS**
+
+1. User requests to search for users by a specific tag and optionally by name and/or address, and export the results.
+2. The application filters the users according to the given criteria and displays the filtered list.
+3. The application exports the filtered list to a specified file or a default file if no filename is provided.
+4. The application notifies the user that the export was successful.
+
+Use case ends.
+
+**Extensions**
+
+2a. No users match the given criteria.
+
+2a1. The application alerts the user that no matching contacts were found.
+
+Use case ends.
+
+3a. The user specifies an invalid filename or multiple filenames.
+
+3a1. The application shows an error message regarding the filename issue.
+
+Use case resumes at step 1.
+
+1a. The user includes extra spaces in the command.
+
+1a1. The application trims the extra spaces and processes the command.
+
+Use case resumes at step 2.
+
+**Use case: `import`**
+
+**MSS**
+
+1. User requests to import contacts from one or multiple JSON files located in the ./data/ directory.
+2. The application validates the existence and format of the specified file(s).
+3. The application imports the contacts from the file(s) into the contact manager.
+4. The application notifies the user that the import was successful.
+
+Use case ends.
+
+**Extensions**
+
+2a. One or more specified files do not exist in the ./data/ directory.
+
+2a1. The application informs the user which files could not be found.
+
+Use case ends.
+
+2b. One or more files are not in the correct JSON format.
+
+2b1. The application notifies the user which files have format issues.
+
+Use case ends.
+
+1a. The user includes extra spaces in the command.
+
+1a1. The application trims the extra spaces and processes the command.
+
+Use case resumes at step 2.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -334,6 +427,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  Designed for users who can type fast, making command execution quicker than using a mouse.
+<<<<<<< HEAD
+=======
+4.  Exporting and importing operations should be completed within a reasonable time frame, not exceeding 10 seconds per operation.
+5.  The application must ensure the security and privacy of private contact details during import and export operations. Data should be handled in a manner that prevents unauthorized access.
+>>>>>>> master
 
 *{More to be added}*
 
@@ -341,6 +439,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tag**: A keyword or label assigned to a contact to categorize them based on certain criteria or characteristics. Tags allow users to filter and organize contacts more efficiently.
+* **Command**: A specific instruction given by the user to the application to perform a particular operation, such as searching, exporting, or importing data.
+* **JSON File**: A file format that uses human-readable text to store and transmit data objects consisting of attribute-value pairs. It's used for importing and exporting contact information in the application.
+* **Filter Criteria**: The conditions or parameters (such as tag, name, or address) used to search for specific contacts within the application. These criteria help in refining search results to match the user's requirements more closely.
+* **Export**: The process of saving data from the application to a file, which can then be used outside the application. This can be particularly useful for creating backups or for using the contact information in other software or services.
+* **Import**: The process of adding or updating contacts in the application by loading them from an external file, typically in a structured format like JSON. This allows users to quickly populate the application with a large number of contacts.
+* **Contact Manager**: The component or feature of the application that handles the storage, retrieval, organization, and modification of contact information. It is central to the application's functionality regarding managing contact details.
+* **Data Directory**: A specific folder or location within the system where the application stores its data files, such as contact exports or imports. The ./data/ directory is an example where JSON files might be found for import operations.
 
 --------------------------------------------------------------------------------------------------------------------
 
