@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact to their address book.
 2. The user inputs the add command followed by the contact's details in the format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]….
-3. AB3 validates the input details.
+3. CCBot validates the input details.
 4. AB3 adds the new contact to the address book, assigning it a unique identifier within the system.
 5. AB3 displays a confirmation message to the user indicating the successful addition of the new contact.
 
