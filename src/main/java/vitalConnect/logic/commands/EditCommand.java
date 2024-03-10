@@ -21,11 +21,11 @@ import vitalConnect.commons.util.ToStringBuilder;
 import vitalConnect.logic.Messages;
 import vitalConnect.logic.commands.exceptions.CommandException;
 import vitalConnect.model.Model;
-import vitalConnect.model.person.Address;
-import vitalConnect.model.person.Email;
-import vitalConnect.model.person.Name;
 import vitalConnect.model.person.Person;
-import vitalConnect.model.person.Phone;
+import vitalConnect.model.person.contactInformation.Address;
+import vitalConnect.model.person.contactInformation.Email;
+import vitalConnect.model.person.contactInformation.Phone;
+import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.tag.Tag;
 
 /**

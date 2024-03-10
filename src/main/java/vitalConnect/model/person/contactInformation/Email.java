@@ -1,4 +1,4 @@
-package vitalConnect.model.person;
+package vitalConnect.model.person.contactInformation;
 
 import static java.util.Objects.requireNonNull;
 import static vitalConnect.commons.util.AppUtil.checkArgument;

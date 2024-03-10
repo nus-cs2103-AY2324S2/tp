@@ -38,10 +38,10 @@ import vitalConnect.commons.core.index.Index;
 import vitalConnect.logic.Messages;
 import vitalConnect.logic.commands.EditCommand;
 import vitalConnect.logic.commands.EditCommand.EditPersonDescriptor;
-import vitalConnect.model.person.Address;
-import vitalConnect.model.person.Email;
-import vitalConnect.model.person.Name;
-import vitalConnect.model.person.Phone;
+import vitalConnect.model.person.contactInformation.Address;
+import vitalConnect.model.person.contactInformation.Email;
+import vitalConnect.model.person.identificationInformation.Name;
+import vitalConnect.model.person.contactInformation.Phone;
 import vitalConnect.model.tag.Tag;
 import vitalConnect.testutil.EditPersonDescriptorBuilder;
 

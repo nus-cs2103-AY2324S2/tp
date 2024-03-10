@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import vitalConnect.logic.commands.FindCommand;
-import vitalConnect.model.person.NameContainsKeywordsPredicate;
+import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

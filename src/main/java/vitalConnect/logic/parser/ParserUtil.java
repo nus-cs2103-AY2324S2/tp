@@ -9,10 +9,10 @@ import java.util.Set;
 import vitalConnect.commons.core.index.Index;
 import vitalConnect.commons.util.StringUtil;
 import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.person.Address;
-import vitalConnect.model.person.Email;
-import vitalConnect.model.person.Name;
-import vitalConnect.model.person.Phone;
+import vitalConnect.model.person.contactInformation.Address;
+import vitalConnect.model.person.contactInformation.Email;
+import vitalConnect.model.person.contactInformation.Phone;
+import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.tag.Tag;
 
 /**

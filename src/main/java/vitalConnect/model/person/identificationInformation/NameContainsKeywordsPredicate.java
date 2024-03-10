@@ -1,10 +1,11 @@
-package vitalConnect.model.person;
+package vitalConnect.model.person.identificationInformation;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import vitalConnect.commons.util.StringUtil;
 import vitalConnect.commons.util.ToStringBuilder;
+import vitalConnect.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

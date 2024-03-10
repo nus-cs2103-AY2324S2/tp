@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import vitalConnect.commons.exceptions.IllegalValueException;
-import vitalConnect.model.person.Address;
-import vitalConnect.model.person.Email;
-import vitalConnect.model.person.Name;
+import vitalConnect.model.person.contactInformation.Address;
+import vitalConnect.model.person.contactInformation.Email;
+import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.person.Person;
-import vitalConnect.model.person.Phone;
+import vitalConnect.model.person.contactInformation.Phone;
 import vitalConnect.model.tag.Tag;
 
 /**

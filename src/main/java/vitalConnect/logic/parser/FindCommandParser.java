@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import vitalConnect.logic.commands.FindCommand;
 import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.person.NameContainsKeywordsPredicate;
+import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

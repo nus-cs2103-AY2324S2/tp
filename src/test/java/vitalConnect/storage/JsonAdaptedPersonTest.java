@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import vitalConnect.commons.exceptions.IllegalValueException;
-import vitalConnect.model.person.Address;
-import vitalConnect.model.person.Email;
-import vitalConnect.model.person.Name;
-import vitalConnect.model.person.Phone;
+import vitalConnect.model.person.contactInformation.Address;
+import vitalConnect.model.person.contactInformation.Email;
+import vitalConnect.model.person.identificationInformation.Name;
+import vitalConnect.model.person.contactInformation.Phone;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

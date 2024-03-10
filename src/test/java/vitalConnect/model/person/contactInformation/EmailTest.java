@@ -1,4 +1,4 @@
-package vitalConnect.model.person;
+package vitalConnect.model.person.contactInformation;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

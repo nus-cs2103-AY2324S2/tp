@@ -23,7 +23,7 @@ import vitalConnect.logic.commands.FindCommand;
 import vitalConnect.logic.commands.HelpCommand;
 import vitalConnect.logic.commands.ListCommand;
 import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.person.NameContainsKeywordsPredicate;
+import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
 import vitalConnect.model.person.Person;
 import vitalConnect.testutil.EditPersonDescriptorBuilder;
 import vitalConnect.testutil.PersonBuilder;

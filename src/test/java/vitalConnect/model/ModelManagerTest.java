@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.model.person.NameContainsKeywordsPredicate;
+import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
 import vitalConnect.testutil.ClinicBuilder;
 
 public class ModelManagerTest {

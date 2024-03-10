@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import vitalConnect.model.Model;
 import vitalConnect.model.ModelManager;
 import vitalConnect.model.UserPrefs;
-import vitalConnect.model.person.NameContainsKeywordsPredicate;
+import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

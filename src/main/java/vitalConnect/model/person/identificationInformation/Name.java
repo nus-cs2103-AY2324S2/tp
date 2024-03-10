@@ -1,4 +1,4 @@
-package vitalConnect.model.person;
+package vitalConnect.model.person.identificationInformation;
 
 import static java.util.Objects.requireNonNull;
 import static vitalConnect.commons.util.AppUtil.checkArgument;
@@ -37,7 +37,6 @@ public class Name {
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

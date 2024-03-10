@@ -1,4 +1,4 @@
-package vitalConnect.model.person;
+package vitalConnect.model.person.identificationInformation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import vitalConnect.commons.util.ToStringBuilder;
 import vitalConnect.logic.Messages;
 import vitalConnect.model.Model;
-import vitalConnect.model.person.NameContainsKeywordsPredicate;
+import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in clinic whose name contains any of the argument keywords.
