@@ -45,8 +45,8 @@ public class JsonStaffConnectStorage implements StaffConnectStorage {
     public Optional<ReadOnlyStaffConnect> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableStaffConnect> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableStaffConnect.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonStaffConnectStorage implements StaffConnectStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableStaffConnect(addressBook), filePath);
     }
 
 }
