@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import javafx.collections.FXCollections;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +24,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private ObservableList<Appointment> appointments;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.appointments = FXCollections.observableArrayList();
+
     }
 
     public ModelManager() {
@@ -75,6 +81,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public void addAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        appointments.add(appointment);
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointmentList() {
+        return FXCollections.unmodifiableObservableList(appointments);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -110,6 +127,13 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+    @Override
+    public boolean personExist(String name) {
+        requireNonNull(name);
+        return filteredPersons.stream()
+                .anyMatch(person -> person.getName().fullName.equalsIgnoreCase(name));
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
