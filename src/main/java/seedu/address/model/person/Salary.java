@@ -85,9 +85,9 @@ public class Salary {
     @Override
     public String toString() {
         if (isRange) {
-            return salary1 + "$" + "-" + salary2 + "$";
+            return salary1+ "-" + salary2;
         } else {
-            return salary1 + "$";
+            return String.valueOf(salary1);
         }
     }
 }
