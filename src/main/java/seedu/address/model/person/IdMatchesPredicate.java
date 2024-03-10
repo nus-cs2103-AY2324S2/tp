@@ -4,6 +4,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
 
+/**
+ * Tests that a {@code Person}'s {@code StudentId} matches the Student Id given.
+ */
 public class IdMatchesPredicate implements Predicate<Person> {
     private final StudentId studentId;
 
