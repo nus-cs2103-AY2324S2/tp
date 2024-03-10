@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +117,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Salary parseSalary(String salary) throws ParseException {
+        requireNonNull(salary);
+        String trimmedSalary = salary.trim();
+        if (!Salary.isValidSalary(trimmedSalary)) {
+            throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        return new Salary(trimmedSalary);
     }
 }
