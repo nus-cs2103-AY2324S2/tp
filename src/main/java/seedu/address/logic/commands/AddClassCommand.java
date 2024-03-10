@@ -13,10 +13,10 @@ public class AddClassCommand extends Command {
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added module %1$s";
     public static final String MESSAGE_DUPLICATE_CLASS = "Duplicate tutorial class!";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Add Class command not implemented yet";
 
+    public static final String COMMAND_WORD = "/add_class";
     private final Module module;
-
-    public final static String COMMAND_WORD = "/add_class";
 
     /**
      * @param module of the tutorial class to be added
@@ -33,7 +33,7 @@ public class AddClassCommand extends Command {
             + "Example: " + COMMAND_WORD + PREFIX_MODULE_CODE + " CS2103T "
             + PREFIX_TUTORIAL_CLASS + "T09";
 
-    public final static String MESSAGE_NOT_IMPLEMENTED_YET = "Add Class command not implemented yet";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

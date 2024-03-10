@@ -1,11 +1,11 @@
 package seedu.address.model.module;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 public class TutorialClass {
     final Name name;

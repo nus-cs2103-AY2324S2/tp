@@ -1,8 +1,8 @@
 package seedu.address.model.module;
 
-import java.util.ArrayList;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.ArrayList;
 
 import seedu.address.model.person.Name;
 
