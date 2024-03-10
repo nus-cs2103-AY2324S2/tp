@@ -1,5 +1,10 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Arrays;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -9,7 +14,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.*;
+
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -71,6 +76,9 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
+    /**
+     * Handles the keyTyped event.
+     */
     @FXML
     private void handleTextChanged() {
         suggestionsText.setText("");
@@ -78,6 +86,10 @@ public class CommandBox extends UiPart<Region> {
         List<String> suggestions = generateSuggestions(currentText);
         updateSuggestions(suggestions);
     }
+
+    /**
+     * Generates suggestions from text inputs
+     */
     private List<String> generateSuggestions(String commandText) {
         List<String> suggestions = new ArrayList<>();
 //        for (Map.Entry<String, String> entry : COMMAND_FORMAT_MAP.entrySet()) {
@@ -98,12 +110,12 @@ public class CommandBox extends UiPart<Region> {
 //                suggestions.add(suggestion);
 //            }
 //        }
-        final List<String> COMMANDS = Arrays.asList(
+        final List<String> commandList = Arrays.asList(
                 "add", "list", "edit", "find", "delete", "clear", "interest", "findinterest", "addsched", "exit", "help"
         );
 
         // Check if the entered command matches any suggestions
-        for (String command : COMMANDS) {
+        for (String command : commandList) {
             if (command.startsWith(commandText) || command.contains(commandText)) {
                 suggestions.add(command);
             }
@@ -111,6 +123,10 @@ public class CommandBox extends UiPart<Region> {
         suggestions.removeIf(suggest -> suggest.equals(commandText));
         return suggestions;
     }
+
+    /**
+     * Populate the suggestionText with generated suggestions
+     */
 
     public void updateSuggestions(List<String> suggestions) {
         StringBuilder suggestionsBuilder = new StringBuilder();
