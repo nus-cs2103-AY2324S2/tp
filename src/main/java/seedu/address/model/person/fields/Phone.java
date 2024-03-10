@@ -40,16 +40,12 @@ public class Phone implements Field {
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws IllegalArgumentException if the given {@code phone} is invalid.
      */
-    public static Phone of(String phone) throws ParseException {
+    public static Phone of(String phone) throws IllegalArgumentException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        try {
-            return new Phone(trimmedPhone);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Phone(trimmedPhone);
     }
 
     @Override

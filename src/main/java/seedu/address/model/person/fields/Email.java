@@ -59,16 +59,12 @@ public class Email implements Field {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws IllegalArgumentException if the given {@code email} is invalid.
      */
-    public static Email of(String email) throws ParseException {
+    public static Email of(String email) throws IllegalArgumentException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        try {
-            return new Email(trimmedEmail);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Email(trimmedEmail);
     }
 
     @Override

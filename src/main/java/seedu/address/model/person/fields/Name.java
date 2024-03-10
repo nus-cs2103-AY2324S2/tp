@@ -46,16 +46,12 @@ public class Name implements Field {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws IllegalArgumentException if the given {@code name} is invalid.
      */
-    public static Name of(String name) throws ParseException {
+    public static Name of(String name) throws IllegalArgumentException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        try {
-            return new Name(trimmedName);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Name(trimmedName);
     }
 
     @Override

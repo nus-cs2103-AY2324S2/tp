@@ -40,12 +40,12 @@ public class FindCommand extends Command {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws IllegalArgumentException if the user input does not conform the expected format
      */
-    public static FindCommand of(String args) throws ParseException {
+    public static FindCommand of(String args) throws IllegalArgumentException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
+            throw new IllegalArgumentException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 

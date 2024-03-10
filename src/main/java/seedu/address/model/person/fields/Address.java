@@ -45,16 +45,12 @@ public class Address implements Field {
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws IllegalArgumentException if the given {@code address} is invalid.
      */
-    public static Address of(String address) throws ParseException {
+    public static Address of(String address) throws IllegalArgumentException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        try {
-            return new Address(trimmedAddress);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Address(trimmedAddress);
     }
 
     @Override

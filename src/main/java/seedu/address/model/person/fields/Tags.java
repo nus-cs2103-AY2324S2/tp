@@ -41,13 +41,9 @@ public class Tags implements Field {
     /**
      * Parses {@code Collection<String> tags} into a {@code Tags}.
      */
-    public static Tags of(Collection<String> tags) throws ParseException {
+    public static Tags of(Collection<String> tags) throws IllegalArgumentException {
         requireNonNull(tags);
-        try {
-            return new Tags(tags.toArray(new String[0]));
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Tags(tags.toArray(new String[0]));
     }
 
     @JsonValue

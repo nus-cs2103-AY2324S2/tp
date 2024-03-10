@@ -8,8 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.util.exceptions.ParseException;
-
 public class NameTest {
 
     private static final String WHITESPACE = " \t\r\n";
@@ -44,8 +42,8 @@ public class NameTest {
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> Name.of(INVALID_NAME));
+    public void parseName_invalidValue_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Name.of(INVALID_NAME));
     }
 
     @Test

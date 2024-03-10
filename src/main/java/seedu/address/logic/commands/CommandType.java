@@ -1,26 +1,24 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.util.exceptions.ParseException;
-
 /**
  * Factory enumeration class for {@code Command} objects.
  */
 public enum CommandType {
     ADD {
         @Override
-        public Command createCommand(String arguments) throws ParseException {
+        public Command createCommand(String arguments) throws IllegalArgumentException {
             return AddCommand.of(arguments);
         }
     },
     EDIT {
         @Override
-        public Command createCommand(String arguments) throws ParseException {
+        public Command createCommand(String arguments) throws IllegalArgumentException {
             return EditCommand.of(arguments);
         }
     },
     DELETE {
         @Override
-        public Command createCommand(String arguments) throws ParseException {
+        public Command createCommand(String arguments) throws IllegalArgumentException {
             return DeleteCommand.of(arguments);
         }
     },
@@ -32,7 +30,7 @@ public enum CommandType {
     },
     FIND {
         @Override
-        public Command createCommand(String arguments) throws ParseException {
+        public Command createCommand(String arguments) throws IllegalArgumentException {
             return FindCommand.of(arguments);
         }
     },
@@ -55,5 +53,5 @@ public enum CommandType {
         }
     };
 
-    public abstract Command createCommand(String arguments) throws ParseException;
+    public abstract Command createCommand(String arguments) throws IllegalArgumentException;
 }

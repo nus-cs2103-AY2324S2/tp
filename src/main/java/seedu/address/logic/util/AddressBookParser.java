@@ -45,12 +45,23 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
+        CommandType resultType;
         try {
-            return CommandType.valueOf(commandWord.toUpperCase()).createCommand(arguments);
-        } catch (IllegalArgumentException e) {
+             resultType = CommandType.valueOf(commandWord.toUpperCase());
+        } catch (IllegalArgumentException ie) {
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+
+        Command result;
+        try {
+            result = resultType.createCommand(arguments);
+        } catch (IllegalArgumentException ie) {
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new ParseException(ie.getMessage());
+        }
+
+        return result;
     }
 
 }
