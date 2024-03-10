@@ -44,26 +44,26 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-### Deleting an event: `delete-ev`
+### Deleting an event: `delev`
 
-**Format:** `delete-ev -ev <event name>`
+**Format:** `delev INDEX`
 
 **Description:**
 
-Deletes an event and all its relevant information by its name.
+Deletes an event and all its relevant information with its index in the event list.
 
 <box type="warning" seamless>
 
 **Caution:**
-* `<event name>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
+* `INDEX` should be **numeric** and **non-empty**.
 
 **Examples:**
 
-`delete-ev -ev Career fair` deletes an event with the name `Career fair`.
+`delev 1` deletes an event with the index `1`.
 
 ### Adding participant and their information to the global participant list: `add`
 
-**Format:** `add -n PARTICIPANT_NAME -p PHONE_NUMBER -e EMAIL`
+**Format:** `addp -n PARTICIPANT_NAME -p PHONE_NUMBER -e EMAIL`
 
 **Description:**
 
@@ -78,7 +78,7 @@ Adds a new participant to the app, allowing them to be added to an event later.
 
 **Examples:**
 
-`add -n David -p 98987676 -e david00@ggmail.com` adds a participant named `David` 
+`addp -n David -p 98987676 -e david00@ggmail.com` adds a participant named `David` 
 with the specific information to the global participant list. 
 
 --------------------------------------------------------------------------------------------------------------------
