@@ -15,14 +15,14 @@ public class Relationship {
      */
     public Relationship(String relationship) {
         requireNonNull(relationship);
-        checkArgument(isValidRelationshipType(relationship), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidRelationship(relationship), MESSAGE_CONSTRAINTS);
         value = relationship;
     }
 
     /**
      * Returns true if a given string is a valid relationship.
      */
-    public static boolean isValidRelationshipType(String test) {
+    public static boolean isValidRelationship(String test) {
         return test.equalsIgnoreCase("client") || test.equalsIgnoreCase("partner");
     }
 
