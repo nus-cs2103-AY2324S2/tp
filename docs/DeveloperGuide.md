@@ -335,7 +335,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 3a1. AB3 shows an error message indicating the validation failure and the correct format of the command.
 
       Use case resumes at step 2.
-
+*a. At any time, User chooses to cancel the addition.
+    *a1.  CCBot requests to confirm cancellation
+    *a2. User confirms the cancellation
+    Use case ends.
 ---
 
 **Use case: Add Salary Range to a Contact**
