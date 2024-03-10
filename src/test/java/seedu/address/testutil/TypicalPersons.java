@@ -24,12 +24,16 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").build();
+            .withAddress("123, Jurong West Ave 6, #08-111")
+            .withEmail("alice@example.com").withPhone("94351253")
+            .withDescription("A young adult experiencing anxiety and depression after leaving an abusive relationship.")
+            .withNextOfKin("Sam Sung").withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
+            .withDescription("A new immigrant seeking assistance with "
+                    + "acclimating to a new culture and finding employment.")
+            .withNextOfKin("Alexander Maximilian Bartholomew Fitzwilliam III")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();

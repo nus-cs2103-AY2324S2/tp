@@ -6,7 +6,7 @@
 # About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg). 
-We're passionate and deeply committed to using technology to create positive social impact.
+We are passionate and deeply committed to using technology to create positive social impact.
 We hope to alleviate some of the burdens social workers carry by streamlining their workflow 
 and simplifying administrative tasks. Our goal is to free up valuable time and energy for 
 social workers to focus on the most important aspects of their work.
