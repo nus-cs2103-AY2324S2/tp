@@ -28,7 +28,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyStaffConnect;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonStaffConnectStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -45,8 +45,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonStaffConnectStorage addressBookStorage =
+                new JsonStaffConnectStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -149,8 +149,8 @@ public class LogicManagerTest {
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
-        // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
+        // Inject LogicManager with an StaffConnectStorage that throws the IOException e when saving
+        JsonStaffConnectStorage addressBookStorage = new JsonStaffConnectStorage(prefPath) {
             @Override
             public void saveAddressBook(ReadOnlyStaffConnect staffConnect, Path filePath)
                     throws IOException {

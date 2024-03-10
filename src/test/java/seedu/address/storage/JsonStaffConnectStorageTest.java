@@ -31,7 +31,7 @@ public class JsonStaffConnectStorageTest {
     }
 
     private java.util.Optional<ReadOnlyStaffConnect> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonStaffConnectStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,7 +64,7 @@ public class JsonStaffConnectStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         StaffConnect original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonStaffConnectStorage jsonAddressBookStorage = new JsonStaffConnectStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
@@ -96,7 +96,7 @@ public class JsonStaffConnectStorageTest {
      */
     private void saveAddressBook(ReadOnlyStaffConnect staffConnect, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
+            new JsonStaffConnectStorage(Paths.get(filePath))
                     .saveAddressBook(staffConnect, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

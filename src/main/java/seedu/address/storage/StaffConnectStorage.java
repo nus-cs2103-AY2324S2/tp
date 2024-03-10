@@ -10,7 +10,7 @@ import seedu.address.model.ReadOnlyStaffConnect;
 /**
  * Represents a storage for {@link seedu.address.model.StaffConnect}.
  */
-public interface AddressBookStorage {
+public interface StaffConnectStorage {
 
     /**
      * Returns the file path of the data file.

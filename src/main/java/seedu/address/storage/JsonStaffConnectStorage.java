@@ -17,13 +17,13 @@ import seedu.address.model.ReadOnlyStaffConnect;
 /**
  * A class to access StaffConnect data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonStaffConnectStorage implements StaffConnectStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonStaffConnectStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonStaffConnectStorage(Path filePath) {
         this.filePath = filePath;
     }
 
