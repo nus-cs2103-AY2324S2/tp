@@ -1,11 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_CLASS;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
@@ -25,9 +23,9 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE, PREFIX_TUTORIAL_CLASS);
 
-        String module_code = argMultimap.getValue(PREFIX_MODULE_CODE).orElse("");
-        String tutorial_class = argMultimap.getValue(PREFIX_TUTORIAL_CLASS).orElse("");
+        String moduleCode = argMultimap.getValue(PREFIX_MODULE_CODE).orElse("");
+        String tutorialClass = argMultimap.getValue(PREFIX_TUTORIAL_CLASS).orElse("");
 
-        return new AddClassCommand(new Module(new Name(module_code), new TutorialClass(new Name(tutorial_class))));
+        return new AddClassCommand(new Module(new Name(moduleCode), new TutorialClass(new Name(tutorialClass))));
     }
 }

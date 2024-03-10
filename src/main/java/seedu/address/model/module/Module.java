@@ -1,11 +1,11 @@
 package seedu.address.model.module;
 
-import seedu.address.model.person.Name;
 import java.util.ArrayList;
 
-import java.util.Set;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.address.model.person.Name;
+
 
 public class Module {
     final Name name;

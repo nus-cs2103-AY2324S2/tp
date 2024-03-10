@@ -1,10 +1,6 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,7 +24,8 @@ class JsonAdaptedModule {
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("tutorialClasses") ArrayList<TutorialClass> tutorialClasses) {
+    public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("tutorialClasses")
+        ArrayList<TutorialClass> tutorialClasses) {
         this.name = name;
         this.tutorialClasses = tutorialClasses;
     }
