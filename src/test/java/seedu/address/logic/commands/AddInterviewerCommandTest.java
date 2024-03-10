@@ -50,7 +50,8 @@ public class AddInterviewerCommandTest {
         AddInterviewerCommand addCommand = new AddInterviewerCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddInterviewerCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddInterviewerCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                addCommand.execute(modelStub));
     }
 
     @Test

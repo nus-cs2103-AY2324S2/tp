@@ -70,13 +70,13 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_interviewer_storageThrowsIoException_throwsCommandException() {
+    public void execute_interviewerStorageThrowsIoException_throwsCommandException() {
         assertInterviewerCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
     }
 
     @Test
-    public void execute_interviewer_storageThrowsAdException_throwsCommandException() {
+    public void execute_interviewerStorageThrowsAdException_throwsCommandException() {
         assertInterviewerCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
     }
