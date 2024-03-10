@@ -303,12 +303,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The contact book is empty.
-  * 2a1. BistroBoss shows an error message.
-
-      Use case ends
-  
-
 * 3a. The given contact information is invalid.
 
     * 3a1. BistroBoss shows an error message.
@@ -344,8 +338,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all employee contact
-2.  BistroBoss lists all employee contact
+1.  User requests to list all employee contacts
+2.  BistroBoss lists all employee contacts
 
     Use case ends.
 
