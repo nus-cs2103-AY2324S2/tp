@@ -2,7 +2,7 @@
   "persons": [ {
     "name": "Hans Muster",
     "email": "invalid@email!3e",
-    "studentId": "A12345678A",
+    "studentId": "A1234567A",
     "moduleCode": "CS2105",
     "tutorial": "T01"
   } ]

@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_STUDENT_ID_AMY = "A11111111Z";
-    public static final String VALID_STUDENT_ID_BOB = "A22222222Z";
+    public static final String VALID_STUDENT_ID_AMY = "A1111111Z";
+    public static final String VALID_STUDENT_ID_BOB = "A2222222Z";
     public static final String VALID_MODULE_AMY = "CS1101S";
     public static final String VALID_MODULE_BOB = "CS1231S";
     public static final String VALID_TUTORIAL_AMY = "T01";
@@ -64,6 +64,8 @@ public class CommandTestUtil {
 
     // empty string not allowed for module code
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULECODE;
+
+    // invalid format for tutorial, alphabet not allowed in between 2 numbers.
     public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIALCLASS + "T1X312";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 

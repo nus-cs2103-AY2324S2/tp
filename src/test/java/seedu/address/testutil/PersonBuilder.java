@@ -19,7 +19,7 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_STUDENT_ID = "A11111111Z";
+    public static final String DEFAULT_STUDENT_ID = "A1111111Z";
     public static final String DEFAULT_MODULE = "CS1010S";
     public static final String DEFAULT_TUTORIAL = "T01";
 

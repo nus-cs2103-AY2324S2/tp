@@ -2,14 +2,14 @@
   "persons": [ {
     "name": "Alice Pauline",
     "email": "alice@example.com",
-    "studentId": "A12345678A",
+    "studentId": "A1234567A",
     "moduleCode": "CS2105",
     "tutorial": "T01",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "email": "pauline@example.com",
-    "studentId": "A12345678A",
+    "studentId": "A1234567A",
     "moduleCode": "CS2105",
     "tutorial": "T01"
   } ]

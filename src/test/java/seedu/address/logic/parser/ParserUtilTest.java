@@ -28,7 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_STUDENT_ID = "A12345678Z";
+    private static final String VALID_STUDENT_ID = "A1234567Z";
     private static final String VALID_MODULE = "CS2100";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
