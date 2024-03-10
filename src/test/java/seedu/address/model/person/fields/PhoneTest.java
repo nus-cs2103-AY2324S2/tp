@@ -8,7 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.exceptions.ParseException;
 
 public class PhoneTest {
 

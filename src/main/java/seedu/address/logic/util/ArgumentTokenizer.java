@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;

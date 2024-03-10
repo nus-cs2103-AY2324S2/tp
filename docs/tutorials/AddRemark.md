@@ -143,7 +143,7 @@ Your code should look something like [this](https://github.com/se-edu/addressboo
 
 Now let’s move on to writing a parser that will extract the index and remark from the input provided by the user.
 
-Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
+Create a `RemarkCommandParser` class in the `seedu.address.logic.util` package. The class must extend the `Parser` interface.
 
 <puml src="../diagrams/add-remark/ParserClass.puml" alt="The relationship between Parser and RemarkCommandParser"/>
 

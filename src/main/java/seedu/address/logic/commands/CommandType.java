@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.exceptions.ParseException;
 
 /**
- * Factory enumeration class for Command objects.
+ * Factory enumeration class for {@code Command} objects.
  */
 public enum CommandType {
     ADD {
