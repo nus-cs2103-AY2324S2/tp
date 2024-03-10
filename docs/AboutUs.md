@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wong Kai Jie
 
-<img src="images/wongkj12.jpg" width="200px">
+<img src="images/wongkj12.png" width="200px">
 
 [[github](http://github.com/wongkj12)] [[portfolio](team/wongkj12.md)]
 
