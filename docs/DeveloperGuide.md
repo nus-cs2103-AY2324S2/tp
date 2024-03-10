@@ -291,6 +291,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+---
+
 **Use case: Delete a person**
 
 **MSS**
@@ -313,6 +315,93 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+
+---
+
+**Use case: Add a Contact with Detailed Information**
+
+**MSS**
+
+1. The user decides to add a new contact to their address book.
+2. The user inputs the add command followed by the contact's details in the format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]….
+3. CCBot validates the input details.
+4. CCBot adds the new contact to the address book, assigning it a unique identifier within the system.
+5. CCBot displays a confirmation message to the user indicating the successful addition of the new contact.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the user enters invalid details (e.g., incorrect format, missing mandatory fields like name or phone number):
+   * 3a1. CCBot shows an error message indicating the validation failure and the correct format of the command.
+
+      Use case resumes at step 2.
+*a. At any time, User chooses to cancel the addition.
+    *a1.  CCBot requests to confirm cancellation
+    *a2. User confirms the cancellation
+    Use case ends.
+---
+
+**Use case: Add Salary Range to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the salary or salary range info to their address book.
+2. User inputs the 'add' command with the salary detail in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the salary information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the salary detail is invalid:
+   * 3a1. CCBot shows an error message indicating the validation failure and the correct format of the command.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Add the Company’s Name to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the company’s name info to their address book.
+2. User inputs the 'add' command with the company’s name in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the company’s name information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the company’s name is bigger than 100 characters:
+   * 3a1. CCBot shows an error message indicating the validation failure and the limit characters number.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Add Programming Language to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the programming language  info to their address book.
+2. User inputs the 'add' command with the programming language detail in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the programming language information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the  programming language detail is invalid:
+   * 3a1. CCBot shows an error message indicating the validation failure and an error message about the format or character limit.
+
+      Use case resumes at step 2.
+
+---
 
 
 ### Non-Functional Requirements
