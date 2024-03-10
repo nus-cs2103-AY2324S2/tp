@@ -37,7 +37,7 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_add_applicant() throws Exception {
         Person person = new PersonBuilder().build();
         AddApplicantCommand command = (AddApplicantCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddApplicantCommand(person), command);

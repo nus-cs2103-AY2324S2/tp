@@ -19,7 +19,7 @@ import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddApplicantCommand object
  */
 public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
 

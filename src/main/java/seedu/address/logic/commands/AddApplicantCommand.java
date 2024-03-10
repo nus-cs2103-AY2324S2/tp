@@ -9,13 +9,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds an applicant to the talent tracker.
  */
 public class AddApplicantCommand extends AddCommand {
 
     public static final String COMMAND_WORD = AddCommand.COMMAND_WORD + "_applicant";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a applicant to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to the address book. "
             + AddCommand.MESSAGE_USAGE;
 
 
