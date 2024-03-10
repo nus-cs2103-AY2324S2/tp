@@ -1,12 +1,18 @@
 package seedu.address.ui;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -17,6 +23,9 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+
+    @FXML
+    private Text suggestionsText;
 
     @FXML
     private TextField commandTextField;
@@ -49,6 +58,48 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
+    @FXML
+    private void handleTextChanged() {
+        int caretPosition = commandTextField.getCaretPosition();
+        String currentText = commandTextField.getText();
+        List<String> suggestions = generateSuggestions(currentText);
+        updateSuggestions(suggestions);
+        Platform.runLater(() -> commandTextField.positionCaret(Math.min(caretPosition, currentText.length())));
+    }
+    private List<String> generateSuggestions(String commandText) {
+        final List<String> COMMANDS = Arrays.asList(
+                "add", "list", "edit", "find", "delete", "clear", "interest", "findInterest", "addSched", "exit", "help"
+        );
+
+        final List<String> OPTIONS = Arrays.asList(
+                "n/", "p/", "e/", "a/", "t/", "from/", "to/"
+        );
+
+        final List<String> COMMON_KEYWORDS = Arrays.asList(
+                "NAME", "PHONE_NUMBER", "EMAIL", "ADDRESS", "TAG", "INDEX", "KEYWORD", "MORE_KEYWORDS", "INTEREST", "MORE_INTEREST", "SCHEDULE_NAME", "DATE_TIME", "TIME"
+        );
+        List<String> suggestions = new ArrayList<>();
+        List<String> tokens = Arrays.asList(commandText.split("\\s+"));
+        // Check if the entered command matches any suggestions
+        for (String command : COMMANDS) {
+            if (command.startsWith(commandText)) {
+                // If there's a match, replace the command text with the suggestion
+                commandTextField.setText(tokens.get(0));
+                // Move cursor to the end of the suggestion
+                suggestions.add(command);
+                break;
+            }
+        }
+        return suggestions;
+    }
+
+    public void updateSuggestions(List<String> suggestions) {
+        StringBuilder suggestionsBuilder = new StringBuilder();
+        for (String suggestion : suggestions) {
+            suggestionsBuilder.append(suggestion).append("\n");
+        }
+        suggestionsText.setText(suggestionsBuilder.toString());
+    }
     /**
      * Sets the command box style to use the default style.
      */
