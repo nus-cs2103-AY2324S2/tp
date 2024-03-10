@@ -102,7 +102,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_invalidArguments_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
-                () -> parser.parseCommand("delete unknown"));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand("delete unknown"));
     }
 }
