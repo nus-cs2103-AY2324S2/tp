@@ -388,7 +388,7 @@ Use case ends.
 - 1b. Additional arguments are specified after the command.
   - 1b1. System will ignore those arguments and execute the command as usual.
 - 2a. No existing students in the list.
-  - 2a1. System will return a message indicating that there are no students in the list.  
+  - 2a1. System will return a message indicating that there are no students in the list.
   <br>
 
 #### Use case 5: Add new tutorial class
