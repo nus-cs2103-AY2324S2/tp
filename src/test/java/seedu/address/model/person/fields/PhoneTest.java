@@ -1,13 +1,20 @@
 package seedu.address.model.person.fields;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class PhoneTest {
+
+    private static final String WHITESPACE = " \t\r\n";
+    private static final String INVALID_PHONE = "+651234";
+    private static final String VALID_PHONE = "123456";
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -29,6 +36,29 @@ public class PhoneTest {
         assertDoesNotThrow(() -> new Phone("911")); // exactly 3 numbers
         assertDoesNotThrow(() -> new Phone("93121534"));
         assertDoesNotThrow(() -> new Phone("124293842033123")); // long phone numbers
+    }
+
+    @Test
+    public void parsePhone_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> Phone.of((String) null));
+    }
+
+    @Test
+    public void parsePhone_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> Phone.of(INVALID_PHONE));
+    }
+
+    @Test
+    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
+        Phone expectedPhone = new Phone(VALID_PHONE);
+        assertEquals(expectedPhone, Phone.of(VALID_PHONE));
+    }
+
+    @Test
+    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
+        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
+        Phone expectedPhone = new Phone(VALID_PHONE);
+        assertEquals(expectedPhone, Phone.of(phoneWithWhitespace));
     }
 
     @Test

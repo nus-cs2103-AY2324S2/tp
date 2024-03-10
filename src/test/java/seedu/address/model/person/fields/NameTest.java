@@ -1,13 +1,20 @@
 package seedu.address.model.person.fields;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class NameTest {
+
+    private static final String WHITESPACE = " \t\r\n";
+    private static final String INVALID_NAME = "R@chel";
+    private static final String VALID_NAME = "Rachel Walker";
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -29,6 +36,29 @@ public class NameTest {
         assertDoesNotThrow(() -> new Name("peter the 2nd")); // alphanumeric characters
         assertDoesNotThrow(() -> new Name("Capital Tan")); // with capital letters
         assertDoesNotThrow(() -> new Name("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void parseName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> Name.of((String) null));
+    }
+
+    @Test
+    public void parseName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> Name.of(INVALID_NAME));
+    }
+
+    @Test
+    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
+        Name expectedName = new Name(VALID_NAME);
+        assertEquals(expectedName, Name.of(VALID_NAME));
+    }
+
+    @Test
+    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Name expectedName = new Name(VALID_NAME);
+        assertEquals(expectedName, Name.of(nameWithWhitespace));
     }
 
     @Test
