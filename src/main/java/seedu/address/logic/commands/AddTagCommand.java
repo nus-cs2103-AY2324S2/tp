@@ -18,6 +18,12 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.EditPatientDescriptor;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,19 +45,22 @@ public class AddTagCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Tags: %2$s";
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Tags %1$s successfully added for Patient %2$s";
+    public static final String MESSAGE_DUPLICATE_TAGS = "Tag %s already exists for this Patient.";
 
     private final Index index;
     private final Set<Tag> tags;
 
+    private final EditPatientDescriptor editPatientDescriptor;
+
     /**
      * @param index of the patient in the filtered patient list to add the tags
-     * @param tags   to be added to the patient
+     * @param editPatientDescriptor details to edit the patient with
      */
-    public AddTagCommand(Index index, Set<Tag> tags) {
-        requireAllNonNull(index, tags);
+    public AddTagCommand(Index index, ) {
+        requireAllNonNull(index, editPatientDescriptor);
 
         this.index = index;
-        this.tags = tags;
+        this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
     }
 
     /**
@@ -63,7 +72,43 @@ public class AddTagCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), tags));
+        // throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), tags));
+
+        requireNonNull(model);
+        List<Patient> lastShownList = model.getFilteredPatientList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        }
+
+        Patient patientToEdit = lastShownList.get(index.getZeroBased());
+        Patient editedPatient = createEditedPatientFromNewTag(patientToEdit, editPatientDescriptor);
+        // Set<Tag> patientToEditExistingTags = patientToEdit.getTags();
+
+        Patient editedPatient = new Patient(
+                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
+                patientToEdit.getAddress(), patientToEdit.getTags());
+
+        model.setPatient(patientToEdit, editedPatient);
+        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+
+        return new CommandResult(generateSuccessMessage(editedPatient));
+    }
+
+    /**
+     * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
+     * edited with {@code editPatientDescriptor}.
+     */
+    private static Patient createEditedPatientFromNewTag(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
+        assert patientToEdit != null;
+
+        Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
+        Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
+        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
+        Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     /**
@@ -82,8 +127,16 @@ public class AddTagCommand extends Command {
             return false;
         }
 
-        AddTagCommand e = (AddTagCommand) other;
-        return index.equals(e.index)
-                && tags.equals(e.tags);
+        AddTagCommand otherTagCommand = (AddTagCommand) other;
+        return index.equals(otherTagCommand.index)
+                && editPatientDescriptor.equals(otherTagCommand.editPatientDescriptor);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index)
+                .add("editPatientDescriptor", editPatientDescriptor)
+                .toString();
     }
 }
