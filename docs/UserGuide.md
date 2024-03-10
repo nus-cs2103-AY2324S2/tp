@@ -115,10 +115,10 @@ Updates the contact information of a participant in the app.
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add to Event**    | `add -i INDEX` <br> e.g., `add -i 5`
+**Invite to Event**    | `invite INDEX` <br> e.g., `invite 5`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `editp PARTICIPANT_INDEX -n PARTICIPANT_NAME -p PHONE -e EMAIL`<br> e.g.,`editp 5 -n Max -p 00000000 -e test@gmail.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
