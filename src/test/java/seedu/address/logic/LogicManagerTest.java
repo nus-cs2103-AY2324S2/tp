@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddApplicantCommand;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -71,13 +70,13 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_applicant_storageThrowsIoException_throwsCommandException() {
+    public void execute_applicantStorageThrowsIoException_throwsCommandException() {
         assertApplicantCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
     }
 
     @Test
-    public void execute_applicant_storageThrowsAdException_throwsCommandException() {
+    public void execute_applicantStorageThrowsAdException_throwsCommandException() {
         assertApplicantCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
     }
