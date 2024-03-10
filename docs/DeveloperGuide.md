@@ -332,7 +332,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage. 
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. Designed for users who can type fast, making command execution quicker than using a mouse.
 4. All operations should be able to run within 500ms measured after user input has finished.
 
