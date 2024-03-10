@@ -39,7 +39,7 @@ public class RelationshipTest {
         Relationship relationship = new Relationship("client");
 
         // same values -> returns true
-        assertTrue(relationship.equals(new Address("client")));
+        assertTrue(relationship.equals(new Relationship("client")));
 
         // same object -> returns true
         assertTrue(relationship.equals(relationship));
