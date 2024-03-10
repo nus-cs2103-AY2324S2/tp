@@ -8,50 +8,50 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public enum CommandType {
     ADD {
         @Override
-        public Command createCommand(String arguments) {
-            return null;
+        public Command createCommand(String arguments) throws ParseException {
+            return AddCommand.of(arguments);
         }
     },
     EDIT {
         @Override
-        public Command createCommand(String arguments) {
-            return null;
+        public Command createCommand(String arguments) throws ParseException {
+            return EditCommand.of(arguments);
         }
     },
     DELETE {
         @Override
-        public Command createCommand(String arguments) {
-            return null;
+        public Command createCommand(String arguments) throws ParseException {
+            return DeleteCommand.of(arguments);
         }
     },
     CLEAR {
         @Override
         public Command createCommand(String arguments) {
-            return null;
+            return new ClearCommand();
         }
     },
     FIND {
         @Override
-        public Command createCommand(String arguments) {
-            return null;
+        public Command createCommand(String arguments) throws ParseException {
+            return FindCommand.of(arguments);
         }
     },
     LIST {
         @Override
         public Command createCommand(String arguments) {
-            return null;
+            return new ListCommand();
         }
     },
     EXIT {
         @Override
         public Command createCommand(String arguments) {
-            return null;
+            return new ExitCommand();
         }
     },
     HELP {
         @Override
         public Command createCommand(String arguments) {
-            return null;
+            return new HelpCommand();
         }
     };
 
