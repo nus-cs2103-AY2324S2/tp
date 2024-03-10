@@ -38,7 +38,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Yang Yibai
 
-<img src="images/0-yibai.png.jpg" width="200px">
+<img src="images/0-yibai.png" width="200px">
 
 [[github](http://github.com/0-yibai)]
 [[portfolio](team/yibai.md)]
