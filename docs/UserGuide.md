@@ -6,7 +6,7 @@
 
 # AssetBook-3 User Guide
 
-AssetBook-3 is a desktop application for logistics managers to keep track point-of-contacts' (POCs) contact information, along with their relevant assets. It is meant for those who have too many POCs and assets, and wish to easily retrieve contact details based on name, tag, or asset ID.
+AssetBook-3 is a desktop application for logistics managers to keep track point-of-contacts' (POCs) contact information, along with their relevant assets. It is meant for those who have too many POCs and assets, and wish to easily retrieve contact details based on name and/or asset.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -36,13 +36,13 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 **Notes about the command format:**<br>
 
 * Items in square brackets are optional.<br>
-  e.g `--name NAME [--tag TAG]` can be used as `--name John Doe --tag friend` or as `--name John Doe`.
+  e.g `--name <name> [--asset <asset>]` can be used as `--name John Doe --asset CS2103T` or as `--name John Doe`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[--tag <tag>]…` can be used as `` (i.e. 0 times), `--tag friend`, `--tag friend --tag family` etc.
+  e.g. `[--asset <asset>]...` can be used as ` ` (i.e. 0 times), `--asset a1`, `--asset a1 --asset a2` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `--name NAME --phone PHONE_NUMBER`, `--phone PHONE_NUMBER --name NAME` is also acceptable.
+  e.g. if the command specifies `--name <name> --phone <phone>`, `--phone <phone> --name <name>` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
@@ -54,25 +54,22 @@ AssetBook-3 is a desktop application for logistics managers to keep track point-
 
 ### Adding a person: `add`
 
-Adds a new contact or asset to the system.
+Adds a new contact to the system, with 0 or more assets associated with the contact.
 
-Format for adding a new contact: `add --name <name> [--email <email> --phone <phone>] [--tag <tag>]...`
-
-Format for adding a new asset: `add --id <asset id> --location <location>`
+Format: `add --name <name> [--email <email>] [--phone <phone>] [--address <address>] [--asset <asset>]...`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A person can have any number of assets (including 0)
 </box>
 
 #### Examples
-* Add a contact: `add --name John Doe --email johndoe@example.com --phone +12345678 --tag friend`
-* Add an asset: `add --id 001 --location WarehouseA`
+* Add a new contact associated with the asset `L293D`: `add --name John Doe --email johndoe@example.com --phone +12345678 --asset L293D`
 
 #### Options
 `--name`
 * Name of the contact.
-* Case sensitive, i.e. John Doe != John Doe.
+* Case sensitive, i.e. John Doe ≠ John Doe.
 * Leading and trailing spaces are automatically removed.
 * Multiple people with the same name are allowed.
 
@@ -86,57 +83,64 @@ Format for adding a new asset: `add --id <asset id> --location <location>`
 * Any number of digits are allowed.
 * ‘+’ is optional and must be the first character.
 
-`--tag`
-* Tag associated with contact.
-* Contact can be created first without tags, then tags can be added later.
-* Case sensitive, i.e. NUS != nus.
-* Must have no spaces.
+`--address`
+* Address of the contact.
 
-`--id`
-* An ID associated with the asset.
-* Not necessarily unique.
-
-`--location`
-* The location associated with the asset.
+`--asset`
+* Asset(s) associated with contact.
+* Contact can be created first without assets, then assets can be added later using the Edit command.
+* Case sensitive, i.e. NUS ≠ nus.
+* Assets must have unique names. If the asset already exists in the database, the existing asset will be linked instead of a new asset.
+* Multiple assets can be specified. For example, a valid option is `--asset asset1 --asset asset2 --asset asset3`.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Delete a contact or asset : `delete`
 
-Delete a contact or asset from the system by specifying its ID.
+Delete a contact from the system by specifying its ID.
 
 Format: `delete <id>`
-* The id refers to the unique id shown in the GUI.
+* The id refers to the unique contact id shown in the GUI.
+* The asset(s) associated with the contact will not be deleted.
 
 #### Examples
-`delete a123` deletes the asset with id `a123`.
+`delete 1` deletes the contact with id `1`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Editing an entity : `edit`
+### Editing a contact : `edit`
 
-Edit existing contacts or assets without recreating them.
+Edit existing contacts without recreating them.
 
-Format: `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>]...]] | [--location <location>]`
+Format: `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...`
 
-Example: `edit c123 --email newemail@example.com` edits the contact with id `123`, changing its email to `newemail@example.com`.
+Example: `edit 1 --email newemail@example.com` edits the contact with id `123`, changing its email to `newemail@example.com`.
 
-* Edits the entity with the specified `id`. The `id` refers to the unique id shown by the GUI in the contacts list, which can refer to an asset or person.
+* Edits the contact with the specified `id`. The `id` refers to the unique contact id shown by the GUI in the contacts list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `--tag` without
-    specifying any tags after it.
+* When editing assets, the existing assets of the person will be removed i.e adding of assets is not cumulative.
+* You can remove all the person’s assets by typing `--asset` without specifying any assets after it.
+
+### Editing an asset: `edita`
+
+Edit existing assets without recreating them.
+
+Format: `edita <asset> <new_asset_name>`
+
+Example: `edita L293D L293E` edits the asset `L293D`, changing its name to `L293E`.
+
+* The asset will be renamed for all contacts linked to it.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Search : `search`
 
-Search contacts, assets or tags by any of their metadata.
+Search contacts or assets by any of their metadata.
 
-Format: `search [--contact] [--asset] [--tag] <string>`
+Format: `search <string>`
 
-Example: `search --tag Marketing` searches all tags for the term `Marketing`.
+Example: `search John` searches all contacts and assets for the term `John`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,8 +194,9 @@ _Details coming soon ..._
 
 Action     | Format      |        Examples
 -----------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add --name <name> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] [--id <asset id> --location <location>]` | `add --name John Doe --email johndoe@example.com --phone 87654321` <br> `add --id <asset id> --location <location>`
-**Delete** | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] [--location <location>]` | `edit c123 --email newemail@example.com`
-**Edit**   | `edit <id> [--email <email> --phone <phone no.> [--tag <tag name> [<tag name>] ...]] [--location <location>]` | `edit c123 --email newemail@example.com`
-**Search**   | `search [--contact] [--asset] [--tag] <string>` | `search --tag Marketing`
+**Add**    | `add --name <name> [--email <email>] [--phone <phone>] [--address <address>] [--asset <asset>]...` | `add --name John Doe --email johndoe@example.com --phone +12345678 --asset L293D`
+**Delete** | `delete <id>` | `delete 1`
+**Edit contact**   | `edit <id> [--email <email>] [--phone <phone>] [--asset <asset>]...` | `edit 1 --email newemail@example.com`
+**Edit asset**   | `edita <asset> <new_asset_name>` | `edita L293D L293E`
+**Search**   | `search <string>` | `search John`
 **Exit**   | `exit` | `exit`
