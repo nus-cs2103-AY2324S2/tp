@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -10,9 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -29,6 +26,22 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private TextField commandTextField;
+
+    public static final Map<String, String> COMMAND_FORMAT_MAP = new HashMap<>();
+
+    static {
+        COMMAND_FORMAT_MAP.put("add", "n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...");
+        COMMAND_FORMAT_MAP.put("list", "");
+        COMMAND_FORMAT_MAP.put("edit", "INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…");
+        COMMAND_FORMAT_MAP.put("find", "KEYWORD [MORE_KEYWORDS]");
+        COMMAND_FORMAT_MAP.put("delete", "INDEX");
+        COMMAND_FORMAT_MAP.put("clear", "");
+        COMMAND_FORMAT_MAP.put("interest", "INDEX INTEREST [MORE_INTEREST]");
+        COMMAND_FORMAT_MAP.put("findinterest", "INTEREST [MORE_INTEREST]");
+        COMMAND_FORMAT_MAP.put("addsched", "INDEX [MORE_INDEX] SCHEDULE_NAME from/DATE_TIME to/TIME");
+        COMMAND_FORMAT_MAP.put("exit", "");
+        COMMAND_FORMAT_MAP.put("help", "");
+    }
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -60,43 +73,49 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private void handleTextChanged() {
-        int caretPosition = commandTextField.getCaretPosition();
-        String currentText = commandTextField.getText();
+        suggestionsText.setText("");
+        String currentText = commandTextField.getText().toLowerCase();
         List<String> suggestions = generateSuggestions(currentText);
         updateSuggestions(suggestions);
-        Platform.runLater(() -> commandTextField.positionCaret(Math.min(caretPosition, currentText.length())));
     }
     private List<String> generateSuggestions(String commandText) {
-        final List<String> COMMANDS = Arrays.asList(
-                "add", "list", "edit", "find", "delete", "clear", "interest", "findInterest", "addSched", "exit", "help"
-        );
-
-        final List<String> OPTIONS = Arrays.asList(
-                "n/", "p/", "e/", "a/", "t/", "from/", "to/"
-        );
-
-        final List<String> COMMON_KEYWORDS = Arrays.asList(
-                "NAME", "PHONE_NUMBER", "EMAIL", "ADDRESS", "TAG", "INDEX", "KEYWORD", "MORE_KEYWORDS", "INTEREST", "MORE_INTEREST", "SCHEDULE_NAME", "DATE_TIME", "TIME"
-        );
         List<String> suggestions = new ArrayList<>();
-        List<String> tokens = Arrays.asList(commandText.split("\\s+"));
+//        for (Map.Entry<String, String> entry : COMMAND_FORMAT_MAP.entrySet()) {
+//            String command = entry.getKey();
+//            String format = entry.getValue();
+//            if (command.equals(commandText)) {
+//                continue;
+//            }
+//            // Check if the command starts with or contains the current input text
+//            if (command.startsWith(commandText) || command.contains(commandText)) {
+//                // Add the command and its format to suggestions
+//                String suggestion;
+//                if (format.isEmpty()) {
+//                    suggestion = command;
+//                } else {
+//                    suggestion = command + " - " + format;
+//                }
+//                suggestions.add(suggestion);
+//            }
+//        }
+        final List<String> COMMANDS = Arrays.asList(
+                "add", "list", "edit", "find", "delete", "clear", "interest", "findinterest", "addsched", "exit", "help"
+        );
+
         // Check if the entered command matches any suggestions
         for (String command : COMMANDS) {
-            if (command.startsWith(commandText)) {
-                // If there's a match, replace the command text with the suggestion
-                commandTextField.setText(tokens.get(0));
-                // Move cursor to the end of the suggestion
+            if (command.startsWith(commandText) || command.contains(commandText)) {
                 suggestions.add(command);
-                break;
             }
         }
+        suggestions.removeIf(suggest -> suggest.equals(commandText));
         return suggestions;
     }
 
     public void updateSuggestions(List<String> suggestions) {
         StringBuilder suggestionsBuilder = new StringBuilder();
         for (String suggestion : suggestions) {
-            suggestionsBuilder.append(suggestion).append("\n");
+            suggestionsBuilder.append(suggestion).append(" ");
         }
         suggestionsText.setText(suggestionsBuilder.toString());
     }

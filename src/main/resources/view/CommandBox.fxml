@@ -5,7 +5,7 @@
 
 <?import javafx.scene.text.Text?>
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" onKeyReleased="#handleTextChanged" promptText="Enter command here..."/>
+  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" onKeyTyped="#handleTextChanged" promptText="Enter command here..."/>
   <Text fx:id="suggestionsText" />
 </StackPane>
 
