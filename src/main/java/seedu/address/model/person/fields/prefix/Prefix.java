@@ -1,4 +1,4 @@
-package seedu.address.logic.util;
+package seedu.address.model.person.fields.prefix;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.

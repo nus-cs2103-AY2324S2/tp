@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.util.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.util.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.util.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.util.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.util.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_PHONE;
+import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
@@ -15,7 +15,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.util.ArgumentMultimap;
 import seedu.address.logic.util.ArgumentTokenizer;
-import seedu.address.logic.util.Prefix;
+import seedu.address.model.person.fields.prefix.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;

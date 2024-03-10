@@ -1,4 +1,4 @@
-package seedu.address.logic.util;
+package seedu.address.model.person.fields.prefix;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
