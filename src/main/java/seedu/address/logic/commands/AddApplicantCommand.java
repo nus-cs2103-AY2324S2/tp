@@ -15,12 +15,12 @@ public class AddApplicantCommand extends AddCommand {
 
     public static final String COMMAND_WORD = AddCommand.COMMAND_WORD + "_applicant";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to the talent tracker. "
             + AddCommand.MESSAGE_USAGE;
 
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This applicant already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This applicant already exists in the talent tracker";
 
 
     /**
