@@ -433,7 +433,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  The system should respond all request within 1 minute.
 5.  Should not take more than 500 MB memory while running.
 
-*{More to be added}*
 
 ### Glossary
 
