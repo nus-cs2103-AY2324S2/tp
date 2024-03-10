@@ -96,6 +96,11 @@ public class ModelManager implements Model {
         return appointments;
     }
 
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        appointments.remove(appointment);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override

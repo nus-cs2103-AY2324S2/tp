@@ -90,4 +90,5 @@ public interface Model {
 
     ObservableList<Appointment> getAppointmentList();
     ObservableList<Appointment> getFilteredAppointmentList();
+    void deleteAppointment(Appointment appointment);
 }
