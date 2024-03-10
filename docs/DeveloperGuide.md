@@ -279,11 +279,12 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* Proficient with the use of a computer
-* Seeks an efficient way to manage a significant number of contacts within their academic and professional circles
+* proficient with the use of a computer
+* seeks an efficient way to manage a significant number of contacts within their academic and professional circles
+* has a busy schedule
+* desires an interactive and responsive app
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage contacts and schedules faster and more effectively than with a normal scheduling app.
 
 ### User stories
 
@@ -300,6 +301,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | export contacts              | easily integrate existing data.                                        |
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a ...                                   | I want to ...          | So that I can ...                                                      |
+|----------|--------------------------------------------|------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person       |                                                                        |
+| `* * *`  | user                                       | delete a person        | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name  | locate details of persons without having to go through the entire list |
+| `*`      | user with many persons in the address book | sort persons by name   | locate a person easily                                                 |
 
 *{More to be added}*
 
@@ -427,13 +435,15 @@ Use case resumes at step 2.
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  Designed for users who can type fast, making command execution quicker than using a mouse.
-<<<<<<< HEAD
-=======
 4.  Exporting and importing operations should be completed within a reasonable time frame, not exceeding 10 seconds per operation.
 5.  The application must ensure the security and privacy of private contact details during import and export operations. Data should be handled in a manner that prevents unauthorized access.
->>>>>>> master
 
 *{More to be added}*
+=======
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. Designed for users who can type fast, making command execution quicker than using a mouse.
+4. All operations should be able to run within 500ms measured after user input has finished.
 
 ### Glossary
 
