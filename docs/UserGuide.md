@@ -131,6 +131,49 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Search by tag: find_by_tag
+* Finds users by tag, optionally with another filter based on their other personal details.
+
+Format: `find_by_tag TAG [n/NAME] [a/ADDRESS]`
+
+* `TAG` needs to be a tag
+* `NAME` needs to be a substring of a person's name
+* `ADDRESS` needs to be a substring of a person's address
+
+Example commands
+* `find_by_tag cs2103t`
+* `find_by_tag n/zilong`
+* `find_by_tag a/ang mo kio avenue 10 `
+
+
+### Exporting a subset of data
+Exports the users that are filtered by a tag and other optional parameters.
+
+Format: `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`
+
+* `TAG` needs to be a tag
+* `NAME` needs to be a substring of a person's name
+* `ADDRESS` needs to be a substring of a person's address
+* `FILENAME` needs to be a valid filename
+
+Example commands
+* `find_and_export cs2103t`
+* `find_and_export cs2103t n/john a/olive street 42 o/output1`
+
+
+### Importing a datafile
+Imports contact details from a JSON file with filename specified.
+
+Format: `import FILENAME [FILENAME_2] [FILENAME_3] …`
+
+* `FILENAME` needs to be a valid filename that is found in the `./data/` directory
+
+Example commands
+* import export
+* import contacts_export
+* import contacts_export1 contacts_export2
+
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the contact manager.
