@@ -1,14 +1,14 @@
 package seedu.address.model.person;
 
 // Gender attribute with enum
-class GenderAttribute extends Attribute {
+class SexAttribute extends Attribute {
     private Gender gender;
 
     public enum Gender {
         MALE, FEMALE
     }
 
-    public GenderAttribute(String name, Gender gender) {
+    public SexAttribute(String name, Gender gender) {
         super(name);
         this.gender = gender;
     }
