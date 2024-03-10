@@ -83,14 +83,7 @@ public class Loan {
 
         Loan otherLoan = (Loan) other;
 
-        // if the id is the same, then the loans are the same else
-        // we compare the other fields
-        return (id == otherLoan.id || (
-                        amount == otherLoan.amount
-                        && startDate.equals(otherLoan.startDate)
-                        && endDate.equals(otherLoan.endDate)
-                    )
-                );
+        return id == otherLoan.id;
     }
 
     @Override
