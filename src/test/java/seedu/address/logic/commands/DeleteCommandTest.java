@@ -89,7 +89,8 @@ public class DeleteCommandTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(DeleteCommand::of, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(DeleteCommand::of, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test

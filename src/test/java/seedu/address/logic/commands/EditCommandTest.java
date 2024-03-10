@@ -223,7 +223,8 @@ public class EditCommandTest {
         assertParseFailure(EditCommand::of, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(EditCommand::of, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY);
+        assertParseFailure(EditCommand::of, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                + VALID_ADDRESS_AMY + VALID_PHONE_AMY);
     }
 
     @Test

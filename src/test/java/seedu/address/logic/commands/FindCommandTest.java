@@ -79,7 +79,8 @@ public class FindCommandTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(FindCommand::of, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(FindCommand::of, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
