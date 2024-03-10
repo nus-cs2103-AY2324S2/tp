@@ -2,18 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_CLASS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.TutorialClass;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.util.List;
-
-import seedu.address.logic.Messages;
 public class AddClassCommand extends Command {
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added module %1$s";
