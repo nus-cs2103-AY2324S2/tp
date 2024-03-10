@@ -16,8 +16,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.management.relation.Relation;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -104,7 +102,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Relationship updatedRelationship = editPersonDescriptor.getRelationship().orElse(personToEdit.getRelationship());
+        Relationship updatedRelationship = editPersonDescriptor.getRelationship()
+                .orElse(personToEdit.getRelationship());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRelationship, updatedTags);

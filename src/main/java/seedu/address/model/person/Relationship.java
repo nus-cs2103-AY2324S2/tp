@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's relationship in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRelationship(String)}
+ */
 public class Relationship {
     public static final String MESSAGE_CONSTRAINTS = "Relationship should only be client or partner";
 
