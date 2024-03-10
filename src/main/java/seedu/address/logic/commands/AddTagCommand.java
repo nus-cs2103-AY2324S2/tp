@@ -5,15 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,10 +24,11 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Adds one or more tags to the specified patient.
+ * Tags can only be a single word, with no space in between.
+ * Repeated tags in command will be added as a single tag.
+ * If the patient already has the tag, it will not be added.
  */
 public class AddTagCommand extends Command {
-
-    // IMPORTANT : tags can only be a single word, with no space in between
 
     public static final String COMMAND_WORD = "addtag";
 
@@ -43,9 +40,8 @@ public class AddTagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "fallrisk";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Tags: %2$s";
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Tags %1$s successfully added for Patient %2$s";
-    public static final String MESSAGE_DUPLICATE_TAGS = "Tag %s already exists for this Patient.";
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "Tags successfully added for Patient %s";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
 
     private final Index index;
     private final Set<Tag> tags;
@@ -54,13 +50,14 @@ public class AddTagCommand extends Command {
 
     /**
      * @param index of the patient in the filtered patient list to add the tags
-     * @param editPatientDescriptor details to edit the patient with
+     * @param tags   to be added to the patient
      */
-    public AddTagCommand(Index index, ) {
-        requireAllNonNull(index, editPatientDescriptor);
+    public AddTagCommand(Index index, Set<Tag> tags) {
+        requireAllNonNull(index, tags);
 
         this.index = index;
-        this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
+        this.tags = tags;
+        this.editPatientDescriptor = new EditPatientDescriptor();
     }
 
     /**
@@ -82,17 +79,23 @@ public class AddTagCommand extends Command {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        Patient editedPatient = createEditedPatientFromNewTag(patientToEdit, editPatientDescriptor);
-        // Set<Tag> patientToEditExistingTags = patientToEdit.getTags();
 
-        Patient editedPatient = new Patient(
-                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                patientToEdit.getAddress(), patientToEdit.getTags());
+        // Create new Hashset to add in new tags as Patient.getTags() return unmodifiableSet
+        Set<Tag> NewTagList = new HashSet<>(patientToEdit.getTags());
+        NewTagList.addAll(tags);
+
+        editPatientDescriptor.setTags(NewTagList);
+
+        Patient editedPatient = createEditedPatientFromNewTag(patientToEdit, editPatientDescriptor);
+
+        if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+        }
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(generateSuccessMessage(editedPatient));
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName()));
     }
 
     /**
