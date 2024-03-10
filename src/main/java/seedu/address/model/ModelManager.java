@@ -91,6 +91,10 @@ public class ModelManager implements Model {
     public ObservableList<Appointment> getAppointmentList() {
         return FXCollections.unmodifiableObservableList(appointments);
     }
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return appointments;
+    }
 
     //=========== AddressBook ================================================================================
 

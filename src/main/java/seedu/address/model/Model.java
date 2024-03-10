@@ -89,4 +89,5 @@ public interface Model {
     void addAppointment(Appointment appointment);
 
     ObservableList<Appointment> getAppointmentList();
+    ObservableList<Appointment> getFilteredAppointmentList();
 }

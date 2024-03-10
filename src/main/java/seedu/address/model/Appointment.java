@@ -28,5 +28,11 @@ public class Appointment {
         this.dateTime = dateTime;
     }
 
+    @Override
+    public String toString() {
+
+        return "Appointment with " + patientName + " on " + dateTime;
+    }
+
 }
 
