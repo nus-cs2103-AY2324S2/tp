@@ -123,6 +123,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String eventName} into a {@code EventName}.
+     */
     public static EventName parseEventName(String eventName) {
         requireNonNull(eventName);
         String trimmedEventName = eventName.trim();

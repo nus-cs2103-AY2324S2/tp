@@ -23,6 +23,9 @@ public class EventBook implements ReadOnlyEventBook {
         events = new UniqueEventList();
     }
 
+    /**
+     * Creates an EventBook
+     */
     public EventBook() {
         // Placeholder events for testing; To be Removed
         events.add(new Event(new EventName("test")));

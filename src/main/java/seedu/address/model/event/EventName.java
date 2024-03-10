@@ -2,9 +2,18 @@ package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents an Event's name.
+ * Guarantees: immutable
+ */
 public class EventName {
     public final String eventName;
 
+    /**
+     * Constructs a {@code EventName}.
+     *
+     * @param eventName A valid name.
+     */
     public EventName(String eventName) {
         requireNonNull(eventName);
         this.eventName = eventName;
