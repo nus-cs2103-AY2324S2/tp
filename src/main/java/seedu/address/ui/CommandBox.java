@@ -2,9 +2,7 @@ package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
