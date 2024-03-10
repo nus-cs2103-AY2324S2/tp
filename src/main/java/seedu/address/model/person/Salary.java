@@ -33,8 +33,7 @@ public class Salary {
     /**
      * Constructs a {@code Salary}.
      *
-     * @param salary1 A valid salary.
-     * @param salary2 A valid salary.
+     * @param salary A valid salary in string format.
      */
     public void parseSalary(String salary) {
         if (salary.contains("-")) {
