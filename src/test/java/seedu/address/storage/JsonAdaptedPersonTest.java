@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.LoanRecords;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -33,7 +32,8 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final JsonAdaptedLoanRecords VALID_LOAN_RECORDS = new JsonAdaptedLoanRecords(BENSON.getLoanRecords());
+    private static final JsonAdaptedLoanRecords VALID_LOAN_RECORDS =
+        new JsonAdaptedLoanRecords(BENSON.getLoanRecords());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -44,7 +44,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, 
+                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL,
                                         VALID_ADDRESS, VALID_TAGS, VALID_LOAN_RECORDS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -87,7 +87,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                                                            VALID_TAGS,  VALID_LOAN_RECORDS);
+                                                            VALID_TAGS, VALID_LOAN_RECORDS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
