@@ -2,7 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -32,7 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_AMY = "CS1101S";
     public static final String VALID_MODULE_BOB = "CS1231S";
     public static final String VALID_TUTORIAL_AMY = "T01";
-    public static final String VALID_TUTORIAL_BOB = "T10";
+    public static final String VALID_TUTORIAL_BOB = "T01";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -49,10 +53,17 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_STUDENT_ID_DESC = " " + PREFIX_STUDENTID + "911a"; // Student ID needs to have 8 digits in between 2 letters.
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULECODE; // empty string not allowed for module code
+    // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
+
+    // Student ID needs to have 8 digits in between 2 letters.
+    public static final String INVALID_STUDENT_ID_DESC = " " + PREFIX_STUDENTID + "911a";
+
+    // missing '@' symbol
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
+
+    // empty string not allowed for module code
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULECODE;
     public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIALCLASS + "T1X312";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 

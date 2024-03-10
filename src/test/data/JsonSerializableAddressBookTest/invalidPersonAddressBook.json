@@ -1,8 +1,9 @@
 {
   "persons": [ {
     "name": "Hans Muster",
-    "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "studentId": "A12345678A",
+    "moduleCode": "CS2105",
+    "tutorial": "T01"
   } ]
 }
