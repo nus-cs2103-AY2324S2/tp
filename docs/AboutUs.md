@@ -52,11 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chua Zi Long
 
-<<<<<<< HEAD
-<img src="images/zilong.png" width="200px">
-=======
 <img src="images/chuazilong.png" width="200px">
->>>>>>> master
 
 [[github](https://github.com/ChuaZiLong)]
 [[portfolio](team/zilong.md)]
