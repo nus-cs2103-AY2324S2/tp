@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.StaffConnectBuilder;
 
 public class ModelManagerTest {
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        StaffConnect staffConnect = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        StaffConnect staffConnect = new StaffConnectBuilder().withPerson(ALICE).withPerson(BENSON).build();
         StaffConnect differentStaffConnect = new StaffConnect();
         UserPrefs userPrefs = new UserPrefs();
 

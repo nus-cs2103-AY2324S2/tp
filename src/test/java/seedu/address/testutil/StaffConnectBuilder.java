@@ -6,24 +6,24 @@ import seedu.address.model.person.Person;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code StaffConnect ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code StaffConnect ab = new StaffConnectBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class StaffConnectBuilder {
 
     private StaffConnect staffConnect;
 
-    public AddressBookBuilder() {
+    public StaffConnectBuilder() {
         staffConnect = new StaffConnect();
     }
 
-    public AddressBookBuilder(StaffConnect staffConnect) {
+    public StaffConnectBuilder(StaffConnect staffConnect) {
         this.staffConnect = staffConnect;
     }
 
     /**
      * Adds a new {@code Person} to the {@code StaffConnect} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public StaffConnectBuilder withPerson(Person person) {
         staffConnect.addPerson(person);
         return this;
     }
