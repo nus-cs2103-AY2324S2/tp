@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
@@ -38,7 +39,13 @@ public class DeleteCommand extends Command {
      * @throws IllegalArgumentException if the user input does not conform the expected format
      */
     public static DeleteCommand of(String args) throws IllegalArgumentException {
-        Index index = ParserUtil.parseIndex(args);
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(args);
+        } catch (IllegalArgumentException ie) {
+            throw new IllegalArgumentException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), ie);
+        }
         return new DeleteCommand(index);
     }
 

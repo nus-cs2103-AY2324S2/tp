@@ -115,4 +115,39 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
+     * equals to {@code expectedCommand}.
+     */
+    public static void assertParseSuccess(FactoryFunction commandFactoryMethod, String userInput,
+                                          Command expectedCommand) {
+        try {
+            Command command = commandFactoryMethod.apply(userInput);
+            assertEquals(expectedCommand, command);
+        } catch (IllegalArgumentException ie) {
+            throw new IllegalArgumentException("Invalid userInput.", ie);
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
+     * equals to {@code expectedMessage}.
+     */
+    public static void assertParseFailure(FactoryFunction commandFactoryMethod,
+                                          String userInput, String expectedMessage) {
+        try {
+            commandFactoryMethod.apply(userInput);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (IllegalArgumentException ie) {
+            assertEquals(expectedMessage, ie.getMessage());
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful.
+     */
+    public static void assertParseFailure(FactoryFunction commandFactoryMethod, String userInput) {
+        assertThrows(IllegalArgumentException.class, () -> commandFactoryMethod.apply(userInput));
+    }
+
 }
