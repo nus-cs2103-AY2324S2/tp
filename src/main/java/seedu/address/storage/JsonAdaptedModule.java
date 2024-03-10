@@ -58,5 +58,4 @@ class JsonAdaptedModule {
 
         return new Module(modelName, tutorialClasses);
     }
-
 }

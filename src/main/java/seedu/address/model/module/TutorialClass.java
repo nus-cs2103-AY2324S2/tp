@@ -12,6 +12,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class TutorialClass {
     final Name name;
     private final ArrayList<Person> students;
+
     public TutorialClass(Name name) {
         requireAllNonNull(name);
         this.name = name;
