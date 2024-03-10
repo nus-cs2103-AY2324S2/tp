@@ -329,13 +329,13 @@ The target user is businessman who satisfies the following criteria
 
 and wants to manage contacts faster than a typical mouse/GUI driven app. Typically,
 they want to answer the following questions quickly:
-* How much money was loaned?
+* How much cash was loaned?
 * To whom it was loaned to?
 * When the person is due to return the loan?
 * When did the person last loan?
 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app
 
 Our address book is tailored for business owners whose job might involve loaning items on a 
 regular basis. It simplifies loan categorization and tracks product quality post-return, 
@@ -353,23 +353,35 @@ as we focus solely on business loans and contact management for a select client 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                            | I want to …​                                            | So that I can…​                                                  |
-|----------|------------------------------------|---------------------------------------------------------|------------------------------------------------------------------|
-| `* * *`  | User who loans items out regularly | Add loan details (item name/cash amount) to the contact | remember to collect debts at a later time                        |
-| `* * *`  | User who loans items out regularly | Add a deadline to a loan                                | chase after people more easily                                   |
-| `* *`    | User who loans items out regularly | View my past loans                                      | know how much money to expect in the near future                 |
-| `* * *`  | User who loans items out regularly | View my past loans                                      | decide whether to loan to a client again                         |
-| `* *`    | User who loans items out regularly | See the overdue loans easily                            | chase after people more easily                                   |
-| `* * *`  | Busy user                          | Keep track of all my loanees(view)                      | save time and use it for more meaningful activities              |
-| `* * *`  | Busy user                          | Quickly view a summary of all outstanding loans(view)   | have an overview without going through each contact individually 
-| `* * *`  | User who loans money               | Track partial repayments                                | maintain accurate records of the outstanding balance             
-| `* * *`  | User with a dynamic network        | Delete loan                                             | my records always reflect the current status of each loan        |
-| `* *`    | First time user                    | See the available commands/usage manual                 | familiarize with the command structure                           |
-| `*`      | Intermediate user                  | Learn shortcuts to commands                             | save time in the future                                          |
-| `* *`    | Experienced user                   | Omit certain parts of the CLI commands                  | perform tasks more efficiently and quickly                       |
-
-| `* *`    | Forgetful user                     | Get reminders to collect loaned items                   | collect loaned items promptly                                    |
-| `* *`    | Organised user                     | Have a system to manage my loanees                      |                                                                  |
+| Priority | As a …​                                           | I want to …​                                            | So that I can…​                                                         |
+|----------|---------------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | User who loans cash out regularly                 | Add loan details (loanee /cash amount) to the contact   | remember to collect debts at a later time                               |
+| `* * *`  | User who loans cash out regularly                 | Add a deadline to a loan                                | chase after people more easily                                          |
+| `* *`    | User who loans cash out regularly                 | View my past loans                                      | know how much cash to expect in the near future                         |
+| `* * *`  | User who loans cash out regularly                 | View my past loans                                      | decide whether to loan to a client again                                |
+| `* *`    | User who loans cash out regularly                 | See the overdue loans easily                            | chase after people more easily                                          |
+| `* * *`  | User who values relationships                     | Send automated reminders to contacts with overdue loans | I can maintain good relations while ensuring the return of items        |
+| `* * *`  | Busy user                                         | Keep track of all my loanees(view)                      | save time and use it for more meaningful activities                     |
+| `* * *`  | Busy user                                         | Quickly view a summary of all outstanding loans(view)   | have an overview without going through each contact individually        
+| `* * *`  | User who loans cash                               | Track partial repayments                                | maintain accurate records of the outstanding balance                    
+| `* * *`  | User with a dynamic network                       | Delete loan                                             | my records always reflect the current status of each loan               |
+| `* *`    | User with a dynamic network                       | Update loan entries as situations change                | my records always reflect the current status of each loan               |
+| `* *`    | First time user                                   | See the available commands/usage manual                 | familiarize with the command structure                                  |
+| `*`      | Intermediate user                                 | Learn shortcuts to commands                             | save time in the future                                                 |
+| `* *`    | Experienced user                                  | Omit certain parts of the CLI commands                  | perform tasks more efficiently and quickly                              |
+| `* *`    | Forgetful user                                    | Get reminders to collect cash                           | collect cash promptly                                                   |
+| `* *`    | Organised user                                    | Have a system to manage my loanees                      |                                                                         |
+| `* *`    | Detail-oriented user                              | Add notes to each loan entry                            | I can record specific details or conditions of the loan                 |                                                               |
+| `* `     | User who lends frequently to the same individuals | View aggregated loan statistics per contact             | I can understand our loan history at a glance                           |
+| `* *`    | Frequent lender                                   | Track the history of cash loaned to and from a contact  | I can reference past transactions during conversations                  |
+| `* *`    | User looking to minimize losses                   | Flag high-risk loans based on past behavior             | I can make more informed lending decisions in the future                |
+| `* *`    | User concerned with privacy                       | Mark certain contacts or loan entries as private        | they are not visible during casual browsing of the address book         |
+| `* *`    | Proactive user                                    | Mark certain contacts or loan entries as private        | they are not visible during casual browsing of the address book         |
+| `*`      | User who appreciates convenience                  | Integrate the application with my calendar              | loan due dates and follow-up reminders are automatically added          |
+| `*`      | User who values clarity                           | Print or export detailed loan reports                   | I can have a physical or digital record for personal use or discussions |
+| `*`      | Collaborative user                                | Share loan entries with another user of the application | we can co-manage loans or items owned jointly                           |
+| `*`      | User with international contacts                  | Store and view currency information for cash loans      | I can accurately track and manage international loans                   |
+| `*`      | User who appreciates personalization              | Customize the notification settings for loan reminders  | I can receive them through my preferred communication channel           |
 
 
 
@@ -510,8 +522,36 @@ Use case ends.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+Order is roughly according to the order in which they first appear in the guide.
+* **Architecture Diagram**: A diagram that shows how the different components interact with each
+other at a high level.
+* **Sequence Diagram**: A diagram that shows how the different components interact with each other 
+when a particular command is executed.
+* **API**: Application Programming Interface, a set of rules that allows different software applications 
+to communicate with each other to form an entire system.
+* **UI**: User Interface
+* **OOP**: Object-Oriented Programming, a programming paradigm based on the concept of "objects", 
+which can contain data and code: data in the form of fields, and code in the form of procedures.
+The objects interact with each other. 
+* **Class**: Classes are used to create and define objects. A feature of OOP.
+* **JSON**: JavaScript Object Notation, a lightweight data-interchange format. Files of this format 
+are used to store loan data on the hard disk.
+* **Data archiving**: The process of moving data that is no longer actively used to a separate storage
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+* **User stories**: A user story is an informal, general explanation of a software feature written from the 
+perspective of the end user.
+* **Cash**: Money in the form of coins or notes, as opposed to cheques or credit. *All loans in this project 
+are in cash, rather than items*. For consistency, we will avoid using the term "money" in this guide.
+* **Currency**: Money of a certain country(e.g. USD, SGD, EUR for United States Dollars, SinGapore Dollars, 
+and EURos respectively).
+* **Use cases**: A specific situation in which a product or service could potentially be used.
+* **Actor**: A person or thing that performs an action.
+* **MSS**: Main Success Scenario, the most common path through a use case.
+* **Extensions**: The alternative paths through a use case.
+* **Non-Functional Requirements**: A requirement that specifies criteria that can be used to judge the operation of 
+a system, rather than specific behaviours.
+* **Mainstream OS**: Windows, Linux, Unix, or MacOS
 
 --------------------------------------------------------------------------------------------------------------------
 
