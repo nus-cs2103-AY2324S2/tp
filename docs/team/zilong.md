@@ -10,4 +10,3 @@ Current Year 2 Computer Science and Mathematics Double Degree student from the N
 *Aug 2022 - Present*
 - Double Degree in Computer Science and Mathematics
 - Expected Date of Graduation: July 2027
-- 

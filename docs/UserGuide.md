@@ -173,7 +173,7 @@ Example commands
 * import contacts_export
 * import contacts_export1 contacts_export2
 
-    
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.

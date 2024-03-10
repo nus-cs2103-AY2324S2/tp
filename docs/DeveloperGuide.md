@@ -427,11 +427,8 @@ Use case resumes at step 2.
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  Designed for users who can type fast, making command execution quicker than using a mouse.
-<<<<<<< HEAD
-=======
 4.  Exporting and importing operations should be completed within a reasonable time frame, not exceeding 10 seconds per operation.
 5.  The application must ensure the security and privacy of private contact details during import and export operations. Data should be handled in a manner that prevents unauthorized access.
->>>>>>> master
 
 *{More to be added}*
 
