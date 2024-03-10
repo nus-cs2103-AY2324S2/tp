@@ -83,12 +83,12 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void of_validArgs_returnsDeleteCommand() {
         assertParseSuccess(DeleteCommand::of, "1", new DeleteCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void of_invalidArgs_throwsParseException() {
         assertParseFailure(DeleteCommand::of, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
