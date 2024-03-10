@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Arrays;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -24,14 +25,6 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
-    private final CommandExecutor commandExecutor;
-
-    @FXML
-    private Text suggestionsText;
-
-    @FXML
-    private TextField commandTextField;
-
     public static final Map<String, String> COMMAND_FORMAT_MAP = new HashMap<>();
 
     static {
@@ -47,6 +40,14 @@ public class CommandBox extends UiPart<Region> {
         COMMAND_FORMAT_MAP.put("exit", "");
         COMMAND_FORMAT_MAP.put("help", "");
     }
+
+    private final CommandExecutor commandExecutor;
+
+    @FXML
+    private Text suggestionsText;
+
+    @FXML
+    private TextField commandTextField;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -92,24 +93,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private List<String> generateSuggestions(String commandText) {
         List<String> suggestions = new ArrayList<>();
-//        for (Map.Entry<String, String> entry : COMMAND_FORMAT_MAP.entrySet()) {
-//            String command = entry.getKey();
-//            String format = entry.getValue();
-//            if (command.equals(commandText)) {
-//                continue;
-//            }
-//            // Check if the command starts with or contains the current input text
-//            if (command.startsWith(commandText) || command.contains(commandText)) {
-//                // Add the command and its format to suggestions
-//                String suggestion;
-//                if (format.isEmpty()) {
-//                    suggestion = command;
-//                } else {
-//                    suggestion = command + " - " + format;
-//                }
-//                suggestions.add(suggestion);
-//            }
-//        }
+
         final List<String> commandList = Arrays.asList(
                 "add", "list", "edit", "find", "delete", "clear", "interest", "findinterest", "addsched", "exit", "help"
         );
