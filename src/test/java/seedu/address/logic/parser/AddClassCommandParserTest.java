@@ -47,3 +47,4 @@ public class AddClassCommandParserTest {
         assertParseFailure(parser, AddClassCommand.COMMAND_WORD + " " + nonEmptyTutorialClass, expectedMessage);
     }
 }
+

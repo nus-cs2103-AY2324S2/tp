@@ -62,3 +62,4 @@ public class AddClassCommandTest {
                 new TutorialClass(new Name(VALID_TUTORIAL_CLASS_2))))));
     }
 }
+
