@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Has many family members to keep track off
-* Wants to keep various information about these different family members 
+* Wants to keep various information about these different family members
 * Wants to visualize connections between family members
 * Often only has provisional or partial information about their family members
 
@@ -282,7 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user   | Find the relationship path between people        | Understand how everyone is connected |
 | `* *`    | user   | Have clear success or failure messages after actions | Ensure that the intended action has taken place                |
 | `* *`    | user   | Sort and search a person by their attributes       | Find specific individuals more easily                                                |
- | `* * *`  | user   | Have my data automatically saved once i exit the app and loaded once i start the app        | Seamless experience across different sessions |
+| `* * *`  | user   | Have my data automatically saved once i exit the app and loaded once i start the app        | Seamless experience across different sessions |
 
 *{More to be added}*
 
@@ -290,14 +290,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a new person**
+
+**MSS**
+
+1.  User requests to add a new person to JENGA.
+2.  JENGA prompts user for details of new person.
+3.  User enters the necessary information.
+4.  JENGA adds person with the provided details.
+5.  JENGA displays new person added and confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User enters incomplete or invalid information.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  JENGA displays a list of persons.
+3.  User selects a specific person in the list to delete by providing the person’s UUID.
+4.  JENGA deletes the person.
+5.  JENGA displays confirmation message.
 
     Use case ends.
 
@@ -305,23 +330,350 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. JENGA informs the user the list is empty.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+* 3a. Given UUID is invalid or does not exist.
 
-      Use case resumes at step 2.
+    * 3a1. JENGA shows an error message.
+
+      Use case resumes at step 4.
+
+**Use case: Add an attribute to a person**
+
+**MSS**
+
+1.  User requests to add an attribute to a person.
+2.  JENGA prompts user to enter the person’s UUID and attribute details.
+3.  User enters UUID and attribute information.
+4.  JENGA adds attribute details to specific person’s profile.
+5.  JENGA displays attribute in person’s profile and confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Attribute details are invalid.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+* 3b. Given UUID is invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+**Use case: Edit to add an attribute to a person**
+
+**MSS**
+
+1.  User requests to edit to add an attribute to a person.
+2.  JENGA prompts user to enter the person’s UUID and attribute details to add.
+3.  User enters UUID and attribute information.
+4.  JENGA adds attribute details to specific person’s profile.
+5.  JENGA displays attribute in person’s profile and confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Attribute details are invalid.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+* 3b. Given UUID is invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+**Use case: Edit to delete an attribute to a person**
+
+**MSS**
+
+1.  User requests to edit to delete an attribute to a person.
+2.  JENGA prompts user to enter the person’s UUID and attribute to delete.
+3.  User enters UUID and attribute information.
+4.  JENGA deletes attribute in specific person’s profile.
+5.  JENGA displays confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Attribute details are invalid.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+* 3b. Given UUID is invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+**Use case: Delete a person**
+
+**MSS**
+
+1.  User requests to delete a person.
+2.  JENGA prompts user for details of person.
+3.  User enters person’s UUID.
+4.  JENGA deletes person.
+5.  JENGA displays confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Given UUID is invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+**Use case: Find persons by attribute**
+
+**MSS**
+
+1.  User requests to find persons by attribute.
+2.  JENGA prompts user for attribute and attribute value(s).
+3.  User enters attribute name and attribute value(s).
+4.  JENGA displays list of persons with each of the specified attributes.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Attribute details are invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+* 4a. The list is empty.
+
+    * 4a1. JENGA informs the user the list is empty.
+
+      Use case ends.
+
+**Use case: Find persons by relationship to User**
+
+**MSS**
+
+1.  User requests to find persons by relationship.
+2.  JENGA prompts user for relationship to User.
+3.  User enters relationship type.
+4.  JENGA displays list of persons with specified relationship to User.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Relationship is invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+**Use case: Add a relationship between two persons**
+
+**MSS**
+
+1.  User requests to add a relationship between two persons.
+2.  JENGA prompts user for UUIDs of both persons and relationship type.
+3.  User enters both persons UUID and relationship type.
+4.  JENGA creates a relationship with the provided details.
+5.  JENGA displays new relationship added under both persons’ profiles and confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Relationship type is invalid.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+* 3b. Given UUIDs are invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+**Use case: Edit a relationship between two persons**
+
+**MSS**
+
+1.  User requests to edit a specific relationship between two persons.
+2.  JENGA prompts user for UUIDs of both persons and previous and new relationship type.
+3.  User enters both persons UUID and previous and new relationship type.
+4.  JENGA edits the specified relationship with the provided details.
+5.  JENGA displays edited relationship under both persons’ profiles and confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Relationship types are invalid.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+* 3b. Given UUIDs are invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+**Use case: Delete a relationship between two persons**
+
+**MSS**
+
+1.  User requests to delete a specific relationship between two persons.
+2.  JENGA prompts user for UUIDs of both persons and relationship type.
+3.  User enters both persons UUID and specified relationship type.
+4.  JENGA deletes specified relationship.
+5.  JENGA displays confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Relationship type is invalid.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+* 3b. Given UUIDs are invalid or does not exist.
+
+    * 3a1. JENGA shows an error message.
+
+    * 3a2. JENGA prompts User to enter the correct and complete information.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+      Use case ends.
+
+**Use case: Exit JENGA**
+
+**MSS**
+
+1.  User requests to exit JENGA.
+2.  JENGA displays goodbye message.
+3.  JENGA saves current data.
+4.  JENGA closes the application window.
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 persons and relationships without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  User actions should prompt responses within 5 seconds, maintaining acceptable performance standards.
+5.  The user interface must be intuitive for users of varying technical proficiency levels, enhancing usability.
+6.  The codebase should be well-documented and maintainable to facilitate future updates and enhancements.
+7.  Comprehensive documentation should be provided for developers, administrators, and end-users, supporting ease of use.
+8.  The system should be able to handle data corruption or loss gracefully, minimizing the impact on users.
+9.  The system architecture should support future extensions or customizations, allowing for easy addition of new features.
+10. Interoperability with other systems should be supported through standard protocols and formats, promoting seamless integration.
+11. The system should be designed with testability in mind, allowing for comprehensive testing of all components, features, and scenarios.
 
 ### Glossary
 
