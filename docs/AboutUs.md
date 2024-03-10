@@ -42,13 +42,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wilson Widyadhana
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wilsonwid.png" width="200px">
 
 [[github](https://github.com/wilsonwid)]
 [[portfolio](team/wilsonwid.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team leader, Developer
+* Responsibilities: Importing data, DevOps, User Guide, Developer Guide
 
 ### Chua Zi Long
 
