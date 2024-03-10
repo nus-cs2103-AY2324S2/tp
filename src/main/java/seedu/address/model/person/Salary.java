@@ -15,10 +15,9 @@ public class Salary {
     public static final int UPPERBOUND = 2147483647;
     public static final int LOWERBOUND = 0;
 
-    public int salary1;
-    public int salary2;
-    public boolean isRange;
-
+    private int salary1;
+    private int salary2;
+    private boolean isRange;
 
     /**
      * Constructs a {@code Salary}.
@@ -31,6 +30,12 @@ public class Salary {
         parseSalary(salary);
     }
 
+    /**
+     * Constructs a {@code Salary}.
+     *
+     * @param salary1 A valid salary.
+     * @param salary2 A valid salary.
+     */
     public void parseSalary(String salary) {
         if (salary.contains("-")) {
             String[] salaryRange = salary.split("-");
@@ -85,7 +90,7 @@ public class Salary {
     @Override
     public String toString() {
         if (isRange) {
-            return salary1+ "-" + salary2;
+            return salary1 + "-" + salary2;
         } else {
             return String.valueOf(salary1);
         }
