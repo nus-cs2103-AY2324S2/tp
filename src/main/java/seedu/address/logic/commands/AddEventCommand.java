@@ -13,9 +13,9 @@ import seedu.address.model.event.Event;
 /**
  * Creates and adds an event to the address book.
  */
-public class CreateEventCommand extends Command {
+public class AddEventCommand extends Command {
 
-    public static final String COMMAND_WORD = "createEvent";
+    public static final String COMMAND_WORD = "addev";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates and adds an event to the address book. "
             + "Parameters: "
@@ -30,7 +30,7 @@ public class CreateEventCommand extends Command {
     /**
      * Creates a CreateEventCommand to add the specified {@code Event}.
      */
-    public CreateEventCommand(Event event) {
+    public AddEventCommand(Event event) {
         requireNonNull(event);
         toAdd = event;
     }
@@ -54,11 +54,11 @@ public class CreateEventCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CreateEventCommand)) {
+        if (!(other instanceof AddEventCommand)) {
             return false;
         }
 
-        CreateEventCommand otherCreateEventCommand = (CreateEventCommand) other;
+        AddEventCommand otherCreateEventCommand = (AddEventCommand) other;
         return toAdd.equals(otherCreateEventCommand.toAdd);
     }
 

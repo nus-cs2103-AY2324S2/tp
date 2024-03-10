@@ -105,10 +105,6 @@ public class UniqueEventList implements Iterable<Event> {
         return internalUnmodifiableList;
     }
 
-    /// Select Event
-
-
-
     /// Utils
 
     @Override
