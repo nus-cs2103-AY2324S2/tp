@@ -61,47 +61,47 @@ public class DateUtilTest {
     public void isParsableDateString() {
 
         // null date
-        assertFalse(DateUtil.isValidDateString(null));
+        assertFalse(DateUtil.isParsableDateString(null));
 
         // blank date
-        assertFalse(DateUtil.isValidDateString("")); // empty string
-        assertFalse(DateUtil.isValidDateString(" ")); // spaces only
+        assertFalse(DateUtil.isParsableDateString("")); // empty string
+        assertFalse(DateUtil.isParsableDateString(" ")); // spaces only
 
         // invalid dates
-        assertFalse(DateUtil.isValidDateString("91-12-2020")); // invalid day
-        assertFalse(DateUtil.isValidDateString("31-13-2020")); // invalid month
-        assertFalse(DateUtil.isValidDateString("31-12-20200")); // invalid year
-        assertFalse(DateUtil.isValidDateString("31-12-2020 ")); // trailing space
-        assertFalse(DateUtil.isValidDateString(" 31-12-2020")); // leading space
-        assertFalse(DateUtil.isValidDateString("31- 12-2020")); // spaces within date
-        assertFalse(DateUtil.isValidDateString("31-12- 2020")); // spaces within date
-        assertFalse(DateUtil.isValidDateString("31-12-2020 12:00")); // time included
-        assertFalse(DateUtil.isValidDateString("31-12-2020 12:00:00")); // time included
-        assertFalse(DateUtil.isValidDateString("12-31-2020")); // MM-DD-YYYY format with hyphens
-        assertFalse(DateUtil.isValidDateString("2020/12/31")); // YYYY/MM/DD format with slashes
-        assertFalse(DateUtil.isValidDateString("12/31/2020")); // MM/DD/YYYY format with slashes
-        assertFalse(DateUtil.isValidDateString("20201231")); // YYYYMMDD format without delimiters
-        assertFalse(DateUtil.isValidDateString("12312020")); // MMDDYYYY format without delimiters
-        assertFalse(DateUtil.isValidDateString("3 Jan 2021")); // d MMM YYYY format
-        assertFalse(DateUtil.isValidDateString("31-Jan-2021")); // DD-MMM-YYYY format
-        assertFalse(DateUtil.isValidDateString("January 3, 2021")); // Month d, YYYY format
-        assertFalse(DateUtil.isValidDateString("2021-Jan-3")); // YYYY-MMM-d format
-        assertFalse(DateUtil.isValidDateString("2020-12-3A")); // Alphabetic character in day component
-        assertFalse(DateUtil.isValidDateString("2020-AB-31")); // Alphabetic characters in month component
-        assertFalse(DateUtil.isValidDateString("ABCD-12-31")); // Alphabetic characters in year component
-        assertFalse(DateUtil.isValidDateString("2020-12-31ABC")); // Alphabetic characters after the date
+        assertFalse(DateUtil.isParsableDateString("91-12-2020")); // invalid day
+        assertFalse(DateUtil.isParsableDateString("31-13-2020")); // invalid month
+        assertFalse(DateUtil.isParsableDateString("31-12-20200")); // invalid year
+        assertFalse(DateUtil.isParsableDateString("31-12-2020 ")); // trailing space
+        assertFalse(DateUtil.isParsableDateString(" 31-12-2020")); // leading space
+        assertFalse(DateUtil.isParsableDateString("31- 12-2020")); // spaces within date
+        assertFalse(DateUtil.isParsableDateString("31-12- 2020")); // spaces within date
+        assertFalse(DateUtil.isParsableDateString("31-12-2020 12:00")); // time included
+        assertFalse(DateUtil.isParsableDateString("31-12-2020 12:00:00")); // time included
+        assertFalse(DateUtil.isParsableDateString("12-31-2020")); // MM-DD-YYYY format with hyphens
+        assertFalse(DateUtil.isParsableDateString("2020/12/31")); // YYYY/MM/DD format with slashes
+        assertFalse(DateUtil.isParsableDateString("12/31/2020")); // MM/DD/YYYY format with slashes
+        assertFalse(DateUtil.isParsableDateString("20201231")); // YYYYMMDD format without delimiters
+        assertFalse(DateUtil.isParsableDateString("12312020")); // MMDDYYYY format without delimiters
+        assertFalse(DateUtil.isParsableDateString("3 Jan 2021")); // d MMM YYYY format
+        assertFalse(DateUtil.isParsableDateString("31-Jan-2021")); // DD-MMM-YYYY format
+        assertFalse(DateUtil.isParsableDateString("January 3, 2021")); // Month d, YYYY format
+        assertFalse(DateUtil.isParsableDateString("2021-Jan-3")); // YYYY-MMM-d format
+        assertFalse(DateUtil.isParsableDateString("2020-12-3A")); // Alphabetic character in day component
+        assertFalse(DateUtil.isParsableDateString("2020-AB-31")); // Alphabetic characters in month component
+        assertFalse(DateUtil.isParsableDateString("ABCD-12-31")); // Alphabetic characters in year component
+        assertFalse(DateUtil.isParsableDateString("2020-12-31ABC")); // Alphabetic characters after the date
 
         // valid dates
-        assertTrue(DateUtil.isValidDateString("2021-01-01"));
-        assertTrue(DateUtil.isValidDateString("2022-02-28"));
-        assertTrue(DateUtil.isValidDateString("2023-03-15"));
-        assertTrue(DateUtil.isValidDateString("2024-04-30"));
-        assertTrue(DateUtil.isValidDateString("2025-05-10"));
-        assertTrue(DateUtil.isValidDateString("2026-06-20"));
-        assertTrue(DateUtil.isValidDateString("2027-07-31"));
-        assertTrue(DateUtil.isValidDateString("2028-08-15"));
-        assertTrue(DateUtil.isValidDateString("2029-09-25"));
-        assertTrue(DateUtil.isValidDateString("2030-10-05"));
+        assertTrue(DateUtil.isParsableDateString("2021-01-01"));
+        assertTrue(DateUtil.isParsableDateString("2022-02-28"));
+        assertTrue(DateUtil.isParsableDateString("2023-03-15"));
+        assertTrue(DateUtil.isParsableDateString("2024-04-30"));
+        assertTrue(DateUtil.isParsableDateString("2025-05-10"));
+        assertTrue(DateUtil.isParsableDateString("2026-06-20"));
+        assertTrue(DateUtil.isParsableDateString("2027-07-31"));
+        assertTrue(DateUtil.isParsableDateString("2028-08-15"));
+        assertTrue(DateUtil.isParsableDateString("2029-09-25"));
+        assertTrue(DateUtil.isParsableDateString("2030-10-05"));
     }
 
     @Test
