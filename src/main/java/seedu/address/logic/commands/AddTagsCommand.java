@@ -81,10 +81,10 @@ public class AddTagsCommand extends Command {
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
 
         // Create new Hashset to add in new tags as Patient.getTags() return unmodifiableSet
-        Set<Tag> NewTagList = new HashSet<>(patientToEdit.getTags());
-        NewTagList.addAll(tags);
+        Set<Tag> newTagList = new HashSet<>(patientToEdit.getTags());
+        newTagList.addAll(tags);
 
-        editPatientDescriptor.setTags(NewTagList);
+        editPatientDescriptor.setTags(newTagList);
 
         Patient editedPatient = createEditedPatientFromNewTag(patientToEdit, editPatientDescriptor);
 
@@ -102,7 +102,8 @@ public class AddTagsCommand extends Command {
      * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
-    private static Patient createEditedPatientFromNewTag(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
+    private static Patient createEditedPatientFromNewTag(Patient patientToEdit,
+                                                         EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
