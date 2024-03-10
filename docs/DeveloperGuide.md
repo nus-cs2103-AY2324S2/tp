@@ -324,15 +324,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. The user decides to add a new contact to their address book.
 2. The user inputs the add command followed by the contact's details in the format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]….
 3. CCBot validates the input details.
-4. AB3 adds the new contact to the address book, assigning it a unique identifier within the system.
-5. AB3 displays a confirmation message to the user indicating the successful addition of the new contact.
+4. CCBot adds the new contact to the address book, assigning it a unique identifier within the system.
+5. CCBot displays a confirmation message to the user indicating the successful addition of the new contact.
 
       Use case ends.
 
 **Extensions**
 
 * 3a. If the user enters invalid details (e.g., incorrect format, missing mandatory fields like name or phone number):
-   * 3a1. AB3 shows an error message indicating the validation failure and the correct format of the command.
+   * 3a1. CCBot shows an error message indicating the validation failure and the correct format of the command.
 
       Use case resumes at step 2.
 *a. At any time, User chooses to cancel the addition.
@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. If the salary detail is invalid:
-   * 3a1. AB3 shows an error message indicating the validation failure and the correct format of the command.
+   * 3a1. CCBot shows an error message indicating the validation failure and the correct format of the command.
 
       Use case resumes at step 2.
 
@@ -375,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. If the company’s name is bigger than 100 characters:
-   * 3a1. AB3 shows an error message indicating the validation failure and the limit characters number.
+   * 3a1. CCBot shows an error message indicating the validation failure and the limit characters number.
 
       Use case resumes at step 2.
 
@@ -395,7 +395,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. If the  programming language detail is invalid:
-   * 3a1. AB3 shows an error message indicating the validation failure and an error message about the format or character limit.
+   * 3a1. CCBot shows an error message indicating the validation failure and an error message about the format or character limit.
 
       Use case resumes at step 2.
 
