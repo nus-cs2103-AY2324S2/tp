@@ -288,30 +288,99 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `BistroBoss` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an employee**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add employee contact
+2.  BistroBoss requests contact information of employee
+3.  User provides required information
+4.  BistroBoss adds the employee contact
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The contact book is empty.
+  * 2a1. BistroBoss shows an error message.
 
-  Use case ends.
+      Use case ends
+  
 
-* 3a. The given index is invalid.
+* 3a. The given contact information is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. BistroBoss shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Delete an employee**
+
+**MSS**
+
+1.  User requests to delete an employee contact
+2.  BistroBoss requests employee contact 
+3.  User provides required information
+4.  BistroBoss deletes the employee contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact book is empty.
+    * 2a1. BistroBoss shows an error message.
+
+        Use case ends
+
+
+* 3a. The given contact information is invalid.
+
+    * 3a1. BistroBoss shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: List all employee contacts**
+
+**MSS**
+
+1.  User requests to list all employee contact
+2.  BistroBoss lists all employee contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact book is empty.
+    * 2a1. BistroBoss shows an error message.
+
+      Use case ends
+
+**Use case: Track employee's work hours**
+
+**MSS**
+
+1.  User requests to add employee's work hours
+2.  BistroBoss requests employee contact and work hours
+3.  User provides required information
+4.  BistroBoss tracks the employee's work hours
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact book is empty.
+    * 2a1. BistroBoss shows an error message.
+
+      Use case ends
+
+
+* 3a. The given contact information or working hours is invalid.
+
+    * 3a1. BistroBoss shows an error message.
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
