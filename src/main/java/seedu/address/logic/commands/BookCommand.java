@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Lists all persons in the address book to the user.
@@ -26,6 +26,10 @@ public class BookCommand extends Command {
 
     private final Booking toAdd;
 
+    /**
+     * Creates a BookCommand to add {@code booking}
+     * @param booking
+     */
     public BookCommand(Booking booking) {
         requireNonNull(booking);
         this.toAdd = booking;
