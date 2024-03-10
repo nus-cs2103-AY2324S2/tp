@@ -47,7 +47,7 @@ public class AddressBookParser {
 
         CommandType resultType;
         try {
-             resultType = CommandType.valueOf(commandWord.toUpperCase());
+            resultType = CommandType.valueOf(commandWord.toUpperCase());
         } catch (IllegalArgumentException ie) {
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

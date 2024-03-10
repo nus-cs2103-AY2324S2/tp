@@ -23,7 +23,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.util.ArgumentMultimap;
 import seedu.address.logic.util.ArgumentTokenizer;
 import seedu.address.logic.util.ParserUtil;
-import seedu.address.logic.util.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;

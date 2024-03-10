@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tag.Tag;
 
 class TagsTest {

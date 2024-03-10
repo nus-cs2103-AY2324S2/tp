@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.util.exceptions.ParseException;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
