@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (good
 | `*`  | intermediate user | have an efficient way to export and backup patient data | ensure the safety and accessibility of important information |
 | `*`  | intermediate user | export selected patient's information | give the information to the doctor or the patient when needed |
 | `*`  | intermediate user | export selected medical instructions | easily share the instructions to the patient|
-| `*`  | doctor | be able to set a set of instructions for the assistants for special cases such as performing lung capacity tests for asmatics | so that they are aware of the procedures to go through before my consultation with the patient |
+| `*`  | doctor | be able to set a set of instructions for the assistants for special cases such as performing lung capacity tests for asmatics | make my assistants aware of the procedures to go through before my consultation with the patient |
 
 ### Use cases
 
