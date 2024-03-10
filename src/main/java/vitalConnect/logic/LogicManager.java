@@ -11,10 +11,10 @@ import vitalConnect.commons.core.LogsCenter;
 import vitalConnect.logic.commands.Command;
 import vitalConnect.logic.commands.CommandResult;
 import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.logic.parser.AddressBookParser;
+import vitalConnect.logic.parser.ClinicParser;
 import vitalConnect.logic.parser.exceptions.ParseException;
 import vitalConnect.model.Model;
-import vitalConnect.model.ReadOnlyAddressBook;
+import vitalConnect.model.ReadOnlyClinic;
 import vitalConnect.model.person.Person;
 import vitalConnect.storage.Storage;
 
@@ -31,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ClinicParser clinicParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        clinicParser = new ClinicParser();
     }
 
     @Override
@@ -47,11 +47,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = clinicParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveClinic(model.getClinic());
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -62,8 +62,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyClinic getClinic() {
+        return model.getClinic();
     }
 
     @Override
@@ -72,8 +72,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getClinicFilePath() {
+        return model.getClinicFilePath();
     }
 
     @Override

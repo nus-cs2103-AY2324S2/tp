@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import vitalConnect.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a clinic
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyClinic {
 
     /**
      * Returns an unmodifiable view of the persons list.

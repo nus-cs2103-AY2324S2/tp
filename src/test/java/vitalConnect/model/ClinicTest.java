@@ -7,7 +7,7 @@ import static vitalConnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static vitalConnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static vitalConnect.testutil.Assert.assertThrows;
 import static vitalConnect.testutil.TypicalPersons.ALICE;
-import static vitalConnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import vitalConnect.model.person.Person;
 import vitalConnect.model.person.exceptions.DuplicatePersonException;
 import vitalConnect.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class ClinicTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Clinic clinic = new Clinic();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), clinic.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> clinic.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyClinic_replacesData() {
+        Clinic newData = getTypicalClinic();
+        clinic.resetData(newData);
+        assertEquals(newData, clinic);
     }
 
     @Test
@@ -49,53 +49,53 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        ClinicStub newData = new ClinicStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> clinic.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> clinic.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPerson_personNotInClinic_returnsFalse() {
+        assertFalse(clinic.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPerson_personInClinic_returnsTrue() {
+        clinic.addPerson(ALICE);
+        assertTrue(clinic.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_personWithSameIdentityFieldsInClinic_returnsTrue() {
+        clinic.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(clinic.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> clinic.getPersonList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
-        assertEquals(expected, addressBook.toString());
+        String expected = Clinic.class.getCanonicalName() + "{persons=" + clinic.getPersonList() + "}";
+        assertEquals(expected, clinic.toString());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyClinic whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ClinicStub implements ReadOnlyClinic {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        ClinicStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

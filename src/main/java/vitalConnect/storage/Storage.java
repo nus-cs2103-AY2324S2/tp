@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import vitalConnect.commons.exceptions.DataLoadingException;
-import vitalConnect.model.ReadOnlyAddressBook;
+import vitalConnect.model.ReadOnlyClinic;
 import vitalConnect.model.ReadOnlyUserPrefs;
 import vitalConnect.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends ClinicStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getClinicFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyClinic> readClinic() throws DataLoadingException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveClinic(ReadOnlyClinic clinic) throws IOException;
 
 }

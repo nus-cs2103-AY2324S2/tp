@@ -15,15 +15,15 @@ import vitalConnect.commons.util.ConfigUtil;
 import vitalConnect.commons.util.StringUtil;
 import vitalConnect.logic.Logic;
 import vitalConnect.logic.LogicManager;
-import vitalConnect.model.AddressBook;
+import vitalConnect.model.Clinic;
 import vitalConnect.model.Model;
 import vitalConnect.model.ModelManager;
-import vitalConnect.model.ReadOnlyAddressBook;
+import vitalConnect.model.ReadOnlyClinic;
 import vitalConnect.model.ReadOnlyUserPrefs;
 import vitalConnect.model.UserPrefs;
 import vitalConnect.model.util.SampleDataUtil;
-import vitalConnect.storage.AddressBookStorage;
-import vitalConnect.storage.JsonAddressBookStorage;
+import vitalConnect.storage.ClinicStorage;
+import vitalConnect.storage.JsonClinicStorage;
 import vitalConnect.storage.JsonUserPrefsStorage;
 import vitalConnect.storage.Storage;
 import vitalConnect.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Clinic ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ClinicStorage clinicStorage = new JsonClinicStorage(userPrefs.getClinicFilePath());
+        storage = new StorageManager(clinicStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -68,26 +68,26 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s clinic and {@code userPrefs}. <br>
+     * The data from the sample clinic will be used instead if {@code storage}'s clinic is not found,
+     * or an empty clinic will be used instead if errors occur when reading {@code storage}'s clinic.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getClinicFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyClinic> clinicOptional;
+        ReadOnlyClinic initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
+            clinicOptional = storage.readClinic();
+            if (!clinicOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getClinicFilePath()
+                        + " populated with a sample Clinic.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = clinicOptional.orElseGet(SampleDataUtil::getSampleClinic);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+            logger.warning("Data file at " + storage.getClinicFilePath() + " could not be loaded."
+                    + " Will be starting with an empty Clinic.");
+            initialData = new Clinic();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -170,13 +170,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Clinic " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Clinic ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

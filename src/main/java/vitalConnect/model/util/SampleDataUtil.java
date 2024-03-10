@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import vitalConnect.model.AddressBook;
-import vitalConnect.model.ReadOnlyAddressBook;
+import vitalConnect.model.Clinic;
+import vitalConnect.model.ReadOnlyClinic;
 import vitalConnect.model.person.Address;
 import vitalConnect.model.person.Email;
 import vitalConnect.model.person.Name;
@@ -14,7 +14,7 @@ import vitalConnect.model.person.Phone;
 import vitalConnect.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Clinic} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyClinic getSampleClinic() {
+        Clinic sampleAb = new Clinic();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

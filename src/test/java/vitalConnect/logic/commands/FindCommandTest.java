@@ -8,7 +8,7 @@ import static vitalConnect.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static vitalConnect.testutil.TypicalPersons.CARL;
 import static vitalConnect.testutil.TypicalPersons.ELLE;
 import static vitalConnect.testutil.TypicalPersons.FIONA;
-import static vitalConnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import vitalConnect.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalClinic(), new UserPrefs());
 
     @Test
     public void equals() {

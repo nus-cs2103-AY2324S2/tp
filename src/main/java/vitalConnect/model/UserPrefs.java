@@ -14,7 +14,7 @@ import vitalConnect.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path clinicFilePath = Paths.get("data" , "clinic.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setClinicFilePath(newUserPrefs.getClinicFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +47,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getClinicFilePath() {
+        return clinicFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setClinicFilePath(Path clinicFilePath) {
+        requireNonNull(clinicFilePath);
+        this.clinicFilePath = clinicFilePath;
     }
 
     @Override
@@ -69,19 +69,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath);
+                && clinicFilePath.equals(otherUserPrefs.clinicFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, clinicFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + clinicFilePath);
         return sb.toString();
     }
 

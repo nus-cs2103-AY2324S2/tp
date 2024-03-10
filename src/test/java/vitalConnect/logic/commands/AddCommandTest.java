@@ -18,9 +18,9 @@ import javafx.collections.ObservableList;
 import vitalConnect.commons.core.GuiSettings;
 import vitalConnect.logic.Messages;
 import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.model.AddressBook;
+import vitalConnect.model.Clinic;
 import vitalConnect.model.Model;
-import vitalConnect.model.ReadOnlyAddressBook;
+import vitalConnect.model.ReadOnlyClinic;
 import vitalConnect.model.ReadOnlyUserPrefs;
 import vitalConnect.model.person.Person;
 import vitalConnect.testutil.PersonBuilder;
@@ -109,12 +109,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getClinicFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setClinicFilePath(Path clinicFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setClinic(ReadOnlyClinic newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyClinic getClinic() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,8 +196,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyClinic getClinic() {
+            return new Clinic();
         }
     }
 

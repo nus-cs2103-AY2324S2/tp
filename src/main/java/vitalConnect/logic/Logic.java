@@ -7,7 +7,7 @@ import vitalConnect.commons.core.GuiSettings;
 import vitalConnect.logic.commands.CommandResult;
 import vitalConnect.logic.commands.exceptions.CommandException;
 import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.ReadOnlyAddressBook;
+import vitalConnect.model.ReadOnlyClinic;
 import vitalConnect.model.person.Person;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Clinic.
      *
-     * @see vitalConnect.model.Model#getAddressBook()
+     * @see vitalConnect.model.Model#getClinic()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyClinic getClinic();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' clinic file path.
      */
-    Path getAddressBookFilePath();
+    Path getClinicFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

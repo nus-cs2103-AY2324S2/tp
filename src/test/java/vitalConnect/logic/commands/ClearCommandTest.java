@@ -1,11 +1,11 @@
 package vitalConnect.logic.commands;
 
 import static vitalConnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static vitalConnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.model.AddressBook;
+import vitalConnect.model.Clinic;
 import vitalConnect.model.Model;
 import vitalConnect.model.ModelManager;
 import vitalConnect.model.UserPrefs;
@@ -13,7 +13,7 @@ import vitalConnect.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyClinic_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,10 +21,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+    public void execute_nonEmptyClinic_success() {
+        Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalClinic(), new UserPrefs());
+        expectedModel.setClinic(new Clinic());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

@@ -3,7 +3,7 @@ package vitalConnect.logic.commands;
 import static vitalConnect.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static vitalConnect.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static vitalConnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static vitalConnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalClinic(), new UserPrefs());
+        expectedModel = new ModelManager(model.getClinic(), new UserPrefs());
     }
 
     @Test

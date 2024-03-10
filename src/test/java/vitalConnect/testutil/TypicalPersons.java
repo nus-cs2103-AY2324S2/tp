@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import vitalConnect.model.AddressBook;
+import vitalConnect.model.Clinic;
 import vitalConnect.model.person.Person;
 
 /**
@@ -60,14 +60,14 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Clinic} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Clinic getTypicalClinic() {
+        Clinic c = new Clinic();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            c.addPerson(person);
         }
-        return ab;
+        return c;
     }
 
     public static List<Person> getTypicalPersons() {

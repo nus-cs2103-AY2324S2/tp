@@ -6,7 +6,7 @@ import static vitalConnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import vitalConnect.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the clinic to the user.
  */
 public class ListCommand extends Command {
 

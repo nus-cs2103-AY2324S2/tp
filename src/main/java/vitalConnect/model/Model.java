@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' clinic file path.
      */
-    Path getAddressBookFilePath();
+    Path getClinicFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' clinic file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setClinicFilePath(Path clinicFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces clinic data with the data in {@code clinic}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setClinic(ReadOnlyClinic clinic);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Clinic */
+    ReadOnlyClinic getClinic();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the clinic.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the clinic.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the clinic.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the clinic.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the clinic.
      */
     void setPerson(Person target, Person editedPerson);
 

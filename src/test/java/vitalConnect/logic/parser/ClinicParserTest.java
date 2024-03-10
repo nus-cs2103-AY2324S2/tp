@@ -29,9 +29,9 @@ import vitalConnect.testutil.EditPersonDescriptorBuilder;
 import vitalConnect.testutil.PersonBuilder;
 import vitalConnect.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ClinicParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ClinicParser parser = new ClinicParser();
 
     @Test
     public void parseCommand_add() throws Exception {
