@@ -262,27 +262,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of employee contacts and banking details
+* has a need to track employee worked hours
+* has a need to tabulate payroll for employees with different pay rates
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage employee salary disbursement faster than a typical exel sheet with manual calculations.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                        | I want to …​                                       | So that I can…​                                                       |
+|----------|----------------------------------------------------------------|----------------------------------------------------|-----------------------------------------------------------------------|
+| `* *`    | new user                                                       | see a tutorial and usage instructions              | familiarise with BistroBoss' features                                 |
+| `* * *`  | user                                                           | add an employee contact with banking details       | quickly access the employee's banking details for salary disbursement |
+| `* * *`  | user                                                           | delete an employee contact                         | remove entries that I no longer need                                  |
+| `* * *`  | user                                                           | view all employee contacts                         |                                                                       |
+| `* *`    | user                                                           | track an employee's weekly worked hours            | access it for employee salary calculation                             |
+| `* *`    | user handling employees with a variety of employment contracts | tag an employee contact with their employment type | retrieve the salary rate of the employee                              |
+| `* *`    | user with human error tendencies                               | retrieve an employee's calculated pay              | avoid paying out an incorrect salary amount                           |
+| `* *`    | user                                                           | edit an employee contact details                   | keep the employee's details up to date                                |
+| `*`      | user with many employees                                       | sort employees contacts by name                    | locate the employee contact easily                                    |
+| `*`      | user with potential returning employees                        | archive an employee contact                        | reopen the employee's details when they return easily                 |
+| `*`      | user with forgetfulness                                        | search for contacts by keyword                     | find contacts without needing to provide their full name              |
+| `*`      | user with many employees                                       | filter employee contacts by tag(s)                 | identify which employee(s) are of that employment type                |
 
 *{More to be added}*
 
