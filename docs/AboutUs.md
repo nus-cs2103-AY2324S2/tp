@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Lim Zheng Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/al-zt.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/AL-ZT)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Integration
+* Responsibilities: Payment
 
 ### Johnny Doe
 
