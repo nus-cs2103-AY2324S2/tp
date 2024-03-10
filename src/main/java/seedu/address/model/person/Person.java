@@ -63,6 +63,7 @@ public class Person {
 
     /**
      * Returns true if both persons have the same name.
+     * Name is case-insensitive, Janna and janna is same name.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {

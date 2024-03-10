@@ -5,42 +5,47 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AddSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = "/pooch-add";
+    public static final String COMMAND_WORD = "/pooch-supplier";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a supplier to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "\n"
+            + PREFIX_PRODUCT + "PRODUCT "
+            + PREFIX_PRICE + "PRICE \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe other "
+            + PREFIX_NAME + "John Doe supplier "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_PRODUCT + "poochie food "
+            + PREFIX_PRICE + "$50/bag";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New supplier is added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person's name already exists in the address book";
 
-    private final Person toAdd;
+    private final Supplier toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddSupplierCommand(Supplier person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -64,11 +69,11 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddSupplierCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
+        AddSupplierCommand otherAddCommand = (AddSupplierCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 

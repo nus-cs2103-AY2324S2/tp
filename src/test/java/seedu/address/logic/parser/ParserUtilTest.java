@@ -15,9 +15,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Commission;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Employment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Price;
+import seedu.address.model.person.Product;
+import seedu.address.model.person.Salary;
+import seedu.address.model.person.Skill;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,11 +32,22 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-
+    private static final String INVALID_EMPLOYMENT = "invalid employment";
+    private static final String INVALID_SALARY = "20";
+    private static final String INVALID_PRODUCT = " ";
+    private static final String INVALID_PRICE = "20";
+    private static final String INVALID_SKILL = " ";
+    private static final String INVALID_COMMISSION = "20";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_EMPLOYMENT = "part-time";
+    private static final String VALID_SALARY = "$20/hr";
+    private static final String VALID_PRODUCT = "pooch food";
+    private static final String VALID_PRICE = "$20/bag";
+    private static final String VALID_SKILL = "train dog";
+    private static final String VALID_COMMISSION = "$20/hr";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -146,6 +163,144 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseEmployment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmployment((String) null));
+    }
+
+    @Test
+    public void parseEmployment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmployment(INVALID_EMPLOYMENT));
+    }
+
+    @Test
+    public void parseEmployment_validValueWithoutWhitespace_returnsEmployment() throws Exception {
+        Employment expectedEmployment = new Employment(VALID_EMPLOYMENT);
+        assertEquals(expectedEmployment, ParserUtil.parseEmployment(VALID_EMPLOYMENT));
+    }
+
+    @Test
+    public void parseEmployment_validValueWithWhitespace_returnsTrimmedEmployment() throws Exception {
+        String employmentWithWhitespace = WHITESPACE + VALID_EMPLOYMENT + WHITESPACE;
+        Employment expectedEmployment = new Employment(VALID_EMPLOYMENT);
+        assertEquals(expectedEmployment, ParserUtil.parseEmployment(employmentWithWhitespace));
+    }
+
+    @Test
+    public void parseSalary_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSalary((String) null));
+    }
+
+    @Test
+    public void parseSalary_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSalary(INVALID_SALARY));
+    }
+
+    @Test
+    public void parseSalary_validValueWithoutWhitespace_returnsSalary() throws Exception {
+        Salary expectedSalary = new Salary(VALID_SALARY);
+        assertEquals(expectedSalary, ParserUtil.parseSalary(VALID_SALARY));
+    }
+
+    @Test
+    public void parseSalary_validValueWithWhitespace_returnsTrimmedSalary() throws Exception {
+        String salaryWithWhitespace = WHITESPACE + VALID_SALARY + WHITESPACE;
+        Salary expectedSalary = new Salary(VALID_SALARY);
+        assertEquals(expectedSalary, ParserUtil.parseSalary(salaryWithWhitespace));
+    }
+
+    @Test
+    public void parseProduct_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSalary((String) null));
+    }
+
+    @Test
+    public void parseProduct_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseProduct(INVALID_PRODUCT));
+    }
+
+    @Test
+    public void parseProduct_validValueWithoutWhitespace_returnsProduct() throws Exception {
+        Product expectedProduct = new Product(VALID_PRODUCT);
+        assertEquals(expectedProduct, ParserUtil.parseProduct(VALID_PRODUCT));
+    }
+
+    @Test
+    public void parseProduct_validValueWithWhitespace_returnsTrimmedProduct() throws Exception {
+        String productWithWhitespace = WHITESPACE + VALID_PRODUCT + WHITESPACE;
+        Product expectedProduct = new Product(VALID_PRODUCT);
+        assertEquals(expectedProduct, ParserUtil.parseProduct(productWithWhitespace));
+    }
+
+    @Test
+    public void parsePrice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePrice((String) null));
+    }
+
+    @Test
+    public void parsePrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithoutWhitespace_returnsPrice() throws Exception {
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(VALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithWhitespace_returnsTrimmedPrice() throws Exception {
+        String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
+    }
+
+    @Test
+    public void parseSkill_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSkill((String) null));
+    }
+
+    @Test
+    public void parseSkill_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSkill(INVALID_SKILL));
+    }
+
+    @Test
+    public void parseSkill_validValueWithoutWhitespace_returnsSkill() throws Exception {
+        Skill expectedSkill = new Skill(VALID_SKILL);
+        assertEquals(expectedSkill, ParserUtil.parseSkill(VALID_SKILL));
+    }
+
+    @Test
+    public void parseSkill_validValueWithWhitespace_returnsTrimmedSkill() throws Exception {
+        String skillWithWhitespace = WHITESPACE + VALID_SKILL + WHITESPACE;
+        Skill expectedSkill = new Skill(VALID_SKILL);
+        assertEquals(expectedSkill, ParserUtil.parseSkill(skillWithWhitespace));
+    }
+
+    @Test
+    public void parseCommission_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCommission((String) null));
+    }
+
+    @Test
+    public void parseCommission_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCommission(INVALID_COMMISSION));
+    }
+
+    @Test
+    public void parseCommission_validValueWithoutWhitespace_returnsCommission() throws Exception {
+        Commission expectedCommission = new Commission(VALID_COMMISSION);
+        assertEquals(expectedCommission, ParserUtil.parseCommission(VALID_COMMISSION));
+    }
+
+    @Test
+    public void parseCommission_validValueWithWhitespace_returnsTrimmedCommission() throws Exception {
+        String commissionWithWhitespace = WHITESPACE + VALID_COMMISSION + WHITESPACE;
+        Commission expectedCommission = new Commission(VALID_COMMISSION);
+        assertEquals(expectedCommission, ParserUtil.parseCommission(commissionWithWhitespace));
     }
 
     @Test
