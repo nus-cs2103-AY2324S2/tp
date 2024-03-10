@@ -28,9 +28,9 @@ import seedu.address.model.tag.Tag;
  * Repeated tags in command will be added as a single tag.
  * If the patient already has the tag, it will not be added.
  */
-public class AddTagCommand extends Command {
+public class AddTagsCommand extends Command {
 
-    public static final String COMMAND_WORD = "addtag";
+    public static final String COMMAND_WORD = "addtags";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds one or more tags (single word) to a person identified "
@@ -52,7 +52,7 @@ public class AddTagCommand extends Command {
      * @param index of the patient in the filtered patient list to add the tags
      * @param tags   to be added to the patient
      */
-    public AddTagCommand(Index index, Set<Tag> tags) {
+    public AddTagsCommand(Index index, Set<Tag> tags) {
         requireAllNonNull(index, tags);
 
         this.index = index;
@@ -118,7 +118,7 @@ public class AddTagCommand extends Command {
      * Returns true if both add tag commands have the same index and tags to add.
      *
      * @param other Another object to compare to.
-     * @return True if the other object is an AddTagCommand with the same index and tags to add.
+     * @return True if the other object is an AddTagsCommand with the same index and tags to add.
      */
     @Override
     public boolean equals(Object other) {
@@ -126,11 +126,11 @@ public class AddTagCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof AddTagCommand)) {
+        if (!(other instanceof AddTagsCommand)) {
             return false;
         }
 
-        AddTagCommand otherTagCommand = (AddTagCommand) other;
+        AddTagsCommand otherTagCommand = (AddTagsCommand) other;
         return index.equals(otherTagCommand.index)
                 && editPatientDescriptor.equals(otherTagCommand.editPatientDescriptor);
     }
