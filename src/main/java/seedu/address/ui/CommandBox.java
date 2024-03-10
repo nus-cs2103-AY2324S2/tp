@@ -1,7 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,22 +24,6 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
-
-    public static final Map<String, String> COMMAND_FORMAT_MAP = new HashMap<>();
-
-    static {
-        COMMAND_FORMAT_MAP.put("add", "n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...");
-        COMMAND_FORMAT_MAP.put("list", "");
-        COMMAND_FORMAT_MAP.put("edit", "INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…");
-        COMMAND_FORMAT_MAP.put("find", "KEYWORD [MORE_KEYWORDS]");
-        COMMAND_FORMAT_MAP.put("delete", "INDEX");
-        COMMAND_FORMAT_MAP.put("clear", "");
-        COMMAND_FORMAT_MAP.put("interest", "INDEX INTEREST [MORE_INTEREST]");
-        COMMAND_FORMAT_MAP.put("findinterest", "INTEREST [MORE_INTEREST]");
-        COMMAND_FORMAT_MAP.put("addsched", "INDEX [MORE_INDEX] SCHEDULE_NAME from/DATE_TIME to/TIME");
-        COMMAND_FORMAT_MAP.put("exit", "");
-        COMMAND_FORMAT_MAP.put("help", "");
-    }
 
     private final CommandExecutor commandExecutor;
 
