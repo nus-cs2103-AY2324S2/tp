@@ -42,25 +42,25 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Creating an event: `create`
+### Creating an event: `addev`
 
-**Format:** `create -ev <event name>`
+**Format:** `addev -ev <event name>`
 
 
 **Description:**
 
-Creates a new event with the specified name for the Event List.
+Adds a new event with the specified name for the Event List.
 
 <box type="warning" seamless>
 
 **Caution:**
 * `<event name>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
-* Creating an event with a name that already exists, regardless of case, is **not allowed.**
+* Adding an event with a name that already exists, regardless of case, is **not allowed.**
 </box>
 
 **Examples:**
 
-- `create -ev Orientation camp` creates a new event with the name `Orientation camp`.
+- `addev -ev Orientation camp` sffd a new event with the name `Orientation camp`.
 
 --------------------------------------------------------------------------------------------------------------------
 
