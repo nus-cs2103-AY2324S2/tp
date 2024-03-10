@@ -15,7 +15,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.util.ArgumentMultimap;
 import seedu.address.logic.util.ArgumentTokenizer;
-import seedu.address.model.person.fields.prefix.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
@@ -23,6 +22,7 @@ import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Tags;
+import seedu.address.model.person.fields.prefix.Prefix;
 
 /**
  * Adds a person to the address book.
