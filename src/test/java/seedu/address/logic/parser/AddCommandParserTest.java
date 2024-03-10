@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_RELATIONSHIP_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RELATIONSHIP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -47,7 +47,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-//import seedu.address.model.person.Relationship;
+import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -122,8 +122,8 @@ public class AddCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
         // invalid relationship
-        //assertParseFailure(parser, INVALID_RELATIONSHIP_DESC + validExpectedPersonString,
-        //       Messages.getErrorMessageForDuplicatePrefixes(PREFIX_RELATIONSHIP));
+        assertParseFailure(parser, INVALID_RELATIONSHIP_DESC + validExpectedPersonString,
+               Messages.getErrorMessageForDuplicatePrefixes(PREFIX_RELATIONSHIP));
 
         // valid value followed by invalid value
 
@@ -144,8 +144,8 @@ public class AddCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
         // invalid relationship
-        //assertParseFailure(parser, validExpectedPersonString + INVALID_RELATIONSHIP_DESC,
-        //        Messages.getErrorMessageForDuplicatePrefixes(PREFIX_RELATIONSHIP));
+        assertParseFailure(parser, validExpectedPersonString + INVALID_RELATIONSHIP_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_RELATIONSHIP));
     }
 
     @Test
@@ -204,8 +204,8 @@ public class AddCommandParserTest {
                 + RELATIONSHIP_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         //invalid relationship
-        //assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-        //        + INVALID_RELATIONSHIP_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Relationship.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + INVALID_RELATIONSHIP_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Relationship.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
