@@ -93,7 +93,7 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer between the numeric range of contacts in the address book.** 
+* The index **must be a positive integer between the numeric range of contacts in the address book.**
 
 Examples:
 * `delete 2`
