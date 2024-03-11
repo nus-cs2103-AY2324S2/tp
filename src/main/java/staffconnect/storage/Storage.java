@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import staffconnect.commons.exceptions.DataLoadingException;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.ReadOnlyUserPrefs;
 import staffconnect.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends StaffConnectStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyStaffConnect> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException;
 
     @Override
-    void saveAddressBook(ReadOnlyStaffConnect addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException;
 
 }

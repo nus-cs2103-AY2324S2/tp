@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import staffconnect.commons.core.LogsCenter;
 import staffconnect.commons.exceptions.DataLoadingException;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.ReadOnlyUserPrefs;
 import staffconnect.model.UserPrefs;
 
@@ -54,25 +54,25 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyStaffConnect> readAddressBook() throws DataLoadingException {
+    public Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(staffConnectStorage.getAddressBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyStaffConnect> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyStaffBook> readAddressBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
         return staffConnectStorage.readAddressBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStaffConnect addressBook) throws IOException {
-        saveAddressBook(addressBook, staffConnectStorage.getAddressBookFilePath());
+    public void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException {
+        saveAddressBook(staffBook, staffConnectStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStaffConnect addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        staffConnectStorage.saveAddressBook(addressBook, filePath);
+        staffConnectStorage.saveAddressBook(staffBook, filePath);
     }
 
 }

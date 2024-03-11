@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given staffBook and userPrefs.
      */
-    public ModelManager(ReadOnlyStaffConnect staffBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyStaffBook staffBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(staffBook, userPrefs);
 
         logger.fine("Initializing with staff book: " + staffBook + " and user prefs " + userPrefs);
@@ -78,12 +78,12 @@ public class ModelManager implements Model {
     //=========== StaffBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyStaffConnect staffBook) {
+    public void setAddressBook(ReadOnlyStaffBook staffBook) {
         this.staffBook.resetData(staffBook);
     }
 
     @Override
-    public ReadOnlyStaffConnect getAddressBook() {
+    public ReadOnlyStaffBook getAddressBook() {
         return staffBook;
     }
 
@@ -115,7 +115,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedStaffBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {

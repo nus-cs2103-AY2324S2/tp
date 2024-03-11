@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import staffconnect.commons.exceptions.DataLoadingException;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.StaffBook;
 
 /**
@@ -19,28 +19,28 @@ public interface StaffConnectStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns StaffBook data as a {@link ReadOnlyStaffConnect}.
+     * Returns StaffBook data as a {@link ReadOnlyStaffBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyStaffConnect> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyStaffConnect> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyStaffBook> readAddressBook(Path filePath) throws DataLoadingException;
 
     /**
-     * Saves the given {@link ReadOnlyStaffConnect} to the storage.
-     * @param addressBook cannot be null.
+     * Saves the given {@link ReadOnlyStaffBook} to the storage.
+     * @param staffBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyStaffConnect addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyStaffConnect)
+     * @see #saveAddressBook(ReadOnlyStaffBook)
      */
-    void saveAddressBook(ReadOnlyStaffConnect addressBook, Path filePath) throws IOException;
+    void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException;
 
 }

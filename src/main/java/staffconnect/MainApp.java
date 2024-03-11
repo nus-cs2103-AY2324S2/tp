@@ -17,7 +17,7 @@ import staffconnect.logic.Logic;
 import staffconnect.logic.LogicManager;
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.ReadOnlyUserPrefs;
 import staffconnect.model.StaffBook;
 import staffconnect.model.UserPrefs;
@@ -75,15 +75,15 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
-        Optional<ReadOnlyStaffConnect> addressBookOptional;
-        ReadOnlyStaffConnect initialData;
+        Optional<ReadOnlyStaffBook> staffBookOptional;
+        ReadOnlyStaffBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            staffBookOptional = storage.readAddressBook();
+            if (!staffBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample StaffBook.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = staffBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty StaffBook.");

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import staffconnect.commons.exceptions.DataLoadingException;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.StaffBook;
 
 public class JsonStaffConnectStorageTest {
@@ -30,7 +30,7 @@ public class JsonStaffConnectStorageTest {
         assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
-    private java.util.Optional<ReadOnlyStaffConnect> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyStaffBook> readAddressBook(String filePath) throws Exception {
         return new JsonStaffConnectStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -68,7 +68,7 @@ public class JsonStaffConnectStorageTest {
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyStaffConnect readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        ReadOnlyStaffBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new StaffBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
@@ -88,23 +88,23 @@ public class JsonStaffConnectStorageTest {
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveStaffBook(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code staffBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyStaffConnect staffConnect, String filePath) {
+    private void saveStaffBook(ReadOnlyStaffBook staffBook, String filePath) {
         try {
             new JsonStaffConnectStorage(Paths.get(filePath))
-                    .saveAddressBook(staffConnect, addToTestDataPathIfNotNull(filePath));
+                    .saveAddressBook(staffBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new StaffBook(), null));
+    public void saveStaffBook_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveStaffBook(new StaffBook(), null));
     }
 }

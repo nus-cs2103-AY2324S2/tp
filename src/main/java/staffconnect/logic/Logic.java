@@ -7,7 +7,7 @@ import staffconnect.commons.core.GuiSettings;
 import staffconnect.logic.commands.CommandResult;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.logic.parser.exceptions.ParseException;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.person.Person;
 
 /**
@@ -28,7 +28,7 @@ public interface Logic {
      *
      * @see staffconnect.model.Model#getAddressBook()
      */
-    ReadOnlyStaffConnect getAddressBook();
+    ReadOnlyStaffBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

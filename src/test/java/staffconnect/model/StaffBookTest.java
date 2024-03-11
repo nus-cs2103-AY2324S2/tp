@@ -49,7 +49,7 @@ public class StaffBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        StaffConnectStub newData = new StaffConnectStub(newPersons);
+        StaffBookStub newData = new StaffBookStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> staffBook.resetData(newData));
     }
@@ -90,12 +90,12 @@ public class StaffBookTest {
     }
 
     /**
-     * A stub ReadOnlyStaffConnect whose persons list can violate interface constraints.
+     * A stub ReadOnlyStaffBook whose persons list can violate interface constraints.
      */
-    private static class StaffConnectStub implements ReadOnlyStaffConnect {
+    private static class StaffBookStub implements ReadOnlyStaffBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        StaffConnectStub(Collection<Person> persons) {
+        StaffBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

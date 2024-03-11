@@ -14,7 +14,7 @@ import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.logic.parser.StaffConnectParser;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.Model;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.person.Person;
 import staffconnect.storage.Storage;
 
@@ -62,7 +62,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyStaffConnect getAddressBook() {
+    public ReadOnlyStaffBook getAddressBook() {
         return model.getAddressBook();
     }
 

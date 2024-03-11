@@ -25,7 +25,7 @@ import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.UserPrefs;
 import staffconnect.model.person.Person;
 import staffconnect.storage.JsonStaffConnectStorage;
@@ -152,7 +152,7 @@ public class LogicManagerTest {
         // Inject LogicManager with an StaffConnectStorage that throws the IOException e when saving
         JsonStaffConnectStorage addressBookStorage = new JsonStaffConnectStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyStaffConnect staffConnect, Path filePath)
+            public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath)
                     throws IOException {
                 throw e;
             }

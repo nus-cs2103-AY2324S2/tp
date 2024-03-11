@@ -19,7 +19,7 @@ import staffconnect.commons.core.GuiSettings;
 import staffconnect.logic.Messages;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.ReadOnlyUserPrefs;
 import staffconnect.model.StaffBook;
 import staffconnect.model.person.Person;
@@ -124,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyStaffConnect newData) {
+        public void setAddressBook(ReadOnlyStaffBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyStaffConnect getAddressBook() {
+        public ReadOnlyStaffBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,7 +196,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyStaffConnect getAddressBook() {
+        public ReadOnlyStaffBook getAddressBook() {
             return new StaffBook();
         }
     }

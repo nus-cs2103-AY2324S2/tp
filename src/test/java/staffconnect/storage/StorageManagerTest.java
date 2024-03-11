@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import staffconnect.commons.core.GuiSettings;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.StaffBook;
 import staffconnect.model.UserPrefs;
 
@@ -56,7 +56,7 @@ public class StorageManagerTest {
          */
         StaffBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyStaffConnect retrieved = storageManager.readAddressBook().get();
+        ReadOnlyStaffBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new StaffBook(retrieved));
     }
 

@@ -13,7 +13,7 @@ import staffconnect.model.person.UniquePersonList;
  * Wraps all data at the fundamental level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class StaffBook implements ReadOnlyStaffConnect {
+public class StaffBook implements ReadOnlyStaffBook {
 
     private final UniquePersonList persons;
 
@@ -33,7 +33,7 @@ public class StaffBook implements ReadOnlyStaffConnect {
     /**
      * Creates a StaffBook using the Persons in the {@code toBeCopied}
      */
-    public StaffBook(ReadOnlyStaffConnect toBeCopied) {
+    public StaffBook(ReadOnlyStaffBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,7 +51,7 @@ public class StaffBook implements ReadOnlyStaffConnect {
     /**
      * Resets the existing data of this {@code StaffBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyStaffConnect newData) {
+    public void resetData(ReadOnlyStaffBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());

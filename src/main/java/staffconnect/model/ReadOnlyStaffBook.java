@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import staffconnect.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a staff book
  */
-public interface ReadOnlyStaffConnect {
+public interface ReadOnlyStaffBook {
 
     /**
      * Returns an unmodifiable view of the persons list.

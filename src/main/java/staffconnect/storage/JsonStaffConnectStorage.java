@@ -12,7 +12,7 @@ import staffconnect.commons.exceptions.DataLoadingException;
 import staffconnect.commons.exceptions.IllegalValueException;
 import staffconnect.commons.util.FileUtil;
 import staffconnect.commons.util.JsonUtil;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 
 /**
  * A class to access StaffBook data stored as a json file on the hard disk.
@@ -32,7 +32,7 @@ public class JsonStaffConnectStorage implements StaffConnectStorage {
     }
 
     @Override
-    public Optional<ReadOnlyStaffConnect> readAddressBook() throws DataLoadingException {
+    public Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(filePath);
     }
 
@@ -42,17 +42,17 @@ public class JsonStaffConnectStorage implements StaffConnectStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyStaffConnect> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyStaffBook> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableStaffConnect> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableStaffConnect> jsonStaffBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableStaffConnect.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonStaffBook.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonStaffBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -60,21 +60,21 @@ public class JsonStaffConnectStorage implements StaffConnectStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStaffConnect addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException {
+        saveAddressBook(staffBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyStaffConnect)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyStaffBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyStaffConnect addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException {
+        requireNonNull(staffBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableStaffConnect(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableStaffConnect(staffBook), filePath);
     }
 
 }

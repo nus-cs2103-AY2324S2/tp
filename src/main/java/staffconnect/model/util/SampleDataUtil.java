@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.StaffBook;
 import staffconnect.model.person.Address;
 import staffconnect.model.person.Email;
@@ -40,12 +40,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyStaffConnect getSampleAddressBook() {
-        StaffBook sampleSc = new StaffBook();
+    public static ReadOnlyStaffBook getSampleAddressBook() {
+        StaffBook sampleSb = new StaffBook();
         for (Person samplePerson : getSamplePersons()) {
-            sampleSc.addPerson(samplePerson);
+            sampleSb.addPerson(samplePerson);
         }
-        return sampleSc;
+        return sampleSb;
     }
 
     /**

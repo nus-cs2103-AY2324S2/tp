@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import staffconnect.commons.exceptions.IllegalValueException;
-import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.StaffBook;
 import staffconnect.model.person.Person;
 
@@ -32,16 +32,16 @@ class JsonSerializableStaffConnect {
     }
 
     /**
-     * Converts a given {@code ReadOnlyStaffConnect} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyStaffBook} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableStaffConnect}.
      */
-    public JsonSerializableStaffConnect(ReadOnlyStaffConnect source) {
+    public JsonSerializableStaffConnect(ReadOnlyStaffBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code StaffBook} object.
+     * Converts this staff book into the model's {@code StaffBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
