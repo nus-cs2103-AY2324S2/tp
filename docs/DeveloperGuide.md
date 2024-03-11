@@ -290,45 +290,45 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​             | I want to …​                                                     | So that I can…​                                               |
-|----------|------------------------|------------------------------------------------------------------|---------------------------------------------------------------|
-| `* * *`  | new user               | receive help messages and instructions for using the application | learn how to use its features effectively                     |
-| `* * *`  | user                   | add a new contact                                                |                                                               |
-| `* * *`  | user                   | delete a contact                                                 | remove entries that I no longer need                          |
-| `* * *`  | user                   | edit a contact                                                   | change a person's details                                     |
-| `* * *`  | user                   | delete a person                                                  | remove entries that I no longer need                          |
-| `* * *`  | user                   | save contacts on the disk                                        | store details of all my contacts                              |
-| `* * *`  | user                   | list contacts                                                    | know what contacts I have                                     |
-| `* * *`  | user                   | search for a contact by any criteria                             | find their information when I need it.                        |
-| `* * *`  | user                   | import contact information                                       | easily add multiple contacts at once.                         |
-| `* * *`  | user                   | export contacts                                                  | easily integrate existing data.                               |
-| `* *`    | user                   | hide private contact details                                     | minimize chance of someone else seeing them by accident       |
-| `* *`    | busy user              | set reminders for specific contacts                              | connect with them better                                      |
-| `* *`    | efficient user         | use keyboard shortcuts for frequently-used actions               | work more efficiently                                         |
-| `* *`    | user                   | track the history of interactions with specific contacts         | personalize my communication and build stronger relationships |
-| `* *`    | user                   | have a user-friendly interface                                   | easily navigate the application                               |
-| `* *`    | user with many friends | know which people are in which friend groups                     | keep track of my friend groups                                |
-| `* *`    | user                   | import/export my contact list in a common format                 | back up my data and import it into other applications         |
-| `* *`    | user                   | change deadlines                                                 | manage my schedule more effectively                           |
-| `* *`    | forgetful user         | use commands (possibly with aliases) that are easily remembered  | find the application easier to use                            |
-| `*`      | user                   | find the people I have not interacted with in a long time        | maintain a good relationship with them                        |
-| `*`      | user                   | look at the people I interact with the most                      | know who I spend the most time with                           |
-| `* *`    | user                   | set data validation rules for certain fields                     | ensure the accuracy of my contact information.                |
-| `* *`    | user                   | make a clear schedule of what I will do in the future            | plan my schedule well.                                        |
-| `* *`    | user                   | set recurring tasks or reminders associated with contacts        | maintain the connections I have.                              |
+| Priority | As a/an …​             | I want to …​                                                     | So that I can…​                                                  |
+|----------|------------------------|------------------------------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | new user               | receive help messages and instructions for using the application | learn how to use its features effectively                        |
+| `* * *`  | user                   | add a new contact                                                |                                                                  |
+| `* * *`  | user                   | delete a contact                                                 | remove entries that I no longer need                             |
+| `* * *`  | user                   | edit a contact                                                   | change a person's details                                        |
+| `* * *`  | user                   | delete a contact                                                 | remove entries that I no longer need                             |
+| `* * *`  | user                   | save contacts on the disk                                        | store details of all my contacts                                 |
+| `* * *`  | user                   | list contacts                                                    | know what contacts I have                                        |
+| `* * *`  | user                   | search for a contact by any criteria                             | find their information when I need it.                           |
+| `* * *`  | user                   | import contacts                                                  | easily add multiple contacts at once from another source.        |
+| `* * *`  | user                   | export contacts                                                  | easily integrate with existing data.                             |
+| `* *`    | user                   | have my information be secure                                    | so that my contacts are not leaked to others.                    |
+| `* *`    | busy user              | set reminders for specific contacts                              | connect with them better.                                        |
+| `* *`    | efficient user         | use keyboard shortcuts for frequently-used actions               | work more efficiently.                                           |
+| `* *`    | user                   | track the history of interactions with specific contacts         | personalize my communication and build stronger relationships.   |
+| `* *`    | user                   | have a user-friendly interface                                   | easily navigate the application.                                 |
+| `* *`    | user with many friends | know which people are in which friend groups                     | keep track of my friend groups.                                  |
+| `* *`    | user                   | import/export my contact list in a common format                 | back up my data and export/import it from/to other applications. |
+| `* *`    | user                   | change deadlines                                                 | manage my schedule more effectively.                             |
+| `* *`    | forgetful user         | use commands (possibly with aliases) that are easily remembered  | find the application easier to use.                              |
+| `*`      | user                   | find the people I have not interacted with in a long time        | maintain a good relationship with them.                          |
+| `*`      | user                   | look at the people I interact with the most                      | know who I spend the most time with.                             |
+| `* *`    | user                   | set data validation rules for certain fields                     | ensure the accuracy of my contact information.                   |
+| `* *`    | user                   | make a clear schedule of what I will do in the future            | plan my schedule well.                                           |
+| `* *`    | user                   | set recurring tasks or reminders associated with contacts        | maintain the connections I have.                                 |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Student Contact Manager` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Student Contact Manager shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4. Student Contact Manager deletes the person
 
     Use case ends.
 
@@ -340,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Student Contact Manager shows an error message.
 
       Use case resumes at step 2.
 
