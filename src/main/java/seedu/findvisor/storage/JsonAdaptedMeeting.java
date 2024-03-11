@@ -1,6 +1,7 @@
 package seedu.findvisor.storage;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -45,12 +46,16 @@ class JsonAdaptedMeeting {
         if (start == "" || end == "") {
             return Optional.empty();
         }
-        LocalDateTime start = DateTimeUtil.parseDateTimeString(this.start);
-        LocalDateTime end = DateTimeUtil.parseDateTimeString(this.end);
-        if (!Meeting.isValidDateTime(start, end)) {
+        try {
+            LocalDateTime start = DateTimeUtil.parseDateTimeString(this.start);
+            LocalDateTime end = DateTimeUtil.parseDateTimeString(this.end);
+            if (!Meeting.isValidDateTime(start, end)) {
+                throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
+            }
+            return Optional.of(new Meeting(start, end));
+        } catch (DateTimeParseException e) {
             throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
         }
-        return Optional.of(new Meeting(start, end));
     }
 
 }
