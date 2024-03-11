@@ -19,7 +19,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Joel Wang
 
-<img src="images/joelwang22.png" width="200px">
+<img src="images/joelwang22.png.jpg" width="200px">
 
 [[github](http://github.com/joelwang22)]
 [[portfolio](team/joel.md)]
