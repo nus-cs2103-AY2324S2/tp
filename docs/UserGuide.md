@@ -164,9 +164,9 @@ Examples:
 ### Importing a datafile: `import`
 Imports contact details from a JSON file with filename specified.
 
-Format: `import FILENAME [FILENAME_2] [FILENAME_3] …`
+Format: `import f/FILENAME_1 [f/FILENAME_2] [f/FILENAME_3] …`
 
-* `FILENAME` needs to be a valid filename that is found in the `./data/` directory
+* `FILENAME_n` needs to be a valid filename that is found in the `./data/` directory
 
 Examples:
 * import export
@@ -232,15 +232,15 @@ Furthermore, certain edits can cause Student Contact Manager to behave in unexpe
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
-**find_by_tag** | `find_by_tag TAG [n/NAME] [a/ADDRESS]`
-**find_and_export** | `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`
-**import** | `import FILENAME1 [FILENAME2] [FILENAME 3] ...`
+| Action              | Format, Examples                                                                                                                                                      |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**           | `clear`                                                                                                                                                               |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] ...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                         |
+| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**            | `list`                                                                                                                                                                |
+| **Help**            | `help`                                                                                                                                                                |
+| **find_by_tag**     | `find_by_tag TAG [n/NAME] [a/ADDRESS]`                                                                                                                                |
+| **find_and_export** | `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`                                                                                                               |
+| **import**          | `import f/FILENAME_1 [f/FILENAME_2] [f/FILENAME_3] ...`                                                                                                               |
