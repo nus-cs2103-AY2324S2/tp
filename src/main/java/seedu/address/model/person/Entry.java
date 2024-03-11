@@ -7,6 +7,8 @@ public class Entry {
 
     public static final String VALIDATION_REGEX = "*";
 
+    public static final String MESSAGE_CONSTRAINTS = "Category or description cannot be empty!";
+
 
     public Entry(String category, String description) {
         this.category = category;
@@ -34,11 +36,11 @@ public class Entry {
         return category + ": " + description;
     }
 
-    public boolean isValid() {
-        if (category.trim().equals("")) {
+    public static boolean isValid(String category, String description) {
+        if (description.trim().equals("")) {
             return false;
         }
-        if (description.trim().equals("")) {
+        if (category.trim().equals("")) {
             return false;
         }
         return true;
@@ -54,8 +56,7 @@ public class Entry {
             return false;
         }
 
-        Entry otherEntry = (Entry) other;
-        return getCategory().equals(otherEntry.getCategory());
+        return false;
     }
     @Override
     public int hashCode() {

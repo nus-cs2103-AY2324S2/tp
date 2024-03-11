@@ -56,8 +56,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getEntry("Name").equals(getEntry("Name"));
+        return false;
     }
 
     /**
@@ -75,12 +74,7 @@ public class Person {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return getEntry("Name").equals(otherPerson.getEntry("Name"))
-                && getEntry("Phone").equals(otherPerson.getEntry("Phone"))
-                && getEntry("Email").equals(otherPerson.getEntry("Email"))
-                && getEntry("Address").equals(otherPerson.getEntry("Address"))
-                && tags.equals(otherPerson.tags);
+        return false;
     }
 
     @Override
