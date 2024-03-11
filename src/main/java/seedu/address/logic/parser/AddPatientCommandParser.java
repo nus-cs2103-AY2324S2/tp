@@ -1,21 +1,20 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.NRIC;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.DoB;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
-
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -36,7 +35,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NRIC, PREFIX_NAME, PREFIX_DOB, PREFIX_PHONE);
-        NRIC nric = ParserUtil.parseNRIC(argMultimap.getValue(PREFIX_NRIC).get());
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         DoB dob = ParserUtil.parseDoB(argMultimap.getValue(PREFIX_DOB).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());

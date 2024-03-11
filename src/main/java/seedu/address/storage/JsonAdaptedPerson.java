@@ -1,16 +1,18 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.DoB;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -45,7 +47,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         type = source.getType().toString();
-        nric = source.getNRIC().nric;
+        nric = source.getNric().nric;
         name = source.getName().fullName;
         dob = source.getDoB().dateOfBirth.toString();
         phone = source.getPhone().value;
@@ -58,12 +60,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NRIC.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
         }
-        if (!NRIC.isValidNRIC(nric)) {
-            throw new IllegalValueException(NRIC.MESSAGE_CONSTRAINTS);
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
-        final NRIC modelNRIC = new NRIC(nric);
+        final Nric modelNric = new Nric(nric);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -90,8 +92,10 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         switch (type) {
-            case "PATIENT":
-                return new Patient(modelNRIC, modelName, modelDoB, modelPhone);
+        case "PATIENT":
+            return new Patient(modelNric, modelName, modelDoB, modelPhone);
+        default:
+            break;
         }
 
         return null;

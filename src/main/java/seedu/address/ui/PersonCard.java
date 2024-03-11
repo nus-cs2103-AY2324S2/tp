@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -49,7 +46,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         type.setText(person.getType().toString());
-        nric.setText(person.getNRIC().nric);
+        nric.setText(person.getNric().nric);
         name.setText(person.getName().fullName);
         dob.setText(person.getDoB().toString());
         phone.setText(person.getPhone().value);

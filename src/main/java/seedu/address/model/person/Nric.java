@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's nric in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
-public class NRIC {
+public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
             "NRIC should only contain alphanumeric characters of length 9 and match the correct format.";
@@ -25,16 +25,16 @@ public class NRIC {
      *
      * @param nric A valid nric.
      */
-    public NRIC(String nric) {
+    public Nric(String nric) {
         requireNonNull(nric);
-        checkArgument(isValidNRIC(nric), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
         this.nric = nric;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidNRIC(String test) {
+    public static boolean isValidNric(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -55,8 +55,8 @@ public class NRIC {
             return false;
         }
 
-        NRIC otherNRIC = (NRIC) other;
-        return nric.equals(otherNRIC.nric);
+        Nric otherNric = (Nric) other;
+        return nric.equals(otherNric.nric);
     }
 
     @Override

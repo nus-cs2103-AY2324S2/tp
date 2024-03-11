@@ -27,7 +27,7 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NRIC + person.getNRIC().nric + " ");
+        sb.append(PREFIX_NRIC + person.getNric().nric + " ");
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_DOB + person.getDoB().dateOfBirth.toString() + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");

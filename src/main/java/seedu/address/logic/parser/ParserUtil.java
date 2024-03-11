@@ -9,12 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NRIC;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.DoB;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DoB;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,13 +37,31 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
-    public static NRIC parseNRIC(String nric) throws ParseException {
+    /**
+     * Parses the given National Registration Identification Card (NRIC) string into a {@code NRIC} object.
+     * <p>
+     * The input string is required to be non-null, and the parsing is performed after trimming any
+     * leading or trailing spaces. If the trimmed NRIC string does not meet the validity constraints specified
+     * in the {@code NRIC} class (as determined by {@link Nric#isValidNric(String)}), a {@code ParseException}
+     * is thrown with the corresponding error message.
+     * </p>
+     * <p>
+     * Example of a valid NRIC string: "S1234567A".
+     * </p>
+     *
+     * @param nric The National Registration Identification Card (NRIC) string to be parsed.
+     * @return A {@code NRIC} object representing the parsed NRIC.
+     * @throws ParseException If the input string is null, empty, or does not meet the validity constraints.
+     * @see Nric#isValidNric(String)
+     * @see Nric
+     */
+    public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
-        String trimmedNRIC = nric.trim();
-        if (!NRIC.isValidNRIC(trimmedNRIC)) {
-            throw new ParseException(NRIC.MESSAGE_CONSTRAINTS);
+        String trimmedNric = nric.trim();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
-        return new NRIC(trimmedNRIC);
+        return new Nric(trimmedNric);
     }
 
     /**
@@ -61,6 +79,24 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses the given date of birth (DoB) string into a {@code DoB} object.
+     * <p>
+     * The input string is required to be non-null, and the parsing is performed after trimming any leading
+     * or trailing spaces. If the trimmed DoB string does not meet the validity constraints specified in the
+     * {@code DoB} class (as determined by {@link DoB#isValidDoB(String)}), a {@code ParseException} is thrown
+     * with the corresponding error message.
+     * </p>
+     * <p>
+     * Example of a valid DoB string: "3 January 2000".
+     * </p>
+     *
+     * @param dob The date of birth string to be parsed.
+     * @return A {@code DoB} object representing the parsed date of birth.
+     * @throws ParseException If the input string is null, empty, or does not meet the validity constraints.
+     * @see DoB#isValidDoB(String)
+     * @see DoB
+     */
     public static DoB parseDoB(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDoB = dob.trim();

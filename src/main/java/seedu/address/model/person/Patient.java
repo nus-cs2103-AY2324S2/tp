@@ -11,7 +11,7 @@ public class Patient extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Patient(NRIC nric, Name name, DoB dob, Phone phone) {
+    public Patient(Nric nric, Name name, DoB dob, Phone phone) {
         super(Type.PATIENT, nric, name, dob, phone);
     }
 
@@ -36,7 +36,7 @@ public class Patient extends Person {
         }
 
         Patient otherPerson = (Patient) other;
-        return getNRIC().equals(otherPerson.getNRIC())
+        return getNric().equals(otherPerson.getNric())
                 && getName().equals(otherPerson.getName())
                 && getDoB().equals(otherPerson.getDoB())
                 && getPhone().equals(otherPerson.getPhone());
@@ -52,7 +52,7 @@ public class Patient extends Person {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("type", Type.PATIENT)
-                .add("nric", getNRIC())
+                .add("nric", getNric())
                 .add("name", getName())
                 .add("dob", getDoB())
                 .add("phone", getPhone())

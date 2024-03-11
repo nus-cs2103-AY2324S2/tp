@@ -1,9 +1,6 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-
 import seedu.address.model.person.*;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -15,7 +12,7 @@ public class PatientBuilder {
     public static final String DEFAULT_DOB = "2002-01-30";
     public static final String DEFAULT_PHONE = "85355255";
 
-    private NRIC nric;
+    private Nric nric;
     private Name name;
     private DoB dob;
     private Phone phone;
@@ -24,7 +21,7 @@ public class PatientBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PatientBuilder() {
-        nric = new NRIC(DEFAULT_NRIC);
+        nric = new Nric(DEFAULT_NRIC);
         name = new Name(DEFAULT_NAME);
         dob = new DoB(DEFAULT_DOB);
         phone = new Phone(DEFAULT_PHONE);
@@ -37,14 +34,14 @@ public class PatientBuilder {
         if (patientToCopy.getType() != Type.PATIENT) {
             throw new RuntimeException();
         }
-        nric = patientToCopy.getNRIC();
+        nric = patientToCopy.getNric();
         name = patientToCopy.getName();
         dob = patientToCopy.getDoB();
         phone = patientToCopy.getPhone();
     }
 
     public PatientBuilder withNRIC(String nric) {
-        this.nric = new NRIC(nric);
+        this.nric = new Nric(nric);
         return this;
     }
 

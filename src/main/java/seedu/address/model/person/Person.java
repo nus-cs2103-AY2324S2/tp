@@ -2,13 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -18,7 +14,7 @@ public abstract class Person {
 
     // Identity fields
     private final Type type;
-    private final NRIC nric;
+    private final Nric nric;
     private final Name name;
     private final DoB dob;
     private final Phone phone;
@@ -26,7 +22,7 @@ public abstract class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Type type, NRIC nric, Name name, DoB dob, Phone phone) {
+    public Person(Type type, Nric nric, Name name, DoB dob, Phone phone) {
         requireAllNonNull(type, nric, name, dob, phone);
         this.type = type;
         this.nric = nric;
@@ -38,7 +34,7 @@ public abstract class Person {
     public Type getType() {
         return type;
     }
-    public NRIC getNRIC() {
+    public Nric getNric() {
         return nric;
     }
     public Name getName() {

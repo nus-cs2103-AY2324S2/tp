@@ -5,14 +5,10 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.NRIC;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.DoB;
 import seedu.address.model.person.Phone;
@@ -23,7 +19,7 @@ public class JsonAdaptedPatientTest {
     private static final String INVALID_DOB = "2023-02-31";
     private static final String INVALID_PHONE = "+651234";
 
-    private static final String VALID_NRIC = BENSON.getNRIC().toString();
+    private static final String VALID_NRIC = BENSON.getNric().toString();
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_DOB = BENSON.getDoB().dateOfBirth.toString();
     private static final String VALID_PHONE =  BENSON.getPhone().toString();
@@ -38,14 +34,14 @@ public class JsonAdaptedPatientTest {
     public void toModelType_invalidNRIC_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson("PATIENT", INVALID_NRIC, VALID_NAME, VALID_DOB, VALID_PHONE);
-        String expectedMessage = NRIC.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Nric.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullNRIC_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson("PATIENT", null, VALID_NAME, VALID_DOB, VALID_PHONE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, NRIC.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
     @Test
