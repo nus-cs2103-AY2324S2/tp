@@ -57,7 +57,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -283,7 +283,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * has a need to schedule classes
 * has a need to coordinate with teaching assistants
 * has a need to effectively communicate with students
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of persons
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -291,9 +291,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 
-* manage contacts faster than a typical mouse/GUI driven app
-* Centralised platform to store and manage contact details for all relevant individuals involved in course administration
-* Easier access to information through organising relevant contacts into different subgroups
+* manage persons faster than a typical mouse/GUI driven app
+* Centralised platform to store and manage person details for all relevant individuals involved in course administration
+* Easier access to information through organising relevant persons into different subgroups
 * Direct linkages to students’ schoolwork for easier tracking
 * Able to set up the address book through different data-loading options
 * Able to assist with management of large scale communication
@@ -309,24 +309,24 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                           | So that I can…​                                                        |
-|----------|--------------------------------------------|----------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | potential user exploring the app           | see the app populated with sample data | immediately see an example of the app in use                           |
-| `* * *`  | new user                                   | easily clear the example data          | start using the app with real-life data                                |
-| `* * *`  | new user                                   | see usage instructions                 | refer to instructions when I forget how to use the App                 |
-| `* * *`  | new user                                   | add contacts with their details        | start populating the address book                                      |
-| `* * *`  | new user                                   | save the data I input into the app     | don't lose the information I've entered                                |
-| `* * *`  | user                                       | add a new person                       |                                                                        |
-| `* * *`  | user                                       | delete a person                        | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | update and edit contact details        | keep my address book accurate                                          |
-| `* * *`  | user                                       | find a person by name                  | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | find a person by name                  | locate details of persons without having to go through the entire list |
-| `* * *`  | head tutor using the app                   | categorise my contacts into groups     | manage different tutorial groups effectively                           |
-| `* * *`  | head tutor using the app                   | copy email addresses of a group        | effectively communicate with target groups                             |
-| `* * *`  | user                                       | find a person by name                  | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details           | minimize chance of someone else seeing them by accident                |
-| `* *`    | experienced user                           | use the address book offline           | update and interact with it anywhere                                   |
-| `*`      | user with many persons in the address book | sort persons by name                   | locate a person easily                                                 |
+| Priority | As a …​                                      | I want to …​                            | So that I can…​                                                          |
+|----------|---------------------------------------------|----------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app            | see the app populated with sample data | immediately see an example of the app in use                            |
+| `* * *`  | new user                                    | easily clear the example data          | start using the app with real-life data                                 |
+| `* * *`  | new user                                    | see usage instructions                 | refer to instructions when I forget how to use the App                  |
+| `* * *`  | new user                                    | add persons with their details         | start populating the address book                                       |
+| `* * *`  | new user                                    | save the data I input into the app     | don't lose the information I've entered                                 |
+| `* * *`  | user                                        | add a new person                       |                                                                         |
+| `* * *`  | user                                        | delete a person                        | remove entries that I no longer need                                    |
+| `* * *`  | user                                        | update and edit person details         | keep my address book accurate                                           |
+| `* * *`  | user                                        | find a person by name                  | locate details of persons without having to go through the entire list  |
+| `* * *`  | user                                        | find a person by name                  | locate details of persons without having to go through the entire list  |
+| `* * *`  | head tutor using the app                    | categorise my persons into groups      | manage different tutorial groups effectively                            |
+| `* * *`  | head tutor using the app                    | copy email addresses of a group        | effectively communicate with target groups                              |
+| `* * *`  | user                                        | find a person by name                  | locate details of persons without having to go through the entire list  |
+| `* *`    | user                                        | hide private person details            | minimize chance of someone else seeing them by accident                 |
+| `* *`    | experienced user                            | use the address book offline           | update and interact with it anywhere                                    |
+| `*`      | user with many persons in the address book  | sort persons by name                   | locate a person easily                                                  |
 
 *{More to be added}*
 
@@ -334,18 +334,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 — Delete a person**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list persons
+1.  User !!requests to list persons (UC04)!!
 2.  AddressBook shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -357,9 +357,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Help**
+**Use case: UC02 — Help**
 
-**MSS**
+**MSS:**
 
 1.  User requests help information.
 2.  AddressBook displays help information.
@@ -367,29 +367,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add**
+**Use case: UC03 — Add a person**
 
-**MSS**
+**MSS:**
 
-1.  User requests to add a new person.
-2.  AddressBook prompts the user to input details for the new person.
-3.  User inputs details for the new person.
-4.  AddressBook saves the new person's information.
-5.  AddressBook confirms the addition of the new person.
+1.  User requests to add a new person and inputs details for the new person.
+2.  AddressBook saves the new person's information.
+3.  AddressBook confirms the addition of the new person.
 
     Use case ends.
 
-**Use case: List**
+**Extensions:**
 
-**MSS**
+*  1a. User does not input all compulsory parameters along with the person.
+
+    *  1a1. AddressBook prompts the user on the proper usage of the command.
+
+        Step 1a1 is repeated until the data entered is correct.
+
+*  1b. User tries to add a person with an existing email address.
+
+    *  1b1. AddressBook displays and error message informing the user that the email address already exists.
+
+        Step 1b1 is repeated until a valid email address if entered.
+
+**Use case: UC04 — List all persons**
+
+**MSS:**
 
 1.  User requests to list persons.
-2.  AddressBook shows a list of persons.
+2.  AddressBook shows the list of persons.
 3.  User views the list of persons.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -397,82 +409,143 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Edit**
+**Use case: UC05 — Edit a person's details**
 
-**MSS**
+**MSS:**
 
-1.  User requests to edit a specific person.
-2.  AddressBook prompts the user to select the person to edit.
-3.  User selects the person to edit.
-4.  AddressBook displays the details of the selected person.
-5.  User updates the details of the person.
-6.  AddressBook saves the updated details.
-7.  AddressBook confirms the successful update.
+1.  User requests to edit a specific person with updated details.
+2.  AddressBook saves the updated details.
+3.  AddressBook confirms the successful update.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
-*   2a. The list is empty.
+*   1a. User does not input enough parameters along with the person.
 
-    * 2a1. AddressBook displays a message indicating that the list is empty.
+    *  1a1. AddressBook prompts the user on the proper usage of the command.
 
-    Use case ends.
+       Step 1a1 is repeated until the data entered is correct.
 
-*   3a. The selected person does not exist.
+*   1b. The selected person does not exist.
 
-    * 3a1. AddressBook displays an error message indicating that the person does not exist.
+    *  1b1. AddressBook displays an error message indicating that the person does not exist.
 
-      Use case resumes at step 2.
+      Use case ends.
 
-**Use case: Find**
+**Use case: UC06 — Find persons**
 
-**MSS**
+**MSS:**
 
-1.  User requests to find a specific person.
-2.  AddressBook prompts the user to input search criteria.
-3.  User inputs search criteria.
-4.  AddressBook searches for persons matching the criteria.
-5.  AddressBook displays a list of persons matching the criteria.
+1.  User requests to find a specific person matching the search criteria.
+2.  AddressBook displays a list of persons matching the criteria.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
-*    5a. No persons match the search criteria.
+*    1a. No persons match the search criteria.
 
-*   5a1. AddressBook displays a message indicating that no persons match the criteria.
+     *   1a1. AddressBook displays a message indicating that no persons match the criteria.
 
-Use case ends.
+     Use case ends.
 
-**Use case: Clear**
+
+**Use case: UC07 — Import persons**
 
 **MSS**
+1. User requests to import persons from a csv file.
+2. AddressBook displays a message that all persons have been imported.
+3. User is able to see all the persons imported when a list of persons is requested.
+   Use case ends.
+
+**Extension**
+
+*   1a. AddressBook cannot find file to be imported.
+
+    *   1a1. AddressBook displays a message indicating that the file is not recognised.
+
+    Use case ends.
+
+*   1b. The file to be imported is not a csv file.
+
+    *  1b1. AddressBook displays an error message indicating that the file type is not recognised and should be a csv file
+
+    Use case ends.
+
+
+**Use case: UC08 — Copy email addresses**
+
+**MSS:**
+
+1.  User requests to copy emails of currently displayed persons.
+2.  AddressBook copies the emails of currently displayed persons
+into user's clipboard.
+3.  AddressBook notifies the user that emails have been copied.
+4.  User can paste emails when composing emails.
+
+    Use case ends.
+
+**Extensions:**
+
+*   2a. No persons currently displayed.
+
+    * 2a1. AddressBook displays a message indicating that
+    no persons are currently displayed.
+
+    Use case ends.
+
+**Use case: UC09 — Clear all persons**
+
+**MSS:**
 
 1.  User requests to clear all persons.
-2.  AddressBook prompts the user to confirm the action.
-3.  User confirms the action.
-4.  AddressBook clears all persons.
+2.  AddressBook clears all persons.
+3.  AddressBook displays a message indicating that all persons have been cleared.
 
     Use case ends.
 
-**Use case: Exit**
+**Extensions:**
 
-**MSS**
+*    1a. User inputs extraneous parameters.
+
+     *   1a1. AddressBook displays a message indicating that an extraneous parameter was found, and confirms User's intention.
+
+         Use case ends.
+
+**Use case: UC10 — Export persons to CSV**
+
+**MSS:**
+
+1.  User requests to export all persons and details to a CSV file.
+2.  AddressBook exports the persons to a CSV file.
+3.  AddressBook displays a message to confirm that all persons have been exported to a CSV file.
+
+    Use case ends.
+
+**Use case: UC11 — Exit application**
+
+**MSS:**
 
 1.  User requests to exit the application.
-2.  AddressBook prompts the user to confirm the exit.
-3.  User confirms the exit.
-4.  AddressBook exits the application.
+2.  AddressBook exits the application.
 
     Use case ends.
+
+**Extensions:**
+
+*    1a. User inputs extraneous parameters.
+
+     *   1a1. AddressBook displays a message indicating that an extraneous parameter was found, and confirms User's intention.
+
+         Use case ends.
 
 ### Non-Functional Requirements
 
 1.   Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.   Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.   A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.   A user should be able to import up to 1000 contacts from an external source without a noticeable sluggishness in performance for typical usage.
+4.   A user should be able to import up to 1000 persons from an external source without a noticeable sluggishness in performance for typical usage.
 5.   The application should provide comprehensive documentation and help resources to assist users in understanding how to use the software effectively.
 
 
@@ -481,7 +554,7 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private person detail**: A person detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -502,7 +575,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample persons. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -520,7 +593,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First person is deleted from the list. Details of the deleted person shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
