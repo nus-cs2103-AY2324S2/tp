@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.attribute;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.person.attribute.BirthdayAttribute;
 
 public class BirthdayAttributeTest {
 

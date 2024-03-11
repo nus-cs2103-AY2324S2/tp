@@ -1,9 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.person.attribute;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.address.model.person.attribute.StringAttribute;
 
 public class StringAttributeTest {
     private StringAttribute stringAttributeOne;
