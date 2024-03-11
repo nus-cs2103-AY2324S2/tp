@@ -1,13 +1,11 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address {
+public class Address extends Entry {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
@@ -17,7 +15,6 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
 
     /**
      * Constructs an {@code Address}.
@@ -25,9 +22,7 @@ public class Address {
      * @param address A valid address.
      */
     public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        super("Address" , address);
     }
 
     /**
@@ -39,7 +34,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return super.toString();
     }
 
     @Override
@@ -54,12 +49,12 @@ public class Address {
         }
 
         Address otherAddress = (Address) other;
-        return value.equals(otherAddress.value);
+        return getDescription().equals(otherAddress.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return getDescription().hashCode();
     }
 
 }
