@@ -1,7 +1,5 @@
 package seedu.address.model.internship;
 
-import seedu.address.model.person.Address;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,8 +7,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Internship's application status in the internship book.
  */
 public class ApplicationStatus {
-    public static final String MESSAGE_CONSTRAINTS = "Application statuses have to be either to_apply, pending, " +
-            "rejected, accepted, or ongoing";
+    public static final String MESSAGE_CONSTRAINTS = "Application statuses have to be either to_apply, pending, "
+            + "rejected, accepted, or ongoing";
 
     public static final String VALIDATION_REGEX = "(?i)to_apply|pending|rejected|accepted|ongoing";
 

@@ -1,7 +1,5 @@
 package seedu.address.model.internship;
 
-import jdk.javadoc.doclet.Taglet;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
