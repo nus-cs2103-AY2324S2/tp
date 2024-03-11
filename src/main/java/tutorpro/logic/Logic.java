@@ -7,9 +7,9 @@ import tutorpro.commons.core.GuiSettings;
 import tutorpro.logic.commands.CommandResult;
 import tutorpro.logic.commands.exceptions.CommandException;
 import tutorpro.logic.parser.exceptions.ParseException;
+import tutorpro.model.Model;
 import tutorpro.model.ReadOnlyAddressBook;
 import tutorpro.model.person.Person;
-import tutorpro.model.Model;
 
 /**
  * API of the Logic component

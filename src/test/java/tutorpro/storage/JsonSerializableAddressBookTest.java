@@ -1,7 +1,7 @@
 package tutorpro.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static tutorpro.testutil.Assert.assertThrows;
+//import static tutorpro.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,15 +11,19 @@ import org.junit.jupiter.api.Test;
 import tutorpro.commons.exceptions.IllegalValueException;
 import tutorpro.commons.util.JsonUtil;
 import tutorpro.model.AddressBook;
-import tutorpro.testutil.TypicalPersons;
 import tutorpro.testutil.Assert;
+import tutorpro.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
+    private static final Path TYPICAL_PERSONS_FILE =
+            TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
+    private static final Path INVALID_PERSON_FILE =
+            TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
+    private static final Path DUPLICATE_PERSON_FILE =
+            TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {

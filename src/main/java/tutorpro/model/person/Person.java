@@ -1,15 +1,15 @@
 package tutorpro.model.person;
 
-import static tutorpro.commons.util.CollectionUtil.requireAllNonNull;
+//import static tutorpro.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import tutorpro.commons.util.CollectionUtil;
 import tutorpro.commons.util.ToStringBuilder;
 import tutorpro.model.tag.Tag;
-import tutorpro.commons.util.CollectionUtil;
 
 /**
  * Represents a Person in the address book.
