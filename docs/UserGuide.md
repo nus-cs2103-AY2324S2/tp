@@ -100,7 +100,7 @@ Format: `add --name <name> [--email <email>] [--phone <phone>] [--address <addre
 Delete a contact from the system by specifying its ID.
 
 Format: `delete <id>`
-* The id refers to the unique contact id shown in the GUI.
+* `id` refers to the unique contact index shown in the GUI.
 * The asset(s) associated with the contact will not be deleted.
 
 #### Examples
