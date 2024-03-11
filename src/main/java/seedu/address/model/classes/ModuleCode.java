@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ModuleCode {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric and adhere to the following constraints:\n"
+    public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric and "
+        + "adhere to the following constraints:\n"
             + "1. Module codes should consist of 2 to 4 uppercase letters followed by 4 digits.\n"
             + "2. The letters should be alphabetic.";
 

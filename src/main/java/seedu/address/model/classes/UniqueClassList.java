@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.classes.exceptions.DuplicateClassException;
 import seedu.address.model.classes.exceptions.ClassNotFoundException;
+import seedu.address.model.classes.exceptions.DuplicateClassException;
 
 /**
  * A list of classes that enforces uniqueness between its elements and does not allow nulls.

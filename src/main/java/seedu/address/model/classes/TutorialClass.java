@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TutorialClass {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial classes should consist of a 'T' followed by 2 digits (e.g., T09, T15).";
+    public static final String MESSAGE_CONSTRAINTS = "Tutorial classes should consist of a 'T' "
+        + "followed by 2 digits (e.g., T09, T15).";
 
     public final String value;
 
