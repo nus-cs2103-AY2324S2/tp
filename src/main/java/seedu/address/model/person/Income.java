@@ -5,12 +5,12 @@ public class Income {
     public static final String MESSAGE_CONSTRAINTS = "Income should at least be 0";
     private Integer incomeValue = 0;
 
-    public Income(Integer incomeValue) {
+    public Income(String incomeValue) {
         requireNonNull(incomeValue);
-        this.incomeValue = incomeValue;
+        this.incomeValue = Integer.parseInt(incomeValue);
     }
 
-    public static boolean isValidIncome(Integer incomeValue) {
-        return incomeValue >= 0;
+    public static boolean isValidIncome(String incomeValue) {
+        return Integer.parseInt(incomeValue) >= 0;
     }
 }

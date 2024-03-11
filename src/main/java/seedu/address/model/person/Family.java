@@ -5,12 +5,12 @@ public class Family {
     public static final String MESSAGE_CONSTRAINTS = "Family size should be at least one";
     private Integer familySize;
 
-    public Family(Integer familySize) {
+    public Family(String familySize) {
         requireNonNull(familySize);
-        this.familySize = familySize;
+        this.familySize = Integer.valueOf(familySize);
     }
 
-    public static boolean isValidFamilySize(Integer familySize) {
-        return familySize >= 0;
+    public static boolean isValidFamily(String familySize) {
+        return Integer.parseInt(familySize) >= 0;
     }
 }

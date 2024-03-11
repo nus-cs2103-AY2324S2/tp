@@ -11,8 +11,10 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Family;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Income;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,6 +52,8 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+
+
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
@@ -63,6 +67,21 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String income} into a {@code Income}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code income} is invalid.
+     */
+    public static Income parseIncome(String income) throws ParseException {
+        requireNonNull(income);
+        String trimmedIncome = income.trim();
+        if (!Income.isValidIncome(trimmedIncome)) {
+            throw new ParseException(Income.MESSAGE_CONSTRAINTS);
+        }
+        return new Income(trimmedIncome);
     }
 
     /**
@@ -93,6 +112,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String family} into a {@code Family}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code family} is invalid.
+     */
+    public static Family parseFamily(String family) throws ParseException {
+        requireNonNull(family);
+        String trimmedFamily = family.trim();
+        if (!Family.isValidFamily(trimmedFamily)) {
+            throw new ParseException(Family.MESSAGE_CONSTRAINTS);
+        }
+        return new Family(trimmedFamily);
     }
 
     /**
