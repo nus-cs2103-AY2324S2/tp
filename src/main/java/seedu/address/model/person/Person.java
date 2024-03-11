@@ -108,7 +108,8 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
-    /** Returns true if the UUID of the person is the same as the UUID of the other object.
+    /**
+     * Returns true if the UUID of the person is the same as the UUID of the other object.
      *
      * @param other The object to compare with.
      * @return True if the UUID of the person is the same as the UUID of the other object.
