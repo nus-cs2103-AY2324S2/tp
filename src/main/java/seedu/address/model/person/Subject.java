@@ -30,11 +30,11 @@ public class Subject {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Phone)) {
+        if (!(other instanceof Subject)) {
             return false;
         }
 
-        Phone otherPhone = (Phone) other;
+        Subject otherPhone = (Subject) other;
         return value.equals(otherPhone.value);
     }
 
