@@ -325,14 +325,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  Command names should be clear and well-defined
 7.  Error messages should clearly state issues or propose solution
 8.  Should be used by a single user
-9.  Should still work on command line if there is no graphical interface.
+9.  Should still work on CLI if there is no GUI.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command line interface
+* **GUI**: Graphical user interface
 
 --------------------------------------------------------------------------------------------------------------------
 
