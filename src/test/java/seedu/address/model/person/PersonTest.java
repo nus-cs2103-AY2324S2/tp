@@ -115,4 +115,9 @@ public class PersonTest {
         Person person2 = new PersonBuilder().build();
         assertFalse(person1.getUuidString().equals(person2.getUuidString()));
     }
+
+    @Test
+    public void getUuid() {
+        assertTrue(ALICE.getUuid() != null);
+    }
 }

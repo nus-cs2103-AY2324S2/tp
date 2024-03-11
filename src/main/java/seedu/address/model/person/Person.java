@@ -69,6 +69,14 @@ public class Person {
      *
      * @return The uuid of the person.
      */
+    public UUID getUuid() {
+        return uuid;
+    }
+    /**
+     * Returns the uuid of the person as a string.
+     *
+     * @return The uuid of the person as a string.
+     */
     public String getUuidString() {
         return uuid.toString();
     }
