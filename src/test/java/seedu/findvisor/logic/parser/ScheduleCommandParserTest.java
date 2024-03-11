@@ -20,7 +20,9 @@ public class ScheduleCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT,
+                    ScheduleCommand.MESSAGE_USAGE));
     }
 
     @Test

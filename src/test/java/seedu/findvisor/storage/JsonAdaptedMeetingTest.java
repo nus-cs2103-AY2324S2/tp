@@ -1,11 +1,10 @@
 package seedu.findvisor.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.findvisor.commons.util.DateTimeUtil.parseDateTimeString;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 
 import java.util.Optional;
-
-import static seedu.findvisor.commons.util.DateTimeUtil.parseDateTimeString;
 
 import org.junit.jupiter.api.Test;
 

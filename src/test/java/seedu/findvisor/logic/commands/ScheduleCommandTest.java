@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeeting;
-import static seedu.findvisor.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.findvisor.logic.commands.CommandTestUtil.createOldMeeting;
 import static seedu.findvisor.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.findvisor.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.findvisor.logic.commands.CommandTestUtil.createOldMeeting;
+import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeeting;
+import static seedu.findvisor.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.findvisor.testutil.TypicalPersons.getTypicalAddressBook;
@@ -23,8 +23,8 @@ import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.ModelManager;
 import seedu.findvisor.model.UserPrefs;
-import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.Meeting;
+import seedu.findvisor.model.person.Person;
 import seedu.findvisor.testutil.PersonBuilder;
 
 public class ScheduleCommandTest {
