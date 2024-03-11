@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Tag;
@@ -16,11 +17,13 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
+    public static final String DEFAULT_NUSID = "E1234567";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_TAG = "Student";
 
+    private NusId nusId;
     private Name name;
     private Phone phone;
     private Email email;
@@ -31,6 +34,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
+        nusId = new NusId(DEFAULT_NUSID);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -42,11 +46,20 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        nusId = personToCopy.getNusId();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         tag = personToCopy.getTag();
         groups = new HashSet<>(personToCopy.getGroups());
+    }
+
+    /**
+     * Sets the {@code NusId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNusId(String nusId) {
+        this.nusId = new NusId(nusId);
+        return this;
     }
 
     /**
@@ -90,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, tag, groups);
+        return new Person(nusId, name, phone, email, tag, groups);
     }
 
 }

@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Tag;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.group.Group;
@@ -38,6 +39,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        NusId nusId = new NusId("E0123456"); // dummy nusId
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -45,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         Set<Group> groupList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
-        Person person = new Person(name, phone, email, tag, groupList);
+        Person person = new Person(nusId, name, phone, email, tag, groupList);
 
         return new AddCommand(person);
     }

@@ -17,6 +17,7 @@ import seedu.address.model.group.Group;
 public class Person {
 
     // Identity fields
+    private final NusId nusId;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -28,8 +29,9 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Tag tag, Set<Group> groups) {
-        requireAllNonNull(name, phone, email, tag, groups);
+    public Person(NusId nusId, Name name, Phone phone, Email email, Tag tag, Set<Group> groups) {
+        requireAllNonNull(nusId, name, phone, email, tag, groups);
+        this.nusId = nusId;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +53,10 @@ public class Person {
 
     public Tag getTag() {
         return tag;
+    }
+
+    public NusId getNusId() {
+        return nusId;
     }
 
     /**
@@ -106,6 +112,7 @@ public class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("nusId", nusId)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

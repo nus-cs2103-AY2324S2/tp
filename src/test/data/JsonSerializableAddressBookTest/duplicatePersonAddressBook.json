@@ -1,11 +1,13 @@
 {
   "persons": [ {
+    "nusid": "E0123456",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "tag": "Student",
     "groups": [ "friends" ]
   }, {
+    "nusid": "E0123456",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",

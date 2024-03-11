@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label nusId;
+    @FXML
     private FlowPane groups;
 
     /**
@@ -48,6 +50,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        nusId.setText(person.getNusId().value);
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         tag.setText(person.getTag().value.toString());

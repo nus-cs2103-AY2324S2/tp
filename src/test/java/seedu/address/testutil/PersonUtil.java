@@ -33,7 +33,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_TAG + person.getTag().value + " ");
+        sb.append(PREFIX_TAG + person.getTag().value.toString() + " ");
         person.getGroups().stream().forEach(
             s -> sb.append(PREFIX_GROUP + s.groupName + " ")
         );
