@@ -7,7 +7,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -18,7 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final ArrayList<Module> modules;
+    private final ArrayList<ModuleCode> modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -82,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
-    public boolean hasModule(Module module) {
+    public boolean hasModule(ModuleCode module) {
         requireNonNull(module);
         return modules.contains(module);
     }
@@ -91,7 +91,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a module to the address book.
      * The module must not already exist in the address book. (TODO)
      */
-    public void addModule(Module m) {
+    public void addModule(ModuleCode m) {
         modules.add(m);
     }
 

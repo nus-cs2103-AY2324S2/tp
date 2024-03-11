@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Name;
 
 /**
- * Jackson-friendly version of {@link Module}.
+ * Jackson-friendly version of {@link ModuleCode}.
  */
 class JsonAdaptedModule {
 
@@ -33,8 +33,8 @@ class JsonAdaptedModule {
     /**
      * Converts a given {@code Module} into this class for Jackson use.
      */
-    public JsonAdaptedModule(Module source) {
-        name = source.getName().fullName;
+    public JsonAdaptedModule(ModuleCode source) {
+        name = source.toString();
         this.tutorialClasses = source.getTutorialClasses();
     }
 
@@ -43,16 +43,10 @@ class JsonAdaptedModule {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Module toModelType() throws IllegalValueException {
-
+    public ModuleCode toModelType() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        return new Module(modelName, tutorialClasses);
+        return new ModuleCode(name, tutorialClasses);
     }
 }

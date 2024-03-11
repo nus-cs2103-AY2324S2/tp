@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 
 
@@ -96,7 +96,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasModule(Module module) {
+    public boolean hasModule(ModuleCode module) {
         requireNonNull(module);
         return addressBook.hasModule(module);
     }
@@ -112,7 +112,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addModule(Module module) {
+    public void addModule(ModuleCode module) {
         addressBook.addModule(module);
     }
 

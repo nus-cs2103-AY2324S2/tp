@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 
 /**
@@ -61,7 +61,7 @@ public interface Model {
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
-    boolean hasModule(Module module);
+    boolean hasModule(ModuleCode module);
 
     /**
      * Deletes the given person.
@@ -77,9 +77,9 @@ public interface Model {
 
     /**
      * Adds the given module.
-     * {@code module} must not already exist in the address book.
+     * {@code ModuleCode} must not already exist in the address book.
      */
-    void addModule(Module module);
+    void addModule(ModuleCode module);
 
 
     /**

@@ -5,19 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
-
 public class ModuleTest {
 
     @Test
     public void equals() {
-        Module module = new Module(new Name("CS2103T"));
+        ModuleCode module = new ModuleCode("CS2103T");
 
         // same object -> returns true
         assertTrue(module.equals(module));
 
         // same values -> returns true
-        Module remarkCopy = new Module(module.name);
+        ModuleCode remarkCopy = new ModuleCode(module.value);
         assertTrue(module.equals(remarkCopy));
 
         // different types -> returns false
@@ -27,7 +25,7 @@ public class ModuleTest {
         assertFalse(module.equals(null));
 
         // different remark -> returns false
-        Module differentModule = new Module(new Name("CS1101S"));
+        ModuleCode differentModule = new ModuleCode("CS1101S");
         assertFalse(module.equals(differentModule));
     }
 }

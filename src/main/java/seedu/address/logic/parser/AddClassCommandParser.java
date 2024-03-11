@@ -6,9 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
-import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
@@ -25,7 +24,12 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
 
         String moduleCode = argMultimap.getValue(PREFIX_MODULECODE).orElse("");
         String tutorialClass = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
-
-        return new AddClassCommand(new Module(new Name(moduleCode), new TutorialClass(tutorialClass)));
+        if (!(ModuleCode.isValidModuleCode(moduleCode))) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        if (!(TutorialClass.isValidTutorialClass(tutorialClass))) {
+            throw new ParseException(TutorialClass.MESSAGE_CONSTRAINTS);
+        }
+        return new AddClassCommand(new ModuleCode(moduleCode, tutorialClass));
     }
 }

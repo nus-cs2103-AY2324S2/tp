@@ -7,17 +7,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 
 /**
  * A class that handles the /add_class command execution.
  */
 public class AddClassCommand extends Command {
 
-    public static final String MESSAGE_ARGUMENTS = "Module: %1$s, Tutorial Class: %2$s";
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added module %1$s";
-    public static final String MESSAGE_DUPLICATE_CLASS = "Duplicate tutorial class!";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Add Class command not implemented yet";
+    public static final String MESSAGE_DUPLICATE_CLASS = "Module already added!";
     public static final String COMMAND_WORD = "/add_class";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class with the module code specified\n"
@@ -25,13 +23,13 @@ public class AddClassCommand extends Command {
             + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS (must be a String)"
             + "Example: " + COMMAND_WORD + PREFIX_MODULECODE + " CS2103T "
             + PREFIX_TUTORIALCLASS + "T09";
-    private final Module module;
 
+    private final ModuleCode module;
 
     /**
      * @param module of the tutorial class to be added
      */
-    public AddClassCommand(Module module) {
+    public AddClassCommand(ModuleCode module) {
         requireAllNonNull(module);
 
         this.module = module;
@@ -46,15 +44,15 @@ public class AddClassCommand extends Command {
         }
 
         model.addModule(module);
-        return new CommandResult(MESSAGE_ADD_REMARK_SUCCESS);
+        return new CommandResult(generateSuccessMessage(module));
     }
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Module module) {
-        return String.format(MESSAGE_ADD_REMARK_SUCCESS, module.getName().fullName);
+    private String generateSuccessMessage(ModuleCode module) {
+        return String.format(MESSAGE_ADD_REMARK_SUCCESS, module.toString());
     }
 
     @Override
