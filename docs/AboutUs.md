@@ -22,9 +22,9 @@ You can reach us at the email `E0957568@u.nus.edu`
 * Role: Code Monkey
 * Responsibilities: Coding :)
 
-### Andrew Ong Pang Woon
+### Jean Doe
 
-<img src="images/andrewong2066.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
