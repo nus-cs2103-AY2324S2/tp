@@ -24,7 +24,7 @@ Together we made ````Moddie!``
 
 ### Alvis Low Yue Han
 
-<img src="images/alvislow.png" width="200px">
+<img src="images/beefsausagee.png" width="200px">
 
 [[github](https://github.com/beefsausagee)]
 [[portfolio](team/johndoe.md)]
