@@ -3,11 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tag;
 import seedu.address.model.group.Group;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -19,12 +19,12 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TAG = "Student";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Tag tag;
     private Set<Group> groups;
 
     /**
@@ -34,7 +34,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        tag = new Tag(DEFAULT_TAG);
         groups = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        tag = personToCopy.getTag();
         groups = new HashSet<>(personToCopy.getGroups());
     }
 
@@ -66,10 +66,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Tag} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withTag(String tag) {
+        this.tag = new Tag(tag);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, groups);
+        return new Person(name, phone, email, tag, groups);
     }
 
 }
