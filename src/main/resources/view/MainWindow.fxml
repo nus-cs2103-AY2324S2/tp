@@ -44,6 +44,7 @@
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
+
           <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" prefHeight="-Infinity">
               <padding>
