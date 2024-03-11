@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments):
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
+    * Contributed to forum discussions (examples: [1](), [2](), [3]())
     * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
 
 * _{you can add/remove categories in the list above}_
