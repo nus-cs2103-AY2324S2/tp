@@ -8,49 +8,53 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Student in TAHelper.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
     private final Email email;
+    private final StudentId stuId;
 
     // Data fields
-    private final Address address;
+    private final ModuleCode module;
+    private final TutorialClass tutorial;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Email email, StudentId stuId, ModuleCode module, TutorialClass tutorial, Set<Tag> tags) {
+        requireAllNonNull(name, email, stuId, module, tutorial, tags);
         this.name = name;
-        this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.stuId = stuId;
+        this.module = module;
+        this.tutorial = tutorial;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
     }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
     public Email getEmail() {
         return email;
     }
-
-    public Address getAddress() {
-        return address;
+    public StudentId getStudentId() {
+        return stuId;
+    }
+    public ModuleCode getModule() {
+        return module;
+    }
+    public TutorialClass getTutorialClass() {
+        return tutorial;
     }
 
     /**
@@ -62,7 +66,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same StudentId.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -71,7 +75,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getStudentId().equals(getStudentId());
     }
 
     /**
@@ -91,25 +95,27 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && stuId.equals(otherPerson.stuId)
+                && module.equals(otherPerson.module)
+                && tutorial.equals(otherPerson.tutorial)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, email, stuId, module, tutorial, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
+                .add("stuId", stuId)
+                .add("module", module)
+                .add("tutorial", tutorial)
                 .add("tags", tags)
                 .toString();
     }
