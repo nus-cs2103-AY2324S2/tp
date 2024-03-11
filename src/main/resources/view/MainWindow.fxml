@@ -13,6 +13,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -56,21 +57,18 @@
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="300">
-
-            <ScrollPane fx:id="viewPanelPlaceHolder">
-              <content>
-                <VBox>
-                  <!-- Add padding to the VBox -->
+          <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="475" maxWidth="475">
+            <content>
+              <VBox styleClass="pane-with-border" VBox.vgrow="ALWAYS" prefWidth="475" >
+                <VBox VBox.vgrow="NEVER" fx:id="viewPanelPlaceholder" spacing="20">
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
                 </VBox>
-              </content>
-            </ScrollPane>
+              </VBox>
+            </content>
+          </ScrollPane>
 
-
-          </VBox>
         </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

@@ -2,22 +2,52 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="viewPanel" fx:id="ViewPanel" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="CENTER_LEFT" style="-fx-background-color: #FFFEEF;" GridPane.columnIndex="0">
-        <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-        </padding>
-        <FlowPane fx:id="tag" />
-        <Label fx:id="companyName" styleClass="cell_custom" text="\$first" />
-        <Label fx:id="phone" styleClass="cell_custom" text="\$phone" />
-        <Label fx:id="address" styleClass="cell_custom" text="\$address" />
-        <Label fx:id="email" styleClass="cell_custom" text="\$email" />
-        <Label fx:id="interviewDate" styleClass="cell_custom" text="\$interviewDate" />
-        <Label fx:id="internDuration" styleClass="cell_custom" text="\$internDuration" />
-        <Label fx:id="salary" styleClass="cell_custom" text="\$salary" />
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<VBox id="viewPanel" fx:id="ViewPanel" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" GridPane.columnIndex="0" styleClass="view-panel-cell" prefWidth="450" spacing="15">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <HBox>
+        <Label fx:id="companyName" text="\$first" styleClass="cell-header" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="tag" text="\$tag" styleClass="cell-tag" />
+    </HBox>
+
+    <VBox spacing="15">
+        <Label fx:id="jobDescription" text="\$jobDescription" styleClass="cell-subHeader" />
+        <HBox>
+            <Label text="Phone: " styleClass="cell-content-header"/>
+            <Label fx:id="phone" styleClass="cell-content" text="\$phone" />
+        </HBox>
+
+        <HBox>
+            <Label text="Address: " styleClass="cell-content-header"/>
+            <Label fx:id="address" styleClass="cell-content" text="\$address" />
+        </HBox>
+
+        <HBox>
+            <Label text="Email: " styleClass="cell-content-header"/>
+            <Label fx:id="email" styleClass="cell-content" text="\$email" />
+        </HBox>
+
+        <HBox>
+            <Label text="Duration: " styleClass="cell-content-header"/>
+            <Label fx:id="internDuration" styleClass="cell-content" text="\$internDuration" />
+        </HBox>
+
+        <HBox>
+            <Label text="Salary: " styleClass="cell-content-header"/>
+            <Label fx:id="salary" styleClass="cell-content" text="\$salary" />
+        </HBox>
+
     </VBox>
+
+    <HBox alignment="CENTER">
+        <Label fx:id="interviewDate" styleClass="cell-date" text="\$interviewDate" prefWidth="450" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
 </VBox>
