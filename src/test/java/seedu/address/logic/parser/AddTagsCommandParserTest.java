@@ -61,5 +61,19 @@ public class AddTagsCommandParserTest {
 
         // Missing tags
         assertThrows(ParseException.class, () -> parser.parse("1 "));
+
+        // Mixed invalid and valid tags
+        assertThrows(ParseException.class, () -> parser.parse("1" + INVALID_TAG_DESC
+                + TAG_DESC_FRIEND));
+
+        // Multiple invalid tags
+        assertThrows(ParseException.class, () -> parser.parse("1" + INVALID_TAG_DESC
+                + INVALID_TAG_DESC));
+
+        // Invalid index
+        assertThrows(ParseException.class, () -> parser.parse("a" + TAG_DESC_FRIEND));
+
+        // Invalid index followed by valid tag
+        assertThrows(ParseException.class, () -> parser.parse("a" + TAG_DESC_FRIEND));
     }
 }
