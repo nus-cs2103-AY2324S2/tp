@@ -15,47 +15,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/windofbitter.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/windofbitter)]
+[[portfolio](team/baizhou.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+### Ho Kin Tat
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/kintatho.png" width="200px">
 
-* Role: Team Lead
+[[github](http://github.com/kintatho)]
+[[portfolio](team/kintat.md)]
+
+* Role: Developer
+* Responsibilities: Integration
+
+
+### Liu Yiyang
+
+<img src="images/0nesheep.png" width="200px">
+
+[[github](https://github.com/0nesheep/)]
+[[portfolio](team/yiyang.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Marcus
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/marcusgitty.png" width="200px">
+
+[[github](http://github.com/marcusgitty)]
+[[portfolio](team/marcus.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Wu Yizheng
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
-### James Doe
+<img src="images/jessicawyz.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jessicawyz)]
+[[portfolio](team/jessica.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables
