@@ -4,6 +4,7 @@ import static seedu.findvisor.commons.util.AppUtil.checkArgument;
 import static seedu.findvisor.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 import seedu.findvisor.commons.util.DateTimeUtil;
@@ -52,8 +53,8 @@ public class Meeting {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("Start Datetime", start)
-                .add("End Datetime", end)
+                .add("Start Datetime", getStartString())
+                .add("End Datetime", getEndString())
                 .toString();
     }
 
@@ -69,8 +70,9 @@ public class Meeting {
         }
 
         Meeting otherMeeting = (Meeting) other;
-        return start.equals(otherMeeting.start)
-                && end.equals(otherMeeting.end);
+        // We only need to compare up to minutes, comparing seconds and nanos is unnecessary and can cause issues.
+        return start.truncatedTo(ChronoUnit.MINUTES).equals(otherMeeting.start.truncatedTo(ChronoUnit.MINUTES))
+                && end.truncatedTo(ChronoUnit.MINUTES).equals(otherMeeting.end.truncatedTo(ChronoUnit.MINUTES));
     }
 
     @Override
