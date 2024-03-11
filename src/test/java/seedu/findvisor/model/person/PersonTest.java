@@ -8,9 +8,12 @@ import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeeting;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 import static seedu.findvisor.testutil.TypicalPersons.ALICE;
 import static seedu.findvisor.testutil.TypicalPersons.BOB;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -87,6 +90,10 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different meetings -> returns false
+        editedAlice = new PersonBuilder(ALICE).withMeeting(Optional.of(createValidMeeting())).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
