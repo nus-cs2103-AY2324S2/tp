@@ -116,6 +116,16 @@ public class PersonTest {
         assertFalse(person1.getUuidString().equals(person2.getUuidString()));
     }
 
+    @Test public void equalsUuid_samePerson_True() {
+        Person person1 = new PersonBuilder().build();
+        assertTrue(person1.equalsUuid(person1));
+    }
+    @Test public void equalsUuid_differentUuids_False() {
+        Person person1 = new PersonBuilder().build();
+        Person person2 = new PersonBuilder().build();
+        assertFalse(person1.equalsUuid(person2));
+    }
+
     @Test
     public void getUuid() {
         assertTrue(ALICE.getUuid() != null);
