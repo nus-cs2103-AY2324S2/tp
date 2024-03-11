@@ -9,10 +9,6 @@ import tutorpro.logic.commands.exceptions.CommandException;
 import tutorpro.logic.parser.exceptions.ParseException;
 import tutorpro.model.Model;
 import tutorpro.model.ReadOnlyAddressBook;
-<<<<<<< HEAD
-=======
-import tutorpro.model.Model;
->>>>>>> 8b687dab64e7b9193c9522c83dedd53efb089b6f
 import tutorpro.model.person.Person;
 
 /**
