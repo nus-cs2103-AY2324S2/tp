@@ -21,6 +21,10 @@ public class Order {
         this.id = id;
     }
 
+    public int getId(){
+        return this.id;
+    }
+
     public Map<Product, Quantity> getProductMap() {
         return this.productMap;
     }
@@ -39,11 +43,16 @@ public class Order {
         return value;
     }
 
+    public void changeQuantity(Product currProduct, int newQuantity) {
+        Quantity currQuantity = productMap.get(currProduct);
+        currQuantity.setQuantity(newQuantity);
+    }
+
     public void deleteProduct(Product product) {
         productMap.remove(product);
     }
 
-    public void clearOrder() {
+    public void clearProductMap() {
         this.productMap.clear();
     }
 
