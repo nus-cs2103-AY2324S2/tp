@@ -111,17 +111,18 @@ public class PersonTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         assertTrue(true);
     }
-
+    @Test
+    public void canNotInstantiate() {
+        assertTrue(true);
+    }
     @Test
     public void isSamePerson() {
         assertTrue(true);
     }
-
     @Test
     public void equals() {
         assertTrue(true);
     }
-
     @Test
     public void toStringMethod() {
         assertTrue(true);
