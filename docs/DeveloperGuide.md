@@ -172,6 +172,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### 3.1 Adding a Patient
+
+#### Implementation
+
+#### Design Considerations:
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.2 Adding Tags to a Patient
+
+#### Implementation
+
+#### Design Considerations:
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4 Planned Enhancements
