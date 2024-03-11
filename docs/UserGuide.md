@@ -79,7 +79,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]…​`
 
 <box type="tip" seamless>
 
@@ -87,8 +87,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/client t/friend`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/supplier`
 
 ### Listing all persons : `list`
 
@@ -113,6 +113,18 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Tagging a person : `tag`
+
+Adds a customisable tag to an already existing person in the address book.
+
+Format: `tag i/ID t/TAG…​`
+
+* Edits the person with the specified `ID`. The ID refers to the identification number shown in the displayed 
+* person list. The ID **must exist within the addressbook** 1, 2, 3, …​
+* A person can have multiple customisable tags. 
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it. **[TBC]**
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -131,19 +143,35 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Locating persons by phone number: `findnum`
+
+Finds persons whose phone number matches the given keywords.
+
+Format: `find PHONE_NUMBER`
+
+* The search is strictly numeric. e.g `83647382` will only match `83647382`.
+* The order of the keywords matters. e.g. `83647382` will not match `83467328`
+* Only the full number is searched. eg. `83647382` will not match `83641001`
+
+Examples:
+* `find 83647382` returns `john` and `John Doe`
+* `find 91739272` returns `David Li`<br>
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete [n/NAME] i/ID`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the person with the specified `ID`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete i/2` deletes the person with an ID of 2 in the address book.
+
+[//]: # (requires confirmation:)
+[//]: # (* `find Betsy` followed by `delete 1` deletes the person with ID of 1 in the results of the `find` command.)
 
 ### Clearing all entries : `clear`
 
@@ -171,6 +199,12 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
+### Remembering States
+[TBA]
+
+### Export Contact Lists to CSV File
+[TBA]
 
 ### Archiving data files `[coming in v2.0]`
 
