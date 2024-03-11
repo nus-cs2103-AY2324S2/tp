@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import staffconnect.commons.core.GuiSettings;
 import staffconnect.model.ReadOnlyStaffConnect;
-import staffconnect.model.StaffConnect;
+import staffconnect.model.StaffBook;
 import staffconnect.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonStaffConnectStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonStaffConnectStorageTest} class.
          */
-        StaffConnect original = getTypicalAddressBook();
+        StaffBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyStaffConnect retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new StaffConnect(retrieved));
+        assertEquals(original, new StaffBook(retrieved));
     }
 
     @Test

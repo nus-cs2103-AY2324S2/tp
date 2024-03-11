@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import staffconnect.commons.exceptions.IllegalValueException;
 import staffconnect.commons.util.JsonUtil;
-import staffconnect.model.StaffConnect;
+import staffconnect.model.StaffBook;
 import staffconnect.testutil.TypicalPersons;
 
 public class JsonSerializableStaffConnectTest {
@@ -24,9 +24,9 @@ public class JsonSerializableStaffConnectTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableStaffConnect dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableStaffConnect.class).get();
-        StaffConnect staffConnectFromFile = dataFromFile.toModelType();
-        StaffConnect typicalPersonsStaffConnect = TypicalPersons.getTypicalAddressBook();
-        assertEquals(staffConnectFromFile, typicalPersonsStaffConnect);
+        StaffBook staffBookFromFile = dataFromFile.toModelType();
+        StaffBook typicalPersonsStaffBook = TypicalPersons.getTypicalAddressBook();
+        assertEquals(staffBookFromFile, typicalPersonsStaffBook);
     }
 
     @Test

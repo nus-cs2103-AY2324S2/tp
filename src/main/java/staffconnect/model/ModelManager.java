@@ -14,30 +14,30 @@ import staffconnect.commons.core.LogsCenter;
 import staffconnect.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the staff book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final StaffConnect staffConnect;
+    private final StaffBook staffBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given staffConnect and userPrefs.
+     * Initializes a ModelManager with the given staffBook and userPrefs.
      */
-    public ModelManager(ReadOnlyStaffConnect staffConnect, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(staffConnect, userPrefs);
+    public ModelManager(ReadOnlyStaffConnect staffBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(staffBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + staffConnect + " and user prefs " + userPrefs);
+        logger.fine("Initializing with staff book: " + staffBook + " and user prefs " + userPrefs);
 
-        this.staffConnect = new StaffConnect(staffConnect);
+        this.staffBook = new StaffBook(staffBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.staffConnect.getPersonList());
+        filteredPersons = new FilteredList<>(this.staffBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new StaffConnect(), new UserPrefs());
+        this(new StaffBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -75,32 +75,32 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== StaffConnect ================================================================================
+    //=========== StaffBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyStaffConnect staffConnect) {
-        this.staffConnect.resetData(staffConnect);
+    public void setAddressBook(ReadOnlyStaffConnect staffBook) {
+        this.staffBook.resetData(staffBook);
     }
 
     @Override
     public ReadOnlyStaffConnect getAddressBook() {
-        return staffConnect;
+        return staffBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return staffConnect.hasPerson(person);
+        return staffBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        staffConnect.removePerson(target);
+        staffBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        staffConnect.addPerson(person);
+        staffBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        staffConnect.setPerson(target, editedPerson);
+        staffBook.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -140,7 +140,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return staffConnect.equals(otherModelManager.staffConnect)
+        return staffBook.equals(otherModelManager.staffBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }

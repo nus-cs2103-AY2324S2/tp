@@ -21,7 +21,7 @@ import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
 import staffconnect.model.ReadOnlyStaffConnect;
 import staffconnect.model.ReadOnlyUserPrefs;
-import staffconnect.model.StaffConnect;
+import staffconnect.model.StaffBook;
 import staffconnect.model.person.Person;
 import staffconnect.testutil.PersonBuilder;
 
@@ -197,7 +197,7 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyStaffConnect getAddressBook() {
-            return new StaffConnect();
+            return new StaffBook();
         }
     }
 

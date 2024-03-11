@@ -22,25 +22,25 @@ import staffconnect.model.person.Person;
 import staffconnect.model.person.exceptions.DuplicatePersonException;
 import staffconnect.testutil.PersonBuilder;
 
-public class StaffConnectTest {
+public class StaffBookTest {
 
-    private final StaffConnect staffConnect = new StaffConnect();
+    private final StaffBook staffBook = new StaffBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), staffConnect.getPersonList());
+        assertEquals(Collections.emptyList(), staffBook.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> staffConnect.resetData(null));
+        assertThrows(NullPointerException.class, () -> staffBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        StaffConnect newData = getTypicalAddressBook();
-        staffConnect.resetData(newData);
-        assertEquals(newData, staffConnect);
+    public void resetData_withValidReadOnlyStaffBook_replacesData() {
+        StaffBook newData = getTypicalAddressBook();
+        staffBook.resetData(newData);
+        assertEquals(newData, staffBook);
     }
 
     @Test
@@ -51,42 +51,42 @@ public class StaffConnectTest {
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         StaffConnectStub newData = new StaffConnectStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> staffConnect.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> staffBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> staffConnect.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> staffBook.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(staffConnect.hasPerson(ALICE));
+    public void hasPerson_personNotInStaffBook_returnsFalse() {
+        assertFalse(staffBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        staffConnect.addPerson(ALICE);
-        assertTrue(staffConnect.hasPerson(ALICE));
+    public void hasPerson_personInStaffBook_returnsTrue() {
+        staffBook.addPerson(ALICE);
+        assertTrue(staffBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        staffConnect.addPerson(ALICE);
+    public void hasPerson_personWithSameIdentityFieldsInStaffBook_returnsTrue() {
+        staffBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(staffConnect.hasPerson(editedAlice));
+        assertTrue(staffBook.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> staffConnect.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> staffBook.getPersonList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = StaffConnect.class.getCanonicalName() + "{persons=" + staffConnect.getPersonList() + "}";
-        assertEquals(expected, staffConnect.toString());
+        String expected = StaffBook.class.getCanonicalName() + "{persons=" + staffBook.getPersonList() + "}";
+        assertEquals(expected, staffBook.toString());
     }
 
     /**

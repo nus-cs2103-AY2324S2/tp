@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
-import staffconnect.model.StaffConnect;
+import staffconnect.model.StaffBook;
 import staffconnect.model.UserPrefs;
 
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyStaffBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,10 +21,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyStaffBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new StaffConnect());
+        expectedModel.setAddressBook(new StaffBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

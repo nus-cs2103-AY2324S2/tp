@@ -15,7 +15,7 @@ import staffconnect.commons.util.JsonUtil;
 import staffconnect.model.ReadOnlyStaffConnect;
 
 /**
- * A class to access StaffConnect data stored as a json file on the hard disk.
+ * A class to access StaffBook data stored as a json file on the hard disk.
  */
 public class JsonStaffConnectStorage implements StaffConnectStorage {
 

@@ -24,7 +24,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the StaffConnect.
+     * Returns the StaffBook.
      *
      * @see staffconnect.model.Model#getAddressBook()
      */
@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' staff book file path.
      */
     Path getAddressBookFilePath();
 

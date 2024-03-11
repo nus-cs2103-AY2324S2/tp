@@ -12,7 +12,7 @@ import staffconnect.model.ReadOnlyUserPrefs;
 import staffconnect.model.UserPrefs;
 
 /**
- * Manages storage of StaffConnect data in local storage.
+ * Manages storage of StaffBook data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ StaffConnect methods ==============================
+    // ================ StaffBook methods ==============================
 
     @Override
     public Path getAddressBookFilePath() {

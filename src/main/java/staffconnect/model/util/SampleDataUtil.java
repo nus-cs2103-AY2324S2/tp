@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import staffconnect.model.ReadOnlyStaffConnect;
-import staffconnect.model.StaffConnect;
+import staffconnect.model.StaffBook;
 import staffconnect.model.person.Address;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Name;
@@ -14,7 +14,7 @@ import staffconnect.model.person.Phone;
 import staffconnect.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code StaffConnect} with sample data.
+ * Contains utility methods for populating {@code StaffBook} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -41,7 +41,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyStaffConnect getSampleAddressBook() {
-        StaffConnect sampleSc = new StaffConnect();
+        StaffBook sampleSc = new StaffBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleSc.addPerson(samplePerson);
         }

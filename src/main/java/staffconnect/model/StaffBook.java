@@ -13,7 +13,7 @@ import staffconnect.model.person.UniquePersonList;
  * Wraps all data at the fundamental level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class StaffConnect implements ReadOnlyStaffConnect {
+public class StaffBook implements ReadOnlyStaffConnect {
 
     private final UniquePersonList persons;
 
@@ -28,12 +28,12 @@ public class StaffConnect implements ReadOnlyStaffConnect {
         persons = new UniquePersonList();
     }
 
-    public StaffConnect() {}
+    public StaffBook() {}
 
     /**
-     * Creates an StaffConnect using the Persons in the {@code toBeCopied}
+     * Creates a StaffBook using the Persons in the {@code toBeCopied}
      */
-    public StaffConnect(ReadOnlyStaffConnect toBeCopied) {
+    public StaffBook(ReadOnlyStaffConnect toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -49,7 +49,7 @@ public class StaffConnect implements ReadOnlyStaffConnect {
     }
 
     /**
-     * Resets the existing data of this {@code StaffConnect} with {@code newData}.
+     * Resets the existing data of this {@code StaffBook} with {@code newData}.
      */
     public void resetData(ReadOnlyStaffConnect newData) {
         requireNonNull(newData);
@@ -60,7 +60,7 @@ public class StaffConnect implements ReadOnlyStaffConnect {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the staffconnect.
+     * Returns true if a person with the same identity as {@code person} exists in the staff book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -68,8 +68,8 @@ public class StaffConnect implements ReadOnlyStaffConnect {
     }
 
     /**
-     * Adds a person to the staffconnect.
-     * The person must not already exist in the staffconnect.
+     * Adds a person to the staff book.
+     * The person must not already exist in the staff book.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -77,8 +77,8 @@ public class StaffConnect implements ReadOnlyStaffConnect {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the staffconnect.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the staffconnect.
+     * {@code target} must exist in the staff book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the staff book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -87,8 +87,8 @@ public class StaffConnect implements ReadOnlyStaffConnect {
     }
 
     /**
-     * Removes {@code key} from this {@code StaffConnect}.
-     * {@code key} must exist in the staffconnect.
+     * Removes {@code key} from this {@code StaffBook}.
+     * {@code key} must exist in the staff book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -115,12 +115,12 @@ public class StaffConnect implements ReadOnlyStaffConnect {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StaffConnect)) {
+        if (!(other instanceof StaffBook)) {
             return false;
         }
 
-        StaffConnect otherStaffConnect = (StaffConnect) other;
-        return persons.equals(otherStaffConnect.persons);
+        StaffBook otherStaffBook = (StaffBook) other;
+        return persons.equals(otherStaffBook.persons);
     }
 
     @Override

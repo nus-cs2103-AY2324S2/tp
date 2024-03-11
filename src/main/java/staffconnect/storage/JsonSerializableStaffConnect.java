@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import staffconnect.commons.exceptions.IllegalValueException;
 import staffconnect.model.ReadOnlyStaffConnect;
-import staffconnect.model.StaffConnect;
+import staffconnect.model.StaffBook;
 import staffconnect.model.person.Person;
 
 /**
- * An Immutable StaffConnect that is serializable to JSON format.
+ * An Immutable StaffBook that is serializable to JSON format.
  */
-@JsonRootName(value = "staffconnect")
+@JsonRootName(value = "staffbook")
 class JsonSerializableStaffConnect {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
@@ -41,20 +41,20 @@ class JsonSerializableStaffConnect {
     }
 
     /**
-     * Converts this address book into the model's {@code StaffConnect} object.
+     * Converts this address book into the model's {@code StaffBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public StaffConnect toModelType() throws IllegalValueException {
-        StaffConnect staffConnect = new StaffConnect();
+    public StaffBook toModelType() throws IllegalValueException {
+        StaffBook staffBook = new StaffBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (staffConnect.hasPerson(person)) {
+            if (staffBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            staffConnect.addPerson(person);
+            staffBook.addPerson(person);
         }
-        return staffConnect;
+        return staffBook;
     }
 
 }

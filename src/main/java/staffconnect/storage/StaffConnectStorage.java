@@ -6,9 +6,10 @@ import java.util.Optional;
 
 import staffconnect.commons.exceptions.DataLoadingException;
 import staffconnect.model.ReadOnlyStaffConnect;
+import staffconnect.model.StaffBook;
 
 /**
- * Represents a storage for {@link staffconnect.model.StaffConnect}.
+ * Represents a storage for {@link StaffBook}.
  */
 public interface StaffConnectStorage {
 
@@ -18,7 +19,7 @@ public interface StaffConnectStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns StaffConnect data as a {@link ReadOnlyStaffConnect}.
+     * Returns StaffBook data as a {@link ReadOnlyStaffConnect}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
