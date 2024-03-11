@@ -13,7 +13,7 @@ public class CliSyntax {
 
     //To remove EMAIl field soon
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_FAMILYSIZE = new Prefix("f/");
+    public static final Prefix PREFIX_FAMILY = new Prefix("f/");
 
     //Possible rename to additional notes to fit feature spec
     public static final Prefix PREFIX_TAG = new Prefix("t/");
