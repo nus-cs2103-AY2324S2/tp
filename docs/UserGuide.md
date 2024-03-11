@@ -120,7 +120,7 @@ Finds persons whose names or tags matches any of the defined keywords.
 
 Format: `find /FIELD KEYWORD [MORE_KEYWORDS]`
 
-* 'FIELD' can be `n/` for name, `t/` for tag.
+* 'FIELD' can be `/n` for name, `/t` for tag.
 
 
 * 'KEYWORD' is the keyword to search for.
