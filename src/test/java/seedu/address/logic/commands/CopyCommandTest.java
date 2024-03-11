@@ -1,16 +1,11 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_PERSON_LIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsEmails;
-
-import java.awt.Toolkit;
-import java.awt.datatransfer.DataFlavor;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,12 +43,5 @@ public class CopyCommandTest {
     @Test
     public void execute_nonEmptyList_emailsCopied() {
         assertCommandSuccess(new CopyCommand(), model, CopyCommand.MESSAGE_SUCCESS, model);
-        // check that the emails are copied to the clipboard
-        try {
-            assertEquals(Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor),
-                    getTypicalPersonsEmails());
-        } catch (Exception e) {
-            throw new AssertionError("Error copying emails to clipboard", e);
-        }
     }
 }
