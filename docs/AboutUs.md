@@ -29,6 +29,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Integration
 
+### Oon Jie Rui
+
+<img src="images/jerryo3.png" width="200px">
+
+[[github](https://github.com/jerryo3)]
+[[portfolio](team/jerryo3.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
