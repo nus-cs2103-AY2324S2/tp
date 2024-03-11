@@ -109,8 +109,8 @@ public class Person {
                 .add("classGroup", classGroup)
                 .add("email", email)
                 .add("phone", phone)
-                .add("telegram", telegram.isPresent() ? telegram.get() : "Not provided")
-                .add("github", github.isPresent() ? github.get() : "Not provided")
+                .add("telegram", telegram.isPresent() ? telegram.get() : "")
+                .add("github", github.isPresent() ? github.get() : "")
                 .toString();
     }
 }

@@ -41,17 +41,17 @@ public class TypicalPersons {
             .withTelegram("@carlkurz").withGithub("kurzcarl").build();
 
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
-            .withClassGroup("B04").withEmail("daniel@gmail.com")
+            .withClassGroup("B04").withEmail("cornelia@example.com")
             .withPhone("87652533")
             .withTelegram("@danielmeier").withGithub("meierdaniel").build();
 
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
-            .withClassGroup("B05").withEmail("elle@example.com")
+            .withClassGroup("B05").withEmail("werner@example.com")
             .withPhone("9482224")
             .withTelegram("@ellemeyer").withGithub("meyerelle").build();
 
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
-            .withClassGroup("B06").withEmail("fiona@yahoo.com")
+            .withClassGroup("B06").withEmail("lydia@example.com")
             .withPhone("9482427")
             .withTelegram("@fionakunz").withGithub("kunzfiona").build();
 
