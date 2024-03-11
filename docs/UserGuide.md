@@ -78,7 +78,7 @@ Deletes an event and all its relevant information with its index in the event li
 
 **Examples:**
 
-- `delev 1` deletes an event with the index `1`.
+- `delev 1` deletes the 1st event in the displayed list.
 
 ### Adding participant and their information to the global participant list: `addp`
 
@@ -99,8 +99,8 @@ Adds a new participant to the app, allowing them to be added to an event later.
   
 **Examples:**
 
-- `addp -n David -p 98987676 -e david00@ggmail.com` adds a participant named `David` 
-with the specific information to the global participant list.
+- `addp -n David -p 98987676 -e david@example.com` adds a participant named `David` 
+with the phone number `98987676` and email of `david@example.com` to the displayed contacts list.
 
 --------------------------------------------------------------------------------------------------------------------
 
