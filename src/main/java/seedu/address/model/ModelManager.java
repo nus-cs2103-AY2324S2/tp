@@ -145,4 +145,9 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    @Override
+    public Person getPersonByIndex(int index) {
+        return filteredPersons.get(index);
+    }
+
 }

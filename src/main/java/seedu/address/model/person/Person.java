@@ -114,4 +114,10 @@ public class Person {
                 .toString();
     }
 
+    public Person addTag(Tag tag) {
+        Set<Tag> newTags = new HashSet<>(tags);
+        newTags.add(tag);
+        return new Person(name, phone, email, address, newTags);
+    }
+
 }
