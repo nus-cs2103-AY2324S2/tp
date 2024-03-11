@@ -20,12 +20,13 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Income income;
+    private final Email email;
     private final Address address;
     private final Family family;
     //To remove phone
 
     //To remove email
-    private final Email email;
+
 
     // Data fields
 
@@ -110,14 +111,15 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && income.equals(otherPerson.income)
+                && family.equals(otherPerson.family)
+                && address.equals(otherPerson.address);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, income, email, address, family, tags);
     }
 
     @Override
@@ -125,10 +127,12 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
+                .add("income", income)
                 .add("email", email)
                 .add("address", address)
+                .add("family", family)
                 .add("tags", tags)
                 .toString();
     }
-
 }
+
