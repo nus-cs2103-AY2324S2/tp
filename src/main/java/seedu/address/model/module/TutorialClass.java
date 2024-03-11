@@ -23,7 +23,6 @@ public class TutorialClass {
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{2}$";
 
     public final String value;
-  
     private final ArrayList<Person> students;
 
     /**
