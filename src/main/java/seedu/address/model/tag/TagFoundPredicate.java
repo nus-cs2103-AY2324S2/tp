@@ -1,9 +1,9 @@
-package seedu.address.model.person;
-
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+package seedu.address.model.tag;
 
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Tag} matches the tag given.

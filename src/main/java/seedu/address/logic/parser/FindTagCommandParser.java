@@ -4,7 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TagFoundPredicate;
+import seedu.address.model.tag.TagFoundPredicate;
 
 /**
  * Parses input arguments and creates a new FindTagCommand object
