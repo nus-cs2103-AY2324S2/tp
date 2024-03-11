@@ -70,7 +70,21 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Returns a list of typical persons.
+     */
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    /**
+     * Returns the emails of all the typical persons.
+     */
+    public static String getTypicalPersonsEmails() {
+        StringBuilder emails = new StringBuilder();
+        for (Person person : getTypicalPersons()) {
+            emails.append(person.getEmail().value).append(" ");
+        }
+        return emails.toString().trim();
     }
 }
