@@ -3,7 +3,10 @@ package seedu.address.testutil;
 import seedu.address.model.classes.ClassList;
 import seedu.address.model.classes.ModuleCode;
 import seedu.address.model.classes.TutorialClass;
-
+/**
+ * The ClassBuilder class is responsible for constructing instances of the Class class.
+ * It provides methods to set various attributes of the Class being built.
+ */
 public class ClassBuilder {
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
     public static final String DEFAULT_TUTORIAL_CLASS = "T09";

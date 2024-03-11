@@ -7,9 +7,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.classes.ClassList;
+import seedu.address.model.classes.UniqueClassList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.classes.UniqueClassList;
 
 /**
  * Wraps all data at the address-book level
@@ -54,8 +54,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
-    public void setClassList(List<ClassList> classList) { this.classList.setClasses(classList);}
-
+    public void setClassList(List<ClassList> classList) {
+        this.classList.setClasses(classList);
+    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -103,6 +104,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Checks if the given class is present in this class list.
+     *
+     * @param classListToCheck The class list to check against.
+     * @return {@code true} if the class list contains the specified class, {@code false} otherwise.
+     * @throws NullPointerException if the provided class list is null.
+     */
     public boolean hasClass(ClassList classListToCheck) {
         requireNonNull(classListToCheck);
         return classList.contains(classListToCheck);
@@ -116,7 +124,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedClassList);
         classList.setClass(target, editedClassList);
     }
-
+    /**
+     * Removes the specified class from this class list.
+     *
+     * @param key The class to be removed.
+     * @throws NullPointerException if the specified class is null.
+     */
     public void removeClass(ClassList key) {
         requireNonNull(key);
         classList.remove(key);
