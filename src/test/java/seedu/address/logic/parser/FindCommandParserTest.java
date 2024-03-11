@@ -53,4 +53,44 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, "/n Alice Bob /t friend colleague", expectedFindCommandForBoth);
     }
 
+    @Test
+    public void parse_noKeywordsProvided_throwsParseException() {
+        // Test case with no keywords provided for both /n and /t prefixes
+        assertParseFailure(parser, "/n /t", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // Test case with /n prefix but no name keywords
+        assertParseFailure(parser, "/n ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // Test case with /t prefix but no tag keywords
+        assertParseFailure(parser, "/t ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // Test case with both /n and /t prefixes but no keywords
+        assertParseFailure(parser, "/n /t ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_duplicateNamePrefix_throwsParseException() {
+        // Test case with duplicate /n prefixes
+        assertParseFailure(parser, "/n Alice /n Bob", "Duplicate prefix /n is not allowed. \n"
+                + "If you want to pass multiple values for a single-valued field, "
+                + "please separate them with spaces.");
+    }
+
+    @Test
+    public void parse_duplicateTagPrefix_throwsParseException() {
+        // Test case with duplicate /t prefixes
+        assertParseFailure(parser, "/t friend /t colleague", "Duplicate prefix /t is not allowed. \n"
+                + "If you want to pass multiple values for a single-valued field, "
+                + "please separate them with spaces.");
+    }
+
+    @Test
+    public void parse_duplicateNameAndTagPrefixes_throwsParseException() {
+        // Test case with both /n and /t prefixes duplicated
+        assertParseFailure(parser, "/n Alice /n Bob /t friend /t colleague", "Duplicate prefix /n is not allowed. \n"
+                + "If you want to pass multiple values for a single-valued field, "
+                + "please separate them with spaces.");
+    }
+
+
 }
