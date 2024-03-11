@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.findvisor.commons.exceptions.IllegalValueException;
 import seedu.findvisor.model.person.Address;
 import seedu.findvisor.model.person.Email;
+import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Phone;
 
@@ -110,6 +111,23 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_MEETING, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullMeeting_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                null, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Meeting.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidMeeting_throwsIllegalValueException() {
+        JsonAdaptedMeeting invalidMeeting = new JsonAdaptedMeeting("INVALID_START", "INVALID_END");
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                invalidMeeting, VALID_TAGS);
+        String expectedMessage = Meeting.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
 }
