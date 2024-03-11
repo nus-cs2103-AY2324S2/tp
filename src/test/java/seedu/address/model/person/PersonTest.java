@@ -92,8 +92,23 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
+        String expected = Person.class.getCanonicalName() + "{uuid=" + ALICE.getUuidString() + ", name=" + ALICE.getName()
+                + ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
+                + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
+    }
+    @Test
+    public void getUuidString() {
+        Person person = new PersonBuilder().build();
+        String personUuidString = person.getUuidString();
+        // Solution below adapted from Github Copilot
+        String uuidFormat = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
+        assertTrue(personUuidString.matches(uuidFormat));
+    }
+
+    @Test public void getUuidString_differentUuids() {
+        Person person1 = new PersonBuilder().build();
+        Person person2 = new PersonBuilder().build();
+        assertFalse(person1.getUuidString().equals(person2.getUuidString()));
     }
 }

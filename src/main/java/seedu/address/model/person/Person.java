@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -15,6 +16,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    private final UUID uuid;
 
     // Identity fields
     private final Name name;
@@ -26,6 +28,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
+     * Constructs a person with a random UUID.
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
@@ -35,6 +38,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.uuid = UUID.randomUUID();
     }
 
     public Name getName() {
@@ -59,6 +63,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+    /**
+     * Returns the uuid of the person.
+     *
+     * @return The uuid of the person.
+     */
+    public String getUuidString() {
+        return uuid.toString();
     }
 
     /**
@@ -96,16 +108,34 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
+    /** Returns true if the UUID of the person is the same as the UUID of the other object.
+     *
+     * @param other The object to compare with.
+     * @return True if the UUID of the person is the same as the UUID of the other object.
+     */
+    public boolean equalsUuid(Object other) {
+        if (!(other instanceof Person)) {
+            return false;
+        }
+
+        if (other == this) {
+            return true;
+        }
+
+        Person otherPerson = (Person) other;
+        return uuid.equals(otherPerson.uuid);
+    }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, uuid);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("uuid", uuid)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
