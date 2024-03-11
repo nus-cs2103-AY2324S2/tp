@@ -149,7 +149,7 @@ public class LogicManagerTest {
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
-        // Inject LogicManager with an StaffConnectStorage that throws the IOException e when saving
+        // Inject LogicManager with a StaffBookStorage that throws the IOException e when saving
         JsonStaffConnectStorage addressBookStorage = new JsonStaffConnectStorage(prefPath) {
             @Override
             public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath)

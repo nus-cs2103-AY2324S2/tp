@@ -17,14 +17,14 @@ import staffconnect.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private StaffConnectStorage staffConnectStorage;
+    private StaffBookStorage staffBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code StaffConnectStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code StaffBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(StaffConnectStorage staffConnectStorage, UserPrefsStorage userPrefsStorage) {
-        this.staffConnectStorage = staffConnectStorage;
+    public StorageManager(StaffBookStorage staffBookStorage, UserPrefsStorage userPrefsStorage) {
+        this.staffBookStorage = staffBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,29 +50,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getAddressBookFilePath() {
-        return staffConnectStorage.getAddressBookFilePath();
+        return staffBookStorage.getAddressBookFilePath();
     }
 
     @Override
     public Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(staffConnectStorage.getAddressBookFilePath());
+        return readAddressBook(staffBookStorage.getAddressBookFilePath());
     }
 
     @Override
     public Optional<ReadOnlyStaffBook> readAddressBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return staffConnectStorage.readAddressBook(filePath);
+        return staffBookStorage.readAddressBook(filePath);
     }
 
     @Override
     public void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException {
-        saveAddressBook(staffBook, staffConnectStorage.getAddressBookFilePath());
+        saveAddressBook(staffBook, staffBookStorage.getAddressBookFilePath());
     }
 
     @Override
     public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        staffConnectStorage.saveAddressBook(staffBook, filePath);
+        staffBookStorage.saveAddressBook(staffBook, filePath);
     }
 
 }

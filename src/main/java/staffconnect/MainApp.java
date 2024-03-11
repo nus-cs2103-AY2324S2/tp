@@ -24,7 +24,7 @@ import staffconnect.model.UserPrefs;
 import staffconnect.model.util.SampleDataUtil;
 import staffconnect.storage.JsonStaffConnectStorage;
 import staffconnect.storage.JsonUserPrefsStorage;
-import staffconnect.storage.StaffConnectStorage;
+import staffconnect.storage.StaffBookStorage;
 import staffconnect.storage.Storage;
 import staffconnect.storage.StorageManager;
 import staffconnect.storage.UserPrefsStorage;
@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        StaffConnectStorage staffConnectStorage = new JsonStaffConnectStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(staffConnectStorage, userPrefsStorage);
+        StaffBookStorage staffBookStorage = new JsonStaffConnectStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(staffBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 

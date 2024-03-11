@@ -11,7 +11,7 @@ import staffconnect.model.StaffBook;
 /**
  * Represents a storage for {@link StaffBook}.
  */
-public interface StaffConnectStorage {
+public interface StaffBookStorage {
 
     /**
      * Returns the file path of the data file.

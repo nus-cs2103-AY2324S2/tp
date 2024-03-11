@@ -12,7 +12,7 @@ import staffconnect.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends StaffConnectStorage, UserPrefsStorage {
+public interface Storage extends StaffBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;

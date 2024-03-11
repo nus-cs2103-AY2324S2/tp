@@ -17,7 +17,7 @@ import staffconnect.model.ReadOnlyStaffBook;
 /**
  * A class to access StaffBook data stored as a json file on the hard disk.
  */
-public class JsonStaffConnectStorage implements StaffConnectStorage {
+public class JsonStaffConnectStorage implements StaffBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonStaffConnectStorage.class);
 
