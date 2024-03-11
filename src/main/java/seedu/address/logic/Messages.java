@@ -52,7 +52,7 @@ public class Messages {
     /**
      * Formats the {@code booking} for display to the user.
      */
-    public static String format(Booking booking) {
+    public static String formatBooking(Booking booking) {
         // TODO
         return "NOT_IMPLEMENTED_YET";
     }

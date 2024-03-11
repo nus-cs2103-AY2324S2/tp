@@ -150,5 +150,6 @@ public class ModelManager implements Model {
     @Override
     public void addBooking(Booking booking) {
         // TODO
+        // Add the booking to data structure
     }
 }
