@@ -262,13 +262,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Home-Based Food Business Owners who sell their products online
+* has a need to manage a significant number of customer contacts
+* has a need to track the food order to the contact
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: The address book can help homemade food sellers organize customer information and orders 
+so that they know what to bake, how much to bake and where to deliver the order to. This information management 
+tool aims to be more efficient to use than paper-work or general-purpose excel sheets. We also aim to reduce 
+chances of mistakes such as wrong delivery address, forgetting an order or sending repeated orders.
+
 
 
 ### User stories
