@@ -1,13 +1,15 @@
 {
   "persons": [ {
     "name": "Valid Person",
-    "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "studentId": "A1234567A",
+    "moduleCode": "CS2105",
+    "tutorial": "T01"
   }, {
     "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "studentId": "A948asdf2424L",
+    "moduleCode": "CS2105",
+    "tutorial":  "T01"
   } ]
 }

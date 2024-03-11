@@ -1,27 +1,40 @@
 package seedu.address.model.module;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Class used to handle representation of a tutorial class within a module.
+ * Represents a Module's tutorial class code.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTutorialClass(String)}
  */
 public class TutorialClass {
-    final Name name;
-    private final ArrayList<Person> students;
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Please enter a valid NUS tutorial class code eg. T01, and it should not be blank";
 
     /**
+     * This regex validates the tutorial class code that user enters.
+     * Supports format like "L07", "T01" and "T015".
+     */
+    public static final String VALIDATION_REGEX = "^[A-Z]\\d{2}$";
+
+    public final String value;
+  
+    private final ArrayList<Person> students;
+
+  /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no students.
      *
      * @param name of tutorial to be added
      */
-    public TutorialClass(Name name) {
+    public TutorialClass(String name) {
         requireAllNonNull(name);
-        this.name = name;
+        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        this.value = name;
         this.students = new ArrayList<Person>();
     }
 
@@ -31,9 +44,10 @@ public class TutorialClass {
      * @param name of tutorial to be added
      * @param student to be added
      */
-    public TutorialClass(Name name, Person student) {
+    public TutorialClass(String name, Person student) {
         requireAllNonNull(name);
-        this.name = name;
+        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        this.value = name;
         this.students = new ArrayList<Person>();
         students.add(student);
     }
@@ -44,34 +58,41 @@ public class TutorialClass {
      * @param name of tutorial to be added
      * @param students to be in the added tutorial
      */
-    public TutorialClass(Name name, ArrayList<Person> students) {
+    public TutorialClass(String name, ArrayList<Person> students) {
         requireAllNonNull(name);
-        this.name = name;
+        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        this.value = name;
         this.students = students;
+      
+    /**
+     * Returns true if a given string is a valid tutorial class code.
+     */
+    public static boolean isValidTutorialClass(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return name.toString();
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TutorialClass // instanceof handles nulls
-                && name.equals(((TutorialClass) other).name)); // state check
-    }
+        if (other == this) {
+            return true;
+        }
 
-    public Name getName() {
-        return name;
-    }
+        // instanceof handles nulls
+        if (!(other instanceof TutorialClass)) {
+            return false;
+        }
 
-    public ArrayList<Person> getStudents() {
-        return students;
+        TutorialClass otherTutorialClass = (TutorialClass) other;
+        return value.equals(otherTutorialClass.value);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return value.hashCode();
     }
 }
