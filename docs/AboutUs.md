@@ -40,12 +40,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code Writer
 
-### Jean Doe
+### Taufiq Mohammed
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/taufiq.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/taufiq)]
+[[portfolio](team/taufiq.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Writer
