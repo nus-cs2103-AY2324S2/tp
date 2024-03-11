@@ -5,11 +5,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameAndTagContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -22,13 +24,33 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        // Test for searching names using /n prefix
+        List<String> nameKeywords = Arrays.asList("Alice", "Bob");
+        // No Tags
+        List<String> emptyList = Collections.emptyList();
+        NameAndTagContainsKeywordsPredicate predicateForNameSearch =
+                new NameAndTagContainsKeywordsPredicate(nameKeywords, emptyList);
+        FindCommand expectedFindCommandForName = new FindCommand(predicateForNameSearch);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        // Test parsing for name search
+        assertParseSuccess(parser, "/n Alice Bob", expectedFindCommandForName);
+
+        // Test for searching tags using /t prefix
+        List<String> tagKeywords = Arrays.asList("friend", "colleague");
+        NameAndTagContainsKeywordsPredicate predicateForTagSearch =
+                new NameAndTagContainsKeywordsPredicate(emptyList, tagKeywords);
+        FindCommand expectedFindCommandForTag = new FindCommand(predicateForTagSearch);
+
+        // Test parsing for tag search
+        assertParseSuccess(parser, "/t friend colleague", expectedFindCommandForTag);
+
+        // Test for searching both names and tags
+        NameAndTagContainsKeywordsPredicate predicateForBothSearch =
+                new NameAndTagContainsKeywordsPredicate(nameKeywords, tagKeywords);
+        FindCommand expectedFindCommandForBoth = new FindCommand(predicateForBothSearch);
+
+        // Test parsing for both names and tags search
+        assertParseSuccess(parser, "/n Alice Bob /t friend colleague", expectedFindCommandForBoth);
     }
 
 }
