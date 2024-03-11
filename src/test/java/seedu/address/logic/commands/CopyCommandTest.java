@@ -46,10 +46,9 @@ public class CopyCommandTest {
     public void execute_nonEmptyList_emailsCopied() {
         try {
             CommandResult result = new CopyCommand().execute(model);
-            assertTrue(result != null);
             assertEquals(CopyCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
         } catch (CommandException ce) {
-            // do nothing for now
+            throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
 }
