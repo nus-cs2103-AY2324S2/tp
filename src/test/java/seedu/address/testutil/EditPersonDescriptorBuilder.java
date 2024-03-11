@@ -1,7 +1,15 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.InternDuration;
+import seedu.address.model.person.InterviewDate;
+import seedu.address.model.person.JobDescription;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -70,8 +78,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Tag} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String tags) {
-        descriptor.setTag(new Tag(tags));
+    public EditPersonDescriptorBuilder withTags(String tag) {
+        descriptor.setTag(new Tag(tag));
         return this;
     }
 
