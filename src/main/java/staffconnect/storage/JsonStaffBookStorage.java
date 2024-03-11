@@ -45,8 +45,8 @@ public class JsonStaffBookStorage implements StaffBookStorage {
     public Optional<ReadOnlyStaffBook> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableStaffConnect> jsonStaffBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableStaffConnect.class);
+        Optional<JsonSerializableStaffBook> jsonStaffBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableStaffBook.class);
         if (!jsonStaffBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonStaffBookStorage implements StaffBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableStaffConnect(staffBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableStaffBook(staffBook), filePath);
     }
 
 }

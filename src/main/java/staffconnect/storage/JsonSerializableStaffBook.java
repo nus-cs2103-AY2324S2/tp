@@ -17,26 +17,26 @@ import staffconnect.model.person.Person;
  * An Immutable StaffBook that is serializable to JSON format.
  */
 @JsonRootName(value = "staffbook")
-class JsonSerializableStaffConnect {
+class JsonSerializableStaffBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableStaffConnect} with the given persons.
+     * Constructs a {@code JsonSerializableStaffBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableStaffConnect(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableStaffBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
     /**
      * Converts a given {@code ReadOnlyStaffBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableStaffConnect}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableStaffBook}.
      */
-    public JsonSerializableStaffConnect(ReadOnlyStaffBook source) {
+    public JsonSerializableStaffBook(ReadOnlyStaffBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
