@@ -19,9 +19,9 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    //private final Income income;
+    private final Income income;
     private final Address address;
-    //private final Family family;
+    private final Family family;
     //To remove phone
 
     //To remove email
@@ -34,12 +34,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Income income, Email email, Address address, Family family, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
+        this.income = income;
+        //Remember email to be removed
         this.email = email;
         this.address = address;
+        this.family = family;
         this.tags.addAll(tags);
     }
 
@@ -51,12 +54,20 @@ public class Person {
         return phone;
     }
 
+    public Income getIncome() {
+        return income;
+    }
+
     public Email getEmail() {
         return email;
     }
 
     public Address getAddress() {
         return address;
+    }
+
+    public Family getFamily() {
+        return family;
     }
 
     /**
