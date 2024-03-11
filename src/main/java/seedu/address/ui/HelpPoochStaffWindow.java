@@ -13,10 +13,15 @@ import seedu.address.commons.core.LogsCenter;
 /**
  * Controller for a help page
  */
-public class HelpWindow extends UiPart<Stage> {
+public class HelpPoochStaffWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-w10-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Adds a pooch staff to pooch planner"
+            + "\n" + "" + "\n"
+            + "Format: /pooch-staff ; name : [name] ; phone : [phone] ;"
+            + " address : [address] ; email : [email] ; salary : [salary] ; employment : [part/full] ; "
+            + "\n" + "" + "\n"
+            + "Go to our UG for more information : " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -32,7 +37,7 @@ public class HelpWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public HelpWindow(Stage root) {
+    public HelpPoochStaffWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
     }
@@ -40,7 +45,7 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
+    public HelpPoochStaffWindow() {
         this(new Stage());
     }
 
