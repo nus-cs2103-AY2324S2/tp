@@ -1,17 +1,8 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.Collection;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.fields.Address;
-import seedu.address.model.person.fields.Email;
-import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.Phone;
-import seedu.address.model.person.fields.Tags;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -31,82 +22,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        try {
-            return new Name(trimmedName);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        try {
-            return new Phone(trimmedPhone);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        try {
-            return new Address(trimmedAddress);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        try {
-            return new Email(trimmedEmail);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Tags}.
-     */
-    public static Tags parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        try {
-            return new Tags(tags.toArray(new String[0]));
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
     }
 
 }
