@@ -41,8 +41,27 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
+
+### Creating an event: `addev`
+
+**Format:** `addev -ev <event name>`
+
+**Description:**
+
+Adds a new event with the specified name for the Event List.
+
+<box type="warning" seamless>
+
+**Caution:**
+
+* `<event name>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
+* Adding an event with a name that already exists, regardless of case, is **not allowed.**
+  </box>
+
+**Examples:**
+
+- `addev -ev Orientation camp` adds a new event with the name `Orientation camp`.
 
 ### Deleting an event: `delev`
 
@@ -61,7 +80,7 @@ Deletes an event and all its relevant information with its index in the event li
 
 - `delev 1` deletes an event with the index `1`.
 
-### Adding participant and their information to the global participant list: `add`
+### Adding participant and their information to the global participant list: `addp`
 
 **Format:** `addp -n PARTICIPANT_NAME -p PHONE_NUMBER -e EMAIL`
 
@@ -72,14 +91,16 @@ Adds a new participant to the app, allowing them to be added to an event later.
 <box type="warning" seamless>
 
 **Caution:**
+
 * `<PARTICIPANT_NAME>` should be **alphabetic**, **non-empty** and **not longer than 64 characters**.
 * `<PHONE_NUMBER>` should be **numeric**, **non-empty** and **not longer than 15 digits**.
 * `<EMAIL>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
-
+  </box>
+  
 **Examples:**
 
-`addp -n David -p 98987676 -e david00@ggmail.com` adds a participant named `David` 
-with the specific information to the global participant list. 
+- `addp -n David -p 98987676 -e david00@ggmail.com` adds a participant named `David` 
+with the specific information to the global participant list.
 
 --------------------------------------------------------------------------------------------------------------------
 
