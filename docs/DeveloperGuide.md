@@ -295,24 +295,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`     | tutor     | communicate with my students on the App     | update them on any academic details I missed during lessons             |
 | `*`     | tutor     | track attendence of students                | monitor their commitment to tutoring sessions                           |
 | `*`     | tutor     | reschedule sessions with my students        | accomodate changes in availability                                      |
-| `*`     | tutor     | track attendence of students                | monitor their commitment to tutoring sessions                           |
 | `*`     | tutor     | make session notes for students             | keep track of lesson details                                            |
-| `*`     | tutor     | track attendence of students                | monitor their commitment to tutoring sessions                           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorsGo` and the **Actor** is the `tutor`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Adding a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User adds a person
+2.  TutorsGo shows a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Parameters given are invalid.
+
+    * 1a1. TutorsGo shows an error message.
+
+      Use case ends.
+
+* 1b. The tag given is not a `Student` or a `Tutor`.
+
+    * 1b1. TutorsGo shows an error message.
+
+      Use case ends.
+
+
+**Use case: View schedule**
+
+**MSS**
+1.  User requests to view schedule
+2.  TutorsGo shows upcoming schedule of current month
+
+    Use case ends.
+
+**Use case: Track attendance**
+
+**MSS**
+1.  User requests to list students
+2.  TutorsGo shows a list of students
+3.  User requests to track attendance of a specific person in the list
+4.  TutorsGo shows all dates student has attended
 
     Use case ends.
 
@@ -320,11 +350,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorsGo shows an error message.
 
       Use case resumes at step 2.
 
