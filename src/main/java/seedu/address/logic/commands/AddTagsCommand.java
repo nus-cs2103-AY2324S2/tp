@@ -38,7 +38,6 @@ public class AddTagsCommand extends Command {
             + PREFIX_TAG + "fallrisk";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Tags successfully added for Patient %s";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
 
     private final Index index;
     private final Set<Tag> tags;
@@ -84,10 +83,6 @@ public class AddTagsCommand extends Command {
 
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
-        if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
-        }
-
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
@@ -112,14 +107,14 @@ public class AddTagsCommand extends Command {
 
         AddTagsCommand otherTagCommand = (AddTagsCommand) other;
         return index.equals(otherTagCommand.index)
-                && editPatientDescriptor.equals(otherTagCommand.editPatientDescriptor);
+                && tags.equals(otherTagCommand.tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPatientDescriptor", editPatientDescriptor)
+                .add("tags", tags)
                 .toString();
     }
 }
