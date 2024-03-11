@@ -1,16 +1,16 @@
 package tutorpro.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static tutorpro.commons.util.CollectionUtil.requireAllNonNull;
+//import static tutorpro.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tutorpro.commons.util.CollectionUtil;
 import tutorpro.model.person.exceptions.DuplicatePersonException;
 import tutorpro.model.person.exceptions.PersonNotFoundException;
-import tutorpro.commons.util.CollectionUtil;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
