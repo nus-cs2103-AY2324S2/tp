@@ -96,4 +96,21 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+    @Test
+    public void getName() {
+        assertEquals(VALID_NAME_BOB, BOB.getName().toString());
+    }
+    @Test
+    public void getPhone() {
+        assertEquals(VALID_PHONE_BOB, BOB.getPhone().toString());
+    }
+    @Test
+    public void getEmail() {
+        assertEquals(VALID_EMAIL_BOB, BOB.getEmail().toString());
+    }
+    @Test
+    public void getAddress() {
+        assertEquals(VALID_ADDRESS_BOB, BOB.getAddress().toString());
+    }
+
 }
