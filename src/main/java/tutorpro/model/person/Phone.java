@@ -1,9 +1,9 @@
 package tutorpro.model.person;
 
-import tutorpro.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
-import static tutorpro.commons.util.AppUtil.checkArgument;
+//import static tutorpro.commons.util.AppUtil.checkArgument;
+
+import tutorpro.commons.util.AppUtil;
 
 /**
  * Represents a Person's phone number in the address book.

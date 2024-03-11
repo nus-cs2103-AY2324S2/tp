@@ -1,7 +1,7 @@
 package tutorpro.model;
 
 import static java.util.Objects.requireNonNull;
-import static tutorpro.commons.util.CollectionUtil.requireAllNonNull;
+//import static tutorpro.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import tutorpro.commons.core.GuiSettings;
 import tutorpro.commons.core.LogsCenter;
-import tutorpro.model.person.Person;
 import tutorpro.commons.util.CollectionUtil;
+import tutorpro.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
