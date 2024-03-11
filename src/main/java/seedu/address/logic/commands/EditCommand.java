@@ -3,11 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_NAME;
-import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.person.fields.prefix.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.person.fields.Address.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.Email.PREFIX_EMAIL;
+import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+import static seedu.address.model.person.fields.Phone.PREFIX_PHONE;
+import static seedu.address.model.person.fields.Tags.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
      * {@code Set<Tag>} containing zero tags.
      */
     private static Optional<Tags> parseTagsForEdit(Collection<String> tags) {
-        assert tags != null;
+        requireNonNull(tags);
 
         if (tags.isEmpty()) {
             return Optional.empty();

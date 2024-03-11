@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public class Phone implements Field {
 
+    public static final Prefix PREFIX_PHONE = new Prefix("p/");
     private static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     private static final String VALIDATION_REGEX = "\\d{3,}";

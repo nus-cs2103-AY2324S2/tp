@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.prefix.Prefix;
+import seedu.address.model.person.fields.Prefix;
 
 /**
  * Container for user visible messages.

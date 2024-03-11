@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public class Email implements Field {
 
+    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     private static final String SPECIAL_CHARACTERS = "+_.-";
     private static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"

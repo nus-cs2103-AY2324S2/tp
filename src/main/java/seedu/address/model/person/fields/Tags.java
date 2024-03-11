@@ -16,6 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Tags implements Field {
 
+    public static final Prefix PREFIX_TAG = new Prefix("t/");
     private final Set<Tag> tags;
 
     /**

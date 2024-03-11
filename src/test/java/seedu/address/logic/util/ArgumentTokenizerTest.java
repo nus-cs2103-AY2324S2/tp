@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.fields.prefix.Prefix;
+import seedu.address.model.person.fields.Prefix;
 
 public class ArgumentTokenizerTest {
 

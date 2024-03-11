@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public class Address implements Field {
 
+    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     private static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
