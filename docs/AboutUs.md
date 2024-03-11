@@ -22,24 +22,24 @@ You can reach us at the email `E0957568@u.nus.edu`
 * Role: Code Monkey
 * Responsibilities: Coding :)
 
-### Jane Doe
+### Andrew Ong Pang Woon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/andrewong2066.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Coding
 
-### Johnny Doe
+### Rahman Faaheem Ilhaam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/faaheem13.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/faaheem13)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: 
 
 ### Jean Doe
 
