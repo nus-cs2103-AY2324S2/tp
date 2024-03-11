@@ -51,13 +51,13 @@ public class AddNoteCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String message = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE);
 
-        // Missing date prefix
+        // Missing date prefix.
         assertParseFailure(parser, "1 " + TIME_DESC + NOTE_DESC, message);
 
-        // Missing time prefix
+        // Missing time prefix.
         assertParseFailure(parser, "1 " + DATE_DESC + NOTE_DESC, message);
 
-        // Missing note prefix
+        // Missing note prefix.
         assertParseFailure(parser, "1 " + DATE_DESC + TIME_DESC, message);
     }
 

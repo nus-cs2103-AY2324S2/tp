@@ -81,20 +81,20 @@ public class AddNoteCommandTest {
         AddNoteCommand addNoteCommand1 = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
         AddNoteCommand addNoteCommand2 = new AddNoteCommand(Index.fromOneBased(2), VALID_NOTE_FLU);
 
-        // Same object
+        // Same object.
         assertEquals(addNoteCommand1, addNoteCommand1);
 
-        // Same values
+        // Same values.
         AddNoteCommand addNoteCommand1Copy = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
         assertEquals(addNoteCommand1, addNoteCommand1Copy);
 
-        // Different types
+        // Different types.
         assertNotEquals(1, addNoteCommand1);
 
-        // Null
+        // Null.
         assertNotEquals(null, addNoteCommand1);
 
-        // Different note
+        // Different note.
         assertNotEquals(addNoteCommand1, addNoteCommand2);
     }
 
@@ -103,10 +103,10 @@ public class AddNoteCommandTest {
         AddNoteCommand addNoteCommand1 = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
         AddNoteCommand addNoteCommand2 = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
 
-        // Same values
+        // Same values.
         assertEquals(addNoteCommand1.hashCode(), addNoteCommand2.hashCode());
 
-        // Different values
+        // Different values.
         AddNoteCommand addNoteCommand3 = new AddNoteCommand(Index.fromOneBased(2), VALID_NOTE_FLU);
         assertNotEquals(addNoteCommand1.hashCode(), addNoteCommand3.hashCode());
     }
