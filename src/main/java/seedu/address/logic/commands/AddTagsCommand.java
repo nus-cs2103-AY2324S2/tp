@@ -33,7 +33,7 @@ public class AddTagsCommand extends Command {
             + ": Adds one or more tags (single word) to a person identified "
             + "by the index number used in the last person listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TAG + "[TAG]...\n"
+            + PREFIX_TAG + "[TAG]+ \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "fallrisk";
 
