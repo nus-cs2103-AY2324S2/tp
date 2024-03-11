@@ -3,7 +3,6 @@ package seedu.address.model.person.attribute;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.attribute.NameAttribute;
 
 public class NameAttributeTest {
 

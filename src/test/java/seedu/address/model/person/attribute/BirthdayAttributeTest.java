@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.attribute.BirthdayAttribute;
 
 public class BirthdayAttributeTest {
 

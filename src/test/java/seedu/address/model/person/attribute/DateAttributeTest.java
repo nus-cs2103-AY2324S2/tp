@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.attribute.DateAttribute;
 
 public class DateAttributeTest {
 
