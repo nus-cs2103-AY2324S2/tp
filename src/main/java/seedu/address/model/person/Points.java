@@ -12,14 +12,14 @@ public final class Points {
     public static final String MESSAGE_CONSTRAINTS =
             "Points should be a non-negative integer.";
 
-    private final int value;
+    public final int value;
 
     /**
      * Constructs a {@code Points} object.
      *
      * @param points A valid points string.
      */
-    private Points(final String points) {
+    public Points(final String points) {
         requireNonNull(points);
         checkArgument(isValidPoints(points), MESSAGE_CONSTRAINTS);
         this.value = Integer.parseInt(points);
