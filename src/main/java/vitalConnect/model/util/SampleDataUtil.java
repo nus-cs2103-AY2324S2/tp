@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import vitalConnect.model.Clinic;
 import vitalConnect.model.ReadOnlyClinic;
+import vitalConnect.model.person.Person;
 import vitalConnect.model.person.contactInformation.Address;
 import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.person.Person;
 import vitalConnect.model.person.contactInformation.Phone;
+import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.tag.Tag;
 
 /**

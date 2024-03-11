@@ -3,7 +3,7 @@ package vitalConnect.model.person.contactInformation;
 
 /**
  * Represents a Person's contact information
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidContactInformation(String)}
  */
 public class ContactInformation {
 
@@ -11,8 +11,14 @@ public class ContactInformation {
     private final Email email;
     private final Phone phone;
     private final Address address;
-    
 
+    /**
+     * Constructs a {@code ContactInformation}.
+     *
+     * @param email A valid email.
+     * @param phone A valid phone.
+     * @param address A valid address.
+     */
     public ContactInformation(Email email, Phone phone, Address address) {
         this.email = email;
         this.phone = phone;

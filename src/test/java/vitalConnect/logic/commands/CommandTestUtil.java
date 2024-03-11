@@ -17,8 +17,8 @@ import vitalConnect.commons.core.index.Index;
 import vitalConnect.logic.commands.exceptions.CommandException;
 import vitalConnect.model.Clinic;
 import vitalConnect.model.Model;
-import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
 import vitalConnect.model.person.Person;
+import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
 import vitalConnect.testutil.EditPersonDescriptorBuilder;
 
 /**

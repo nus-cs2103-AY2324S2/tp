@@ -40,8 +40,8 @@ import vitalConnect.logic.commands.EditCommand;
 import vitalConnect.logic.commands.EditCommand.EditPersonDescriptor;
 import vitalConnect.model.person.contactInformation.Address;
 import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.person.contactInformation.Phone;
+import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.tag.Tag;
 import vitalConnect.testutil.EditPersonDescriptorBuilder;
 

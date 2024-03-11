@@ -37,7 +37,7 @@ public class Person {
         requireAllNonNull(name, phone, email, address, tags);
         this.identificationInformation = new IdentificationInformation(name);
         this.contactInformation = new ContactInformation(email, phone, address);
-        
+
         this.tags.addAll(tags);
     }
 

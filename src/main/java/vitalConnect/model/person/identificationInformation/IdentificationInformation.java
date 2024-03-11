@@ -9,7 +9,7 @@ public class IdentificationInformation {
     // Identity fields
     private final Name name;
     private final Nric nric;
-    
+
     /**
      * Constructs a {@code IdentificationInformation}.
      *
@@ -54,7 +54,7 @@ public class IdentificationInformation {
         IdentificationInformation otherInfo = (IdentificationInformation) other;
         return name.equals(otherInfo.name) && nric.equals(otherInfo.nric);
     }
-    
+
     @Override
     public int hashCode() {
         return name.hashCode() + nric.hashCode();

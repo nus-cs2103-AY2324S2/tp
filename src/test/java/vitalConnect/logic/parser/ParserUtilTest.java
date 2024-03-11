@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import vitalConnect.logic.parser.exceptions.ParseException;
 import vitalConnect.model.person.contactInformation.Address;
 import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.person.contactInformation.Phone;
+import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.tag.Tag;
 
 public class ParserUtilTest {

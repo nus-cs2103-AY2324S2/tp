@@ -37,11 +37,11 @@ import org.junit.jupiter.api.Test;
 
 import vitalConnect.logic.Messages;
 import vitalConnect.logic.commands.AddCommand;
+import vitalConnect.model.person.Person;
 import vitalConnect.model.person.contactInformation.Address;
 import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.person.Person;
 import vitalConnect.model.person.contactInformation.Phone;
+import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.tag.Tag;
 import vitalConnect.testutil.PersonBuilder;
 

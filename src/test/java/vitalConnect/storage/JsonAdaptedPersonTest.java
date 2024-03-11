@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import vitalConnect.commons.exceptions.IllegalValueException;
 import vitalConnect.model.person.contactInformation.Address;
 import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.identificationInformation.Name;
 import vitalConnect.model.person.contactInformation.Phone;
+import vitalConnect.model.person.identificationInformation.Name;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
