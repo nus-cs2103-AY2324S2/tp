@@ -1,15 +1,15 @@
 package seedu.address.model.schedule;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.*;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Represents a Schedule in the address book.
@@ -21,10 +21,10 @@ public class Schedule {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String schedName;
-    public LocalDateTime startTime;
-    public LocalDateTime endTime;
-    public ArrayList<Person> participants;
+    private final String schedName;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private ArrayList<Person> participants;
 
     /**
      * Constructs a {@code Schedule}.
@@ -43,6 +43,22 @@ public class Schedule {
         this.startTime = startTime;
         this.endTime = endTime;
         this.participants = participants;
+    }
+
+    public String getSchedName() {
+        return schedName;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public ArrayList<Person> getParticipants() {
+        return participants;
     }
 
     /**
@@ -75,10 +91,10 @@ public class Schedule {
         }
 
         Schedule otherSched = (Schedule) other;
-        return schedName.equals(otherSched.schedName) &&
-                startTime.equals(otherSched.startTime) &&
-                endTime.equals(otherSched.endTime) &&
-                participants.equals(otherSched.participants);
+        return schedName.equals(otherSched.schedName)
+                && startTime.equals(otherSched.startTime)
+                && endTime.equals(otherSched.endTime)
+                && participants.equals(otherSched.participants);
     }
 
     @Override
