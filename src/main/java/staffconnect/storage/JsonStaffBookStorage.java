@@ -17,13 +17,13 @@ import staffconnect.model.ReadOnlyStaffBook;
 /**
  * A class to access StaffBook data stored as a json file on the hard disk.
  */
-public class JsonStaffConnectStorage implements StaffBookStorage {
+public class JsonStaffBookStorage implements StaffBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonStaffConnectStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonStaffBookStorage.class);
 
     private Path filePath;
 
-    public JsonStaffConnectStorage(Path filePath) {
+    public JsonStaffBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 

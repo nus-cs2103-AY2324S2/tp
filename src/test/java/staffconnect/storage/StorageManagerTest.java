@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonStaffConnectStorage addressBookStorage = new JsonStaffConnectStorage(getTempFilePath("ab"));
+        JsonStaffBookStorage addressBookStorage = new JsonStaffBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -51,8 +51,8 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonStaffConnectStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonStaffConnectStorageTest} class.
+         * {@link JsonStaffBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonStaffBookStorageTest} class.
          */
         StaffBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);

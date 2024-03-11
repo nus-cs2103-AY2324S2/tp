@@ -19,8 +19,8 @@ import staffconnect.commons.exceptions.DataLoadingException;
 import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.StaffBook;
 
-public class JsonStaffConnectStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonStaffConnectStorageTest");
+public class JsonStaffBookStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonStaffBookStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -31,7 +31,7 @@ public class JsonStaffConnectStorageTest {
     }
 
     private java.util.Optional<ReadOnlyStaffBook> readAddressBook(String filePath) throws Exception {
-        return new JsonStaffConnectStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonStaffBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,7 +64,7 @@ public class JsonStaffConnectStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         StaffBook original = getTypicalAddressBook();
-        JsonStaffConnectStorage jsonAddressBookStorage = new JsonStaffConnectStorage(filePath);
+        JsonStaffBookStorage jsonAddressBookStorage = new JsonStaffBookStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
@@ -96,7 +96,7 @@ public class JsonStaffConnectStorageTest {
      */
     private void saveStaffBook(ReadOnlyStaffBook staffBook, String filePath) {
         try {
-            new JsonStaffConnectStorage(Paths.get(filePath))
+            new JsonStaffBookStorage(Paths.get(filePath))
                     .saveAddressBook(staffBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

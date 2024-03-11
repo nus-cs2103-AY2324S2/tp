@@ -28,7 +28,7 @@ import staffconnect.model.ModelManager;
 import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.UserPrefs;
 import staffconnect.model.person.Person;
-import staffconnect.storage.JsonStaffConnectStorage;
+import staffconnect.storage.JsonStaffBookStorage;
 import staffconnect.storage.JsonUserPrefsStorage;
 import staffconnect.storage.StorageManager;
 import staffconnect.testutil.PersonBuilder;
@@ -45,8 +45,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonStaffConnectStorage addressBookStorage =
-                new JsonStaffConnectStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonStaffBookStorage addressBookStorage =
+                new JsonStaffBookStorage(temporaryFolder.resolve("staffBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -150,7 +150,7 @@ public class LogicManagerTest {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with a StaffBookStorage that throws the IOException e when saving
-        JsonStaffConnectStorage addressBookStorage = new JsonStaffConnectStorage(prefPath) {
+        JsonStaffBookStorage staffBookStorage = new JsonStaffBookStorage(prefPath) {
             @Override
             public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath)
                     throws IOException {
@@ -160,7 +160,7 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(staffBookStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 
