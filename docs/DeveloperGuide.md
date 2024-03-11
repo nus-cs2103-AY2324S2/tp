@@ -330,11 +330,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 500 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 500 _persons_ without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. All user operations (excluding export to CSV) should complete within 200 milliseconds.
 5. The codebase should follow a [given set of coding style](https://se-education.org/guides/conventions/java/intermediate.html) and should be well documented.
-6. Should provide friendlier syntax and command aliases for advanced users to completion tasks quicker.
+6. Should provide friendlier syntax and command _aliases_ for advanced users to complete tasks quicker.
 7. Should display clear error messages for invalid inputs and failed operations, stating the correct command format or inputs required.
 
 ### Glossary
