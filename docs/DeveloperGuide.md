@@ -477,6 +477,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The respond time for any action should be less than 5 seconds.
+5.  The app should have an uptime of at least 99.5%, ensuring data accessibility for managers.
+6.  There should be at most 2 hours of downtime in a day for maintenance or updates.
+7.  The app should efficiently store and manage data for at least 10 years of employee history. 
+8.  There should be a daily scheduled backup of the app's data.
+9.  The app should allow data export in at least three common formats like CSV, XLSX and PDF.
 
 *{More to be added}*
 
