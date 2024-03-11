@@ -1,8 +1,9 @@
 package seedu.address.model.tag;
 
+import java.util.function.Predicate;
+
 import seedu.address.model.person.Person;
 
-import java.util.function.Predicate;
 
 /**
  * Tests if a {@code Person}'s {@code Tag} matches the Enum given
