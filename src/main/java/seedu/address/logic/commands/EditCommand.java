@@ -27,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Entry;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -95,10 +96,10 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Entry updatedName = editPersonDescriptor.getName().orElse(personToEdit.getEntry("Name"));
+        Entry updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getEntry("Phone"));
+        Entry updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEntry("Email"));
+        Entry updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getEntry("Address"));
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Person result = new Person(updatedName, updatedTags);
@@ -168,7 +169,7 @@ public class EditCommand extends Command {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<Entry> getName() {
             return Optional.ofNullable(name);
         }
 
@@ -176,7 +177,7 @@ public class EditCommand extends Command {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
+        public Optional<Entry> getPhone() {
             return Optional.ofNullable(phone);
         }
 
@@ -184,7 +185,7 @@ public class EditCommand extends Command {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
+        public Optional<Entry> getEmail() {
             return Optional.ofNullable(email);
         }
 
@@ -192,7 +193,7 @@ public class EditCommand extends Command {
             this.address = address;
         }
 
-        public Optional<Address> getAddress() {
+        public Optional<Entry> getAddress() {
             return Optional.ofNullable(address);
         }
 

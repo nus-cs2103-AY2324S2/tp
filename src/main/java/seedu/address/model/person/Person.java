@@ -25,7 +25,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Set<Tag> tags) {
+    public Person(Entry name, Set<Tag> tags) {
         requireAllNonNull(name, tags);
         entryList.add(name);
         this.tags.addAll(tags);
@@ -35,24 +35,8 @@ public class Person {
         entryList.add(entry);
     }
 
-    public Name getName() {
-        Name name = (Name) entryList.get("Name");
-        return name;
-    }
-
-    public Phone getPhone() {
-        Phone phone = (Phone) entryList.get("Phone");
-        return phone;
-    }
-
-    public Email getEmail() {
-        Email email = (Email) entryList.get("Email");
-        return email;
-    }
-
-    public Address getAddress() {
-        Address address = (Address) entryList.get("Address");
-        return address;
+    public Entry getEntry(String category) {
+        return entryList.get(category);
     }
 
     /**
@@ -73,7 +57,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getEntry("Name").equals(getEntry("Name"));
     }
 
     /**
@@ -92,26 +76,26 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return getName().equals(otherPerson.getName())
-                && getPhone().equals(otherPerson.getPhone())
-                && getEmail().equals(otherPerson.getEmail())
-                && getAddress().equals(otherPerson.getAddress())
+        return getEntry("Name").equals(otherPerson.getEntry("Name"))
+                && getEntry("Phone").equals(otherPerson.getEntry("Phone"))
+                && getEntry("Email").equals(otherPerson.getEntry("Email"))
+                && getEntry("Address").equals(otherPerson.getEntry("Address"))
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), tags);
+        return Objects.hash(getEntry("Name"), getEntry("Phone"), getEntry("Email"), getEntry("Address"), tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", getName())
-                .add("phone", getPhone())
-                .add("email", getEmail())
-                .add("address", getAddress())
+                .add("name", getEntry("Name"))
+                .add("phone", getEntry("Phone"))
+                .add("email", getEntry("Email"))
+                .add("address", getEntry("Address"))
                 .add("tags", tags)
                 .toString();
     }

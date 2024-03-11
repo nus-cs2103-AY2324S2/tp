@@ -48,10 +48,10 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().getDescription());
-        phone.setText(person.getPhone().getDescription());
-        address.setText(person.getAddress().getDescription());
-        email.setText(person.getEmail().getDescription());
+        name.setText(person.getEntry("Name").getDescription());
+        phone.setText(person.getEntry("Phone").getDescription());
+        address.setText(person.getEntry("Address").getDescription());
+        email.setText(person.getEntry("Email").getDescription());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
