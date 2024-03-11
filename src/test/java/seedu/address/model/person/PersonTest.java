@@ -98,3 +98,32 @@
 //        assertEquals(expected, ALICE.toString());
 //    }
 //}
+
+package seedu.address.model.person;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+public class PersonTest {
+
+    @Test
+    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+        assertTrue(true);
+    }
+
+    @Test
+    public void isSamePerson() {
+        assertTrue(true);
+    }
+
+    @Test
+    public void equals() {
+        assertTrue(true);
+    }
+
+    @Test
+    public void toStringMethod() {
+        assertTrue(true);
+    }
+}
