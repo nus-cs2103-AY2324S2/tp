@@ -338,7 +338,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Persons**: Any person in the contact list. Includes all employees, clients and partners.
+* **State**: The page that displays the results from the last command given.
+* **UID**: A unique numerical identifier for any person added in NetConnect.
+* **CSV file**: A plain text file format that uses commas to separate values, and newlines to separate records.
 
 --------------------------------------------------------------------------------------------------------------------
 
