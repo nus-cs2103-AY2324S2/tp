@@ -11,21 +11,35 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 1. Introduction
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+### **1.1. Product Overview**
+PatientSync addresses a crucial gap in the current hospital systems by providing nurses with a comprehensive tool to manage patient information beyond administrative details.
+
+In many hospitals, the existing systems typically offer basic administrative information such as patient names and contact details. However, they often lack the capacity to delve into the intimate details of patient care.
+
+This app can help with personalised and effective care by:
+* viewing and managing upcoming checkup and appointment dates for each patient.
+* Utilising tags to categorize patients into groups based on conditions, treatment plans, or other criteria.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+### 1.2 Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+### 1.3 Acknowledgements
 
-### Architecture
+_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## 2 Design
+
+### 2.1 Architecture
 
 <puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
