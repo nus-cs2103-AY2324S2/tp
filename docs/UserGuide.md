@@ -41,11 +41,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Features
 
 ### Creating an event: `addev`
 
 **Format:** `addev -ev <event name>`
-
 
 **Description:**
 
@@ -54,13 +54,53 @@ Adds a new event with the specified name for the Event List.
 <box type="warning" seamless>
 
 **Caution:**
+
 * `<event name>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
 * Adding an event with a name that already exists, regardless of case, is **not allowed.**
-</box>
+  </box>
 
 **Examples:**
 
-- `addev -ev Orientation camp` sffd a new event with the name `Orientation camp`.
+- `addev -ev Orientation camp` adds a new event with the name `Orientation camp`.
+
+### Deleting an event: `delev`
+
+**Format:** `delev <index>`
+
+**Description:**
+
+Deletes an event and all its relevant information with its index in the event list.
+
+<box type="warning" seamless>
+
+**Caution:**
+* `<index>` should be **numeric** and **non-empty**.
+
+**Examples:**
+
+- `delev 1` deletes the 1st event in the displayed list.
+
+### Adding participant and their information to the global participant list: `addp`
+
+**Format:** `addp -n <participant name> -p <phone number> -e <email>`
+
+**Description:**
+
+Adds a new participant to the app, allowing them to be added to an event later.
+
+<box type="warning" seamless>
+
+**Caution:**
+
+* `<participant name>` should be **alphabetic**, **non-empty** and **not longer than 64 characters**.
+* `<phone number>` should be **numeric**, **non-empty** and **not longer than 15 digits**.
+* `<email>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
+  </box>
+  
+**Examples:**
+
+- `addp -n David -p 98987676 -e david@example.com` adds a participant named `David` 
+with the phone number `98987676` and email of `david@example.com` to the displayed contacts list.
 
 --------------------------------------------------------------------------------------------------------------------
 
