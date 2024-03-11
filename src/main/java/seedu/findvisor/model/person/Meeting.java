@@ -1,13 +1,13 @@
-package seedu.address.model.person;
+package seedu.findvisor.model.person;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.findvisor.commons.util.AppUtil.checkArgument;
+import static seedu.findvisor.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import seedu.address.commons.util.DateTimeUtil;
-import seedu.address.commons.util.ToStringBuilder;
+import seedu.findvisor.commons.util.DateTimeUtil;
+import seedu.findvisor.commons.util.ToStringBuilder;
 
 /**
  * Represents a meeting with a Person in the address book.

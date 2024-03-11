@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.findvisor.storage;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.DateTimeUtil;
-import seedu.address.model.person.Meeting;
+import seedu.findvisor.commons.exceptions.IllegalValueException;
+import seedu.findvisor.commons.util.DateTimeUtil;
+import seedu.findvisor.model.person.Meeting;
 
 /**
  * Jackson-friendly version of {@link Tag}.

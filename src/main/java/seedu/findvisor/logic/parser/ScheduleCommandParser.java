@@ -1,18 +1,18 @@
-package seedu.address.logic.parser;
+package seedu.findvisor.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATETIME;
+import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.DateTimeUtil;
-import seedu.address.logic.commands.ScheduleCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Meeting;
+import seedu.findvisor.commons.core.index.Index;
+import seedu.findvisor.commons.util.DateTimeUtil;
+import seedu.findvisor.logic.commands.ScheduleCommand;
+import seedu.findvisor.logic.parser.exceptions.ParseException;
+import seedu.findvisor.model.person.Meeting;
 
 /**
  * Parses input arguments and creates a new ScheduleCommand object
