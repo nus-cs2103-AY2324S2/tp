@@ -278,8 +278,8 @@ _{more aspects and alternatives to be added}_
 - prefers typing to mouse interactions 
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: 
-- manage patients' information faster than a typical mouse/GUI driven app
+**Value proposition**:  
+PatientSync is meticulously crafted for nurses who prioritize the well-being of their patients above all else. It allows nurses to input intimate details about their patients, such as food preferences and family conditions. This personalized approach enables nurses to deliver tailored care that meets the unique needs of each individual.
 
 
 ### User stories
