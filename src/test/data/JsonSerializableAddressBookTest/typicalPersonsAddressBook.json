@@ -3,7 +3,7 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
-    "income" : "20000",
+    "income" : "10000",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "family" : "4",
@@ -19,7 +19,7 @@
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
-    "income" : "20000",
+    "income" : "30000",
     "email" : "heinz@example.com",
     "address" : "wall street",
     "family" : "4",
@@ -27,7 +27,7 @@
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
-    "income" : "20000",
+    "income" : "40000",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "family" : "4",
@@ -35,7 +35,7 @@
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
-    "income" : "20000",
+    "income" : "50000",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "family" : "4",
@@ -43,7 +43,7 @@
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
-    "income" : "20000",
+    "income" : "60000",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "family" : "4",
@@ -51,7 +51,7 @@
   }, {
     "name" : "George Best",
     "phone" : "9482442",
-    "income" : "20000",
+    "income" : "70000",
     "email" : "anna@example.com",
     "address" : "4th street",
     "family" : "4",

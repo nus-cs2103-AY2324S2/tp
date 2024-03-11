@@ -52,8 +52,10 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
+        income = personToCopy.getIncome();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        family = personToCopy.getFamily();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -86,6 +88,22 @@ public class PersonBuilder {
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Income} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withIncome(String income) {
+        this.income = new Income(income);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Family} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFamily(String family) {
+        this.family = new Family(family);
         return this;
     }
 
