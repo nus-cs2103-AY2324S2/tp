@@ -43,7 +43,8 @@ public class Messages {
                 .add("email", person.getEmail())
                 .add("address", person.getAddress())
                 .add("tags", person.getTags())
-                .add("remark", person.getRemark())
+                .add("note", person.getNote())
+                .add("noteDate", person.getNoteDate())
                 .toString();
     }
 
