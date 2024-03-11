@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
@@ -14,12 +15,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.Address;
 import seedu.address.model.patient.EditPatientDescriptor;
-import seedu.address.model.patient.Email;
-import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -69,7 +66,6 @@ public class AddTagsCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), tags));
 
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
@@ -86,7 +82,7 @@ public class AddTagsCommand extends Command {
 
         editPatientDescriptor.setTags(newTagList);
 
-        Patient editedPatient = createEditedPatientFromNewTag(patientToEdit, editPatientDescriptor);
+        Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
@@ -96,23 +92,6 @@ public class AddTagsCommand extends Command {
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
         return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName()));
-    }
-
-    /**
-     * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
-     * edited with {@code editPatientDescriptor}.
-     */
-    private static Patient createEditedPatientFromNewTag(Patient patientToEdit,
-                                                         EditPatientDescriptor editPatientDescriptor) {
-        assert patientToEdit != null;
-
-        Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
-        Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
-        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
-        Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
-        Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
-
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     /**
