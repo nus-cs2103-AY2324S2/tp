@@ -13,4 +13,16 @@ public class Family {
     public static boolean isValidFamily(String familySize) {
         return Integer.parseInt(familySize) >= 0;
     }
+
+    @Override
+    public String toString() {
+        return familySize.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Family // instanceof handles nulls
+                            && familySize.equals(((Family) other).familySize)); // state check
+    }
 }

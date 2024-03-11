@@ -13,4 +13,16 @@ public class Income {
     public static boolean isValidIncome(String incomeValue) {
         return Integer.parseInt(incomeValue) >= 0;
     }
+
+    @Override
+    public String toString() {
+        return incomeValue.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Income // instanceof handles nulls
+                            && incomeValue.equals(((Income) other).incomeValue)); // state check
+    }
 }
