@@ -277,42 +277,55 @@ _{Explain here how the data archiving feature will be implemented}_
 * logistics managers who have a need to manage a significant number of contacts
 responsible for logistical assets
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* can type fast and prefers typing to other forms of input
 
 **Value proposition**:
 
-* manage contacts & their associated assets faster than a typical mouse/GUI driven app
+Logistics managers often have to keep track of many contacts such as
+* PICs of inventory items, amenities or transport
+* PoCs of departments, external suppliers or maintenance services
+
+This is usually done with general purpose software like Microsoft Excel, which
+may be cumbersome to use as they
+* take up excessive storage
+* are not optimised for typing only
+
+Therefore, the application aims to deliver the following:
+* manage contacts and associated assets faster than a typical mouse/GUI driven app
+* easily annotate contacts and assets with details
 * easily search for information by any category
 * easily copy contact information to clipboard
+* is lightweight and able to import/export data in easy-to-view format
 
+---
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …        | I want to …                                                   | So that I can …                                                                     |
-|----------|---------------|---------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| `* * *`  | user          | add new contacts and assets                                   | keep track of these details                                                         |
-| `* * *`  | user          | add tags to contacts                                          | categorize them according to my preferences and workflow                            |
-| `* * *`  | user          | delete contacts                                               | update the list if a PoC’s details are no longer needed                             |
-| `* * *`  | user          | edit contacts/tags                                            | change details without recreating contacts, as there are too many details to re-add |
-| `* * *`  | user          | easily view my existing contacts from the GUI                 | visually find the contacts I'm looking for                                          |
-| `* * *`  | user          | easily navigate between sponsors, assets, and PoCs            | access relevant information quickly                                                 |
-| `* * *`  | user          | search contacts by name, asset, or tag                        | easily find the relevant PoC                                                        |
-| `* *`    | new user      | view a drop-down suggestion of commands                       | efficiently navigate and utilize the app without extensive prior knowledge          |
-| `* *`    | user          | see no advertisements                                         | not be distracted from my tasks                                                     |
-| `* *`    | user          | add secondary personnel associated with an asset              | have a backup contact if the main person is unreachable                             |
-| `* *`    | user          | toggle between light/dark theme                               | customize the app to my preferences                                                 |
-| `* *`    | user          | resize the app’s window                                       | easily use multiple apps at once                                                    |
-| `* *`    | user          | change the profile picture of each contact                    | easily identify them                                                                |
-| `* *`    | user          | easily search within the system even if I mistype a few words | more easily locate relevant information                                             |
-| `* *`    | hurried user  | have commands even with extra whitespaces accepted            | not waste time retyping commands                                                    |
-| `* *`    | advanced user | type shorter commands                                         | type commands faster                                                                |
-| `* *`    | advanced user | use keyboard shortcuts                                        | use the app more efficiently                                                        |
-| `*`      | advanced user | add custom fields                                             | add more information to contacts                                                    |
+| Priority  | As a …        | I want to …                                                       | So that I can …                                                                     |
+|-----------|---------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `* * *`   | user          | add new contacts and assets                                       | keep track of these details                                                         |
+| `* * `    | user          | add tags to contacts                                              | categorize them according to my preferences and workflow                            |
+| `* * *`   | user          | delete contacts                                                   | update the list if a contact is no longer needed                                    |
+| `* * *`   | user          | edit contacts and assets                                          | change details without recreating contacts, as there are too many details to re-add |
+| `* * *`   | user          | easily view my existing contacts from the GUI                     | visually find the contacts I'm looking for                                          |
+| `* * *`   | user          | easily list, filter and navigate contacts                         | access relevant information quickly                                                 |
+| `* * *`   | user          | search contacts by any category (e.g. name, asset, etc.)          | easily find the relevant contact                                                    |
+| `* *`     | user          | quickly paste contact information (e.g. email) onto the clipboard | use the contact information immediately after finding it                            |
+| `* *`     | new user      | view a drop-down suggestion of commands                           | efficiently navigate and utilize the app without extensive prior knowledge          |
+| `* *`     | user          | see no advertisements                                             | not be distracted from my tasks                                                     |
+| `* *`     | user          | add secondary personnel associated with an asset                  | have a backup contact if the main person is unreachable                             |
+| `* *`     | user          | toggle between light/dark theme                                   | customize the app to my preferences                                                 |
+| `* *`     | user          | resize the app’s window                                           | easily use multiple apps at once                                                    |
+| `* *`     | user          | change the profile picture of each contact                        | easily identify them                                                                |
+| `* *`     | user          | easily search within the system even if I mistype a few words     | more easily locate relevant information                                             |
+| `* *`     | hurried user  | have commands even with extra whitespaces accepted                | not waste time retyping commands                                                    |
+| `* *`     | advanced user | type shorter commands                                             | type commands faster                                                                |
+| `* *`     | advanced user | use keyboard shortcuts                                            | use the app more efficiently                                                        |
+| `*`       | advanced user | add custom fields                                                 | add more information to contacts                                                    |
 
+---
 
 ### Use cases
 
@@ -322,40 +335,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to add a contact.
 2. User specifies details of the contact.
-3. AB3 adds the contact.
+3. System adds the contact.
 
-Use case ends.
-
-
-**Use case: UC2 - Add an asset**
-**MSS**
-1. User requests to add an asset.
-2. User specifies details of the asset.
-3. AB3 adds the asset.
-
-Use case ends.
-
-
-**Use case: UC3 - Assign assets to a contact**
-**MSS**
-1. User requests to assign an asset to the contact.
-2. User specifies the contact.
-3. User specifies the asset.
-4. AB3 assigns the asset to the contact.
-
-Steps 1-4 are repeated until all the assets are assigned to the contact.
 Use case ends.
 
 **Extensions**
-* 2a. Contact was not created.
-    * 2a1. User exits assign request.
-    * 2a2. User creates the contact (UC1).
-    Use case resumes from step 1.
-* 3a. Asset was not created.
-    * 3a1. User exits assign request.
-    * 3a2. User creates the asset (UC2).
-    Use case resumes from step 1.
 
+2a. System detects user input is invalid. <br>
+&emsp;2a1. System displays and error message. <br>
+&emsp;2a2. User enters new input. <br>
+&emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
+&emsp;Use case resumes from step 2.
+
+--- {.dotted}
+
+**Use case: UC2 - List contacts**
+**MSS**
+1. User requests to list contacts.
+2. System displays all contacts.
+
+Use case ends.
+
+--- {.dotted}
+
+**Use case: UC3 - Search contacts**
+**MSS**
+1. User requests to search contacts.
+2. User specifies details to search by.
+3. System displays all matching contacts.
+
+Use case ends.
+
+**Extensions**
+
+2a. System detects user input is invalid. <br>
+&emsp;2a1. System displays and error message. <br>
+&emsp;2a2. User enters new input. <br>
+&emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
+&emsp;Use case resumes from step 2. 
+
+--- {.dotted}
+
+**Use case: UC4 - Edit contacts**
+**MSS**
+1. User !!lists contacts(UC2)!!.
+2. User requests to edit a contact.
+3. User specifies the index of the contact and details to edit.
+4. System updates the contact.
+
+Use case ends.
+
+**Extensions**
+
+1a. System displays no contacts. <br>
+&emsp;Use case ends. <br>
+3a. System detects user input is invalid. <br>
+&emsp;3a1. System displays and error message. <br>
+&emsp;3a2. User enters new input. <br>
+&emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
+&emsp;Use case resumes from step 3. <br>
+
+--- {.dotted}
+
+**Use case: UC5 - Delete contact**
+**MSS**
+1. User !!lists contacts(UC2)!!.
+2. User requests to delete a contact.
+3. User specifies the index of the contact to delete.
+4. System deletes the contact.
+
+Use case ends.
+
+**Extensions**
+
+3a. System detects user input is invalid. <br>
+&emsp;3a1. System displays and error message. <br>
+&emsp;3a2. User enters new input. <br>
+&emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
+&emsp;Use case resumes from step 3. <br>
+
+---
 
 ### Non-Functional Requirements
 
@@ -406,14 +465,15 @@ Use case ends.
 
 ### Glossary
 
-* **Asset**: An item of logistical significance that is owned or maintained by a company or person.
-* **Clipboard**: The computer's storage for data that is copied and that will be produced by the paste command.
-* **Command**: Text that a user inputs to interact with the application.
-* **Command Line Interface(CLI)**: An interface where text commands are inputted by users to interact with the computer.
-* **Graphical User Interface(GUI)**: The visual display of an application through which a user interacts with the computer.
-* **Logistics Manager**: Anyone who manages inventory or amenities in a professional capacity.
+* **Asset**: An item of logistical significance, may be amenities or inventory
+* **Clipboard**: The computer's storage for data that is copied and that will be produced by the paste command
+* **Command**: Text that a user inputs to interact with the application
+* **Command Line Interface(CLI)**: An interface where text commands are inputted by users to interact with the computer
+* **Graphical User Interface(GUI)**: The visual display of an application through which a user interacts with the computer
+* **Logistics Manager**: Anyone who manages inventory or amenities in a professional capacity
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Point-of-Contact(PoC)**: A contact responsible for a certain asset or representing a responsible entity
+* **Person-In-Charge(PIC)**: A contact responsible for an asset
+* **Point-of-Contact(PoC)**: A contact representing a responsible entity like a department or external business
 * **Tag**: User added information associated to a contact e.g. `retired`, `temp staff`, …
 
 --------------------------------------------------------------------------------------------------------------------
