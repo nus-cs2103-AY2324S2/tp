@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# Avengers Assemble User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AA can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,24 +17,24 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `avengersassemble.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your AA.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar avengersassemble.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all persons.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z` : Adds a person named `John Doe` to AA.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd person shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all persons.
 
    * `exit` : Exits the app.
 
@@ -47,6 +47,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
+
+* Some commands require you to include parameters. These parameters are identified by prefixes.
+
+* Here are a list of valid prefixes and what they each refer to.
+
+| Prefix | What it refers to         |
+|--------|---------------------------|
+|n/      | Name of the person        |
+|p/      | Phone number of person    |
+|e/      | Email of person           |
+|a/      | Address of person         |
+|t/      | Tags of person            |
+|m/      | Matriculation ID of person|
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -66,16 +79,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Valid tags:
-
-A list of valid parameters for a contact.
-
-* `n/NAME` 
-* `p/PHONE` 
-* `e/EMAIL` 
-* `a/ADDRESS` 
-* `t/TAG` 
-* `m/MATRIC_ID`
 
 ### Viewing help : `help`
 
@@ -88,23 +91,23 @@ Format: `help`
 
 ### Parameters:
 
-* n/NAME 
-* p/PHONE_NUMBER 
-* e/EMAIL 
-* a/ADDRESS 
+* n/NAME
+* p/PHONE_NUMBER
+* e/EMAIL
+* a/ADDRESS
 * t/TAG (Optional)
 * m/MATRICULATION_NUMBER (Optional)
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to AA.
 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
 
 <box type="info" seamless>
 
-**Important:** Each contact should have an unique email address. AB3 does not allow for duplicate email addressed to be added.
+**Important:** Each person should have an unique email address. AA does not allow for duplicate email addressed to be added.
 
 </box>
 
@@ -119,13 +122,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in AA.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in AA.
 
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`
@@ -141,26 +144,27 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Filtering Contacts using parameters: `find`
+### Filtering persons: `find`
 
-Finds persons with parameters that match the given keyword
+* Filter persons based on specific criteria within their records.
 
-Format: `find PARAMETER KEYWORD`
+Format: `find PREFIX/KEYWORD`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The search will return any result that contains the keyword as a substring under that parameter. e.g. `hans` will match `hans@gmail.com` for an email search
-* `PARAMETER` that is supported includes : /n, /p, /e, /a and /t
-* Only one parameter can be searched
+* This command searches for persons using a specific aspect of their details, as specified by the prefix.
+* The search will return any result that contains the keyword as a substring under the indicated prefix. e.g. `find e/hans` will find any person that contains `hans` in their email.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* prefixes that are supported includes : n/, p/, e/, a/, m/ and t/.
+* Only one prefix can be used for filtering at a time.
 
 Examples:
-* `find \n John` returns `john` and `John Doe`
-* `find \n alex` returns `Alex Yeoh`, `Davis Alex`
-* `find \t student` returns all contacts tagged with `student` or any contacts with tags that has `student` as a substring
-* `find \p 1423` returns all contacts with phone number containing `1423`
+* `find n/John` returns `john` and `John Doe`.
+* `find n/alex` returns `Alex Yeoh`, `Davis Alex`.
+* `find t/student` returns all persons tagged with `student` or any persons with tags that has `student` as a substring.
+* `find p/1423` returns all persons with phone number containing `1423`.
 
 ### Copy email addresses: `copy`
 
-Copies the emails of currently displayed contacts into your clipboard.
+Copies the emails of currently displayed persons into your clipboard.
 
 Format: `copy`
 
@@ -170,7 +174,7 @@ Format: `copy`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from AA.
 
 Format: `delete INDEX`
 
@@ -179,27 +183,27 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in AA.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from AA.
 
 Format: `clear`
 
 ### Exporting Data to a CSV file : `export to csv`
 
-Exports all contacts and their details to a CSV file.
+Exports all persons and their details to a CSV file.
 
 Format: `export to csv`
 
 ### Importing Data from a CSV file : `import`
 
-Imports all contacts and their details from a CSV file from a specified file path.
+Imports all persons and their details from a CSV file from a specified file path.
 
 Format: `import FILEPATH`
-- imports the contacts saved in `FILEPATH` to `addressBook.json`
+- imports the persons saved in `FILEPATH` to `avengersassemble.json`
 
 ### Exiting the program : `exit`
 
@@ -209,20 +213,20 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+AA data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AA data are saved automatically as a JSON file `[JAR file location]/data/avengersassemble.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, AA will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause AA to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### 
+###
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -233,7 +237,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AA home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -245,7 +249,7 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format, Examples                                                                                                                                                                          
+| Action | Format, Examples
 |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                                                   |
