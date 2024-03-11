@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests if a {@code Person}'s {@code Phone} matches with the number given
+ */
 public class PhoneMatchesPredicate implements Predicate<Person> {
     private final String numToMatch;
 

@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests if a keyword matches any {@code Person}'s {@code Groups}
+ */
 public class GroupMatchesPredicate implements Predicate<Person> {
     private final String keyword;
 
