@@ -1,7 +1,7 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 
@@ -26,16 +26,16 @@ public class TutorialClass {
   
     private final ArrayList<Person> students;
 
-  /**
+    /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no students.
      *
      * @param name of tutorial to be added
      */
     public TutorialClass(String name) {
         requireAllNonNull(name);
-        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
         this.value = name;
-        this.students = new ArrayList<Person>();
+        this.students = new ArrayList<>();
     }
 
     /**
@@ -46,9 +46,9 @@ public class TutorialClass {
      */
     public TutorialClass(String name, Person student) {
         requireAllNonNull(name);
-        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
         this.value = name;
-        this.students = new ArrayList<Person>();
+        this.students = new ArrayList<>();
         students.add(student);
     }
 
@@ -60,10 +60,11 @@ public class TutorialClass {
      */
     public TutorialClass(String name, ArrayList<Person> students) {
         requireAllNonNull(name);
-        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
         this.value = name;
         this.students = students;
-      
+    }
+
     /**
      * Returns true if a given string is a valid tutorial class code.
      */

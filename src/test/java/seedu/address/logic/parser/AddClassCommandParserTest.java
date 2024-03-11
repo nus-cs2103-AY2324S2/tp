@@ -26,13 +26,13 @@ public class AddClassCommandParserTest {
 
         String userInput = PREFIX_MODULE_CODE + module_code + " " + PREFIX_TUTORIAL_CLASS + nonEmptyTutorialClass;
         AddClassCommand expectedCommand = new AddClassCommand(new Module(new Name(module_code),
-                new TutorialClass(new Name(nonEmptyTutorialClass))));
+                new TutorialClass(nonEmptyTutorialClass)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no tutorial class
         userInput =  PREFIX_MODULE_CODE + module_code + " " + PREFIX_TUTORIAL_CLASS;
         expectedCommand = new AddClassCommand(new Module(new Name(module_code),
-                new TutorialClass(new Name(""))));
+                new TutorialClass("")));
         assertParseFailure(parser, userInput, expectedMessage);
     }
 

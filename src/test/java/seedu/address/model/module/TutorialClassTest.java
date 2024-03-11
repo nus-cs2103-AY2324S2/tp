@@ -4,19 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Name;
 
 public class TutorialClassTest {
 
     @Test
     public void equals() {
-        TutorialClass tutorialClass = new TutorialClass(new Name("T09"));
+        TutorialClass tutorialClass = new TutorialClass("T09");
 
         // same object -> returns true
         assertTrue(tutorialClass.equals(tutorialClass));
 
         // same values -> returns true
-        TutorialClass remarkCopy = new TutorialClass(tutorialClass.name);
+        TutorialClass remarkCopy = new TutorialClass(tutorialClass.value);
         assertTrue(tutorialClass.equals(remarkCopy));
 
         // different types -> returns false
@@ -26,7 +25,7 @@ public class TutorialClassTest {
         assertFalse(tutorialClass.equals(null));
 
         // different remark -> returns false
-        TutorialClass differentModule = new TutorialClass(new Name("T01"));
+        TutorialClass differentModule = new TutorialClass("T01");
         assertFalse(tutorialClass.equals(differentModule));
     }
 }
