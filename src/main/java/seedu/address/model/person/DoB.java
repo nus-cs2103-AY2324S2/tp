@@ -59,7 +59,7 @@ public class DoB {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof DoB)) {
             return false;
         }
 

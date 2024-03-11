@@ -51,7 +51,7 @@ public class Nric {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof Nric)) {
             return false;
         }
 
