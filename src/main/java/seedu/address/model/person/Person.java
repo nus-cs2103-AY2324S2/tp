@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.ArrayList;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -17,12 +18,8 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
 
-    // Data fields
-    private final Address address;
+    private final EntryList entryList = new EntryList();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -30,26 +27,30 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        entryList.add(name);
+        entryList.add(phone);
+        entryList.add(email);
+        entryList.add(address);
         this.tags.addAll(tags);
     }
 
     public Name getName() {
+        Name name = (Name) entryList.get("Name");
         return name;
     }
 
     public Phone getPhone() {
+        Phone phone = (Phone) entryList.get("Phone");
         return phone;
     }
 
     public Email getEmail() {
+        Email email = (Email) entryList.get("Email");
         return email;
     }
 
     public Address getAddress() {
+        Address address = (Address) entryList.get("Address");
         return address;
     }
 
@@ -90,26 +91,26 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+        return getName().equals(otherPerson.getName())
+                && getPhone().equals(otherPerson.getPhone())
+                && getEmail().equals(otherPerson.getEmail())
+                && getAddress().equals(otherPerson.getAddress())
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
+                .add("name", getName())
+                .add("phone", getPhone())
+                .add("email", getEmail())
+                .add("address", getAddress())
                 .add("tags", tags)
                 .toString();
     }
