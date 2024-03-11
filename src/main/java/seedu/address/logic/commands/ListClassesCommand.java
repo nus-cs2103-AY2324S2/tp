@@ -9,12 +9,20 @@ public class ListClassesCommand extends Command{
     public static final String COMMAND_WORD = "list_classes";
 
     public static final String MESSAGE_SUCCESS = "List of all classes available";
+    public static final String MESSAGE_NO_CLASSES = "No classes available!";
+
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        // Check if there are no classes available
+        if (model.getFilteredClassList().isEmpty()) {
+            return new CommandResult(MESSAGE_NO_CLASSES);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 }

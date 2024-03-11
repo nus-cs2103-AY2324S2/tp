@@ -115,24 +115,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasClass(ClassList classToCheck) {
+    public boolean hasClassList(ClassList classToCheck) {
         requireNonNull(classToCheck);
         return addressBook.hasClass(classToCheck);
     }
 
     @Override
-    public void deleteClass(ClassList target) {
+    public void deleteClassList(ClassList target) {
         addressBook.removeClass(target);
     }
 
     @Override
-    public void addClass(ClassList classList) {
+    public void addClassList(ClassList classList) {
         addressBook.addClass(classList);
         updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
     }
 
     @Override
-    public void setClass(ClassList target, ClassList editedClassList) {
+    public void setClassList(ClassList target, ClassList editedClassList) {
         requireAllNonNull(target, editedClassList);
         addressBook.setClass(target, editedClassList);
     }

@@ -15,18 +15,28 @@ public class ClassListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<ClassList> classListView;
+    private ObservableList<ClassList> classList;
 
     /**
-     * Creates a {@code ClassListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ClassListPanel} with the given {@code ObservableList} of {@code ClassList}.
      */
     public ClassListPanel(ObservableList<ClassList> classList) {
         super(FXML);
+        this.classList = classList;
         classListView.setItems(classList);
         classListView.setCellFactory(listView -> new ClassListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code ClassList} using a {@code ClassCard}.
+     * Updates the list of classes displayed in the panel.
+     */
+    public void updateClassList(ObservableList<ClassList> updatedClassList) {
+        classList = updatedClassList;
+        classListView.setItems(classList);
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code ClassList} using a {@code ClassListCard}.
      */
     class ClassListViewCell extends ListCell<ClassList> {
         @Override
@@ -37,9 +47,12 @@ public class ClassListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ClassCard(classList).getRoot());
+                ClassListCard classListCard = new ClassListCard();
+                classListCard.updateClassList(classList);
+                setGraphic(classListCard.getRoot());
             }
         }
     }
 }
+
 

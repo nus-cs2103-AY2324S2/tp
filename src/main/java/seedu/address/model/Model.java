@@ -8,8 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.classes.ClassList;
 import seedu.address.model.person.Person;
 
-import javax.crypto.interfaces.PBEKey;
-
 /**
  * The API of the Model component.
  */
@@ -82,14 +80,14 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
 
-    boolean hasClass(ClassList classToCheck);
+    boolean hasClassList(ClassList classToCheck);
 
-    void deleteClass(ClassList target);
+    void deleteClassList(ClassList target);
 
 
-    void addClass(ClassList classList);
+    void addClassList(ClassList classList);
 
-    void setClass(ClassList target, ClassList editedClassList);
+    void setClassList(ClassList target, ClassList editedClassList);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
