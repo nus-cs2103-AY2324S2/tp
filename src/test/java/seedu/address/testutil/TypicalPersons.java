@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_GROUP_AMY
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_GROUP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -62,15 +61,17 @@ public class TypicalPersons {
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withClassGroup("B08").withTelegram("@hoonmeier").withGithub("meierhoon").build();
+            .withEmail("stefan@example.com").withClassGroup("B08")
+            .withTelegram("@hoonmeier").withGithub("meierhoon").build();
 
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withClassGroup("B09").withTelegram("@idamueller").withGithub("muellerida").build();
+            .withEmail("hans@example.com").withClassGroup("B09")
+            .withTelegram("@idamueller").withGithub("muellerida").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withClassGroup(VALID_CLASS_GROUP_AMY).withTelegram(VALID_TELEGRAM_AMY)
-            .withGithub(VALID_GITHUB_AMY).build();
+            .build();
 
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withClassGroup(VALID_CLASS_GROUP_BOB).withTelegram(VALID_TELEGRAM_BOB)

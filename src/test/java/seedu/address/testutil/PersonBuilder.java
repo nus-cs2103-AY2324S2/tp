@@ -1,9 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
@@ -11,8 +7,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -85,16 +79,25 @@ public class PersonBuilder {
         return new Person(name, classGroup, email, phone, telegram, github);
     }
 
+    /**
+     * Sets the {@code ClassGroup} of the {@code Person} that we are building.
+     */
     public PersonBuilder withClassGroup(String classGroup) {
         this.classGroup = new ClassGroup(classGroup);
         return this;
     }
 
+    /**
+     * Sets the {@code Telegram} of the {@code Person} that we are building.
+     */
     public PersonBuilder withTelegram(String telegram) {
         this.telegram = new Telegram(telegram);
         return this;
     }
 
+    /**
+     * Sets the {@code Github} of the {@code Person} that we are building.
+     */
     public PersonBuilder withGithub(String github) {
         this.github = new Github(github);
         return this;

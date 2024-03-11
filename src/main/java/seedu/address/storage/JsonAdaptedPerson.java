@@ -37,8 +37,8 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.classGroup = classGroup;
-        this.telegram = telegram;
-        this.github = github;
+        this.telegram = telegram == null ? "" : telegram;
+        this.github = github == null ? "" : github;
     }
 
     /**
@@ -94,7 +94,7 @@ class JsonAdaptedPerson {
         final ClassGroup modelClassGroup = new ClassGroup(classGroup);
 
         final Telegram modelTelegram;
-        if (telegram == null) {
+        if (telegram.isEmpty()) {
             modelTelegram = null;
         } else if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
@@ -103,7 +103,7 @@ class JsonAdaptedPerson {
         }
 
         final Github modelGithub;
-        if (github == null) {
+        if (github.isEmpty()) {
             modelGithub = null;
         } else if (!Github.isValidGithub(github)) {
             throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);

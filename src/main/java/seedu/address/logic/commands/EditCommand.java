@@ -97,9 +97,10 @@ public class EditCommand extends Command {
         ClassGroup updatedClassGroup = editPersonDescriptor.getClassGroup().orElse(personToEdit.getClassGroup());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Optional<Telegram> updatedTelegram = editPersonDescriptor.getTelegram();
-        Optional<Github> updatedGithub = editPersonDescriptor.getGithub();
-
+        Optional<Telegram> updatedTelegram = editPersonDescriptor.getTelegram().isPresent()
+                ? editPersonDescriptor.getTelegram() : personToEdit.getTelegram();
+        Optional<Github> updatedGithub = editPersonDescriptor.getGithub().isPresent()
+                ? editPersonDescriptor.getGithub() : personToEdit.getGithub();
         return new Person(updatedName, updatedClassGroup, updatedEmail,
                 updatedPhone, updatedTelegram.orElse(null), updatedGithub.orElse(null));
     }
@@ -140,7 +141,13 @@ public class EditCommand extends Command {
         private Optional<Telegram> telegram;
         private Optional<Github> github;
 
-        public EditPersonDescriptor() {}
+        /**
+         * Creates a new EditPersonDescriptor with empty fields.
+         */
+        public EditPersonDescriptor() {
+            telegram = Optional.empty();
+            github = Optional.empty();
+        }
 
         /**
          * Copy constructor.
@@ -159,7 +166,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, classGroup, telegram, github);
+            return CollectionUtil.isAnyNonNull(name, phone, email, classGroup)
+                    || (github.isPresent() || telegram.isPresent());
         }
 
         public void setName(Name name) {
