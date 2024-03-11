@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
@@ -13,11 +15,6 @@ public class Patient extends Person {
      */
     public Patient(Nric nric, Name name, DoB dob, Phone phone) {
         super(Type.PATIENT, nric, name, dob, phone);
-    }
-
-    @Override
-    public boolean isSamePerson(Person otherPerson) {
-        return super.isSamePerson(otherPerson);
     }
 
     /**
@@ -45,12 +42,13 @@ public class Patient extends Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return super.hashCode();
+        return Objects.hash(Type.PATIENT, getNric(), getName(), getDoB(), getPhone());
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("type", Type.PATIENT)
                 .add("nric", getNric())
                 .add("name", getName())
                 .add("dob", getDoB())
