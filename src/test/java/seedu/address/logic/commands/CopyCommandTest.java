@@ -19,6 +19,7 @@ import seedu.address.model.UserPrefs;
  */
 public class CopyCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     private Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
     @Test
     public void equals() {
@@ -42,6 +43,6 @@ public class CopyCommandTest {
 
     @Test
     public void execute_nonEmptyList_emailsCopied() {
-        assertCommandSuccess(new CopyCommand(), model, CopyCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(new CopyCommand(), model, CopyCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
