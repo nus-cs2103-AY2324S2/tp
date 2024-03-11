@@ -14,7 +14,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[Github](https://github.com/reetmitra)]
 
 * Role: Developer
-* Responsibilities: Documentation
+* Responsibilities: Code Testing
 
 ### Bui Hong Duc
 
@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[Github](https://github.com/E0735389)]
 
 * Role: Team Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines
 
 ### Chong Chan How
 
@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[Github](https://github.com/ChillinRage)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Quality
 
 ### Timothy Soh Yee Song
 
@@ -41,7 +41,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[Github](https://github.com/LargeCrowd)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
 ### Yang Heebeom
 
@@ -50,4 +50,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[Github](https://github.com/Hibeom0929)]
 
 * Role: Developer
-* Responsibilities: Deliverables and Deadlines 
+* Responsibilities: UI
