@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.AudioUtil;
 import seedu.address.commons.util.UiUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -113,6 +114,9 @@ public class CommandBox extends UiPart<Region> {
             redoStack.push(currentText);
 
             UiUtil.setText(commandTextField, text);
+        } else {
+            // Plays a sound when there is nothing left to und
+            AudioUtil.playAudio("assets/boop.mp3");
         }
     }
 
