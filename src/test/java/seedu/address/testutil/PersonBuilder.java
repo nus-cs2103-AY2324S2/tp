@@ -1,6 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.BankDetails;
+import seedu.address.model.person.EmploymentType;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -100,7 +106,7 @@ public class PersonBuilder {
         this.employmentType = new EmploymentType(employmentType);
         return this;
     }
-    
+
     /**
      * Sets the {@code BankDetails} of the {@code Person} that we are building.
      */

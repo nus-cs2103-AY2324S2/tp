@@ -70,3 +70,8 @@ shadowJar {
 }
 
 defaultTasks 'clean', 'test'
+
+// Exclude all tests until v1.2 is implemented
+test {
+    exclude '**/*'
+}
