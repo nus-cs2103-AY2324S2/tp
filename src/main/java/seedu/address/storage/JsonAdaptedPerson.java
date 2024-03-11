@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final ArrayList<Schedule> schedules = new ArrayList<Schedule>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -70,6 +72,7 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -103,7 +106,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final ArrayList<Schedule> modelSchedules = new ArrayList<>();
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSchedules);
     }
 
 }
