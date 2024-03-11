@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.UiUtil.setShortcut;
+
+import java.util.Stack;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -10,10 +14,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.Stack;
-
-import static seedu.address.commons.util.UiUtil.setShortcut;
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -23,8 +23,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    private Stack<String> undoStack;
-    private Stack<String> redoStack;
+    private final Stack<String> undoStack;
+    private final Stack<String> redoStack;
 
     @FXML
     private TextField commandTextField;
