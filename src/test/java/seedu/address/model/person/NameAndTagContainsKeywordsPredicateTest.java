@@ -42,6 +42,22 @@ public class NameAndTagContainsKeywordsPredicateTest {
 
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+
+        NameAndTagContainsKeywordsPredicate thirdPredicate =
+                new NameAndTagContainsKeywordsPredicate(Collections.emptyList(), Arrays.asList("firstTag"));
+        NameAndTagContainsKeywordsPredicate fourthPredicate =
+                new NameAndTagContainsKeywordsPredicate(Collections.emptyList(), Arrays.asList("secondTag"));
+
+        // Different tagKeywords should not be equal
+        assertFalse(thirdPredicate.equals(fourthPredicate));
+
+        NameAndTagContainsKeywordsPredicate fifthPredicate =
+                new NameAndTagContainsKeywordsPredicate(Arrays.asList("Jamus"), Collections.emptyList());
+        NameAndTagContainsKeywordsPredicate sixthPredicate =
+                new NameAndTagContainsKeywordsPredicate(Arrays.asList("Jamuses"), Collections.emptyList());
+
+        // Different tagKeywords should not be equal
+        assertFalse(fifthPredicate.equals(sixthPredicate));
     }
 
     @Test
