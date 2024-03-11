@@ -51,7 +51,6 @@ public class Patient extends Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("type", Type.PATIENT)
                 .add("nric", getNric())
                 .add("name", getName())
                 .add("dob", getDoB())
