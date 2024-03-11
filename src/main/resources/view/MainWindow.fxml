@@ -13,7 +13,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Dook" minWidth="600" minHeight="600" onCloseRequest="#handleExit">
+         title="Dook" minWidth="850" minHeight="700" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -37,22 +37,21 @@
           </Menu>
         </MenuBar>
 
-        <HBox>
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="400" prefWidth="400" prefHeight="-Infinity" VBox.vgrow="ALWAYS">
+        <HBox VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="350" prefWidth="400" prefHeight="600" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox>
-            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                       minHeight="300" prefHeight="300" maxHeight="300">
+          <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" prefHeight="-Infinity">
               <padding>
                 <Insets top="5" right="10" bottom="5" left="10" />
               </padding>
             </StackPane>
 
-            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
               <padding>
                 <Insets top="5" bottom="5" left="10" />
               </padding>
@@ -60,7 +59,7 @@
           </VBox>
         </HBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" />
       </VBox>
     </Scene>
   </scene>
