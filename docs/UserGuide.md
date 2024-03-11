@@ -65,7 +65,7 @@ Adds a new event with the specified name for the Event List.
 
 ### Deleting an event: `delev`
 
-**Format:** `delev INDEX`
+**Format:** `delev <index>`
 
 **Description:**
 
@@ -74,7 +74,7 @@ Deletes an event and all its relevant information with its index in the event li
 <box type="warning" seamless>
 
 **Caution:**
-* `INDEX` should be **numeric** and **non-empty**.
+* `<index>` should be **numeric** and **non-empty**.
 
 **Examples:**
 
@@ -82,7 +82,7 @@ Deletes an event and all its relevant information with its index in the event li
 
 ### Adding participant and their information to the global participant list: `addp`
 
-**Format:** `addp -n PARTICIPANT_NAME -p PHONE_NUMBER -e EMAIL`
+**Format:** `addp -n <participant name> -p <phone number> -e <email>`
 
 **Description:**
 
@@ -92,9 +92,9 @@ Adds a new participant to the app, allowing them to be added to an event later.
 
 **Caution:**
 
-* `<PARTICIPANT_NAME>` should be **alphabetic**, **non-empty** and **not longer than 64 characters**.
-* `<PHONE_NUMBER>` should be **numeric**, **non-empty** and **not longer than 15 digits**.
-* `<EMAIL>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
+* `<participant name>` should be **alphabetic**, **non-empty** and **not longer than 64 characters**.
+* `<phone number>` should be **numeric**, **non-empty** and **not longer than 15 digits**.
+* `<email>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
   </box>
   
 **Examples:**
