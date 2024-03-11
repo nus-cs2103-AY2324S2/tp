@@ -1,12 +1,12 @@
 {
   "persons": [ {
-    "nusid": "E0123456",
+    "nusId": "E0123456",
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
     "tag": "Student"
   }, {
-    "nusid": "E0123456",
+    "nusId": "E0123456",
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
