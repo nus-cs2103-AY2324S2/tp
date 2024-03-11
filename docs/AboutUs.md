@@ -9,16 +9,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Gavin Goh
 
 <img src="images/gavin331.png" width="200px">
@@ -47,3 +37,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Scheduling and tracking
 * Responsibilities: In charge of defining, assigning, and tracking project tasks
+
+### John Yoo
+
+<img src="images/johnyoozhengxian.png" width="200px">
+
+[[github](http://github.com/johnyoozhengxian)]
+[[portfolio](team/johnyoozhengxian.md)]
+
+* Role: Developer
+* Responsibilities: UI
+

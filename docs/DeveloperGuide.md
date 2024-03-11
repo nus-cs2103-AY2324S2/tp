@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,44 +260,51 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Managers who
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* manage many employees
+* prefers command line input 
+* comfortable with manually editing save file 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage employees faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                 | So that I can…​                                                   |
+|----------| ------------------------------------------ |----------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App            |
+| `* * *`  | user                                       | add a new person                             | keep a person on record                                           |
+| `* * *`  | user                                       | delete a person                              | remove entries that I no longer need                              |
+| `* * *`  | user                                       | list all recorded persons                    | locate details of all persons in a list                           |
+| `* * *`  | user                                       | add a new task                               | keep upcoming tasks on record                                     |
+| `* * *`  | user                                       | delete a task                                | remove entries that I no longer need                              |
+| `* * *`  | user                                       | list all recorded tasks                      | locate details of all tasks in a list                             |
+| `* * *`  | user                                       | assign a person to a tasks                   | keep track of who is supposed to contribute to a task             |
+| `* * *`  | user                                       | unassign a person from a task                | update changes in manpower allocation                             |
+| `* * *`  | user                                       | list all tasks with their assigned employees | locate details of all tasks while seeing who are assigned to them |
+| `* * *`  | user                                       | mark a task as done                          | keep track of task completion                                     |
+| `* * *`  | user                                       | unmark a marked task                         | undo wrongly marked tasks                                         |
+| `* * *`  | user                                       | save current data                            | keep track of all data even after exiting                         |
+| `* * *`  | user                                       | load saved data                              | use the data that was saved previously                            |
+| `*`      | user with many persons in the address book | sort persons by name                         | locate a person easily                                            |
 
-*{More to be added}*
+*{More to be added for v1.3}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TaskMasterPro` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  TaskMasterPro shows a list of persons with their ids
+3.  User requests to delete a specific person in the list by their id
+4.  TaskMasterPro deletes the person
 
     Use case ends.
 
@@ -307,9 +314,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given id is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TaskMasterPro shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TaskMasterPro shows a list of tasks with their ids
+3.  User requests to delete a specific task in the list by their id
+4.  TaskMasterPro deletes the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given id is invalid.
+
+    * 3a1. TaskMasterPro shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Assign/unassign a person to a task**
+
+**MSS**
+
+1.  User requests to list persons
+2.  TaskMasterPro shows a list of persons with their ids 
+3.  User requests to list tasks 
+4.  TaskMasterPro shows a list of tasks with their ids 
+5.  User requests to assign/un-assign a specific person in the person list by their id to a specific task in the task list by its id
+6.  TaskMasterPro assigns/un-assigns the person to the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. The list is empty.
+
+  Use case ends.
+
+* 5a. Any given id is invalid.
+
+    * 5a1. TaskMasterPro shows an error message.
+
+      Use case resumes at step 2/4.
+
+**Use case: Mark/unmark a task as done/not done**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TaskMasterPro shows a list of tasks with their ids
+3.  User requests to mark/unmark a specific task in the list by their id as done/not done
+4.  TaskMasterPro marks/unmarks that task as done/not done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given id is invalid.
+
+    * 3a1. TaskMasterPro shows an error message.
 
       Use case resumes at step 2.
 
@@ -320,6 +402,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to handle a corrupted data file without crashing.
 
 *{More to be added}*
 
