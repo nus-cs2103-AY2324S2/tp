@@ -36,12 +36,7 @@ public class DefinedParameter extends Parameter {
 
     @Override
     public String getParameterDetails() {
-        return prefix.getPrefix() + super.getParameterDetails();
-    }
-
-    @Override
-    public String getParameterWithExampleValue(int idx) {
-        return prefix.getPrefix() + super.getParameterWithExampleValue(idx);
+        return (prefix.getPrefix() + super.getParameterDetails()).trim();
     }
 
     /**

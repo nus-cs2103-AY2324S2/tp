@@ -70,7 +70,7 @@ public class Parameter {
      * Gets the details of the parameter, which are the parameter name and hint appended behind.
      */
     public String getParameterDetails() {
-        return getParameterName() + " " + getParameterHint();
+        return (getParameterName() + " " + getParameterHint()).trim();
     }
 
     /**
@@ -87,14 +87,6 @@ public class Parameter {
     public String getParameterExampleValue(int idx) {
         assert idx >= 0 && idx < parameterExampleValues.length;
         return parameterExampleValues[idx];
-    }
-
-    /**
-     * Gets the parameter with the parameter example value, at index {@code idx}
-     * from {@code parameterExampleValues}, appended behind.
-     */
-    public String getParameterWithExampleValue(int idx) {
-        return getParameterExampleValue(idx);
     }
 
     /**
@@ -138,5 +130,10 @@ public class Parameter {
     public Parameter asMultiple(int exampleRepetitions) {
         assert exampleRepetitions >= 0;
         return new Parameter(this, "[%s]...", exampleRepetitions);
+    }
+
+    @Override
+    public String toString() {
+        return (getFormattedParameterDetails() + " " + getParameterWithExampleValues()).trim();
     }
 }
