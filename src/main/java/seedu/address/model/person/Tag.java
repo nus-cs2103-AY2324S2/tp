@@ -8,9 +8,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidTag(String)}
  */
 public class Tag {
+
+    /**
+     * Represents the type of tag.
+     */
     public enum TagType {
         Professor, TA, Student, None;
 
+        /**
+         * Returns the string representation of the tag type.
+         * @param tagType
+         * @return
+         */
         public static String toString(TagType tagType) {
             switch (tagType) {
             case Professor:
@@ -40,6 +49,11 @@ public class Tag {
         value = parseTag(tag);
     }
 
+    /**
+     * Parses a tag and returns the corresponding TagType.
+     * @param tag
+     * @return
+     */
     public static TagType parseTag(String tag) {
         switch (tag) {
         case "Professor":
@@ -58,13 +72,13 @@ public class Tag {
      */
     public static boolean isValidTag(String test) {
         switch (test) {
-            case "Professor":
-            case "TA":
-            case "Student":
-            case "None":
-                return true;
-            default:
-                return false;
+        case "Professor":
+        case "TA":
+        case "Student":
+        case "None":
+            return true;
+        default:
+            return false;
         }
     }
 
