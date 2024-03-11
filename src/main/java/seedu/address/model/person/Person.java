@@ -2,13 +2,11 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
+import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Represents a Person in the address book.
@@ -21,8 +19,8 @@ public class Person {
     private final ClassGroup classGroup;
     private final Email email;
     private final Phone phone;
-    private final Telegram telegram;
-    private final Github github;
+    private final Optional<Telegram> telegram;
+    private final Optional<Github> github;
 
     /**
      * Every field must be present and not null.
@@ -33,8 +31,8 @@ public class Person {
         this.classGroup = classGroup;
         this.email = email;
         this.phone = phone;
-        this.telegram = telegram;
-        this.github = github;
+        this.telegram = Optional.ofNullable(telegram);
+        this.github = Optional.ofNullable(github);
     }
 
     public Name getName() {
@@ -53,11 +51,11 @@ public class Person {
         return classGroup;
     }
 
-    public Telegram getTelegram() {
+    public Optional<Telegram> getTelegram() {
         return telegram;
     }
 
-    public Github getGithub() {
+    public Optional<Github> getGithub() {
         return github;
     }
 
@@ -111,8 +109,8 @@ public class Person {
                 .add("classGroup", classGroup)
                 .add("email", email)
                 .add("phone", phone)
-                .add("telegram", telegram)
-                .add("github", github)
+                .add("telegram", telegram.isPresent() ? telegram.get() : "Not provided")
+                .add("github", github.isPresent() ? github.get() : "Not provided")
                 .toString();
     }
 }
