@@ -2,9 +2,10 @@ package tutorpro.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tutorpro.testutil.Assert.assertThrows;
+//import static tutorpro.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import tutorpro.testutil.Assert;
 
 public class VersionTest {

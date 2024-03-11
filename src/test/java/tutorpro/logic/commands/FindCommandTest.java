@@ -10,11 +10,11 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import tutorpro.logic.Messages;
 import tutorpro.model.Model;
 import tutorpro.model.ModelManager;
 import tutorpro.model.UserPrefs;
 import tutorpro.model.person.NameContainsKeywordsPredicate;
-import tutorpro.logic.Messages;
 import tutorpro.testutil.TypicalPersons;
 
 /**
@@ -68,7 +68,8 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
+                model.getFilteredPersonList());
     }
 
     @Test

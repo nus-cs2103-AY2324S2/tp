@@ -1,9 +1,10 @@
 package tutorpro.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static tutorpro.testutil.Assert.assertThrows;
+//import static tutorpro.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import tutorpro.testutil.Assert;
 
 public class AppUtilTest {
@@ -32,6 +33,7 @@ public class AppUtilTest {
     @Test
     public void checkArgument_falseWithErrorMessage_throwsIllegalArgumentException() {
         String errorMessage = "error message";
-        Assert.assertThrows(IllegalArgumentException.class, errorMessage, () -> AppUtil.checkArgument(false, errorMessage));
+        Assert.assertThrows(IllegalArgumentException.class,
+                errorMessage, () -> AppUtil.checkArgument(false, errorMessage));
     }
 }

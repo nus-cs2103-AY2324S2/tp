@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tutorpro.testutil.Assert.assertThrows;
+//import static tutorpro.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,8 +22,8 @@ import tutorpro.model.Model;
 import tutorpro.model.ReadOnlyAddressBook;
 import tutorpro.model.ReadOnlyUserPrefs;
 import tutorpro.model.person.Person;
-import tutorpro.testutil.PersonBuilder;
 import tutorpro.testutil.Assert;
+import tutorpro.testutil.PersonBuilder;
 import tutorpro.testutil.TypicalPersons;
 
 public class AddCommandTest {
@@ -51,7 +51,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        Assert.assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test

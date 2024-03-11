@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `[insert email]`
+You can reach us at the email [e0960433@u.nus.edu](e0960433@u.nus.edu)
 
 ## Project team
 
@@ -28,17 +28,17 @@ You can reach us at the email `[insert email]`
 
 ### Lee Xin Yuan
 
-<img src="images/xinyuan.png" width="200px">
+<img src="images/agreatdayy.png" width="200px">
 
 [[github](http://github.com/agreatdayy)]
 [[portfolio](team/xinyuan.md)]
 
 - Role: Developer
-- Responsibilities: UI~~~~
+- Responsibilities: UI
 
 ### Tee Chu Jie
 
-<img src="images/chujie.png" width="200px">
+<img src="images/tamagochuuu.png" width="200px">
 
 [[github](https://github.com/tamagochuuu)]
 [[portfolio](team/chujie.md)]

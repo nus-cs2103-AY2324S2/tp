@@ -7,9 +7,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import tutorpro.logic.Messages;
 import tutorpro.logic.commands.FindCommand;
 import tutorpro.model.person.NameContainsKeywordsPredicate;
-import tutorpro.logic.Messages;
 
 public class FindCommandParserTest {
 
@@ -17,7 +17,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test

@@ -1,8 +1,9 @@
 package tutorpro.model.tag;
 
-import static tutorpro.testutil.Assert.assertThrows;
+//import static tutorpro.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import tutorpro.testutil.Assert;
 
 public class TagTest {

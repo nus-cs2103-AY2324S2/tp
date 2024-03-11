@@ -4,13 +4,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import tutorpro.logic.commands.EditCommand;
 import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
 import tutorpro.model.person.Name;
 import tutorpro.model.person.Person;
 import tutorpro.model.person.Phone;
 import tutorpro.model.tag.Tag;
-import tutorpro.logic.commands.EditCommand;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
