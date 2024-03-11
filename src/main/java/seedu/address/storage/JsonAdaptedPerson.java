@@ -1,16 +1,9 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
@@ -18,7 +11,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -93,11 +85,13 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (classGroup == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassGroup.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassGroup.class.getSimpleName()));
         }
         if (!ClassGroup.isValidClassGroup(classGroup)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
+        final ClassGroup modelClassGroup = new ClassGroup(classGroup);
 
         final Telegram modelTelegram;
         if (telegram == null) {
@@ -117,8 +111,6 @@ class JsonAdaptedPerson {
             modelGithub = new Github(github);
         }
 
-
-        final ClassGroup modelClassGroup = new ClassGroup(email);
         return new Person(modelName, modelClassGroup, modelEmail, modelPhone, modelTelegram, modelGithub);
     }
 }

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
@@ -33,8 +32,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CLASS_GROUP, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_TELEGRAM, PREFIX_GITHUB);
-
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CLASS_GROUP, PREFIX_EMAIL,
+                        PREFIX_PHONE, PREFIX_TELEGRAM, PREFIX_GITHUB);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLASS_GROUP, PREFIX_EMAIL, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

@@ -16,4 +16,3 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("tg/");
 
 }
-

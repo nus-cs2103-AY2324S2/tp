@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -35,6 +33,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label github;
     @FXML
+    private Label classGroup;
+    @FXML
     private Label id;
     @FXML
     private Label phone;
@@ -53,9 +53,11 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        email.setText(person.getEmail().value);
-        phone.setText(person.getPhone().value);
-        telegram.setText(person.getTelegram().isPresent() ? person.getTelegram().get().telegramId : "");
-        github.setText(person.getGithub().isPresent() ? person.getGithub().get().githubId : "");
+        classGroup.setText(person.getClassGroup().classGroup);
+        email.setText("E-mail: " + person.getEmail().value);
+        phone.setText("Phone Number: " + person.getPhone().value);
+        telegram.setText(
+                person.getTelegram().isPresent() ? "Telegram ID: " + person.getTelegram().get().telegramId : "");
+        github.setText(person.getGithub().isPresent() ? "GitHub ID: " + person.getGithub().get().githubId : "");
     }
 }

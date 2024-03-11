@@ -1,15 +1,19 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,8 +39,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setClassGroup(person.getClassGroup());
+        descriptor.setTelegram(person.getTelegram());
+        descriptor.setGithub(person.getGithub());
     }
 
     /**
@@ -64,20 +69,26 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code ClassGroup} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withClassGroup(String classGroup) {
+        descriptor.setClassGroup(new ClassGroup(classGroup));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
+     * Sets the {@code Telegram} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withTelegram(String telegram) {
+        descriptor.setTelegram(Optional.of(new Telegram(telegram)));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Github} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGithub(String github) {
+        descriptor.setGithub(Optional.of(new Github(github)));
         return this;
     }
 

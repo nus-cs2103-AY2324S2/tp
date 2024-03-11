@@ -10,13 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Telegram {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Telegram ID should only contain alphanumeric characters and symbols, and it should not be blank";
+            "Telegram ID should only contain alphanumeric characters and symbols, start with an @ symbol,"
+                    + " and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_.-]+$";
+    public static final String VALIDATION_REGEX = "^[@][a-zA-Z0-9_.-]+$";
 
     public final String telegramId;
 

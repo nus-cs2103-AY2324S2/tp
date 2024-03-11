@@ -59,34 +59,22 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_CLASS_GROUP).isPresent()) {
-            editPersonDescriptor.setClassGroup(ParserUtil.parseClassGroup(argMultimap.getValue(PREFIX_CLASS_GROUP).get()));
+            editPersonDescriptor.setClassGroup(
+                    ParserUtil.parseClassGroup(argMultimap.getValue(PREFIX_CLASS_GROUP).get()));
         }
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            editPersonDescriptor.setTelegram(Optional.ofNullable(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).orElse(""))));
+            editPersonDescriptor.setTelegram(
+                    Optional.ofNullable(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).orElse(""))));
         }
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
-            editPersonDescriptor.setGithub(Optional.ofNullable(ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElse(""))));
+            editPersonDescriptor.setGithub(
+                    Optional.ofNullable(ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElse(""))));
         }
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
 }
