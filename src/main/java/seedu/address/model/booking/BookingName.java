@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Booking's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class BookingName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Booking names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -25,7 +25,7 @@ public class Name {
      *
      * @param name A valid name.
      */
-    public Name(String name) {
+    public BookingName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.fullName = name;
@@ -46,8 +46,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        if (!(other instanceof Name)) return false;
-        Name otherName = (Name) other;
+        if (!(other instanceof BookingName)) return false;
+        BookingName otherName = (BookingName) other;
         return fullName.equals(otherName.fullName);
     }
 

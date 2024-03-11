@@ -152,4 +152,16 @@ public class ModelManager implements Model {
         // TODO
         // Add the booking to data structure
     }
+
+    @Override
+    public boolean hasBooking(Booking booking) {
+        requireNonNull(booking);
+        return false;
+        // This is a simplistic way to check for conflicts. You'll need to replace it with
+        // your actual booking list and conflict logic, which may involve checking overlaps.
+
+        // Below is some placeholder code for when we modify model
+//        return addressBook.getBookingList().stream()
+//                .anyMatch(existingBooking -> existingBooking.isConflict(booking));
+    }
 }
