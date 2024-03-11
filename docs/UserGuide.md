@@ -59,7 +59,7 @@ Deletes an event and all its relevant information with its index in the event li
 
 **Examples:**
 
-`delev 1` deletes an event with the index `1`.
+- `delev 1` deletes an event with the index `1`.
 
 ### Adding participant and their information to the global participant list: `add`
 
