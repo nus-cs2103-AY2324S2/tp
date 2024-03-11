@@ -147,20 +147,25 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_helpPoochMaintenance() throws Exception {
-        assertTrue(parser.parseCommand(HelpPoochMaintenanceCommand.COMMAND_WORD) instanceof HelpPoochMaintenanceCommand);
-        assertTrue(parser.parseCommand(HelpPoochMaintenanceCommand.COMMAND_WORD + " 3") instanceof HelpPoochMaintenanceCommand);
+        assertTrue(parser.parseCommand(HelpPoochMaintenanceCommand.COMMAND_WORD)
+                instanceof HelpPoochMaintenanceCommand);
+        assertTrue(parser.parseCommand(HelpPoochMaintenanceCommand.COMMAND_WORD + " 3")
+                instanceof HelpPoochMaintenanceCommand);
     }
 
     @Test
     public void parseCommand_helpPoochSupplier() throws Exception {
-        assertTrue(parser.parseCommand(HelpPoochSupplierCommand.COMMAND_WORD) instanceof HelpPoochSupplierCommand);
-        assertTrue(parser.parseCommand(HelpPoochSupplierCommand.COMMAND_WORD + " 3") instanceof HelpPoochSupplierCommand);
+        assertTrue(parser.parseCommand(HelpPoochSupplierCommand.COMMAND_WORD)
+                instanceof HelpPoochSupplierCommand);
+        assertTrue(parser.parseCommand(HelpPoochSupplierCommand.COMMAND_WORD + " 3")
+                instanceof HelpPoochSupplierCommand);
     }
 
     @Test
     public void parseCommand_helpPoochStaff() throws Exception {
         assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD) instanceof HelpPoochStaffCommand);
-        assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD + " 3") instanceof HelpPoochStaffCommand);
+        assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD + " 3")
+                instanceof HelpPoochStaffCommand);
     }
 
 
