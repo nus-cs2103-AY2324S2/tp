@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -13,8 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_GROUP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -22,10 +22,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -38,11 +38,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Tag;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.group.Group;
+import seedu.address.model.person.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -94,12 +94,16 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_GROUP} alone will reset the groups of the {@code Person} being edited,
         // parsing it together with a valid group results in error
-        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND + GROUP_EMPTY, Group.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_EMPTY + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + GROUP_EMPTY + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND +
+                GROUP_EMPTY, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_EMPTY +
+                GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_EMPTY + GROUP_DESC_FRIEND +
+                GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_TAG_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC +
+                VALID_TAG_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 

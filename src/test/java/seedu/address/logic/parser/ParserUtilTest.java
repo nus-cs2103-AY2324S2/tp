@@ -14,11 +14,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Tag;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.group.Group;
+import seedu.address.model.person.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -178,7 +178,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseGroups_collectionWithInvalidGroups_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseGroups(Arrays.asList(VALID_GROUP_1, INVALID_GROUP)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroups(Arrays.asList(VALID_GROUP_1,
+                INVALID_GROUP)));
     }
 
     @Test
@@ -188,8 +189,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseGroups_collectionWithValidGroups_returnsGroupSet() throws Exception {
-        Set<Group> actualGroupSet = ParserUtil.parseGroups(Arrays.asList(VALID_GROUP_1, VALID_GROUP_2));
-        Set<Group> expectedGroupSet = new HashSet<Group>(Arrays.asList(new Group(VALID_GROUP_1), new Group(VALID_GROUP_2)));
+        Set<Group> actualGroupSet = ParserUtil.parseGroups(Arrays.asList(VALID_GROUP_1,
+                VALID_GROUP_2));
+        Set<Group> expectedGroupSet = new HashSet<Group>(Arrays.asList(new Group(VALID_GROUP_1),
+                new Group(VALID_GROUP_2)));
 
         assertEquals(expectedGroupSet, actualGroupSet);
     }
