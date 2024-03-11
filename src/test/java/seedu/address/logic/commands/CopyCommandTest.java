@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_PERSON_LIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -43,7 +44,12 @@ public class CopyCommandTest {
 
     @Test
     public void execute_nonEmptyList_emailsCopied() {
-        assertCommandSuccess(new CopyCommand(), model, new CommandResult(CopyCommand.MESSAGE_SUCCESS),
-                expectedModel);
+        try {
+            CommandResult result = new CopyCommand().execute(model);
+            assertEquals(new CommandResult(CopyCommand.MESSAGE_SUCCESS), result);
+            assertEquals(expectedModel, model);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
     }
 }
