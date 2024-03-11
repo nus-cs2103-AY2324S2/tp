@@ -113,7 +113,8 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && income.equals(otherPerson.income)
                 && family.equals(otherPerson.family)
-                && address.equals(otherPerson.address);
+                && address.equals(otherPerson.address)
+                && tags.equals(otherPerson.tags);
     }
 
     @Override
