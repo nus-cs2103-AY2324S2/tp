@@ -18,7 +18,6 @@ import seedu.address.model.person.Remark;
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
@@ -52,7 +51,7 @@ public class RemarkCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), remark);
+                personToEdit.getAddress(), remark, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
