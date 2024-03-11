@@ -466,7 +466,6 @@ Use case ends.
 * **Import**: The process of adding or updating contacts in the application by loading them from an external file, typically in a structured format like JSON. This allows users to quickly populate the application with a large number of contacts.
 * **Contact Manager**: The component or feature of the application that handles the storage, retrieval, organization, and modification of contact information. It is central to the application's functionality regarding managing contact details.
 * **Data Directory**: A specific folder or location within the system where the application stores its data files, such as contact exports or imports. The `./data/` directory is an example where JSON files might be found for import operations.
-* 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
