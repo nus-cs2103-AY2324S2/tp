@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: `find_by_tag`**
+**Use case: Finding by tag**
 
 **MSS**
 
@@ -342,58 +342,69 @@ Use case ends.
 
 **Extensions**
 
-2a. No users are found with the given tag.
+* 1a. The user enters extra spaces before or after the command.
 
-2a1. The application notifies the user that no contacts were found with the specified tag.
+  * 1a1. The application automatically trims the extra spaces and processes the command.
 
-Use case ends.
+    Use case resumes at step 2.
 
-1a. The user enters extra spaces before or after the command.
+* 1b. The user specifies multiple tags or incorrect parameters.
 
-1a1. The application automatically trims the extra spaces and processes the command.
+  * 1b1. The application shows an error message and instructions for correct input format.
 
-Use case resumes at step 2.
+    Use case ends.    
 
-1b. The user specifies multiple tags or incorrect parameters.
+* 2a. No users are found with the given tag.
 
-1b1. The application shows an error message and instructions for correct input format.
+  * 2a1. The application notifies the user that no contacts were found with the specified tag.
 
-**Use case: `find_and_export`**
+    Use case ends.
+
+
+**Use case: Finding users and exporting data**
 
 **MSS**
 
-1. User requests to search for users by a specific tag and optionally by name and/or address, and export the results.
+1. User requests to search for users by a specific tag, and optionally, by name and/or address, and wishes to export the results to a specified file.
 2. The application filters the users according to the given criteria and displays the filtered list.
-3. The application exports the filtered list to a specified file or a default file if no filename is provided.
+3. The application exports the filtered list to the specified file.
 4. The application notifies the user that the export was successful.
 
 Use case ends.
 
 **Extensions**
 
-2a. No users match the given criteria.
+* 1a. The user includes extra spaces in the command.
 
-2a1. The application alerts the user that no matching contacts were found.
+    * 1a1. The application trims the extra spaces and processes the command.
 
-Use case ends.
+      Use case resumes at step 2.
 
-3a. The user specifies an invalid filename or multiple filenames.
+* 1b. The user does not specify a filename.
 
-3a1. The application shows an error message regarding the filename issue.
+    * 1b1. A default filename is used as the specified file.
 
-Use case resumes at step 1.
+      Use case resumes at step 2.
 
-1a. The user includes extra spaces in the command.
+* 2a. No users match the given criteria.
 
-1a1. The application trims the extra spaces and processes the command.
+  * 2a1. The application alerts the user that no matching contacts were found.
 
-Use case resumes at step 2.
+    Use case ends.
 
-**Use case: `import`**
+* 3a. The user specifies an invalid filename or multiple filenames.
+
+  * 3a1. The application shows an error message regarding the filename issue.
+
+    Use case resumes at step 1.
+
+
+
+**Use case: Importing contacts**
 
 **MSS**
 
-1. User requests to import contacts from one or multiple JSON files located in the ./data/ directory.
+1. User requests to import contacts from one or multiple JSON files located in the `./data/` directory.
 2. The application validates the existence and format of the specified file(s).
 3. The application imports the contacts from the file(s) into the contact manager.
 4. The application notifies the user that the import was successful.
@@ -402,40 +413,32 @@ Use case ends.
 
 **Extensions**
 
-2a. One or more specified files do not exist in the ./data/ directory.
+* 1a. The user includes extra spaces in the command.
 
-2a1. The application informs the user which files could not be found.
+    * 1a1. The application trims the extra spaces and processes the command.
 
-Use case ends.
+      Use case resumes at step 2.
 
-2b. One or more files are not in the correct JSON format.
+* 2a. One or more specified files do not exist in the ./data/ directory.
 
-2b1. The application notifies the user which files have format issues.
+  * 2a1. The application informs the user which files could not be found.
 
-Use case ends.
+    Use case ends.
 
-1a. The user includes extra spaces in the command.
+* 2b. One or more files are not in the correct JSON format.
 
-1a1. The application trims the extra spaces and processes the command.
+  * 2b1. The application notifies the user which files have format issues.
 
-Use case resumes at step 2.
-
-*{More to be added}*
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  Designed for users who can type fast, making command execution quicker than using a mouse.
-4.  Exporting and importing operations should be completed within a reasonable time frame, not exceeding 10 seconds per operation.
-5.  The application must ensure the security and privacy of private contact details during import and export operations. Data should be handled in a manner that prevents unauthorized access.
-
-*{More to be added}*
-=======
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. Designed for users who can type fast, making command execution quicker than using a mouse.
-4. All operations should be able to run within 500ms measured after user input has finished.
+4. Exporting and importing operations should be completed within a reasonable time frame, not exceeding 2 seconds per operation.
+5. All other operations should be completed within 500ms, measured after the user has entered an input.
+6. The application must ensure the security and privacy of private contact details during import and export operations. Data should be handled in a manner that prevents unauthorized access.
 
 ### Glossary
 
@@ -448,8 +451,8 @@ Use case resumes at step 2.
 * **Export**: The process of saving data from the application to a file, which can then be used outside the application. This can be particularly useful for creating backups or for using the contact information in other software or services.
 * **Import**: The process of adding or updating contacts in the application by loading them from an external file, typically in a structured format like JSON. This allows users to quickly populate the application with a large number of contacts.
 * **Contact Manager**: The component or feature of the application that handles the storage, retrieval, organization, and modification of contact information. It is central to the application's functionality regarding managing contact details.
-* **Data Directory**: A specific folder or location within the system where the application stores its data files, such as contact exports or imports. The ./data/ directory is an example where JSON files might be found for import operations.
-
+* **Data Directory**: A specific folder or location within the system where the application stores its data files, such as contact exports or imports. The `./data/` directory is an example where JSON files might be found for import operations.
+* 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
