@@ -9,6 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
+/**
+ * A class that handles the /add_class command execution.
+ */
 public class AddClassCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Module: %1$s, Tutorial Class: %2$s";

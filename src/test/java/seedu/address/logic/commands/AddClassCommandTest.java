@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.logic.commands.AddClassCommand.MESSAGE_ARGUMENTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
@@ -12,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,7 +28,8 @@ public class AddClassCommandTest {
     @Test
     public void execute() {
 
-        assertCommandFailure(new AddClassCommand(new Module(new Name(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY))), model,
+        assertCommandFailure(new AddClassCommand(new Module(new Name(VALID_MODULE_AMY),
+                        new TutorialClass(VALID_TUTORIAL_AMY))), model,
                 String.format(MESSAGE_ARGUMENTS, VALID_MODULE_AMY));
     }
 
