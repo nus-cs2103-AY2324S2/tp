@@ -149,6 +149,29 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
+### Adding Tags to a Patient : `addtags`
+
+Adds one or more tags to a patient in the address book.
+
+Format: `addtags INDEX [t/TAG]+`
+
+* Adds one or more tags (**single word**) to a patient identified by the index number used in the last patient listing.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one tag must be provided.
+* Tags should be alphanumeric and should not include special characters like `-`.
+* When adding tags, if a tag is repeated in the command, it will be added as a single tag.  
+  E.g. `t/friend t/friend` will be added as a single `friend` tag.
+* If the patient already has a tag provided in the command, new tag will override the existing tag. This is counted as a successful addition of that tag.
+
+<box type="info" seamless>
+    <b>Note:</b> The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
+</box>
+
+
+Examples:
+* `addtags 1 t/friend t/fallRisk`
+* `addtags 2 t/critical`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -175,10 +198,6 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
