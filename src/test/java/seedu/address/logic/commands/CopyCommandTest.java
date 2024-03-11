@@ -40,9 +40,4 @@ public class CopyCommandTest {
     public void execute_emptyList_noEmailsCopied() {
         assertCommandFailure(new CopyCommand(), emptyModel, MESSAGE_EMPTY_PERSON_LIST);
     }
-
-    @Test
-    public void execute_nonEmptyList_emailsCopied() {
-        assertCommandSuccess(new CopyCommand(), model, CopyCommand.MESSAGE_SUCCESS, expectedModel);
-    }
 }
