@@ -147,7 +147,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `staffconnect.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -394,16 +394,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to answer a user's prompt within 1 second.
+3. Should require less computational resources to allow users with older hardware can use the app without trouble.
+4. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+5. Should be able to provide error messages when a user does not type in expected prompts.
+6. Should be able to store the users' information securely without leakage.
+7. Should provide understandable and informative responses whenever a user provides a prompt.
+8. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+9. A user without much experience in admin commands should be able to handle the usage in rather short time.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Mainstream OS**: Windows, Linux, Unix, MacOS, with versions that support Java 11
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Users' Information**: Same as above
+* **Error Message**: A prompt printed to the user that the program execution cannot run normally and specifies the most possible cause
+* **MSS**: Main Success Scenario
 
 --------------------------------------------------------------------------------------------------------------------
 
