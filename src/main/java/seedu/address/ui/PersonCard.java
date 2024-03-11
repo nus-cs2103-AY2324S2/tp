@@ -31,6 +31,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label telegram;
+    @FXML
+    private Label github;
+    @FXML
     private Label id;
     @FXML
     private Label phone;
@@ -49,11 +53,9 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        phone.setText(person.getPhone().value);
+        telegram.setText(person.getTelegram().isPresent() ? person.getTelegram().get().telegramId : "");
+        github.setText(person.getGithub().isPresent() ? person.getGithub().get().githubId : "");
     }
 }

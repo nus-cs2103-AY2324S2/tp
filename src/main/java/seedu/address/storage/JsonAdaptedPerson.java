@@ -11,10 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,23 +30,23 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String classGroup;
+    private final String telegram;
+    private final String github;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("email") String email, @JsonProperty("classGroup") String classGroup,
+            @JsonProperty("telegram") String telegram, @JsonProperty("github") String github) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        this.classGroup = classGroup;
+        this.telegram = telegram;
+        this.github = github;
     }
 
     /**
@@ -53,10 +56,9 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        classGroup = source.getClassGroup().classGroup;
+        telegram = source.getTelegram().isPresent() ? source.getTelegram().get().telegramId : "";
+        github = source.getGithub().isPresent() ? source.getGithub().get().githubId : "";
     }
 
     /**
@@ -65,10 +67,6 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
-        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -94,16 +92,33 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (classGroup == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassGroup.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!ClassGroup.isValidClassGroup(classGroup)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Telegram modelTelegram;
+        if (telegram == null) {
+            modelTelegram = null;
+        } else if (!Telegram.isValidTelegram(telegram)) {
+            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTelegram = new Telegram(telegram);
+        }
+
+        final Github modelGithub;
+        if (github == null) {
+            modelGithub = null;
+        } else if (!Github.isValidGithub(github)) {
+            throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
+        } else {
+            modelGithub = new Github(github);
+        }
+
+
+        final ClassGroup modelClassGroup = new ClassGroup(email);
+        return new Person(modelName, modelClassGroup, modelEmail, modelPhone, modelTelegram, modelGithub);
     }
-
 }
