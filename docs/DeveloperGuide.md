@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classLists [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 
 - At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 - At shut down, it shuts down the other components and invokes cleanup methods where necessary.
@@ -47,7 +47,7 @@ The bulk of the app's work is done by the following four components:
 - [**`Model`**](#model-component): Holds the data of the App in memory.
 - [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#common-classLists) represents a collection of classLists used by multiple other components.
 
 **How the architecture components interact with each other**
 
@@ -72,7 +72,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classLists that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,7 +81,7 @@ The `UI` component,
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classLists in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -108,14 +108,14 @@ How the `Logic` component works:
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Here are the other classLists in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classLists shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classLists (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -148,9 +148,9 @@ The `Storage` component,
 
 - can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 - inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- depends on some classLists in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### Common classLists
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list |
 | `* * *`  | TA      | view all students and their particulars                                        | have a comprehensive overview of the enrolled students in my class.     |
 | `* *`    | TA      | add/remove different modules I am teaching                                     | manage my teaching assignments efficiently.                             |
-| `* * *`  | TA      | view all the tutorial classes and their information                            | visibility into the schedule and details of all tutorial classes.       |
+| `* * *`  | TA      | view all the tutorial classLists and their information                            | visibility into the schedule and details of all tutorial classLists.       |
 
 _{More to be added}_
 
@@ -425,15 +425,15 @@ Use case ends.
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. The tutorial class specified does not exist.
-  - 1b1. Returns an error indicating invalid tutorial class and shows the list of tutorial classes available.
+  - 1b1. Returns an error indicating invalid tutorial class and shows the list of tutorial classLists available.
   - Use case ends.
 <br>
 
-#### Use case 7: View all classes
+#### Use case 7: View all classLists
 
 **MSS**
-1. User wants to view all classes.
-2. System shows a list of all available classes.
+1. User wants to view all classLists.
+2. System shows a list of all available classLists.
 Use case ends.
 
 **Extensions**
@@ -442,8 +442,8 @@ Use case ends.
   - Use case ends.
 - 1b. Additional arguments are specified after the command.
   - 1b1. System will ignore those arguments and execute the comamnd as usual.
-- 2a. There are no existing classes.
-  - 2a1. System will return a message indicating that there are no existing classes in the list.
+- 2a. There are no existing classLists.
+  - 2a1. System will return a message indicating that there are no existing classLists in the list.
 <br>
 
 
@@ -466,7 +466,7 @@ Use case ends.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **TA (Teaching Assistant)**: An individual who is responsible for teaching a tutorial class of University students.
-* **TAHelper**: A contact management application to help TAs keep track of students in classes they teach
+* **TAHelper**: A contact management application to help TAs keep track of students in classLists they teach
 * **GUI**: Graphical User Interface
 * **MSS**: Main Success Scenario
 

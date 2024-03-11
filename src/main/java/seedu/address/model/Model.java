@@ -5,7 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.classes.ClassList;
 import seedu.address.model.person.Person;
+
+import javax.crypto.interfaces.PBEKey;
 
 /**
  * The API of the Model component.
@@ -13,6 +16,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<ClassList> PREDICATE_SHOW_ALL_CLASSES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -76,12 +81,24 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+
+    boolean hasClass(ClassList classToCheck);
+
+    void deleteClass(ClassList target);
+
+
+    void addClass(ClassList classList);
+
+    void setClass(ClassList target, ClassList editedClassList);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+    ObservableList<ClassList> getFilteredClassList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredClassList(Predicate<ClassList> predicate);
 }

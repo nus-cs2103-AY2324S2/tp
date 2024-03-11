@@ -2,9 +2,9 @@
 [![codecov](https://codecov.io/gh/AY2324S2-CS2103T-T09-4/tp/graph/badge.svg?token=WAIOG42WJK)](https://codecov.io/gh/AY2324S2-CS2103T-T09-4/tp)
 
 # TA Helper
-> TA Helper is more than just a tool; it's your ultimate companion in navigating the complexities of teaching assistance in computer science modules. Embrace the simplicity and efficiency of managing your classes with TA Helper today!
+> TA Helper is more than just a tool; it's your ultimate companion in navigating the complexities of teaching assistance in computer science modules. Embrace the simplicity and efficiency of managing your classLists with TA Helper today!
 
-TA Helper is a comprehensive tool designed to significantly ease the administrative and organizational challenges faced by Teaching Assistants (TAs) handling computer science modules. With its core focus on facilitating the management of student groups and enhancing the efficiency of classroom administration, TA Helper stands as an essential platform for TAs who are tasked with overseeing numerous classes and students.
+TA Helper is a comprehensive tool designed to significantly ease the administrative and organizational challenges faced by Teaching Assistants (TAs) handling computer science modules. With its core focus on facilitating the management of student groups and enhancing the efficiency of classroom administration, TA Helper stands as an essential platform for TAs who are tasked with overseeing numerous classLists and students.
 
 ![Ui](docs/images/Ui.png)
 
@@ -12,13 +12,13 @@ TA Helper is a comprehensive tool designed to significantly ease the administrat
 
 - **Target Users:** Teaching Assistants for Computer Science Modules
 - **Key Challenges:**
-  - Managing multiple classes and a diverse student body.
+  - Managing multiple classLists and a diverse student body.
   - Forming student teams for projects or assignments while ensuring fairness.
   - Keeping track of student details, progress, grades, and attendance across different modules.
 
 ## Problem Statement
 
-Teaching Assistants often grapple with the complexities of generating and assigning students to teams within their classes. The situation is compounded when TAs manage multiple classes, necessitating a streamlined method to oversee various nominal rolls. A unified platform that provides a holistic view of all student information, across every class, is crucial for effective student management. Additionally, the random yet fair formation of student teams for assessments poses a significant challenge.
+Teaching Assistants often grapple with the complexities of generating and assigning students to teams within their classLists. The situation is compounded when TAs manage multiple classLists, necessitating a streamlined method to oversee various nominal rolls. A unified platform that provides a holistic view of all student information, across every class, is crucial for effective student management. Additionally, the random yet fair formation of student teams for assessments poses a significant challenge.
 
 ## Value Proposition
 

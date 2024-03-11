@@ -10,7 +10,7 @@
 
 ![Ui](images/Ui.png)
 
-**TA Helper is a desktop application for managing your students' information in the different classes..** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**TA Helper is a desktop application for managing your students' information in the different classLists..** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using TA Helper, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing TA Helper, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

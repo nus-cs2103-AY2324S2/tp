@@ -7,7 +7,7 @@ skinparam classBackgroundColor LOGIC_COLOR
 Class "{abstract}\nCommand" as Command
 Class XYZCommand
 
-package "Parser classes"{
+package "Parser classLists"{
 Class "<<interface>>\nParser" as Parser
 Class AddressBookParser
 Class XYZCommandParser

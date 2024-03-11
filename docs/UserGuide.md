@@ -40,7 +40,7 @@ TAHelper is a **desktop app for managing contacts, optimized for use via a Line 
 
     - `/delete_class module/CS2103T class/T09` : Deletes a tutorial class `T09` under the module `2103T`.
 
-    - `/list_class` : List of all tutorial classes available.
+    - `/list_class` : List of all tutorial classLists available.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -151,12 +151,12 @@ Examples:
 
 ### Deleting tutorial class : `delete_class`
 
-Deletes a specified tutorial class from the list of classes.
+Deletes a specified tutorial class from the list of classLists.
 
 Format: `/delete_class module/MODULE_CODE class/TUTORIAL_CLASS`
 
 - If the module code does not exist, it returns an error.
-- If the tutorial class within that module code does not exist, it returns an error and the list of tutorial classes in that module code.
+- If the tutorial class within that module code does not exist, it returns an error and the list of tutorial classLists in that module code.
 - If no parameters are specified, returns an error
 
 Examples:
@@ -164,13 +164,13 @@ Examples:
 - `/delete_class module/CS2103T class/T10`
 - `/delete_class module/CS2109S class/T01`
 
-### Listing all classes: `list_class`
+### Listing all classLists: `list_class`
 
-Shows a list of all classes in the address book.
+Shows a list of all classLists in the address book.
 
 Format: `list_class`
 
-Expected output: The command will display the list of all classes. If there are no existing classes, the command will return a message indicating that there are no classes currently.
+Expected output: The command will display the list of all classLists. If there are no existing classLists, the command will return a message indicating that there are no classLists currently.
 
 ---
 
@@ -197,4 +197,4 @@ Expected output: The command will display the list of all classes. If there are 
 | **View all students**      | `list_student`                                                                                                                                                                                                         |
 | **Add new tutorial class** | `add_class <module_code> <tutorial_class>` <br> e.g., `add_class module/CS2103T tutorial/T09`                                                                                                                          |
 | **Delete tutorial class**  | `delete_class <module_code> <tutorial_class>` <br> e.g., `delete_class module/CS2103T tutorial/T09`                                                                                                                    |
-| **View all classes**       | `list_class`                                                                                                                                                                                                           |
+| **View all classLists**       | `list_class`                                                                                                                                                                                                           |

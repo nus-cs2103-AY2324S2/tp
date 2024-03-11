@@ -6,8 +6,10 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.classes.ClassList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.classes.UniqueClassList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueClassList classList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+    }
+
+    {
+        classList = new UniqueClassList();
     }
 
     public AddressBook() {}
@@ -47,6 +54,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
+    public void setClassList(List<ClassList> classList) { this.classList.setClasses(classList);}
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -55,6 +63,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setClassList(newData.getClassList());
     }
 
     //// person-level operations
@@ -94,6 +103,25 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public boolean hasClass(ClassList classListToCheck) {
+        requireNonNull(classListToCheck);
+        return classList.contains(classListToCheck);
+    }
+
+    public void addClass(ClassList classListToAdd) {
+        classList.add(classListToAdd);
+    }
+
+    public void setClass(ClassList target, ClassList editedClassList) {
+        requireNonNull(editedClassList);
+        classList.setClass(target, editedClassList);
+    }
+
+    public void removeClass(ClassList key) {
+        requireNonNull(key);
+        classList.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -106,6 +134,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+    @Override
+    public ObservableList<ClassList> getClassList() {
+        return classList.asUnmodifiableObservableList();
     }
 
     @Override

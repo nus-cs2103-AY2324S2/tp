@@ -49,7 +49,7 @@ According to the sequence diagram you saw earlier (and repeated above for refere
 
 <box type="tip" seamless>
 
-**Intellij Tip:** The ['**Search Everywhere**' feature](https://www.jetbrains.com/help/idea/searching-everywhere.html) can be used here. In particular, the '**Find Symbol**' ('Symbol' here refers to methods, variables, classes etc.) variant of that feature is quite useful here as we are looking for a _method_ named `execute`, not simply the text `execute`.
+**Intellij Tip:** The ['**Search Everywhere**' feature](https://www.jetbrains.com/help/idea/searching-everywhere.html) can be used here. In particular, the '**Find Symbol**' ('Symbol' here refers to methods, variables, classLists etc.) variant of that feature is quite useful here as we are looking for a _method_ named `execute`, not simply the text `execute`.
 </box>
 
 A quick look at the `seedu.address.logic.Logic` (an extract given below) confirms that this indeed might be what we’re looking for.
@@ -180,7 +180,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of `editPersonDesciptor` through the 'Variables' window.<br>
    ![EditCommand](../images/tracing/EditCommand.png)
 
-1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classes you encountered fit into the design of the `Logic` component.
+1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classLists you encountered fit into the design of the `Logic` component.
    <puml src="../diagrams/ParserClasses.puml" width="600"/>
 
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
@@ -217,7 +217,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. As you step through the rest of the statements in the `EditCommand#execute()` method, you'll see that it creates a `CommandResult` object (containing information about the result of the execution) and returns it.<br>
    Advancing the debugger by one more step should take you back to the middle of the `LogicManager#execute()` method.<br>
 
-1. Given that you have already seen quite a few classes in the `Logic` component in action, see if you can identify in this partial class diagram some of the classes you've encountered so far, and see how they fit into the class structure of the `Logic` component:
+1. Given that you have already seen quite a few classLists in the `Logic` component in action, see if you can identify in this partial class diagram some of the classLists you've encountered so far, and see how they fit into the class structure of the `Logic` component:
     <puml src="../diagrams/LogicClassDiagram.puml" width="550"/>
 
    * :bulb: This may be a good time to read through the [`Logic` component section of the DG](../DeveloperGuide.html#logic-component)
@@ -251,7 +251,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
-1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
+1. While you are stepping through the classLists in the `Storage` component, here is the component's class diagram to help you understand how those classLists fit into the structure of the component.<br>
    <puml src="../diagrams/StorageClassDiagram.puml" width="550" />
 
    * :bulb: This may be a good time to read through the [`Storage` component section of the DG](../DeveloperGuide.html#storage-component)
