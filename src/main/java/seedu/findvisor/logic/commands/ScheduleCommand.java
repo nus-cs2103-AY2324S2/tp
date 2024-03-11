@@ -71,8 +71,6 @@ public class ScheduleCommand extends Command {
         }
         Person editedPerson = createEditedPerson(personToEdit, meeting);
 
-        assert !personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson);
-
         if (!DateTimeUtil.isAfterCurrentDateTime(meeting.start)) {
             throw new CommandException(MESSAGE_CANNOT_SCHEDULE_MEETING_IN_THE_PAST);
         }
@@ -82,8 +80,8 @@ public class ScheduleCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SCHEDULE_SUCCESS,
                 editedPerson.getName(),
-                DateTimeUtil.dateTimeToString(meeting.start),
-                DateTimeUtil.dateTimeToString(meeting.end)));
+                meeting.getStartString(),
+                meeting.getEndString()));
     }
 
     /**
