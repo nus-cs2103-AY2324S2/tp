@@ -306,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
+(For all use cases below, the **System** is `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
 
 **Use case: Add a patient**
 
