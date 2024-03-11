@@ -262,42 +262,71 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage what modules their friends are taking
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage friend's module information faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​            | I want to …​                                             | So that I can…​                                   |
+|----------|--------------------|----------------------------------------------------------|---------------------------------------------------|
+| `* * *`  | student            | add my friend's contact information                      | keep track of my friend's contact information     |
+| `* * *`  | student            | delete a friend's contact                                | remove entries that I no longer need I            |
+| `* * *`  | student            | add which modules my friend is taking this semester      | keep track of who is taking the same modules as me |
+| `* * *`  | student            | delete which modules my friend is taking this semester   | keep information relevant                         |
+| `* * *`  | student            | list my friend's contact details and modules             | know who is taking the same module as me          |
+| `* *`    | first-time user    | view a guide                                             | understand how to use the app                     |
+| `* *`    | student            | edit my friend's contact information                     | keep my friend's contact details up to date       |
+| `* *`    | student            | add which tutorials my friend is attending               | know when my friends are free                     |
+| `* *`    | student            | delete which tutorials my friend is taking this semester | keep information relevant                         |
+| `* *`    | student            | edit my friend's tutorial slots                          | keep my friend's schedule up to date              |
+| `* *`    | student            | search which friends are taking the same module as me    | find friends to discuss homework with             |
+| `* *`    | lonely student     | search which friends are free at a particular time       | find friends to hang out with                     |
+| `* *`    | student            | purge all module/tutorial data                           | reset for the next semester                       |
+| `*`      | forgetful student  | fuzzy search my friend's names                           | search for friend's whose names I forgot          |
+| `*`      | thoughtful student | save the pronunciation of my friend's names              | know the proper way to say their names            |
+| `*`      | student            | share my profile with a QR code/email/telegram           | share my contact details with my friends          |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `ModContacts` and the **Actor** is the `student`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Create a friend**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Student requests to add a friend
+2.  ModContacts adds the friend
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Phone number is invalid.
+
+  * 1a1. ModContacts shows an error message.
+    
+    Use case resumes at step 1.
+
+---
+
+**Use case: Delete a friend**
+
+**MSS**
+
+1.  Student requests to list friends
+2.  ModContacts shows a list of friends
+3.  Student requests to delete a specific friend in the list
+4.  ModContacts deletes the friend
 
     Use case ends.
 
@@ -309,17 +338,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ModContacts shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+---
+
+**Use case: Add a module to a friend**
+
+**MSS**
+
+1.  Student requests to list friends
+2.  ModContacts shows a list of friends and their modules
+3.  Student requests to add a module to a specific friend in the list
+4.  ModContacts adds the module to the friend
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ModContacts shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given module name is invalid.
+
+    * 3b1. ModContacts shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Delete a module**
+
+**MSS**
+
+1.  Student requests to list friends
+2.  ModContacts shows a list of friends and their modules
+3.  Student requests to delete a module from a specific friend in the list
+4.  ModContacts deletes the module from the friend
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ModContacts shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given module name is invalid.
+
+    * 3b1. ModContacts shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given module is not found in friend.
+
+    * 3c1. ModContacts shows an error message.
+
+      Use case resumes at step 2.
+
+---
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The user interface should be intuitive enough for users who are not IT-savvy
 
 *{More to be added}*
 
