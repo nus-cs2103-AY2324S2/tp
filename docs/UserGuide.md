@@ -143,6 +143,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd interviewee in the HRConnect.
 * `find Betsy` followed by `delete 1` deletes the 1st interviewee in the results of the `find` command.
 
+### Adding tags to interviewees: `/tag`
+
+Attaches specific tags to interviewees for easy filtering later
+
+Format: `/tag <ApplicationID> <Tag>`
+
+* Maps `<Tag>` to the `<ApplicationID>`
+* `ApplicationID` must be a valid ID currently saved in HRConnect
+
+Examples:
+* `/tag 123456 <initial_application>` maps the tag `<initial_application>` to applicant 123456
+
 ### Filtering interviewees by tag : `/filter`
 Filter through contact list based on what stage the interviewee is in.
 Format: `/filter <Tag>`
