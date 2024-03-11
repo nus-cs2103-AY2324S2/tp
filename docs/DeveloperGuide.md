@@ -13,7 +13,7 @@
 
 ## 1. Introduction
 
-### **1.1. Product Overview**
+### **1.1 Product Overview**
 PatientSync addresses a crucial gap in the current hospital systems by providing nurses with a comprehensive tool to manage patient information beyond administrative details.
 
 In many hospitals, the existing systems typically offer basic administrative information such as patient names and contact details. However, they often lack the capacity to delve into the intimate details of patient care.
@@ -283,9 +283,9 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6 Appendix: Requirements
 
-### Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 
@@ -300,7 +300,7 @@ _{more aspects and alternatives to be added}_
 PatientSync is meticulously crafted for nurses who prioritize the well-being of their patients above all else. It allows nurses to input intimate details about their patients, such as food preferences and family conditions. This personalized approach enables nurses to deliver tailored care that meets the unique needs of each individual.
 
 
-### User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-### Use cases
+### 6.3 Use cases
 
 (For all use cases below, the **System** is `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
 
@@ -496,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1. Compatibility: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Performance: Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
@@ -507,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. User Documentation: Should offer comprehensive, well-organized user documentation that guides users on how to effectively use PatientSync.
 8. Developer Documentation: Should provide detailed developer documentation for those looking to enhance, customize, or develop extensions. 
 
-### Glossary
+### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
