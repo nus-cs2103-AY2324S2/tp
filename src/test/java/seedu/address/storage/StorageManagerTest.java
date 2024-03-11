@@ -57,6 +57,7 @@ public class StorageManagerTest {
         AddressBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        System.out.println(retrieved.equals(new AddressBook(retrieved)));
         assertEquals(original, new AddressBook(retrieved));
     }
 

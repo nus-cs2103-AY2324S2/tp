@@ -9,10 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.NRIC;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.DoB;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Address;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +37,15 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    public static NRIC parseNRIC(String nric) throws ParseException {
+        requireNonNull(nric);
+        String trimmedNRIC = nric.trim();
+        if (!NRIC.isValidNRIC(trimmedNRIC)) {
+            throw new ParseException(NRIC.MESSAGE_CONSTRAINTS);
+        }
+        return new NRIC(trimmedNRIC);
+    }
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -48,6 +59,15 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    public static DoB parseDoB(String dob) throws ParseException {
+        requireNonNull(dob);
+        String trimmedDoB = dob.trim();
+        if (!DoB.isValidDoB(trimmedDoB)) {
+            throw new ParseException(DoB.MESSAGE_CONSTRAINTS);
+        }
+        return new DoB(trimmedDoB);
     }
 
     /**

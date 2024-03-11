@@ -14,51 +14,41 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
 
     // Identity fields
+    private final Type type;
+    private final NRIC nric;
     private final Name name;
+    private final DoB dob;
     private final Phone phone;
-    private final Email email;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Type type, NRIC nric, Name name, DoB dob, Phone phone) {
+        requireAllNonNull(type, nric, name, dob, phone);
+        this.type = type;
+        this.nric = nric;
         this.name = name;
+        this.dob = dob;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
     }
 
+    public Type getType() {
+        return type;
+    }
+    public NRIC getNRIC() {
+        return nric;
+    }
     public Name getName() {
         return name;
     }
-
+    public DoB getDoB() {
+        return dob;
+    }
     public Phone getPhone() {
         return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -90,27 +80,27 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+        return type.equals(otherPerson.type)
+                && nric.equals(otherPerson.nric)
+                && name.equals(otherPerson.name)
+                && dob.equals(otherPerson.dob)
+                && phone.equals(otherPerson.phone);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(type, nric, name, dob, phone);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("type", type)
+                .add("nric", nric)
                 .add("name", name)
+                .add("dob", dob)
                 .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
                 .toString();
     }
 
