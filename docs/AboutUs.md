@@ -29,8 +29,8 @@ You can reach us at the email `E0957568@u.nus.edu`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Coding
 
 ### Rahman Faaheem Ilhaam
 
