@@ -4,8 +4,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import tutorpro.logic.commands.CommandResult;
 import tutorpro.logic.Logic;
+import tutorpro.logic.commands.CommandResult;
 import tutorpro.logic.commands.exceptions.CommandException;
 import tutorpro.logic.parser.exceptions.ParseException;
 
