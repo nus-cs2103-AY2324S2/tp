@@ -275,24 +275,24 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​            | I want to …​                                             | So that I can…​                                   |
-|----------|--------------------|----------------------------------------------------------|---------------------------------------------------|
-| `* * *`  | student            | add my friend's contact information                      | keep track of my friend's contact information     |
-| `* * *`  | student            | delete a friend's contact                                | remove entries that I no longer need I            |
+| Priority | As a …​            | I want to …​                                             | So that I can…​                                    |
+| -------- | ------------------ | -------------------------------------------------------- | -------------------------------------------------- |
+| `* * *`  | student            | add my friend's contact information                      | keep track of my friend's contact information      |
+| `* * *`  | student            | delete a friend's contact                                | remove entries that I no longer need               |
 | `* * *`  | student            | add which modules my friend is taking this semester      | keep track of who is taking the same modules as me |
-| `* * *`  | student            | delete which modules my friend is taking this semester   | keep information relevant                         |
-| `* * *`  | student            | list my friend's contact details and modules             | know who is taking the same module as me          |
-| `* *`    | first-time user    | view a guide                                             | understand how to use the app                     |
-| `* *`    | student            | edit my friend's contact information                     | keep my friend's contact details up to date       |
-| `* *`    | student            | add which tutorials my friend is attending               | know when my friends are free                     |
-| `* *`    | student            | delete which tutorials my friend is taking this semester | keep information relevant                         |
-| `* *`    | student            | edit my friend's tutorial slots                          | keep my friend's schedule up to date              |
-| `* *`    | student            | search which friends are taking the same module as me    | find friends to discuss homework with             |
-| `* *`    | lonely student     | search which friends are free at a particular time       | find friends to hang out with                     |
-| `* *`    | student            | purge all module/tutorial data                           | reset for the next semester                       |
-| `*`      | forgetful student  | fuzzy search my friend's names                           | search for friend's whose names I forgot          |
-| `*`      | thoughtful student | save the pronunciation of my friend's names              | know the proper way to say their names            |
-| `*`      | student            | share my profile with a QR code/email/telegram           | share my contact details with my friends          |
+| `* * *`  | student            | delete which modules my friend is taking this semester   | keep information relevant                          |
+| `* * *`  | student            | list my friend's contact details and modules             | know who is taking the same module as me           |
+| `* *`    | first-time user    | view a guide                                             | understand how to use the app                      |
+| `* *`    | student            | edit my friend's contact information                     | keep my friend's contact details up to date        |
+| `* *`    | student            | add which tutorials my friend is attending               | know when my friends are free                      |
+| `* *`    | student            | delete which tutorials my friend is taking this semester | keep information relevant                          |
+| `* *`    | student            | edit my friend's tutorial slots                          | keep my friend's schedule up to date               |
+| `* *`    | student            | search which friends are taking the same module as me    | find friends to discuss homework with              |
+| `* *`    | lonely student     | search which friends are free at a particular time       | find friends to hang out with                      |
+| `* *`    | student            | purge all module/tutorial data                           | reset for the next semester                        |
+| `*`      | forgetful student  | fuzzy search my friend's names                           | search for friend's whose names I forgot           |
+| `*`      | thoughtful student | save the pronunciation of my friend's names              | know the proper way to say their names             |
+| `*`      | student            | share my profile with a QR code/email/telegram           | share my contact details with my friends           |
 
 *{More to be added}*
 
@@ -425,6 +425,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Module**: The subject that the student is currently taking
+* **Tutorial**:  The classes of a particular module, that can be chosen by the student, that is, it can vary from student to student taking the same module.
 
 --------------------------------------------------------------------------------------------------------------------
 
