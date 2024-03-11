@@ -16,7 +16,7 @@ import seedu.findvisor.commons.util.ToStringBuilder;
 public class Meeting {
     public static final String MESSAGE_CONSTRAINTS = "Meetings consist of 2 datetimes, the start datetime and "
             + "end date time.\n"
-            + "Each input string for datetime must be in the format yyyy-MM-dd'T'HH:mm, for example 2024-02-23T16:00.\n"
+            + "Each input string for datetime must be in the format dd-MM-yyyy'T'HH:mm, for example 23-02-2024T16:00.\n"
             + "The start datetime must be before the end date time.";
 
     public final LocalDateTime start;
