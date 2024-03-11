@@ -19,6 +19,10 @@ public class Family {
         return familySize.toString();
     }
 
+    public String toStringWithRepresentation() {
+        return "Family size is " + familySize.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

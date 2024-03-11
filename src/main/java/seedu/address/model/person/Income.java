@@ -19,6 +19,10 @@ public class Income {
         return incomeValue.toString();
     }
 
+    public String toStringWithRepresentation() {
+        return "Income is $" + incomeValue.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
