@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# EduLink-NUS User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+EduLink NUS is a **desktop app for Academic Instructors to keep contacts of their past and current student, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduLink NUS can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,11 +17,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `edulink-NUS.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your EduLink NUS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar edulink-NUS.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -77,9 +77,9 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a Student to the EduLink NUS.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUMBER] e/PRIMARY_EMAIL [ , SECONDARY_EMAIL] [i/INTAKE] [m/MAJOR] [p/PART_OF] [g/GRADE] [t/TAG]…​`
 
 <box type="tip" seamless>
 
@@ -87,12 +87,12 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
+* `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all Students in the EduLink NUS.
 
 Format: `list`
 
@@ -113,37 +113,58 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Search students by name or ID: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds students whose names contain any of the given keywords or whose ID matches givens student ID
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Formats: 
+* search by name: `find [n/NAME]`
+* search by student ID: `find [id/STUDENT_ID]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `john` will match `John`, `a1234567x` will match `A1234567X`
+* Only the name or student id is searched.
+* The search by name supports partial word matching e.g. `John` will match `Jonathan`
+* only full ID will be matched for search by student ID e.g. `A123` will not match `A1234567X`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find John` returns `john`, `John Doe`, `Jonathan`
+* `find alex david` returns `Alex Yeoh`, `David Li`
+* `find id/A1234567X` returns `Hannah Neo with ID A12345678X`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified individual from the EduLink NUS system.
 
-Format: `delete INDEX`
+Format: `delete INDEX` **OR** `delete id/STUDENT_ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the person at the specified `INDEX` or deletes the person identified by the specified `STUDENT_ID`.
+* The INDEX refers to the index number shown in the displayed person list.
+* The STUDENT_ID refers to the unique identification string associated with individuals stored in EduLink NUS.
+* The INDEX **must be a positive integer** 1, 2, 3, …​ 
+* The STUDENT_ID **must exist within the system** 
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete id/A026273X` deletes the person with Student ID A026273X.
+
+### Filtering displayed list : `filter`
+
+Filter displayed list of students based on a tag or tags.
+
+Format: `filter t/TAG [t/TAG] …​` 
+
+* Tag names are case-sensitive. e.g `TA` will **NOT** match `Ta`
+* The order of the tags does not matter. e.g. result for `TA` and `Knowledgeable` will match `Knowledgeable` and `TA`.
+* Only full words will be matched e.g. `High Priority` will not match `High Achieving`.
+* Persons matching all tags listed will be returned. E.g. Person with `TA` tag only will not be returned, if tags 
+  specified includes `TA` and `Year 2`.
+
+Examples:
+* `filter t/CS2103T` will display only people that have been tagged with `CS2103T`.
+* `filter t/CS2103T t/TA` wil display only people that have been tagged with `CS2103T` and `TA`.
 
 ### Clearing all entries : `clear`
 
@@ -197,8 +218,9 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX` **OR** `delete id/STUDENT_ID` <br> e.g., `delete 3`, `delete id/A026273X`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter t/TAG [t/TAG] …​`<br> e.g., `filter t/CS2103T`, `filter t/CS2103T t/TA` 
 **List**   | `list`
 **Help**   | `help`
