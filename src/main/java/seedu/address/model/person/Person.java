@@ -25,13 +25,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
         entryList.add(name);
-        entryList.add(phone);
-        entryList.add(email);
-        entryList.add(address);
         this.tags.addAll(tags);
+    }
+
+    public void addEntry(Entry entry) {
+        entryList.add(entry);
     }
 
     public Name getName() {
