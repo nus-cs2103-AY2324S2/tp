@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.util.CommandUtil.generateMessageUsage;
+import static seedu.address.logic.commands.util.CommandMessageUsageUtil.generateMessageUsage;
 import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_INDEX;
 
 import java.util.List;

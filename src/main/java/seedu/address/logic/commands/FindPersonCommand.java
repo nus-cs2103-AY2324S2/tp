@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.util.CommandUtil.generateMessageUsage;
+import static seedu.address.logic.commands.util.CommandMessageUsageUtil.generateMessageUsage;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -21,7 +21,7 @@ public class FindPersonCommand extends Command {
             "Finds all persons whose names contain any of "
                     + "the specified keywords (case-insensitive) and displays them as a list with index numbers.",
             "KEYWORD [MORE_KEYWORDS]...",
-            COMMAND_WORD + "alice bob charlie"
+            COMMAND_WORD + " alice bob charlie"
 
     );
 

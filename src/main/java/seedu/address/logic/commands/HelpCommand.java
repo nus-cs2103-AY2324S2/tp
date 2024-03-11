@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.util.CommandUtil.generateMessageUsage;
+import static seedu.address.logic.commands.util.CommandMessageUsageUtil.generateMessageUsage;
 
 import seedu.address.model.Model;
 

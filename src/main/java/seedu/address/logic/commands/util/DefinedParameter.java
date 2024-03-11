@@ -6,6 +6,8 @@ import seedu.address.logic.parser.Prefix;
  * A defined parameter is a {@code Parameter} that has a {@code Prefix}, a name, a hint and an example values,
  * which is used to generate a {@code Command}'s {@code MESSAGE_USAGE},
  * in a more standardized way.
+ * <p>
+ * The key difference from {@code Parameter} is that {@code DefinedParameter} has a prefix.
  *
  * @see Parameter
  */
@@ -24,10 +26,11 @@ public class DefinedParameter extends Parameter {
     }
 
     /**
-     * Constructor for a defined parameter that takes a {@code DefinedParameter}.
+     * Constructor for a defined parameter that takes a {@code DefinedParameter},
+     * {@code detailWrapper}, and {@code exampleRepetitions}.
      */
-    public DefinedParameter(DefinedParameter definedParameter) {
-        super(definedParameter);
+    public DefinedParameter(DefinedParameter definedParameter, String detailWrapper, int exampleRepetitions) {
+        super(definedParameter, detailWrapper, exampleRepetitions);
         this.prefix = definedParameter.prefix;
     }
 
@@ -50,12 +53,13 @@ public class DefinedParameter extends Parameter {
      *
      * @param isExamplePresent Whether the example value should be present.
      */
+    @Override
     public DefinedParameter asOptional(boolean isExamplePresent) {
-        return new DefinedParameterWrapper(this, "[%s]", (isExamplePresent) ? 1 : 0);
+        return new DefinedParameter(this, "[%s]", (isExamplePresent) ? 1 : 0);
     }
 
     /**
-     * Gets the {@code DefinedParameter} as multiple defined parameters.
+     * Gets the {@code DefinedParameter} as a multiple defined parameter.
      * <p>
      * A multiple defined parameter is a {@code DefinedParameter} that is can be used multiple times,
      * including zero times.
@@ -64,50 +68,9 @@ public class DefinedParameter extends Parameter {
      *
      * @param exampleRepetitions The number of times the example values should repeat.
      */
+    @Override
     public DefinedParameter asMultiple(int exampleRepetitions) {
         assert exampleRepetitions >= 0;
-        return new DefinedParameterWrapper(this, "[%s]...", exampleRepetitions);
-    }
-
-    /**
-     * An inner class as a {@code DefinedParameter} wrapper that formats the {@code getParameterDetails}
-     * and {@code getParameterWithExampleValues} nicely within a wrapping context string.
-     */
-    private class DefinedParameterWrapper extends DefinedParameter {
-        private final String wrapper;
-        private int exampleRepetitions;
-
-        public DefinedParameterWrapper(DefinedParameter definedParameter, String wrapper) {
-            super(definedParameter);
-
-            assert wrapper.contains("%s");
-            this.wrapper = wrapper;
-            this.exampleRepetitions = 1;
-        }
-
-        public DefinedParameterWrapper(DefinedParameter definedParameter, String wrapper, int exampleRepetitions) {
-            this(definedParameter, wrapper);
-
-            assert exampleRepetitions >= 0;
-            this.exampleRepetitions = exampleRepetitions;
-        }
-
-        @Override
-        public String getParameterDetails() {
-            return String.format(wrapper, super.getParameterDetails());
-        }
-
-        @Override
-        public String getParameterWithExampleValues() {
-            StringBuilder exampleBuilder = new StringBuilder();
-
-            for (int i = 0; i < exampleRepetitions; i++) {
-                exampleBuilder
-                        .append(getParameterExampleValue(i))
-                        .append(" ");
-            }
-
-            return exampleBuilder.toString().trim();
-        }
+        return new DefinedParameter(this, "[%s]...", exampleRepetitions);
     }
 }

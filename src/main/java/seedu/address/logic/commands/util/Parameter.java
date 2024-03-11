@@ -12,6 +12,12 @@ public class Parameter {
     private final String parameterName;
     private final String[] parameterExampleValues;
 
+    /* String formatting wrapper for the parameter's details. */
+    private final String detailWrapper;
+
+    /* The number of examples to display, which is by default 1, but can be more in a multiple parameter. */
+    private final int exampleRepetitions;
+
     /**
      * Constructor for a {@code Parameter} that takes in the {@code parameterName}, {@code parameterHint}
      * and valid {@code parameterExampleValues}, with at least one example value.
@@ -25,15 +31,26 @@ public class Parameter {
         assert parameterExampleValues != null;
         assert parameterExampleValues.length > 0;
         this.parameterExampleValues = parameterExampleValues;
+
+        this.detailWrapper = "%s";
+        this.exampleRepetitions = 1;
     }
 
     /**
-     * Constructor for a defined parameter that takes a {@code DefinedParameter}.
+     * Constructor for a parameter that takes a {@code Parameter},
+     * {@code detailWrapper}, and {@code exampleRepetitions}.
      */
-    public Parameter(Parameter parameter) {
+    Parameter(Parameter parameter, String detailWrapper, int exampleRepetitions) {
         this.parameterName = parameter.parameterName;
         this.parameterHint = parameter.parameterHint;
         this.parameterExampleValues = parameter.parameterExampleValues;
+
+        assert detailWrapper.contains("%s") : "detailWrapper must contain `%s`";
+        this.detailWrapper = detailWrapper;
+
+        assert exampleRepetitions >= 0 && exampleRepetitions <= parameterExampleValues.length
+                : "exampleRepetitions must be within the range of possible values";
+        this.exampleRepetitions = exampleRepetitions;
     }
 
     public String getParameterName() {
@@ -57,6 +74,13 @@ public class Parameter {
     }
 
     /**
+     * Gets the formatted details of the parameter, wrapped within the {@code detailWrapper}.
+     */
+    public String getFormattedParameterDetails() {
+        return String.format(detailWrapper, getParameterDetails());
+    }
+
+    /**
      * Gets an example value from the list of {@code parameterExampleValues},
      * given an index {@code idx} from that list.
      */
@@ -74,9 +98,45 @@ public class Parameter {
     }
 
     /**
-     * Gets the first example value from the list of {@code parameterExampleValues}.
+     * Gets {@code exampleRepetitions} (example) values from the list of {@code parameterExampleValues}.
      */
     public String getParameterWithExampleValues() {
-        return getParameterWithExampleValue(0);
+        StringBuilder exampleBuilder = new StringBuilder();
+
+        for (int i = 0; i < exampleRepetitions; i++) {
+            exampleBuilder
+                    .append(getParameterExampleValue(i))
+                    .append(" ");
+        }
+
+        return exampleBuilder.toString().trim();
+    }
+
+    /**
+     * Gets the {@code Parameter} as an optional parameter.
+     * <p>
+     * An optional parameter is a {@code DefinedParameter} that is optional.
+     * <p>
+     * E.g. '[n/NAME]'
+     *
+     * @param isExamplePresent Whether the example value should be present.
+     */
+    public Parameter asOptional(boolean isExamplePresent) {
+        return new Parameter(this, "[%s]", (isExamplePresent) ? 1 : 0);
+    }
+
+    /**
+     * Gets the {@code Parameter} as a multiple defined parameter.
+     * <p>
+     * A multiple parameter is a {@code Parameter} that is can be used multiple times,
+     * including zero times.
+     * <p>
+     * E.g. '[t/TAG]...'
+     *
+     * @param exampleRepetitions The number of times the example values should repeat.
+     */
+    public Parameter asMultiple(int exampleRepetitions) {
+        assert exampleRepetitions >= 0;
+        return new Parameter(this, "[%s]...", exampleRepetitions);
     }
 }

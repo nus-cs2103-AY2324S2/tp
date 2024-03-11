@@ -2,8 +2,10 @@ package seedu.address.logic.commands.util;
 
 /**
  * A container for {@code Command} specific utility functions.
+ * <p>
+ *
  */
-public class CommandUtil {
+public class CommandMessageUsageUtil {
     /**
      * Generates the message usage, given the {@code commandWord}, {@code description},
      * and {@code example} as strings.
@@ -49,7 +51,7 @@ public class CommandUtil {
 
         for (Parameter p : parameters) {
             stringBuilder
-                    .append(p.getParameterDetails())
+                    .append(p.getFormattedParameterDetails())
                     .append(" ");
         }
 
