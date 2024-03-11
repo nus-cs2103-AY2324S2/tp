@@ -125,6 +125,10 @@ public class PersonTest {
         Person person2 = new PersonBuilder().build();
         assertFalse(person1.equalsUuid(person2));
     }
+    @Test public void equalsUuid_notPerson_false() {
+        Person person1 = new PersonBuilder().build();
+        assertFalse(person1.equalsUuid("not a person"));
+    }
 
     @Test
     public void getUuid() {
