@@ -379,13 +379,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. SweetRewards shows an error message.
 
       Use case resumes at step 2.
-  
+
 
 **Use case 4: Delete points for a member**
 
 **MSS**
 
-1.  User requests to delete "x" number of points for a member by 
+1.  User requests to delete "x" number of points for a member by
 typing the command subpoints
 2.  SweetRewards shows "x" points deleted for member
 3.  User can view the number of points left for member
