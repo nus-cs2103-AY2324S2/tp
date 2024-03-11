@@ -274,21 +274,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* HR / Executives with access to company contactsw
+* needs to update / contact people frequently
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: access and manage multitudes of contacts quickly and easily
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
+| Priority | As a …​             | I want to …​                                 | So that I can…​                                                         |
+|----------|--------------------|---------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | HR employee        | add new contacts                            |                                                                        |
+| `* * *`  | HR employee        | delete contacts                             | remove entries that I no longer need                                   |
+| `* * *`  | HR employee        | toggle address book visibility              | be able to hide it for simplicity                                      |
+| `* *`    | first time user    | not have a cluttered GUI                    | will not be confused                                                   |
+| `* *`    | potential user     | see examples in the database                | examine how it should look like when I start using the app for work    |
+| `* *`    | frequent user      | optimize command typing                     | accomplish work efficiently                                            |
+| `* *`    | frequent user      | quickly scan the database                   | check for missing details                                              |
+| `* *`    | frequent user      | search for specific information             | optimize my work performance                                           |
+| `* *`    | potential user     | update contact details                      | keep the information in the book up to date                            |
+| `* *`    | HR manager         | search for contacts via their attributes    | can easily find a specific person                                      |
+| `* *`    | frequent user      | automatically delete duplicate contacts     | stay organized                                                         |
+| `* *`    | HR manager         | sort employee contacts via their attributes | can find employees that fit specific criteria                          |
+| `* *`    | employer           | be informed of understaffed departments     | HR can hire accordingly                                                |
+| `* *`    | HR manager         | attach tags or notes to contacts            | adding personal reminders or categorizations                           |
+<!--
 | `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person             |                                                                        |
 | `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
@@ -297,6 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 
 *{More to be added}*
+-->
 
 ### Use cases
 
