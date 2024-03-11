@@ -328,7 +328,139 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Editing a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to edit a specific person in the list with the necessary edits
+4.  AddressBook edits the person 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+
+* 3a. The given index is invalid.
+
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+
+* 3b. The necessary edits are missing
+
+  * 3b1AddressBook shows an error message.
+
+    Use case resumes at step 2
+
+**Use case: Change deadline of a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  AddressBook shows a list of tasks
+3.  User requests to edit a specific task in the list with a new deadline
+4.  AddressBook edits the task
+
+    Use case ends.
+
+**Extensions**
+
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. AddressBook shows an error message. 
+  
+    Use case resumes at step 2.
+
+* 3b. The new deadline is missing.
+  
+  * 3b1. AddressBook shows an error message. 
+    
+    Use case resumes at step 2.
+
+* 3c. The new deadline is before the current date.
+  * 3c1. AddressBook shows an error message. 
+    
+    * Use case resumes at step2 .
+
+
+**Use case: Assign a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  AddressBook shows a list of tasks
+3.  User requests to list persons
+4.  AddressBook shows a list of people
+5.  User requests to assign a task to a person
+6.  AddressBook assigns the task to the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty. 
+  
+  Use case ends.
+
+
+* 4a. The list is empty. 
+
+  Use case ends.
+
+
+* 5a. The given index is invalid.
+
+  * 5a1. AddressBook shows an error message. 
+  
+    Use case resumes at step 4.
+
+
+* 5b. The person already has a task.
+  * 5b1 AddressBook shows an error message. 
+  
+    Use case resumes at step 4.
+
+
+**Use case: Set priority tag for a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  AddressBook shows a list of tasks
+3.  User requests tag a task with a priority status
+4.  AddressBook tags the task
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty. 
+
+  Use case ends.
+
+
+* 3a. The given index is invalid.
+
+  * 3a1. AddressBook shows an error message. 
+  
+    Use case resumes at step 2
+
+* 3b. The given index is invalid.
+  
+    * 3b1. AddressBook shows an error message. 
+  
+      Use case resumes at step 2
 
 ### Non-Functional Requirements
 
