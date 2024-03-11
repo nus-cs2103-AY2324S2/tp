@@ -1,6 +1,6 @@
 package educonnect.model;
 
-import educonnect.model.person.Person;
+import educonnect.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -9,9 +9,9 @@ import javafx.collections.ObservableList;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the students list.
+     * This list will not contain any duplicate students.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Student> getStudentList();
 
 }

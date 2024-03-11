@@ -9,10 +9,10 @@ import java.util.Set;
 import educonnect.commons.core.index.Index;
 import educonnect.commons.util.StringUtil;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.person.Email;
-import educonnect.model.person.Name;
-import educonnect.model.person.StudentId;
-import educonnect.model.person.TelegramHandle;
+import educonnect.model.student.Email;
+import educonnect.model.student.Name;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.model.tag.Tag;
 
 /**

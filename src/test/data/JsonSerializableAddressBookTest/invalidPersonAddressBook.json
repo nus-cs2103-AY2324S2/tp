@@ -1,8 +1,0 @@
-{
-  "persons": [ {
-    "name": "Hans Muster",
-    "studentId": "A9482424M",
-    "email": "invalid@email!3e",
-    "telegramHandle": "@hans"
-  } ]
-}

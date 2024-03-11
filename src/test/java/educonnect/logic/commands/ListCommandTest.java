@@ -1,8 +1,8 @@
 package educonnect.logic.commands;
 
 import static educonnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static educonnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static educonnect.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
