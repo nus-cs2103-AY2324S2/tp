@@ -61,7 +61,8 @@
 //        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
 //                .build();
 //        assertParseSuccess(parser,
-//                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+//                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB +
+//                TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
 //                new AddCommand(expectedPersonMultipleTags));
 //    }
 //
@@ -90,7 +91,8 @@
 //        assertParseFailure(parser,
 //                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
 //                        + validExpectedPersonString,
-//                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
+//                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS,
+//                PREFIX_EMAIL, PREFIX_PHONE));
 //
 //        // invalid value followed by valid value
 //

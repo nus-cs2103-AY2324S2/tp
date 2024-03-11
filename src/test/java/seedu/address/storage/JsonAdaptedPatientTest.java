@@ -8,9 +8,9 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.DoB;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPatientTest {
@@ -22,7 +22,7 @@ public class JsonAdaptedPatientTest {
     private static final String VALID_NRIC = BENSON.getNric().toString();
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_DOB = BENSON.getDoB().dateOfBirth.toString();
-    private static final String VALID_PHONE =  BENSON.getPhone().toString();
+    private static final String VALID_PHONE = BENSON.getPhone().toString();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -31,7 +31,7 @@ public class JsonAdaptedPatientTest {
     }
 
     @Test
-    public void toModelType_invalidNRIC_throwsIllegalValueException() {
+    public void toModelType_invalidNric_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson("PATIENT", INVALID_NRIC, VALID_NAME, VALID_DOB, VALID_PHONE);
         String expectedMessage = Nric.MESSAGE_CONSTRAINTS;
@@ -39,7 +39,7 @@ public class JsonAdaptedPatientTest {
     }
 
     @Test
-    public void toModelType_nullNRIC_throwsIllegalValueException() {
+    public void toModelType_nullNric_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson("PATIENT", null, VALID_NAME, VALID_DOB, VALID_PHONE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);

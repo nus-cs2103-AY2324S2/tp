@@ -27,12 +27,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-//import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PatientBuilder;
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
@@ -71,17 +69,17 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-//    @Test
-//    public void execute_storageThrowsIoException_throwsCommandException() {
-//        assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
-//                LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
-//    }
-//
-//    @Test
-//    public void execute_storageThrowsAdException_throwsCommandException() {
-//        assertCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
-//                LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
-//    }
+    //    @Test
+    //    public void execute_storageThrowsIoException_throwsCommandException() {
+    //        assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
+    //                LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
+    //    }
+    //
+    //    @Test
+    //    public void execute_storageThrowsAdException_throwsCommandException() {
+    //        assertCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
+    //                LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
+    //    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {

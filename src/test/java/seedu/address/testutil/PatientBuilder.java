@@ -1,6 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.DoB;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Type;
 
 /**
  * A utility class to help with building Person objects.
@@ -40,7 +46,10 @@ public class PatientBuilder {
         phone = patientToCopy.getPhone();
     }
 
-    public PatientBuilder withNRIC(String nric) {
+    /**
+     * Sets the {@code Nric} of the {@code Person} that we are building.
+     */
+    public PatientBuilder withNric(String nric) {
         this.nric = new Nric(nric);
         return this;
     }
@@ -53,11 +62,17 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code DoB} of the {@code Person} that we are building.
+     */
     public PatientBuilder withDoB(String dob) {
         this.dob = new DoB(dob);
         return this;
     }
 
+    /**
+     * Sets the {@code Phone} of the {@code Person} that we are building.
+     */
     public PatientBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
