@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/minghow.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Features Testing
 
 ### Chen Yixin
 
