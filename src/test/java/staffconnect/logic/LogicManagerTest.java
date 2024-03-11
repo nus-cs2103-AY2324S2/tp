@@ -45,10 +45,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonStaffBookStorage addressBookStorage =
-                new JsonStaffBookStorage(temporaryFolder.resolve("staffBook.json"));
+        JsonStaffBookStorage staffBookStorage =
+                new JsonStaffBookStorage(temporaryFolder.resolve("staffConnect.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(staffBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -123,7 +123,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getStaffBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -152,7 +152,7 @@ public class LogicManagerTest {
         // Inject LogicManager with a StaffBookStorage that throws the IOException e when saving
         JsonStaffBookStorage staffBookStorage = new JsonStaffBookStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath)
+            public void saveStaffBook(ReadOnlyStaffBook staffBook, Path filePath)
                     throws IOException {
                 throw e;
             }
@@ -164,7 +164,7 @@ public class LogicManagerTest {
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveAddressBook method by executing an add command
+        // Triggers the saveStaffBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();

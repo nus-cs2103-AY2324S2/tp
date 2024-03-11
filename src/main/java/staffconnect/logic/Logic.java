@@ -26,17 +26,17 @@ public interface Logic {
     /**
      * Returns the StaffBook.
      *
-     * @see staffconnect.model.Model#getAddressBook()
+     * @see staffconnect.model.Model#getStaffBook()
      */
-    ReadOnlyStaffBook getAddressBook();
+    ReadOnlyStaffBook getStaffBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' staff book file path.
+     * Returns the user prefs' StaffConnect file path.
      */
-    Path getAddressBookFilePath();
+    Path getStaffConnectFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

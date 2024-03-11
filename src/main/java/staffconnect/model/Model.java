@@ -35,22 +35,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' staff book file path.
+     * Returns the user prefs' StaffConnect file path.
      */
-    Path getAddressBookFilePath();
+    Path getStaffConnectFilePath();
 
     /**
-     * Sets the user prefs' staff book file path.
+     * Sets the user prefs' StaffConnect file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setStaffConnectFilePath(Path staffConnectFilePath);
 
     /**
      * Replaces staff book data with the data in {@code staffBook}.
      */
-    void setAddressBook(ReadOnlyStaffBook staffBook);
+    void setStaffBook(ReadOnlyStaffBook staffBook);
 
     /** Returns the StaffBook */
-    ReadOnlyStaffBook getAddressBook();
+    ReadOnlyStaffBook getStaffBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the staff book.

@@ -7,7 +7,7 @@ import static staffconnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static staffconnect.testutil.Assert.assertThrows;
 import static staffconnect.testutil.TypicalPersons.ALICE;
-import static staffconnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class StaffBookTest {
 
     @Test
     public void resetData_withValidReadOnlyStaffBook_replacesData() {
-        StaffBook newData = getTypicalAddressBook();
+        StaffBook newData = getTypicalStaffBook();
         staffBook.resetData(newData);
         assertEquals(newData, staffBook);
     }

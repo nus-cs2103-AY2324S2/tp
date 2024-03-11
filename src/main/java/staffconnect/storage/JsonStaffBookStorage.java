@@ -27,22 +27,22 @@ public class JsonStaffBookStorage implements StaffBookStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getStaffBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyStaffBook> readStaffBook() throws DataLoadingException {
+        return readStaffBook(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readStaffBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyStaffBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyStaffBook> readStaffBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableStaffBook> jsonStaffBook = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonStaffBookStorage implements StaffBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException {
-        saveAddressBook(staffBook, filePath);
+    public void saveStaffBook(ReadOnlyStaffBook staffBook) throws IOException {
+        saveStaffBook(staffBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyStaffBook)}.
+     * Similar to {@link #saveStaffBook(ReadOnlyStaffBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException {
+    public void saveStaffBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException {
         requireNonNull(staffBook);
         requireNonNull(filePath);
 

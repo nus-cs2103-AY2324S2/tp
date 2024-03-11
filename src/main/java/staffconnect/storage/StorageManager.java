@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ StaffBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return staffBookStorage.getAddressBookFilePath();
+    public Path getStaffBookFilePath() {
+        return staffBookStorage.getStaffBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(staffBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyStaffBook> readStaffBook() throws DataLoadingException {
+        return readStaffBook(staffBookStorage.getStaffBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyStaffBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyStaffBook> readStaffBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return staffBookStorage.readAddressBook(filePath);
+        return staffBookStorage.readStaffBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException {
-        saveAddressBook(staffBook, staffBookStorage.getAddressBookFilePath());
+    public void saveStaffBook(ReadOnlyStaffBook staffBook) throws IOException {
+        saveStaffBook(staffBook, staffBookStorage.getStaffBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException {
+    public void saveStaffBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        staffBookStorage.saveAddressBook(staffBook, filePath);
+        staffBookStorage.saveStaffBook(staffBook, filePath);
     }
 
 }

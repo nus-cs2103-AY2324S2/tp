@@ -16,7 +16,7 @@ public interface StaffBookStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getStaffBookFilePath();
 
     /**
      * Returns StaffBook data as a {@link ReadOnlyStaffBook}.
@@ -24,23 +24,23 @@ public interface StaffBookStorage {
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyStaffBook> readStaffBook() throws DataLoadingException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getStaffBookFilePath()
      */
-    Optional<ReadOnlyStaffBook> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyStaffBook> readStaffBook(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyStaffBook} to the storage.
      * @param staffBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException;
+    void saveStaffBook(ReadOnlyStaffBook staffBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyStaffBook)
+     * @see #saveStaffBook(ReadOnlyStaffBook)
      */
-    void saveAddressBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException;
+    void saveStaffBook(ReadOnlyStaffBook staffBook, Path filePath) throws IOException;
 
 }

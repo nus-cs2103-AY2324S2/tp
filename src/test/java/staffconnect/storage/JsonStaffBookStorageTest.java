@@ -6,7 +6,7 @@ import static staffconnect.testutil.Assert.assertThrows;
 import static staffconnect.testutil.TypicalPersons.ALICE;
 import static staffconnect.testutil.TypicalPersons.HOON;
 import static staffconnect.testutil.TypicalPersons.IDA;
-import static staffconnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,12 +26,12 @@ public class JsonStaffBookStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readStaffBook_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readStaffBook(null));
     }
 
-    private java.util.Optional<ReadOnlyStaffBook> readAddressBook(String filePath) throws Exception {
-        return new JsonStaffBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyStaffBook> readStaffBook(String filePath) throws Exception {
+        return new JsonStaffBookStorage(Paths.get(filePath)).readStaffBook(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -42,52 +42,52 @@ public class JsonStaffBookStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readStaffBook("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatStaffBook.json"));
+        assertThrows(DataLoadingException.class, () -> readStaffBook("notJsonFormatStaffBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidPersonStaffBook.json"));
+    public void readStaffBook_invalidPersonStaffBook_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readStaffBook("invalidPersonStaffBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidPersonStaffBook.json"));
+    public void readStaffBook_invalidAndValidPersonStaffBook_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readStaffBook("invalidAndValidPersonStaffBook.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        StaffBook original = getTypicalAddressBook();
-        JsonStaffBookStorage jsonAddressBookStorage = new JsonStaffBookStorage(filePath);
+    public void readAndSaveStaffBook_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempStaffConnect.json");
+        StaffBook original = getTypicalStaffBook();
+        JsonStaffBookStorage jsonStaffBookStorage = new JsonStaffBookStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyStaffBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonStaffBookStorage.saveStaffBook(original, filePath);
+        ReadOnlyStaffBook readBack = jsonStaffBookStorage.readStaffBook(filePath).get();
         assertEquals(original, new StaffBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonStaffBookStorage.saveStaffBook(original, filePath);
+        readBack = jsonStaffBookStorage.readStaffBook(filePath).get();
         assertEquals(original, new StaffBook(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonStaffBookStorage.saveStaffBook(original); // file path not specified
+        readBack = jsonStaffBookStorage.readStaffBook().get(); // file path not specified
         assertEquals(original, new StaffBook(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveStaffBook_nullStaffBook_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveStaffBook(null, "SomeFile.json"));
     }
 
@@ -97,7 +97,7 @@ public class JsonStaffBookStorageTest {
     private void saveStaffBook(ReadOnlyStaffBook staffBook, String filePath) {
         try {
             new JsonStaffBookStorage(Paths.get(filePath))
-                    .saveAddressBook(staffBook, addToTestDataPathIfNotNull(filePath));
+                    .saveStaffBook(staffBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

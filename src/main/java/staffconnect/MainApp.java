@@ -57,7 +57,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        StaffBookStorage staffBookStorage = new JsonStaffBookStorage(userPrefs.getAddressBookFilePath());
+        StaffBookStorage staffBookStorage = new JsonStaffBookStorage(userPrefs.getStaffConnectFilePath());
         storage = new StorageManager(staffBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
@@ -73,19 +73,19 @@ public class MainApp extends Application {
      * or an empty staff book will be used instead if errors occur when reading {@code storage}'s staff book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getStaffBookFilePath());
 
         Optional<ReadOnlyStaffBook> staffBookOptional;
         ReadOnlyStaffBook initialData;
         try {
-            staffBookOptional = storage.readAddressBook();
+            staffBookOptional = storage.readStaffBook();
             if (!staffBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
+                logger.info("Creating a new data file " + storage.getStaffBookFilePath()
                         + " populated with a sample StaffBook.");
             }
-            initialData = staffBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = staffBookOptional.orElseGet(SampleDataUtil::getSampleStaffBook);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+            logger.warning("Data file at " + storage.getStaffBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty StaffBook.");
             initialData = new StaffBook();
         }

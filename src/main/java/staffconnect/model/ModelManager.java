@@ -65,25 +65,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getStaffConnectFilePath() {
+        return userPrefs.getStaffConnectFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setStaffConnectFilePath(Path staffConnectFilePath) {
+        requireNonNull(staffConnectFilePath);
+        userPrefs.setStaffConnectFilePath(staffConnectFilePath);
     }
 
     //=========== StaffBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyStaffBook staffBook) {
+    public void setStaffBook(ReadOnlyStaffBook staffBook) {
         this.staffBook.resetData(staffBook);
     }
 
     @Override
-    public ReadOnlyStaffBook getAddressBook() {
+    public ReadOnlyStaffBook getStaffBook() {
         return staffBook;
     }
 

@@ -21,12 +21,12 @@ public interface Storage extends StaffBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getStaffBookFilePath();
 
     @Override
-    Optional<ReadOnlyStaffBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyStaffBook> readStaffBook() throws DataLoadingException;
 
     @Override
-    void saveAddressBook(ReadOnlyStaffBook staffBook) throws IOException;
+    void saveStaffBook(ReadOnlyStaffBook staffBook) throws IOException;
 
 }

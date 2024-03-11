@@ -1,7 +1,7 @@
 package staffconnect.logic.commands;
 
 import static staffconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static staffconnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +22,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyStaffBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new StaffBook());
+        Model model = new ModelManager(getTypicalStaffBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalStaffBook(), new UserPrefs());
+        expectedModel.setStaffBook(new StaffBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
