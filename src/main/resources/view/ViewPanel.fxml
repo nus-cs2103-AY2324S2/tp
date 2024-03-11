@@ -12,7 +12,7 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
         </padding>
         <FlowPane fx:id="tag" />
-        <Label fx:id="companyName" text="\$first" styleClass="cell_custom" />
+        <Label fx:id="companyName" styleClass="cell_custom" text="\$first" />
         <Label fx:id="phone" styleClass="cell_custom" text="\$phone" />
         <Label fx:id="address" styleClass="cell_custom" text="\$address" />
         <Label fx:id="email" styleClass="cell_custom" text="\$email" />
