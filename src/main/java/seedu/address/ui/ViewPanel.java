@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
@@ -20,13 +19,15 @@ public class ViewPanel extends UiPart<Region> {
     @FXML
     private Label companyName;
     @FXML
+    private Label jobDescription;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
     @FXML
     private Label email;
     @FXML
-    private FlowPane tag;
+    private Label tag;
     @FXML
     private Label interviewDate;
     @FXML
@@ -41,12 +42,13 @@ public class ViewPanel extends UiPart<Region> {
         super(FXML);
         this.person = person;
         companyName.setText(person.getCompanyName().fullName);
+        jobDescription.setText(person.getJobDescription().value);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        interviewDate.setText(person.getInterviewDate().toString());
-        tag.getChildren().add(new Label(person.getTag().tagName));
+        interviewDate.setText("Interview : " + person.getInterviewDate().toString());
+        tag.setText(person.getTag().tagName);
         internDuration.setText(person.getInternDuration().value);
-        salary.setText(person.getSalary().value);
+        salary.setText("$" + person.getSalary().value);
     }
 }
