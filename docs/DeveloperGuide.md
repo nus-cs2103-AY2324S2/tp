@@ -514,7 +514,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 7 Appendix: Instructions for manual testing 
 
 Given below are instructions to test the app manually.
 
@@ -525,7 +525,7 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
-### Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -542,7 +542,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a patient
+### 7.2 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -559,7 +559,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 7.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
