@@ -45,9 +45,12 @@ public class TypicalPersons {
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withIncome("50000")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
+            .withPhone("9482427")
+            .withIncome("60000")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+            .withIncome("70000")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
