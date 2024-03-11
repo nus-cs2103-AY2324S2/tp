@@ -168,11 +168,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 3 Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+--------------------------------------------------------------------------------------------------------------------
+
+## 4 Planned Enhancements
+
+### 4.1 \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
