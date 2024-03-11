@@ -33,16 +33,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/zoebelle-pang.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/zoebelle-pang)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Gowthaman aravindan
+### Gowthaman Aravindan
 
-<img src="images/gowthaman-aravindan.png" width="200px">
+<img src="images/gowthaman-01.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/gowthaman-01)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
