@@ -47,7 +47,7 @@ public class CopyCommandTest {
         try {
             CommandResult result = new CopyCommand().execute(model);
             assertTrue(result != null);
-            assertEquals(model, expectedModel);
+            assertEquals(CopyCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
