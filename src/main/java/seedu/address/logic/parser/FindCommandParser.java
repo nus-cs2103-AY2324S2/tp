@@ -2,7 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,7 +35,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         for (String arg : splitArgs) {
             String[] keyValue = arg.trim().split(" ", 2);
-            if (keyValue.length < 2) continue;
+            if (keyValue.length < 2) {
+                continue;
+            }
 
             String key = keyValue[0].trim();
             String[] values = keyValue[1].trim().split("\\s+");

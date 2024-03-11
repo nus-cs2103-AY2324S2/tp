@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -82,7 +85,8 @@ public class FindCommandTest {
     @Test
     public void execute_noMatches_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameAndTagContainsKeywordsPredicate predicate = preparePredicate("Nonexistent", "NonexistentTag");
+        NameAndTagContainsKeywordsPredicate predicate = preparePredicate("Nonexistent",
+                "NonexistentTag");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -93,7 +97,8 @@ public class FindCommandTest {
     public void toStringMethod() {
         NameAndTagContainsKeywordsPredicate predicate = preparePredicate("Alice", "friend");
         FindCommand findCommand = new FindCommand(predicate);
-        String expectedString = "seedu.address.logic.commands.FindCommand{predicate=NameAndTagContainsKeywordsPredicate{nameKeywords=[Alice], tagKeywords=[friend]}}";
+        String expectedString = "seedu.address.logic.commands.FindCommand{predicate="
+                + "NameAndTagContainsKeywordsPredicate{nameKeywords=[Alice], tagKeywords=[friend]}}";
         assertEquals(expectedString, findCommand.toString());
     }
 
@@ -101,8 +106,10 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private NameAndTagContainsKeywordsPredicate preparePredicate(String nameInput, String tagInput) {
-        List<String> nameKeywords = nameInput.isEmpty() ? Collections.emptyList() : Arrays.asList(nameInput.split("\\s+"));
-        List<String> tagKeywords = tagInput.isEmpty() ? Collections.emptyList() : Arrays.asList(tagInput.split("\\s+"));
+        List<String> nameKeywords = nameInput.isEmpty() ? Collections.emptyList()
+                : Arrays.asList(nameInput.split("\\s+"));
+        List<String> tagKeywords = tagInput.isEmpty() ? Collections.emptyList()
+                : Arrays.asList(tagInput.split("\\s+"));
         return new NameAndTagContainsKeywordsPredicate(nameKeywords, tagKeywords);
     }
 }

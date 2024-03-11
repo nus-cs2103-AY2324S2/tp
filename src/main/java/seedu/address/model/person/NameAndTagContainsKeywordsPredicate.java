@@ -7,10 +7,18 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 
+/**
+ * Tests that a {@code Person}'s {@code Name} and {@code Tag} matches any of the keywords given.
+ */
 public class NameAndTagContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> nameKeywords;
     private final List<String> tagKeywords;
 
+    /**
+     * Constructor for NameAndTagContainsKeywordsPredicate.
+     * @param nameKeywords List of name keywords to search for.
+     * @param tagKeywords List of tag keywords to search for.
+     */
     public NameAndTagContainsKeywordsPredicate(List<String> nameKeywords, List<String> tagKeywords) {
         this.nameKeywords = nameKeywords;
         this.tagKeywords = tagKeywords;
@@ -49,15 +57,15 @@ public class NameAndTagContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         NameAndTagContainsKeywordsPredicate that = (NameAndTagContainsKeywordsPredicate) other;
-        return Objects.equals(nameKeywords, that.nameKeywords) &&
-                Objects.equals(tagKeywords, that.tagKeywords);
+        return Objects.equals(nameKeywords, that.nameKeywords)
+                && Objects.equals(tagKeywords, that.tagKeywords);
     }
 
     @Override
     public String toString() {
-        return "NameAndTagContainsKeywordsPredicate{" +
-                "nameKeywords=" + nameKeywords +
-                ", tagKeywords=" + tagKeywords +
-                '}';
+        return "NameAndTagContainsKeywordsPredicate{"
+                + "nameKeywords=" + nameKeywords
+                + ", tagKeywords=" + tagKeywords
+                + '}';
     }
 }
