@@ -63,7 +63,7 @@ public class AddPatientCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddPatientCommand)) {
             return false;
         }
 
