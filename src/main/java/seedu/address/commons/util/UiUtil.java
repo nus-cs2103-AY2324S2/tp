@@ -1,11 +1,12 @@
 package seedu.address.commons.util;
 
+import java.util.function.Consumer;
+
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
-import java.util.function.Consumer;
 
 /**
  * This class contains JavaFX-specific tasks
