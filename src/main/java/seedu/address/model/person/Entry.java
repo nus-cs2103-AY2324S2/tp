@@ -5,6 +5,9 @@ public class Entry {
 
     private String description;
 
+    public static final String VALIDATION_REGEX = "*";
+
+
     public Entry(String category, String description) {
         this.category = category;
         this.description = description;
@@ -30,4 +33,33 @@ public class Entry {
     public String toString() {
         return category + ": " + description;
     }
+
+    public boolean isValid() {
+        if (category.trim().equals("")) {
+            return false;
+        }
+        if (description.trim().equals("")) {
+            return false;
+        }
+        return true;
+    }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Entry)) {
+            return false;
+        }
+
+        Entry otherEntry = (Entry) other;
+        return getCategory().equals(otherEntry.getCategory());
+    }
+    @Override
+    public int hashCode() {
+        return description.hashCode();
+    }
+
 }
