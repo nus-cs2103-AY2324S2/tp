@@ -3,13 +3,12 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.*;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
+
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Schedule in the address book.
@@ -22,9 +21,9 @@ public class Schedule {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String schedName;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private ArrayList<Person> participants;
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
+    private final ArrayList<Person> participants;
 
     /**
      * Constructs a {@code Schedule}.
