@@ -11,7 +11,7 @@ You can reach us at the email `[insert email]`
 
 ### Carsten Joe Ng
 
-<img src="images/carsten.png" width="200px">
+<img src="images/wyrkx.png" width="200px">
 
 [[github](http://github.com/wyrkx)]
 [[portfolio](team/carsten.md)]
@@ -21,10 +21,10 @@ You can reach us at the email `[insert email]`
 
 ### Pairor Tarin
 
-<img src="images/TarinPairorProfile.png" width="199px">
+<img src="images/tarinpairor.png" width="199px">
 
 [[github](http://github.com/TarinPairor)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/tarinpairor.md)]
 
 ### Lee Xin Yuan
 
@@ -34,7 +34,7 @@ You can reach us at the email `[insert email]`
 [[portfolio](team/xinyuan.md)]
 
 - Role: Developer
-- Responsibilities: Dev Ops
+- Responsibilities: UI~~~~
 
 ### Tee Chu Jie
 
