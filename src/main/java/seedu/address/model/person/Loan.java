@@ -13,8 +13,6 @@ public class Loan {
     public static final String MESSAGE_CONSTRAINTS = "Loans must be positive and have "
                                                     + "a start date before the end date.";
 
-    // Tracks the next id to be assigned to a loan
-    private static int nextId = 1;
 
     private final int id;
     private final float amount;
@@ -22,15 +20,16 @@ public class Loan {
     private final Date endDate;
 
     /**
-     * Constructs a {@code Loan}.
+     * Constructs a {@code Loan} with a given id.
      *
+     * @param id A valid id.
      * @param amount A valid amount.
      * @param startDate A valid start date.
      * @param endDate A valid end date.
      */
-    public Loan(float amount, Date startDate, Date endDate) {
-        requireAllNonNull(amount, startDate, endDate);
-        this.id = nextId++;
+    public Loan(int id, float amount, Date startDate, Date endDate) {
+        requireAllNonNull(id, amount, startDate, endDate);
+        this.id = id;
         this.amount = amount;
         this.startDate = startDate;
         this.endDate = endDate;
