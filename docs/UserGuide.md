@@ -131,7 +131,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Search by tag: find_by_tag
+### Search by tag: `find_by_tag`
 * Finds users by tag, optionally with another filter based on their other personal details.
 
 Format: `find_by_tag TAG [n/NAME] [a/ADDRESS]`
@@ -140,13 +140,13 @@ Format: `find_by_tag TAG [n/NAME] [a/ADDRESS]`
 * `NAME` needs to be a substring of a person's name
 * `ADDRESS` needs to be a substring of a person's address
 
-Example commands
+Examples:
 * `find_by_tag cs2103t`
 * `find_by_tag n/zilong`
 * `find_by_tag a/ang mo kio avenue 10 `
 
 
-### Exporting a subset of data
+### Exporting a subset of data: `find_and_export`
 Exports the users that are filtered by a tag and other optional parameters.
 
 Format: `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`
@@ -156,19 +156,19 @@ Format: `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`
 * `ADDRESS` needs to be a substring of a person's address
 * `FILENAME` needs to be a valid filename
 
-Example commands
+Examples:
 * `find_and_export cs2103t`
 * `find_and_export cs2103t n/john a/olive street 42 o/output1`
 
 
-### Importing a datafile
+### Importing a datafile: `import`
 Imports contact details from a JSON file with filename specified.
 
-Format: `import FILENAME [FILENAME_2] [FILENAME_3] …`
+Format: `import f/FILENAME_1 [f/FILENAME_2] [f/FILENAME_3] …`
 
-* `FILENAME` needs to be a valid filename that is found in the `./data/` directory
+* `FILENAME_n` needs to be a valid filename that is found in the `./data/` directory
 
-Example commands
+Examples:
 * import export
 * import contacts_export
 * import contacts_export1 contacts_export2
@@ -215,26 +215,6 @@ If your changes to the data file makes its format invalid, Student Contact Manag
 Furthermore, certain edits can cause Student Contact Manager to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Searching by a tag
-
-### Exporting data
-
-### Importing data
-
-Student Contact Manager allows importing of contact data from a JSON file.
-
-Format: `import FILENAME1 [FILENAME2] [FILENAME3] ...`
-
-Note: The imported file needs to be placed in the same directory as the main JSON save file.
-
-Examples:
-* `import save_file1`
-* `import save_file1 save_file2`
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -252,12 +232,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action              | Format, Examples                                                                                                                                                      |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**           | `clear`                                                                                                                                                               |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] ...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                         |
+| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**            | `list`                                                                                                                                                                |
+| **Help**            | `help`                                                                                                                                                                |
+| **find_by_tag**     | `find_by_tag TAG [n/NAME] [a/ADDRESS]`                                                                                                                                |
+| **find_and_export** | `find_and_export TAG [n/NAME] [a/ADDRESS] [o/FILENAME]`                                                                                                               |
+| **import**          | `import f/FILENAME_1 [f/FILENAME_2] [f/FILENAME_3] ...`                                                                                                               |
