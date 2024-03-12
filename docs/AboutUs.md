@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Gowthaman aravindan
+### Gowthaman Aravindan
 
 <img src="images/gowthaman-aravindan.png" width="200px">
 
