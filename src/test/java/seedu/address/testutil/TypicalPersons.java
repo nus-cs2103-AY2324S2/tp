@@ -35,6 +35,15 @@ public class TypicalPersons {
     public static final Patient BOB = new PatientBuilder().withNric(VALID_NRIC_BOB).withName(VALID_NAME_BOB)
             .withDoB(VALID_DOB_BOB).withPhone(VALID_PHONE_BOB).build();
 
+    // Doctors
+
+    public static final Person JAMES = new DoctorBuilder().withNric("S1234567A").withName("Alice Pauline")
+            .withDoB("2000-01-03").withPhone("94351253").build();
+    public static final Person ERIC = new DoctorBuilder().withNric("S8734985A").withName("Benson Chen")
+            .withDoB("2002-01-03").withPhone("88927639").build();
+
+    public static final Person BROWN = new DoctorBuilder().withNric("S2378593A").withName("Carl Sim")
+            .withDoB("2005-01-03").withPhone("87436749").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

@@ -32,10 +32,16 @@ public class CommandTestUtil {
     public static final String VALID_NRIC_BOB = "F1234567B";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_JAMES = "James Tasman";
+    public static final String VALID_NAME_BROWN = "Brown East";
     public static final String VALID_DOB_AMY = "2002-03-04";
     public static final String VALID_DOB_BOB = "1999-06-07";
+    public static final String VALID_DOB_JAMES = "2000-03-02";
+    public static final String VALID_DOB_BROWN = "2000-05-02";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_JAMES = "11112222";
+    public static final String VALID_PHONE_BROWN = "12312312";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
