@@ -13,7 +13,7 @@ public class Availability {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Should be a week of the day, the full word or the first syllable of the word";
-    public static final String VALIDATION_REGEX = "((mon|tues|wed(nes)?|thur(s)?|fri|sat(ur)?|sun)(day)?)";
+    public static final String VALIDATION_REGEX = "(?i)((mon|tues|wed(nes)?|thur(s)?|fri|sat(ur)?|sun)(day)?)";
 
     public final String value;
 
@@ -25,17 +25,17 @@ public class Availability {
     public Availability(String availability) {
         requireNonNull(availability);
         checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
-        if (availability.matches("(mon)(day)?")) {
+        if (availability.matches("(?i)(mon)(day)?")) {
             value = DayOfWeek.MONDAY.name();
-        } else if (availability.matches("(tues)(day)?")) {
+        } else if (availability.matches("(?i)(tues)(day)?")) {
             value = DayOfWeek.TUESDAY.name();
-        } else if (availability.matches("(wed)(nes)?(day)?")) {
+        } else if (availability.matches("(?i)(wed)(nes)?(day)?")) {
             value = DayOfWeek.WEDNESDAY.name();
-        } else if (availability.matches("(thur)(s)(day)?")) {
+        } else if (availability.matches("(?i)(thur)(s)(day)?")) {
             value = DayOfWeek.THURSDAY.name();
-        } else if (availability.matches("(fri)(day)?")) {
+        } else if (availability.matches("(?i)(fri)(day)?")) {
             value = DayOfWeek.FRIDAY.name();
-        } else if (availability.matches("(sat)(ur)?(day)?")) {
+        } else if (availability.matches("(?i)(sat)(ur)?(day)?")) {
             value = DayOfWeek.SATURDAY.name();
         } else {
             value = DayOfWeek.SUNDAY.name();

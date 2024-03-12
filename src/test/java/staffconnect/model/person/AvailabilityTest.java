@@ -40,23 +40,30 @@ public class AvailabilityTest {
         assertFalse(Availability.isValidAvailability("sytaudrh")); // scrambled spelling
         assertFalse(Availability.isValidAvailability("chewsday")); // misspelling
         assertFalse(Availability.isValidAvailability("thu")); // uncompleted syllable
+        assertFalse(Availability.isValidAvailability("sun day")); // space between syllable
 
         // valid module code
+        assertTrue(Availability.isValidAvailability("mon")); // first syllable tuesday
         assertTrue(Availability.isValidAvailability("tues")); // first syllable tuesday
         assertTrue(Availability.isValidAvailability("wed")); // first syllable wednesday
         assertTrue(Availability.isValidAvailability("wednes")); // two syllable wednesday
         assertTrue(Availability.isValidAvailability("thur")); // first syllable thursday without s
         assertTrue(Availability.isValidAvailability("thurs")); // first syllable thursday with s
-        assertTrue(Availability.isValidAvailability("fri")); // first syllable friday
         assertTrue(Availability.isValidAvailability("sat")); // first syllable saturday
+        assertTrue(Availability.isValidAvailability("satur")); // two syllable saturday
         assertTrue(Availability.isValidAvailability("sun")); // first syllable sunday
-        assertTrue(Availability.isValidAvailability("monday")); // full word monday
-        assertTrue(Availability.isValidAvailability("tuesday")); // full word tuesday
-        assertTrue(Availability.isValidAvailability("wednesday")); // full word wednesday
-        assertTrue(Availability.isValidAvailability("thursday")); // full word thursday
-        assertTrue(Availability.isValidAvailability("friday")); // full word friday
-        assertTrue(Availability.isValidAvailability("saturday")); // full word saturday
-        assertTrue(Availability.isValidAvailability("sunday")); // full word sunday
+        assertTrue(Availability.isValidAvailability("Sun")); // first syllable with capitalised first letter
+        assertTrue(Availability.isValidAvailability("sAtUr")); // two syllable mixed case
+        assertTrue(Availability.isValidAvailability("monday")); // full word lowercase monday
+        assertTrue(Availability.isValidAvailability("tuesday")); // full word lowercase tuesday
+        assertTrue(Availability.isValidAvailability("wednesday")); // full word lowercase wednesday
+        assertTrue(Availability.isValidAvailability("thursday")); // full word lowercase thursday
+        assertTrue(Availability.isValidAvailability("friday")); // full word lowercase friday
+        assertTrue(Availability.isValidAvailability("saturday")); // full word lowercase saturday
+        assertTrue(Availability.isValidAvailability("sunday")); // full word lowercase sunday
+        assertTrue(Availability.isValidAvailability("MONDAY")); // full word uppercase monday
+        assertTrue(Availability.isValidAvailability("Tuesday")); // full word with capitalised first letter
+        assertTrue(Availability.isValidAvailability("wEdNeSdAy")); // full word mixed case
     }
 
     @Test
@@ -67,7 +74,7 @@ public class AvailabilityTest {
         assertTrue(availability.equals(new Availability("monday")));
 
         // same day -> return true
-        assertTrue(availability.equals(new Availability("mon")));
+        assertTrue(availability.equals(new Availability("mOn")));
 
         // same object -> returns true
         assertTrue(availability.equals(availability));
