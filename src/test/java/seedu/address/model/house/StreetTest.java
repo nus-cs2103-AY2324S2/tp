@@ -13,7 +13,7 @@ public class StreetTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidBlock_throwsIllegalArgumentException() {
         String invalidStreet = "";
         assertThrows(IllegalArgumentException.class, () -> new Street(invalidStreet));
     }
