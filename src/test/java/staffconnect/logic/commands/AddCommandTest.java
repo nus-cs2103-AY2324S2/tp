@@ -18,10 +18,10 @@ import javafx.collections.ObservableList;
 import staffconnect.commons.core.GuiSettings;
 import staffconnect.logic.Messages;
 import staffconnect.logic.commands.exceptions.CommandException;
-import staffconnect.model.AddressBook;
 import staffconnect.model.Model;
-import staffconnect.model.ReadOnlyAddressBook;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.ReadOnlyUserPrefs;
+import staffconnect.model.StaffBook;
 import staffconnect.model.person.Person;
 import staffconnect.testutil.PersonBuilder;
 
@@ -109,12 +109,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getStaffConnectFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setStaffConnectFilePath(Path staffConnectFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setStaffBook(ReadOnlyStaffBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyStaffBook getStaffBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,8 +196,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyStaffBook getStaffBook() {
+            return new StaffBook();
         }
     }
 
