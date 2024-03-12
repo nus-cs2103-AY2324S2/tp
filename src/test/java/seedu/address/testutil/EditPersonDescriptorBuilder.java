@@ -72,6 +72,9 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Salary} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withSalary(String salary) {
         descriptor.setSalary(new Salary(salary));
         return this;
