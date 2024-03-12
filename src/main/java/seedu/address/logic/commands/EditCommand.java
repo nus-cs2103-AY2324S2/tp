@@ -26,7 +26,7 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.skill.Skill;
 
 /**
- * Edits the details of an existing courseMate in the address book.
+ * Edits the details of an existing courseMate in the contact list.
  */
 public class EditCommand extends Command {
 
@@ -47,7 +47,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_COURSE_MATE_SUCCESS = "Edited CourseMate: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list.";
 
     private final Index index;
     private final EditCourseMateDescriptor editCourseMateDescriptor;

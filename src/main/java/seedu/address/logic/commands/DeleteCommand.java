@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
 
 /**
- * Deletes a courseMate identified using it's displayed index from the address book.
+ * Deletes a courseMate identified using it's displayed index from the contact list.
  */
 public class DeleteCommand extends Command {
 

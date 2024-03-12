@@ -14,13 +14,13 @@ import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
 
 /**
- * Adds a courseMate to the address book.
+ * Adds a courseMate to the contact list.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a courseMate to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a courseMate to the contact list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_SKILL + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New courseMate added: %1$s";
-    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
 
     private final CourseMate toAdd;
 

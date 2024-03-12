@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ContactList;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.coursemate.CourseMate;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ContactList that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "contactlist")
+class JsonSerializableContactList {
 
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "Course mates list contains duplicate courseMate(s).";
 
     private final List<JsonAdaptedCourseMate> courseMates = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given course mates.
+     * Constructs a {@code JsonSerializableContactList} with the given course mates.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("course mates") List<JsonAdaptedCourseMate> courseMates) {
+    public JsonSerializableContactList(@JsonProperty("courseMates") List<JsonAdaptedCourseMate> courseMates) {
         this.courseMates.addAll(courseMates);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyContactList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableContactList}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableContactList(ReadOnlyContactList source) {
         courseMates.addAll(source.getCourseMateList().stream().map(JsonAdaptedCourseMate::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this contact list into the model's {@code ContactList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public ContactList toModelType() throws IllegalValueException {
+        ContactList contactList = new ContactList();
         for (JsonAdaptedCourseMate jsonAdaptedCourseMate : courseMates) {
             CourseMate courseMate = jsonAdaptedCourseMate.toModelType();
-            if (addressBook.hasCourseMate(courseMate)) {
+            if (contactList.hasCourseMate(courseMate)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_COURSE_MATE);
             }
-            addressBook.addCourseMate(courseMate);
+            contactList.addCourseMate(courseMate);
         }
-        return addressBook;
+        return contactList;
     }
 
 }

@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.coursemate.CourseMate;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an contact list
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyContactList {
 
     /**
      * Returns an unmodifiable view of the course mates list.

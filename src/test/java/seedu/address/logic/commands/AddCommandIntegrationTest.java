@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalCourseMates.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,14 +23,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalContactList(), new UserPrefs());
     }
 
     @Test
     public void execute_newCourseMate_success() {
         CourseMate validCourseMate = new CourseMateBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
         expectedModel.addCourseMate(validCourseMate);
 
         assertCommandSuccess(new AddCommand(validCourseMate), model,
@@ -40,7 +40,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateCourseMate_throwsCommandException() {
-        CourseMate courseMateInList = model.getAddressBook().getCourseMateList().get(0);
+        CourseMate courseMateInList = model.getContactList().getCourseMateList().get(0);
         assertCommandFailure(new AddCommand(courseMateInList), model,
                 AddCommand.MESSAGE_DUPLICATE_COURSE_MATE);
     }

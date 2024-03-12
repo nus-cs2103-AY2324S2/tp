@@ -10,10 +10,10 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.UniqueCourseMateList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the contact list level
  * Duplicates are not allowed (by .isSameCourseMate comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ContactList implements ReadOnlyContactList {
 
     private final UniqueCourseMateList courseMates;
 
@@ -28,12 +28,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         courseMates = new UniqueCourseMateList();
     }
 
-    public AddressBook() {}
+    public ContactList() {}
 
     /**
-     * Creates an AddressBook using the Course mates in the {@code toBeCopied}
+     * Creates an ContactList using the Course mates in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ContactList(ReadOnlyContactList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -49,9 +49,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ContactList} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyContactList newData) {
         requireNonNull(newData);
 
         setCourseMates(newData.getCourseMateList());
@@ -60,7 +60,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// courseMate-level operations
 
     /**
-     * Returns true if a courseMate with the same identity as {@code courseMate} exists in the address book.
+     * Returns true if a courseMate with the same identity as {@code courseMate} exists in the contact list.
      */
     public boolean hasCourseMate(CourseMate courseMate) {
         requireNonNull(courseMate);
@@ -68,8 +68,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a courseMate to the address book.
-     * The courseMate must not already exist in the address book.
+     * Adds a courseMate to the contact list.
+     * The courseMate must not already exist in the contact list.
      */
     public void addCourseMate(CourseMate p) {
         courseMates.add(p);
@@ -77,8 +77,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given courseMate {@code target} in the list with {@code editedCourseMate}.
-     * {@code target} must exist in the address book.
-     * The courseMate identity of {@code editedCourseMate} must not be the same as another existing courseMate in the address book.
+     * {@code target} must exist in the contact list.
+     * The courseMate identity of {@code editedCourseMate} must not be the same as another existing courseMate in the contact list.
      */
     public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
         requireNonNull(editedCourseMate);
@@ -87,8 +87,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ContactList}.
+     * {@code key} must exist in the contact list.
      */
     public void removeCourseMate(CourseMate key) {
         courseMates.remove(key);
@@ -99,7 +99,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("course mates", courseMates)
+                .add("courseMates", courseMates)
                 .toString();
     }
 
@@ -115,12 +115,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof ContactList)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
-        return courseMates.equals(otherAddressBook.courseMates);
+        ContactList otherContactList = (ContactList) other;
+        return courseMates.equals(otherContactList.courseMates);
     }
 
     @Override

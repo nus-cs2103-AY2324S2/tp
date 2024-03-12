@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ContactList;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.coursemate.*;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.skill.Skill;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ContactList} with sample data.
  */
 public class SampleDataUtil {
     public static CourseMate[] getSampleCourseMates() {
@@ -37,8 +37,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyContactList getSampleContactList() {
+        ContactList sampleAb = new ContactList();
         for (CourseMate sampleCourseMate : getSampleCourseMates()) {
             sampleAb.addCourseMate(sampleCourseMate);
         }

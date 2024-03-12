@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' contact list file path.
      */
-    Path getAddressBookFilePath();
+    Path getContactListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' contact list file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setContactListFilePath(Path ContactListFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces contact list data with the data in {@code contactList}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setContactList(ReadOnlyContactList contactList);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ContactList */
+    ReadOnlyContactList getContactList();
 
     /**
-     * Returns true if a courseMate with the same identity as {@code courseMate} exists in the address book.
+     * Returns true if a courseMate with the same identity as {@code courseMate} exists in the contact list.
      */
     boolean hasCourseMate(CourseMate courseMate);
 
     /**
      * Deletes the given courseMate.
-     * The courseMate must exist in the address book.
+     * The courseMate must exist in the contact list.
      */
     void deleteCourseMate(CourseMate target);
 
     /**
      * Adds the given courseMate.
-     * {@code courseMate} must not already exist in the address book.
+     * {@code courseMate} must not already exist in the contact list.
      */
     void addCourseMate(CourseMate courseMate);
 
     /**
      * Replaces the given courseMate {@code target} with {@code editedCourseMate}.
-     * {@code target} must exist in the address book.
-     * The courseMate identity of {@code editedCourseMate} must not be the same as another existing courseMate in the address book.
+     * {@code target} must exist in the contact list.
+     * The courseMate identity of {@code editedCourseMate} must not be the same as another existing courseMate in the contact list.
      */
     void setCourseMate(CourseMate target, CourseMate editedCourseMate);
 

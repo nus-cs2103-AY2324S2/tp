@@ -11,7 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.skill.Skill;
 
 /**
- * Represents a CourseMate in the address book.
+ * Represents a CourseMate in the contact list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class CourseMate {

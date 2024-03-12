@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COURSE_MATE;
-import static seedu.address.testutil.TypicalCourseMates.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.address.model.coursemate.CourseMate;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS,
                 Messages.format(courseMateToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
         expectedModel.deleteCourseMate(courseMateToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -59,7 +59,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS,
                 Messages.format(courseMateToDelete));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
         expectedModel.deleteCourseMate(courseMateToDelete);
         showNoCourseMate(expectedModel);
 
@@ -72,7 +72,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_COURSE_MATE;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCourseMateList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getContactList().getCourseMateList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

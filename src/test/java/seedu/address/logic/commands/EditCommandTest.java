@@ -13,14 +13,14 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COURSE_MATE;
-import static seedu.address.testutil.TypicalCourseMates.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand.EditCourseMateDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,7 +33,7 @@ import seedu.address.testutil.EditCourseMateDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +43,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -64,7 +64,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(lastCourseMate, editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -93,7 +93,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -112,8 +112,8 @@ public class EditCommandTest {
     public void execute_duplicateCourseMateFilteredList_failure() {
         showCourseMateAtIndex(model, INDEX_FIRST_COURSE_MATE);
 
-        // edit courseMate in filtered list into a duplicate in address book
-        CourseMate courseMateInList = model.getAddressBook().getCourseMateList().get(INDEX_SECOND_COURSE_MATE.getZeroBased());
+        // edit courseMate in filtered list into a duplicate in contact list
+        CourseMate courseMateInList = model.getContactList().getCourseMateList().get(INDEX_SECOND_COURSE_MATE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE,
                 new EditCourseMateDescriptorBuilder(courseMateInList).build());
 
@@ -131,14 +131,14 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of contact list
      */
     @Test
     public void execute_invalidCourseMateIndexFilteredList_failure() {
         showCourseMateAtIndex(model, INDEX_FIRST_COURSE_MATE);
         Index outOfBoundIndex = INDEX_SECOND_COURSE_MATE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCourseMateList().size());
+        // ensures that outOfBoundIndex is still in bounds of contact list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getContactList().getCourseMateList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
