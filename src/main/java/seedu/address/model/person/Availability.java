@@ -3,10 +3,14 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's availability in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidAvailability(String)}
+ */
 public class Availability {
     public static final String MESSAGE_CONSTRAINTS = "Availabilities can take any values, and it should not be blank";
 
-    /*
+    /**
      * The first character of the availability must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
@@ -26,7 +30,7 @@ public class Availability {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid availability.
      */
     public static boolean isValidAvailability(String test) {
         return test.matches(VALIDATION_REGEX);
