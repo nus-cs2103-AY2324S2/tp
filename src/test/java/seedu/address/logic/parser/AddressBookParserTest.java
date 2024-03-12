@@ -63,8 +63,6 @@ public class AddressBookParserTest {
         assertEquals(new EditCommand(INDEX_FIRST_PATIENT, descriptor), command);
     }
 
-   
-
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);

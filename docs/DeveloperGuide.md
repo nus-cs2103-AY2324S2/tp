@@ -187,23 +187,23 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Introduction
 
-The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book.   
+The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book. 
 
 #### Specifications
 
-* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.  
+* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.
 
-* The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.  
+* The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
 
-* If the patient already has a particular tag, it will not be added again.  
+* If the patient already has a particular tag, it will not be added again.
 
 #### Example Usage Scenario
 
-Given below is an example usage scenario and how the group creation mechanism behaves at each step.  
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
 
-Step 1: The user accesses the PatientSync application.  
+Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `addtags 1 t/christian t/fallRisk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.  
+Step 2: The user executes the `addtags 1 t/christian t/fallRisk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
 
 <box type="info" seamless>
 <b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
@@ -236,7 +236,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: Error Handling for Duplicate Tags**
 
 * **Alternative 1 (current choice)**: Do not add tags already present for the patient.
-    * Pros: Prevents tag redundancy, maintains data integrity. Better user experience, do not need to worry about the intricacies of tag duplication. 
+    * Pros: Prevents tag redundancy, maintains data integrity. Better user experience, do not need to worry about the intricacies of tag duplication.
     * Cons: Users do not explicitly receive direct feedback about skipped tags.
 <br></br>
 * **Alternative 2**: Return error message for duplicate tags.
@@ -360,14 +360,14 @@ _{more aspects and alternatives to be added}_
 
 **Target user profile**:
 
-- has a need to manage a significant number of patients 
+- has a need to manage a significant number of patients
 - values comprehensive patient information for tailored treatment
-- prefer desktop apps over other types 
-- can type fast 
-- prefers typing to mouse interactions 
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**:  
+**Value proposition**:\
 PatientSync is meticulously crafted for nurses who prioritize the well-being of their patients above all else. It allows nurses to input intimate details about their patients, such as food preferences and family conditions. This personalized approach enables nurses to deliver tailored care that meets the unique needs of each individual.
 
 
@@ -574,9 +574,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. Usability: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Accessibility: Should operate without the need for internet access to fulfill its core purpose.
 5. Ease of Use: Should be designed to be usable by a patient new to patient management without extensive training.
-6. Error Handling: Should provide clear, comprehensive error messages in plain language, guiding users on how to recover from errors due to incorrect inputs. 
+6. Error Handling: Should provide clear, comprehensive error messages in plain language, guiding users on how to recover from errors due to incorrect inputs.
 7. User Documentation: Should offer comprehensive, well-organized user documentation that guides users on how to effectively use PatientSync.
-8. Developer Documentation: Should provide detailed developer documentation for those looking to enhance, customize, or develop extensions. 
+8. Developer Documentation: Should provide detailed developer documentation for those looking to enhance, customize, or develop extensions.
 
 ### 6.5 Glossary
 
@@ -585,7 +585,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7 Appendix: Instructions for manual testing 
+## 7 Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 

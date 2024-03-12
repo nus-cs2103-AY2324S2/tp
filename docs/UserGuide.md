@@ -159,7 +159,7 @@ Format: `addtags INDEX [t/TAG]+`
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one tag must be provided.
 * Tags should be alphanumeric and should not include special characters like `-`.
-* When adding tags, if a tag is repeated in the command, it will be added as a single tag.  
+* When adding tags, if a tag is repeated in the command, it will be added as a single tag.
   E.g. `t/friend t/friend` will be added as a single `friend` tag.
 * If the patient already has a tag provided in the command, new tag will override the existing tag. This is counted as a successful addition of that tag.
 
