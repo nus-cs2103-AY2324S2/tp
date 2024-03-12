@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.Email;
+import seedu.address.model.patient.FamilyCondition;
+import seedu.address.model.patient.FoodPreference;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.PreferredName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,24 +21,32 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Patient[] getSamplePatients() {
         return new Patient[] {
-            new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Patient(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Patient(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Patient(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Patient(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Patient(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Patient(new PatientHospitalId(12345), new Name("Alex Yeoh Jia Jun"), new PreferredName("Alex"),
+                new FoodPreference("Curry chicken"),
+                new FamilyCondition("Stable, Has 2 sons that visits him regularly"),
+                new Hobby("Singing karaoke"),
+                getTagSet("Diabetes")),
+            new Patient(new PatientHospitalId(12346), new Name("Bernice Yu Sheng Huat"), new PreferredName("Bern"),
+                new FoodPreference("Char Kuay Tiao, Black Carrot Cake"),
+                new FamilyCondition("Lives alone, no family members around"), new Hobby("Playing Mahjong"),
+                getTagSet("High Blood Pressure")),
+            new Patient(new PatientHospitalId(12347), new Name("Mary Jane"), new PreferredName("Mary"),
+                new FoodPreference("Korean"),
+                new FamilyCondition("Lives with only daughter, quarrels regularly with daughter"),
+                new Hobby("Watching Drama"),
+                getTagSet("Heart attack")),
+            new Patient(new PatientHospitalId(12348), new Name("David Li"), new PreferredName("David"),
+                new FoodPreference("Bak Kut Teh"), new FamilyCondition("Son visits him every weekend"),
+                new Hobby("Plays erhu"),
+                getTagSet("Sleeping disorder", "Skin sensitive")),
+            new Patient(new PatientHospitalId(12349), new Name("Irfan Ibrahim"), new PreferredName("Fan"),
+                new FoodPreference("Roti Prata"), new FamilyCondition("Children encountered accident 2 months ago"),
+                new Hobby("Plays badminton"),
+                getTagSet("Difficulty in swallowing")),
+            new Patient(new PatientHospitalId(12350), new Name("Roy Balakrishnan"), new PreferredName("Rony"),
+                new FoodPreference("Fish Ball Soup"), new FamilyCondition("Financial problem"),
+                new Hobby("Jog around park"),
+                getTagSet("wheelchair")),
         };
     }
 
