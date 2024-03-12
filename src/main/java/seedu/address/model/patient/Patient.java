@@ -17,24 +17,34 @@ import seedu.address.model.tag.Tag;
 public class Patient {
 
     // Identity fields
+    private final PatientHospitalId patientHospitalId;
     private final Name name;
     private final PreferredName preferredName;
-    private final Email email;
 
     // Data fields
-    private final Address address;
+    private final FoodPreference foodPreference;
+    private final FamilyCondition familyCondition;
+    private final Hobby hobby;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, PreferredName preferredName, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, preferredName, email, address, tags);
+    public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
+                   FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
+                   Set<Tag> tags) {
+        requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        this.patientHospitalId = patientHospitalId;
         this.name = name;
         this.preferredName = preferredName;
-        this.email = email;
-        this.address = address;
+        this.foodPreference = foodPreference;
+        this.familyCondition = familyCondition;
+        this.hobby = hobby;
         this.tags.addAll(tags);
+    }
+
+    public PatientHospitalId getPatientHospitalId() {
+        return patientHospitalId;
     }
 
     public Name getName() {
@@ -45,12 +55,16 @@ public class Patient {
         return preferredName;
     }
 
-    public Email getEmail() {
-        return email;
+    public FamilyCondition getFamilyCondition() {
+        return familyCondition;
     }
 
-    public Address getAddress() {
-        return address;
+    public FoodPreference getFoodPreference() {
+        return foodPreference;
+    }
+
+    public Hobby getHobby() {
+        return hobby;
     }
 
     /**
@@ -90,28 +104,32 @@ public class Patient {
         }
 
         Patient otherPatient = (Patient) other;
-        return name.equals(otherPatient.name)
+        return patientHospitalId.equals(otherPatient.patientHospitalId)
+                && name.equals(otherPatient.name)
                 && preferredName.equals(otherPatient.preferredName)
-                && email.equals(otherPatient.email)
-                && address.equals(otherPatient.address)
+                && foodPreference.equals(otherPatient.foodPreference)
+                && familyCondition.equals(otherPatient.familyCondition)
+                && hobby.equals(otherPatient.hobby)
                 && tags.equals(otherPatient.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, preferredName, email, address, tags);
+        return Objects.hash(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("preferred_name", preferredName)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
+            .add("patient_hospital_id", patientHospitalId)
+            .add("name", name)
+            .add("preferred_name", preferredName)
+            .add("food_preference", foodPreference)
+            .add("family_condition", familyCondition)
+            .add("hobby", hobby)
+            .add("tags", tags)
+            .toString();
     }
 
 }
