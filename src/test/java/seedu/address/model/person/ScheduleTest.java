@@ -21,7 +21,7 @@ public class ScheduleTest {
         LocalDateTime schedule = LocalDateTime.now();
         Schedule testSchedule = new Schedule(schedule, true);
         assertEquals(schedule, testSchedule.getSchedule());
-        assertTrue(testSchedule.getAppointmentStatus());
+        assertTrue(testSchedule.getIsDone());
     }
 
     @Test
