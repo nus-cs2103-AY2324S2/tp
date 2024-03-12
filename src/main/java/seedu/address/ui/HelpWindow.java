@@ -7,25 +7,31 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.EditPersonCommand;
+import seedu.address.logic.commands.FindPersonCommand;
+import seedu.address.logic.commands.HelpCommand;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-
+    public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-f13-1.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE_LINK = "For more details, refer to the user guide: " + USERGUIDE_URL;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
     private Button copyButton;
-
     @FXML
-    private Label helpMessage;
+    private Label helpMessageLink;
+    @FXML
+    private VBox helpMessageContainer;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +40,30 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        helpMessageLink.setText(HELP_MESSAGE_LINK);
+
+        helpMessageContainer.getChildren().addAll(
+                new HelpWindowCommandCard(
+                        AddPersonCommand.COMMAND_WORD,
+                        AddPersonCommand.MESSAGE_USAGE
+                ).getRoot(),
+                new HelpWindowCommandCard(
+                        DeletePersonCommand.COMMAND_WORD,
+                        DeletePersonCommand.MESSAGE_USAGE
+                ).getRoot(),
+                new HelpWindowCommandCard(
+                        EditPersonCommand.COMMAND_WORD,
+                        EditPersonCommand.MESSAGE_USAGE
+                ).getRoot(),
+                new HelpWindowCommandCard(
+                        FindPersonCommand.COMMAND_WORD,
+                        FindPersonCommand.MESSAGE_USAGE
+                ).getRoot(),
+                new HelpWindowCommandCard(
+                        HelpCommand.COMMAND_WORD,
+                        HelpCommand.MESSAGE_USAGE
+                ).getRoot()
+        );
     }
 
     /**
