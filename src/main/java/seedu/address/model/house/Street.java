@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Street {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Street should only contain alphanumeric characters.";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]*$";
+            "Street should only contain alphanumeric characters and hyphens.";
+    public static final String VALIDATION_REGEX = "^(?=.*[a-zA-Z0-9])[a-zA-Z0-9\\s-]+$";
     public final String value;
 
     /**
