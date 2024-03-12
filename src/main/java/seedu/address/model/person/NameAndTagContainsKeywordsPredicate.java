@@ -26,22 +26,11 @@ public class NameAndTagContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        boolean matchesName = true;
-        boolean matchesTags = true;
-
-        // If name keywords are provided, check for name match
-        if (!nameKeywords.isEmpty()) {
-            matchesName = nameKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
-        }
-
-        // If tag keywords are provided, check for tag match
-        if (!tagKeywords.isEmpty()) {
-            matchesTags = tagKeywords.stream()
-                    .anyMatch(keyword -> person.getTags().stream()
-                            .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
-        }
-
+        boolean matchesName = nameKeywords.stream()
+                .allMatch(keyword -> StringUtil.containsSubstringIgnoreCase(person.getName().fullName, keyword));
+        boolean matchesTags = tagKeywords.stream()
+                .allMatch(keyword -> person.getTags().stream()
+                        .anyMatch(tag -> StringUtil.containsSubstringIgnoreCase(tag.tagName, keyword)));
         return matchesName && matchesTags;
     }
 

@@ -39,6 +39,26 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code query} as a substring, ignoring case.
+     * <br>examples:<pre>
+     *       containsSubstringIgnoreCase("Alexander Yeoh", "Ale") == true
+     *       containsSubstringIgnoreCase("Alexander Yeoh", "ye") == true
+     *       containsSubstringIgnoreCase("Alex Yeoh", "zander") == false
+     *       </pre>
+     * @param sentence cannot be null
+     * @param query cannot be null, cannot be empty
+     */
+    public static boolean containsSubstringIgnoreCase(String sentence, String query) {
+        requireNonNull(sentence);
+        requireNonNull(query);
+
+        String preppedQuery = query.trim();
+        checkArgument(!preppedQuery.isEmpty(), "Query parameter cannot be empty");
+
+        return sentence.toLowerCase().contains(preppedQuery.toLowerCase());
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

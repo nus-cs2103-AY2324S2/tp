@@ -72,8 +72,8 @@ public class AddressBookParserTest {
         List<String> nameKeywords = Arrays.asList("foo", "bar");
         List<String> tagKeywords = Arrays.asList("friend", "colleague");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " /n " + String.join(" ", nameKeywords)
-                        + " /t " + String.join(" ", tagKeywords));
+                FindCommand.COMMAND_WORD + " n/ " + String.join(" n/ ", nameKeywords)
+                        + " t/ " + String.join(" t/ ", tagKeywords));
         assertEquals(new FindCommand(new NameAndTagContainsKeywordsPredicate(nameKeywords, tagKeywords)), command);
     }
 
