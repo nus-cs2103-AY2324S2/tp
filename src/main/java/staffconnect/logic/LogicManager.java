@@ -11,10 +11,10 @@ import staffconnect.commons.core.LogsCenter;
 import staffconnect.logic.commands.Command;
 import staffconnect.logic.commands.CommandResult;
 import staffconnect.logic.commands.exceptions.CommandException;
-import staffconnect.logic.parser.AddressBookParser;
+import staffconnect.logic.parser.StaffConnectParser;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.Model;
-import staffconnect.model.ReadOnlyAddressBook;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.person.Person;
 import staffconnect.storage.Storage;
 
@@ -31,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final StaffConnectParser staffConnectParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        staffConnectParser = new StaffConnectParser();
     }
 
     @Override
@@ -47,11 +47,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = staffConnectParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveStaffBook(model.getStaffBook());
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -62,8 +62,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyStaffBook getStaffBook() {
+        return model.getStaffBook();
     }
 
     @Override
@@ -72,8 +72,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getStaffConnectFilePath() {
+        return model.getStaffConnectFilePath();
     }
 
     @Override

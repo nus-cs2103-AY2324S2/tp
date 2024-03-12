@@ -3,7 +3,7 @@ package staffconnect.logic.commands;
 import static staffconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static staffconnect.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static staffconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static staffconnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalStaffBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getStaffBook(), new UserPrefs());
     }
 
     @Test

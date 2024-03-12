@@ -7,7 +7,7 @@ import staffconnect.commons.core.GuiSettings;
 import staffconnect.logic.commands.CommandResult;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.logic.parser.exceptions.ParseException;
-import staffconnect.model.ReadOnlyAddressBook;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.person.Person;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the StaffBook.
      *
-     * @see Model#getAddressBook()
+     * @see staffconnect.model.Model#getStaffBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyStaffBook getStaffBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' StaffConnect file path.
      */
-    Path getAddressBookFilePath();
+    Path getStaffConnectFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
