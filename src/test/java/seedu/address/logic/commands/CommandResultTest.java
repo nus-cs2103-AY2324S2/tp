@@ -4,20 +4,48 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+
+import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 
 public class CommandResultTest {
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
     public void equals() {
+
+        // constructor 1: CommandResult(String feedback)
         CommandResult commandResult = new CommandResult("feedback");
+        // constructor 2: CommandResult(String feedback, Person viewPerson)
+        CommandResult commandResultViewPerson = new CommandResult("feedback", ALICE);
+        // constructor 3: CommandResult(String feedback, FilteredList<Person> viewList)
+        CommandResult commandResultViewList = new CommandResult("feedback",
+                new FilteredList<>(model.getFilteredPersonList(), PREDICATE_SHOW_ALL_PERSONS));
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
 
+        assertTrue(commandResultViewPerson.equals(new CommandResult("feedback", ALICE)));
+
+        assertTrue(commandResultViewList.equals(new CommandResult("feedback",
+                new FilteredList<>(model.getFilteredPersonList(), PREDICATE_SHOW_ALL_PERSONS))));
+
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
+
+        assertTrue(commandResultViewPerson.equals(commandResultViewPerson));
+        assertTrue(commandResultViewPerson.getViewPerson().equals(ALICE));
+
+        assertTrue(commandResultViewList.equals(commandResultViewList));
+        assertTrue(commandResultViewList.getViewList().equals(
+                new FilteredList<>(model.getFilteredPersonList(), PREDICATE_SHOW_ALL_PERSONS)));
 
         // null -> returns false
         assertFalse(commandResult.equals(null));
@@ -61,3 +89,5 @@ public class CommandResultTest {
         assertEquals(expected, commandResult.toString());
     }
 }
+
+
