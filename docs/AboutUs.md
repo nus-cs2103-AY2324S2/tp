@@ -3,9 +3,9 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a NUS based software development team.
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can contact us individually through our portfolios
 
 ## ImmuniMate Project Team
 
@@ -16,20 +16,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/alex-setyawan)]
 [[portfolio](team/johndoe.md)]
 
-* Email: `alexsety@comp.nus.edu.sg`
-* Role: Developer
-* Responsibilities:
+* Role: Team Lead
+* Responsibilities: Project Manager, Back-end
+
 
 ### Tan Jovan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jovantanyk.png" width="200px">
 
 [[homepage](http:/jovantanyk.dev)]
 [[github](https://github.com/jovantanyk)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jovantanyk.md)]
 
 * Role: Developer
-* Responsibilities: Front-end, Documentation
+* Responsibilities: Back-end, Documentation
 
 
 ### Zhang Lanyu
@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/laney0808)] [[portfolio](team/laney0808.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Front-end, Documentation, UI Designer
 
 ### Natalie Leong
 
@@ -49,4 +49,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Front-end, Documentation
