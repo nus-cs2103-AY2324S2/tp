@@ -11,13 +11,14 @@ You can contact us individually through our portfolios
 
 ### Alex Setyawan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alex-setyawan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/alex-setyawan)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: Project Manager, Back-end
+
 
 ### Tan Jovan
 
