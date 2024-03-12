@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Patient's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Patient's preferred food in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidFood(String)}
  */
-public class Address {
+public class FoodPreference {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Food preferences can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -17,29 +17,29 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String foodPreference;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code FoodPreference}.
      *
-     * @param address A valid address.
+     * @param food A valid food preference.
      */
-    public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public FoodPreference(String food) {
+        requireNonNull(food);
+        checkArgument(isValidFood(food), MESSAGE_CONSTRAINTS);
+        foodPreference = food;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid food details.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidFood(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return foodPreference;
     }
 
     @Override
@@ -49,17 +49,17 @@ public class Address {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Address)) {
+        if (!(other instanceof FoodPreference)) {
             return false;
         }
 
-        Address otherAddress = (Address) other;
-        return value.equals(otherAddress.value);
+        FoodPreference otherFoodPreference = (FoodPreference) other;
+        return foodPreference.equals(otherFoodPreference.foodPreference);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return foodPreference.hashCode();
     }
 
 }
