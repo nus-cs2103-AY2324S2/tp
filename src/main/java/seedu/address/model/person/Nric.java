@@ -3,12 +3,19 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Patient's NRIC in the CLInic.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
+ */
 public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
             "NRIC should start and end with capital letters with 7 numbers in between them.";
     public static final String VALIDATION_REGEX = "[A-Z]\\d{7}[A-Z]";
     public final String value;
 
+    /**
+     * Returns if a given string is a valid NRIC.
+     */
     public Nric(String nric) {
         requireNonNull(nric);
         checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);

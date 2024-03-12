@@ -2,14 +2,21 @@ package seedu.address.commons.core.date;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a date
+ */
 public class Date {
-    private static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public static final String MESSAGE_CONSTRAINTS =
             "Birthday should be in the format YYYY-MM-DD";
+    private static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public final String value;
 
+    /**
+     * Creates a Date Object
+     * @param dateString Date string that has to satisfy validation requirements
+     */
     public Date(String dateString) {
-        if (!isValidDate(dateString)){
+        if (!isValidDate(dateString)) {
             throw new DateTimeParseException(MESSAGE_CONSTRAINTS, dateString, 0);
         }
         this.value = dateString;
@@ -35,7 +42,7 @@ public class Date {
             return false;
         }
 
-        Date otherDate= (Date) other;
+        Date otherDate = (Date) other;
         return value.equals(otherDate.value);
     }
 
