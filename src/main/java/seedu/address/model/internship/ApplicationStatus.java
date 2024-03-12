@@ -15,7 +15,7 @@ public class ApplicationStatus {
     /**
      * Enum of statuses
      */
-    private enum StatusEnum {
+    public enum StatusEnum {
         TO_APPLY,
         PENDING,
         REJECTED,

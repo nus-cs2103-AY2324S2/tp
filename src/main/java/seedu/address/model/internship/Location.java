@@ -14,7 +14,7 @@ public class Location {
     /**
      * Enum of locations
      */
-    private enum LocationEnum {
+    public enum LocationEnum {
         LOCAL,
         OVERSEAS,
         REMOTE
