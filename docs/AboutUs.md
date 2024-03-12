@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ashleyy2444.png" width="200px">
 
 [[github](http://github.com/ashleyy2444)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/ashley.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
