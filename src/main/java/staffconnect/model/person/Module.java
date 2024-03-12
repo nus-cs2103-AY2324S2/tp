@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the staff book.
+ * Represents a Person's Module code in the staff book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModule(String)}
  */
 public class Module {
