@@ -1,22 +1,10 @@
 package seedu.address.model.internship;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.UniqueInternshipList;
-import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.ContactName;
-import seedu.address.model.internship.ContactEmail;
-import seedu.address.model.internship.ContactNumber;
-import seedu.address.model.internship.Location;
-import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.Description;
-import seedu.address.model.internship.Role;
-
-
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class UniqueInternshipListTest {
 

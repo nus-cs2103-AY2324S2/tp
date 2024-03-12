@@ -1,21 +1,25 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.ContactName;
-import seedu.address.model.internship.ContactEmail;
-import seedu.address.model.internship.ContactNumber;
-import seedu.address.model.internship.Location;
-import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.Description;
-import seedu.address.model.internship.Role;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.ContactEmail;
+import seedu.address.model.internship.ContactName;
+import seedu.address.model.internship.ContactNumber;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Role;
 
 public class InternshipDataTest {
     private final InternshipData data = new InternshipData();
@@ -205,7 +209,11 @@ public class InternshipDataTest {
         );
         data.addInternship(internship);
 
-        String expected = "seedu.address.model.InternshipData{Internship list=[seedu.address.model.internship.Internship{companyName=LinkedIn, contactName=Mary Brown, contactEmail=marybrown@example.com, contactNumber=13579246, location=REMOTE, applicationStatus=PENDING, description=Data Analytics Internship, role=Data Analyst}]}";
+        String expected = "seedu.address.model.InternshipData{Internship list=[seedu.address.model.internship."
+                + "Internship{companyName=LinkedIn,"
+                + " contactName=Mary Brown, contactEmail=marybrown@example.com,"
+                + " contactNumber=13579246, location=REMOTE, applicationStatus=PENDING,"
+                + " description=Data Analytics Internship, role=Data Analyst}]}";
         assertEquals(expected, data.toString());
     }
 }
