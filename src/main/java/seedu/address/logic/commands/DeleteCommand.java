@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Constructor for name-based deletion
-     * 
+     *
      * @param targetName name of the person to delete
      */
     public DeleteCommand(String targetName) {
@@ -65,7 +65,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes a person by index
-     * 
+     *
      * @param model the model to execute the command
      * @return the result of the command
      * @throws CommandException if the index is invalid
@@ -84,7 +84,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes a person by name
-     * 
+     *
      * @param model the model to execute the command
      * @return the result of the command
      * @throws CommandException if the person is not found
