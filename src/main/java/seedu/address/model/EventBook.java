@@ -25,7 +25,8 @@ public class EventBook implements ReadOnlyEventBook {
     /**
      * Creates an EventBook
      */
-    public EventBook() {}
+    public EventBook() {
+    }
 
     /**
      * Creates an EventBook using the Events in the {@code toBeCopied}.
