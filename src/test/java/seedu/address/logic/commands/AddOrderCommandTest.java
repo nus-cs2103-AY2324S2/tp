@@ -44,15 +44,14 @@ public class AddOrderCommandTest {
     public void execute_addOrder_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withOrderList(ORDERS_STUB).build();
-
-        AddOrderCommand remarkCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, DESCRIPTION_STUB);
+        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, DESCRIPTION_STUB);
 
         String expectedMessage = String.format(AddOrderCommand.MESSAGE_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
