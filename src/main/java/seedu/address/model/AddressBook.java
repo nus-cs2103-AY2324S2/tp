@@ -21,7 +21,7 @@ import seedu.address.model.tag.UniqueTagList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueTagList tags;
+    private final UniqueTagList tagList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,7 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        tags = new UniqueTagList();
+        tagList = new UniqueTagList();
     }
 
     public AddressBook() {}
@@ -55,8 +55,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setTags(Set<Tag> tags) {
-        this.tags.setTags(tags);
+    public void setTagList(Set<Tag> tagList) {
+        this.tagList.setTags(tagList);
     }
 
     /**
@@ -66,7 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setTags(newData.getTagList());
+        setTagList(newData.getTagList());
     }
 
     //// person-level and tag-level operations
@@ -84,7 +84,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
-        return tags.contains(tag);
+        return tagList.contains(tag);
     }
 
     /**
@@ -100,7 +100,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The tag must not already exist in the address book.
      */
     public void addTag(Tag t) {
-        tags.add(t);
+        tagList.add(t);
     }
 
     /**
@@ -122,7 +122,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setTags(Tag target, Tag editedTag) {
         requireNonNull(editedTag);
 
-        tags.replace(target, editedTag);
+        tagList.replace(target, editedTag);
     }
 
     /**
@@ -138,7 +138,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeTag(Tag key) {
-        tags.remove(key);
+        tagList.remove(key);
     }
 
     //// util methods
@@ -147,7 +147,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
-                .add("tags", tags)
+                .add("tags", tagList)
                 .toString();
     }
 
@@ -158,7 +158,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableSet<Tag> getTagList() {
-        return tags.asUnmodifiableObservableSet();
+        return tagList.asUnmodifiableObservableSet();
     }
 
     @Override
@@ -174,11 +174,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         AddressBook otherAddressBook = (AddressBook) other;
         return persons.equals(otherAddressBook.persons)
-                && tags.equals(otherAddressBook.tags);
+                && tagList.equals(otherAddressBook.tagList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons, tags);
+        return Objects.hash(persons, tagList);
     }
 }
