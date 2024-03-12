@@ -3,6 +3,9 @@ package seedu.address.ui;
 import javafx.scene.control.ListCell;
 import seedu.address.model.person.Person;
 
+/**
+ * Custom {@code ListCell} that displays the graphics of a {@code Case Log} using a {@code PersonCard}.
+ */
 class CaseLogListViewCell extends ListCell<Person> {
     @Override
     protected void updateItem(Person person, boolean empty) {
