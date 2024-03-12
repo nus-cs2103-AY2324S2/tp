@@ -410,7 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Student**: A student taking CS2103T
 * **Tag**: A label that can be attached to the student. It is used to mark the attendance for a specific week.
 * **Attendance Status**: The current state of a student's attendance. 
-* **Contact Entry**: Contact information of either a student or a tutor, containing the name, phone number, email, and attendance status.
+* **Contact Entry**: Contact information of either a student or a tutor, containing the name, phone number, email. For students, they also have an attendance status.
 
 --------------------------------------------------------------------------------------------------------------------
 
