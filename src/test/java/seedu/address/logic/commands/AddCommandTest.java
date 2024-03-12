@@ -113,7 +113,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setContactListFilePath(Path ContactListFilePath) {
+        public void setContactListFilePath(Path contactListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

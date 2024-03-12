@@ -22,10 +22,10 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.Address;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
-import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.skill.Skill;
 
 /**

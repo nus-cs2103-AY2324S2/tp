@@ -42,7 +42,7 @@ public interface Model {
     /**
      * Sets the user prefs' contact list file path.
      */
-    void setContactListFilePath(Path ContactListFilePath);
+    void setContactListFilePath(Path contactListFilePath);
 
     /**
      * Replaces contact list data with the data in {@code contactList}.
@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given courseMate {@code target} with {@code editedCourseMate}.
      * {@code target} must exist in the contact list.
-     * The courseMate identity of {@code editedCourseMate} must not be the same as another existing courseMate in the contact list.
+     * The courseMate identity of {@code editedCourseMate} must not be the same as another
+     * existing courseMate in the contact list.
      */
     void setCourseMate(CourseMate target, CourseMate editedCourseMate);
 
