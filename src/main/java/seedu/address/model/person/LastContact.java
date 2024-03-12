@@ -8,12 +8,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a client's last contacted date and time in the dateTime book.
+ * Represents a client's last contacted date and time in the address book.
  */
 public class LastContact {
 
-    public static final String MESSAGE_CONSTRAINTS = "Datetime should only take format DD-MM-YYYY HHmm";
-    public LocalDateTime dateTime;
+    public static final String MESSAGE_CONSTRAINTS = "Expected DATETIME format: DD-MM-YYYY HHmm\n" +
+                                                    "Actual format: %s";
+    public String dateTime;
 
     /**
      * Constructs an {@code Address}.
@@ -22,18 +23,21 @@ public class LastContact {
      */
     public LastContact(String dateTime) {
         requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        if (!dateTime.equals("-")) {
+            checkArgument(isValidDateTime(dateTime), String.format(MESSAGE_CONSTRAINTS, dateTime));
+        }
+        this.dateTime = dateTime;
     }
 
     /**
-     * Returns true if a given string is a valid dateTime.
-     * For example, 25-09-2025 0600.
+     * Returns true if a given string is in valid dateTime format.
+     * @param dateTime String to parse into formatter to check whether is valid.
      */
     public boolean isValidDateTime(String dateTime) {
         String trimmedDateTime = dateTime.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         try {
-            this.dateTime = LocalDateTime.parse(trimmedDateTime, formatter);
+            LocalDateTime.parse(trimmedDateTime, formatter);
             return true; // Successfully parsed, input matches the format
         } catch (DateTimeParseException e) {
             return false; // Parsing failed, input does not match the format
@@ -41,11 +45,9 @@ public class LastContact {
     }
 
     public String getDateTimeString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-        return this.dateTime.format(formatter);
+        return this.dateTime;
     }
 
-    // Will be used for sorting
     @Override
     public boolean equals(Object other) {
         if (other == this) {
