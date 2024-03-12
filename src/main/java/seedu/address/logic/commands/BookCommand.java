@@ -40,6 +40,6 @@ public class BookCommand extends Command {
         requireNonNull(model);
 
         model.addBooking(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatBooking(toAdd)));
     }
 }
