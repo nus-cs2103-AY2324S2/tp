@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
 public class Order {
     private final Date arrivalDate;
     private final String description;
+    private final String status;
 
     /**
      * Constructs a {@code Order}.
@@ -21,6 +22,23 @@ public class Order {
 
         this.arrivalDate = arrivalDate;
         this.description = description;
+        this.status = "Pending";
+    }
+
+    /**
+     * Constructs a {@code Order}.
+     *
+     * @param arrivalDate a valid date of the order.
+     * @param description a valid description of the order.
+     * @param status a valid status of the order.
+     */
+    public Order(Date arrivalDate, String description, String status) {
+        requireNonNull(arrivalDate);
+        requireNonNull(description);
+
+        this.arrivalDate = arrivalDate;
+        this.description = description;
+        this.status = status;
     }
 
     public Date getDate() {
@@ -29,6 +47,10 @@ public class Order {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     @Override
@@ -43,19 +65,20 @@ public class Order {
         }
 
         Order otherOrder = (Order) other;
-        return arrivalDate.equals(otherOrder.arrivalDate) && description.equals(otherOrder.description);
+        return arrivalDate.equals(otherOrder.arrivalDate) && description.equals(otherOrder.description)
+                && status.equals(otherOrder.status);
     }
 
     @Override
     public int hashCode() {
-        return arrivalDate.hashCode() + description.hashCode();
+        return arrivalDate.hashCode() + description.hashCode() + status.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return String.format("[%s (by: %s)]", description, arrivalDate);
+        return String.format("[%s (by: %s, status: %s)]", description, arrivalDate, status);
     }
 
 }

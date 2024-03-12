@@ -14,15 +14,18 @@ class JsonAdaptedOrder {
 
     private final String arrivalDate;
     private final String description;
+    private final String status;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given {@code order}.
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("arrivalDate") String arrivalDate,
-                            @JsonProperty("description") String description) {
+                            @JsonProperty("description") String description,
+                            @JsonProperty("status") String status) {
         this.arrivalDate = arrivalDate;
         this.description = description;
+        this.status = status;
     }
 
     /**
@@ -31,6 +34,7 @@ class JsonAdaptedOrder {
     public JsonAdaptedOrder(Order source) {
         this.arrivalDate = source.getDate().toString();
         this.description = source.getDescription();
+        this.status = source.getStatus();
     }
 
     /**
