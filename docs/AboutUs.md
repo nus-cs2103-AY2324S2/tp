@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Alex Setyawan
 
-<img src="images/alex-setyawan.png.jpg" width="200px">
+<img src="images/alex-setyawan.png" width="200px">
 
 [[github](https://github.com/alex-setyawan)]
 [[portfolio](team/johndoe.md)]
