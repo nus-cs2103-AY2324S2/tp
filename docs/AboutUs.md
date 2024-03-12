@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lim Zhekai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhekaiii.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/zhekaiii)]
+[[portfolio](team/zhekaiii.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Reviews & Backend
 
-### Jean Doe
+### Alvin Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alvinnzz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/alvinnzz)]
+[[portfolio](team/alvinnzz.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Integration
 
-### James Doe
+### Oon Jie Rui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jerryo3.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jerryo3)]
+[[portfolio](team/jerryo3.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
+### Newton Koh
+
+<img src="images/newtonkoh.png" width="200px">
+
+[[github](http://github.com/newtonkoh)] 
+[[portfolio](team/newtonkoh.md)]
 
 * Role: Developer
 * Responsibilities: UI

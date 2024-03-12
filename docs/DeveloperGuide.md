@@ -262,27 +262,59 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+NUS students who want to coordinate weekly meetup sessions for meals/activities
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* would like to know who is available on a particular day of the week
+* would like to know how much he owes to/is owed by his contacts
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: FriendFolio tailors the contact management experience just for students. It streamlines connections, enhances academic collaborations, and fosters a vibrant community within their reach. FriendFolio elevates the networking game, making every interaction meaningful.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                                                    | So that I can…​                                                                                                      | Notes                      |
+|----------|--------------------------------------------|-------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|----------------------------|
+| `* * *`  | new user                                   | see usage instructions                                                                          | refer to instructions when I forget how to use the App                                                               |                            |
+| `* * *`  | user                                       | add a new person                                                                                |                                                                                                                      |                            |
+| `* * *`  | user                                       | delete a person                                                                                 | remove entries that I no longer need                                                                                 |                            |
+| `* * *`  | user                                       | find a person by name                                                                           | locate details of persons without having to go through the entire list                                               |                            |
+| `* * *`  | user                                       | view person's information                                                                       |                                                                                                                      |                            |
+| `* *`    | user                                       | hide private contact details                                                                    | minimize chance of someone else seeing them by accident                                                              |                            |
+| `* *`    | user                                       | store days that my contacts are in school                                                       | see who is free to meet up                                                                                           |                            |
+| `* *`    | user                                       | store the phone numbers of our contacts                                                         | be able to call our contacts                                                                                         |                            |
+| `* *`    | user                                       | store address                                                                                   | be able to visit them                                                                                                |                            |
+| `* *`    | user                                       | store tags                                                                                      | be able to store miscellaneous information about them                                                                |                            |
+| `* *`    | user                                       | store email                                                                                     | email them                                                                                                           |                            |
+| `* *`    | user                                       | store money owed                                                                                | remember who owes me money                                                                                           |                            |
+| `* *`    | forgetful user                             | store birthdays of my contacts                                                                  | not forget when their birthdays are                                                                                  |                            |
+| `* *`    | user                                       | store uncategorized information under a field                                                   | remember other information that may not be captured in the existing list of fields                                   | “newton doesn’t eat beef”  |
+| `* *`    | user                                       | edit person's information                                                                       | correct mistakes made when I added the contact                                                                       |                            |
+| `* *`    | user with many persons in the address book | sort persons by name                                                                            | locate a person easily                                                                                               |                            |
+| `*`      | user                                       | filter contacts by tags                                                                         | find contacts of specific categories such as family, friends                                                         |                            |
+| `*`      | user                                       | update money owed                                                                               |                                                                                                                      |                            |
+| `*`      | user                                       | sort contacts by money owed                                                                     | look at who owes me the most money                                                                                   |                            |
+| `*`      | user                                       | sort contacts by birthdays                                                                      | remember to wish the person for his birthday                                                                         |                            |
+| `*`      | user                                       | filter contacts by days that my contacts are in school                                          | see who is free to meet up more easily                                                                               |                            |
+| `*`      | user                                       | be warned of creating contacts with duplicate phone numbers                                     | to avoid making duplicate contacts                                                                                   |                            |
+| `*`      | user                                       | share/export my contacts                                                                        | back them up or share them with others                                                                               |                            |
+| `*`      | user                                       | store profile pictures of my contacts                                                           | quickly identify and remember my contact                                                                             |                            |
+| `*`      | user                                       | see what is the total amount owed to me/i owe to my contacts                                    | start paying up/ asking others to pay stuff for me                                                                   |                            |
+| `*`      | experienced user                           | use quick keyboard shortcuts to perform all the implemented functions above                     | use the address book more efficiently                                                                                |                            |
+| `*`      | new user                                   | input contact information into multiple separate input fields (instead of entering one command) | i can avoid making mistakes by not being familiar with the command format                                            |                            |
+| `*`      | user                                       | pin starred contacts at the top of the address book                                             | quickly access my favorite contacts                                                                                  |                            |
+| `*`      | user                                       | access my search history on the search bar                                                      | quickly access recent searches                                                                                       |                            |
+| `*`      | user                                       | store incomplete contacts as drafts                                                             | return to my incomplete contacts to finish them up after any disruption without losing existing keyed-in information |                            |
+| `*`      | user                                       | access my desired contacts via autocomplete in the search bar                                   | efficiently access my contacts in the address book                                                                   |                            |
+| `*`      | experienced user                           | add multiple contacts with one input                                                            | efficiently use the address book                                                                                     |                            |
+| `*`      | user                                       | remove starred contacts from the top of the address book                                        | remove contacts i no longer want to pin                                                                              |                            |
+
+
 
 *{More to be added}*
 
