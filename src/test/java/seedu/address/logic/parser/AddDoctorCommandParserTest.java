@@ -31,7 +31,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddDoctorCommand;
-import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.model.person.DoB;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;

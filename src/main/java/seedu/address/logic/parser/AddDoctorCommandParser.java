@@ -10,7 +10,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.DoB;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Phone;
 
 /**
  * Parses input arguments and creates a new AddCommand object

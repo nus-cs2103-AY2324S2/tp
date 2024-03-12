@@ -3,14 +3,19 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalPersons.JAMES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DOB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DOB_BROWN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BROWN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BROWN;
 import static seedu.address.testutil.TypicalPersons.BROWN;
+import static seedu.address.testutil.TypicalPersons.JAMES;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.DoctorBuilder;
-import seedu.address.testutil.PatientBuilder;
 
 public class DoctorTest {
     @Test
