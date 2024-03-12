@@ -196,18 +196,18 @@ Examples:
 
 Adds a client to the recently contacted list in FAPro.
 
-Format: `lastcontact NAME [d/DATE] [tm/TIME]`
+Format: `lastcontact n/NAME lc/DATETIME`
 
 * The input is case-insensitive. e.g. `JoHn Doe` will match `john doe`.
 * In case of duplicate names, all matching names will be listed with their ID code and other details.
 * User will need to add the respective ID code to existing input in case of duplicate.
-* `DATE` and `TIME` format should be in `DD-MM-YYYY` and `HHMM` respectively.
+* `DATETIME` format should be `DD-MM-YYYY HHMM`.
 
 Example:
-* `lastcontact John doe d/05-09-2024 tm/1955` tags the client with name `john doe` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
+* `lastcontact n/John doe lc/05-09-2024 1955` tags the client with name `john doe` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
 
 Example (For duplicate names):
-* `lastcontact John doe#0005 d/05-09-2024 tm/1955` tags the client with name `john doe#0005` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
+* `lastcontact n/John doe#0005 lc/05-09-2024 1955` tags the client with name `john doe#0005` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
 
 
 ### Clearing all entries : `clear`
