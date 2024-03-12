@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
@@ -28,26 +27,34 @@ public class CopyCommand extends Command {
         if (lastShownList.isEmpty()) {
             throw new CommandException("No person currently displayed");
         }
+
+        StringSelection emails = getEmails(lastShownList);
         // only copies to clipboard if the environment is not headless
         if (!GraphicsEnvironment.isHeadless()) {
-            copyToClipboard(lastShownList);
+            copyToClipboard(emails);
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
     /**
-     * Copies the emails of all persons in {@code lastShownList} to the clipboard.
+     * Returns a StringSelection containing the emails of all persons in {@code lastShownList}.
+     * @param lastShownList list of persons to get emails from.
+     * @return StringSelection containing the emails of all persons in {@code lastShownList}.
      */
-    private void copyToClipboard(List<Person> lastShownList) {
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    public StringSelection getEmails(List<Person> lastShownList) {
         StringBuilder emails = new StringBuilder();
 
         for (Person person : lastShownList) {
-            emails.append(person.getEmail().value).append(" ");
+            emails.append(person.getEmail().value).append("; ");
         }
+        return new StringSelection(emails.toString().trim());
+    }
 
-        StringSelection stringSelection = new StringSelection(emails.toString().trim());
-        clipboard.setContents(stringSelection, stringSelection);
+    /**
+     * Copies the emails of all persons in {@code lastShownList} to the clipboard.
+     */
+    private void copyToClipboard(StringSelection stringSelection) {
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, stringSelection);
     }
 }

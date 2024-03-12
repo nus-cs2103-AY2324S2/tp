@@ -83,7 +83,7 @@ public class TypicalPersons {
     public static String getTypicalPersonsEmails() {
         StringBuilder emails = new StringBuilder();
         for (Person person : getTypicalPersons()) {
-            emails.append(person.getEmail().value).append(" ");
+            emails.append(person.getEmail().value).append("; ");
         }
         return emails.toString().trim();
     }
