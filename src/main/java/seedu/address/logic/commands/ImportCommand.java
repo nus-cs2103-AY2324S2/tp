@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -23,11 +24,11 @@ public class ImportCommand extends Command {
             + "[" + PREFIX_IMPORT + "import] "
             + "Example: " + COMMAND_WORD + PREFIX_IMPORT + "C:usr/lib/text.csv";
     public static final String MESSAGE_ARGUMENTS = "filePath: %s";
+    public static final String MESSAGE_IMPORT_SUCCESS = "Imported Contacts from: %s";
     private final Path filePath;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param filePath absolute path of file (path starts from C:...)
      */
     public ImportCommand(Path filePath) {
         requireAllNonNull(filePath);
@@ -36,8 +37,8 @@ public class ImportCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(
-                String.format(MESSAGE_ARGUMENTS, filePath.toString()));
+        model.setAddressBookFilePath(filePath);
+        return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, filePath.toString()));
     }
 
     @Override

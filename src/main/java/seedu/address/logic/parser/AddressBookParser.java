@@ -70,7 +70,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ImportCommand.COMMAND_WORD:
-            return new ImportCommand();
+            return new ImportCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
