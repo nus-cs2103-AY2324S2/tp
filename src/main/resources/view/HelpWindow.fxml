@@ -19,7 +19,6 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      
       <HBox fx:id="helpMessageContainer" alignment="CENTER" spacing="15.0">
         <children>
           <Label fx:id="helpMessage" text="Label" />
