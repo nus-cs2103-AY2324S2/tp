@@ -96,15 +96,15 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 2 2 2 2;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: rgba(124, 125, 123, 0.62);
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: rgba(60, 59, 59, 0.69);
 }
 
 .list-cell:filled:selected {
@@ -137,18 +137,26 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: #0B0B0B;
+     -fx-border-color: #191919;
+     -fx-border-width: 10px;
+     -fx-border-radius: 12px;
+}
+
+.pane-without-border {
+    -fx-background-color: #0B0B0B;
+    -fx-border-color: #191919;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #0b0b0b;
 }
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Source Code Pro Medium";
+    -fx-font-family: "Hack";
     -fx-font-size: 12pt;
     -fx-text-fill: white;
 }
@@ -318,16 +326,16 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #0B0B0B;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #0B0B0B;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Hack";
     -fx-font-size: 12pt;
-    -fx-font-weight: normal;
-    -fx-font-style: italic;
-    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-style: normal;
+    -fx-text-fill: #2dda2d;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -335,13 +343,14 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #0B0B0B, transparent, #0B0B0B;
     -fx-background-radius: 0;
 }
 
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-padding: 2 2 2 2;
 }
 
 #tags .label {

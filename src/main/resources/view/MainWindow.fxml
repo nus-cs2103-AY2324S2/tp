@@ -46,13 +46,19 @@
           </VBox>
 
           <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" prefHeight="-Infinity">
+            <StackPane VBox.vgrow="ALWAYS" styleClass="pane-with-border" prefHeight="-Infinity">
               <padding>
                 <Insets top="5" right="10" bottom="5" left="10" />
               </padding>
             </StackPane>
 
-            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" minHeight="200" prefHeight="200" maxHeight="200">
+              <padding>
+                <Insets top="5" right="10" bottom="5" left="10" />
+              </padding>
+            </StackPane>
+
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-without-border">
               <padding>
                 <Insets top="5" bottom="5" left="10" />
               </padding>
