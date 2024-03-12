@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHubUsername;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -20,11 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_GITHUB_USERNAME = "amy-bee675";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private GitHubUsername gitHubUsername;
     private Set<Tag> tags;
 
     /**
@@ -89,8 +92,17 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    /**
+     * Sets the {@code GitHub Username} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGitHubUsername(String gitHubUsername) {
+        this.gitHubUsername = new GitHubUsername(gitHubUsername);
+        return this;
     }
+
+    public Person build() {
+        return new Person(name, phone, email, address, gitHubUsername, tags);
+    }
+
 
 }
