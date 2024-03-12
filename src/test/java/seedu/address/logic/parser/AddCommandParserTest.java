@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import seedu.address.model.person.NusId;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -20,6 +19,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Tag;
@@ -33,8 +33,8 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB).withGroups(VALID_GROUP_FRIEND).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NUSID_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_BOB + GROUP_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NUSID_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + TAG_DESC_BOB + GROUP_DESC_FRIEND, new AddCommand(expectedPerson));
 
 
         // multiple groups - all accepted
@@ -74,7 +74,8 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NUSID, PREFIX_NAME, PREFIX_TAG, PREFIX_EMAIL, PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NUSID, PREFIX_NAME, PREFIX_TAG,
+                        PREFIX_EMAIL, PREFIX_PHONE));
 
         // invalid value followed by valid value
 
@@ -134,7 +135,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing nusId prefix
-        assertParseFailure(parser,  VALID_NUSID_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_BOB,
+        assertParseFailure(parser, VALID_NUSID_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_BOB,
                 expectedMessage);
 
         // missing name prefix
@@ -161,11 +162,11 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid nusId
-        assertParseFailure(parser,  INVALID_NUSID_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, INVALID_NUSID_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_BOB + GROUP_DESC_HUSBAND + GROUP_DESC_FRIEND, NusId.MESSAGE_CONSTRAINTS);
 
         // invalid name
-        assertParseFailure(parser,  NUSID_DESC_BOB + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, NUSID_DESC_BOB + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_BOB + GROUP_DESC_HUSBAND + GROUP_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
