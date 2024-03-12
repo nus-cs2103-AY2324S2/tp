@@ -1,17 +1,18 @@
 package seedu.address.model.booking;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Booking's end time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEndTime(String)}
  */
 public class EndTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "End times must be in the format of YYYY-MM-DDTHH:MM (ISO_LOCAL_DATE_TIME).";
+    public static final String MESSAGE_CONSTRAINTS = "End times must be in the format of YYYY-MM-DDTHH:MM "
+            + "(ISO_LOCAL_DATE_TIME).";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     public final LocalDateTime endTime;
@@ -45,8 +46,12 @@ public class EndTime {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof EndTime)) return false;
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EndTime)) {
+            return false;
+        }
         EndTime that = (EndTime) other;
         return endTime.equals(that.endTime);
     }

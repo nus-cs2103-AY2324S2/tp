@@ -45,8 +45,12 @@ public class BookingName {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof BookingName)) return false;
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof BookingName)) {
+            return false;
+        }
         BookingName otherName = (BookingName) other;
         return fullName.equals(otherName.fullName);
     }

@@ -1,17 +1,18 @@
 package seedu.address.model.booking;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Booking's start time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStartTime(String)}
  */
 public class StartTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Start times must be in the format of YYYY-MM-DDTHH:MM (ISO_LOCAL_DATE_TIME).";
+    public static final String MESSAGE_CONSTRAINTS = "Start times must be in the format of YYYY-MM-DDTHH:MM "
+            + "(ISO_LOCAL_DATE_TIME).";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     public final LocalDateTime startTime;
@@ -45,8 +46,12 @@ public class StartTime {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof StartTime)) return false;
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof StartTime)) {
+            return false;
+        }
         StartTime that = (StartTime) other;
         return startTime.equals(that.startTime);
     }
