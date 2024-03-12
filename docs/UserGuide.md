@@ -242,18 +242,19 @@ Expected output:
 
 sets the status of a task as finished or unfinished
 
-Format: `set status <STATUS> task <TASK_NAME>`
+Format: `set status <STATUS> /to task <TASK_NAME> /in <PROJECT_NAME>`
 
 * The specified task name must exist in the task list.
 * The task status can either be `done` or `undone`
 
 Examples:
-* `set status done add deadline command /in CS2103T Duke Chatbot Project`
+* `set status done /to unit test /in CS2103T Duke Chatbot Project`
 
 Expected output:
 * Successful status update: `Task <TASK_NAME> is set as <STATUS>`
 * Failed commands: `Task <TASK_NAME> not found: Please make sure the task exists.`
-* `Status was entered incorrectly.`
+* `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+* `Status was entered incorrectly.`, 
 
 ### Set Project Status  : `set status of Project`
 
