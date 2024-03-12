@@ -8,42 +8,42 @@
     "tag" : "Student",
     "groups" : [ "friends" ]
   }, {
-    "nusId": "E0123456",
+    "nusId": "E9682156",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "tag" : "Student",
     "groups" : [ "owesMoney", "friends" ]
   }, {
-    "nusId": "E0123456",
+    "nusId": "E0358435",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "tag" : "TA",
     "groups" : [ ]
   }, {
-    "nusId": "E0123456",
+    "nusId": "E1237864",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "tag" : "Professor",
     "groups" : [ "friends" ]
   }, {
-    "nusId": "E0123456",
+    "nusId": "E6546506",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "tag" : "TA",
     "groups" : [ ]
   }, {
-    "nusId": "E0123456",
+    "nusId": "E5419832",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "tag" : "None",
     "groups" : [ ]
   }, {
-    "nusId": "E0123456",
+    "nusId": "E3548135",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
