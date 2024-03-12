@@ -44,7 +44,7 @@ public class Availability {
     public static String strToDayOfWeek(String validAvailability) {
         if (validAvailability.matches("(?i)(mon)(day)?")) {
             return DayOfWeek.MONDAY.name();
-        } else if (validAvailability.matches("(?i)(tue)(s?)(sday?)")) {
+        } else if (validAvailability.matches("(?i)(tue)(s)?(sday)?")) {
             return DayOfWeek.TUESDAY.name();
         } else if (validAvailability.matches("(?i)(wed)(nes)?(nesday)?")) {
             return DayOfWeek.WEDNESDAY.name();

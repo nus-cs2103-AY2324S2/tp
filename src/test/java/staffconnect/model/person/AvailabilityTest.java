@@ -1,8 +1,11 @@
 package staffconnect.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static staffconnect.testutil.Assert.assertThrows;
+
+import java.time.DayOfWeek;
 
 import org.junit.jupiter.api.Test;
 
@@ -91,23 +94,17 @@ public class AvailabilityTest {
         // different values -> returns false, mon and tues
         assertFalse(monAvailability.equals(new Availability("tues")));
 
-        Availability wedAvailability = new Availability("wed");
-        Availability friAvailability = new Availability("wed");
-
-        // different values -> returns false, mon and wed
-        assertFalse(monAvailability.equals(wedAvailability));
-
-        // different values -> returns false, wed and thurs
-        assertFalse(wedAvailability.equals(new Availability("thurs")));
-
-        // different values -> returns false, sat and sun
-        assertFalse(friAvailability.equals(new Availability("SATURDAY")));
-
-        // different values -> returns false, sat and sun
-        assertFalse(friAvailability.equals(new Availability("sunday")));
-
-
     }
 
+    @Test
+    public void strToDayOfWeekTest() {
+        assertEquals(DayOfWeek.MONDAY.toString(), Availability.strToDayOfWeek(new String("mon")));
+        assertEquals(DayOfWeek.TUESDAY.toString(), Availability.strToDayOfWeek(new String("tues")));
+        assertEquals(DayOfWeek.WEDNESDAY.toString(), Availability.strToDayOfWeek(new String("wednes")));
+        assertEquals(DayOfWeek.THURSDAY.toString(), Availability.strToDayOfWeek(new String("thursday")));
+        assertEquals(DayOfWeek.FRIDAY.toString(), Availability.strToDayOfWeek(new String("FRIDAY")));
+        assertEquals(DayOfWeek.SATURDAY.toString(), Availability.strToDayOfWeek(new String("SATurday")));
+        assertEquals(DayOfWeek.SUNDAY.toString(), Availability.strToDayOfWeek(new String("sunDAY")));
+    }
 
 }
