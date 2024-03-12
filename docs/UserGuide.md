@@ -203,34 +203,57 @@ Expected output:
 - Successful assignment: `Deadline <DEADLINE> has been assigned to <PROJECT_NAME>:<TASK_NAME>`
 - Failed assignment (example): `Deadline needs to be in MMM D YYYY format.`
 
-### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+### Add task : `add task`
 
-Format: `clear`
+Add the specified task to a project.
 
-### Exiting the program : `exit`
+Format: `add task <task name> /to <project name>`
 
-Exits the program.
+* The specified project name must exist in the project list.
+* The task's name must be unique
+  Examples:
+* `add task add deadline command /to CS2103T Duke Chatbot Project`
 
-Format: `exit`
+Expected output:
+* Successful add command: `<Task> has been added to <Project>`
+* Failed commands:
+    - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+    - repeated task: `Task <task name> already exists in <Project>`
 
-### Saving the data
+###  Remove task : `delete task`
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Deletes the specified task from a project.
 
-### Editing the data file
+Format: `delete task <task name> /in <project name> `
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+* The specified project name must exist in the project list.
+* The task name must exist
+  Examples:
+* `delete task add deadline command /in CS2103T Duke Chatbot Project`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
+Expected output:
+* Successful deletion: `<Task> has been deleted from <Project>`
+* Failed commands:
+    - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+    - invalid task name: `Task <task name> not found: Please make sure the task exists`
 
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+### Show Project  : `show project`
+
+shows the project’s details
+
+Format: `show project <project name>`
+
+* The specified project name must exist in the project list.
+
+Examples:
+* `show project CS2103T Duke Chatbot Project`
+
+Expected output:
+* Successful display: `The ui now shows the project’s information`
+* Failed commands: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+
 
 ---
 
