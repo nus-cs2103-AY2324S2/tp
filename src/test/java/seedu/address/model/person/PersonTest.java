@@ -102,6 +102,22 @@ public class PersonTest {
         assertEquals(expected, ALICE.toString());
     }
     @Test
+    public void getName() {
+        assertEquals(VALID_NAME_BOB, BOB.getName().toString());
+    }
+    @Test
+    public void getPhone() {
+        assertEquals(VALID_PHONE_BOB, BOB.getPhone().toString());
+    }
+    @Test
+    public void getEmail() {
+        assertEquals(VALID_EMAIL_BOB, BOB.getEmail().toString());
+    }
+    @Test
+    public void getAddress() {
+        assertEquals(VALID_ADDRESS_BOB, BOB.getAddress().toString());
+    }
+    @Test
     public void getUuidString() {
         Person person = new PersonBuilder().build();
         String personUuidString = person.getUuidString();
@@ -109,27 +125,28 @@ public class PersonTest {
         String uuidFormat = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
         assertTrue(personUuidString.matches(uuidFormat));
     }
-
-    @Test public void getUuidString_differentUuids() {
+    @Test
+    public void getUuidString_differentUuids() {
         Person person1 = new PersonBuilder().build();
         Person person2 = new PersonBuilder().build();
         assertFalse(person1.getUuidString().equals(person2.getUuidString()));
     }
-
-    @Test public void equalsUuid_samePerson_true() {
+    @Test
+    public void equalsUuid_samePerson_true() {
         Person person1 = new PersonBuilder().build();
         assertTrue(person1.equalsUuid(person1));
     }
-    @Test public void equalsUuid_differentUuids_false() {
+    @Test
+    public void equalsUuid_differentUuids_false() {
         Person person1 = new PersonBuilder().build();
         Person person2 = new PersonBuilder().build();
         assertFalse(person1.equalsUuid(person2));
     }
-    @Test public void equalsUuid_notPerson_false() {
+    @Test
+    public void equalsUuid_notPerson_false() {
         Person person1 = new PersonBuilder().build();
         assertFalse(person1.equalsUuid("not a person"));
     }
-
     @Test
     public void getUuid() {
         assertTrue(ALICE.getUuid() != null);
