@@ -63,10 +63,9 @@ public class ParserUtil {
             if (word.isEmpty()) {
                 continue;
             }
-
             int lengthOfWord = word.length();
             int indexOfWord = namesUnparsed.indexOf(word);
-            
+
             //Appends the character behind the individual word
             if (indexOfWord != 0) {
                 result.append(namesUnparsed.charAt(indexOfWord - 1));
