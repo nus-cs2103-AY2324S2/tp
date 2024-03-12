@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/ananya21)]
 
 - Role: Developer
-- Responsibilities: Datagit fetch origin
+- Responsibilities: Data
 
 
 
