@@ -281,8 +281,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * Needs a one application to schedule his appointments and reminds him about it
 
-**Value proposition**: Assist Insurance Agent keep track of their clients and new clients. 
-This provides them with a 1 application to add details about their clients insurance plans and 
+**Value proposition**: Assist Insurance Agent keep track of their clients and new clients.
+This provides them with a 1 application to add details about their clients insurance plans and
 set reminders for meetups with clients.
 
 
@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	* 1b1. InsureBook shows an error message.
 
 	  Use case resumes from step 1.
-  
+
 *a. At any time, user inputs an invalid command/syntax.
 
 *a1. InsureBook shows an error message.
@@ -533,36 +533,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **CLI**: Command Line Interface 
+* **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix B: Instructions for manual testing**
 
-  
+
 
 Given below are instructions to test the app manually.
 
-  
+
 
 <box  type="info"  seamless>
 
-  
+
 
 **Note:** These instructions only provide a starting point for testers to work on;
 
 testers are expected to do more *exploratory* testing.
 
-  
+
 
 </box>
 
-  
+
 
 ### Launch and shutdown
 
-  
+
 
 1. Initial launch
 
@@ -570,7 +570,7 @@ testers are expected to do more *exploratory* testing.
 
 	  2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-  
+
 
 2. Saving window preferences
 
@@ -579,18 +579,17 @@ testers are expected to do more *exploratory* testing.
 	2. Re-launch the app by double-clicking the jar file.<br>
 	Expected: The most recent window size and location is retained.
 
-  
+
 
 3.  Exiting the Application (Shutdown)
 	1. Type in "Exit" in the main command bar of the InsureBook.
-	
 	2. Else, manually close the Application
 
-  
+
 
 ### Deleting a client
 
-  
+ 
 
 1. Deleting a client while all clients are being shown
 
@@ -606,19 +605,19 @@ testers are expected to do more *exploratory* testing.
 	  4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
 		Expected: Similar to previous.
 
-  
+
 
 2.  Deleting a client from an empty InsureBook
 	1. Prerequisites: List all clients using the `list` command. The list should be empty.
-	
+
 	2. Test case: `delete x`
-		
+	
 		Expected: An Error should pop up and Error details will be shown in the status message. Shows that the storage is functioning properly.
-  
+
 
 ### Saving data
 
-  
+
 
 1. Dealing with missing/corrupted data files
 
@@ -627,5 +626,5 @@ testers are expected to do more *exploratory* testing.
 		  2. Navigate to the file containing the data of the InsureBook which is located in `/data/addressbook.json`
 		  3. Delete or rename this json file and this will corrupt it
 		  4. Exit and relaunch the application
-			  
+	  
 			  Expected: The application should detect that the data file is missing and the whole InsureBook would be empty, and the commands will still be working in the empty InsureBook without any crashes. This ensures that the application can still be used even if the data file gets deleted.

@@ -6,7 +6,7 @@
 ### Project: InsureBook
 
 InsureBook is a desktop application that assist insurance agents manage their client's contact and policies as well as to set reminders and schedule meetings with client.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 10 kLoC. This project is based on [AddressBook - Level 3](https://se-education.org/addressbook-level3/).
 
 Given below are my contributions to the project.
