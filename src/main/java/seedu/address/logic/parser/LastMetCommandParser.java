@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTMET;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -15,8 +15,17 @@ import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.LastMetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LastMet;
+
+/**
+ * Parses input arguments and creates a new LastMetCommand object
+ */
 public class LastMetCommandParser {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the LastMetCommand
+     * and returns an LastMetCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public LastMetCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LASTMET);
@@ -54,7 +63,7 @@ public class LastMetCommandParser {
     }
 
     private LastMet convertStringToLastMet(String input) {
-            LocalDate formattedInput = DateUtil.parseStringToDate(input);
-            return new LastMet(formattedInput);
-        }
+        LocalDate formattedInput = DateUtil.parseStringToDate(input);
+        return new LastMet(formattedInput);
+    }
 }

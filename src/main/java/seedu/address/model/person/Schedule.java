@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.DateTimeUtil;
-
 import java.time.LocalDateTime;
+
+import seedu.address.commons.util.DateTimeUtil;
 
 /**
  * Schedule class is responsible for keep tracking for appointments with a Client in the address book.
@@ -47,7 +47,7 @@ public class Schedule {
     }
 
     /**
-     *
+     * Method is used for generating a String representation for the GUI.
      * @return A string representation of Schedule for the GUI.
      */
     public String showSchedule() {

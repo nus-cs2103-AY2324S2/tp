@@ -45,6 +45,9 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Person constructor used for subsequent LastMet, Schedule and Mark Commands.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
                   LastMet lastmet, Schedule schedule, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, birthday, tags);

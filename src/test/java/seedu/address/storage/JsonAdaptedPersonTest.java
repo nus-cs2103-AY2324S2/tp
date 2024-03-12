@@ -24,6 +24,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_BIRTHDAY = "15-09-1995";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_LASTMET = "03-03-2001";
+    private static final String INVALID_SCHEDULE = "03-03-2001 12:12/1";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();

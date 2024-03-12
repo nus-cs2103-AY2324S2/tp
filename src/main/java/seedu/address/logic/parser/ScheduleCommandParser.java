@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -15,8 +15,17 @@ import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Schedule;
+
+/**
+ * Parses input arguments and creates a new ScheduleCommand object
+ */
 public class ScheduleCommandParser {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the ScheduleCommand
+     * and returns an ScheduleCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public ScheduleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SCHEDULE);

@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTMET;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -12,9 +15,6 @@ import seedu.address.logic.commands.exceptions.FutureDateException;
 import seedu.address.model.Model;
 import seedu.address.model.person.LastMet;
 import seedu.address.model.person.Person;
-
-import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Updates the last met date of the person.
@@ -66,7 +66,7 @@ public class LastMetCommand extends Command {
         Person metPerson = new Person(
                 personToMeet.getName(), personToMeet.getPhone(), personToMeet.getEmail(),
                 personToMeet.getAddress(), personToMeet.getBirthday(),
-                this.lastMet, personToMeet.getSchedule(),personToMeet.getTags());
+                this.lastMet, personToMeet.getSchedule(), personToMeet.getTags());
 
         model.setPerson(personToMeet, metPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

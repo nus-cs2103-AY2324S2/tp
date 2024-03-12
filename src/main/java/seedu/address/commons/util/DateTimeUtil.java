@@ -9,8 +9,8 @@ import java.time.format.DateTimeParseException;
  * Helper functions for handling dates and times.
  */
 public class DateTimeUtil {
-    public static final String MESSAGE_CONSTRAINTS = "should be in the format YYYY-MM-DD HH:mm " +
-            "and must be an actual dateTime";
+    public static final String MESSAGE_CONSTRAINTS = "should be in the format YYYY-MM-DD HH:mm "
+            + "and must be an actual dateTime";
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
 
