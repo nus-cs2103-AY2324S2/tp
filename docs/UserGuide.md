@@ -115,29 +115,28 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names or tags matches any of the defined keywords.
+Finds all contacts whose names or tags matches the substring keyword provided.
 
 
-Format: `find /FIELD KEYWORD [MORE_KEYWORDS]`
+Format: `find /FIELD KEYWORD /FIELD KEYWORD ...`
 
-* 'FIELD' can be `/n` for name, `/t` for tag.
-
+* 'FIELD' only supports `n/` for name and `t/` for tag.
 
 * 'KEYWORD' is the keyword to search for.
 
+* 'KEYWORD' should **NOT** be empty and should **NOT** contain any whitespace or the character `/`.
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* You can have multiple of the same 'KEYWORD's. e.g. `find /n J /n D` will match names with `J` AND `D`, like `John Doe`
+* 
 
 Examples:
-* `find /n John` returns `john` and `John Doe`
-* `find /n alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-* `find /n Alex /t friends` returns `Alex Yeoh`
+* `find /n Joh` returns `john`, `John Doe` and `Johann Sebastian Bach`
+
+* `find /n alex /n david` returns `Alex Davidson` and `David Alexis`<br>
+
+* `find /n Alex /t friends` returns `Alex Yeoh` who is tagged as a `friend`
 
 ### Deleting a person : `delete`
 
@@ -207,6 +206,6 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find**   | `find KEYWORD/ [MORE_KEYWORDS]`<br> e.g., `find n/ James n/ Jake t/ friend t/ rich`
 **List**   | `list`
 **Help**   | `help`
