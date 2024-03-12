@@ -9,6 +9,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.IdMatchesPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.person.TagMatchesPredicate;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -42,6 +44,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (findMode == 2) {
             return new FindCommand(new IdMatchesPredicate(new StudentId(nameKeywords[0])));
+        } else if (findMode == 3) {
+            return new FindCommand(new TagMatchesPredicate(new Tag(nameKeywords[0])));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
