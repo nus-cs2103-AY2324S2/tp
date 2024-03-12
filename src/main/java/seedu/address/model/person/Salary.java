@@ -94,4 +94,16 @@ public class Salary {
             return String.valueOf(salary1);
         }
     }
+
+    public int getSalary1() {
+        return salary1;
+    }
+
+    public int getSalary2() {
+        return salary2;
+    }
+
+    public boolean isRange() {
+        return isRange;
+    }
 }
