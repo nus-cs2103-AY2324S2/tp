@@ -91,8 +91,4 @@ public interface Model {
      */
     void addBooking(Booking booking);
 
-    /**
-     * Returns true if the given booking conflicts with existing bookings in the system.
-     */
-    boolean hasBooking(Booking booking);
 }
