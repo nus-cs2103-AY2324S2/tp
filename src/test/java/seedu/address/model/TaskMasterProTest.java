@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalTaskMasterPro;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.testutil.EmployeeBuilder;
 
-public class AddressBookTest {
+public class TaskMasterProTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final TaskMasterPro taskMasterPro = new TaskMasterPro();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getEmployeeList());
+        assertEquals(Collections.emptyList(), taskMasterPro.getEmployeeList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> taskMasterPro.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyTaskMasterPro_replacesData() {
+        TaskMasterPro newData = getTypicalTaskMasterPro();
+        taskMasterPro.resetData(newData);
+        assertEquals(newData, taskMasterPro);
     }
 
     @Test
@@ -49,53 +49,54 @@ public class AddressBookTest {
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newEmployees);
+        TaskMasterProStub newData = new TaskMasterProStub(newEmployees);
 
-        assertThrows(DuplicateEmployeeException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateEmployeeException.class, () -> taskMasterPro.resetData(newData));
     }
 
     @Test
     public void hasEmployee_nullEmployee_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEmployee(null));
+        assertThrows(NullPointerException.class, () -> taskMasterPro.hasEmployee(null));
     }
 
     @Test
-    public void hasEmployee_employeeNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEmployee(ALICE));
+    public void hasEmployee_employeeNotInTaskMasterPro_returnsFalse() {
+        assertFalse(taskMasterPro.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeInAddressBook_returnsTrue() {
-        addressBook.addEmployee(ALICE);
-        assertTrue(addressBook.hasEmployee(ALICE));
+    public void hasEmployee_employeeInTaskMasterPro_returnsTrue() {
+        taskMasterPro.addEmployee(ALICE);
+        assertTrue(taskMasterPro.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEmployee(ALICE);
+    public void hasEmployee_employeeWithSameIdentityFieldsInTaskMasterPro_returnsTrue() {
+        taskMasterPro.addEmployee(ALICE);
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasEmployee(editedAlice));
+        assertTrue(taskMasterPro.hasEmployee(editedAlice));
     }
 
     @Test
     public void getEmployeeList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEmployeeList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> taskMasterPro.getEmployeeList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{employees=" + addressBook.getEmployeeList() + "}";
-        assertEquals(expected, addressBook.toString());
+        String expected = TaskMasterPro.class.getCanonicalName()
+                + "{employees=" + taskMasterPro.getEmployeeList() + "}";
+        assertEquals(expected, taskMasterPro.toString());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose employees list can violate interface constraints.
+     * A stub ReadOnlyTaskMasterPro whose employees list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class TaskMasterProStub implements ReadOnlyTaskMasterPro {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Employee> employees) {
+        TaskMasterProStub(Collection<Employee> employees) {
             this.employees.setAll(employees);
         }
 

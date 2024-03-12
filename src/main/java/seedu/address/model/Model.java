@@ -37,23 +37,23 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskMasterProFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTaskMasterProFilePath(Path taskMasterProFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces TaskMasterPro data with the data in {@code taskMasterPro}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTaskMasterPro(ReadOnlyTaskMasterPro taskMasterPro);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TaskMasterPro */
+    ReadOnlyTaskMasterPro getTaskMasterPro();
 
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if an employee with the same identity as {@code employee} exists in the address book.
      */
     boolean hasEmployee(Employee employee);
 

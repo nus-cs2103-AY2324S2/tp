@@ -13,7 +13,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameEmployee comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TaskMasterPro implements ReadOnlyTaskMasterPro {
 
     private final UniqueEmployeeList employees;
 
@@ -28,12 +28,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         employees = new UniqueEmployeeList();
     }
 
-    public AddressBook() {}
+    public TaskMasterPro() {}
 
     /**
-     * Creates an AddressBook using the Employees in the {@code toBeCopied}
+     * Creates an TaskMasterPro using the Employees in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TaskMasterPro(ReadOnlyTaskMasterPro toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -49,9 +49,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TaskMasterPro} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTaskMasterPro newData) {
         requireNonNull(newData);
 
         setEmployees(newData.getEmployeeList());
@@ -88,8 +88,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code TaskMasterPro}.
+     * {@code key} must exist in the TaskMasterPro.
      */
     public void removeEmployee(Employee key) {
         employees.remove(key);
@@ -116,12 +116,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof TaskMasterPro)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
-        return employees.equals(otherAddressBook.employees);
+        TaskMasterPro otherTaskMasterPro = (TaskMasterPro) other;
+        return employees.equals(otherTaskMasterPro.employees);
     }
 
     @Override

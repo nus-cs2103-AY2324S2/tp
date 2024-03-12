@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalTaskMasterPro;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 
@@ -25,7 +25,7 @@ import seedu.address.model.employee.Employee;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskMasterPro(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS,
                 Messages.format(employeeToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTaskMasterPro(), new UserPrefs());
         expectedModel.deleteEmployee(employeeToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -59,7 +59,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS,
                 Messages.format(employeeToDelete));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskMasterPro(), new UserPrefs());
         expectedModel.deleteEmployee(employeeToDelete);
         showNoEmployee(expectedModel);
 
@@ -72,7 +72,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEmployeeList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskMasterPro().getEmployeeList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

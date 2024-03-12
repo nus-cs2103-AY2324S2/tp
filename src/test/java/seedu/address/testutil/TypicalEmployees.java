@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskMasterPro;
 import seedu.address.model.employee.Employee;
 
 /**
@@ -60,10 +60,10 @@ public class TypicalEmployees {
     private TypicalEmployees() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical employees.
+     * Returns an {@code TaskMasterPro} with all the typical employees.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TaskMasterPro getTypicalTaskMasterPro() {
+        TaskMasterPro ab = new TaskMasterPro();
         for (Employee employee : getTypicalEmployees()) {
             ab.addEmployee(employee);
         }

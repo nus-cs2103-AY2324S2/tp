@@ -19,25 +19,25 @@ import seedu.address.model.employee.Employee;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TaskMasterPro taskMasterPro;
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given taskMasterPro and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTaskMasterPro taskMasterPro, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(taskMasterPro, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + taskMasterPro + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.taskMasterPro = new TaskMasterPro(taskMasterPro);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEmployees = new FilteredList<>(this.addressBook.getEmployeeList());
+        filteredEmployees = new FilteredList<>(this.taskMasterPro.getEmployeeList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TaskMasterPro(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTaskMasterProFilePath() {
+        return userPrefs.getTaskMasterProFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTaskMasterProFilePath(Path taskMasterProFilePath) {
+        requireNonNull(taskMasterProFilePath);
+        userPrefs.setTaskMasterProFilePath(taskMasterProFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TaskMasterPro ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTaskMasterPro(ReadOnlyTaskMasterPro taskMasterPro) {
+        this.taskMasterPro.resetData(taskMasterPro);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyTaskMasterPro getTaskMasterPro() {
+        return taskMasterPro;
     }
 
     @Override
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return addressBook.hasEmployee(employee);
+        return taskMasterPro.hasEmployee(employee);
     }
 
     @Override
     public void deleteEmployee(Employee target) {
-        addressBook.removeEmployee(target);
+        taskMasterPro.removeEmployee(target);
     }
 
     @Override
     public void addEmployee(Employee employee) {
-        addressBook.addEmployee(employee);
+        taskMasterPro.addEmployee(employee);
         updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
 
@@ -108,14 +108,14 @@ public class ModelManager implements Model {
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
 
-        addressBook.setEmployee(target, editedEmployee);
+        taskMasterPro.setEmployee(target, editedEmployee);
     }
 
     //=========== Filtered Employee List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTaskMasterPro}
      */
     @Override
     public ObservableList<Employee> getFilteredEmployeeList() {
@@ -140,7 +140,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return taskMasterPro.equals(otherModelManager.taskMasterPro)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredEmployees.equals(otherModelManager.filteredEmployees);
     }

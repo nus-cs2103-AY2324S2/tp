@@ -29,9 +29,9 @@ import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
 
-public class AddressBookParserTest {
+public class TaskMasterProParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TaskMasterProParser parser = new TaskMasterProParser();
 
     @Test
     public void parseCommand_add() throws Exception {
