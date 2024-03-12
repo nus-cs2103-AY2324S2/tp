@@ -9,10 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class CompanyName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "CompanyName should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * Matches an arbitrarily long string of alphanumeric characters
+     * Matches one or more alphanumeric characters
      */
     public static final String VALIDATION_REGEX = "^\\p{Alnum}+$";
 
