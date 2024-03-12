@@ -43,7 +43,7 @@ public class InternshipModelManagerTest {
         assertEquals(internshipData, modelManager.getInternshipData());
         assertEquals(userPrefs, modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(Paths.get("data" , "addressbook.json"), modelManager.getInternshipDataFilePath());
+        assertEquals(Paths.get("data", "addressbook.json"), modelManager.getInternshipDataFilePath());
     }
 
     @Test
@@ -83,5 +83,95 @@ public class InternshipModelManagerTest {
 
         // same object -> returns true
         assertTrue(internshipModelManager.equals(internshipModelManager));
+    }
+
+    @Test
+    public void hasInternship() {
+        internshipModelManager.addInternship(internship);
+        assertTrue(internshipModelManager.hasInternship(internship));
+    }
+
+    @Test
+    public void deleteInternship() {
+        internshipModelManager.addInternship(internship);
+        internshipModelManager.deleteInternship(internship);
+        assertTrue(!internshipModelManager.hasInternship(internship));
+    }
+
+    @Test
+    public void setInternship() {
+        Internship internship1 = new Internship(
+                new CompanyName("Amazon"),
+                new ContactName("Mark Johnson"),
+                new ContactEmail("markjohnson@example.com"),
+                new ContactNumber("45678901"),
+                new Location("remote"),
+                new ApplicationStatus("rejected"),
+                new Description("Business Development Internship"),
+                new Role("Business Development Associate"));
+        Internship internship2 = new Internship(
+                new CompanyName("Google"),
+                new ContactName("John Doe"),
+                new ContactEmail("johndoe@example.com"),
+                new ContactNumber("12345678"),
+                new Location("remote"),
+                new ApplicationStatus("pending"),
+                new Description("Software Engineering Internship"),
+                new Role("Software Engineer")
+        );
+        internshipModelManager.addInternship(internship1);
+        internshipModelManager.setInternship(internship1, internship2);
+        assertTrue(!internshipModelManager.hasInternship(internship1));
+        assertTrue(internshipModelManager.hasInternship(internship2));
+    }
+
+    @Test
+    public void getInternshipData() {
+        InternshipData internshipData = new InternshipData();
+        internshipData.addInternship(internship);
+        UserPrefs userPrefs = new UserPrefs();
+        InternshipModelManager internshipModelManager = new InternshipModelManager(internshipData, userPrefs);
+        assertEquals(internshipData, internshipModelManager.getInternshipData());
+    }
+
+    @Test
+    public void getUserPrefs() {
+        InternshipData internshipData = new InternshipData();
+        internshipData.addInternship(internship);
+        UserPrefs userPrefs = new UserPrefs();
+        InternshipModelManager internshipModelManager = new InternshipModelManager(internshipData, userPrefs);
+        assertEquals(userPrefs, internshipModelManager.getUserPrefs());
+    }
+
+    @Test
+    public void getGuiSettings() {
+        InternshipData internshipData = new InternshipData();
+        internshipData.addInternship(internship);
+        UserPrefs userPrefs = new UserPrefs();
+        InternshipModelManager internshipModelManager = new InternshipModelManager(internshipData, userPrefs);
+        assertEquals(new GuiSettings(), internshipModelManager.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings() {
+        InternshipData internshipData = new InternshipData();
+        internshipData.addInternship(internship);
+        UserPrefs userPrefs = new UserPrefs();
+        InternshipModelManager internshipModelManager = new InternshipModelManager(internshipData, userPrefs);
+        GuiSettings guiSettings = new GuiSettings(1000, 1000, 100, 100);
+        internshipModelManager.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, internshipModelManager.getGuiSettings());
+    }
+
+    @Test
+    public void setInternshipData() {
+        InternshipData internshipData = new InternshipData();
+        internshipData.addInternship(internship);
+        UserPrefs userPrefs = new UserPrefs();
+        InternshipModelManager internshipModelManager = new InternshipModelManager(internshipData, userPrefs);
+        InternshipData newInternshipData = new InternshipData();
+        newInternshipData.addInternship(internship);
+        internshipModelManager.setInternshipData(newInternshipData);
+        assertEquals(newInternshipData, internshipModelManager.getInternshipData());
     }
 }

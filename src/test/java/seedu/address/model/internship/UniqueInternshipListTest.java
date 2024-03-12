@@ -22,7 +22,6 @@ public class UniqueInternshipListTest {
                 new Role("Business Development Associate")
         );
         internshipList.add(internship);
-
         assertTrue(internshipList.contains(internship));
     }
 
@@ -39,9 +38,7 @@ public class UniqueInternshipListTest {
                 new Description("Software Engineering Internship"),
                 new Role("Software Engineer")
         );
-
         internshipList.add(internship);
-
         assertTrue(internshipList.contains(internship));
     }
 
@@ -71,7 +68,6 @@ public class UniqueInternshipListTest {
 
         internshipList.add(originalInternship);
         internshipList.setInternship(originalInternship, editedInternship);
-
         assertFalse(internshipList.contains(originalInternship));
         assertTrue(internshipList.contains(editedInternship));
     }
@@ -90,9 +86,7 @@ public class UniqueInternshipListTest {
                 new Role("Software Engineer")
         );
         internshipList.add(internship);
-
         internshipList.remove(internship);
-
         assertFalse(internshipList.contains(internship));
     }
 
@@ -120,12 +114,9 @@ public class UniqueInternshipListTest {
                 new Role("Software Developer")
         );
         internshipList.add(internship1);
-
         UniqueInternshipList replacement = new UniqueInternshipList();
         replacement.add(internship2);
-
         internshipList.setInternships(replacement);
-
         assertFalse(internshipList.contains(internship1));
         assertTrue(internshipList.contains(internship2));
     }
@@ -144,7 +135,15 @@ public class UniqueInternshipListTest {
                 new Description("Marketing Internship"),
                 new Role("Marketing Intern")
         );
-        Internship internship2 = new Internship(
+        internshipList1.add(internship1);
+        internshipList2.add(internship1);
+        assertEquals(internshipList1, internshipList2);
+    }
+
+    @Test
+    public void asUnmodifiableObservableList() {
+        UniqueInternshipList internshipList = new UniqueInternshipList();
+        Internship internship = new Internship(
                 new CompanyName("Google"),
                 new ContactName("John Doe"),
                 new ContactEmail("johndoe@example.com"),
@@ -154,9 +153,39 @@ public class UniqueInternshipListTest {
                 new Description("Software Engineering Internship"),
                 new Role("Software Engineer")
         );
-        internshipList1.add(internship1);
-        internshipList2.add(internship1);
+        internshipList.add(internship);
+        assertEquals(internshipList.asUnmodifiableObservableList().size(), 1);
+    }
 
-        assertEquals(internshipList1, internshipList2);
+    @Test
+    public void testHashCode() {
+        UniqueInternshipList internshipList = new UniqueInternshipList();
+        Internship internship = new Internship(
+                new CompanyName("Google"),
+                new ContactName("John Doe"),
+                new ContactEmail("johndoe@example.com"),
+                new ContactNumber("12345678"),
+                new Location("remote"),
+                new ApplicationStatus("pending"),
+                new Description("Software Engineering Internship"),
+                new Role("Software Engineer")
+        );
+        internshipList.add(internship);
+        assertEquals(internshipList.hashCode(), internshipList.asUnmodifiableObservableList().hashCode());
+    }
+
+    @Test
+    public void testToString() {
+        UniqueInternshipList internshipList = new UniqueInternshipList();
+        Internship internship = new Internship(
+                new CompanyName("Google"),
+                new ContactName("John Doe"),
+                new ContactEmail("johndoe@example.com"),
+                new ContactNumber("12345678"),
+                new Location("remote"),
+                new ApplicationStatus("pending"),
+                new Description("Software Engineering Internship"),
+                new Role("Software Engineer")
+        );
     }
 }
