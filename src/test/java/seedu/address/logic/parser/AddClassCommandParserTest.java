@@ -15,15 +15,15 @@ public class AddClassCommandParserTest {
     private final String nonEmptyTutorialClass = "T09";
 
     @Test
-    public void parse_indexSpecified_success() {
+    public void parse_tutorialTest() {
         // have tutorial class
         String moduleCode = "CS2100";
         String expectedMessage = ModuleCode.MESSAGE_CONSTRAINTS;
 
         String userInput = AddClassCommand.COMMAND_WORD + " " + PREFIX_MODULECODE + " " + moduleCode
                 + " " + PREFIX_TUTORIALCLASS + " " + nonEmptyTutorialClass;
-        AddClassCommand expectedCommand = new AddClassCommand(new ModuleCode(moduleCode,
-                nonEmptyTutorialClass));
+        AddClassCommand expectedCommand = new AddClassCommand(new ModuleCode(moduleCode),
+                nonEmptyTutorialClass);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no tutorial class

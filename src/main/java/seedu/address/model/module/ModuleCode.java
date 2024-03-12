@@ -113,4 +113,28 @@ public class ModuleCode {
         return value.hashCode();
     }
 
+    /**
+     * Checks if the given tutorial class is already in the list.
+     *
+     * @param tutorialString name of the tutorial class to be checked
+     * @return true if the class name is in the list. False otherwise.
+     */
+    public boolean hasTutorialClass(String tutorialString) {
+        for (TutorialClass tutorialClass : tutorialClasses) {
+            String tutorialInList = tutorialClass.toString();
+            if (tutorialString.equals(tutorialInList)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Adds an empty tutorial with the given name into the module.
+     *
+     * @param tutorialString name of tutorial class to be added.
+     */
+    public void addTutorialClass(String tutorialString) {
+        tutorialClasses.add(new TutorialClass((tutorialString)));
+    }
 }

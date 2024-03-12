@@ -88,6 +88,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns the module object from the module list if it exists.
+     * Else, returns null
+     *
+     * @param module to be searched
+     * @return the module object from the list, if it exists, else returns null
+     */
+    public ModuleCode findModuleFromList(ModuleCode module) {
+        for (ModuleCode moduleInList : modules) {
+            if (module.equals(moduleInList)) {
+                return moduleInList;
+            }
+        }
+        return null;
+    }
+    /**
      * Adds a module to the address book.
      * The module must not already exist in the address book. (TODO)
      */

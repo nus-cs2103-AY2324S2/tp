@@ -13,9 +13,8 @@ import seedu.address.model.module.ModuleCode;
  * A class that handles the /add_class command execution.
  */
 public class AddClassCommand extends Command {
-
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added module %1$s";
-    public static final String MESSAGE_DUPLICATE_CLASS = "Module already added!";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added %1$s %2$s";
+    public static final String MESSAGE_DUPLICATE_CLASS = "%1$s %2$s already added!";
     public static final String COMMAND_WORD = "/add_class";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class with the module code specified\n"
@@ -25,34 +24,42 @@ public class AddClassCommand extends Command {
             + PREFIX_TUTORIALCLASS + "T09";
 
     private final ModuleCode module;
+    private final String tutorialString;
 
     /**
      * @param module of the tutorial class to be added
      */
-    public AddClassCommand(ModuleCode module) {
+    public AddClassCommand(ModuleCode module, String tutorialClass) {
         requireAllNonNull(module);
-
         this.module = module;
+        this.tutorialString = tutorialClass;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasModule(module)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLASS);
+        ModuleCode duplicate = model.findModuleFromList(module);
+        if (duplicate != null) {
+            if (duplicate.hasTutorialClass(tutorialString)) {
+                String duplicateMessage = String.format(MESSAGE_DUPLICATE_CLASS, module, tutorialString);
+                throw new CommandException(duplicateMessage);
+            } else {
+                duplicate.addTutorialClass(tutorialString);
+            }
+        } else {
+            module.addTutorialClass(tutorialString);
+            model.addModule(module);
         }
-
-        model.addModule(module);
-        return new CommandResult(generateSuccessMessage(module));
+        return new CommandResult(generateSuccessMessage(module, tutorialString));
     }
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(ModuleCode module) {
-        return String.format(MESSAGE_ADD_REMARK_SUCCESS, module.toString());
+    private String generateSuccessMessage(ModuleCode module, String tutorialString) {
+        return String.format(MESSAGE_ADD_REMARK_SUCCESS, module.toString(), tutorialString);
     }
 
     @Override

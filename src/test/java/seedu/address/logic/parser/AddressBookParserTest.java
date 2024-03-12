@@ -98,8 +98,8 @@ public class AddressBookParserTest {
         final String tutorialClass = "T09";
         AddClassCommand command = (AddClassCommand) parser.parseCommand(AddClassCommand.COMMAND_WORD + " "
                 + PREFIX_MODULECODE + moduleCode + " " + PREFIX_TUTORIALCLASS + tutorialClass);
-        assertEquals(new AddClassCommand(new ModuleCode(moduleCode,
-                tutorialClass)), command);
+        assertEquals(new AddClassCommand(new ModuleCode(moduleCode),
+                tutorialClass), command);
     }
 
 

@@ -100,6 +100,12 @@ public class ModelManager implements Model {
         requireNonNull(module);
         return addressBook.hasModule(module);
     }
+
+    @Override
+    public ModuleCode findModuleFromList(ModuleCode module) {
+        requireNonNull(module);
+        return addressBook.findModuleFromList(module);
+    }
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);

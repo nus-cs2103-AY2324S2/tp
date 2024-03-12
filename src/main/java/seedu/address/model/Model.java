@@ -64,6 +64,13 @@ public interface Model {
     boolean hasModule(ModuleCode module);
 
     /**
+     * Finds the module object from the list if it exists. Else, returns null.
+     *
+     * @param module to be searched
+     * @return the module if it exists, else return null.
+     */
+    ModuleCode findModuleFromList(ModuleCode module);
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

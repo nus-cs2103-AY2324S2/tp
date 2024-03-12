@@ -30,6 +30,6 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         if (!(TutorialClass.isValidTutorialClass(tutorialClass))) {
             throw new ParseException(TutorialClass.MESSAGE_CONSTRAINTS);
         }
-        return new AddClassCommand(new ModuleCode(moduleCode, tutorialClass));
+        return new AddClassCommand(new ModuleCode(moduleCode), tutorialClass);
     }
 }

@@ -155,6 +155,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public ModuleCode findModuleFromList(ModuleCode module) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
