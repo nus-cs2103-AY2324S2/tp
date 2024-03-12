@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/AY2324S2-CS2103T-W09-4/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2324S2-CS2103T-W09-4/tp/actions/workflows/gradle.yml/)
+[![CI Status](https://github.com/AY2324S2-CS2103T-W09-4/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2324S2-CS2103T-W09-4/tp/actions/workflows/gradle.yml/)[![codecov](https://codecov.io/gh/AY2324S2-CS2103T-W09-4/tp/graph/badge.svg?token=CBZT4IJB8J)](https://codecov.io/gh/AY2324S2-CS2103T-W09-4/tp)
 
 # InsureBook
 
