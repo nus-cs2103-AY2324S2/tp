@@ -31,7 +31,7 @@ public class ApplicationStatus {
      *
      * @param applicationStatus A valid application status.
      */
-    public ApplicationStatus(String applicationStatus){
+    public ApplicationStatus(String applicationStatus) {
         requireNonNull(applicationStatus);
         checkArgument(isValidApplicationStatus(applicationStatus), MESSAGE_CONSTRAINTS);
         this.applicationStatus = StatusEnum.valueOf(applicationStatus.toUpperCase());
