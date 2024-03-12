@@ -100,4 +100,24 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, "n/ Alice n/ Bob t/ friend t/ colleague", expectedFindCommand);
     }
 
+    @Test
+    public void parse_noKeywordsProvidedForPrefixes_throwsParseException() {
+        // Both prefixes are present but without actual keywords
+        assertParseFailure(parser, "n/ t/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_onlyPrefixesProvided_throwsParseException() {
+        // Test case where only prefixes are provided without any keywords or spaces
+        assertParseFailure(parser, "n/ t/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidCommandFormat_throwsParseException() {
+        // Test cases that should fall into the default case of throwing ParseException for invalid format
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "n/Alice t/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE));
+    }
+
 }
