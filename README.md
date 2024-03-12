@@ -3,12 +3,16 @@
 ![Ui](docs/images/Ui.png)
 
 ### Overview
-This project is an application designed to help tutors efficiently manage students. 
-It provides features such as adding or deleting tutors and students, 
-as well as filtering students based on their grades.👩‍🏫👨‍🏫
+This project is an application designed to help tutors efficiently manage students. 👩‍🏫👨‍🏫
 
-* The project simulates an ongoing software project for a desktop application (called _TutorsGo_) used for managing students of a tutor.
-* It is named `TutorsGo` to represent efficient tutors ready to be on the go.
+### Value Proposition
+Provide tutors with access to contact details and schedules of their students. 
+- Allows the tutor to view the students that they are currently teaching in one glance. 
+- Allows updating contact details 
+- Provides easy lookup of students
+- Filter contacts by subjects or grade level 
+- Shows fee details of student
 
+### Acknowledgements
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
    
