@@ -1,8 +1,9 @@
 {
   "persons": [ {
+    "nusId": "E0123456",
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "tag": "Student"
   } ]
 }
