@@ -37,10 +37,10 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_PHONE + " PHONE] "
+            + "[" + PREFIX_EMAIL + " EMAIL] "
+            + "[" + PREFIX_TAG + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -95,7 +95,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(companyToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(companyToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(companyToEdit.getEmail());
-        Set<Tag> updatedTags = companyToEdit.getTags();
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(companyToEdit.getTags());
 
         return new Company(updatedName, updatedPhone, updatedEmail, updatedTags);
     }
@@ -145,13 +145,14 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
         }
 
         public void setName(Name name) {
@@ -213,7 +214,8 @@ public class EditCommand extends Command {
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email);
+                    && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
         @Override
         public String toString() {
