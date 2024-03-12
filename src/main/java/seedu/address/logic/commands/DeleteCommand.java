@@ -28,12 +28,21 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
     private final String targetName;
 
+    /**
+     * Constructor for index-based deletion
+     *
+     * @param targetIndex index of the person in the filtered person list to delete
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.targetName = null; // Name is not used in this context
     }
 
-
+    /**
+     * Constructor for name-based deletion
+     * 
+     * @param targetName name of the person to delete
+     */
     public DeleteCommand(String targetName) {
         this.targetIndex = null; // Index is not used in this context
         this.targetName = targetName;
