@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Mahathir Norrahim
 
-<img src="images/gandalf.jpg" width="200px">
+<img src="images/dabzpengu.png" width="200px">
 
 [[github](https://github.com/dabzpengu)]
 
@@ -37,11 +37,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ashley Chua Xin Ru
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ashleyy2444.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ashleyy2444)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Dexter Wong
 
-<img src="images/dexter.png" width="200px">
+<img src="images/dexter-wong.png" width="200px">
 
 [[github](http://github.com/Dexter-Wong)]
 [[portfolio](team/dexter.md)]
