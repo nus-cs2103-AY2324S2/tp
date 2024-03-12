@@ -2,10 +2,19 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _TutorsGo_) used for managing students of a tutor.
-* It is named `TutorsGo` to represent efficient tutors ready to be on the go.
+### Overview
+This project is an application designed to help tutors efficiently manage students. 👩‍🏫👨‍🏫
+
+### Value Proposition
+Provide tutors with access to contact details and schedules of their students. 
+- Allows the tutor to view the students that they are currently teaching in one glance. 
+- Allows updating contact details 
+- Provides easy lookup of students
+- Filter contacts by subjects or grade level 
+- Shows fee details of student
+
+For the detailed documentation of this project, see [TutorsGo Product Website](https://ay2324s2-cs2103-f15-2.github.io/tp/)
+
+### Acknowledgements
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+   
