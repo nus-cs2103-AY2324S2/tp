@@ -26,15 +26,15 @@ public class TypicalCourseMates {
     public static final CourseMate ALICE = new CourseMateBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withSkills("friends").build();
+            .withSkills("Java").build();
     public static final CourseMate BENSON = new CourseMateBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withSkills("owesMoney", "friends").build();
+            .withSkills("React").build();
     public static final CourseMate CARL = new CourseMateBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final CourseMate DANIEL = new CourseMateBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withSkills("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street").withSkills("C").build();
     public static final CourseMate ELLE = new CourseMateBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final CourseMate FIONA = new CourseMateBuilder().withName("Fiona Kunz").withPhone("9482427")

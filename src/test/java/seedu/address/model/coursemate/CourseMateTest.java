@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_REACT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourseMates.ALICE;
 import static seedu.address.testutil.TypicalCourseMates.BOB;
@@ -83,10 +84,11 @@ public class CourseMateTest {
 
         // different address -> returns false
         editedAlice = new CourseMateBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+
         assertFalse(ALICE.equals(editedAlice));
 
         // different skills -> returns false
-        editedAlice = new CourseMateBuilder(ALICE).withSkills(VALID_SKILL_JAVA).build();
+        editedAlice = new CourseMateBuilder(ALICE).withSkills(VALID_SKILL_REACT).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
