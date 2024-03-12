@@ -44,38 +44,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-<box type="info" seamless>
-
-**Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</box>
-
-
 ### Invite person to selected event: `invite`
 
-**Format:** `invite INDEX`
+**Format:** `invite <participant index>`
 
 **Description:**
 Invite participants from the global participant list to the selected event.
 
 **Caution:**
-* `INDEX` should be within valid range of global participants
+* `<participant index>` should be within valid range of global participants
 * Duplicate participants is **not allowed.**
 
 **Examples:**
@@ -84,13 +61,13 @@ Invite participants from the global participant list to the selected event.
 
 ### Edit existing participant: `editp`
 
-**Format:** `editp PARTICIPANT_INDEX -n PARTICIPANT_NAME -p PHONE -e EMAIL`
+**Format:** `editp <participant index> -n <participant name> -p PHONE -e EMAIL`
 
 **Description:**
 Updates the contact information of a participant in the app.
 
 **Caution:**
-* `INDEX` should be within valid range of global participants
+* `<participant index>` should be within valid range of global participants
 
 **Examples:**
 - `editp 5 -n Max -p 00000000 -e test@gmail.com` Edits contact details of participant indexed 5.
