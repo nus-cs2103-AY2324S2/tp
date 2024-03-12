@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Company's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidContactName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidCompanyName(String)}
  */
 public class CompanyName {
     public static final String MESSAGE_CONSTRAINTS =
@@ -25,14 +25,14 @@ public class CompanyName {
      */
     public CompanyName(String companyName) {
         requireNonNull(companyName);
-        checkArgument(isValidContactName(companyName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidCompanyName(companyName), MESSAGE_CONSTRAINTS);
         this.companyName = companyName;
     }
 
     /**
      * Returns true if a given string is a valid companyName.
      */
-    public static boolean isValidContactName(String test) {
+    public static boolean isValidCompanyName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
