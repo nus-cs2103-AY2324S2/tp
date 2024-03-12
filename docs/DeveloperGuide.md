@@ -262,28 +262,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Dog cafe owners who need to manage a team of staff, F&B vendors & a dog maintainence team.
+* Prefer typing over other types and is comfortable using CLI applications.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: PoochPlanner is a desktop application to track details of various groups (vendors, staff, dog maintainence) that dog cafe owners have to regularly interact with. 
+The app is optimised for use using Command Line Interface (CLI) while still encompassing a user-friendly Graphical User Interface (GUI).
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority      | <div style="width:50px">As a …​</div>  | I want to …​                                               | So that I can…​                                       |
+|---------------|----------------------------------------|------------------------------------------------------------|-------------------------------------------------------|
+| `* * *`       | well connected user                    | search contacts                                            | save time                                             |
+| `* * *`       | well connected user                    | add contacts                                               | have the address to contact others in the future      |
+| `* * *`       | cafe owner user                        | delete the contacts of people                              | keep my contacts updated and remove outdated contacts |
+| `* * *`       | long-term user                         | edit contacts                                              | update some contact information                       |
+| `* * *`       | first-time user                        | get help about what commnads I can use on the contact book | easily know how to navigate the system                |
+| `**`          | frugal user                            | sort my vendors in ascending order of price                | view the vendors selling the cheapest products easily |
+| `**`          | careless user                          | undo my commands                                           | fix mistakes easily                                   |
+| `**`          | forgetful user                         | star contacts that are important                           | remember to contact them easily                       |
 *{More to be added}*
 
 ### Use cases
@@ -313,14 +312,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the correct command with the required field.
    * Steps 1a1 - 1a2 are repeated until the input entered are correct.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1b. PoochPlanner detects a duplicate name entry.
 
    * 1b1. PoochPlanner displays the error message.
    * 1b2. User re-enters the correct command with another name.
    * Steps 1b1 - 1b2 are repeated until there is no duplicate entry in input.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1c. PoochPlanner detects wrong format for email.
 
@@ -360,14 +359,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the correct command with the name field.
    * Steps 1a1 - 1a2 are repeated until the input entered are correct.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1b. PoochPlanner is unable to find the Person.
 
    * 1b1. PoochPlanner displays the error message.
    * 1b2. User re-enters a new command with another name.
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 ---
 **System**: `PoochPlanner`
@@ -393,21 +392,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the correct command with the name field.
    * Steps 1a1 - 1a2 are repeated until the input entered are correct.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1b. PoochPlanner is unable to find the Person.
 
    * 1b1. PoochPlanner displays the error message.
    * 1b2. User re-enters a new command with another name.
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1c. User requests to edit the name field to a name that already exists in PoochPlanner.
 
    * 1c1. PoochPlanner displays the error message.
    * 1c2. User re-enters the command with a different name.
    * Steps 1c1 - 1c2 are repeated until the new name field is valid.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1d. User did not specify the field that they want to edit.
 
@@ -421,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1e1. PoochPlanner displays the error message.
    * 1e2. User re-enters the command and edits a different field.
    * Steps 1e1 - 1e2 are repeated until there exist a valid field in the input.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1f. PoochPlanner detects wrong format for email.
 
@@ -441,7 +440,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to search for the contact of a person with a keyword for a specified field.
 2.  PoochPlanner confirms successful search.
-3.  PoochPlanner returns the sublist of contacts that contains the keyword specified by the user. 
+3.  PoochPlanner returns the sublist of contacts that contains the keyword specified by the user.
 
     Use case ends.
 
@@ -452,21 +451,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the correct command with a specified field.
    * Steps 1a1 - 1a2 are repeated until a valid field is inputted by the User.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1b. PoochPlanner detects multiple fields in the entered input.
 
    * 1b1. PoochPlanner displays the error message.
    * 1b2. User re-enters a new command with only one field.
    * Steps 1b1 - 1b2 are repeated until the input references a Person that exists in PoochPlanner.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 * 1c. PoochPlanner detects invalid field in the entered input.
 
    * 1c1. PoochPlanner displays the error message.
    * 1c2. User re-enters a new command with another field.
    * Steps 1c1 - 1c2 are repeated until a valid field is inputted by the User.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 ---
 **System**: `PoochPlanner`
@@ -489,7 +488,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1a1. PoochPlanner displays the error message.
    * 1a2. User re-enters the command and request to learn about a valid command.
    * Steps 1a1 - 1a2 are repeated until a valid command is inputted by the User.
-   * Use case resumes from step 2. 
+   * Use case resumes from step 2.
 
 ---
 *{More to be added}*
@@ -509,8 +508,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **PoochPlanner**: An address book CLI software that stores contacts.
+* **Pooch Contact**: A contact that is stored in PoochPlanner.
+* **Pooch Owner**: The target user of PoochPlanner; Dog Cafe owners.
+* **Pooch Client**: Patrons of the Dog Cafe.
+* **Pooch Supplier**: External suppliers that sell the logistics required for the sustenance of Dog Cafe operations, for example Pooch Food, to the Pooch Cafe Owners at a fixed price.
+* **Pooch Staff**: Employees of the Dog Cafe that handle the running of the cafe.
+* **Pooch Maintenance Staff**: Specialised external workers that take special care and maintenance of dogs.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -31,6 +31,12 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" managed="false"/>
+      <Label fx:id="employment" styleClass="cell_small_label" text="\$employment" managed="false"/>
+      <Label fx:id="product" styleClass="cell_small_label" text="\$product" managed="false"/>
+      <Label fx:id="price" styleClass="cell_small_label" text="\$price" managed="false"/>
+      <Label fx:id="skill" styleClass="cell_small_label" text="\$skill" managed="false"/>
+      <Label fx:id="commission" styleClass="cell_small_label" text="\$commission" managed="false"/>
     </VBox>
   </GridPane>
 </HBox>
