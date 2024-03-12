@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +11,8 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.coursemate.CourseMate;
+import seedu.address.testutil.CourseMateBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -23,26 +23,26 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalContactList(), new UserPrefs());
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+    public void execute_newCourseMate_success() {
+        CourseMate validCourseMate = new CourseMateBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        expectedModel.addCourseMate(validCourseMate);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertCommandSuccess(new AddCommand(validCourseMate), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourseMate)),
                 expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model,
-                AddCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicateCourseMate_throwsCommandException() {
+        CourseMate courseMateInList = model.getContactList().getCourseMateList().get(0);
+        assertCommandFailure(new AddCommand(courseMateInList), model,
+                AddCommand.MESSAGE_DUPLICATE_COURSE_MATE);
     }
 
 }

@@ -66,7 +66,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a courseMate: `add`
 
 Adds a contact to the contact list. A name will be required, and all other information will be optional.
 
@@ -76,11 +76,11 @@ Parameters:
 - `NAME`: Name of the contact. It can be any string except that it cannot start with the hashtag (#) symbol , and words cannot start with the hyphen (-) character.
 - `PHONE_NUMBER` (optional): Phone number of the contact. Accepts strings with numeric characters only.
 - `EMAIL` (optional): Email of the contact. Accepts any strings without spaces.
-- `SKILL` (zero or multiple allowed): Skill(s) of the person. Accepts any strings, except that words cannot start with the hyphen (-) character. 
+- `SKILL` (zero or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character. 
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of skills (including 0)
+**Tip:** A courseMate can have any number of skills (including 0)
 </box>
 
 
@@ -89,7 +89,7 @@ Examples:
 - `add John Doe`
 - `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`
 
-### Listing all persons : `list`
+### Listing all courseMates : `list`
 
 Lists all contacts in the contact list.
 
@@ -99,7 +99,7 @@ Expected output:
 - `Message: Listed all contacts`
 
 
-### Editing a person : `edit`
+### Editing a courseMate : `edit`
 
 Edits an existing contact with a given name. This command supports changing the name, phone number and email.
 
@@ -153,7 +153,7 @@ Format: `add-skill NAME [-s SKILL]...`
 
 Parameters:
 - `NAME`: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).
-- `SKILL` (zero or multiple allowed): Skill(s) of the person. Accepts any strings, except that words cannot start with the hyphen (-) character.
+- `SKILL` (zero or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character.
 
 Examples:
 - `add-skill John Doe -s C++ -s Leadership`
@@ -182,7 +182,7 @@ Format: `delete-skill NAME [-s SKILL]...`
 
 Parameters:
 - `NAME`: Name of the existing contact. Accepts aliases (substrings or in hashtag (#) notation).
-- `SKILL`: (zero or multiple allowed): Skill(s) of the person. These must be existing skills that the contact contains.
+- `SKILL`: (zero or multiple allowed): Skill(s) of the courseMate. These must be existing skills that the contact contains.
 
 Examples:
 - `delete-skill John Doe -s C++ -s Leadership`

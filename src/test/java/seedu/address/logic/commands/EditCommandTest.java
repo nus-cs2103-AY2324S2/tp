@@ -7,152 +7,158 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
+import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COURSE_MATE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.EditCommand.EditCourseMateDescriptor;
+import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.coursemate.CourseMate;
+import seedu.address.testutil.CourseMateBuilder;
+import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        CourseMate editedCourseMate = new CourseMateBuilder().build();
+        EditCommand.EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(editedCourseMate).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
+                Messages.format(editedCourseMate));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
+        expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastCourseMate = Index.fromOneBased(model.getFilteredCourseMateList().size());
+        CourseMate lastCourseMate = model.getFilteredCourseMateList().get(indexLastCourseMate.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        CourseMateBuilder courseMateInList = new CourseMateBuilder(lastCourseMate);
+        CourseMate editedCourseMate = courseMateInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withSkills(VALID_SKILL_JAVA).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
+        EditCommand editCommand = new EditCommand(indexLastCourseMate, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
+                Messages.format(editedCourseMate));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, editedPerson);
+        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
+        expectedModel.setCourseMate(lastCourseMate, editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, new EditCourseMateDescriptor());
+        CourseMate editedCourseMate = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
+                Messages.format(editedCourseMate));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCourseMateAtIndex(model, INDEX_FIRST_COURSE_MATE);
 
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+        CourseMate courseMateInFilteredList = model.getFilteredCourseMateList()
+                .get(INDEX_FIRST_COURSE_MATE.getZeroBased());
+        CourseMate editedCourseMate = new CourseMateBuilder(courseMateInFilteredList).withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE,
+                new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
+                Messages.format(editedCourseMate));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
+        expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+    public void execute_duplicateCourseMateUnfilteredList_failure() {
+        CourseMate firstCourseMate = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
+        EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(firstCourseMate).build();
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_COURSE_MATE, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_duplicateCourseMateFilteredList_failure() {
+        showCourseMateAtIndex(model, INDEX_FIRST_COURSE_MATE);
 
-        // edit person in filtered list into a duplicate in address book
-        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(personInList).build());
+        // edit courseMate in filtered list into a duplicate in contact list
+        CourseMate courseMateInList = model.getContactList().getCourseMateList()
+                .get(INDEX_SECOND_COURSE_MATE.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE,
+                new EditCourseMateDescriptorBuilder(courseMateInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+    public void execute_invalidCourseMateIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCourseMateList().size() + 1);
+        EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
     }
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of contact list
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+    public void execute_invalidCourseMateIndexFilteredList_failure() {
+        showCourseMateAtIndex(model, INDEX_FIRST_COURSE_MATE);
+        Index outOfBoundIndex = INDEX_SECOND_COURSE_MATE;
+        // ensures that outOfBoundIndex is still in bounds of contact list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getContactList().getCourseMateList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditCommand.EditCourseMateDescriptor copyDescriptor = new EditCourseMateDescriptor(DESC_AMY);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_COURSE_MATE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -165,19 +171,19 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_COURSE_MATE, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_COURSE_MATE, DESC_BOB)));
     }
 
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        EditCommand editCommand = new EditCommand(index, editPersonDescriptor);
-        String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editPersonDescriptor="
-                + editPersonDescriptor + "}";
+        EditCourseMateDescriptor editCourseMateDescriptor = new EditCourseMateDescriptor();
+        EditCommand editCommand = new EditCommand(index, editCourseMateDescriptor);
+        String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editCourseMateDescriptor="
+                + editCourseMateDescriptor + "}";
         assertEquals(expected, editCommand.toString());
     }
 
