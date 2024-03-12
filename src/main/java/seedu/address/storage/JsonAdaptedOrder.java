@@ -6,11 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
+import seedu.address.model.person.Name;
 
 /**
  * Jackson-friendly version of {@link Order}.
  */
 class JsonAdaptedOrder {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
     private final String arrivalDate;
     private final String description;
@@ -43,10 +46,17 @@ class JsonAdaptedOrder {
      * @throws IllegalValueException if there were any data constraints violated in the adapted order.
      */
     public Order toModelType() throws IllegalValueException {
-        // TODO: Add validation of arrivalDate and description
-        // if (!Order.isValidTagName(tagName)) {
-        //     throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
-        // }
+        if (arrivalDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date"));
+        }
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Description"));
+        }
+
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Status"));
+        }
 
         final Date modelDate = new Date(arrivalDate);
 
