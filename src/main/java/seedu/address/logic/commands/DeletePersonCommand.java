@@ -37,7 +37,7 @@ public class DeletePersonCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetNusNet == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
         Person personToDelete = lastShownList.stream()

@@ -97,6 +97,12 @@ public class DeleteCommandTest {
         assertEquals(expected, deleteCommand.toString());
     }
 
+    @Test
+    public void execute_noGivenArguments_throwsCommandException() {
+        DeletePersonCommand deleteCommand = new DeletePersonCommand(null);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
