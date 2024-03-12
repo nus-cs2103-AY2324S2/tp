@@ -83,7 +83,7 @@ public class ModuleCode {
     public String getTutorialClassesNames() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < tutorialClasses.size(); i++) {
-            output.append(tutorialClasses.get(i).toString());
+            output.append(tutorialClasses.get(i).toString()).append(", ");
         }
         return output.toString();
     }

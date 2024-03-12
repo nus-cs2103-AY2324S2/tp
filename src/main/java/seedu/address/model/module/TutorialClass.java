@@ -38,20 +38,6 @@ public class TutorialClass {
     }
 
     /**
-     * A constructor for TutorialClass. Creates a tutorial with one student, that is specified.
-     *
-     * @param name of tutorial to be added
-     * @param student to be added
-     */
-    public TutorialClass(String name, Person student) {
-        requireAllNonNull(name);
-        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
-        this.students = new ArrayList<>();
-        students.add(student);
-    }
-
-    /**
      * A constructor for TutorialClass. Creates a tutorial with the list of students specified.
      *
      * @param name of tutorial to be added

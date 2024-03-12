@@ -7,7 +7,7 @@ import static seedu.address.model.module.ModuleCode.isValidModuleCode;
 
 import org.junit.jupiter.api.Test;
 
-public class ModuleTest {
+public class ModuleCodeTest {
 
     public static final String VALID_MODULE_CODE = "CS2103T";
     public static final String INVALID_MODULE_CODE = "CS210T";
