@@ -10,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.Email;
+import seedu.address.model.patient.FamilyCondition;
+import seedu.address.model.patient.FoodPreference;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.PreferredName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,36 +26,45 @@ class JsonAdaptedPatient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
+    private final Integer patientHospitalId;
     private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
+    private final String preferredName;
+    private final String foodPreference;
+    private final String familyCondition;
+    private final String hobby;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedPatient(@JsonProperty("patientHospitalId") Integer patientHospitalId,
+                              @JsonProperty("name") String name, @JsonProperty("preferredName") String preferredName,
+                              @JsonProperty("foodPreference") String foodPreference,
+                              @JsonProperty("familyCondition") String familyCondition,
+                              @JsonProperty("hobby") String hobby,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+        this.patientHospitalId = patientHospitalId;
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.preferredName = preferredName;
+        this.foodPreference = foodPreference;
+        this.familyCondition = familyCondition;
+        this.hobby = hobby;
         if (tags != null) {
             this.tags.addAll(tags);
         }
     }
 
     /**
-     * Converts a given {@code Patient} into this class for Jackson use.
+     * Converts a given {@code Patient} into this class for Alex use.
      */
     public JsonAdaptedPatient(Patient source) {
+        patientHospitalId = source.getPatientHospitalId().patientHospitalId;
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        preferredName = source.getPreferredName().preferredName;
+        foodPreference = source.getFoodPreference().foodPreference;
+        familyCondition = source.getFamilyCondition().familyCondition;
+        hobby = source.getHobby().hobby;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -70,6 +81,17 @@ class JsonAdaptedPatient {
             patientTags.add(tag.toModelType());
         }
 
+        if (patientHospitalId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                PatientHospitalId.class.getSimpleName()));
+        }
+
+        if (!PatientHospitalId.isValidPatientHospitalId(String.valueOf(patientHospitalId))) {
+            throw new IllegalValueException(PatientHospitalId.MESSAGE_CONSTRAINTS);
+        }
+        final PatientHospitalId modelPatientHospitalId = new PatientHospitalId(patientHospitalId);
+
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -78,32 +100,44 @@ class JsonAdaptedPatient {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (preferredName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                PreferredName.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!PreferredName.isValidPreferredName(preferredName)) {
+            throw new IllegalValueException(PreferredName.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final PreferredName modelPreferredName = new PreferredName(preferredName);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (foodPreference == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                FoodPreference.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!FoodPreference.isValidFood(foodPreference)) {
+            throw new IllegalValueException(FoodPreference.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final FoodPreference modelFoodPreference = new FoodPreference(foodPreference);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (familyCondition == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                FamilyCondition.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!FamilyCondition.isValidFamilyCondition(familyCondition)) {
+            throw new IllegalValueException(FamilyCondition.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final FamilyCondition modelFamilyCondition = new FamilyCondition(familyCondition);
+
+        if (hobby == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Hobby.class.getSimpleName()));
+        }
+        if (!Hobby.isValidHobby(hobby)) {
+            throw new IllegalValueException(Hobby.MESSAGE_CONSTRAINTS);
+        }
+        final Hobby modelHobby = new Hobby(hobby);
 
         final Set<Tag> modelTags = new HashSet<>(patientTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Patient(modelPatientHospitalId, modelName, modelPreferredName, modelFoodPreference,
+            modelFamilyCondition, modelHobby, modelTags);
     }
 
 }
