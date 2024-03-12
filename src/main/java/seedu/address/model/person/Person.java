@@ -235,5 +235,6 @@ public class Person {
         public Person build() {
             return new Person(name, phone, email, address, tags, notes);
         }
+
     }
 }

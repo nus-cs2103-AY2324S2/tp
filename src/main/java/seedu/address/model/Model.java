@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.note.Note;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -76,12 +79,46 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+
+    /**
+     * Returns true if a note with the same date-time as {@code note} exists in the address book.
+     */
+    boolean hasNote(Note note);
+
+    /**
+     * Deletes the given note.
+     * The note must exist in the address book.
+     */
+    void deleteNote(Note target);
+
+    /**
+     * Adds the given note.
+     * {@code note} must not already exist in the address book.
+     */
+    void addNote(Note note);
+
+    /**
+     * Replaces the given note {@code target} with {@code editedNote}.
+     * {@code target} must exist in the address book.
+     * The note date-time of {@code editedNote} must not be the same as another existing note in the address book.
+     */
+    void setNote(Note target, Note editedNote);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered note list */
+    ObservableList<Note> getFilteredNoteList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered note list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredNoteList(Predicate<Note> predicate);
 }

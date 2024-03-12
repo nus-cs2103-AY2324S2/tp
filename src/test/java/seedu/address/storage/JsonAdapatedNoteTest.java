@@ -9,7 +9,9 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.note.Description;
 import seedu.address.model.person.note.Note;
 
@@ -17,6 +19,8 @@ public class JsonAdapatedNoteTest {
 
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2024, 1, 1, 12, 30);
     private static final String VALID_DESCRIPTION = "General Flu";
+    // TODO: add valid person index for testing
+//    private static final Index VALID_PERSON_INDEX = ParserUtil.parseIndex(" 1");
     private static final String INVALID_DESCRIPTION = "";
 
     @Nested

@@ -6,11 +6,14 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,6 +21,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.note.Description;
 import seedu.address.model.person.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +30,9 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATE = "2024-02-19";
+    private static final String INVALID_TIME = "5006";
+    private static final String INVALID_DESCRIPTION = "";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +40,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DATE = "19-02-2024";
+    private static final String VALID_TIME = "1130";
+    private static final String VALID_DESCRIPTION = "General Flu";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -189,8 +199,57 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Nested
+    public class ParseLocalDateTimeTests {
+        @Test
+        public void parseLocalDateTime_success() throws Exception {
+            LocalDateTime expectedDateTime =
+                    LocalDateTime.parse(VALID_DATE + " " + VALID_TIME, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+            assertEquals(expectedDateTime, ParserUtil.parseLocalDateTime(VALID_DATE, VALID_TIME));
+        }
+
+        @Test
+        public void parseLocalDateTime_invalidDateTime_throwsParseException() {
+            assertThrows(ParseException.class, () -> ParserUtil.parseLocalDateTime(INVALID_DATE, INVALID_TIME));
+        }
+
+        @Test
+        public void parseLocalDateTime_invalidDate_throwsParseException() {
+            assertThrows(ParseException.class, () -> ParserUtil.parseLocalDateTime(INVALID_DATE, VALID_TIME));
+        }
+
+        @Test
+        public void parseLocalDateTime_invalidTime_throwsParseException() {
+            assertThrows(ParseException.class, () -> ParserUtil.parseLocalDateTime(VALID_DATE, INVALID_TIME));
+        }
+
+        @Test
+        public void parseLocalDateTime_null_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDateTime(null, null));
+        }
+    }
+
+    @Nested
+    public class ParseDescriptionTests {
+        @Test
+        public void parseDescription_success() throws Exception {
+            Description expected = new Description(VALID_DESCRIPTION);
+            assertEquals(expected, ParserUtil.parseDescription(VALID_DESCRIPTION));
+        }
+
+        @Test
+        public void parseDescription_invalidInput_throwsParseException() {
+            assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+        }
+
+        @Test
+        public void parseDescription_null_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription(null));
+        }
     }
 }
