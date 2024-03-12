@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.DoB;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
@@ -33,8 +34,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("type") String type, @JsonProperty("nric") String nric,
-            @JsonProperty("name") String name, @JsonProperty("dob") String dob,
-            @JsonProperty("phone") String phone) {
+                             @JsonProperty("name") String name, @JsonProperty("dob") String dob,
+                             @JsonProperty("phone") String phone) {
         this.type = type;
         this.nric = nric;
         this.name = name;
@@ -94,6 +95,8 @@ class JsonAdaptedPerson {
         switch (type) {
         case "PATIENT":
             return new Patient(modelNric, modelName, modelDoB, modelPhone);
+        case "DOCTOR":
+            return new Doctor(modelNric, modelName, modelDoB, modelPhone);
         default:
             break;
         }
