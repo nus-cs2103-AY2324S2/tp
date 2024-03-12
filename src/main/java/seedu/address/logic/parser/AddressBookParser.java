@@ -78,7 +78,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case SetCourseCommand.COMMAND_WORD:
-                return new SetCourseCommand();
+                return new SetCourseCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
