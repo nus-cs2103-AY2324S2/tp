@@ -63,6 +63,13 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Deletes a person by index
+     * 
+     * @param model the model to execute the command
+     * @return the result of the command
+     * @throws CommandException if the index is invalid
+     */
     private CommandResult deleteByIndex(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -75,6 +82,13 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
+    /**
+     * Deletes a person by name
+     * 
+     * @param model the model to execute the command
+     * @return the result of the command
+     * @throws CommandException if the person is not found
+     */
     private CommandResult deleteByName(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
         for (Person person : lastShownList) {
