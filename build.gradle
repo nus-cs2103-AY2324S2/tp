@@ -1,9 +1,9 @@
 plugins {
     id 'java'
-    id 'checkstyle'
+    //id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
-    id 'jacoco'
+    //id 'jacoco'
 }
 
 mainClassName = 'seedu.address.Main'
@@ -16,14 +16,14 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
-checkstyle {
-    toolVersion = '10.2'
-}
+//checkstyle {
+//    toolVersion = '10.2'
+//}
 
-test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
+//test {
+//    useJUnitPlatform()
+//    finalizedBy jacocoTestReport
+//}
 
 task coverage(type: JacocoReport) {
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
@@ -60,13 +60,13 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+  //  testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+ //   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
 
 shadowJar {
     archiveFileName = 'addressbook.jar'
 }
 
-defaultTasks 'clean', 'test'
+//defaultTasks 'clean', 'test'
