@@ -208,7 +208,7 @@ Expected output:
 
 Add the specified task to a project.
 
-Format: `add task <task name> /to <project name>`
+Format: `add task <TASK_NAME> /to <PROJECT_NAME>`
 
 * The specified project name must exist in the project list.
 * The task's name must be unique
@@ -216,16 +216,16 @@ Format: `add task <task name> /to <project name>`
 * `add task add deadline command /to CS2103T Duke Chatbot Project`
 
 Expected output:
-* Successful add command: `<Task> has been added to <Project>`
+* Successful add command: `<TASK_NAME> has been added to <PROJECT_NAME>`
 * Failed commands:
     - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
-    - repeated task: `Task <task name> already exists in <Project>`
+    - repeated task: `Task <TASK_NAME> already exists in <PROJECT_NAME>`
 
 ###  Remove task : `delete task`
 
 Deletes the specified task from a project.
 
-Format: `delete task <task name> /in <project name> `
+Format: `delete task <TASK_NAME> /in <PROJECT_NAME> `
 
 * The specified project name must exist in the project list.
 * The task name must exist
@@ -233,17 +233,17 @@ Format: `delete task <task name> /in <project name> `
 * `delete task add deadline command /in CS2103T Duke Chatbot Project`
 
 Expected output:
-* Successful deletion: `<Task> has been deleted from <Project>`
+* Successful deletion: `<TASK_NAME> has been deleted from <PROJECT_NAME>`
 * Failed commands:
     - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
-    - invalid task name: `Task <task name> not found: Please make sure the task exists`
+    - invalid task name: `Task <TASK_NAME> not found: Please make sure the task exists`
 
 
 ### Show Project  : `show project`
 
 shows the project’s details
 
-Format: `show project <project name>`
+Format: `show project <PROJECT_NAME>`
 
 * The specified project name must exist in the project list.
 
