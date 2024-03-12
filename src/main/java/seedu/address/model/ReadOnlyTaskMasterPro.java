@@ -6,7 +6,7 @@ import seedu.address.model.employee.Employee;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyTaskMasterPro {
 
     /**
      * Returns an unmodifiable view of the employees list.
