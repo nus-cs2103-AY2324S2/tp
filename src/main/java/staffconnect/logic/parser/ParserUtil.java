@@ -9,7 +9,7 @@ import java.util.Set;
 import staffconnect.commons.core.index.Index;
 import staffconnect.commons.util.StringUtil;
 import staffconnect.logic.parser.exceptions.ParseException;
-import staffconnect.model.person.Address;
+import staffconnect.model.person.Venue;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
@@ -66,18 +66,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String venue} into an {@code Venue}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code venue} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Venue parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        if (!Venue.isValidVenue(trimmedVenue)) {
+            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Venue(trimmedVenue);
     }
 
     /**

@@ -3,7 +3,7 @@ package staffconnect.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_VENUE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static staffconnect.testutil.Assert.assertThrows;
 import static staffconnect.testutil.TypicalPersons.ALICE;
@@ -46,7 +46,7 @@ public class StaffBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withVenue(VALID_VENUE_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         StaffBookStub newData = new StaffBookStub(newPersons);
@@ -73,7 +73,7 @@ public class StaffBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInStaffBook_returnsTrue() {
         staffBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withVenue(VALID_VENUE_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(staffBook.hasPerson(editedAlice));
     }
