@@ -18,7 +18,7 @@ public class Patient {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final PreferredName preferredName;
     private final Email email;
 
     // Data fields
@@ -28,10 +28,10 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(Name name, PreferredName preferredName, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, preferredName, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.preferredName = preferredName;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -41,8 +41,8 @@ public class Patient {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public PreferredName getPreferredName() {
+        return preferredName;
     }
 
     public Email getEmail() {
@@ -91,7 +91,7 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return name.equals(otherPatient.name)
-                && phone.equals(otherPatient.phone)
+                && preferredName.equals(otherPatient.preferredName)
                 && email.equals(otherPatient.email)
                 && address.equals(otherPatient.address)
                 && tags.equals(otherPatient.tags);
@@ -100,14 +100,14 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, preferredName, email, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
+                .add("preferred_name", preferredName)
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
