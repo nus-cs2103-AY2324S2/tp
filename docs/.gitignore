@@ -21,3 +21,6 @@ _site/
 .vscode/
 .idea/*
 *.iml
+
+# Commit Message
+commit-message.txt
