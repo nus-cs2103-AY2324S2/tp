@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Block {
     public static final String MESSAGE_CONSTRAINTS =
-            "Block numbers should only contain numbers, with or without a letter as the end. " +
-                    "There can only be at most 3 digits long.";
+            "Block numbers should only contain numbers, with or without a letter as the end. "
+                    + "There can only be at most 3 digits long.";
     public static final String VALIDATION_REGEX = "^\\d{1,3}[a-zA-Z]?$";
     public final String value;
 
