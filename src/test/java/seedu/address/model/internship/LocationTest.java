@@ -71,7 +71,7 @@ public class LocationTest {
         assertFalse(remote.toString().equals("invalid"));
         assertFalse(overseas.toString().equals("invalid"));
 
-        // Test for case insensitivity
+        // Test for case sensitivity
         assertFalse(local.toString().equals("local"));
         assertFalse(remote.toString().equals("remote"));
         assertFalse(overseas.toString().equals("overseas"));
