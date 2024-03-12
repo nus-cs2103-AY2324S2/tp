@@ -12,9 +12,9 @@ import seedu.address.model.person.Person;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class ListPanel extends UiPart<Region> {
+    private static final String FXML = "ListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ListPanel.class);
 
     @FXML
     private ListView<Person> personListView;
@@ -25,7 +25,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public ListPanel(ObservableList<Person> personList) {
         super(FXML);
         personListView.setItems(personList);
         appointmentListView.setItems(personList);
