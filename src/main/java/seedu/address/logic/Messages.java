@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.doctor.Doctor;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,15 +37,14 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append("NRIC: ")
+                .append(person.getNric())
+                .append("; Name: ")
+                .append(person.getName())
+                .append("; DoB: ")
+                .append(person.getDoB())
                 .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append(person.getPhone());
         return builder.toString();
     }
     /**
@@ -54,7 +53,7 @@ public class Messages {
     public static String format(Doctor doctor) {
         final StringBuilder builder = new StringBuilder();
         builder.append("; NRIC: ")
-                .append(doctor.getNRIC())
+                .append(doctor.getNric())
                 .append("; Name: ")
                 .append(doctor.getName())
                 .append("; DoB: ")

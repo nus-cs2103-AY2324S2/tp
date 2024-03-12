@@ -10,16 +10,16 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 
 /**
  * Adds a person to the address book.
  */
-public class AddDoctorCommand extends Command {
+public class AddPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "adddoctor";
+    public static final String COMMAND_WORD = "addpatient";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a doctor to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
             + "Parameters: "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_NAME + "NAME "
@@ -31,17 +31,17 @@ public class AddDoctorCommand extends Command {
             + PREFIX_DOB + "2003-01-30 "
             + PREFIX_PHONE + "98765432";
 
-    public static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This doctor already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
 
-    private final Doctor toAdd;
+    private final Patient toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddDoctorCommand(Doctor doctor) {
-        requireNonNull(doctor);
-        toAdd = doctor;
+    public AddPatientCommand(Patient patient) {
+        requireNonNull(patient);
+        toAdd = patient;
     }
 
     @Override
@@ -63,11 +63,11 @@ public class AddDoctorCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddDoctorCommand)) {
+        if (!(other instanceof AddPatientCommand)) {
             return false;
         }
 
-        AddDoctorCommand otherAddCommand = (AddDoctorCommand) other;
+        AddPatientCommand otherAddCommand = (AddPatientCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 
