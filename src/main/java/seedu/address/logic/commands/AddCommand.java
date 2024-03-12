@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -18,24 +19,28 @@ import seedu.address.model.patient.Patient;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addp";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
             + "Parameters: "
+            + "<patient_hospital_id"
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_PRENAME + "PREFERRED_NAME"
+            + PREFIX_FOOD + "FOOD_PREFERENCE "
+            + PREFIX_FAMILY + "FAMILY_CONDITION "
+            + PREFIX_HOBBY + "HOBBY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Alex Yeoh Jia Jun "
+            + PREFIX_PRENAME + "Alex "
+            + PREFIX_FOOD + "Curry Chicken "
+            + PREFIX_FAMILY + "Stable, Has 2 sons visit him regularly "
+            + PREFIX_HOBBY + "Singing karaoke "
+            + PREFIX_TAG + "Diabetes ";
 
-    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_SUCCESS =
+        "Information for patient %1$s with ID %2$s has been successfully added!";
+
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book";
 
     private final Patient toAdd;
@@ -57,7 +62,7 @@ public class AddCommand extends Command {
         }
 
         model.addPatient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName(), toAdd.getPatientHospitalId()));
     }
 
     @Override
