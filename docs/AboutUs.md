@@ -35,7 +35,7 @@ You can contact us individually through our portfolios
 
 <img src="images/laney0808.png" width="200px">
 
-[[github](http://github.com/laney0808)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/laney0808)] [[portfolio](team/laney0808.md)]
 
 * Role: Developer
 * Responsibilities: Front-end, Documentation, UI Designer
