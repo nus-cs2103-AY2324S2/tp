@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class AddOrderCommand extends Command {
         Person person = lastShownList.get(index.getZeroBased());
         person.addOrder(this.arrivalDate, this.description);
 
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(person)));
     }
 
