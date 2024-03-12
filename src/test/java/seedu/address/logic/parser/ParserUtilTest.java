@@ -209,7 +209,11 @@ public class ParserUtilTest {
         @Test
         public void parseLocalDateTime_success() throws Exception {
             LocalDateTime expectedDateTime =
+<<<<<<< HEAD
                 LocalDateTime.parse(VALID_DATE + " " + VALID_TIME, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+=======
+                    LocalDateTime.parse(VALID_DATE + " " + VALID_TIME, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+>>>>>>> edit-an
             assertEquals(expectedDateTime, ParserUtil.parseLocalDateTime(VALID_DATE, VALID_TIME));
         }
 

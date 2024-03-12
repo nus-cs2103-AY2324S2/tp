@@ -71,8 +71,13 @@ public class AddNoteCommandTest {
             assertEquals(VALID_NOTE_FLU, noteCaptor.get(noteCaptor.size() - 1));
 
             assertEquals(
+<<<<<<< HEAD
                 new CommandResult(String.format(AddNoteCommand.MESSAGE_SUCCESS, VALID_NOTE_FLU.getDescription()), false,
                     false), result);
+=======
+                    new CommandResult(String.format(AddNoteCommand.MESSAGE_SUCCESS, VALID_NOTE_FLU.getDescription()), false,
+                            false), result);
+>>>>>>> edit-an
         }
     }
 
@@ -81,6 +86,7 @@ public class AddNoteCommandTest {
         AddNoteCommand addNoteCommand1 = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
         AddNoteCommand addNoteCommand2 = new AddNoteCommand(Index.fromOneBased(2), VALID_NOTE_FLU);
 
+<<<<<<< HEAD
         // Same object.
         assertEquals(addNoteCommand1, addNoteCommand1);
 
@@ -95,6 +101,22 @@ public class AddNoteCommandTest {
         assertNotEquals(null, addNoteCommand1);
 
         // Different note.
+=======
+        // Same object
+        assertEquals(addNoteCommand1, addNoteCommand1);
+
+        // Same values
+        AddNoteCommand addNoteCommand1Copy = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
+        assertEquals(addNoteCommand1, addNoteCommand1Copy);
+
+        // Different types
+        assertNotEquals(1, addNoteCommand1);
+
+        // Null
+        assertNotEquals(null, addNoteCommand1);
+
+        // Different note
+>>>>>>> edit-an
         assertNotEquals(addNoteCommand1, addNoteCommand2);
     }
 
@@ -103,10 +125,17 @@ public class AddNoteCommandTest {
         AddNoteCommand addNoteCommand1 = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
         AddNoteCommand addNoteCommand2 = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
 
+<<<<<<< HEAD
         // Same values.
         assertEquals(addNoteCommand1.hashCode(), addNoteCommand2.hashCode());
 
         // Different values.
+=======
+        // Same values
+        assertEquals(addNoteCommand1.hashCode(), addNoteCommand2.hashCode());
+
+        // Different values
+>>>>>>> edit-an
         AddNoteCommand addNoteCommand3 = new AddNoteCommand(Index.fromOneBased(2), VALID_NOTE_FLU);
         assertNotEquals(addNoteCommand1.hashCode(), addNoteCommand3.hashCode());
     }
@@ -115,6 +144,7 @@ public class AddNoteCommandTest {
     public void toString_success() {
         AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
         String expected =
+<<<<<<< HEAD
             "seedu.address.logic.commands.AddNoteCommand{personIndex=seedu.address.commons.core.index"
                 + ".Index{zeroBasedIndex=0}, note=seedu.address.model.person.note.Note{dateTime=2024-02-19T21:30, "
                 + "description=General Flu}}";
@@ -122,3 +152,12 @@ public class AddNoteCommandTest {
         assertEquals(expected, addNoteCommand.toString());
     }
 }
+=======
+                "seedu.address.logic.commands.AddNoteCommand{personIndex=seedu.address.commons.core.index"
+                        + ".Index{zeroBasedIndex=0}, note=seedu.address.model.person.note.Note{dateTime=2024-02-19T21:30, "
+                        + "description=General Flu}}";
+
+        assertEquals(expected, addNoteCommand.toString());
+    }
+}
+>>>>>>> edit-an

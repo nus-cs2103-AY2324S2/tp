@@ -38,6 +38,7 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment note added: %1$s";
 
+    public static final String MESSAGE_DUPLICATE_NOTE = "The specified appointment date time already exists.";
     private final Index personIndex;
     private final Note note;
 
@@ -59,6 +60,9 @@ public class AddNoteCommand extends Command {
         if (personIndex.getZeroBased() >= persons.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
         }
+        if (model.hasNote(note)) {
+            throw new CommandException(MESSAGE_DUPLICATE_NOTE);
+        }
 
         Person person = persons.get(personIndex.getZeroBased());
         Person.Builder builder = new Person.Builder(person);
@@ -66,7 +70,7 @@ public class AddNoteCommand extends Command {
 
         model.setPerson(person, builder.build());
         // TODO: Show notes for a given person.
-
+        model.addNote(note);
         return new CommandResult(String.format(MESSAGE_SUCCESS, note.getDescription()));
     }
 
