@@ -11,7 +11,7 @@ public class Availability {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module code should contain 2-4 capital letters followed by 4 digits long and at most 1 capitalised suffix";
+            "Should be a week of the day, the full word or the first syllable of the word";
     public static final String VALIDATION_REGEX = "/((mon|tues|wed(nes)?|thur(s)?|fri|sat(ur)?|sun)(day)?)/gi";
 
     public final String value;
@@ -19,12 +19,12 @@ public class Availability {
     /**
      * Constructs a {@code Availability}.
      *
-     * @param module A valid availability.
+     * @param availability A valid availability.
      */
-    public Availability(String module) {
-        requireNonNull(module);
-        checkArgument(isValidAvailability(module), MESSAGE_CONSTRAINTS);
-        value = module;
+    public Availability(String availability) {
+        requireNonNull(availability);
+        checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
+        value = availability;
     }
 
     /**
