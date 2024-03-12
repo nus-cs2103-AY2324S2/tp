@@ -10,12 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.commons.util.DateTimeUtil;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +27,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String birthday;
+    private final String lastmet;
+    private final String schedule;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,12 +37,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("birthday") String birthday, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("birthday") String birthday, @JsonProperty("lastmet") String lastmet,
+                             @JsonProperty("schedule") String schedule,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.lastmet = lastmet;
+        this.schedule = schedule;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,6 +61,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
+        lastmet = source.getLastMet().toString();
+        schedule = source.getSchedule().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,8 +120,17 @@ class JsonAdaptedPerson {
         }
         final Birthday modelBirthday = new Birthday(birthday);
 
+        final LastMet modelLastMet = new LastMet(DateUtil.parseStringToDate(lastmet));
+
+        String[] scheduleString = schedule.toString().split("/");
+        String scheduleDateTimeString = scheduleString[0];
+        String isDoneString = scheduleString[1];
+        final Schedule modelSchedule = new Schedule(DateTimeUtil.parseStringToDateTime(scheduleDateTimeString),
+                Schedule.checkIsDoneFromString(isDoneString));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
+                modelLastMet, modelSchedule, modelTags);
     }
 
 }
