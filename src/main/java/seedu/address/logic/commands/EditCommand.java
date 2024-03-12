@@ -249,7 +249,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("github username", gitHubUsername)
+                    .add("github_username", gitHubUsername)
                     .add("tags", tags)
                     .toString();
         }

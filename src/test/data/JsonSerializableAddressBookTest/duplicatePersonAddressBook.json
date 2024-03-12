@@ -4,13 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "github username": "alice123",
+    "github_username": "alice123",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "github username": "alice123",
+    "github_username": "alice123",
     "address": "4th street"
   } ]
 }
