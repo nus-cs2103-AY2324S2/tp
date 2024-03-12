@@ -10,11 +10,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Sex {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Sex should only be either 'm' or 'f'.";
+        "Sex should only be either 'm' or 'f'.";
     public static final String VALIDATION_REGEX = "^[mf]$";
     public final String value;
 
 
+    /**
+     * Constructs an {@code Sex}.
+     *
+     * @param sex A valid sex.
+     */
     public Sex(String sex) {
         requireNonNull(sex);
         checkArgument(isValidSex(sex), MESSAGE_CONSTRAINTS);

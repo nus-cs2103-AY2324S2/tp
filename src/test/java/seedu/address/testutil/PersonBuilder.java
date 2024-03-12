@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BankDetails;
 import seedu.address.model.person.EmploymentType;
@@ -10,22 +13,21 @@ import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_FIRSTNAME = "Amy";
+    public static final String DEFAULT_LASTNAME = "Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SEX = "f";
     public static final String DEFAULT_EMPLOYMENT_TYPE = "ft";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BANK_ADDRESS = "12345678";
 
-    private Name name;
+    private Name firstName;
+    private Name lastName;
     private Phone phone;
     private Sex sex;
     private EmploymentType employmentType;
@@ -37,7 +39,8 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
+        firstName = new Name(DEFAULT_FIRSTNAME);
+        lastName = new Name(DEFAULT_LASTNAME);
         phone = new Phone(DEFAULT_PHONE);
         sex = new Sex(DEFAULT_SEX);
         employmentType = new EmploymentType(DEFAULT_EMPLOYMENT_TYPE);
@@ -50,7 +53,8 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
+        firstName = personToCopy.getFirstName();
+        lastName = personToCopy.getLastName();
         phone = personToCopy.getPhone();
         address = personToCopy.getAddress();
         sex = personToCopy.getSex();
@@ -59,11 +63,20 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
     }
 
+
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code firstName} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+    public PersonBuilder withFirstName(String name) {
+        this.firstName = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code lastName} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLastName(String name) {
+        this.lastName = new Name(name);
         return this;
     }
 
@@ -116,7 +129,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, sex, employmentType, address, bankDetails, tags);
+        return new Person(firstName, lastName, phone, sex, employmentType, address, bankDetails, tags);
     }
 
 }

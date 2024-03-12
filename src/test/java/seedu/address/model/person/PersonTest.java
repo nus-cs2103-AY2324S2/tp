@@ -1,13 +1,20 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRSTNAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LASTNAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
 
@@ -26,21 +33,21 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Person editedAlice = new PersonBuilder(ALICE)
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different first name, all other attributes same -> returns false
+        editedAlice = new PersonBuilder(ALICE).withFirstName(VALID_FIRSTNAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Person editedBob = new PersonBuilder(BOB).withFirstName(VALID_FIRSTNAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        String nameWithTrailingSpaces = VALID_FIRSTNAME_BOB + " ";
+        editedBob = new PersonBuilder(BOB).withFirstName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
 
@@ -62,8 +69,12 @@ public class PersonTest {
         // different person -> returns false
         assertFalse(ALICE.equals(BOB));
 
-        // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different first name -> returns false
+        Person editedAlice = new PersonBuilder(ALICE).withFirstName(VALID_FIRSTNAME_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different last name -> returns false
+        editedAlice = new PersonBuilder(ALICE).withLastName(VALID_LASTNAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
@@ -81,8 +92,15 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone" +
-                "=" + ALICE.getPhone() + ", sex=" + ALICE.getSex() + ", employmentType=" + ALICE.getEmploymentType() + ", address=" + ALICE.getAddress() + ", bankdetails=" + ALICE.getBankDetails() + ", tags=" + ALICE.getTags() + "}";
+        String expected =
+            Person.class.getCanonicalName() + "{firstName=" + ALICE.getFirstName()
+                + ", lastName=" + ALICE.getLastName()
+                + ", phone=" + ALICE.getPhone()
+                + ", sex=" + ALICE.getSex()
+                + ", employmentType=" + ALICE.getEmploymentType()
+                + ", address=" + ALICE.getAddress()
+                + ", bankDetails=" + ALICE.getBankDetails()
+                + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

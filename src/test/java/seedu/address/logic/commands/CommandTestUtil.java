@@ -1,20 +1,9 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIRSTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTNAME;
@@ -22,6 +11,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+//import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -34,8 +35,14 @@ public class CommandTestUtil {
     public static final String VALID_LASTNAME_BOB = "Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_SEX_AMY = "f";
+    public static final String VALID_SEX_BOB = "m";
+    public static final String VALID_EMPLOYMENTTYPE_AMY = "ft";
+    public static final String VALID_EMPLOYMENTTYPE_BOB = "pt";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_BANKDETAILS_AMY = "8374219837";
+    public static final String VALID_BANKDETAILS_BOB = "3214213212";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -45,31 +52,43 @@ public class CommandTestUtil {
     public static final String LASTNAME_DESC_BOB = " " + PREFIX_LASTNAME + VALID_LASTNAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String SEX_DESC_AMY = " " + PREFIX_SEX + VALID_SEX_AMY;
+    public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_SEX_BOB;
+    public static final String EMPLOYMENTTYPE_DESC_AMY = " " + PREFIX_EMPLOYMENTTYPE + VALID_EMPLOYMENTTYPE_AMY;
+    public static final String EMPLOYMENTTYPE_DESC_BOB = " " + PREFIX_EMPLOYMENTTYPE + VALID_EMPLOYMENTTYPE_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String BANKDETAILS_DESC_AMY = " " + PREFIX_BANKDETAILS + VALID_BANKDETAILS_AMY;
+    public static final String BANKDETAILS_DESC_BOB = " " + PREFIX_BANKDETAILS + VALID_BANKDETAILS_BOB;
+
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_FIRSTNAME + "James&"; // '&' not allowed in
+    public static final String INVALID_FIRSTNAME_DESC = " " + PREFIX_FIRSTNAME + "James&"; // '&' not allowed in
+    public static final String INVALID_LASTNAME_DESC = " " + PREFIX_LASTNAME + "Char.les"; // '&' not allowed in
     public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "u"; // 'u' is not an allowed sex
-    public static final String INVALID_EMPLOYMENTTYPE_DESC = " " + PREFIX_EMPLOYMENTTYPE + "ut"; // 'ut' is not an allowed employment type
+    public static final String INVALID_EMPLOYMENTTYPE_DESC = " " + PREFIX_EMPLOYMENTTYPE + "ut";
+    //'ut' is not an allowed employment type
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_BANKDETAILS_DESC = " " + PREFIX_PHONE
+        + "3213-421321"; // '-' not allowed in bank details
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    /*
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }*/
 
     /**
      * Executes the given {@code command}, confirms that <br>

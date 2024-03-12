@@ -15,6 +15,11 @@ public class EmploymentType {
     public final String value;
 
 
+    /**
+     * Constructs an {@code EmploymentType}.
+     *
+     * @param employmentType A valid employment type.
+     */
     public EmploymentType(String employmentType) {
         requireNonNull(employmentType);
         checkArgument(isValidEmploymentType(employmentType), MESSAGE_CONSTRAINTS);

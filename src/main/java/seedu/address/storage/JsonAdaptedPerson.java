@@ -1,7 +1,14 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BankDetails;
@@ -11,12 +18,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -42,7 +43,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("lastName") String lastName,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("sex") String sex,
-                             @JsonProperty("employmentType") String employmentType, @JsonProperty("address") String address,
+                             @JsonProperty("employmentType") String employmentType,
+                             @JsonProperty("address") String address,
                              @JsonProperty("bankDetails") String bankDetails,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.firstName = firstName;
@@ -69,8 +71,8 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         bankDetails = source.getBankDetails().value;
         tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -117,7 +119,8 @@ class JsonAdaptedPerson {
         final Sex modelSex = new Sex(sex);
 
         if (employmentType == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EmploymentType.class.getSimpleName()));
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, EmploymentType.class.getSimpleName()));
         }
         if (!EmploymentType.isValidEmploymentType(employmentType)) {
             throw new IllegalValueException(EmploymentType.MESSAGE_CONSTRAINTS);
@@ -133,7 +136,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (bankDetails == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, BankDetails.class.getSimpleName()));
         }
         if (!BankDetails.isValidBankAccount(bankDetails)) {
             throw new IllegalValueException(BankDetails.MESSAGE_CONSTRAINTS);
@@ -142,8 +146,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelFirstName, modelLastName, modelPhone, modelSex, modelEmploymentType,
-                modelAddress,
-                modelBankDetails, modelTags);
+            modelAddress,
+            modelBankDetails, modelTags);
     }
 
 }

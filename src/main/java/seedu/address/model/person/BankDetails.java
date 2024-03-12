@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class BankDetails {
 
-    public static final String MESSAGE_CONSTRAINTS = "Bank details can only contain numbers " +
-            "and it should not contain a dash (-)";
+    public static final String MESSAGE_CONSTRAINTS = "Bank details can only contain numbers "
+        + "and it should not contain a dash (-)";
     public static final String VALIDATION_REGEX = "^\\d*$";
 
     public final String value;
