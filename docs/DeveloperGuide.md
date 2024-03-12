@@ -273,45 +273,93 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
-* has a need to manage a significant number of contacts
+* Teaching Assistant for a Computer Science module in NUS 
+* tech savvy 
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: All in one Address book managing student’s progress in the course, by means of participation, grades, and other course specific attributes of an NUS CS class. Can quickly find information, filter and sort with keyboard shortcuts.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​ | So that I can…​ |
+|----------|---------|--------------|-----------------|
+| `* * *`  | TA      | name/rename the CS course that I am tutoring this semester | keep track of the module I am teaching |
+| `* * *`  | TA      | add a student to the CS course that I am tutoring that semester to my class | keep track of him or her |
+| `* * *`  | TA      | view all students from my class | view details about all of them |
+| `* * *`  | TA      | mark attendance for a student in my class | keep track of who's present |
+| `* * *`  | TA      | unmark attendance for a student in my class | keep track of who is absent |
+| `* * *`  | TA      | delete a student | remove a student if he or she leaves the class |
+| `* * *`  | TA      | know all the commands of the address book | use it effectively |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TA Pro` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to delete a specific student based on NUSNet ID.
 
-    Use case ends.
+   Use case ends.
+
+**Use case: Add a student**
+
+**MSS**
+
+1. User requests to add a student, providing the name and NUSNet ID as compulsory information, with the phone number being optional.
+
+   Use case ends.
+
+**Use case: Name/Rename CS Course**
+
+**MSS**
+
+1. User requests to name or rename a CS course by specifying the course name and the new name if applicable.
+
+   Use case ends.
+
+**Use case: View All Students**
+
+**MSS**
+
+1. User requests to view a list of all students.
+
+   Use case ends.
+
+**Use case: Mark Attendance**
+
+**MSS**
+
+1. User requests to mark attendance for a student by providing the student's NUSNet ID; specifying the week is optional.
+
+   Use case ends.
+
+**Use case: Un-mark Attendance**
+
+**MSS**
+
+1. User requests to un-mark attendance for a student by providing the student's NUSNet ID; specifying the week is optional.
+
+   Use case ends.
+
+**Use case: Know Commands for the Address Book**
+
+**MSS**
+
+1. User requests to view the list of available commands for the AddressBook.
+
+   Use case ends.
+
 
 **Extensions**
 
@@ -329,16 +377,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
+2.  System to load the main interface in under 1 second on standard educational institution hardware.
+3.  Application to be accessible on devices commonly used by the educational institution, such as desktop computers, laptops, and tablet.
+4.  System to ensure data integrity, with a goal of zero data loss over the academic year.
+5.  Input validation to prevent errors due to incorrect data entry.
+6.  Application to handle common errors gracefully, such as incorrect data entry, without crashing or losing data.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CS**: Computer Science
+* **NUS**: National University of Singapore
+* **TA**: Teaching Assistant
 
 --------------------------------------------------------------------------------------------------------------------
 
