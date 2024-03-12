@@ -63,6 +63,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String dob} into a {@code dob}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dob} is invalid.
+     */
+    public static DateOfBirth parseDateOfBirth(String dob) throws ParseException {
+        requireNonNull(dob);
+        String trimmedDob = dob.trim();
+        if (!DateOfBirth.isValidDateOfBirth(trimmedDob)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedDob);
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
