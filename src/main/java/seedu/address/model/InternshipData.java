@@ -99,7 +99,7 @@ public class InternshipData implements ReadOnlyInternshipData {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("internship list", internshipList)
+                .add("Internship list", internshipList)
                 .toString();
     }
 

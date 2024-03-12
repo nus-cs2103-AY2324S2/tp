@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.internship.exceptions.DuplicateInternshipException;
+import seedu.address.model.internship.exceptions.InternshipNotFoundException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -33,7 +35,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
      */
     public boolean contains(Internship toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameInternship);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -43,7 +45,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
     public void add(Internship toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateInternshipException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +60,11 @@ public class UniqueInternshipList implements Iterable<Internship> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new InternshipNotFoundException();
         }
 
         if (!target.isSameInternship(editedInternship) && contains(editedInternship)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateInternshipException();
         }
 
         internalList.set(index, editedInternship);
@@ -75,7 +77,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
     public void remove(Internship toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new InternshipNotFoundException();
         }
     }
 
@@ -91,7 +93,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
     public void setInternships(List<Internship> internships) {
         requireAllNonNull(internships);
         if (!internshipsAreUnique(internships)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateInternshipException();
         }
 
         internalList.setAll(internships);
@@ -146,5 +148,12 @@ public class UniqueInternshipList implements Iterable<Internship> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
     }
 }
