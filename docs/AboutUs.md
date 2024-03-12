@@ -39,22 +39,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation
 
-### Johnny Doe
+### Newton Koh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/newtonkoh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/newtonkoh)] 
+[[portfolio](team/newtonkoh.md)]
 
 * Role: Developer
 * Responsibilities: UI
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
