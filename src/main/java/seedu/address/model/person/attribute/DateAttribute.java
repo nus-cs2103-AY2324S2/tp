@@ -2,9 +2,19 @@ package seedu.address.model.person.attribute;
 
 import java.time.LocalDate;
 
-class DateAttribute extends Attribute {
+/**
+ * Represents an attribute that holds a date value in a person's record.
+ * This class extends {@link Attribute} to include functionality specific to date management.
+ */
+public class DateAttribute extends Attribute {
     private LocalDate value;
 
+    /**
+     * Constructs a {@code DateAttribute} with the specified name and date.
+     *
+     * @param name  the name of the attribute
+     * @param value the date value of the attribute
+     */
     public DateAttribute(String name, LocalDate value) {
         super(name);
         this.value = value;
@@ -23,4 +33,5 @@ class DateAttribute extends Attribute {
     public boolean isOnDate(LocalDate date) {
         return value.isEqual(date);
     }
+
 }

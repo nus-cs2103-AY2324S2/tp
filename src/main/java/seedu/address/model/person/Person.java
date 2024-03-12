@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.attribute.Attribute;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +26,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs a person with a random UUID.
@@ -41,6 +42,23 @@ public class Person {
         this.uuid = UUID.randomUUID();
     }
 
+    /**
+     * Creates a new Person instance by cloning the details of an existing person.
+     * This constructor is used for creating a copy of {@code personToEdit} with the intention
+     * of editing or updating its attributes. It copies all the attributes of the provided person,
+     * including name, phone, email, address, tags, and UUID, into a new Person object.
+     *
+     * @param personToEdit The person whose details are to be cloned into this new instance.
+     */
+    public Person(Person personToEdit) {
+        // Clone existing fields
+        this.name = personToEdit.name;
+        this.phone = personToEdit.phone;
+        this.email = personToEdit.email;
+        this.address = personToEdit.address;
+        this.tags = new HashSet<>(personToEdit.tags);
+        this.uuid = personToEdit.uuid;
+    }
     public Name getName() {
         return name;
     }
@@ -153,4 +171,6 @@ public class Person {
                 .toString();
     }
 
+    public void setAttribute(String attributeName, Attribute attributeValue) {
+    }
 }

@@ -29,4 +29,5 @@ public class IntegerAttribute extends Attribute {
     public int compare(IntegerAttribute other) {
         return Integer.compare(value, other.value);
     }
+
 }
