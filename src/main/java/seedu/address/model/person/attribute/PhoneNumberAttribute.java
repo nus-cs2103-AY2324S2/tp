@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.attribute;
 
 /**
  * Phone number attribute with integer value
