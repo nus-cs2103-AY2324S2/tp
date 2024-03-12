@@ -68,24 +68,41 @@ public class AvailabilityTest {
 
     @Test
     public void equals() {
-        Availability availability = new Availability("monday");
+        Availability monAvailability = new Availability("monday");
 
         // same values -> returns true
-        assertTrue(availability.equals(new Availability("monday")));
+        assertTrue(monAvailability.equals(new Availability("monday")));
 
         // same day -> return true
-        assertTrue(availability.equals(new Availability("mOn")));
+        assertTrue(monAvailability.equals(new Availability("mOn")));
 
         // same object -> returns true
-        assertTrue(availability.equals(availability));
+        assertTrue(monAvailability.equals(monAvailability));
 
         // null -> returns false
-        assertFalse(availability.equals(null));
+        assertFalse(monAvailability.equals(null));
 
         // different types -> returns false
-        assertFalse(availability.equals(5.0f));
+        assertFalse(monAvailability.equals(5.0f));
 
-        // different values -> returns false
-        assertFalse(availability.equals(new Availability("sunday")));
+        // different values -> returns false, mon and tues
+        assertFalse(monAvailability.equals(new Availability("tues")));
+
+        Availability wedAvailability = new Availability("wed");
+        Availability friAvailability = new Availability("wed");
+
+        // different values -> returns false, mon and wed
+        assertFalse(monAvailability.equals(wedAvailability));
+
+        // different values -> returns false, wed and thurs
+        assertFalse(wedAvailability.equals(new Availability("thurs")));
+
+        // different values -> returns false, sat and sun
+        assertFalse(friAvailability.equals(new Availability("SATURDAY")));
+
+        // different values -> returns false, sat and sun
+        assertFalse(friAvailability.equals(new Availability("sunday")));
+
+
     }
 }
