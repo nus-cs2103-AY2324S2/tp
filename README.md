@@ -17,7 +17,7 @@ managing your members' details faster than traditional GUI apps.
 ## Features
 
 ### Creating Contact Information
-Creates and adds a band member's contact into the list of contacts. 
+Creates and adds a band member's contact into the list of contacts.
 
 Command Syntax: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [b/BIRTHDAY] ...`
 
@@ -26,7 +26,7 @@ Examples:
 - `add n/Sally Smith p/92716291 e/sallys@example.com a/Sally Street, block 221, #12-25 b/2000-01-01`
 
 ### Updating Contact Information
-Updates a band member's contact with newly provided information. 
+Updates a band member's contact with newly provided information.
 
 Command Syntax: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY] ...`
 
