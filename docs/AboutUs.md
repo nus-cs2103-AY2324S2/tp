@@ -9,25 +9,35 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lim Zhekai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhekaiii.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/zhekaiii)]
+[[portfolio](team/zhekaiii.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Code Reviews & Backend
 
-### Jane Doe
+### Alvin Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alvinnzz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/alvinnzz)]
+[[portfolio](team/alvinnzz.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Integration
+
+### Oon Jie Rui
+
+<img src="images/jerryo3.png" width="200px">
+
+[[github](https://github.com/jerryo3)]
+[[portfolio](team/jerryo3.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
 
 ### Johnny Doe
 
@@ -36,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI
 
 ### Jean Doe
 
@@ -48,12 +58,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
