@@ -49,7 +49,8 @@ public class AvailabilityTest {
 
         // valid availability
         assertTrue(Availability.isValidAvailability("mon")); // first syllable tuesday
-        assertTrue(Availability.isValidAvailability("tues")); // first syllable tuesday
+        assertTrue(Availability.isValidAvailability("tue")); // first syllable tuesday without s
+        assertTrue(Availability.isValidAvailability("tues")); // first syllable tuesday with s
         assertTrue(Availability.isValidAvailability("wed")); // first syllable wednesday
         assertTrue(Availability.isValidAvailability("wednes")); // two syllable wednesday
         assertTrue(Availability.isValidAvailability("thu")); // first syllable thursday without rs
