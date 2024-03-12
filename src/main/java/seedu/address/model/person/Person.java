@@ -53,8 +53,8 @@ public class Person {
         return address;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
+    public void setRating(int rating) {
+        this.rating.setRating(rating);
     }
 
     /**
