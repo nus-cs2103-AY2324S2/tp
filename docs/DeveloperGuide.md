@@ -356,6 +356,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
+**Use case: UC3 - Toggle display**
+
+**MSS**
+
+1. User requests to toggle the display on or off
+2. Hi:Re hides or shows the display, based on whether the display was formerly on or off
+
+   Use case ends.
+
+**Extensions**
+
+* (No extensions)
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
