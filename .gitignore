@@ -26,6 +26,8 @@ bin/**
 .vscode/
 .vscode/**
 
+.settings
+
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
