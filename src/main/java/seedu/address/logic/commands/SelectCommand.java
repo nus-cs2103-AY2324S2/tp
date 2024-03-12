@@ -25,9 +25,17 @@ public class SelectCommand extends Command {
 
     public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected Person: %1$s";
 
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
+
     private final Index targetIndex;
 
+    /**
+     * Constructs a SelectCommand object.
+     *
+     * @param targetIndex The index of the person in the filtered person list to select.
+     */
     public SelectCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -41,7 +49,7 @@ public class SelectCommand extends Command {
         }
 
         Person personToSelect = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToSelect);
+        //model.deletePerson(personToSelect);
         return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, Messages.format(personToSelect)));
     }
 
