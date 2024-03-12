@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.note.Description;
 import seedu.address.model.person.tag.Tag;
 
 /**
@@ -21,6 +25,7 @@ import seedu.address.model.person.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_TIME = "Date or time format is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -120,5 +125,43 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String date} and {@code String time} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} or {@code time} is invalid.
+     */
+    public static LocalDateTime parseLocalDateTime(String date, String time) throws ParseException {
+        requireAllNonNull(date, time);
+
+        String trimmedDate = date.trim();
+        String trimmedTime = time.trim();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+
+        try {
+            return LocalDateTime.parse(trimmedDate + " " + trimmedTime, formatter);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME);
+        }
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+
+        if (!Description.isValid(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Description(trimmedDescription);
     }
 }

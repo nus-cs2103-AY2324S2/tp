@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.AddNoteCommand.PREFIX_DATE;
+import static seedu.address.logic.commands.AddNoteCommand.PREFIX_NOTE;
+import static seedu.address.logic.commands.AddNoteCommand.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -39,6 +42,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DATE = "19-02-2024";
+    public static final String VALID_TIME = "2130";
+    public static final String VALID_NOTE = "General Flu";
     public static final Note VALID_NOTE_FLU =
         new Note(LocalDateTime.of(2024, 2, 19, 21, 30), new Description("General Flu"));
 
@@ -52,12 +58,18 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
+    public static final String TIME_DESC = " " + PREFIX_TIME + VALID_TIME;
+    public static final String NOTE_DESC = " " + PREFIX_NOTE + VALID_NOTE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "19/02/2024"; // / not allowed for dates
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "21:30"; // / colon seperated not allowed
+    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE; // empty note not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
