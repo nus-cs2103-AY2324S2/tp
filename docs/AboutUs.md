@@ -21,7 +21,9 @@ You can reach us at the email [e0960433@u.nus.edu](e0960433@u.nus.edu)
 
 ### Pairor Tarin
 
-<img src="images/TarinPairor.png" width="199px">
+
+<img src="images/tarinpairor.png" width="200px">
+
 
 [[github](http://github.com/TarinPairor)]
 [[portfolio](team/tarinpairor.md)]
