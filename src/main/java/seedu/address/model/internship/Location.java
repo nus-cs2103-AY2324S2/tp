@@ -12,7 +12,8 @@ public class Location {
     public enum LocationEnum {
         LOCAL,
         OVERSEAS,
-        REMOTE
+        REMOTE,
+        UNKNOWN
     }
 
     public final LocationEnum location;
@@ -22,9 +23,24 @@ public class Location {
      *
      * @param location A valid location.
      */
-    public Location(LocationEnum location) {
-        requireNonNull(location);
-        this.location = location;
+    public Location(String location) {
+        if (location == null) {
+            this.location = LocationEnum.UNKNOWN;
+            return;
+        }
+        switch (location) {
+        case "local":
+            this.location = LocationEnum.LOCAL;
+            break;
+        case "overseas":
+            this.location = LocationEnum.OVERSEAS;
+            break;
+        case "remote":
+            this.location = LocationEnum.REMOTE;
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid location: " + location);
+        }
     }
 
     @Override
@@ -36,6 +52,8 @@ public class Location {
             return "Overseas";
         case REMOTE:
             return "Remote";
+        case UNKNOWN:
+            return "Unknown";
         default:
             throw new IllegalArgumentException("Unexpected location: " + location);
         }

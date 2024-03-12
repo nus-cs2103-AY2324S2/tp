@@ -9,12 +9,13 @@ public class ApplicationStatus {
     /**
      * Enum of statuses
      */
-    public enum StatusEnum {
+    private enum StatusEnum {
         TO_APPLY,
         PENDING,
         REJECTED,
         ACCEPTED,
         ONGOING
+
     }
 
     public final StatusEnum applicationStatus;
@@ -22,11 +23,32 @@ public class ApplicationStatus {
     /**
      * Constructs a {@code ApplicationStatus}.
      *
-     * @param applicationStatus A valid applicationStatus.
+     * @param status A valid applicationStatus.
      */
-    public ApplicationStatus(StatusEnum applicationStatus) {
-        requireNonNull(applicationStatus);
-        this.applicationStatus = applicationStatus;
+    public ApplicationStatus(String status) {
+        if (status == null) {
+            this.applicationStatus = StatusEnum.TO_APPLY;
+            return;
+        }
+        switch (status) {
+        case "to apply":
+            this.applicationStatus = StatusEnum.TO_APPLY;
+            break;
+        case "pending":
+            this.applicationStatus = StatusEnum.PENDING;
+            break;
+        case "rejected":
+            this.applicationStatus = StatusEnum.REJECTED;
+            break;
+        case "accepted":
+            this.applicationStatus = StatusEnum.ACCEPTED;
+            break;
+        case "ongoing":
+            this.applicationStatus = StatusEnum.ONGOING;
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid application status: " + status);
+        }
     }
 
     @Override
@@ -46,7 +68,6 @@ public class ApplicationStatus {
             throw new IllegalArgumentException("Unexpected application status: " + applicationStatus);
         }
     }
-
 
     @Override
     public int hashCode() {
