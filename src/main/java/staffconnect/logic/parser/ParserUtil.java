@@ -11,6 +11,7 @@ import staffconnect.commons.util.StringUtil;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.Address;
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
 import staffconnect.model.tag.Tag;
@@ -66,6 +67,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Email parseEmail(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Email(trimmedEmail);
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -81,18 +97,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String module} into an {@code Module}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code module} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Module parseModule(String module) throws ParseException {
+        requireNonNull(module);
+        String trimmedModule = module.trim();
+        if (!Address.isValidAddress(trimmedModule)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Module(trimmedModule);
     }
 
     /**
