@@ -10,7 +10,6 @@ import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeeting;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
