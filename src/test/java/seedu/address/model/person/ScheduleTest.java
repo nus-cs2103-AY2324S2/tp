@@ -1,10 +1,14 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.util.DateTimeUtil;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.util.DateTimeUtil;
 
 public class ScheduleTest {
 
@@ -13,7 +17,7 @@ public class ScheduleTest {
         LocalDateTime schedule = LocalDateTime.now();
         Schedule testSchedule = new Schedule(schedule);
         assertEquals(schedule, testSchedule.getSchedule());
-        assertFalse(testSchedule.getAppointmentStatus()); // By default, isDone should be false
+        assertFalse(testSchedule.getIsDone()); // By default, isDone should be false
     }
 
     @Test
@@ -35,8 +39,8 @@ public class ScheduleTest {
     public void showSchedule_upcomingAppointment_returnsCorrectMessage() {
         LocalDateTime futureSchedule = LocalDateTime.now().plusDays(1);
         Schedule testSchedule = new Schedule(futureSchedule, false);
-        assertEquals("Your next appointment is " +
-                DateTimeUtil.parseDateToString(futureSchedule), testSchedule.showSchedule());
+        assertEquals("Your next appointment is "
+                + DateTimeUtil.parseDateToString(futureSchedule), testSchedule.showSchedule());
     }
 
     @Test
