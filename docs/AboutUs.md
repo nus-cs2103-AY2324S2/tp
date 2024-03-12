@@ -40,15 +40,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Sarji Elijah See Bona
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sarjinius.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sarjinius)]
+[[portfolio](team/sarji.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Search by tag + Exporting Data
 
 ### Chua Zi Long
 
