@@ -60,6 +60,9 @@ public class ModuleTest {
         // null -> returns false
         assertFalse(module.equals(null));
 
+        // different types -> returns false
+        assertFalse(module.equals(5.0f));
+
         // different values -> returns false
         assertFalse(module.equals(new Module("MS2345")));
     }
