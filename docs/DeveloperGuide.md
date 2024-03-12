@@ -324,21 +324,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ___
 
-**Use case: Delete a person**
-
-***Preconditions:*** User is logged into the system.
-
-**MSS**
-
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
-
-***Postconditions:*** A contact is deleted from the address book.
-
-___
-
 **Use Case: Add Contact**
 
 ***Preconditions:*** User is logged into the system.
@@ -490,16 +475,16 @@ ___
 
 ___
 
-**Use Case: Store Notes**
+**Use Case: Store Remarks**
 
 ***Preconditions:*** User has initiated adding or editing a contact.
 
 **MSS**
 
-1. User provides some notes for the contact.
-2. System stores the notes with the contact’s information.
+1. User provides some remarks for the contact.
+2. System stores the remarks with the contact’s information.
 
-***Postconditions:*** The contact's notes are stored or updated.
+***Postconditions:*** The contact's remarks are stored or updated.
 
 ___
 
