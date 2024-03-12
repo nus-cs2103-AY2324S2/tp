@@ -19,8 +19,9 @@ public class SearchStudentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches all students whose information contain "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Only one attribute can be matched per search query.\n"
             + "Partial matches are also displayed.\n"
-            + "Parameters: [id/STUDENT_ID] [email/EMAIL] [class/TUTORIAL_CLASS] [name/NAME]\n"
+            + "Parameters: [name/NAME] [id/STUDENT_ID] [email/EMAIL] [module/MODULE_CODE] [tutorial/TUTORIAL_CLASS]\n"
             + "Example: " + COMMAND_WORD + " id/A012345A";
 
     private final Predicate<Person> predicate;

@@ -6,19 +6,19 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Email} matches the keyword given.
+ * Tests that a {@code Person}'s {@code StudentId} matches the keyword given.
  */
-public class EmailContainsKeywordPredicate implements Predicate<Person> {
+public class StudentIdContainsKeywordPredicate implements Predicate<Person> {
 
     private final String keyword;
 
-    public EmailContainsKeywordPredicate(String keyword) {
+    public StudentIdContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.containsPartialWordIgnoreCase(person.getEmail().value, keyword);
+        return StringUtil.containsPartialWordIgnoreCase(person.getStudentId().value, keyword);
     }
 
     @Override
@@ -28,12 +28,13 @@ public class EmailContainsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EmailContainsKeywordPredicate)) {
+        if (!(other instanceof StudentIdContainsKeywordPredicate)) {
             return false;
         }
 
-        EmailContainsKeywordPredicate otherEmailContainsKeywordPredicate = (EmailContainsKeywordPredicate) other;
-        return keyword.equals(otherEmailContainsKeywordPredicate.keyword);
+        StudentIdContainsKeywordPredicate otherStudentIdContainsKeywordPredicate =
+                (StudentIdContainsKeywordPredicate) other;
+        return keyword.equals(otherStudentIdContainsKeywordPredicate.keyword);
     }
 
     @Override
