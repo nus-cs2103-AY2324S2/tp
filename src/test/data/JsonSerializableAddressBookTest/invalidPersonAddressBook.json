@@ -1,8 +1,16 @@
 {
-  "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "firstName": "Alice",
+      "lastName": "Pauline",
+      "sex": "invalidsex",
+      "employmentType": "ft",
+      "phone": "94351253",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "bankDetails": "12345678",
+      "tags": [
+        "friends"
+      ]
+    }
+  ]
 }
