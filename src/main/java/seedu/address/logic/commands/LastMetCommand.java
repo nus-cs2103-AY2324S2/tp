@@ -101,5 +101,6 @@ public class LastMetCommand extends Command {
         if (date.isAfter(LocalDate.now())) {
             throw new FutureDateException(Messages.MESSAGE_LASTMET_FUTURE);
         }
+        
     }
 }
