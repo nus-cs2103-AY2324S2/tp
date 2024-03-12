@@ -320,56 +320,126 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of employee contacts and banking details
+* has a need to track employee worked hours
+* has a need to tabulate payroll for employees with different pay rates
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage employee salary disbursement faster than a typical exel sheet with manual calculations.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                                        | I want to …​                                       | So that I can…​                                                       |
+|----------|----------------------------------------------------------------|----------------------------------------------------|-----------------------------------------------------------------------|
+| `* *`    | new user                                                       | see a tutorial and usage instructions              | familiarise with BistroBoss' features                                 |
+| `* * *`  | user                                                           | add an employee contact with banking details       | quickly access the employee's banking details for salary disbursement |
+| `* * *`  | user                                                           | delete an employee contact                         | remove entries that I no longer need                                  |
+| `* * *`  | user                                                           | view all employee contacts                         |                                                                       |
+| `* *`    | user                                                           | track an employee's weekly worked hours            | access it for employee salary calculation                             |
+| `* *`    | user handling employees with a variety of employment contracts | tag an employee contact with their employment type | retrieve the salary rate of the employee                              |
+| `* *`    | user with human error tendencies                               | retrieve an employee's calculated pay              | avoid paying out an incorrect salary amount                           |
+| `* *`    | user                                                           | edit an employee contact details                   | keep the employee's details up to date                                |
+| `*`      | user with many employees                                       | sort employees contacts by name                    | locate the employee contact easily                                    |
+| `*`      | user with potential returning employees                        | archive an employee contact                        | reopen the employee's details when they return easily                 |
+| `*`      | user with forgetfulness                                        | search for contacts by keyword                     | find contacts without needing to provide their full name              |
+| `*`      | user with many employees                                       | filter employee contacts by tag(s)                 | identify which employee(s) are of that employment type                |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
-otherwise)
+(For all use cases below, the **System** is the `BistroBoss` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an employee**
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
+1.  User requests to add employee contact
+2.  BistroBoss requests contact information of employee
+3.  User provides required information
+4.  BistroBoss adds the employee contact
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The given contact information is invalid.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+    * 3a1. BistroBoss shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Delete an employee**
+
+**MSS**
+
+1.  User requests to delete an employee contact
+2.  BistroBoss requests employee contact 
+3.  User provides required information
+4.  BistroBoss deletes the employee contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact book is empty.
+    * 2a1. BistroBoss shows an error message.
+
+        Use case ends
+
+
+* 3a. The given contact information is invalid.
+
+    * 3a1. BistroBoss shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: List all employee contacts**
+
+**MSS**
+
+1.  User requests to list all employee contacts
+2.  BistroBoss lists all employee contacts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact book is empty.
+    * 2a1. BistroBoss shows an error message.
+
+      Use case ends
+
+**Use case: Track employee's work hours**
+
+**MSS**
+
+1.  User requests to add employee's work hours
+2.  BistroBoss requests employee contact and work hours
+3.  User provides required information
+4.  BistroBoss tracks the employee's work hours
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact book is empty.
+    * 2a1. BistroBoss shows an error message.
+
+      Use case ends
+
+
+* 3a. The given contact information or working hours is invalid.
+
+    * 3a1. BistroBoss shows an error message.
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 

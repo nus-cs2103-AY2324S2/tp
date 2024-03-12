@@ -20,6 +20,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation + UI
 
+### Teo Hao Wei
+
+<img src="images/haowei.png" width="200px">
+
+[[github](http://github.com/h4ow3i)]
+[[portfolio](team/teohaowei.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality
+
+### Hue Koh
+
+<img src="images/huekoh.png" width="200px">
+
+[[github](http://github.com/huekoh)] 
+[[portfolio](team/huekoh.md)]
+
+* Role: Developer
+* Responsibilities: Task Scheduling + UI
+
 ### Martin Ng Jinn Kai
 
 <img src="images/martinng.png" width="200px">
@@ -29,25 +49,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Testing
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
