@@ -211,7 +211,37 @@ Step 2: The user executes the `addtags 1 t/christian t/fallRisk` command to add 
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-#### Design Considerations:
+#### Design Considerations
+
+**Aspect: Handling Repeated Tags**
+
+* **Alternative 1 (current choice)**: Repeated tags are added as a single tag.
+    * Pros: Simplifies tag management, avoids redundancy.
+    * Cons: Requires additional logic to detect and merge repeated tags.
+<br></br>
+* **Alternative 2**: Each tag is added individually, including duplicates.
+    * Pros: Explicitly shows every tag provided.
+    * Cons: May clutter patient data with redundant tags.
+
+**Aspect: Cumulative Tag Addition**
+
+* **Alternative 1 (current choice)**: Cumulative addition of tags to existing set.
+    * Pros: Preserves previous tags, allows for gradual building of patient profile.
+    * Cons: Requires additional memory for storing updated tag sets.
+<br></br>
+* **Alternative 2**: Overwrite existing tags with new ones.
+    * Pros: Simplifies data handling, avoids tag duplication.
+    * Cons: Risk of losing previously assigned tags, less flexibility in tag management.
+
+**Aspect: Error Handling for Duplicate Tags**
+
+* **Alternative 1 (current choice)**: Do not add tags already present for the patient.
+    * Pros: Prevents tag redundancy, maintains data integrity. Better user experience, do not need to worry about the intricacies of tag duplication. 
+    * Cons: Users do not explicitly receive direct feedback about skipped tags.
+<br></br>
+* **Alternative 2**: Return error message for duplicate tags.
+    * Pros: Notifies user about duplicate inputs, ensures data consistency.
+    * Cons: In case of addition of multiple tags, users do not have to find and remove the duplicated tags from the commands, which would be cumbersome when adding many tags
 
 --------------------------------------------------------------------------------------------------------------------
 
