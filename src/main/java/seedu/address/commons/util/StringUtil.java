@@ -41,9 +41,9 @@ public class StringUtil {
     /**
      * Returns true if the {@code sentence} contains the {@code query} as a substring, ignoring case.
      * <br>examples:<pre>
-     *       containsSubstringIgnoreCase("Alexander Yeoh", "Ale") == true
-     *       containsSubstringIgnoreCase("Alexander Yeoh", "ye") == true
-     *       containsSubstringIgnoreCase("Alex Yeoh", "zander") == false
+     *       containsSubstringIgnoreCase("Alexis Lebrun", "Ale") == true
+     *       containsSubstringIgnoreCase("Alexis Lebrun", "le") == true
+     *       containsSubstringIgnoreCase("Alex Yeoh", "python") == false
      *       </pre>
      * @param sentence cannot be null
      * @param query cannot be null, cannot be empty

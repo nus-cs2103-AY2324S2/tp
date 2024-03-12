@@ -68,4 +68,36 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "n/ t/ ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_keywordContainsSlash_throwsParseException() {
+        assertParseFailure(parser, "n/ Alice /", "Keywords must NOT contain `/`. \n"
+                + "'/' is a special character reserved for commands. \n");
+    }
+
+    @Test
+    public void parse_nameContainsSpace_throwsParseException() {
+        assertParseFailure(parser, "n/ Alice Bob", "Names should not contain spaces. Use 'n/' prefix for EACH name.");
+    }
+
+    @Test
+    public void parse_nameNotAlphabetic_throwsParseException() {
+        assertParseFailure(parser, "n/ Alice123", "Name keywords must consist of only alphabets.");
+    }
+
+    @Test
+    public void parse_tagContainsSpace_throwsParseException() {
+        assertParseFailure(parser, "t/ best friend", "Tags should not contain spaces. Use 't/' prefix for EACH tag.");
+    }
+
+    @Test
+    public void parse_multipleNamesAndTags_returnsFindCommand() {
+        // Assuming multiple names and tags are allowed and treated as AND conditions
+        List<String> nameKeywords = Arrays.asList("Alice", "Bob");
+        List<String> tagKeywords = Arrays.asList("friend", "colleague");
+        NameAndTagContainsKeywordsPredicate predicate =
+                new NameAndTagContainsKeywordsPredicate(nameKeywords, tagKeywords);
+        FindCommand expectedFindCommand = new FindCommand(predicate);
+        assertParseSuccess(parser, "n/ Alice n/ Bob t/ friend t/ colleague", expectedFindCommand);
+    }
+
 }
