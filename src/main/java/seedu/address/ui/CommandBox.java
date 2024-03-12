@@ -129,7 +129,7 @@ public class CommandBox extends UiPart<Region> {
 
             UiUtil.setText(commandTextField, text);
         } else {
-            // This code block allows users to continue redoing until thye can an empty string, while still being able
+            // This code block allows users to continue redoing until there is an empty string, while still being able
             // to undo from there
             String currentText = commandTextField.getText();
             undoStack.push(currentText);
