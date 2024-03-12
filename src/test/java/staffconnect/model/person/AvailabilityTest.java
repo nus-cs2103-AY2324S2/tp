@@ -10,21 +10,21 @@ public class AvailabilityTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Module(null));
+        assertThrows(NullPointerException.class, () -> new Availability(null));
     }
 
     @Test
-    public void constructor_invalidModule_throwsIllegalArgumentException() {
+    public void constructor_invalidAvailability_throwsIllegalArgumentException() {
         String invalidAvailability = "";
         assertThrows(IllegalArgumentException.class, () -> new Availability(invalidAvailability));
     }
 
     @Test
     public void isValidAvailability() {
-        // null module code
+        // null availability
         assertThrows(NullPointerException.class, () -> Availability.isValidAvailability(null));
 
-        // invalid module code
+        // invalid availability
         assertFalse(Availability.isValidAvailability("")); // empty string
         assertFalse(Availability.isValidAvailability(" ")); // spaces only
         assertFalse(Availability.isValidAvailability("m")); // 1 letter only
@@ -42,7 +42,7 @@ public class AvailabilityTest {
         assertFalse(Availability.isValidAvailability("thu")); // uncompleted syllable
         assertFalse(Availability.isValidAvailability("sun day")); // space between syllable
 
-        // valid module code
+        // valid availability
         assertTrue(Availability.isValidAvailability("mon")); // first syllable tuesday
         assertTrue(Availability.isValidAvailability("tues")); // first syllable tuesday
         assertTrue(Availability.isValidAvailability("wed")); // first syllable wednesday
