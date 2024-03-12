@@ -21,7 +21,10 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.coursemate.*;
+import seedu.address.model.coursemate.Address;
+import seedu.address.model.coursemate.Email;
+import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.Phone;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.skill.Skill;
 
@@ -89,7 +92,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code CourseMate} with the details of {@code courseMateToEdit}
      * edited with {@code editCourseMateDescriptor}.
      */
-    private static CourseMate createEditedCourseMate(CourseMate courseMateToEdit, EditCourseMateDescriptor editCourseMateDescriptor) {
+    private static CourseMate createEditedCourseMate(CourseMate courseMateToEdit,
+                                                     EditCourseMateDescriptor editCourseMateDescriptor) {
         assert courseMateToEdit != null;
 
         Name updatedName = editCourseMateDescriptor.getName().orElse(courseMateToEdit.getName());

@@ -42,7 +42,8 @@ public class DeleteCommand extends Command {
 
         CourseMate courseMateToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCourseMate(courseMateToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_COURSE_MATE_SUCCESS, Messages.format(courseMateToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_COURSE_MATE_SUCCESS,
+                Messages.format(courseMateToDelete)));
     }
 
     @Override

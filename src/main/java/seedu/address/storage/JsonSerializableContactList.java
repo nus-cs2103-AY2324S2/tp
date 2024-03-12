@@ -37,7 +37,10 @@ class JsonSerializableContactList {
      * @param source future changes to this will not affect the created {@code JsonSerializableContactList}.
      */
     public JsonSerializableContactList(ReadOnlyContactList source) {
-        courseMates.addAll(source.getCourseMateList().stream().map(JsonAdaptedCourseMate::new).collect(Collectors.toList()));
+        courseMates.addAll(source.getCourseMateList().
+                stream().
+                map(JsonAdaptedCourseMate::new).
+                collect(Collectors.toList()));
     }
 
     /**

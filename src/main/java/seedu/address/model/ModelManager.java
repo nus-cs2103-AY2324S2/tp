@@ -70,9 +70,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setContactListFilePath(Path ContactListFilePath) {
-        requireNonNull(ContactListFilePath);
-        userPrefs.setContactListFilePath(ContactListFilePath);
+    public void setContactListFilePath(Path contactListFilePath) {
+        requireNonNull(contactListFilePath);
+        userPrefs.setContactListFilePath(contactListFilePath);
     }
 
     //=========== ContactList ================================================================================

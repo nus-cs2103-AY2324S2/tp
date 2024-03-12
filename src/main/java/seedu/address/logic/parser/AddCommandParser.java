@@ -12,7 +12,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.coursemate.*;
+import seedu.address.model.coursemate.Address;
+import seedu.address.model.coursemate.Email;
+import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.Phone;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.skill.Skill;
 

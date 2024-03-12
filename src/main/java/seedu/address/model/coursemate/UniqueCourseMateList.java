@@ -8,14 +8,19 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
+import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
 
 /**
  * A list of course mates that enforces uniqueness between its elements and does not allow nulls.
- * A courseMate is considered unique by comparing using {@code CourseMate#isSameCourseMate(CourseMate)}. As such, adding and updating of
- * course mates uses CourseMate#isSameCourseMate(CourseMate) for equality so as to ensure that the courseMate being added or updated is
- * unique in terms of identity in the UniqueCourseMateList. However, the removal of a courseMate uses CourseMate#equals(Object) so
+ * A courseMate is considered unique by comparing using
+ * {@code CourseMate#isSameCourseMate(CourseMate)}.
+ *
+ * As such, adding and updating of course mates uses CourseMate#isSameCourseMate(CourseMate)
+ * for equality so as to ensure that the courseMate being added or updated is
+ * unique in terms of identity in the UniqueCourseMateList.
+ *
+ * However, the removal of a courseMate uses CourseMate#equals(Object) so
  * as to ensure that the courseMate with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -51,7 +56,8 @@ public class UniqueCourseMateList implements Iterable<CourseMate> {
     /**
      * Replaces the courseMate {@code target} in the list with {@code editedCourseMate}.
      * {@code target} must exist in the list.
-     * The courseMate identity of {@code editedCourseMate} must not be the same as another existing courseMate in the list.
+     * The courseMate identity of {@code editedCourseMate}
+     * must not be the same as another existing courseMate in the list.
      */
     public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
         requireAllNonNull(target, editedCourseMate);

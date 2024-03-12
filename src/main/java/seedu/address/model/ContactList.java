@@ -78,7 +78,8 @@ public class ContactList implements ReadOnlyContactList {
     /**
      * Replaces the given courseMate {@code target} in the list with {@code editedCourseMate}.
      * {@code target} must exist in the contact list.
-     * The courseMate identity of {@code editedCourseMate} must not be the same as another existing courseMate in the contact list.
+     * The courseMate identity of {@code editedCourseMate} must not be the same as
+     * another existing courseMate in the contact list.
      */
     public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
         requireNonNull(editedCourseMate);
