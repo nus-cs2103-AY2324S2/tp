@@ -61,4 +61,33 @@ public class ApplicationStatusTest {
         assertFalse(applicationStatus.equals(new ApplicationStatus("pending")));
     }
 
+    @Test
+    public void string() {
+        ApplicationStatus toApply = new ApplicationStatus("to_apply");
+        ApplicationStatus pending = new ApplicationStatus("pending");
+        ApplicationStatus rejected = new ApplicationStatus("rejected");
+        ApplicationStatus accepted = new ApplicationStatus("accepted");
+        ApplicationStatus ongoing = new ApplicationStatus("ongoing");
+
+        //test for equality
+        assertTrue(toApply.toString().equals("TO_APPLY"));
+        assertTrue(pending.toString().equals("PENDING"));
+        assertTrue(rejected.toString().equals("REJECTED"));
+        assertTrue(accepted.toString().equals("ACCEPTED"));
+        assertTrue(ongoing.toString().equals("ONGOING"));
+
+        assertFalse(toApply.toString().equals("invalid"));
+        assertFalse(pending.toString().equals("invalid"));
+        assertFalse(rejected.toString().equals("invalid"));
+        assertFalse(accepted.toString().equals("invalid"));
+        assertFalse(ongoing.toString().equals("invalid"));
+
+        // Test for case insensitivity
+        assertFalse(toApply.toString().equals("to_apply"));
+        assertFalse(pending.toString().equals("pending"));
+        assertFalse(rejected.toString().equals("rejected"));
+        assertFalse(accepted.toString().equals("accepted"));
+        assertFalse(ongoing.toString().equals("ongoing"));
+    }
+
 }

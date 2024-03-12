@@ -14,7 +14,7 @@ public class Location {
     /**
      * Enum of locations
      */
-    public enum LocationEnum {
+    private enum LocationEnum {
         LOCAL,
         OVERSEAS,
         REMOTE
@@ -42,16 +42,7 @@ public class Location {
 
     @Override
     public String toString() {
-        switch (location) {
-        case LOCAL:
-            return "Local";
-        case OVERSEAS:
-            return "Overseas";
-        case REMOTE:
-            return "Remote";
-        default:
-            throw new IllegalArgumentException("Unexpected location: " + location);
-        }
+        return location.toString();
     }
 
     @Override

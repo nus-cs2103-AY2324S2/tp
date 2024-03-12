@@ -55,4 +55,25 @@ public class LocationTest {
         // different values -> returns false
         assertFalse(location.equals(new Location("OVERSEAS")));
     }
+
+    @Test
+    public void string() {
+        Location local = new Location("local");
+        Location remote = new Location("remote");
+        Location overseas = new Location("overseas");
+
+        // Test for equality
+        assertTrue(local.toString().equals("LOCAL"));
+        assertTrue(remote.toString().equals("REMOTE"));
+        assertTrue(overseas.toString().equals("OVERSEAS"));
+
+        assertFalse(local.toString().equals("invalid"));
+        assertFalse(remote.toString().equals("invalid"));
+        assertFalse(overseas.toString().equals("invalid"));
+
+        // Test for case insensitivity
+        assertFalse(local.toString().equals("local"));
+        assertFalse(remote.toString().equals("remote"));
+        assertFalse(overseas.toString().equals("overseas"));
+    }
 }
