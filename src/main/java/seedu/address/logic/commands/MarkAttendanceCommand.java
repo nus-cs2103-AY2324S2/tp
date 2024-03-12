@@ -56,7 +56,7 @@ public class MarkAttendanceCommand extends Command {
         Optional<Person> optionalPersonToMark = model.getPersonByNusNet(nusNet);
 
         if (!optionalPersonToMark.isPresent()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_NUSNET);
+            throw new CommandException(Messages.MESSAGE_MISSING_NUSNET);
         }
         Person personToMark = optionalPersonToMark.get();
 
