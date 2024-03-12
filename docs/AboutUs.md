@@ -40,6 +40,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
+### Sarji Elijah See Bona
+
+<img src="images/sarjinius.png" width="200px">
+
+[[github](http://github.com/sarjinius)]
+[[portfolio](team/sarji.md)]
+
+* Role: Developer
+* Responsibilities: Search by tag + Exporting Data
+
 ### Wilson Widyadhana
 
 <img src="images/wilsonwid.png" width="200px">
