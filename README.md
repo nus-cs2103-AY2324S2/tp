@@ -13,6 +13,8 @@ Provide tutors with access to contact details and schedules of their students.
 - Filter contacts by subjects or grade level 
 - Shows fee details of student
 
+For the detailed documentation of this project, see [TutorsGo Product Website](https://ay2324s2-cs2103-f15-2.github.io/tp/)
+
 ### Acknowledgements
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
    
