@@ -15,8 +15,21 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-t17-3.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "Available commands:\n"
+            + "help \t- Shows this window.\n"
+            + "add \t- Adds a person to FitBook.\n"
+            + "list \t\t- Shows a list of all persons saved in FitBook.\n"
+            + "edit \t- Edits an existing person in FitBook.\n"
+            + "find \t- Finds persons whose names contain any of the given keywords.\n"
+            + "delete \t- Deletes the specified person from FitBook.\n"
+            + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"
+            + "exit \t- Exits FitBook.\n"
+            + "\n"
+            + "To view more information about a specific command, enter the command into the input box and press "
+            + "<Enter>.\n"
+            + "\n"
+            + "Need more help? Refer to the user guide at " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
