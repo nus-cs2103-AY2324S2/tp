@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.attribute;
 
 // Gender attribute with enum
 class SexAttribute extends Attribute {
