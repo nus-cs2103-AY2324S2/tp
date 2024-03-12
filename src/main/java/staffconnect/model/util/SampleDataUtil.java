@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import staffconnect.model.AddressBook;
-import staffconnect.model.ReadOnlyAddressBook;
+import staffconnect.model.ReadOnlyStaffBook;
+import staffconnect.model.StaffBook;
 import staffconnect.model.person.Address;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Name;
@@ -14,7 +14,7 @@ import staffconnect.model.person.Phone;
 import staffconnect.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code StaffBook} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -40,12 +40,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyStaffBook getSampleStaffBook() {
+        StaffBook sampleSb = new StaffBook();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleSb.addPerson(samplePerson);
         }
-        return sampleAb;
+        return sampleSb;
     }
 
     /**

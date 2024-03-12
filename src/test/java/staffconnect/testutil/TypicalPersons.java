@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import staffconnect.model.AddressBook;
+import staffconnect.model.StaffBook;
 import staffconnect.model.person.Person;
 
 /**
@@ -60,10 +60,10 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code StaffBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static StaffBook getTypicalStaffBook() {
+        StaffBook ab = new StaffBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
