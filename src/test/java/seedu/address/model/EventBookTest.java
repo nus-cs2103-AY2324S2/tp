@@ -82,6 +82,19 @@ public class EventBookTest {
     }
 
     @Test
+    public void equals_sameObject_returnsTrue() {
+        EventBook eventBook = new EventBook();
+        assertTrue(eventBook.equals(eventBook));
+    }
+
+    @Test
+    public void equals_differentClass_returnsFalse() {
+        EventBook eventBook = new EventBook();
+        Object differentObject = new Object();
+        assertFalse(eventBook.equals(differentObject));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = EventBook.class.getCanonicalName() + "{events=" + eventBook.getEventList() + "}";
         assertEquals(expected, eventBook.toString());

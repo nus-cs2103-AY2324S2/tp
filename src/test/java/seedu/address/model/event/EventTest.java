@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -75,5 +76,14 @@ public class EventTest {
         event.setPerson(ALICE, BENSON);
         assertFalse(event.getPersonList().contains(ALICE));
         assertTrue(event.getPersonList().contains(BENSON));
+    }
+
+    @Test
+    public void toStringMethod() {
+        Event event = new EventBuilder().build();
+        String expected = Event.class.getCanonicalName() + "{eventName=" + event.getEventName()
+                + ", persons=" + event.getPersonList().toString() + "}";
+
+        assertEquals(expected, event.toString());
     }
 }
