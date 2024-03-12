@@ -115,7 +115,7 @@ public class CommandBox extends UiPart<Region> {
 
             UiUtil.setText(commandTextField, text);
         } else {
-            // Plays a sound when there is nothing left to und
+            // Plays a sound when there is nothing left to undo
             AudioUtil.playAudio("assets/boop.mp3");
         }
     }
