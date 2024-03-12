@@ -1,13 +1,14 @@
 package seedu.address.testutil;
 
-import seedu.address.model.internship.*;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-
-import java.util.Set;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.ContactEmail;
+import seedu.address.model.internship.ContactName;
+import seedu.address.model.internship.ContactNumber;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Role;
 
 /**
  * A utility class to help with building Internship objects.
@@ -124,8 +125,12 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Builds the Internship object.
+     */
     public Internship build() {
-        return new Internship(companyName, contactName, contactEmail, contactNumber, location, applicationStatus, description, role);
+        return new Internship(companyName, contactName, contactEmail, contactNumber, location, applicationStatus,
+                description, role);
     }
 
 }

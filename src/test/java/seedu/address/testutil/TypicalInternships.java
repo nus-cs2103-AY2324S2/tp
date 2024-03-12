@@ -1,14 +1,14 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.internship.Internship;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import seedu.address.model.internship.Internship;
 
+/**
+ * A utility class containing a list of {@code Internship} objects to be used in tests.
+ */
 public class TypicalInternships {
 
     public static final Internship ALICE_MICROSOFT = new InternshipBuilder().withCompanyName("Microsoft")
@@ -27,7 +27,8 @@ public class TypicalInternships {
             .withLocation("overseas").withApplicationStatus("rejected").withDescription("Enter prompts into ChatGPT")
             .withRole("Prompt Engineer").build();
 
-    private TypicalInternships() {} // prevents instantiation
+    private TypicalInternships() {
+    } // prevents instantiation
 
     public static List<Internship> getTypicalInternships() {
         return new ArrayList<>(Arrays.asList(ALICE_MICROSOFT, BENSON_GOOGLE, CARL_OPENAI));
