@@ -339,6 +339,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tutor**: A student that is assigned to a tutee
+* **Tutee**: A student that is assigned to a tutor
+* **Contact List**: A collection of tutees' personal and contact information accessible by the tutor.
+* **Assessment Record**: A log of scores from quizzes, tests, assignments, and other forms of assessment for a tutee.
+* **Grade Entry**: The action or feature that allows a tutor to input a student's grade into the system.
+* **Grade Reporting**: The functionality to generate reports or summaries of tutees' grades for review by tutees.
+* **Grading Scale**: The standard by which tutees' performance is measured, such as A-F, 1-10, or percentage.
 
 --------------------------------------------------------------------------------------------------------------------
 
