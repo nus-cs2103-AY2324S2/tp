@@ -322,16 +322,186 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+___
+
 **Use case: Delete a person**
+
+***Preconditions:*** User is logged into the system.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list persons
+2. AddressBook shows a list of persons
+3. User requests to delete a specific person in the list
+4. AddressBook deletes the person
 
-    Use case ends.
+***Postconditions:*** A contact is deleted from the address book.
+
+___
+
+**Use Case: Add Contact**
+
+***Preconditions:*** User is logged into the system.
+
+**MSS**
+
+1. User selects the option to add a new contact.
+2. User enters the contact's name, phone number, and any other optional information.
+3. System validates the provided information.
+4. System adds the new contact to the address book.
+5. System displays a confirmation message.
+
+***Postconditions:*** A new contact is added to the address book.
+
+***Alternate Flows:*** If the information fails validation, the system notifies the user and requests correct data.
+
+___
+
+**Use Case: Delete Contact**
+
+***Preconditions:*** User is logged into the system and the address book contains at least one contact.
+
+**MSS**
+
+1. User requests a list of contacts and selects one to delete.
+2. System requests confirmation for deletion.
+3. User confirms.
+4. System deletes the selected contact from the address book.
+5. System displays a confirmation message.
+
+***Postconditions:*** The selected contact is removed from the address book.
+
+***Alternate Flows:*** If the user cancels the deletion, no action is taken.
+   
+___
+
+**Use Case: Edit Contact**
+
+***Preconditions:*** User is logged into the system and the address book contains at least one contact.
+   
+**MSS**
+
+1. User requests to edit a contact and selects one from the list.
+2. System displays the selected contact’s current information.
+3. User updates the necessary information.
+4. System validates the updated information.
+5. System updates the contact details in the address book.
+6. System displays a confirmation message.
+
+***Postconditions:*** The selected contact's information is updated in the address book.
+
+***Alternate Flows:*** If the updated information fails validation, the system notifies the user and requests correct data.
+
+___
+
+**Use Case: Store Phone Number**
+
+***Preconditions:*** User has initiated adding or editing a contact.
+
+**MSS**
+
+1. User provides a phone number for the contact.
+2. System validates the phone number format.
+3. System stores the phone number with the contact’s information.
+
+***Postconditions:*** The contact's phone number is stored or updated.
+
+___
+
+**Use Case: View Contacts**
+
+***Preconditions:*** User is logged into the system.
+
+**MSS**
+
+1. User selects the option to view contacts.
+2. System retrieves and displays all contacts from the address book.
+
+***Postconditions:*** User views the list of all contacts in the address book.
+
+___
+
+**Use Case: Store Address**
+
+***Preconditions:*** User has initiated adding or editing a contact.
+
+**MSS**
+
+1. User provides an address for the contact.
+2. System validates the address format.
+3. System stores the address with the contact’s information.
+
+***Postconditions:*** The contact's address is stored or updated.
+
+___
+
+**Use Case: Store Tags**
+
+***Preconditions:*** User has initiated adding or editing a contact.
+
+**MSS**
+
+1. User provides one or more tags for the contact.
+2. System stores the tags with the contact’s information.
+
+***Postconditions:*** The contact's tags are stored or updated.
+
+___
+
+**Use Case: Store Email**
+
+***Preconditions:*** User has initiated adding or editing a contact.
+
+**MSS**
+
+1. User provides an email address for the contact.
+2. System validates the email format.
+3. System stores the email with the contact’s information.
+
+***Postconditions:*** The contact's email address is stored or updated.
+
+___
+
+**Use Case: Store Money Owed**
+
+***Preconditions:*** User has initiated adding or editing a contact.
+
+**MSS**
+
+1. User provides an amount of money owed for the contact.
+2. System validates the money format.
+3. System stores the money owed information with the contact’s details.
+
+***Postconditions:*** The contact's money owed information is stored or updated.
+
+___
+
+**Use Case: Store Birthday**
+
+***Preconditions:*** User has initiated adding or editing a contact.
+
+**MSS**
+
+1. User provides a birthday for the contact.
+2. System validates the birthday format.
+3. System stores the birthday with the contact’s information.
+
+***Postconditions:*** The contact's birthday is stored or updated.
+
+___
+
+**Use Case: Store Notes**
+
+***Preconditions:*** User has initiated adding or editing a contact.
+
+**MSS**
+
+1. User provides some notes for the contact.
+2. System stores the notes with the contact’s information.
+
+***Postconditions:*** The contact's notes are stored or updated.
+
+___
 
 **Extensions**
 
