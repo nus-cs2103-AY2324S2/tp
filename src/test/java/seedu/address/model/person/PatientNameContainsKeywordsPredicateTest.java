@@ -19,14 +19,17 @@ public class PatientNameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        PatientNameContainsKeywordsPredicate firstPredicate = new PatientNameContainsKeywordsPredicate(firstPredicateKeywordList);
-        PatientNameContainsKeywordsPredicate secondPredicate = new PatientNameContainsKeywordsPredicate(secondPredicateKeywordList);
+        PatientNameContainsKeywordsPredicate firstPredicate =
+                new PatientNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        PatientNameContainsKeywordsPredicate secondPredicate =
+                new PatientNameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PatientNameContainsKeywordsPredicate firstPredicateCopy = new PatientNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        PatientNameContainsKeywordsPredicate firstPredicateCopy =
+                new PatientNameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,7 +45,8 @@ public class PatientNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        PatientNameContainsKeywordsPredicate predicate = new PatientNameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        PatientNameContainsKeywordsPredicate predicate =
+                new PatientNameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -61,7 +65,8 @@ public class PatientNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        PatientNameContainsKeywordsPredicate predicate = new PatientNameContainsKeywordsPredicate(Collections.emptyList());
+        PatientNameContainsKeywordsPredicate predicate =
+                new PatientNameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PatientBuilder().withName("Alice").build()));
 
         // Non-matching keyword
@@ -79,7 +84,8 @@ public class PatientNameContainsKeywordsPredicateTest {
         List<String> keywords = List.of("keyword1", "keyword2");
         PatientNameContainsKeywordsPredicate predicate = new PatientNameContainsKeywordsPredicate(keywords);
 
-        String expected = PatientNameContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = PatientNameContainsKeywordsPredicate.class.getCanonicalName()
+                + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
 }
