@@ -1,9 +1,16 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.UiUtil.setShortcut;
+
+import java.util.Stack;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.AudioUtil;
+import seedu.address.commons.util.UiUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,6 +24,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final Stack<String> undoStack;
+    private final Stack<String> redoStack;
 
     @FXML
     private TextField commandTextField;
@@ -27,8 +36,19 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        undoStack = new Stack<>();
+        redoStack = new Stack<>();
+
+        setShortcut(getRoot(), KeyCode.UP, (keyCode) -> {
+            undo();
+        });
+        setShortcut(getRoot(), KeyCode.DOWN, (keyCode) -> {
+            redo();
+        });
     }
 
     /**
@@ -43,6 +63,10 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
+
+            undoStack.push(commandText);
+            redoStack.clear();
+
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
@@ -82,4 +106,35 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    private void undo() {
+        if (!undoStack.isEmpty()) {
+            String text = undoStack.pop();
+
+            String currentText = commandTextField.getText();
+            redoStack.push(currentText);
+
+            UiUtil.setText(commandTextField, text);
+        } else {
+            // Plays a sound when there is nothing left to undo
+            AudioUtil.playAudio("assets/boop.mp3");
+        }
+    }
+
+    private void redo() {
+        if (!redoStack.isEmpty()) {
+            String text = redoStack.pop();
+
+            String currentText = commandTextField.getText();
+            undoStack.push(currentText);
+
+            UiUtil.setText(commandTextField, text);
+        } else {
+            // This code block allows users to continue redoing until there is an empty string, while still being able
+            // to undo from there
+            String currentText = commandTextField.getText();
+            undoStack.push(currentText);
+
+            commandTextField.setText(""); // Set as empty if there is nothing to redo
+        }
+    }
 }
