@@ -55,3 +55,5 @@ public class QueryDoctorCommand extends Command {
         return new ToStringBuilder(this)
                 .add("predicate", predicate)
                 .toString();
+    }
+}

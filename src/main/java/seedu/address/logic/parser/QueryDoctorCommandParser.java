@@ -1,49 +1,33 @@
-package seedu.address.model.person;
+package seedu.address.logic.parser;
 
-import java.util.List;
-import java.util.function.Predicate;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.commons.util.ToStringBuilder;
+import java.util.Arrays;
+
+import seedu.address.logic.commands.QueryDoctorCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
 
 /**
- * Tests that a {@code Patient}'s {@code Name} matches any of the keywords given.
+ * Parses input arguments and creates a new FindCommand object
  */
-public class PatientNameContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+public class QueryDoctorCommandParser implements Parser<QueryDoctorCommand> {
 
-    public PatientNameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
-    }
-
-    @Override
-    public boolean test(Person patient) {
-        if (patient.getType() != Type.PATIENT) {
-            return false;
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns a FindCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public QueryDoctorCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, QueryDoctorCommand.MESSAGE_USAGE));
         }
 
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getName().fullName, keyword));
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        return new QueryDoctorCommand(new DoctorNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof PatientNameContainsKeywordsPredicate)) {
-            return false;
-        }
-
-        PatientNameContainsKeywordsPredicate otherPredicate = (PatientNameContainsKeywordsPredicate) other;
-        return keywords.equals(otherPredicate.keywords);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
-    }
 }
-

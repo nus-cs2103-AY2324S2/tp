@@ -17,13 +17,13 @@ public class DoctorNameContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person patient) {
-        if (patient.getType() != Type.PATIENT) {
+    public boolean test(Person doctor) {
+        if (doctor.getType() != Type.DOCTOR) {
             return false;
         }
 
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(doctor.getName().fullName, keyword));
     }
 
     @Override
@@ -33,11 +33,11 @@ public class DoctorNameContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PatientNameContainsKeywordsPredicate)) {
+        if (!(other instanceof DoctorNameContainsKeywordsPredicate)) {
             return false;
         }
 
-        PatientNameContainsKeywordsPredicate otherPredicate = (PatientNameContainsKeywordsPredicate) other;
+        DoctorNameContainsKeywordsPredicate otherPredicate = (DoctorNameContainsKeywordsPredicate) other;
         return keywords.equals(otherPredicate.keywords);
     }
 
