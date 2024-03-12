@@ -1,11 +1,11 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;

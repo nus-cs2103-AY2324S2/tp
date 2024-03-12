@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import staffconnect.logic.parser.exceptions.ParseException;
-import staffconnect.model.person.Venue;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
+import staffconnect.model.person.Venue;
 import staffconnect.model.tag.Tag;
 
 public class ParserUtilTest {

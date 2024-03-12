@@ -3,11 +3,11 @@ package staffconnect.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import staffconnect.model.person.Venue;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.Phone;
+import staffconnect.model.person.Venue;
 import staffconnect.model.tag.Tag;
 import staffconnect.model.util.SampleDataUtil;
 

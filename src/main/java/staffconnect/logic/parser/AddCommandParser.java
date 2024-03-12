@@ -1,22 +1,22 @@
 package staffconnect.logic.parser;
 
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import staffconnect.logic.commands.AddCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
-import staffconnect.model.person.Venue;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.Phone;
+import staffconnect.model.person.Venue;
 import staffconnect.model.tag.Tag;
 
 /**

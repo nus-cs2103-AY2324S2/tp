@@ -1,11 +1,11 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,11 +21,11 @@ import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
-import staffconnect.model.person.Venue;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.Phone;
+import staffconnect.model.person.Venue;
 import staffconnect.model.tag.Tag;
 
 /**
