@@ -29,7 +29,8 @@ public class AddEventCommandParserTest {
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedEventString = EVENT_NAME_DESC_BINGO;
 
-        assertParseFailure(parser, EVENT_NAME_DESC_BINGO + validExpectedEventString, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENT_NAME));
+        assertParseFailure(parser, EVENT_NAME_DESC_BINGO + validExpectedEventString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENT_NAME));
     }
 
     @Test
