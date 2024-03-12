@@ -14,6 +14,7 @@
 ## 1. Introduction
 
 ### **1.1 Product Overview**
+
 PatientSync addresses a crucial gap in the current hospital systems by providing nurses with a comprehensive tool to manage patient information beyond administrative details.
 
 In many hospitals, the existing systems typically offer basic administrative information such as patient names and contact details. However, they often lack the capacity to delve into the intimate details of patient care.
@@ -174,15 +175,41 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 3.1 Adding a Patient
 
-#### Implementation
+#### Introduction
 
-#### Design Considerations:
+#### Specifications
+
+#### Example Usage Scenario
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### 3.2 Adding Tags to a Patient
 
-#### Implementation
+#### Introduction
+
+The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book.   
+
+#### Specifications
+
+* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.  
+
+* The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.  
+
+* If the patient already has a particular tag, it will not be added again.  
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.  
+
+Step 1: The user accesses the PatientSync application.  
+
+Step 2: The user executes the `addtags 1 t/christian t/fallRisk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.  
+
+<box type="info" seamless>
+<b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
+</box>
+
+The following activity diagram summarizes what happens when a user executes a new command:
 
 #### Design Considerations:
 

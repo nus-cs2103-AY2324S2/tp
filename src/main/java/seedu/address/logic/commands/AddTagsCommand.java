@@ -35,7 +35,7 @@ public class AddTagsCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "[TAG]+ \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TAG + "fallrisk";
+            + PREFIX_TAG + "fallRisk";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Tags successfully added for Patient %s";
 
