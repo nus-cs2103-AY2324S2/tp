@@ -1,81 +1,45 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameAndTagContainsKeywordsPredicate;
 
-/**
- * Parses input arguments and creates a new FindCommand object
- */
 public class FindCommandParser implements Parser<FindCommand> {
 
-    /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format.
-     */
+    @Override
     public FindCommand parse(String args) throws ParseException {
-        if (args.trim().isEmpty()) {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
+
+        // Ensure no preamble exists.
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<String> nameKeywords = new ArrayList<>();
-        List<String> tagKeywords = new ArrayList<>();
+        // Check for non-empty Prefixes
+        argMultimap.verifyNonEmptyPrefixValues(PREFIX_NAME, PREFIX_TAG);
 
-        // Initial split by the prefixes " n/" and " t/" to handle names with spaces
-        String[] parts = args.trim().split("(?= n/)|(?= t/)");
+        // Ensure all keywords are alphabets
+        argMultimap.verifyAllValuesAlpha(PREFIX_NAME, PREFIX_TAG);
 
-        for (String part : parts) {
+        List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+        List<String> tagKeywords = argMultimap.getAllValues(PREFIX_TAG);
 
-            String[] splitParts = part.trim().split("\\s+", 2);
-            String prefix = splitParts[0];
-
-            if (splitParts.length < 2 || splitParts[1].trim().isEmpty()) {
-                // If there is no keyword after the prefix OR it is empty
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
-            String keyword = splitParts[1].trim();
-
-
-            if (keyword.contains("/")) {
-                throw new ParseException("Keywords must NOT contain `/`. \n"
-                        + "'/' is a special character reserved for commands. \n");
-            }
-
-            if (prefix.equals("n/")) {
-                if (keyword.contains(" ")) {
-                    throw new ParseException("Names should not contain spaces. Use 'n/' prefix for EACH name.");
-                }
-
-                if (!keyword.matches("[a-zA-Z]+")) {
-                    throw new ParseException("Name keywords must consist of only alphabets.");
-                }
-
-                nameKeywords.add(keyword);
-            } else if (prefix.equals("t/")) {
-                if (keyword.contains(" ")) {
-                    throw new ParseException("Tags should not contain spaces. Use 't/' prefix for EACH tag.");
-                }
-
-                tagKeywords.add(keyword);
-            } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
-        }
-
+        // Ensure that at least one name or tag keyword is provided
         if (nameKeywords.isEmpty() && tagKeywords.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-        System.out.println(nameKeywords);
-        System.out.println(tagKeywords);
 
         return new FindCommand(new NameAndTagContainsKeywordsPredicate(nameKeywords, tagKeywords));
     }
 
 }
+

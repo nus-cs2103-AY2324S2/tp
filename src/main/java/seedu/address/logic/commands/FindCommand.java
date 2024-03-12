@@ -19,7 +19,7 @@ public class FindCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: TYPE/ KEYWORD [MORE_KEYWORDS]... TYPE/ KEYWORD [MORE_KEYWORDS] ...\n"
             + "Where TYPE can be n/ or t/ to specify name or tag respectively.\n"
-            + "Example: " + COMMAND_WORD + "n/ alice n/ bob t/ friends t/ owesMoney \n"
+            + "Example: " + COMMAND_WORD + " n/ alice n/ bob t/ friends t/ owesMoney \n"
             + "Please Refer to User Guide for more details.";
 
     private final NameAndTagContainsKeywordsPredicate predicate;

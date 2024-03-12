@@ -129,7 +129,7 @@ Format: `find /FIELD KEYWORD /FIELD KEYWORD ...`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * You can have multiple of the same 'KEYWORD's. e.g. `find /n J /n D` will match names with `J` AND `D`, like `John Doe`
-* 
+* You need to have spaces between the `/FIELD` and `KEYWORD` pairs. e.g. `find /nJ` will **NOT** work.
 
 Examples:
 * `find /n Joh` returns `john`, `John Doe` and `Johann Sebastian Bach`

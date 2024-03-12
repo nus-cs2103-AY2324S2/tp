@@ -75,4 +75,30 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Throws a {@code ParseException} if any of the keywords in the prefixes given in {@code prefixes} are empty.
+     */
+    public void verifyNonEmptyPrefixValues(Prefix... prefixes) throws ParseException {
+        for (Prefix prefix : prefixes) {
+            if (argMultimap.containsKey(prefix) && argMultimap.get(prefix).stream().anyMatch(String::isEmpty)) {
+                throw new ParseException(String.format("Value for prefix %s cannot be empty.", prefix));
+            }
+        }
+    }
+
+    /**
+     * Throws a {@code ParseException} if any of the keywords in the prefixes given in {@code prefixes}
+     * are not alphabets.
+     */
+    public void verifyAllValuesAlpha(Prefix... prefixes) throws ParseException {
+        for (Prefix prefix : prefixes) {
+            List<String> values = getAllValues(prefix);
+            for (String value : values) {
+                if (!value.matches("^[a-zA-Z]+$")) {
+                    throw new ParseException(String.format("Value for %s must consist of alphabets only.", prefix.getPrefix()));
+                }
+            }
+        }
+    }
 }
