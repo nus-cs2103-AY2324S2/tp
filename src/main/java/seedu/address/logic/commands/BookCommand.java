@@ -18,12 +18,15 @@ public class BookCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Booking created!";
 
-    public static final String MESSAGE_USAGE = BookCommand.COMMAND_WORD + ": Creates a booking with a person. "
+    public static final String MESSAGE_USAGE = BookCommand.COMMAND_WORD + ": Adds a booking to the system. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_START_TIME + "START TIME "
-            + PREFIX_END_TIME + "END TIME";
-
+            + PREFIX_END_TIME + "END TIME"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John's Birthday Party "
+            + PREFIX_START_TIME + "2023-12-31T19:00 "
+            + PREFIX_END_TIME + "2023-12-31T23:00";
     private final Booking toAdd;
 
     /**
