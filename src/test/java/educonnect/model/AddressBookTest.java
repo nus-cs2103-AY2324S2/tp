@@ -3,8 +3,8 @@ package educonnect.model;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TELEGRAM_HANDLE_BOB;
 import static educonnect.testutil.Assert.assertThrows;
-import static educonnect.testutil.TypicalPersons.ALICE;
-import static educonnect.testutil.TypicalPersons.getTypicalAddressBook;
+import static educonnect.testutil.TypicalStudents.ALICE;
+import static educonnect.testutil.TypicalStudents.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,10 +16,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import educonnect.model.person.Person;
-import educonnect.model.person.exceptions.DuplicatePersonException;
-import educonnect.testutil.PersonBuilder;
-import educonnect.testutil.TypicalPersons;
+import educonnect.model.student.Student;
+import educonnect.model.student.exceptions.DuplicateStudentException;
+import educonnect.testutil.StudentBuilder;
+import educonnect.testutil.TypicalStudents;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -30,7 +30,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getStudentList());
     }
 
     @Test
@@ -46,65 +46,65 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
+    public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
+        // Two students with the same identity fields
+        Student editedAlice = new StudentBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Student> newStudents = Arrays.asList(TypicalStudents.ALICE, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(TypicalPersons.ALICE));
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalPersons.ALICE);
-        assertTrue(addressBook.hasPerson(TypicalPersons.ALICE));
+    public void hasStudent_studentInAddressBook_returnsTrue() {
+        addressBook.addStudent(TypicalStudents.ALICE);
+        assertTrue(addressBook.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
+    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addStudent(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasStudent(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
+        String expected = AddressBook.class.getCanonicalName() + "{students=" + addressBook.getStudentList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Student> students) {
+            this.students.setAll(students);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Student> getStudentList() {
+            return students;
         }
     }
 

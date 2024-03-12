@@ -2,7 +2,7 @@ package educonnect.logic.parser;
 
 import static educonnect.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static educonnect.testutil.Assert.assertThrows;
-import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.person.Email;
-import educonnect.model.person.Name;
-import educonnect.model.person.StudentId;
-import educonnect.model.person.TelegramHandle;
+import educonnect.model.student.Email;
+import educonnect.model.student.Name;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import educonnect.logic.commands.FindCommand;
-import educonnect.model.person.NameContainsKeywordsPredicate;
+import educonnect.model.student.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

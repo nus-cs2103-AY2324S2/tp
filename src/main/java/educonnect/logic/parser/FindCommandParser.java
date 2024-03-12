@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import educonnect.logic.commands.FindCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.person.NameContainsKeywordsPredicate;
+import educonnect.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

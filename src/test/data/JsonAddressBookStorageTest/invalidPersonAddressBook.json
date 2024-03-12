@@ -1,8 +1,0 @@
-{
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "studentId": "A1234567L",
-    "email": "hans@example.com",
-    "telegramHandle": "@hans"
-  } ]
-}

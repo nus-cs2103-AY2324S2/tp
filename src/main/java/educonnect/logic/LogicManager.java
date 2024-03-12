@@ -14,7 +14,7 @@ import educonnect.logic.parser.AddressBookParser;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.Model;
 import educonnect.model.ReadOnlyAddressBook;
-import educonnect.model.person.Person;
+import educonnect.model.student.Student;
 import educonnect.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -67,8 +67,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Student> getFilteredStudentList() {
+        return model.getFilteredStudentList();
     }
 
     @Override

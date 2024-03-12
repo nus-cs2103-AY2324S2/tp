@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.person.Email;
-import educonnect.model.person.Name;
-import educonnect.model.person.Person;
-import educonnect.model.person.StudentId;
-import educonnect.model.person.TelegramHandle;
+import educonnect.model.student.Email;
+import educonnect.model.student.Name;
+import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.model.tag.Tag;
 
 /**
@@ -47,9 +47,9 @@ public class AddCommandParser implements Parser<AddCommand> {
                     argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, studentId, email, telegramHandle, tagList);
+        Student student = new Student(name, studentId, email, telegramHandle, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
     /**
