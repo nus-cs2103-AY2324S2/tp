@@ -48,7 +48,8 @@ public class JsonAdaptedCourseMateTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedCourseMate courseMate = new JsonAdaptedCourseMate(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_SKILLS);
+        JsonAdaptedCourseMate courseMate =
+                new JsonAdaptedCourseMate(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_SKILLS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
@@ -63,7 +64,8 @@ public class JsonAdaptedCourseMateTest {
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedCourseMate courseMate = new JsonAdaptedCourseMate(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_SKILLS);
+        JsonAdaptedCourseMate courseMate =
+                new JsonAdaptedCourseMate(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_SKILLS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
@@ -78,7 +80,8 @@ public class JsonAdaptedCourseMateTest {
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedCourseMate courseMate = new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_SKILLS);
+        JsonAdaptedCourseMate courseMate =
+                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_SKILLS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
@@ -93,7 +96,8 @@ public class JsonAdaptedCourseMateTest {
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedCourseMate courseMate = new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_SKILLS);
+        JsonAdaptedCourseMate courseMate =
+                 new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_SKILLS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }

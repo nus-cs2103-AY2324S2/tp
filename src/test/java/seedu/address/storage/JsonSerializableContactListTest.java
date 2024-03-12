@@ -15,10 +15,14 @@ import seedu.address.testutil.TypicalCourseMates;
 
 public class JsonSerializableContactListTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableContactListTest");
-    private static final Path TYPICAL_COURSE_MATES_FILE = TEST_DATA_FOLDER.resolve("typicalCourseMatesContactList.json");
-    private static final Path INVALID_COURSE_MATES_FILE = TEST_DATA_FOLDER.resolve("invalidCourseMateContactList.json");
-    private static final Path DUPLICATE_COURSE_MATES_FILE = TEST_DATA_FOLDER.resolve("duplicateCourseMateContactList.json");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonSerializableContactListTest");
+    private static final Path TYPICAL_COURSE_MATES_FILE =
+            TEST_DATA_FOLDER.resolve("typicalCourseMatesContactList.json");
+    private static final Path INVALID_COURSE_MATES_FILE =
+            TEST_DATA_FOLDER.resolve("invalidCourseMateContactList.json");
+    private static final Path DUPLICATE_COURSE_MATES_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateCourseMateContactList.json");
 
     @Test
     public void toModelType_typicalCourseMatesFile_success() throws Exception {

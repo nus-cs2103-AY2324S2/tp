@@ -22,11 +22,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.coursemate.NameContainsKeywordsPredicate;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.CourseMateBuilder;
-import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 import seedu.address.testutil.CourseMateUtil;
+import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 
 public class ContactListParserTest {
 
@@ -57,7 +57,8 @@ public class ContactListParserTest {
         CourseMate courseMate = new CourseMateBuilder().build();
         EditCommand.EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(courseMate).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_COURSE_MATE.getOneBased() + " " + CourseMateUtil.getEditCourseMateDescriptorDetails(descriptor));
+                + INDEX_FIRST_COURSE_MATE.getOneBased() + " "
+                + CourseMateUtil.getEditCourseMateDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_COURSE_MATE, descriptor), command);
     }
 

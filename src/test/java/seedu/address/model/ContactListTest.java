@@ -46,8 +46,8 @@ public class ContactListTest {
     @Test
     public void resetData_withDuplicateCourseMates_throwsDuplicateCourseMateException() {
         // Two courseMates with the same identity fields
-        CourseMate editedAlice = new CourseMateBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
-                .build();
+        CourseMate editedAlice = new CourseMateBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
         List<CourseMate> newCourseMates = Arrays.asList(ALICE, editedAlice);
         ContactListStub newData = new ContactListStub(newCourseMates);
 
@@ -73,8 +73,8 @@ public class ContactListTest {
     @Test
     public void hasCourseMate_courseMateWithSameIdentityFieldsInContactList_returnsTrue() {
         contactList.addCourseMate(ALICE);
-        CourseMate editedAlice = new CourseMateBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
-                .build();
+        CourseMate editedAlice = new CourseMateBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
         assertTrue(contactList.hasCourseMate(editedAlice));
     }
 
@@ -85,7 +85,8 @@ public class ContactListTest {
 
     @Test
     public void toStringMethod() {
-        String expected = ContactList.class.getCanonicalName() + "{courseMates=" + contactList.getCourseMateList() + "}";
+        String expected = ContactList.class.getCanonicalName()
+                + "{courseMates=" + contactList.getCourseMateList() + "}";
         assertEquals(expected, contactList.toString());
     }
 

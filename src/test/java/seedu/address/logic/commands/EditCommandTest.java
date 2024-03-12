@@ -11,9 +11,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
+import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COURSE_MATE;
-import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +41,8 @@ public class EditCommandTest {
         EditCommand.EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(editedCourseMate).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
+                Messages.format(editedCourseMate));
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
@@ -62,7 +63,8 @@ public class EditCommandTest {
                 .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
         EditCommand editCommand = new EditCommand(indexLastCourseMate, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
+                Messages.format(editedCourseMate));
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(lastCourseMate, editedCourseMate);
@@ -75,7 +77,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, new EditCourseMateDescriptor());
         CourseMate editedCourseMate = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
+                Messages.format(editedCourseMate));
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
 
@@ -86,12 +89,14 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showCourseMateAtIndex(model, INDEX_FIRST_COURSE_MATE);
 
-        CourseMate courseMateInFilteredList = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
+        CourseMate courseMateInFilteredList = model.getFilteredCourseMateList()
+                .get(INDEX_FIRST_COURSE_MATE.getZeroBased());
         CourseMate editedCourseMate = new CourseMateBuilder(courseMateInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE,
                 new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
+                Messages.format(editedCourseMate));
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
@@ -113,7 +118,8 @@ public class EditCommandTest {
         showCourseMateAtIndex(model, INDEX_FIRST_COURSE_MATE);
 
         // edit courseMate in filtered list into a duplicate in contact list
-        CourseMate courseMateInList = model.getContactList().getCourseMateList().get(INDEX_SECOND_COURSE_MATE.getZeroBased());
+        CourseMate courseMateInList = model.getContactList().getCourseMateList()
+                .get(INDEX_SECOND_COURSE_MATE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE,
                 new EditCourseMateDescriptorBuilder(courseMateInList).build());
 

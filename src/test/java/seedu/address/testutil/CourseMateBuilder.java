@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.coursemate.Address;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
-import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Phone;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.SampleDataUtil;

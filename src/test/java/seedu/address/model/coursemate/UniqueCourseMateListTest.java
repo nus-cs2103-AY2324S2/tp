@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
+import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
 import seedu.address.testutil.CourseMateBuilder;
 
 public class UniqueCourseMateListTest {
@@ -42,8 +42,8 @@ public class UniqueCourseMateListTest {
     @Test
     public void contains_courseMateWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCourseMateList.add(ALICE);
-        CourseMate editedAlice = new CourseMateBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
-                .build();
+        CourseMate editedAlice = new CourseMateBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
         assertTrue(uniqueCourseMateList.contains(editedAlice));
     }
 
@@ -85,8 +85,8 @@ public class UniqueCourseMateListTest {
     @Test
     public void setCourseMate_editedCourseMateHasSameIdentity_success() {
         uniqueCourseMateList.add(ALICE);
-        CourseMate editedAlice = new CourseMateBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
-                .build();
+        CourseMate editedAlice = new CourseMateBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
         uniqueCourseMateList.setCourseMate(ALICE, editedAlice);
         UniqueCourseMateList expectedUniqueCourseMateList = new UniqueCourseMateList();
         expectedUniqueCourseMateList.add(editedAlice);
@@ -129,7 +129,8 @@ public class UniqueCourseMateListTest {
 
     @Test
     public void setCourseMates_nullUniqueCourseMateList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCourseMateList.setCourseMates((UniqueCourseMateList) null));
+        assertThrows(NullPointerException.class, () ->
+                uniqueCourseMateList.setCourseMates((UniqueCourseMateList) null));
     }
 
     @Test
@@ -159,13 +160,14 @@ public class UniqueCourseMateListTest {
     @Test
     public void setCourseMates_listWithDuplicateCourseMates_throwsDuplicateCourseMateException() {
         List<CourseMate> listWithDuplicateCourseMates = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateCourseMateException.class, () -> uniqueCourseMateList.setCourseMates(listWithDuplicateCourseMates));
+        assertThrows(DuplicateCourseMateException.class, () ->
+                uniqueCourseMateList.setCourseMates(listWithDuplicateCourseMates));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueCourseMateList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                uniqueCourseMateList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test

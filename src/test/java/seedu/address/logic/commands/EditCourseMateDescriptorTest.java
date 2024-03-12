@@ -37,7 +37,8 @@ public class EditCourseMateDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditCourseMateDescriptor editedAmy = new EditCourseMateDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditCommand.EditCourseMateDescriptor editedAmy =
+                new EditCourseMateDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

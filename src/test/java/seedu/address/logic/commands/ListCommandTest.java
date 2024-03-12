@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

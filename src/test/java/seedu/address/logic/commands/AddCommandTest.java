@@ -18,9 +18,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
 import seedu.address.model.ContactList;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.testutil.CourseMateBuilder;
 
@@ -40,7 +41,7 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourseMate)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validCourseMate), modelStub.CourseMatesAdded);
+        assertEquals(Arrays.asList(validCourseMate), modelStub.courseMatesAdded);
     }
 
     @Test
@@ -49,7 +50,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validCourseMate);
         ModelStub modelStub = new ModelStubWithCourseMate(validCourseMate);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_COURSE_MATE, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_COURSE_MATE, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -180,18 +182,18 @@ public class AddCommandTest {
      * A Model stub that always accept the courseMate being added.
      */
     private class ModelStubAcceptingCourseMateAdded extends ModelStub {
-        final ArrayList<CourseMate> CourseMatesAdded = new ArrayList<>();
+        final ArrayList<CourseMate> courseMatesAdded = new ArrayList<>();
 
         @Override
         public boolean hasCourseMate(CourseMate courseMate) {
             requireNonNull(courseMate);
-            return CourseMatesAdded.stream().anyMatch(courseMate::isSameCourseMate);
+            return courseMatesAdded.stream().anyMatch(courseMate::isSameCourseMate);
         }
 
         @Override
         public void addCourseMate(CourseMate courseMate) {
             requireNonNull(courseMate);
-            CourseMatesAdded.add(courseMate);
+            courseMatesAdded.add(courseMate);
         }
 
         @Override
