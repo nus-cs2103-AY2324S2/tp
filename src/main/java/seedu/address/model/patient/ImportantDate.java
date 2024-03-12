@@ -16,13 +16,15 @@ public class ImportantDate {
             "Dates should be in the format: DD-MM-YYYY, HH:mm - HH:mm, OR if there is no time period,"
             + "in the format: DD-MM-YYYY";
 
-    /** The Date of the Important Event */
+
+
+    /** The name of the Important Date */
+    public final String name;
+    /** The Date of the Important Date */
     public final String importantDate;
-
-    /** The Start Time of the Important Event, null if there is no specific start time */
+    /** The Start Time of the Important Date, null if there is no specific start time */
     public final String startTime;
-
-    /** The End Time of the Important Event, null if there is no specific end time */
+    /** The End Time of the Important Date, null if there is no specific end time */
     public final String endTime;
 
 
@@ -33,7 +35,10 @@ public class ImportantDate {
      *
      * @param importantDate
      */
-    public ImportantDate(String importantDate) {
+    public ImportantDate(String name, String importantDate) {
+        requireNonNull(name);
+        this.name = name;
+
         importantDate = importantDate.strip();
         requireNonNull(importantDate);
         checkArgument(isValidImportantDate(importantDate), MESSAGE_CONSTRAINTS);
@@ -114,10 +119,10 @@ public class ImportantDate {
     public String toString() {
         // If there is a start time, there must be a end time
         if (this.startTime != null) {
-            return String.format("(%s, from %s to %s)", this.importantDate, this.startTime, this.endTime);
+            return String.format("%s (%s, from %s to %s)", this.name, this.importantDate, this.startTime, this.endTime);
         }
 
-        return String.format("(%s)", this.importantDate);
+        return String.format("%s (%s)", this.name, this.importantDate);
     }
 
     @Override
@@ -131,7 +136,8 @@ public class ImportantDate {
         }
 
         ImportantDate otherImportantDate = (ImportantDate) other;
-        return this.importantDate.equals(otherImportantDate.importantDate) &&
+        return this.name.equals(otherImportantDate.name) &&
+                this.importantDate.equals(otherImportantDate.importantDate) &&
                 this.startTime.equals(otherImportantDate.startTime) &&
                 this.endTime.equals(otherImportantDate.endTime);
     }

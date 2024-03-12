@@ -9,20 +9,25 @@ import org.junit.jupiter.api.Test;
 public class ImportantDateTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ImportantDate(null));
+        assertThrows(NullPointerException.class, () -> new ImportantDate(null, null));
+        assertThrows(NullPointerException.class, () -> new ImportantDate(null, "01-01-2022"));
+        assertThrows(NullPointerException.class, () -> new ImportantDate("Family Visit", null));
     }
 
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("something"));
+        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit",
+                "something"));
     }
 
     @Test
     public void constructor_invalidTime_throwsIllegalArgumentException() {
         String validDate = "01-01-2022";
 
-        assertThrows(IllegalArgumentException.class, () -> new ImportantDate(validDate + ", HH:mm - HH:mm"));
-        assertThrows(IllegalArgumentException.class, () -> new ImportantDate(validDate + ", 99:88 - 99:99"));
+        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit",
+                validDate + ", HH:mm - HH:mm"));
+        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit",
+                validDate + ", 99:88 - 99:99"));
     }
 
     @Test
@@ -43,34 +48,34 @@ public class ImportantDateTest {
 
     @Test
     public void equals() {
-        ImportantDate date = new ImportantDate("01-01-2022, 12:12 - 12:12");
+        ImportantDate date = new ImportantDate("Family Visit", "01-01-2022, 12:12 - 12:12");
 
         assertFalse(date.equals(null));
         assertFalse(date.equals("Something"));
         assertFalse(date.equals(10));
-        assertFalse(date.equals(new ImportantDate("02-01-2022, 12:12 - 12:12")));
-        assertFalse(date.equals(new ImportantDate("01-02-2022, 12:12 - 12:12")));
-        assertFalse(date.equals(new ImportantDate("01-02-2023, 12:12 - 12:12")));
-        assertFalse(date.equals(new ImportantDate("01-01-2022, 12:12 - 12:11")));
-        assertFalse(date.equals(new ImportantDate("01-01-2022, 12:12 - 11:12")));
-        assertFalse(date.equals(new ImportantDate("01-01-2022, 12:11 - 12:12")));
-        assertFalse(date.equals(new ImportantDate("01-01-2022, 11:12 - 12:12")));
+        assertFalse(date.equals(new ImportantDate("Family Visit", "02-01-2022, 12:12 - 12:12")));
+        assertFalse(date.equals(new ImportantDate("Family Visit", "01-02-2022, 12:12 - 12:12")));
+        assertFalse(date.equals(new ImportantDate("Family Visit", "01-02-2023, 12:12 - 12:12")));
+        assertFalse(date.equals(new ImportantDate("Family Visit", "01-01-2022, 12:12 - 12:11")));
+        assertFalse(date.equals(new ImportantDate("Family Visit", "01-01-2022, 12:12 - 11:12")));
+        assertFalse(date.equals(new ImportantDate("Family Visit", "01-01-2022, 12:11 - 12:12")));
+        assertFalse(date.equals(new ImportantDate("Family Visit", "01-01-2022, 11:12 - 12:12")));
 
         assertTrue(date.equals(date));
-        assertTrue(date.equals(new ImportantDate("01-01-2022, 12:12 - 12:12")));
+        assertTrue(date.equals(new ImportantDate("Family Visit", "01-01-2022, 12:12 - 12:12")));
     }
 
     @Test
     public void dateToString() {
-        ImportantDate date = new ImportantDate("01-01-2022");
+        ImportantDate date = new ImportantDate("Family Visit", "01-01-2022");
 
-        assertTrue(date.toString().equals("(01-01-2022)"));
+        assertTrue(date.toString().equals("Family Visit (01-01-2022)"));
     }
 
     @Test
     public void dateTimeToString() {
-        ImportantDate date = new ImportantDate("01-01-2022, 12:12 - 12:12");
+        ImportantDate date = new ImportantDate("Family Visit", "01-01-2022, 12:12 - 12:12");
 
-        assertTrue(date.toString().equals("(01-01-2022, from 12:12 to 12:12)"));
+        assertTrue(date.toString().equals("Family Visit (01-01-2022, from 12:12 to 12:12)"));
     }
 }
