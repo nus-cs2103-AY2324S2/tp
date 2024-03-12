@@ -25,7 +25,7 @@ public class InternshipSampleDataUtil {
         return new Internship[]{
             new Internship(new CompanyName("Google"), new ContactName("John Doe"),
                     new ContactEmail("johndoe@example.com"), new ContactNumber("12345678"),
-                    new Location("remote"), new ApplicationStatus("to apply"),
+                    new Location("remote"), new ApplicationStatus("to_apply"),
                     new Description("Software Engineering Internship"),
                     new Role("Software Engineer")),
             new Internship(new CompanyName("Facebook"), new ContactName("Jane Smith"),
@@ -35,7 +35,7 @@ public class InternshipSampleDataUtil {
                     new Role("Product Manager")),
             new Internship(new CompanyName("Amazon"), new ContactName("Mark Johnson"),
                     new ContactEmail("markjohnson@example.com"), new ContactNumber("45678901"),
-                    null, new ApplicationStatus("rejected"),
+                    new Location("remote"), new ApplicationStatus("rejected"),
                     new Description("Business Development Internship"),
                     new Role("Business Development Associate")),
         };
