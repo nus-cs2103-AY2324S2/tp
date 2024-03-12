@@ -53,6 +53,14 @@ public class AddEventCommandTest {
             ) -> addEventCommand.execute(modelStub));
     }
 
+    @Test
+    public void toStringMethod() {
+        Event eventToAdd = new EventBuilder().withEventName("Sample Event").build();
+        AddEventCommand addEventCommand = new AddEventCommand(eventToAdd);
+        String expected = AddEventCommand.class.getCanonicalName() + "{toAdd=" + eventToAdd + "}";
+        assertEquals(expected, addEventCommand.toString());
+    }
+
     /**
      * A default model stub that have all the methods failing.
      */

@@ -16,9 +16,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.EventBuilder;
 
 public class ModelManagerTest {
 
@@ -127,6 +129,50 @@ public class ModelManagerTest {
         modelManager.addEvent(BINGO);
         modelManager.deleteEvent(BINGO);
         assertFalse(modelManager.hasEvent(BINGO));
+    }
+
+    @Test
+    public void setEventBook_nullEventBook_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager();
+        assertThrows(NullPointerException.class, () -> modelManager.setEventBook(null));
+    }
+
+    @Test
+    public void setEventBook_validEventBook_success() {
+        ModelManager modelManager = new ModelManager();
+        ReadOnlyEventBook newEventBook = new EventBook();
+        modelManager.setEventBook(newEventBook);
+        assertEquals(newEventBook, modelManager.getEventBook());
+    }
+
+    @Test
+    public void setEvent_nullTargetAndEditedEvent_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager();
+        assertThrows(NullPointerException.class, () -> modelManager.setEvent(null, null));
+    }
+
+    @Test
+    public void setEvent_nullTargetEvent_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager();
+        Event editedEvent = new EventBuilder().build();
+        assertThrows(NullPointerException.class, () -> modelManager.setEvent(null, editedEvent));
+    }
+
+    @Test
+    public void setEvent_nullEditedEvent_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager();
+        Event targetEvent = new EventBuilder().build();
+        assertThrows(NullPointerException.class, () -> modelManager.setEvent(targetEvent, null));
+    }
+
+    @Test
+    public void setEvent_validTargetAndEditedEvent_success() {
+        ModelManager modelManager = new ModelManager();
+        Event targetEvent = new EventBuilder().build();
+        Event editedEvent = new EventBuilder().withEventName("Edited Event").build();
+        modelManager.addEvent(targetEvent);
+        modelManager.setEvent(targetEvent, editedEvent);
+        assertTrue(modelManager.getFilteredEventList().contains(editedEvent));
     }
 
     @Test
