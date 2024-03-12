@@ -12,6 +12,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.IdMatchesPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.person.TagMatchesPredicate;
+import seedu.address.model.tag.Tag;
 
 public class FindCommandParserTest {
 
@@ -31,6 +33,8 @@ public class FindCommandParserTest {
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         FindCommand expectedFindIdCommand =
                 new FindCommand(new IdMatchesPredicate(new StudentId("00001")));
+        FindCommand expectedFindTagCommand =
+                new FindCommand(new TagMatchesPredicate(new Tag("someTag")));
 
         assertParseSuccess(parser, "1 Alice Bob", expectedFindNameCommand);
 
@@ -40,7 +44,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, "2 00001", expectedFindIdCommand);
 
         //expected to change when implemented 3
-        assertParseFailure(parser, "3 00001", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseSuccess(parser, "3 someTag", expectedFindTagCommand);
     }
 
 }
