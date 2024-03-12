@@ -36,7 +36,7 @@ If you can type fast, TAPro can get your contact management tasks done faster th
 
    * `addstu nn/e0952224 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Contact Book.
 
-   * `delete NUSNET_ID` : Deletes the student with the specified NUSNET_ID from the contact book.
+   * `delstu NUSNET_ID` : Deletes the student with the specified NUSNET_ID from the contact book.
 
    * `clear` : Deletes all contacts.
 
@@ -222,7 +222,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add Student**    | `addstu n/NAME p/PHONE_NUMBER e/EMAIL nn/NUSNET_ID a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com nn/e1234567 a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete NUSNET_ID`<br> e.g., `delete e0957499`
+**Delete Student** | `delstu NUSNET_ID`<br> e.g., `delstu e0957499`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
