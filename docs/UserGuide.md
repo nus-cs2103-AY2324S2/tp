@@ -238,6 +238,40 @@ Expected output:
     - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
     - invalid task name: `Task <TASK_NAME> not found: Please make sure the task exists`
 
+### Set Task Status  : `set status of Task`
+
+sets the status of a task as finished or unfinished
+
+Format: `set status <STATUS> task <TASK_NAME>`
+
+* The specified task name must exist in the task list.
+* The task status can either be `done` or `undone`
+
+Examples:
+* `set status done add deadline command /in CS2103T Duke Chatbot Project`
+
+Expected output:
+* Successful status update: `Task <TASK_NAME> is set as <STATUS>`
+* Failed commands: `Task <TASK_NAME> not found: Please make sure the task exists.`
+* `Status was entered incorrectly.`
+
+### Set Project Status  : `set status of Project`
+
+sets the status of a project as finished or unfinished
+
+Format: `set status <STATUS> project <PROJECT_NAME>`
+
+* The specified project name must exist in the project list.
+* The project status can either be `done` or `undone`
+
+Examples:
+* `set status done project CS2103T Duke Chatbot Project`
+
+Expected output:
+* Successful status update: `Project <PROJECT_NAME> is set as <STATUS>`
+* Failed commands: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+* `Status was entered incorrectly.`
+
 
 ### Show Project  : `show project`
 
