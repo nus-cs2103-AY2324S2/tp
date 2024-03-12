@@ -306,16 +306,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SWEE` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a client**
+**Use case: UC01 - Add a client's contact in SWEE**
 
 **MSS**
 
-1.  User requests to list clients
-2.  AddressBook shows a list of clients
-3.  User requests to delete a specific client in the list
-4.  AddressBook deletes the client
+1.  User inputs details of the client.
+2.  SWEE adds the client as a contact including the details given.
+3.  SWEE lists out all current contacts that have been saved (UC04).
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user's input format for the client's details is invalid.
+
+    * 1a1. SWEE prompts user to input the client's details in the correct format.
+    * 1a2. User inputs in the client's details again.
+    * 1a3 repeat steps 1a1-1a2 until the input is in the correct format.
+        
+        Use case resumes at step 2.
+
+**Use case: UC02 - Delete a client**
+
+**MSS**
+
+1. SWEE shows a list of clients (UC04).
+2. User requests to delete a specific client in the list.
+3. AddressBook deletes the client.
 
     Use case ends.
 
@@ -327,11 +346,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SWEE shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC03 - View a client's contact in SWEE**
+
+**MSS**
+
+1.  SWEE shows the list of clients (UC04).
+2.  User selects which client's contact to view.
+3.  SWEE displays the client's information to the user.
+
+    Use case ends.
+
+**Use case: UC04 - List all saved client contacts in SWEE**
+
+**MSS**
+
+1.  User requests to see the list of all current client contacts in SWEE.
+2.  SWEE presents the user with all the current saved contacts in alphabetical order. 
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
