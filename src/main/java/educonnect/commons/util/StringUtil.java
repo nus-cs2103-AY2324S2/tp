@@ -47,7 +47,6 @@ public class StringUtil {
      *       fuzzyMatchIgnoreCase("ABc def", "ABc d") == true
      *       fuzzyMatchIgnoreCase("ABc def", "abc def g") == false
      *       </pre>
-     * 
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty can be multiple words separated by whitespace or hyphen
      */

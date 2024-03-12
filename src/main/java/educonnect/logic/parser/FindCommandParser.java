@@ -2,8 +2,6 @@ package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-//import java.util.Arrays;
-
 import educonnect.logic.commands.FindCommand;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.student.NameContainsKeywordsPredicate;
@@ -24,8 +22,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-        //String[] nameKeywords = trimmedArgs.split("[\\s-]+");
 
         return new FindCommand(new NameContainsKeywordsPredicate(trimmedArgs));
     }
