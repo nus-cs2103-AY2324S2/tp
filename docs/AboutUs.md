@@ -21,7 +21,7 @@ You can reach us at the email `[insert email]`
 
 ### Pairor Tarin
 
-<img src="images/TarinPairorProfile.png" width="199px">
+<img src="images/TarinPairorProfile.png" width="200px">
 
 [[github](http://github.com/TarinPairor)]
 [[portfolio](team/johndoe.md)]
