@@ -20,15 +20,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation + UI
 
-### Jane Doe
+### Martin Ng Jinn Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/martinng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/martinng01)]
+[[portfolio](team/martinng.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Testing
 
 ### Johnny Doe
 
