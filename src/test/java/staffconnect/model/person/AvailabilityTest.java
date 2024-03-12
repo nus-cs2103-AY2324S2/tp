@@ -39,14 +39,17 @@ public class AvailabilityTest {
         assertFalse(Availability.isValidAvailability("day")); // day without prefix
         assertFalse(Availability.isValidAvailability("sytaudrh")); // scrambled spelling
         assertFalse(Availability.isValidAvailability("chewsday")); // misspelling
-        assertFalse(Availability.isValidAvailability("thu")); // uncompleted syllable
+        assertFalse(Availability.isValidAvailability("th")); // uncompleted syllable
         assertFalse(Availability.isValidAvailability("sun day")); // space between syllable
+        assertFalse(Availability.isValidAvailability("sat day")); // missing middle syllable
+        assertFalse(Availability.isValidAvailability("satuday")); // missing middle letter
 
         // valid availability
         assertTrue(Availability.isValidAvailability("mon")); // first syllable tuesday
         assertTrue(Availability.isValidAvailability("tues")); // first syllable tuesday
         assertTrue(Availability.isValidAvailability("wed")); // first syllable wednesday
         assertTrue(Availability.isValidAvailability("wednes")); // two syllable wednesday
+        assertTrue(Availability.isValidAvailability("thu")); // first syllable thursday without rs
         assertTrue(Availability.isValidAvailability("thur")); // first syllable thursday without s
         assertTrue(Availability.isValidAvailability("thurs")); // first syllable thursday with s
         assertTrue(Availability.isValidAvailability("sat")); // first syllable saturday
@@ -105,4 +108,6 @@ public class AvailabilityTest {
 
 
     }
+
+
 }

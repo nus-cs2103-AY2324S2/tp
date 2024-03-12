@@ -13,7 +13,7 @@ public class Availability {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Should be a week of the day, the full word or the first syllable of the word";
-    public static final String VALIDATION_REGEX = "(?i)((mon|tues|wed(nes)?|thur(s)?|fri|sat(ur)?|sun)(day)?)";
+    public static final String VALIDATION_REGEX = "(?i)((mon|tue(s)?|wed(nes)?|thu(r)?(rs)?|fri|sat(ur)?|sun)(day)?)";
 
     public final String value;
 
@@ -25,21 +25,7 @@ public class Availability {
     public Availability(String availability) {
         requireNonNull(availability);
         checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
-        if (availability.matches("(?i)(mon)(day)?")) {
-            value = DayOfWeek.MONDAY.name();
-        } else if (availability.matches("(?i)(tues)(day)?")) {
-            value = DayOfWeek.TUESDAY.name();
-        } else if (availability.matches("(?i)(wed)(nes)?(day)?")) {
-            value = DayOfWeek.WEDNESDAY.name();
-        } else if (availability.matches("(?i)(thur)(s)(day)?")) {
-            value = DayOfWeek.THURSDAY.name();
-        } else if (availability.matches("(?i)(fri)(day)?")) {
-            value = DayOfWeek.FRIDAY.name();
-        } else if (availability.matches("(?i)(sat)(ur)?(day)?")) {
-            value = DayOfWeek.SATURDAY.name();
-        } else {
-            value = DayOfWeek.SUNDAY.name();
-        }
+        value = strToDayOfWeek(availability);
     }
 
     /**
@@ -47,6 +33,30 @@ public class Availability {
      */
     public static boolean isValidAvailability(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a standardised Day of the Week.
+     *
+     * @param validAvailability validatedAvailability to be translated.
+     * @return Corresponding Day of Week.
+     */
+    public static String strToDayOfWeek(String validAvailability) {
+        if (validAvailability.matches("(?i)(mon)(day)?")) {
+            return DayOfWeek.MONDAY.name();
+        } else if (validAvailability.matches("(?i)(tue)(s?)(sday?)")) {
+            return DayOfWeek.TUESDAY.name();
+        } else if (validAvailability.matches("(?i)(wed)(nes)?(nesday)?")) {
+            return DayOfWeek.WEDNESDAY.name();
+        } else if (validAvailability.matches("(?i)(thu)(r)?(rs)?(rsday)?")) {
+            return DayOfWeek.THURSDAY.name();
+        } else if (validAvailability.matches("(?i)(fri)(day)?")) {
+            return DayOfWeek.FRIDAY.name();
+        } else if (validAvailability.matches("(?i)(sat)(ur)?(urday)?")) {
+            return DayOfWeek.SATURDAY.name();
+        } else {
+            return DayOfWeek.SUNDAY.name();
+        }
     }
 
     @Override
