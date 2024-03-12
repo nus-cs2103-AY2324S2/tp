@@ -17,6 +17,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 
 /**
@@ -30,7 +31,8 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(INDEX_FIRST_PERSON);
+
+        DeletePersonCommand deleteCommand = new DeletePersonCommand(personToDelete.getNusNet());
 
         String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -42,11 +44,11 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(outOfBoundIndex);
+    public void execute_invalidNUSNETID_throwsCommandException() {
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        DeletePersonCommand deleteCommand = new DeletePersonCommand(new NusNet("e1234567"));
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NUSNETID_NOT_FOUND);
     }
 
     @Test
@@ -54,7 +56,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(INDEX_FIRST_PERSON);
+        DeletePersonCommand deleteCommand = new DeletePersonCommand(personToDelete.getNusNet());
 
         String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -67,28 +69,15 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void equals() {
-        DeletePersonCommand deleteFirstCommand = new DeletePersonCommand(INDEX_FIRST_PERSON);
-        DeletePersonCommand deleteSecondCommand = new DeletePersonCommand(INDEX_SECOND_PERSON);
+        DeletePersonCommand deleteFirstCommand = new DeletePersonCommand(new NusNet(CommandTestUtil.VALID_NUSNET_AMY));
+        DeletePersonCommand deleteSecondCommand = new DeletePersonCommand(new NusNet(CommandTestUtil.VALID_NUSNET_BOB));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeletePersonCommand deleteFirstCommandCopy = new DeletePersonCommand(INDEX_FIRST_PERSON);
+        DeletePersonCommand deleteFirstCommandCopy = new DeletePersonCommand(new NusNet((CommandTestUtil.VALID_NUSNET_AMY)));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -103,9 +92,9 @@ public class DeleteCommandTest {
 
     @Test
     public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(targetIndex);
-        String expected = DeletePersonCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        NusNet targetNUSNET_ID = new NusNet(CommandTestUtil.VALID_NUSNET_AMY);
+        DeletePersonCommand deleteCommand = new DeletePersonCommand(targetNUSNET_ID);
+        String expected = DeletePersonCommand.class.getCanonicalName() + "{targetNUSNET_ID=" + targetNUSNET_ID + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
