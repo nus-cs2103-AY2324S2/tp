@@ -266,28 +266,74 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- has a need to manage a significant number of contacts
+- has a need to organise various projects and people
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage projects and tasks faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ---------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                     | I want to …​                                                   | So that I can…​                                                           |
+|----------|---------------------------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | software developer                          | keep track of all my projects’ tasks in the app                | meet all my deadlines on time                                             |
+| `* *`    | user                                        | sort my tasks by their deadlines                               | see what is the next pending task to complete                             |
+| `* *`    | user                                        | see what my tasks are due next week                            | schedule my timetable accordingly                                         |
+| `* *`    | user                                        | see who are my teammates for each project                      | know who to contact if I have any questions for that project              |
+| `* *`    | user                                        | mark my completed tasks as completed                           | keep them out of sight to prevent confusion                               |
+| `* *`    | user                                        | mark my tasks as in progress                                   | remind myself to come back to it once I have a clearer idea of what to do |
+| `*`      | user                                        | keep track of all my ongoing projects                          | be reminded of what I need to do for the next few weeks/months            |
+| `*`      | user                                        | see what are the categories for each of my projects           | know what knowledge I need to learn and utilize for each of their tasks   |
+| `*`      | user                                        | delete projects that have been discontinued or completed       | know what to focus on                                                     |
+| `*`      | user                                        | update the deadline of my tasks if it has been brought forward | know exactly when it is due                                               |
+| `* *`    | project manager user                        | keep track of the team members                                 |                                                                           |
+| `* * *`  | user                                        | create new projects         | manage various tasks and activities                                       |
+| `* * *`  | user                                        | add team members to projects and assign them specific roles and tasks |                                                                           |
+| `* *`    | user                                        | set deadlines and milestones for subtasks within a project    |                                                                           |
+| `*`      | user                                        | track the progress of tasks and projects through visual representations such as charts or graphs |                                                                           |
+| `*`      | user                                        | prioritize tasks within a project    | ensure timely completion                                                  |
+| `* *`    | user                                        | collaborate with team members by sharing files, comments, and updates within the software |                                                                           |
+| `* *`    | user                                        | receive notifications and reminders for upcoming deadlines or overdue tasks |                                                                           |
+| `*`      | user                                        | generate reports  | analyze project performance and identify areas for improvement            |
+| `*`      | user                                        | integrate the software with other tools or platforms | have seamless workflow management                                         |
+| `* * *`  | user                                        | access the software from any device with an internet connection | for convenience                                                           |
+| `*`      | user                                        | customize project templates or workflows  | suit the specific needs of my team or organization                        |
+| `* *`    | user                                        | securely store project-related documents and files within the software |                                                                           |
+| `* * *`  | user                                        | communicate with clients or stakeholders and provide them with updates on project progress |                                                                           |
+| `* *`    | user                                        | search for specific tasks, projects, or documents within the software | for quick access                                                          |
+| `* *`    | user                                        | archive completed projects or tasks for future reference      |                                                                           |
+| `*`      | user                                        | export data from the software in various formats | employ further analysis or sharing                                        |
+| `*`      | user                                        | invite external collaborators  | they can participate in specific projects or tasks                        |
+| `* *`    | user                                        | monitor team workload and redistribute tasks  | balance workloads                                                         |
+| `*`      | user                                        | access historical data and project archives  | learn from past experiences and make informed decisions                                                                       |
+| `*`      | user                                        | provide feedback or suggestions for improving the software  |      better meet the needs of myself and my team                                                                     |
+| `* * *`  | user                                        | set the status of a project to be completed or incompleted    |                                                                           |
+| `* * *`  | user                                        | set the deadline of a project to a specific date              |                                                                           |
+| `* *`    | user                                        | edit the details of a project                                 |                                                                           |
+| `* *`    | user                                        | filter the projects by their status                           |                                                                           |
+| `* * *`  | user                                        | add tasks to a project (ADD)                                  |                                                                           |
+| `* *`    | user                                        | remove tasks from a project                                   |                                                                           |
+| `* *`    | user                                        | edit the details of a task                                    |                                                                           |
+| `* *`    | user                                        | mark task as not done or completed                            |                                                                           |
+| `* *`    | user                                        | assign tasks to a person                                      |                                                                           |
+| `* *`    | user                                        | filter tasks by completion status                             |                                                                           |
+| `* *`    | user                                        | filter tasks by the person responsible                        |                                                                           |
+| `* * *`  | user                                        | save the project list on my hard drive                        |                                                                           |
+| `*`      | user                                        | share the project list so that other users can import the same list |                                                                           |
+| `*`      | user                                        | import lists from others while keeping my own list or discarding my old list |                                                                           |
+| `* *`    | user                                        | limit the amount of projects I can see on one page            |                                                                           |
+| `* *`    | user                                        | search for projects by name                                   |                                                                           |
+| `* *`    | user                                        | search for tasks by name                                      |                                                                           |
+| `* * *`  | user                                        | access the user guide / command list                          |                                                                           |
+| `* *`    | forgetful user                              | easily use the commands with guidance from the program        |                                                                           |
+| `* *`    | user                                        | change font sizes                                             |                                                                           |
+| `* * *`  | typely user                                 | use type commands to do everything a user does                |                                                                           |
+| `*`      | user                                        | edit details of a person (Optional)                           |                                                                           |
 
-_{More to be added}_
 
 ### Use cases
 
