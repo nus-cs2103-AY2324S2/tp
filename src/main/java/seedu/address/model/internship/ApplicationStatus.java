@@ -46,20 +46,7 @@ public class ApplicationStatus {
 
     @Override
     public String toString() {
-        switch (applicationStatus) {
-        case TO_APPLY:
-            return "To Apply";
-        case PENDING:
-            return "Pending";
-        case REJECTED:
-            return "Rejected";
-        case ACCEPTED:
-            return "Accepted";
-        case ONGOING:
-            return "Ongoing";
-        default:
-            throw new IllegalArgumentException("Unexpected application status: " + applicationStatus);
-        }
+        return applicationStatus.toString();
     }
     @Override
     public boolean equals(Object other) {
