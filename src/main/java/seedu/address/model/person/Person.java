@@ -7,7 +7,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.order.Date;
+import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +29,8 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final ObservableList<Order> orderList;
+
     /**
      * Every field must be present and not null.
      */
@@ -35,6 +41,22 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.orderList = FXCollections.observableArrayList();
+    }
+
+    /**
+     * Every field must be present and not null.
+     * This constructor is used to create a person with orders.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  ObservableList<Order> orderList) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.orderList = orderList;
     }
 
     public Name getName() {
@@ -59,6 +81,20 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an order list
+     * @param arrivalDate the expected date of the order received
+     * @param description the description of the order
+     */
+    public void addOrder(Date arrivalDate, String description) {
+        Order order = new Order(arrivalDate, description);
+        orderList.add(order);
+    }
+
+    public ObservableList<Order> getOrderList() {
+        return orderList;
     }
 
     /**
@@ -100,7 +136,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, orderList);
     }
 
     @Override
@@ -111,6 +147,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("orders", orderList)
                 .toString();
     }
 
