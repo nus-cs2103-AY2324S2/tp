@@ -312,16 +312,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorTrack`, the **Actor** is the `Tutor` and the **Person** is the `Tutee`, unless specified otherwise)
+
+**Use case: View all Person**
+
+**MSS**
+
+1.  User requests to list all persons
+2.  System shows a list of all persons
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+* *a. Connection lost.
+    * *a1. System informs the user.
+
+  Use case ends.
+
+**Use case: Add a Person**
+
+**MSS**
+
+1.  User requests to list all persons
+2.  System shows a list of all persons
+3.  User requests to add a specific person in the list
+4.  System adds the person
+
+    Use case ends.
+
+**Extensions**
+* 3a. The given format is invalid.
+    * 3a1. System shows an error message.
+
+      Use case resumes at step 2.
+* *a. Connection lost.
+    * *a1. System informs the user.
+
+      Use case ends.
+
+**Use case: Update a Person**
+
+**MSS**
+
+1.  User requests to list all persons
+2.  System shows a list of all persons
+3.  User requests to update a specific person in the list
+4.  System update the person
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+* 3a. The given format is invalid.
+    * 3a1. System shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The given index is invalid.
+    * 3a1. System shows an error message.
+
+      Use case resumes at step 2.
+* *a. Connection lost.
+    * *a1. System informs the user.
+
+      Use case ends.
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  System shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  System deletes the person
 
     Use case ends.
 
@@ -330,14 +393,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
   Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+* 3a. The given format is invalid.
+    * 3a1. System shows an error message.
 
       Use case resumes at step 2.
+* 3b. The given index is invalid.
 
-*{More to be added}*
+    * 3b1. System shows an error message.
+
+      Use case resumes at step 2.
+* *a. Connection lost.
+    * *a1. System informs the user.
+
+      Use case ends.
+
+**Use case: Find a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
+3.  User requests to find a specific person in the list
+4.  System shows the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+* 3a. The given format is invalid.
+    * 3a1. System shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The given index is invalid.
+
+    * 3b1. System shows an error message.
+
+      Use case resumes at step 2.
+* *a. Connection lost.
+    * *a1. System informs the user.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
