@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/chengjunyuan.png" width="200px">
 
-[[github](https://github.com/chengjunyuan)] [[linkedin](https://www.linkedin.com/in/jun-yuan-cheng-2867931a9/)]
+[[github](https://github.com/chengjunyuan)] [[linkedin](https://www.linkedin.com/in/jun-yuan-cheng-2867931a9/)] [[portfolio](team/chengjunyuan.md)]
 
 Interested in computational biology and bioinformatics!
 
