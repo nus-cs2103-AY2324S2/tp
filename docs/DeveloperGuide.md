@@ -262,40 +262,65 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* head TA of CS2103T
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage students and tutors faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                      | I want to …​                                                                         | So that I can…​                                                                             |
+|----------|----------------------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | user                                         | mark students' attendance                                                            | view attendance records easily in the app.                                                  |
+| `* * *`  | user                                         | add a contact entry                                                                  |                                                                                             |
+| `* * *`  | user                                         | delete a contact entry                                                               |                                                                                             |
+| `* * *`  | user                                         | add tags                                                                             |                                                                                             |
+| `* * *`  | user                                         | delete tags                                                                          |                                                                                             |
+| `* * *`  | user                                         | edit a contact entry                                                                 |                                                                                             |
+| `* * *`  | user                                         | search for specific contacts                                                         | easily retrieve the contact info of a student/tutor if I need to contact them.              |
+| `* * *`  | user                                         | have a basic GUI to interact with                                                    | use the app conveniently instead of in shell/terminal.                                      |
+| `* *`    | user with many students and tutors to manage | send group emails to students/tutors                                                 | save time on gathering email addresses.                                                     |
+| `* *`    | user                                         | organize students into classes                                                       | separate records for students from different classes.                                       |
+| `* *`    | beginner user                                | access a user guide                                                                  | understand the functions of the app.                                                        |
+| `* *`    | potential user exploring the app             | see the app populated with sample data                                               | get an idea of how the app is used.                                                         |
+| `* *`    | user with many students and tutors to manage | filter contacts with relevant keywords or tags                                       | access records relevant to a specific keyword quickly.                                      |
+| `* *`    | novice user                                  | expect the commands to be common-sensical                                            | pick up the app at speed.                                                                   |
+| `* *`    | novice user                                  | expect warnings to be given to irreversible actions such as batch delete contacts    | will not lose my data out of unfamiliarity with the commands.                               |
+| `* *`    | frequent user                                | batch edit contacts                                                                  | make similar changes to a large number of contacts quickly.                                 |
+| `* *`    | user                                         | see which tutors are available                                                       | quickly allocate them for replacement tutoring.                                             |
+| `* *`    | novice user                                  | have a sleek and simple UI                                                           | use the app easily.                                                                         |
+| `* *`    | careless user                                | backup the last few edits                                                            | revert changes if necessary.                                                                |
+| `* *`    | user                                         | track students' assignment progress                                                  | follow up if necessary.                                                                     |
+| `* *`    | user                                         | edit tags                                                                            | easily customise existing tags for my use case.                                             |
+| `* *`    | careless user                                | backup the last few edits                                                            | revert changes if necessary.                                                                |
+| `*`      | expert user                                  | export data in .xlsx                                                                 | share records with other tutors.                                                            |
+| `*`      | expert user                                  | create shortcuts for specific commands                                               | perform the usual tasks quickly.                                                            |
+| `*`      | user with lots of data stored                | batch imports to have a timestamp                                                    | easily locate certain information based on import time, or batch delete them when obsolete. |
+| `*`      | novice user                                  | accessible help page to remind me of command keywords                                | carry out tasks quickly even without remembering the command keywords.                      |
+| `*`      | user                                         | generate attendance reports of the students                                          | see who has been skipping classes.                                                          |
+| `*`      | busy user                                    | receive reminders for upcoming classes                                               | keep track of my upcoming lessons.                                                          |
+| `*`      | impatient user                               | use the app offline                                                                  | use the app even when the connection is poor.                                               |
+| `*`      | user who is familiar with cli                | be able to access already executed commands                                          | execute them again when needed without having to type everything again.                     |
+| `*`      | user who is familiar with cli                | see a list of suggested commands after having typed the initial letters of a keyword | quickly select a command to complete and it is less likely that I misspell a command.       |
+| `*`      | beginner user                                | GUI to be simple and self-explanatory                                                | get familiar with the app easily.                                                           |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TrAcker`, the **Actor** is the `user` and **persons** can be both a student and a TA unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  TrAcker shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 
@@ -309,19 +334,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TrAcker shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a person**
+
+**MSS**
+
+1. User requests to add a person with relevant entries such as name, phone number and email
+2. TrAcker adds the entry to its contact list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User inputs information in incorrect format
+
+    * 1a1. TrAcker shows an error message.
+    
+      Use case resumes at step 1
+
+**Use case: Search a contact**
+
+**MSS**
+
+1.  User requests to search a contact by keywords (for names)
+2.  TrAcker shows a list of contacts whose names match the keywords
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No contacts have names including the specified keywords.
+
+    *1a1. TrAcker shows an empty list
+
+  Use case ends.
+
+**Use case: Edit a contact**
+
+**MSS**
+
+1.  User requests to edit a contact with new information
+2.  TrAcker updates the contact with specified new information
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User inputs new information in incorrect format
+
+    * 1a1. TrAcker shows an error message.
+
+      Use case resumes at step 1
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  **(Technical)** Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  **(Quality)** A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  **(Quality)** The user interface and commands should be intuitive and user-friendly, requiring minimal time to learn.
+4.  **(Quality)** The app should provide clear and informative error messages in case of invalid inputs or command failures.
+5.  **(Performance)** The app should respond to user actions within 0.5 seconds, ensuring smooth navigation and interaction.
+6.  **(Performance)** The app should be able to support at minimum a contacts list of 200 without affecting performance.
+7.  **(Performance)** The app should be able to run smoothly even on low-end hardware configurations.
+8.  **(Process)** The project is expected to adhere to a schedule that adds updates incrementally at least once every two weeks.
+9.  **(Project scope)** The product should be focused on the needs of our target user, head teaching assistants.
+10. **(Documentation)** Comprehensive user guide should be provided, with detailed instructions on how to use each command.
+11. **(Documentation)** Comprehensive developer guide should be created to facilitate ongoing maintenance of the app.
 
 ### Glossary
 

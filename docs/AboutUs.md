@@ -11,27 +11,27 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ho Kai Ting
 
-<img src="images/kaiting.png" width="200px">
+<img src="images/kaitinghh.png" width="200px">
 
 [[github](https://github.com/kaitinghh)]
-[[portfolio](team/kaiting.md)]
+[[portfolio](team/kaitinghh.md)]
 
 * Role: Developer
 * Responsibilities: 
 
-### Jean Doe
+### Wang Xinrong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wang-xinrong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/yyccbb)]
+[[github](http://github.com/wang-xinrong)]
+[[portfolio](team/wangxinrong.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI
 
 ### Wong Kai Jie
 
-<img src="images/wongkj12.jpg" width="200px">
+<img src="images/wongkj12.png" width="200px">
 
 [[github](http://github.com/wongkj12)] [[portfolio](team/wongkj12.md)]
 
