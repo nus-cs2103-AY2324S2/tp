@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
 import seedu.address.model.event.UniqueEventList;
 
 /**
@@ -26,11 +25,7 @@ public class EventBook implements ReadOnlyEventBook {
     /**
      * Creates an EventBook
      */
-    public EventBook() {
-        // Placeholder events for testing; To be Removed
-        events.add(new Event(new EventName("test")));
-        events.add(new Event(new EventName("testing2")));
-    }
+    public EventBook() {}
 
     /**
      * Creates an EventBook using the Events in the {@code toBeCopied}.
