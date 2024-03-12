@@ -15,7 +15,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditCourseMateDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.skill.Skill;
 
@@ -44,27 +44,27 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditCourseMateDescriptor editCourseMateDescriptor = new EditCourseMateDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editCourseMateDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editCourseMateDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editCourseMateDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editCourseMateDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL)).ifPresent(editPersonDescriptor::setSkills);
+        parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL)).ifPresent(editCourseMateDescriptor::setSkills);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editCourseMateDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editCourseMateDescriptor);
     }
 
     /**

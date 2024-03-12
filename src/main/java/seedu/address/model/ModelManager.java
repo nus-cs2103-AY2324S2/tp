@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.coursemate.CourseMate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<CourseMate> filteredCourseMates;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCourseMates = new FilteredList<>(this.addressBook.getCourseMateList());
     }
 
     public ModelManager() {
@@ -88,44 +88,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasCourseMate(CourseMate courseMate) {
+        requireNonNull(courseMate);
+        return addressBook.hasCourseMate(courseMate);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteCourseMate(CourseMate target) {
+        addressBook.removeCourseMate(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addCourseMate(CourseMate courseMate) {
+        addressBook.addCourseMate(courseMate);
+        updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
+        requireAllNonNull(target, editedCourseMate);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setCourseMate(target, editedCourseMate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered CourseMate List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code CourseMate} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<CourseMate> getFilteredCourseMateList() {
+        return filteredCourseMates;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredCourseMateList(Predicate<CourseMate> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredCourseMates.setPredicate(predicate);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredCourseMates.equals(otherModelManager.filteredCourseMates);
     }
 
 }

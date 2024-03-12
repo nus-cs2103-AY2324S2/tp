@@ -11,16 +11,16 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.coursemate.CourseMate;
 
 /**
- * Adds a person to the address book.
+ * Adds a courseMate to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a courseMate to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -35,28 +35,28 @@ public class AddCommand extends Command {
             + PREFIX_SKILL + "friends "
             + PREFIX_SKILL + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New courseMate added: %1$s";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the address book";
 
-    private final Person toAdd;
+    private final CourseMate toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code CourseMate}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(CourseMate courseMate) {
+        requireNonNull(courseMate);
+        toAdd = courseMate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasCourseMate(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_COURSE_MATE);
         }
 
-        model.addPerson(toAdd);
+        model.addCourseMate(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

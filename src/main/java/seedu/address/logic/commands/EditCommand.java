@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,22 +21,19 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.coursemate.*;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.skill.Skill;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing courseMate in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the courseMate identified "
+            + "by the index number used in the displayed courseMate list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -48,60 +45,60 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_COURSE_MATE_SUCCESS = "Edited CourseMate: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditCourseMateDescriptor editCourseMateDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the courseMate in the filtered courseMate list to edit
+     * @param editCourseMateDescriptor details to edit the courseMate with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditCourseMateDescriptor editCourseMateDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editCourseMateDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editCourseMateDescriptor = new EditCourseMateDescriptor(editCourseMateDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<CourseMate> lastShownList = model.getFilteredCourseMateList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        CourseMate courseMateToEdit = lastShownList.get(index.getZeroBased());
+        CourseMate editedCourseMate = createEditedCourseMate(courseMateToEdit, editCourseMateDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!courseMateToEdit.isSameCourseMate(editedCourseMate) && model.hasCourseMate(editedCourseMate)) {
+            throw new CommandException(MESSAGE_DUPLICATE_COURSE_MATE);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        model.setCourseMate(courseMateToEdit, editedCourseMate);
+        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
+        return new CommandResult(String.format(MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code CourseMate} with the details of {@code courseMateToEdit}
+     * edited with {@code editCourseMateDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static CourseMate createEditedCourseMate(CourseMate courseMateToEdit, EditCourseMateDescriptor editCourseMateDescriptor) {
+        assert courseMateToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Skill> updatedSkills = editPersonDescriptor.getSkills().orElse(personToEdit.getSkills());
+        Name updatedName = editCourseMateDescriptor.getName().orElse(courseMateToEdit.getName());
+        Phone updatedPhone = editCourseMateDescriptor.getPhone().orElse(courseMateToEdit.getPhone());
+        Email updatedEmail = editCourseMateDescriptor.getEmail().orElse(courseMateToEdit.getEmail());
+        Address updatedAddress = editCourseMateDescriptor.getAddress().orElse(courseMateToEdit.getAddress());
+        Set<Skill> updatedSkills = editCourseMateDescriptor.getSkills().orElse(courseMateToEdit.getSkills());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills);
+        return new CourseMate(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills);
     }
 
     @Override
@@ -117,35 +114,35 @@ public class EditCommand extends Command {
 
         EditCommand otherEditCommand = (EditCommand) other;
         return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editCourseMateDescriptor.equals(otherEditCommand.editCourseMateDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editCourseMateDescriptor", editCourseMateDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the courseMate with. Each non-empty field value will replace the
+     * corresponding field value of the courseMate.
      */
-    public static class EditPersonDescriptor {
+    public static class EditCourseMateDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Skill> skills;
 
-        public EditPersonDescriptor() {}
+        public EditCourseMateDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code skills} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditCourseMateDescriptor(EditCourseMateDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -216,16 +213,16 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditCourseMateDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(skills, otherEditPersonDescriptor.skills);
+            EditCourseMateDescriptor otherEditCourseMateDescriptor = (EditCourseMateDescriptor) other;
+            return Objects.equals(name, otherEditCourseMateDescriptor.name)
+                    && Objects.equals(phone, otherEditCourseMateDescriptor.phone)
+                    && Objects.equals(email, otherEditCourseMateDescriptor.email)
+                    && Objects.equals(address, otherEditCourseMateDescriptor.address)
+                    && Objects.equals(skills, otherEditCourseMateDescriptor.skills);
         }
 
         @Override

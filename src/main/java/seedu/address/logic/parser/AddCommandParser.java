@@ -12,11 +12,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.coursemate.*;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -45,9 +42,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Skill> skillList = ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL));
 
-        Person person = new Person(name, phone, email, address, skillList);
+        CourseMate courseMate = new CourseMate(name, phone, email, address, skillList);
 
-        return new AddCommand(person);
+        return new AddCommand(courseMate);
     }
 
     /**

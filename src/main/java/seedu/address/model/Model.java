@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.coursemate.CourseMate;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<CourseMate> PREDICATE_SHOW_ALL_COURSE_MATES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a courseMate with the same identity as {@code courseMate} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasCourseMate(CourseMate courseMate);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given courseMate.
+     * The courseMate must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteCourseMate(CourseMate target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given courseMate.
+     * {@code courseMate} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addCourseMate(CourseMate courseMate);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given courseMate {@code target} with {@code editedCourseMate}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The courseMate identity of {@code editedCourseMate} must not be the same as another existing courseMate in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setCourseMate(CourseMate target, CourseMate editedCourseMate);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered courseMate list */
+    ObservableList<CourseMate> getFilteredCourseMateList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered courseMate list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredCourseMateList(Predicate<CourseMate> predicate);
 }
