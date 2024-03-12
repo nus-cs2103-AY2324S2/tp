@@ -21,12 +21,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.Email;
-import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.*;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing patient in the address book.
@@ -92,7 +89,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
-    private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
+    static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
@@ -100,8 +97,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+        Set<ImportantDate> updatedImportantDates = editPatientDescriptor.getImportantDates().
+                orElse(patientToEdit.getImportantDates());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedImportantDates);
     }
 
     @Override
@@ -126,117 +125,5 @@ public class EditCommand extends Command {
                 .add("index", index)
                 .add("editPatientDescriptor", editPatientDescriptor)
                 .toString();
-    }
-
-    /**
-     * Stores the details to edit the patient with. Each non-empty field value will replace the
-     * corresponding field value of the patient.
-     */
-    public static class EditPatientDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
-
-        public EditPatientDescriptor() {}
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public EditPatientDescriptor(EditPatientDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
-        }
-
-        public void setName(Name name) {
-            this.name = name;
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditPatientDescriptor)) {
-                return false;
-            }
-
-            EditPatientDescriptor otherEditPatientDescriptor = (EditPatientDescriptor) other;
-            return Objects.equals(name, otherEditPatientDescriptor.name)
-                    && Objects.equals(phone, otherEditPatientDescriptor.phone)
-                    && Objects.equals(email, otherEditPatientDescriptor.email)
-                    && Objects.equals(address, otherEditPatientDescriptor.address)
-                    && Objects.equals(tags, otherEditPatientDescriptor.tags);
-        }
-
-        @Override
-        public String toString() {
-            return new ToStringBuilder(this)
-                    .add("name", name)
-                    .add("phone", phone)
-                    .add("email", email)
-                    .add("address", address)
-                    .add("tags", tags)
-                    .toString();
-        }
     }
 }
