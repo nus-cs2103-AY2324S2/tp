@@ -41,4 +41,5 @@ class IdMatchesPredicateTest {
         String expected = IdMatchesPredicate.class.getCanonicalName() + "{student id=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
+
 }
