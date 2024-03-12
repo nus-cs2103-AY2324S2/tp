@@ -7,12 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -44,9 +42,9 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidNUSNETID_throwsCommandException() {
+    public void execute_invalidNusNetId_throwsCommandException() {
 
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(new NusNet("e1234567"));
+        DeletePersonCommand deleteCommand = new DeletePersonCommand(new NusNet("e9999999"));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NUSNETID_NOT_FOUND);
     }
@@ -77,7 +75,8 @@ public class DeleteCommandTest {
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeletePersonCommand deleteFirstCommandCopy = new DeletePersonCommand(new NusNet((CommandTestUtil.VALID_NUSNET_AMY)));
+        DeletePersonCommand deleteFirstCommandCopy = new DeletePersonCommand(new
+                NusNet((CommandTestUtil.VALID_NUSNET_AMY)));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -92,9 +91,9 @@ public class DeleteCommandTest {
 
     @Test
     public void toStringMethod() {
-        NusNet targetNUSNET_ID = new NusNet(CommandTestUtil.VALID_NUSNET_AMY);
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(targetNUSNET_ID);
-        String expected = DeletePersonCommand.class.getCanonicalName() + "{targetNUSNET_ID=" + targetNUSNET_ID + "}";
+        NusNet targetNusNetID = new NusNet(CommandTestUtil.VALID_NUSNET_AMY);
+        DeletePersonCommand deleteCommand = new DeletePersonCommand(targetNusNetID);
+        String expected = DeletePersonCommand.class.getCanonicalName() + "{targetNUSNET_ID=" + targetNusNetID + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
