@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import educonnect.commons.core.index.Index;
@@ -116,6 +115,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
     /**
+     * Potentially buggy as names can be duplicated in the future
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
@@ -123,8 +123,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
-        final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String name = student.getName().fullName;
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(name));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
