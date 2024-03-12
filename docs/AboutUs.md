@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/laney0808.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/laney0808)] [[portfolio](team/laney0808.md)]
 
 * Role: Developer
 * Responsibilities: Data
