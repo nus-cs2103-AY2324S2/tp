@@ -39,13 +39,13 @@ public class AddClassCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ModuleCode duplicate = model.findModuleFromList(module);
-        if (duplicate != null) {
-            if (duplicate.hasTutorialClass(tutorialString)) {
+        ModuleCode existingModule = model.findModuleFromList(module);
+        if (existingModule != null) {
+            if (existingModule.hasTutorialClass(tutorialString)) {
                 String duplicateMessage = String.format(MESSAGE_DUPLICATE_CLASS, module, tutorialString);
                 throw new CommandException(duplicateMessage);
             } else {
-                duplicate.addTutorialClass(tutorialString);
+                existingModule.addTutorialClass(tutorialString);
             }
         } else {
             module.addTutorialClass(tutorialString);

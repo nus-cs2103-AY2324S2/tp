@@ -24,7 +24,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for AddClassCommand.
  */
 public class AddClassCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -49,23 +49,24 @@ public class AddClassCommandTest {
 
     @Test
     public void execute_duplicateModuleDifferentTutorial_success() {
-        Model model1 = new ModelManager();
-        ModuleCode module = new ModuleCode(VALID_MODULE_AMY, VALID_TUTORIAL_AMY);
-        model1.addModule(module);
+        Model actualModel = new ModelManager();
+        Model expectedModel = new ModelManager();
 
-        Model model2 = new ModelManager();
+        ModuleCode module = new ModuleCode(VALID_MODULE_AMY, VALID_TUTORIAL_AMY);
+        actualModel.addModule(module);
+
         ArrayList<TutorialClass> classes = new ArrayList<>();
         classes.add(new TutorialClass(VALID_TUTORIAL_AMY));
         classes.add(new TutorialClass(VALID_TUTORIAL_BOB));
 
         ModuleCode modifiedModule = new ModuleCode(VALID_MODULE_AMY, classes);
-        model2.addModule(modifiedModule);
+        expectedModel.addModule(modifiedModule);
 
         assertCommandSuccess(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                        VALID_TUTORIAL_BOB), model1,
-                String.format(MESSAGE_ADD_REMARK_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_BOB), model2);
+                        VALID_TUTORIAL_BOB), actualModel,
+                String.format(MESSAGE_ADD_REMARK_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_BOB), expectedModel);
 
-        ModuleCode moduleFromList = model1.findModuleFromList(module);
+        ModuleCode moduleFromList = actualModel.findModuleFromList(module);
         assertEquals(moduleFromList.getTutorialClasses().get(1).toString(), VALID_TUTORIAL_BOB);
     }
 
