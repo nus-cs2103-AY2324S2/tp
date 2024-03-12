@@ -45,4 +45,5 @@ class TagMatchesPredicateTest {
         String expected = TagMatchesPredicate.class.getCanonicalName() + "{tag=[" + keywords + "]}";
         assertEquals(expected, predicate.toString());
     }
+
 }
