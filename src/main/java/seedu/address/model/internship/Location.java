@@ -42,16 +42,7 @@ public class Location {
 
     @Override
     public String toString() {
-        switch (location) {
-        case LOCAL:
-            return "Local";
-        case OVERSEAS:
-            return "Overseas";
-        case REMOTE:
-            return "Remote";
-        default:
-            throw new IllegalArgumentException("Unexpected location: " + location);
-        }
+        return location.toString();
     }
 
     @Override
