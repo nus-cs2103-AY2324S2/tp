@@ -2,13 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
@@ -29,7 +28,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
-    private final ObservableList<Order> orderList;
+    private final ArrayList<Order> orderList;
 
     /**
      * Every field must be present and not null.
@@ -41,7 +40,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.orderList = FXCollections.observableArrayList();
+        this.orderList = new ArrayList<>();
     }
 
     /**
@@ -49,7 +48,7 @@ public class Person {
      * This constructor is used to create a person with orders.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ObservableList<Order> orderList) {
+                  ArrayList<Order> orderList) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -93,7 +92,7 @@ public class Person {
         orderList.add(order);
     }
 
-    public ObservableList<Order> getOrderList() {
+    public ArrayList<Order> getOrderList() {
         return orderList;
     }
 

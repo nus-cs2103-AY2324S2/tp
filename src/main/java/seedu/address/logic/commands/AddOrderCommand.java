@@ -55,8 +55,11 @@ public class AddOrderCommand extends Command {
         }
 
         Person person = lastShownList.get(index.getZeroBased());
+
+        // TODO
         person.addOrder(this.arrivalDate, this.description);
 
+        model.setPerson(person, person);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(person)));
     }
