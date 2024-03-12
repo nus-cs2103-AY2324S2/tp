@@ -14,5 +14,5 @@ Example usages:
   * `View` a particular student's details.
 
 The project simulates an ongoing software project for a desktop application (called __) used for managing contact details.
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
+* For the detailed documentation of this project, see the **[TutorTrack Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
