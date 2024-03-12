@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.awt.Toolkit;
+import java.awt.GraphicsEnvironment;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.List;
@@ -27,8 +28,10 @@ public class CopyCommand extends Command {
         if (lastShownList.isEmpty()) {
             throw new CommandException("No person currently displayed");
         }
-
-        copyToClipboard(lastShownList);
+        // only copies to clipboard if the environment is not headless
+        if (!GraphicsEnvironment.isHeadless()) {
+            copyToClipboard(lastShownList);
+        }
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
