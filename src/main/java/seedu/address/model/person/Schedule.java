@@ -10,7 +10,7 @@ import seedu.address.commons.util.DateTimeUtil;
 public class Schedule {
     private LocalDateTime schedule;
     private boolean isDone;
-    private boolean isMissed = false;
+    private boolean isMissed;
 
     /**
      * Constructs a {@code Schedule}.
@@ -20,6 +20,7 @@ public class Schedule {
     public Schedule(LocalDateTime schedule) {
         this.schedule = schedule;
         this.isDone = false;
+        checkIsMissed();
     }
 
     /**
@@ -31,14 +32,19 @@ public class Schedule {
     public Schedule(LocalDateTime schedule, boolean isDone) {
         this.schedule = schedule;
         this.isDone = isDone;
+        checkIsMissed();
     }
 
     public LocalDateTime getSchedule() {
         return this.schedule;
     }
 
-    public boolean getAppointmentStatus() {
+    public boolean getIsDone() {
         return this.isDone;
+    }
+
+    public void markIsDone() {
+        this.isDone = true;
     }
 
     @Override
@@ -81,5 +87,17 @@ public class Schedule {
         } else {
             return "0";
         }
+    }
+
+    private void checkIsMissed() {
+        if (this.schedule.isAfter(LocalDateTime.now())) {
+            this.isMissed = true;
+        } else {
+            this.isMissed = false;
+        }
+    }
+
+    public boolean getIsMissed() {
+        return this.isMissed;
     }
 }
