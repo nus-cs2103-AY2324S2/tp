@@ -1,5 +1,6 @@
 package educonnect.model.student;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -11,15 +12,27 @@ import educonnect.commons.util.ToStringBuilder;
  */
 public class NameContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
+    private final String keywordName;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
+        this.keywordName = ""; //replace
     }
+
+    public NameContainsKeywordsPredicate(String keywordName) {
+        this.keywords = new ArrayList<String>();
+        this.keywordName = keywordName; //replace
+    }
+
+    // @Override
+    // public boolean test(Student student) {
+    //     return keywords.stream()
+    //             .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName, keyword));
+    // }
 
     @Override
     public boolean test(Student student) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName, keyword));
+        return StringUtil.fuzzyMatchIgnoreCase(student.getName().fullName, keywordName);
     }
 
     @Override

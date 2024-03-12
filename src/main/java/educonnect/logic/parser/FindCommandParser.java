@@ -2,7 +2,7 @@ package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 import educonnect.logic.commands.FindCommand;
 import educonnect.logic.parser.exceptions.ParseException;
@@ -25,9 +25,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        //String[] nameKeywords = trimmedArgs.split("[\\s-]+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new NameContainsKeywordsPredicate(trimmedArgs));
     }
 
 }
