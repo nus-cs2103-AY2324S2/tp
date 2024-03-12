@@ -592,8 +592,9 @@ _{More to be added}_
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
-- **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Project Manager**:The individual supervising a project whose role may include planning, executing, and closing a project.
+- **Task Status**: A status of a task whether done or not done
+- **Project Status**: A status of a project whether Completed or not Completed
 
 ---
 
