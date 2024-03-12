@@ -8,14 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
-import seedu.address.model.person.Name;
 
 /**
  * Jackson-friendly version of {@link ModuleCode}.
  */
 class JsonAdaptedModule {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module name is missing!";
 
     private final String name;
     private final ArrayList<TutorialClass> tutorialClasses;
@@ -44,8 +43,8 @@ class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public ModuleCode toModelType() throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (!ModuleCode.isValidModuleCode(name)) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, name));
         }
         return new ModuleCode(name, tutorialClasses);
     }
