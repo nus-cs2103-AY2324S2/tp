@@ -82,7 +82,7 @@ public class ApplicationStatusTest {
         assertFalse(accepted.toString().equals("invalid"));
         assertFalse(ongoing.toString().equals("invalid"));
 
-        // Test for case insensitivity
+        // Test for case sensitivity
         assertFalse(toApply.toString().equals("to_apply"));
         assertFalse(pending.toString().equals("pending"));
         assertFalse(rejected.toString().equals("rejected"));
