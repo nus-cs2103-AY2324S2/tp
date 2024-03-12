@@ -9,6 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.IsSamePersonPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -49,7 +50,8 @@ public class SelectCommand extends Command {
         }
 
         Person personToSelect = lastShownList.get(targetIndex.getZeroBased());
-        //model.deletePerson(personToSelect);
+        IsSamePersonPredicate predicate = new IsSamePersonPredicate(personToSelect);
+        model.updateFilteredPersonList(predicate);
         return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, Messages.format(personToSelect)));
     }
 
