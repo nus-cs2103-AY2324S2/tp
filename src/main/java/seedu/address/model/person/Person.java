@@ -17,40 +17,64 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final Name firstName;
+    private final Name lastName;
     private final Phone phone;
-    private final Email email;
 
     // Data fields
+    private final Sex sex;
+    private final EmploymentType employmentType;
     private final Address address;
+    private final BankDetails bankDetails;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Person(Name firstName, Name lastName, Phone phone, Sex sex,
+                  EmploymentType employmentType, Address address,
+                  BankDetails bankDetails, Set<Tag> tags) {
+        requireAllNonNull(firstName, lastName, phone, address, bankDetails, tags);
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
-        this.email = email;
+        this.sex = sex;
+        this.employmentType = employmentType;
         this.address = address;
+        this.bankDetails = bankDetails;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
-        return name;
+        return new Name(firstName + " " + lastName);
+    }
+
+    public Name getFirstName() {
+        return firstName;
+    }
+
+    public Name getLastName() {
+        return lastName;
     }
 
     public Phone getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Sex getSex() {
+        return sex;
+    }
+
+    public EmploymentType getEmploymentType() {
+        return employmentType;
     }
 
     public Address getAddress() {
         return address;
+    }
+
+    public BankDetails getBankDetails() {
+        return bankDetails;
     }
 
     /**
@@ -71,7 +95,9 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.firstName.equals(firstName)
+                && otherPerson.lastName.equals(lastName)
+                && otherPerson.phone.equals(phone);
     }
 
     /**
@@ -90,26 +116,32 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return getName().equals(otherPerson.getName())
                 && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
+                && sex.equals(otherPerson.sex)
+                && employmentType.equals(otherPerson.employmentType)
                 && address.equals(otherPerson.address)
+                && bankDetails.equals(otherPerson.bankDetails)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(firstName, lastName, phone, sex, employmentType, address, bankDetails,
+                tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
+                .add("firstName", firstName)
+                .add("lastName", lastName)
                 .add("phone", phone)
-                .add("email", email)
+                .add("sex", sex)
+                .add("employmentType", employmentType)
                 .add("address", address)
+                .add("bankDetails", bankDetails)
                 .add("tags", tags)
                 .toString();
     }

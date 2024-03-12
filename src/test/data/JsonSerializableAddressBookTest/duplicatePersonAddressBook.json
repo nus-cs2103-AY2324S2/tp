@@ -1,14 +1,28 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "firstName": "Alice",
+      "lastName": "Pauline",
+      "sex": "f",
+      "employmentType": "ft",
+      "phone": "94351253",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "bankDetails": "12345678",
+      "tags": [
+        "friends"
+      ]
+    },
+    {
+      "firstName": "Alice",
+      "lastName": "Pauline",
+      "sex": "f",
+      "employmentType": "ft",
+      "phone": "94351253",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "bankDetails": "12345678",
+      "tags": [
+        "friends"
+      ]
+    }
+  ]
 }

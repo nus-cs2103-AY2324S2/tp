@@ -10,9 +10,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.BankDetails;
+import seedu.address.model.person.EmploymentType;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +27,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -66,6 +69,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String sex} into a {@code Sex}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sex} is invalid.
+     */
+    public static Sex parseSex(String sex) throws ParseException {
+        requireNonNull(sex);
+        String trimmedSex = sex.trim();
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        return new Sex(trimmedSex);
+    }
+
+    /**
+     * Parses a {@code String employmentType} into a {@code EmploymentType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code employmentType} is invalid.
+     */
+    public static EmploymentType parseEmploymentType(String employmentType) throws ParseException {
+        requireNonNull(employmentType);
+        String trimmedEmploymentType = employmentType.trim();
+        if (!EmploymentType.isValidEmploymentType(trimmedEmploymentType)) {
+            throw new ParseException(EmploymentType.MESSAGE_CONSTRAINTS);
+        }
+        return new EmploymentType(trimmedEmploymentType);
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -81,18 +114,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String bankDetails} into an {@code BankDetails}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code bankDetails} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static BankDetails parseBankDetails(String bankDetails) throws ParseException {
+        requireNonNull(bankDetails);
+        String trimmedBankDetails = bankDetails.trim();
+        if (!BankDetails.isValidBankAccount(trimmedBankDetails)) {
+            throw new ParseException(BankDetails.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new BankDetails(trimmedBankDetails);
     }
 
     /**
