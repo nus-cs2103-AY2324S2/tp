@@ -56,18 +56,28 @@ public class ParserUtil {
      * Removes unecessary spaces in between names
      */
     public static String createCapitalName(String trimmedName) {
-        String[] words = trimmedName.split(" ");
+        String[] words = trimmedName.split("[\\s-]+");
+        StringBuilder namesUnparsed = new StringBuilder(trimmedName);
         StringBuilder result = new StringBuilder();
         for (String word : words) {
-            if (!word.isEmpty()) {
-                if (result.length() > 0) {
-                    result.append(" ");
-                }
-                result.append(Character.toUpperCase(word.charAt(0)));
-                if (word.length() > 1) {
-                    result.append(word.substring(1));
-                }
+            if (word.isEmpty()) {
+                continue;
             }
+
+            int lengthOfWord = word.length();
+            int indexOfWord = namesUnparsed.indexOf(word);
+            
+            //Appends the character behind the individual word
+            if (indexOfWord != 0) {
+                result.append(namesUnparsed.charAt(indexOfWord - 1));
+            }
+
+            result.append(Character.toUpperCase(word.charAt(0)));
+
+            if (word.length() > 1) {
+                result.append(word.substring(1));
+            }
+            namesUnparsed.delete(0, indexOfWord + lengthOfWord);
         }
         String capitalised = result.toString();
         return capitalised;
