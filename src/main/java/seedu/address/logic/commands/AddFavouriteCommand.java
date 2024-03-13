@@ -16,6 +16,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Adds the indicated contacts in the address book as favourites
+ */
 public class AddFavouriteCommand extends Command {
     public static final String COMMAND_WORD = "addfav";
 
@@ -24,12 +27,15 @@ public class AddFavouriteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds contacts identified by index number "
             + "as favourites.\n"
-            + "Parameters: i/ [INDICES] (must be a positive integer) separated by commas\n"
+            + "Parameters: i/ [INDICES] (must be positive integers separated by commas)\n"
             + "Example: " + COMMAND_WORD + " "
             + "i/ 1,2,5";
 
     private final List<Index> indices;
 
+    /**
+     * Creates an AddFavouriteCommand to mark the specified group of {@code Person} as favourites
+     */
     public AddFavouriteCommand(List<Index> indices) {
         requireNonNull(indices);
         this.indices = indices;
