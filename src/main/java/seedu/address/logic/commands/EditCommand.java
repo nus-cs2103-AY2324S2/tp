@@ -21,11 +21,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Entry;
+import seedu.address.model.person.EntryList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -95,13 +93,17 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Entry updatedName = editPersonDescriptor.get("Name").orElse(personToEdit.getEntry("Name"));
+        Entry updatedPhone = editPersonDescriptor.get("Phone").orElse(personToEdit.getEntry("Phone"));
+        Entry updatedEmail = editPersonDescriptor.get("Email").orElse(personToEdit.getEntry("Email"));
+        Entry updatedAddress = editPersonDescriptor.get("Address").orElse(personToEdit.getEntry("Address"));
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Person result = new Person(updatedName, updatedTags);
+        result.addEntry(updatedPhone);
+        result.addEntry(updatedEmail);
+        result.addEntry(updatedAddress);
+        return result;
     }
 
     @Override
@@ -133,11 +135,8 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
         private Set<Tag> tags;
+        private EntryList entryList = new EntryList();
 
         public EditPersonDescriptor() {}
 
@@ -146,50 +145,28 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            this.entryList = toCopy.entryList;
+            this.tags = toCopy.tags;
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(get("Name"), get("Phone"), get("Email"), get("Address"), tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void set(String category, Entry entry) {
+            Entry e = entryList.get(category);
+            if (e == null) {
+                entryList.add(entry);
+            } else {
+                e.setDescription(entry.getDescription());
+            }
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Entry> get(String category) {
+            return Optional.ofNullable(entryList.get(category));
         }
 
         /**
@@ -221,20 +198,20 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
+            return Objects.equals(get("Name"), otherEditPersonDescriptor.get("Name"))
+                    && Objects.equals(get("Phone"), otherEditPersonDescriptor.get("Phone"))
+                    && Objects.equals(get("Email"), otherEditPersonDescriptor.get("Email"))
+                    && Objects.equals(get("Address"), otherEditPersonDescriptor.get("Address"))
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", name)
-                    .add("phone", phone)
-                    .add("email", email)
-                    .add("address", address)
+                    .add("name", get("Name"))
+                    .add("phone", get("Phone"))
+                    .add("email", get("Email"))
+                    .add("address", get("Address"))
                     .add("tags", tags)
                     .toString();
         }

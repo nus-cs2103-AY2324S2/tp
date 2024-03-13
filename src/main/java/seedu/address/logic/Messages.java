@@ -36,13 +36,13 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(person.getEntry("Name"))
                 .append("; Phone: ")
-                .append(person.getPhone())
+                .append(person.getEntry("Phone"))
                 .append("; Email: ")
-                .append(person.getEmail())
+                .append(person.getEntry("Email"))
                 .append("; Address: ")
-                .append(person.getAddress())
+                .append(person.getEntry("Address"))
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

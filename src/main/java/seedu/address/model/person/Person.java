@@ -17,40 +17,25 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
 
-    // Data fields
-    private final Address address;
+    private final EntryList entryList = new EntryList();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+    public Person(Entry name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
+        entryList.add(name);
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public void addEntry(Entry entry) {
+        entryList.add(entry);
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
+    public Entry getEntry(String category) {
+        return entryList.get(category);
     }
 
     /**
@@ -70,8 +55,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return false;
     }
 
     /**
@@ -89,29 +73,28 @@ public class Person {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+        return false;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(getEntry("Name"), getEntry("Phone"), getEntry("Email"), getEntry("Address"), tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
+                .add("name", getEntry("Name"))
+                .add("phone", getEntry("Phone"))
+                .add("email", getEntry("Email"))
+                .add("address", getEntry("Address"))
                 .add("tags", tags)
                 .toString();
     }
+    public EntryList getList() {
+        return entryList;
+    }
+
 
 }
