@@ -36,6 +36,7 @@ public class AppointmentTest {
         assertFalse(Appointment.isValidAppointment("0000FRI")); // no colon between hour and minute
         assertFalse(Appointment.isValidAppointment("24:59 MON")); // HH not in range 00-23
         assertFalse(Appointment.isValidAppointment("23:60 MON")); // mm not in range 00-59
+        assertFalse(Appointment.isValidAppointment("25:61 MON")); // invalid range for HH and mm
 
         // valid Appointments
         assertTrue(Appointment.isValidAppointment("23:59 MON")); // matches HH:mm DAY

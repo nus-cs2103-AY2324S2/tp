@@ -64,8 +64,10 @@ public class Appointment {
         int minute = Integer.parseInt(test.substring(3, 5));
         String day = test.substring(6, 9);
 
-        boolean hourValid = -1 < hour && hour < 24;
-        boolean minuteValid = -1 < minute && minute < 60;
+        assert(hour > -1);
+        assert(minute > -1);
+        boolean hourValid = hour < 24;
+        boolean minuteValid = minute < 60;
         boolean dayValid = dayToDayOfWeek.containsKey(day);
 
         return hourValid && minuteValid && dayValid;
