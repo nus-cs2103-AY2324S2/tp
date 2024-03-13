@@ -149,11 +149,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-### Adding Tags to a Patient : `addtags`
+### Adding Tags to a Patient : `addt`
 
 Adds one or more tags to a patient in the address book.
 
-Format: `addtags INDEX [t/TAG]+`
+Format: `addt INDEX [t/TAG]+`
 
 * Adds one or more tags (**single word**) to a patient identified by the index number used in the last patient listing.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -169,8 +169,8 @@ Format: `addtags INDEX [t/TAG]+`
 
 
 Examples:
-* `addtags 1 t/friend t/fallRisk`
-* `addtags 2 t/critical`
+* `addt 1 t/friend t/fallRisk`
+* `addt 2 t/critical`
 
 ### Clearing all entries : `clear`
 
