@@ -45,6 +45,7 @@ public class DeleteCommand extends Command {
                 model.deletePerson(personToDelete);
                 isAnyRecordDeleted = true;
                 deletedInformation = Messages.format(personToDelete);
+                break;
             }
         }
 
