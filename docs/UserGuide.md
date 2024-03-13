@@ -30,7 +30,7 @@ TA Toolkit  is a **desktop app for managing students, optimized for use via a Li
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the TA Toolkit.
+   * `ac n/John Doe c/F14-3 p/98765432 e/johnd@example.com t/@johndoe g/johnDoeGithub` : Adds a student named `John Doe` to the TA Toolkit.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -75,20 +75,15 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person: `ac`
 
 Adds a person to the TA Toolkit.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A person can have any number of tags (including 0)
-</box>
+Format: `ac n/NAME c/CLASS_GROUP e/EMAIL p/PHONE_NUMBER [t/TELEGRAM] [g/GITHUB]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `ac n/John Doe c/F14-3 p/98765432 e/johnd@example.com t/@johndoe g/johnDoeGithub`
+* `add n/Betsy Crowe c/T10-2 e/betsycrowe@example.com p/1234567 g/betsycodes`
 
 ### Listing all persons : `list`
 
@@ -195,7 +190,7 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `ac n/NAME c/CLASS_GROUP e/EMAIL p/PHONE_NUMBER [t/TELEGRAM] [g/GITHUB]` <br> e.g., `add c/T10-2 n/James Ho p/22224444 e/jamesho@example.com t/@jamesho g/jameshoGithub`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
