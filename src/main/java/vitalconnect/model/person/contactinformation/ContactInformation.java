@@ -1,4 +1,4 @@
-package vitalConnect.model.person.contactInformation;
+package vitalconnect.model.person.contactinformation;
 
 
 /**

@@ -1,13 +1,13 @@
-package vitalConnect.model.person;
+package vitalconnect.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static vitalConnect.testutil.Assert.assertThrows;
-import static vitalConnect.testutil.TypicalPersons.ALICE;
-import static vitalConnect.testutil.TypicalPersons.BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalPersons.ALICE;
+import static vitalconnect.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,9 +15,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.model.person.exceptions.DuplicatePersonException;
-import vitalConnect.model.person.exceptions.PersonNotFoundException;
-import vitalConnect.testutil.PersonBuilder;
+import vitalconnect.model.person.exceptions.DuplicatePersonException;
+import vitalconnect.model.person.exceptions.PersonNotFoundException;
+import vitalconnect.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
 

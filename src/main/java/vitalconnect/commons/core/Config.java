@@ -1,11 +1,11 @@
-package vitalConnect.commons.core;
+package vitalconnect.commons.core;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.logging.Level;
 
-import vitalConnect.commons.util.ToStringBuilder;
+import vitalconnect.commons.util.ToStringBuilder;
 
 /**
  * Config values used by the app

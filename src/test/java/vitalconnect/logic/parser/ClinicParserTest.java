@@ -1,11 +1,11 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static vitalConnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static vitalConnect.testutil.Assert.assertThrows;
-import static vitalConnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalconnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,21 +13,21 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.logic.commands.AddCommand;
-import vitalConnect.logic.commands.ClearCommand;
-import vitalConnect.logic.commands.DeleteCommand;
-import vitalConnect.logic.commands.EditCommand;
-import vitalConnect.logic.commands.EditCommand.EditPersonDescriptor;
-import vitalConnect.logic.commands.ExitCommand;
-import vitalConnect.logic.commands.FindCommand;
-import vitalConnect.logic.commands.HelpCommand;
-import vitalConnect.logic.commands.ListCommand;
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.person.Person;
-import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
-import vitalConnect.testutil.EditPersonDescriptorBuilder;
-import vitalConnect.testutil.PersonBuilder;
-import vitalConnect.testutil.PersonUtil;
+import vitalconnect.logic.commands.AddCommand;
+import vitalconnect.logic.commands.ClearCommand;
+import vitalconnect.logic.commands.DeleteCommand;
+import vitalconnect.logic.commands.EditCommand;
+import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
+import vitalconnect.logic.commands.ExitCommand;
+import vitalconnect.logic.commands.FindCommand;
+import vitalconnect.logic.commands.HelpCommand;
+import vitalconnect.logic.commands.ListCommand;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.person.Person;
+import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
+import vitalconnect.testutil.EditPersonDescriptorBuilder;
+import vitalconnect.testutil.PersonBuilder;
+import vitalconnect.testutil.PersonUtil;
 
 public class ClinicParserTest {
 

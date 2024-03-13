@@ -1,6 +1,6 @@
-package vitalConnect.model.tag;
+package vitalconnect.model.tag;
 
-import static vitalConnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,12 +1,12 @@
-package vitalConnect.model;
+package vitalconnect.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static vitalConnect.testutil.Assert.assertThrows;
-import static vitalConnect.testutil.TypicalPersons.ALICE;
-import static vitalConnect.testutil.TypicalPersons.BENSON;
+import static vitalconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalPersons.ALICE;
+import static vitalconnect.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,9 +16,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
-import vitalConnect.testutil.ClinicBuilder;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
+import vitalconnect.testutil.ClinicBuilder;
 
 
 public class ModelManagerTest {

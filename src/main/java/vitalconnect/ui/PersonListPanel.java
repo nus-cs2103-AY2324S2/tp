@@ -1,4 +1,4 @@
-package vitalConnect.ui;
+package vitalconnect.ui;
 
 import java.util.logging.Logger;
 
@@ -7,8 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.model.person.Person;
 
 /**
  * Panel containing the list of persons.

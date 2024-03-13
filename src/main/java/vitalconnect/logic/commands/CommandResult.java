@@ -1,10 +1,10 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import vitalConnect.commons.util.ToStringBuilder;
+import vitalconnect.commons.util.ToStringBuilder;
 
 /**
  * Represents the result of a command execution.

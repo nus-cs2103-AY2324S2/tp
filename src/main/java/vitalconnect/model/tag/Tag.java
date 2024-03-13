@@ -1,7 +1,7 @@
-package vitalConnect.model.tag;
+package vitalconnect.model.tag;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.commons.util.AppUtil.checkArgument;
+import static vitalconnect.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in the clinic.

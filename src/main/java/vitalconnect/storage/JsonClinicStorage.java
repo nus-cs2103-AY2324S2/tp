@@ -1,4 +1,4 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,12 +7,12 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.commons.exceptions.DataLoadingException;
-import vitalConnect.commons.exceptions.IllegalValueException;
-import vitalConnect.commons.util.FileUtil;
-import vitalConnect.commons.util.JsonUtil;
-import vitalConnect.model.ReadOnlyClinic;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.commons.exceptions.DataLoadingException;
+import vitalconnect.commons.exceptions.IllegalValueException;
+import vitalconnect.commons.util.FileUtil;
+import vitalconnect.commons.util.JsonUtil;
+import vitalconnect.model.ReadOnlyClinic;
 
 /**
  * A class to access Clinic data stored as a json file on the hard disk.

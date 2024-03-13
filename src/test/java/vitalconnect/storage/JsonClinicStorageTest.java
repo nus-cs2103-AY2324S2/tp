@@ -1,12 +1,12 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static vitalConnect.testutil.Assert.assertThrows;
-import static vitalConnect.testutil.TypicalPersons.ALICE;
-import static vitalConnect.testutil.TypicalPersons.HOON;
-import static vitalConnect.testutil.TypicalPersons.IDA;
-import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalPersons.ALICE;
+import static vitalconnect.testutil.TypicalPersons.HOON;
+import static vitalconnect.testutil.TypicalPersons.IDA;
+import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,9 +15,9 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import vitalConnect.commons.exceptions.DataLoadingException;
-import vitalConnect.model.Clinic;
-import vitalConnect.model.ReadOnlyClinic;
+import vitalconnect.commons.exceptions.DataLoadingException;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.ReadOnlyClinic;
 
 public class JsonClinicStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonClinicStorageTest");

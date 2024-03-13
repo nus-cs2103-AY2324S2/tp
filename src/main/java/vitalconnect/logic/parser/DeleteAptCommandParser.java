@@ -1,7 +1,7 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
-import vitalConnect.logic.commands.DeleteAptCommand;
-import vitalConnect.logic.parser.exceptions.ParseException;
+import vitalconnect.logic.commands.DeleteAptCommand;
+import vitalconnect.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments to create a new {@code DeleteAptCommand} object.

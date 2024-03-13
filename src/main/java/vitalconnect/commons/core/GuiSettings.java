@@ -1,10 +1,10 @@
-package vitalConnect.commons.core;
+package vitalconnect.commons.core;
 
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
 
-import vitalConnect.commons.util.ToStringBuilder;
+import vitalconnect.commons.util.ToStringBuilder;
 
 /**
  * A Serializable class that contains the GUI settings.

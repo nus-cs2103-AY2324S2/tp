@@ -1,14 +1,14 @@
-package vitalConnect.logic;
+package vitalconnect.logic;
 
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.logic.commands.CommandResult;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.ReadOnlyClinic;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.logic.commands.CommandResult;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.person.Person;
 
 /**
  * API of the Logic component
@@ -26,7 +26,7 @@ public interface Logic {
     /**
      * Returns the Clinic.
      *
-     * @see vitalConnect.model.Model#getClinic()
+     * @see vitalconnect.model.Model#getClinic()
      */
     ReadOnlyClinic getClinic();
 

@@ -1,4 +1,4 @@
-package vitalConnect.commons.util;
+package vitalconnect.commons.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

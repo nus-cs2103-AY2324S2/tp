@@ -1,20 +1,20 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.logic.commands.CommandTestUtil.DESC_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.DESC_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static vitalconnect.logic.commands.CommandTestUtil.DESC_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.DESC_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.logic.commands.EditCommand.EditPersonDescriptor;
-import vitalConnect.testutil.EditPersonDescriptorBuilder;
+import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
+import vitalconnect.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
 

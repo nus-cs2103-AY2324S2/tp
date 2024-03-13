@@ -1,4 +1,4 @@
-package vitalConnect.ui;
+package vitalconnect.ui;
 
 import java.util.logging.Logger;
 
@@ -10,12 +10,12 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.logic.Logic;
-import vitalConnect.logic.commands.CommandResult;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.logic.parser.exceptions.ParseException;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.logic.Logic;
+import vitalconnect.logic.commands.CommandResult;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.logic.parser.exceptions.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -170,7 +170,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see vitalConnect.logic.Logic#execute(String)
+     * @see vitalconnect.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {

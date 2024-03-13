@@ -1,15 +1,15 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import vitalConnect.commons.exceptions.DataLoadingException;
-import vitalConnect.model.ReadOnlyUserPrefs;
-import vitalConnect.model.UserPrefs;
+import vitalconnect.commons.exceptions.DataLoadingException;
+import vitalconnect.model.ReadOnlyUserPrefs;
+import vitalconnect.model.UserPrefs;
 
 /**
- * Represents a storage for {@link vitalConnect.model.UserPrefs}.
+ * Represents a storage for {@link vitalconnect.model.UserPrefs}.
  */
 public interface UserPrefsStorage {
 
@@ -27,7 +27,7 @@ public interface UserPrefsStorage {
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
 
     /**
-     * Saves the given {@link vitalConnect.model.ReadOnlyUserPrefs} to the storage.
+     * Saves the given {@link vitalconnect.model.ReadOnlyUserPrefs} to the storage.
      * @param userPrefs cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

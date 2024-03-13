@@ -1,23 +1,23 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_PHONE;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import vitalConnect.commons.core.index.Index;
-import vitalConnect.logic.commands.EditCommand;
-import vitalConnect.logic.commands.EditCommand.EditPersonDescriptor;
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.commons.core.index.Index;
+import vitalconnect.logic.commands.EditCommand;
+import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object

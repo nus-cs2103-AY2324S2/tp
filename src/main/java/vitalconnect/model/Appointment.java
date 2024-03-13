@@ -1,4 +1,4 @@
-package vitalConnect.model;
+package vitalconnect.model;
 
 import java.time.LocalDateTime;
 

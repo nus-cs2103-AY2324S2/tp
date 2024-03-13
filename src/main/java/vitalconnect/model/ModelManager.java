@@ -1,7 +1,7 @@
-package vitalConnect.model;
+package vitalconnect.model;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.commons.util.CollectionUtil.requireAllNonNull;
+import static vitalconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -11,9 +11,9 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.model.person.Person;
 
 
 /**

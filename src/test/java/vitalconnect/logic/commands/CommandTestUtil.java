@@ -1,25 +1,25 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_PHONE;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_TAG;
-import static vitalConnect.testutil.Assert.assertThrows;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import vitalConnect.commons.core.index.Index;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.model.Clinic;
-import vitalConnect.model.Model;
-import vitalConnect.model.person.Person;
-import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
-import vitalConnect.testutil.EditPersonDescriptorBuilder;
+import vitalconnect.commons.core.index.Index;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.Model;
+import vitalconnect.model.person.Person;
+import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
+import vitalconnect.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

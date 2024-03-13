@@ -1,6 +1,6 @@
-package vitalConnect.logic.parser.exceptions;
+package vitalconnect.logic.parser.exceptions;
 
-import vitalConnect.commons.exceptions.IllegalValueException;
+import vitalconnect.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a parse error encountered by a parser.

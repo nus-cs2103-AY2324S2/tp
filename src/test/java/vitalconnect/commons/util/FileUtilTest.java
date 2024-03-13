@@ -1,8 +1,8 @@
-package vitalConnect.commons.util;
+package vitalconnect.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

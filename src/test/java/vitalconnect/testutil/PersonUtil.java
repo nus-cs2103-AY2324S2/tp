@@ -1,17 +1,17 @@
-package vitalConnect.testutil;
+package vitalconnect.testutil;
 
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_PHONE;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import vitalConnect.logic.commands.AddCommand;
-import vitalConnect.logic.commands.EditCommand.EditPersonDescriptor;
-import vitalConnect.model.person.Person;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.logic.commands.AddCommand;
+import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
+import vitalconnect.model.person.Person;
+import vitalconnect.model.tag.Tag;
 
 /**
  * A utility class for Person.

@@ -1,17 +1,18 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_PHONE;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
-import vitalConnect.commons.util.ToStringBuilder;
-import vitalConnect.logic.Messages;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.model.Model;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.util.ToStringBuilder;
+import vitalconnect.logic.Messages;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.model.Model;
+import vitalconnect.model.person.Person;
+
 
 /**
  * Adds a person to the clinic.

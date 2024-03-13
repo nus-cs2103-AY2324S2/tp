@@ -1,4 +1,4 @@
-package vitalConnect;
+package vitalconnect;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,9 +7,9 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.commons.util.FileUtil;
-import vitalConnect.commons.util.ToStringBuilder;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.commons.util.FileUtil;
+import vitalconnect.commons.util.ToStringBuilder;
 
 /**
  * Represents the parsed command-line parameters given to the application.

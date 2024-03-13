@@ -1,11 +1,11 @@
-package vitalConnect.model;
+package vitalconnect.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.model.person.Person;
 
 /**
  * The API of the Model component.

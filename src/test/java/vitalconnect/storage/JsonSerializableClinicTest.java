@@ -1,17 +1,17 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static vitalConnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.commons.exceptions.IllegalValueException;
-import vitalConnect.commons.util.JsonUtil;
-import vitalConnect.model.Clinic;
-import vitalConnect.testutil.TypicalPersons;
+import vitalconnect.commons.exceptions.IllegalValueException;
+import vitalconnect.commons.util.JsonUtil;
+import vitalconnect.model.Clinic;
+import vitalconnect.testutil.TypicalPersons;
 
 public class JsonSerializableClinicTest {
 

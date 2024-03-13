@@ -1,4 +1,4 @@
-package vitalConnect.model.person.identificationInformation;
+package vitalconnect.model.person.identificationinformation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.testutil.PersonBuilder;
+import vitalconnect.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 

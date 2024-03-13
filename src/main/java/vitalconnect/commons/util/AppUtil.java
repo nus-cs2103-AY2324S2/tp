@@ -1,9 +1,9 @@
-package vitalConnect.commons.util;
+package vitalconnect.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
 import javafx.scene.image.Image;
-import vitalConnect.MainApp;
+import vitalconnect.MainApp;
 
 /**
  * A container for App specific utility functions

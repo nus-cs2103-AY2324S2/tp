@@ -1,13 +1,13 @@
-package vitalConnect.testutil;
+package vitalconnect.testutil;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import vitalConnect.commons.core.index.Index;
-import vitalConnect.model.Model;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.core.index.Index;
+import vitalconnect.model.Model;
+import vitalconnect.model.person.Person;
 
 /**
  * A utility class for test cases.

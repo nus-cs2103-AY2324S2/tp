@@ -1,26 +1,26 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static vitalConnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalconnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.logic.commands.AddCommand;
-import vitalConnect.logic.commands.ClearCommand;
-import vitalConnect.logic.commands.Command;
-import vitalConnect.logic.commands.CreateAptCommand;
-import vitalConnect.logic.commands.DeleteAptCommand;
-import vitalConnect.logic.commands.DeleteCommand;
-import vitalConnect.logic.commands.EditCommand;
-import vitalConnect.logic.commands.ExitCommand;
-import vitalConnect.logic.commands.FindCommand;
-import vitalConnect.logic.commands.HelpCommand;
-import vitalConnect.logic.commands.ListAptCommand;
-import vitalConnect.logic.commands.ListCommand;
-import vitalConnect.logic.parser.exceptions.ParseException;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.logic.commands.AddCommand;
+import vitalconnect.logic.commands.ClearCommand;
+import vitalconnect.logic.commands.Command;
+import vitalconnect.logic.commands.CreateAptCommand;
+import vitalconnect.logic.commands.DeleteAptCommand;
+import vitalconnect.logic.commands.DeleteCommand;
+import vitalconnect.logic.commands.EditCommand;
+import vitalconnect.logic.commands.ExitCommand;
+import vitalconnect.logic.commands.FindCommand;
+import vitalconnect.logic.commands.HelpCommand;
+import vitalconnect.logic.commands.ListAptCommand;
+import vitalconnect.logic.commands.ListCommand;
+import vitalconnect.logic.parser.exceptions.ParseException;
 
 
 

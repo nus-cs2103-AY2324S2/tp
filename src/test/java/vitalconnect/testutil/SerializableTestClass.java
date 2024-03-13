@@ -1,4 +1,4 @@
-package vitalConnect.testutil;
+package vitalconnect.testutil;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

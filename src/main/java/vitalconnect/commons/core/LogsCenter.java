@@ -1,4 +1,4 @@
-package vitalConnect.commons.core;
+package vitalconnect.commons.core;
 
 import static java.util.Objects.requireNonNull;
 

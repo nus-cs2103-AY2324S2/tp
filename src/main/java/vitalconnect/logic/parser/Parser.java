@@ -1,7 +1,7 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
-import vitalConnect.logic.commands.Command;
-import vitalConnect.logic.parser.exceptions.ParseException;
+import vitalconnect.logic.commands.Command;
+import vitalconnect.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}.

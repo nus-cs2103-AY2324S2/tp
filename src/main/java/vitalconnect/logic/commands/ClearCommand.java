@@ -1,9 +1,9 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import vitalConnect.model.Clinic;
-import vitalConnect.model.Model;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.Model;
 
 /**
  * Clears the clinic.

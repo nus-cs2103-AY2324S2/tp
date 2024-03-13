@@ -1,8 +1,8 @@
-package vitalConnect.ui;
+package vitalconnect.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static vitalConnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.net.URL;
 import java.nio.file.Path;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import javafx.fxml.FXML;
-import vitalConnect.MainApp;
+import vitalconnect.MainApp;
 
 public class UiPartTest {
 

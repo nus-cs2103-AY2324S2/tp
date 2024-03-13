@@ -1,10 +1,10 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import vitalConnect.commons.exceptions.IllegalValueException;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.commons.exceptions.IllegalValueException;
+import vitalconnect.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.

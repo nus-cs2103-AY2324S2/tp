@@ -1,14 +1,14 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
-import static vitalConnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
+import static vitalconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.model.Clinic;
-import vitalConnect.model.Model;
-import vitalConnect.model.ModelManager;
-import vitalConnect.model.UserPrefs;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
+import vitalconnect.model.UserPrefs;
 
 public class ClearCommandTest {
 

@@ -1,9 +1,9 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static vitalconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import vitalConnect.model.Model;
+import vitalconnect.model.Model;
 
 /**
  * Lists all persons in the clinic to the user.

@@ -1,22 +1,22 @@
-package vitalConnect.testutil;
+package vitalconnect.testutil;
 
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import vitalConnect.model.Clinic;
-import vitalConnect.model.person.Person;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

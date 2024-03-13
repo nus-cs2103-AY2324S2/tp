@@ -1,4 +1,4 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import vitalConnect.logic.Messages;
-import vitalConnect.logic.parser.exceptions.ParseException;
+import vitalconnect.logic.Messages;
+import vitalconnect.logic.parser.exceptions.ParseException;
 
 /**
  * Stores mapping of prefixes to their respective arguments.

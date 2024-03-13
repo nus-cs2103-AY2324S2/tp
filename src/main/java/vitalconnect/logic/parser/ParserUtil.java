@@ -1,4 +1,4 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,14 +6,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import vitalConnect.commons.core.index.Index;
-import vitalConnect.commons.util.StringUtil;
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.person.contactInformation.Address;
-import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.contactInformation.Phone;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.commons.core.index.Index;
+import vitalconnect.commons.util.StringUtil;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

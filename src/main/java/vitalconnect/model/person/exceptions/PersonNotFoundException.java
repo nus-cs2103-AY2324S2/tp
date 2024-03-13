@@ -1,4 +1,4 @@
-package vitalConnect.model.person.exceptions;
+package vitalconnect.model.person.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified person.

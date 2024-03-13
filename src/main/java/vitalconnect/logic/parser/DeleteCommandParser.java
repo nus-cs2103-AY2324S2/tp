@@ -1,10 +1,10 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import vitalConnect.commons.core.index.Index;
-import vitalConnect.logic.commands.DeleteCommand;
-import vitalConnect.logic.parser.exceptions.ParseException;
+import vitalconnect.commons.core.index.Index;
+import vitalconnect.logic.commands.DeleteCommand;
+import vitalconnect.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

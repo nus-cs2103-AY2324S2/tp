@@ -1,4 +1,4 @@
-package vitalConnect.ui;
+package vitalconnect.ui;
 
 import java.util.Objects;
 

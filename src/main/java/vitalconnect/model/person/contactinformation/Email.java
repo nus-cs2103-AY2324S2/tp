@@ -1,7 +1,7 @@
-package vitalConnect.model.person.contactInformation;
+package vitalconnect.model.person.contactinformation;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.commons.util.AppUtil.checkArgument;
+import static vitalconnect.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's email in the clinic.

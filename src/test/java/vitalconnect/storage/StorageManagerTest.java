@@ -1,8 +1,8 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
+import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.nio.file.Path;
 
@@ -10,10 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.model.Clinic;
-import vitalConnect.model.ReadOnlyClinic;
-import vitalConnect.model.UserPrefs;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.UserPrefs;
 
 public class StorageManagerTest {
 

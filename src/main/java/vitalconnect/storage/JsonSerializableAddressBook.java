@@ -1,4 +1,4 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import vitalConnect.commons.exceptions.IllegalValueException;
-import vitalConnect.model.Clinic;
-import vitalConnect.model.ReadOnlyClinic;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.exceptions.IllegalValueException;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.person.Person;
 
 /**
  * An Immutable Clinic that is serializable to JSON format.

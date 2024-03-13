@@ -1,4 +1,4 @@
-package vitalConnect.ui;
+package vitalconnect.ui;
 
 import java.util.logging.Logger;
 
@@ -7,10 +7,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import vitalConnect.MainApp;
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.commons.util.StringUtil;
-import vitalConnect.logic.Logic;
+import vitalconnect.MainApp;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.commons.util.StringUtil;
+import vitalconnect.logic.Logic;
 
 /**
  * The manager of the UI component.

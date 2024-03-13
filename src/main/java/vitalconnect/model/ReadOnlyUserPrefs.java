@@ -1,8 +1,8 @@
-package vitalConnect.model;
+package vitalconnect.model;
 
 import java.nio.file.Path;
 
-import vitalConnect.commons.core.GuiSettings;
+import vitalconnect.commons.core.GuiSettings;
 
 /**
  * Unmodifiable view of user prefs.

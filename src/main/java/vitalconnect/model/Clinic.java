@@ -1,13 +1,13 @@
-package vitalConnect.model;
+package vitalconnect.model;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import vitalConnect.commons.util.ToStringBuilder;
-import vitalConnect.model.person.Person;
-import vitalConnect.model.person.UniquePersonList;
+import vitalconnect.commons.util.ToStringBuilder;
+import vitalconnect.model.person.Person;
+import vitalconnect.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the clinic level

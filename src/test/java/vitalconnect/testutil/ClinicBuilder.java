@@ -1,7 +1,7 @@
-package vitalConnect.testutil;
+package vitalconnect.testutil;
 
-import vitalConnect.model.Clinic;
-import vitalConnect.model.person.Person;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.person.Person;
 
 /**
  * A utility class to help with building Clinic objects.

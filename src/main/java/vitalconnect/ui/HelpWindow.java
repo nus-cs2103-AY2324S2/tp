@@ -1,4 +1,4 @@
-package vitalConnect.ui;
+package vitalconnect.ui;
 
 import java.util.logging.Logger;
 
@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
-import vitalConnect.commons.core.LogsCenter;
+import vitalconnect.commons.core.LogsCenter;
 
 /**
  * Controller for a help page

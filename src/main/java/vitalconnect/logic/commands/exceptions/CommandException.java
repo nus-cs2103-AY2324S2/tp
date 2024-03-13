@@ -1,4 +1,4 @@
-package vitalConnect.logic.commands.exceptions;
+package vitalconnect.logic.commands.exceptions;
 
 /**
  * Represents an error which occurs during execution of a {@link Command}.

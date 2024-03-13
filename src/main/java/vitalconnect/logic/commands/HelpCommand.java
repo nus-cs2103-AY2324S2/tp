@@ -1,6 +1,6 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
-import vitalConnect.model.Model;
+import vitalconnect.model.Model;
 
 /**
  * Format full help instructions for every command for display.

@@ -1,20 +1,20 @@
-package vitalConnect.model.person;
+package vitalconnect.model.person;
 
-import static vitalConnect.commons.util.CollectionUtil.requireAllNonNull;
+import static vitalconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import vitalConnect.commons.util.ToStringBuilder;
-import vitalConnect.model.person.contactInformation.Address;
-import vitalConnect.model.person.contactInformation.ContactInformation;
-import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.contactInformation.Phone;
-import vitalConnect.model.person.identificationInformation.IdentificationInformation;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.commons.util.ToStringBuilder;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.ContactInformation;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.IdentificationInformation;
+import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.tag.Tag;
 
 /**
  * Represents a Person in the clinic.

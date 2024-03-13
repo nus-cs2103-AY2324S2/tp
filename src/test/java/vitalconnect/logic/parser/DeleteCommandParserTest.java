@@ -1,13 +1,13 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static vitalConnect.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static vitalConnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static vitalConnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static vitalconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.logic.commands.DeleteCommand;
+import vitalconnect.logic.commands.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

@@ -1,12 +1,12 @@
-package vitalConnect.ui;
+package vitalconnect.ui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import vitalConnect.logic.commands.CommandResult;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.logic.parser.exceptions.ParseException;
+import vitalconnect.logic.commands.CommandResult;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -77,7 +77,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see vitalConnect.logic.Logic#execute(String)
+         * @see vitalconnect.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }

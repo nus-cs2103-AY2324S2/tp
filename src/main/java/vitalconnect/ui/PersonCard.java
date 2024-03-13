@@ -1,4 +1,4 @@
-package vitalConnect.ui;
+package vitalconnect.ui;
 
 import java.util.Comparator;
 
@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import vitalConnect.model.person.Person;
+import vitalconnect.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Person}.

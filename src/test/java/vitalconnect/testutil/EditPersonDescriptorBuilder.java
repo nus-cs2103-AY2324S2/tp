@@ -1,16 +1,16 @@
-package vitalConnect.testutil;
+package vitalconnect.testutil;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import vitalConnect.logic.commands.EditCommand.EditPersonDescriptor;
-import vitalConnect.model.person.Person;
-import vitalConnect.model.person.contactInformation.Address;
-import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.contactInformation.Phone;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
+import vitalconnect.model.person.Person;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

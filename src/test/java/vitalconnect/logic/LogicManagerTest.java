@@ -1,14 +1,14 @@
-package vitalConnect.logic;
+package vitalconnect.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static vitalConnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static vitalConnect.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static vitalConnect.testutil.Assert.assertThrows;
-import static vitalConnect.testutil.TypicalPersons.AMY;
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static vitalconnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static vitalconnect.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -18,20 +18,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import vitalConnect.logic.commands.AddCommand;
-import vitalConnect.logic.commands.CommandResult;
-import vitalConnect.logic.commands.ListCommand;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.Model;
-import vitalConnect.model.ModelManager;
-import vitalConnect.model.ReadOnlyClinic;
-import vitalConnect.model.UserPrefs;
-import vitalConnect.model.person.Person;
-import vitalConnect.storage.JsonClinicStorage;
-import vitalConnect.storage.JsonUserPrefsStorage;
-import vitalConnect.storage.StorageManager;
-import vitalConnect.testutil.PersonBuilder;
+import vitalconnect.logic.commands.AddCommand;
+import vitalconnect.logic.commands.CommandResult;
+import vitalconnect.logic.commands.ListCommand;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
+import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.UserPrefs;
+import vitalconnect.model.person.Person;
+import vitalconnect.storage.JsonClinicStorage;
+import vitalconnect.storage.JsonUserPrefsStorage;
+import vitalconnect.storage.StorageManager;
+import vitalconnect.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");

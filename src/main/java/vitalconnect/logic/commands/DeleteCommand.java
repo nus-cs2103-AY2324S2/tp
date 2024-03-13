@@ -1,15 +1,15 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import vitalConnect.commons.core.index.Index;
-import vitalConnect.commons.util.ToStringBuilder;
-import vitalConnect.logic.Messages;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.model.Model;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.core.index.Index;
+import vitalconnect.commons.util.ToStringBuilder;
+import vitalconnect.logic.Messages;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.model.Model;
+import vitalconnect.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the clinic.

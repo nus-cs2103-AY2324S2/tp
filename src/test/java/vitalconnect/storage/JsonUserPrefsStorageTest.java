@@ -1,8 +1,8 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static vitalConnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,9 +12,9 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.commons.exceptions.DataLoadingException;
-import vitalConnect.model.UserPrefs;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.commons.exceptions.DataLoadingException;
+import vitalconnect.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {
 

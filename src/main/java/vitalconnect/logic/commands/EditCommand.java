@@ -1,12 +1,12 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_PHONE;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_TAG;
-import static vitalConnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static vitalconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -15,18 +15,18 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import vitalConnect.commons.core.index.Index;
-import vitalConnect.commons.util.CollectionUtil;
-import vitalConnect.commons.util.ToStringBuilder;
-import vitalConnect.logic.Messages;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.model.Model;
-import vitalConnect.model.person.Person;
-import vitalConnect.model.person.contactInformation.Address;
-import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.contactInformation.Phone;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.commons.core.index.Index;
+import vitalconnect.commons.util.CollectionUtil;
+import vitalconnect.commons.util.ToStringBuilder;
+import vitalconnect.logic.Messages;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.model.Model;
+import vitalconnect.model.person.Person;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the clinic.

@@ -1,11 +1,11 @@
-package vitalConnect.commons.util;
+package vitalconnect.commons.util;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import vitalConnect.commons.core.Config;
-import vitalConnect.commons.exceptions.DataLoadingException;
+import vitalconnect.commons.core.Config;
+import vitalconnect.commons.exceptions.DataLoadingException;
 
 /**
  * A class for accessing the Config File.

@@ -1,4 +1,4 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.model.Appointment;
-import vitalConnect.model.Model;
-import vitalConnect.model.ReadOnlyClinic;
-import vitalConnect.model.ReadOnlyUserPrefs;
-import vitalConnect.model.person.Person;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.model.Appointment;
+import vitalconnect.model.Model;
+import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.ReadOnlyUserPrefs;
+import vitalconnect.model.person.Person;
 
 
 

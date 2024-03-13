@@ -1,7 +1,7 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
-import vitalConnect.logic.commands.CreateAptCommand;
-import vitalConnect.logic.parser.exceptions.ParseException;
+import vitalconnect.logic.commands.CreateAptCommand;
+import vitalconnect.logic.parser.exceptions.ParseException;
 
 
 /**

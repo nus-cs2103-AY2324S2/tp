@@ -1,11 +1,11 @@
-package vitalConnect.logic;
+package vitalconnect.logic;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import vitalConnect.logic.parser.Prefix;
-import vitalConnect.model.person.Person;
+import vitalconnect.logic.parser.Prefix;
+import vitalconnect.model.person.Person;
 
 /**
  * Container for user visible messages.

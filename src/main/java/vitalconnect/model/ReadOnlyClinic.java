@@ -1,7 +1,7 @@
-package vitalConnect.model;
+package vitalconnect.model;
 
 import javafx.collections.ObservableList;
-import vitalConnect.model.person.Person;
+import vitalconnect.model.person.Person;
 
 /**
  * Unmodifiable view of a clinic

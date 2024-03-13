@@ -1,4 +1,4 @@
-package vitalConnect;
+package vitalconnect;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -7,29 +7,29 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import vitalConnect.commons.core.Config;
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.commons.core.Version;
-import vitalConnect.commons.exceptions.DataLoadingException;
-import vitalConnect.commons.util.ConfigUtil;
-import vitalConnect.commons.util.StringUtil;
-import vitalConnect.logic.Logic;
-import vitalConnect.logic.LogicManager;
-import vitalConnect.model.Clinic;
-import vitalConnect.model.Model;
-import vitalConnect.model.ModelManager;
-import vitalConnect.model.ReadOnlyClinic;
-import vitalConnect.model.ReadOnlyUserPrefs;
-import vitalConnect.model.UserPrefs;
-import vitalConnect.model.util.SampleDataUtil;
-import vitalConnect.storage.ClinicStorage;
-import vitalConnect.storage.JsonClinicStorage;
-import vitalConnect.storage.JsonUserPrefsStorage;
-import vitalConnect.storage.Storage;
-import vitalConnect.storage.StorageManager;
-import vitalConnect.storage.UserPrefsStorage;
-import vitalConnect.ui.Ui;
-import vitalConnect.ui.UiManager;
+import vitalconnect.commons.core.Config;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.commons.core.Version;
+import vitalconnect.commons.exceptions.DataLoadingException;
+import vitalconnect.commons.util.ConfigUtil;
+import vitalconnect.commons.util.StringUtil;
+import vitalconnect.logic.Logic;
+import vitalconnect.logic.LogicManager;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
+import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.ReadOnlyUserPrefs;
+import vitalconnect.model.UserPrefs;
+import vitalconnect.model.util.SampleDataUtil;
+import vitalconnect.storage.ClinicStorage;
+import vitalconnect.storage.JsonClinicStorage;
+import vitalconnect.storage.JsonUserPrefsStorage;
+import vitalconnect.storage.Storage;
+import vitalconnect.storage.StorageManager;
+import vitalconnect.storage.UserPrefsStorage;
+import vitalconnect.ui.Ui;
+import vitalconnect.ui.UiManager;
 
 /**
  * Runs the application.

@@ -1,24 +1,24 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static vitalConnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static vitalConnect.testutil.TypicalPersons.CARL;
-import static vitalConnect.testutil.TypicalPersons.ELLE;
-import static vitalConnect.testutil.TypicalPersons.FIONA;
-import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
+import static vitalconnect.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static vitalconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static vitalconnect.testutil.TypicalPersons.CARL;
+import static vitalconnect.testutil.TypicalPersons.ELLE;
+import static vitalconnect.testutil.TypicalPersons.FIONA;
+import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.model.Model;
-import vitalConnect.model.ModelManager;
-import vitalConnect.model.UserPrefs;
-import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
+import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
+import vitalconnect.model.UserPrefs;
+import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

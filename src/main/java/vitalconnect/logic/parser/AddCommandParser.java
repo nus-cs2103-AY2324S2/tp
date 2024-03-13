@@ -1,23 +1,23 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_PHONE;
-import static vitalConnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import vitalConnect.logic.commands.AddCommand;
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.person.Person;
-import vitalConnect.model.person.contactInformation.Address;
-import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.contactInformation.Phone;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.logic.commands.AddCommand;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.person.Person;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object

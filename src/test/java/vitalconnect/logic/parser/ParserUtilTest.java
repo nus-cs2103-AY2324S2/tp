@@ -1,10 +1,10 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static vitalConnect.testutil.Assert.assertThrows;
-import static vitalConnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static vitalconnect.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,12 +13,12 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.person.contactInformation.Address;
-import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.contactInformation.Phone;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

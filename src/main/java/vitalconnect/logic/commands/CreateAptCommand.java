@@ -1,11 +1,11 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.model.Appointment;
-import vitalConnect.model.Model;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.model.Appointment;
+import vitalconnect.model.Model;
 
 /**
  * Represents a command to create an appointment for a person in the address book.

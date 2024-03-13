@@ -1,4 +1,4 @@
-package vitalConnect.logic;
+package vitalconnect.logic;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -6,17 +6,17 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.logic.commands.Command;
-import vitalConnect.logic.commands.CommandResult;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.logic.parser.ClinicParser;
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.Model;
-import vitalConnect.model.ReadOnlyClinic;
-import vitalConnect.model.person.Person;
-import vitalConnect.storage.Storage;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.logic.commands.Command;
+import vitalconnect.logic.commands.CommandResult;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.logic.parser.ClinicParser;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.Model;
+import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.person.Person;
+import vitalconnect.storage.Storage;
 
 /**
  * The main LogicManager of the app.

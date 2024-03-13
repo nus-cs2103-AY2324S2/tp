@@ -1,9 +1,9 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static vitalConnect.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
-import static vitalConnect.testutil.Assert.assertThrows;
-import static vitalConnect.testutil.TypicalPersons.BENSON;
+import static vitalconnect.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.commons.exceptions.IllegalValueException;
-import vitalConnect.model.person.contactInformation.Address;
-import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.contactInformation.Phone;
-import vitalConnect.model.person.identificationInformation.Name;
+import vitalconnect.commons.exceptions.IllegalValueException;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.Name;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

@@ -1,7 +1,7 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.model.Model;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.model.Model;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.

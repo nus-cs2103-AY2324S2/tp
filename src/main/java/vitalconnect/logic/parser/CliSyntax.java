@@ -1,4 +1,4 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands

@@ -1,4 +1,4 @@
-package vitalConnect.model;
+package vitalconnect.model;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-import vitalConnect.commons.core.GuiSettings;
+import vitalconnect.commons.core.GuiSettings;
 
 /**
  * Represents User's preferences.

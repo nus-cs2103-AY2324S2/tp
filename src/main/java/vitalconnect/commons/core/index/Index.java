@@ -1,6 +1,6 @@
-package vitalConnect.commons.core.index;
+package vitalconnect.commons.core.index;
 
-import vitalConnect.commons.util.ToStringBuilder;
+import vitalconnect.commons.util.ToStringBuilder;
 
 /**
  * Represents a zero-based or one-based index.

@@ -1,7 +1,7 @@
-package vitalConnect.commons.util;
+package vitalconnect.commons.util;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.commons.util.AppUtil.checkArgument;
+import static vitalconnect.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

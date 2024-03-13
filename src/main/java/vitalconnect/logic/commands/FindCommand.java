@@ -1,11 +1,11 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import vitalConnect.commons.util.ToStringBuilder;
-import vitalConnect.logic.Messages;
-import vitalConnect.model.Model;
-import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
+import vitalconnect.commons.util.ToStringBuilder;
+import vitalconnect.logic.Messages;
+import vitalconnect.model.Model;
+import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in clinic whose name contains any of the argument keywords.

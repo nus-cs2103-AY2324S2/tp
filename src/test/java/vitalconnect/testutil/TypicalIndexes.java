@@ -1,6 +1,6 @@
-package vitalConnect.testutil;
+package vitalconnect.testutil;
 
-import vitalConnect.commons.core.index.Index;
+import vitalconnect.commons.core.index.Index;
 
 /**
  * A utility class containing a list of {@code Index} objects to be used in tests.

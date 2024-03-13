@@ -1,4 +1,4 @@
-package vitalConnect.commons.exceptions;
+package vitalconnect.commons.exceptions;
 
 /**
  * Represents an error during loading of data from a file.

@@ -1,4 +1,4 @@
-package vitalConnect.commons.util;
+package vitalconnect.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,8 +7,8 @@ import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.testutil.SerializableTestClass;
-import vitalConnect.testutil.TestUtil;
+import vitalconnect.testutil.SerializableTestClass;
+import vitalconnect.testutil.TestUtil;
 
 /**
  * Tests JSON Read and Write

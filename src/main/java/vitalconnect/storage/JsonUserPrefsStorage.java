@@ -1,13 +1,13 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import vitalConnect.commons.exceptions.DataLoadingException;
-import vitalConnect.commons.util.JsonUtil;
-import vitalConnect.model.ReadOnlyUserPrefs;
-import vitalConnect.model.UserPrefs;
+import vitalconnect.commons.exceptions.DataLoadingException;
+import vitalconnect.commons.util.JsonUtil;
+import vitalconnect.model.ReadOnlyUserPrefs;
+import vitalconnect.model.UserPrefs;
 
 /**
  * A class to access UserPrefs stored in the hard disk as a json file

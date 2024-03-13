@@ -1,12 +1,12 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import vitalConnect.logic.commands.FindCommand;
-import vitalConnect.logic.parser.exceptions.ParseException;
-import vitalConnect.model.person.identificationInformation.NameContainsKeywordsPredicate;
+import vitalconnect.logic.commands.FindCommand;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

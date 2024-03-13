@@ -1,4 +1,4 @@
-package vitalConnect.storage;
+package vitalconnect.storage;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import vitalConnect.commons.exceptions.IllegalValueException;
-import vitalConnect.model.person.Person;
-import vitalConnect.model.person.contactInformation.Address;
-import vitalConnect.model.person.contactInformation.Email;
-import vitalConnect.model.person.contactInformation.Phone;
-import vitalConnect.model.person.identificationInformation.Name;
-import vitalConnect.model.tag.Tag;
+import vitalconnect.commons.exceptions.IllegalValueException;
+import vitalconnect.model.person.Person;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.

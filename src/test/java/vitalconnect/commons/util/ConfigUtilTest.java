@@ -1,8 +1,8 @@
-package vitalConnect.commons.util;
+package vitalconnect.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static vitalConnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,8 +13,8 @@ import java.util.logging.Level;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import vitalConnect.commons.core.Config;
-import vitalConnect.commons.exceptions.DataLoadingException;
+import vitalconnect.commons.core.Config;
+import vitalconnect.commons.exceptions.DataLoadingException;
 
 public class ConfigUtilTest {
 

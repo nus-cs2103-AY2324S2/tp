@@ -1,15 +1,15 @@
-package vitalConnect.model.person;
+package vitalconnect.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static vitalConnect.commons.util.CollectionUtil.requireAllNonNull;
+import static vitalconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import vitalConnect.model.person.exceptions.DuplicatePersonException;
-import vitalConnect.model.person.exceptions.PersonNotFoundException;
+import vitalconnect.model.person.exceptions.DuplicatePersonException;
+import vitalconnect.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

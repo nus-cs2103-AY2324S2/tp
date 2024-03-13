@@ -1,16 +1,16 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
-import static vitalConnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static vitalConnect.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static vitalConnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
+import static vitalconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static vitalconnect.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.model.Model;
-import vitalConnect.model.ModelManager;
-import vitalConnect.model.UserPrefs;
+import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
+import vitalconnect.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

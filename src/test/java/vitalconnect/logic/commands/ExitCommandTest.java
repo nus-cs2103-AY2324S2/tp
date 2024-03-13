@@ -1,12 +1,12 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
-import static vitalConnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static vitalConnect.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static vitalconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static vitalconnect.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.model.Model;
-import vitalConnect.model.ModelManager;
+import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();

@@ -1,4 +1,4 @@
-package vitalConnect.commons.util;
+package vitalconnect.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
@@ -20,8 +20,8 @@ import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
-import vitalConnect.commons.core.LogsCenter;
-import vitalConnect.commons.exceptions.DataLoadingException;
+import vitalconnect.commons.core.LogsCenter;
+import vitalconnect.commons.exceptions.DataLoadingException;
 
 /**
  * Converts a Java object instance to JSON and vice versa

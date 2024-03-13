@@ -1,32 +1,32 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.logic.commands.CommandTestUtil.DESC_AMY;
-import static vitalConnect.logic.commands.CommandTestUtil.DESC_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static vitalConnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static vitalConnect.logic.commands.CommandTestUtil.assertCommandFailure;
-import static vitalConnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static vitalConnect.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static vitalConnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static vitalConnect.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static vitalConnect.testutil.TypicalPersons.getTypicalClinic;
+import static vitalconnect.logic.commands.CommandTestUtil.DESC_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.DESC_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static vitalconnect.logic.commands.CommandTestUtil.assertCommandFailure;
+import static vitalconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static vitalconnect.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static vitalconnect.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import org.junit.jupiter.api.Test;
 
-import vitalConnect.commons.core.index.Index;
-import vitalConnect.logic.Messages;
-import vitalConnect.logic.commands.EditCommand.EditPersonDescriptor;
-import vitalConnect.model.Clinic;
-import vitalConnect.model.Model;
-import vitalConnect.model.ModelManager;
-import vitalConnect.model.UserPrefs;
-import vitalConnect.model.person.Person;
-import vitalConnect.testutil.EditPersonDescriptorBuilder;
-import vitalConnect.testutil.PersonBuilder;
+import vitalconnect.commons.core.index.Index;
+import vitalconnect.logic.Messages;
+import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
+import vitalconnect.model.UserPrefs;
+import vitalconnect.model.person.Person;
+import vitalconnect.testutil.EditPersonDescriptorBuilder;
+import vitalconnect.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.

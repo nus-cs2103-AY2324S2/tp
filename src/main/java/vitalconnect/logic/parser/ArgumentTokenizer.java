@@ -1,4 +1,4 @@
-package vitalConnect.logic.parser;
+package vitalconnect.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;

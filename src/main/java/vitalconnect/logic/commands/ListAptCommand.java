@@ -1,4 +1,4 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import vitalConnect.model.Appointment;
-import vitalConnect.model.Model;
+import vitalconnect.model.Appointment;
+import vitalconnect.model.Model;
 
 /**
  * Represents a command to list all appointments in the address book.

@@ -1,6 +1,6 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
-import vitalConnect.model.Model;
+import vitalconnect.model.Model;
 
 /**
  * Terminates the program.

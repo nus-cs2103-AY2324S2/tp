@@ -1,11 +1,11 @@
-package vitalConnect.logic.commands;
+package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalConnect.testutil.Assert.assertThrows;
-import static vitalConnect.testutil.TypicalPersons.ALICE;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,16 +15,16 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import vitalConnect.commons.core.GuiSettings;
-import vitalConnect.logic.Messages;
-import vitalConnect.logic.commands.exceptions.CommandException;
-import vitalConnect.model.Appointment;
-import vitalConnect.model.Clinic;
-import vitalConnect.model.Model;
-import vitalConnect.model.ReadOnlyClinic;
-import vitalConnect.model.ReadOnlyUserPrefs;
-import vitalConnect.model.person.Person;
-import vitalConnect.testutil.PersonBuilder;
+import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.logic.Messages;
+import vitalconnect.logic.commands.exceptions.CommandException;
+import vitalconnect.model.Appointment;
+import vitalconnect.model.Clinic;
+import vitalconnect.model.Model;
+import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.ReadOnlyUserPrefs;
+import vitalconnect.model.person.Person;
+import vitalconnect.testutil.PersonBuilder;
 
 public class AddCommandTest {
 

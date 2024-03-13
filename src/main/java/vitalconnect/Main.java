@@ -1,9 +1,9 @@
-package vitalConnect;
+package vitalconnect;
 
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import vitalConnect.commons.core.LogsCenter;
+import vitalconnect.commons.core.LogsCenter;
 
 /**
  * The main entry point to the application.
