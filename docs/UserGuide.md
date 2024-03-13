@@ -6,7 +6,7 @@
 
 # PatientSync User Guide
 
-PatientSync is a **desktop app made for nurses to manage patient, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PatientSync allows you to add and view patients intimate details and  also manage patient-specific tasks faster than traditional GUI apps.
+PatientSync is a **desktop app made for nurses to manage patient, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PatientSync allows you to add and view patients intimate details and also manage patient-specific tasks faster than traditional GUI apps.
 
 
 <!-- * Table of Contents -->
