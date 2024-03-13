@@ -106,7 +106,7 @@ public class PersonBuilder {
      * @return A new Person built from the values given.
      */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, star, tags);
         // we do not include star here because our constructor creates a default value of new Star(0)
     }
 
