@@ -27,7 +27,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a Note to a startup in the address book.
+ * Adds a Note to a startup in the address book!
  */
 public class NoteCommand extends Command {
 
