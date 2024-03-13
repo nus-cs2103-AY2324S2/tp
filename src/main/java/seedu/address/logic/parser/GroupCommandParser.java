@@ -63,7 +63,6 @@ public class GroupCommandParser implements Parser<GroupCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-    
     /**
      * Parses {@code Collection<String> groups} into a {@code Set<Group>} if {@code groups} is non-empty.
      * If {@code groups} contain only one element which is an empty string, it will be parsed into a
