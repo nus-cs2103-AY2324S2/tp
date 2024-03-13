@@ -11,7 +11,7 @@ import staffconnect.model.person.Person;
 
 /**
  * Sorts and lists all persons in staff book in ascending order.
- * Attribute shorthand matching is case insensitive.
+ * Attribute shorthand matching is not case insensitive.
  */
 public class SortCommand extends Command {
 
@@ -37,7 +37,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.updateSortedPersonList(comparator);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getSortedPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

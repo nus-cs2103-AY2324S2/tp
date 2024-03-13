@@ -37,14 +37,14 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new Comparator<Person>() {
                 @Override
                 public int compare(Person person1, Person person2) {
-                    return person1.getName().toString().compareTo(person2.getName().toString());
+                    return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
                 }
             };
         case "p":
             return new Comparator<Person>() {
                 @Override
                 public int compare(Person person1, Person person2) {
-                    return person1.getPhone().toString().compareTo(person2.getPhone().toString());
+                    return person1.getPhone().toString().compareToIgnoreCase(person2.getPhone().toString());
                 }
             };
         default:
