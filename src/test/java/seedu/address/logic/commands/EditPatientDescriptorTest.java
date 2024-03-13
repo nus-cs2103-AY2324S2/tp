@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 public class EditPatientDescriptorTest {
@@ -20,7 +21,7 @@ public class EditPatientDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditPatientDescriptor descriptorWithSameValues = new EditCommand.EditPatientDescriptor(DESC_AMY);
+        EditPatientDescriptor descriptorWithSameValues = new EditPatientDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,7 +37,7 @@ public class EditPatientDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditPatientDescriptor editedAmy =
+        EditPatientDescriptor editedAmy =
                 new EditPatientDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
@@ -59,8 +60,8 @@ public class EditPatientDescriptorTest {
 
     @Test
     public void toStringMethod() {
-        EditCommand.EditPatientDescriptor editPatientDescriptor = new EditCommand.EditPatientDescriptor();
-        String expected = EditCommand.EditPatientDescriptor.class.getCanonicalName() + "{name="
+        EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
+        String expected = EditPatientDescriptor.class.getCanonicalName() + "{name="
                 + editPatientDescriptor.getName().orElse(null) + ", phone="
                 + editPatientDescriptor.getPhone().orElse(null) + ", email="
                 + editPatientDescriptor.getEmail().orElse(null) + ", address="

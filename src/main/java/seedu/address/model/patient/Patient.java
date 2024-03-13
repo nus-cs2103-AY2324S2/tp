@@ -29,6 +29,26 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
+    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Constructs a Patient with {@param name}, {@param phone}, {@param email}, {@param address},
+     * {@param tags}, {@param importantDates}
+     *
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tags
+     * @param importantDates
+     */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                    Set<ImportantDate> importantDates) {
         requireAllNonNull(name, phone, email, address, tags);

@@ -6,6 +6,10 @@ import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -15,10 +19,9 @@ import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Patient;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+/**
+ * Adds an important date to the specified patient (based on index from the last shown patient list)
+ */
 public class AddImportantDateCommand extends Command {
     public static final String COMMAND_WORD = "adde";
 

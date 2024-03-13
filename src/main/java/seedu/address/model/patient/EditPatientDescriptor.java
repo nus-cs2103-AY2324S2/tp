@@ -1,6 +1,10 @@
 package seedu.address.model.patient;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -30,6 +34,7 @@ public class EditPatientDescriptor {
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
         setAddress(toCopy.address);
+        setTags(toCopy.tags);
         setImportantDate(toCopy.importantDate);
     }
 
@@ -114,6 +119,7 @@ public class EditPatientDescriptor {
                 && Objects.equals(phone, otherEditPatientDescriptor.phone)
                 && Objects.equals(email, otherEditPatientDescriptor.email)
                 && Objects.equals(address, otherEditPatientDescriptor.address)
+                && Objects.equals(tags, otherEditPatientDescriptor.tags)
                 && Objects.equals(importantDate, otherEditPatientDescriptor.importantDate);
     }
 
@@ -124,6 +130,7 @@ public class EditPatientDescriptor {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("tags", tags)
                 .add("importantDate", importantDate)
                 .toString();
     }

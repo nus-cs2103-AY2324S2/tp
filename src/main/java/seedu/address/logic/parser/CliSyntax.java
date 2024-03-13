@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import java.util.function.Predicate;
-
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */

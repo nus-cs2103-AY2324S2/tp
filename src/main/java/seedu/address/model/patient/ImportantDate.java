@@ -1,12 +1,12 @@
 package seedu.address.model.patient;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents Important Dates for a Patient
@@ -68,8 +68,7 @@ public class ImportantDate {
 
         if (args.length > 1) {
             return isValidTime(args[1]);
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -96,6 +95,12 @@ public class ImportantDate {
     }
 
 
+    /**
+     * Extracts the date and/or time arguments from the user input
+     *
+     * @param userInput
+     * @return a String[] of the arguments extracted
+     */
     public static String[] extractDateTimeArgs(String userInput) {
         String[] args = userInput.split(",");
         args[0] = args[0].strip();
@@ -105,8 +110,7 @@ public class ImportantDate {
             temp = args[1].split("-");
             temp[0] = temp[0].strip();
             temp[1] = temp[1].strip();
-        }
-        else {
+        } else {
             temp[0] = null;
             temp[1] = null;
         }
@@ -136,10 +140,10 @@ public class ImportantDate {
         }
 
         ImportantDate otherImportantDate = (ImportantDate) other;
-        return this.name.equals(otherImportantDate.name) &&
-                this.importantDate.equals(otherImportantDate.importantDate) &&
-                this.startTime.equals(otherImportantDate.startTime) &&
-                this.endTime.equals(otherImportantDate.endTime);
+        return this.name.equals(otherImportantDate.name)
+                && this.importantDate.equals(otherImportantDate.importantDate)
+                && this.startTime.equals(otherImportantDate.startTime)
+                && this.endTime.equals(otherImportantDate.endTime);
     }
 
     @Override
