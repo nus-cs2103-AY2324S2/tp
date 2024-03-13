@@ -15,16 +15,16 @@ import staffconnect.commons.util.ConfigUtil;
 import staffconnect.commons.util.StringUtil;
 import staffconnect.logic.Logic;
 import staffconnect.logic.LogicManager;
-import staffconnect.model.AddressBook;
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
-import staffconnect.model.ReadOnlyAddressBook;
+import staffconnect.model.ReadOnlyStaffBook;
 import staffconnect.model.ReadOnlyUserPrefs;
+import staffconnect.model.StaffBook;
 import staffconnect.model.UserPrefs;
 import staffconnect.model.util.SampleDataUtil;
-import staffconnect.storage.AddressBookStorage;
-import staffconnect.storage.JsonAddressBookStorage;
+import staffconnect.storage.JsonStaffBookStorage;
 import staffconnect.storage.JsonUserPrefsStorage;
+import staffconnect.storage.StaffBookStorage;
 import staffconnect.storage.Storage;
 import staffconnect.storage.StorageManager;
 import staffconnect.storage.UserPrefsStorage;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing StaffConnect ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StaffBookStorage staffBookStorage = new JsonStaffBookStorage(userPrefs.getStaffConnectFilePath());
+        storage = new StorageManager(staffBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -68,26 +68,26 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s staff book and {@code userPrefs}. <br>
+     * The data from the sample staff book will be used instead if {@code storage}'s staff book is not found,
+     * or an empty staff book will be used instead if errors occur when reading {@code storage}'s staff book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getStaffBookFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyStaffBook> staffBookOptional;
+        ReadOnlyStaffBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
+            staffBookOptional = storage.readStaffBook();
+            if (!staffBookOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getStaffBookFilePath()
+                        + " populated with a sample StaffBook.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = staffBookOptional.orElseGet(SampleDataUtil::getSampleStaffBook);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+            logger.warning("Data file at " + storage.getStaffBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty StaffBook.");
+            initialData = new StaffBook();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -170,13 +170,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting StaffConnect " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping StaffConnect ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
