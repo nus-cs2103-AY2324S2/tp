@@ -52,8 +52,6 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
-
-
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
@@ -126,6 +124,7 @@ public class ParserUtil {
         if (!Family.isValidFamily(trimmedFamily)) {
             throw new ParseException(Family.MESSAGE_CONSTRAINTS);
         }
+        assert Integer.parseInt(trimmedFamily) >= 1;
         return new Family(trimmedFamily);
     }
 
