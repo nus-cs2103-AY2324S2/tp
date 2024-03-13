@@ -3,6 +3,11 @@ package staffconnect.model.person;
 import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's faculty in the staff book.
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidFaculty(String)}
+ */
 public class Faculty {
     public static final String MESSAGE_CONSTRAINTS = "This can be any non-blank String content.";
     /*
