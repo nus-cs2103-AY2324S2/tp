@@ -1,28 +1,32 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASSES;
 
 import seedu.address.model.Model;
 
 /**
- * Command to list all available classes.
+ * Lists all modules and their associated tutorial classes in the address book to the user.
  */
 public class ListClassesCommand extends Command {
-    public static final String COMMAND_WORD = "list_classes";
 
-    public static final String MESSAGE_SUCCESS = "List of all classes available";
-    public static final String MESSAGE_NO_CLASSES = "No classes available!";
+    public static final String COMMAND_WORD = "/list_classes";
+    public static final String MESSAGE_SUCCESS = "Listed all modules and their tutorial classes";
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
 
-        // Check if there are no classes available
-        if (model.getFilteredClassList().isEmpty()) {
-            return new CommandResult(MESSAGE_NO_CLASSES);
-        } else {
+        if (model.getAddressBook().getModuleList().isEmpty()) {
             return new CommandResult(MESSAGE_SUCCESS);
         }
+
+        StringBuilder result = new StringBuilder();
+        model.getAddressBook().getModuleList().forEach(module -> {
+            result.append(module.toString()).append(": ");
+            module.getTutorialClasses().forEach(tutorialClass -> result.append(tutorialClass.toString()).append(", "));
+            result.append("\n");
+        });
+
+        return new CommandResult(result.toString().trim());
     }
 }

@@ -5,10 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.module.ClassList;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -21,7 +19,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final ArrayList<ModuleCode> modules;
-    private final ArrayList<ClassList> classLists;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,7 +29,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        classLists = new ArrayList<>();
         modules = new ArrayList<>();
     }
 
@@ -146,11 +142,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
-    @Override
-    public ObservableList<ClassList> getClassList() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(classLists));
-    }
 
+    public List<ModuleCode> getModuleList() {
+        return modules;
+    }
 
     @Override
     public boolean equals(Object other) {

@@ -1,39 +1,63 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
+import seedu.address.testutil.TypicalModules;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
- */
 public class ListClassesCommandTest {
 
     private Model model;
-    private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager();
+        List<ModuleCode> typicalModules = TypicalModules.getTypicalModules();
+        for (ModuleCode module : typicalModules) {
+            model.addModule(module);
+        }
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_listClasses_success() {
+        ListClassesCommand listClassesCommand = new ListClassesCommand();
+        CommandResult commandResult = listClassesCommand.execute(model);
+
+        List<String> expectedOutput = TypicalModules.getTypicalModules().stream()
+            .map(module -> module.toString() + ": "
+                + module.getTutorialClasses().stream()
+                    .map(TutorialClass::toString)
+                    .collect(Collectors.joining(", ")))
+            .collect(Collectors.toList());
+
+        // Check if command result message contains the expected output
+        assertTrue(expectedOutput.stream().allMatch(commandResult.getFeedbackToUser()::contains));
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_listClasses_noModulesAdded() {
+        Model emptyModel = new ModelManager();
+        ListClassesCommand listClassesCommand = new ListClassesCommand();
+        CommandResult commandResult = listClassesCommand.execute(emptyModel);
+
+        // Check if command result message states that no modules are added
+        assertEquals(ListClassesCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        ListClassesCommand listClassesCommand = new ListClassesCommand();
+        assertThrows(NullPointerException.class, () -> listClassesCommand.execute(null));
     }
 }
