@@ -1,5 +1,7 @@
 package educonnect.model.student;
 
+import static educonnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TELEGRAM_HANDLE_BOB;
 import static educonnect.testutil.Assert.assertThrows;
@@ -25,18 +27,18 @@ public class UniqueStudentListTest {
 
     @Test
     public void contains_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueStudentList.containsSameUniqueIdentifier(null));
     }
 
     @Test
     public void contains_studentNotInList_returnsFalse() {
-        assertFalse(uniqueStudentList.contains(ALICE));
+        assertFalse(uniqueStudentList.containsSameUniqueIdentifier(ALICE));
     }
 
     @Test
     public void contains_studentInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        assertTrue(uniqueStudentList.contains(ALICE));
+        assertTrue(uniqueStudentList.containsSameUniqueIdentifier(ALICE));
     }
 
     @Test
@@ -45,7 +47,34 @@ public class UniqueStudentListTest {
         Student editedAlice = new StudentBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueStudentList.contains(editedAlice));
+        assertTrue(uniqueStudentList.containsSameUniqueIdentifier(editedAlice));
+    }
+
+    @Test
+    public void contains_studentWithSameStudentId_returnsTrue() {
+        uniqueStudentList.add(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
+                .withTags(VALID_TAG_HUSBAND).withEmail(VALID_EMAIL_BOB)
+                .build();
+        assertTrue(uniqueStudentList.containsSameUniqueIdentifier(editedAlice));
+    }
+
+    @Test
+    public void contains_studentWithSameEmail_returnsTrue() {
+        uniqueStudentList.add(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
+                .withTags(VALID_TAG_HUSBAND).withStudentId(VALID_STUDENT_ID_BOB)
+                .build();
+        assertTrue(uniqueStudentList.containsSameUniqueIdentifier(editedAlice));
+    }
+
+    @Test
+    public void contains_studentWithSameTelegramHandle_returnsTrue() {
+        uniqueStudentList.add(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENT_ID_BOB)
+                .withTags(VALID_TAG_HUSBAND).withEmail(VALID_EMAIL_BOB)
+                .build();
+        assertTrue(uniqueStudentList.containsSameUniqueIdentifier(editedAlice));
     }
 
     @Test

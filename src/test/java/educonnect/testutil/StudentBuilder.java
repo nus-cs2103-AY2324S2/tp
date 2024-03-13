@@ -21,6 +21,11 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_TELEGRAM_HANDLE = "@Beeam";
 
+    public static final String ALTERNATE_NAME = "Bob Builder";
+    public static final String ALTERNATE_STUDENT_ID = "A9876543U";
+    public static final String ALTERNATE_EMAIL = "builderbob@gmail.com";
+    public static final String ALTERNATE_TELEGRAM_HANDLE = "@bobthebuilder";
+
     private Name name;
     private StudentId studentId;
     private Email email;
@@ -47,6 +52,17 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         telegramHandle = studentToCopy.getTelegramHandle();
         tags = new HashSet<>(studentToCopy.getTags());
+    }
+
+    /**
+     * Creates a {@code StudentBuilder} with the alternate default details.
+     */
+    public StudentBuilder alternate() {
+        return new StudentBuilder()
+                .withName(ALTERNATE_NAME)
+                .withTelegramHandle(ALTERNATE_TELEGRAM_HANDLE)
+                .withEmail(ALTERNATE_EMAIL)
+                .withStudentId(ALTERNATE_STUDENT_ID);
     }
 
     /**

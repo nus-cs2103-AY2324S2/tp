@@ -88,9 +88,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasStudent(Student student) {
+    public boolean hasSameUniqueIdentifier(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return addressBook.hasSameUniqueIdentifier(student);
+    }
+
+    @Override
+    public boolean hasStudentId(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudentId(student);
+    }
+
+    @Override
+    public boolean hasEmail(Student student) {
+        requireNonNull(student);
+        return addressBook.hasEmail(student);
+    }
+
+    @Override
+    public boolean hasTelegramHandle(Student student) {
+        requireNonNull(student);
+        return addressBook.hasTelegramHandle(student);
     }
 
     @Override

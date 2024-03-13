@@ -78,6 +78,60 @@ public class Student {
     }
 
     /**
+     * Returns true if both students share same student id or email or telegram handle, these are unique identifiers.
+     * This defines a weaker notion of equality between two students.
+     */
+    public boolean isSameUniqueIdentifier(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent != null
+                && (otherStudent.getStudentId().equals(getStudentId())
+                || otherStudent.getEmail().equals(getEmail())
+                || otherStudent.getTelegramHandle().equals(getTelegramHandle()));
+    }
+
+    /**
+     * Returns true if both students have the same student id.
+     * This defines a weaker notion of equality between two students.
+     */
+    public boolean isSameStudentId(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent != null
+                && otherStudent.getStudentId().equals(getStudentId());
+    }
+
+    /**
+     * Returns true if both students have the same email.
+     * This defines a weaker notion of equality between two students.
+     */
+    public boolean isSameEmail(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent != null
+                && otherStudent.getEmail().equals(getEmail());
+    }
+
+    /**
+     * Returns true if both students have the same telegram handle.
+     * This defines a weaker notion of equality between two students.
+     */
+    public boolean isSameTelegramHandle(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent != null
+                && otherStudent.getTelegramHandle().equals(getTelegramHandle());
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */

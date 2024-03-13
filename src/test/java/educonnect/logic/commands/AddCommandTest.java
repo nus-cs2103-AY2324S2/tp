@@ -44,14 +44,43 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
+
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
+    public void execute_duplicateStudentId_throwsCommandException() {
+        Student validStudent1 = new StudentBuilder().build();
+        Student validStudent2 = new StudentBuilder().alternate()
+                .withStudentId(validStudent1.getStudentId().value).build();
+        AddCommand addCommand = new AddCommand(validStudent1);
+        ModelStub modelStub = new ModelStubAcceptingStudentAdded();
+        modelStub.addStudent(validStudent2);
 
         Assert.assertThrows(CommandException.class, AddCommand
-                .MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+                .MESSAGE_DUPLICATE_STUDENT_ID, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateEmail_throwsCommandException() {
+        Student validStudent1 = new StudentBuilder().build();
+        Student validStudent2 = new StudentBuilder().alternate()
+                .withEmail(validStudent1.getEmail().value).build();
+        AddCommand addCommand = new AddCommand(validStudent1);
+        ModelStub modelStub = new ModelStubAcceptingStudentAdded();
+        modelStub.addStudent(validStudent2);
+
+        Assert.assertThrows(CommandException.class, AddCommand
+                .MESSAGE_DUPLICATE_EMAIL, () -> addCommand.execute(modelStub));
+    }
+    @Test
+    public void execute_duplicateTelegramId_throwsCommandException() {
+        Student validStudent1 = new StudentBuilder().build();
+        Student validStudent2 = new StudentBuilder().alternate()
+                .withTelegramHandle(validStudent1.getTelegramHandle().value).build();
+        AddCommand addCommand = new AddCommand(validStudent1);
+        ModelStub modelStub = new ModelStubAcceptingStudentAdded();
+        modelStub.addStudent(validStudent2);
+
+        Assert.assertThrows(CommandException.class, AddCommand
+                .MESSAGE_DUPLICATE_TELEGRAM_HANDLE, () -> addCommand.execute(modelStub));
     }
 
     @SuppressWarnings("unlikely-arg-type")
@@ -126,17 +155,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSameUniqueIdentifier(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasStudentId(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEmail(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTelegramHandle(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -167,15 +211,11 @@ public class AddCommandTest {
     private class ModelStubWithStudent extends ModelStub {
         private final Student student;
 
+
+
         ModelStubWithStudent(Student student) {
             requireNonNull(student);
             this.student = student;
-        }
-
-        @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
         }
     }
 
@@ -186,9 +226,21 @@ public class AddCommandTest {
         final ArrayList<Student> studentsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasStudentId(Student student) {
             requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+            return studentsAdded.stream().anyMatch(student::isSameStudentId);
+        }
+
+        @Override
+        public boolean hasEmail(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSameEmail);
+        }
+
+        @Override
+        public boolean hasTelegramHandle(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSameTelegramHandle);
         }
 
         @Override

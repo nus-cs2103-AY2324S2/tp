@@ -72,18 +72,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.hasSameUniqueIdentifier(null));
     }
 
     @Test
     public void hasStudent_studentNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasStudent(TypicalStudents.ALICE));
+        assertFalse(modelManager.hasSameUniqueIdentifier(TypicalStudents.ALICE));
     }
 
     @Test
     public void hasStudent_studentInAddressBook_returnsTrue() {
         modelManager.addStudent(TypicalStudents.ALICE);
-        assertTrue(modelManager.hasStudent(TypicalStudents.ALICE));
+        assertTrue(modelManager.hasSameUniqueIdentifier(TypicalStudents.ALICE));
     }
 
     @Test

@@ -59,26 +59,26 @@ public class AddressBookTest {
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasSameUniqueIdentifier(null));
     }
 
     @Test
     public void hasStudent_studentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasStudent(TypicalStudents.ALICE));
+        assertFalse(addressBook.hasSameUniqueIdentifier(TypicalStudents.ALICE));
     }
 
     @Test
     public void hasStudent_studentInAddressBook_returnsTrue() {
         addressBook.addStudent(TypicalStudents.ALICE);
-        assertTrue(addressBook.hasStudent(TypicalStudents.ALICE));
+        assertTrue(addressBook.hasSameUniqueIdentifier(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasStudent_studentWithSameUniqueIdentifierInAddressBook_returnsTrue() {
         addressBook.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(addressBook.hasSameUniqueIdentifier(editedAlice));
     }
 
     @Test
