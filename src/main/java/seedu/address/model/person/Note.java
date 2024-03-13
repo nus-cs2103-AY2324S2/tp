@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Note {
 
-    public static final String MESSAGE_CONSTRAINTS = "notes can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Notes can take any values, and it should not be blank";
 
     public final String value;
 
