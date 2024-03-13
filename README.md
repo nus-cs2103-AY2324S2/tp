@@ -14,7 +14,7 @@
 
 ## Main Features
 
-#### List All Contacts 
+#### List All Contacts
 >Format: `list`
 
 #### Add New Contacts

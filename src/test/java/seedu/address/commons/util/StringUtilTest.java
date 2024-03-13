@@ -123,6 +123,47 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    //---------------- Tests for containsSubstringIgnoreCase --------------------------------------
+
+    @Test
+    public void containsSubstringIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsSubstringIgnoreCase(null, "abc"));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_nullQuery_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                StringUtil.containsSubstringIgnoreCase("typical sentence", null));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_emptyQuery_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Query parameter cannot be empty", ()
+                -> StringUtil.containsSubstringIgnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_validInputs_correctResult() {
+        // Matches as a substring
+        assertTrue(StringUtil.containsSubstringIgnoreCase("Alexander Hamilton", "Alex")); // Prefix match
+        assertTrue(StringUtil.containsSubstringIgnoreCase("Theresa May", "ere")); // Substring match
+        assertTrue(StringUtil.containsSubstringIgnoreCase("Barack Obama", "ack o")); // Across words
+
+        // No match
+        assertFalse(StringUtil.containsSubstringIgnoreCase("", "abc")); // Empty sentence
+        assertFalse(StringUtil.containsSubstringIgnoreCase("    ", "abc")); // Spaces in sentence
+        assertThrows(IllegalArgumentException.class, () ->
+                StringUtil.containsSubstringIgnoreCase("some sentence", "")); // Empty query
+        assertThrows(IllegalArgumentException.class, () ->
+                StringUtil.containsSubstringIgnoreCase("another sentence", "  ")); // Space query
+        assertFalse(StringUtil.containsSubstringIgnoreCase("Theresa May",
+                "Theresa  May")); // Double spaces in query
+
+        // Case-insensitive match
+        assertTrue(StringUtil.containsSubstringIgnoreCase("alexander hamilton", "Alex"));
+        assertTrue(StringUtil.containsSubstringIgnoreCase("Alexander HAMILTON", "alex"));
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*
