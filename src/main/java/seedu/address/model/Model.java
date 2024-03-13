@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,9 @@ import seedu.address.model.employee.Employee;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Employee> PREDICATE_SHOW_ALL_EMPLOYEES = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -45,7 +49,7 @@ public interface Model {
     void setTaskMasterProFilePath(Path taskMasterProFilePath);
 
     /**
-     * Replaces TaskMasterPro data with the data in {@code taskMasterPro}.
+     * Replaces address book data with the data in {@code taskMasterPro}.
      */
     void setTaskMasterPro(ReadOnlyTaskMasterPro taskMasterPro);
 
@@ -53,7 +57,7 @@ public interface Model {
     ReadOnlyTaskMasterPro getTaskMasterPro();
 
     /**
-     * Returns true if an employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
      */
     boolean hasEmployee(Employee employee);
 
@@ -85,4 +89,25 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEmployeeList(Predicate<Employee> predicate);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the address book.
+     */
+    void addTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the address book.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
 }

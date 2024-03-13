@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
 
+    private final FilteredList<Task> taskList;
+
     /**
      * Initializes a ModelManager with the given taskMasterPro and userPrefs.
      */
@@ -33,7 +36,10 @@ public class ModelManager implements Model {
 
         this.taskMasterPro = new TaskMasterPro(taskMasterPro);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEmployees = new FilteredList<>(this.taskMasterPro.getEmployeeList());
+        ObservableList<Employee> employeeList = this.taskMasterPro.getEmployeeList();
+        ObservableList<Task> taskList = this.taskMasterPro.getTaskList();
+        filteredEmployees = new FilteredList<>(employeeList);
+        this.taskList = new FilteredList<>(taskList);
     }
 
     public ModelManager() {
@@ -127,6 +133,32 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredEmployees.setPredicate(predicate);
     }
+
+
+    //=========== Task List Accessors =============================================================
+
+    @Override
+    public void addTask(Task task) {
+        taskMasterPro.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        taskList.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        taskMasterPro.removeTask(target);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return taskList;
+    }
+
 
     @Override
     public boolean equals(Object other) {

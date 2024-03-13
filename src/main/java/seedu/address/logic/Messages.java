@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.Task;
 
 /**
  * Container for user visible messages.
@@ -18,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employees listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_TASKID = "The Task ID provided is invalid";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -45,6 +48,17 @@ public class Messages {
                 .append(employee.getAddress())
                 .append("; Tags: ");
         employee.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code task} for display to the user.
+     */
+    public static String format(Task task) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(task.getName())
+                .append("; TaskID: ")
+                .append(task.getTaskId().taskId); // Add more append if got more fields to show
         return builder.toString();
     }
 
