@@ -320,7 +320,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. LookMeUp detects an error in the entered data.
   * 3a1. LookMeUp displays the error and requests for the correct data.
   * 3a2. User enters the new data.
-  
+
   Steps 3a1-3a2 are repeated until the data entered are correct.\
   Use case resumes from step 4.
 
@@ -330,10 +330,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User type remove contact command 
-2. LookMeUp prompts for details 
-3. User enters the requested details 
-4. LookMeUp requests for confirmation. 
+1. User type remove contact command
+2. LookMeUp prompts for details
+3. User enters the requested details
+4. LookMeUp requests for confirmation.
 5. LookMeUp removes the contact and displays an execution success message.\
    Use case ends.
 
@@ -365,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User type filter contacts command 
+1. User type filter contacts command
 2. LookMeUp displays the contact in the database\
 Use case ends.
 
@@ -411,9 +411,9 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **IT-savvy**: The user is not familiar with the exact format of the add command. 
+* **IT-savvy**: The user is not familiar with the exact format of the add command.
 * **Side pop-up window**: Additional windows that can be opened by the user during usage of the software(e.g. the help window).
-* 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
