@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,15 +33,17 @@ class JsonAdaptedPerson {
     private final String address;
     private final String remark;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String birthday;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("remark") String remark,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("remark") String remark,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("birthday") String birthday) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,6 +52,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.birthday = birthday;
     }
 
     /**
@@ -62,6 +67,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        birthday = source.getBirthday().toString();
     }
 
     /**
@@ -69,6 +75,7 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
+    @SuppressWarnings("checkstyle:Regexp")
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
@@ -107,13 +114,16 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        final Remark modelRemark = new Remark(remark);
+        final Remark modelRemark = new Remark(Optional.ofNullable(remark).orElse(""));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+
+        if (!Birthday.isValidBirthday(birthday)) {
+            throw new IllegalValueException(Birthday.BIRTHDAY_CONSTRAINTS);
+        }
+        final Birthday modelBirthday = new Birthday(birthday);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelBirthday);
     }
 
 }

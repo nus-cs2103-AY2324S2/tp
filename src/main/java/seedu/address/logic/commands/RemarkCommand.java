@@ -39,7 +39,7 @@ public class RemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * @param index index of the contact
+     * @param index  index of the contact
      * @param remark string representing remark of contact
      */
     public RemarkCommand(Index index, Remark remark) {
@@ -60,7 +60,7 @@ public class RemarkCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+                personToEdit.getAddress(), remark, personToEdit.getTags(), personToEdit.getBirthday());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
