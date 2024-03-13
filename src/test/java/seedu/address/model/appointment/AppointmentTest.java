@@ -48,5 +48,8 @@ public class AppointmentTest {
 
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
+
+        // not an Appointment object -> returns false
+        assertFalse(appointment.equals("not an appointment"));
     }
 }

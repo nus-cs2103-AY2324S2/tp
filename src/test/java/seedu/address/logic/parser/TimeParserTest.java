@@ -29,6 +29,7 @@ public class TimeParserTest {
             assertThrows(ParseException.class, () -> parser.parse("15/02/20242PM- 3Pm"));
             assertThrows(ParseException.class, () -> parser.parse("15/02/2024 20PM- 3Pm"));
             assertThrows(ParseException.class, () -> parser.parse("15/02/2024 1PM- 13Pm"));
+            assertThrows(ParseException.class, () -> parser.parse(""));
             assertThrows(NullPointerException.class, () -> parser.parse(null));
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
