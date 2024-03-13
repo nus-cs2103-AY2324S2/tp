@@ -15,7 +15,7 @@ public class AddressTest {
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = null;
+        String invalidAddress = "  ";
         assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
     }
 
