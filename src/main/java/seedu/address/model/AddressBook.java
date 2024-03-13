@@ -23,7 +23,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final ArrayList<ModuleCode> modules;
     private final ArrayList<ClassList> classLists;
 
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -87,9 +86,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
-    public boolean hasModule(ModuleCode moduleCode) {
-        requireNonNull(moduleCode);
-        return modules.contains(moduleCode);
+    public boolean hasModule(ModuleCode module) {
+        requireNonNull(module);
+        return modules.contains(module);
     }
 
     /**
