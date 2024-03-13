@@ -172,6 +172,22 @@ Examples:
 * `addt 1 t/friend t/fallRisk`
 * `addt 2 t/critical`
 
+### Adding Important Dates to a Patient : `adde`
+
+Adds an Important Date to a patient in the address book.
+
+Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
+
+* Adds an Important Date with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
+* The format of the Date must be: DD-MM-YYYY
+* If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm
+* The index **must be a positive integer** 1, 2, 3, ...
+* Neither the Name or the Date / DateTime can be empty
+
+Examples:
+* `adde 1 n/Birthday d/20-01-2022`
+* `adde 2 n/Family Visit d/30-09-2024, 12:00 - 15:00`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
