@@ -17,10 +17,11 @@ public class Location {
     public enum LocationEnum {
         LOCAL,
         OVERSEAS,
-        REMOTE
+        REMOTE,
+        UNKNOWN
     }
 
-    public final LocationEnum location;
+    private final LocationEnum location;
 
     /**
      * Constructs a {@code ApplicationStatus}.
@@ -65,4 +66,10 @@ public class Location {
         return location.hashCode();
     }
 
+    /**
+     * Returns the location of the internship.
+     */
+    public LocationEnum getLocation() {
+        return location;
+    }
 }

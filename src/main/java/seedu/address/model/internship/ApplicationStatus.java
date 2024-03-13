@@ -21,14 +21,15 @@ public class ApplicationStatus {
         REJECTED,
         ACCEPTED,
         ONGOING
+
     }
 
-    public final StatusEnum applicationStatus;
+    private final StatusEnum applicationStatus;
 
     /**
      * Constructs a {@code ApplicationStatus}.
      *
-     * @param applicationStatus A valid applicationStatus.
+     * @param applicationStatus A valid application status.
      */
     public ApplicationStatus(String applicationStatus) {
         requireNonNull(applicationStatus);
@@ -47,7 +48,6 @@ public class ApplicationStatus {
     public String toString() {
         return applicationStatus.toString();
     }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -63,9 +63,15 @@ public class ApplicationStatus {
         return applicationStatus.equals(otherApplicationStatus.applicationStatus);
     }
 
-
     @Override
     public int hashCode() {
         return applicationStatus.hashCode();
+    }
+
+    /**
+     * Returns the status of the application.
+     */
+    public StatusEnum getStatus() {
+        return applicationStatus;
     }
 }
