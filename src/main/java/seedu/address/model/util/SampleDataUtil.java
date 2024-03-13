@@ -44,9 +44,7 @@ public class SampleDataUtil {
         p6.addEntry(new Entry("Phone", "92624417"));
         p6.addEntry(new Entry("Email", "royb@example.com"));
         p6.addEntry(new Entry("Address", "Blk 45 Aljunied Street 85, #11-31"));
-        return new Person[] {
-                p1, p2, p3, p4, p5, p6
-        };
+        return new Person[] {p1, p2, p3, p4, p5, p6};
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
