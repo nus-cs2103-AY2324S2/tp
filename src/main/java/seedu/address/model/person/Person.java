@@ -26,6 +26,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final HashMap<String, Attribute> attributes = new HashMap<>();
 
     /**
      * Constructs a person with a random UUID.
@@ -79,6 +80,59 @@ public class Person {
      */
     public String getUuidString() {
         return uuid.toString();
+    }
+    /**
+     * Returns whether the person has an attribute with the given type.
+     *
+     * @param attributeName The type of the attribute to check for.
+     * @return True if the person has an attribute with the given type.
+     */
+    public boolean hasAttribute(String attributeName) {
+        return attributes.containsKey(attributeName);
+    }
+    /**
+     * Returns an attribute of the person.
+     *
+     * @param attributeName The type of the attribute to get.
+     * @return The attribute with the given type.
+     */
+    public Attribute getAttribute(String attributeName) {
+        assertValidAttributeName(attributeName);
+        return attributes.get(attributeName);
+    }
+    /**
+     * Edits/adds an attribute of/to the person.
+     *
+     * @param attribute The attribute to edit or add.
+     */
+    public void updateAttribute(Attribute attribute) {
+        assertValidAttribute(attribute);
+        attributes.put(attribute.getName(), attribute);
+    }
+
+    /**
+     * Deletes an attribute from the person.
+     *
+     * @param attributeType The type of the attribute to delete.
+     */
+    public void deleteAttribute(String attributeType) {
+        if (!attributes.containsKey(attributeType)) {
+            throw new IllegalArgumentException("Attribute with name " + attributeType + " does not exist");
+        }
+        attributes.remove(attributeType);
+    }
+
+    private static void assertValidAttribute(Attribute attribute) {
+        if (attribute == null) {
+            throw new IllegalArgumentException("Attribute cannot be null.");
+        }
+        assertValidAttributeName(attribute.getName());
+    }
+
+    private static void assertValidAttributeName(String attributeType) {
+        if (attributeType == "") {
+            throw new IllegalArgumentException("Attribute name cannot be empty.");
+        }
     }
 
     /**
