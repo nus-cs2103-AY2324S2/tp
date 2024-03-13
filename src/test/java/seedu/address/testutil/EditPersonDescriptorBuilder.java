@@ -5,12 +5,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.matric.Matric;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         descriptor.setMatric(person.getMatric());
+        descriptor.setStudio(person.getStudio());
     }
 
     /**
@@ -90,6 +92,16 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withMatric(String matric) {
         descriptor.setMatric(new Matric(matric));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Studio} of the {@code Person} that we are building.
+     * @param studio studio of the person
+     * @return EditPersonDescriptorBuilder object
+     */
+    public EditPersonDescriptorBuilder withStudio(String studio) {
+        descriptor.setStudio(new Studio(studio));
         return this;
     }
 

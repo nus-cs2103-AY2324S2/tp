@@ -8,7 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.matric.Matric;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,18 +28,22 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     private final Matric matric;
+    private final Studio studio;
+
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Matric matric) {
-        requireAllNonNull(name, phone, email, address, tags, matric);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, Matric matric , Studio studio) {
+        requireAllNonNull(name, phone, email, address, tags, matric, studio);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.matric = matric;
+        this.studio = studio;
     }
 
     public Name getName() {
@@ -67,6 +72,10 @@ public class Person {
 
     public Matric getMatric() {
         return matric;
+    }
+
+    public Studio getStudio() {
+        return studio;
     }
 
     /**
@@ -103,13 +112,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && matric.equals(otherPerson.matric);
+                && matric.equals(otherPerson.matric)
+                && studio.equals(otherPerson.studio);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, matric);
+        return Objects.hash(name, phone, email, address, tags, matric, studio);
     }
 
     @Override
@@ -121,6 +131,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("matriculation number", matric)
+                .add("studio", studio)
                 .toString();
     }
 

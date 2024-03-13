@@ -9,11 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.matric.Matric;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +49,21 @@ public class ParserUtil {
             throw new ParseException(Matric.MESSAGE_CONSTRAINTS);
         }
         return new Matric(trimmedMatric);
+    }
+
+    /**
+     * Parses {@code studio} into a {@code Studio} and returns it. Leading and trailing whitespaces will be trimmed.
+     * @param studio the studio to be parsed
+     * @return the parsed studio
+     * @throws ParseException if the specified studio is invalid
+     */
+    public static Studio parseStudio(String studio) throws ParseException {
+        requireNonNull(studio);
+        String trimmedStudio = studio.trim();
+        if (!Studio.isValidStudio(trimmedStudio)) {
+            throw new ParseException(Studio.MESSAGE_CONSTRAINTS);
+        }
+        return new Studio(trimmedStudio);
     }
 
     /**

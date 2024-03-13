@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -35,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MATRIC_NUMBER);
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MATRIC_NUMBER, PREFIX_STUDIO);
 
         Index index;
 
@@ -46,7 +47,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_MATRIC_NUMBER);
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_MATRIC_NUMBER, PREFIX_STUDIO);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -64,6 +65,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_MATRIC_NUMBER).isPresent()) {
             editPersonDescriptor.setMatric(ParserUtil.parseMatric(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_STUDIO).isPresent()) {
+            editPersonDescriptor.setStudio(ParserUtil.parseStudio(argMultimap.getValue(PREFIX_STUDIO).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
