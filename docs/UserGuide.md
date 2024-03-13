@@ -23,13 +23,15 @@ If you can type fast, RDX can get your contact management tasks done faster than
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Realodex.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar realodex.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar realodex.jar` 
+command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Some example commands you can try:
 
-   * `add n/John Doe a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/friends t/owesMoney`
+   Adds a contact named `John Doe` to the Realodex.
 
    * `delete John Doe` : Deletes the client with name `John Doe` from the current list.
 
@@ -46,35 +48,41 @@ If you can type fast, RDX can get your contact management tasks done faster than
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable.
-
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ### Adding a client: `add`
 
-Adds a client to the Realodex.
+Adds a client to the Realodex. Note that `TAG` is optional, and that you may input the parameters in any order (e.g. if 
+the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable). You may
+also have multiple tags per client.
 
-Format: `add n/NAME a/ADDRESS i/INCOME fs/FAMILY_SIZE an/ADDITIONAL_NOTES`
+Format: `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY [t/TAG]...`
 
 Examples:
-* `add n/John Doe a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.`
-* `add n/Betsy Crowe a/Newgate Prison i/$0 fs/1 an/NIL.`
+* `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/friends t/owesMoney`
+* `add n/Betsy Crowe a/Newgate Prison i/$0 f/1 p/94859694 e/betsyc@rocketmail.com`
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the address book.
+Deletes the specified client from the Realodex.
 
 Format: `delete NAME`
 
-enter client's `NAME` after prompt is shown
+Enter client's `NAME` after prompt is shown.
 
 * Deletes the client of the specified `NAME`.
 * If name is **not found**, error message will be shown `"NAME" is not found`.
 
 Examples:
-* `delete` followed by `Udhaya Shanmugam` deletes the client in the address book with the name "Udhaya Shanmugam.
+* `delete` followed by `Udhaya Shanmugam` deletes the client in the Realodex with the name "Udhaya Shanmugam".
+
+### Listing clients : `list`
+
+Lists all clients in the Realodex.
+
+Format: `list`
+
 
 ### Exiting the program : `exit`
 
@@ -97,7 +105,7 @@ If your changes to the data file makes its format invalid, Realodex will discard
 Furthermore, certain edits can cause the Realodex to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Listing all clients `[coming in v1.2]`
+### Editing client details, Searching for clients `[coming in v1.2]`
 
 _Details coming soon ..._
 
@@ -121,5 +129,7 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME a/ADDRESS i/INCOME fs/FAMILY_SIZE an/ADDITIONAL_NOTES` <br> e.g., `add n/John Doe a/John street, block 123, #01-01 i/$5000 fs/4 an/Looking for a quiet neighbourhood.`
+**Add**    | `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/friends t/owesMoney`
 **Delete** | `delete NAME`<br> e.g., `delete John`
+**list**   | `list`
+**exit**   | `exit`
