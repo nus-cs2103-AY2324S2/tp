@@ -61,7 +61,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same Email, Phone, Telegram (non-empty), and Github (non-empty).
+     * Returns true if both persons have the same Email, Phone, Telegram (non-empty), or Github (non-empty).
      * Persons are allowed to have the same name.
      * This defines a weaker notion of equality between two persons.
      */
