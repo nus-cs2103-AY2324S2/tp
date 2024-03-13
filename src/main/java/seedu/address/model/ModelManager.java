@@ -11,8 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.classes.ClassList;
+import seedu.address.model.module.ClassList;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<ClassList> filteredClasses;
+    private final FilteredList<ClassList> filteredClassList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredClasses = new FilteredList<>(this.addressBook.getClassList());
+        filteredClassList = new FilteredList<>(this.addressBook.getClassList());
+
     }
 
     public ModelManager() {
@@ -97,6 +100,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(ModuleCode module) {
+        requireNonNull(module);
+        return addressBook.hasModule(module);
+    }
+
+    @Override
+    public ModuleCode findModuleFromList(ModuleCode module) {
+        requireNonNull(module);
+        return addressBook.findModuleFromList(module);
+    }
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -108,35 +122,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addModule(ModuleCode module) {
+        addressBook.addModule(module);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
     }
-
-    @Override
-    public boolean hasClassList(ClassList classToCheck) {
-        requireNonNull(classToCheck);
-        return addressBook.hasClass(classToCheck);
-    }
-
-    @Override
-    public void deleteClassList(ClassList target) {
-        addressBook.removeClass(target);
-    }
-
-    @Override
-    public void addClassList(ClassList classList) {
-        addressBook.addClass(classList);
-        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
-    }
-
-    @Override
-    public void setClassList(ClassList target, ClassList editedClassList) {
-        requireAllNonNull(target, editedClassList);
-        addressBook.setClass(target, editedClassList);
-    }
-
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -148,22 +143,23 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Class List Accessors =============================================================
+
     @Override
     public ObservableList<ClassList> getFilteredClassList() {
-        return filteredClasses;
+        return filteredClassList;
     }
 
     @Override
     public void updateFilteredClassList(Predicate<ClassList> predicate) {
         requireNonNull(predicate);
-        filteredClasses.setPredicate(predicate);
+        filteredClassList.setPredicate(predicate);
     }
 
     @Override
@@ -179,8 +175,8 @@ public class ModelManager implements Model {
 
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
-                && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+            && userPrefs.equals(otherModelManager.userPrefs)
+            && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
 }

@@ -1,4 +1,4 @@
-package seedu.address.model.classes.exceptions;
+package seedu.address.model.module.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Classes

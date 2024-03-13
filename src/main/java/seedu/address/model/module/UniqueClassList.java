@@ -1,4 +1,4 @@
-package seedu.address.model.classes;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.classes.exceptions.ClassNotFoundException;
-import seedu.address.model.classes.exceptions.DuplicateClassException;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
+import seedu.address.model.module.exceptions.DuplicateClassException;
 
 /**
  * A list of classes that enforces uniqueness between its elements and does not allow nulls.

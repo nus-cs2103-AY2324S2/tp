@@ -8,7 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.classes.ClassList;
+import seedu.address.model.module.ClassList;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 
 /**

@@ -2,12 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.classes.ClassList;
-import seedu.address.model.classes.UniqueClassList;
+import seedu.address.model.module.ClassList;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -18,7 +20,9 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueClassList classList;
+    private final ArrayList<ModuleCode> modules;
+    private final ArrayList<ClassList> classLists;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,10 +33,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-    }
-
-    {
-        classList = new UniqueClassList();
+        classLists = new ArrayList<>();
+        modules = new ArrayList<>();
     }
 
     public AddressBook() {}
@@ -54,9 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
-    public void setClassList(List<ClassList> classList) {
-        this.classList.setClasses(classList);
-    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -64,7 +64,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setClassList(newData.getClassList());
     }
 
     //// person-level operations
@@ -86,6 +85,37 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    public boolean hasModule(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return modules.contains(moduleCode);
+    }
+
+    /**
+     * Returns the module object from the module list if it exists.
+     * Else, returns null
+     *
+     * @param module to be searched
+     * @return the module object from the list, if it exists, else returns null
+     */
+    public ModuleCode findModuleFromList(ModuleCode module) {
+        for (ModuleCode moduleInList : modules) {
+            if (module.equals(moduleInList)) {
+                return moduleInList;
+            }
+        }
+        return null;
+    }
+    /**
+     * Adds a module to the address book.
+     * The module must not already exist in the address book. (TODO)
+     */
+    public void addModule(ModuleCode m) {
+        modules.add(m);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -104,44 +134,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    /**
-     * Checks if the given class is present in this class list.
-     *
-     * @param classListToCheck The class list to check against.
-     * @return {@code true} if the class list contains the specified class, {@code false} otherwise.
-     * @throws NullPointerException if the provided class list is null.
-     */
-    public boolean hasClass(ClassList classListToCheck) {
-        requireNonNull(classListToCheck);
-        return classList.contains(classListToCheck);
-    }
-
-    public void addClass(ClassList classListToAdd) {
-        classList.add(classListToAdd);
-    }
-
-    public void setClass(ClassList target, ClassList editedClassList) {
-        requireNonNull(editedClassList);
-        classList.setClass(target, editedClassList);
-    }
-    /**
-     * Removes the specified class from this class list.
-     *
-     * @param key The class to be removed.
-     * @throws NullPointerException if the specified class is null.
-     */
-    public void removeClass(ClassList key) {
-        requireNonNull(key);
-        classList.remove(key);
-    }
-
     //// util methods
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
-                .toString();
+            .add("persons", persons)
+            .toString();
     }
 
     @Override
@@ -150,8 +149,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
     @Override
     public ObservableList<ClassList> getClassList() {
-        return classList.asUnmodifiableObservableList();
+        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(classLists));
     }
+
 
     @Override
     public boolean equals(Object other) {

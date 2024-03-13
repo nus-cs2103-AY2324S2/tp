@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.model.classes.ClassList;
+import seedu.address.model.module.ClassList;
 
 /**
  * Panel containing the list of classes.

@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import seedu.address.model.classes.ClassList;
-import seedu.address.model.classes.ModuleCode;
-import seedu.address.model.classes.TutorialClass;
+import seedu.address.model.module.ClassList;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 /**
  * The ClassBuilder class is responsible for constructing instances of the Class class.
  * It provides methods to set various attributes of the Class being built.

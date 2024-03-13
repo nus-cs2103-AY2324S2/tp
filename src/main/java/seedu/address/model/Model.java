@@ -5,7 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.classes.ClassList;
+import seedu.address.model.module.ClassList;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,7 +15,6 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     Predicate<ClassList> PREDICATE_SHOW_ALL_CLASSES = unused -> true;
 
     /**
@@ -61,6 +61,18 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    boolean hasModule(ModuleCode module);
+
+    /**
+     * Finds the module object from the list if it exists. Else, returns null.
+     *
+     * @param module to be searched
+     * @return the module if it exists, else return null.
+     */
+    ModuleCode findModuleFromList(ModuleCode module);
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -73,21 +85,18 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Adds the given module.
+     * {@code ModuleCode} must not already exist in the address book.
+     */
+    void addModule(ModuleCode module);
+
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
-
-
-    boolean hasClassList(ClassList classToCheck);
-
-    void deleteClassList(ClassList target);
-
-
-    void addClassList(ClassList classList);
-
-    void setClassList(ClassList target, ClassList editedClassList);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
