@@ -23,3 +23,9 @@ jobs:
           rootDirectory: './docs'
           baseUrl: '/tp' # assuming your repo name is tp
           version: '^5.2.0'
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: jocelyn-soh/tp
+
