@@ -63,27 +63,63 @@ public class InternshipCard extends UiPart<Region> {
         setPocLabel(internship.getContactName(), internship.getContactEmail(), internship.getContactNumber());
     }
 
+    /**
+     * Sets the POC label to the given contact details.
+     *
+     * @param contactName name of the contact person under the Internship entry
+     * @param contactEmail email of the contact person under the Internship entry
+     * @param contactNumber phone number of the contact person under the Internship entry
+     */
     private void setPocLabel(ContactName contactName, ContactEmail contactEmail, ContactNumber contactNumber) {
         String stringToSet = "POC: " + contactName.toString() + " | "
                 + contactEmail.toString() + " | " + contactNumber.toString();
         poc.setText(stringToSet);
     }
 
+    /**
+     * Sets the location label to the given location.
+     *
+     * @param loc location of the internship
+     */
     private void setLocationLabel(Location loc) {
         location.setText(loc.toString());
     }
 
+    /**
+     * Sets the description label to the given description.
+     *
+     * @param desc description of the internship
+     */
     private void setDescriptionLabel(Description desc) {
         description.setText(desc.toString());
     }
+
+    /**
+     * Sets the company name and role label to the given company name and role.
+     *
+     * @param companyName name of the company under the Internship entry
+     * @param role role of the internship under the Internship entry
+     */
     private void setCompanyNameAndRoleLabel(CompanyName companyName, Role role) {
         String stringToSet = companyName.toString() + " -- " + role.toString();
         companyNameAndRole.setText(stringToSet);
     }
+
+    /**
+     * Sets the status label to the given application status.
+     *
+     * @param applicationStatus status of the application under the Internship entry
+     */
     private void setStatusLabel(ApplicationStatus applicationStatus) {
         status.setText(" * " + applicationStatus.toString());
-        setStatusLabelColour(applicationStatus.applicationStatus);
+        setStatusLabelColour(applicationStatus.getStatus());
     }
+
+    /**
+     * Sets the colour of the status label based on the status of the application.
+     *
+     * @param statusEnum status of the application under the Internship entry
+     */
     private void setStatusLabelColour(StatusEnum statusEnum) {
         switch (statusEnum) {
         case TO_APPLY:
@@ -103,7 +139,7 @@ public class InternshipCard extends UiPart<Region> {
             break;
         default:
             throw new IllegalArgumentException("Unexpected application status: "
-                    + internship.getApplicationStatus().applicationStatus);
+                    + internship.getApplicationStatus().getStatus());
         }
     }
 }
