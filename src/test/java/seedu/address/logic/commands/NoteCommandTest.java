@@ -33,6 +33,21 @@ class NoteCommandTest {
         expectedModel.setPerson(targetPerson, editedPerson);
 
         assertCommandSuccess(executeCommand, model, expectedResult, expectedModel);
+    }
 
+    @Test
+    void execute_addNoteUnfilteredListWithDate_success() {
+
+        Person targetPerson = model.getFilteredPersonList().get(0);
+        Person editedPerson = new PersonBuilder(targetPerson).withNote("Updated Note").build();
+
+        NoteCommand executeCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note("Updated Note"), true);
+
+        String expectedResult = String.format(executeCommand.MESSAGE_ADD_NOTE_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(targetPerson, editedPerson);
+
+        assertCommandSuccess(executeCommand, model, expectedResult, expectedModel);
     }
 }
