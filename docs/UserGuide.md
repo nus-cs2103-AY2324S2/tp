@@ -192,11 +192,21 @@ Clears all entries from AA.
 
 Format: `clear`
 
-### Exporting Data to a CSV file : `export to csv`
+### Exporting Data to a CSV file : `export`
 
-Exports all persons and their details to a CSV file.
+Exports all persons and their details to a CSV file, addressbook.csv, which can be found in addressbookdata.
 
-Format: `export to csv`
+Format: `export`
+
+<box type="info" seamless>
+
+**Important:** When performing an export, the current information will overwrite the existing CSV file named addressbook.csv located within the addressbookdata directory. 
+A new CSV file will not be created with each export.
+
+Users have the option to manually move the current CSV file out of the addressbookdata directory if they do not want the information to be overwritten in the next export. 
+A new CSV file of the same name in the same location will again be created when performing the next export.
+
+</box>
 
 ### Importing Data from a CSV file : `import`
 
@@ -250,14 +260,14 @@ _Details coming soon ..._
 ## Command summary
 
 | Action | Format, Examples
-|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                                   |
-| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                           |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
-| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                               |
-| **Copy**   | `copy`                                                                                                                                                                                    |
-| **List**   | `list`                                                                                                                                                                                    |
-| **Help**   | `help`                                                                                                                                                                                    |
-| **Export to CSV** | `export to csv`                                                                                                                                                                           |
-| **Import** | `import FILEPATH`                                                                                                                                                                         |
+| **Clear**  | `clear`                                                                                                                                                                            |
+| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                    |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                   |
+| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                        |
+| **Copy**   | `copy`                                                                                                                                                                             |
+| **List**   | `list`                                                                                                                                                                             |
+| **Help**   | `help`                                                                                                                                                                             |
+| **Export to CSV** | `export`                                                                                                                                                                           |
+| **Import** | `import FILEPATH`                                                                                                                                                                  |
