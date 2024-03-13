@@ -193,4 +193,24 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate("2020-13-01"));
+    }
+
+    @Test
+    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
+        assertEquals(ParserUtil.parseDate("2020-01-01").toString(), "2020-01-01");
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
+        assertEquals(ParserUtil.parseDate(WHITESPACE + "2020-01-01" + WHITESPACE).toString(), "2020-01-01");
+    }
 }
