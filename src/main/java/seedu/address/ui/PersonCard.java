@@ -7,9 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.EntryList;
 import seedu.address.model.person.Entry;
+import seedu.address.model.person.EntryList;
+import seedu.address.model.person.Person;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -47,7 +48,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         String text = "";
         EntryList e = person.getList();
-        for (int i = 0; i < e.size(); i ++) {
+        for (int i = 0; i < e.size(); i++) {
             Entry entry = e.get(i);
             if (!entry.getCategory().equals("Name")) {
                 text = text + e.get(i).toString() + "\n";
@@ -61,3 +62,4 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
+
