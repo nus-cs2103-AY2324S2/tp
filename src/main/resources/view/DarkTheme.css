@@ -347,7 +347,7 @@
     -fx-font-size: 11;
 }
 
-#tech_stack .label {
+#techStacks .label {
     -fx-text-fill: white;
     -fx-background-color: #AD0000;
     -fx-padding: 1 2 1 3;

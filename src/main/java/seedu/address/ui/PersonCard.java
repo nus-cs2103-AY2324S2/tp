@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label githubUsername;
     @FXML
-    private HBox tech_stack;
+    private HBox techStacks;
     @FXML
     private HBox tags;
 
@@ -59,7 +59,7 @@ public class PersonCard extends UiPart<Region> {
         githubUsername.setText("@"+person.getGitHubUsername().username);
         person.getTechStack().stream()
                 .sorted(Comparator.comparing(techStack -> techStack.techStackName))
-                .forEach(techStack -> tech_stack.getChildren().add(new Label(techStack.techStackName)));
+                .forEach(techStack -> techStacks.getChildren().add(new Label(techStack.techStackName)));
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag-> tag.tagName))

@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -29,7 +28,7 @@
         <Label fx:id="githubUsername" />
         <HBox spacing = "4" alignment="CENTER_LEFT">
           <HBox fx:id="tags" spacing = "4" />
-          <HBox fx:id="tech_stack" spacing = "4"/>
+          <HBox fx:id="techStacks" spacing = "4"/>
           <padding>
             <Insets top="4.5" />
           </padding>
