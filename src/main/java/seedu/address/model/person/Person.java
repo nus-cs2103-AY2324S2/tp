@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.attribute.StringAttribute;
 import seedu.address.model.tag.Tag;
 
 import java.util.*;
@@ -15,13 +17,7 @@ import java.util.*;
 public class Person {
     private final UUID uuid;
 
-    // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
-
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<String, Attribute> attributes = new HashMap<>();
 
@@ -31,35 +27,36 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
         this.uuid = UUID.randomUUID();
+        this.attributes.put("Name", new NameAttribute("Name", name.toString()));
+        this.attributes.put("Phone", new NameAttribute("Phone", phone.toString()));
+        this.attributes.put("Email", new StringAttribute("Email", email.toString()));
+        this.attributes.put("Address", new StringAttribute("Address", address.toString()));
+
+        this.tags.addAll(tags);// Earmarked for deprecation - to be superseded by relations
     }
 
-    public Name getName() {
-        return name;
+    public Name getName() { //Earmarked for deprecation - superseded by getAttribute - name should be optional
+        return new Name(attributes.get("Name").getValueAsString());
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Phone getPhone() { //Earmarked for deprecation - superseded by getAttribute - phone should be optional
+        return new Phone(attributes.get("Phone").getValueAsString());
     }
 
-    public Email getEmail() {
-        return email;
+    public Email getEmail() { //Earmarked for deprecation - superseded by getAttribute - email should be optional
+        return new Email(attributes.get("Email").getValueAsString());
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getAddress() { //Earmarked for deprecation - superseded by getAttribute - address should be optional
+        return new Address(attributes.get("Address").getValueAsString());
     }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
+    public Set<Tag> getTags() { //Earmarked for deprecation - to be superseded by relations
         return Collections.unmodifiableSet(tags);
     }
     /**
@@ -142,7 +139,9 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson
+                .attributes.get("Name").getValueAsString().equals(
+                        attributes.get("Name").getValueAsString());
     }
 
     /**
@@ -159,13 +158,21 @@ public class Person {
         if (!(other instanceof Person)) {
             return false;
         }
-
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+        // compare all attributes
+        for (Map.Entry<String, Attribute> entry : attributes.entrySet()) {
+            if (!otherPerson.hasAttribute(entry.getKey())) {
+                return false;
+            }
+            if (!entry.getValue().getValueAsString().equals(
+                    otherPerson.getAttribute(entry.getKey()).getValueAsString())) {
+                return false;
+            }
+        }
+        if (!tags.equals(otherPerson.tags)) { // Earmarked for deprecation - to be superseded by relations
+            return false;
+        }
+        return true;
     }
     /**
      * Returns true if the UUID of the person is the same as the UUID of the other object.
@@ -189,18 +196,20 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, uuid);
+        return Objects.hash(
+                attributes,
+                uuid);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("uuid", uuid)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
+                .add("name", attributes.get("Name").getValueAsString())
+                .add("phone", attributes.get("Phone").getValueAsString())
+                .add("email", attributes.get("Email").getValueAsString())
+                .add("address", attributes.get("Address").getValueAsString())
+                .add("tags", tags) // Earmarked for deprecation - to be superseded by relations
                 .toString();
     }
 
