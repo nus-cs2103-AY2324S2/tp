@@ -1,4 +1,4 @@
-# VitalConnect
+# vitalconnect
 
 [![CI Status](https://github.com/AY2324S2-CS2103T-W08-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103T-W08-2/tp/actions)
 

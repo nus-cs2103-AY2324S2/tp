@@ -3,7 +3,7 @@ layout: page
 title: Mu Zhaoyu's Project Portfolio Page
 ---
 
-## Project: VitalConnect
+## Project: vitalconnect
 
 This product is doctors or any healthcare workers that have to keep track of a lot 
 of patient information and requires the information at a fast pace, 

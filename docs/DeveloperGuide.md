@@ -273,11 +273,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-VitalConnect aims to provide a robust and user-friendly platform for medical professionals to streamline their workflow by effectively managing patient information and appointments. The key value propositions include:
+vitalconnect aims to provide a robust and user-friendly platform for medical professionals to streamline their workflow by effectively managing patient information and appointments. The key value propositions include:
 
 * Efficient Patient Management: Users can easily add, modify, and retrieve patient information, ensuring a comprehensive and organized patient database.
 
-* Seamless Appointment Handling: VitalConnect allows for the effortless creation, modification, and deletion of appointments, ensuring accurate scheduling and coordination.
+* Seamless Appointment Handling: vitalconnect allows for the effortless creation, modification, and deletion of appointments, ensuring accurate scheduling and coordination.
 
 * CLI Efficiency: The application caters to users who prefer typing commands over graphical interfaces, enabling faster and more precise data entry.
 
@@ -333,89 +333,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (good
 
 ### Use cases
 
-(For all use cases below, the **System** is the `VitalConnect` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `vitalconnect` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC1 - Add a patient**
 **MSS**
 1.  User requests to add a patient by keying the patient's name and NRIC in the command.
-2.  VitalConnect adds the patient's name and NRIC.
+2.  vitalconnect adds the patient's name and NRIC.
 Use case ends.
 **Extensions**
 * 1a. The NRIC already exists in the system.
-      * 1a1. VitalConnect displays warning message and the existing patient's information.
+      * 1a1. vitalconnect displays warning message and the existing patient's information.
       Use case ends.
 * 1b. The NRIC or name entered is invalid.
-      * 1b1. VitalConnect shows an error message.
+      * 1b1. vitalconnect shows an error message.
       Use case ends.
 
 **Use case: UC2 - Delete a patient**
 **MSS**
 1.  User requests to delete a patient by keying the patient's name or NRIC in the command.
-2.  VitalConnect deletes the patient from database.
+2.  vitalconnect deletes the patient from database.
 Use case ends.
 **Extensions**
 * 1a. The patient doesn't exist in the system.
-      * 1a1. VitalConnect displays an error message.
+      * 1a1. vitalconnect displays an error message.
       Use case ends.
 
 **Use case: UC3 - Add an appointment**
 **MSS**
 1.  User requests to add an appointment for a patient.
-2.  VitalConnect add the appointment to the database under this patient's NRIC.
+2.  vitalconnect add the appointment to the database under this patient's NRIC.
 Use case ends.
 **Extensions**
 * 1a. Critical information (time and doctor) missing in the appointment.
-      * 1a1. VitalConnect displays a warning message.
+      * 1a1. vitalconnect displays a warning message.
       Use case ends.
 * 1b. The assigned patient doesn't exist in the database.
-      * 1b1. VitalConnect displays a warning message.
+      * 1b1. vitalconnect displays a warning message.
       Use case ends.
 * 1c. The appointment time crashes with existing time.
-      * 1c1. VitalConnect displays a warning message.
-      * 1c1. VitalConnect displays the appointment with crashing time.
+      * 1c1. vitalconnect displays a warning message.
+      * 1c1. vitalconnect displays the appointment with crashing time.
       Use case ends.
 
 **Use case: UC4 - Delete an appointment**
 **MSS**
 1.  User requests to delete an appointment for a patient.
-2.  VitalConnect removes the appointment from the database.
+2.  vitalconnect removes the appointment from the database.
 Use case ends.
 **Extensions**
 * 1a. The assigned patient or the appointment doesn't exist in the database.
-      * 1a1. VitalConnect displays a warning message.
+      * 1a1. vitalconnect displays a warning message.
       Use case ends.
 
 **Use case: UC5 - Modify an appointment**
 **MSS**
 1.  User requests to modify an appointment for a patient by keying the appointment's id.
-2.  VitalConnect displays the detail of the appointment to be modified.
+2.  vitalconnect displays the detail of the appointment to be modified.
 3.  User specify which field to be modified and enters the new information.
-4.  VitalConnect saves the new appointment information.
-5.  VitalConnect displays the updated detail of the appointment modified.
+4.  vitalconnect saves the new appointment information.
+5.  vitalconnect displays the updated detail of the appointment modified.
 Use case ends.
 **Extensions**
 * 1a. The appointment refered by the id doesn't exist in the database.
-      * 1a1. VitalConnect displays an error message.
+      * 1a1. vitalconnect displays an error message.
       Use case ends.
 * 1b. The id is not a valid number.
-      * 1b1. VitalConnect displays an error message.
+      * 1b1. vitalconnect displays an error message.
       Use case ends.
 * 3a. The field to be modified is unrecognized.
-      * 3a1. VitalConnect displays an error message.
-      * 3a2. VitalConnect request for valid field information.
+      * 3a1. vitalconnect displays an error message.
+      * 3a2. vitalconnect request for valid field information.
       * 3a3. User enters new field information.
       Steps 3a1-3a3 are repeated until the data entered are correct.
       Use case resumes from step 4.
 * 3b. The new information is in invalid form or contains invalid character.
-      * 3b1. VitalConnect displays an error message.
-      * 3b2. VitalConnect request for valid data entry.
+      * 3b1. vitalconnect displays an error message.
+      * 3b2. vitalconnect request for valid data entry.
       * 3b3. User enters new field information.
       Steps 3b1-3b3 are repeated until the data entered are valid.
       Use case resumes from step 4.
 * 3c. The appointment time crashes with existing time.
-      * 3c1. VitalConnect displays an error message.
-      * 3c2. VitalConnect displays the appointment with crashing time.
-      * 3c3. VitalConnect request for valid data entry.
+      * 3c1. vitalconnect displays an error message.
+      * 3c2. vitalconnect displays the appointment with crashing time.
+      * 3c3. vitalconnect request for valid data entry.
       * 3c4. User enters new field information.
       Steps 3c1-3c4 are repeated until the time doesn't crash.
       Use case resumes from step 4.
@@ -423,37 +423,37 @@ Use case ends.
 **Use case: UC6 - Add specific information for a patient**
 **MSS**
 1.  User requests to add specific information for a patient.
-2.  VitalConnect save the specific information to the database.
+2.  vitalconnect save the specific information to the database.
 Use case ends.
 **Extensions**
 * 1a. The patient doesn't exist in the database.
-      * 1a1. VitalConnect displays a warning message.
+      * 1a1. vitalconnect displays a warning message.
       Use case ends.
 * 1b. The information is invalid.
-      * 1b1. VitalConnect displays a warning message.
+      * 1b1. vitalconnect displays a warning message.
       Use case ends.
 
 **Use case: UC7 - Delete specific information**
 **MSS**
 1.  User requests to delete specific information for a patient.
-2.  VitalConnect remove the specific information to the database.
+2.  vitalconnect remove the specific information to the database.
 Use case ends.
 **Extensions**
 * 1a. The patient or specific information doesn't exist in the database.
-      * 1a1. VitalConnect displays a warning message.
+      * 1a1. vitalconnect displays a warning message.
       Use case ends.
 
 **Use case: UC8 - Modify specific information**
 **MSS**
 1.  User requests to modify specific information for a patient.
-2.  VitalConnect displays the updated specific information of the patient.
+2.  vitalconnect displays the updated specific information of the patient.
 Use case ends.
 **Extensions**
 * 1a. The patient or specific information doesn't exist in the database.
-      * 1a1. VitalConnect displays a warning message.
+      * 1a1. vitalconnect displays a warning message.
       Use case ends.
 * 1b. The specific information is invalid.
-      * 1b1. VitalConnect displays a warning message.
+      * 1b1. vitalconnect displays a warning message.
       Use case ends.
 
 ### Non-Functional Requirements
@@ -479,17 +479,17 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **CLI**: Acronym for Command Line Interface, a text-based interface where users interact with the application by typing commands.
-* **VitalConnect**: The system being described, representing the medical management application.
-* **Use Case**: A specific scenario or situation in which a user interacts with the VitalConnect system to achieve a specific goal.
+* **vitalconnect**: The system being described, representing the medical management application.
+* **Use Case**: A specific scenario or situation in which a user interacts with the vitalconnect system to achieve a specific goal.
 * **MSS (Main Success Scenario)**: The primary sequence of steps in a use case that represents the successful accomplishment of the user's goal.
 * **Extensions**: Additional scenarios that may occur during the execution of a use case, usually describing alternative paths or error-handling situations.
 * **NRIC**: National Registration Identity Card, a unique identification number used in some countries.
 * **Database**: A structured set of data stored electronically, in this context, referring to the storage system for patient and appointment information.
-* **Appointment**: A scheduled meeting or arrangement, often referring to a scheduled medical consultation in the context of VitalConnect.
+* **Appointment**: A scheduled meeting or arrangement, often referring to a scheduled medical consultation in the context of vitalconnect.
 * **Field**: In the context of modifying an appointment, a specific piece of information within the appointment details that the user can choose to modify (e.g., time, doctor).
 * **ID (Identification Number)**: A unique identifier associated with a specific appointment, used to distinguish and reference individual appointments.
-* **Warning Message**: An alert displayed by the VitalConnect system to notify the user of a potential issue or discrepancy.
-* **Error Message**: A notification displayed by the VitalConnect system to inform the user about a critical issue or mistake.
+* **Warning Message**: An alert displayed by the vitalconnect system to notify the user of a potential issue or discrepancy.
+* **Error Message**: A notification displayed by the vitalconnect system to inform the user about a critical issue or mistake.
 * **Crashing Time**: A situation where the proposed time for an appointment conflicts with an existing appointment time in the system.
 * **Invalid Data Entry**: Information entered by the user that does not meet the required format or criteria.
 * **Valid Data Entry**: Information entered by the user that meets the required format or criteria.
