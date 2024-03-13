@@ -10,6 +10,8 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,7 +149,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `vitalConnectbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,13 +264,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of patient records and contacts
+* need to manage a significant number of appointments
+* need to have a reminder of upcoming appointments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+VitalConnect aims to provide a robust and user-friendly platform for medical professionals to streamline their workflow by effectively managing patient information and appointments. The key value propositions include:
+
+* Efficient Patient Management: Users can easily add, modify, and retrieve patient information, ensuring a comprehensive and organized patient database.
+
+* Seamless Appointment Handling: VitalConnect allows for the effortless creation, modification, and deletion of appointments, ensuring accurate scheduling and coordination.
+
+* CLI Efficiency: The application caters to users who prefer typing commands over graphical interfaces, enabling faster and more precise data entry.
 
 
 ### User stories
@@ -278,39 +289,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (good
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user | have a comprehensive document that details every possible feature. | learn how to use a particular feature |
-| `* * *`  | user | add new patient, either with or without further information about the patient | |
+| `* * *`  | user | add new patient, either with or without further basic information about the patient | |
+| `* * *`  | user | add the basic information of my patient into the database | so that I can better identify who the patient is |
 | `* * *`  | user | delete patient | free storage resources |
-| `* * *`  | user | be able to add the contact information of my patient into the database | I can get in touch with them when needed or under emergency situation |
-| `* * *`  | user | be able to  delete the contact information for a particular patient when the information is outdated | I can keep in touch with my patient |
-| `* * *`  | user | list all patients and their contacts | |
-| `* * *`  | intermediate user | add appointment to free time slot | easily schedule an appointment and find free time slot for it |
-| `* * *`  | intermediate user | delete appointment to free time slot | remove reservation if the patient is unable to attend |
-| `* * *`  | intermediate user | list appointments | I can see all the appointments. |
-| `* * *`  | user | add medication instructions for the patient | have a better understanding of the medication history of my patient |
-| `* * *`  | user | list all information about specific patient | see the detail information of the patient |
-| `* *`  | user | be able to modify/update the information of a particular patient | I can keep the most-updated information |
-| `* *`  | user | be able to modify an appointment details of a patient | I can keep the most-updated appointment information |
-| `* *`  | new user | option for undo most precent change | I can quickly fix my mistyped command |
-| `* *`  | beginner | set the reminder for an appointment | remind me when Im busy with work |
-| `* *`  | user | mark a reminder as done | better track the undo work |
-| `* *`  | user | mark some of the patients as the special focus | better track the state of illness of patients who are in a very serious state |
+| `* * *`  | user | list out all of the information about a particular patient | see the detailed information of the patient |
+| `* * *`  | user | add the contact information of my patient into the database | get in touch with them when needed or under emergency situation |
+| `* * *`  | user | delete the contact information for a particular patient when the information is outdated | free storage resources |
+| `* * *`  | user | list out all of the patients and their contact information | |
+| `* * *`  | intermediate user | add appointment information for a patient | easily schedule an appointment and find free time slot for it |
+| `* * *`  | intermediate user | delete appointment for a patient | free up slots if the patient is unable to attend |
+| `* * *`  | intermediate user | list out all of the appointments | |
+| `* * *`  | user | list out all of the information about a particular patient | see the detailed information of the patient |
+| `* *`  | user | add the medical information for the patient | allow the doctor to better treat the patient |
+| `* *`  | user | delete the medical information for a patient when the information is outdated | free storage resources |
+| `* *`  | user | list out all of the patients and their medical information | |
+| `* *`  | user | modify the medical details of a patient | keep the patient's medical information updated |
+| `* *`  | user | modify the basic information of a patient | keep the patient's basic information updated |
+| `* *`  | user | modify the contact information of a patient | keep the patient's contact information updated |
+| `* *`  | user | modify the appointment details of a patient | keep the patient's appointment information updated |
+| `* *`  | user | undo the most recent change or command if possible | fix any errors made |
+| `* *`  | user | view all of the appointments for the day | |
+| `* *`  | intermediate user | list out specifically the medication that the patient is currently taking | |
+| `* *`  | intermediate user | modify the patient's current medication | better track the medication plan of the patient |
+| `* *`  | intermediate user | list out specifically the patient's allergies | prescribe the appropriate medication |
+| `* *`  | intermediate user | modify the patient's allergies | |
+| `* *`  | intermediate user | list out specifically the past illnesses of the patient | assist in the diagnosis process |
+| `* *`  | intermediate user | modify the patient's past illnesses upon the previous appointment | |
 | `* *`  | expert user | have short forms of existing commands | save time on typing the commands |
-| `* *`  | new user | interactive guide with sample data | quickly understand app's capabilities |
-| `* *`  | Doctor who is colaborating with other doctor | ability to leave comments or annotations on shared patient records | communicate specific insights or recommendations to my colleague |
-| `* *`  | intermediate user | see the previous doage that the patient take in his medical record page | Adjust the dosage for the patient according to his/her state of illness |
-| `* *`  | intermediate user | search about the patient's allergy history | Prescribing safe medication for patients |
-| `* *`  | intermediate user | know about the previous illnesses of the patient | help to diagnose causes more accurately |
-| `* *`  | intermediate user | be able to update the patient's condition upon the previous appointment | better track the sate of illness of the patient |
-| `*`  | new user | suggestion on correction for mistyped commands | avoid typing wrong comands |
-| `*`  | user | have a way to assign specific colors to specific tags | better differentiate the existing tags |
-| `*`  | user | have a icon or button beside a feature that shows a tooltip when hovered |  quickly find out information about the feature without needing other references |
-| `*`  | user | have a method of giving feedback to the developers | share aspects of the product that I would like changes to |
 | `*`  | new user | have the ability to switch to a more simplified and beginner friendly UI | more effectively learn the basics |
-| `*`  | trainee doctor | be able to refer to similar previous cases | study treatment that helps with this kind of cases |
-| `*`  | experienced user | an efficient way to export and backup patient data | ensure the safety and accessibility of important information |
-| `*`  | intermediate user | export selected patient's information | give the patient their personal information after they change their doctors, and delete the patient's information from the database safely |
-| `*`  | intermediate user | export selected medical instructions | The patient can follow my medical instructions closely |
-| `*`  | intermediate user | see the list of patients based on the next follow-up meeting/calling time | have a better plan for my time and know which patient needs my attention next |
+| `*`  | new user | have interactive elements in the user guide | easily understand the app's capabilities |
+| `*`  | new user | be given command suggestions for mistyped commands | type the intended command without needing to refer to the user guide |
+| `*`  | user | add a reminder for an appointment | be aware of the appointment while busy with work |
+| `*`  | user | mark a reminder as done or undone | better track done and undone work |
+| `*`  | user | mark some of the patients as the special focus | better track patients in serious conditions |
+| `*`  | user | have the ability to leave comments or annotations on shared patient records | communicate specific insights or recommendations to my colleagues |
+| `*`  | user | have a way to assign specific colors to specific medical terms | better skim through the information |
+| `*`  | user | have a method for showing tooltips of features when hovered | quickly find out information about the feature without needing other references |
+| `*`  | user | have a method of giving feedback to the developers | share aspects of the product that I would like changes to |
+| `*`  | intermediate user | have an efficient way to export and backup patient data | ensure the safety and accessibility of important information |
+| `*`  | intermediate user | export selected patient's information | give the information to the doctor or the patient when needed |
+| `*`  | intermediate user | export selected medical instructions | easily share the instructions to the patient|
+| `*`  | doctor | be able to set a set of instructions for the assistants for special cases such as performing lung capacity tests for asmatics | make my assistants aware of the procedures to go through before my consultation with the patient |
 
 ### Use cases
 
@@ -401,39 +420,39 @@ Use case ends.
       Steps 3c1-3c4 are repeated until the time doesn't crash.
       Use case resumes from step 4.
 
-**Use case: UC6 - Add contact information**
+**Use case: UC6 - Add specific information for a patient**
 **MSS**
-1.  User requests to add contact information for a patient.
-2.  VitalConnect save the contact information to the database.
+1.  User requests to add specific information for a patient.
+2.  VitalConnect save the specific information to the database.
 Use case ends.
 **Extensions**
 * 1a. The patient doesn't exist in the database.
       * 1a1. VitalConnect displays a warning message.
       Use case ends.
-* 1b. The contact information is invalid.
+* 1b. The information is invalid.
       * 1b1. VitalConnect displays a warning message.
       Use case ends.
 
-**Use case: UC7 - Delete contact information**
+**Use case: UC7 - Delete specific information**
 **MSS**
-1.  User requests to delete contact information for a patient.
-2.  VitalConnect remove the contact information to the database.
+1.  User requests to delete specific information for a patient.
+2.  VitalConnect remove the specific information to the database.
 Use case ends.
 **Extensions**
-* 1a. The patient or contact information doesn't exist in the database.
+* 1a. The patient or specific information doesn't exist in the database.
       * 1a1. VitalConnect displays a warning message.
       Use case ends.
 
-**Use case: UC8 - Modify contact information**
+**Use case: UC8 - Modify specific information**
 **MSS**
-1.  User requests to modify contact information for a patient.
-2.  VitalConnect displays the updated contact information of the patient.
+1.  User requests to modify specific information for a patient.
+2.  VitalConnect displays the updated specific information of the patient.
 Use case ends.
 **Extensions**
-* 1a. The patient or contact information doesn't exist in the database.
+* 1a. The patient or specific information doesn't exist in the database.
       * 1a1. VitalConnect displays a warning message.
       Use case ends.
-* 1b. The contact information is invalid.
+* 1b. The specific information is invalid.
       * 1b1. VitalConnect displays a warning message.
       Use case ends.
 
@@ -459,10 +478,8 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **CLI**: Acronym for Command Line Interface, a text-based interface where users interact with the application by typing commands.
 * **VitalConnect**: The system being described, representing the medical management application.
-* **User**: The person interacting with the VitalConnect system to perform various actions.
 * **Use Case**: A specific scenario or situation in which a user interacts with the VitalConnect system to achieve a specific goal.
 * **MSS (Main Success Scenario)**: The primary sequence of steps in a use case that represents the successful accomplishment of the user's goal.
 * **Extensions**: Additional scenarios that may occur during the execution of a use case, usually describing alternative paths or error-handling situations.
@@ -471,12 +488,12 @@ Use case ends.
 * **Appointment**: A scheduled meeting or arrangement, often referring to a scheduled medical consultation in the context of VitalConnect.
 * **Field**: In the context of modifying an appointment, a specific piece of information within the appointment details that the user can choose to modify (e.g., time, doctor).
 * **ID (Identification Number)**: A unique identifier associated with a specific appointment, used to distinguish and reference individual appointments.
-* **Contact Information**: Information related to how the system can reach or contact a patient, such as phone number or email address.
 * **Warning Message**: An alert displayed by the VitalConnect system to notify the user of a potential issue or discrepancy.
 * **Error Message**: A notification displayed by the VitalConnect system to inform the user about a critical issue or mistake.
 * **Crashing Time**: A situation where the proposed time for an appointment conflicts with an existing appointment time in the system.
 * **Invalid Data Entry**: Information entered by the user that does not meet the required format or criteria.
 * **Valid Data Entry**: Information entered by the user that meets the required format or criteria.
+* **Tooltip**: A common graphical user interface element in which, when hovering over a screen element or component, a text box displays information about that element.
 
 --------------------------------------------------------------------------------------------------------------------
 
