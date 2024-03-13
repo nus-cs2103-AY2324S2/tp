@@ -1,15 +1,19 @@
 package seedu.address.logic.commands;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.LastContact;
-import seedu.address.model.person.Person;
 
 import java.util.List;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.LastContact;
+import seedu.address.model.person.Person;
+
+/**
+ * Tags a person with last contacted date and time in the address book.
+ */
 public class LastContactCommand extends Command {
 
     public static final String COMMAND_WORD = "lastcontact";

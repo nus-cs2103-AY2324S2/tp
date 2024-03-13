@@ -1,20 +1,20 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a client's last contacted date and time in the address book.
  */
 public class LastContact {
 
-    public static final String MESSAGE_CONSTRAINTS = "Expected DATETIME format: DD-MM-YYYY HHmm\n" +
-                                                    "Actual format: %s";
-    public String dateTime;
+    public static final String MESSAGE_CONSTRAINTS = "Expected DATETIME format: DD-MM-YYYY HHmm\n"
+                                                    + "Actual format: %s";
+    private String dateTime;
 
     /**
      * Constructs an {@code Address}.
