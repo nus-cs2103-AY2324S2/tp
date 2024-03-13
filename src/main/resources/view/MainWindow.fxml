@@ -37,12 +37,12 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-        <HBox prefHeight="500">
-          <StackPane fx:id="resultDisplayPlaceholder" prefWidth="50" styleClass="pane-with-border" VBox.vgrow="NEVER" HBox.hgrow="ALWAYS">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
+        <HBox prefHeight="500" >
+          <StackPane fx:id="resultDisplayPlaceholder" prefWidth="100"  styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets bottom="5" left="10" right="10" top="5" />
+            </padding>
+          </StackPane>
         <VBox fx:id="studentList" prefWidth="350" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
