@@ -139,7 +139,31 @@ public class InternshipCard extends UiPart<Region> {
             break;
         default:
             throw new IllegalArgumentException("Unexpected application status: "
-                    + internship.getApplicationStatus().getStatus());
+                    + statusEnum);
         }
+    }
+
+    protected Label getIdLabel() {
+        return id;
+    }
+
+    Label getCompanyNameAndRoleLabel() {
+        return companyNameAndRole;
+    }
+
+    protected Label getStatusLabel() {
+        return status;
+    }
+
+    protected Label getDescriptionLabel() {
+        return description;
+    }
+
+    protected Label getLocationLabel() {
+        return location;
+    }
+
+    protected Label getPocLabel() {
+        return poc;
     }
 }
