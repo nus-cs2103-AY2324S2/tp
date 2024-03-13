@@ -113,6 +113,21 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+
+### Add Contacts as Favourites `addfav`
+
+- Adds the contacts specified by index as favourites
+
+Format: `addfav [i/INDICES]`
+- Adds the contacts at the specified `INDICES` as favourites. The indices refers to comma-separated index numbers shown in the displayed person list. Each index **must be a positive integer** 1,2,3, ...
+Examples:
+- `addfav i/ 1` Sets the contact at index `1` as favourite
+- `addfav i/ 1,2,5` Sets the contacts at the indices `1, 2, 5` as favourites
+- `addfav i/////` returns an error message as the 'INDICES' field must consist of comma-separated index values only
+- `addfav i/-10,0,-100` returns an error message as the 'INDICES' field must consist of comma-separated positive integers
+- `addfav i/` returns an error message as the 'INDICES' field cannot be empty
+- `addfav` returns an error message as it must be accompanied by the 'INDICES' field
+- `addfav 1 i/ 2, 5` returns an error message as there should not be prefixes before the 'INDICES' field
 ### Search Contact `find`
 
 - Search feature supports search by name and/or tags **ONLY**.
