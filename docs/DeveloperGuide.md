@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# TutorsContactsPro Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,42 +274,77 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* A computer science tutor managing students for tutorials
+* has numerous of students to manage in a tutorial slot 
+* has to add, list, delete, sort, search students in the app
 * is reasonably comfortable using CLI apps
+* can type fast
+* can switch between different tutorial classes
+* prefer desktop apps over other types
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: manage students faster than a typical GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​        | I want to …​                                | So that I can…​                                                  |
+|----------|----------------|---------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | Tutor          | add new students to the app                 | keep track of their information                |
+| `* * *`  | Tutor          | edit student profiles                       | keep their information up to date.                                                                |
+| `* * *`  | Tutor          | delete students from my class               | track the existing number of students in my tutorial class                             |
+| `* * *`  | Tutor          | list all students in my class(es)           | view all of my students’ details at one glance |
+| `* * *`  | Tutor          | search for specific students using keywords | quickly find relevant information          |
+| `* *`    | new tutor user | be able to access a help window                        | easily seek help for the errors encountered                                           |
 
-*{More to be added}*
+
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorsContactsPro` and the **Actor** is the `Tutor`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Tutor requests to list students
+2.  System shows a list of students
+3.  Tutor requests to add a specific student to the list
+4.  System adds the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The add command parameters are invalid or incomplete.
+
+    * 3a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. TutorsContactsPro detects that the student already exists on the list.
+
+    * 3b1. TutorsContactsPro informs the tutor that the student already exists on the list.
+    * 3b2. Tutor confirms cancellation of adding the student.
+      
+      Use case ends.
+    
+
+
+**Use case: UC02 - Edit a student**
+
+**MSS**
+
+1.  Tutor requests to list students
+2.  System shows a list of students
+3.  Tutor requests to edits the particulars of the student
+4.  System records the changes
 
     Use case ends.
 
@@ -321,24 +356,109 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3b. The edit command parameters are invalid or incomplete.
+
+    * 3b1. TutorsContactsPro shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: UC03 - Delete a student**
+
+**MSS**
+
+1.  Tutor requests to list students
+2.  System shows a list of students
+3.  Tutor requests to delete a student
+4.  System records the changes
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC04 - List all students**
+
+**MSS**
+
+1.  Tutor requests to list students
+2.  System shows a list of students
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+**Use case: UC05 - Find a student**
+
+**MSS**
+
+1.  Tutor requests to list students
+2.  System shows a list of students
+3.  Tutor finds student(s) by keyword
+4.  System shows a list of students matching the keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keyword is in an incorrect format (e.g., contains special characters not allowed, exceeds maximum length).
+  
+  * 3a1. TutorsContactsPro shows an error message.
+    Use case resumes at step 2.
+
+* 4a. The list of search results is empty.
+
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should be able to list a maximum of 50 students within a single tutorial slot.
+4. Should be able to hold a maximum of 300 students in total without any significant decrease in performance.
+5. Any command should be visible within 3 seconds, ensuring a smooth and efficient user experience.
+6. The system should have an uptime of at least 99%, allowing tutors to access student information reliably at any time.
+7. Student important information (i.e name, email, telegram handle, contact number) should be encrypted both in transit and at rest to prevent unauthorized access.
+8. The system should implement secure authentication mechanisms, such as multi-factor authentication, to verify the identity of users.
+9. Tutors should only have access to student information for classes they are assigned to, ensuring data privacy.
+10. The system should be able to scale horizontally to accommodate an increase in the number of users and classes without compromising performance.
+11. Regular backups of the system database should be performed, with a robust disaster recovery plan in place to restore data in case of any unexpected failures or outages.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tutor**: Tutor refers to the person who teaches in a single tutorial group. 
+* **Student**: Student refers to an individual who attends a tutorial class taught by the tutor.
+* **Tutorial**: Smaller classes in university which allow discussion of lecture content and assignment.
+* **CLI (Command-Line Interface)**: A text-based interface used to interact with the software by entering commands into a terminal or console window, typically preferred by users who prefer efficiency and automation.
+* **GUI (Graphical User Interface)**: A GUI is a user interface that employs graphical elements such as icons, buttons, and menus for user interaction, providing an intuitive and visually appealing way to navigate and use software.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 

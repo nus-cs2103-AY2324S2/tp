@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# TutorsContactsPro User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TutorsContactsPro is a **desktop app for tutors teaching Computer Science courses to manage their students, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorsContactsPro can help you to gain faster and more convenient access to your list of students, even if they are from different classes.
 
 <!-- * Table of Contents -->
 <page-nav-print />
