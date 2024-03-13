@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_WEEK;
 import static seedu.address.logic.Messages.MESSAGE_MARK_ATTENDANCE_SUCCESS;
+import static seedu.address.logic.Messages.MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_NUSNET;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -66,9 +66,11 @@ public class MarkAttendanceCommandTest {
     }
 
     @Test
-    public void execute_validNusNetDuplicateWeekNumber_markFailure() {
+    public void execute_validNusNetDuplicateWeekNumber_markSuccess() {
         MarkAttendanceCommand command = new MarkAttendanceCommand(testValidNusNet, testValidWeekNo1);
-        assertCommandFailure(command, model, MESSAGE_DUPLICATE_WEEK);
+        CommandResult expectedCommandResult =
+                new CommandResult(MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS + ALICE);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
 
     @Test

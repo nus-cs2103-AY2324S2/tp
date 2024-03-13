@@ -22,8 +22,8 @@ public class Messages {
     public static final String MESSAGE_MISSING_NUSNET =
             "There is no student with this NUSNet ID!";
     public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked Attendance for Person: ";
-    public static final String MESSAGE_DUPLICATE_WEEK = "This week's attendance"
-            + "has already been marked for the person.";
+    public static final String MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS =
+            "Re-marked Attendance for Person: ";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

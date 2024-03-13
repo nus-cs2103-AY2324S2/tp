@@ -105,11 +105,11 @@ public class EditPersonCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         NusNet updatedNusNet = editPersonDescriptor.getNusNet().orElse(personToEdit.getNusNet());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<WeekNumber> attendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
+        Set<WeekNumber> updatedAttendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedNusNet,
-                updatedAddress, attendance, updatedTags);
+                updatedAddress, updatedAttendance, updatedTags);
     }
 
     @Override

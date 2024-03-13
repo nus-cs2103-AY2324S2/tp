@@ -152,10 +152,9 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
-    //    //Used for Debugging purposes. Consider creating more robust toString()
+    // todo - Used for Debugging purposes. Consider creating more robust toString()
     //    @Override
     //    public String toString() {
     //        return addressBook.toString() + filteredPersons.toString();
     //    }
-
 }

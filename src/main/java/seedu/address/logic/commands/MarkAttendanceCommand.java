@@ -32,9 +32,8 @@ public class MarkAttendanceCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_NUSNET + "e0123456 " + PREFIX_WEEK + " 1";
 
     public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked Attendance for Person: %1$s";
-    public static final String MESSAGE_DUPLICATE_WEEK = "This week's attendance"
-            + "has already been marked for the person.";
-
+    public static final String MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS =
+            "Re-marked Attendance for Person: %1$s";
     private final NusNet nusNet;
     private final WeekNumber weekNumber;
 
@@ -63,7 +62,7 @@ public class MarkAttendanceCommand extends Command {
         Set<WeekNumber> updatedWeekAttendance = new HashSet<>(personToMark.getAttendance());
 
         if (!updatedWeekAttendance.add(weekNumber)) {
-            throw new CommandException(MESSAGE_DUPLICATE_WEEK);
+            return new CommandResult(String.format(MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS, personToMark));
         }
 
         Person updatedPerson = new Person(personToMark.getName(), personToMark.getPhone(), personToMark.getEmail(),
