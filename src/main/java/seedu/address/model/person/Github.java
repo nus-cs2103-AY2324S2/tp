@@ -52,6 +52,12 @@ public class Github {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true is the Github ID is empty.
+     */
+    public boolean isEmpty() {
+        return githubId.isEmpty();
+    }
 
     @Override
     public String toString() {
