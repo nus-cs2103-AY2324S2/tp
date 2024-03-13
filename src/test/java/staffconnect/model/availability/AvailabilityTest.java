@@ -1,4 +1,4 @@
-package staffconnect.model.person;
+package staffconnect.model.availability;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,7 +8,6 @@ import static staffconnect.testutil.Assert.assertThrows;
 import java.time.DayOfWeek;
 
 import org.junit.jupiter.api.Test;
-import staffconnect.model.Availability.Availability;
 
 public class AvailabilityTest {
 

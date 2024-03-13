@@ -1,4 +1,4 @@
-package staffconnect.model.Availability;
+package staffconnect.model.availability;
 
 import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
