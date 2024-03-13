@@ -268,7 +268,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 nerdTrackerPlus helps Computer Science TAs manage students contacts through a CLI interface, which is much faster than a typical mouse/GUI driven app.
 
@@ -382,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list persons.
 2. nerdTrackerPlus shows a list of persons.
-3. User request to edit certain details of a particular student. 
+3. User request to edit certain details of a particular student.
 4. nerdTrackerPlus successfully edits student's details.
 
     Use case ends.

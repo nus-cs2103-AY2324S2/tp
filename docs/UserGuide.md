@@ -11,7 +11,7 @@ nerdTrackerPlus is a **desktop app for managing contacts, optimized for use via 
   - [1. Viewing Help](#1-viewing-help--help) : `help`
   - [2. Adding a person](#2-adding-a-person--add) : `add`
   - [3. Listing all persons](#3-listing-all-persons--list) : `list`
-  - [4. Editing a person](#4-editing-a-person--edit) : `edit` 
+  - [4. Editing a person](#4-editing-a-person--edit) : `edit`
   - [5. Locating persons by name](#5-locating-persons-by-name--find) : `find`
   - [6. Delete a person](#6-deleting-a-person--delete) : `delete`
   - [7. Remove a tag](#7-remove-a-tag--remove-tag) : `Remove Tag`

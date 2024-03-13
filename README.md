@@ -7,7 +7,7 @@
 
 Are you a Computer Science TA having troubles with keeping track of student details and their progress?
 
-Introducing nerdTrackerPlus, your ultimate companion in managing student details and tracking their progress effortlessly! 
+Introducing nerdTrackerPlus, your ultimate companion in managing student details and tracking their progress effortlessly!
 
 Designed with Computer Science Teaching Assistants in mind, nerdTrackerPlus streamlines the process of organizing student information, grading assignments, and monitoring their academic journey. Say goodbye to the hassle of scattered spreadsheets and endless paperwork – with nerdTrackerPlus, you'll have everything you need at your fingertips to excel in your role as a TA. Let's simplify your workload and elevate your teaching experience together!"
 
