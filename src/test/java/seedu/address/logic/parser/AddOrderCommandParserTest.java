@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -17,7 +17,7 @@ import seedu.address.model.order.Date;
 
 public class AddOrderCommandParserTest {
     private static final String NON_EMPTY_DATE = "2020-01-01";
-    private static final String NON_EMPTY_DESCRIPTION = "100 chicken wings";
+    private static final String NON_EMPTY_REMARK = "100 chicken wings";
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE);
 
@@ -26,17 +26,17 @@ public class AddOrderCommandParserTest {
     @Test
     public void parse_indexSpecified_success() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_DATE + NON_EMPTY_DATE + " "
-                + PREFIX_DESCRIPTION + NON_EMPTY_DESCRIPTION;
+                + PREFIX_REMARK + NON_EMPTY_REMARK;
 
         AddOrderCommand expectedCommand = new AddOrderCommand(INDEX_FIRST_PERSON, new Date(NON_EMPTY_DATE),
-                NON_EMPTY_DESCRIPTION);
+                NON_EMPTY_REMARK);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        String userInput = PREFIX_DATE + NON_EMPTY_DATE + " " + PREFIX_DESCRIPTION + NON_EMPTY_DESCRIPTION;
+        String userInput = PREFIX_DATE + NON_EMPTY_DATE + " " + PREFIX_REMARK + NON_EMPTY_REMARK;
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
 
         // no field specified

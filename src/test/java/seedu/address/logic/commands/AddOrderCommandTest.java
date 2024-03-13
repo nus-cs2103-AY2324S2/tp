@@ -25,7 +25,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddOrderCommandTest {
     private static final Date DATE_STUB = new Date("2020-01-01");
-    private static final String DESCRIPTION_STUB = "100 chicken wings";
+    private static final String REMARK_STUB = "100 chicken wings";
     private static final ArrayList<Order> ORDERS_STUB = new ArrayList<>(
             List.of(new Order(new Date("2020-01-01"), "100 chicken wings")));
 
@@ -33,9 +33,9 @@ public class AddOrderCommandTest {
 
     @Test
     public void constructor_nullOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddOrderCommand(null, DATE_STUB, DESCRIPTION_STUB));
+        assertThrows(NullPointerException.class, () -> new AddOrderCommand(null, DATE_STUB, REMARK_STUB));
         assertThrows(NullPointerException.class, () -> new AddOrderCommand(Index.fromOneBased(1),
-                null, DESCRIPTION_STUB));
+                null, REMARK_STUB));
         assertThrows(NullPointerException.class, () -> new AddOrderCommand(Index.fromOneBased(1),
                 DATE_STUB, null));
         assertThrows(NullPointerException.class, () -> new AddOrderCommand(null, null, null));
@@ -45,7 +45,7 @@ public class AddOrderCommandTest {
     public void execute_addOrder_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withOrderList(ORDERS_STUB).build();
-        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, DESCRIPTION_STUB);
+        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, REMARK_STUB);
 
         String expectedMessage = String.format(AddOrderCommand.MESSAGE_SUCCESS, Messages.format(editedPerson));
 
@@ -58,20 +58,20 @@ public class AddOrderCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        AddOrderCommand addOrderCommand = new AddOrderCommand(outOfBoundIndex, DATE_STUB, DESCRIPTION_STUB);
+        AddOrderCommand addOrderCommand = new AddOrderCommand(outOfBoundIndex, DATE_STUB, REMARK_STUB);
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
                 addOrderCommand.execute(model));
     }
 
     @Test
     public void equals() {
-        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, DESCRIPTION_STUB);
+        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, REMARK_STUB);
 
         // same object -> returns true
         assert (addOrderCommand.equals(addOrderCommand));
 
         // same values -> returns true
-        AddOrderCommand addOrderCommandCopy = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, DESCRIPTION_STUB);
+        AddOrderCommand addOrderCommandCopy = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, REMARK_STUB);
         assert (addOrderCommand.equals(addOrderCommandCopy));
 
         // different types -> returns false
@@ -81,15 +81,15 @@ public class AddOrderCommandTest {
         assert (!addOrderCommand.equals(null));
 
         // different person -> returns false
-        AddOrderCommand differentOrderCommand = new AddOrderCommand(Index.fromOneBased(2), DATE_STUB, DESCRIPTION_STUB);
+        AddOrderCommand differentOrderCommand = new AddOrderCommand(Index.fromOneBased(2), DATE_STUB, REMARK_STUB);
         assert (!addOrderCommand.equals(differentOrderCommand));
     }
 
     @Test
     public void toStringMethod() {
-        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, DESCRIPTION_STUB);
+        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, REMARK_STUB);
         String expected = AddOrderCommand.class.getCanonicalName() + "{index=" + INDEX_FIRST_PERSON
-                + ", arrivalDate=" + DATE_STUB + ", description=" + DESCRIPTION_STUB + "}";
+                + ", arrivalDate=" + DATE_STUB + ", remark=" + REMARK_STUB + "}";
         assertEquals(expected, addOrderCommand.toString());
     }
 

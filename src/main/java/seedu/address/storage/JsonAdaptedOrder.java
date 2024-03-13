@@ -15,7 +15,7 @@ class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
     private final String arrivalDate;
-    private final String description;
+    private final String remark;
     private final String status;
 
     /**
@@ -23,10 +23,10 @@ class JsonAdaptedOrder {
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("arrivalDate") String arrivalDate,
-                            @JsonProperty("description") String description,
+                            @JsonProperty("remark") String remark,
                             @JsonProperty("status") String status) {
         this.arrivalDate = arrivalDate;
-        this.description = description;
+        this.remark = remark;
         this.status = status;
     }
 
@@ -35,7 +35,7 @@ class JsonAdaptedOrder {
      */
     public JsonAdaptedOrder(Order source) {
         this.arrivalDate = source.getDate().toString();
-        this.description = source.getDescription();
+        this.remark = source.getRemark();
         this.status = source.getStatus();
     }
 
@@ -49,8 +49,8 @@ class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date"));
         }
 
-        if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Description"));
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Remark"));
         }
 
         if (status == null) {
@@ -59,6 +59,6 @@ class JsonAdaptedOrder {
 
         final Date modelDate = new Date(arrivalDate);
 
-        return new Order(modelDate, description);
+        return new Order(modelDate, remark);
     }
 }

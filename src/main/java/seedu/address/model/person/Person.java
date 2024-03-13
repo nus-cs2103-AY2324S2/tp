@@ -85,10 +85,10 @@ public class Person {
     /**
      * Returns an order list
      * @param arrivalDate the expected date of the order received
-     * @param description the description of the order
+     * @param remark the remark of the order
      */
-    public void addOrder(Date arrivalDate, String description) {
-        Order order = new Order(arrivalDate, description);
+    public void addOrder(Date arrivalDate, String remark) {
+        Order order = new Order(arrivalDate, remark);
         orderList.add(order);
     }
 

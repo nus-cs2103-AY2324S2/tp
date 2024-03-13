@@ -135,9 +135,9 @@ Examples:
 
 Adds an order to a supplier.
 
-Format: `addorder INDEX d/DATE r/DESCRIPTION`
+Format: `addorder INDEX d/DATE r/REMARK`
 
-* Adds an order to the supplier at the specified `INDEX`. The index refers to the index number shown in the displayed supplier list. The index **must be a positive integer** 1, 2, 3, …​
+* Adds an order to the supplier at the specified `INDEX`. The index refers to the index number shown in the displayed supplier list. The index **must be a positive integer, starting from 1** (1, 2, 3, …​)
 * The date must be in the format `YYYY-MM-DD`. For example, `2020-12-31`.
 
 <box type="tip" seamless>
@@ -218,6 +218,6 @@ _Details coming soon ..._
 | **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **Add Order** | `addorder INDEX d/DATE r/DESCRIPTION`<br> e.g., `addorder 1 d/ 2020-01-01 r/ 100 chicken wings`                                                                       |
+| **Add Order** | `addorder INDEX d/DATE r/REMARK`<br> e.g., `addorder 1 d/ 2020-01-01 r/ 100 chicken wings`                                                                            |
 | **List**      | `list`                                                                                                                                                                |
 | **Help**      | `help`                                                                                                                                                                |

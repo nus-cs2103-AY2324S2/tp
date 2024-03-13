@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.stream.Stream;
 
@@ -25,9 +25,9 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     public AddOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_DESCRIPTION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_REMARK);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_DESCRIPTION)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_REMARK)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
         }
 
@@ -39,19 +39,19 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
                     AddOrderCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_DESCRIPTION);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_REMARK);
 
         Date arrivalDate = null;
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             arrivalDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         }
 
-        String description = null;
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        String remark = null;
+        if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
+            remark = argMultimap.getValue(PREFIX_REMARK).get();
         }
 
-        return new AddOrderCommand(index, arrivalDate, description);
+        return new AddOrderCommand(index, arrivalDate, remark);
     }
 
     /**

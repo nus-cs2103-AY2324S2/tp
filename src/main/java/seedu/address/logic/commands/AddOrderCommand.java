@@ -25,25 +25,25 @@ public class AddOrderCommand extends Command {
             + ": Adds an order to the person identified "
             + "by the index number used in the last person listing.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "d/ [DATE] r/ [DESCRIPTION] \n"
+            + "d/ [DATE] r/ [REMARK] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "d/ 2024-01-01 r/ 100 chicken wings.";
 
     private final Index index;
     private final Date arrivalDate;
-    private final String description;
+    private final String remark;
 
     /**
      * Creates an AddOrderCommand to add the specified {@code Person}
      */
-    public AddOrderCommand(Index index, Date arrivalDate, String description) {
+    public AddOrderCommand(Index index, Date arrivalDate, String remark) {
         requireNonNull(index);
         requireNonNull(arrivalDate);
-        requireNonNull(description);
+        requireNonNull(remark);
 
         this.index = index;
         this.arrivalDate = arrivalDate;
-        this.description = description;
+        this.remark = remark;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class AddOrderCommand extends Command {
         Person person = lastShownList.get(index.getZeroBased());
 
         // TODO
-        person.addOrder(this.arrivalDate, this.description);
+        person.addOrder(this.arrivalDate, this.remark);
 
         model.setPerson(person, person);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -78,7 +78,7 @@ public class AddOrderCommand extends Command {
         AddOrderCommand otherAddOrderCommand = (AddOrderCommand) other;
         return index.equals(otherAddOrderCommand.index)
                 && arrivalDate.equals(otherAddOrderCommand.arrivalDate)
-                && description.equals(otherAddOrderCommand.description);
+                && remark.equals(otherAddOrderCommand.remark);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class AddOrderCommand extends Command {
         return new ToStringBuilder(this)
                 .add("index", index)
                 .add("arrivalDate", arrivalDate)
-                .add("description", description)
+                .add("remark", remark)
                 .toString();
     }
 }
