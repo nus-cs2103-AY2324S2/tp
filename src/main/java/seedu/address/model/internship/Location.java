@@ -14,14 +14,14 @@ public class Location {
     /**
      * Enum of locations
      */
-    private enum LocationEnum {
+    public enum LocationEnum {
         LOCAL,
         OVERSEAS,
         REMOTE,
         UNKNOWN
     }
 
-    public final LocationEnum location;
+    private final LocationEnum location;
 
     /**
      * Constructs a {@code ApplicationStatus}.

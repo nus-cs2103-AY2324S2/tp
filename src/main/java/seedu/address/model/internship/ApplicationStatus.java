@@ -15,7 +15,7 @@ public class ApplicationStatus {
     /**
      * Enum of statuses
      */
-    private enum StatusEnum {
+    public enum StatusEnum {
         TO_APPLY,
         PENDING,
         REJECTED,
@@ -24,7 +24,7 @@ public class ApplicationStatus {
 
     }
 
-    public final StatusEnum applicationStatus;
+    private final StatusEnum applicationStatus;
 
     /**
      * Constructs a {@code ApplicationStatus}.
