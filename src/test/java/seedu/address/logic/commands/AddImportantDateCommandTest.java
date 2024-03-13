@@ -23,10 +23,11 @@ import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Patient;
 
 public class AddImportantDateCommandTest {
+    private final ImportantDate validDate = new ImportantDate("Test", "20-02-2022");
+    private final ImportantDate secondValidDate = new ImportantDate("SomethingElse", "20-02-2022");
+    private final ImportantDate thirdValidDate = new ImportantDate("Test", "20-02-2023");
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private ImportantDate validDate = new ImportantDate("Test", "20-02-2022");
-    private ImportantDate secondValidDate = new ImportantDate("SomethingElse", "20-02-2022");
-    private ImportantDate thirdValidDate = new ImportantDate("Test", "20-02-2023");
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {

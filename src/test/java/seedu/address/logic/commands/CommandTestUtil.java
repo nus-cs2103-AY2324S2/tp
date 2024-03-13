@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -39,6 +40,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_FRIENDS = "friends";
     public static final String VALID_TAG_NICE = "nice";
+    public static final String VALID_IMPORTANT_DATE_NAME = "Birthday";
+    public static final String VALID_IMPORTANT_DATE = "20-02-2022";
+    public static final String VALID_IMPORTANT_DATETIME = "20-02-2022, 12:12 - 15:15";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -50,12 +54,18 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String IMPORTANT_DATE_DESC_DATE = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME + " "
+            + PREFIX_DATETIME + VALID_IMPORTANT_DATE;
+    public static final String IMPORTANT_DATE_DESC_DATETIME = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME + " "
+            + PREFIX_DATETIME + VALID_IMPORTANT_DATETIME;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_IMPORTANT_DATE_DESC = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME
+            + PREFIX_DATETIME + "Invalid";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -140,6 +140,11 @@ public class ImportantDate {
         }
 
         ImportantDate otherImportantDate = (ImportantDate) other;
+        if (this.startTime == null) {
+            return this.name.equals(otherImportantDate.name)
+                    && this.importantDate.equals(otherImportantDate.importantDate);
+        }
+
         return this.name.equals(otherImportantDate.name)
                 && this.importantDate.equals(otherImportantDate.importantDate)
                 && this.startTime.equals(otherImportantDate.startTime)
