@@ -107,7 +107,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
         if (gitHubUsername == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, GitHubUsername.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GitHubUsername.class.getSimpleName()));
         }
         if (!GitHubUsername.isValidGitHubUsername(gitHubUsername)) {
             throw new IllegalValueException(GitHubUsername.MESSAGE_CONSTRAINTS);

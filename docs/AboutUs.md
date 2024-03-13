@@ -15,7 +15,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/tanguoyang.png" width="200px">
 
 [[github](http://github.com/tanguoyang)]
-    
+
 * Role: Team Lead
 * Responsibilities: Tracking deliverables
 
@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/angsongyee.png" width="200px">
 
-[[github](http://github.com/angsongyee)] 
+[[github](http://github.com/angsongyee)]
 
 * Role: Git Expert
 * Responsibilities: Ensure that good Git practices are adhered to
