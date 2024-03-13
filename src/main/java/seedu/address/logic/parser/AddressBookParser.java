@@ -64,7 +64,7 @@ public class AddressBookParser {
             return new ListCommand();
 
         case DeleteLoanCommand.COMMAND_WORD:
-            return new DeleteLoanCommand();
+            return new DeleteLoanCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
