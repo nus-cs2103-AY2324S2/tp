@@ -33,10 +33,4 @@ public class DateOfBirth extends Date {
         LocalDate dob = LocalDate.parse(dateOfBirth);
         return dob.isBefore(LocalDate.now());
     }
-
-    @Override
-    public String toString() {
-        DateTimeFormatter dateformatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
-        return dateformatter.format(this.dob);
-    }
 }

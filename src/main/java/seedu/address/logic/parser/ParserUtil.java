@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.date.Date;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -76,8 +77,8 @@ public class ParserUtil {
     public static DateOfBirth parseDateOfBirth(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
-        if (!DateOfBirth.isValidDateOfBirth(trimmedDob)) {
-            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(trimmedDob)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         return new DateOfBirth(trimmedDob);
     }

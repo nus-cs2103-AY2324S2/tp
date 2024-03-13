@@ -1,6 +1,8 @@
 package seedu.address.commons.core.date;
 
-import java.time.format.DateTimeParseException;
+//import java.time.format.DateTimeParseException;
+
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a date
@@ -16,13 +18,11 @@ public class Date {
      * @param dateString Date string that has to satisfy validation requirements
      */
     public Date(String dateString) {
-        if (!isValidDate(dateString)) {
-            throw new DateTimeParseException(MESSAGE_CONSTRAINTS, dateString, 0);
-        }
+        checkArgument(isValidDate(dateString), MESSAGE_CONSTRAINTS);
         this.value = dateString;
     }
 
-    private boolean isValidDate(String dateString) {
+    public static boolean isValidDate(String dateString) {
         return dateString.matches(VALIDATION_REGEX);
     }
 

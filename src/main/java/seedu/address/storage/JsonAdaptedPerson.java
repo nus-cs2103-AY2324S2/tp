@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.date.Date;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
@@ -99,8 +100,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DateOfBirth.class.getSimpleName()));
         }
-        if (!DateOfBirth.isValidDateOfBirth(dob)) {
-            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(dob)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         final DateOfBirth modelDob = new DateOfBirth(dob);
 
