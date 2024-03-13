@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -80,6 +81,20 @@ public class CompanyCommandTest {
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(companyCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidPersonName_throwsCommandException() {
+        CompanyCommand companyCommand = new CompanyCommand("",
+                new Company(VALID_COMPANY_AMY));
+        assertCommandFailure(companyCommand, model, CompanyCommand.MESSAGE_EMPTY_NAME);
+    }
+
+    @Test
+    public void execute_invalidPerson_throwsCommandException() {
+        CompanyCommand companyCommand = new CompanyCommand("ABC",
+                new Company(VALID_COMPANY_AMY));
+        assertCommandFailure(companyCommand, model, String.format(CompanyCommand.MESSAGE_PERSON_NOT_FOUND, "ABC"));
     }
 
     @Test

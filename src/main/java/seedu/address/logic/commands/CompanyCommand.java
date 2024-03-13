@@ -31,6 +31,8 @@ public class CompanyCommand extends Command {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Company command not implemented yet";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Oops, %1$s's contact does not exist.";
+    public static final String MESSAGE_EMPTY_NAME = "Oops, please state the name of the contact.";
+
     private final String name;
     private final Company company;
 
@@ -49,8 +51,8 @@ public class CompanyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (name == null) {
-            throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, name));
+        if (name.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_EMPTY_NAME, name));
         }
         List<Person> contactList = model.getFilteredPersonList();
         Person personToEdit = null;
