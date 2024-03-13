@@ -36,8 +36,8 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Person personToDelete = lastShownList.stream().filter(person -> person.getNusId().equals(nusId)).
-                findFirst().orElse(null);
+        Person personToDelete = lastShownList.stream().filter(person -> person.getNusId().equals(nusId))
+                .findFirst().orElse(null);
 
         if (personToDelete == null) {
             throw new CommandException(Messages.MESSAGE_NON_EXISTENT_PERSON);
