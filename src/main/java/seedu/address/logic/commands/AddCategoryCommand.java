@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -9,12 +14,7 @@ import seedu.address.model.person.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class AddCategoryCommand extends Command{
@@ -30,7 +30,6 @@ public class AddCategoryCommand extends Command{
             + PREFIX_DESCRIPTION + "KINGDOMS";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Added Entry: %1$s";
-    public static final String ENTRY_NOT_ADDED = "Both fields to add must be provided.";
     public static final String MESSAGE_DUPLICATE_CATEGORY = "This category already exists for this person.";
 
     private final Index index;
@@ -74,21 +73,6 @@ public class AddCategoryCommand extends Command{
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditCommand.EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        Entry updatedName = editPersonDescriptor.get("Name").orElse(personToEdit.getEntry("Name"));
-        Entry updatedPhone = editPersonDescriptor.get("Phone").orElse(personToEdit.getEntry("Phone"));
-        Entry updatedEmail = editPersonDescriptor.get("Email").orElse(personToEdit.getEntry("Email"));
-        Entry updatedAddress = editPersonDescriptor.get("Address").orElse(personToEdit.getEntry("Address"));
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        Person result = new Person(updatedName, updatedTags);
-        result.addEntry(updatedPhone);
-        result.addEntry(updatedEmail);
-        result.addEntry(updatedAddress);
-        return result;
-    }
 
     @Override
     public boolean equals(Object other) {

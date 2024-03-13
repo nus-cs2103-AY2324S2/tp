@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,7 +63,6 @@ public class ArgumentTokenizer {
      * {@code argsString} starting from index {@code fromIndex}. An occurrence
      * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
      * such occurrence can be found.
-     *
      * E.g if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
      * {@code fromIndex} = 0, this method returns -1 as there are no valid
      * occurrences of "p/" with whitespace before it. However, if
@@ -87,7 +87,7 @@ public class ArgumentTokenizer {
     private static ArgumentMultimap extractArguments(String argsString, List<PrefixPosition> prefixPositions) {
 
         // Sort by start position
-        prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
+        prefixPositions.sort(Comparator.comparingInt(PrefixPosition::getStartPosition));
 
         // Insert a PrefixPosition to represent the preamble
         PrefixPosition preambleMarker = new PrefixPosition(new Prefix(""), 0);
@@ -128,7 +128,7 @@ public class ArgumentTokenizer {
      * Represents a prefix's position in an arguments string.
      */
     private static class PrefixPosition {
-        private int startPosition;
+        private final int startPosition;
         private final Prefix prefix;
 
         PrefixPosition(Prefix prefix, int startPosition) {

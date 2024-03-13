@@ -1,11 +1,9 @@
 package seedu.address.model.person;
 
 public class Entry {
-    private String category;
+    private final String category;
 
     private String description;
-
-    public static final String VALIDATION_REGEX = "*";
 
     public static final String MESSAGE_CONSTRAINTS = "Category or description cannot be empty!";
 
@@ -23,10 +21,6 @@ public class Entry {
         return description;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -40,10 +34,7 @@ public class Entry {
         if (description.trim().equals("")) {
             return false;
         }
-        if (category.trim().equals("")) {
-            return false;
-        }
-        return true;
+        return !category.trim().equals("");
     }
     @Override
     public boolean equals(Object other) {
@@ -52,9 +43,6 @@ public class Entry {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Entry)) {
-            return false;
-        }
 
         return false;
     }

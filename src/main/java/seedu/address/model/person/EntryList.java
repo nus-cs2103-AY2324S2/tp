@@ -2,7 +2,7 @@ package seedu.address.model.person;
 import java.util.ArrayList;
 
 public class EntryList {
-    private ArrayList<Entry> entryList = new ArrayList<>();
+    private final ArrayList<Entry> entryList = new ArrayList<>();
 
     public void add(Entry entry) {
         entryList.add(entry);

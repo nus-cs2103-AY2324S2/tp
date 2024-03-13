@@ -70,7 +70,7 @@ class JsonAdaptedPerson {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Entry.class.getSimpleName()));
         }
-        if (!Entry.isValid("Name", name)) {
+        if (Entry.isValid("Name", name)) {
             throw new IllegalValueException(Entry.MESSAGE_CONSTRAINTS);
         }
         final Entry modelName = new Entry("Name", name);
@@ -78,7 +78,7 @@ class JsonAdaptedPerson {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Entry.class.getSimpleName()));
         }
-        if (!Entry.isValid("Phone", phone)) {
+        if (Entry.isValid("Phone", phone)) {
             throw new IllegalValueException(Entry.MESSAGE_CONSTRAINTS);
         }
         final Entry modelPhone = new Entry("Phone", phone);
@@ -86,7 +86,7 @@ class JsonAdaptedPerson {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Entry.class.getSimpleName()));
         }
-        if (!Entry.isValid("Email", email)) {
+        if (Entry.isValid("Email", email)) {
             throw new IllegalValueException(Entry.MESSAGE_CONSTRAINTS);
         }
         final Entry modelEmail = new Entry("Email", email);
@@ -94,7 +94,7 @@ class JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Entry.class.getSimpleName()));
         }
-        if (!Entry.isValid("Address", address)) {
+        if (Entry.isValid("Address", address)) {
             throw new IllegalValueException(Entry.MESSAGE_CONSTRAINTS);
         }
         final Entry modelAddress = new Entry("Address", address);

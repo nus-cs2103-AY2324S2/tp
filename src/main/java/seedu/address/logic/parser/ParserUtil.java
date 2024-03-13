@@ -41,7 +41,7 @@ public class ParserUtil {
     public static Entry parse(String category, String description) throws ParseException {
         requireNonNull(description);
         requireNonNull(category);
-        if (!Entry.isValid(category.trim(), description.trim())) {
+        if (Entry.isValid(category.trim(), description.trim())) {
             throw new ParseException(Entry.MESSAGE_CONSTRAINTS);
         }
         return new Entry(category.trim(), description.trim());
