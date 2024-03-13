@@ -6,6 +6,8 @@ import staffconnect.logic.Messages;
 // import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY; // TODO: add filtering for faculty and module
 // import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
+
+import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.model.Model;
 import staffconnect.model.person.PersonHasTagPredicate; // TagContainsKeywordsPredicate
 
@@ -42,6 +44,28 @@ public class FilterCommand extends Command {
         model.updateFilteredPersonList(tagPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FilterCommand)) {
+            return false;
+        }
+
+        FilterCommand otherFilterCommand = (FilterCommand) other;
+        return tagPredicate.equals(otherFilterCommand.tagPredicate);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("tagPredicate", tagPredicate)
+                .toString();
     }
 
 }
