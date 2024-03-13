@@ -8,7 +8,7 @@ import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;
 import staffconnect.model.Model;
-import staffconnect.model.person.PersonHasTagPredicate; // TagContainsKeywordsPredicate
+import staffconnect.model.person.PersonHasTagsPredicate; // TagContainsKeywordsPredicate
 
 /**
  * Filters all persons in staff book whose module code or faculty shorthand or
@@ -28,12 +28,12 @@ public class FilterCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "BestProf";
 
-    private final PersonHasTagPredicate tagPredicate;
+    private final PersonHasTagsPredicate tagPredicate;
 
     /**
      * Creates a FilterTagCommand to filter for the specified {@code Tag}
      */
-    public FilterCommand(PersonHasTagPredicate tagPredicate) {
+    public FilterCommand(PersonHasTagsPredicate tagPredicate) {
         this.tagPredicate = tagPredicate;
     }
 

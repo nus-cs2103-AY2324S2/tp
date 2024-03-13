@@ -12,13 +12,17 @@ import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
 import staffconnect.model.UserPrefs;
-import staffconnect.model.person.PersonHasTagPredicate;
+import staffconnect.model.person.PersonHasTagsPredicate;
 import staffconnect.model.tag.Tag;
 
 public class FilterCommandTest {
@@ -29,7 +33,7 @@ public class FilterCommandTest {
     @Test
     public void execute_personHasTag_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonHasTagPredicate tagPredicate = prepareTagPredicate("hello");
+        PersonHasTagsPredicate tagPredicate = prepareTagPredicate("hello");
         FilterCommand command = new FilterCommand(tagPredicate);
         expectedModel.updateFilteredPersonList(tagPredicate);
         assertCommandSuccess(command, model, expectedMessage, model);
@@ -39,7 +43,7 @@ public class FilterCommandTest {
     @Test
     public void execute_personHasTag_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonHasTagPredicate tagPredicate = prepareTagPredicate("friends");
+        PersonHasTagsPredicate tagPredicate = prepareTagPredicate("friends");
         FilterCommand command = new FilterCommand(tagPredicate);
         expectedModel.updateFilteredPersonList(tagPredicate);
         assertCommandSuccess(command, model, expectedMessage, model);
@@ -48,8 +52,8 @@ public class FilterCommandTest {
 
     @Test
     public void equals() {
-        PersonHasTagPredicate firstTagPredicate = new PersonHasTagPredicate(new Tag("friend"));
-        PersonHasTagPredicate secondTagPredicate = new PersonHasTagPredicate(new Tag("colleagues"));
+        PersonHasTagsPredicate firstTagPredicate = prepareTagPredicate("friend");
+        PersonHasTagsPredicate secondTagPredicate = prepareTagPredicate("colleagues");
 
         FilterCommand filterTagFirstCommand = new FilterCommand(firstTagPredicate);
         FilterCommand filterTagSecondCommand = new FilterCommand(secondTagPredicate);
@@ -73,7 +77,7 @@ public class FilterCommandTest {
 
     @Test
     public void toStringMethod() {
-        PersonHasTagPredicate tagPredicate = new PersonHasTagPredicate(new Tag("hello"));
+        PersonHasTagsPredicate tagPredicate = prepareTagPredicate("hello");
         FilterCommand filterCommand = new FilterCommand(tagPredicate);
         String expected = FilterCommand.class.getCanonicalName() + "{tagPredicate=" + tagPredicate + "}";
         assertEquals(expected, filterCommand.toString());
@@ -82,8 +86,12 @@ public class FilterCommandTest {
     /**
      * Parses {@code userInput} into a {@code PersonHasTagPredicate}.
      */
-    private PersonHasTagPredicate prepareTagPredicate(String userInput) {
-        return new PersonHasTagPredicate(new Tag(userInput));
+    private PersonHasTagsPredicate prepareTagPredicate(String userInput) {
+        List<Tag> tagList = Stream.of(userInput.split(" ")).map(str -> new Tag(str)).collect(Collectors.toList());
+        for (String separatedTag : userInput.split(" ")) {
+            tagList.add(new Tag(separatedTag));
+        }
+        return new PersonHasTagsPredicate(new HashSet<Tag>(tagList));
     }
 
 }

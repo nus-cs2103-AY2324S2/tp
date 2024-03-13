@@ -6,10 +6,12 @@ import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 // import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
+
 import staffconnect.commons.exceptions.IllegalValueException;
 import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
-import staffconnect.model.person.PersonHasTagPredicate;
+import staffconnect.model.person.PersonHasTagsPredicate;
 import staffconnect.model.tag.Tag;
 
 /**
@@ -18,24 +20,29 @@ import staffconnect.model.tag.Tag;
 public class FilterCommandParser implements Parser<FilterCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterCommand
+     * Parses the given {@code String} of arguments in the context of the
+     * FilterCommand
      * and returns a FilterCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_TAG);
 
-        Tag tagName;
+        if (argMultimap.getAllValues(PREFIX_TAG).size() == 0) { // TODO: update for filter faculty/module
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        }
+
+        Set<Tag> tags;
         try {
-            tagName = ParserUtil.parseTag(argumentMultimap.getValue(PREFIX_TAG).orElse(""));
+            tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FilterCommand.MESSAGE_USAGE), ive);
         }
 
-        return new FilterCommand(new PersonHasTagPredicate(tagName));
+        return new FilterCommand(new PersonHasTagsPredicate(tags));
     }
 
 }
