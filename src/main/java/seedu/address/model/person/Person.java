@@ -8,7 +8,13 @@ import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.attribute.StringAttribute;
 import seedu.address.model.tag.Tag;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Represents a Person in the address book.
