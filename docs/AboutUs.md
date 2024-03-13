@@ -7,55 +7,41 @@
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sun Ruiheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sun-ruiheng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/sun-ruiheng)]
 
-* Role: Project Advisor
+* Role: Developer, Java Expert
+* Responsibilities: Deliverables and deadlines
 
-### Jane Doe
+### Gavin Goh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gavingoh99.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/gavingoh99)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Scheduling and tracking
 
-### Jean Doe
+### Ma Ze Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maze508.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/maze508)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing
+
+### Tan Guan Quan
+
+<img src="images/guanquann.png" width="200px">
+
+[[github](http://github.com/guanquann)]
+
+* Role: Developer
+* Responsibilities: Integration

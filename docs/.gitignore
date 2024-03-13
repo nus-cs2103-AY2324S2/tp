@@ -21,3 +21,5 @@ _site/
 .vscode/
 .idea/*
 *.iml
+
+*.class
