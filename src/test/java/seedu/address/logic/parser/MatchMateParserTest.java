@@ -28,9 +28,9 @@ import seedu.address.testutil.CourseMateBuilder;
 import seedu.address.testutil.CourseMateUtil;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 
-public class ContactListParserTest {
+public class MatchMateParserTest {
 
-    private final ContactListParser parser = new ContactListParser();
+    private final MatchMateParser parser = new MatchMateParser();
 
     @Test
     public void parseCommand_add() throws Exception {
