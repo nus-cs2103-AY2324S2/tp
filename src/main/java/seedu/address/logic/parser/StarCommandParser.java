@@ -41,8 +41,7 @@ public class StarCommandParser implements Parser<StarCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE), pe);
         }
 
-        Star star = new Star(0);
-
+        Star star = ParserUtil.parseStar(argMultimap.getValue(PREFIX_STAR).get());
         return new StarCommand(index, star);
     }
 

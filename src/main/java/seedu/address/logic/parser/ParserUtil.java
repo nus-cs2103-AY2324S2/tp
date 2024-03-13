@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Star;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +94,22 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String star} into a {@code Star}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Star} is invalid.
+     */
+    public static Star parseStar(String star) throws ParseException {
+        requireNonNull(star);
+        String trimmedStar = star.trim(); // trim the string to only get the number
+        Integer starCount = Integer.parseInt(trimmedStar);
+        if (!Star.isValidStar(starCount)) { // check whether star is a valid Integer >= 0
+            throw new ParseException(Star.MESSAGE_CONSTRAINTS);
+        }
+        return new Star(starCount);
     }
 
     /**
