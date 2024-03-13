@@ -2,8 +2,11 @@
 
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
+  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here...">
+      <font>
+         <Font name="Arial" size="13.0" />
+      </font></TextField>
 </StackPane>
-
