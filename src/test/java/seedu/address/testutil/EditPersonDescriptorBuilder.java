@@ -73,6 +73,11 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code LastContact} of the {@code EditPersonDescriptor} that we are building.
+     * @param lastcontact the dateTime string provided.
+     * @return the EditPersonDescriptorBuilder object.
+     */
     public EditPersonDescriptorBuilder withLastContact(String lastcontact) {
         descriptor.setLastContact(new LastContact(lastcontact));
         return this;
