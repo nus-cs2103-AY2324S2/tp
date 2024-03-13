@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import staffconnect.commons.exceptions.IllegalValueException;
 import staffconnect.model.person.Address;
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
 
@@ -108,7 +109,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidModule_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, INVALID_MODULE, VALID_TAGS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Module.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -116,7 +117,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullModule_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
