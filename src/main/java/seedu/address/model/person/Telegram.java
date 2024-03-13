@@ -13,6 +13,8 @@ public class Telegram {
             "Telegram ID should only contain alphanumeric characters and symbols, start with an @ symbol,"
                     + " and it should not be blank";
 
+    public static final Telegram EMPTY = new Telegram("", true);
+
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -29,6 +31,18 @@ public class Telegram {
     public Telegram(String telegramId) {
         requireNonNull(telegramId);
         checkArgument(isValidTelegram(telegramId), MESSAGE_CONSTRAINTS);
+        this.telegramId = telegramId;
+    }
+
+    /**
+     * Constructs a {@code Telegram}.
+     *
+     * @param telegramId An empty string.
+     */
+    private Telegram(String telegramId, boolean isSentinel) {
+        if (!isSentinel) {
+            throw new IllegalArgumentException("This constructor is only for creating the EMPTY object");
+        }
         this.telegramId = telegramId;
     }
 

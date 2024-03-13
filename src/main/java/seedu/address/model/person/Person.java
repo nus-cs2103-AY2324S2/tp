@@ -25,14 +25,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, ClassGroup classGroup, Email email, Phone phone, Telegram telegram, Github github) {
+    public Person(Name name, ClassGroup classGroup, Email email, Phone phone,
+                  Optional<Telegram> telegram, Optional<Github> github) {
         requireAllNonNull(name, classGroup, email, phone);
         this.name = name;
         this.classGroup = classGroup;
         this.email = email;
         this.phone = phone;
-        this.telegram = Optional.ofNullable(telegram);
-        this.github = Optional.ofNullable(github);
+        this.telegram = telegram;
+        this.github = github;
     }
 
     public Name getName() {

@@ -102,7 +102,7 @@ public class EditCommand extends Command {
         Optional<Github> updatedGithub = editPersonDescriptor.getGithub().isPresent()
                 ? editPersonDescriptor.getGithub() : personToEdit.getGithub();
         return new Person(updatedName, updatedClassGroup, updatedEmail,
-                updatedPhone, updatedTelegram.orElse(null), updatedGithub.orElse(null));
+                updatedPhone, updatedTelegram, updatedGithub);
     }
 
     @Override

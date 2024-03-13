@@ -12,6 +12,8 @@ public class Github {
     public static final String MESSAGE_CONSTRAINTS =
             "GitHub ID should only contain alphanumeric characters and symbols, and it should not be blank";
 
+    public static final Github EMPTY = new Github("", true);
+
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -28,6 +30,18 @@ public class Github {
     public Github(String githubId) {
         requireNonNull(githubId);
         checkArgument(isValidGithub(githubId), MESSAGE_CONSTRAINTS);
+        this.githubId = githubId;
+    }
+
+    /**
+     * Constructs a {@code Github}.
+     *
+     * @param githubId An empty string.
+     */
+    private Github(String githubId, boolean isSentinel) {
+        if (!isSentinel) {
+            throw new IllegalArgumentException("This constructor is only for creating the EMPTY object");
+        }
         this.githubId = githubId;
     }
 

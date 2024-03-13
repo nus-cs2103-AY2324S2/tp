@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -37,8 +39,8 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.classGroup = classGroup;
-        this.telegram = telegram == null ? "" : telegram;
-        this.github = github == null ? "" : github;
+        this.telegram = telegram;
+        this.github = github;
     }
 
     /**
@@ -49,8 +51,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         classGroup = source.getClassGroup().classGroup;
-        telegram = source.getTelegram().isPresent() ? source.getTelegram().get().telegramId : "";
-        github = source.getGithub().isPresent() ? source.getGithub().get().githubId : "";
+        telegram = source.getTelegram().orElse(Telegram.EMPTY).telegramId;
+        github = source.getGithub().orElse(Github.EMPTY).githubId;
     }
 
     /**
@@ -93,22 +95,22 @@ class JsonAdaptedPerson {
         }
         final ClassGroup modelClassGroup = new ClassGroup(classGroup);
 
-        final Telegram modelTelegram;
-        if (telegram.isEmpty()) {
-            modelTelegram = null;
+        final Optional<Telegram> modelTelegram;
+        if (telegram == null) {
+            modelTelegram = Optional.of(Telegram.EMPTY);
         } else if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         } else {
-            modelTelegram = new Telegram(telegram);
+            modelTelegram = Optional.of(new Telegram(telegram));
         }
 
-        final Github modelGithub;
-        if (github.isEmpty()) {
-            modelGithub = null;
+        final Optional<Github> modelGithub;
+        if (github == null) {
+            modelGithub = Optional.of(Github.EMPTY);
         } else if (!Github.isValidGithub(github)) {
             throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
         } else {
-            modelGithub = new Github(github);
+            modelGithub = Optional.of(new Github(github));
         }
 
         return new Person(modelName, modelClassGroup, modelEmail, modelPhone, modelTelegram, modelGithub);

@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -114,15 +116,15 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code telegram} is invalid.
      */
-    public static Telegram parseTelegram(String telegram) throws ParseException {
+    public static Optional<Telegram> parseTelegram(String telegram) throws ParseException {
         if (telegram.isEmpty()) {
-            return null;
+            return Optional.of(Telegram.EMPTY);
         }
         String trimmedTelegram = telegram.trim();
         if (!Telegram.isValidTelegram(trimmedTelegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        return new Telegram(trimmedTelegram);
+        return Optional.of(new Telegram(trimmedTelegram));
     }
 
     /**
@@ -131,14 +133,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code github} is invalid.
      */
-    public static Github parseGithub(String github) throws ParseException {
+    public static Optional<Github> parseGithub(String github) throws ParseException {
         if (github.isEmpty()) {
-            return null;
+            return Optional.of(Github.EMPTY);
         }
         String trimmedGithub = github.trim();
         if (!Github.isValidGithub(trimmedGithub)) {
             throw new ParseException(ClassGroup.MESSAGE_CONSTRAINTS);
         }
-        return new Github(trimmedGithub);
+        return Optional.of(new Github(trimmedGithub));
     }
 }

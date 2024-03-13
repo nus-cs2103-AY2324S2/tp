@@ -5,7 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Telegram;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -57,7 +59,8 @@ public class PersonCard extends UiPart<Region> {
         email.setText("E-mail: " + person.getEmail().value);
         phone.setText("Phone Number: " + person.getPhone().value);
         telegram.setText(
-                person.getTelegram().isPresent() ? "Telegram ID: " + person.getTelegram().get().telegramId : "");
-        github.setText(person.getGithub().isPresent() ? "GitHub ID: " + person.getGithub().get().githubId : "");
+                "Telegram ID: " + person.getTelegram().orElse(Telegram.EMPTY).telegramId);
+        github.setText(
+                "GitHub ID: " + person.getGithub().orElse(Github.EMPTY).githubId);
     }
 }

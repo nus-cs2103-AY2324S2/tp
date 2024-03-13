@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
+
 import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
@@ -24,8 +26,8 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private ClassGroup classGroup;
-    private Telegram telegram;
-    private Github github;
+    private Optional<Telegram> telegram;
+    private Optional<Github> github;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -34,8 +36,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        github = new Github(DEFAULT_GITHUB);
-        telegram = new Telegram(DEFAULT_TELEGRAM);
+        github = Optional.of(new Github(DEFAULT_GITHUB));
+        telegram = Optional.of(new Telegram(DEFAULT_TELEGRAM));
         classGroup = new ClassGroup(DEFAULT_CLASS_GROUP);
     }
 
@@ -46,8 +48,8 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        github = personToCopy.getGithub().orElse(null);
-        telegram = personToCopy.getTelegram().orElse(null);
+        github = personToCopy.getGithub();
+        telegram = personToCopy.getTelegram();
         classGroup = personToCopy.getClassGroup();
     }
 
@@ -91,7 +93,7 @@ public class PersonBuilder {
      * Sets the {@code Telegram} of the {@code Person} that we are building.
      */
     public PersonBuilder withTelegram(String telegram) {
-        this.telegram = new Telegram(telegram);
+        this.telegram = Optional.of(new Telegram(telegram));
         return this;
     }
 
@@ -99,7 +101,7 @@ public class PersonBuilder {
      * Sets the {@code Github} of the {@code Person} that we are building.
      */
     public PersonBuilder withGithub(String github) {
-        this.github = new Github(github);
+        this.github = Optional.of(new Github(github));
         return this;
     }
 }

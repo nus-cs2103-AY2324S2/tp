@@ -10,8 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
-import java.util.Optional;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -61,11 +59,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
             editPersonDescriptor.setTelegram(
-                    Optional.ofNullable(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).orElse(""))));
+                    ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).orElse("")));
         }
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
             editPersonDescriptor.setGithub(
-                    Optional.ofNullable(ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElse(""))));
+                    ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElse("")));
         }
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
