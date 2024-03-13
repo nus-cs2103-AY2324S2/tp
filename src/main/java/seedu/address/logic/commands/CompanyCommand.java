@@ -9,7 +9,6 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Company;
-import seedu.address.model.person.NameEqualsKeywordPredicate;
 import seedu.address.model.person.Person;
 
 
@@ -53,10 +52,17 @@ public class CompanyCommand extends Command {
         if (name == null) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, name));
         }
-        model.updateFilteredPersonList(new NameEqualsKeywordPredicate(name));
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        Person personToEdit = lastShownList.get(0);
+        List<Person> contactList = model.getFilteredPersonList();
+        Person personToEdit = null;
+        for (Person person : contactList) {
+            if (person.getName().fullName.equalsIgnoreCase(name)) {
+                personToEdit = person;
+                break;
+            }
+        }
+        if (personToEdit == null) {
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, name));
+        }
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), company, personToEdit.getTags());
