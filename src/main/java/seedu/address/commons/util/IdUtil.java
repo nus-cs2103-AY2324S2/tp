@@ -61,7 +61,7 @@ public class IdUtil {
      * @param entity type of id to generate
      * @return String id
      */
-    public String generateNewId(Entities entity) {
+    public static String generateNewId(Entities entity) {
         HashSet<String> idSet = allIds.get(entity);
 
         String initId = UUID.randomUUID().toString().substring(0, 8);
@@ -77,7 +77,7 @@ public class IdUtil {
      * Deletes Id that is inputted
      * @param id String id to delete
      */
-    public void deleteId(String id) {
+    public static void deleteId(String id) {
         requireNonNull(id);
         Entities entity = Entities.getEntityFromChar(id.substring(0,1).charAt(0));
         HashSet<String> idSet = allIds.get(entity);
@@ -88,7 +88,7 @@ public class IdUtil {
      * Updates map with initial values from storage
      * @throws ExecutionControl.NotImplementedException
      */
-    public void initalMapUpdate() throws ExecutionControl.NotImplementedException {
+    public static void initalMapUpdate() throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("to be implemented");
     }
 }

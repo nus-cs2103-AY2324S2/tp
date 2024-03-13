@@ -1,5 +1,7 @@
 package seedu.address.model.appointment;
 
+import seedu.address.commons.util.IdUtil;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -14,11 +16,10 @@ public class AppointmentId {
             "Appointment id should be in the format of aXXXXXXXX.";
 
     /**
-     * Constructs new AppointmentId object using an input appointment id string in aXXXXXXXX format
-     * @param apptId input string to be stored
+     * Constructs new AppointmentId object by generating an appointment id string in aXXXXXXXX format
      */
-    public AppointmentId(String apptId) {
-        requireNonNull(apptId);
+    public AppointmentId() {
+        String apptId = IdUtil.generateNewId(IdUtil.Entities.APPOINTMENT);
         checkArgument(isValidApptId(apptId), MESSAGE_CONSTRAINTS);
         this.appointmentId = apptId;
     }
