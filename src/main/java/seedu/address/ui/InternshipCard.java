@@ -21,7 +21,7 @@ import seedu.address.model.internship.Role;
  */
 public class InternshipCard extends UiPart<Region> {
 
-    private static final String FXML = "InternshipListCard.fxml";
+    private static final String FXML = "InternshipCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -44,7 +44,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label location;
+    private Label loc;
     @FXML
     private Label poc;
 
@@ -82,7 +82,7 @@ public class InternshipCard extends UiPart<Region> {
      * @param loc location of the internship
      */
     private void setLocationLabel(Location loc) {
-        location.setText(loc.toString());
+        this.loc.setText(loc.toString());
     }
 
     /**
@@ -147,7 +147,7 @@ public class InternshipCard extends UiPart<Region> {
         return id;
     }
 
-    Label getCompanyNameAndRoleLabel() {
+    protected Label getCompanyNameAndRoleLabel() {
         return companyNameAndRole;
     }
 
@@ -160,7 +160,7 @@ public class InternshipCard extends UiPart<Region> {
     }
 
     protected Label getLocationLabel() {
-        return location;
+        return loc;
     }
 
     protected Label getPocLabel() {
