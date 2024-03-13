@@ -22,6 +22,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -134,6 +136,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPersonWithName(Name name) {
+            return false;
+        }
+
+        @Override
+        public Person getPersonWithName(Name name) {
+            return null;
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -156,6 +168,36 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointment(Appointment appointment) {
+            return false;
+        }
+
+        @Override
+        public void deleteAppointment(Appointment appointment) {
+
+        }
+
+        @Override
+        public void addAppointment(Appointment appointment) {
+
+        }
+
+        @Override
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
+
+        }
+
+        @Override
+        public ObservableList<Appointment> getFilteredAppointmentList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+
         }
     }
 

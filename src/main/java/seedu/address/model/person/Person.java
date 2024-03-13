@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -35,6 +36,18 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Placeholder person creation with just name
+     */
+    public Person(Name name) {
+        requireNonNull(name);
+
+        this.name = name;
+        this.phone = new Phone("12345678");
+        this.email = new Email("test@test.com");
+        this.address = new Address("Placeholder");
     }
 
     public Name getName() {
