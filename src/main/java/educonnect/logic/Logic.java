@@ -8,7 +8,7 @@ import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.Model;
 import educonnect.model.ReadOnlyAddressBook;
-import educonnect.model.person.Person;
+import educonnect.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -31,8 +31,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of students */
+    ObservableList<Student> getFilteredStudentList();
 
     /**
      * Returns the user prefs' address book file path.

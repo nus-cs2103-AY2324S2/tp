@@ -1,22 +1,22 @@
 package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static educonnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static educonnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.person.Address;
-import educonnect.model.person.Email;
-import educonnect.model.person.Name;
-import educonnect.model.person.Person;
-import educonnect.model.person.Phone;
+import educonnect.model.student.Email;
+import educonnect.model.student.Name;
+import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.model.tag.Tag;
 
 /**
@@ -31,23 +31,25 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_EMAIL,
+                         PREFIX_TELEGRAM_HANDLE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_TELEGRAM_HANDLE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        TelegramHandle telegramHandle = ParserUtil.parseTelegramHandle(
+                    argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Student student = new Student(name, studentId, email, telegramHandle, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
     /**
