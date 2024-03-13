@@ -62,7 +62,7 @@ public class AddCategoryCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Entry e = personToEdit.getEntry("");
+        Entry e = personToEdit.getEntry(entry.getCategory());
 
         if (e != null) {
             throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
