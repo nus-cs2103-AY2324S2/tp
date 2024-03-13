@@ -1,10 +1,10 @@
 package vitalconnect.logic.parser;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static vitalconnect.testutil.Assert.assertThrows;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,25 +32,24 @@ public class CreateAptCommandParserTest {
     }
 
     @Test
-    public void parseCommand_createApt_missingDateTime_throwsParseException() {
+    public void parse_missingDateTime_throwsParseException() {
         String userInput = "John Doe";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
 
     }
 
     @Test
-    public void parseCommand_createApt_missingName_throwsParseException() {
-        String userInput ="02/02/2024 1330";
+    public void parse_missingName_throwsParseException() {
+        String userInput = "02/02/2024 1330";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
 
     }
 
     @Test
-    public void parseCommand_createApt_invalidDateTimeFormat_throwsParseException() {
+    public void parse_invalidDateTimeFormat_throwsParseException() {
         String name = "John Doe";
         String time = "02-02-2024 1330";
-        String userInput =name + time;
+        String userInput = name + time;
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
-
 }

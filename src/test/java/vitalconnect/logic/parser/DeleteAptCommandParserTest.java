@@ -52,5 +52,4 @@ public class DeleteAptCommandParserTest {
         String userInput = "/name John Doe 1";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
-
 }
