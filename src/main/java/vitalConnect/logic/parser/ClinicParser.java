@@ -1,11 +1,11 @@
 package vitalConnect.logic.parser;
 
+import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static vitalConnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static vitalConnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static vitalConnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import vitalConnect.commons.core.LogsCenter;
 import vitalConnect.logic.commands.AddCommand;
