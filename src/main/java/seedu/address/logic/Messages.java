@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.person.Person;
+import seedu.address.model.employee.Employee;
 import seedu.address.model.task.Task;
 
 /**
@@ -15,8 +15,8 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index provided is invalid";
+    public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employees listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_TASKID = "The Task ID provided is invalid";
@@ -35,19 +35,19 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code employee} for display to the user.
      */
-    public static String format(Person person) {
+    public static String format(Employee employee) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(employee.getName())
                 .append("; Phone: ")
-                .append(person.getPhone())
+                .append(employee.getPhone())
                 .append("; Email: ")
-                .append(person.getEmail())
+                .append(employee.getEmail())
                 .append("; Address: ")
-                .append(person.getAddress())
+                .append(employee.getAddress())
                 .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+        employee.getTags().forEach(builder::append);
         return builder.toString();
     }
 

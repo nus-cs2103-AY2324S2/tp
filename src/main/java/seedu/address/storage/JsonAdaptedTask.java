@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.JsonAdaptedEmployee.MISSING_FIELD_MESSAGE_FORMAT;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,7 +20,7 @@ public class JsonAdaptedTask {
 
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedEmployee} with the given Employee details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName, @JsonProperty("taskId") int taskId) {
@@ -37,9 +37,9 @@ public class JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted Employee object into the model's {@code Task} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Employee.
      */
     public Task toModelType() throws IllegalValueException {
         if (taskName == null) {

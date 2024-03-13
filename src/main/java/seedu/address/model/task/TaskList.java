@@ -24,7 +24,7 @@ public class TaskList {
 
     /**
      * Removes the equivalent task from the list.
-     * The person must exist in the list.
+     * The Employee must exist in the list.
      */
     public void remove(Task toRemove) {
         if (!internalList.remove(toRemove)) {
