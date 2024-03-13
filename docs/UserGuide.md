@@ -192,7 +192,7 @@ Action     | Format, Examples
 **Add**    | `ac n/NAME c/CLASS_GROUP e/EMAIL p/PHONE_NUMBER [t/TELEGRAM] [g/GITHUB]` <br> e.g., `ac c/T10-2 n/James Ho p/22224444 e/jamesho@example.com t/@jamesho g/jameshoGithub`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `uc INDEX [n/NAME] [p/CLASS_GROUP] [e/EMAIL] [a/PHONE] [t/TELEGRAM] [g/GITHUB]…​`<br> e.g.,`uc 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
