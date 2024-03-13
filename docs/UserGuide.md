@@ -148,7 +148,7 @@ Format: `find FIELD/ KEYWORD FIELD/ KEYWORD ...`
   * e.g. Results of `find n/Hans n/Bo` will match that of`find n/Bo n/Hans`
 
 * You can have multiple of the same 'FIELD's. 
-  * e.g. `find n/J n/D` will match names with `J` AND `D`, like `John Doe`
+  * e.g. `find n/J n/Do` will match names with `J` AND `Do`, like `John Doe`
 
 Examples:
 * `find n/Joh` returns `john`, `John Doe` and `Johnann Sebastian Bach`
