@@ -6,7 +6,6 @@ import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 // import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
-
 import staffconnect.commons.exceptions.IllegalValueException;
 import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.parser.exceptions.ParseException;

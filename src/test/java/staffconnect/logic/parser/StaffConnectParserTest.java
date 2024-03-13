@@ -19,12 +19,15 @@ import staffconnect.logic.commands.DeleteCommand;
 import staffconnect.logic.commands.EditCommand;
 import staffconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import staffconnect.logic.commands.ExitCommand;
+import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.commands.FindCommand;
 import staffconnect.logic.commands.HelpCommand;
 import staffconnect.logic.commands.ListCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
+import staffconnect.model.person.PersonHasTagPredicate;
+import staffconnect.model.tag.Tag;
 import staffconnect.testutil.EditPersonDescriptorBuilder;
 import staffconnect.testutil.PersonBuilder;
 import staffconnect.testutil.PersonUtil;
@@ -66,6 +69,14 @@ public class StaffConnectParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        String tag = "hello";
+        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " t/" + tag);
+        assertEquals(new FilterCommand(new PersonHasTagPredicate(new Tag(tag))), command);
     }
 
     @Test

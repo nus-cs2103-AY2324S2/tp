@@ -1,13 +1,12 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
-import staffconnect.logic.Messages;
 // import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY; // TODO: add filtering for faculty and module
 // import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.logic.Messages;
 import staffconnect.model.Model;
 import staffconnect.model.person.PersonHasTagPredicate; // TagContainsKeywordsPredicate
 
