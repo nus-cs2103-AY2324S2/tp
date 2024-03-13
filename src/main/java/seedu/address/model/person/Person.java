@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,24 +18,47 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final Id id;
     private final Name name;
     private final Phone phone;
     private final Email email;
 
     // Data fields
+    private final YearJoined yearJoined;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Model model, Name name, Phone phone, Email email, YearJoined yearJoined,
+            Address address, Set<Tag> tags) {
+        requireAllNonNull(model, name, phone, email, yearJoined, address, tags);
+        this.id = new Id(model, yearJoined);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.yearJoined = yearJoined;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Id id, Name name, Phone phone, Email email, YearJoined yearJoined, Address address, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, address, tags);
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.yearJoined = yearJoined;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+    public Id getId() {
+        return id;
     }
 
     public Name getName() {
@@ -47,6 +71,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public YearJoined getYearJoined() {
+        return yearJoined;
     }
 
     public Address getAddress() {
@@ -93,6 +121,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && yearJoined.equals(otherPerson.yearJoined)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
@@ -100,7 +129,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, yearJoined, address, tags);
     }
 
     @Override
@@ -109,6 +138,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
+                .add("year joined", yearJoined)
                 .add("address", address)
                 .add("tags", tags)
                 .toString();
