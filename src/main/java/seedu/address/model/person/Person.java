@@ -150,8 +150,8 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
                 .add("note", note)
+                .add("tags", tags)
                 .toString();
     }
 
