@@ -26,6 +26,8 @@ public class UnitNumberTest {
 
         // invalid unit numbers
         assertFalse(UnitNumber.isValidUnitNumber("0")); // '0' is invalid
+        assertFalse(UnitNumber.isValidUnitNumber("00")); // '00' is invalid
+        assertFalse(UnitNumber.isValidUnitNumber("000")); // '000' is invalid
         assertFalse(UnitNumber.isValidUnitNumber("")); // empty string
         assertFalse(UnitNumber.isValidUnitNumber(" ")); // spaces only
         assertFalse(UnitNumber.isValidUnitNumber("1234")); // more than 3 digits
@@ -36,6 +38,7 @@ public class UnitNumberTest {
         assertTrue(UnitNumber.isValidUnitNumber("1")); // minimum valid number
         assertTrue(UnitNumber.isValidUnitNumber("01")); // leading 0 is allowed
         assertTrue(UnitNumber.isValidUnitNumber("10")); // 2 digits
+        assertTrue(UnitNumber.isValidUnitNumber("001")); // 3 digits
         assertTrue(UnitNumber.isValidUnitNumber("999")); // maximum valid number
     }
 

@@ -11,8 +11,9 @@ public class UnitNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
             "The unit number should only contain numbers, it should be at least 1 digit "
-                    + "and at most 3 digits long, and cannot be 0.";
+                    + "and at most 3 digits long, and cannot be '0', '00' or '000'.";
     public static final String VALIDATION_REGEX = "\\d{1,3}";
+    public static final String ZERO_REGEX = "^0+$";
 
     public final String value;
 
@@ -34,7 +35,7 @@ public class UnitNumber {
      * @return true if the test matches the VALIDATION_REGEX and is not "0".
      */
     public static boolean isValidUnitNumber(String test) {
-        return test.matches(VALIDATION_REGEX) && !test.equals("0");
+        return test.matches(VALIDATION_REGEX) && !test.matches(ZERO_REGEX);
     }
 
     @Override
