@@ -8,7 +8,6 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.PatientTest;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -94,6 +93,14 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the ImportantDate of the {@code Patient} that we are building,
+     * with the name and date/datetime of the event
+     *
+     * @param names
+     * @param importantDates
+     * @return
+     */
     public PatientBuilder withImportantDates(String[] names, String[] importantDates) {
         this.importantDates = SampleDataUtil.getImportantDateSet(names, importantDates);
         return this;
