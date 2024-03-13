@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText("Phone: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         email.setText("Email: " + person.getEmail().value);
-        githubUsername.setText(person.getGitHubUsername().username);
+        githubUsername.setText("@"+person.getGitHubUsername().username);
         person.getTechStack().stream()
                 .sorted(Comparator.comparing(techStack -> techStack.techStackName))
                 .forEach(techStack -> tech_stack.getChildren().add(new Label(techStack.techStackName)));
