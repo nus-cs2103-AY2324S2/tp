@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_ID_NOT_VALID;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.exceptions.IdNotValidException;
 
 import java.util.stream.Stream;
 
@@ -29,6 +30,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             }
             Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
             return new DeleteCommand(id);
+        } catch (IdNotValidException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_ID_NOT_VALID, DeleteCommand.MESSAGE_USAGE), e);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-
+import seedu.address.model.person.exceptions.IdNotValidException;
 /**
  * Represents a Person's id in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
@@ -33,8 +33,15 @@ public class Id {
     /**
      * Returns true if a given string is a valid id.
      */
-    public static boolean isValidId(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidId(String test) throws IdNotValidException {
+        try {
+            if (test.contains(" ") || !test.matches(VALIDATION_REGEX)) {
+                throw new IdNotValidException("ID is not valid.");
+            }
+        } catch (IdNotValidException e) {
+            throw e;
+        }
+        return true;
     }
 
     @Override
