@@ -132,12 +132,12 @@ public class ParserUtil {
      * @throws ParseException if the given {@code importantDate} is invalid.
      */
     public static ImportantDate parseImportantDate(String name, String importantDate) throws ParseException {
-        requireAllNonNull(name, importantDate);
         String trimmedName = name.trim();
         String trimmedImportantDate = importantDate.trim();
+        requireAllNonNull(name, importantDate);
 
         if (!ImportantDate.isValidImportantDate(trimmedImportantDate)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ImportantDate.MESSAGE_CONSTRAINTS);
         }
 
         return new ImportantDate(trimmedName, trimmedImportantDate);

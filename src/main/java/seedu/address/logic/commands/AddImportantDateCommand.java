@@ -83,10 +83,10 @@ public class AddImportantDateCommand extends Command {
     }
 
     /**
-     * Returns true if both add tag commands have the same index and tags to add.
+     * Returns true if both add important date commands have the same index and important date to add.
      *
      * @param other Another object to compare to.
-     * @return True if the other object is an AddTagsCommand with the same index and tags to add.
+     * @return True if the other object is an AddImportantDatesCommand with the same index and important date to add.
      */
     @Override
     public boolean equals(Object other) {
