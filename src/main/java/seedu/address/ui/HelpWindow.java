@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for a help page.
  */
 public class HelpWindow extends UiPart<Stage> {
 
@@ -63,7 +63,8 @@ public class HelpWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        String loggerSuccessMsg = "Showing help page about the application.";
+        logger.fine(loggerSuccessMsg);
         getRoot().show();
         getRoot().centerOnScreen();
     }

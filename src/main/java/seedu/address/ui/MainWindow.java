@@ -245,26 +245,36 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp() && commandResult.getFeedbackToUser()
-                    .equals(HelpCommand.SHOWING_HELP_MESSAGE)) {
+            String userFeedback = commandResult.getFeedbackToUser();
+            Boolean isHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpCommand.SHOWING_HELP_MESSAGE);
+            Boolean isPoochStaffHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpPoochStaffCommand.SHOWING_HELP_MESSAGE);
+            Boolean isPoochMaintenanceHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpPoochMaintenanceCommand.SHOWING_HELP_MESSAGE);
+            Boolean isPoochSupplierHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpPoochSupplierCommand.SHOWING_HELP_MESSAGE);
+            Boolean isDeleteHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpDeleteCommand.SHOWING_HELP_MESSAGE);
+            Boolean isEditHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpEditCommand.SHOWING_HELP_MESSAGE);
+            Boolean isSearchHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpSearchCommand.SHOWING_HELP_MESSAGE);
+
+
+            if (isHelpCommand) {
                 handleHelp();
-            } else if (commandResult.isShowHelp() && commandResult.getFeedbackToUser()
-                    .equals(HelpPoochStaffCommand.SHOWING_HELP_MESSAGE)) {
+            } else if (isPoochStaffHelpCommand) {
                 handlePoochStaffHelp();
-            } else if (commandResult.isShowHelp() && commandResult.getFeedbackToUser()
-                    .equals(HelpPoochSupplierCommand.SHOWING_HELP_MESSAGE)) {
+            } else if (isPoochSupplierHelpCommand) {
                 handlePoochSupplierHelp();
-            } else if (commandResult.isShowHelp() && commandResult.getFeedbackToUser()
-                    .equals(HelpDeleteCommand.SHOWING_HELP_MESSAGE)) {
+            } else if (isDeleteHelpCommand) {
                 handleDeleteHelp();
-            } else if (commandResult.isShowHelp() && commandResult.getFeedbackToUser()
-                    .equals(HelpEditCommand.SHOWING_HELP_MESSAGE)) {
+            } else if (isEditHelpCommand) {
                 handleEditHelp();
-            } else if (commandResult.isShowHelp() && commandResult.getFeedbackToUser()
-                    .equals(HelpSearchCommand.SHOWING_HELP_MESSAGE)) {
+            } else if (isSearchHelpCommand) {
                 handleSearchHelp();
-            } else if (commandResult.isShowHelp() && commandResult.getFeedbackToUser()
-                    .equals(HelpPoochMaintenanceCommand.SHOWING_HELP_MESSAGE)) {
+            } else if (isPoochMaintenanceHelpCommand) {
                 handlePoochMaintenanceHelp();
             }
             if (commandResult.isExit()) {
