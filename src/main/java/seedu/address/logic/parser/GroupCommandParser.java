@@ -7,17 +7,17 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 
-import seedu.address.logic.commands.GroupCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
-import seedu.address.model.person.NusId;
-
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import seedu.address.logic.commands.GroupCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.NusId;
 
 
 /**

@@ -23,7 +23,11 @@ import seedu.address.model.person.NusId;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
+    /**
+     * Parses {@code String NusId} into an {@code NusId} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
     public static NusId parseNusId(String nusId) throws ParseException {
         requireNonNull(nusId);
         String trimmedNusId = nusId.trim();
