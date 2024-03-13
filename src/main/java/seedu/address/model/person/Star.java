@@ -11,6 +11,8 @@ public class Star {
     public static final String MESSAGE_CONSTRAINTS =
             "Stars given should be more than 0.";
 
+    public static final Star NOSTAR = new Star(0);
+
     public final Integer noOfStars; // number of stars given to a student
 
     /**
