@@ -4,13 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAR;
 
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.StarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Star;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -28,8 +27,8 @@ public class StarCommandParser implements Parser<StarCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_STAR); // tokenise args by PREFIX_STAR
 
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_STAR) ||
-                !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_STAR)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE));
         } // if no PREFIX used, or if the Preamble is empty, we throw a ParseException
 

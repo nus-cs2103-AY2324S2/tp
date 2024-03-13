@@ -196,9 +196,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setStar(Star star) { this.star = star; }
+        public void setStar(Star star) {
+            this.star = star;
+        }
 
-        public Optional<Star> getStar() { return Optional.ofNullable(star); }
+        public Optional<Star> getStar() {
+            return Optional.ofNullable(star);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

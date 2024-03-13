@@ -68,7 +68,9 @@ public class Person {
         return address;
     }
 
-    public Star getStar() { return star; } // get the stars
+    public Star getStar() {
+        return star;
+    } // get the stars
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -118,7 +120,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, star,  tags);
+        return Objects.hash(name, phone, email, address, star, tags);
     }
 
     @Override
