@@ -331,7 +331,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                                                                                 | So that I can…​                                                                              |
+| Priority | As a ...                                      | I want to ...                                                                                | So that I can ...                                                                            |
 |----------|-----------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
 | `* * *`  | user                                          | see usage instructions                                                                       | refer to instructions when I forget how to use the application                               |
 | `* * *`  | user                                          | add a client name and phone number                                                           | quickly take down contact details even in a rush                                             |
@@ -341,6 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user with many contacts in the address book   | search for contacts by their name                                                            | locate details of persons without having to go through the entire list                       |                                              |
 | `* *`    | user                                          | add a picture to my contacts                                                                 | easily identify my contacts and add a personal touch to them                                 |
 | `* *`    | user                                          | hide private contact details                                                                 | minimize chance of someone else seeing them by accident                                      |
+| `* *`    | user                                          | quickly view the available commands                                                          | view quick command help without needing to leave the application                             |
 | `* *`    | user                                          | update a person's contact information                                                        | keep my address book relevant and up-to-date                                                 |
 | `*`      | user                                          | have a graphical overview of the changes of my client's health details over a certain period | easily keep track of my client's progress                                                    |
 | `*`      | user who has completed dealings with a client | archive contacts                                                                             | remove them from the contact list but still have their contact information in case I need it |
