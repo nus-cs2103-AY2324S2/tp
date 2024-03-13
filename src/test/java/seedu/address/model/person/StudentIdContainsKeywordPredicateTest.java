@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
 public class StudentIdContainsKeywordPredicateTest {
-    
     @Test
     public void equals() {
         String predicateKeyword = "keyword";

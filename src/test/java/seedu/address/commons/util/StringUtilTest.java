@@ -134,7 +134,8 @@ public class StringUtilTest {
 
     @Test
     public void containsPartialWordIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsPartialWordIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, () -> StringUtil.containsPartialWordIgnoreCase(
+                "typical sentence", null));
     }
 
     @Test
@@ -145,7 +146,8 @@ public class StringUtilTest {
 
     @Test
     public void containsPartialWordIgnoreCase_nullSentence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsPartialWordIgnoreCase(null, "abc"));
+        assertThrows(NullPointerException.class, () -> StringUtil.containsPartialWordIgnoreCase(
+                null, "abc"));
     }
 
     /*
@@ -180,8 +182,10 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsPartialWordIgnoreCase("    ", "123"));
 
         // Matches a partial word only
-        assertTrue(StringUtil.containsPartialWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
-        assertFalse(StringUtil.containsPartialWordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+        // Sentence word bigger than query word
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("aaa bbb ccc", "bb"));
+        // Query word bigger than sentence word
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("aaa bbb ccc", "bbbb"));
 
         // Matches word in the sentence, different upper/lower case letters
         assertTrue(StringUtil.containsPartialWordIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
@@ -190,7 +194,8 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsPartialWordIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
         assertTrue(StringUtil.containsPartialWordIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
         assertTrue(StringUtil.containsPartialWordIgnoreCase("aaa bBb ccc", "AAA bbb")); // Multiple words
-        assertFalse(StringUtil.containsPartialWordIgnoreCase("  AAA   bBb   ccc   ", "aaa bbb")); // Sentence has extra space, multiple words
+        // Sentence has extra space, multiple words
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("  AAA   bBb   ccc   ", "aaa bbb"));
 
         // Matches multiple words in sentence
         assertTrue(StringUtil.containsPartialWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
