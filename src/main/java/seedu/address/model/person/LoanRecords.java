@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateUtil;
+import seedu.address.logic.commands.LinkLoanCommand.LinkLoanDescriptor;
 
 /**
  * Represents a list of loans in the address book.
@@ -50,27 +51,38 @@ public class LoanRecords {
 
     /**
      * Adds a loan to the list of loans.
-     * @param amount A valid amount.
+     * @param value A valid value.
      * @param startDate A valid start date.
-     * @param endDate A valid end date.
+     * @param returnDate A valid return date.
      */
-    public void addLoan(float amount, Date startDate, Date endDate) {
-        Loan loan = new Loan(nextLoanId, amount, startDate, endDate);
+    public void addLoan(float value, Date startDate, Date returnDate) {
+        Loan loan = new Loan(nextLoanId, value, startDate, returnDate);
         addLoan(loan);
     }
 
     /**
      * Adds a loan to the list of loans.
-     * @param amount A valid amount.
+     * @param loanDescription A valid LinkLoanDescriptor, which contains details about the loan to be added.
+     */
+    public void addLoan(LinkLoanDescriptor loanDescription) {
+        float value = loanDescription.getValue();
+        Date startDate = loanDescription.getStartDate();
+        Date returnDate = loanDescription.getReturnDate();
+        addLoan(value, startDate, returnDate);
+    }
+
+    /**
+     * Adds a loan to the list of loans.
+     * @param value A valid value.
      * @param startDate A valid start date.
-     * @param endDate A valid end date.
+     * @param returnDate A valid return date.
      * @throws IllegalValueException If the date string is not in the correct format.
      */
-    public void addLoan(float amount, String startDate, String endDate) throws IllegalValueException {
+    public void addLoan(float value, String startDate, String returnDate) throws IllegalValueException {
         try {
             Date start = DateUtil.parse(startDate);
-            Date end = DateUtil.parse(endDate);
-            addLoan(amount, start, end);
+            Date end = DateUtil.parse(returnDate);
+            addLoan(value, start, end);
         } catch (IllegalValueException e) {
             throw new IllegalValueException(LoanRecords.DATE_MESSAGE_CONSTRAINTS);
         }

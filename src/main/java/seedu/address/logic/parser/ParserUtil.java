@@ -1,16 +1,22 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.LinkLoanCommand.LinkLoanDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Loan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -120,5 +126,30 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String value}, {@code String startDate},
+     * {@code String returnDate} into a {@code LinkLoanCommand.LinkLoanDescriptor}.
+     */
+    public static LinkLoanDescriptor parseLoan(String value, String startDate, String returnDate)
+            throws ParseException {
+        requireAllNonNull(value, startDate, returnDate);
+        try {
+            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            String trimmedValue = value.trim();
+            String trimmedStartDate = startDate.trim();
+            String trimmedReturnDate = returnDate.trim();
+            float convertedValue = Float.parseFloat(trimmedValue);
+            Date convertedStartDate = formatter.parse(trimmedStartDate);
+            Date convertedReturnDate = formatter.parse(trimmedReturnDate);
+            if (!Loan.isValidValue(convertedValue)
+                    || !Loan.isValidDates(convertedStartDate, convertedReturnDate)) {
+                throw new ParseException(Loan.MESSAGE_CONSTRAINTS);
+            }
+            return new LinkLoanDescriptor(convertedValue, convertedStartDate, convertedReturnDate);
+        } catch (java.text.ParseException p) {
+            throw new ParseException(Loan.DATE_CONSTRAINTS);
+        }
     }
 }
