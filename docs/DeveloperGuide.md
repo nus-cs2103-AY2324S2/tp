@@ -373,8 +373,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. FitBook shows an error message.
 
-      Use case resumes at step 2
-  
+      Use case resumes at step 2 
+
 <hr>
 
 **System**: FitBook
