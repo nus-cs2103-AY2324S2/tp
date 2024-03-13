@@ -5,7 +5,7 @@ title: John Doe's Project Portfolio Page
 
 ### Project: TaskMasterPro
 
-TaskMasterPro is a desktop application build on AddressBook - Level 3. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+TaskMasterPro is a desktop application build on TaskMasterPro - Level 3. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 ### ToDo, will be updated over time.
 Given below are my contributions to the project.

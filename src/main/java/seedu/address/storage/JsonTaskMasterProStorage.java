@@ -76,5 +76,4 @@ public class JsonTaskMasterProStorage implements TaskMasterProStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableTaskMasterPro(taskMasterPro), filePath);
     }
-
 }
