@@ -8,6 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -55,6 +56,18 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a important dates set containing the list of strings given.
+     */
+    public static Set<ImportantDate> getImportantDateSet(String[] names, String[] dates) {
+        ImportantDate[] importantDates = new ImportantDate[names.length];
+        for (int i = 0; i < names.length; i++) {
+            importantDates[i] = new ImportantDate(names[i], dates[i]);
+        }
+
+        return Arrays.stream(importantDates).collect(Collectors.toSet());
     }
 
 }
