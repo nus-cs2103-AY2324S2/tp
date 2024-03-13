@@ -39,7 +39,7 @@ public class Person {
         this.attributes.put("Email", new StringAttribute("Email", email.toString()));
         this.attributes.put("Address", new StringAttribute("Address", address.toString()));
 
-        this.tags.addAll(tags);// Earmarked for deprecation - to be superseded by relations
+        this.tags.addAll(tags); // Earmarked for deprecation - to be superseded by relations
     }
 
     public Name getName() { //Earmarked for deprecation - superseded by getAttribute - name should be optional
