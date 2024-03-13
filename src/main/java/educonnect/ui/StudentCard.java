@@ -33,9 +33,9 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label studentId;
     @FXML
-    private Label address;
+    private Label handle;
     @FXML
     private Label email;
     @FXML
@@ -49,8 +49,8 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getStudentId().value);
-        address.setText(student.getTelegramHandle().value);
+        studentId.setText(student.getStudentId().value);
+        handle.setText(student.getTelegramHandle().value);
         email.setText(student.getEmail().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

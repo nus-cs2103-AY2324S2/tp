@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Student's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTelegramHandle(String)}
  */
 public class TelegramHandle {
 
@@ -15,9 +15,9 @@ public class TelegramHandle {
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
-     *
-     * @param phone A valid phone number.
+     * Constructs a {@code TelegramHandle}.
+     * 
+     * @param handle a valid {@code String} representing the telegram handle.
      */
     public TelegramHandle(String handle) {
         requireNonNull(handle);
@@ -26,7 +26,7 @@ public class TelegramHandle {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid telegram handle.
      */
     public static boolean isValidTelegramHandle(String test) {
         return test.matches(VALIDATION_REGEX);
