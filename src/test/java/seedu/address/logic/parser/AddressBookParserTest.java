@@ -18,12 +18,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteLoanCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.DeleteLoanCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -94,8 +94,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteLoan() throws Exception {
-        DeleteLoanCommand ddlc = (DeleteLoanCommand) parser.parseCommand(DeleteLoanCommand.COMMAND_WORD + " " +
-                PREFIX_NAME + "John Doe " + PREFIX_INDEX + "1");
+        DeleteLoanCommand ddlc = (DeleteLoanCommand) parser.parseCommand(DeleteLoanCommand.COMMAND_WORD + " "
+                + PREFIX_NAME + "John Doe " + PREFIX_INDEX + "1");
         assertEquals(new DeleteLoanCommand(new Name("John Doe"), INDEX_FIRST_PERSON), ddlc);
     }
 
