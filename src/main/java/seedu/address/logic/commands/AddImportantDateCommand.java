@@ -36,7 +36,7 @@ public class AddImportantDateCommand extends Command {
             + PREFIX_NAME + " Father Birthday "
             + PREFIX_DATETIME + "29-09-1789";
 
-    public static final String MESSAGE_SUCCESS = "Event %1 successfully added for Patient %2 with ID %3 " + "for %4";
+    public static final String MESSAGE_SUCCESS = "Event %1$s successfully added for Patient %2$s with ID %3$s for %4$s";
 
     private final Index index;
     private final ImportantDate dateToAdd;
@@ -78,7 +78,8 @@ public class AddImportantDateCommand extends Command {
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(Model.PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient.getName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, dateToAdd.name, editedPatient.getName(), index,
+                dateToAdd.importantDate));
     }
 
     /**
