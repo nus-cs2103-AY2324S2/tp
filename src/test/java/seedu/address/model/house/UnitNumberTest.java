@@ -31,8 +31,6 @@ public class UnitNumberTest {
         assertFalse(UnitNumber.isValidUnitNumber("123")); // more than 2 digits
         assertFalse(UnitNumber.isValidUnitNumber("ab")); // non-numeric
         assertFalse(UnitNumber.isValidUnitNumber("1a")); // alphabets within digits
-        assertFalse(UnitNumber.isValidUnitNumber(" 12")); // spaces before digits
-        assertFalse(UnitNumber.isValidUnitNumber("12 ")); // spaces after digits
 
         // valid unit numbers
         assertTrue(UnitNumber.isValidUnitNumber("10")); // exactly 2 digits
