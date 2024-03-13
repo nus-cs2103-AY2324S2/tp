@@ -11,10 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-<<<<<<< HEAD
 import seedu.address.model.module.ClassList;
-=======
->>>>>>> upstream/master
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 

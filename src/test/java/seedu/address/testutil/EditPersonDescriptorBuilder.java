@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.moduletwo.ModuleCode;
-import seedu.address.model.moduletwo.TutorialClass;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
