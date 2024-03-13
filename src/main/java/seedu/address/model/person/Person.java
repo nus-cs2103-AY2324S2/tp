@@ -2,12 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.attribute.Attribute;
-import seedu.address.model.person.attribute.NameAttribute;
-import seedu.address.model.person.attribute.StringAttribute;
-import seedu.address.model.tag.Tag;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,13 +10,19 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.attribute.StringAttribute;
+import seedu.address.model.tag.Tag;
+
+
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
     private final UUID uuid;
-
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<String, Attribute> attributes = new HashMap<>();
