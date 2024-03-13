@@ -12,7 +12,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddFavouriteCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -75,6 +77,16 @@ public class AddressBookParserTest {
                 FindCommand.COMMAND_WORD + " n/ " + String.join(" n/ ", nameKeywords)
                         + " t/ " + String.join(" t/ ", tagKeywords));
         assertEquals(new FindCommand(new NameAndTagContainsKeywordsPredicate(nameKeywords, tagKeywords)), command);
+    }
+
+    @Test
+    public void parseCommand_addFavourite() throws Exception {
+        List<Index> indices = List.of(Index.fromOneBased(1), Index.fromOneBased(2), Index.fromOneBased(4));
+        AddFavouriteCommand command = (AddFavouriteCommand) parser.parseCommand(
+                AddFavouriteCommand.COMMAND_WORD + " "
+                + "i/ 1,2,4"
+        );
+        assertEquals(new AddFavouriteCommand(indices), command);
     }
 
     @Test
