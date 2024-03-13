@@ -339,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Tutor**: A student that is assigned to a tutee
+* **Tutor**: A user who wants to keep track of their students' contacts
 * **Tutee**: A student that is assigned to a tutor
 * **Contact List**: A collection of tutees' personal and contact information accessible by the tutor.
 * **Assessment Record**: A log of scores from quizzes, tests, assignments, and other forms of assessment for a tutee.
