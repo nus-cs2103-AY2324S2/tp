@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.person.Entry;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -16,9 +16,9 @@ import seedu.address.model.person.Entry;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         Person p1 = new Person(new Entry("Name", "Alex Yeoh"), getTagSet("friends"));
-        p1.addEntry(new Entry("Phone","87438807"));
-        p1.addEntry(new Entry("Email","alexyeoh@example.com"));
-        p1.addEntry(new Entry("Address","Blk 30 Geylang Street 29, #06-40"));
+        p1.addEntry(new Entry("Phone", "87438807"));
+        p1.addEntry(new Entry("Email", "alexyeoh@example.com"));
+        p1.addEntry(new Entry("Address", "Blk 30 Geylang Street 29, #06-40"));
 
         Person p2 = new Person(new Entry("Name", "Bernice Yu"), getTagSet("colleagues", "friends"));
         p2.addEntry(new Entry("Phone", "99272758"));
@@ -45,7 +45,7 @@ public class SampleDataUtil {
         p6.addEntry(new Entry("Email", "royb@example.com"));
         p6.addEntry(new Entry("Address", "Blk 45 Aljunied Street 85, #11-31"));
         return new Person[] {
-            p1, p2, p3, p4, p5, p6
+                p1, p2, p3, p4, p5, p6
         };
     }
 
