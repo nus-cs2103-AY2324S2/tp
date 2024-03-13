@@ -15,7 +15,7 @@ public class Family {
     private Integer familySize;
 
     /**
-     * Constructs a {@code Family} instance with the given family size.
+     * Constructs a {@code Family} instance with the given family size including him or herself.
      *
      * @param familySize The size of the family.
      */
@@ -31,7 +31,7 @@ public class Family {
      * @return True if the family size is greater than or equal to zero, false otherwise.
      */
     public static boolean isValidFamily(String familySize) {
-        return Integer.parseInt(familySize) >= 0;
+        return Integer.parseInt(familySize) > 0;
     }
 
     /**
