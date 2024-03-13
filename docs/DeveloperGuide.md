@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# CLInic Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -323,40 +323,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CLInic` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case (UC1) : Add new patient information to the database**
-
-**MSS**
-
-1.  User requests to add new patient information
-2.  AddressBook validates the information 
-3.  AddressBook adds the patient's information to the database
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The required information is missing.
-
-    * 1a1. AddressBook prompts user to input required information.
-
-    Use case resumes at step 1.
-
-* 2a. The given information is invalid.
-
-    * 2a1. AddressBook shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case (UC2) : Delete patient information from the database**
+<<<<<<< HEAD
+=======
+// EXAMPLE //
+**Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  CLInic shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  CLInic deletes the person
 
     Use case ends.
 
@@ -368,7 +347,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CLInic shows an error message.
+
+      Use case resumes at step 2.
+// EXAMPLE //
+
+>>>>>>> 0a90af1b165ada3a5c65ff7fea168eb06387077b
+**Use case (UC1) : Add new patient information to the database**
+
+**MSS**
+
+1.  User requests to add new patient information
+2.  CLInic validates the information 
+3.  CLInic adds the patient's information to the database
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The required information is missing.
+
+    * 1a1. CLInic prompts user to input required information.
+
+    Use case resumes at step 1.
+
+* 2a. The given information is invalid.
+
+    * 2a1. CLInic shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case (UC2) : Delete patient information from the database**
+
+**MSS**
+
+1.  User requests to list persons
+2.  CLInic shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  CLInic deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CLInic shows an error message.
 
       Use case resumes at step 2.
 
@@ -377,11 +405,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  CLInic shows a list of persons
 3.  User requests to schedule an appointment for a specific person in the list
-4.  AddressBook prompts User to input appointment details
+4.  CLInic prompts User to input appointment details
 5.  User inputs appointment details 
-6.  AddressBook schedules appointment for the patient
+6.  CLInic schedules appointment for the patient
 
     Use case ends.
 
@@ -393,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 5a. The given appointment details are invalid.
 
-    * 5a1. AddressBook shows an error message.
+    * 5a1. CLInic shows an error message.
 
       Use case resumes at step 4.
 
@@ -402,11 +430,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  CLInic shows a list of persons
 3.  User requests to cancel an appointment for a specific person in the list
-4.  AddressBook prompts User to input appointment details
+4.  CLInic prompts User to input appointment details
 5.  User inputs appointment details
-6.  AddressBook cancels appointment for the patient
+6.  CLInic cancels appointment for the patient
 
     Use case ends.
 
@@ -418,7 +446,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 5a. The given appointment details are invalid.
 
-    * 5a1. AddressBook shows an error message.
+    * 5a1. CLInic shows an error message.
 
       Use case resumes at step 4.
 
@@ -431,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to view all upcoming appointments
-2.  AddressBook shows a list of upcoming appointments
+2.  CLInic shows a list of upcoming appointments
 
     Use case ends.
 
@@ -446,9 +474,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to <ins> view all upcoming appointments (UC5) </ins>
-2.  AddressBook shows a list of upcoming appointments
+2.  CLInic shows a list of upcoming appointments
 3.  User requests to mark a specific appointment in the list
-4.  AddressBook marks the appointment
+4.  CLInic marks the appointment
 
     Use case ends.
 
@@ -460,7 +488,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CLInic shows an error message.
 
       Use case resumes at step 2.
 
@@ -498,7 +526,7 @@ Given below are instructions to test the app manually.
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</box>
+</box> 
 
 ### Launch and shutdown
 
