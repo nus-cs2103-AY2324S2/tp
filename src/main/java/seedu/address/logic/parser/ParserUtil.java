@@ -36,6 +36,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code arg} into an {@code int} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static int parseInt(String arg) throws ParseException {
+        String trimmedIndex = arg.replaceAll("\\s", ""); // Strip whitespaces
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedIndex);
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

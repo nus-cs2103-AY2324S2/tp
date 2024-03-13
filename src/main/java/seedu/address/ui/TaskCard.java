@@ -26,7 +26,8 @@ public class TaskCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
-
+    @FXML
+    private Label taskId;
     @FXML
     private Label id;
     /**
@@ -37,5 +38,6 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().taskName);
+        taskId.setText("Task ID: " + task.getTaskId().taskId);
     }
 }

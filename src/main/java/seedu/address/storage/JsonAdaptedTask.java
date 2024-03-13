@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
 
 /**
@@ -15,13 +16,16 @@ import seedu.address.model.task.TaskName;
 public class JsonAdaptedTask {
 
     private final String taskName;
+    private final int taskId;
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("taskName") String taskName) {
+    public JsonAdaptedTask(@JsonProperty("taskName") String taskName, @JsonProperty("taskId") int taskId) {
         this.taskName = taskName;
+        this.taskId = taskId;
     }
 
     /**
@@ -29,6 +33,7 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         taskName = source.getName().taskName;
+        taskId = source.getTaskId().taskId;
     }
 
     /**
@@ -43,7 +48,7 @@ public class JsonAdaptedTask {
         }
 
         final TaskName modelName = new TaskName(taskName);
-
-        return new Task(modelName);
+        final TaskId modelId = new TaskId(taskId);
+        return new Task(modelName, modelId);
     }
 }

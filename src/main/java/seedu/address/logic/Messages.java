@@ -19,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_TASKID = "The Task ID provided is invalid";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -54,7 +56,9 @@ public class Messages {
      */
     public static String format(Task task) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(task.getName()); // Add more append if got more fields to show
+        builder.append(task.getName())
+                .append("; TaskID: ")
+                .append(task.getTaskId().taskId); // Add more append if got more fields to show
         return builder.toString();
     }
 

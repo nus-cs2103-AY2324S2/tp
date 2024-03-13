@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
 
 /**
@@ -27,7 +28,9 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         TaskName taskName = new TaskName(trimmedArgs);
-        Task task = new Task(taskName);
+        TaskId taskId = new TaskId(Task.getUniversalId());
+        Task.incrementTaskId();
+        Task task = new Task(taskName, taskId);
 
         return new AddTaskCommand(task);
     }

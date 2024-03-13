@@ -96,10 +96,10 @@ public interface Model {
     void addTask(Task task);
 
     /**
-     * Removes the given task.
+     * Deletes the given task.
      * The task must exist in the address book.
      */
-    void removeTask(Task target);
+    void deleteTask(Task target);
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.

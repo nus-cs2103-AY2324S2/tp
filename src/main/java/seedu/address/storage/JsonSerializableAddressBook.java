@@ -25,12 +25,18 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
+    private final int taskId;
+
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                       @JsonProperty("taskId") int taskId) {
         this.persons.addAll(persons);
+        this.tasks.addAll(tasks);
+        this.taskId = taskId;
     }
 
     /**
@@ -41,6 +47,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        taskId = Task.getUniversalId();
     }
 
     /**
@@ -63,6 +70,8 @@ class JsonSerializableAddressBook {
 
             addressBook.addTask(task);
         }
+
+        Task.setUniversalTaskId(taskId);
         return addressBook;
     }
 
