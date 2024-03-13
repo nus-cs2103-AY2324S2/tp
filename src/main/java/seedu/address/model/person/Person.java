@@ -90,6 +90,23 @@ public class Person {
     }
 
     /**
+     * Compares this Person's name with the specified Person's name for order based on their names, ignoring case
+     * considerations.
+     *
+     * <p>Returns a negative integer, zero, or a positive integer as this Person's name is less than, equal to,
+     * or greater than the specified Person's name.
+     *
+     * <p>The comparison is based on lexicographic ordering of the names of the Persons.
+     * The comparison is case-insensitive.
+     *
+     * @param other The Person object whose name is to be compared.
+     * @return A negative integer if this Person's name is less than the specified Person's name,
+     *     zero if they are equal, or a positive integer if this Person's name is greater than the other Person's name.
+     */
+    public int compareName(Person other) {
+        return name.compare(other.getName());
+    }
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
