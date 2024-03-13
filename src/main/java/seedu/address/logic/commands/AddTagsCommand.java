@@ -27,7 +27,7 @@ import seedu.address.model.tag.Tag;
  */
 public class AddTagsCommand extends Command {
 
-    public static final String COMMAND_WORD = "addtags";
+    public static final String COMMAND_WORD = "addt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds one or more tags (single word) to a person identified "
