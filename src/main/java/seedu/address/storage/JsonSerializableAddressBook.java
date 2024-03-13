@@ -31,12 +31,9 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-                                       @JsonProperty("taskId") int taskId) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
-        this.tasks.addAll(tasks);
-        this.taskId = taskId;
+        taskId = Task.getUniversalId();
     }
 
     /**
