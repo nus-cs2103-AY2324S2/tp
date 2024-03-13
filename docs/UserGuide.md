@@ -132,6 +132,10 @@ Format: `find FIELD/ KEYWORD FIELD/ KEYWORD ...`
   * but `find n/Johnt/tfriends` will instead return an error since it assumes you are searching for.'Johnt/tfriends'
   * and there should not be non-alphabet characters in the 'KEYWORD' field.
 
+* Multiple of the same 'FIELD's will be treated as a **logical AND**.
+  * e.g. `find n/John n/Doe` will return all instances of John and Doe.
+  * e.g `find n/Ale n/le` will still return instances ["Alex Liew", "Alexis Lebrun", "Alec"]
+
 * 'KEYWORD' should **NOT** be empty and there should be at least one 'FIELD' and 'KEYWORD' pair.
   * e.g. `find n/ t/` and `find ` will **NOT** work.
   
