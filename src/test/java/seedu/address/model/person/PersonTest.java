@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.attribute.StringAttribute;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -150,5 +152,83 @@ public class PersonTest {
     @Test
     public void getUuid() {
         assertTrue(ALICE.getUuid() != null);
+    }
+    @Test
+    public void hasAttribute_noAttribute_false() {
+        assertFalse(ALICE.hasAttribute("no attribute"));
+    }
+    @Test
+    public void hasAttribute_hasAttribute_true() {
+        assertTrue(ALICE.hasAttribute("Name"));
+    }
+    @Test
+    public void getAttribute_noAttribute_null() {
+        try {
+            ALICE.getAttribute("no attribute");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void getAttribute_hasAttribute() {
+        assertTrue(ALICE.getAttribute("Name") != null);
+    }
+    @Test
+    public void getAttribute_noAttribute() {
+        try {
+            ALICE.getAttribute("no attribute");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void getAttribute_hasAttribute_correctAttribute() {
+        assertTrue(ALICE.getAttribute("Name").getName().equals("Name"));
+    }
+    @Test public void getAttribute_invalidName() {
+        try {
+            ALICE.getAttribute("");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void updateAttribute_noAttribute() {
+        try {
+            Person aliceCopy = new PersonBuilder(ALICE).build();
+            aliceCopy.updateAttribute(new StringAttribute("no attribute", "new value"));
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void updateAttribute_hasAttribute() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        aliceCopy.updateAttribute(new NameAttribute("Name", "new value"));
+        assertEquals("new value", aliceCopy.getAttribute("Name").getValueAsString());
+    }
+    @Test
+    public void updateAttribute_invalidName() {
+        try {
+            Person aliceCopy = new PersonBuilder(ALICE).build();
+            aliceCopy.updateAttribute(new StringAttribute("", "new value"));
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void deleteAttribute_noAttribute() {
+        try {
+            Person aliceCopy = new PersonBuilder(ALICE).build();
+            aliceCopy.deleteAttribute("no attribute");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void deleteAttribute_hasAttribute() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        aliceCopy.deleteAttribute("Name");
+        assertFalse(aliceCopy.hasAttribute("Name"));
     }
 }
