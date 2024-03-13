@@ -32,6 +32,7 @@ public class CompanyCommand extends Command {
     public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Removed the company tag from %1$s's contact";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Company command not implemented yet";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Oops, %1$s's contact does not exist.";
     private final String name;
     private final Company company;
 
@@ -50,12 +51,11 @@ public class CompanyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (name == null) {
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, name));
+        }
         model.updateFilteredPersonList(new NameEqualsKeywordPredicate(name));
         List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (lastShownList.size() <= 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
 
         Person personToEdit = lastShownList.get(0);
         Person editedPerson = new Person(
