@@ -41,7 +41,8 @@ public class SearchStudentCommandParser implements Parser<SearchStudentCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStudentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_EMAIL);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_EMAIL, PREFIX_STUDENTID,
+                PREFIX_MODULECODE, PREFIX_TUTORIALCLASS);
 
         Predicate<Person> predicate = null;
 
@@ -66,7 +67,7 @@ public class SearchStudentCommandParser implements Parser<SearchStudentCommand> 
             predicate = new NameContainsKeywordPredicate(keyword);
         }
         if (predicate == null) {
-            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStudentCommand.MESSAGE_USAGE));
         }
 
 
