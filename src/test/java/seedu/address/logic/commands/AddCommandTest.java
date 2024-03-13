@@ -22,7 +22,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TaskList;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -85,7 +87,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -145,6 +147,53 @@ public class AddCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns the user prefs' task list file path.
+         */
+        @Override
+        public Path getTaskListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Sets the user prefs' task list file path.
+         *
+         * @param addressBookFilePath
+         */
+        @Override
+        public void setTaskListFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns the task list.
+         */
+        @Override
+        public TaskList getTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Adds the given task.
+         * {@code task} must not already exist in the address book.
+         *
+         * @param task
+         */
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if a task has the same description as a {@code task} in the task list.
+         *
+         * @param task
+         */
+        @Override
+        public boolean hasTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
