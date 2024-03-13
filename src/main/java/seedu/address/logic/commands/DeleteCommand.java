@@ -21,7 +21,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by his email id used in the displayed person list.\n"
             + "Parameters: email id, which can include alphabets, numbers, and certain special characters.\n"
-            + "Example: " + COMMAND_WORD + "johndoe46";
+            + "Example: " + COMMAND_WORD + " /id johndoe46";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
     public static final String MESSAGE_ID_NOT_FOUND = "User ID %1$s not found. Consider checking database to ensure the correct ID has been entered.";
