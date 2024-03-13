@@ -416,13 +416,13 @@ ___
 ***Postconditions:*** The selected contact is removed from the address book.
 
 ***Alternate Flows:*** If the user cancels the deletion, no action is taken.
-   
+
 ___
 
 **Use Case: Edit Contact**
 
 ***Preconditions:*** User is logged into the system and the address book contains at least one contact.
-   
+
 **MSS**
 
 1. User requests to edit a contact and selects one from the list.
@@ -434,7 +434,8 @@ ___
 
 ***Postconditions:*** The selected contact's information is updated in the address book.
 
-***Alternate Flows:*** If the updated information fails validation, the system notifies the user and requests correct data.
+***Alternate Flows:*** If the updated information fails validation, the system notifies the user and requests correct
+data.
 
 ___
 
