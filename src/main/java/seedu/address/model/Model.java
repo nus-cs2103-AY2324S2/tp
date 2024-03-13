@@ -77,8 +77,35 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns the user prefs' task list file path.
+     */
+    Path getTaskListFilePath();
+
+    /**
+     * Sets the user prefs' task list file path.
+     */
+    void setTaskListFilePath(Path addressBookFilePath);
+
+    /**
+     * Replaces task list data with the data in {@code taskList}.
+     */
+    static void setTaskList(TaskList taskList) {}
+
+    /**
+     * Returns the task list.
+     */
+    TaskList getTaskList();
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the address book.
+     */
     void addTask(Task task);
 
+    /**
+     * Returns true if a task has the same description as a {@code task} in the task list.
+     */
     boolean hasTask(Task task);
 
     /** Returns an unmodifiable view of the filtered person list */

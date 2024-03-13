@@ -15,7 +15,7 @@ import seedu.address.model.task.Task;
 /**
  * An Immutable TaskList that is serializable to JSON format.
  */
-@JsonRootName(value = "TaskList")
+@JsonRootName(value = "tasklist")
 class JsonSerializableTaskList {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
@@ -26,7 +26,7 @@ class JsonSerializableTaskList {
      * Constructs a {@code JsonSerializableTaskList} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableTaskList(@JsonProperty("description") List<JsonAdaptedTask> tasks) {
+    public JsonSerializableTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.tasks.addAll(tasks);
     }
 
@@ -46,15 +46,15 @@ class JsonSerializableTaskList {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public TaskList toModelType() throws IllegalValueException {
-        TaskList TaskList = new TaskList();
+        TaskList taskList = new TaskList();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
-            if (TaskList.hasTask(task)) {
+            if (taskList.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
-            TaskList.addTask(task);
+            taskList.addTask(task);
         }
-        return TaskList;
+        return taskList;
     }
 
 }

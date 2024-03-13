@@ -28,9 +28,10 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, TaskList taskList, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, taskList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", task list: " + taskList
+                + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.taskList = taskList;
@@ -71,10 +72,29 @@ public class ModelManager implements Model {
         return userPrefs.getAddressBookFilePath();
     }
 
+    /**
+     * Returns the user prefs' task list file path.
+     */
+    @Override
+    public Path getTaskListFilePath() {
+        return userPrefs.getTaskListFilePath();
+    }
+
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    /**
+     * Sets the user prefs' task list file path.
+     *
+     * @param taskListFilePath
+     */
+    @Override
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireNonNull(taskListFilePath);
+        userPrefs.setTaskListFilePath(taskListFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -124,6 +144,23 @@ public class ModelManager implements Model {
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskList.hasTask(task);
+    }
+
+    /**
+     * Replaces task list data with the data in {@code taskList}.
+     *
+     * @param tasks
+     */
+    public void setTaskList(TaskList tasks) {
+        taskList.setTaskList(tasks);
+    }
+
+    /**
+     * Returns the task list.
+     */
+    @Override
+    public TaskList getTaskList() {
+        return taskList;
     }
 
     //=========== Filtered Person List Accessors =============================================================

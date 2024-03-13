@@ -25,9 +25,11 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TaskListStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -59,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
+        storage = new StorageManager(addressBookStorage, taskListStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -74,11 +77,13 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getAddressBookFilePath() + ", "
+                + storage.getTaskListFilePath());
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        TaskList taskList = new TaskList();
+        Optional<TaskList> taskListOptional;
+        TaskList initialTasks;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -92,7 +97,19 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, taskList, userPrefs);
+        try {
+            taskListOptional = storage.readTaskList();
+            if (!taskListOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getTaskListFilePath());
+            }
+            initialTasks = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getTaskListFilePath() + " could not be loaded."
+                    + " Will be starting with an empty task list.");
+            initialTasks = new TaskList();
+        }
+
+        return new ModelManager(initialData, initialTasks, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -60,8 +60,8 @@ public class JsonTaskListStorage implements TaskListStorage {
     }
 
     @Override
-    public void saveTaskList(TaskList TaskList) throws IOException {
-        saveTaskList(TaskList, filePath);
+    public void saveTaskList(TaskList taskList) throws IOException {
+        saveTaskList(taskList, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonTaskListStorage implements TaskListStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTaskList(TaskList TaskList, Path filePath) throws IOException {
-        requireNonNull(TaskList);
+    public void saveTaskList(TaskList taskList, Path filePath) throws IOException {
+        requireNonNull(taskList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTaskList(TaskList), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaskList(taskList), filePath);
     }
 
 }
