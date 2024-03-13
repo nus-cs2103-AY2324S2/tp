@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
-
 import java.io.FileNotFoundException;
+
+import org.junit.jupiter.api.Test;
 
 public class StringUtilTest {
 
@@ -56,7 +56,8 @@ public class StringUtilTest {
 
     @Test
     public void containsStartingWordIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsStartingWordIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, () -> StringUtil.containsStartingWordIgnoreCase(
+                "typical sentence", null));
     }
 
     @Test
@@ -73,7 +74,8 @@ public class StringUtilTest {
 
     @Test
     public void containsStartingWordIgnoreCase_nullSentence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsStartingWordIgnoreCase(null, "abc"));
+        assertThrows(NullPointerException.class, () -> StringUtil.containsStartingWordIgnoreCase(null,
+                "abc"));
     }
 
     /*
@@ -110,16 +112,24 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsStartingWordIgnoreCase("    ", "123"));
 
         // Matches a partial word only and starts with query word
-        assertTrue(StringUtil.containsStartingWordIgnoreCase("anna betty carol", "car")); // Query word starts with sentence word
-        assertFalse(StringUtil.containsStartingWordIgnoreCase("anna betty carol", "na")); // Query word does not start with sentence word
-        assertFalse(StringUtil.containsStartingWordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+        assertTrue(StringUtil.containsStartingWordIgnoreCase("anna betty carol", "car"));
+        // Query word starts with sentence word
+        assertFalse(StringUtil.containsStartingWordIgnoreCase("anna betty carol", "na"));
+        // Query word does not start with sentence word
+        assertFalse(StringUtil.containsStartingWordIgnoreCase("aaa bbb ccc", "bbbb"));
+        // Query word bigger than sentence word
 
         // Matches word in the sentence, different upper/lower case letters
-        assertTrue(StringUtil.containsStartingWordIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
-        assertTrue(StringUtil.containsStartingWordIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
-        assertTrue(StringUtil.containsStartingWordIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
-        assertTrue(StringUtil.containsStartingWordIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
-        assertTrue(StringUtil.containsStartingWordIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+        assertTrue(StringUtil.containsStartingWordIgnoreCase("aaa bBb ccc", "Bbb"));
+        // First word (boundary case)
+        assertTrue(StringUtil.containsStartingWordIgnoreCase("aaa bBb ccc@1", "CCc@1"));
+        // Last word (boundary case)
+        assertTrue(StringUtil.containsStartingWordIgnoreCase("  AAA   bBb   ccc  ", "aaa"));
+        // Sentence has extra spaces
+        assertTrue(StringUtil.containsStartingWordIgnoreCase("Aaa", "aaa"));
+        // Only one word in sentence (boundary case)
+        assertTrue(StringUtil.containsStartingWordIgnoreCase("aaa bbb ccc", "  ccc  "));
+        // Leading/trailing spaces
 
         // Matches multiple words in sentence
         assertTrue(StringUtil.containsStartingWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
