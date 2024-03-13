@@ -82,23 +82,20 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    //edit command test
-
-
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(TAG_DESC_NO_REPLY).withJobDescription(JOB_DESCRIPTION_DESC_AMY)
-                .withInterviewDate(INTERVIEW_DATE_DESC_AMY).withInternDuration(INTERN_DURATION_DESC_AMY)
-                .withSalary(SALARY_DESC_AMY).build();
+                .withTags(VALID_TAG_NO_REPLY).withJobDescription(VALID_JOB_DESCRIPTION_AMY)
+                .withInterviewDate(VALID_INTERVIEW_DATE_AMY).withInternDuration(VALID_INTERN_DURATION_AMY)
+                .withSalary(VALID_SALARY_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(TAG_DESC_NO_REPLY).withJobDescription(JOB_DESCRIPTION_DESC_BOB)
-                .withInterviewDate(INTERVIEW_DATE_DESC_BOB).withInternDuration(INTERN_DURATION_DESC_BOB)
-                .withSalary(SALARY_DESC_BOB).build();
+                .withTags(VALID_TAG_NO_REPLY).withJobDescription(VALID_JOB_DESCRIPTION_BOB)
+                .withInterviewDate(VALID_INTERVIEW_DATE_BOB).withInternDuration(VALID_INTERN_DURATION_BOB)
+                .withSalary(VALID_SALARY_BOB).build();
     }
 
 
