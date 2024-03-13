@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
-import java.time.DayOfWeek;
-import java.util.HashMap;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.DayOfWeek;
+import java.util.HashMap;
 
 /**
  * Represents a Person's appointment in the address book.
