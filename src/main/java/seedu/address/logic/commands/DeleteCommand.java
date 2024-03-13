@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + "johndoe46";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_ID_NOT_FOUND = "No person has the id you provide!";
+    public static final String MESSAGE_ID_NOT_FOUND = "User ID %1$s not found. Consider checking database to ensure the correct ID has been entered.";
 
     private final Id targetId;
 
@@ -49,7 +49,7 @@ public class DeleteCommand extends Command {
         }
 
         if (!isAnyRecordDeleted) {
-            throw new CommandException(MESSAGE_ID_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_ID_NOT_FOUND, this.targetId.toString()));
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedInformation));
