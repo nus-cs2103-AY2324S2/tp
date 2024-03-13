@@ -6,6 +6,6 @@ package seedu.address.model.internship.exceptions;
  */
 public class DuplicateInternshipException extends RuntimeException {
     public DuplicateInternshipException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate internships");
     }
 }
