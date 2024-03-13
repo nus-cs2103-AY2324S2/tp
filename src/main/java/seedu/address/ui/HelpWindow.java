@@ -11,13 +11,19 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 import static seedu.address.logic.commands.AddCommand.ADD_HELP_MESSAGE;
+import static seedu.address.logic.commands.ClearCommand.CLEAR_HELP_MESSAGE;
+import static seedu.address.logic.commands.DeleteCommand.DELETE_HELP_MESSAGE;
+import static seedu.address.logic.commands.EditCommand.EDIT_HELP_MESSAGE;
+import static seedu.address.logic.commands.ExitCommand.EXIT_HELP_MESSAGE;
+import static seedu.address.logic.commands.FindCommand.FIND_HELP_MESSAGE;
+import static seedu.address.logic.commands.ListCommand.LIST_HELP_MESSAGE;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-w10-1.github.io/tp/";
     public static final String HELP_MESSAGE = "For more information, you may refer to the user guide: "
             + "\n" + USERGUIDE_URL;
 
@@ -37,7 +43,14 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(ADD_HELP_MESSAGE + "\n" + HELP_MESSAGE);
+        helpMessage.setText(ADD_HELP_MESSAGE + "\n"
+                + DELETE_HELP_MESSAGE + "\n"
+                + CLEAR_HELP_MESSAGE + "\n"
+                + EDIT_HELP_MESSAGE + "\n"
+                + LIST_HELP_MESSAGE + "\n"
+                + FIND_HELP_MESSAGE + "\n"
+                + EXIT_HELP_MESSAGE + "\n"
+                + HELP_MESSAGE);
     }
 
     /**
