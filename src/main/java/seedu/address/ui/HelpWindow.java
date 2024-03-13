@@ -1,5 +1,13 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.AddCommand.ADD_HELP_MESSAGE;
+import static seedu.address.logic.commands.ClearCommand.CLEAR_HELP_MESSAGE;
+import static seedu.address.logic.commands.DeleteCommand.DELETE_HELP_MESSAGE;
+import static seedu.address.logic.commands.EditCommand.EDIT_HELP_MESSAGE;
+import static seedu.address.logic.commands.ExitCommand.EXIT_HELP_MESSAGE;
+import static seedu.address.logic.commands.FindCommand.FIND_HELP_MESSAGE;
+import static seedu.address.logic.commands.ListCommand.LIST_HELP_MESSAGE;
+
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -9,14 +17,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-
-import static seedu.address.logic.commands.AddCommand.ADD_HELP_MESSAGE;
-import static seedu.address.logic.commands.ClearCommand.CLEAR_HELP_MESSAGE;
-import static seedu.address.logic.commands.DeleteCommand.DELETE_HELP_MESSAGE;
-import static seedu.address.logic.commands.EditCommand.EDIT_HELP_MESSAGE;
-import static seedu.address.logic.commands.ExitCommand.EXIT_HELP_MESSAGE;
-import static seedu.address.logic.commands.FindCommand.FIND_HELP_MESSAGE;
-import static seedu.address.logic.commands.ListCommand.LIST_HELP_MESSAGE;
 
 /**
  * Controller for a help page
