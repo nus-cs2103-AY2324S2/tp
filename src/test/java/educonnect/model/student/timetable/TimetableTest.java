@@ -68,7 +68,5 @@ public class TimetableTest {
                 new Period("period1a",
                         LocalTime.of(14, 0, 0),
                         LocalTime.of(16, 0, 0))));
-
-        System.out.println(timetable5);
     }
 }
