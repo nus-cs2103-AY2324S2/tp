@@ -61,8 +61,8 @@ public class DeleteAptCommandTest {
         int invalidIndex = 999;
         DeleteAptCommand deleteAptCommand = new DeleteAptCommand(invalidIndex, "John Doe");
 
-        assertThrows(CommandException.class, "OOPS! The appointment list is empty.",
-                () -> deleteAptCommand.execute(modelStub));
+        assertThrows(CommandException.class, "OOPS! The appointment list is empty.", (
+        ) -> deleteAptCommand.execute(modelStub));
     }
 
     /**

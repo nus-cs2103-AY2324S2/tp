@@ -19,10 +19,10 @@ import vitalConnect.commons.core.GuiSettings;
 import vitalConnect.logic.Messages;
 import vitalConnect.logic.commands.exceptions.CommandException;
 import vitalConnect.model.Appointment;
+import vitalConnect.model.Clinic;
 import vitalConnect.model.Model;
 import vitalConnect.model.ReadOnlyClinic;
 import vitalConnect.model.ReadOnlyUserPrefs;
-import vitalConnect.model.Clinic;
 import vitalConnect.model.person.Person;
 import vitalConnect.testutil.PersonBuilder;
 
