@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.UUID;
 
@@ -31,9 +32,19 @@ public class AppointmentTest {
     @Test
     public void isSameAppointment() {
         AppointmentTime appointmentTime = new AppointmentTime("10/02/2024 11am-2pm");
+        AppointmentTime otherAppointmentTime = new AppointmentTime("11/02/2024 11am-2pm");
+
         Appointment appointment = new Appointment(ALICE, appointmentTime);
+        Appointment otherPersonAppointment = new Appointment(BOB, appointmentTime);
+        Appointment otherTimeAppointment = new Appointment(ALICE, otherAppointmentTime);
         // same object -> returns true
         assertTrue(appointment.equals(appointment));
+
+        // different people -> returns false
+        assertFalse(appointment.equals(otherPersonAppointment));
+
+        // different time -> returns false
+        assertFalse(appointment.equals(otherTimeAppointment));
 
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
