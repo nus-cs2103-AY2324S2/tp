@@ -8,8 +8,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.Person;
+
 
 /**
  * Deletes a person identified using the email id from the address book.
@@ -24,7 +25,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " /id johndoe46";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_ID_NOT_FOUND = "User ID %1$s not found. Consider checking database to ensure the correct ID has been entered.";
+    public static final String MESSAGE_ID_NOT_FOUND = "User ID %1$s not found. "
+           + "Consider checking database to ensure the correct ID has been entered.";
 
     private final Id targetId;
 
@@ -39,7 +41,7 @@ public class DeleteCommand extends Command {
 
         boolean isAnyRecordDeleted = false;
         String deletedInformation = "";
-        for(Person person : lastShownList) {
+        for (Person person : lastShownList) {
             if (person.getId().equals(this.targetId)) {
                 Person personToDelete = person;
                 model.deletePerson(personToDelete);

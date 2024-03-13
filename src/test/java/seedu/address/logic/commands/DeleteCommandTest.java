@@ -1,27 +1,23 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIds.ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIds.ID_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
-
-import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -35,7 +31,7 @@ public class DeleteCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person personToDelete = null;
-        for(Person person : lastShownList) {
+        for (Person person : lastShownList) {
             if (person.getId().equals(ID_FIRST_PERSON)) {
                 personToDelete = person;
             }
