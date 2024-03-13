@@ -69,7 +69,31 @@ public class CreateAptCommand extends Command {
 
         } catch (DateTimeParseException e) {
             throw new CommandException("OOPS! The appointment cannot be created "
-                    + "as the time is not in the correct format.");
+                    + "as the time is empty or not in the correct format.");
         }
+    }
+
+    /**
+     * Returns the name of the patient associated with this appointment.
+     * <p>
+     * This method provides access to the patient's name stored in the appointment object.
+     *
+     * @return The patient's name as a {@code String}.
+     */
+    public String getPatientName() {
+        return patientName;
+    }
+
+    /**
+     * Returns the date and time of the appointment as a string.
+     * <p>
+     * This method provides access to the date and time of the appointment stored as a string
+     * in the format "dd/MM/yyyy HHmm". It is used primarily for displaying the appointment's
+     * scheduled date and time to the user in a readable format.
+     *
+     * @return The date and time of the appointment as a {@code String} in the format "dd/MM/yyyy HHmm".
+     */
+    public String getDateTimeStr() {
+        return dateTimeStr;
     }
 }

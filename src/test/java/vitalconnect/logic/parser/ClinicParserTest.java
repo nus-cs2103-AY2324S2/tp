@@ -15,12 +15,15 @@ import org.junit.jupiter.api.Test;
 
 import vitalconnect.logic.commands.AddCommand;
 import vitalconnect.logic.commands.ClearCommand;
+import vitalconnect.logic.commands.CreateAptCommand;
+import vitalconnect.logic.commands.DeleteAptCommand;
 import vitalconnect.logic.commands.DeleteCommand;
 import vitalconnect.logic.commands.EditCommand;
 import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import vitalconnect.logic.commands.ExitCommand;
 import vitalconnect.logic.commands.FindCommand;
 import vitalconnect.logic.commands.HelpCommand;
+import vitalconnect.logic.commands.ListAptCommand;
 import vitalconnect.logic.commands.ListCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
 import vitalconnect.model.person.Person;
@@ -28,6 +31,7 @@ import vitalconnect.model.person.identificationinformation.NameContainsKeywordsP
 import vitalconnect.testutil.EditPersonDescriptorBuilder;
 import vitalconnect.testutil.PersonBuilder;
 import vitalconnect.testutil.PersonUtil;
+
 
 public class ClinicParserTest {
 
@@ -97,5 +101,34 @@ public class ClinicParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_createApt() throws Exception {
+        String patientName = "John Doe";
+        String dateTimeStr = "02/02/2024 1330";
+        String inputCommand = CreateAptCommand.COMMAND_WORD + " " + patientName + " /time " + dateTimeStr;
+
+        CreateAptCommand expectedCommand = new CreateAptCommand(patientName, dateTimeStr);
+        CreateAptCommand parsedCommand = (CreateAptCommand) parser.parseCommand(inputCommand);
+
+        assertEquals(expectedCommand.getPatientName(), parsedCommand.getPatientName());
+        assertEquals(expectedCommand.getDateTimeStr(), parsedCommand.getDateTimeStr());
+    }
+
+    @Test
+    public void parseCommand_listApt() throws Exception {
+        assertTrue(parser.parseCommand(ListAptCommand.COMMAND_WORD) instanceof ListAptCommand);
+        assertTrue(parser.parseCommand(ListAptCommand.COMMAND_WORD + " 3") instanceof ListAptCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteApt() throws Exception {
+        String input = DeleteAptCommand.COMMAND_WORD + " 1 /name John Doe";
+        DeleteAptCommand command = (DeleteAptCommand) parser.parseCommand(input);
+        int resIndex = command.getIndex();
+        String resName = command.getPatientName();
+        assertEquals(1, resIndex);
+        assertEquals("John Doe", resName);
     }
 }

@@ -71,4 +71,29 @@ public class DeleteAptCommand extends Command {
                 patientName,
                 appointmentToDelete.getDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu HH:mm"))));
     }
+
+    /**
+     * Gets the index of the appointment to be deleted.
+     * <p>
+     * This index is used to identify the specific appointment in the list of appointments
+     * displayed to the user. It is based on a 1-based indexing system.
+     *
+     * @return The index of the appointment to be deleted.
+     */
+    public int getIndex() {
+        return index;
+    }
+
+    /**
+     * Gets the name of the patient associated with the appointment to be deleted.
+     * <p>
+     * This name is used to ensure that the correct appointment is deleted, especially
+     * in cases where there may be multiple appointments at the same index across
+     * different instances of lists displayed to the user.
+     *
+     * @return The name of the patient whose appointment is to be deleted.
+     */
+    public String getPatientName() {
+        return patientName;
+    }
 }
