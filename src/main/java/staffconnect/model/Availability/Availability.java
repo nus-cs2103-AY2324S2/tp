@@ -1,4 +1,4 @@
-package staffconnect.model.person;
+package staffconnect.model.Availability;
 
 import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
@@ -61,7 +61,7 @@ public class Availability {
 
     @Override
     public String toString() {
-        return value;
+        return '[' + value + ']';
     }
 
     @Override
