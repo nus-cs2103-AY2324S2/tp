@@ -73,8 +73,8 @@ public class FindAndExportCommand extends Command {
             predicate = predicate.and(person -> person.getName().fullName.toLowerCase().contains(name.toLowerCase()));
         }
         if (address != null && !address.isBlank()) {
-            predicate = predicate.and(person -> person.getAddress().value.
-                    toLowerCase().contains(address.toLowerCase()));
+            predicate = predicate.and(person -> person.getAddress().value
+                    .toLowerCase().contains(address.toLowerCase()));
         }
 
         return predicate;
