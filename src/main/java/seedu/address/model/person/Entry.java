@@ -1,15 +1,19 @@
 package seedu.address.model.person;
 
+/**
+ * Entry Class
+ */
 public class Entry {
+    public static final String MESSAGE_CONSTRAINTS = "Category or description cannot be empty!";
     private String category;
 
     private String description;
 
-    public static final String VALIDATION_REGEX = "*";
-
-    public static final String MESSAGE_CONSTRAINTS = "Category or description cannot be empty!";
-
-
+    /**
+     * Constructor for entry class
+     * @param category category
+     * @param description description
+     */
     public Entry(String category, String description) {
         this.category = category;
         this.description = description;
@@ -36,6 +40,12 @@ public class Entry {
         return category + ": " + description;
     }
 
+    /**
+     * checks if entry is valid
+     * @param category
+     * @param description
+     * @return
+     */
     public static boolean isValid(String category, String description) {
         if (description.trim().equals("")) {
             return false;
