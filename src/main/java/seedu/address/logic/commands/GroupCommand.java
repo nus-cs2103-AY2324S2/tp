@@ -1,21 +1,36 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.group.Group;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Tag;
-
-import java.util.*;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_GROUP_PERSON;
 import static seedu.address.logic.Messages.MESSAGE_GROUP_PERSON_INVALID;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-public class GroupCommand extends Command{
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.NusId;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Tag;
+
+
+
+
+/**
+ * assigns a group to an existing person in the address book.
+ */
+public class GroupCommand extends Command {
 
     public static final String COMMAND_WORD = "group";
 
@@ -34,7 +49,10 @@ public class GroupCommand extends Command{
 
 
 
-
+    /**
+     * @param nusid of the person in the filtered person list to group
+     * @param groupPersonDescriptor details to group the person with
+     */
     public GroupCommand(NusId nusid, GroupPersonDescriptor groupPersonDescriptor) {
         requireNonNull(nusid);
         toGroup = nusid;
@@ -48,11 +66,11 @@ public class GroupCommand extends Command{
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
-        Person personToGroup = lastShownList.stream().filter(person -> person.getNusId().equals(toGroup)).
-                findFirst().orElse(null);
+        Person personToGroup = lastShownList.stream().filter(person -> person.getNusId().equals(toGroup))
+                        .findFirst().orElse(null);
 
         //System.out.println(toGroup);
-        if(personToGroup == null){
+        if (personToGroup == null) {
             throw new CommandException(MESSAGE_GROUP_PERSON_INVALID);
         }
         Person groupedPerson = createGroupedPerson(personToGroup, groupPersonDescriptor);
