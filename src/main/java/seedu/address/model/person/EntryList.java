@@ -25,4 +25,8 @@ public class EntryList {
         }
         return result;
     }
+
+    public int size() {
+        return entryList.size();
+    }
 }

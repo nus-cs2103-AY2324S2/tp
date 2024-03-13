@@ -93,5 +93,9 @@ public class Person {
                 .add("tags", tags)
                 .toString();
     }
+    public EntryList getList() {
+        return entryList;
+    }
+
 
 }
