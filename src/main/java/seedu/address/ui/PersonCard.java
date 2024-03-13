@@ -10,7 +10,6 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Entry;
 import seedu.address.model.person.EntryList;
 import seedu.address.model.person.Person;
-import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
