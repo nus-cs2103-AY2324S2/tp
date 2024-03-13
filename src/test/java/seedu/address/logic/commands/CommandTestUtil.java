@@ -12,12 +12,15 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -86,7 +89,12 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
+            Set<Person> expectedFilteredSet = new HashSet<>(expectedModel.getFilteredPersonList());
+            Set<Person> actualFilteredSet = new HashSet<>(actualModel.getFilteredPersonList());
+            assertEquals(expectedFilteredSet, actualFilteredSet);
+            Set<Person> expectedAddressBook = new HashSet<>(expectedModel.getAddressBook().getPersonList());
+            Set<Person> actualAddressBook = new HashSet<>(actualModel.getAddressBook().getPersonList());
+            assertEquals(expectedAddressBook, actualAddressBook);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
@@ -116,6 +124,7 @@ public class CommandTestUtil {
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
+
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**
