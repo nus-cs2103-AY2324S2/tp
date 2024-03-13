@@ -86,11 +86,11 @@ public class EditCommand extends Command {
         }
         model.deletePerson(personToEdit);
         if (model.hasPerson(editedPerson)) {
-            model.addPerson(personToEdit);
+            model.addPersonForEdit(personToEdit);
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(editedPerson);
+        model.addPersonForEdit(editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
