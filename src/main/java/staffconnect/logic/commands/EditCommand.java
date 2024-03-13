@@ -1,12 +1,12 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static staffconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -22,12 +22,12 @@ import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
-import staffconnect.model.person.Address;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.Phone;
+import staffconnect.model.person.Venue;
 import staffconnect.model.tag.Tag;
 
 /**
@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_VENUE + "VENUE] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -101,11 +101,11 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Venue updatedVenue = editPersonDescriptor.getVenue().orElse(personToEdit.getVenue());
         Module updatedModule = editPersonDescriptor.getModule().orElse(personToEdit.getModule());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedModule, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedVenue, updatedModule, updatedTags);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Venue venue;
         private Module module;
         private Set<Tag> tags;
 
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setVenue(toCopy.venue);
             setModule(toCopy.module);
             setTags(toCopy.tags);
         }
@@ -163,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, module, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, venue, module, tags);
         }
 
         public void setName(Name name) {
@@ -190,12 +190,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setVenue(Venue venue) {
+            this.venue = venue;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Venue> getVenue() {
+            return Optional.ofNullable(venue);
         }
 
         public void setModule(Module module) {
@@ -238,7 +238,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(venue, otherEditPersonDescriptor.venue)
                     && Objects.equals(module, otherEditPersonDescriptor.module)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
@@ -249,7 +249,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("address", address)
+                    .add("venue", venue)
                     .add("module", module)
                     .add("tags", tags)
                     .toString();

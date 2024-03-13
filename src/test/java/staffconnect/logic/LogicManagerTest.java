@@ -3,11 +3,11 @@ package staffconnect.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static staffconnect.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static staffconnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static staffconnect.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static staffconnect.logic.commands.CommandTestUtil.VENUE_DESC_AMY;
 import static staffconnect.testutil.Assert.assertThrows;
 import static staffconnect.testutil.TypicalPersons.AMY;
 
@@ -167,7 +167,7 @@ public class LogicManagerTest {
 
         // Triggers the saveStaffBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MODULE_DESC_AMY;
+                + EMAIL_DESC_AMY + VENUE_DESC_AMY + MODULE_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

@@ -1,16 +1,14 @@
 package staffconnect.logic.parser;
 
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static staffconnect.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static staffconnect.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static staffconnect.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static staffconnect.logic.commands.CommandTestUtil.INVALID_VENUE_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -18,7 +16,6 @@ import static staffconnect.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static staffconnect.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -26,11 +23,14 @@ import static staffconnect.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static staffconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_VENUE_AMY;
+import static staffconnect.logic.commands.CommandTestUtil.VENUE_DESC_AMY;
+import static staffconnect.logic.commands.CommandTestUtil.VENUE_DESC_BOB;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static staffconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static staffconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -43,11 +43,11 @@ import staffconnect.commons.core.index.Index;
 import staffconnect.logic.Messages;
 import staffconnect.logic.commands.EditCommand;
 import staffconnect.logic.commands.EditCommand.EditPersonDescriptor;
-import staffconnect.model.person.Address;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
+import staffconnect.model.person.Venue;
 import staffconnect.model.tag.Tag;
 import staffconnect.testutil.EditPersonDescriptorBuilder;
 
@@ -92,7 +92,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_VENUE_DESC, Venue.MESSAGE_CONSTRAINTS); // invalid venue
         assertParseFailure(parser, "1" + INVALID_MODULE_DESC, Module.MESSAGE_CONSTRAINTS); // invalid module
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -107,7 +107,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
-                + VALID_ADDRESS_AMY + VALID_PHONE_AMY + VALID_MODULE_AMY,
+                + VALID_VENUE_AMY + VALID_PHONE_AMY + VALID_MODULE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -115,10 +115,10 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + MODULE_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + VENUE_DESC_AMY + NAME_DESC_AMY + MODULE_DESC_AMY + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withVenue(VALID_VENUE_AMY)
                 .withModule(VALID_MODULE_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -158,9 +158,9 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        // venue
+        userInput = targetIndex.getOneBased() + VENUE_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withVenue(VALID_VENUE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -194,23 +194,23 @@ public class EditCommandParserTest {
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
         // mulltiple valid fields repeated
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + MODULE_DESC_AMY + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY
+        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + VENUE_DESC_AMY + EMAIL_DESC_AMY
+                + MODULE_DESC_AMY + TAG_DESC_FRIEND + PHONE_DESC_AMY + VENUE_DESC_AMY
                 + EMAIL_DESC_AMY + MODULE_DESC_AMY + TAG_DESC_FRIEND + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND;
+                + VENUE_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_MODULE));
+                    PREFIX_VENUE, PREFIX_MODULE));
 
         // multiple invalid values
-        userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC
-                + INVALID_EMAIL_DESC + INVALID_MODULE_DESC + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC
+        userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_VENUE_DESC
+                + INVALID_EMAIL_DESC + INVALID_MODULE_DESC + INVALID_PHONE_DESC + INVALID_VENUE_DESC
                 + INVALID_EMAIL_DESC + INVALID_MODULE_DESC;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_MODULE));
+                    PREFIX_VENUE, PREFIX_MODULE));
     }
 
     @Test
