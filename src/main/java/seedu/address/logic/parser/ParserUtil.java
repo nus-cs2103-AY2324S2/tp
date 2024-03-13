@@ -2,18 +2,18 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Telegram;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,29 +96,51 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String classGroup} into an {@code ClassGroup}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code classGroup} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static ClassGroup parseClassGroup(String classGroup) throws ParseException {
+        requireNonNull(classGroup);
+        String trimmedClassGroup = classGroup.trim();
+        if (!ClassGroup.isValidClassGroup(trimmedClassGroup)) {
+            throw new ParseException(ClassGroup.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new ClassGroup(trimmedClassGroup);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String telegram} into an {@code Telegram}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code telegram} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Optional<Telegram> parseTelegram(String telegram) throws ParseException {
+        if (telegram.isEmpty()) {
+            return Optional.of(Telegram.EMPTY);
         }
-        return tagSet;
+        String trimmedTelegram = telegram.trim();
+        if (!Telegram.isValidTelegram(trimmedTelegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        return Optional.of(new Telegram(trimmedTelegram));
+    }
+
+    /**
+     * Parses a {@code String github} into an {@code Github}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code github} is invalid.
+     */
+    public static Optional<Github> parseGithub(String github) throws ParseException {
+        if (github.isEmpty()) {
+            return Optional.of(Github.EMPTY);
+        }
+        String trimmedGithub = github.trim();
+        if (!Github.isValidGithub(trimmedGithub)) {
+            throw new ParseException(ClassGroup.MESSAGE_CONSTRAINTS);
+        }
+        return Optional.of(new Github(trimmedGithub));
     }
 }
