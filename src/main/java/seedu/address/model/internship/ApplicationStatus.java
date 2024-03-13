@@ -67,4 +67,11 @@ public class ApplicationStatus {
     public int hashCode() {
         return applicationStatus.hashCode();
     }
+
+    /**
+     * Returns the status of the application.
+     */
+    public StatusEnum getStatus() {
+        return applicationStatus;
+    }
 }

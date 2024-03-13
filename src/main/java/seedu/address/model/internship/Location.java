@@ -66,4 +66,10 @@ public class Location {
         return location.hashCode();
     }
 
+    /**
+     * Returns the location of the internship.
+     */
+    public LocationEnum getLocation() {
+        return location;
+    }
 }
