@@ -19,12 +19,13 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort all persons by the attribute specified "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: ATTRIBUTE [MORE_ATTRIBUTE]...\n"
-            + "Example: " + COMMAND_WORD + " n p";
-
-    public static final String MESSAGE_UNIDENTIFIED_KEYWORD = "Use the following shorthands:\n"
-            + "n: Name\n"
-            + "p: Phone Number";
+            + "Parameters: ATTRIBUTE\n"
+            + "NAME: [n] "
+            + "PHONE: [p] "
+            // + "MODULE: [m] "
+            // + "FACULTY: [f] "
+            + "VENUE: [v] "
+            + "Example: " + COMMAND_WORD + " n";
 
     private final Comparator<Person> comparator;
 

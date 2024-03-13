@@ -33,6 +33,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Person> parseComparatorForKeywords(String keyword) throws ParseException {
         switch (keyword) {
+        case "N":
         case "n":
             return new Comparator<Person>() {
                 @Override
@@ -40,6 +41,7 @@ public class SortCommandParser implements Parser<SortCommand> {
                     return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
                 }
             };
+        case "P":
         case "p":
             return new Comparator<Person>() {
                 @Override
@@ -47,8 +49,16 @@ public class SortCommandParser implements Parser<SortCommand> {
                     return person1.getPhone().toString().compareToIgnoreCase(person2.getPhone().toString());
                 }
             };
+        case "V":
+        case "v":
+            return new Comparator<Person>() {
+                @Override
+                public int compare(Person person1, Person person2) {
+                    return person1.getVenue().toString().compareToIgnoreCase(person2.getVenue().toString());
+                }
+            };
         default:
-            throw new ParseException(SortCommand.MESSAGE_UNIDENTIFIED_KEYWORD);
+            throw new ParseException(SortCommand.MESSAGE_USAGE);
         }
     }
 }
