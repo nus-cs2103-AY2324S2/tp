@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
