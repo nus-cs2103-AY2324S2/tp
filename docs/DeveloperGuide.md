@@ -284,8 +284,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * is a real estate agent that wants to store relevant information about clients
 * able to store additional notes about contacts
 
-**Value proposition**: 
-* manage contacts faster than a typical mouse/GUI driven applications. 
+**Value proposition**:
+* manage contacts faster than a typical mouse/GUI driven applications.
 * storing of information tailored to real-estate agents
 
 
