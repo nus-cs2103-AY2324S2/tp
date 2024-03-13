@@ -22,6 +22,24 @@ public class LastMetTest {
     }
 
     @Test
+    public void getIsOverdue_isOverdueTrue_returnsCorrectIsOverdue() {
+        LastMet.setLastMetDuration(90);
+        LocalDate lastMetDate = LocalDate.now().minusDays(100);
+        LastMet lastMet = new LastMet(lastMetDate);
+        boolean getIsOverdue = lastMet.getIsOverdue();
+        assertEquals(true, getIsOverdue);
+    }
+
+    @Test
+    public void getIsOverdue_isOverdueFalse_returnsCorrectIsOverdue() {
+        LastMet.setLastMetDuration(90);
+        LocalDate lastMetDate = LocalDate.now().minusDays(50);
+        LastMet lastMet = new LastMet(lastMetDate);
+        boolean getIsOverdue = lastMet.getIsOverdue();
+        assertEquals(false, getIsOverdue);
+    }
+
+    @Test
     public void getPeriodGap_validLastMet_returnsCorrectGap() {
         LocalDate lastMetDate = LocalDate.now().minusDays(10);
         LastMet lastMet = new LastMet(lastMetDate);

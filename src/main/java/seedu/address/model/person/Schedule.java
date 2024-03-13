@@ -20,6 +20,7 @@ public class Schedule {
     public Schedule(LocalDateTime schedule) {
         this.schedule = schedule;
         this.isDone = false;
+        //this.isMissed = checkIsMissed(schedule);
         checkIsMissed();
     }
 
@@ -32,6 +33,7 @@ public class Schedule {
     public Schedule(LocalDateTime schedule, boolean isDone) {
         this.schedule = schedule;
         this.isDone = isDone;
+        //this.isMissed = checkIsMissed(schedule);
         checkIsMissed();
     }
 
@@ -89,8 +91,16 @@ public class Schedule {
         }
     }
 
+    public boolean getIsMissedReminder() {
+        if (this.isMissed && !this.isDone) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private void checkIsMissed() {
-        if (this.schedule.isAfter(LocalDateTime.now())) {
+        if (this.schedule.isBefore(LocalDateTime.now())) {
             this.isMissed = true;
         } else {
             this.isMissed = false;

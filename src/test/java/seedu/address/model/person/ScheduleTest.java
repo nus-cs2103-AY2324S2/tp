@@ -29,6 +29,26 @@ public class ScheduleTest {
     }
 
     @Test
+    public void getIsMissed_returnsCorrectIsMissed() {
+        LocalDateTime schedule = LocalDateTime.of(2022, 1, 1, 12, 0);
+        Schedule testSchedule = new Schedule(schedule, false);
+        assertEquals(true, testSchedule.getIsMissed());
+    }
+
+    @Test
+    public void getIsMissedReminder_isDoneTrue_returnsCorrectIsMissedReminder() {
+        LocalDateTime schedule = LocalDateTime.of(2022, 1, 1, 12, 0);
+        Schedule testSchedule = new Schedule(schedule, true);
+        assertEquals(false, testSchedule.getIsMissedReminder());
+    }
+
+    @Test
+    public void getIsMissedReminder_isDoneFalse_returnsCorrectIsMissedReminder() {
+        LocalDateTime schedule = LocalDateTime.of(2022, 1, 1, 12, 0);
+        Schedule testSchedule = new Schedule(schedule, false);
+        assertEquals(true, testSchedule.getIsMissedReminder());
+    }
+    @Test
     public void toString_formattingCorrect() {
         LocalDateTime schedule = LocalDateTime.of(2022, 1, 1, 12, 0);
         Schedule testSchedule = new Schedule(schedule, false);
