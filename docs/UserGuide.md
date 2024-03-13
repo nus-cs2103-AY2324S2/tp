@@ -6,7 +6,7 @@
 
 # PatientSync User Guide
 
-PatientSync is a **desktop app made for nurses to manage patient, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PatientSync allows you to add and view patients intimate details tasks done faster than traditional GUI apps.
+PatientSync is a **desktop app made for nurses to manage patient, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PatientSync allows you to add and view patients intimate details and also manage patient-specific tasks faster than traditional GUI apps.
 
 
 <!-- * Table of Contents -->
@@ -56,7 +56,10 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend t/family` etc.
+
+* Items with `+`​ after them can be used multiple times, but requires at least one usage.<br>
+    e.g. `[t/TAG]+​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -146,6 +149,29 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
+### Adding Tags to a Patient : `addt`
+
+Adds one or more tags to a patient in the address book.
+
+Format: `addt INDEX [t/TAG]+`
+
+* Adds one or more tags (**single word**) to a patient identified by the index number used in the last patient listing.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one tag must be provided.
+* Tags should be alphanumeric and should not include special characters like `-`.
+* When adding tags, if a tag is repeated in the command, it will be added as a single tag.
+  E.g. `t/friend t/friend` will be added as a single `friend` tag.
+* If the patient already has a tag provided in the command, new tag will override the existing tag. This is counted as a successful addition of that tag.
+
+<box type="info" seamless>
+    <b>Note:</b> The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
+</box>
+
+
+Examples:
+* `addt 1 t/friend t/fallRisk`
+* `addt 2 t/critical`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -172,10 +198,6 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
