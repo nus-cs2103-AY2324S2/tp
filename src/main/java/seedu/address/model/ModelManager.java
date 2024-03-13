@@ -144,6 +144,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeTask(Task target) {
+        addressBook.removeTask(target);
+    }
+
+    @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         taskList.setPredicate(predicate);
