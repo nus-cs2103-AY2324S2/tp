@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String DELETE_HELP_MESSAGE = "Delete Command: (Coming soon)\n"
+    public static final String MESSAGE_DELETE_HELP = "Delete Command: (Coming soon)\n"
             + "Format: (Coming soon)\n";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Client: %1$s";

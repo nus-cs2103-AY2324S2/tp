@@ -20,7 +20,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    public static final String FIND_HELP_MESSAGE = "Find Command: (Coming soon)\n"
+    public static final String MESSAGE_FIND_HELP = "Find Command: (Coming soon)\n"
             + "Format: (Coming soon)\n";
 
     private final NameContainsKeywordsPredicate predicate;

@@ -50,7 +50,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String EDIT_HELP_MESSAGE = "Edit Command: (Coming soon)\n"
+    public static final String MESSAGE_EDIT_HELP = "Edit Command: (Coming soon)\n"
             + "Format: (Coming soon)\n";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";

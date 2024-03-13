@@ -10,7 +10,7 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Realodex as requested ...";
-    public static final String EXIT_HELP_MESSAGE = "Exit Command: Exits Realodex.\n"
+    public static final String MESSAGE_EXIT_HELP = "Exit Command: Exits Realodex.\n"
             + "Format: exit\n";
 
     @Override

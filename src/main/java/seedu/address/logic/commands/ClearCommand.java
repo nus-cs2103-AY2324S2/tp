@@ -12,7 +12,7 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "The Realodex has been cleared!";
-    public static final String CLEAR_HELP_MESSAGE = "Clear Command: Clears all entries in the Realodex.\n"
+    public static final String MESSAGE_CLEAR_HELP = "Clear Command: Clears all entries in the Realodex.\n"
             + "Format: clear\n";
 
 

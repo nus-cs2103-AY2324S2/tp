@@ -1,12 +1,12 @@
 package seedu.address.ui;
 
-import static seedu.address.logic.commands.AddCommand.ADD_HELP_MESSAGE;
-import static seedu.address.logic.commands.ClearCommand.CLEAR_HELP_MESSAGE;
-import static seedu.address.logic.commands.DeleteCommand.DELETE_HELP_MESSAGE;
-import static seedu.address.logic.commands.EditCommand.EDIT_HELP_MESSAGE;
-import static seedu.address.logic.commands.ExitCommand.EXIT_HELP_MESSAGE;
-import static seedu.address.logic.commands.FindCommand.FIND_HELP_MESSAGE;
-import static seedu.address.logic.commands.ListCommand.LIST_HELP_MESSAGE;
+import static seedu.address.logic.commands.AddCommand.MESSAGE_ADD_HELP;
+import static seedu.address.logic.commands.ClearCommand.MESSAGE_CLEAR_HELP;
+import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_HELP;
+import static seedu.address.logic.commands.EditCommand.MESSAGE_EDIT_HELP;
+import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_HELP;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_FIND_HELP;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_LIST_HELP;
 
 import java.util.logging.Logger;
 
@@ -43,13 +43,13 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(ADD_HELP_MESSAGE + "\n"
-                + DELETE_HELP_MESSAGE + "\n"
-                + CLEAR_HELP_MESSAGE + "\n"
-                + EDIT_HELP_MESSAGE + "\n"
-                + LIST_HELP_MESSAGE + "\n"
-                + FIND_HELP_MESSAGE + "\n"
-                + EXIT_HELP_MESSAGE + "\n"
+        helpMessage.setText(MESSAGE_ADD_HELP + "\n"
+                + MESSAGE_DELETE_HELP + "\n"
+                + MESSAGE_CLEAR_HELP + "\n"
+                + MESSAGE_EDIT_HELP + "\n"
+                + MESSAGE_LIST_HELP + "\n"
+                + MESSAGE_FIND_HELP + "\n"
+                + MESSAGE_EXIT_HELP + "\n"
                 + HELP_MESSAGE);
     }
 
