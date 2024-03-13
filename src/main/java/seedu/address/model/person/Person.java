@@ -68,7 +68,7 @@ public class Person {
         return address;
     }
 
-    public Star getStar() { return star; }
+    public Star getStar() { return star; } // get the stars
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
