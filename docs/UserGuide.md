@@ -113,60 +113,67 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Search Contact `find`
 
-Finds all contacts whose names or tags matches the substring keyword provided.
+- Search feature supports search by name and/or tags **ONLY**.
+- Finds all contacts whose names or tags matches the substring keyword provided.
 
+General Format: `find FIELD/ KEYWORD FIELD/ KEYWORD ...`
+- Where `FIELD` is either `n/` for name or `t/` for tag.
+- `KEYWORD` is the keyword (**alphabets only**) to search for.
 
-Format: `find FIELD/ KEYWORD FIELD/ KEYWORD ...`
+#### Search Guidelines
 
-* 'FIELD' only supports `n/` for name and `t/` for tag.
+* 'KEYWORD' can **ONLY** be alphabets and **CANNOT** contain spaces or be empty.
+  * e.g. `find n/John Doe` will **NOT** work. Try `find n/John n/Doe` instead to represent finding John and Doe
+  * e.g. `find n/` will **NOT** work as 'KEYWORD' cannot be empty.
+  * e.g. `find n/John123` will **NOT** work as 'KEYWORD' cannot contain non-alphabetic characters.
 
-* 'KEYWORD' is the keyword to search for.
-
-* 'KEYWORD' can **ONLY** be alphabets (no spaces)
-  * `find n/John Doe` will **NOT** work. Try `find n/John n/Doe` instead to represent finding John and Doe
 
 * 'KEYWORD' and next 'FIELD' should be separated by a space.
-  * e.g. e.g `find n/John t/friends` will find all instances of John that have the tag friends 
-  * but `find n/Johnt/tfriends` will instead return an error since it assumes you are searching for.'Johnt/tfriends'
-  * and there should not be non-alphabet characters in the 'KEYWORD' field.
+  * e.g. `find n/John t/friends` will find all instances of John that have the tag friends 
+  * but `find n/Johnt/tfriends` will instead return an error since it assumes you are searching for 'Johnt/tfriends'
+  * and there should not be non-alphabetic characters in the 'KEYWORD' field.
 
-* Multiple of the same 'FIELD's will be treated as a **logical AND**.
+
+* Multiple of the same 'FIELDs' will be treated as a **Logical AND (&&)**.
   * e.g. `find n/John n/Doe` will return all instances of John and Doe.
-  * e.g `find n/Ale n/le` will still return instances ["Alex Liew", "Alexis Lebrun", "Alec"]
+  * e.g. `find n/Ale n/le` will still return the following example instances ["Alex Liew", "Alexis Lebrun", "Alec"]
+
 
 * 'KEYWORD' should **NOT** be empty and there should be at least one 'FIELD' and 'KEYWORD' pair.
   * e.g. `find n/ t/` and `find ` will **NOT** work.
-  
-* There shoud not be prefixes before the first 'FIELD' and 'KEYWORD' pair. 
+
+
+* There should not be prefixes before the first 'FIELD' and 'KEYWORD' pair. 
   * e.g. `find testing123 n/John` will **NOT** work.
 
-* Prefix Search: The search is a prefix search. 
-  * e.g. `find n/John` will match `Johnnu Dory` and `John Doe` but not `Jonh`.
 
 * The search is case-insensitive. 
-  * e.g `hans` will match `Hans`
+  * e.g. `find n/hans` will match `Hans Niemann` and `Hans Zimmer`
 
 * The order of the keywords does not matter. 
-  * e.g. Results of `find n/Hans n/Bo` will match that of`find n/Bo n/Hans`
+  * e.g. Results of `find n/Hans n/Bo` will match the results of`find n/Bo n/Hans`
 
 * You can have multiple of the same 'FIELD's. 
   * e.g. `find n/J n/Do` will match names with `J` AND `Do`, like `John Doe`
 
+
 Examples:
 * `find n/Joh` returns `john`, `John Doe` and `Johnann Sebastian Bach`
-* 
 
-* `find n/alex n/david` returns `Alex Davidson` and `David Alexis`<br>
+* `find n/alex n/david` returns `Alex Davidson` and `David Alexis`
 
-* `find n/Alex t/friends` returns `Alex Yeoh` who is tagged as a `friend`<br>
+* `find n/Alex t/friends` returns `Alex Yeoh` who is tagged as a `friend`
 
-* `find n////` returns an error message as the 'KEYWORD' field must consist of alphabets only<br>
+* `find n////` returns an error message as the 'KEYWORD' field must consist of alphabets only
 
-* `find n/` or `find t/` or `find n/ t/` returns an error message as the 'KEYWORD' field cannot be empty<br>
+* `find n/` or `find t/` or `find n/ t/` returns an error message as the 'KEYWORD' field cannot be empty
 
-* `find` returns an error message as there should be at least one 'FIELD' and 'KEYWORD' pair<br>
+* `find` returns an error message as there should be at least one 'FIELD' and 'KEYWORD' pair
+
+* `find testing123 n/John` returns an error message as there should not be 
+      prefixes before the first 'FIELD' and 'KEYWORD' pair
 
 ### Deleting a person : `delete`
 

@@ -20,7 +20,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_ALPHABET_ONLY = "Value for %1$s must consist of alphabets only.";
 
-    public static final String MESSAGE_CANNOT_BE_EMPTY = "Value for prefix %1$s cannot be empty.";
+    public static final String MESSAGE_CANNOT_BE_EMPTY = "Keyword Value of FIELD %1$s cannot be empty.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -31,8 +31,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // Check for non-empty Prefixes
-        argMultimap.verifyNonEmptyPrefixValues(PREFIX_NAME, PREFIX_TAG);
+        // Check for non-empty Keywords after all Prefixes
+        argMultimap.verifyNonEmptyKeywordValues(PREFIX_NAME, PREFIX_TAG);
 
         // Ensure all keywords are alphabets
         argMultimap.verifyAllValuesAlpha(PREFIX_NAME, PREFIX_TAG);
