@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
 import java.io.IOException;
+import java.util.Collections;
 
-
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
@@ -33,12 +36,24 @@ public class DialogBox extends HBox {
 
     }
 
+    /**
+     * Flips the dialog box such that the ImageView is on the left and text on the right.
+     */
+    private void flip() {
+        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+        Collections.reverse(tmp);
+        getChildren().setAll(tmp);
+        setAlignment(Pos.TOP_LEFT);
+    }
+
+
     public static DialogBox getUserDialog(String text) {
         return new DialogBox(text);
     }
 
     public static DialogBox getDukeDialog(String text) {
         var db = new DialogBox(text);
+        db.flip();
         return db;
     }
 }
