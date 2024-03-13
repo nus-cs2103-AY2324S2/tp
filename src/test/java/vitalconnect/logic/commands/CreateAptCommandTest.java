@@ -1,12 +1,8 @@
 package vitalconnect.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
