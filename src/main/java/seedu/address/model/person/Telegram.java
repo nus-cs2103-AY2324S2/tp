@@ -53,6 +53,12 @@ public class Telegram {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true is the Telegram ID is empty.
+     */
+    public boolean isEmpty() {
+        return telegramId.isEmpty();
+    }
 
     @Override
     public String toString() {

@@ -61,19 +61,32 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same Email, Phone, Telegram (non-empty), and Github (non-empty).
+     * Persons are allowed to have the same name.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
+        if (otherPerson == null) {
+            return false;
+        }
 
-        return otherPerson != null
-                && (otherPerson.getEmail().equals(getEmail())
-                || otherPerson.getPhone().equals(getPhone())
-                || otherPerson.getTelegram().equals(getTelegram())
-                || otherPerson.getGithub().equals(getGithub()));
+        boolean isEmailEqual = otherPerson.getEmail().equals(getEmail());
+        boolean isPhoneEqual = otherPerson.getPhone().equals(getPhone());
+        boolean isBothTelegramNonEmpty = !getTelegram().orElse(Telegram.EMPTY).isEmpty()
+                && !otherPerson.getTelegram().orElse(Telegram.EMPTY).isEmpty();
+        boolean isBothGithubNonEmpty = !getGithub().orElse(Github.EMPTY).isEmpty()
+                && !otherPerson.getGithub().orElse(Github.EMPTY).isEmpty();
+        boolean isTelegramNonEmptyAndEqual = isBothTelegramNonEmpty && otherPerson.getTelegram().equals(getTelegram());
+        boolean isGithubNonEmptyAndEqual = isBothGithubNonEmpty && otherPerson.getGithub().equals(getGithub());
+
+
+        return (isEmailEqual
+                || isPhoneEqual
+                || isTelegramNonEmptyAndEqual
+                || isGithubNonEmptyAndEqual);
     }
 
     /**
