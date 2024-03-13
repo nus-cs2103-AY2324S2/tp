@@ -1,12 +1,12 @@
 package staffconnect.model.person;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static staffconnect.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class FacultyTest {
     @Test
@@ -30,8 +30,8 @@ public class FacultyTest {
         assertFalse(Faculty.isValidFaculty(" ")); // spaces only
 
         // valid Faculties
-        assertTrue(Faculty.isValidFaculty("~"));// one character
-        assertTrue(Faculty.isValidFaculty("School of Computing"));// long faculty
+        assertTrue(Faculty.isValidFaculty("~")); // one character
+        assertTrue(Faculty.isValidFaculty("School of Computing")); // long faculty
         assertTrue(Faculty.isValidFaculty("abcdefg"));
     }
 
