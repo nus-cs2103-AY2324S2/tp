@@ -15,7 +15,7 @@ public class UnitNumberTest {
 
     @Test
     public void constructor_invalidUnitNumber_throwsIllegalArgumentException() {
-        String invalidUnitNumber = "1"; // Not 2 digits
+        String invalidUnitNumber = "abcd";
         assertThrows(IllegalArgumentException.class, () -> new UnitNumber(invalidUnitNumber));
     }
 
@@ -25,16 +25,18 @@ public class UnitNumberTest {
         assertThrows(NullPointerException.class, () -> UnitNumber.isValidUnitNumber(null));
 
         // invalid unit numbers
+        assertFalse(UnitNumber.isValidUnitNumber("0")); // '0' is invalid
         assertFalse(UnitNumber.isValidUnitNumber("")); // empty string
         assertFalse(UnitNumber.isValidUnitNumber(" ")); // spaces only
-        assertFalse(UnitNumber.isValidUnitNumber("9")); // less than 2 digits
-        assertFalse(UnitNumber.isValidUnitNumber("123")); // more than 2 digits
+        assertFalse(UnitNumber.isValidUnitNumber("1234")); // more than 3 digits
         assertFalse(UnitNumber.isValidUnitNumber("ab")); // non-numeric
-        assertFalse(UnitNumber.isValidUnitNumber("1a")); // alphabets within digits
+        assertFalse(UnitNumber.isValidUnitNumber("1a2")); // alphabets within digits
 
         // valid unit numbers
-        assertTrue(UnitNumber.isValidUnitNumber("10")); // exactly 2 digits
-        assertTrue(UnitNumber.isValidUnitNumber("99")); // exactly 2 digits
+        assertTrue(UnitNumber.isValidUnitNumber("1")); // minimum valid number
+        assertTrue(UnitNumber.isValidUnitNumber("01")); // leading 0 is allowed
+        assertTrue(UnitNumber.isValidUnitNumber("10")); // 2 digits
+        assertTrue(UnitNumber.isValidUnitNumber("999")); // maximum valid number
     }
 
     @Test

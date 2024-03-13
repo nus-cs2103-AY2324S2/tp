@@ -4,14 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a House Address's unit number in the address book.
+ * Represents a House's unit number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidUnitNumber(String)}
  */
 public class UnitNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The unit number should only contain numbers, and it should only be 2 digits long.";
-    public static final String VALIDATION_REGEX = "\\d{2}";
+            "The unit number should only contain numbers, it should be at least 1 digit "
+                    + "and at most 3 digits long, and cannot be 0.";
+    public static final String VALIDATION_REGEX = "\\d{1,3}";
+
     public final String value;
 
     /**
@@ -27,9 +29,12 @@ public class UnitNumber {
 
     /**
      * Returns true if a given string is a valid unit number.
+     *
+     * @param test The string to test.
+     * @return true if the test matches the VALIDATION_REGEX and is not "0".
      */
     public static boolean isValidUnitNumber(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && !test.equals("0");
     }
 
     @Override
@@ -55,5 +60,4 @@ public class UnitNumber {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
