@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.NusID_Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -12,7 +11,6 @@ import seedu.address.model.person.Tag;
 import java.util.*;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.index.NusID_Index.getPerson;
 import static seedu.address.logic.Messages.MESSAGE_GROUP_PERSON;
 import static seedu.address.logic.Messages.MESSAGE_GROUP_PERSON_INVALID;
 import static seedu.address.logic.parser.CliSyntax.*;
@@ -53,7 +51,7 @@ public class GroupCommand extends Command{
         Person personToGroup = lastShownList.stream().filter(person -> person.getNusId().equals(toGroup)).
                 findFirst().orElse(null);
 
-        System.out.println(toGroup);
+        //System.out.println(toGroup);
         if(personToGroup == null){
             throw new CommandException(MESSAGE_GROUP_PERSON_INVALID);
         }
