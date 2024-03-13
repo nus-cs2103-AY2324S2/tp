@@ -81,8 +81,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case StarCommand.COMMAND_WORD:
-            return new StarCommand(Index.fromZeroBased(0), new Star(0));
-            // placeholder, to be changed after parser is created
+            return new StarCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
