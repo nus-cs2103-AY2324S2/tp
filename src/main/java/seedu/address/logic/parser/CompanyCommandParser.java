@@ -24,5 +24,4 @@ public class CompanyCommandParser implements Parser<CompanyCommand>{
         return new CompanyCommand(contactName, new Company(company));
     }
 
-
 }
