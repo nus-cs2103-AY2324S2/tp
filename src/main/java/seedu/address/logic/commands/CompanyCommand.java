@@ -19,16 +19,15 @@ import seedu.address.model.person.Person;
  */
 public class CompanyCommand extends Command {
 
-    public static final String COMMAND_WORD = "company";
+    public static final String COMMAND_WORD = "co";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a company to the person identified by the contact name "
             + "Existing company will be overwritten by the input.\n"
-            + "g/ [COMPANY_NAME]\n"
+            + "c/ [COMPANY_NAME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "g/ Friends";
+            + "c/ Friends";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$s, Remark: %2$s";
     public static final String MESSAGE_ADD_COMPANY_SUCCESS = "Tagged %1$s's company as %2$s";
     public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Removed the company tag from %1$s's contact";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
