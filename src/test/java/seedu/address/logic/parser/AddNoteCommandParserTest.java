@@ -36,7 +36,6 @@ public class AddNoteCommandParserTest {
     public void parse_repeatedFields_failure() {
         // Repeated date.
         assertParseFailure(parser, "1 " + DATE_DESC + TIME_DESC + NOTE_DESC + DATE_DESC,
-<<<<<<< HEAD
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
 
         // Repeated Time.
@@ -46,24 +45,11 @@ public class AddNoteCommandParserTest {
         // Repeated Note.
         assertParseFailure(parser, "1 " + DATE_DESC + TIME_DESC + NOTE_DESC + NOTE_DESC,
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
-=======
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
-
-        // Repeated Time.
-        assertParseFailure(parser, "1 " + DATE_DESC + TIME_DESC + NOTE_DESC + TIME_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TIME));
-
-        // Repeated Note.
-        assertParseFailure(parser, "1 " + DATE_DESC + TIME_DESC + NOTE_DESC + NOTE_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
->>>>>>> edit-an
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String message = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE);
-
-<<<<<<< HEAD
         // Missing date prefix.
         assertParseFailure(parser, "1 " + TIME_DESC + NOTE_DESC, message);
 
@@ -71,15 +57,6 @@ public class AddNoteCommandParserTest {
         assertParseFailure(parser, "1 " + DATE_DESC + NOTE_DESC, message);
 
         // Missing note prefix.
-=======
-        // Missing date prefix
-        assertParseFailure(parser, "1 " + TIME_DESC + NOTE_DESC, message);
-
-        // Missing time prefix
-        assertParseFailure(parser, "1 " + DATE_DESC + NOTE_DESC, message);
-
-        // Missing note prefix
->>>>>>> edit-an
         assertParseFailure(parser, "1 " + DATE_DESC + TIME_DESC, message);
     }
 
@@ -94,8 +71,4 @@ public class AddNoteCommandParserTest {
         // Invalid note.
         assertParseFailure(parser, "1 " + DATE_DESC + TIME_DESC + INVALID_NOTE_DESC, Description.MESSAGE_CONSTRAINTS);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> edit-an

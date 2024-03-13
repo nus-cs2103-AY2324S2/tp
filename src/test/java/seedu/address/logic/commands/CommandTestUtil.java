@@ -42,10 +42,6 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-<<<<<<< HEAD
-=======
-
->>>>>>> edit-an
     public static final String VALID_DATE = "19-02-2024";
     public static final String VALID_TIME = "2130";
     public static final String VALID_NOTE = "General Flu";
