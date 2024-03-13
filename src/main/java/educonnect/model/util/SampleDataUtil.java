@@ -19,7 +19,7 @@ import educonnect.model.tag.Tag;
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
-            new Student(new Name("Alex Yeoh"), new StudentId("A1234567X"), new Email("alexyeoh@example.com"),
+            new Student(new Name("Alex Yeoh"), new StudentId("A1654327X"), new Email("alexyeoh@example.com"),
                 new TelegramHandle("@alyeoh"),
                 getTagSet("tutorial-1")),
 
