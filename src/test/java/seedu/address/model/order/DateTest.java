@@ -1,6 +1,8 @@
 package seedu.address.model.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -39,5 +41,16 @@ public class DateTest {
         // different Date -> returns false
         Date differentDate = new Date("2020-01-02");
         assertFalse(date.equals(differentDate));
+    }
+
+    @Test
+    public void hashcode() {
+        Date date = new Date("2020-01-01");
+
+        // same date -> returns same hashcode
+        assertEquals(date.hashCode(), new Date("2020-01-01").hashCode());
+
+        // different date -> returns different hashcode
+        assertNotEquals(date.hashCode(), new Date("2020-05-01").hashCode());
     }
 }

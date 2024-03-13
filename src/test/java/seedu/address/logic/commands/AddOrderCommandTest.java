@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -82,6 +83,14 @@ public class AddOrderCommandTest {
         // different person -> returns false
         AddOrderCommand differentOrderCommand = new AddOrderCommand(Index.fromOneBased(2), DATE_STUB, DESCRIPTION_STUB);
         assert (!addOrderCommand.equals(differentOrderCommand));
+    }
+
+    @Test
+    public void toStringMethod() {
+        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, DESCRIPTION_STUB);
+        String expected = AddOrderCommand.class.getCanonicalName() + "{index=" + INDEX_FIRST_PERSON
+                + ", arrivalDate=" + DATE_STUB + ", description=" + DESCRIPTION_STUB + "}";
+        assertEquals(expected, addOrderCommand.toString());
     }
 
 }

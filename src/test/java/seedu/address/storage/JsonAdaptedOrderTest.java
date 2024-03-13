@@ -35,4 +35,10 @@ public class JsonAdaptedOrderTest {
         JsonAdaptedOrder jsonAdaptedOrder = new JsonAdaptedOrder(VALID_DATE_STRING, null, VALID_STATUS);
         assertThrows(IllegalValueException.class, jsonAdaptedOrder::toModelType);
     }
+
+    @Test
+    public void toModelType_nullStatus_throwsIllegalValueException() {
+        JsonAdaptedOrder jsonAdaptedOrder = new JsonAdaptedOrder(VALID_DATE_STRING, VALID_DESCRIPTION, null);
+        assertThrows(IllegalValueException.class, jsonAdaptedOrder::toModelType);
+    }
 }
