@@ -30,4 +30,5 @@ public class Company {
     public int hashCode() {
         return value.hashCode();
     }
+    
 }

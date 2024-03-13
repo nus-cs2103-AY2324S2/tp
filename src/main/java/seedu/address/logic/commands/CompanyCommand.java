@@ -94,4 +94,5 @@ public class CompanyCommand extends Command {
                 && company.equals(e.company);
 
     }
+
 }
