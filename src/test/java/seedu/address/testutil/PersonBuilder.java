@@ -94,6 +94,11 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code LastContact} of the {@code Person} that we are building.
+     * @param lastContact consists of a string of date and time
+     * @return the person we are building
+     */
     public PersonBuilder withLastContact(String lastContact) {
         this.lastContact = new LastContact(lastContact);
         return this;
