@@ -5,16 +5,21 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Order {
+    public static final String MESSAGE_CONSTRAINTS = "Orders need to contain alphanumeric product names and numeric quantities";
     private int id;
     private Map<Product, Quantity> productMap;
 
     public Order() {
-        productMap = new HashMap<>();
+        this.productMap = new HashMap<>();
     }
 
     public Order(int id) {
         this.id = id;
         productMap = new HashMap<>();
+    }
+
+    public Order(Map<Product, Quantity> map) {
+        productMap = map;
     }
 
     public void setID(int id) {
@@ -54,6 +59,10 @@ public class Order {
 
     public void clearProductMap() {
         this.productMap.clear();
+    }
+
+    public boolean isEmpty() {
+        return productMap.isEmpty();
     }
 
     @Override

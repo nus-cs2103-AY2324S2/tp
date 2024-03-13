@@ -19,6 +19,10 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_INVALID_PHONE_NUMBER = "Phone number provided not found";
+
+    public static final String MESSAGE_PHONE_NUMBER_NOT_FOUND = "Phone number provided not found";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
