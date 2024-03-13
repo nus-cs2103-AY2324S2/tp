@@ -130,9 +130,11 @@ Adds a new participant to the app, allowing them to be added to an event later.
 **Format:** `invite <participant index>`
 
 **Description:**
+
 Invite participants from the global participant list to the selected event.
 
 **Caution:**
+
 * `<participant index>` should be within valid range of global participants
 * Duplicate participants is **not allowed.**
 
@@ -145,32 +147,77 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
 ### Edit existing participant: `editp`
 
 **Format:** `editp <participant index> -n <participant name> -p PHONE -e EMAIL`
 
 **Description:**
+
 Updates the contact information of a participant in the app.
 
 **Caution:**
+
 * `<participant index>` should be within valid range of global participants
 
 **Examples:**
 - `editp 5 -n Max -p 00000000 -e test@gmail.com` Edits contact details of participant indexed 5.
+
+### Selecting an event: `sel`
+
+**Format:** `sel <event index>`
+
+**Description:**
+
+Selects an event from the event list by the event index.
+
+<box type="warning" seamless>
+
+**Caution:**
+
+* `<event index>` should be an **integer** no larger than the number of events in the event list.
+</box>
+
+**Examples:**
+
+- `sel 3` selects the event with index `3`.
+
+### Deselecting an event: `desel`
+
+**Format:** `desel`
+
+**Description:**
+
+Deselects the selected event and returns to the global participant list.
+
+**Examples:**
+
+- After `select 3` which selects the event with index `3`, `desel` deselects the event indexed `3`.
+
+### Deleting a participant from the global participant list or an event participant list: `delp`
+
+**Format:** `delp <index>`
+
+**Description:**
+
+- If **no event is selected**, this deletes the participant from both the **global participant list** and **all the
+  events** he/she is in by **his/her index in the global participant list**.
+- If **an event is selected**, this only removes the participant from the event by **his/her index in the
+  event participant list**.
+
+<box type="warning" seamless>
+
+**Caution:**
+
+* `<index>` should be an **integer**.
+* A participant's `<index>` in an event participant list can be **different** from that in the global participant list.
+* `<index>` should be no larger than the number of participants in the global participant list if no event is selected.
+* `<index>` should be no larger than the number of participants in the event participant list if an event is selected.
+</box>
+
+**Examples:**
+
+- When no event is selected, `delp 9` deletes the participant with the index `9` completely.
+- `delp 9` after `sel 3` removes the participant with index `9` from event `3`'s participant list.
 
 ### Locating persons by name: `find`
 
