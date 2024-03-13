@@ -107,7 +107,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // similarly, parsing {@code PREFIX_APPOINTMENT} alone will reset the appointment
-        // of the {@code Person} being edited, parsing it together with a valid tag results in error
+        // of the {@code Person} being edited, parsing it together with a valid appointment results in error
         assertParseFailure(parser, "1" + APPOINTMENT_DESC_FRIDAY
                 + APPOINTMENT_DESC_SUNDAY + APPOINTMENT_EMPTY, Appointment.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + APPOINTMENT_DESC_FRIDAY

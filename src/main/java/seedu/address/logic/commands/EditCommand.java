@@ -45,8 +45,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT]...\n"
+            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT]"
+            + "[" + PREFIX_TAG + "TAG] ...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -217,7 +217,7 @@ public class EditCommand extends Command {
         }
         /**
          * Sets {@code appointments} to this object's {@code appointments}.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code appointments} is used internally.
          */
         public void setAppointments(Set<Appointment> appointments) {
             this.appointments = (appointments != null) ? new HashSet<>(appointments) : null;
@@ -258,8 +258,8 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("tags", tags)
                     .add("appointments", appointments)
+                    .add("tags", tags)
                     .toString();
         }
     }

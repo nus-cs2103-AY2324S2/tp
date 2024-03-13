@@ -22,7 +22,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), getAppointmentSet("23:59 SUN")),
+                getTagSet("friends"), getAppointmentSet("23:59 SUN", "00:00 MON")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"), getAppointmentSet("08:00 MON")),
@@ -31,7 +31,7 @@ public class SampleDataUtil {
                 getTagSet("neighbours"), getAppointmentSet("14:20 SAT")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), getAppointmentSet("19:22 THU")),
+                getTagSet("family"), getAppointmentSet("19:22 THU", "19:07 WED")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates"), getAppointmentSet("16:19 TUE")),

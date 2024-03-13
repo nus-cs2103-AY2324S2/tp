@@ -35,7 +35,7 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts this Jackson-friendly adapted appointment object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */

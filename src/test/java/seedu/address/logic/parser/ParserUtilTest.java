@@ -170,9 +170,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String appointmentWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
+        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
         Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(appointmentWithWhitespace));
+        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
     }
 
     @Test
@@ -228,7 +228,7 @@ public class ParserUtilTest {
     @Test
     public void parseAppointments_collectionWithInvalidAppointments_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil
-                .parseAppointments(Arrays.asList(VALID_APPOINTMENT_1, INVALID_TAG)));
+                .parseAppointments(Arrays.asList(VALID_APPOINTMENT_1, INVALID_APPOINTMENT)));
     }
 
     @Test
