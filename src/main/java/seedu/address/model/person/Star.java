@@ -30,7 +30,7 @@ public class Star {
      * Returns true if a given string is a valid number.
      */
     public static boolean isValidStar(Integer noOfStars) {
-        return noOfStars > 0;
+        return noOfStars >= 0;
     }
 
     @Override
