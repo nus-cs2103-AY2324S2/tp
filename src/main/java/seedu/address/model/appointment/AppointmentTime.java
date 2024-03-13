@@ -49,8 +49,33 @@ public class AppointmentTime {
         }
     }
 
+    public LocalDate getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
     @Override
-    public String toString() {
-        return "YOU";
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AppointmentTime)) {
+            return false;
+        }
+
+        AppointmentTime otherAppointmentTime = (AppointmentTime) other;
+        boolean sameDate = appointmentDate.equals(otherAppointmentTime.getAppointmentDate());
+        boolean sameStart = startTime.equals(otherAppointmentTime.getStartTime());
+        boolean sameEnd = endTime.equals(otherAppointmentTime.getEndTime());
+        return (sameDate && sameStart && sameEnd);
     }
 }

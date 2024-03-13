@@ -28,4 +28,30 @@ public class Appointment {
         return id;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public AppointmentTime getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Appointment)) {
+            return false;
+        }
+
+        Appointment otherAppointment = (Appointment) other;
+        boolean sameID = id.equals(otherAppointment.getID());
+        boolean samePerson = person.equals(otherAppointment.getPerson());
+        boolean sameDate = appointmentTime.equals(otherAppointment.getAppointmentTime());
+        return (sameID && samePerson && sameDate);
+    }
+
 }
