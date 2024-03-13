@@ -30,7 +30,7 @@ public class InternshipListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Internship} using a {@code Intern}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Internship} using a {@code InternshipCard}.
      */
     class InternshipListViewCell extends ListCell<Internship> {
         @Override
