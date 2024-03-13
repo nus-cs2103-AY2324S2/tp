@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.CommandHistoryView;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,6 +23,8 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandHistory history;
 
+    private CommandHistoryView historyView;
+
     @FXML
     private TextField commandTextField;
 
@@ -32,6 +35,7 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.history = history;
+        this.historyView = new CommandHistoryView(history);
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
@@ -55,19 +59,31 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        } finally {
+            // reset the history viewer
+            historyView = new CommandHistoryView(history);
         }
-        System.out.println(history.getHistory());
     }
 
     private void addArrowKeyHandler() {
         this.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            String commandText = commandTextField.getText();
+
             switch(event.getCode()) {
             case UP:
-                //handle up
+                historyView.updateCurrentCommand(commandText);
+                historyView.next().ifPresent(nextCommand -> {
+                    commandTextField.setText(nextCommand);
+                    commandTextField.positionCaret(nextCommand.length());
+                });
                 event.consume();
                 break;
             case DOWN:
-                //handle down
+                historyView.updateCurrentCommand(commandText);
+                historyView.previous().ifPresent(nextCommand -> {
+                    commandTextField.setText(nextCommand);
+                    commandTextField.positionCaret(nextCommand.length());
+                });
                 event.consume();
                 break;
             default:

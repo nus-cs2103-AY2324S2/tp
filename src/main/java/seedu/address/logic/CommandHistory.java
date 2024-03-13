@@ -1,6 +1,8 @@
 package seedu.address.logic;
 
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A list of previously executed commands. Only the most recent {@code HISTORY_SIZE}
@@ -17,13 +19,13 @@ public class CommandHistory {
     private final LinkedList<String> history = new LinkedList<>();
 
     /**
-     * Retrieves the command history, starting with the most recent command
+     * Returns a read-only list of the command history, starting with the most recent command
      * at the first index.
      *
      * @return a list of commands
      */
-    public LinkedList<String> getHistory() {
-        return history;
+    public List<String> getHistory() {
+        return Collections.unmodifiableList(history);
     }
 
     /**
@@ -33,9 +35,9 @@ public class CommandHistory {
      * @param entry the entry
      */
     public void add(String entry) {
-        history.add(entry);
+        history.addFirst(entry);
         if (history.size() > HISTORY_SIZE) {
-            history.pop();
+            history.pollLast();
         }
         assert history.size() <= HISTORY_SIZE : "Size of command history should not be over the limit";
     }
