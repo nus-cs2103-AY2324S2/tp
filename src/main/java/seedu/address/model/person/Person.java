@@ -69,6 +69,9 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
+        if (otherPerson == null) {
+            return false;
+        }
 
         boolean isEmailEqual = otherPerson.getEmail().equals(getEmail());
         boolean isPhoneEqual = otherPerson.getPhone().equals(getPhone());
@@ -80,8 +83,7 @@ public class Person {
         boolean isGithubNonEmptyAndEqual = isBothGithubNonEmpty && otherPerson.getGithub().equals(getGithub());
 
 
-        return otherPerson != null
-                && (isEmailEqual
+        return (isEmailEqual
                 || isPhoneEqual
                 || isTelegramNonEmptyAndEqual
                 || isGithubNonEmptyAndEqual);
