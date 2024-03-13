@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.techstack.TechStack;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String gitHubUsername;
+    private final List<JsonAdaptedTechStack> techStack = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -39,12 +41,16 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty ("github_username") String gitHubUsername,
+            @JsonProperty ("tech_stack") List<JsonAdaptedTechStack> techStack,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.gitHubUsername = gitHubUsername;
+        if (techStack != null) {
+            this.techStack.addAll(techStack);
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -59,6 +65,9 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         gitHubUsername = source.getGitHubUsername().username;
+        techStack.addAll(source.getTechStack().stream()
+                .map(JsonAdaptedTechStack::new)
+                .collect(Collectors.toList()));
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -70,7 +79,13 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        final List<TechStack> personTechStack = new ArrayList<>();
         final List<Tag> personTags = new ArrayList<>();
+
+        for (JsonAdaptedTechStack techStack : techStack) {
+            personTechStack.add(techStack.toModelType());
+        }
+
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
@@ -115,9 +130,11 @@ class JsonAdaptedPerson {
         }
         final GitHubUsername modelGitHubUsername = new GitHubUsername(gitHubUsername);
 
-
+        final Set<TechStack> modelTechStack = new HashSet<>(personTechStack);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGitHubUsername, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGitHubUsername, modelTechStack,
+                modelTags);
     }
 
 }
