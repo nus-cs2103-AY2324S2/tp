@@ -274,27 +274,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+Experienced managers who:
+* oversees contact relations with suppliers, customers and employees
+* has to manage a significant number of contacts
+* works independently in a supervisory role
+* has average IT skills
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: provides managers a platform to manage employee, client and partner contact information
+easily, and to keep track of past interactions.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                               | So that I can…​                                                      |
+|----------|------------------|--------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | occasional user  | add a new person                           |                                                                      |
+| `* * *`  | occasional user  | delete a person                            | remove entries that I no longer need                                 |
+| `* * *`  | occasional user  | find a person by name                      | quickly access their contact details                                 |
+| `* * *`  | occasional user  | find a person by contact number            | see who contacted me                                                 |
+| `* * *`  | occasional user  | tag members with custom tag                | see distinctions and manage using tags                               |
+| `* *`    | occasional user  | go back to the state from where i left off | avoid going back to the same page/state when I close the application |
+| `* *`    | occasional user  | edit person information                    | refer to accurate personal information in the future                 |
+| `* *`    | experienced user | export contact lists to a CSV file         | create backups or use the data in other applications                 |
+| `* *`    | new user         | see usage instructions                     | refer to instructions when I forget how to use the App               |
 
 *{More to be added}*
 
@@ -503,7 +511,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Persons**: Any person in the contact list. Includes all employees, clients and partners.
+* **State**: The page that displays the results from the last command given.
+* **UID**: A unique numerical identifier for any person added in NetConnect.
+* **CSV file**: A plain text file format that uses commas to separate values, and newlines to separate records.
 
 --------------------------------------------------------------------------------------------------------------------
 
