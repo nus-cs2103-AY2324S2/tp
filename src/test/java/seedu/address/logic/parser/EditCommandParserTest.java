@@ -162,10 +162,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        //        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        //        descriptor = new EditPatientDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        //        expectedCommand = new EditCommand(targetIndex, descriptor);
-        //        assertParseSuccess(parser, userInput, expectedCommand);
+        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
+        descriptor = new EditPatientDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -200,14 +200,14 @@ public class EditCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS));
     }
 
-    //    @Test
-    //    public void parse_resetTags_success() {
-    //        Index targetIndex = INDEX_THIRD_PATIENT;
-    //        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-    //
-    //        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withTags().build();
-    //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-    //
-    //        assertParseSuccess(parser, userInput, expectedCommand);
-    //    }
+    @Test
+    public void parse_resetTags_success() {
+        Index targetIndex = INDEX_THIRD_PATIENT;
+        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withTags().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }

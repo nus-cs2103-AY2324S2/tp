@@ -265,7 +265,7 @@ Given below is an example usage scenario and how the group creation mechanism be
 Step 1: The user accesses the PatientSync application.
 
 Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday, which falls on the 20th January.
-- Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
 
 --------------------------------------------------------------------------------------------------------------------
 
