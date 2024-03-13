@@ -39,10 +39,13 @@ public class AddCategoryCommandParser implements Parser<AddCategoryCommand> {
         String category = "";
         String description = "";
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
-            category = argMultimap.getValue(PREFIX_CATEGORY).get();
+            category = argMultimap.getValue(PREFIX_CATEGORY).get().trim();
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+            description = argMultimap.getValue(PREFIX_DESCRIPTION).get().trim();
+        }
+        if (category.equals("") || description.equals("")) {
+            throw new ParseException(AddCategoryCommand.ENTRY_NOT_ADDED);
         }
         Entry entry = new Entry(category, description);
         return new AddCategoryCommand(index, entry);
