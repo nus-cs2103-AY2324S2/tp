@@ -99,6 +99,7 @@ public class EditCommandParserTest {
         // assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
                         + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
@@ -163,6 +164,7 @@ public class EditCommandParserTest {
         // tag
         userInput = targetIndex.getOneBased() + TAG_DESC_FIRST_INTERVIEW;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FIRST_INTERVIEW).build();
+
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -225,17 +227,4 @@ public class EditCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS)
         );
     }
-    //    @Test This test is for the old AB since Tag is not compulsory
-    //    public void parse_resetTags_success() {
-    //        Index targetIndex = INDEX_THIRD_PERSON;
-    //        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-    //
-    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-    //                .withTags("")
-    //                .build();
-    //
-    //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-    //
-    //        assertParseSuccess(parser, userInput, expectedCommand);
-    //    }
 }

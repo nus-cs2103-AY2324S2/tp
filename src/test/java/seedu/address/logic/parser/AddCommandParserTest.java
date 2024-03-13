@@ -27,7 +27,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FIRST_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_NO_REPLY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -72,7 +72,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FIRST_INTERVIEW
+                + ADDRESS_DESC_BOB + TAG_DESC_INTERVIEW
                 + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
                 + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, new AddCommand(expectedPerson));
 
@@ -81,7 +81,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FIRST_INTERVIEW
+                + ADDRESS_DESC_BOB + TAG_DESC_INTERVIEW
                 + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
                 + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB;
 
@@ -214,17 +214,17 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + TAG_DESC_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
                 + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + TAG_DESC_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
                 + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + TAG_DESC_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
                 + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -233,28 +233,28 @@ public class AddCommandParserTest {
 
         // invalid job description
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + INVALID_JOB_DESCRIPTION_DESC + INTERVIEW_DATE_DESC_BOB
+                + TAG_DESC_INTERVIEW + INVALID_JOB_DESCRIPTION_DESC + INTERVIEW_DATE_DESC_BOB
                 + INTERN_DURATION_DESC_BOB + SALARY_DESC_BOB, JobDescription.MESSAGE_CONSTRAINTS);
 
         // invalid intern duration
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + TAG_DESC_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
                 + INVALID_INTERN_DURATION_DESC + SALARY_DESC_BOB, InternDuration.MESSAGE_CONSTRAINTS);
 
         // invalid salary
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + TAG_DESC_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
                 + INTERN_DURATION_DESC_BOB + INVALID_SALARY_DESC, Salary.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_FIRST_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
+                + TAG_DESC_INTERVIEW + JOB_DESCRIPTION_DESC_BOB + INTERVIEW_DATE_DESC_BOB
                 + INTERN_DURATION_DESC_BOB + INVALID_SALARY_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FIRST_INTERVIEW + TAG_DESC_NO_REPLY,
+                + ADDRESS_DESC_BOB + TAG_DESC_INTERVIEW + TAG_DESC_NO_REPLY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

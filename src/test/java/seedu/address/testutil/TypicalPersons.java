@@ -16,7 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIRST_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NO_REPLY;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("F")
+            .withTags("I")
             .withJobDescription("Software engineer developer intern")
             .withInterviewDate("03-02-2024 1000")
             .withInternDuration("3 months")
@@ -78,7 +78,7 @@ public class TypicalPersons {
             .withSalary("1000").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withTags("F")
+            .withTags("I")
             .withJobDescription("Software engineer developer intern")
             .withInterviewDate("03-07-2024 1000")
             .withInternDuration("3 months")
@@ -87,7 +87,7 @@ public class TypicalPersons {
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withTags("F")
+            .withTags("I")
             .withJobDescription("Software engineer developer intern")
             .withInterviewDate("03-08-2024 1700")
             .withInternDuration("3 months")
@@ -106,7 +106,7 @@ public class TypicalPersons {
             .withJobDescription(VALID_JOB_DESCRIPTION_AMY).withInterviewDate(VALID_INTERVIEW_DATE_AMY)
             .withInternDuration(VALID_INTERN_DURATION_AMY).withSalary(VALID_SALARY_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FIRST_INTERVIEW)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_INTERVIEW)
             .withJobDescription(VALID_JOB_DESCRIPTION_BOB).withInterviewDate(VALID_INTERVIEW_DATE_BOB)
             .withInternDuration(VALID_INTERN_DURATION_BOB).withSalary(VALID_SALARY_BOB).build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

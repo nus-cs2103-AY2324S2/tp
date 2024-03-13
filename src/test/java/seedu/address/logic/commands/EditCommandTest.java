@@ -66,7 +66,7 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FIRST_INTERVIEW)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_INTERVIEW)
                 .withJobDescription(VALID_JOB_DESCRIPTION_BOB).withInterviewDate(VALID_INTERVIEW_DATE_BOB)
                 .withInternDuration(VALID_INTERN_DURATION_BOB).withSalary(VALID_SALARY_BOB).build();
 
@@ -75,6 +75,7 @@ public class EditCommandTest {
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FIRST_INTERVIEW)
                 .withJobDescription(VALID_JOB_DESCRIPTION_BOB).withInterviewDate(VALID_INTERVIEW_DATE_BOB)
                 .withInternDuration(VALID_INTERN_DURATION_BOB).withSalary(VALID_SALARY_BOB).build();
+
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,

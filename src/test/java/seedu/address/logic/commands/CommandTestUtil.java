@@ -39,7 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_NO_REPLY = "NR";
-    public static final String VALID_TAG_FIRST_INTERVIEW = "F";
+    public static final String VALID_TAG_INTERVIEW = "I";
     public static final String VALID_JOB_DESCRIPTION_AMY = "Data Science intern";
     public static final String VALID_JOB_DESCRIPTION_BOB = "Front end developer intern";
     public static final String VALID_INTERVIEW_DATE_AMY = "15-04-2024 0900";
@@ -58,7 +58,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_NO_REPLY = " " + PREFIX_TAG + VALID_TAG_NO_REPLY;
-    public static final String TAG_DESC_FIRST_INTERVIEW = " " + PREFIX_TAG + VALID_TAG_FIRST_INTERVIEW;
+    public static final String TAG_DESC_INTERVIEW = " " + PREFIX_TAG + VALID_TAG_INTERVIEW;
     public static final String JOB_DESCRIPTION_DESC_AMY = " " + PREFIX_JOB_DESCRIPTION + VALID_JOB_DESCRIPTION_AMY;
     public static final String JOB_DESCRIPTION_DESC_BOB = " " + PREFIX_JOB_DESCRIPTION + VALID_JOB_DESCRIPTION_BOB;
     public static final String INTERVIEW_DATE_DESC_AMY = " " + PREFIX_INTERVIEW_DATE + VALID_INTERVIEW_DATE_AMY;
