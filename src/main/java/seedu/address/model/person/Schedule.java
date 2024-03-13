@@ -20,7 +20,6 @@ public class Schedule {
     public Schedule(LocalDateTime schedule) {
         this.schedule = schedule;
         this.isDone = false;
-        //this.isMissed = checkIsMissed(schedule);
         checkIsMissed();
     }
 
@@ -33,7 +32,6 @@ public class Schedule {
     public Schedule(LocalDateTime schedule, boolean isDone) {
         this.schedule = schedule;
         this.isDone = isDone;
-        //this.isMissed = checkIsMissed(schedule);
         checkIsMissed();
     }
 

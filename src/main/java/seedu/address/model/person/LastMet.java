@@ -41,6 +41,8 @@ public class LastMet {
         long periodGap = getPeriodGap();
         if (periodGap > lastMetDuration) {
             this.isOverdue = true;
+        } else {
+            this.isOverdue = false;
         }
     }
 
