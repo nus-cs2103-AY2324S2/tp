@@ -60,4 +60,10 @@ public class CommandResultTest {
                 + ", exit=" + commandResult.isExit() + "}";
         assertEquals(expected, commandResult.toString());
     }
+    @Test
+    public void getExecutedCommand() {
+        Class<?> executedCommand = ListClassesCommand.class;
+        CommandResult commandResult = new CommandResult("feedback", false, false, executedCommand);
+        assertEquals(executedCommand, commandResult.getExecutedCommand());
+    }
 }
