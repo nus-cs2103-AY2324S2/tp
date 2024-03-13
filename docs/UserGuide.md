@@ -4,9 +4,9 @@ title: "User Guide"
 pageNav: 3
 ---
 
-# AB-3 User Guide
+# Eventy User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Eventy is a contact management application, tailored specifically for student event organizers, offers a new standard of streamlined and automated contact organization. It serves as your single source of truth for storing, managing, and retrieving all contact-related information.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,54 +17,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `eventy.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Eventy.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eventy.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-
-<box type="info" seamless>
-
-**Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</box>
 
 ### Creating an event: `addev`
 
@@ -97,7 +62,9 @@ Deletes an event and all its relevant information with its index in the event li
 <box type="warning" seamless>
 
 **Caution:**
+
 * `<index>` should be **numeric** and **non-empty**.
+  </box>
 
 **Examples:**
 
@@ -111,14 +78,11 @@ Deletes an event and all its relevant information with its index in the event li
 
 Adds a new participant to the app, allowing them to be added to an event later.
 
-<box type="warning" seamless>
-
 **Caution:**
 
 * `<participant name>` should be **alphabetic**, **non-empty** and **not longer than 64 characters**.
 * `<phone number>` should be **numeric**, **non-empty** and **not longer than 15 digits**.
 * `<email>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
-  </box>
 
 **Examples:**
 
@@ -139,6 +103,7 @@ Invite participants from the global participant list to the selected event.
 * Duplicate participants is **not allowed.**
 
 **Examples:**
+
 - `invite 5` Adds participant indexed 5 to selected event.
 
 ### Clearing all entries : `clear`
@@ -160,6 +125,7 @@ Updates the contact information of a participant in the app.
 * `<participant index>` should be within valid range of global participants
 
 **Examples:**
+
 - `editp 5 -n Max -p 00000000 -e test@gmail.com` Edits contact details of participant indexed 5.
 
 ### Selecting an event: `sel`
@@ -179,7 +145,7 @@ Selects an event from the event list by the event index.
 
 **Examples:**
 
-- `sel 3` selects the event with index `3`.
+- `sel 3` selects the 3rd event.
 
 ### Deselecting an event: `desel`
 
@@ -216,8 +182,8 @@ Deselects the selected event and returns to the global participant list.
 
 **Examples:**
 
-- When no event is selected, `delp 9` deletes the participant with the index `9` completely.
-- `delp 9` after `sel 3` removes the participant with index `9` from event `3`'s participant list.
+- When no event is selected, `delp 9` deletes the 9th participant completely.
+- `delp 9` after `sel 3` removes the 9th participant from the 3rd event's participant list.
 
 ### Locating persons by name: `find`
 
@@ -245,7 +211,7 @@ Format: `list`
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -299,9 +265,4 @@ Action     | Format, Examples
 **Delete Event**    | `delev <index>` <br> e.g., `delev 1`
 **Add Participant**    | `addp -n <participant name> -p <phone number> -e <email>` <br> e.g., `addp -n David -p 98987676 -e david@example.com`
 **Invite to Event**    | `invite INDEX` <br> e.g., `invite 5`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `editp PARTICIPANT_INDEX -n PARTICIPANT_NAME -p PHONE -e EMAIL`<br> e.g.,`editp 5 -n Max -p 00000000 -e test@gmail.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+
