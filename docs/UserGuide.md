@@ -17,7 +17,8 @@ nerdTrackerPlus is a **desktop app for managing contacts, optimized for use via 
   - [7. Remove a tag](#7-remove-a-tag--remove-tag) : `Remove Tag`
   - [8. Clearing all entries](#8-clearing-all-entries--clear) : `clear`
   - [9. Filtering by tags](#9-filtering-by-tags--filter) : `filter`
-  - [10. Exiting the program](#10-exiting-the-program--exit) : `exit`
+  - [10. Marking participation scores](#10-marking-participation-scores--mark) : `mark`
+  - [11. Exiting the program](#11-exiting-the-program--exit) : `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -184,7 +185,18 @@ Format: `filter [all/any] NUMBEROFTAGS TAGNAME [TAGNAME]`
 * Tags are case in-sensitive.
 * The number of tags cannot be `0`.
 
-### 10. Exiting the program : `exit`
+### 10. Marking participation scores : `mark`
+
+Marks the participation scores of particular students for a particular week.
+
+Format: `mark INDEX WEEKNUMBER`
+
+* Marks the participation score of the student at the specified `INDEX` in the specified `WEEK`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The week must be a valid week from the range [1, 13].
+
+### 11. Exiting the program : `exit`
 
 Exits the program.
 
