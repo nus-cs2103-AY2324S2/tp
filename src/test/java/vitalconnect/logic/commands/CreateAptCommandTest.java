@@ -42,8 +42,8 @@ public class CreateAptCommandTest {
         assertThrows(CommandException.class, "OOPS! The appointment cannot be created as the time is "
                 + "not in the correct format.", () -> createAptCommand.execute(modelStub));
     }
-/*
-    @Test
+
+    /*@Test
     public void execute_appointmentCreatedSuccessfully() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         String patientName = "John Doe";
