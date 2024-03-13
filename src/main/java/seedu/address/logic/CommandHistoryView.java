@@ -18,6 +18,9 @@ public class CommandHistoryView {
      * @param history        the history
      */
     public CommandHistoryView(CommandHistory history) {
+        if (history == null) {
+            throw new IllegalArgumentException("Command history cannot be null");
+        }
         commandBuffer.add("");
         commandBuffer.addAll(history.getHistory());
     }
@@ -56,6 +59,9 @@ public class CommandHistoryView {
      * @param command the command to update.
      */
     public void updateCurrentCommand(String command) {
+        if (command == null) {
+            throw new IllegalArgumentException("String command cannot be null.");
+        }
         commandBuffer.set(index, command);
     }
 }

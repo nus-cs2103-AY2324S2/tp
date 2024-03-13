@@ -10,13 +10,32 @@ import java.util.List;
  */
 public class CommandHistory {
     // TODO: let user specify history size in preferences.json
-    private static final int HISTORY_SIZE = 100;
+    private int capacity = 100;
 
     /**
      * The list for storing the commands.
      */
     // TODO: (Enhancement) persist command history between app launches
     private final LinkedList<String> history = new LinkedList<>();
+
+    /**
+     * Instantiates a new CommandHistory with the default capacity.
+     */
+    public CommandHistory() {
+        super();
+    }
+
+    /**
+     * Instantiates a new CommandHistory with the specified capacity.
+     *
+     * @param size A non-negative integer representing the maximum number of entries to store.
+     */
+    public CommandHistory(int size) {
+        if (size < 0) {
+            throw new IllegalArgumentException("Capacity for command history cannot be negative.");
+        }
+        this.capacity = size;
+    }
 
     /**
      * Returns a read-only list of the command history, starting with the most recent command
@@ -35,10 +54,13 @@ public class CommandHistory {
      * @param entry the entry
      */
     public void add(String entry) {
+        if (entry == null) {
+            throw new IllegalArgumentException("String argument cannot be null");
+        }
         history.addFirst(entry);
-        if (history.size() > HISTORY_SIZE) {
+        if (history.size() > capacity) {
             history.pollLast();
         }
-        assert history.size() <= HISTORY_SIZE : "Size of command history should not be over the limit";
+        assert history.size() <= capacity : "Size of command history should not be over the limit";
     }
 }
