@@ -6,9 +6,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.Messages;
-
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.NameEqualsKeywordPredicate;
@@ -32,12 +31,11 @@ public class CompanyCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, Remark: %2$s";
     public static final String MESSAGE_ADD_COMPANY_SUCCESS = "Tagged %1$s's company as %2$s";
     public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Removed the company tag from %1$s's contact";
-
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
+            "Company command not implemented yet";
     private final String name;
     private final Company company;
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Company command not implemented yet";
 
     /**
      * @param name  of the person in the filtered person list to edit the remark
