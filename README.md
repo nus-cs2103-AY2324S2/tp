@@ -6,17 +6,17 @@
 
 ### Having TOO MANY contacts to keep track of?
 > e.g. friends from different parts of your school life?
-> 
+
 > e.g. friends from different committees and interest groups?
 
-### Fret not, 
+### Fret not,
 this is **a project aimed to *streamline* YOUR campus life**.<br>
 
 ## Why would LookMeUp be useful?
 As an address book for students living on NUS campus to manage contacts, LookMeUp is designed to enable TAGGING!
 * **Tagging** allows you to add **multiple tags** to each contact, to keep track of the different groups they belong to.
 * You may **filter** your contacts via the **tags**,
-so you can *easily find* the contacts you need from a particular group 
+so you can *easily find* the contacts you need from a particular group
 (e.g. when broadcasting announcements, scheduling meetings etc.)
 
 ### How is LookMeUp created?
