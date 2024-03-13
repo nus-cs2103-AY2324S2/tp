@@ -145,8 +145,8 @@ public class ModelManagerTest {
         ModelManager modelManager = new ModelManager();
         modelManager.addPerson(ALICE); // Assuming ALICE is a predefined Person object
 
-        assertTrue(modelManager.personExist(ALICE.getName().fullName));
-        assertFalse(modelManager.personExist("Non Existing Person"));
+        assertTrue(modelManager.doesPersonExist(ALICE.getName().fullName));
+        assertFalse(modelManager.doesPersonExist("Non Existing Person"));
     }
 
 

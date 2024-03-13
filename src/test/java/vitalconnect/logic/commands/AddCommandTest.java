@@ -160,7 +160,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean personExist(String name) {
+        public boolean doesPersonExist(String name) {
             throw new AssertionError("This method should not be called.");
         }
 

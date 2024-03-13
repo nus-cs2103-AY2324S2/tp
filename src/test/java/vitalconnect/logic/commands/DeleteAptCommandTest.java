@@ -77,7 +77,7 @@ public class DeleteAptCommandTest {
         }
 
         @Override
-        public boolean personExist(String name) {
+        public boolean doesPersonExist(String name) {
             return appointments.stream().anyMatch(appointment -> appointment.getPatientName().equals(name));
         }
 
@@ -169,7 +169,7 @@ public class DeleteAptCommandTest {
         }
 
         @Override
-        public boolean personExist(String name) {
+        public boolean doesPersonExist(String name) {
             throw new AssertionError("This method should not be called.");
         }
 

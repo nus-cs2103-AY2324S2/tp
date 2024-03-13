@@ -85,7 +85,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    boolean personExist(String name);
+    boolean doesPersonExist(String name);
     void addAppointment(Appointment appointment);
 
     ObservableList<Appointment> getFilteredAppointmentList();

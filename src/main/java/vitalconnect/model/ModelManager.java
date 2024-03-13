@@ -132,7 +132,7 @@ public class ModelManager implements Model {
         clinic.setPerson(target, editedPerson);
     }
     @Override
-    public boolean personExist(String name) {
+    public boolean doesPersonExist(String name) {
         requireNonNull(name);
         return filteredPersons.stream()
                 .anyMatch(person -> person.getName().fullName.equalsIgnoreCase(name));

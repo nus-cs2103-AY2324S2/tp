@@ -55,7 +55,7 @@ public class CreateAptCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             // Check if a person with the exact name exists
-            if (!model.personExist(patientName)) {
+            if (!model.doesPersonExist(patientName)) {
                 throw new CommandException("OOPS! The appointment cannot be created as the patient does not exist.");
             }
             // Parse and validate date time

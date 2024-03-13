@@ -135,7 +135,7 @@ public class CreateAptCommandTest {
         }
 
         @Override
-        public boolean personExist(String name) {
+        public boolean doesPersonExist(String name) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -160,7 +160,7 @@ public class CreateAptCommandTest {
 
     private class ModelStubWithoutPerson extends ModelStub {
         @Override
-        public boolean personExist(String name) {
+        public boolean doesPersonExist(String name) {
             return false;
         }
     }
@@ -172,7 +172,7 @@ public class CreateAptCommandTest {
         final ArrayList<Appointment> appointmentsAdded = new ArrayList<>();
 
         @Override
-        public boolean personExist(String name) {
+        public boolean doesPersonExist(String name) {
             return true;
         }
 
