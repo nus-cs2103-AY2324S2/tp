@@ -7,11 +7,15 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.PersonHasTagPredicate;
 
+/**
+ * Sorts and lists all persons in address book who are tagged by any of the argument keywords.
+ * Keyword matching is case-sensitive.
+ */
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts for all persons whose tags include any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " friend teacher student";
 
