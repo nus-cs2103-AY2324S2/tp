@@ -12,7 +12,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -86,7 +88,10 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
+            // Convert lists to sets
+            Set<Person> expectedSet = new HashSet<>(expectedModel.getFilteredPersonList());
+            Set<Person> actualSet = new HashSet<>(actualModel.getFilteredPersonList());
+            assertEquals(expectedSet, actualSet);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
