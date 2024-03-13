@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 import seedu.address.commons.core.date.Date;
 

@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DOB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_DOB_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DOB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
@@ -93,7 +93,7 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_NRIC_DESC, Nric.MESSAGE_CONSTRAINTS); // invalid nric
-        //        assertParseFailure(parser, "1" + INVALID_DOB_DESC, DateOfBirth.MESSAGE_CONSTRAINTS); // invalid dob
+        assertParseFailure(parser, "1" + INVALID_DOB_DESC, DateOfBirth.MESSAGE_CONSTRAINTS); // invalid dob
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
