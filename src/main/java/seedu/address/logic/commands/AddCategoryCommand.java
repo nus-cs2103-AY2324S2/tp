@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -9,21 +17,16 @@ import seedu.address.model.person.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-public class AddCategoryCommand extends Command{
+/**
+ * Class for add category command
+ */
+public class AddCategoryCommand extends Command {
     public static final String COMMAND_WORD = "addCategory";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a category to a person "
             + "by the index number used in the displayed person list.\n "
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CATEGORY+ "CATEGORY NAME] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CATEGORY + "CLAN "
@@ -74,7 +77,8 @@ public class AddCategoryCommand extends Command{
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditCommand.EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit,
+                                             EditCommand.EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Entry updatedName = editPersonDescriptor.get("Name").orElse(personToEdit.getEntry("Name"));
