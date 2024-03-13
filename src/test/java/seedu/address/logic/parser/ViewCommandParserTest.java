@@ -14,7 +14,7 @@ class ViewCommandParserTest {
     @Test
     void parse_validArgs_returnsViewCommand() throws ParseException {
         ViewCommandParser parser = new ViewCommandParser();
-        ViewCommand expectedCommand = new ViewCommand(Index.fromZeroBased(1));
+        ViewCommand expectedCommand = new ViewCommand(Index.fromZeroBased(0));
 
         assertEquals(expectedCommand, parser.parse("1"));
     }
@@ -38,7 +38,7 @@ class ViewCommandParserTest {
     @Test
     void parse_withWhitespaceAndValidArgs_returnsViewCommand() throws ParseException {
         ViewCommandParser parser = new ViewCommandParser();
-        ViewCommand expectedCommand = new ViewCommand(Index.fromZeroBased(2));
+        ViewCommand expectedCommand = new ViewCommand(Index.fromZeroBased(1));
 
         assertEquals(expectedCommand, parser.parse("   2   "));
     }
