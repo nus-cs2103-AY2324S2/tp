@@ -50,11 +50,12 @@ public class GroupCommand extends Command{
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
-        Person personToGroup = getPerson(lastShownList, toGroup);
+        Person personToGroup = lastShownList.stream().filter(person -> person.getNusId().equals(toGroup)).
+                findFirst().orElse(null);
 
         System.out.println(toGroup);
         if(personToGroup == null){
-            throw new CommandException("hi" + lastShownList.size());
+            throw new CommandException(MESSAGE_GROUP_PERSON_INVALID);
         }
         Person groupedPerson = createGroupedPerson(personToGroup, groupPersonDescriptor);
         model.setPerson(personToGroup, groupedPerson);

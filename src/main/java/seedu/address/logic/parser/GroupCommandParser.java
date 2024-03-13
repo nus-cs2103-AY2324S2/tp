@@ -31,7 +31,7 @@ public class GroupCommandParser implements Parser<GroupCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NUSID, PREFIX_GROUP, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NUSID, PREFIX_GROUP, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NUSID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE));
         }
