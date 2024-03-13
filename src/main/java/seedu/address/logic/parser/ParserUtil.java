@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -85,10 +86,9 @@ public class ParserUtil {
      * Parses a {@code String note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Note parseNote(String note) {
+    public static Note parseNote(Optional<String> note) {
         requireNonNull(note);
-        String trimmedNote = note.trim();
-        return new Note(trimmedNote);
+        return note.isEmpty() ? new Note("") : new Note(note.get().trim());
     }
 
     /**
