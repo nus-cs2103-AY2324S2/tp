@@ -13,11 +13,11 @@ public class EmailTest {
         assertThrows(NullPointerException.class, () -> new Email(null));
     }
 
-//    @Test
-//    public void constructor_invalidEmail_throwsIllegalArgumentException() {
-//        String invalidEmail = "";
-//        assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
-//    }
+    //    @Test
+    //    public void constructor_invalidEmail_throwsIllegalArgumentException() {
+    //        String invalidEmail = "";
+    //        assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
+    //    }
 
     @Test
     public void isValidEmail() {
