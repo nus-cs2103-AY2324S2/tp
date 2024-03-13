@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.commands.util.CommandMessageUsageUtil.generateMessageUsage;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_ADDRESS;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_EMAIL;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_INDEX;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_NAME;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_NUSNET;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_PHONE;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -38,20 +40,19 @@ public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_NUSNET + "NUSNET] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_NUSNET + "e0123456 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+    public static final String MESSAGE_USAGE = generateMessageUsage(
+            COMMAND_WORD,
+            "Edits the details of the person identified "
+                    + "by the index number used in the displayed person list. "
+                    + "Existing values will be overwritten by the input values.",
+            PARAMETER_INDEX,
+            PARAMETER_NAME.asOptional(false),
+            PARAMETER_PHONE.asOptional(true),
+            PARAMETER_EMAIL.asOptional(true),
+            PARAMETER_NUSNET.asOptional(true),
+            PARAMETER_ADDRESS.asOptional(false),
+            PARAMETER_TAG.asMultiple(0)
+    );
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
