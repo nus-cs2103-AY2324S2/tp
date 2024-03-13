@@ -16,7 +16,6 @@ public class TelegramHandle {
 
     /**
      * Constructs a {@code TelegramHandle}.
-     * 
      * @param handle a valid {@code String} representing the telegram handle.
      */
     public TelegramHandle(String handle) {
