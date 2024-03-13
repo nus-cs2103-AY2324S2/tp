@@ -140,6 +140,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private LastContact lastContact;
 
         public EditPersonDescriptor() {}
 
@@ -153,6 +154,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setLastContact(toCopy.lastContact);
         }
 
         /**
@@ -192,6 +194,9 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+        public void setLastContact(LastContact lastContact) {
+            this.lastContact = lastContact;
         }
 
         /**
