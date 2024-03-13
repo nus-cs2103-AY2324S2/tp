@@ -14,6 +14,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Tag;
+import seedu.address.model.person.NusId;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -21,6 +23,15 @@ import seedu.address.model.person.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static NusId parseNusId(String nusId) throws ParseException {
+        requireNonNull(nusId);
+        String trimmedNusId = nusId.trim();
+        if (!NusId.isValidNusId(trimmedNusId)) {
+            throw new ParseException(NusId.MESSAGE_CONSTRAINTS);
+        }
+        return new NusId(trimmedNusId);
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
