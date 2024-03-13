@@ -28,7 +28,7 @@ public class StarCommandParser implements Parser<StarCommand> {
 
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STAR)
-                || !argMultimap.getPreamble().isEmpty()) {
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE));
         } // if no PREFIX used, or if the Preamble is empty, we throw a ParseException
 
