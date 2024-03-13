@@ -51,12 +51,17 @@ public class PersonUtil {
      */
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_FIRSTNAME).append(name.value).append(
+        descriptor.getFirstName().ifPresent(name -> sb.append(PREFIX_FIRSTNAME).append(name.value).append(
             " "));
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_LASTNAME).append(name.value).append(
+        descriptor.getLastName().ifPresent(name -> sb.append(PREFIX_LASTNAME).append(name.value).append(
             " "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getSex().ifPresent(sex -> sb.append(PREFIX_SEX).append(sex.value).append(" "));
+        descriptor.getEmploymentType().ifPresent(employmentType -> sb.append(PREFIX_EMPLOYMENTTYPE).append(
+            employmentType.value).append(" "));
+        descriptor.getBankDetails().ifPresent(bankDetails -> sb.append(PREFIX_BANKDETAILS).append(bankDetails.value)
+                .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

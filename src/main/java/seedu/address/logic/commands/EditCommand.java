@@ -4,6 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIRSTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENTTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
+
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -36,31 +42,36 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person"
             + " identified "
-            + "by the index number used in the displayed person list. "
+            + "by the phone number. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: Phone number"
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_FIRSTNAME + "FIRST NAME] "
+            + "[" + PREFIX_LASTNAME + "LAST NAME] "
+            + "[" + PREFIX_EMPLOYMENTTYPE + "EMPLOYMENT TYPE] "
+            + "[" + PREFIX_BANKDETAILS + "BANK DETAILS] "
+            + "[" + PREFIX_SEX + "SEX] "
+            + "Example: " + COMMAND_WORD + " 85789476 "
             + PREFIX_PHONE + "91234567 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
+    private final Phone number;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(Phone number, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(number);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.number = number;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -71,15 +82,17 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(new Name(""), new Name(""), new Phone(""), new Sex(""),
-                new EmploymentType(""),
-                new Address(""),
-                new BankDetails(""), new HashSet<>());
+        Name updatedFirstName = editPersonDescriptor.getFirstName().orElse(personToEdit.getFirstName());
+        Name updatedLastName = editPersonDescriptor.getLastName().orElse(personToEdit.getLastName());
+        Sex updatedSex = editPersonDescriptor.getSex().orElse(personToEdit.getSex());
+        EmploymentType updatedEmploymentType = editPersonDescriptor.getEmploymentType()
+                .orElse(personToEdit.getEmploymentType());
+        BankDetails updatedBankDetails = editPersonDescriptor.getBankDetails().orElse(personToEdit.getBankDetails());
+        return new Person(updatedFirstName, updatedLastName, updatedPhone, updatedSex, updatedEmploymentType,
+                updatedAddress, updatedBankDetails, updatedTags);
     }
 
     @Override
@@ -87,11 +100,19 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        boolean exists = false;
+        Person personToEdit = null;
+        for (Person person : lastShownList) {
+            if (person.getPhone().equals(number)) {
+                exists = true;
+                personToEdit = person;
+                break;
+            }
+        }
+        if (!exists) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -115,14 +136,14 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
+        return number.equals(otherEditCommand.number)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("index", number)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
@@ -132,10 +153,14 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
+        private Name firstName;
+        private Name lastName;
         private Phone phone;
         private Address address;
         private Set<Tag> tags;
+        private Sex sex;
+        private EmploymentType employmentType;
+        private BankDetails bankDetails;
 
         public EditPersonDescriptor() {
         }
@@ -145,25 +170,36 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
+            setFirstName(toCopy.firstName);
+            setLastName(toCopy.lastName);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setEmploymentType(toCopy.employmentType);
+            setSex(toCopy.sex);
+            setBankDetails(toCopy.bankDetails);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, address, tags);
+            return CollectionUtil.isAnyNonNull(firstName, lastName, phone, address, tags, sex, employmentType,
+                    bankDetails);
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Name> getFirstName() {
+            return Optional.ofNullable(firstName);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setFirstName(Name name) {
+            this.firstName = name;
+        }
+        public Optional<Name> getLastName() {
+            return Optional.ofNullable(lastName);
+        }
+        public void setLastName(Name name) {
+            this.lastName = name;
         }
 
         public Optional<Phone> getPhone() {
@@ -172,6 +208,28 @@ public class EditCommand extends Command {
 
         public void setPhone(Phone phone) {
             this.phone = phone;
+        }
+
+        public Optional<Sex> getSex() {
+            return Optional.ofNullable(sex);
+        }
+
+        public void setSex(Sex sex) {
+            this.sex = sex;
+        }
+
+        public Optional<BankDetails> getBankDetails() {
+            return Optional.ofNullable(bankDetails);
+        }
+        public void setBankDetails(BankDetails bankDetails) {
+            this.bankDetails = bankDetails;
+        }
+
+        public Optional<EmploymentType> getEmploymentType() {
+            return Optional.ofNullable(employmentType);
+        }
+        public void setEmploymentType(EmploymentType employmentType) {
+            this.employmentType = employmentType;
         }
 
         public Optional<Address> getAddress() {
@@ -211,18 +269,26 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
+            return Objects.equals(firstName, otherEditPersonDescriptor.firstName)
+                    && Objects.equals(lastName, otherEditPersonDescriptor.lastName)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(sex, otherEditPersonDescriptor.sex)
+                    && Objects.equals(employmentType, otherEditPersonDescriptor.employmentType)
+                    && Objects.equals(bankDetails, otherEditPersonDescriptor.bankDetails);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", name)
+                    .add("firstName", firstName)
+                    .add("lastName", lastName)
                     .add("phone", phone)
                     .add("address", address)
+                    .add("sex", sex)
+                    .add("employmentType", employmentType)
+                    .add("bankDetails", bankDetails)
                     .add("tags", tags)
                     .toString();
         }
