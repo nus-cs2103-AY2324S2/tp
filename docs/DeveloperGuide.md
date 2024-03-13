@@ -290,22 +290,22 @@ streamlined approach to communicate with and track information about their stude
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                 | So that I can…​                                                    |
-|----------|----------------------------------------|----------------------------------------------|--------------------------------------------------------------------|
-| `* * *`  | tutor                                  | add a student's contact                      |                                                                    |
-| `* * *`  | tutor                                  | delete a student's contact                   | remove entries of students that I no longer need to keep track of  |
-| `* * *`  | tutor                                  | edit a student's contact                     | correct mistakes i made when adding a contact                      |
-| `* * *`  | tutor                                  | search for a student's contact               | I can find a student's contact                                     |
-| `* * *`  | tutor with many students in TutorTrack | view all students' contact                   |                                                                    |
-| `* * `   | new user                               | see usage instructions                       | refer to instructions when I forget how to use the App             |
-| `* * `   | new user                               | try out the programme with sample data       | I can explore the functionalities of the product                   |
-| `* * `   | advanced user                          | create shortcuts for commands                | I can more efficiently type commands                               |
-| `* `     | administrative tutor                   | broadcast information to groups of students  | I can quickly relay information to my tutees                       |
-| `* * `   | forgetful tutor                        | attach tags to tutees                        | I can quickly access important information related to them         |
-| `* * `   | proactive tutor                        | get a summary of my tutees current abilities | I can better prepare for classes                                   |
-| `* * `   | forgetful tutor                        | set and get reminders on lessons             | I will not miss any lessons                                        |
-| `* * `   | tutor                                  | group students by tags                       | I can easily communicate with different teams indicated by tags    |
-| `* * `   | clumsy typer                           | do fuzzy search                              | I can quickly find the record I need even if there are some typos  |
+| Priority | As a …​                                | I want to …​                                 | So that I can…​                                                   |
+|----------|----------------------------------------|----------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | tutor                                  | add a student's contact                      |                                                                   |
+| `* * *`  | tutor                                  | delete a student's contact                   | remove entries of students that I no longer need to keep track of |
+| `* * *`  | tutor                                  | edit a student's contact                     | correct mistakes I made when adding a contact                     |
+| `* * *`  | tutor                                  | search for a student's contact               | I can find a student's contact                                    |
+| `* * *`  | tutor with many students in TutorTrack | view all students' contact                   |                                                                   |
+| `* * `   | new tutor                              | see usage instructions                       | refer to instructions when I forget how to use the app            |
+| `* * `   | new tutor                              | try out the programme with sample data       | I can explore the functionalities of the product                  |
+| `* * `   | advanced tutor                         | create shortcuts for commands                | I can more efficiently type commands                              |
+| `* `     | administrative tutor                   | broadcast information to groups of students  | I can quickly relay information to my tutees                      |
+| `* * `   | forgetful tutor                        | attach tags to tutees                        | I can quickly access important information related to them        |
+| `* * `   | proactive tutor                        | get a summary of my tutees current abilities | I can better prepare for classes                                  |
+| `* * `   | forgetful tutor                        | set and get reminders on lessons             | I will not miss any lessons                                       |
+| `* * `   | tutor                                  | group students by tags                       | I can easily communicate with different teams indicated by tags   |
+| `* * `   | clumsy typer                           | do fuzzy search                              | I can quickly find the record I need even if there are some typos |
  
 
 *{More to be added}*
