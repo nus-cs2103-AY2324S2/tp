@@ -8,45 +8,43 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.logic.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.NameEqualsKeywordPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Group;
 
 /**
  * Changes the remark of an existing person in the address book.
  */
-public class GroupCommand extends Command {
+public class CompanyCommand extends Command {
 
-    public static final String COMMAND_WORD = "group";
+    public static final String COMMAND_WORD = "company";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a group to the person identified by the contact name "
-            + "Existing group will be overwritten by the input.\n"
-            + "g/ [GROUP_NAME]\n"
+            + ": Adds a company to the person identified by the contact name "
+            + "Existing company will be overwritten by the input.\n"
+            + "g/ [COMPANY_NAME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "g/ Friends";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Grouped the person: %1$s under %2$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed Person: %1$s from the group: %2$s";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$s, Remark: %2$s";
+    public static final String MESSAGE_ADD_COMPANY_SUCCESS = "Tagged %1$s's company as %2$s";
+    public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Removed the company tag from %1$s's contact";
 
     private final String name;
-    private final Group group;
+    private final Company company;
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Group command not implemented yet";
+            "Company command not implemented yet";
 
     /**
      * @param name  of the person in the filtered person list to edit the remark
-     * @param group of the person to be updated to
+     * @param company of the person to be updated to
      */
-    public GroupCommand(String name, Group group) {
-        requireAllNonNull(name, group);
+    public CompanyCommand(String name, Company company) {
+        requireAllNonNull(name, company);
 
         this.name = name;
-        this.group = group;
+        this.company = company;
     }
 
     @Override
@@ -62,7 +60,7 @@ public class GroupCommand extends Command {
         Person personToEdit = lastShownList.get(0);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), group, personToEdit.getTags());
+                personToEdit.getAddress(), company, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -76,8 +74,8 @@ public class GroupCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !group.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, personToEdit);
+        String message = !company.value.isEmpty() ? MESSAGE_ADD_COMPANY_SUCCESS : MESSAGE_DELETE_COMPANY_SUCCESS;
+        return String.format(message, personToEdit.getName(), company);
     }
 
     @Override
@@ -87,13 +85,13 @@ public class GroupCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof GroupCommand)) {
+        if (!(other instanceof CompanyCommand)) {
             return false;
         }
 
-        GroupCommand e = (GroupCommand) other;
+        CompanyCommand e = (CompanyCommand) other;
         return name.equals(e.name)
-                && group.equals(e.group);
+                && company.equals(e.company);
 
     }
 }

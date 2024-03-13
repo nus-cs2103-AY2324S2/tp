@@ -3,15 +3,15 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's group name in the address book.
+ * Represents a Person's company name in the address book.
  * Guarantees: immutable; is always valid
  */
-public class Group {
+public class Company {
     public final String value;
 
-    public Group(String groupName) {
-        requireNonNull(groupName);
-        value = groupName;
+    public Company(String companyName) {
+        requireNonNull(companyName);
+        value = companyName;
     }
 
     @Override
@@ -22,8 +22,8 @@ public class Group {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Group // instanceof handles nulls
-                && value.equals(((Group) other).value)); // state check
+                || (other instanceof Company // instanceof handles nulls
+                && value.equals(((Company) other).value)); // state check
     }
 
     @Override
