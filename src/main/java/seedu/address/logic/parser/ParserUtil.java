@@ -1,16 +1,19 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
@@ -120,5 +123,32 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+
+    /**
+     * Parses a {@param String importantDate} into a {@code ImportantDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code importantDate} is invalid.
+     */
+    public static ImportantDate parseImportantDate(String name, String importantDate) throws ParseException {
+        String trimmedName = name.trim();
+        String trimmedImportantDate = importantDate.trim();
+        requireAllNonNull(name, importantDate);
+
+        if (!ImportantDate.isValidImportantDate(trimmedImportantDate)) {
+            throw new ParseException(ImportantDate.MESSAGE_CONSTRAINTS);
+        }
+
+        return new ImportantDate(trimmedName, trimmedImportantDate);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

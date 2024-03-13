@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -26,6 +27,7 @@ public class PatientBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<ImportantDate> importantDates;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -36,6 +38,7 @@ public class PatientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        importantDates = new HashSet<>();
     }
 
     /**
@@ -47,6 +50,7 @@ public class PatientBuilder {
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
         tags = new HashSet<>(patientToCopy.getTags());
+        importantDates = new HashSet<>(patientToCopy.getImportantDates());
     }
 
     /**
@@ -86,6 +90,19 @@ public class PatientBuilder {
      */
     public PatientBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the ImportantDate of the {@code Patient} that we are building,
+     * with the name and date/datetime of the event
+     *
+     * @param names
+     * @param importantDates
+     * @return
+     */
+    public PatientBuilder withImportantDates(String[] names, String[] importantDates) {
+        this.importantDates = SampleDataUtil.getImportantDateSet(names, importantDates);
         return this;
     }
 

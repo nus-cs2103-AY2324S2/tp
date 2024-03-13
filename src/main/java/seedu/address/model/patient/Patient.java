@@ -24,6 +24,7 @@ public class Patient {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<ImportantDate> importantDates = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -35,6 +36,28 @@ public class Patient {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Constructs a Patient with {@param name}, {@param phone}, {@param email}, {@param address},
+     * {@param tags}, {@param importantDates}
+     *
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tags
+     * @param importantDates
+     */
+    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                   Set<ImportantDate> importantDates) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.importantDates.addAll(importantDates);
     }
 
     public Name getName() {
@@ -59,6 +82,14 @@ public class Patient {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable date set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<ImportantDate> getImportantDates() {
+        return Collections.unmodifiableSet(this.importantDates);
     }
 
     /**
@@ -94,13 +125,14 @@ public class Patient {
                 && phone.equals(otherPatient.phone)
                 && email.equals(otherPatient.email)
                 && address.equals(otherPatient.address)
-                && tags.equals(otherPatient.tags);
+                && tags.equals(otherPatient.tags)
+                && importantDates.equals(otherPatient.importantDates);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, importantDates);
     }
 
     @Override
@@ -111,6 +143,7 @@ public class Patient {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("importantDates", this.importantDates)
                 .toString();
     }
 

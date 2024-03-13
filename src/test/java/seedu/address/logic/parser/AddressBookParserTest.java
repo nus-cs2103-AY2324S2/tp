@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddImportantDateCommand;
 import seedu.address.logic.commands.AddTagsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -27,6 +30,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.EditPatientDescriptor;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -76,6 +80,17 @@ public class AddressBookParserTest {
 
         Set<Tag> expectedTags = new HashSet<>(Arrays.asList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3")));
         assertEquals(new AddTagsCommand(INDEX_FIRST_PATIENT, expectedTags), command);
+    }
+
+    @Test
+    public void parseCommand_addImportantDate() throws Exception {
+        String name = "Birthday";
+        String date = "20-01-2022";
+        String args = "1 " + PREFIX_NAME + name + " " + PREFIX_DATETIME + date;
+        AddImportantDateCommand command = (AddImportantDateCommand) parser.parseCommand(
+                AddImportantDateCommand.COMMAND_WORD + " " + args);
+
+        assertEquals(new AddImportantDateCommand(INDEX_FIRST_PATIENT, new ImportantDate(name, date)), command);
     }
 
     @Test

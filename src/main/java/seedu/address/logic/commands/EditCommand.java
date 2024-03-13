@@ -19,10 +19,12 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing patient in the address book.
@@ -88,7 +90,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
-    public static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
+    static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
@@ -96,8 +98,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+        Set<ImportantDate> updatedImportantDates = editPatientDescriptor.getImportantDates()
+                .orElse(patientToEdit.getImportantDates());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedImportantDates);
     }
 
     @Override
@@ -123,5 +127,4 @@ public class EditCommand extends Command {
                 .add("editPatientDescriptor", editPatientDescriptor)
                 .toString();
     }
-
 }

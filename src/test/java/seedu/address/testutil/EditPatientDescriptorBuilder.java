@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -7,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -80,6 +82,18 @@ public class EditPatientDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
+
+    /**
+     * Parses the name and important date into a {@code Set<ImportantDate>} and set it to the
+     * {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withImportantDate(String name, String date) {
+        Set<ImportantDate> importantDates = new HashSet<>();
+        importantDates.add(new ImportantDate(name, date));
+        descriptor.setImportantDate(importantDates);
+        return this;
+    }
+
 
     public EditPatientDescriptor build() {
         return descriptor;

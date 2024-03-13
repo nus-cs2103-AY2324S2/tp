@@ -243,6 +243,30 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Notifies user about duplicate inputs, ensures data consistency.
     * Cons: In case of addition of multiple tags, users do not have to find and remove the duplicated tags from the commands, which would be cumbersome when adding many tags
 
+
+### 3.3 Adding Important Dates to a Patient
+
+#### Introduction
+
+The `AddImportantDate` class is responsible for adding an Important Date to a patient in the address book. I
+
+#### Specifications
+
+* ImportantDates, as defined by the `ImportantDate` class, contain both the Name of the Event that falls on that date, as well as the Date of the Event and optionally, the Time Period for which the Event is happening.
+
+* The addition of Important Dates is cumulative, and new Important Dates will be added to the existing set of Important Dates for the patient, preserving the previously assigned Important Dates.
+
+* If the patient already has a particular Important Date, it will not be added again.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday, which falls on the 20th January.
+* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4 Planned Enhancements

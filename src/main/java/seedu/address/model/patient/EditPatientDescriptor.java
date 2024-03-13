@@ -20,6 +20,7 @@ public class EditPatientDescriptor {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<ImportantDate> importantDate;
 
     public EditPatientDescriptor() {
     }
@@ -34,13 +35,14 @@ public class EditPatientDescriptor {
         setEmail(toCopy.email);
         setAddress(toCopy.address);
         setTags(toCopy.tags);
+        setImportantDate(toCopy.importantDate);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, importantDate);
     }
 
     public void setName(Name name) {
@@ -92,6 +94,15 @@ public class EditPatientDescriptor {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
+    public Optional<Set<ImportantDate>> getImportantDates() {
+        return importantDate != null ? Optional.of(Collections.unmodifiableSet(importantDate)) : Optional.empty();
+    }
+
+    public void setImportantDate(Set<ImportantDate> importantDate) {
+        this.importantDate = importantDate != null ? new HashSet<>(importantDate) : null;
+    }
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -108,7 +119,8 @@ public class EditPatientDescriptor {
                 && Objects.equals(phone, otherEditPatientDescriptor.phone)
                 && Objects.equals(email, otherEditPatientDescriptor.email)
                 && Objects.equals(address, otherEditPatientDescriptor.address)
-                && Objects.equals(tags, otherEditPatientDescriptor.tags);
+                && Objects.equals(tags, otherEditPatientDescriptor.tags)
+                && Objects.equals(importantDate, otherEditPatientDescriptor.importantDate);
     }
 
     @Override
@@ -119,6 +131,7 @@ public class EditPatientDescriptor {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("importantDate", importantDate)
                 .toString();
     }
 }
