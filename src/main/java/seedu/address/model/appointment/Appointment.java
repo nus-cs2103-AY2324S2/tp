@@ -2,11 +2,11 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
+import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 
 /**
  * Represents an Appointment in the application.
@@ -15,10 +15,10 @@ import seedu.address.model.person.Name;
 public class Appointment {
 
     // Identity fields
-    private final Name name;
+    private final Nric nric;
 
     // Data fields
-    private final LocalDate date;
+    private final Date date;
     private final TimePeriod timePeriod;
     private final AppointmentType appointmentType;
     private final Note note;
@@ -26,21 +26,21 @@ public class Appointment {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Name name, LocalDate date, TimePeriod timePeriod,
+    public Appointment(Nric nric, Date date, TimePeriod timePeriod,
                        AppointmentType appointmentType, Note note) {
-        requireAllNonNull(name, date, timePeriod, appointmentType, note);
-        this.name = name;
+        requireAllNonNull(nric, date, timePeriod, appointmentType, note);
+        this.nric = nric;
         this.date = date;
         this.timePeriod = timePeriod;
         this.appointmentType = appointmentType;
         this.note = note;
     }
 
-    public Name getName() {
-        return name;
+    public Nric getNric() {
+        return nric;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -65,7 +65,7 @@ public class Appointment {
             return true;
         }
         return otherAppointment != null
-                && otherAppointment.name.equals(name)
+                && otherAppointment.nric.equals(nric)
                 && otherAppointment.date.equals(date)
                 && otherAppointment.timePeriod.equals(timePeriod);
     }
@@ -86,7 +86,7 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return name.equals(otherAppointment.name)
+        return nric.equals(otherAppointment.nric)
                 && date.equals(otherAppointment.date)
                 && timePeriod.equals(otherAppointment.timePeriod)
                 && appointmentType.equals(otherAppointment.appointmentType)
@@ -96,13 +96,13 @@ public class Appointment {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, timePeriod, appointmentType, note);
+        return Objects.hash(nric, date, timePeriod, appointmentType, note);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
+                .add("nric", nric)
                 .add("date", date)
                 .add("timePeriod", timePeriod)
                 .add("appointmentType", appointmentType)

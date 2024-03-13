@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
@@ -93,15 +93,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPersonWithName(Name name) {
-        requireNonNull(name);
-        return addressBook.hasPersonWithName(name);
+    public boolean hasPersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.hasPersonWithNric(nric);
     }
 
     @Override
-    public Person getPersonWithName(Name name) {
-        requireNonNull(name);
-        return addressBook.getPersonWithName(name);
+    public Person getPersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.getPersonWithNric(nric);
     }
 
     @Override

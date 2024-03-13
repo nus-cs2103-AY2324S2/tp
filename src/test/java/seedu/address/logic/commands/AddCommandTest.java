@@ -23,7 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -136,12 +136,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPersonWithName(Name name) {
+        public boolean hasPersonWithNric(Nric nric) {
             return false;
         }
 
         @Override
-        public Person getPersonWithName(Name name) {
+        public Person getPersonWithNric(Nric nric) {
             return null;
         }
 

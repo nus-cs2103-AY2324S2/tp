@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -68,17 +68,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same name as {@code person} exists in the address book.
      */
-    public boolean hasPersonWithName(Name name) {
-        requireNonNull(name);
-        return persons.hasPersonWithName(name);
+    public boolean hasPersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        return persons.hasPersonWithNric(nric);
     }
 
     /**
      * Returns true if a person with the same name as {@code person} exists in the address book.
      */
-    public Person getPersonWithName(Name name) {
-        requireNonNull(name);
-        return persons.getPersonWithName(name);
+    public Person getPersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        return persons.getPersonWithNric(nric);
     }
 
     /**

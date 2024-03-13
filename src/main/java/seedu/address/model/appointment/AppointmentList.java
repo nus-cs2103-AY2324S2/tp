@@ -137,7 +137,7 @@ public class AppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code appointments} contains only unique appointments.
      */
     private boolean appointmentsAreUnique(List<Appointment> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {

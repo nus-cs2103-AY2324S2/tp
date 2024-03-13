@@ -101,8 +101,8 @@ public class UniquePersonList implements Iterable<Person> {
      * Get person with name {@code name}.
      * {@code name} must exist within list.
      */
-    public Person getPersonWithName(Name name) {
-        Person equivalentPerson = new Person(name);
+    public Person getPersonWithNric(Nric nric) {
+        Person equivalentPerson = new Person(nric);
         for (Person person : internalList) {
             if (person.isSamePerson(equivalentPerson)) {
                 return person;
@@ -113,9 +113,9 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns true if a person with the same name as {@code person} exists in the address book.
      */
-    public boolean hasPersonWithName(Name name) {
-        requireNonNull(name);
-        return contains(new Person(name));
+    public boolean hasPersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        return contains(new Person(nric));
     }
 
     /**

@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME; //Temporary
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -13,7 +13,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 
 
 /**
@@ -26,14 +26,14 @@ public class AddAppCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment for the patient identified by the NRIC given \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
+            + PREFIX_NRIC + "NRIC "
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START_TIME "
             + PREFIX_END_TIME + "END_TIME "
             + PREFIX_TAG + "APPOINTMENT_TYPE "
             + PREFIX_NOTE + "NOTE ...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "T0123456A "
+            + PREFIX_NRIC + "T0123456A "
             + PREFIX_DATE + "2024-02-20 "
             + PREFIX_START_TIME + "11:00 "
             + PREFIX_END_TIME + "11:30 "
@@ -43,7 +43,7 @@ public class AddAppCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in CLInic";
 
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "Patient of given name is not found";
+    public static final String MESSAGE_PATIENT_NOT_FOUND = "Patient of given Nric is not found";
 
     private final Appointment apptToAdd;
 
@@ -58,9 +58,9 @@ public class AddAppCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Name name = apptToAdd.getName();
+        Nric nric = apptToAdd.getNric();
 
-        if (!model.hasPersonWithName(name)) {
+        if (!model.hasPersonWithNric(nric)) {
             throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
         }
 

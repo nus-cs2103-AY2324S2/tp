@@ -38,6 +38,10 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
+                .append("; NRIC: ")
+                .append(person.getNric())
+                .append("; Date of Birth: ")
+                .append(person.getDob())
                 .append("; Phone: ")
                 .append(person.getPhone())
                 .append("; Email: ")
@@ -54,7 +58,7 @@ public class Messages {
      */
     public static String format(Appointment appointment) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(appointment.getName())
+        builder.append(appointment.getNric())
                 .append("; Date: ")
                 .append(appointment.getDate())
                 .append("; Time: ")

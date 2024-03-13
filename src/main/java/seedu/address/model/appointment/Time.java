@@ -12,11 +12,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class Time implements Comparable<Time> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Time should be of the format HH:mm "
+    private static final String TIME_FORMAT = "HH:mm";
+    public static final String MESSAGE_CONSTRAINTS = "Time should be of the format " + TIME_FORMAT
             + "and adhere to the following constraints:\n"
             + "1. The HH part should only contain integers between 0 to 23 (24-hour clock) \n"
             + "2. The mm part should only contain integers between 0 to 59\n";
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_FORMAT);
 
     private static final String HOUR_REGEX = "([01]?[0-9]|2[0-3])";
     private static final String MINUTE_REGEX = "[0-5][0-9]";
@@ -49,7 +50,7 @@ public class Time implements Comparable<Time> {
 
     @Override
     public String toString() {
-        return value.format(formatter);
+        return value.format(TIME_FORMATTER);
     }
 
     @Override

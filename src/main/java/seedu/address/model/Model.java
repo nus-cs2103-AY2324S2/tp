@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
@@ -57,14 +57,14 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same name as {@code name} exists in the address book.
+     * Returns true if a person with the same nric as {@code nric} exists in the address book.
      */
-    boolean hasPersonWithName(Name name);
+    boolean hasPersonWithNric(Nric nric);
 
     /**
-     * Returns person with the same name as {@code name}.
+     * Returns person with the same nric as {@code nric}.
      */
-    Person getPersonWithName(Name name);
+    Person getPersonWithNric(Nric nric);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
