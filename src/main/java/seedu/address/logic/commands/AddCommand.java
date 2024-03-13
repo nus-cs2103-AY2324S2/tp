@@ -43,6 +43,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book";
+    public static final String ADD_HELP_MESSAGE = "Add Command: Adds a client to the Realodex.\n" +
+            "Format: add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY [t/TAG]...\n";
 
     private final Person toAdd;
 
