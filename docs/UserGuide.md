@@ -68,17 +68,17 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a new employee: `/new`
+### Adding a new employee: `/add`
 
 Adds a new employee to the address book.
 
 Format:
-* `/new NAME, PHONE_NUMBER, EMAIL, [YEAR_JOINED]`
-* `/new :name NAME :phone PHONE_NUMBER :email EMAIL [:year YEAR_JOINED]`
+* `/add NAME, PHONE, EMAIL, [YEAR_JOINED]`
+* `/add :name NAME :phone PHONE :email EMAIL [:year YEAR_JOINED]`
 
 Examples:
-* `/new jennie, 12334546, 123@gmail.com, 2021`
-* `/new :name jennie :phone 12334546 :email 123@gmail.com :year 2021`
+* `/add John Doe, 98765432, johndoe@example.com, 2024`
+* `/add :name John Doe :phone 98765432 :email johndoe@example.com :year 2024`
 
 ### Listing all persons : `list`
 
