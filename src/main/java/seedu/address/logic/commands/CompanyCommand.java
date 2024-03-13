@@ -1,16 +1,19 @@
 package seedu.address.logic.commands;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 import seedu.address.logic.Messages;
+
+import seedu.address.model.Model;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.NameEqualsKeywordPredicate;
 import seedu.address.model.person.Person;
+
 
 /**
  * Changes the remark of an existing person in the address book.

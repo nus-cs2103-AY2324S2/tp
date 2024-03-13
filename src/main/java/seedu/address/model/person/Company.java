@@ -9,6 +9,11 @@ import static java.util.Objects.requireNonNull;
 public class Company {
     public final String value;
 
+    /**
+     * Constructs a {@code Company}.
+     *
+     * @param companyName A valid name.
+     */
     public Company(String companyName) {
         requireNonNull(companyName);
         value = companyName;

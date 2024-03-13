@@ -38,19 +38,22 @@ public class StringUtil {
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
+    /**
+     * Returns true if the {@code sentence} equals to the {@code word}.
+     *   Ignores case, but a full word match is required.
+     *   <br>examples:<pre>
+     *       equalsWordIgnoreCase("ABc def", "abc") == true
+     *       equalsWordIgnoreCase("ABc def", "DEF") == true
+     *       equalsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
     public static boolean equalsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
-//        String preppedWord = word.trim();
         checkArgument(!word.isEmpty(), "Word parameter cannot be empty");
-//        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-//
-//        String preppedSentence = sentence;
-//        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
-
-//        return Arrays.stream(wordsInPreppedSentence)
-//                .anyMatch(preppedWord::equalsIgnoreCase);
         return sentence.equalsIgnoreCase(word);
     }
 
