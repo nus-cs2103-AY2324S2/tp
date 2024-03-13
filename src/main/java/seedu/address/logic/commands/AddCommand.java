@@ -41,7 +41,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "HappyBurger@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "F "
+            + PREFIX_TAG + "I "
             + PREFIX_JOB_DESCRIPTION + "Software Developer intern "
             + PREFIX_INTERVIEW_DATE + "03-03-2024 1200 "
             + PREFIX_INTERN_DURATION + "3 months "

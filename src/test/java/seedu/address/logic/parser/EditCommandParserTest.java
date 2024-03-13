@@ -17,7 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FIRST_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_NO_REPLY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -28,7 +28,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIRST_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NO_REPLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -162,8 +162,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tag
-        userInput = targetIndex.getOneBased() + TAG_DESC_FIRST_INTERVIEW;
-        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FIRST_INTERVIEW).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_INTERVIEW;
+        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_INTERVIEW).build();
 
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -210,8 +210,8 @@ public class EditCommandParserTest {
 
         // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FIRST_INTERVIEW + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FIRST_INTERVIEW + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_NO_REPLY;
+                + TAG_DESC_INTERVIEW + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_INTERVIEW + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_NO_REPLY;
 
         assertParseFailure(
                 parser,

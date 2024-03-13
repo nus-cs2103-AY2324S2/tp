@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_DESCRIPTION
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIRST_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -72,7 +72,7 @@ public class EditCommandTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FIRST_INTERVIEW)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_INTERVIEW)
                 .withJobDescription(VALID_JOB_DESCRIPTION_BOB).withInterviewDate(VALID_INTERVIEW_DATE_BOB)
                 .withInternDuration(VALID_INTERN_DURATION_BOB).withSalary(VALID_SALARY_BOB).build();
 
