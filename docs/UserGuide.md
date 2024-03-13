@@ -131,6 +131,24 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Adding an order : `addorder`
+
+Adds an order to a supplier.
+
+Format: `addorder INDEX d/DATE r/DESCRIPTION`
+
+* Adds an order to the supplier at the specified `INDEX`. The index refers to the index number shown in the displayed supplier list. The index **must be a positive integer** 1, 2, 3, …​
+* The date must be in the format `YYYY-MM-DD`. For example, `2020-12-31`.
+
+<box type="tip" seamless>
+
+**Note:** A person can have any number of orders (including 0)
+</box>
+
+Examples:
+* `addorder 1 d/2020-01-01 r/100 chicken wings`
+* `addorder 2 r/ 100 chicken wings d/ 2020-12-31`
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -193,12 +211,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action        | Format, Examples                                                                                                                                                      |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**     | `clear`                                                                                                                                                               |
+| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Add Order** | `addorder INDEX d/DATE r/DESCRIPTION`<br> e.g., `addorder 1 d/ 2020-01-01 r/ 100 chicken wings`                                                                       |
+| **List**      | `list`                                                                                                                                                                |
+| **Help**      | `help`                                                                                                                                                                |
