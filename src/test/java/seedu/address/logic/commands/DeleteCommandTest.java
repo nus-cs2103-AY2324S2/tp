@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIds.ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIds.ID_SECOND_PERSON;
@@ -28,7 +29,7 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIdUnfilteredList_success() {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person personToDelete = null;
         for (Person person : lastShownList) {
@@ -45,6 +46,14 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIdUnfilteredList_idNotFound() {
+        Id idNotInList = new Id("hire");
+        DeleteCommand deleteCommand = new DeleteCommand(idNotInList);
+        assertCommandFailure(deleteCommand, model, "User ID hire not found. "
+                + "Consider checking database to ensure the correct ID has been entered.");
     }
 
     /*
