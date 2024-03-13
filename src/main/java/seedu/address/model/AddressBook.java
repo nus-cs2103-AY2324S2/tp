@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -27,6 +29,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
     }
+
+    private final TaskList tasks = new TaskList();
 
     public AddressBook() {}
 
@@ -49,12 +53,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the task list with {@code tasks}.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
     }
 
     //// person-level operations
@@ -93,6 +105,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTask(Task task) {
+        tasks.remove(task);
+    }
+
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
 
     //// util methods
 

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Task> taskList;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -33,7 +36,10 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        ObservableList<Person> personList = this.addressBook.getPersonList();
+        ObservableList<Task> taskList = this.addressBook.getTaskList();
+        filteredPersons = new FilteredList<>(personList);
+        this.taskList = new FilteredList<>(taskList);
     }
 
     public ModelManager() {
@@ -127,6 +133,27 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+
+    //=========== Task List Accessors =============================================================
+
+    @Override
+    public void addTask(Task task) {
+        addressBook.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        taskList.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return taskList;
+    }
+
 
     @Override
     public boolean equals(Object other) {
