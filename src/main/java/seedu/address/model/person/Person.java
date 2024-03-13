@@ -24,11 +24,10 @@ public class Person {
     // Data fields
 
     private final FundingStage fundingStage;
-
     private final Industry industry;
-
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Note note;
 
     /**
      * Every field must be present and not null.
@@ -43,6 +42,23 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.note = new Note("Add a Note!");
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, FundingStage fundingStage, Industry industry,
+                  Phone phone, Email email, Address address, Set<Tag> tags, Note note) {
+        requireAllNonNull(name, fundingStage, industry, phone, email, address, tags);
+        this.name = name;
+        this.fundingStage = fundingStage;
+        this.industry = industry;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.note = note;
     }
 
     public FundingStage getFundingStage() {
@@ -67,6 +83,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -131,6 +151,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("note", note)
                 .toString();
     }
 
