@@ -118,25 +118,51 @@ Examples:
 Finds all contacts whose names or tags matches the substring keyword provided.
 
 
-Format: `find /FIELD KEYWORD /FIELD KEYWORD ...`
+Format: `find FIELD/ KEYWORD FIELD/ KEYWORD ...`
 
 * 'FIELD' only supports `n/` for name and `t/` for tag.
 
 * 'KEYWORD' is the keyword to search for.
 
-* 'KEYWORD' should **NOT** be empty and should **NOT** contain any whitespace or the character `/`.
+* 'KEYWORD' can **ONLY** be alphabets (no spaces)
+  * `find n/John Doe` will **NOT** work. Try `find n/John n/Doe` instead to represent finding John and Doe
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* You can have multiple of the same 'KEYWORD's. e.g. `find /n J /n D` will match names with `J` AND `D`, like `John Doe`
-* You need to have spaces between the `/FIELD` and `KEYWORD` pairs. e.g. `find /nJ` will **NOT** work.
+* 'KEYWORD' and next 'FIELD' should be separated by a space.
+  * e.g. e.g `find n/John t/friends` will find all instances of John that have the tag friends 
+  * but `find n/Johnt/tfriends` will instead return an error since it assumes you are searching for.'Johnt/tfriends'
+  * and there should not be non-alphabet characters in the 'KEYWORD' field.
+
+* 'KEYWORD' should **NOT** be empty and there should be at least one 'FIELD' and 'KEYWORD' pair.
+  * e.g. `find n/ t/` and `find ` will **NOT** work.
+  
+* There shoud not be prefixes before the first 'FIELD' and 'KEYWORD' pair. 
+  * e.g. `find testing123 n/John` will **NOT** work.
+
+* Prefix Search: The search is a prefix search. 
+  * e.g. `find n/John` will match `Johnnu Dory` and `John Doe` but not `Jonh`.
+
+* The search is case-insensitive. 
+  * e.g `hans` will match `Hans`
+
+* The order of the keywords does not matter. 
+  * e.g. Results of `find n/Hans n/Bo` will match that of`find n/Bo n/Hans`
+
+* You can have multiple of the same 'FIELD's. 
+  * e.g. `find n/J n/D` will match names with `J` AND `D`, like `John Doe`
 
 Examples:
-* `find /n Joh` returns `john`, `John Doe` and `Johann Sebastian Bach`
+* `find n/Joh` returns `john`, `John Doe` and `Johnann Sebastian Bach`
+* 
 
-* `find /n alex /n david` returns `Alex Davidson` and `David Alexis`<br>
+* `find n/alex n/david` returns `Alex Davidson` and `David Alexis`<br>
 
-* `find /n Alex /t friends` returns `Alex Yeoh` who is tagged as a `friend`
+* `find n/Alex t/friends` returns `Alex Yeoh` who is tagged as a `friend`<br>
+
+* `find n////` returns an error message as the 'KEYWORD' field must consist of alphabets only<br>
+
+* `find n/` or `find t/` or `find n/ t/` returns an error message as the 'KEYWORD' field cannot be empty<br>
+
+* `find` returns an error message as there should be at least one 'FIELD' and 'KEYWORD' pair<br>
 
 ### Deleting a person : `delete`
 
@@ -206,6 +232,6 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD/ [MORE_KEYWORDS]`<br> e.g., `find n/ James n/ Jake t/ friend t/ rich`
+**Find**   | `find KEYWORD/ [KEYWORD]`<br> e.g., `find n/ James n/ T t/ friend t/ rich`
 **List**   | `list`
 **Help**   | `help`

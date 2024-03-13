@@ -18,6 +18,9 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_ALPHABET_ONLY = "Value for %1$s must consist of alphabets only.";
+
+    public static final String MESSAGE_CANNOT_BE_EMPTY = "Value for prefix %1$s cannot be empty.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

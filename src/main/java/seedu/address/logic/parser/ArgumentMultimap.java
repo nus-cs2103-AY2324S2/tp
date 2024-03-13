@@ -96,7 +96,8 @@ public class ArgumentMultimap {
             List<String> values = getAllValues(prefix);
             for (String value : values) {
                 if (!value.matches("^[a-zA-Z]+$")) {
-                    throw new ParseException(String.format("Value for %s must consist of alphabets only.", prefix.getPrefix()));
+                    throw new ParseException(String.format("Value for %s must consist of alphabets only.",
+                            prefix.getPrefix()));
                 }
             }
         }

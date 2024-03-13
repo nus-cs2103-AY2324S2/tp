@@ -1,12 +1,15 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_ALPHABET_ONLY;
+import static seedu.address.logic.Messages.MESSAGE_CANNOT_BE_EMPTY;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +17,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.NameAndTagContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
-
     private FindCommandParser parser = new FindCommandParser();
 
     @Test
@@ -25,67 +27,64 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // Single name keyword
-        assertParseSuccess(parser, "n/Alice", new FindCommand(new NameAndTagContainsKeywordsPredicate(Collections.singletonList("Alice"), Collections.emptyList())));
-
-        // Single tag keyword
-        assertParseSuccess(parser, "t/friend", new FindCommand(new NameAndTagContainsKeywordsPredicate(Collections.emptyList(), Collections.singletonList("friend"))));
+        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice",
+                new FindCommand(new NameAndTagContainsKeywordsPredicate(Collections.singletonList("Alice"),
+                        Collections.emptyList())));
 
         // Multiple name keywords
-        assertParseSuccess(parser, "n/Alice n/Bob", new FindCommand(new NameAndTagContainsKeywordsPredicate(List.of("Alice", "Bob"), Collections.emptyList())));
+        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_NAME + "Bob",
+                new FindCommand(new NameAndTagContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"),
+                        Collections.emptyList())));
+
+        // Single tag keyword
+        assertParseSuccess(parser, " " + PREFIX_TAG + "friend",
+                new FindCommand(new NameAndTagContainsKeywordsPredicate(Collections.emptyList(),
+                        Collections.singletonList("friend"))));
 
         // Multiple tag keywords
-        assertParseSuccess(parser, "t/friend t/colleague", new FindCommand(new NameAndTagContainsKeywordsPredicate(Collections.emptyList(), List.of("friend", "colleague"))));
+        assertParseSuccess(parser, " " + PREFIX_TAG + "friend " + PREFIX_TAG + "colleague",
+                new FindCommand(new NameAndTagContainsKeywordsPredicate(Collections.emptyList(),
+                        Arrays.asList("friend", "colleague"))));
+
+        // Combined name and tag keywords
+        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_TAG + "friend",
+                new FindCommand(new NameAndTagContainsKeywordsPredicate(Collections.singletonList("Alice"),
+                        Collections.singletonList("friend"))));
     }
 
     @Test
-    public void parse_invalidKeyword_throwsParseException() {
-        // Name contains non-alphabetic characters
-        assertParseFailure(parser, "n/Alice1", "Name keywords must consist of only alphabets.");
-
-        // Tag contains non-alphabetic characters
-        assertParseFailure(parser, "t/friend1", "Tag keywords must consist of only alphabets.");
-
-        // Name contains slash
-        assertParseFailure(parser, "n/Al/ice", "Keywords must NOT contain `/`. \n/' is a special character reserved for commands. \n");
-
-        // Tag contains slash
-        assertParseFailure(parser, "t/fr/iend", "Keywords must NOT contain `/`. \n/' is a special character reserved for commands. \n");
+    public void parse_nonAlphabeticNameKeyword_throwsParseException() {
+        assertParseFailure(parser, " n/Alice1", String.format(MESSAGE_ALPHABET_ONLY, PREFIX_NAME));
     }
 
     @Test
-    public void parse_noKeywordsProvided_throwsParseException() {
-        // No keywords provided for name
-        assertParseFailure(parser, "n/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-
-        // No keywords provided for tag
-        assertParseFailure(parser, "t/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    public void parse_nonAlphabeticTagKeyword_throwsParseException() {
+        assertParseFailure(parser, " t/friend1", String.format(MESSAGE_ALPHABET_ONLY, PREFIX_TAG));
     }
 
     @Test
-    public void parse_invalidCommandFormat_throwsParseException() {
-        // Invalid prefix
-        assertParseFailure(parser, "x/Alice", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-
-        // Mixed valid and invalid prefixes
-        assertParseFailure(parser, "n/Alice x/Bob", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    public void parse_emptyNameKeyword_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_NAME + " ",
+                String.format(MESSAGE_CANNOT_BE_EMPTY, PREFIX_NAME));
     }
 
     @Test
-    public void parse_duplicatePrefixes_throwsParseException() {
-        // Duplicate name prefixes are allowed and treated as AND conditions
-        assertParseSuccess(parser, "n/Alice n/Bob", new FindCommand(new NameAndTagContainsKeywordsPredicate(List.of("Aliceria Bobby"), Collections.emptyList())));
-
-        // Duplicate tag prefixes are allowed and treated as AND conditions
-        assertParseSuccess(parser, "t/friend t/colleague", new FindCommand(new NameAndTagContainsKeywordsPredicate(Collections.emptyList(), List.of("friend", "colleague"))));
+    public void parse_emptyTagKeyword_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_TAG + " ",
+                String.format(MESSAGE_CANNOT_BE_EMPTY, PREFIX_TAG));
     }
 
     @Test
-    public void parse_unrecognizedInput_throwsParseException() {
-        // Unrecognized input after valid command
-        assertParseFailure(parser, "n/Alice random text", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-
-        // Unrecognized input before valid command
-        assertParseFailure(parser, "random text n/Alice", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    public void parse_noFieldsProvided_throwsParseException() {
+        // No name or tag provided
+        assertParseFailure(parser, "  ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_preamblePresent_throwsParseException() {
+        // Preamble before valid prefixes
+        assertParseFailure(parser, "RandomText " + PREFIX_NAME + "Alice",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
 }
