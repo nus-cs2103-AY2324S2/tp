@@ -29,9 +29,9 @@ import staffconnect.testutil.EditPersonDescriptorBuilder;
 import staffconnect.testutil.PersonBuilder;
 import staffconnect.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class StaffConnectParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final StaffConnectParser parser = new StaffConnectParser();
 
     @Test
     public void parseCommand_add() throws Exception {

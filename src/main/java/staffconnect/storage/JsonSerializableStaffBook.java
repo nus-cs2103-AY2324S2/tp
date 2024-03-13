@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import staffconnect.commons.exceptions.IllegalValueException;
-import staffconnect.model.AddressBook;
-import staffconnect.model.ReadOnlyAddressBook;
+import staffconnect.model.ReadOnlyStaffBook;
+import staffconnect.model.StaffBook;
 import staffconnect.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable StaffBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "staffbook")
+class JsonSerializableStaffBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableStaffBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableStaffBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyStaffBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableStaffBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableStaffBook(ReadOnlyStaffBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this staff book into the model's {@code StaffBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public StaffBook toModelType() throws IllegalValueException {
+        StaffBook staffBook = new StaffBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (staffBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            staffBook.addPerson(person);
         }
-        return addressBook;
+        return staffBook;
     }
 
 }
