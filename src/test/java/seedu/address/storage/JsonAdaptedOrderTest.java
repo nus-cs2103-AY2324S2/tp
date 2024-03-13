@@ -26,7 +26,6 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
         JsonAdaptedOrder jsonAdaptedOrder = new JsonAdaptedOrder(null, VALID_REMARK, VALID_STATUS);
-        System.out.println("jsonAdaptedOrder" + jsonAdaptedOrder);
         assertThrows(IllegalValueException.class, jsonAdaptedOrder::toModelType);
     }
 

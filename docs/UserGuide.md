@@ -113,23 +113,67 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Search Contact `find`
 
-Finds persons whose names contain any of the given keywords.
+- Search feature supports search by name and/or tags **ONLY**.
+- Finds all contacts whose names or tags matches the substring keyword provided.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+General Format: `find FIELD/ KEYWORD FIELD/ KEYWORD ...`
+- Where `FIELD` is either `n/` for name or `t/` for tag.
+- `KEYWORD` is the keyword (**alphabets only**) to search for.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+#### Search Guidelines
+
+* 'KEYWORD' can **ONLY** be alphabets and **CANNOT** contain spaces or be empty.
+  * e.g. `find n/John Doe` will **NOT** work. Try `find n/John n/Doe` instead to represent finding John and Doe
+  * e.g. `find n/` will **NOT** work as 'KEYWORD' cannot be empty.
+  * e.g. `find n/John123` will **NOT** work as 'KEYWORD' cannot contain non-alphabetic characters.
+
+
+* 'KEYWORD' and next 'FIELD' should be separated by a space.
+  * e.g. `find n/John t/friends` will find all instances of John that have the tag friends 
+  * but `find n/Johnt/tfriends` will instead return an error since it assumes you are searching for 'Johnt/tfriends'
+  * and there should not be non-alphabetic characters in the 'KEYWORD' field.
+
+
+* Multiple of the same 'FIELDs' will be treated as a **Logical AND (&&)**.
+  * e.g. `find n/John n/Doe` will return all instances of John and Doe.
+  * e.g. `find n/Ale n/le` will still return the following example instances ["Alex Liew", "Alexis Lebrun", "Alec"]
+
+
+* 'KEYWORD' should **NOT** be empty and there should be at least one 'FIELD' and 'KEYWORD' pair.
+  * e.g. `find n/ t/` and `find ` will **NOT** work.
+
+
+* There should not be prefixes before the first 'FIELD' and 'KEYWORD' pair. 
+  * e.g. `find testing123 n/John` will **NOT** work.
+
+
+* The search is case-insensitive. 
+  * e.g. `find n/hans` will match `Hans Niemann` and `Hans Zimmer`
+
+* The order of the keywords does not matter. 
+  * e.g. Results of `find n/Hans n/Bo` will match the results of`find n/Bo n/Hans`
+
+* You can have multiple of the same 'FIELD's. 
+  * e.g. `find n/J n/Do` will match names with `J` AND `Do`, like `John Doe`
+
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/Joh` returns `john`, `John Doe` and `Johnann Sebastian Bach`
+
+* `find n/alex n/david` returns `Alex Davidson` and `David Alexis`
+
+* `find n/Alex t/friends` returns `Alex Yeoh` who is tagged as a `friend`
+
+* `find n////` returns an error message as the 'KEYWORD' field must consist of alphabets only
+
+* `find n/` or `find t/` or `find n/ t/` returns an error message as the 'KEYWORD' field cannot be empty
+
+* `find` returns an error message as there should be at least one 'FIELD' and 'KEYWORD' pair
+
+* `find testing123 n/John` returns an error message as there should not be 
+      prefixes before the first 'FIELD' and 'KEYWORD' pair
 
 ### Adding an order : `addorder`
 
@@ -148,6 +192,9 @@ Format: `addorder INDEX d/DATE r/REMARK`
 Examples:
 * `addorder 1 d/2020-01-01 r/100 chicken wings`
 * `addorder 2 r/ 100 chicken wings d/ 2020-12-31`
+* `addorder 3 d/2020-01-01 r/100 chicken wings`
+* `addorder d/2020-01-01 r/100 chicken wings` returns an error as the index is not specified
+* `addorder r/` or `addorder d/` or `addorder r/ d/` returns an error message as the 'KEYWORD' field cannot be empty
 
 ### Deleting a person : `delete`
 
@@ -217,7 +264,7 @@ _Details coming soon ..._
 | **Clear**     | `clear`                                                                                                                                                               |
 | **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Find**      | `find KEYWORD/ [KEYWORD]`<br> e.g., `find n/ James n/ T t/ friend t/ rich`                                                                                            |
 | **Add Order** | `addorder INDEX d/DATE r/REMARK`<br> e.g., `addorder 1 d/ 2020-01-01 r/ 100 chicken wings`                                                                            |
 | **List**      | `list`                                                                                                                                                                |
 | **Help**      | `help`                                                                                                                                                                |
