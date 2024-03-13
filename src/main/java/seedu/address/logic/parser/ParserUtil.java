@@ -130,10 +130,11 @@ public class ParserUtil {
      */
     public static Appointment parseAppointment(String appointment) throws ParseException {
         requireNonNull(appointment);
-        if (!Appointment.isValidAppointment(appointment)) {
+        String trimmedAppointment = appointment.trim();
+        if (!Appointment.isValidAppointment(trimmedAppointment)) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
-        return new Appointment(appointment);
+        return new Appointment(trimmedAppointment);
     }
     /**
      * Parses {@code Collection<String> appointment} into a {@code Set<Appointment>}.
