@@ -21,11 +21,10 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the contact identified by the index number used in the displayed contact list with the specified tag.\n"
-            + "Parameters: INDEX (must be a positive integer) | TAG\n"
-            + "Example: " + COMMAND_WORD + " 1 | friends";
+            + "Parameters: INDEX (must be a positive integer) t/ TAG\n"
+            + "Example: " + COMMAND_WORD + " 1 t/ friends";
 
     public static final String MESSAGE_TAG_CONTACT_SUCCESS = "Tagged Contact: %1$s with %2$s";
-    public static final String MESSAGE_TAG_DUPLICATE = "This person has already been tagged with: %1$s";
 
     private final Index index;
     private final Tag tag;
@@ -45,10 +44,6 @@ public class TagCommand extends Command {
         }
 
         Person personToTag = lastShownList.get(index.getZeroBased());
-
-        if (tag.equals(personToTag.getTags())) {
-            throw new CommandException(MESSAGE_TAG_DUPLICATE);
-        }
 
         Person taggedPerson = personToTag.addTag(tag);
         model.setPerson(personToTag, taggedPerson);

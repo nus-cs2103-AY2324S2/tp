@@ -20,12 +20,11 @@ public class TagCommandParser {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
-        /* if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
-        } */
+        }
 
-        //argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
