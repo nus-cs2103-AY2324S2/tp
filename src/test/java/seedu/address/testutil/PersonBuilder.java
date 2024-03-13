@@ -5,6 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Family;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -18,13 +20,17 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_INCOME = "20000";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_FAMILY = "4";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
+    private Income income;
     private Email email;
     private Address address;
+    private Family family;
     private Set<Tag> tags;
 
     /**
@@ -33,8 +39,10 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
+        income = new Income(DEFAULT_INCOME);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        family = new Family(DEFAULT_FAMILY);
         tags = new HashSet<>();
     }
 
@@ -44,8 +52,10 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
+        income = personToCopy.getIncome();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        family = personToCopy.getFamily();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -82,6 +92,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Income} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withIncome(String income) {
+        this.income = new Income(income);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Family} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFamily(String family) {
+        this.family = new Family(family);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
@@ -90,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, income, email, address, family, tags);
     }
 
 }
