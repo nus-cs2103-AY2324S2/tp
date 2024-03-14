@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -17,8 +18,10 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private UUID id;
     private final Name name;
     private final Phone phone;
+
     private final Email email;
 
     // Data fields
@@ -29,12 +32,36 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, address, tags);
+        this.id = UUID.randomUUID();
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Constructor for Person with an ID
+     * @param id id of the person
+     * @param name name of the person
+     * @param phone phone number of the person
+     * @param email email address of the person
+     * @param address address of the person
+     * @param tags tags of the person
+     */
+    public Person(UUID id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, address, tags);
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+    public UUID getID() {
+        return id;
     }
 
     public Name getName() {
@@ -77,6 +104,7 @@ public class Person {
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
+     * Note that equivalence is agnostic to ID
      */
     @Override
     public boolean equals(Object other) {
@@ -100,12 +128,13 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(id, name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

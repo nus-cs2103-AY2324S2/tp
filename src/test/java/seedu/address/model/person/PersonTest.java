@@ -53,8 +53,12 @@ public class PersonTest {
 
     @Test
     public void equals() {
+
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
+
+        assertEquals(ALICE.getID(), aliceCopy.getID());
+
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -92,8 +96,9 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
+        String expected = Person.class.getCanonicalName() + "{id=" + ALICE.getID() + ", name=" + ALICE.getName()
+                + ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail() + ", address="
+                + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

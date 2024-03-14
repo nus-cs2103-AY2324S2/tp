@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -21,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    private UUID id;
     private Name name;
     private Phone phone;
     private Email email;
@@ -42,6 +44,7 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        id = personToCopy.getID();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -89,8 +92,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a person object
+     * @return a person object
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        if (id == null) {
+            return new Person(name, phone, email, address, tags);
+        } else {
+            return new Person(id, name, phone, email, address, tags);
+        }
     }
 
 }
