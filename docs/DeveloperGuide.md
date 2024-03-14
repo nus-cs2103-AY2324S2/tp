@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**: HR officer for tech-related startup
 
 **Value proposition**:
-* Managing contacts for three main types of external liaisons: 
+* Managing contacts for three main types of external liaisons:
   * potential hires
   * hiring agencies
   * legal consultants
@@ -334,7 +334,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The contact details have been added before.
 
     * 3b1. HRConnect shows an error message.
@@ -358,7 +358,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
   Use case ends.
 
-  
+
 **Use case: Add comment to contact**
 
 **MSS**
@@ -381,7 +381,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The comment is empty.
 
     * 3b1. HRConnect shows an error message.
@@ -417,7 +417,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-      
+
 
 **Use case: Edit a person**
 
@@ -470,14 +470,14 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The given range is invalid.
 
     * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-      
-      
+
+
 **Use case: Filter Tag**
 
 **MSS**
@@ -485,7 +485,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 1.  User requests to list of contacts
 2.  HRConnect shows a list of contacts
 3.  User requests to filter through the contact list based on what stage the interviewee is in
-4.  HRConnect returns entries only for interviewees in that particular stage. 
+4.  HRConnect returns entries only for interviewees in that particular stage.
 
     Use case ends.
 
@@ -500,13 +500,13 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The tag does not exist.
 
     * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-  
+
 
 **Use case: Find keyword**
 
@@ -570,7 +570,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
   Use case ends
 
 
-  
+
 
 ### Non-Functional Requirements
 
