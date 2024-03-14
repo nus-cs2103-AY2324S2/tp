@@ -10,7 +10,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
 
 /**
  * Marks payment of a student's monthly tuition fees by calling his / her displayed index from the address book.
@@ -28,6 +27,11 @@ public class MarkPaymentCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Mark payment as completed with target index.
+     *
+     * @param targetIndex Index of ListView.
+     */
     public MarkPaymentCommand(Index targetIndex) {
         requireNonNull(targetIndex);
 
@@ -44,7 +48,7 @@ public class MarkPaymentCommand extends Command {
         }
 
         Person personToMark = lastShownList.get(targetIndex.getZeroBased());
-        if (personToMark instanceof Student) {
+        if (personToMark instanceof Person) {
             model.deletePerson(personToMark);
         } else {
             throw new CommandException(Messages.MESSAGE_PERSON_IS_NOT_STUDENT);
