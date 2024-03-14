@@ -17,7 +17,7 @@ import seedu.findvisor.commons.core.index.Index;
 import seedu.findvisor.logic.commands.exceptions.CommandException;
 import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.Model;
-import seedu.findvisor.model.person.NameContainsKeywordsPredicate;
+import seedu.findvisor.model.person.NameContainsKeywordPredicate;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 
@@ -119,8 +119,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        String name = person.getName().fullName;
+        model.updateFilteredPersonList(new NameContainsKeywordPredicate(name));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

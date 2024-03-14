@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.findvisor.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -23,7 +24,7 @@ import seedu.findvisor.logic.commands.FindCommand;
 import seedu.findvisor.logic.commands.HelpCommand;
 import seedu.findvisor.logic.commands.ListCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
-import seedu.findvisor.model.person.NameContainsKeywordsPredicate;
+import seedu.findvisor.model.person.NameContainsKeywordPredicate;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 import seedu.findvisor.testutil.PersonBuilder;
@@ -70,10 +71,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String keyword = "foo";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME + keyword);
+        assertEquals(new FindCommand(new NameContainsKeywordPredicate(keyword)), command);
     }
 
     @Test
