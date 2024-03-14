@@ -25,7 +25,6 @@ public class Person {
     private final Address address;
     private final Borrow bookTitle;
     private final Set<Tag> tags = new HashSet<>();
-    
 
     /**
      * Every field must be present and not null.
@@ -101,7 +100,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags) 
+                && tags.equals(otherPerson.tags)
                 && bookTitle.equals(otherPerson.bookTitle);
     }
 
