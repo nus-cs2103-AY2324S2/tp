@@ -5,11 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.LoanRecords;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,50 +17,46 @@ public class DeleteLoanCommand extends Command {
     public static final String COMMAND_WORD = "deleteloan";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Delete the specified loan number of the person identified"
-            + "by the index number used. "
-            + "Parameters: NAME, INDEX (must be a positive integer) "
-            + "r/ [REMARK]\n"
-            + "Example: " + COMMAND_WORD + " n/John Doe "
-            + "i/1";
+            + ": Delete the specified loan index of the person who is identified"
+            + "by the index number. "
+            + "Parameters: INDEX(must be positive integer), LOAN_INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1 + l/1";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Delete loan command not implemented yet";
-    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Index: %2$d";
-    public static final String MESSAGE_SUCCESS = "Loan deleted: Name:%1$s, Index: %2$d";
-    public static final String MESSAGE_FAILURE = "No loan found for Name:%1$s, Index: %2$d";
-    private final Name name;
-    private final Index index;
+    public static final String MESSAGE_ARGUMENTS = "Person number: %1$d, Loan Index: %2$d";
+    public static final String MESSAGE_SUCCESS = "Loan deleted: Person number: %1$d, Loan Index: %2$d";
+    public static final String MESSAGE_FAILURE_PERSON = "No person found for Person number: %1$d";
+    public static final String MESSAGE_FAILURE_LOAN = "No loan found for Loan number: %1$d for given person";
+    private final Index personIndex;
+    private final Index loanIndex;
 
     /**
      * Creates a DeleteLoanCommand to delete the specified loan.
-     * @param name
-     * @param index
+     * @param personIndex
+     * @param loanIndex
      */
-    public DeleteLoanCommand(Name name, Index index) {
-        requireAllNonNull(name, index);
-        this.name = name;
-        this.index = index;
+    public DeleteLoanCommand(Index personIndex, Index loanIndex) {
+        requireAllNonNull(personIndex, loanIndex);
+        this.personIndex = personIndex;
+        this.loanIndex = loanIndex;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
         // find the first instance of a person with the given name
-        Person personToEdit = lastShownList.stream()
-                .filter(p -> p.getName().equals(name))
-                .findFirst()
-                .orElse(null);
+        Person personToEdit = lastShownList.get(personIndex.getZeroBased());
         if (personToEdit == null) {
-            throw new CommandException(String.format(MESSAGE_FAILURE, name, index.getOneBased()));
+            throw new CommandException(String.format(MESSAGE_FAILURE_PERSON, personIndex.getOneBased()));
         }
-        if (index.getZeroBased() >= personToEdit.getLoanRecords().size()) {
+        if (loanIndex.getZeroBased() >= personToEdit.getLoanRecords().size()) {
             // in reality, it's loan index outside of list range. We will be concerned about it later.
-            throw new CommandException(Messages.MESSAGE_INVALID_LOAN_INDEX);
+            throw new CommandException(String.format(MESSAGE_FAILURE_LOAN, loanIndex.getOneBased()));
         }
         LoanRecords loanRecords = personToEdit.getLoanRecords();
         // delete specified loan number
-        loanRecords.removeLoan(loanRecords.getLoan(index.getZeroBased()));
-        return new CommandResult(generateSuccessMessage(index.getOneBased()));
+        loanRecords.removeLoan(loanRecords.getLoan(loanIndex.getZeroBased()));
+        return new CommandResult(generateSuccessMessage(personIndex.getOneBased(), loanIndex.getOneBased()));
     }
 
     /**
@@ -70,8 +64,9 @@ public class DeleteLoanCommand extends Command {
      * the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(int index) {
-        return String.format(MESSAGE_SUCCESS, name, "Loan number ", index, " successfully removed!");
+    private String generateSuccessMessage(int personIndex, int loanIndex) {
+        return String.format(MESSAGE_SUCCESS, "Person number ", personIndex, ", Loan number ", loanIndex,
+                " successfully removed!");
     }
 
     @Override
@@ -86,7 +81,7 @@ public class DeleteLoanCommand extends Command {
         }
 
         DeleteLoanCommand e = (DeleteLoanCommand) other;
-        return this.index.equals(e.index)
-                && this.name.equals(e.name);
+        return personIndex.equals(e.personIndex)
+                && loanIndex.equals(e.loanIndex);
     }
 }

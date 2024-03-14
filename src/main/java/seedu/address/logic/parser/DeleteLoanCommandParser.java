@@ -2,15 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_INDEX;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteLoanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new DeleteLoanCommand object.
@@ -22,18 +20,18 @@ public class DeleteLoanCommandParser implements Parser<DeleteLoanCommand> {
      */
     public DeleteLoanCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LOAN_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_LOAN_INDEX)
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLoanCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_INDEX);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_LOAN_INDEX);
         try {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-            return new DeleteLoanCommand(name, index);
+            Index personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            Index loanIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LOAN_INDEX).get());
+            return new DeleteLoanCommand(personIndex, loanIndex);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLoanCommand.MESSAGE_USAGE), pe);
