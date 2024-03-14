@@ -44,7 +44,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         //Todo check if there are duplicate prefix. can change to /c and /d only
         // done
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CATEGORY, PREFIX_DESCRIPTION);
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         //here,they check whether the String that is parsed in contains the following prefix.
         String category = "";
         String description = "";
@@ -52,22 +51,23 @@ public class EditCommandParser implements Parser<EditCommand> {
         //Changed to check for only c/ d/ t/
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
             category = argMultimap.getValue(PREFIX_CATEGORY).get();
-            //editPersonDescriptor.set(category, (ParserUtil.parse(category,
-            // argMultimap.getValue(PREFIX_CATEGORY).get())));
-            editPersonDescriptor.setCategory(category);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
-            //editPersonDescriptor.set(description, (ParserUtil.parse(description,
-            // argMultimap.getValue(PREFIX_DESCRIPTION).get())));
-            editPersonDescriptor.setDescription(description);
         }
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor(category, description);
         //tag in this case is an Array list and over here, it shows how it
         //get all the values and check whether the prefix is there.
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         //Checks if there is any file edited as suggested.
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+        // Checks if both category and description are not provided.
+        if (editPersonDescriptor.getCategory() == null || editPersonDescriptor.getCategory().isEmpty()) {
+            if (editPersonDescriptor.getDescription() == null || editPersonDescriptor.getDescription().isEmpty()) {
+                throw new ParseException("Error: At least one of category (c/) or description (d/) must be provided.");
+            }
         }
         return new EditCommand(index, editPersonDescriptor);
     }

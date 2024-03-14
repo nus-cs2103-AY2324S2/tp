@@ -90,6 +90,7 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
         Entry personToEditEntry = personToEdit.getEntry(editPersonDescriptor.getCategory());
+        //returns a null error
         personToEditEntry.setDescription(editPersonDescriptor.getDescription());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         //return new Person(personToEdit.getEntry("Name"), updatedTags);
@@ -131,8 +132,14 @@ public class EditCommand extends Command {
         private EntryList entryList = new EntryList();
         private String category;
         private String description;
-
-        public EditPersonDescriptor() {}
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditPersonDescriptor(String category, String description) {
+            this.category = category;
+            this.description = description;
+        }
 
         /**
          * Copy constructor.
