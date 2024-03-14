@@ -90,7 +90,8 @@ public interface Model {
      * Finds a person based on their phone number.
      *
      * @param phoneNumber The phone number to search for.
-     * @return An Optional containing the found Person, or an empty Optional if no person with the given phone number exists.
+     * @return An Optional containing the found Person, or
+     * an empty Optional if no person with the given phone number exists.
      */
     Optional<Person> findPersonByPhoneNumber(String phoneNumber);
 }

@@ -2,6 +2,9 @@ package seedu.address.model.order;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents the Product in the Order of the Customer.
+ */
 public class Product {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -14,6 +17,10 @@ public class Product {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     private String name;
 
+    /**
+     * Constructs a {@code Product} with {@code name}.
+     * @param name Name of the Product.
+     */
     public Product(@JsonProperty("order") String name) {
         this.name = name;
     }
@@ -29,7 +36,7 @@ public class Product {
             return true;
         }
 
-        if (!(other instanceof Product)){
+        if (!(other instanceof Product)) {
             return false;
         }
 
@@ -42,10 +49,18 @@ public class Product {
         return this.name.hashCode();
     }
 
+    /**
+     * Gets the name of the Product.
+     * @return string value of the name of the product.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Sets the name of the product.
+     * @param newName new name of the Product.
+     */
     public void rename(String newName) {
         this.name = newName;
     }

@@ -2,11 +2,16 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 
 /**
  * Represents a Person in the address book.
@@ -23,7 +28,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
-    private ArrayList<Order> orders= new ArrayList<>();
+    private ArrayList<Order> orders = new ArrayList<>();
 
     /**
      * Every field must be present and not null.

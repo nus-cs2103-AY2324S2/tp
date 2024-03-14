@@ -2,12 +2,19 @@ package seedu.address.model.order;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents the Quantity of Products in the Order.
+ */
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Product quantity should only be a number.";
     public static final String VALIDATION_REGEX = "\\d";
-    public int value;
+    private int value;
 
+    /**
+     * Constructs a {@code Order} with {@code value}
+     * @param value value of the Quantity.
+     */
     public Quantity(@JsonProperty("order") int value) {
 
         this.value = value;
@@ -38,10 +45,18 @@ public class Quantity {
         return Integer.hashCode(this.value);
     }
 
+    /**
+     * Gets the value of the Quantity.
+     * @return value of the Quantity.
+     */
     public int getValue() {
         return this.value;
     }
 
+    /**
+     * Sets the value of the Quantity
+     * @param newQuantity new value for the Quantity to be set to.
+     */
     public void setQuantity(int newQuantity) {
         this.value = newQuantity;
     }

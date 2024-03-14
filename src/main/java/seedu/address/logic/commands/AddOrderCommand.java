@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.util.Optional;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -10,17 +12,14 @@ import seedu.address.model.order.Quantity;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
-import java.util.Optional;
-
-public class AddOrderCommand extends Command{
+/**
+ * Adds an order to the address book.
+ */
+public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "order";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
     public static final String MESSAGE_ADD_ORDER_SUCCESS = "Added order to Person: %1$s";
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Removed order from Person: %1$s";
-
-    private final Phone phone;
-    private Order order;
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the order of the person identified "
             + "by the phone number of person. "
@@ -30,6 +29,13 @@ public class AddOrderCommand extends Command{
             + "Example: " + COMMAND_WORD + " 1 "
             + "p/ 87438807.";
 
+    private final Phone phone;
+    private Order order;
+
+    /**
+     * Constructs an {@code AddOrderCommand} with the given {@code Phone}.
+     * @param phone
+     */
     public AddOrderCommand(Phone phone) {
         requireAllNonNull(phone);
 
@@ -65,6 +71,11 @@ public class AddOrderCommand extends Command{
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
+    /**
+     * Generates a success message with a {@code Person}
+     * @param personToEdit
+     * @return
+     */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !order.isEmpty() ? MESSAGE_ADD_ORDER_SUCCESS : MESSAGE_DELETE_ORDER_SUCCESS;
         return String.format(message, personToEdit);
