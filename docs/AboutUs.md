@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yadunut.png" width="200px">
 
 [[homepage](https://gitea.ts.yadunut.com)]
-[[github](http://github.com/yadunut)] 
+[[github](http://github.com/yadunut)]
 [[portfolio](team/yadunut.md)]
 
 * Role: Developer
