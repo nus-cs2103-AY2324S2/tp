@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                           | I want to …​                                            | So that I can…​                                                         |
 |----------|---------------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | User who loans cash out regularly                 | Add loan details (loanee /cash amount) to the contact   | remember to collect debts at a later time                               |
+| `* * *`  | User who loans cash out regularly                 | Add loan details (loanee /cash value) to the contact    | remember to collect debts at a later time                               |
 | `* * *`  | User who loans cash out regularly                 | Add a deadline to a loan                                | chase after people more easily                                          |
 | `* *`    | User who loans cash out regularly                 | View my past loans                                      | know how much cash to expect in the near future                         |
 | `* * *`  | User who loans cash out regularly                 | View my past loans                                      | decide whether to loan to a client again                                |
@@ -516,7 +516,7 @@ Use case ends.
 6. The archived data should be stored for at least 3 years.
 7. Should be able to support multiple user sessions with password authentication on the same device.
 8. Archived data should be encrypted and only accessible by authorized users (admin and the user who created the data).
-9. Loan amounts should be in a single currency (e.g. USD, SGD, EUR, etc.) and should be formatted as per the currency
+9. Loan values should be in a single currency (e.g. USD, SGD, EUR, etc.) and should be formatted as per the currency
    standards.
 10. Loan deadlines should not be more than 100 years from the date of loan creation.
 
