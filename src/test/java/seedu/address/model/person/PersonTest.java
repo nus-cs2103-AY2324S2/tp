@@ -12,6 +12,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.attribute.Attribute;
@@ -19,8 +21,6 @@ import seedu.address.model.person.attribute.BirthdayAttribute;
 import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.attribute.StringAttribute;
 import seedu.address.testutil.PersonBuilder;
-
-import java.time.LocalDate;
 
 public class PersonTest {
 
@@ -236,7 +236,7 @@ public class PersonTest {
         assertFalse(aliceCopy.hasAttribute("Name"));
     }
     @Test
-    public void Person_nameAttribute() {
+    public void person_nameAttribute() {
         NameAttribute name = new NameAttribute("Name", "Alice Pauline");
         BirthdayAttribute birthday = new BirthdayAttribute(
                 "Birthday",
