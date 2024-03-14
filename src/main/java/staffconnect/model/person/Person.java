@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.tag.Tag;
 
 /**
@@ -25,18 +26,21 @@ public class Person {
     private final Venue venue;
     private final Module module;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Availability> availabilities = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Venue venue, Module module, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, venue, module, tags);
+    public Person(Name name, Phone phone, Email email, Venue venue, Module module,
+            Set<Tag> tags, Set<Availability> availabilities) {
+        requireAllNonNull(name, phone, email, venue, module, tags, availabilities);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.venue = venue;
         this.module = module;
         this.tags.addAll(tags);
+        this.availabilities.addAll(availabilities);
     }
 
     public Name getName() {
@@ -65,6 +69,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable availability set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Availability> getAvailabilities() {
+        return Collections.unmodifiableSet(availabilities);
     }
 
     /**
@@ -101,13 +113,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && venue.equals(otherPerson.venue)
                 && module.equals(otherPerson.module)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && availabilities.equals(otherPerson.availabilities);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, venue, module, tags);
+        return Objects.hash(name, phone, email, venue, module, tags, availabilities);
     }
 
     @Override
@@ -119,6 +132,7 @@ public class Person {
                 .add("venue", venue)
                 .add("module", module)
                 .add("tags", tags)
+                .add("availabilities", availabilities)
                 .toString();
     }
 
