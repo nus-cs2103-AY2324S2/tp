@@ -3,16 +3,27 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's ID in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
+ */
 public class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
             "ID should only contain alphanumeric characters, and it should not be blank";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+$";
-    public final String Id;
-    public Id(String Id) {
-        requireNonNull(Id);
-        checkArgument(isValidId(Id), MESSAGE_CONSTRAINTS);
-        this.Id = Id;
+
+    public final String id;
+
+    /**
+     * Constructs a {@code Id}.
+     *
+     * @param value A valid Id.
+     */
+    public Id(String value) {
+        requireNonNull(value);
+        checkArgument(isValidId(value), MESSAGE_CONSTRAINTS);
+        id = value;
     }
     public static boolean isValidId(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -20,7 +31,7 @@ public class Id {
 
     @Override
     public String toString() {
-        return this.Id;
+        return this.id;
     }
 
     @Override
@@ -35,13 +46,11 @@ public class Id {
         }
 
         Id otherName = (Id) other;
-        return this.Id.equals(otherName.Id);
+        return this.id.equals(otherName.id);
     }
 
     @Override
     public int hashCode() {
-        return this.Id.hashCode();
+        return this.id.hashCode();
     }
-
-
 }
