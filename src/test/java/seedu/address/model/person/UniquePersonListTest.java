@@ -344,4 +344,23 @@ public class UniquePersonListTest {
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }
+
+    @Test
+    public void getPersonByNric_uniquePersonListHasPerson_returnsPerson() {
+        uniquePersonList.add(ALICE);
+        assertEquals(ALICE, uniquePersonList.getPersonByNric(ALICE.getNric()));
+    }
+
+    @Test
+    public void getPersonByNric_uniquePersonListIsEmpty_throwsPersonNotFoundException() {
+
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.getPersonByNric(ALICE.getNric()));
+    }
+
+    @Test
+    public void getPersonByNric_uniquePersonListDoesNotHavePerson_throwsPersonNotFoundException() {
+        uniquePersonList.add(ALICE);
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.getPersonByNric(new Nric("S1111111S")));
+    }
+
 }
