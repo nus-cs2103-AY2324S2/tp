@@ -261,28 +261,28 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+Ward nurses
+* manage a significant number of patient contacts with varying details
+* quickly access critical patient information in time-sensitive situations
+* track and log details of care administered to each patient over time
 
-* has a need to manage a significant number of contacts
+**Preferences/ Skills**
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI (command-line interface) apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: streamlined text-based commands to manage contacts faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                | I want to …​                  | So that I can…​                                         |
+| -------- | -------------------------------------- |-------------------------------|---------------------------------------------------------|
+| `* * *`  | user                                   | add a new patient             | store new patient records                               |
+| `* * *`  | user                                   | view existing patient records | access information on existing patients                 |
+| `* * *`  | user                                   | delete a patient record       | remove outdated or irrelevant patient data              |
 
 *{More to be added}*
 
@@ -423,3 +423,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
