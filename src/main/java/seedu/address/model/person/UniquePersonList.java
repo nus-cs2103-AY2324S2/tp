@@ -18,9 +18,11 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
+ * The list of persons is always sorted by name by ensuring all inserts are added in the correct index.
+ *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Person#checkDuplicateField(Person)
  */
 public class UniquePersonList implements Iterable<Person> {
 
@@ -33,7 +35,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::checkDuplicateField);
     }
 
     /**
@@ -45,7 +47,14 @@ public class UniquePersonList implements Iterable<Person> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        internalList.add(toAdd);
+        int insertionIndex = 0;
+        for (Person person : internalList) {
+            if (toAdd.compareName(person) < 0) {
+                break;
+            }
+            insertionIndex++;
+        }
+        internalList.add(insertionIndex, toAdd);
     }
 
     /**
@@ -61,7 +70,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.checkDuplicateField(editedPerson) && contains(editedPerson)) {
             throw new DuplicatePersonException();
         }
 
@@ -140,7 +149,7 @@ public class UniquePersonList implements Iterable<Person> {
     private boolean personsAreUnique(List<Person> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+                if (persons.get(i).checkDuplicateField(persons.get(j))) {
                     return false;
                 }
             }
