@@ -58,6 +58,7 @@ public class EditPersonCommand extends Command {
      * @return A CommandResult object containing success message.
      * @throws CommandException If an error occurs during command execution.
      */
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -88,7 +89,7 @@ public class EditPersonCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedAttributePerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    public static Person createEditedAttributePerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         // Clone the person to edit to start editing its attributes
