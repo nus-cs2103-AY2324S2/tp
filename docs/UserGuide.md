@@ -159,7 +159,7 @@ Format: `order p/PHONE_NUMBER`
 
 Examples:
 * `order p/99887766` will create an order for person with phone number `99887766` followed by `pn/Cupcake pq/2` and `pn/Cookie pq/2` ending with `done` <br>
-![result for creating order for alex](images/addOrderResult.png) 
+![result for creating order for alex](images/addOrderResult.png)
 <br>![system interaction for order creation](images/systemCreateOrder.png)
 
 ### Editing of orders `edit`
@@ -188,7 +188,7 @@ Format: `list orders`
 Example:
 * `list orders` might display the following:
 ![result for listing orders](images/listOrderResult.png)
- 
+
 ### Deleting of orders: `delete`
 
 Deletes an ongoing order in the address book.
