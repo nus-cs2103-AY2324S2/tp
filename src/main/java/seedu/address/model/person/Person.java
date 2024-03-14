@@ -61,12 +61,12 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same Email, Phone, Telegram (non-empty), or Github (non-empty).
+     * Returns true if both persons have the same Email, Phone, Telegram (optional), or Github (optional).
      * Persons are allowed to have the same name.
      * This defines a weaker notion of equality between two persons.
      *
      * @param otherPerson The Person object whose fields are to be compared.
-     * @return True if both persons have either the same Email, Phone, Telegram (non-empty), or Github (non-empty).
+     * @return True if both persons have either the same Email, Phone, Telegram (optional), or Github (optional).
      */
     public boolean checkDuplicateField(Person otherPerson) {
         if (otherPerson == this) {
