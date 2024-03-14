@@ -1,6 +1,5 @@
 package seedu.address.model.person.attribute;
 
-<<<<<<< HEAD
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -11,10 +10,6 @@ import java.time.format.DateTimeParseException;
  * such as names, dates, or numerical values, by defining a common interface that all attribute types must implement.
  * The class includes a static factory method for creating appropriate attribute
  * instances based on the provided value's format.
-=======
-/**
- * Attribute with type and value
->>>>>>> master
  */
 public abstract class Attribute {
     protected String name;

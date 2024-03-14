@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import seedu.address.model.person.attribute.Attribute;
-import seedu.address.model.person.attribute.StringAttribute;
 
 /**
  * Represents a descriptor for editing a person's attributes in the address book.
@@ -36,7 +35,5 @@ public class EditPersonDescriptor {
         return attributes;
     }
 
-    // Add methods to check if any attribute is edited, to copy from another descriptor, etc.
-    // You might need to implement additional methods depending on your application's requirements
 }
 

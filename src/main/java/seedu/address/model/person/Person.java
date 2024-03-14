@@ -15,13 +15,9 @@ import java.util.UUID;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.attribute.Attribute;
-<<<<<<< HEAD
-=======
 import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.attribute.StringAttribute;
->>>>>>> master
 import seedu.address.model.tag.Tag;
-
 
 /**
  * Represents a Person in the address book.
@@ -30,13 +26,8 @@ import seedu.address.model.tag.Tag;
 public class Person {
     private final UUID uuid;
     // Data fields
-<<<<<<< HEAD
-    private final Address address;
-    private Set<Tag> tags = new HashSet<>();
-=======
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<String, Attribute> attributes = new HashMap<>();
->>>>>>> master
 
     /**
      * THIS CONSTRUCTOR WILL BE DEPRECATED.
@@ -55,26 +46,6 @@ public class Person {
     }
 
     /**
-<<<<<<< HEAD
-     * Creates a new Person instance by cloning the details of an existing person.
-     * This constructor is used for creating a copy of {@code personToEdit} with the intention
-     * of editing or updating its attributes. It copies all the attributes of the provided person,
-     * including name, phone, email, address, tags, and UUID, into a new Person object.
-     *
-     * @param personToEdit The person whose details are to be cloned into this new instance.
-     */
-    public Person(Person personToEdit) {
-        // Clone existing fields
-        this.name = personToEdit.name;
-        this.phone = personToEdit.phone;
-        this.email = personToEdit.email;
-        this.address = personToEdit.address;
-        this.tags = new HashSet<>(personToEdit.tags);
-        this.uuid = personToEdit.uuid;
-    }
-    public Name getName() {
-        return name;
-=======
      * Constructs a person with a random UUID and a list of attributes.
      * There are no compulsory fields, attribute list can be null.
      *
@@ -88,7 +59,6 @@ public class Person {
         for (Attribute attribute : attributes) {
             this.attributes.put(attribute.getName(), attribute);
         }
->>>>>>> master
     }
 
     public Name getName() { //Earmarked for deprecation - superseded by getAttribute - name should be optional
