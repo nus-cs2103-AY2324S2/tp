@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.InternshipData;
 import seedu.address.model.internship.Internship;
 
 /**
@@ -29,6 +30,17 @@ public class TypicalInternships {
 
     private TypicalInternships() {
     } // prevents instantiation
+
+    /**
+     * Returns an {@code InternshipData} with all the typical internships.
+     */
+    public static InternshipData getTypicalInternshipData() {
+        InternshipData id = new InternshipData();
+        for (Internship internship : getTypicalInternships()) {
+            id.addInternship(internship);
+        }
+        return id;
+    }
 
     public static List<Internship> getTypicalInternships() {
         return new ArrayList<>(Arrays.asList(ALICE_MICROSOFT, BENSON_GOOGLE, CARL_OPENAI));

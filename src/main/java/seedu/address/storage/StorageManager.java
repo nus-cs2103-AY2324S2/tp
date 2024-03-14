@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInternshipData;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -18,6 +19,7 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private InternshipDataStorage internshipDataStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
@@ -73,6 +75,34 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ InternshipData methods ==============================
+    @Override
+    public Path getInternshipDataFilePath() {
+        return internshipDataStorage.getInternshipDataFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyInternshipData> readInternshipData() throws DataLoadingException {
+        return readInternshipData(internshipDataStorage.getInternshipDataFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyInternshipData> readInternshipData(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return internshipDataStorage.readInternshipData(filePath);
+    }
+
+    @Override
+    public void saveInternshipData(ReadOnlyInternshipData internshipData) throws IOException {
+        saveInternshipData(internshipData, internshipDataStorage.getInternshipDataFilePath());
+    }
+
+    @Override
+    public void saveInternshipData(ReadOnlyInternshipData internshipData, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        internshipDataStorage.saveInternshipData(internshipData, filePath);
     }
 
 }
