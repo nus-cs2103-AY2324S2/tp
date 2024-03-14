@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String nric;
     private final String name;
     private final String gender;
+    private final String birthDate;
     private final String phone;
     private final String email;
     private final String address;
@@ -45,6 +47,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("nric") String nric,
                              @JsonProperty("name") String name,
                              @JsonProperty("gender") String gender,
+                             @JsonProperty("birthdate") String birthDate,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
@@ -53,6 +56,7 @@ class JsonAdaptedPerson {
         this.nric = nric;
         this.name = name;
         this.gender = gender;
+        this.birthDate = birthDate;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -71,6 +75,7 @@ class JsonAdaptedPerson {
         nric = source.getNric().nric;
         name = source.getName().fullName;
         gender = source.getGender().gender;
+        birthDate = source.getBirthDate().birthDate;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -122,6 +127,14 @@ class JsonAdaptedPerson {
         }
         final Gender modelGender = new Gender(gender);
 
+        if (birthDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!BirthDate.isValidBirthDate(birthDate)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final BirthDate modelBirthDate = new BirthDate(birthDate);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -139,7 +152,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -147,7 +161,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Illness> modelIllnesses = new HashSet<>(illnesses);
-        return new Person(modelNric, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelIllnesses, notes);
+        return new Person(modelNric, modelName, modelGender, modelBirthDate,
+                modelPhone, modelEmail, modelAddress, modelIllnesses, notes);
     }
-
 }

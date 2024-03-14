@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender must be M, F or exclude from the command for 'Prefer not to say'";
+            "Gender must be M, F or exclude argument in the command for 'Prefer not to say'";
 
     /*
      * gender must follow the Singapore's format of M, F or Prefer not to say case-insensitive

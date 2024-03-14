@@ -24,6 +24,7 @@ public class Person {
     private final Nric nric;
     private final Name name;
     private final Gender gender;
+    private final BirthDate birthDate;
     private final Phone phone;
     private final Email email;
 
@@ -35,11 +36,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Gender gender, Phone phone, Email email, Address address, Set<Illness> illnesses, ObservableList<Note> notes) {
+    public Person(Nric nric, Name name, Gender gender, BirthDate birthDate,Phone phone, Email email, Address address, Set<Illness> illnesses, ObservableList<Note> notes) {
         requireAllNonNull(name, phone, email, address, illnesses, notes);
         this.nric = nric;
         this.name = name;
         this.gender = gender;
+        this.birthDate = birthDate;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -55,6 +57,10 @@ public class Person {
 
     public Gender getGender() {
         return gender;
+    }
+
+    public BirthDate getBirthDate() {
+        return birthDate;
     }
 
     public Phone getPhone() {
@@ -86,7 +92,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -95,7 +101,7 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+            && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -117,6 +123,7 @@ public class Person {
         return nric.equals(otherPerson.nric)
             && name.equals(otherPerson.name)
             && gender.equals(otherPerson.gender)
+            && birthDate.equals(otherPerson.birthDate)
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
             && address.equals(otherPerson.address)
@@ -126,7 +133,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(nric, name, gender, phone, email, address, illnesses, notes);
+        return Objects.hash(nric, name, gender, birthDate, phone, email, address, illnesses, notes);
     }
 
     @Override
@@ -134,6 +141,8 @@ public class Person {
         return new ToStringBuilder(this)
             .add("nric", nric)
             .add("name", name)
+            .add("gender", gender)
+            .add("birthDate", birthDate)
             .add("phone", phone)
             .add("email", email)
             .add("address", address)
@@ -149,6 +158,7 @@ public class Person {
         private Nric nric;
         private Name name;
         private Gender gender;
+        private BirthDate birthDate;
         private Phone phone;
         private Email email;
         private Address address;
@@ -158,11 +168,19 @@ public class Person {
         /**
          * Creates a {@code Builder} with the given parameters.
          */
-        public Builder(Nric nric, Name name, Gender gender, Phone phone, Email email, Address address, Set<Illness> illnesses,
+        public Builder(Nric nric,
+                       Name name,
+                       Gender gender,
+                       BirthDate birthDate,
+                       Phone phone,
+                       Email email,
+                       Address address,
+                       Set<Illness> illnesses,
                        ObservableList<Note> notes) {
             this.nric = nric;
             this.name = name;
             this.gender = gender;
+            this.birthDate = birthDate;
             this.phone = phone;
             this.email = email;
             this.address = address;
@@ -177,6 +195,7 @@ public class Person {
             this(person.getNric(),
                 person.getName(),
                 person.getGender(),
+                person.getBirthDate(),
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
@@ -190,6 +209,9 @@ public class Person {
         }
         public Gender getGender() {
             return gender;
+        }
+        public BirthDate getBirthDate() {
+            return birthDate;
         }
         public Phone getPhone() {
             return phone;
@@ -228,6 +250,13 @@ public class Person {
             requireNonNull(gender);
 
             this.gender = gender;
+            return this;
+        }
+
+        public Builder setBirthDate(BirthDate birthDate) {
+            requireNonNull(birthDate);
+
+            this.birthDate = birthDate;
             return this;
         }
 
@@ -272,7 +301,7 @@ public class Person {
          * Builds a {@link Person} with the latest values.
          */
         public Person build() {
-            return new Person(nric, name, gender, phone, email, address, illnesses, notes);
+            return new Person(nric, name, gender, birthDate, phone, email, address, illnesses, notes);
         }
     }
 }

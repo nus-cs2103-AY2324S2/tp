@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Illness {
 
     public static final String MESSAGE_CONSTRAINTS = "Illness names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "^[A-Za-z0-9]+$";
 
     public final String illnessName;
 
