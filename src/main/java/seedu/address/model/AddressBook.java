@@ -114,7 +114,7 @@ public class AddressBook implements ReadOnlyAddressBook {
                 .filter(person -> person.getYearJoined().equals(yearJoined))
                 .mapToInt(person -> person.getId().value)
                 .max()
-                .orElse(0);
+                .orElse(yearJoined.value % 100 * 10000);
     }
 
     @Override
