@@ -1,28 +1,40 @@
 package seedu.findvisor.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.function.Predicate;
 
 import seedu.findvisor.commons.util.ToStringBuilder;
 import seedu.findvisor.logic.Messages;
 import seedu.findvisor.model.Model;
-import seedu.findvisor.model.person.NameContainsKeywordsPredicate;
+import seedu.findvisor.model.person.Person;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds persons based on search criteria of the specified category.
+ * Only exactly one category of the following can be specified, either name, email, phone or tags.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose information matches "
+            + "the specified keywords (case-insensitive) of the specified category" 
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: "
+            + PREFIX_NAME + "NAME | "
+            + PREFIX_EMAIL + "EMAIL | "
+            + PREFIX_PHONE + "PHONE | "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " t/PRUActiveCash t/friends";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Person> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
