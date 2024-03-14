@@ -14,25 +14,31 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.Email;
+import seedu.address.model.patient.FamilyCondition;
+import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.PreferredName;
+import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_ID = "a3";
+    private static final String INVALID_NAME = "R@chel Lim Zhao";
+    private static final String INVALID_PREFERRED_NAME = "R@chel";
+    private static final String INVALID_FOOD_PREFERENCE = " ";
+    private static final String INVALID_FAMILY_CONDITION = " ";
+    private static final String INVALID_HOBBY = " ";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_ID = "12344";
+    private static final String VALID_NAME = "Rachel Lim Zhao";
+    private static final String VALID_PREFERRED_NAME = "Rachel";
+    private static final String VALID_FOOD_PREFERENCE = "Hor Fun";
+    private static final String VALID_FAMILY_CONDITION = "Facing financial difficulty";
+    private static final String VALID_HOBBY = "Singing";
+    private static final String VALID_TAG_1 = "diabetes";
+    private static final String VALID_TAG_2 = "high cholesterol";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -54,6 +60,34 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PATIENT, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parsePatientHospitalId_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("102 a"));
+    }
+
+    @Test
+    public void parsePatientHospitalId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePatientHospitalId((String) null));
+    }
+
+    @Test
+    public void parsePatientHospitalId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePatientHospitalId(INVALID_ID));
+    }
+
+    @Test
+    public void parseHospitalPatientId_validValueWithoutWhitespace_returnsId() throws Exception {
+        PatientHospitalId expectedId = new PatientHospitalId(VALID_ID);
+        assertEquals(expectedId, ParserUtil.parsePatientHospitalId(VALID_ID));
+    }
+
+    @Test
+    public void parseHospitalPatientId_validValueWithWhitespace_returnsTrimmedId() throws Exception {
+        String idWithWhitespace = WHITESPACE + VALID_ID + WHITESPACE;
+        PatientHospitalId expectedId = new PatientHospitalId(VALID_ID);
+        assertEquals(expectedId, ParserUtil.parsePatientHospitalId(idWithWhitespace));
     }
 
     @Test
@@ -80,72 +114,95 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parsePreferredName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePreferredName((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parsePreferredName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePreferredName(INVALID_PREFERRED_NAME));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parsePreferredName_validValueWithoutWhitespace_returnsPreferredName() throws Exception {
+        PreferredName expectedPreferredName = new PreferredName(VALID_PREFERRED_NAME);
+        assertEquals(expectedPreferredName, ParserUtil.parsePreferredName(VALID_PREFERRED_NAME));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parsePreferredName_validValueWithWhitespace_returnsTrimmedPreferredName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_PREFERRED_NAME + WHITESPACE;
+        PreferredName expectedPreferredName = new PreferredName(VALID_PREFERRED_NAME);
+        assertEquals(expectedPreferredName, ParserUtil.parsePreferredName(nameWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseFoodPreference_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFoodPreference((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseFoodPreference_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFoodPreference(INVALID_FOOD_PREFERENCE));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseFoodPreference_validValueWithoutWhitespace_returnsFoodPreference() throws Exception {
+        FoodPreference expectedFoodPreference = new FoodPreference(VALID_FOOD_PREFERENCE);
+        assertEquals(expectedFoodPreference, ParserUtil.parseFoodPreference(VALID_FOOD_PREFERENCE));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseFoodPreference_validValueWithWhitespace_returnsTrimmedFoodPreference() throws Exception {
+        String foodPreferenceWithWhitespace = WHITESPACE + VALID_FOOD_PREFERENCE + WHITESPACE;
+        FoodPreference expectedFoodPreference = new FoodPreference(VALID_FOOD_PREFERENCE);
+        assertEquals(expectedFoodPreference, ParserUtil.parseFoodPreference(foodPreferenceWithWhitespace));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseFamilyCondition_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFamilyCondition((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseFamilyCondition_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFamilyCondition(INVALID_FAMILY_CONDITION));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseFamilyCondition_validValueWithoutWhitespace_returnsFamilyCondition() throws Exception {
+        FamilyCondition expectedFamilyCondition = new FamilyCondition(VALID_FAMILY_CONDITION);
+        assertEquals(expectedFamilyCondition, ParserUtil.parseFamilyCondition(VALID_FAMILY_CONDITION));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseFamilyCondition_validValueWithWhitespace_returnsTrimmedFamilyCondition() throws Exception {
+        String familyConditionWithWhitespace = WHITESPACE + VALID_FAMILY_CONDITION + WHITESPACE;
+        FamilyCondition expectedFamilyCondition = new FamilyCondition(VALID_FAMILY_CONDITION);
+        assertEquals(expectedFamilyCondition, ParserUtil.parseFamilyCondition(familyConditionWithWhitespace));
+    }
+
+    @Test
+    public void parseHobby_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHobby((String) null));
+    }
+
+    @Test
+    public void parseHobby_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHobby(INVALID_HOBBY));
+    }
+
+    @Test
+    public void parseHobby_validValueWithoutWhitespace_returnsHobby() throws Exception {
+        Hobby expectedHobby = new Hobby(VALID_HOBBY);
+        assertEquals(expectedHobby, ParserUtil.parseHobby(VALID_HOBBY));
+    }
+
+    @Test
+    public void parseHobby_validValueWithWhitespace_returnsTrimmedHobby() throws Exception {
+        String hobbyWithWhitespace = WHITESPACE + VALID_HOBBY + WHITESPACE;
+        Hobby expectedHobby = new Hobby(VALID_HOBBY);
+        assertEquals(expectedHobby, ParserUtil.parseHobby(hobbyWithWhitespace));
     }
 
     @Test

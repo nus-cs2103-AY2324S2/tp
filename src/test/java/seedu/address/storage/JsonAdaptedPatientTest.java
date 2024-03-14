@@ -20,7 +20,7 @@ import seedu.address.model.patient.PatientHospitalId;
 import seedu.address.model.patient.PreferredName;
 
 public class JsonAdaptedPatientTest {
-    private static final Integer INVALID_ID = -1;
+    private static final String INVALID_ID = "-1";
     private static final String INVALID_NAME = "R@chel Lim";
     private static final String INVALID_PREFERRED_NAME = "R@chel";
     private static final String INVALID_FOOD_PREFERENCE = "to1yam";
@@ -28,7 +28,7 @@ public class JsonAdaptedPatientTest {
     private static final String INVALID_HOBBY = " ";
     private static final String INVALID_TAG = "#Diabetes";
 
-    private static final Integer VALID_PATIENT_HOSPITAL_ID = BENSON.getPatientHospitalId().patientHospitalId;
+    private static final String VALID_PATIENT_HOSPITAL_ID = BENSON.getPatientHospitalId().patientHospitalId;
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PREFERRED_NAME = BENSON.getPreferredName().toString();
     private static final String VALID_FOOD_PREFERENCE = BENSON.getFoodPreference().toString();

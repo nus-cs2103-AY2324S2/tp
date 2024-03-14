@@ -3,11 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.Email;
+import seedu.address.model.patient.FamilyCondition;
+import seedu.address.model.patient.FoodPreference;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.PreferredName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,25 +18,31 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PatientBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ID = "12334";
+    public static final String DEFAULT_NAME = "Amy Bee Kian Ling";
+    public static final String DEFAULT_PREFERRED_NAME = "Amy";
+    public static final String DEFAULT_FOOD_PREFERENCE = "Hor Fun";
+    public static final String DEFAULT_FAMILY_CONDITION = "Financially unstable";
+    public static final String DEFAULT_HOBBY = "Singing karaoke";
 
+    private PatientHospitalId patientHospitalId;
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private PreferredName preferredName;
+    private FoodPreference foodPreference;
+    private FamilyCondition familyCondition;
+    private Hobby hobby;
     private Set<Tag> tags;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
      */
     public PatientBuilder() {
+        patientHospitalId = new PatientHospitalId(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        preferredName = new PreferredName(DEFAULT_PREFERRED_NAME);
+        foodPreference = new FoodPreference(DEFAULT_FOOD_PREFERENCE);
+        familyCondition = new FamilyCondition(DEFAULT_FAMILY_CONDITION);
+        hobby = new Hobby(DEFAULT_HOBBY);
         tags = new HashSet<>();
     }
 
@@ -42,11 +50,21 @@ public class PatientBuilder {
      * Initializes the PatientBuilder with the data of {@code patientToCopy}.
      */
     public PatientBuilder(Patient patientToCopy) {
+        patientHospitalId = patientToCopy.getPatientHospitalId();
         name = patientToCopy.getName();
-        phone = patientToCopy.getPhone();
-        email = patientToCopy.getEmail();
-        address = patientToCopy.getAddress();
+        preferredName = patientToCopy.getPreferredName();
+        foodPreference = patientToCopy.getFoodPreference();
+        familyCondition = patientToCopy.getFamilyCondition();
+        hobby = patientToCopy.getHobby();
         tags = new HashSet<>(patientToCopy.getTags());
+    }
+
+    /**
+     * Sets the {@code PatientHospitalId} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withPatientHospitalId(String id) {
+        this.patientHospitalId = new PatientHospitalId(id);
+        return this;
     }
 
     /**
@@ -54,6 +72,14 @@ public class PatientBuilder {
      */
     public PatientBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code PreferredName} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withPreferredName(String preferredName) {
+        this.preferredName = new PreferredName(preferredName);
         return this;
     }
 
@@ -66,31 +92,31 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Patient} that we are building.
+     * Sets the {@code FoodPreference} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PatientBuilder withFoodPreference(String foodPreference) {
+        this.foodPreference = new FoodPreference(foodPreference);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Patient} that we are building.
+     * Sets the {@code FamilyCondition} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PatientBuilder withFamilyCondition(String familyCondition) {
+        this.familyCondition = new FamilyCondition(familyCondition);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Patient} that we are building.
+     * Sets the {@code Hobby} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PatientBuilder withHobby(String hobby) {
+        this.hobby = new Hobby(hobby);
         return this;
     }
 
     public Patient build() {
-        return new Patient(name, phone, email, address, tags);
+        return new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
     }
 
 }
