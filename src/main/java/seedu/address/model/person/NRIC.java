@@ -51,8 +51,8 @@ public class NRIC {
             return false;
         }
 
-        Name otherName = (Name) other;
-        return NRIC.equals(otherName.fullName);
+        NRIC otherNRIC = (NRIC) other;
+        return NRIC.equals(otherNRIC.NRIC);
     }
 
     @Override

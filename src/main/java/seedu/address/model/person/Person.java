@@ -28,6 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
+    //TODO : Add the missing fields
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -65,6 +66,7 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
+    //TODO : change unique field to NRIC
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
@@ -102,7 +104,8 @@ public class Person {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
     }
-
+    //TODO : Add the missing fields
+    //TODO : Add override: one for list view, one for detailed view
     @Override
     public String toString() {
         return new ToStringBuilder(this)
