@@ -67,6 +67,9 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Faculty} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withFaculty(String faculty) {
         descriptor.setFaculty(new Faculty(faculty));
         return this;
