@@ -2,7 +2,6 @@ package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -23,13 +22,12 @@ public class TagsOrFoundPredicateTest {
         TagsOrFoundPredicate firstPredicate = preparePredicate(firstTagList);
         TagsOrFoundPredicate secondPredicate = preparePredicate(secondTagList);
 
-
-        assertEquals(firstPredicate, firstPredicate);
+        assertTrue(firstPredicate.equals(firstPredicate));
         TagsOrFoundPredicate firstPredicateCopy = preparePredicate(firstTagList);
-        assertEquals(firstPredicate, firstPredicateCopy);
-        assertNotEquals(1, firstPredicate);
-        assertNotEquals(null, firstPredicate);
-        assertNotEquals(firstPredicate, secondPredicate);
+        assertTrue(firstPredicate.equals(firstPredicateCopy));
+        assertFalse(firstPredicate.equals(1));
+        assertFalse(firstPredicate.equals(null));
+        assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test

@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -38,11 +39,12 @@ public class FindTagsOrCommandTest {
         FindTagsOrCommand firstCommand = new FindTagsOrCommand(firstPredicate);
         FindTagsOrCommand secondCommand = new FindTagsOrCommand(secondPredicate);
 
-        assertEquals(firstCommand, firstCommand);
+        assertTrue(firstCommand.equals(firstCommand));
         FindTagsOrCommand firstCommandCopy = new FindTagsOrCommand(firstPredicate);
-        assertEquals(firstCommand, firstCommandCopy);
-        assertNotEquals(null, firstCommand);
-        assertNotEquals(firstCommand, secondCommand);
+        assertTrue(firstCommand.equals(firstCommandCopy));
+        assertFalse(firstCommand.equals(1));
+        assertFalse(firstCommand.equals(null));
+        assertFalse(firstCommand.equals(secondCommand));
     }
 
     @Test
