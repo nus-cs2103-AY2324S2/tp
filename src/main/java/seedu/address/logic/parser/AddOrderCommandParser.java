@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -15,9 +15,9 @@ import seedu.address.model.person.Phone;
 public class AddOrderCommandParser {
 
     /**
-     * Parses the user inputs to create an AddOrderCommand.
-     * @param args
-     * @return
+     * Parses the user input to create a AddOrderCommand
+     * @param args user input.
+     * @return AddOrderCommand based on the user input.
      * @throws ParseException
      */
     public AddOrderCommand parse(String args) throws ParseException {

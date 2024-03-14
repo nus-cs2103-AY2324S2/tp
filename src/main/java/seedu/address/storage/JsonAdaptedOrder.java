@@ -3,13 +3,16 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import java.util.Map;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
 
-import java.util.Map;
-
+/**
+ * Jackson friendly version of {@link Order}.
+ */
 public class JsonAdaptedOrder {
     private final Order order;
 

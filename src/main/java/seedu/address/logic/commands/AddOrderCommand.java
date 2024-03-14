@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import java.util.Optional;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
