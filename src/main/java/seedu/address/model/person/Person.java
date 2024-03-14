@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
@@ -84,6 +85,7 @@ public class Person {
     public void generateQrCode() {
         try {
             QrCodeGenerator.generateQrCode(this);
+            logger.info("Generated QR code for " + this);
         } catch (WriterException | IOException e) {
             logger.warning("Unable to generate QR code for " + this);
         }
@@ -142,4 +144,21 @@ public class Person {
                 .toString();
     }
 
+    /**
+     * Deletes the QR code associated with this object.
+     */
+    public boolean deleteQrCode() {
+        try {
+            boolean result = Files.deleteIfExists(this.getQrCodePath());
+            if (result) {
+                logger.info("Deleted QR code for " + this);
+            } else {
+                logger.info("Unable to delete QR code for " + this + " as it does not exist");
+            }
+            return result;
+        } catch (IOException e) {
+            logger.warning("Unable to delete QR code for " + this);
+            return false;
+        }
+    }
 }
