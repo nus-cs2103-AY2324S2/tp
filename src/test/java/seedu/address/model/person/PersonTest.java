@@ -121,7 +121,6 @@ public class PersonTest {
                 .setName(BENSON.getName())
                 .setPhone(BENSON.getPhone())
                 .setEmail(BENSON.getEmail())
-                .setAddress(BENSON.getAddress())
                 .setIllnesses(BENSON.getIllnesses())
                 .setNotes(BENSON.getNotes());
 

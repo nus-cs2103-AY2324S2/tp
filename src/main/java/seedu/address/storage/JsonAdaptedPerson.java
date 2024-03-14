@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -36,7 +35,6 @@ class JsonAdaptedPerson {
     private final String birthDate;
     private final String phone;
     private final String email;
-    private final String address;
     private final List<JsonAdaptedIllness> illnesses = new ArrayList<>();
     private final List<JsonAdapatedNote> notes = new ArrayList<>();
 
@@ -50,7 +48,6 @@ class JsonAdaptedPerson {
                              @JsonProperty("birthdate") String birthDate,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
-                             @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedIllness> illnesses,
                              @JsonProperty("notes") List<JsonAdapatedNote> notes) {
         this.nric = nric;
@@ -59,7 +56,6 @@ class JsonAdaptedPerson {
         this.birthDate = birthDate;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         if (illnesses != null) {
             this.illnesses.addAll(illnesses);
         }
@@ -78,7 +74,6 @@ class JsonAdaptedPerson {
         birthDate = source.getBirthDate().birthDate;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
         illnesses.addAll(source.getIllnesses().stream()
             .map(JsonAdaptedIllness::new)
             .collect(Collectors.toList()));
@@ -151,17 +146,8 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         final Set<Illness> modelIllnesses = new HashSet<>(illnesses);
         return new Person(modelNric, modelName, modelGender, modelBirthDate,
-                modelPhone, modelEmail, modelAddress, modelIllnesses, notes);
+                modelPhone, modelEmail, modelIllnesses, notes);
     }
 }

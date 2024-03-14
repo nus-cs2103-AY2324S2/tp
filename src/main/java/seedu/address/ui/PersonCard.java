@@ -35,11 +35,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label gender;
     @FXML
+    private Label birthDate;
+    @FXML
     private Label id;
     @FXML
     private Label phone;
-    @FXML
-    private Label address;
     @FXML
     private Label email;
     @FXML
@@ -55,8 +55,8 @@ public class PersonCard extends UiPart<Region> {
         nric.setText(person.getNric().nric);
         name.setText(person.getName().fullName);
         gender.setText(person.getGender().gender);
+        birthDate.setText(person.getBirthDate().birthDate);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getIllnesses().stream()
                 .sorted(Comparator.comparing(illness -> illness.illnessName))

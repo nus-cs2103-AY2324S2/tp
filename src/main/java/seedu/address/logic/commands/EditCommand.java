@@ -22,7 +22,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -47,7 +46,6 @@ public class EditCommand extends Command {
         + "[" + PREFIX_GENDER + "GENDER] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
-        + "[" + PREFIX_ADDRESS + "ADDRESS] "
         + "[" + PREFIX_ILLNESS + "ILLNESS]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
@@ -106,11 +104,10 @@ public class EditCommand extends Command {
         BirthDate updatedBirthDate = personToEdit.getBirthDate();
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Illness> updatedIllnesses = editPersonDescriptor.getTags().orElse(personToEdit.getIllnesses());
 
         return new Person(updatedNric, updatedName, updatedGender, updatedBirthDate,
-                updatedPhone, updatedEmail, updatedAddress, updatedIllnesses, personToEdit.getNotes());
+                updatedPhone, updatedEmail, updatedIllnesses, personToEdit.getNotes());
     }
 
     @Override
@@ -146,7 +143,6 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Illness> illnesses;
 
         public EditPersonDescriptor() {
@@ -160,7 +156,6 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setIllnesses(toCopy.illnesses);
         }
 
@@ -168,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, illnesses);
+            return CollectionUtil.isAnyNonNull(name, phone, email, illnesses);
         }
 
         public void setNric(Nric nric) {
@@ -203,14 +198,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -243,7 +230,6 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                 && Objects.equals(phone, otherEditPersonDescriptor.phone)
                 && Objects.equals(email, otherEditPersonDescriptor.email)
-                && Objects.equals(address, otherEditPersonDescriptor.address)
                 && Objects.equals(illnesses, otherEditPersonDescriptor.illnesses);
         }
 
@@ -253,7 +239,6 @@ public class EditCommand extends Command {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
                 .add("tags", illnesses)
                 .toString();
         }

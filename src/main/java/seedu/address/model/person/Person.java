@@ -29,22 +29,20 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
     private final Set<Illness> illnesses = new HashSet<>();
     private final ObservableList<Note> notes = FXCollections.observableArrayList();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Gender gender, BirthDate birthDate,Phone phone, Email email, Address address, Set<Illness> illnesses, ObservableList<Note> notes) {
-        requireAllNonNull(name, phone, email, address, illnesses, notes);
+    public Person(Nric nric, Name name, Gender gender, BirthDate birthDate,Phone phone, Email email, Set<Illness> illnesses, ObservableList<Note> notes) {
+        requireAllNonNull(name, phone, email, illnesses, notes);
         this.nric = nric;
         this.name = name;
         this.gender = gender;
         this.birthDate = birthDate;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.illnesses.addAll(illnesses);
         this.notes.addAll(notes);
     }
@@ -69,10 +67,6 @@ public class Person {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -126,14 +120,13 @@ public class Person {
             && birthDate.equals(otherPerson.birthDate)
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
-            && address.equals(otherPerson.address)
             && illnesses.equals(otherPerson.illnesses)
             && notes.equals(otherPerson.notes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nric, name, gender, birthDate, phone, email, address, illnesses, notes);
+        return Objects.hash(nric, name, gender, birthDate, phone, email, illnesses, notes);
     }
 
     @Override
@@ -145,7 +138,6 @@ public class Person {
             .add("birthDate", birthDate)
             .add("phone", phone)
             .add("email", email)
-            .add("address", address)
             .add("tags", illnesses)
             .add("notes", notes)
             .toString();
@@ -161,7 +153,6 @@ public class Person {
         private BirthDate birthDate;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Illness> illnesses = new HashSet<>();
         private ObservableList<Note> notes = FXCollections.observableArrayList();
 
@@ -174,7 +165,6 @@ public class Person {
                        BirthDate birthDate,
                        Phone phone,
                        Email email,
-                       Address address,
                        Set<Illness> illnesses,
                        ObservableList<Note> notes) {
             this.nric = nric;
@@ -183,7 +173,6 @@ public class Person {
             this.birthDate = birthDate;
             this.phone = phone;
             this.email = email;
-            this.address = address;
             this.illnesses.addAll(illnesses);
             this.notes.addAll(notes);
         }
@@ -198,7 +187,6 @@ public class Person {
                 person.getBirthDate(),
                 person.getPhone(),
                 person.getEmail(),
-                person.getAddress(),
                 person.getIllnesses(),
                 person.getNotes());
         }
@@ -218,10 +206,6 @@ public class Person {
         }
         public Email getEmail() {
             return email;
-        }
-
-        public Address getAddress() {
-            return address;
         }
 
         public Set<Illness> getIllnesses() {
@@ -274,13 +258,6 @@ public class Person {
             return this;
         }
 
-        public Builder setAddress(Address address) {
-            requireNonNull(address);
-
-            this.address = address;
-            return this;
-        }
-
         public Builder setIllnesses(Set<Illness> illnesses) {
             requireNonNull(illnesses);
 
@@ -301,7 +278,7 @@ public class Person {
          * Builds a {@link Person} with the latest values.
          */
         public Person build() {
-            return new Person(nric, name, gender, birthDate, phone, email, address, illnesses, notes);
+            return new Person(nric, name, gender, birthDate, phone, email, illnesses, notes);
         }
     }
 }

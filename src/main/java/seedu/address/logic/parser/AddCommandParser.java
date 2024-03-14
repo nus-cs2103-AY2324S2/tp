@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -45,16 +44,16 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_BIRTHDATE,
                         PREFIX_PHONE,
                         PREFIX_EMAIL,
-                        PREFIX_ADDRESS,
                         PREFIX_ILLNESS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_BIRTHDATE, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC,
+                PREFIX_NAME, PREFIX_BIRTHDATE, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NRIC,
-                PREFIX_NAME, PREFIX_GENDER, PREFIX_BIRTHDATE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+                PREFIX_NAME, PREFIX_GENDER, PREFIX_BIRTHDATE, PREFIX_PHONE, PREFIX_EMAIL);
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Gender gender = ParserUtil.parseGender(
@@ -62,10 +61,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         BirthDate birthDate = ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTHDATE).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Illness> illnessList = ParserUtil.parseIllnesses(argMultimap.getAllValues(PREFIX_ILLNESS));
 
-        Person person = new Person(nric, name, gender, birthDate, phone, email, address, illnessList, FXCollections.observableArrayList());
+        Person person = new Person(nric, name, gender, birthDate,
+                phone, email, illnessList, FXCollections.observableArrayList());
 
         return new AddCommand(person);
     }

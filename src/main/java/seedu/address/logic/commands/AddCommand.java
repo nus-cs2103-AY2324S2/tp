@@ -31,7 +31,6 @@ public class AddCommand extends Command {
             + PREFIX_BIRTHDATE + "BIRTHDATE "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_ILLNESS + "ILLNESS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S9974567D "
@@ -40,7 +39,6 @@ public class AddCommand extends Command {
             + PREFIX_BIRTHDATE + "10-07-1999 "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_ILLNESS + "Infectious Disease "
             + PREFIX_ILLNESS + "Genetic Disorders";
 
