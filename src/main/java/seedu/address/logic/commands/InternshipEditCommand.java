@@ -176,6 +176,8 @@ public class InternshipEditCommand extends InternshipCommand {
             setApplicationStatus(toCopy.applicationStatus);
         }
 
+        public EditInternshipDescriptor() {}
+
         /**
          * Returns true if at least one field is edited.
          */
