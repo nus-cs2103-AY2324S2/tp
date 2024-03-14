@@ -1,7 +1,5 @@
 ---
-  layout: default.md
-  title: "User Guide"
-  pageNav: 3
+  layout: default.md title: "User Guide" pageNav: 3
 ---
 
 # PatientSync User Guide
@@ -31,7 +29,7 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add /id 12345 n/ John Doe p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes` : Adds a patient named `John Doe` to the PatientSync.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -53,13 +51,13 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/diabetes` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PREFERRED_NAME`, `p/PREFERRED_NAME n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -80,16 +78,21 @@ Format: `help`
 
 Adds a patient to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE c/FAMILY_CONDITION h/HOBBY [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A patient can have any number of tags (including 0)
+**Tip:** 
+* A patient can have any number of tags (including 0)
+* Parameters can be in any order
+* All command keywords, that is `‘add’`, `‘id/’`, `‘n/’`, `‘p/’`, `‘f/’`, `‘c/’` and `‘h/’` are case-sensitive (to standardise keyword arguments)
+
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add /id 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
+* `add /id 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter, quarrels regularly with daughter h/ Watching Drama`
+
 
 ### Listing all patients : `list`
 
