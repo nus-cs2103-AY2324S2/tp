@@ -27,7 +27,7 @@ With a robust error handling system, clear error and resolution messages will gu
 managing your contacts seamlessly.
 
 ## Getting Started
-To begin your journey with NetConnect, simply download the latest release from [here]() and refer to the [User Guide](docs/UserGuide.md)
+To begin your journey with NetConnect, simply download the latest release from [here](https://github.com/AY2324S2-CS2103T-F12-1/tp/releases) and refer to the [User Guide](docs/UserGuide.md)
 for detailed guidance in using the application.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
