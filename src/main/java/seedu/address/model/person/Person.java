@@ -145,7 +145,9 @@ public class Person {
     }
 
     /**
-     * Deletes the QR code associated with this object.
+     * Deletes the QR code for the person.
+     *
+     * @return true if a QR code was deleted, false otherwise
      */
     public boolean deleteQrCode() {
         try {
