@@ -20,7 +20,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_REACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -82,7 +81,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
                 validExpectedCourseMateString + PHONE_DESC_AMY
                         + EMAIL_DESC_AMY + NAME_DESC_AMY + validExpectedCourseMateString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE));
 
         // invalid value followed by valid value
 
