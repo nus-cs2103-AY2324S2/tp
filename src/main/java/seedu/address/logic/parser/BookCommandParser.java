@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.BookCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.BookingName;
+import seedu.address.model.booking.Description;
 import seedu.address.model.booking.EndTime;
 import seedu.address.model.booking.StartTime;
 
@@ -33,11 +33,11 @@ public class BookCommandParser implements Parser<BookCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE));
         }
 
-        BookingName name = ParserUtil.parseBookingName(argMultimap.getValue(PREFIX_NAME).get());
+        Description description = ParserUtil.parseBookingName(argMultimap.getValue(PREFIX_NAME).get());
         StartTime start = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get());
         EndTime end = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_END_TIME).get());
 
-        Booking booking = new Booking(name, start, end);
+        Booking booking = new Booking(description, start, end);
 
         return new BookCommand(booking);
     }

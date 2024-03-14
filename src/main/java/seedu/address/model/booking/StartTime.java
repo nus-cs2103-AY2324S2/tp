@@ -15,6 +15,7 @@ public class StartTime {
             + "(ISO_LOCAL_DATE_TIME).";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
+    public final String startTimeString;
     public final LocalDateTime startTime;
 
     /**
@@ -24,6 +25,7 @@ public class StartTime {
      */
     public StartTime(String startTime) {
         checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
+        this.startTimeString = startTime;
         this.startTime = LocalDateTime.parse(startTime, formatter);
     }
 
