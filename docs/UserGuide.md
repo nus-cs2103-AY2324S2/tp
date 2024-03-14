@@ -27,7 +27,7 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 
    * `/list` : Lists all contacts.
 
-   * `/new jennie, 12334546, 123@gmail.com, 2021` : Adds a contact named `jennie` to the Address Book.
+   * `/add John Doe, 98765432, johndoe@example.com, 2024` : Adds a contact named `John Doe` to the Address Book.
 
    * `/remove 240001` : Deletes the contact with id 240001.
 
@@ -42,7 +42,7 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `/new NAME`, `NAME` is a parameter which can be used as `/new John Doe`.
+  e.g. in `/add NAME`, `NAME` is a parameter which can be used as `/add John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -193,7 +193,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**New** | `/new :name NAME :phone PHONE :email EMAIL [year joined] <br> e.g., `/new jennie, 12334546, 123@gmail.com, 2021`
+**Add** | `/add :name NAME :phone PHONE :email EMAIL [year joined] <br> e.g., `/add John Doe, 98765432, johndoe@example.com, 2024`
 **Delete** | `/remove ID`<br> e.g., `/remove 240001`
 **Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:tag TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
 **Find** | `/find :KEYWORD [KEYWORDS]`<br> e.g., `find :name John`
