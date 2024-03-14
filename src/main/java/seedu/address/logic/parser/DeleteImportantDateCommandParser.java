@@ -31,22 +31,18 @@ public class DeleteImportantDateCommandParser implements Parser<DeleteImportantD
      */
     public DeleteImportantDateCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IMPORTANT_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_IMPORTANT_DATE) ||
-                argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteImportantDateCommand.MESSAGE_USAGE));
         }
 
         Index patientIndex;
-        Index importantDateIndex;
         try {
             patientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            importantDateIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_IMPORTANT_DATE).get());
             logger.log(Level.INFO, "patient index: " + patientIndex);
-            logger.log(Level.INFO, "importantDateindex: " + importantDateIndex);
-            return new DeleteImportantDateCommand(patientIndex, importantDateIndex);
+            return new DeleteImportantDateCommand(patientIndex);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteImportantDateCommand.MESSAGE_USAGE), pe);

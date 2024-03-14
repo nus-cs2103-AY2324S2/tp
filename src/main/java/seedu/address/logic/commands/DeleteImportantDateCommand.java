@@ -1,14 +1,20 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.EditCommand.createEditedPatient;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.patient.EditPatientDescriptor;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -28,14 +34,12 @@ public class DeleteImportantDateCommand extends Command {
             + COMMAND_WORD + " 1 "
             + "e/ 1 ";
 
-    public static final String MESSAGE_DELETE_IMPORTANT_DATE_SUCCESS = "Deleted Important Date: %2$s for Patient: %2$s";
+    public static final String MESSAGE_DELETE_IMPORTANT_DATE_SUCCESS = "Deleted Important Dates for Patient: %1$s";
 
     private final Index targetPatientIndex;
-    private final Index targetImportantDateIndex;
 
-    public DeleteImportantDateCommand(Index targetPatientIndex, Index targetEventIndex) {
-        this.targetPatientIndex = targetEventIndex;
-        this.targetImportantDateIndex = targetPatientIndex;
+    public DeleteImportantDateCommand(Index targetPatientIndex) {
+        this.targetPatientIndex = targetPatientIndex;
     }
 
     @Override
@@ -49,9 +53,18 @@ public class DeleteImportantDateCommand extends Command {
 
         Patient patientToDeleteImportantDate = lastShownList.get(targetPatientIndex.getZeroBased());
 
-        if (targetImportantDateIndex.getZeroBased() >= patientToDeleteImportantDate.getImportantDates().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_IMPORTANT_DATE_DISPLAYED_INDEX);
-        }
+        EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
+        editPatientDescriptor.setAddress(patientToDeleteImportantDate.getAddress());
+        editPatientDescriptor.setEmail(patientToDeleteImportantDate.getEmail());
+        editPatientDescriptor.setPhone(patientToDeleteImportantDate.getPhone());
+        editPatientDescriptor.setName(patientToDeleteImportantDate.getName());
+        editPatientDescriptor.setTags(patientToDeleteImportantDate.getTags());
+        editPatientDescriptor.setImportantDate(null);
+
+        Patient editedPatient = createEditedPatient(patientToDeleteImportantDate, editPatientDescriptor);
+        model.setPatient(patientToDeleteImportantDate, editedPatient);
+        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+
         return new CommandResult(String.format(MESSAGE_DELETE_IMPORTANT_DATE_SUCCESS,
                 Messages.format(patientToDeleteImportantDate)));
     }
@@ -68,15 +81,13 @@ public class DeleteImportantDateCommand extends Command {
         }
 
         DeleteImportantDateCommand otherDeleteImportantDateCommand = (DeleteImportantDateCommand) other;
-        return targetImportantDateIndex.equals(otherDeleteImportantDateCommand.targetImportantDateIndex)
-                && targetPatientIndex.equals(otherDeleteImportantDateCommand.targetPatientIndex);
+        return targetPatientIndex.equals(otherDeleteImportantDateCommand.targetPatientIndex);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetPatientIndex", targetPatientIndex)
-                .add("targetImportantDateIndex", targetImportantDateIndex)
                 .toString();
     }
 }
