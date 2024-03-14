@@ -3,6 +3,7 @@ package staffconnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
@@ -26,6 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_FACULTY + "FACULTY "
             + PREFIX_VENUE + "VENUE "
             + PREFIX_MODULE + "MODULE "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -33,6 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_FACULTY + "Computing "
             + PREFIX_VENUE + "311, Clementi Ave 2, #02-25 "
             + PREFIX_MODULE + "CS2103 "
             + PREFIX_TAG + "friends "
