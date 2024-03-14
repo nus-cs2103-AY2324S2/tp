@@ -6,10 +6,8 @@
 
 # NetConnect User Guide
 
-NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while
-still
-having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees,
-clients, as well as suppliers, **all in one place** ☝🏻.
+NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still 
+having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
 
 <!-- * Table of Contents -->
 
@@ -25,8 +23,7 @@ clients, as well as suppliers, **all in one place** ☝🏻.
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar netconnect.jar` command
-   to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar netconnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -36,8 +33,7 @@ clients, as well as suppliers, **all in one place** ☝🏻.
 
     - `list` : Lists all contacts.
 
-    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
-      to the Address Book.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
     - `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -67,12 +63,10 @@ clients, as well as suppliers, **all in one place** ☝🏻.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
-  ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br> 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
-  as space characters surrounding line-breaks may be omitted when copied over to the application.
+- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
 ### Viewing help : `help`
@@ -181,21 +175,17 @@ Format: `exit`
 
 ### Saving the data
 
-NetConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+NetConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-NetConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
-welcome to update data directly by editing that data file.
+NetConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, NetConnect will discard all data and start with an empty data
-file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the NetConnect to behave in unexpected ways (e.g., if a value entered is outside
-the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, NetConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the NetConnect to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Remembering States
@@ -213,16 +203,13 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous NetConnect home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NetConnect home folder.
 
 ---
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
-   the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
-   application before running the application again.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 ---
 
