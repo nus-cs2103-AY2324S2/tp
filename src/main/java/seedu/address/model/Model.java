@@ -5,8 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.patient.EditPatientDescriptor;
-import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Patient;
 
 /**
