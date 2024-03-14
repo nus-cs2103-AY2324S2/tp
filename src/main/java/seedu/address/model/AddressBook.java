@@ -3,9 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -92,6 +94,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Returns the person in the address book whose NusNet ID matches the given NusNet.
+     * @param nusNet The NusNet ID to search for.
+     * @return An Optional containing the matched person if found, or an empty Optional otherwise.
+     */
+    public Optional<Person> getPersonByNusNet(NusNet nusNet) {
+        requireNonNull(nusNet);
+        return persons.asUnmodifiableObservableList().stream()
+                .filter(person -> person.getNusNet().equals(nusNet))
+                .findFirst();
     }
 
     //// util methods

@@ -17,6 +17,7 @@ import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String nusNet;
     private final String address;
+    private final List<JsonAdaptedWeekNumber> attendance = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,12 +40,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("nusNet") String nusNet,
-            @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("address") String address,
+                             @JsonProperty("attendance") List<JsonAdaptedWeekNumber> attendance,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.nusNet = nusNet;
         this.address = address;
+        if (attendance != null) {
+            this.attendance.addAll(attendance);
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,6 +65,9 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         nusNet = source.getNusNet().value;
         address = source.getAddress().value;
+        attendance.addAll(source.getAttendance().stream()
+                .map(JsonAdaptedWeekNumber::new)
+                .collect(Collectors.toList()));
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -72,6 +82,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<WeekNumber> personAttendance = new ArrayList<>();
+        for (JsonAdaptedWeekNumber weekNumber : attendance) {
+            personAttendance.add(weekNumber.toModelType());
         }
 
         if (name == null) {
@@ -114,8 +129,11 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Set<WeekNumber> modelAttendance = new HashSet<>(personAttendance);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelNusNet, modelAddress, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelNusNet, modelAddress, modelAttendance, modelTags);
     }
 
 }

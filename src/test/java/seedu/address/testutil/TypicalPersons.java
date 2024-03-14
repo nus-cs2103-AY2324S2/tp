@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEEK_NUMBER_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEEK_NUMBER_4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +33,7 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withNusNet("e0000001")
             .withPhone("94351253")
+            .withAttendance("1")
             .withTags("friends")
             .build();
     public static final Person BENSON = new PersonBuilder()
@@ -39,6 +42,7 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withNusNet("e0000002")
             .withPhone("98765432")
+            .withAttendance("4")
             .withTags("owesMoney", "friends")
             .build();
     public static final Person CARL = new PersonBuilder()
@@ -47,6 +51,7 @@ public class TypicalPersons {
             .withEmail("heinz@example.com")
             .withNusNet("e0000003")
             .withAddress("wall street")
+            .withAttendance("1", "4")
             .build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
@@ -101,6 +106,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_AMY)
             .withNusNet(VALID_NUSNET_AMY)
             .withAddress(VALID_ADDRESS_AMY)
+            .withAttendance(VALID_WEEK_NUMBER_1)
             .withTags(VALID_TAG_FRIEND)
             .build();
     public static final Person BOB = new PersonBuilder()
@@ -109,6 +115,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB)
             .withNusNet(VALID_NUSNET_BOB)
             .withAddress(VALID_ADDRESS_BOB)
+            .withAttendance(VALID_WEEK_NUMBER_1, VALID_WEEK_NUMBER_4)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 

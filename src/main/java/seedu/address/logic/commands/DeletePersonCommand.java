@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.util.CommandMessageUsageUtil.generateMessageUsage;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_INDEX;
 
 import java.util.List;
 
@@ -18,10 +20,11 @@ public class DeletePersonCommand extends Command {
 
     public static final String COMMAND_WORD = "delstu";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student with the NUSNET_ID. \n"
-            + "Parameters: NUSNET_ID \n"
-            + "Example: " + COMMAND_WORD + " e0957499";
+    public static final String MESSAGE_USAGE = generateMessageUsage(
+            COMMAND_WORD,
+            "Deletes the student identified by NUSNET_ID.",
+            PARAMETER_INDEX
+    );
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
 
