@@ -48,7 +48,7 @@ public class ScheduleCommand extends Command {
     private final Meeting meeting;
 
     /**
-     * Creates an ScheduleCommand to schedule a meetign with the specified {@code Person}
+     * Creates an ScheduleCommand to schedule a meeting with the specified {@code Person}
      */
     public ScheduleCommand(Index targetIndex, Meeting meeting) {
         requireNonNull(meeting);
