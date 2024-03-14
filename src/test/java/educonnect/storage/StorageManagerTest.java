@@ -13,7 +13,7 @@ import educonnect.commons.core.GuiSettings;
 import educonnect.model.AddressBook;
 import educonnect.model.ReadOnlyAddressBook;
 import educonnect.model.UserPrefs;
-import educonnect.testutil.TypicalPersons;
+import educonnect.testutil.TypicalStudents;
 
 public class StorageManagerTest {
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
+        AddressBook original = TypicalStudents.getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));

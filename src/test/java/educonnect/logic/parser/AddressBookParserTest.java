@@ -2,14 +2,12 @@ package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static educonnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.testutil.Assert.assertThrows;
-import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,17 +15,18 @@ import educonnect.logic.commands.AddCommand;
 import educonnect.logic.commands.ClearCommand;
 import educonnect.logic.commands.DeleteCommand;
 import educonnect.logic.commands.EditCommand;
-import educonnect.logic.commands.EditCommand.EditPersonDescriptor;
+import educonnect.logic.commands.EditCommand.EditStudentDescriptor;
 import educonnect.logic.commands.ExitCommand;
 import educonnect.logic.commands.FindCommand;
 import educonnect.logic.commands.HelpCommand;
 import educonnect.logic.commands.ListCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.person.NameContainsKeywordsPredicate;
-import educonnect.model.person.Person;
-import educonnect.testutil.EditPersonDescriptorBuilder;
-import educonnect.testutil.PersonBuilder;
-import educonnect.testutil.PersonUtil;
+import educonnect.model.student.NameContainsKeywordsPredicate;
+import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.testutil.EditStudentDescriptorBuilder;
+import educonnect.testutil.StudentBuilder;
+import educonnect.testutil.StudentUtil;
 
 public class AddressBookParserTest {
 
@@ -35,9 +34,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Student student = new StudentBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
+        assertEquals(new AddCommand(student), command);
     }
 
     @Test
@@ -49,17 +48,20 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_AMY);
+        DeleteCommand.DeleteStudentDescriptor deleteStudentDescriptor = new DeleteCommand.DeleteStudentDescriptor();
+        deleteStudentDescriptor.setStudentId(new StudentId(VALID_STUDENT_ID_AMY));
+
+        assertEquals(new DeleteCommand(deleteStudentDescriptor), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Student student = new StudentBuilder().build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
     @Test
@@ -70,10 +72,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String keyword = "foo bar baz";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + keyword);
+        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keyword)), command);
     }
 
     @Test

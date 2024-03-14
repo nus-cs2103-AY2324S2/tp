@@ -1,0 +1,14 @@
+{
+  "students": [ {
+    "name": "Bob Dexter",
+    "studentId": "A1234567B",
+    "email": "dexter@example.com",
+    "telegramHandle": "@bobDexter",
+    "tags": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "studentId": "A1234567P",
+    "email": "dexter@example.com",
+    "telegramHandle": "@alicepaul"
+  } ]
+}
