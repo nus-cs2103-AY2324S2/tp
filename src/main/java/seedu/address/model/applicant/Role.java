@@ -1,20 +1,23 @@
 package seedu.address.model.applicant;
 
 /**
- * Represents an Applicant's role in the address book.
- * Guarantees: immutable;
+ * A job role that an applicant can apply for.
  */
 public class Role {
-    public static final String MESSAGE_CONSTRAINTS = "Role can take any values, and it should not be blank";
+    public final String roleName;
 
-    public final String value;
-    public Role(String role) {
-        this.value = role;
+    public Role(String roleName) {
+        this.roleName = roleName;
     }
 
     @Override
     public String toString() {
-        return value;
+        return roleName;
+    }
+
+    @Override
+    public int hashCode() {
+        return roleName == null ? 0 : roleName.hashCode();
     }
 
     @Override
@@ -28,12 +31,7 @@ public class Role {
             return false;
         }
 
-        Role otherRole = (Role) other;
-        return value.equals(otherRole.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
+        Role otherStage = (Role) other;
+        return roleName.equals(otherStage.roleName);
     }
 }

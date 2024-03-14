@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.person.Person;

@@ -56,8 +56,8 @@ public class ApplicantCard extends UiPart<Region> {
         phone.setText(applicant.getPhone().value);
         address.setText(applicant.getAddress().value);
         email.setText(applicant.getEmail().value);
-        role.setText(applicant.getRole().value);
-        stage.setText(applicant.getStage().value);
+        role.setText(applicant.getRole().roleName);
+        stage.setText(applicant.getStage().stageName);
         applicant.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

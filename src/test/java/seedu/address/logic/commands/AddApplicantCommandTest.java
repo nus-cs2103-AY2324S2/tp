@@ -5,16 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalApplicants.ALICE_APPLICANT;
-import static seedu.address.testutil.TypicalApplicants.BENSON_APPLICANT;
 import static seedu.address.testutil.TypicalApplicants.HELLEN_APPLICANT;
 import static seedu.address.testutil.TypicalApplicants.IVAN_APPLICANT;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -35,7 +35,7 @@ public class AddApplicantCommandTest {
     }
 
     @Test
-    public void execute_ApplicantAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_applicantAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Applicant validApplicant = new ApplicantBuilder().build();
 
@@ -52,7 +52,8 @@ public class AddApplicantCommandTest {
         AddApplicantCommand addApplicantCommand = new AddApplicantCommand(validApplicant);
         ModelStub modelStub = new ModelStubWithPerson(validApplicant);
 
-        assertThrows(CommandException.class, AddApplicantCommand.MESSAGE_DUPLICATE_APPLICANT, () -> addApplicantCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddApplicantCommand.MESSAGE_DUPLICATE_APPLICANT, () ->
+            addApplicantCommand.execute(modelStub));
     }
 
     @Test

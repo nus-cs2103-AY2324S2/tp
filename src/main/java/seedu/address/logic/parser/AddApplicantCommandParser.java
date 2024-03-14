@@ -21,6 +21,7 @@ import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -54,7 +55,8 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Stage stage = new Stage("initial_application");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Applicant applicant = new Applicant(name, phone, email, address, role, stage, tagList);
+        Note note = new Note("");
+        Applicant applicant = new Applicant(name, phone, email, address, role, stage, tagList, note, "");
         return new AddApplicantCommand(applicant);
     }
 

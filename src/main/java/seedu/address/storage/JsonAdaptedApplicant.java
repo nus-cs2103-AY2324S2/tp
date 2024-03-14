@@ -29,8 +29,9 @@ class JsonAdaptedApplicant extends JsonAdaptedPerson {
     public JsonAdaptedApplicant(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("role") String role, @JsonProperty("stage") String stage,
-                                @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-        super(name, phone, email, address, tags);
+                                @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("note") String note,
+                                @JsonProperty("noteDate") String noteDate) {
+        super(name, phone, email, address, tags, note, noteDate);
         this.role = role;
         this.stage = stage;
     }
@@ -41,8 +42,8 @@ class JsonAdaptedApplicant extends JsonAdaptedPerson {
     public JsonAdaptedApplicant(Applicant source) {
         // adapted from copilot
         super(source);
-        this.role = source.getRole().value;
-        this.stage = source.getStage().value;
+        this.role = source.getRole().roleName;
+        this.stage = source.getStage().stageName;
     }
 
     /**
@@ -64,7 +65,7 @@ class JsonAdaptedApplicant extends JsonAdaptedPerson {
         final Stage modelStage = new Stage(stage);
 
         return new Applicant(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
-            modelRole, modelStage, person.getTags());
+            modelRole, modelStage, person.getTags(), person.getNote(), person.getNoteDate());
     }
 
 }

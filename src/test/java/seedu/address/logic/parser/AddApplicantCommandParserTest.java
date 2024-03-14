@@ -39,13 +39,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalApplicants.HELLEN_APPLICANT;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddApplicantCommand;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -61,11 +61,13 @@ public class AddApplicantCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Applicant expectedApplicant = new ApplicantBuilder(BOB).withRole(VALID_ROLE_BOB).withStage(VALID_STAGE_BOB).build();
+        Applicant expectedApplicant = new ApplicantBuilder(BOB).withRole(VALID_ROLE_BOB)
+            .withStage(VALID_STAGE_BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + ROLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddApplicantCommand(expectedApplicant));
+                + ADDRESS_DESC_BOB + ROLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+            new AddApplicantCommand(expectedApplicant));
 
 
         // multiple tags - all accepted
@@ -74,8 +76,8 @@ public class AddApplicantCommandParserTest {
         Applicant expectedApplicantMultipleTags = new ApplicantBuilder(expectedPersonMultipleTags)
             .withRole(VALID_ROLE_BOB).withStage(VALID_STAGE_BOB).build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ROLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-            new AddApplicantCommand(expectedApplicantMultipleTags));
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ROLE_DESC_BOB
+                    + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddApplicantCommand(expectedApplicantMultipleTags));
     }
 
     @Test
