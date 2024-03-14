@@ -17,8 +17,8 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final StudentId studentId;
     private final Name name;
+    private final StudentId studentId;
     private final Phone phone;
     private final Email email;
 
@@ -29,22 +29,22 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(StudentId studentId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(studentId, name, phone, email, address, tags);
-        this.studentId = studentId;
+    public Person(Name name, StudentId studentId, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, studentId, phone, email, address, tags);
         this.name = name;
+        this.studentId = studentId;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public StudentId getStudentId() {
-        return studentId;
-    }
-
     public Name getName() {
         return name;
+    }
+
+    public StudentId getStudentId() {
+        return studentId;
     }
 
     public Phone getPhone() {
@@ -96,8 +96,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return studentId.equals(otherPerson.studentId)
-                && name.equals(otherPerson.name)
+        return name.equals(otherPerson.name)
+                && studentId.equals(otherPerson.studentId)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
@@ -107,14 +107,14 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(studentId, name, phone, email, address, tags);
+        return Objects.hash(name, studentId, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("studentId", studentId)
                 .add("name", name)
+                .add("studentId", studentId)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)

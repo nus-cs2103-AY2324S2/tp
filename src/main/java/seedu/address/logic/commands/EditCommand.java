@@ -98,14 +98,14 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedStudentId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedStudentId, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -137,8 +137,8 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private StudentId studentId;
         private Name name;
+        private StudentId studentId;
         private Phone phone;
         private Email email;
         private Address address;
@@ -151,8 +151,8 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setStudentId(toCopy.studentId);
             setName(toCopy.name);
+            setStudentId(toCopy.studentId);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -163,7 +163,11 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(studentId, name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, studentId, phone, email, address, tags);
+        }
+
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public void setStudentId(StudentId studentId) {
@@ -172,10 +176,6 @@ public class EditCommand extends Command {
 
         public Optional<StudentId> getStudentId() {
             return Optional.ofNullable(studentId);
-        }
-
-        public void setName(Name name) {
-            this.name = name;
         }
 
         public Optional<Name> getName() {
@@ -235,8 +235,8 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(studentId, otherEditPersonDescriptor.studentId)
-                    && Objects.equals(name, otherEditPersonDescriptor.name)
+            return Objects.equals(name, otherEditPersonDescriptor.name)
+                    && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
@@ -246,8 +246,8 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("studentId", studentId)
                     .add("name", name)
+                    .add("studentId", studentId)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)

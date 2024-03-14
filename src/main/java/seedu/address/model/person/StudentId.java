@@ -13,7 +13,7 @@ public class StudentId {
             "StudentId should start with A follow by 7 digits and ends with a letter, and it should not be blank.";
 
     // The studentId must start with A followed by digits and end with a letter.
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}]+";
+    public static final String VALIDATION_REGEX = "A\\d{7}[A-Z]";
 
     public final String ID;
 

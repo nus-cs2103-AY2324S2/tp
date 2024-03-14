@@ -25,8 +25,8 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String studentId;
     private final String name;
+    private final String studentId;
     private final String phone;
     private final String email;
     private final String address;
@@ -36,11 +36,11 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("studentId") String studentId, @JsonProperty("name") String name,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-        this.studentId = studentId;
         this.name = name;
+        this.studentId = studentId;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -53,8 +53,8 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        studentId = source.getStudentId().ID;
         name = source.getName().fullName;
+        studentId = source.getStudentId().ID;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -74,14 +74,6 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        if (studentId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!StudentId.isValidStudentId(studentId)) {
-            throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
-        }
-        final StudentId modelStudentId = new StudentId(studentId);
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -89,6 +81,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (studentId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
+        }
+        if (!StudentId.isValidStudentId(studentId)) {
+            throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
+        }
+        final StudentId modelStudentId = new StudentId(studentId);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -115,7 +115,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelStudentId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelStudentId, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }
