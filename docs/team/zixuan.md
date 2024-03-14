@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Teo Hong Rui's Project Portfolio Page
+title: Zi Xuan's Project Portfolio Page
 ---
 
 ### Project: FinCliq
