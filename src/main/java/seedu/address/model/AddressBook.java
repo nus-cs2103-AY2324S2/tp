@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.ModuleMap;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -16,6 +18,7 @@ import seedu.address.model.student.UniqueStudentList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
+    private final ModuleMap moduleMap;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,7 +31,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+        try {
+            moduleMap = new ModuleMap();
+        } catch (DataLoadingException e) {
+            // Currently not sure how to handle this, so I'm just going to throw a runtime exception.
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Creates an AddressBook using the Students in the {@code toBeCopied}
