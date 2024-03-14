@@ -30,9 +30,14 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
-    // ================ UserPrefs methods ==============================
+    /**
+     * Creates a {@code StorageManager} with the given {@code InternshipDataStorage} and {@code UserPrefStorage}.
+     */
+    public StorageManager(InternshipDataStorage internshipDataStorage, UserPrefsStorage userPrefsStorage) {
+        this.internshipDataStorage = internshipDataStorage;
+        this.userPrefsStorage = userPrefsStorage;
+    }
 
-    @Override
     public Path getUserPrefsFilePath() {
         return userPrefsStorage.getUserPrefsFilePath();
     }

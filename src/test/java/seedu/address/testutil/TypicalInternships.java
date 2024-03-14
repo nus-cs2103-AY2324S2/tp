@@ -28,6 +28,17 @@ public class TypicalInternships {
             .withLocation("overseas").withApplicationStatus("rejected").withDescription("Enter prompts into ChatGPT")
             .withRole("Prompt Engineer").build();
 
+    // Manually added
+    public static final Internship HOON_APPLE = new InternshipBuilder().withCompanyName("Apple")
+            .withContactName("Hoon Meier").withContactEmail("hoon@gmail.com").withContactNumber("8482424")
+            .withLocation("local").withApplicationStatus("pending").withDescription("Develop iOS applications")
+            .withRole("iOS Developer").build();
+
+    public static final Internship IDA_NETFLIX = new InternshipBuilder().withCompanyName("Netflix")
+            .withContactName("Ida Mueller").withContactEmail("ida@example.com").withContactNumber("8482131")
+            .withLocation("remote").withApplicationStatus("ongoing").withDescription("Write REST APIs for netflix")
+            .withRole("Backend Engineer").build();
+
     private TypicalInternships() {
     } // prevents instantiation
 
