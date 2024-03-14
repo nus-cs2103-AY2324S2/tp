@@ -24,7 +24,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String country;
     private final String comment;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -33,12 +33,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email, @JsonProperty("country") String country,
             @JsonProperty("comment") String comment, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.country = country;
         this.comment = comment;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -52,7 +52,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getCountry().value;
+        country = source.getCountry().value;
         comment = source.getComment().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -94,13 +94,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
+        if (country == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Country.class.getSimpleName()));
         }
-        if (!Country.isValidCountry(address)) {
+        if (!Country.isValidCountry(country)) {
             throw new IllegalValueException(Country.MESSAGE_CONSTRAINTS);
         }
-        final Country modelCountry = new Country(address);
+        final Country modelCountry = new Country(country);
         if (comment == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Comment.class.getSimpleName()));
         }
