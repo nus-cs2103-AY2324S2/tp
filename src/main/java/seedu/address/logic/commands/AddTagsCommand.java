@@ -41,7 +41,6 @@ public class AddTagsCommand extends Command {
 
     private final Index index;
     private final Set<Tag> tags;
-
     private final EditPatientDescriptor editPatientDescriptor;
 
     /**
