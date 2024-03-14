@@ -136,6 +136,6 @@ public class ParserUtil {
         if (!PostalCode.isValidPostalCode(trimmedPostalCode)) {
             throw new ParseException(PostalCode.MESSAGE_CONSTRAINTS);
         }
-        return new PostalCode(postalCode);
+        return new PostalCode(trimmedPostalCode);
     }
 }

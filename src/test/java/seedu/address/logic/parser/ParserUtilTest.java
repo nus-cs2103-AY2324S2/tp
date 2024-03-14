@@ -33,7 +33,7 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_POSTALCODE = "123456";
+    private static final String VALID_POSTALCODE = "654321";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -165,6 +165,13 @@ public class ParserUtilTest {
     public void parsePostalCode_validValueWithoutWhitespace_returnsPostalCode() throws Exception {
         PostalCode expectedPostalCode = new PostalCode(VALID_POSTALCODE);
         assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(VALID_POSTALCODE));
+    }
+
+    @Test
+    public void parsePostalCode_validValueWithWhitespace_returnsTrimmedPostalCode() throws Exception {
+        String postalCodeWithWhitespace = WHITESPACE + VALID_POSTALCODE + WHITESPACE;
+        PostalCode expectedPostalCode = new PostalCode(VALID_POSTALCODE);
+        assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(postalCodeWithWhitespace));
     }
 
     @Test
