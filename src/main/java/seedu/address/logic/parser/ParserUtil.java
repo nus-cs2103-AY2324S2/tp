@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.YearJoined;
@@ -34,6 +35,19 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code id} into an {@code id} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified id is invalid (not 6-digit number).
+     */
+    public static Id parseId(String id) throws ParseException {
+        String trimmedIndex = id.trim();
+        if (!StringUtil.isSixDigitNumber(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return new Id(Integer.parseInt(trimmedIndex));
     }
 
     /**
@@ -74,7 +88,7 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
+        String trimmedAddress = address.replace(" :tag", "").trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }

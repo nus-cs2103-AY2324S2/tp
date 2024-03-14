@@ -119,6 +119,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
+                && id.equals(otherPerson.id)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && yearJoined.equals(otherPerson.yearJoined)
@@ -135,6 +136,7 @@ public class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

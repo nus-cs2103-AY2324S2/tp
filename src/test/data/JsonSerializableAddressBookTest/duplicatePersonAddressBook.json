@@ -1,14 +1,19 @@
 {
   "persons": [ {
+    "id": 240001,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "yearJoined": 2024,
     "address": "123, Jurong West Ave 6, #08-111",
     "tags": [ "friends" ]
   }, {
+    "id": 240001,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "yearJoined": 2024,
+    "address": "4th street",
+    "tags": [ "friends" ]
   } ]
 }

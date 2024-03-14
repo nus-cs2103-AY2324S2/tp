@@ -78,7 +78,6 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
-
         final Id modelId = new Id(id);
 
         if (name == null) {
