@@ -5,17 +5,17 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.Arrays;
-import java.util.List;
+// import java.util.Arrays;
+// import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+// import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+// import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -44,8 +44,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        // Person person = new PersonBuilder().build();
+        // EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         //edit function not yet implemented
         assertEquals(0, 0);
     }
@@ -58,7 +58,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        // List<String> keywords = Arrays.asList("foo", "bar", "baz");
         //find function not yet implemented
         assertEquals(0, 0);
     }

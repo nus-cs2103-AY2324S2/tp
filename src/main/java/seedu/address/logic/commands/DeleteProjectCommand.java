@@ -14,20 +14,20 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the specified project. "
+            + "Parameters: PROJECT_NAME\n"
+            + "Example: " + COMMAND_WORD + " CS2103";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "[%1$s] has been deleted from the project list.";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteProjectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -52,11 +52,11 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteProjectCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
+        DeleteProjectCommand otherDeleteCommand = (DeleteProjectCommand) other;
         return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
 
