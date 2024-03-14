@@ -12,10 +12,10 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.GroupPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 class GroupCommandTest {
@@ -69,4 +69,5 @@ class GroupCommandTest {
                 + groupPersonDescriptor + "}";
         assertEquals(expected, groupCommand.toString());
     }
+
 }
