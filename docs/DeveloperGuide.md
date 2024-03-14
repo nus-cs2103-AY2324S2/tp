@@ -262,42 +262,64 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts of NUS students, tutors, and professors
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven app
+* allow NUS students to save and search up contacts of students/tutors/instructors and the courses they are in. (e.g. tutorial/lecture groupings)
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                                   |
+|----------|--------------------------------------------|----------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions           | refer to instructions when I forget how to use the App                            |
+| `* * *`  | user                                       | add a new tutor                  |                                                                                   |
+| `* * *`  | user                                       | delete a tutor                   | remove entries that I no longer need                                              |
+| `* * *`  | user                                       | find a tutor by name             | locate details of tutors without having to go through the entire list             |
+| `* * *`  | user                                       | find a tutor by course code      | locate tutors from a specific module without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details     | minimize chance of someone else seeing them by accident                           |
+| `* *`    | user                                       | edit a tutor                     | change incorrect or new information about a tutor                                 |
+| `*`      | user with many persons in the address book | sort tutor by name               | locate a tutor easily                                                             |
+| `*`      | user                                       | add a tutor to a favourites list | access the details of my most frequently contacted tutors easily                  |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NUSContacts` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC1: Add a tutor**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a tutor
+2.  User provides the tutor's details
+3.  NUSContacts adds the tutor
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The tutor already exists.
+    * 2a1. NUSContacts informs the user of the error.
+
+      Use case ends.
+
+**UC2: Delete a tutor**
+
+**MSS**
+
+1.  User requests to list tutors
+2.  NUSContacts shows a list of tutors
+3.  User requests to delete a specific tutor in the list
+4.  NUSContacts deletes the tutor
 
     Use case ends.
 
@@ -309,17 +331,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NUSContacts shows an error message.
 
       Use case resumes at step 2.
+
+**UC3: Find a tutor by name**
+
+**MSS**
+
+1.  User requests to find a tutor
+2.  NUSContacts prompts search criterion (name or course code)
+3.  User provides the search criterion (name)
+4.  NUSContacts shows the tutor(s) that match the criterion
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. No tutor matches the criterion.
+    * 4a1. NUSContacts informs the user of the error.
+
+      Use case ends.
+
+**UC4: Find a tutor by course code**
+
+**MSS**
+
+1.  User requests to find a tutor
+2.  NUSContacts prompts search criterion (name or course code)
+3.  User provides the search criterion (course code)
+4.  NUSContacts shows the tutor(s) that match the criterion
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. No tutor matches the criterion.
+    * 4a1. NUSContacts informs the user of the error.
+
+      Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Error messages displayed to application window should be easily understood by most users.
+5.  System should respond to user actions within 1 second.
+6.  For databases with less than 1000 contacts, fetching and saving of contacts to/from it should not exceed 200 milliseconds.
+7.  System should handle data corruption or loss without crashing the application.
+8.  System architecture should support future updates and extensions without major restructures.
+9.  System should support comprehensive testing for all components and features.
 
 *{More to be added}*
 
