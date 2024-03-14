@@ -32,7 +32,7 @@ public class SeedDataCommand extends Command {
         if (hasAdded) {
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
-            return new CommandResult(MESSAGE_FAILURE);
+            throw new CommandException(MESSAGE_FAILURE);
         }
     }
 }
