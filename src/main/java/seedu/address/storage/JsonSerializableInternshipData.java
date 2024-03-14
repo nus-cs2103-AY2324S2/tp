@@ -42,7 +42,7 @@ public class JsonSerializableInternshipData {
     }
 
     /**
-     * Converts this address book into the model's {@code InternshipData} object.
+     * Converts this internshipdata into the model's {@code InternshipData} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
