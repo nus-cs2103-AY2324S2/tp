@@ -25,7 +25,7 @@ public class Upcoming implements Comparable<Upcoming> {
      */
     public Upcoming(String dateTimeStr) {
         requireNonNull(dateTimeStr);
-        checkArgument(isValidDateTime(dateTimeStr), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidUpcoming(dateTimeStr), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTimeStr, DATETIME_FORMATTER);
     }
 
@@ -35,7 +35,7 @@ public class Upcoming implements Comparable<Upcoming> {
      * @param dateTimeStr a string representing the date and time in the format "DD-MM-YYYY HH:MM"
      * @return true if the string is a valid date and time combination, false otherwise
      */
-    public static boolean isValidDateTime(String dateTimeStr) {
+    public static boolean isValidUpcoming(String dateTimeStr) {
         return DATETIME_PATTERN.matcher(dateTimeStr).matches();
     }
 
