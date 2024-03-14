@@ -6,7 +6,7 @@ title: Jin Han's Project Portfolio Page
 ### Project: My Bookshelf
 
 My Bookshelf - is a specialized application designed to empower community librarians by providing robust tools for efficiently managing book donations, loans, and returns. This intuitive platform enables librarians to seamlessly record, track, and organize incoming book donations, as well as efficiently manage the borrowing and returning processes. With "My Bookshelf," librarians can streamline their operations, ensuring a smoother and more organized experience for both library patrons and staff alike.
- 
+
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
@@ -39,5 +39,5 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * Not done yet
-  
+
 * _{you can add/remove categories in the list above}_

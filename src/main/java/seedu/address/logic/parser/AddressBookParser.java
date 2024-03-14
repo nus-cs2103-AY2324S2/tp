@@ -77,7 +77,7 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        
+
         case BorrowCommand.COMMAND_WORD:
             return new BorrowCommandParser().parse(arguments);
 
