@@ -190,7 +190,7 @@ Format: `clear`
 
 ### Adding points: `addpoints`
 
-Add points for a member in the loyalty program.
+Adds points for a member in the loyalty program.
 
 Format: `addpoints n/MEMBER_NAME p/POINTS`
 
