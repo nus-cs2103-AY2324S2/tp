@@ -54,9 +54,11 @@ public class UnmarkAttendanceCommand extends Command {
         Set<WeekNumber> updatedWeekAttendance = new HashSet<>(personToUnmark.getAttendance());
 
         if (!updatedWeekAttendance.remove(weekNumber)) {
-            String message = String.format("%s%s, %s, Week %s", Messages.MESSAGE_UNMARK_NONEXISITING_ATTENDANCE_SUCCESS,
+            String formattedMessage = String.format("%1$s%2$s, %3$s, Week %4$s",
+                    Messages.MESSAGE_UNMARK_NONEXISITING_ATTENDANCE_SUCCESS,
                     personToUnmark.getName(), personToUnmark.getNusNet(), weekNumber);
-            return new CommandResult(message);
+
+            return new CommandResult(formattedMessage);
         }
 
         Person updatedPerson = new Person(personToUnmark.getName(), personToUnmark.getPhone(), personToUnmark.getEmail(),
@@ -64,9 +66,11 @@ public class UnmarkAttendanceCommand extends Command {
 
         model.setPerson(personToUnmark, updatedPerson);
 
-        String message = String.format("%s%s, %s, Week %s", Messages.MESSAGE_UNMARKED_ATTENDANCE_SUCCESS,
+        String formattedMessage = String.format("%1$s%2$s, %3$s, Week %4$s",
+                Messages.MESSAGE_UNMARKED_ATTENDANCE_SUCCESS,
                 updatedPerson.getName(), updatedPerson.getNusNet(), weekNumber);
-        return new CommandResult(message);
+
+        return new CommandResult(formattedMessage);
 
     }
 

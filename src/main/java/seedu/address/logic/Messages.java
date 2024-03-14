@@ -21,7 +21,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_MISSING_NUSNET =
             "There is no student with this NUSNet ID!";
-    public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked attendance for student: ";
+    public static final String MESSAGE_MARKED_ATTENDANCE_SUCCESS = "Marked attendance for student: ";
     public static final String MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS =
             "Re-marked Attendance for student: ";
     public static final String MESSAGE_UNMARKED_ATTENDANCE_SUCCESS = "Unmarked attendance for student: ";
