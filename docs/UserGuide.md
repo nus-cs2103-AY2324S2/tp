@@ -186,7 +186,7 @@ Format: /export <ContactRange> <pageId>
 
 Examples:
 *  `/export [0:10] 1` will append contacts 0 to 10 inclusive onto page identified by ID 1.
-  
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the HRConnect.
