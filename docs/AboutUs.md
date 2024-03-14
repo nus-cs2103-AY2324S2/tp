@@ -11,24 +11,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Justin Leng Chern Harn
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/justinlengch.png.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Quality Assurance
 
-### Jane Doe
+### Lee Poe Aik
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/leepoeaik.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/leepoeaik)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe

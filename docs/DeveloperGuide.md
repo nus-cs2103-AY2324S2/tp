@@ -287,14 +287,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                      | So that I can…​                                                        |
+|----------|--|-----------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user | view a guide of useful commands   | refer to instructions when I forget how to use TutorTrack              |
+| `* * *`  | freelance tutor | add a new student                 |                                                                        |
+| `* * *`  | freelance tutor | delete an existing                | remove entries that I no longer need                                   |
+| `* * *`  | freelance tutor | find a student by name            | locate details of persons without having to go through the entire list |
+| `* *`    | freelance tutor | view all my students' information | view all my students at the same time                                  |
+| `*`      | freelance tutor | view a specific student's information              | specifically refer to a particular student's information                                                |
 
 *{More to be added}*
 
