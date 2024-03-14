@@ -96,4 +96,13 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    /**
+     * Generate a QR code using the ALICE instance and verify its existence.
+     *
+     */
+    @Test
+    void generateQrCode_validPerson_success() {
+        ALICE.generateQrCode();
+        assertTrue(ALICE.getQrCodePath().toFile().exists());}
 }
