@@ -16,6 +16,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
@@ -33,6 +34,8 @@ import seedu.address.model.person.Tag;
  * assigns a group to an existing person in the address book.
  */
 public class GroupCommand extends Command {
+
+    public static final String MESSAGE_GROUP_PERSON_SUCCESS = "Grouped Person: %1$s";
 
     public static final String COMMAND_WORD = "group";
 
@@ -78,7 +81,7 @@ public class GroupCommand extends Command {
         Person groupedPerson = createGroupedPerson(personToGroup, groupPersonDescriptor);
         model.setPerson(personToGroup, groupedPerson);
 
-        return new CommandResult(MESSAGE_GROUP_PERSON, true, false);
+        return new CommandResult(String.format(MESSAGE_GROUP_PERSON_SUCCESS, Messages.format(groupedPerson)));
     }
 
     private static Person createGroupedPerson(Person personToGroup, GroupPersonDescriptor GroupPersonDescriptor) {
