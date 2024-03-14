@@ -323,12 +323,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. TutorPro shows an error message.
-  
+
     Use case resumes at step 2.
 
 * 3b. The given student does not exist in the list.
   * 3b1. TutorPro displays an error message.
-  
+
   Use case resumes at step 2.
 
 **Use case: Find a student**
