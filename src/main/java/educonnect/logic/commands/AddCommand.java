@@ -35,8 +35,14 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "tutorial-1 "
             + PREFIX_TAG + "high-ability";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
+    public static final String MESSAGE_SUCCESS =
+            "New student added: %1$s";
+    public static final String MESSAGE_DUPLICATE_STUDENT_ID =
+            "This student Id already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EMAIL =
+            "This email already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TELEGRAM_HANDLE =
+            "This telegram handle already exists in the address book";
 
     private final Student toAdd;
 
@@ -52,8 +58,14 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        if (model.hasStudentId(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT_ID);
+        }
+        if (model.hasEmail(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+        if (model.hasTelegramHandle(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TELEGRAM_HANDLE);
         }
 
         model.addStudent(toAdd);
