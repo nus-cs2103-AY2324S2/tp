@@ -20,11 +20,9 @@ public class Student {
     private final Name name;
     private final StudentId studentId;
     private final TelegramHandle telegramHandle;
-    //private final Phone phone;
     private final Email email;
 
     // Data fields
-    //private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**

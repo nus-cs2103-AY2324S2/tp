@@ -75,7 +75,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
-        // multiple phones
+        // multiple student IDs
         assertParseFailure(parser, STUDENT_ID_DESC_AMY + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDENT_ID));
 
@@ -83,7 +83,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
-        // multiple addresses
+        // multiple handles
         assertParseFailure(parser, TELEGRAM_HANDLE_DESC_AMY + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TELEGRAM_HANDLE));
 
@@ -104,11 +104,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_EMAIL_DESC + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
-        // invalid phone
+        // invalid student ID
         assertParseFailure(parser, INVALID_STUDENT_ID_DESC + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDENT_ID));
 
-        // invalid address
+        // invalid handle
         assertParseFailure(parser, INVALID_TELEGRAM_HANDLE_DESC + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TELEGRAM_HANDLE));
 
@@ -126,7 +126,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, validExpectedStudentString + INVALID_STUDENT_ID_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDENT_ID));
 
-        // invalid address
+        // invalid handle
         assertParseFailure(parser, validExpectedStudentString + INVALID_TELEGRAM_HANDLE_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TELEGRAM_HANDLE));
     }
@@ -155,7 +155,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + STUDENT_ID_DESC_BOB + VALID_EMAIL_BOB + TELEGRAM_HANDLE_DESC_BOB,
                 expectedMessage);
 
-        // missing address prefix
+        // missing handle prefix
         assertParseFailure(parser, NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB + VALID_TELEGRAM_HANDLE_BOB,
                 expectedMessage);
 

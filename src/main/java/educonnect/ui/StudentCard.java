@@ -31,6 +31,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label id;
+    @FXML
     private Label studentID;
     @FXML
     private Label email;

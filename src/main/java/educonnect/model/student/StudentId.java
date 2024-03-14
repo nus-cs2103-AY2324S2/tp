@@ -21,9 +21,9 @@ public class StudentId {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code StudentId}.
      *
-     * @param address A valid address.
+     * @param studentId A valid student ID number.
      */
 
     public StudentId(String studentId) {
@@ -33,7 +33,7 @@ public class StudentId {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid student ID number.
      */
     public static boolean isValidStudentId(String test) {
         return test.matches(VALIDATION_REGEX);
