@@ -47,7 +47,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PHONE, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_FIRSTNAME, PREFIX_LASTNAME, PREFIX_PHONE, PREFIX_SEX,
+                PREFIX_EMPLOYMENTTYPE, PREFIX_BANKDETAILS, PREFIX_ADDRESS);
 
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
 

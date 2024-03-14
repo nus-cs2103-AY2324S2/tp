@@ -108,19 +108,19 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = VALID_ADDRESS_AMY + ADDRESS_DESC_AMY;
+        userInput = VALID_PHONE_AMY + ADDRESS_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = VALID_ADDRESS_AMY + TAG_DESC_FRIEND;
+        userInput = VALID_PHONE_AMY + TAG_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
-        userInput = VALID_ADDRESS_AMY + PHONE_DESC_AMY;
+        userInput = VALID_PHONE_AMY + PHONE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
