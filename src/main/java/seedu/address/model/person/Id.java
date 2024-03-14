@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Id {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Id is invalid. An id can include alphabets, numbers,"
+            + " and certain special characters, but cannot be blank and should not contain whitespaces.";
 
     /**
      * The first character of the id must not be a whitespace,
@@ -34,7 +35,10 @@ public class Id {
      * Returns true if a given string is a valid id.
      */
     public static boolean isValidId(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.trim().contains(" ") || !test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
