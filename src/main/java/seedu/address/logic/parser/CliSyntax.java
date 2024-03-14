@@ -6,6 +6,7 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
+    public static final Prefix PREFIX_PID = new Prefix("id/");
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PRENAME = new Prefix("p/");
     public static final Prefix PREFIX_FOOD = new Prefix("f/");
