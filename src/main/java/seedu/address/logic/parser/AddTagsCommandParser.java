@@ -41,9 +41,11 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-//        if (tagList.isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagsCommand.MESSAGE_USAGE));
-//        }
+        /*
+        if (tagList.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagsCommand.MESSAGE_USAGE));
+        }
+        */
 
         return new AddTagsCommand(index, tagList);
     }
