@@ -308,32 +308,197 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NetConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - List All Persons**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list all persons.
+2. NetConnect shows the list of all persons.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of all persons is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC02 - Find a List of Persons by Name**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+
+1. User requests for the list of persons matching a name.
+2. NetConnect shows a list of persons with matching name.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There are no persons with a matching name.
+
+  Use case ends.
+
+**Use case: UC03 - Find a Specific Person by Contact Number**
+
+**MSS**
+
+1. User requests for the person with the matching contact number.
+2. NetConnect shows the person with matching contact number.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There is no person with a matching number.
+
+  Use case ends.
+
+**Use case: UC04 - Add a New Person**
+
+**MSS**
+
+1.  User requests to add a new person with given information.
+2.  NetConnect adds a new person to the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Some given arguments are invalid.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Delete a Person by UID**
+
+**MSS**
+
+1. User requests to delete a specific person by UID.
+2. NetConnect deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the provided UID.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC06 - Delete a Person by Name**
+
+**MSS**
+
+1. User requests to delete a specific person by name.
+2. NetConnect deletes the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no persons with the provided name.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+* 1b. There are more than one person with the provided name.
+
+    * 1b1. NetConnect !!list the persons with matching name (UC2)!!.
+    * 1b2. User selects an UID from the list.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC07 - Tag a Person by UID with Custom Tag**
+
+**MSS**
+
+1. User requests to tag a specific person by UID with a custom tag.
+2. NetConnect tags the person with given custom tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the provided UID.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC08 - Tag a Person by Name with Custom Tag**
+
+**MSS**
+
+1. User requests to tag a specific person by name with a custom tag.
+2. NetConnect tags the person with given custom tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no persons with the provided name.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+* 1b. There are more than one person with the provided name.
+
+    * 1b1. NetConnect !!list the persons with matching name (UC2)!!.
+    * 1b2. User selects an UID from the list.
+
+      Use case resumes at step 2.
+
+**Use case: UC09 - Edit Person Information by UID**
+
+**MSS**
+
+1. User requests to edit the information of a specific person by UID.
+2. NetConnect edit the person information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the provided UID.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+* 1b. Some given arguments are invalid.
+
+    * 1b1. NetConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC10 - Export Contact List to CSV File**
+
+**MSS**
+
+1. User requests to export contact list to CSV file with a given filename.
+2. NetConnect creates a CSV file with the contact list data.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given filename is invalid.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+* 1b. The contact list is empty.
+
+    * 1b1. NetConnect shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
