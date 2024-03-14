@@ -9,6 +9,7 @@ import java.util.Set;
 import staffconnect.commons.core.index.Index;
 import staffconnect.commons.util.StringUtil;
 import staffconnect.logic.parser.exceptions.ParseException;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
@@ -136,5 +137,32 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String availability} into a {@code Availability}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code availability} is invalid.
+     */
+    public static Availability parseAvailability(String availability) throws ParseException {
+        requireNonNull(availability);
+        String trimmedAvailability = availability.trim();
+        if (!Availability.isValidAvailability(trimmedAvailability)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Availability(trimmedAvailability);
+    }
+
+    /**
+     * Parses {@code Collection<String> availabilities} into a {@code Set<Availability>}.
+     */
+    public static Set<Availability> parseAvailabilities(Collection<String> availabilities) throws ParseException {
+        requireNonNull(availabilities);
+        final Set<Availability> availabilitySet = new HashSet<>();
+        for (String value : availabilities) {
+            availabilitySet.add(parseAvailability(value));
+        }
+        return availabilitySet;
     }
 }
