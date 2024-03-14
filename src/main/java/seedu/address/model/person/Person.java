@@ -99,7 +99,8 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && moneyOwed.equals(otherPerson.moneyOwed);
     }
 
     @Override
@@ -115,7 +116,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("MoneyOwed", moneyOwed)
+                .add("moneyOwed", moneyOwed)
                 .add("tags", tags)
                 .toString();
     }

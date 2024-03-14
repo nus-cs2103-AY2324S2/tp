@@ -8,7 +8,7 @@ public class MoneyOwed {
     public final Float moneyOwed;
     public static final String MESSAGE_CONSTRAINTS =
             "Money Owed should be at most 2 decimal places in the following format 'xxx.xx' or '-xxx.xx'. ";
-    public static final String VALIDATION_REGEX = "^(?:-)?\\d+(\\.\\d{2})?";
+    public static final String VALIDATION_REGEX = "^(?:-)?\\d+(\\.\\d{0,2})?";
 
     public MoneyOwed(String money) {
         requireNonNull(money);
@@ -19,14 +19,6 @@ public class MoneyOwed {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public static void main (String[] args) {
-        System.out.println(isValidMoney("100.10"));
-        System.out.println(isValidMoney("100.100"));
-        System.out.println(isValidMoney("100"));
-        System.out.println(isValidMoney("-000493095.54"));
-        System.out.println(Double.parseDouble("-000.10"));
-
-    }
     @Override
     public String toString() {
         return moneyOwed.toString();
