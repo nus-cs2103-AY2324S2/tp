@@ -153,18 +153,18 @@ Examples:
 
 ### Deleting a student : `delete`
 
-Deletes the specified student from the address book.
+Deletes a specified student from the address book.
 
-Format: `delete INDEX`
+Format: `delete [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE]`
 
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes a student with the specified `STUDENT_ID` or `EMAIL` or `TELEGRAM_HANDLE`.
+* Only one field may be used for each delete command.
+* `NAME` or `TAG` may not be used.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
-* `find alex` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-  ![result for 'find alex', followed by 'delete 1'](images/findAndDelete.png)
+* `delete e/royb@gmail.com` deletes a student with an email of `royb@gmail.com` in the address book.
+* `delete s/A1654327X` deletes a student with a student id of `A1654327X` in the address book.
+  ![result for 'find alex', followed by 'delete s/A1654327X'](images/findAndDelete.png)
 
 ### Clearing all entries : `clear`
 
@@ -218,7 +218,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME s/STUDENT_ID e/EMAIL h/TELEGRAM_HANDLE [t/TAG]…​` <br> e.g., `add n/James Ho s/A2222444X e/jamesho@example.com h/@hohoho t/struggling t/3rd year`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE]`<br> e.g., `delete s/A1654327X`
 **Edit**   | `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
