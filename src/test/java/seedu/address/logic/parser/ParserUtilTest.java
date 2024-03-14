@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
-import seedu.address.model.patient.Name;
-import seedu.address.model.patient.PreferredName;
-import seedu.address.model.patient.PatientHospitalId;
 import seedu.address.model.patient.Hobby;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.PreferredName;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {

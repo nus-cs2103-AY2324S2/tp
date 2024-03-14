@@ -99,7 +99,7 @@ public class JsonAdaptedPatientTest {
     public void toModelType_invalidFoodPreference_throwsIllegalValueException() {
         JsonAdaptedPatient person =
                 new JsonAdaptedPatient(VALID_PATIENT_HOSPITAL_ID, VALID_NAME, VALID_PREFERRED_NAME,
-                    INVALID_FOOD_PREFERENCE,VALID_FAMILY_CONDITION, VALID_HOBBY, VALID_TAGS);
+                    INVALID_FOOD_PREFERENCE, VALID_FAMILY_CONDITION, VALID_HOBBY, VALID_TAGS);
         String expectedMessage = FoodPreference.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

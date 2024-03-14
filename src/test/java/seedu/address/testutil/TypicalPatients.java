@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_AMY;

@@ -4,8 +4,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
