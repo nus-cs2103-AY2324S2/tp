@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.booking.BookingName;
+import seedu.address.model.booking.Description;
 import seedu.address.model.booking.EndTime;
 import seedu.address.model.booking.StartTime;
 import seedu.address.model.person.Address;
@@ -125,18 +125,18 @@ public class ParserUtil {
         return tagSet;
     }
     /**
-     * Parses a {@code String name} into a {@code Name} for a booking.
+     * Parses a {@code String description} into a {@code Description} for a booking.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static BookingName parseBookingName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!BookingName.isValidName(trimmedName)) {
-            throw new ParseException(BookingName.MESSAGE_CONSTRAINTS);
+    public static Description parseBookingName(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidName(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new BookingName(trimmedName);
+        return new Description(trimmedDescription);
     }
 
     /**

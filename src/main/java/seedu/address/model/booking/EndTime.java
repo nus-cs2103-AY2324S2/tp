@@ -15,6 +15,7 @@ public class EndTime {
             + "(ISO_LOCAL_DATE_TIME).";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
+    public final String endTimeString;
     public final LocalDateTime endTime;
 
     /**
@@ -24,6 +25,7 @@ public class EndTime {
      */
     public EndTime(String endTime) {
         checkArgument(isValidEndTime(endTime), MESSAGE_CONSTRAINTS);
+        this.endTimeString = endTime;
         this.endTime = LocalDateTime.parse(endTime, formatter);
     }
 

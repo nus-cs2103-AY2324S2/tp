@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Booking's name in the address book.
+ * Represents a Booking's description in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class BookingName {
+public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Booking names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -18,17 +18,17 @@ public class BookingName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    public final String description;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Description}.
      *
-     * @param name A valid name.
+     * @param description A valid description.
      */
-    public BookingName(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        this.fullName = name;
+    public Description(String description) {
+        requireNonNull(description);
+        checkArgument(isValidName(description), MESSAGE_CONSTRAINTS);
+        this.description = description;
     }
 
     /**
@@ -40,7 +40,7 @@ public class BookingName {
 
     @Override
     public String toString() {
-        return fullName;
+        return description;
     }
 
     @Override
@@ -48,15 +48,15 @@ public class BookingName {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof BookingName)) {
+        if (!(other instanceof Description)) {
             return false;
         }
-        BookingName otherName = (BookingName) other;
-        return fullName.equals(otherName.fullName);
+        Description otherName = (Description) other;
+        return description.equals(otherName.description);
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return description.hashCode();
     }
 }
