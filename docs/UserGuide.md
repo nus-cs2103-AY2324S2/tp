@@ -120,6 +120,7 @@ Examples:
 
 Format: `addfav [i/INDICES]`
 - Adds the contacts at the specified `INDICES` as favourites. The indices refers to comma-separated index numbers shown in the displayed person list. Each index **must be a positive integer** 1,2,3, ...
+
 Examples:
 - `addfav i/ 1` Sets the contact at index `1` as favourite
 - `addfav i/ 1,2,5` Sets the contacts at the indices `1, 2, 5` as favourites
