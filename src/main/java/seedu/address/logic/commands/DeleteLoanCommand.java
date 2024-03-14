@@ -44,7 +44,6 @@ public class DeleteLoanCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
-        // find the first instance of a person with the given name
         Person personToEdit = lastShownList.get(personIndex.getZeroBased());
         if (personToEdit == null) {
             throw new CommandException(String.format(MESSAGE_FAILURE_PERSON, personIndex.getOneBased()));
