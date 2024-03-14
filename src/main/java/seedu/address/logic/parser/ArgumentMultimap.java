@@ -10,8 +10,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
-
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
@@ -108,5 +106,13 @@ public class ArgumentMultimap {
         if (values.stream().anyMatch(value -> !value.matches("^[a-zA-Z]+$"))) {
             throw new ParseException(String.format(Messages.MESSAGE_ALPHABET_ONLY, prefix.getPrefix()));
         }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public boolean arePrefixesPresent(Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> getValue(prefix).isPresent());
     }
 }

@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.order.Date;
+import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +28,8 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final ArrayList<Order> orders;
+
     /**
      * Every field must be present and not null.
      */
@@ -35,6 +40,22 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.orders = new ArrayList<>();
+    }
+
+    /**
+     * Every field must be present and not null.
+     * This constructor is used to create a person with orders.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.orders = orders;
     }
 
     public Name getName() {
@@ -59,6 +80,20 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an order list
+     * @param arrivalDate the expected date of the order received
+     * @param remark the remark of the order
+     */
+    public void addOrder(Date arrivalDate, String remark) {
+        Order order = new Order(arrivalDate, remark);
+        orders.add(order);
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
     /**
@@ -100,7 +135,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, orders);
     }
 
     @Override
@@ -111,6 +146,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("orders", orders)
                 .toString();
     }
 
