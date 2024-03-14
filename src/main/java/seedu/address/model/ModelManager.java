@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -127,6 +128,17 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public Optional<Person> findPersonByPhoneNumber(String phoneNumber) {
+        ObservableList<Person> persons = getFilteredPersonList();
+        for (Person person : persons) {
+            if (person.getPhone().value.equals(phoneNumber)) {
+                return Optional.of(person);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override
