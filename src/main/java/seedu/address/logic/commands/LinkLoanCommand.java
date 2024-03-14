@@ -22,7 +22,7 @@ import seedu.address.model.person.Person;
  */
 public class LinkLoanCommand extends Command {
 
-    public static final String COMMAND_WORD = "link";
+    public static final String COMMAND_WORD = "linkloan";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a loan to the person identified "
             + "by the index number used in the displayed person list. "
