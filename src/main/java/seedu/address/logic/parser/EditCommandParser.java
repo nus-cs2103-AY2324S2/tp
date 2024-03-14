@@ -2,10 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -33,9 +31,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         //Todo This checks for all prefix but i can change to just look for /c /d
+        //Changed to accept only c/ d/ t/
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_DESCRIPTION, PREFIX_TAG);
         Index index;
 
         try {
@@ -44,23 +42,25 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
         //Todo check if there are duplicate prefix. can change to /c and /d only
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-        //This basically sets a new class for the editpersondescriptor
+        // done
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CATEGORY, PREFIX_DESCRIPTION);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         //here,they check whether the String that is parsed in contains the following prefix.
+        String category = "";
+        String description = "";
         //Todo look through all these prefixes and see whether i can just change to /c /d.
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.set("Name", (ParserUtil.parse("Name", argMultimap.getValue(PREFIX_NAME).get())));
+        //Changed to check for only c/ d/ t/
+        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
+            category = argMultimap.getValue(PREFIX_CATEGORY).get();
+            //editPersonDescriptor.set(category, (ParserUtil.parse(category,
+            // argMultimap.getValue(PREFIX_CATEGORY).get())));
+            editPersonDescriptor.setCategory(category);
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.set("Phone", ParserUtil.parse("Phone", argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.set("Email", ParserUtil.parse("Email", argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.set("Address", ParserUtil
-                    .parse("Address", argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+            //editPersonDescriptor.set(description, (ParserUtil.parse(description,
+            // argMultimap.getValue(PREFIX_DESCRIPTION).get())));
+            editPersonDescriptor.setDescription(description);
         }
         //tag in this case is an Array list and over here, it shows how it
         //get all the values and check whether the prefix is there.

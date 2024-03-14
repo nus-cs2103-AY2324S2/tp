@@ -20,6 +20,7 @@ public class EntryList {
     }
 
     //get specific entry via string
+    //Gets entry with category
     public Entry get(String category) {
         Entry result = null;
         for (Entry entry : entryList) {

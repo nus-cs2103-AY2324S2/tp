@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -36,14 +35,12 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_CATEGORY + "Clan "
+            + PREFIX_EMAIL + "Kingdom";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -92,21 +89,13 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-        //In this class, the editPersonDescriptor is manually added into the person.
-        //Todo Make sure that here isnt hard coded as they literally is finding the new person info,
-        //Todo see whether there is a change, if yes, set to new info, else use old info.
-        Entry updatedName = editPersonDescriptor.get("Name").orElse(personToEdit.getEntry("Name"));
-        Entry updatedPhone = editPersonDescriptor.get("Phone").orElse(personToEdit.getEntry("Phone"));
-        Entry updatedEmail = editPersonDescriptor.get("Email").orElse(personToEdit.getEntry("Email"));
-        Entry updatedAddress = editPersonDescriptor.get("Address").orElse(personToEdit.getEntry("Address"));
+        Entry personToEditEntry = personToEdit.getEntry(editPersonDescriptor.getCategory());
+        personToEditEntry.setDescription(editPersonDescriptor.getDescription());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        //Here they are creating a new person with the edited stuff
-        Person result = new Person(updatedName, updatedTags);
-        result.addEntry(updatedPhone);
-        result.addEntry(updatedEmail);
-        result.addEntry(updatedAddress);
-        return result;
+        //return new Person(personToEdit.getEntry("Name"), updatedTags);
+        personToEdit.addEntry(personToEditEntry);
+        personToEdit.setTags(updatedTags);
+        return personToEdit;
     }
 
     @Override
@@ -140,6 +129,8 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Set<Tag> tags;
         private EntryList entryList = new EntryList();
+        private String category;
+        private String description;
 
         public EditPersonDescriptor() {}
 
@@ -151,9 +142,22 @@ public class EditCommand extends Command {
             this.entryList = toCopy.entryList;
             this.tags = toCopy.tags;
         }
-
+        // Getter and setter for category and description
+        public String getCategory() {
+            return category;
+        }
+        public void setCategory(String category) {
+            this.category = category;
+        }
+        public String getDescription() {
+            return description;
+        }
+        public void setDescription(String description) {
+            this.description = description;
+        }
         /**
          * Returns true if at least one field is edited.
+         * Todo change this when implementation done
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(get("Name"), get("Phone"), get("Email"), get("Address"), tags);
@@ -168,10 +172,14 @@ public class EditCommand extends Command {
             }
         }
 
+        /**
+         * Gets category from the entry
+         * @param category of the entry list
+         * @return the category
+         */
         public Optional<Entry> get(String category) {
             return Optional.ofNullable(entryList.get(category));
         }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
