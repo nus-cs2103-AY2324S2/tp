@@ -7,11 +7,7 @@ import java.util.stream.Stream;
 
 import scrolls.elder.logic.commands.AddCommand;
 import scrolls.elder.logic.parser.exceptions.ParseException;
-import scrolls.elder.model.person.Address;
-import scrolls.elder.model.person.Email;
-import scrolls.elder.model.person.Name;
-import scrolls.elder.model.person.Person;
-import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.*;
 import scrolls.elder.model.tag.Tag;
 
 /**
@@ -52,7 +48,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        // temporary solution, delete after merging
+        Person person = new Volunteer(name, phone, email, address, tagList);
 
         return new AddCommand(person);
     }

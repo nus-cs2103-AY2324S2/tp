@@ -20,11 +20,7 @@ import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
-import scrolls.elder.model.person.Address;
-import scrolls.elder.model.person.Email;
-import scrolls.elder.model.person.Name;
-import scrolls.elder.model.person.Person;
-import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.*;
 import scrolls.elder.model.tag.Tag;
 
 /**
@@ -93,6 +89,7 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
+        boolean isVolunteer = personToEdit.isVolunteer();
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
@@ -100,7 +97,12 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        // edits the values, and returns new volunteer or befriendee object
+        if (isVolunteer) {
+            return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        }
+
+        return new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override

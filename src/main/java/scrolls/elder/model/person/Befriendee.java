@@ -1,5 +1,6 @@
 package scrolls.elder.model.person;
 
+import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.model.tag.Tag;
 
 import java.util.Set;
@@ -31,5 +32,17 @@ public class Befriendee extends Person {
                 && email.equals(otherBefriendee.email)
                 && address.equals(otherBefriendee.address)
                 && tags.equals(otherBefriendee.tags);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("name", name)
+                .add("phone", phone)
+                .add("email", email)
+                .add("address", address)
+                .add("tags", tags)
+                .add("role", "befriendee")
+                .toString();
     }
 }

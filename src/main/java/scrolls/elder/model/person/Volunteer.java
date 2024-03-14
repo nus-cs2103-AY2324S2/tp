@@ -1,6 +1,7 @@
 package scrolls.elder.model.person;
 
 import scrolls.elder.commons.util.CollectionUtil;
+import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.model.tag.Tag;
 
 import java.util.Set;
@@ -32,5 +33,17 @@ public class Volunteer extends Person {
                 && email.equals(otherVolunteer.email)
                 && address.equals(otherVolunteer.address)
                 && tags.equals(otherVolunteer.tags);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("name", name)
+                .add("phone", phone)
+                .add("email", email)
+                .add("address", address)
+                .add("tags", tags)
+                .add("role", "volunteer")
+                .toString();
     }
 }
