@@ -22,24 +22,24 @@ However, if you have no such prior knowledge, removing a field can take a quite 
 * Table of Contents
 {:toc}
 
-## Safely deleting `Address`
+## Safely deleting `Country`
 
 IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a removal easily. Let’s try to use it as much as we can.
 
 ### Assisted refactoring
 
-The `country` field in `Person` is actually an instance of the `seedu.address.model.person.Country` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `country` field in `Person` is actually an instance of the `seedu.address.model.person.Country` class. Since removing the `Country` class will break the application, we start by identifying `Country`'s usages. This allows us to see code that depends on `Country` to function properly and edit them on a case-by-case basis. Right-click the `Country` class and select `Refactor` \> `Safe Delete` through the menu.
 * :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
 
-Choose to `View Usages` and you should be presented with a list of `Safe Delete Conflicts`. These conflicts describe locations in which the `Address` class is used.
+Choose to `View Usages` and you should be presented with a list of `Safe Delete Conflicts`. These conflicts describe locations in which the `Country` class is used.
 
 ![List of conflicts](../images/remove/SafeDeleteConflicts.png)
 
-Remove usages of `Address` by performing `Safe Delete`s on each entry i.e., double-click on the entry (which takes you to the code in concern, right-click on that entity, and choose `Refactor` -> `Safe delete` as before). You will need to exercise discretion when removing usages of `Address`. Functions like `ParserUtil#parseAddress()` can be safely removed but its usages must be removed as well. Other usages like in `EditPersonDescriptor` may require more careful inspection.
+Remove usages of `Country` by performing `Safe Delete`s on each entry i.e., double-click on the entry (which takes you to the code in concern, right-click on that entity, and choose `Refactor` -> `Safe delete` as before). You will need to exercise discretion when removing usages of `Country`. Functions like `ParserUtil#parseAddress()` can be safely removed but its usages must be removed as well. Other usages like in `EditPersonDescriptor` may require more careful inspection.
 
-Let’s try removing references to `Address` in `EditPersonDescriptor`.
+Let’s try removing references to `Country` in `EditPersonDescriptor`.
 
 1. Safe delete the field `country` in `EditPersonDescriptor`.
 
@@ -55,13 +55,13 @@ Let’s try removing references to `Address` in `EditPersonDescriptor`.
    :bulb: **Tip:** Removing usages may result in errors. Exercise discretion and fix them. For example, removing the `country` field from the `Person` class will require you to modify its constructor.
    </div>
 
-1. Repeat the steps for the remaining usages of `Address`
+1. Repeat the steps for the remaining usages of `Country`
 
 After you are done, verify that the application still works by compiling and running it again.
 
 ### Manual refactoring
 
-Unfortunately, there are usages of `Address` that IntelliJ IDEA cannot identify. You can find them by searching for instances of the word `country` in your code (`Edit` \> `Find` \> `Find in path`).
+Unfortunately, there are usages of `Country` that IntelliJ IDEA cannot identify. You can find them by searching for instances of the word `country` in your code (`Edit` \> `Find` \> `Find in path`).
 
 Places of interest to look out for would be resources used by the application. `main/resources` contains images and `fxml` files used by the application and `test/resources` contains test data. For example, there is a `$country` in each `PersonCard` that has not been removed nor identified.
 
@@ -92,7 +92,7 @@ After removing the `Label`, we can proceed to formally test our code. If everyth
 
 ## Tidying up
 
-At this point, your application is working as intended and all your tests are passing. What’s left to do is to clean up references to `Address` in test data and documentation.
+At this point, your application is working as intended and all your tests are passing. What’s left to do is to clean up references to `Country` in test data and documentation.
 
 In `src/test/data/`, data meant for testing purposes are stored. While keeping the `country` field in the json files does not cause the tests to fail, it is not good practice to let cruft from old features accumulate.
 
