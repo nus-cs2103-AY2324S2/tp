@@ -21,19 +21,27 @@ import seedu.address.model.person.Person;
  * Class to generate QR Codes
  */
 public class QrCodeGenerator {
+    /**
+     * The folder where QR codes are stored.
+     */
+    public static final String QR_CODE_FOLDER = "data/qrcodes/";
+    /**
+     * The width of the QR code.
+     */
+    private static final int QR_CODE_WIDTH = 200;
+    /**
+     * The height of the QR code.
+     */
+    private static final int QR_CODE_HEIGHT = 200;
 
     /**
-     * Generates a QR code based on the provided person information and saves it to the specified file path.
+     * Generates a QR code based on the provided person information and saves it to the specified file path
      *
-     * @param person   the person object containing the information to encode in the QR code
-     * @param filePath the file path where the QR code image will be saved
-     * @param width    the width of the QR code image
-     * @param height   the height of the QR code image
+     * @param person the person object containing the information to encode in the QR code
      * @throws WriterException if an error occurs during the encoding process
      * @throws IOException     if an error occurs while writing the QR code image to the file
      */
-    public static void generateQrCode(Person person, String filePath, int width,
-                                      int height) throws WriterException, IOException {
+    public static void generateQrCode(Person person) throws WriterException, IOException {
         String vCard = createVCardString(person);
 
         Map<EncodeHintType, Object> hints = new HashMap<>();
@@ -42,28 +50,31 @@ public class QrCodeGenerator {
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        BitMatrix bitMatrix = qrCodeWriter.encode(vCard, BarcodeFormat.QR_CODE, width, height, hints);
+        BitMatrix bitMatrix = qrCodeWriter.encode(vCard, BarcodeFormat.QR_CODE, QR_CODE_WIDTH, QR_CODE_HEIGHT, hints);
 
-        Path path = FileSystems.getDefault().getPath(filePath);
+        Path path = FileSystems.getDefault().getPath(getQrCodePath(person));
         Files.createDirectories(path.getParent()); // Create necessary folders along the path if they do not exist
         MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
     }
 
+    /**
+     * Creates a VCard string for the given {@code Person}
+     *
+     * @param person the person for whom the VCard string is created
+     * @return the VCard string
+     */
     private static String createVCardString(Person person) {
-        return "BEGIN:VCARD\n"
-                + "VERSION:3.0\n"
-                + "N:" + person.getName() + ";;;\n"
-                + "FN:" + person.getName() + "\n"
-                + "TEL;TYPE=CELL:" + person.getPhone() + "\n"
-                + "END:VCARD";
+        return "BEGIN:VCARD\n" + "VERSION:3.0\n" + "N:" + person.getName() + ";;;\n" + "FN:" + person.getName() + "\n"
+                + "TEL;TYPE=CELL:" + person.getPhone() + "\n" + "END:VCARD";
     }
 
-    // public static void main(String[] args) {
-    //     try {
-    //         generateVCardQRCode("John Doe", "+1234567890", "./qrcode.png", 200, 200);
-    //         System.out.println("QR Code generated successfully.");
-    //     } catch (WriterException | IOException e) {
-    //         System.err.println("Could not generate QR Code, WriterException :: " + e.getMessage());
-    //     }
-    // }
+    /**
+     * Generates the file path for the QR code of a specific person
+     *
+     * @param person the person for whom the QR code path is generated
+     * @return the file path for the QR code
+     */
+    public static String getQrCodePath(Person person) {
+        return QR_CODE_FOLDER + person.getName() + person.getPhone() + ".png";
+    }
 }

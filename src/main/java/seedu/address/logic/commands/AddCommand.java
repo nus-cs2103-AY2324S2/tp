@@ -64,9 +64,9 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        String qrCodePath = "data/qrcodes/" + toAdd.getName() + ".png";
+
         try {
-            QrCodeGenerator.generateQrCode(toAdd, qrCodePath, 200, 200);
+            QrCodeGenerator.generateQrCode(toAdd);
         } catch (WriterException | IOException e) {
             logger.warning("Could not generate QR code for " + toAdd.getName());
         }

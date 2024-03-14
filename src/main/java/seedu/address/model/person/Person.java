@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.QrCodeGenerator;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
@@ -59,6 +60,15 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Retrieves the QR code path.
+     *
+     * @return the path of the generated QR code
+     */
+    public String getQrCodePath() {
+        return QrCodeGenerator.getQrCodePath(this);
     }
 
     /**
