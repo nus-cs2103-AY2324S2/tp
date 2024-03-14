@@ -270,9 +270,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: The address book can help homemade food sellers organize customer information and orders 
-so that they know what to bake, how much to bake and where to deliver the order to. This information management 
-tool aims to be more efficient to use than paper-work or general-purpose excel sheets. We also aim to reduce 
+**Value proposition**: The address book can help homemade food sellers organize customer information and orders
+so that they know what to bake, how much to bake and where to deliver the order to. This information management
+tool aims to be more efficient to use than paper-work or general-purpose excel sheets. We also aim to reduce
 chances of mistakes such as wrong delivery address, forgetting an order or sending repeated orders.
 
 
