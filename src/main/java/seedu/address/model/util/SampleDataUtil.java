@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Role;
+import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -19,6 +22,9 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
+            new Applicant(new Name("Xiao Li"), new Phone("92456721"), new Email("xiaoli@hotmail.com"),
+                new Address("Blk 685 Rangoon road 3, #12-09"), new Role("SWE"), new Stage("initial_application"),
+                getTagSet()),
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),

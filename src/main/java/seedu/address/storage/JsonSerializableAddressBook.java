@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,18 +37,32 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        // Stores as respective person types
+        for (Person p: source.getPersonList()) {
+            if (p instanceof Applicant) {
+                persons.add(new JsonAdaptedApplicant((Applicant) p));
+            } else {
+                persons.add(new JsonAdaptedPerson(p));
+            }
+        }
     }
 
     /**
      * Converts this address book into the model's {@code AddressBook} object.
+     * Person and applicants are cast accordingly into the list.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
+            Person person = null;
+            if (jsonAdaptedPerson instanceof JsonAdaptedApplicant) {
+                person = ((JsonAdaptedApplicant) jsonAdaptedPerson).toModelType();
+            } else {
+                person = jsonAdaptedPerson.toModelType();
+            }
+
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
