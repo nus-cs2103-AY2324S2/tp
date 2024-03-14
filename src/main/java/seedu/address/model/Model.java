@@ -64,10 +64,16 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
-     * Adds the given person.
+     * Adds the given person and updates the filteredList to show all.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given person without updating the filteredList.
+     * {@code person} must not already exist in the address book.
+     */
+    void addPersonKeepFilter(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
