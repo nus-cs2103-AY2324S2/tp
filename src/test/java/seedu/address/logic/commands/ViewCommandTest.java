@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.List;
@@ -21,16 +20,13 @@ class ViewCommandTest {
 
     @Test
     void execute_validIndex_success() throws CommandException {
-        // Setup
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         List<Person> personList = model.getFilteredPersonList();
         Person personToView = personList.get(0);
         ViewCommand viewCommand = new ViewCommand(Index.fromZeroBased(0));
 
-        // Execution
         CommandResult commandResult = viewCommand.execute(model);
 
-        // Assertions
         assertEquals(
                 String.format(
                         "Viewing Person: %s; Phone: %s; Email: %s; Address: %s; Tags: %s; "
@@ -53,11 +49,9 @@ class ViewCommandTest {
 
     @Test
     void execute_invalidIndex_throwsCommandException() {
-        // Setup
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         ViewCommand viewCommand = new ViewCommand(Index.fromZeroBased(10)); // Assuming there are fewer than 10 persons
 
-        // Execution and Assertions
         assertThrows(CommandException.class, () -> viewCommand.execute(model));
     }
 
@@ -65,8 +59,7 @@ class ViewCommandTest {
     void equals_sameObject_true() {
         ViewCommand viewCommand = new ViewCommand(Index.fromZeroBased(0));
 
-        // Assertions
-        assertTrue(viewCommand.equals(viewCommand));
+        assertEquals(viewCommand, viewCommand);
     }
 
     @Test
@@ -74,8 +67,7 @@ class ViewCommandTest {
         ViewCommand viewCommand1 = new ViewCommand(Index.fromZeroBased(0));
         ViewCommand viewCommand2 = new ViewCommand(Index.fromZeroBased(1));
 
-        // Assertions
-        assertFalse(viewCommand1.equals(viewCommand2));
+        assertNotEquals(viewCommand1, viewCommand2);
     }
 
     @Test
@@ -83,7 +75,14 @@ class ViewCommandTest {
         ViewCommand viewCommand = new ViewCommand(Index.fromZeroBased(0));
         Object otherObject = new Object();
 
-        // Assertions
-        assertFalse(viewCommand.equals(otherObject));
+        assertNotEquals(viewCommand, otherObject);
+    }
+
+    @Test
+    public void toString_validIndex_success() {
+        Index index = Index.fromZeroBased(3);
+        ViewCommand viewCommand = new ViewCommand(index);
+        String expectedToString = "seedu.address.logic.commands.ViewCommand{targetIndex=seedu.address.commons.core.index.Index{zeroBasedIndex=3}}";
+        assertEquals(expectedToString, viewCommand.toString());
     }
 }
