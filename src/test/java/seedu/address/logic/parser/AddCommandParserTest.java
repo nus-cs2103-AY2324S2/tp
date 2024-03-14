@@ -3,41 +3,41 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.FAMILY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FAMILY_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.FOOD_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.FOOD_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.HOBBY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.HOBBY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PREFERRED_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.PREFERRED_NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PREFERRED_NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.FOOD_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.FOOD_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_FOOD_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_FAMILY_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ID_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FOOD_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_HOBBY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ID_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PREFERRED_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.PREFERRED_NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PREFERRED_NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DEPRESSION;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERRED_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPatients.AMY;
@@ -47,13 +47,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
-import seedu.address.model.patient.PreferredName;
-import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.FamilyCondition;
-import seedu.address.model.patient.Hobby;
+import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.PreferredName;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PatientBuilder;
 
@@ -73,13 +73,13 @@ public class AddCommandParserTest {
         Patient expectedPatientMultipleTags = new PatientBuilder(BOB).withTags(VALID_TAG_DEPRESSION, VALID_TAG_DIABETES)
                 .build();
         assertParseSuccess(parser, ID_DESC_BOB + NAME_DESC_BOB + PREFERRED_NAME_DESC_BOB + FOOD_DESC_BOB
-                + FAMILY_DESC_BOB + HOBBY_DESC_BOB +TAG_DESC_DEPRESSION + TAG_DESC_DIABETES,
+                + FAMILY_DESC_BOB + HOBBY_DESC_BOB + TAG_DESC_DEPRESSION + TAG_DESC_DIABETES,
             new AddCommand(expectedPatientMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPatientString =  ID_DESC_BOB + NAME_DESC_BOB + PREFERRED_NAME_DESC_BOB + FOOD_DESC_BOB
+        String validExpectedPatientString = ID_DESC_BOB + NAME_DESC_BOB + PREFERRED_NAME_DESC_BOB + FOOD_DESC_BOB
                 + FAMILY_DESC_BOB + HOBBY_DESC_BOB + TAG_DESC_DIABETES;
 
         // multiple patient hospital ID

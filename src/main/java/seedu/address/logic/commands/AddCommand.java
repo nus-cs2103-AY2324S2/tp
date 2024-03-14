@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -22,7 +23,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
             + "Parameters: "
-            + "<patient_hospital_id"
+            + PREFIX_PID + "PATIENT_HOSPITAL_ID"
             + PREFIX_NAME + "NAME "
             + PREFIX_PRENAME + "PREFERRED_NAME"
             + PREFIX_FOOD + "FOOD_PREFERENCE "
@@ -30,6 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_HOBBY + "HOBBY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
+            + PREFIX_PID + "12345"
             + PREFIX_NAME + "Alex Yeoh Jia Jun "
             + PREFIX_PRENAME + "Alex "
             + PREFIX_FOOD + "Curry Chicken "
