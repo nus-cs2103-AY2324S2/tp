@@ -16,22 +16,22 @@ public class SampleDataUtil {
     public static Employee[] getSampleEmployees() {
         return new Employee[] {
             new Employee(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
+                new Address("Blk 30 Geylang Street 29, #06-40"), new Team("A"), new Role("Manager"),
                 getTagSet("friends")),
             new Employee(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Team("B"), new Role("Engineer"),
                 getTagSet("colleagues", "friends")),
             new Employee(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Team("C"), new Role("IT"),
                 getTagSet("neighbours")),
             new Employee(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Team("1"), new Role("CEO"),
                 getTagSet("family")),
             new Employee(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
+                new Address("Blk 47 Tampines Street 20, #17-35"), new Team("2"), new Role("Cleaner"),
                 getTagSet("classmates")),
             new Employee(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
+                new Address("Blk 45 Aljunied Street 85, #11-31"), new Team("3"), new Role("Cook"),
                 getTagSet("colleagues"))
         };
     }
