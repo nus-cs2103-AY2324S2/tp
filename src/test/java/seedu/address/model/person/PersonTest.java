@@ -99,10 +99,10 @@ public class PersonTest {
 
     /**
      * Generate a QR code using the ALICE instance and verify its existence.
-     *
      */
     @Test
     void generateQrCode_validPerson_success() {
         ALICE.generateQrCode();
-        assertTrue(ALICE.getQrCodePath().toFile().exists());}
+        assertTrue(ALICE.getQrCodePath().toFile().exists());
+    }
 }
