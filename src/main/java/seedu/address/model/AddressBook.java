@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.YearJoined;
 
 /**
  * Wraps all data at the address-book level
@@ -106,6 +107,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    public int getLastIdOnYear(YearJoined yearJoined) {
+        return getPersonList().stream()
+                .filter(person -> person.getYearJoined().equals(yearJoined))
+                .mapToInt(person -> person.getId().value)
+                .max()
+                .orElse(yearJoined.value % 100 * 10000);
     }
 
     @Override

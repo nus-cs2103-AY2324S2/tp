@@ -262,9 +262,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* is a company manager
+* has a need to manage a significant number of employees
+* is required to handle a multitude of financial transactions (such as salary crediting, loans, etc)
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
@@ -288,6 +288,101 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `PayBack` and the **Actor** is the `Company Manager`, unless specified otherwise)
+
+**Use case: Add a new employee**
+
+**MSS**
+
+1.  User requests to add a new employee
+2.  User enters the name, phone number, email, and optionally, year joined
+3.  PayBack adds the new employee to the employee list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The fields other than the year joined are not specified.
+
+    * 2a1. PayBack shows an error message.
+    
+      Use case resumes at Step 2.
+
+* 2b. The parameters are not specified in the correct order.
+
+    * 2b1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2c. Some parameters are specified, some are not.
+
+    * 2c1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2d. The information entered is not in the correct format.
+
+    * 2d1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+**Use case: Remove a person**
+
+**MSS**
+
+1. User requests to remove an employee
+2. User enters employee ID
+3. Payback displays details of the employee for confirmation
+4. User confirms removal of employee
+
+   Use case ends.
+
+**Extension**
+
+* 2a. Employee ID entered is invalid.
+
+  * 2a1. Payback shows an error message.
+    
+    Use case resumes at Step 2.
+
+* 4a. User cancels the removal of employee.
+
+  * 4a1. Payback acknowledges the cancellation.
+    
+    Use case ends.
+
+**Use case: Tag a person**
+
+**MSS**
+
+1. User requests to tag an employee
+2. User enters employee id and tags
+3. Payback displays details of the employee and tags to be added for confirmation
+4. User confirms tagging of employee
+
+   Use case ends.
+
+**Extension**
+
+* 2a. Employee ID entered is invalid.
+
+  * 2a1. Payback shows an error message.
+  
+    Use case resumes at step 2.
+  
+* 2b. Tag parameter(s) is/are not specified.
+
+  * 2b1. Payback shows an error message.
+    
+    Use case resumes at step 2.
+
+* 4a. User cancels tagging of employee.
+
+  * 4a1. Payback acknowledges the cancellation.
+    
+    Use case ends.
+  
+
+
 
 **Use case: Find a person**
 
@@ -333,6 +428,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Edit an employee**
+
+**MSS**
+
+1.  User requests to edit an employee's information
+2.  User enters the employee's ID and fields that need to be updated
+3.  PayBack changes the employee's information accordingly
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The ID is invalid.
+    * 2a1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -343,8 +455,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Actor**: A user or any other system that interacts with the system being described
+* **API**: Abbreviation for Application Programming Interface, a set of rules and protocols that allows different software applications to communicate with each other
+* **Aspect**: A particular feature or consideration that needs to be taken into account when designing or implementing a system
+* **CLI**: Abbreviation for Command Line Interface, a text-based interface used for entering commands to interact with the application
+* **DevOps**: A set of practices that combines software development (Dev) and IT operations (Ops), aimed at shortening the systems development life cycle and providing continuous delivery with high software quality
+* **GUI**: Abbreviation for Graphical User Interface, a type of user interface that allows users to interact with the application through graphical icons and visual indicators, as opposed to text-based interfaces like command-line interfaces (CLI)
+* **JSON**: Abbreviation for JavaScript Object Notation, a lightweight data-interchange format that uses key-value pairs
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **MSS**: Abbreviation for Main Success Scenario, the main flow of events in a use case
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tag**: A label or identifier associated with a particular record or entity in the application
+* **UI**: Abbreviation for User Interface, refers to the interface through which users interact with the application
 
 --------------------------------------------------------------------------------------------------------------------
 
