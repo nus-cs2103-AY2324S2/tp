@@ -41,7 +41,7 @@ public class AppointmentDate {
      * @param dateStr input date string
      * @return boolean indicating if format is valid or not
      */
-    private boolean isValidDate(String dateStr) {
+    public static boolean isValidDate(String dateStr) {
         try {
             LocalDate.parse(dateStr);
         } catch (DateTimeParseException e) {

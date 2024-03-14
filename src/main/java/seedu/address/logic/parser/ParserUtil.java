@@ -6,15 +6,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import jdk.jshell.spi.ExecutionControl;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DoB;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Phone;
+import seedu.address.model.appointment.AppointmentDate;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -176,5 +173,24 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static AppointmentDate parseAppointmentDate(String apptDate) throws ParseException {
+        requireNonNull(apptDate);
+        String trimmedDate = apptDate.trim();
+        if (!AppointmentDate.isValidDate(trimmedDate)) {
+            throw new ParseException(AppointmentDate.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentDate(trimmedDate);
+    }
+
+    public static Doctor parseDoctorNric(String doctorNric) {
+        // TODO: implement
+        return null;
+    }
+
+    public static Patient parsePatientNric(String s) {
+        // TODO: implement
+        return null;
     }
 }

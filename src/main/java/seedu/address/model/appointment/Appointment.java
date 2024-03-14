@@ -82,6 +82,17 @@ public class Appointment {
         return appointmentDate;
     }
 
+    public boolean isSameAppointment(Appointment appt) {
+        if (appt == this) {
+            return true;
+        }
+
+        return appt != null
+                && appt.getDoctor().isSamePerson(this.getDoctor())
+                && appt.getPatient().isSamePerson(this.getPatient())
+                && appt.getAppointmentDate().equals(this.getAppointmentDate());
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
