@@ -5,11 +5,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.Email;
+import seedu.address.model.patient.FamilyCondition;
+import seedu.address.model.patient.FoodPreference;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.PreferredName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,11 +34,21 @@ public class EditPatientDescriptorBuilder {
      */
     public EditPatientDescriptorBuilder(Patient patient) {
         descriptor = new EditCommand.EditPatientDescriptor();
+        descriptor.setPatientHospitalId(patient.getPatientHospitalId());
         descriptor.setName(patient.getName());
-        descriptor.setPhone(patient.getPhone());
-        descriptor.setEmail(patient.getEmail());
-        descriptor.setAddress(patient.getAddress());
+        descriptor.setPreferredName(patient.getPreferredName());
+        descriptor.setFoodPreference(patient.getFoodPreference());
+        descriptor.setFamilyCondition(patient.getFamilyCondition());
+        descriptor.setHobby(patient.getHobby());
         descriptor.setTags(patient.getTags());
+    }
+
+    /**
+     * Sets the {@code PatientHospitalId} of the {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withPatientHospitalId(String id) {
+        descriptor.setPatientHospitalId(new PatientHospitalId(id));
+        return this;
     }
 
     /**
@@ -48,26 +60,34 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code PreferredName} of the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditPatientDescriptorBuilder withPreferredName(String preferredName) {
+        descriptor.setPreferredName(new PreferredName(preferredName));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code FoodPreference} of the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditPatientDescriptorBuilder withFoodPreference(String food) {
+        descriptor.setFoodPreference(new FoodPreference(food));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code FamilyCondition} of the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPatientDescriptorBuilder withFamilyCondition(String familyCondition) {
+        descriptor.setFamilyCondition(new FamilyCondition(familyCondition));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Hobby} of the {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withHobby(String hobby) {
+        descriptor.setHobby(new Hobby(hobby));
         return this;
     }
 

@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
@@ -21,11 +23,13 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.Email;
+import seedu.address.model.patient.FamilyCondition;
+import seedu.address.model.patient.FoodPreference;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.PatientHospitalId;
+import seedu.address.model.patient.PreferredName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,14 +43,16 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_PID + "PATIENT HOSPITAL ID] "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_PRENAME + "PREFERRED NAME] "
+            + "[" + PREFIX_FOOD + "FOOD PREFERENCE] "
+            + "[" + PREFIX_FAMILY + "FAMILY CONDITION] "
+            + "[" + PREFIX_HOBBY + "HOBBY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_FOOD + "Laksa "
+            + PREFIX_FAMILY + "Sister moved to Indonesia";
 
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,13 +101,20 @@ public class EditCommand extends Command {
     private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
+        PatientHospitalId originalPatientHospitalId = editPatientDescriptor.getPatientHospitalId()
+            .orElse(patientToEdit.getPatientHospitalId());
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
-        Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
-        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
-        Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        PreferredName updatedPreferredName = editPatientDescriptor.getPreferredName()
+            .orElse(patientToEdit.getPreferredName());
+        FoodPreference updatedFoodPreference = editPatientDescriptor.getFoodPreference()
+            .orElse(patientToEdit.getFoodPreference());
+        FamilyCondition updatedFamilyCondition = editPatientDescriptor.getFamilyCondition()
+            .orElse(patientToEdit.getFamilyCondition());
+        Hobby updatedHobby = editPatientDescriptor.getHobby().orElse(patientToEdit.getHobby());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Patient(originalPatientHospitalId, updatedName, updatedPreferredName, updatedFoodPreference,
+            updatedFamilyCondition, updatedHobby, updatedTags);
     }
 
     @Override
@@ -133,10 +146,13 @@ public class EditCommand extends Command {
      * corresponding field value of the patient.
      */
     public static class EditPatientDescriptor {
+
+        private PatientHospitalId patientHospitalId;
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private PreferredName preferredName;
+        private FoodPreference foodPreference;
+        private FamilyCondition familyCondition;
+        private Hobby hobby;
         private Set<Tag> tags;
 
         public EditPatientDescriptor() {}
@@ -146,10 +162,12 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
+            setPatientHospitalId(toCopy.patientHospitalId);
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setPreferredName(toCopy.preferredName);
+            setFoodPreference(toCopy.foodPreference);
+            setFamilyCondition(toCopy.familyCondition);
+            setHobby(toCopy.hobby);
             setTags(toCopy.tags);
         }
 
@@ -157,7 +175,25 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, preferredName, foodPreference, familyCondition, hobby, tags);
+        }
+
+        /**
+         * Returns true if patientHospitalId is edited.
+         */
+        public boolean isPatientHospitalIdEdited() {
+            return patientHospitalId != null;
+        }
+
+        /**
+         * Sets the flag indicating that patientHospitalId is edited.
+         */
+        public void setPatientHospitalId(PatientHospitalId id) {
+            this.patientHospitalId = id;
+        }
+
+        public Optional<PatientHospitalId> getPatientHospitalId() {
+            return Optional.ofNullable(patientHospitalId);
         }
 
         public void setName(Name name) {
@@ -168,28 +204,36 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPreferredName(PreferredName preferredName) {
+            this.preferredName = preferredName;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<PreferredName> getPreferredName() {
+            return Optional.ofNullable(preferredName);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setFoodPreference(FoodPreference food) {
+            this.foodPreference = food;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<FoodPreference> getFoodPreference() {
+            return Optional.ofNullable(foodPreference);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setFamilyCondition(FamilyCondition condition) {
+            this.familyCondition = condition;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<FamilyCondition> getFamilyCondition() {
+            return Optional.ofNullable(familyCondition);
+        }
+
+        public void setHobby(Hobby hobby) {
+            this.hobby = hobby;
+        }
+
+        public Optional<Hobby> getHobby() {
+            return Optional.ofNullable(hobby);
         }
 
         /**
@@ -222,21 +266,24 @@ public class EditCommand extends Command {
 
             EditPatientDescriptor otherEditPatientDescriptor = (EditPatientDescriptor) other;
             return Objects.equals(name, otherEditPatientDescriptor.name)
-                    && Objects.equals(phone, otherEditPatientDescriptor.phone)
-                    && Objects.equals(email, otherEditPatientDescriptor.email)
-                    && Objects.equals(address, otherEditPatientDescriptor.address)
+                    && Objects.equals(preferredName, otherEditPatientDescriptor.preferredName)
+                    && Objects.equals(foodPreference, otherEditPatientDescriptor.foodPreference)
+                    && Objects.equals(familyCondition, otherEditPatientDescriptor.familyCondition)
+                    && Objects.equals(hobby, otherEditPatientDescriptor.hobby)
                     && Objects.equals(tags, otherEditPatientDescriptor.tags);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", name)
-                    .add("phone", phone)
-                    .add("email", email)
-                    .add("address", address)
-                    .add("tags", tags)
-                    .toString();
+                .add("patient_hospital_id", patientHospitalId)
+                .add("name", name)
+                .add("preferred_name", preferredName)
+                .add("food_preference", foodPreference)
+                .add("family_condition", familyCondition)
+                .add("hobby", hobby)
+                .add("tags", tags)
+                .toString();
         }
     }
 }

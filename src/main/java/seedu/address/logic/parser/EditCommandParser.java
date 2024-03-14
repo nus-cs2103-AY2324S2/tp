@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -32,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY,
+                ArgumentTokenizer.tokenize(args, PREFIX_PID, PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY,
                     PREFIX_HOBBY, PREFIX_TAG);
 
         Index index;
@@ -45,6 +46,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditCommand.EditPatientDescriptor editPatientDescriptor = new EditCommand.EditPatientDescriptor();
 
+        if (argMultimap.getValue(PREFIX_PID).isPresent()) {
+            editPatientDescriptor.setPatientHospitalId(ParserUtil.parsePatientHospitalId(
+                argMultimap.getValue(PREFIX_PID).get()));
+        }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
