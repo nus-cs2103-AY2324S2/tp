@@ -15,10 +15,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.note.Note;
-import seedu.address.model.person.tag.Tag;
+import seedu.address.model.person.illness.Illness;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -27,27 +28,30 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final String nric;
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedIllness> illnesses = new ArrayList<>();
     private final List<JsonAdapatedNote> notes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+    public JsonAdaptedPerson(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedIllness> illnesses,
                              @JsonProperty("notes") List<JsonAdapatedNote> notes) {
+        this.nric = nric;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (illnesses != null) {
+            this.illnesses.addAll(illnesses);
         }
         if (notes != null) {
             this.notes.addAll(notes);
@@ -58,12 +62,13 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        nric = source.getNric().nric;
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
-            .map(JsonAdaptedTag::new)
+        illnesses.addAll(source.getIllnesses().stream()
+            .map(JsonAdaptedIllness::new)
             .collect(Collectors.toList()));
         notes.addAll(source.getNotes().stream()
             .map(JsonAdapatedNote::new)
@@ -76,15 +81,23 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> tags = new ArrayList<>();
-        for (JsonAdaptedTag tag : this.tags) {
-            tags.add(tag.toModelType());
+        final List<Illness> illnesses = new ArrayList<>();
+        for (JsonAdaptedIllness illness : this.illnesses) {
+            illnesses.add(illness.toModelType());
         }
 
         final ObservableList<Note> notes = FXCollections.observableArrayList();
         for (JsonAdapatedNote note : this.notes) {
             notes.add(note.toModelType());
         }
+
+        if (nric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+        }
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        final Nric modelNric = new Nric(nric);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -118,8 +131,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, notes);
+        final Set<Illness> modelIllnesses = new HashSet<>(illnesses);
+        return new Person(modelNric, modelName, modelPhone, modelEmail, modelAddress, modelIllnesses, notes);
     }
 
 }

@@ -22,7 +22,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.note.Description;
-import seedu.address.model.person.tag.Tag;
+import seedu.address.model.person.illness.Illness;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -170,15 +170,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+        Illness expectedIllness = new Illness(VALID_TAG_1);
+        assertEquals(expectedIllness, ParserUtil.parseTag(VALID_TAG_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+        Illness expectedIllness = new Illness(VALID_TAG_1);
+        assertEquals(expectedIllness, ParserUtil.parseTag(tagWithWhitespace));
     }
 
     @Test
@@ -198,10 +198,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Illness> actualIllnessSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Illness> expectedIllnessSet = new HashSet<>(Arrays.asList(new Illness(VALID_TAG_1), new Illness(VALID_TAG_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedIllnessSet, actualIllnessSet);
     }
 
     @Nested

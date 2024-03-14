@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.note.Description;
 import seedu.address.model.person.note.Note;
-import seedu.address.model.person.tag.Tag;
+import seedu.address.model.person.illness.Illness;
 
 public class SampleDataUtilTest {
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2024, 1, 1, 12, 30);
@@ -34,19 +34,19 @@ public class SampleDataUtilTest {
     class GetTagsTests {
         @Test
         void getTags_success_returnsEmptySet() {
-            Set<Tag> tags = SampleDataUtil.getTags();
+            Set<Illness> illnesses = SampleDataUtil.getIllnesses();
 
-            assertTrue(tags.isEmpty());
+            assertTrue(illnesses.isEmpty());
         }
 
         @Test
         public void getTags_success_returnsPopulatedSet() {
             String[] tags = {"friend", "colleague"};
-            Set<Tag> result = SampleDataUtil.getTags(tags);
+            Set<Illness> result = SampleDataUtil.getIllnesses(tags);
 
             assertEquals(2, result.size());
-            assertTrue(result.contains(new Tag(tags[0])));
-            assertTrue(result.contains(new Tag(tags[1])));
+            assertTrue(result.contains(new Illness(tags[0])));
+            assertTrue(result.contains(new Illness(tags[1])));
         }
     }
 

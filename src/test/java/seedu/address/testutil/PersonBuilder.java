@@ -11,7 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.note.Note;
-import seedu.address.model.person.tag.Tag;
+import seedu.address.model.person.illness.Illness;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,7 +28,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags = new HashSet<>();
+    private Set<Illness> illnesses = new HashSet<>();
     private ObservableList<Note> notes = FXCollections.observableArrayList();
 
     /**
@@ -49,7 +49,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        this.tags.addAll(personToCopy.getTags());
+        this.illnesses.addAll(personToCopy.getTags());
         this.notes.addAll(personToCopy.getNotes());
     }
 
@@ -65,7 +65,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTags(tags);
+        this.illnesses = SampleDataUtil.getIllnesses(tags);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, notes);
+        return new Person(name, phone, email, address, illnesses, notes);
     }
 
 }

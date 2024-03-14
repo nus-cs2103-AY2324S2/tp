@@ -122,7 +122,7 @@ public class PersonTest {
                 .setPhone(BENSON.getPhone())
                 .setEmail(BENSON.getEmail())
                 .setAddress(BENSON.getAddress())
-                .setTags(BENSON.getTags())
+                .setIllnesses(BENSON.getIllnesses())
                 .setNotes(BENSON.getNotes());
 
             assertEquals(BENSON, builder.build());

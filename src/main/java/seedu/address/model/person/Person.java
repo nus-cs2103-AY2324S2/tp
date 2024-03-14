@@ -12,36 +12,40 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.note.Note;
-import seedu.address.model.person.tag.Tag;
+import seedu.address.model.person.illness.Illness;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the patient book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
+    private final Nric nric;
     private final Name name;
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Illness> illnesses = new HashSet<>();
     private final ObservableList<Note> notes = FXCollections.observableArrayList();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ObservableList<Note> notes) {
-        requireAllNonNull(name, phone, email, address, tags, notes);
+    public Person(Nric nric, Name name, Phone phone, Email email, Address address, Set<Illness> illnesses, ObservableList<Note> notes) {
+        requireAllNonNull(name, phone, email, address, illnesses, notes);
+        this.nric = nric;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.illnesses.addAll(illnesses);
         this.notes.addAll(notes);
     }
+
+    public Nric getNric() { return nric; }
 
     public Name getName() {
         return name;
@@ -60,11 +64,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable illness set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Illness> getIllnesses() {
+        return Collections.unmodifiableSet(illnesses);
     }
 
     /**
@@ -104,27 +108,29 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return nric.equals(otherPerson.nric)
+            && name.equals(otherPerson.name)
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
             && address.equals(otherPerson.address)
-            && tags.equals(otherPerson.tags)
+            && illnesses.equals(otherPerson.illnesses)
             && notes.equals(otherPerson.notes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, address, tags, notes);
+        return Objects.hash(nric, name, phone, email, address, illnesses, notes);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+            .add("nric", nric)
             .add("name", name)
             .add("phone", phone)
             .add("email", email)
             .add("address", address)
-            .add("tags", tags)
+            .add("tags", illnesses)
             .add("notes", notes)
             .toString();
     }
@@ -133,23 +139,25 @@ public class Person {
      * Represents a builder for a {@link Person}.
      */
     public static class Builder {
+        private Nric nric;
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags = new HashSet<>();
+        private Set<Illness> illnesses = new HashSet<>();
         private ObservableList<Note> notes = FXCollections.observableArrayList();
 
         /**
          * Creates a {@code Builder} with the given parameters.
          */
-        public Builder(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+        public Builder(Nric nric, Name name, Phone phone, Email email, Address address, Set<Illness> illnesses,
                        ObservableList<Note> notes) {
+            this.nric = nric;
             this.name = name;
             this.phone = phone;
             this.email = email;
             this.address = address;
-            this.tags.addAll(tags);
+            this.illnesses.addAll(illnesses);
             this.notes.addAll(notes);
         }
 
@@ -157,10 +165,16 @@ public class Person {
          * Initializes the {@code Builder} with the data of {@code person}.
          */
         public Builder(Person person) {
-            this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(),
+            this(person.getNric(),
+                person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                person.getIllnesses(),
                 person.getNotes());
         }
 
+        public Nric getNric() { return nric; }
         public Name getName() {
             return name;
         }
@@ -177,12 +191,19 @@ public class Person {
             return address;
         }
 
-        public Set<Tag> getTags() {
-            return tags;
+        public Set<Illness> getIllnesses() {
+            return illnesses;
         }
 
         public ObservableList<Note> getNotes() {
             return notes;
+        }
+
+        public Builder setNric(Nric nric) {
+            requireNonNull(nric);
+
+            this.nric = nric;
+            return this;
         }
 
         public Builder setName(Name name) {
@@ -213,11 +234,11 @@ public class Person {
             return this;
         }
 
-        public Builder setTags(Set<Tag> tags) {
-            requireNonNull(tags);
+        public Builder setIllnesses(Set<Illness> illnesses) {
+            requireNonNull(illnesses);
 
-            this.tags.clear();
-            this.tags.addAll(tags);
+            this.illnesses.clear();
+            this.illnesses.addAll(illnesses);
             return this;
         }
 
@@ -233,7 +254,7 @@ public class Person {
          * Builds a {@link Person} with the latest values.
          */
         public Person build() {
-            return new Person(name, phone, email, address, tags, notes);
+            return new Person(nric, name, phone, email, address, illnesses, notes);
         }
     }
 }
