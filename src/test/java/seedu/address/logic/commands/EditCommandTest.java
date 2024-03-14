@@ -71,6 +71,26 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_purgeTagsRetainsFavourite_success() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        // Set first person as a favourite contact
+        Person favouritedPerson = new PersonBuilder(firstPerson).withTags("friends", "Favourite").build();
+        Person editedPerson = new PersonBuilder(firstPerson).withTags("Favourite").build();
+
+        model.setPerson(model.getFilteredPersonList().get(0), favouritedPerson);
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+                new EditPersonDescriptorBuilder().withTags().build());
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
