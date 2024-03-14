@@ -103,26 +103,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseCountry_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCountry((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_COUNTRY));
+    public void parseCountry_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCountry(INVALID_COUNTRY));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseCountry_validValueWithoutWhitespace_returnsCountry() throws Exception {
         Country expectedCountry = new Country(VALID_COUNTRY);
-        assertEquals(expectedCountry, ParserUtil.parseAddress(VALID_COUNTRY));
+        assertEquals(expectedCountry, ParserUtil.parseCountry(VALID_COUNTRY));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void parseCountry_validValueWithWhitespace_returnsTrimmedCountry() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_COUNTRY + WHITESPACE;
         Country expectedCountry = new Country(VALID_COUNTRY);
-        assertEquals(expectedCountry, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedCountry, ParserUtil.parseCountry(addressWithWhitespace));
     }
 
     @Test

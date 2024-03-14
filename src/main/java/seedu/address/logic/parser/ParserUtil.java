@@ -71,13 +71,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Country parseAddress(String address) throws ParseException {
+    public static Country parseCountry(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Country.isValidAddress(trimmedAddress)) {
+        String trimmedCountry = address.trim();
+        if (!Country.isValidCountry(trimmedCountry)) {
             throw new ParseException(Country.MESSAGE_CONSTRAINTS);
         }
-        return new Country(trimmedAddress);
+        return new Country(trimmedCountry);
     }
 
     /**

@@ -63,7 +63,7 @@ public class Person {
         return email;
     }
 
-    public Country getAddress() {
+    public Country getCountry() {
         return country;
     }
 

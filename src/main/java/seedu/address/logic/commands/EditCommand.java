@@ -95,7 +95,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Country updatedCountry = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Country updatedCountry = editPersonDescriptor.getCountry().orElse(personToEdit.getCountry());
         Comment updatedComment = personToEdit.getComment(); // edit command does not allow editing commands
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.country);
+            setCountry(toCopy.country);
             setTags(toCopy.tags);
         }
 
@@ -183,11 +183,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Country country) {
+        public void setCountry(Country country) {
             this.country = country;
         }
 
-        public Optional<Country> getAddress() {
+        public Optional<Country> getCountry() {
             return Optional.ofNullable(country);
         }
 

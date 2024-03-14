@@ -5,11 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValid(String)}
  */
 public class Country {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Countries can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -26,14 +26,14 @@ public class Country {
      */
     public Country(String address) {
         requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidCountry(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid country.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidCountry(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

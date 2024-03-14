@@ -14,24 +14,24 @@ public class CountryTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Country(invalidAddress));
+    public void constructor_invalidCountry_throwsIllegalArgumentException() {
+        String invalidCountry = "";
+        assertThrows(IllegalArgumentException.class, () -> new Country(invalidCountry));
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidCountry() {
         // null address
-        assertThrows(NullPointerException.class, () -> Country.isValidAddress(null));
+        assertThrows(NullPointerException.class, () -> Country.isValidCountry(null));
 
         // invalid addresses
-        assertFalse(Country.isValidAddress("")); // empty string
-        assertFalse(Country.isValidAddress(" ")); // spaces only
+        assertFalse(Country.isValidCountry("")); // empty string
+        assertFalse(Country.isValidCountry(" ")); // spaces only
 
         // valid addresses
-        assertTrue(Country.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Country.isValidAddress("-")); // one character
-        assertTrue(Country.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Country.isValidCountry("Blk 456, Den Road, #01-355"));
+        assertTrue(Country.isValidCountry("-")); // one character
+        assertTrue(Country.isValidCountry("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
 
     @Test

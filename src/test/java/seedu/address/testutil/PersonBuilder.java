@@ -45,7 +45,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        country = personToCopy.getAddress();
+        country = personToCopy.getCountry();
         comment = personToCopy.getComment();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -69,8 +69,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Country} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.country = new Country(address);
+    public PersonBuilder withCountry(String country) {
+        this.country = new Country(country);
         return this;
     }
 

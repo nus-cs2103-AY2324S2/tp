@@ -42,7 +42,7 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Country: ")
-                .append(person.getAddress())
+                .append(person.getCountry())
                 .append("; Comment: ")
                 .append(person.getComment())
                 .append("; Tags: ");
