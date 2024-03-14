@@ -8,14 +8,14 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Meeting's starting time in the staff book.
- * Guarantees: immutable; is valid as declared in {@link #isValidStartTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidMeetDateTime(String)}
  */
-public class MeetDate {
+public class MeetDateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be of the correct format dd/mm/yyyy";
-    public static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4}";
+    public static final String MESSAGE_CONSTRAINTS = "DateTime should be of the correct format dd/mm/yyyy HH:mm";
+    public static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}";
 
-    private static final DateTimeFormatter PROCESS_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
+    private static final DateTimeFormatter PROCESS_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     private final LocalDateTime value;
 
@@ -25,16 +25,16 @@ public class MeetDate {
      *
      * @param date A valid date.
      */
-    public MeetDate(String date) {
+    public MeetDateTime(String date) {
         requireNonNull(date);
-        checkArgument(isValidStartTime(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMeetDateTime(date), MESSAGE_CONSTRAINTS);
         value = java.time.LocalDateTime.parse(date, PROCESS_FORMAT);
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidStartTime(String test) {
+    public static boolean isValidMeetDateTime(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -50,11 +50,11 @@ public class MeetDate {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof staffconnect.model.meeting.MeetDate)) {
+        if (!(other instanceof staffconnect.model.meeting.MeetDateTime)) {
             return false;
         }
 
-        staffconnect.model.meeting.MeetDate otherDate = (staffconnect.model.meeting.MeetDate) other;
+        staffconnect.model.meeting.MeetDateTime otherDate = (staffconnect.model.meeting.MeetDateTime) other;
         return value.equals(otherDate.value);
     }
 
