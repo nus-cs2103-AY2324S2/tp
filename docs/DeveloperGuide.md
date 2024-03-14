@@ -456,6 +456,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Worked hours**: The number of hours an employee has spent working in a month
+* **Bank Details**: Account number for salary disbursement, 7-11 digits in length.
 
 --------------------------------------------------------------------------------------------------------------------
 
