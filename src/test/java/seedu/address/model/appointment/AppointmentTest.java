@@ -14,13 +14,13 @@ public class AppointmentTest {
     @Test
     public void getters() {
         AppointmentTime appointmentTime = new AppointmentTime("10/02/2024 11am-2pm");
-        Appointment appointment = new Appointment(ALICE, appointmentTime);
+        Appointment appointment = new Appointment(ALICE.getID(), appointmentTime);
 
         // same UUID
         assertTrue(appointment.getID() instanceof UUID);
 
         // same person
-        assertTrue(appointment.getPerson().isSamePerson(ALICE));
+        assertTrue(appointment.getPersonId().compareTo(ALICE.getID()) == 0);
 
         // same time
         assertTrue(appointment.getAppointmentTime().equals(appointmentTime));
@@ -34,9 +34,9 @@ public class AppointmentTest {
         AppointmentTime appointmentTime = new AppointmentTime("10/02/2024 11am-2pm");
         AppointmentTime otherAppointmentTime = new AppointmentTime("11/02/2024 11am-2pm");
 
-        Appointment appointment = new Appointment(ALICE, appointmentTime);
-        Appointment otherPersonAppointment = new Appointment(BOB, appointmentTime);
-        Appointment otherTimeAppointment = new Appointment(ALICE, otherAppointmentTime);
+        Appointment appointment = new Appointment(ALICE.getID(), appointmentTime);
+        Appointment otherPersonAppointment = new Appointment(BOB.getID(), appointmentTime);
+        Appointment otherTimeAppointment = new Appointment(ALICE.getID(), otherAppointmentTime);
         // same object -> returns true
         assertTrue(appointment.equals(appointment));
 
