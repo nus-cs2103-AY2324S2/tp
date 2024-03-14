@@ -126,8 +126,4 @@ public class Internship {
                 .add("role", role)
                 .toString();
     }
-
-    public CompanyName getName() {
-        return companyName;
-    }
 }
