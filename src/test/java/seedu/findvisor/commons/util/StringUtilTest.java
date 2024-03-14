@@ -131,21 +131,22 @@ public class StringUtilTest {
      * The three test cases below test one invalid input at a time.
      */
 
-     @Test
-     public void startsWithSubStringIgnoreCase_nullSubString_throwsNullPointerException() {
-         assertThrows(NullPointerException.class, () -> StringUtil.startsWithSubStringIgnoreCase("typical sentence", null));
-     }
- 
-     @Test
-     public void startsWithSubStringIgnoreCase_emptySubString_throwsIllegalArgumentException() {
-         assertThrows(IllegalArgumentException.class, "subString parameter cannot be empty", ()
-             -> StringUtil.startsWithSubStringIgnoreCase("typical sentence", "  "));
-     }
- 
-     @Test
-     public void startsWithSubStringIgnoreCase_nullSentence_throwsNullPointerException() {
-         assertThrows(NullPointerException.class, () -> StringUtil.startsWithSubStringIgnoreCase(null, "abc"));
-     }
+    @Test
+    public void startsWithSubStringIgnoreCase_nullSubString_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.startsWithSubStringIgnoreCase(
+                "typical sentence", null));
+    }
+
+    @Test
+    public void startsWithSubStringIgnoreCase_emptySubString_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "subString parameter cannot be empty", ()
+                -> StringUtil.startsWithSubStringIgnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void startsWithSubStringIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.startsWithSubStringIgnoreCase(null, "abc"));
+    }
 
     @Test
     public void startsWithSubStringIgnoreCase_validInputs_correctResult() {

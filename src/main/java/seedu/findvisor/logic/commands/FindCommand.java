@@ -23,7 +23,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose information matches "
-            + "the specified keywords (case-insensitive) of the specified category" 
+            + "the specified keywords (case-insensitive) of the specified category"
             + "and displays them as a list with index numbers.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME | "

@@ -43,7 +43,7 @@ public class FindCommandParserTest {
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "  ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
-    
+
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
@@ -55,7 +55,7 @@ public class FindCommandParserTest {
         // multiple whitespaces before and after name keyword
         String paddedKeyword = "\n \t " + NAME_DESC_BOB + "\n \t";
         assertParseSuccess(parser, paddedKeyword, expectedFindCommand);
-        
+
         // parse email
         expectedFindCommand = new FindCommand(new EmailEqualsKeywordPredicate("amy@example.com"));
         assertParseSuccess(parser, EMAIL_DESC_AMY, expectedFindCommand);
@@ -92,7 +92,7 @@ public class FindCommandParserTest {
         assertParseFailure(parser, INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser,INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);

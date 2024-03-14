@@ -4,9 +4,18 @@ import java.util.function.Predicate;
 
 import seedu.findvisor.commons.util.ToStringBuilder;
 
+/**
+ * A predicate for evaluating if a {@link Person}'s email equals (case-insensitive) a given keyword.
+ * This is used to filter for persons based on their email attribute.
+ */
 public class EmailEqualsKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
+    /**
+     * Constructs an {@code EmailEqualsKeywordPredicate} with the specified keyword.
+     *
+     * @param keyword The keyword to be matched against the person's email. The match is case-insensitive.
+     */
     public EmailEqualsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }

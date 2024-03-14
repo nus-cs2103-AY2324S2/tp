@@ -52,9 +52,7 @@ public class PhoneEqualsKeywordPredicateTest {
     public void toStringMethod() {
         String keyword = "example@example.com";
         PhoneEqualsKeywordPredicate predicate = new PhoneEqualsKeywordPredicate(keyword);
-
         String expected = PhoneEqualsKeywordPredicate.class.getCanonicalName() + "{phone=" + keyword + "}";
         assertEquals(expected, predicate.toString());
     }
-    
 }

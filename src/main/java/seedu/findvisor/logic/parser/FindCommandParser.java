@@ -33,7 +33,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-       ArgumentMultimap argMultimap =
+        ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
@@ -64,8 +64,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Returns true if exactly one prefix is present in the given {@code ArgumentMultimap}.
      * @param argMultimap The {@link ArgumentMultimap} to check for the presence of prefixes.
      * @param prefixes A varargs array of {@link Prefix} objects to be checked in the {@code argMultimap}.
-     * @return {@code true} if exactly one of the specified prefixes is present in the {@code ArgumentMultimap};
-     * Else, {@code false}
+     * @return {@code true} if exactly one of the specified prefixes is present in the {@code ArgumentMultimap}.
      */
     private boolean isSinglePrefixPresent(ArgumentMultimap argMultimap, Prefix... prefixes) {
         long prefixCount = Stream.of(prefixes)

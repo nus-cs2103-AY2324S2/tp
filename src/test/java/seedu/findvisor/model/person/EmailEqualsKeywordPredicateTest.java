@@ -69,5 +69,4 @@ public class EmailEqualsKeywordPredicateTest {
         String expected = EmailEqualsKeywordPredicate.class.getCanonicalName() + "{email=" + keyword + "}";
         assertEquals(expected, predicate.toString());
     }
-    
 }

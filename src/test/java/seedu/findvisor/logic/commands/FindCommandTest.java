@@ -28,9 +28,9 @@ import org.junit.jupiter.api.Test;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.ModelManager;
 import seedu.findvisor.model.UserPrefs;
-import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.EmailEqualsKeywordPredicate;
 import seedu.findvisor.model.person.NameContainsKeywordPredicate;
+import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.PhoneEqualsKeywordPredicate;
 import seedu.findvisor.model.tag.TagsContainsKeywordsPredicate;
 
@@ -134,7 +134,7 @@ public class FindCommandTest {
 
 
     @Test
-    public void execute_ExistingName_PersonFound() {
+    public void execute_existingName_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate(ALICE.getName().fullName);
         FindCommand command = new FindCommand(predicate);
@@ -144,7 +144,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_ExistingPhone_PersonFound() {
+    public void execute_existingPhone_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PhoneEqualsKeywordPredicate predicate = new PhoneEqualsKeywordPredicate(BENSON.getPhone().value);
         FindCommand command = new FindCommand(predicate);
@@ -154,7 +154,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_ExistingEmail_PersonFound() {
+    public void execute_existingEmail_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         EmailEqualsKeywordPredicate predicate = new EmailEqualsKeywordPredicate(CARL.getEmail().value);
         FindCommand command = new FindCommand(predicate);
@@ -164,7 +164,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_ExistingTags_PersonFound() {
+    public void execute_existingTags_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         TagsContainsKeywordsPredicate predicate = new TagsContainsKeywordsPredicate(
             Arrays.asList(new String[]{"friends"}));

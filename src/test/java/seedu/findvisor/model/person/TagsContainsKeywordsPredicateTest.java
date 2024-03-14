@@ -63,9 +63,8 @@ public class TagsContainsKeywordsPredicateTest {
     public void toStringMethod() {
         List<String> keywords = Arrays.asList(new String[]{"exampleTag1, exampleTag2"});
         TagsContainsKeywordsPredicate predicate = new TagsContainsKeywordsPredicate(keywords);
-        String expected = TagsContainsKeywordsPredicate.class.getCanonicalName() 
-            + "{tags=" + keywords.toString() + "}";
+        String expected = TagsContainsKeywordsPredicate.class.getCanonicalName()
+                + "{tags=" + keywords.toString() + "}";
         assertEquals(expected, predicate.toString());
     }
-    
 }

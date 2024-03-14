@@ -97,7 +97,7 @@ public class AddressBookParserTest {
 
         // Find using tags
         FindCommand findTagsCommand = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " 
+                FindCommand.COMMAND_WORD + " "
                 + PREFIX_TAG + VALID_TAG_FRIEND + " "
                 + PREFIX_TAG + VALID_TAG_HUSBAND);
         assertEquals(new FindCommand(new TagsContainsKeywordsPredicate(

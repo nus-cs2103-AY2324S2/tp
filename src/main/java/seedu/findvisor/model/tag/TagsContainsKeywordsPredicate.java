@@ -7,11 +7,17 @@ import seedu.findvisor.commons.util.ToStringBuilder;
 import seedu.findvisor.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code tags} matches any of the keywords given.
+ * A predicate for evaluating if a {@link Person}'s name contains (case-insensitive) any of the given keywords.
+ * This is used to filter for persons based on their tags attribute.
  */
 public class TagsContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
+    /**
+     * Constructs an {@code TagsContainsKeywordsPredicate} with the specified keyword.
+     *
+     * @param keywords The keywords to be used to lookup against the person's tags.
+     */
     public TagsContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
