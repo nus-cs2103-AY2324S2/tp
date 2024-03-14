@@ -39,15 +39,9 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_REMARK);
 
-        Date arrivalDate = null;
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            arrivalDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        }
+        Date arrivalDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
-        String remark = null;
-        if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            remark = argMultimap.getValue(PREFIX_REMARK).get();
-        }
+        String remark = argMultimap.getValue(PREFIX_REMARK).get();
 
         return new AddOrderCommand(index, arrivalDate, remark);
     }

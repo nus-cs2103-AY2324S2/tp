@@ -80,8 +80,16 @@ public class AddOrderCommandTest {
         // null -> returns false
         assert (!addOrderCommand.equals(null));
 
-        // different person -> returns false
+        // different index -> returns false
         AddOrderCommand differentOrderCommand = new AddOrderCommand(Index.fromOneBased(2), DATE_STUB, REMARK_STUB);
+        assert (!addOrderCommand.equals(differentOrderCommand));
+
+        // different date -> returns false
+        differentOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, new Date("2020-01-02"), REMARK_STUB);
+        assert (!addOrderCommand.equals(differentOrderCommand));
+
+        // different remark -> returns false
+        differentOrderCommand = new AddOrderCommand(INDEX_FIRST_PERSON, DATE_STUB, "200 chicken wings");
         assert (!addOrderCommand.equals(differentOrderCommand));
     }
 

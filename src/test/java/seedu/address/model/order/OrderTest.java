@@ -54,8 +54,16 @@ public class OrderTest {
         // null -> returns false
         assertFalse(order.equals(null));
 
-        // different Order -> returns false
+        // different date -> returns false
         Order differentOrder = new Order(order.getDate(), "200 chicken wings");
+        assertFalse(order.equals(differentOrder));
+
+        // different remark -> returns false
+        differentOrder = new Order(new Date("2010-01-01"), order.getRemark());
+        assertFalse(order.equals(differentOrder));
+
+        // different status -> returns false
+        differentOrder = new Order(order.getDate(), order.getRemark(), "Delivered");
         assertFalse(order.equals(differentOrder));
     }
 
