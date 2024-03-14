@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -13,7 +14,7 @@ class ViewCommandParserTest {
     @Test
     void parse_validArgs_returnsViewCommand() throws ParseException {
         ViewCommandParser parser = new ViewCommandParser();
-        ViewCommand expectedCommand = new ViewCommand(Index.fromZeroBased(1));
+        ViewCommand expectedCommand = new ViewCommand(Index.fromZeroBased(0));
 
         assertEquals(expectedCommand, parser.parse("1"));
     }
@@ -37,7 +38,7 @@ class ViewCommandParserTest {
     @Test
     void parse_withWhitespaceAndValidArgs_returnsViewCommand() throws ParseException {
         ViewCommandParser parser = new ViewCommandParser();
-        ViewCommand expectedCommand = new ViewCommand(Index.fromZeroBased(2));
+        ViewCommand expectedCommand = new ViewCommand(Index.fromZeroBased(1));
 
         assertEquals(expectedCommand, parser.parse("   2   "));
     }
