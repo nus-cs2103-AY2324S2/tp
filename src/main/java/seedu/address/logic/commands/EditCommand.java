@@ -2,14 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIRSTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENTTYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
-
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -19,7 +18,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -246,7 +244,7 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+            return tags != null ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         /**
@@ -254,7 +252,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = tags != null ? new HashSet<>(tags) : null;
         }
 
         @Override

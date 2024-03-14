@@ -1,12 +1,18 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.BankDetails;
+import seedu.address.model.person.EmploymentType;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -65,7 +71,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-    /* Sets the {@code Sex} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Sex} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withSex(String sex) {
         descriptor.setSex(new Sex(sex));

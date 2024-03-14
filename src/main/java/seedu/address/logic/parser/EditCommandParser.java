@@ -1,12 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
@@ -16,6 +10,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -36,8 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_FIRSTNAME, PREFIX_LASTNAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_SEX, PREFIX_EMPLOYMENTTYPE, PREFIX_BANKDETAILS);
+                ArgumentTokenizer.tokenize(args, PREFIX_FIRSTNAME, PREFIX_LASTNAME, PREFIX_PHONE,
+                    PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SEX, PREFIX_EMPLOYMENTTYPE, PREFIX_BANKDETAILS);
 
         Phone number;
 
@@ -68,12 +67,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setSex(ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get()));
         }
         if (argMultimap.getValue(PREFIX_EMPLOYMENTTYPE).isPresent()) {
-            editPersonDescriptor.setEmploymentType(ParserUtil.
-                    parseEmploymentType(argMultimap.getValue(PREFIX_EMPLOYMENTTYPE).get()));
+            editPersonDescriptor.setEmploymentType(ParserUtil
+                .parseEmploymentType(argMultimap.getValue(PREFIX_EMPLOYMENTTYPE).get()));
         }
         if (argMultimap.getValue(PREFIX_BANKDETAILS).isPresent()) {
-            editPersonDescriptor.setBankDetails(ParserUtil.
-                    parseBankDetails(argMultimap.getValue(PREFIX_BANKDETAILS).get()));
+            editPersonDescriptor.setBankDetails(ParserUtil
+                .parseBankDetails(argMultimap.getValue(PREFIX_BANKDETAILS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
