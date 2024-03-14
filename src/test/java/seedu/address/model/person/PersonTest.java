@@ -21,16 +21,16 @@ public class PersonTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.checkDuplicateField(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.checkDuplicateField(null));
 
         // same name, all other attributes different -> returns false
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withClassGroup(VALID_CLASS_GROUP_BOB).withTelegram(VALID_TELEGRAM_BOB)
                 .withGithub(VALID_GITHUB_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.checkDuplicateField(editedAlice));
     }
 
     @Test
