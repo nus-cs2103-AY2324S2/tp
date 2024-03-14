@@ -32,4 +32,5 @@ class GroupCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
 }
