@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.LinkLoanCommand.LinkLoanDescriptor;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,6 +67,14 @@ public class Person {
 
     public LoanRecords getLoanRecords() {
         return loanRecords;
+    }
+
+    /**
+     * Links a loan to this person with the given {@code loanDescription}
+     * by adding it to the loan records.
+     */
+    public void linkLoan(LinkLoanDescriptor loanDescription) {
+        loanRecords.addLoan(loanDescription);
     }
 
     /**
