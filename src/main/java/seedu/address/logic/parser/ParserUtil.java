@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Upcoming;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +121,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Upcoming parseUpcoming(String upcoming) throws ParseException {
+        requireNonNull(upcoming);
+        String trimmedUpcoming = upcoming.trim();
+        if (!Upcoming.isValidUpcoming(trimmedUpcoming)) {
+            throw new ParseException(Upcoming.MESSAGE_CONSTRAINTS);
+        }
+        return new Upcoming(trimmedUpcoming);
     }
 }
