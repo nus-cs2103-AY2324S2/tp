@@ -27,14 +27,19 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_JOHN = "John Doer";
     public static final String VALID_STUDENT_ID_AMY = "A0265491U";
     public static final String VALID_STUDENT_ID_BOB = "A0365501X";
+    public static final String VALID_STUDENT_ID_JOHN = "A1897496H";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_JOHN = "johndoedoejohn@example.com";
     public static final String VALID_TELEGRAM_HANDLE_AMY = "@amyb";
     public static final String VALID_TELEGRAM_HANDLE_BOB = "@choobobco";
+    public static final String VALID_TELEGRAM_HANDLE_JOHN = "@doedoejohnjohn.joe";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_SMART = "smart";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -60,6 +65,7 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditCommand.EditStudentDescriptor DESC_JOHN;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -70,6 +76,10 @@ public class CommandTestUtil {
                 .withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_JOHN = new EditStudentDescriptorBuilder().withName(VALID_NAME_JOHN)
+                .withStudentId(VALID_STUDENT_ID_JOHN).withEmail(VALID_EMAIL_JOHN)
+                .withTelegramHandle(VALID_TELEGRAM_HANDLE_JOHN)
+                .withTags(VALID_TAG_SMART).build();
     }
 
     /**

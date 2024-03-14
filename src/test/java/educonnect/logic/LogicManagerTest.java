@@ -1,6 +1,6 @@
 package educonnect.logic;
 
-import static educonnect.logic.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static educonnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static educonnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static educonnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -20,6 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.commands.CommandResult;
+import educonnect.logic.commands.DeleteCommand;
 import educonnect.logic.commands.ListCommand;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.logic.parser.exceptions.ParseException;
@@ -61,7 +62,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertParseException(deleteCommand, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
