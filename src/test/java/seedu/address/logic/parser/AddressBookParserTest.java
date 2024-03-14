@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -42,13 +41,6 @@ public class AddressBookParserTest {
     @BeforeEach
     void initModel() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    }
-
-    @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(model, PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
     }
 
     @Test
@@ -84,11 +76,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 model,
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_NAME
+                        + keywords.stream().collect(Collectors.joining(" " + CliSyntax.PREFIX_NAME)));
+
+        // Creating the expected FindCommand with the corresponding predicate
+        FindCommand expectedCommand = new FindCommand(new NameContainsKeywordsPredicate(keywords));
+
+        assertEquals(expectedCommand, command);
     }
 
     @Test

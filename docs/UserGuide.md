@@ -111,18 +111,28 @@ Finds workers that contains any of the given keywords. It can be `ID`, `NAME`, `
 * `Find by name: /find :name [name]`
 * `Find by email: /find :email [email]`
 * `Find by phone number: /find :phone [phone number]`
-* `Find by worker’s ID: /find :ID [ID]`
+* `Find by worker’s ID: /find :id [ID]`
+* `Find by year joined: /find :year [year]`
+* `Find by tag: /find :tag [tag]`
 
 **Acceptable Format:**
 * _Any letter cases are acceptable. e.g `Patrick` will match `patrick`_
 * _ID: must be 6 digits of numbers_
 * _Name: can be any case (Strings)_
 * _Phone: must be numbers (integers)_
-* _Email: must include “@”_
-* _Only full keywords will be matched. e.g `Patrick` will not match `patr`_
+* _Email: any characters or numbers_
+* _Year: must be numbers (integers)_
+* _Tag: any characters or numbers_
+* _Only full keywords will be matched for **Name** and **ID**. e.g `Patrick` will not match `patr`_
+* _Multiple names can be searched for name. e.g `/find :name Alice Patrick Alex`_
 
 Examples:
 * `/find :name John` returns `john` and `John Doe`
+* `/find :id 240001` returns `240001`
+* `/find :phone 1234` returns `12345678` and `89071234`
+* `/find :email iris` returns `iris@gmail.com` and `iris101@u.nus.edu`
+* `/find :year 2024` returns `2024`
+* `/find :tag intern` returns `intern`
 
 ### Deleting a person : `delete`
 
@@ -193,9 +203,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `/add :name NAME :phone PHONE :email EMAIL [year joined] <br> e.g., `/add John Doe, 98765432, johndoe@example.com, 2024`
+**Add** | `/add :name NAME :phone PHONE :email EMAIL [year joined]` <br> e.g., `/add John Doe, 98765432, johndoe@example.com, 2024`
 **Delete** | `/remove ID`<br> e.g., `/remove 240001`
 **Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:tag TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
-**Find** | `/find :KEYWORD [KEYWORDS]`<br> e.g., `find :name John`
+**Find** | `/find :name [name]`<br>`/find :email [email]`<br>`/find :phone [phone number]`<br>`/find :id [ID]`<br>`/find :year [year]`<br>`/find :tag [tag]`<br><br> e.g., `find :name John`
 **List** | `/list`
 **Help** | `/help`

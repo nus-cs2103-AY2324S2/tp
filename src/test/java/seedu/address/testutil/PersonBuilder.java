@@ -99,6 +99,22 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code YearJoined} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withYearJoined(String year) {
+        this.yearJoined = new YearJoined(year);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Id} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withId(Integer id) {
+        this.id = new Id(id);
+        return this;
+    }
+
     public Person build() {
         return new Person(id, name, phone, email, yearJoined, address, tags);
     }
