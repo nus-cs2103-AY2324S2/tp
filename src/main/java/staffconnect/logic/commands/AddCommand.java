@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_VENUE + "VENUE "
             + PREFIX_MODULE + "MODULE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AVAILABILITY + "AVAILABILITY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
