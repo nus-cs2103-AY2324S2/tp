@@ -39,14 +39,14 @@ public class ContactEmail {
      */
     public ContactEmail(String contactEmail) {
         requireNonNull(contactEmail);
-        checkArgument(isValidEmail(contactEmail), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidContactEmail(contactEmail), MESSAGE_CONSTRAINTS);
         value = contactEmail;
     }
 
     /**
      * Returns if a given string is a valid contactEmail.
      */
-    public static boolean isValidEmail(String test) {
+    public static boolean isValidContactEmail(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
