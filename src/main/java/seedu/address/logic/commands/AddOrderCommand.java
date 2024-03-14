@@ -70,18 +70,15 @@ public class AddOrderCommand extends Command{
         return String.format(message, personToEdit);
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
         if (!(other instanceof AddOrderCommand)) {
             return false;
         }
-
         AddOrderCommand e = (AddOrderCommand) other;
         return phone == e.phone;
     }
