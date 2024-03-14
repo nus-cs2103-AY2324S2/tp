@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.house.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_LEVEL = "aa";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_LEVEL = "10";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +195,28 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseLevel_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLevel((String) null));
+    }
+
+    @Test
+    public void parseLevel_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLevel(INVALID_LEVEL));
+    }
+
+    @Test
+    public void parseLevel_validValueWithoutWhitespace_returnsLevel() throws Exception {
+        Level expectedLevel = new Level(VALID_LEVEL);
+        assertEquals(expectedLevel, ParserUtil.parseLevel(VALID_LEVEL));
+    }
+
+    @Test
+    public void parseLevel_validValueWithWhitespace_returnsTrimmedLevel() throws Exception {
+        String levelWithWhitespace = WHITESPACE + VALID_LEVEL + WHITESPACE;
+        Level expectedLevel = new Level(VALID_LEVEL);
+        assertEquals(expectedLevel, ParserUtil.parseLevel(levelWithWhitespace));
     }
 }
