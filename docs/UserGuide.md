@@ -11,7 +11,7 @@ having the benefits of a Graphical User Interface (GUI). It enables managers to 
 
 <!-- * Table of Contents -->
 
-<page-nav-print />pro
+<page-nav-print />
 
 ---
 
@@ -19,7 +19,7 @@ having the benefits of a Graphical User Interface (GUI). It enables managers to 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `netconnect.jar` from [here](https://github.com/AY2324S2-CS2103T-F12-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetConnect.
 
@@ -33,9 +33,9 @@ having the benefits of a Graphical User Interface (GUI). It enables managers to 
 
     - `list` : Lists all contacts.
 
-    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/employee` : Adds an employee named `John Doe` to the Address Book.
 
-    - `delete 3` : Deletes the 3rd contact shown in the current list.
+    - `delete i/3` : Deletes the contact with ID 3 from NetConnect.
 
     - `clear` : Deletes all contacts.
 
