@@ -47,7 +47,7 @@ public class RoleBasedRelationshipTest {
 
         assertThrows(IllegalStateException.class, () -> relationship.addRole(person2, role3));
     }
-    
+
     @Test
     public void testGetAllRoles() {
         UUID person1 = UUID.randomUUID();
