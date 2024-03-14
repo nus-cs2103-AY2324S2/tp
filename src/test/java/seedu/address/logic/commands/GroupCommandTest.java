@@ -69,6 +69,7 @@ class GroupCommandTest {
                 + groupPersonDescriptor + "}";
 
         assertEquals(expected, groupCommand.toString());
+        
     }
 
 }

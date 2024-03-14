@@ -31,6 +31,7 @@ class GroupCommandParserTest {
         GroupCommand expectedCommand = new GroupCommand(new NusId(VALID_NUSID_AMY), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
     }
 
 }
