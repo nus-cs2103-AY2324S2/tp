@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
 
     private final String nric;
     private final String name;
+    private final String gender;
     private final String phone;
     private final String email;
     private final String address;
@@ -40,13 +42,17 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
-                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+    public JsonAdaptedPerson(@JsonProperty("nric") String nric,
+                             @JsonProperty("name") String name,
+                             @JsonProperty("gender") String gender,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedIllness> illnesses,
                              @JsonProperty("notes") List<JsonAdapatedNote> notes) {
         this.nric = nric;
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -64,6 +70,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         nric = source.getNric().nric;
         name = source.getName().fullName;
+        gender = source.getGender().gender;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -107,6 +114,14 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -132,7 +147,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Illness> modelIllnesses = new HashSet<>(illnesses);
-        return new Person(modelNric, modelName, modelPhone, modelEmail, modelAddress, modelIllnesses, notes);
+        return new Person(modelNric, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelIllnesses, notes);
     }
 
 }

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ILLNESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_GENDER + "GENDER] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -96,14 +99,15 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Nric nric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
+        Nric updatedNric = personToEdit.getNric();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Gender updatedGender = personToEdit.getGender();
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Illness> updatedIllnesses = editPersonDescriptor.getTags().orElse(personToEdit.getIllnesses());
 
-        return new Person(nric, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIllnesses,
+        return new Person(updatedNric, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedIllnesses,
             personToEdit.getNotes());
     }
 

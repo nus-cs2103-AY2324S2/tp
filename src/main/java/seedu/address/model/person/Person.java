@@ -23,6 +23,7 @@ public class Person {
     // Identity fields
     private final Nric nric;
     private final Name name;
+    private final Gender gender;
     private final Phone phone;
     private final Email email;
 
@@ -34,10 +35,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Phone phone, Email email, Address address, Set<Illness> illnesses, ObservableList<Note> notes) {
+    public Person(Nric nric, Name name, Gender gender, Phone phone, Email email, Address address, Set<Illness> illnesses, ObservableList<Note> notes) {
         requireAllNonNull(name, phone, email, address, illnesses, notes);
         this.nric = nric;
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -49,6 +51,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     public Phone getPhone() {
@@ -110,6 +116,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return nric.equals(otherPerson.nric)
             && name.equals(otherPerson.name)
+            && gender.equals(otherPerson.gender)
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
             && address.equals(otherPerson.address)
@@ -119,7 +126,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(nric, name, phone, email, address, illnesses, notes);
+        return Objects.hash(nric, name, gender, phone, email, address, illnesses, notes);
     }
 
     @Override
@@ -141,6 +148,7 @@ public class Person {
     public static class Builder {
         private Nric nric;
         private Name name;
+        private Gender gender;
         private Phone phone;
         private Email email;
         private Address address;
@@ -150,10 +158,11 @@ public class Person {
         /**
          * Creates a {@code Builder} with the given parameters.
          */
-        public Builder(Nric nric, Name name, Phone phone, Email email, Address address, Set<Illness> illnesses,
+        public Builder(Nric nric, Name name, Gender gender, Phone phone, Email email, Address address, Set<Illness> illnesses,
                        ObservableList<Note> notes) {
             this.nric = nric;
             this.name = name;
+            this.gender = gender;
             this.phone = phone;
             this.email = email;
             this.address = address;
@@ -167,6 +176,7 @@ public class Person {
         public Builder(Person person) {
             this(person.getNric(),
                 person.getName(),
+                person.getGender(),
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
@@ -178,11 +188,12 @@ public class Person {
         public Name getName() {
             return name;
         }
-
+        public Gender getGender() {
+            return gender;
+        }
         public Phone getPhone() {
             return phone;
         }
-
         public Email getEmail() {
             return email;
         }
@@ -210,6 +221,13 @@ public class Person {
             requireNonNull(name);
 
             this.name = name;
+            return this;
+        }
+
+        public Builder setGender(Gender gender) {
+            requireNonNull(gender);
+
+            this.gender = gender;
             return this;
         }
 
@@ -254,7 +272,7 @@ public class Person {
          * Builds a {@link Person} with the latest values.
          */
         public Person build() {
-            return new Person(nric, name, phone, email, address, illnesses, notes);
+            return new Person(nric, name, gender, phone, email, address, illnesses, notes);
         }
     }
 }

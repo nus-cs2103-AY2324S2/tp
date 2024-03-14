@@ -13,33 +13,33 @@ public class Gender {
             "Gender must be M, F or exclude from the command for 'Prefer not to say'";
 
     /*
-     * gender must follow the Singapore's format of [M, F]
+     * gender must follow the Singapore's format of M, F or Prefer not to say case-insensitive
      */
-    public static final String VALIDATION_REGEX = "^[STFG]\\d{7}[A-Z]$";
+    public static final String VALIDATION_REGEX = "(?i)^(M|F|Prefer not to say)$";
 
     public final String gender;
 
     /**
-     * Constructs a {@code Nric}.
+     * Constructs a {@code Gender}.
      *
-     * @param nric A valid nric.
+     * @param gender A valid nric.
      */
-    public Nric(String nric) {
-        requireNonNull(nric);
-        checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
-        this.nric = nric;
+    public Gender(String gender) {
+        requireNonNull(gender);
+        checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
+        this.gender = gender;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid gender.
      */
-    public static boolean isValidNric(String test) {
+    public static boolean isValidGender(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return nric;
+        return gender;
     }
 
     @Override
@@ -49,16 +49,16 @@ public class Gender {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Nric)) {
+        if (!(other instanceof Gender)) {
             return false;
         }
 
-        Nric otherNric = (Nric) other;
-        return nric.equals(otherNric.nric);
+        Gender otherGender = (Gender) other;
+        return gender.equals(otherGender.gender);
     }
 
     @Override
     public int hashCode() {
-        return nric.hashCode();
+        return gender.hashCode();
     }
 }
