@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -153,5 +154,17 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    public Person getPersonByNric(Nric nricObj) {
+        ArrayList<Person> personList = new ArrayList<Person>(internalList);
+
+        for (Person p : personList) {
+            if (p.getNric().equals(nricObj)) {
+                return p;
+            }
+        }
+
+        throw new PersonNotFoundException();
     }
 }
