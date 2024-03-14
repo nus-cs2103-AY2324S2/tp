@@ -10,15 +10,14 @@ import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.findvisor.commons.core.index.Index;
 import seedu.findvisor.logic.commands.exceptions.CommandException;
 import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.Model;
-import seedu.findvisor.model.person.NameContainsKeywordPredicate;
 import seedu.findvisor.model.person.Person;
+import seedu.findvisor.model.person.PhoneEqualsKeywordPredicate;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -119,8 +118,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        String name = person.getName().fullName;
-        model.updateFilteredPersonList(new NameContainsKeywordPredicate(name));
+        // Use person's phone to identify
+        String phone = person.getPhone().value;
+        model.updateFilteredPersonList(new PhoneEqualsKeywordPredicate(phone));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
