@@ -83,7 +83,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (studentId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                StudentId.class.getSimpleName()));
         }
         if (!StudentId.isValidStudentId(studentId)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
