@@ -6,6 +6,7 @@ import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import educonnect.commons.core.index.Index;
@@ -38,16 +39,16 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
 
     private final DeleteStudentDescriptor deleteStudentDescriptor;
-    private final Index targetIndex;
+//    private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
-        this.deleteStudentDescriptor = null;
-    }
+//    public DeleteCommand(Index targetIndex) {
+//        this.targetIndex = targetIndex;
+//        this.deleteStudentDescriptor = null;
+//    }
 
     public DeleteCommand(DeleteStudentDescriptor deleteStudentDescriptor) {
         this.deleteStudentDescriptor = deleteStudentDescriptor;
-        this.targetIndex = null;
+//        this.targetIndex = null;
     }
 
     public CommandResult execute(Model model) throws CommandException {
@@ -106,13 +107,13 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        return deleteStudentDescriptor.equals(otherDeleteCommand.deleteStudentDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add("deleteStudentDescriptor", deleteStudentDescriptor)
                 .toString();
     }
 
@@ -146,9 +147,34 @@ public class DeleteCommand extends Command {
         public Optional<TelegramHandle> getTelegramHandle() {
             return Optional.ofNullable(telegramHandle);
         }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof DeleteCommand.DeleteStudentDescriptor)) {
+                return false;
+            }
+
+            DeleteCommand.DeleteStudentDescriptor otherDeleteStudentDescriptor =
+                    (DeleteCommand.DeleteStudentDescriptor) other;
+
+            return Objects.equals(studentId, otherDeleteStudentDescriptor.studentId)
+                    && Objects.equals(email, otherDeleteStudentDescriptor.email)
+                    && Objects.equals(telegramHandle, otherDeleteStudentDescriptor.telegramHandle);
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .add("student id", studentId)
+                    .add("email", email)
+                    .add("telegram handle", telegramHandle)
+                    .toString();
+        }
     }
-
-
-
 
 }

@@ -1,8 +1,11 @@
 package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
+import educonnect.model.student.StudentId;
 import org.junit.jupiter.api.Test;
 
 import educonnect.logic.commands.DeleteCommand;
@@ -20,7 +23,11 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        CommandParserTestUtil.assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_STUDENT));
+        DeleteCommand.DeleteStudentDescriptor deleteStudentDescriptor = new DeleteCommand.DeleteStudentDescriptor();
+        deleteStudentDescriptor.setStudentId(new StudentId(VALID_STUDENT_ID_AMY));
+
+        CommandParserTestUtil.assertParseSuccess(parser, " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_AMY,
+                new DeleteCommand(deleteStudentDescriptor));
     }
 
     @Test

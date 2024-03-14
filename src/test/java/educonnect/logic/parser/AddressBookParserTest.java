@@ -2,11 +2,14 @@ package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static educonnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static educonnect.testutil.Assert.assertThrows;
 import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import educonnect.model.student.StudentId;
 import org.junit.jupiter.api.Test;
 
 import educonnect.logic.commands.AddCommand;
@@ -45,8 +48,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
+                DeleteCommand.COMMAND_WORD + " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_AMY);
+        DeleteCommand.DeleteStudentDescriptor deleteStudentDescriptor = new DeleteCommand.DeleteStudentDescriptor();
+        deleteStudentDescriptor.setStudentId(new StudentId(VALID_STUDENT_ID_AMY));
+
+        assertEquals(new DeleteCommand(deleteStudentDescriptor), command);
     }
 
     @Test

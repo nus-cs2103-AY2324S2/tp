@@ -57,6 +57,10 @@ public class TypicalStudents {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    // Not added to address
+    public static final Student JOHHNY = new StudentBuilder().withName("Johnny Jenson").withStudentId("A9345680M")
+            .withEmail("johnhojmjogn@example.com").withTelegramHandle("@johnnyjjohnny").build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalStudents() {} // prevents instantiation
