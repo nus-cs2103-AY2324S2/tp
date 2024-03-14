@@ -12,24 +12,24 @@ public class Appointment {
 
     // Data fields
     private final UUID id;
-    private final Person person;
+    private final UUID personId;
     private final AppointmentTime appointmentTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Person person, AppointmentTime appointmentTime) {
+    public Appointment(UUID personId, AppointmentTime appointmentTime) {
         this.id = UUID.randomUUID();
         this.appointmentTime = appointmentTime;
-        this.person = person;
+        this.personId = personId;
     }
 
     public UUID getID() {
         return id;
     }
 
-    public Person getPerson() {
-        return person;
+    public UUID getPersonId() {
+        return personId;
     }
 
     public AppointmentTime getAppointmentTime() {
@@ -49,9 +49,9 @@ public class Appointment {
 
         Appointment otherAppointment = (Appointment) other;
         boolean sameID = id.equals(otherAppointment.getID());
-        boolean samePerson = person.equals(otherAppointment.getPerson());
+        boolean samePersonId = personId.equals(otherAppointment.getPersonId());
         boolean sameDate = appointmentTime.equals(otherAppointment.getAppointmentTime());
-        return (sameID && samePerson && sameDate);
+        return (sameID && samePersonId && sameDate);
     }
 
 }
