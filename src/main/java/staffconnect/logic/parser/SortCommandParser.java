@@ -1,6 +1,10 @@
 package staffconnect.logic.parser;
 
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.Comparator;
 
@@ -32,33 +36,41 @@ public class SortCommandParser implements Parser<SortCommand> {
 
 
     private Comparator<Person> parseComparatorForKeywords(String keyword) throws ParseException {
-        switch (keyword) {
-        case "N":
-        case "n":
+
+        if (keyword.equals(PREFIX_NAME.getPrefix())) {
             return new Comparator<Person>() {
                 @Override
                 public int compare(Person person1, Person person2) {
                     return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
                 }
             };
-        case "P":
-        case "p":
+        } else if (keyword.equals(PREFIX_PHONE.getPrefix())) {
             return new Comparator<Person>() {
                 @Override
                 public int compare(Person person1, Person person2) {
                     return person1.getPhone().toString().compareToIgnoreCase(person2.getPhone().toString());
                 }
             };
-        case "V":
-        case "v":
+        } else if (keyword.equals(PREFIX_MODULE.getPrefix())) {
+            return new Comparator<Person>() {
+                @Override
+                public int compare(Person person1, Person person2) {
+                    return person1.getModule().toString().compareToIgnoreCase(person2.getModule().toString());
+                }
+            };
+        } else if (keyword.equals(PREFIX_VENUE.getPrefix())) {
             return new Comparator<Person>() {
                 @Override
                 public int compare(Person person1, Person person2) {
                     return person1.getVenue().toString().compareToIgnoreCase(person2.getVenue().toString());
                 }
             };
-        default:
+        } else {
             throw new ParseException(SortCommand.MESSAGE_USAGE);
         }
+
+
+
+
     }
 }

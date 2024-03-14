@@ -1,6 +1,10 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.Comparator;
 
@@ -20,11 +24,11 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort all persons by the attribute specified "
             + "and displays them as a list with index numbers.\n"
             + "Parameters: [ATTRIBUTE]\n"
-            + "[NAME: n] "
-            + "[PHONE: p] "
-            // + "[MODULE: m] "
-            // + "[FACULTY: f] "
-            + "[VENUE: v] "
+            + "[" + PREFIX_NAME + "] "
+            + "[" + PREFIX_PHONE + "] "
+            + "[" + PREFIX_MODULE + "] "
+            // + "[FACULTY] "
+            + "[" + PREFIX_VENUE + "] "
             + "Example: " + COMMAND_WORD + " n";
 
     private final Comparator<Person> comparator;
