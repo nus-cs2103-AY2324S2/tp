@@ -12,8 +12,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.BirthdayAttribute;
+import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.attribute.StringAttribute;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -102,6 +108,22 @@ public class PersonTest {
         assertEquals(expected, ALICE.toString());
     }
     @Test
+    public void getName() {
+        assertEquals(VALID_NAME_BOB, BOB.getName().toString());
+    }
+    @Test
+    public void getPhone() {
+        assertEquals(VALID_PHONE_BOB, BOB.getPhone().toString());
+    }
+    @Test
+    public void getEmail() {
+        assertEquals(VALID_EMAIL_BOB, BOB.getEmail().toString());
+    }
+    @Test
+    public void getAddress() {
+        assertEquals(VALID_ADDRESS_BOB, BOB.getAddress().toString());
+    }
+    @Test
     public void getUuidString() {
         Person person = new PersonBuilder().build();
         String personUuidString = person.getUuidString();
@@ -109,29 +131,133 @@ public class PersonTest {
         String uuidFormat = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
         assertTrue(personUuidString.matches(uuidFormat));
     }
-
-    @Test public void getUuidString_differentUuids() {
+    @Test
+    public void getUuidString_differentUuids() {
         Person person1 = new PersonBuilder().build();
         Person person2 = new PersonBuilder().build();
         assertFalse(person1.getUuidString().equals(person2.getUuidString()));
     }
-
-    @Test public void equalsUuid_samePerson_true() {
+    @Test
+    public void equalsUuid_samePerson_true() {
         Person person1 = new PersonBuilder().build();
         assertTrue(person1.equalsUuid(person1));
     }
-    @Test public void equalsUuid_differentUuids_false() {
+    @Test
+    public void equalsUuid_differentUuids_false() {
         Person person1 = new PersonBuilder().build();
         Person person2 = new PersonBuilder().build();
         assertFalse(person1.equalsUuid(person2));
     }
-    @Test public void equalsUuid_notPerson_false() {
+    @Test
+    public void equalsUuid_notPerson_false() {
         Person person1 = new PersonBuilder().build();
         assertFalse(person1.equalsUuid("not a person"));
     }
-
     @Test
     public void getUuid() {
         assertTrue(ALICE.getUuid() != null);
+    }
+    @Test
+    public void hasAttribute_noAttribute_false() {
+        assertFalse(ALICE.hasAttribute("no attribute"));
+    }
+    @Test
+    public void hasAttribute_hasAttribute_true() {
+        assertTrue(ALICE.hasAttribute("Name"));
+    }
+    @Test
+    public void getAttribute_noAttribute_null() {
+        try {
+            ALICE.getAttribute("no attribute");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void getAttribute_hasAttribute() {
+        assertTrue(ALICE.getAttribute("Name") != null);
+    }
+    @Test
+    public void getAttribute_noAttribute() {
+        try {
+            ALICE.getAttribute("no attribute");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void getAttribute_hasAttribute_correctAttribute() {
+        assertTrue(ALICE.getAttribute("Name").getName().equals("Name"));
+    }
+    @Test public void getAttribute_invalidName() {
+        try {
+            ALICE.getAttribute("");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void updateAttribute_noAttribute() {
+        try {
+            Person aliceCopy = new PersonBuilder(ALICE).build();
+            aliceCopy.updateAttribute(new StringAttribute("no attribute", "new value"));
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void updateAttribute_hasAttribute() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        aliceCopy.updateAttribute(new NameAttribute("Name", "new value"));
+        assertEquals("new value", aliceCopy.getAttribute("Name").getValueAsString());
+    }
+    @Test
+    public void updateAttribute_invalidName() {
+        try {
+            Person aliceCopy = new PersonBuilder(ALICE).build();
+            aliceCopy.updateAttribute(new StringAttribute("", "new value"));
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void deleteAttribute_noAttribute() {
+        try {
+            Person aliceCopy = new PersonBuilder(ALICE).build();
+            aliceCopy.deleteAttribute("no attribute");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+    @Test
+    public void deleteAttribute_hasAttribute() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        aliceCopy.deleteAttribute("Name");
+        assertFalse(aliceCopy.hasAttribute("Name"));
+    }
+    @Test
+    public void person_nameAttribute() {
+        NameAttribute name = new NameAttribute("Name", "Alice Pauline");
+        BirthdayAttribute birthday = new BirthdayAttribute(
+                "Birthday",
+                LocalDate.of(1999, 1, 1));
+        Person aliceCopy = new Person(new Attribute[]{name, birthday});
+
+        assertEquals("Alice Pauline", aliceCopy.getAttribute("Name").getValueAsString());
+        assertEquals(
+                LocalDate.of(1999, 1, 1).toString(),
+                aliceCopy.getAttribute("Birthday").getValueAsString());
+    }
+
+    @Test
+    public void allAttributesAsString() {
+        NameAttribute name = new NameAttribute("Name", "Alice Pauline");
+        BirthdayAttribute birthday = new BirthdayAttribute(
+                "Birthday",
+                LocalDate.of(1999, 1, 1));
+        Person aliceCopy = new Person(new Attribute[]{name, birthday});
+        assertEquals(
+                "Name: Alice Pauline\nBirthday: 1999-01-01",
+                aliceCopy.allAttributesAsString());
     }
 }
