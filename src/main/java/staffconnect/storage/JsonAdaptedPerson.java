@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import staffconnect.commons.exceptions.IllegalValueException;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.Phone;
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+    private final String faculty;
     private final String venue;
     private final String module;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -37,11 +39,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("venue") String venue,
-            @JsonProperty("module") String module, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("faculty") String faculty,
+                             @JsonProperty("venue") String venue, @JsonProperty("module") String module,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.faculty = faculty;
         this.venue = venue;
         this.module = module;
         if (tags != null) {
@@ -56,6 +60,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        faculty = source.getFaculty().toString();
         venue = source.getVenue().value;
         module = source.getModule().value;
         tags.addAll(source.getTags().stream()
@@ -98,6 +103,15 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (faculty == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Faculty.class.getSimpleName()));
+        }
+        if (!Faculty.isValidFaculty(faculty)) {
+            throw new IllegalValueException(Faculty.MESSAGE_CONSTRAINTS);
+        }
+        final Faculty modelFaculty = new Faculty(faculty);
+
         if (venue == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Venue.class.getSimpleName()));
         }
@@ -115,7 +129,7 @@ class JsonAdaptedPerson {
         final Module modelModule = new Module(module);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelVenue, modelModule, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelFaculty, modelVenue, modelModule, modelTags);
     }
 
 }
