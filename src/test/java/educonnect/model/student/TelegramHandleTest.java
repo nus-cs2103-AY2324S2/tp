@@ -14,13 +14,13 @@ public class TelegramHandleTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new TelegramHandle(invalidPhone));
+    public void constructor_invalidTelegramHandle_throwsIllegalArgumentException() {
+        String invalidHandle = "";
+        assertThrows(IllegalArgumentException.class, () -> new TelegramHandle(invalidHandle));
     }
 
     @Test
-    public void isValidPhone() {
+    public void isValidTelegramHandle() {
         // null telegram handle
         assertThrows(NullPointerException.class, () -> TelegramHandle.isValidTelegramHandle(null));
 

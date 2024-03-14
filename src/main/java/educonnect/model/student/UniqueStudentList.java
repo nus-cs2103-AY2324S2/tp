@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import educonnect.commons.util.CollectionUtil;
 import educonnect.model.student.exceptions.DuplicateStudentException;
@@ -30,20 +31,92 @@ public class UniqueStudentList implements Iterable<Student> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent student as the given argument.
+     * Returns true if the list contains an equivalent student unique identifier as the given argument.
+     * The unique identifiers are student id, email and telegram handle
      */
-    public boolean contains(Student toCheck) {
+    public boolean containsSameUniqueIdentifier(Student toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameStudent);
+        return internalList.stream().anyMatch(toCheck::isSameStudentId)
+                || internalList.stream().anyMatch(toCheck::isSameEmail)
+                || internalList.stream().anyMatch(toCheck::isSameTelegramHandle);
+    }
+
+    /**
+     * Returns true if the list contains a student with an equivalent student id as the given argument.
+     */
+    public boolean containsStudentId(Student toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameStudentId);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent student id as the given argument.
+     */
+    public boolean containsStudentId(StudentId studentIdToCheck) {
+        requireNonNull(studentIdToCheck);
+        return internalList.stream().anyMatch(student -> student.isSameStudentId(studentIdToCheck));
+    }
+
+    /**
+     * Returns Optional of Student if the list contains an equivalent student id as the given argument.
+     */
+    public Optional<Student> getStudentWithStudentId(StudentId studentId) {
+        return internalList.stream().filter(student -> student.isSameStudentId(studentId)).findFirst();
+    }
+
+    /**
+     * Returns true if the list contains a student with equivalent email as the given argument.
+     */
+    public boolean containsEmail(Student toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameEmail);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent email as the given argument.
+     */
+    public boolean containsEmail(Email email) {
+        requireNonNull(email);
+        return internalList.stream().anyMatch(student -> student.isSameEmail(email));
+    }
+
+    /**
+     * Returns Optional of Student if the list contains an equivalent email as the given argument.
+     */
+    public Optional<Student> getStudentWithEmail(Email email) {
+        return internalList.stream().filter(student -> student.isSameEmail(email)).findFirst();
+    }
+
+    /**
+     * Returns true if the list contains a student with an equivalent telegram handle as the given argument.
+     */
+    public boolean containsTelegramHandle(Student toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameTelegramHandle);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent telegram handle as the given argument.
+     */
+    public boolean containsTelegramHandle(TelegramHandle telegramHandle) {
+        requireNonNull(telegramHandle);
+        return internalList.stream().anyMatch(student -> student.isSameTelegramHandle(telegramHandle));
+    }
+
+    /**
+     * Returns Optional of Student if the list contains an equivalent telegram handle as the given argument.
+     */
+    public Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle) {
+        return internalList.stream().filter(student -> student.isSameTelegramHandle(telegramHandle)).findFirst();
     }
 
     /**
      * Adds a student to the list.
-     * The student must not already exist in the list.
+     * The student must not share the same unique identifier in the list.
      */
     public void add(Student toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (containsSameUniqueIdentifier(toAdd)) {
             throw new DuplicateStudentException();
         }
         internalList.add(toAdd);
@@ -61,8 +134,13 @@ public class UniqueStudentList implements Iterable<Student> {
         if (index == -1) {
             throw new StudentNotFoundException();
         }
-
-        if (!target.isSameStudent(editedStudent) && contains(editedStudent)) {
+        if (!target.isSameStudentId(editedStudent) && containsStudentId(editedStudent)) {
+            throw new DuplicateStudentException();
+        }
+        if (!target.isSameEmail(editedStudent) && containsEmail(editedStudent)) {
+            throw new DuplicateStudentException();
+        }
+        if (!target.isSameTelegramHandle(editedStudent) && containsTelegramHandle(editedStudent)) {
             throw new DuplicateStudentException();
         }
 
@@ -136,12 +214,12 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns true if {@code students} contains only unique students.
+     * Returns true if {@code students} contains unique students that do not share the same unique identifier.
      */
     private boolean studentsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size() - 1; i++) {
             for (int j = i + 1; j < students.size(); j++) {
-                if (students.get(i).isSameStudent(students.get(j))) {
+                if (students.get(i).isSameUniqueIdentifier(students.get(j))) {
                     return false;
                 }
             }

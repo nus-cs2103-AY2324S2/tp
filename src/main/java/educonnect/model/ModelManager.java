@@ -3,13 +3,17 @@ package educonnect.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import educonnect.commons.core.GuiSettings;
 import educonnect.commons.core.LogsCenter;
 import educonnect.commons.util.CollectionUtil;
+import educonnect.model.student.Email;
 import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -88,9 +92,60 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasStudent(Student student) {
+    public boolean hasSameUniqueIdentifier(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return addressBook.hasSameUniqueIdentifier(student);
+    }
+
+    @Override
+    public boolean hasStudentId(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudentId(student);
+    }
+
+    @Override
+    public boolean hasStudentId(StudentId studentId) {
+        requireNonNull(studentId);
+        return addressBook.hasStudentId(studentId);
+    }
+
+    @Override
+    public Optional<Student> getStudentWithStudentId(StudentId studentId) {
+        return addressBook.getStudentWithStudentId(studentId);
+    }
+
+    @Override
+    public boolean hasEmail(Student student) {
+        requireNonNull(student);
+        return addressBook.hasEmail(student);
+    }
+
+    @Override
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return addressBook.hasEmail(email);
+    }
+
+    @Override
+    public Optional<Student> getStudentWithEmail(Email email) {
+        return addressBook.getStudentWithEmail(email);
+    }
+
+    @Override
+    public boolean hasTelegramHandle(Student student) {
+        requireNonNull(student);
+        return addressBook.hasTelegramHandle(student);
+    }
+
+    @Override
+    public boolean hasTelegramHandle(TelegramHandle telegramHandle) {
+        requireNonNull(telegramHandle);
+        return addressBook.hasTelegramHandle(telegramHandle);
+    }
+
+    @Override
+    public Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle) {
+        return addressBook.getStudentWithTelegramHandle(telegramHandle);
     }
 
     @Override
