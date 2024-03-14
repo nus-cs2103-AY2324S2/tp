@@ -40,6 +40,8 @@ public class PatientCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane importantDates;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
@@ -55,5 +57,7 @@ public class PatientCard extends UiPart<Region> {
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        patient.getImportantDates().stream()
+                .forEach(importantDate -> importantDates.getChildren().add(new Label(importantDate.toString())));
     }
 }
