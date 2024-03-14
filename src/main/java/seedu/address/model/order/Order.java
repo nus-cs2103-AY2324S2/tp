@@ -56,6 +56,15 @@ public class Order {
         this.productMap.clear();
     }
 
+    /**
+     * Sets the ProductMap of the order.
+     *
+     * @param productMap ProductMap to set to
+     */
+    public void setProductMap(Map<Product, Quantity> productMap) {
+        this.productMap = productMap;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
