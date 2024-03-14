@@ -60,9 +60,11 @@ public class CommandTestUtil {
 
     public static final String INVALID_ID_DESC = " " + PREFIX_PID + "10 a"; // only digits are allowed in ID
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James& Lee Kuang"; // '&' not allowed in names
-    public static final String INVALID_PREFERRED_NAME_DESC = " " + PREFIX_PRENAME + "James&"; // '&' not allowed in phones
+    // '&' not allowed in preferred name
+    public static final String INVALID_PREFERRED_NAME_DESC = " " + PREFIX_PRENAME + "James&";
     public static final String INVALID_FOOD_DESC = " " + PREFIX_FOOD; // empty string not allowed for food description
-    public static final String INVALID_FAMILY_DESC = " " + PREFIX_FAMILY; // empty string not allowed for family condition
+    // empty string not allowed for family condition
+    public static final String INVALID_FAMILY_DESC = " " + PREFIX_FAMILY;
     public static final String INVALID_HOBBY_DESC = " " + PREFIX_HOBBY; // empty string not allowed for hobby
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hearing loss*"; // '*' not allowed in tags
 

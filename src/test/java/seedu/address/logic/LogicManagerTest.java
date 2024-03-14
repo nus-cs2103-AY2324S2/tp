@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.FAMILY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FOOD_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.HOBBY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PREFERRED_NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PREFERRED_NAME_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.AMY;
 
