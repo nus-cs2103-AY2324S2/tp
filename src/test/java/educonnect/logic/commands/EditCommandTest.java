@@ -104,24 +104,38 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateStudentUnfilteredList_failure() {
+    public void execute_duplicateStudentIdUnfilteredList_failure() {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
+        Student secondStudent = model.getFilteredStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(secondStudent)
+                .withStudentId(firstStudent.getStudentId().value).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT_ID);
     }
 
     @Test
-    public void execute_duplicateStudentFilteredList_failure() {
-        CommandTestUtil.showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+    public void execute_duplicateEmailUnfilteredList_failure() {
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student secondStudent = model.getFilteredStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
 
-        // edit student in filtered list into a duplicate in address book
-        Student studentInList = model.getAddressBook().getStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT,
-                new EditStudentDescriptorBuilder(studentInList).build());
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(secondStudent)
+                .withEmail(firstStudent.getEmail().value).build();
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EMAIL);
+    }
+    @Test
+    public void execute_duplicateTelegramHandleUnfilteredList_failure() {
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student secondStudent = model.getFilteredStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
+
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(secondStudent)
+                .withTelegramHandle(firstStudent.getTelegramHandle().value).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TELEGRAM_HANDLE);
     }
 
     @Test

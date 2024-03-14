@@ -49,9 +49,16 @@ public class EditCommand extends Command {
             + PREFIX_STUDENT_ID + "A1234567X "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS =
+            "Edited Student: %1$s";
+    public static final String MESSAGE_NOT_EDITED =
+            "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_STUDENT_ID =
+            "This student Id already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EMAIL =
+            "This email already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TELEGRAM_HANDLE =
+            "This telegram handle already exists in the address book";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -80,8 +87,14 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        if (!studentToEdit.isSameStudentId(editedStudent) && model.hasStudentId(editedStudent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT_ID);
+        }
+        if (!studentToEdit.isSameEmail(editedStudent) && model.hasEmail(editedStudent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+        if (!studentToEdit.isSameTelegramHandle(editedStudent) && model.hasTelegramHandle(editedStudent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TELEGRAM_HANDLE);
         }
 
         model.setStudent(studentToEdit, editedStudent);
@@ -137,10 +150,8 @@ public class EditCommand extends Command {
     public static class EditStudentDescriptor {
         private Name name;
         private StudentId studentId;
-        //private Phone phone;
         private Email email;
         private TelegramHandle telegramHandle;
-        //private Address address;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}

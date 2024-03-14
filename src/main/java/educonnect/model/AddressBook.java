@@ -60,11 +60,35 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with same unique identifier as {@code student} exists in the address book.
      */
-    public boolean hasStudent(Student student) {
+    public boolean hasSameUniqueIdentifier(Student student) {
         requireNonNull(student);
-        return students.contains(student);
+        return students.containsSameUniqueIdentifier(student);
+    }
+
+    /**
+     * Returns true if a student with same student id as {@code student} exists in the address book.
+     */
+    public boolean hasStudentId(Student student) {
+        requireNonNull(student);
+        return students.containsStudentId(student);
+    }
+
+    /**
+     * Returns true if a student with same email  as {@code student} exists in the address book.
+     */
+    public boolean hasEmail(Student student) {
+        requireNonNull(student);
+        return students.containsEmail(student);
+    }
+
+    /**
+     * Returns true if a student with same telegram handle  as {@code student} exists in the address book.
+     */
+    public boolean hasTelegramHandle(Student student) {
+        requireNonNull(student);
+        return students.containsTelegramHandle(student);
     }
 
     /**

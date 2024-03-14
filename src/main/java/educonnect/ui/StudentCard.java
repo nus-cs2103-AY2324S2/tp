@@ -33,11 +33,11 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label studentId;
-    @FXML
-    private Label handle;
+    private Label studentID;
     @FXML
     private Label email;
+    @FXML
+    private Label telegram;
     @FXML
     private FlowPane tags;
 
@@ -47,11 +47,10 @@ public class StudentCard extends UiPart<Region> {
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
-        id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        studentId.setText(student.getStudentId().value);
-        handle.setText(student.getTelegramHandle().value);
+        studentID.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
+        telegram.setText(student.getTelegramHandle().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
