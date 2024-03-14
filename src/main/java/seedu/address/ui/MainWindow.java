@@ -14,6 +14,13 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HelpDeleteCommand;
+import seedu.address.logic.commands.HelpEditCommand;
+import seedu.address.logic.commands.HelpPoochMaintenanceCommand;
+import seedu.address.logic.commands.HelpPoochStaffCommand;
+import seedu.address.logic.commands.HelpPoochSupplierCommand;
+import seedu.address.logic.commands.HelpSearchCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -34,6 +41,12 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private HelpPoochStaffWindow helpPoochStaffWindow;
+    private HelpPoochSupplierWindow helpPoochSupplierWindow;
+    private HelpPoochMaintenanceWindow helpPoochMaintenanceWindow;
+    private HelpDeleteWindow helpDeleteWindow;
+    private HelpEditWindow helpEditWindow;
+    private HelpSearchWindow helpSearchWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +79,12 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        helpPoochStaffWindow = new HelpPoochStaffWindow();
+        helpPoochSupplierWindow = new HelpPoochSupplierWindow();
+        helpPoochMaintenanceWindow = new HelpPoochMaintenanceWindow();
+        helpDeleteWindow = new HelpDeleteWindow();
+        helpEditWindow = new HelpEditWindow();
+        helpSearchWindow = new HelpSearchWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +166,54 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the help poochstaff window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handlePoochStaffHelp() {
+        helpPoochStaffWindow.show();
+    }
+
+    /**
+     * Opens the help poochsupplier window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handlePoochSupplierHelp() {
+        helpPoochSupplierWindow.show();
+    }
+
+    /**
+     * Opens the help delete window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleDeleteHelp() {
+        helpDeleteWindow.show();
+    }
+
+    /**
+     * Opens the help edit window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEditHelp() {
+        helpEditWindow.show();
+    }
+
+    /**
+     * Opens the help search window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSearchHelp() {
+        helpSearchWindow.show();
+    }
+
+    /**
+     * Opens the help pooch maintenance window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handlePoochMaintenanceHelp() {
+        helpPoochMaintenanceWindow.show();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -178,10 +245,38 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
+            String userFeedback = commandResult.getFeedbackToUser();
+            Boolean isHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpCommand.SHOWING_HELP_MESSAGE);
+            Boolean isPoochStaffHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpPoochStaffCommand.SHOWING_HELP_MESSAGE);
+            Boolean isPoochMaintenanceHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpPoochMaintenanceCommand.SHOWING_HELP_MESSAGE);
+            Boolean isPoochSupplierHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpPoochSupplierCommand.SHOWING_HELP_MESSAGE);
+            Boolean isDeleteHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpDeleteCommand.SHOWING_HELP_MESSAGE);
+            Boolean isEditHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpEditCommand.SHOWING_HELP_MESSAGE);
+            Boolean isSearchHelpCommand = commandResult.isShowHelp()
+                    && userFeedback.equals(HelpSearchCommand.SHOWING_HELP_MESSAGE);
 
+
+            if (isHelpCommand) {
+                handleHelp();
+            } else if (isPoochStaffHelpCommand) {
+                handlePoochStaffHelp();
+            } else if (isPoochSupplierHelpCommand) {
+                handlePoochSupplierHelp();
+            } else if (isDeleteHelpCommand) {
+                handleDeleteHelp();
+            } else if (isEditHelpCommand) {
+                handleEditHelp();
+            } else if (isSearchHelpCommand) {
+                handleSearchHelp();
+            } else if (isPoochMaintenanceHelpCommand) {
+                handlePoochMaintenanceHelp();
+            }
             if (commandResult.isExit()) {
                 handleExit();
             }

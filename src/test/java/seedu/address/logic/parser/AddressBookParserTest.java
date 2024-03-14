@@ -24,6 +24,12 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HelpDeleteCommand;
+import seedu.address.logic.commands.HelpEditCommand;
+import seedu.address.logic.commands.HelpPoochMaintenanceCommand;
+import seedu.address.logic.commands.HelpPoochStaffCommand;
+import seedu.address.logic.commands.HelpPoochSupplierCommand;
+import seedu.address.logic.commands.HelpSearchCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Maintainer;
@@ -122,6 +128,48 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_helpDelete() throws Exception {
+        assertTrue(parser.parseCommand(HelpDeleteCommand.COMMAND_WORD) instanceof HelpDeleteCommand);
+        assertTrue(parser.parseCommand(HelpDeleteCommand.COMMAND_WORD + " 3") instanceof HelpDeleteCommand);
+    }
+
+    @Test
+    public void parseCommand_helpEdit() throws Exception {
+        assertTrue(parser.parseCommand(HelpEditCommand.COMMAND_WORD) instanceof HelpEditCommand);
+        assertTrue(parser.parseCommand(HelpEditCommand.COMMAND_WORD + " 3") instanceof HelpEditCommand);
+    }
+
+    @Test
+    public void parseCommand_helpSearch() throws Exception {
+        assertTrue(parser.parseCommand(HelpSearchCommand.COMMAND_WORD) instanceof HelpSearchCommand);
+        assertTrue(parser.parseCommand(HelpSearchCommand.COMMAND_WORD + " 3") instanceof HelpSearchCommand);
+    }
+
+    @Test
+    public void parseCommand_helpPoochMaintenance() throws Exception {
+        assertTrue(parser.parseCommand(HelpPoochMaintenanceCommand.COMMAND_WORD)
+                instanceof HelpPoochMaintenanceCommand);
+        assertTrue(parser.parseCommand(HelpPoochMaintenanceCommand.COMMAND_WORD + " 3")
+                instanceof HelpPoochMaintenanceCommand);
+    }
+
+    @Test
+    public void parseCommand_helpPoochSupplier() throws Exception {
+        assertTrue(parser.parseCommand(HelpPoochSupplierCommand.COMMAND_WORD)
+                instanceof HelpPoochSupplierCommand);
+        assertTrue(parser.parseCommand(HelpPoochSupplierCommand.COMMAND_WORD + " 3")
+                instanceof HelpPoochSupplierCommand);
+    }
+
+    @Test
+    public void parseCommand_helpPoochStaff() throws Exception {
+        assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD) instanceof HelpPoochStaffCommand);
+        assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD + " 3")
+                instanceof HelpPoochStaffCommand);
+    }
+
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
@@ -131,4 +179,5 @@ public class AddressBookParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
 }
