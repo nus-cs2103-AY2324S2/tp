@@ -7,6 +7,7 @@
     "fundingStage": "A",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "note": "Add a note!",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "fundingStage": "A",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "note": "Add a note!",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "fundingStage": "A",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "note": "Add a note!",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "fundingStage": "A",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "note": "Add a note!",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "fundingStage": "A",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "note": "Add a note!",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "fundingStage": "A",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "note": "Add a note!",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "fundingStage": "A",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "note": "Add a note!",
     "tags" : [ ]
   } ]
 }
