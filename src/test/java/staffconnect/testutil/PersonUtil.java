@@ -1,8 +1,8 @@
 package staffconnect.testutil;
 
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,7 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_FACULTY + person.getFaculty().value+ " ");
+        sb.append(PREFIX_FACULTY + person.getFaculty().value + " ");
         sb.append(PREFIX_VENUE + person.getVenue().value + " ");
         sb.append(PREFIX_MODULE + person.getModule().value + " ");
         person.getTags().stream().forEach(

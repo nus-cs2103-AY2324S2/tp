@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_FACULTY_BOB;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -104,8 +104,8 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + "," + ", faculty=" + ALICE.getFaculty()
-                + "venue=" + ALICE.getVenue() + ", module=" + ALICE.getModule()
+                + ", email=" + ALICE.getEmail() + ", faculty=" + ALICE.getFaculty()
+                + ", venue=" + ALICE.getVenue() + ", module=" + ALICE.getModule()
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
