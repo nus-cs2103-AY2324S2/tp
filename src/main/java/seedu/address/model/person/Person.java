@@ -114,6 +114,7 @@ public class Person {
      */
     public Attribute getAttribute(String attributeName) {
         assertValidAttributeName(attributeName);
+        assertAttributeExistsInPerson(attributeName, attributes);
         return attributes.get(attributeName);
     }
     /**
