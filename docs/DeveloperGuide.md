@@ -243,6 +243,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Notifies user about duplicate inputs, ensures data consistency.
     * Cons: In the case of the addition of multiple existing or duplicate tags, users have to find and remove the duplicated tags from the given command, which would be cumbersome especially when there are many tags listed in the command.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 3.3 Adding Important Dates to a Patient
 
