@@ -9,6 +9,7 @@ public class Quantity {
     public int value;
 
     public Quantity(@JsonProperty("order") int value) {
+
         this.value = value;
     }
 
