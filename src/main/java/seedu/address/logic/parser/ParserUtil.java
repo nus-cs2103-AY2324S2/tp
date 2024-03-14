@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.YearJoined;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +121,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String yearJoined} into a {@code YearJoined}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code yearJoined} is invalid.
+     */
+    public static YearJoined parseYearJoined(String yearJoined) throws ParseException {
+        requireNonNull(yearJoined);
+        String trimmedYearJoined = yearJoined.trim();
+        if (!YearJoined.isValidYearJoined(trimmedYearJoined)) {
+            throw new ParseException(YearJoined.MESSAGE_CONSTRAINTS);
+        }
+        return new YearJoined(trimmedYearJoined);
     }
 }
