@@ -80,7 +80,7 @@ public class CourseMateTest {
         // different email -> returns false
         editedAlice = new CourseMateBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-        
+
         // different skills -> returns false
         editedAlice = new CourseMateBuilder(ALICE).withSkills(VALID_SKILL_REACT).build();
         assertFalse(ALICE.equals(editedAlice));
