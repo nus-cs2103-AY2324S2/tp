@@ -3,6 +3,7 @@ package staffconnect.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
@@ -29,6 +30,7 @@ public class PersonBuilder {
     private Venue venue;
     private Module module;
     private Set<Tag> tags;
+    private Set<Availability> availabilities;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +42,7 @@ public class PersonBuilder {
         venue = new Venue(DEFAULT_VENUE);
         module = new Module(DEFAULT_MODULE);
         tags = new HashSet<>();
+        availabilities = new HashSet<>();
     }
 
     /**
@@ -52,6 +55,7 @@ public class PersonBuilder {
         venue = personToCopy.getVenue();
         module = personToCopy.getModule();
         tags = new HashSet<>(personToCopy.getTags());
+        availabilities = new HashSet<>(personToCopy.getAvailabilities());
     }
 
     /**
@@ -102,8 +106,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code availabilities} into a {@code Set<Availability>} and set it to the
+     * {@code Person} that we are building.
+     */
+    public PersonBuilder withAvailabilities(String ... availabilities) {
+        this.availabilities = SampleDataUtil.getAvailabilitySet(availabilities);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, venue, module, tags);
+        return new Person(name, phone, email, venue, module, tags, availabilities);
     }
 
 }
