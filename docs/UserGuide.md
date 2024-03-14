@@ -133,21 +133,23 @@ Examples:
 
 ### Locating students by name: `find`
 
-Finds students whose names contain any of the given keywords.
+
+Find students whose names contain any of the given keywords.
+
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  * Students with names matching any parts of the keyword will be returned.
+    e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`,`J` will return `John Doe`, `Jimmy Lim`.
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlex.png)
+
 
 ### Deleting a student : `delete`
 
