@@ -236,7 +236,7 @@ public class PersonTest {
         assertFalse(aliceCopy.hasAttribute("Name"));
     }
     @Test
-    public void Person_NameAttribute() {
+    public void Person_nameAttribute() {
         NameAttribute name = new NameAttribute("Name", "Alice Pauline");
         BirthdayAttribute birthday = new BirthdayAttribute(
                 "Birthday",
@@ -247,5 +247,17 @@ public class PersonTest {
         assertEquals(
                 LocalDate.of(1999, 1, 1).toString(),
                 aliceCopy.getAttribute("Birthday").getValueAsString());
+    }
+
+    @Test
+    public void allAttributesAsString() {
+        NameAttribute name = new NameAttribute("Name", "Alice Pauline");
+        BirthdayAttribute birthday = new BirthdayAttribute(
+                "Birthday",
+                LocalDate.of(1999, 1, 1));
+        Person aliceCopy = new Person(new Attribute[]{name, birthday});
+        assertEquals(
+                "Name: Alice Pauline\nBirthday: 1999-01-01",
+                aliceCopy.allAttributesAsString());
     }
 }
