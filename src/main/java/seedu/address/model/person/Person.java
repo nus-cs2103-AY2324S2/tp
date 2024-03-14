@@ -59,18 +59,30 @@ public class Person {
     }
 
     public Name getName() { //Earmarked for deprecation - superseded by getAttribute - name should be optional
+        if (!attributes.containsKey("Name")) {
+            return new Name("<no name>");
+        }
         return new Name(attributes.get("Name").getValueAsString());
     }
 
     public Phone getPhone() { //Earmarked for deprecation - superseded by getAttribute - phone should be optional
+        if (!attributes.containsKey("Phone")) {
+            return new Phone("<no phone>");
+        }
         return new Phone(attributes.get("Phone").getValueAsString());
     }
 
     public Email getEmail() { //Earmarked for deprecation - superseded by getAttribute - email should be optional
+        if (!attributes.containsKey("Email")) {
+            return new Email("<no email>");
+        }
         return new Email(attributes.get("Email").getValueAsString());
     }
 
     public Address getAddress() { //Earmarked for deprecation - superseded by getAttribute - address should be optional
+        if (!attributes.containsKey("Address")) {
+            return new Address("<no address>");
+        }
         return new Address(attributes.get("Address").getValueAsString());
     }
 
@@ -79,6 +91,9 @@ public class Person {
      * if modification is attempted.
      */
     public Set<Tag> getTags() { //Earmarked for deprecation - to be superseded by relations
+        if (tags.isEmpty()) {
+            return Collections.unmodifiableSet(new HashSet<>());
+        }
         return Collections.unmodifiableSet(tags);
     }
     /**
@@ -234,11 +249,11 @@ public class Person {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("uuid", uuid)
-                .add("name", attributes.get("Name").getValueAsString())
-                .add("phone", attributes.get("Phone").getValueAsString())
-                .add("email", attributes.get("Email").getValueAsString())
-                .add("address", attributes.get("Address").getValueAsString())
-                .add("tags", tags) // Earmarked for deprecation - to be superseded by relations
+                .add("name", getName().toString())
+                .add("phone", getPhone().toString())
+                .add("email", getEmail().toString())
+                .add("address", getAddress().toString())
+                .add("tags", getTags()) // Earmarked for deprecation - to be superseded by relations
                 .toString();
     }
 
