@@ -441,6 +441,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to tag a specific contact to a tutorial group.
 2.  AddressBook tags the contact to the tutorial group.
 
+    Use case ends.
+
 **Extensions**
 
 * 1a. User uses the wrong format in his request.
