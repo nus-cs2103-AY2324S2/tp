@@ -80,9 +80,17 @@ class ViewCommandTest {
 
     @Test
     public void toString_validIndex_success() {
+        // Create an Index object
         Index index = Index.fromZeroBased(3);
+
+        // Create a ViewCommand object using the Index
         ViewCommand viewCommand = new ViewCommand(index);
-        String expectedToString = "seedu.address.logic.commands.ViewCommand{targetIndex=seedu.address.commons.core.index.Index{zeroBasedIndex=3}}";
+
+        // Create the expected string representation using variables
+        String expectedToString = String.format("seedu.address.logic.commands.ViewCommand{targetIndex=%s}", index);
+
+        // Perform the assertion
         assertEquals(expectedToString, viewCommand.toString());
     }
+
 }
