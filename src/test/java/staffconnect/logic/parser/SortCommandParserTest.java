@@ -23,20 +23,22 @@ public class SortCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsSortCommand() {
-        // no leading and trailing whitespaces
-        SortCommand expectedSortCommand = new SortCommand(new Comparator<Person>() {
+        Comparator<Person> temp = new Comparator<Person>() {
             @Override
             public int compare(Person person1, Person person2) {
                 return person1.getVenue().toString().compareToIgnoreCase(person2.getVenue().toString());
             }
-        });
-        assertParseSuccess(parser, " /n", expectedSortCommand);
+        };
+        SortCommand expectedSortCommand = new SortCommand(temp);
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " v/ ", expectedSortCommand);
 
         // multiple whitespaces before and after keywords
-        assertParseSuccess(parser, "   /n     ", expectedSortCommand);
+        assertParseSuccess(parser, "   v/     ", expectedSortCommand);
 
-        //different attribute called
-        assertParseSuccess(parser, "   /p     ", expectedSortCommand);
+
+        assertParseFailure(parser, "   /p     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SortCommand.MESSAGE_USAGE));
     }
 
 }

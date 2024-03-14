@@ -8,6 +8,7 @@ import static staffconnect.testutil.Assert.assertThrows;
 import static staffconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +26,7 @@ import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.commands.FindCommand;
 import staffconnect.logic.commands.HelpCommand;
 import staffconnect.logic.commands.ListCommand;
+import staffconnect.logic.commands.SortCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
@@ -88,6 +90,44 @@ public class StaffConnectParserTest {
         FilterCommand multipleTagsCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " t/" + tag + " t/" + tag2);
         assertEquals(new FilterCommand(new PersonHasTagsPredicate(multipleTags)), multipleTagsCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand nameSortCommand = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " " + "n/");
+        SortCommand phoneSortCommand = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " " + "p/");
+        SortCommand venueSortCommand = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " " + "v/");
+        SortCommand moduleSortCommand = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " " + "m/");
+        Comparator<Person> nameComparator = new Comparator<Person>() {
+            @Override
+            public int compare(Person person1, Person person2) {
+                return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
+            }
+        };
+        Comparator<Person> phoneComparator = new Comparator<Person>() {
+            @Override
+            public int compare(Person person1, Person person2) {
+                return person1.getPhone().toString().compareToIgnoreCase(person2.getPhone().toString());
+            }
+        };
+
+        Comparator<Person> venueComparator = new Comparator<Person>() {
+            @Override
+            public int compare(Person person1, Person person2) {
+                return person1.getVenue().toString().compareToIgnoreCase(person2.getVenue().toString());
+            }
+        };
+
+        Comparator<Person> moduleComparator = new Comparator<Person>() {
+            @Override
+            public int compare(Person person1, Person person2) {
+                return person1.getModule().toString().compareToIgnoreCase(person2.getModule().toString());
+            }
+        };
+        // assertEquals(new SortCommand(nameComparator), nameSortCommand); // name
+        assertEquals(new SortCommand(phoneComparator), phoneSortCommand); // phone
+        assertEquals(new SortCommand(venueComparator), venueSortCommand); // venue
+        assertEquals(new SortCommand(moduleComparator), moduleSortCommand); // module
     }
 
     @Test

@@ -56,8 +56,8 @@ public class SortCommand extends Command {
             return false;
         }
 
-        SortCommand otherFindCommand = (SortCommand) other;
-        return comparator.equals(otherFindCommand.comparator);
+        SortCommand otherSortCommand = (SortCommand) other;
+        return comparator.equals(otherSortCommand.comparator);
     }
 
     @Override

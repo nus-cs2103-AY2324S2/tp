@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
 import staffconnect.model.UserPrefs;
-import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
 
 /**
@@ -42,7 +40,7 @@ public class SortCommandTest {
         SortCommand sortSecondCommand = new SortCommand(secondComparator);
 
         // same object -> returns true
-        assertTrue(sortFirstCommand.equals(sortSecondCommand));
+        assertTrue(sortFirstCommand.equals(sortFirstCommand));
 
         // same values -> returns true
         SortCommand sortFirstCommandCopy = new SortCommand(firstComparator);
@@ -60,10 +58,15 @@ public class SortCommandTest {
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindCommand findCommand = new FindCommand(predicate);
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertEquals(expected, findCommand.toString());
+        Comparator<Person> comparator = new Comparator<Person>() {
+            @Override
+            public int compare(Person person1, Person person2) {
+                return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
+            }
+        };
+        SortCommand sortCommand = new SortCommand(comparator);
+        String expected = SortCommand.class.getCanonicalName() + "{comparator=" + comparator + "}";
+        assertEquals(expected, sortCommand.toString());
     }
 
 }
