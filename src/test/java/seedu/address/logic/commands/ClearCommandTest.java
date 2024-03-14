@@ -16,9 +16,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, "Are you sure you want to clear the address book? Use\n"
-                + "clear --force\n"
-                + "to confirm clearing of the address book.", expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_CONFIRM, expectedModel);
     }
 
     @Test
