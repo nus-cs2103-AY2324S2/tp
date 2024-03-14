@@ -23,14 +23,25 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
+    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Patient %1$s with ID %2$s has been "
+            + "successfully deleted.";
 
     private final Index targetIndex;
 
+    /**
+     * DeleteCommand Constructor.
+     * @param targetIndex Index of the list in the address book.
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Returns CommandResult containing success message.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult containing success message.
+     * @throws CommandException When the provided index is invalid.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -42,7 +53,9 @@ public class DeleteCommand extends Command {
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePatient(patientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, Messages.format(patientToDelete)));
+        return new CommandResult(
+                String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete.getName(), targetIndex.getOneBased())
+        );
     }
 
     @Override
