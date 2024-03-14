@@ -21,10 +21,10 @@ public class ModuleTest {
 
     @Test
     public void isValidModule() {
-        // null phone number
+        // null module code
         assertThrows(NullPointerException.class, () -> Module.isValidModule(null));
 
-        // invalid phone numbers
+        // invalid module code
         assertFalse(Module.isValidModule("")); // empty string
         assertFalse(Module.isValidModule(" ")); // spaces only
         assertFalse(Module.isValidModule("ABCD")); // letters only
@@ -38,7 +38,7 @@ public class ModuleTest {
         assertFalse(Module.isValidModule("cs2103t")); // suffix not capitalised
         assertFalse(Module.isValidModule("cs2103T")); // prefix not capitalised
 
-        // valid phone numbers
+        // valid module code
         assertTrue(Module.isValidModule("CS2103")); // 2 prefix, 4 letters without 1 optional suffix
         assertTrue(Module.isValidModule("CS2103T")); // 2 prefix, 4 letters with 1 optional suffix
         assertTrue(Module.isValidModule("GEN2050")); // 3 prefix, 4 letters without  1 optional suffix
