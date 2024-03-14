@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.FundingStageContainsKeywordsPredicate;
+import seedu.address.model.person.IndustryContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -19,15 +21,36 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        FindCommand findCommand = null;
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME,
+                        CliSyntax.PREFIX_INDUSTRY,
+                        CliSyntax.PREFIX_FUNDING_STAGE
+                );
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        String[] nameKeywords = new String[0];
+        String[] industryKeywords = new String[0];
+        String[] fundingStageKeywords = new String[0];
+        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
+            nameKeywords = argMultimap.getValue(CliSyntax.PREFIX_NAME).get().split("\\s+");
+            findCommand = new FindCommand(new NameContainsKeywordsPredicate((Arrays.asList(nameKeywords))));
+        }
+        if (argMultimap.getValue(CliSyntax.PREFIX_INDUSTRY).isPresent()) {
+            industryKeywords = argMultimap.getValue(CliSyntax.PREFIX_INDUSTRY).get().split("\\s+");
+            findCommand = new FindCommand(new IndustryContainsKeywordsPredicate((Arrays.asList(industryKeywords))));
+        }
+        if (argMultimap.getValue(CliSyntax.PREFIX_FUNDING_STAGE).isPresent()) {
+            fundingStageKeywords = argMultimap.getValue(CliSyntax.PREFIX_FUNDING_STAGE).get().split("\\s+");
+            findCommand = new FindCommand(new FundingStageContainsKeywordsPredicate((Arrays.asList(fundingStageKeywords))));
+        }
+
+        return findCommand;
     }
 
 }
