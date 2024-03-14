@@ -117,28 +117,28 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String illness} into a {@code Illness}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Illness parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Illness.isValidIllnessName(trimmedTag)) {
+    public static Illness parseIllness(String illness) throws ParseException {
+        requireNonNull(illness);
+        String trimmedIllness = illness.trim();
+        if (!Illness.isValidIllnessName(trimmedIllness)) {
             throw new ParseException(Illness.MESSAGE_CONSTRAINTS);
         }
-        return new Illness(trimmedTag);
+        return new Illness(trimmedIllness);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Illness> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
+    public static Set<Illness> parseIllnesses(Collection<String> illnesses) throws ParseException {
+        requireNonNull(illnesses);
         final Set<Illness> illnessSet = new HashSet<>();
-        for (String tagName : tags) {
-            illnessSet.add(parseTag(tagName));
+        for (String illnessName : illnesses) {
+            illnessSet.add(parseIllness(illnessName));
         }
         return illnessSet;
     }

@@ -53,7 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Illness> illnessList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ILLNESS));
+        Set<Illness> illnessList = ParserUtil.parseIllnesses(argMultimap.getAllValues(PREFIX_ILLNESS));
 
         Person person = new Person(nric, name, phone, email, address, illnessList, FXCollections.observableArrayList());
 

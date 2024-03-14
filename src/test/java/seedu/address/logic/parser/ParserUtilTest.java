@@ -29,7 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ILLNESS = "#illness";
     private static final String INVALID_DATE = "2024-02-19";
     private static final String INVALID_TIME = "5006";
     private static final String INVALID_DESCRIPTION = "";
@@ -38,8 +38,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_ILLNESS_1 = "Infectious Disease";
+    private static final String VALID_ILLNESS_2 = "Chronic Conditions";
     private static final String VALID_DATE = "19-02-2024";
     private static final String VALID_TIME = "1130";
     private static final String VALID_DESCRIPTION = "General Flu";
@@ -159,47 +159,47 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseIllness_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIllness(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseIllness_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIllness(INVALID_ILLNESS));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Illness expectedIllness = new Illness(VALID_TAG_1);
-        assertEquals(expectedIllness, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseIllness_validValueWithoutWhitespace_returnsIllness() throws Exception {
+        Illness expectedIllness = new Illness(VALID_ILLNESS_1);
+        assertEquals(expectedIllness, ParserUtil.parseIllness(VALID_ILLNESS_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Illness expectedIllness = new Illness(VALID_TAG_1);
-        assertEquals(expectedIllness, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseIllness_validValueWithWhitespace_returnsTrimmedIllness() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_ILLNESS_1 + WHITESPACE;
+        Illness expectedIllness = new Illness(VALID_ILLNESS_1);
+        assertEquals(expectedIllness, ParserUtil.parseIllness(tagWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseIllnesses_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIllnesses(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseIllnesses_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIllnesses(Arrays.asList(VALID_ILLNESS_1, INVALID_ILLNESS)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseIllnesses_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseIllnesses(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Illness> actualIllnessSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Illness> expectedIllnessSet = new HashSet<>(Arrays.asList(new Illness(VALID_TAG_1), new Illness(VALID_TAG_2)));
+    public void parseIllnesses_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<Illness> actualIllnessSet = ParserUtil.parseIllnesses(Arrays.asList(VALID_ILLNESS_1, VALID_ILLNESS_2));
+        Set<Illness> expectedIllnessSet = new HashSet<>(Arrays.asList(new Illness(VALID_ILLNESS_1), new Illness(VALID_ILLNESS_2)));
 
         assertEquals(expectedIllnessSet, actualIllnessSet);
     }
