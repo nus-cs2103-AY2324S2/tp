@@ -320,7 +320,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Small business owners in the crochet industry.
+* Florists.
 * Prefers efficient ways to manage customer lists.
 * Values productivity and time-saving solutions.
 
@@ -344,34 +344,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                        | I want to …                                                              | So that I can…                                                                                                 |
-|----------|-------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| `* * *`  | Florist                       | easily add new customers to my address book                              | keep track of all my clients' information in one place.                                                        |
-| `* * *`  | Florist                     | have a search function                                                   | quickly find specific customers when I need to reference their details.                                        |
-| `* * *`  | Florist              | be accessible via a command-line interface                               | efficiently manage my customer list without navigating through complex menus.                                  |
-| `* * *`  | Florist        | have customizable fields                                                 | record specific details about each customer, such as their favorite colors or special requests.                |
-| `* * *`  | Florist           | be cost-effective and easy to use                                        | maximize productivity without investing in expensive CRM systems.                                              |
-| `* * *`  | Florist        | have data backup and synchronization capabilities                        | access my customer information from multiple devices and ensure its security.                                  |
-| `* * *`  | Florist          | have secure access controls and permissions settings                     | restrict sensitive information and ensure data privacy compliance.                                             |
-| `* *`    | Florist        | categorize my customers                                                  | tailor my marketing efforts accordingly based on factors like their preferred crochet items or past purchases. |
-| `* *`    | Florist          | generate reports on customer activity                                    | analyze trends and make informed business decisions based on order history and frequency of purchases.         |
-| `* *`    | Florist          | have a reminder feature                                                  | stay organized and follow up with customers on important dates, such as birthdays or anniversaries.            |
-| `* *`    | Florist          | have customizable templates for invoices and receipts                    | easily generate and send professional-looking documents to my customers.                                       |
-| `* *`    | Florist | have a notes section for each customer                                   | record specific preferences and requirements for their projects.                                               |
-| `* *`    | Florist          | integrate with accounting software                                       | easily track expenses related to each customer and maintain accurate financial records.                        |
-| `*`      | Florist                     | have a mobile-friendly interface                                         | easily access customer information on the go and process orders efficiently.                                   |
-| `*`      | Florist                     | integrate with my email client                                           | send personalized messages and promotions to my customers directly from the platform.                          |
-| `*`      | Florist                     | integrate with e-commerce platforms                                      | automatically sync customer data and manage orders efficiently when participating in online marketplaces.      |
-| `*`      | Florist        | track communication history with customers                               | provide personalized and timely customer service including emails and phone calls.                             |
-| `*`      | Florist        | support multiple user accounts with shared access                        | my team members can collaborate on managing customer relationships.                                            |
-| `*`      | Florist                     | have a scheduling feature                                                | manage registrations and communicate updates with attendees seamlessly.                                        |
-| `*`      | Florist                     | have a feature for scanning and capturing customer contact information   | grow my mailing list and follow up with potential leads quickly.                                               |
-| `*`      | Florist                     | integrate with social media platforms                                    | easily connect with customers and engage with them through various channels.                                   |
-| `*`      | Florist        | provide insights into customer demographics and preferences              | tailor my product offerings and marketing campaigns to target specific audiences effectively.                  |
-| `*`      | Florist          | provide analytics and insights on customer behavior                      | continuously improve my products and services to meet customer needs based on purchase patterns and feedback.  |
-| `*`      | Florist        | provide insights into customer satisfaction through feedback and reviews | address any concerns and improve the overall customer experience.                                              |
-| `*`      | Florist          | offer customizable tags or labels for customers                          | segment my audience and target specific groups with tailored marketing campaigns.                              |
-| `*`      | Florist             | have a good out of the box experience                                    | immediately use the application without needing to configure it for my own needs.                              |
+| Priority | As a …                        | I want to …                                                              | So that I can…                                                                                                |
+|----------|-------------------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `* * *`  | Florist                       | easily add new customers to my address book                              | keep track of all my clients' information in one place.                                                       |
+| `* * *`  | Florist                     | have a search function                                                   | quickly find specific customers when I need to reference their details.                                       |
+| `* * *`  | Florist              | be accessible via a command-line interface                               | efficiently manage my customer list without navigating through complex menus.                                 |
+| `* * *`  | Florist        | have customizable fields                                                 | record specific details about each customer, such as their favorite colors or special requests.               |
+| `* * *`  | Florist           | be cost-effective and easy to use                                        | maximize productivity without investing in expensive CRM systems.                                             |
+| `* * *`  | Florist        | have data backup and synchronization capabilities                        | access my customer information from multiple devices and ensure its security.                                 |
+| `* * *`  | Florist          | have secure access controls and permissions settings                     | restrict sensitive information and ensure data privacy compliance.                                            |
+| `* *`    | Florist        | categorize my customers                                                  | tailor my marketing efforts accordingly based on factors like their preferred flowers or past purchases. |
+| `* *`    | Florist          | generate reports on customer activity                                    | analyze trends and make informed business decisions based on order history and frequency of purchases.        |
+| `* *`    | Florist          | have a reminder feature                                                  | stay organized and follow up with customers on important dates, such as birthdays or anniversaries.           |
+| `* *`    | Florist          | have customizable templates for invoices and receipts                    | easily generate and send professional-looking documents to my customers.                                      |
+| `* *`    | Florist | have a notes section for each customer                                   | record specific preferences and requirements for their projects.                                              |
+| `* *`    | Florist          | integrate with accounting software                                       | easily track expenses related to each customer and maintain accurate financial records.                       |
+| `*`      | Florist                     | have a mobile-friendly interface                                         | easily access customer information on the go and process orders efficiently.                                  |
+| `*`      | Florist                     | integrate with my email client                                           | send personalized messages and promotions to my customers directly from the platform.                         |
+| `*`      | Florist                     | integrate with e-commerce platforms                                      | automatically sync customer data and manage orders efficiently when participating in online marketplaces.     |
+| `*`      | Florist        | track communication history with customers                               | provide personalized and timely customer service including emails and phone calls.                            |
+| `*`      | Florist        | support multiple user accounts with shared access                        | my team members can collaborate on managing customer relationships.                                           |
+| `*`      | Florist                     | have a scheduling feature                                                | manage registrations and communicate updates with attendees seamlessly.                                       |
+| `*`      | Florist                     | have a feature for scanning and capturing customer contact information   | grow my mailing list and follow up with potential leads quickly.                                              |
+| `*`      | Florist                     | integrate with social media platforms                                    | easily connect with customers and engage with them through various channels.                                  |
+| `*`      | Florist        | provide insights into customer demographics and preferences              | tailor my product offerings and marketing campaigns to target specific audiences effectively.                 |
+| `*`      | Florist          | provide analytics and insights on customer behavior                      | continuously improve my products and services to meet customer needs based on purchase patterns and feedback. |
+| `*`      | Florist        | provide insights into customer satisfaction through feedback and reviews | address any concerns and improve the overall customer experience.                                             |
+| `*`      | Florist          | offer customizable tags or labels for customers                          | segment my audience and target specific groups with tailored marketing campaigns.                             |
+| `*`      | Florist             | have a good out of the box experience                                    | immediately use the application without needing to configure it for my own needs.                             |
 
 
 ### Use cases
