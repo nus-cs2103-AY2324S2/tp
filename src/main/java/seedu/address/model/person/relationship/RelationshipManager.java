@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Manages all the relationships of a person
+ */
 public class RelationshipManager {
     private Map<String, List<Relationship>> relationships; //overall hashmap where string is the relationship type
 
