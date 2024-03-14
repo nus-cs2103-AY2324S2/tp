@@ -1,18 +1,20 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_HUSBAND;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
+
 import seedu.address.logic.commands.GroupCommand;
 import seedu.address.model.person.NusId;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.GroupPersonDescriptorBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_FRIEND;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+
 
 class GroupCommandParserTest {
 
