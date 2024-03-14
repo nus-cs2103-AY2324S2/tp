@@ -14,7 +14,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ClearCommand parse(String args) throws ParseException {
-        if (args.equalsIgnoreCase(" --force")) {
+        if (args.contains(" --force")) {
             return new ClearCommand(true);
         }
         return new ClearCommand(false);
