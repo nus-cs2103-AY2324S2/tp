@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -27,6 +28,8 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_ID_AMY = "12345";
+    public static final String VALID_ID_BOB = "12346";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PREFERRED_NAME_AMY = "Amy";
@@ -40,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_DIABETES = "diabetes";
     public static final String VALID_TAG_DEPRESSION = "depression";
 
+    public static final String ID_DESC_AMY = " " + PREFIX_PID + VALID_ID_AMY;
+    public static final String ID_DESC_BOB = " " + PREFIX_PID + VALID_ID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PREFERRED_NAME_DESC_AMY = " " + PREFIX_PRENAME + VALID_PREFERRED_NAME_AMY;
@@ -53,6 +58,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_DIABETES = " " + PREFIX_TAG + VALID_TAG_DIABETES;
     public static final String TAG_DESC_DEPRESSION = " " + PREFIX_TAG + VALID_TAG_DEPRESSION;
 
+    public static final String INVALID_ID_DESC = " " + PREFIX_PID + "10 a"; // only digits are allowed in ID
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James& Lee Kuang"; // '&' not allowed in names
     public static final String INVALID_PREFERRED_NAME_DESC = " " + PREFIX_PRENAME + "James&"; // '&' not allowed in phones
     public static final String INVALID_FOOD_DESC = " " + PREFIX_FOOD; // empty string not allowed for food description
@@ -68,11 +74,13 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPreferredName(VALID_PREFERRED_NAME_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withPreferredName(VALID_PREFERRED_NAME_AMY).withFoodPreference(VALID_FOOD_AMY)
+                .withFamilyCondition(VALID_FAMILY_CONDITION_AMY).withHobby(VALID_HOBBY_AMY)
+                .withTags(VALID_TAG_DIABETES).build();
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPreferredName(VALID_PREFERRED_NAME_BOB).withFoodPreference(VALID_FOOD_BOB)
+                .withFamilyCondition(VALID_FAMILY_CONDITION_BOB).withHobby(VALID_HOBBY_BOB)
+                .withTags(VALID_TAG_DEPRESSION, VALID_TAG_DIABETES).build();
     }
 
     /**
