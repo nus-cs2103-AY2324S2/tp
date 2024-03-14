@@ -14,12 +14,12 @@ class RoleBasedRelationship extends Relationship {
 
     // Add role for a person
     public void addRole(UUID personUuid, String role) {
-        roles.put(personUUID, role);
+        roles.put(personUuid, role);
     }
 
     // Get role for a person
     public String getRole(UUID personUuid) {
-        return roles.get(personUUID);
+        return roles.get(personUuid);
     }
 }
 
