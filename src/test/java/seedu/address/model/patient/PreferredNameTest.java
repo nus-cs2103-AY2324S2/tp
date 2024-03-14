@@ -6,51 +6,51 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressTest {
+public class PreferredNameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Address(null));
+        assertThrows(NullPointerException.class, () -> new PreferredName(null));
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
+    public void constructor_invalidPreferredName_throwsIllegalArgumentException() {
+        String invalidPreferredName = "";
+        assertThrows(IllegalArgumentException.class, () -> new PreferredName(invalidPreferredName));
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidPreferredName() {
         // null address
-        assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
+        assertThrows(NullPointerException.class, () -> PreferredName.isValidPreferredName(null));
 
-        // invalid addresses
-        assertFalse(Address.isValidAddress("")); // empty string
-        assertFalse(Address.isValidAddress(" ")); // spaces only
+        // invalid preferred name
+        assertFalse(PreferredName.isValidPreferredName("")); // empty string
+        assertFalse(PreferredName.isValidPreferredName(" ")); // spaces only
 
-        // valid addresses
-        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // valid preferred name
+        assertTrue(PreferredName.isValidPreferredName("Kenny"));
+        assertTrue(PreferredName.isValidPreferredName("-")); // one character
+        assertTrue(PreferredName.isValidPreferredName("Ah Ken")); // with spaces
     }
 
     @Test
     public void equals() {
-        Address address = new Address("Valid Address");
+        PreferredName preferredName = new PreferredName("Valid Preferred Name");
 
         // same values -> returns true
-        assertTrue(address.equals(new Address("Valid Address")));
+        assertTrue(preferredName.equals(new PreferredName("Valid Preferred Name")));
 
         // same object -> returns true
-        assertTrue(address.equals(address));
+        assertTrue(preferredName.equals(preferredName));
 
         // null -> returns false
-        assertFalse(address.equals(null));
+        assertFalse(preferredName.equals(null));
 
         // different types -> returns false
-        assertFalse(address.equals(5.0f));
+        assertFalse(preferredName.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(address.equals(new Address("Other Valid Address")));
+        assertFalse(preferredName.equals(new PreferredName("Other Valid Preferred Name")));
     }
 }

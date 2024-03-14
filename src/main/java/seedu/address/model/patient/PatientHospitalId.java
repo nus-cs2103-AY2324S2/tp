@@ -16,7 +16,7 @@ public class PatientHospitalId {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[1-9]\\d*$\n";
+    public static final String VALIDATION_REGEX = "^[0-9]\\d*$\n";
 
     public final String patientHospitalId;
 
@@ -56,7 +56,7 @@ public class PatientHospitalId {
         }
 
         PatientHospitalId otherId = (PatientHospitalId) other;
-        return patientHospitalId == otherId.patientHospitalId;
+        return patientHospitalId.equals(otherId.patientHospitalId);
     }
 
     @Override

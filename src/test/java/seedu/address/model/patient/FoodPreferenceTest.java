@@ -6,55 +6,52 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class PhoneTest {
+public class FoodPreferenceTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Phone(null));
+        assertThrows(NullPointerException.class, () -> new FoodPreference(null));
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new Phone(invalidPhone));
+    public void constructor_invalidFoodPreference_throwsIllegalArgumentException() {
+        String invalidFoodPreference = "";
+        assertThrows(IllegalArgumentException.class, () -> new FoodPreference(invalidFoodPreference));
     }
 
     @Test
-    public void isValidPhone() {
-        // null phone number
-        assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
+    public void isValidFoodPreference() {
+        // null food preference
+        assertThrows(NullPointerException.class, () -> FoodPreference.isValidFood(null));
 
-        // invalid phone numbers
-        assertFalse(Phone.isValidPhone("")); // empty string
-        assertFalse(Phone.isValidPhone(" ")); // spaces only
-        assertFalse(Phone.isValidPhone("91")); // less than 3 numbers
-        assertFalse(Phone.isValidPhone("phone")); // non-numeric
-        assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
-        assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
+        // invalid food preference
+        assertFalse(FoodPreference.isValidFood("")); // empty string
+        assertFalse(FoodPreference.isValidFood(" ")); // spaces only
+        assertFalse(FoodPreference.isValidFood("91")); // non-alphabets
+        assertFalse(FoodPreference.isValidFood("12pasta")); // digits within alphabets
 
-        // valid phone numbers
-        assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+        // valid food preference
+        assertTrue(FoodPreference.isValidFood("chicken rice")); // with spaces
+        assertTrue(FoodPreference.isValidFood("pasta")); // without spaces
     }
 
     @Test
     public void equals() {
-        Phone phone = new Phone("999");
+        FoodPreference foodPreference = new FoodPreference("pasta");
 
         // same values -> returns true
-        assertTrue(phone.equals(new Phone("999")));
+        assertTrue(foodPreference.equals(new FoodPreference("pasta")));
 
         // same object -> returns true
-        assertTrue(phone.equals(phone));
+        assertTrue(foodPreference.equals(foodPreference));
 
         // null -> returns false
-        assertFalse(phone.equals(null));
+        assertFalse(foodPreference.equals(null));
 
         // different types -> returns false
-        assertFalse(phone.equals(5.0f));
+        assertFalse(foodPreference.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(phone.equals(new Phone("995")));
+        assertFalse(foodPreference.equals(new FoodPreference("spaghetti")));
     }
 }
