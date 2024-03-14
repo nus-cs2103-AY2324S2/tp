@@ -13,6 +13,7 @@
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
@@ -31,7 +32,12 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <FlowPane fx:id="importantDates" />
     </VBox>
+
+    <FlowPane fx:id="importantDates" GridPane.columnIndex="1" alignment="CENTER_RIGHT" >
+      <padding>
+        <Insets top="0" right="50" bottom="0" left="0" />
+      </padding>
+    </FlowPane>
   </GridPane>
 </HBox>
