@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import seedu.address.model.order.Product;
@@ -10,7 +11,6 @@ public class OrderBuilder {
     public static final int DEFAULT_ID = 1;
 
     private int id;
-
     private Map<Product,Quantity> productMap;
 
     /**
@@ -18,6 +18,7 @@ public class OrderBuilder {
      */
     public OrderBuilder() {
         id = DEFAULT_ID;
+        productMap = new HashMap<>();
     }
 
     /**
@@ -36,10 +37,15 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the productMap of the {@code Order} that we are building.
+     * Adds to the productMap of the {@code Order} that we are building.
+     *
+     * @param product the name of the product to add
+     * @param quantity the number of the products to add
      */
-    public OrderBuilder withProductMap(Map<Product, Quantity> productMap) {
-        this.productMap = productMap;
+    public OrderBuilder withProductQuantity(String product, String quantity) {
+        Product productToAdd = new Product(product);
+        Quantity quantityToAdd = new Quantity(Integer.parseInt(quantity));
+        this.productMap.put(productToAdd, quantityToAdd);
         return this;
     }
 

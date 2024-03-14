@@ -126,6 +126,7 @@ public class Order {
     public void setProductMap(Map<Product, Quantity> productMap) {
         this.productMap = productMap;
     }
+
     /**
      * Checks if the product map is empty.
      * @return boolean value of whether the product map is empty.

@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -28,6 +30,12 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_PRODUCT_CUPCAKE = "Cupcake";
+    public static final String VALID_PRODUCT_COOKIE = "Cookie";
+    public static final String VALID_PRODUCT_DOUGHNUT = "Doughnut";
+    public static final String VALID_QUANTITY_ONE = "1";
+    public static final String VALID_QUANTITY_TWO = "2";
+    public static final String VALID_QUANTITY_THREE = "3";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -49,6 +57,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_PRODUCT_DESC = " " + PREFIX_PRODUCT_NAME + "Cupcakes&"; // '&' not allowed
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_PRODUCT_QUANTITY + "a"; // 'a' not allowed
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses

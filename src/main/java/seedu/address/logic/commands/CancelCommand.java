@@ -31,15 +31,15 @@ public class CancelCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Order> orderList = model.getFilteredOrderList();
+        List<Order> orderList = model.getOrderList();
 
         if (targetIndex.getZeroBased() >= orderList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        Order orderToDelete = orderList.get(targetIndex.getZeroBased());
-        model.cancelOrder(orderToDelete);
-        return new CommandResult(String.format(MESSAGE_CANCEL_ORDER_SUCCESS, orderToDelete.getId()));
+        Order orderToCancel = orderList.get(targetIndex.getZeroBased());
+        model.cancelOrder(orderToCancel);
+        return new CommandResult(String.format(MESSAGE_CANCEL_ORDER_SUCCESS, orderToCancel.getId()));
     }
 
     @Override
