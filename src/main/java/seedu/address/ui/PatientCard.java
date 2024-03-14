@@ -58,10 +58,10 @@ public class PatientCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        if (patient.getImportantDates().size() > 1) {
-            importantDates.getChildren().add(new Label("Upcoming:"));
+        if (patient.getImportantDates().size() >= 1) {
+            importantDates.getChildren().add(new Label("Upcoming:\n"));
             patient.getImportantDates().stream()
-                    .forEach(importantDate -> importantDates.getChildren().add(new Label(importantDate.toString())));
+                    .forEach(importantDate -> importantDates.getChildren().add(new Label(importantDate.toString() + "\n")));
         }
     }
 }
