@@ -1,10 +1,9 @@
 package staffconnect.model.person;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
+
+import java.util.Arrays;
 
 /**
  * Represents a Person's faculty in the staff book.
@@ -14,11 +13,12 @@ import static staffconnect.commons.util.AppUtil.checkArgument;
 public class Faculty {
     public static final String MESSAGE_CONSTRAINTS =
             "The content should be a String representing a real faculty of NUS";
-    /*
+
+    /**
      * For this version, a valid faculty value should match exactly the full name of the facult,
      * or the value is invalid
      */
-    public enum NUSFaculty {
+    public enum FacultyEnum {
         ARTS_AND_SOCIAL_SCIENCES("Arts and Social Sciences"),
         BUSINESS("Business"),
         COMPUTING("Computing"),
@@ -39,7 +39,7 @@ public class Faculty {
 
         private final String facultyName;
 
-        NUSFaculty(String facultyName) {
+        FacultyEnum(String facultyName) {
             this.facultyName = facultyName;
         }
 
@@ -52,7 +52,7 @@ public class Faculty {
             return facultyName;
         }
     }
-    private final NUSFaculty value;
+    private final FacultyEnum value;
 
     /**
      * Constructs a {@code Faculty}.
@@ -65,15 +65,21 @@ public class Faculty {
         value = fromString(faculty);
     }
 
+    /**
+     * Verifies if a faculty name is valid.
+     *
+     * @param test string representing the faculty name
+     * @return True if the input matches any faculty name.
+     */
     public static boolean isValidFaculty(String test) {
         requireNonNull(test, "faculty cannot be null");
 
-        return Arrays.stream(NUSFaculty.values())
+        return Arrays.stream(FacultyEnum.values())
                 .anyMatch(faculty -> faculty.getFacultyName().equalsIgnoreCase(test));
     }
 
-    private static NUSFaculty fromString(String name) {
-        for (NUSFaculty faculty : NUSFaculty.values()) {
+    private static FacultyEnum fromString(String name) {
+        for (FacultyEnum faculty : FacultyEnum.values()) {
             if (faculty.getFacultyName().equalsIgnoreCase(name)) {
                 return faculty;
             }
