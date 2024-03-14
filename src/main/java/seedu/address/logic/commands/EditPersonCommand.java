@@ -29,6 +29,7 @@ import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -105,6 +106,7 @@ public class EditPersonCommand extends Command {
         NusNet updatedNusNet = editPersonDescriptor.getNusNet().orElse(personToEdit.getNusNet());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<WeekNumber> updatedAttendance = personToEdit.getAttendance();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedNusNet, updatedAddress, updatedTags);
     }

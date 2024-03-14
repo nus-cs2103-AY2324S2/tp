@@ -51,6 +51,7 @@ public class Messages {
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Tags: ");
+        person.getAttendance().forEach(builder::append);
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
