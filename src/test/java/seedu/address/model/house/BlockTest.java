@@ -25,6 +25,12 @@ public class BlockTest {
         assertThrows(NullPointerException.class, () -> Block.isValidBlock(null));
 
         // invalid block numbers
+        assertFalse(Block.isValidBlock("0")); // 1 zero only
+        assertFalse(Block.isValidBlock("00")); // 2 zeroes only
+        assertFalse(Block.isValidBlock("000")); // 3 zeroes only
+        assertFalse(Block.isValidBlock("0A")); // 1 zero + alphabet
+        assertFalse(Block.isValidBlock("00A")); // 2 zeroes + alphabet
+        assertFalse(Block.isValidBlock("000A")); // 3 zeroes + alphabet
         assertFalse(Block.isValidBlock("")); // empty string
         assertFalse(Block.isValidBlock(" ")); // spaces only
         assertFalse(Block.isValidBlock("A")); // letter only

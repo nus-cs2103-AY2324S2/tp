@@ -12,6 +12,8 @@ public class Block {
             "Block numbers should only contain numbers, with or without a letter as the end. "
                     + "There can only be at most 3 digits long.";
     public static final String VALIDATION_REGEX = "^\\d{1,3}[a-zA-Z]?$";
+    public static final String ZERO_REGEX = "^0+$";
+    public static final String ZERO_AND_ALPHABET_REGEX = "^0*[a-zA-Z]$";
     public final String value;
 
     /**
@@ -29,7 +31,7 @@ public class Block {
      * Returns true if a given string is a valid block number.
      */
     public static boolean isValidBlock(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && !test.matches(ZERO_REGEX) && !test.matches(ZERO_AND_ALPHABET_REGEX);
     }
 
     @Override
