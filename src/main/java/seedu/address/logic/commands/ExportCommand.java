@@ -135,7 +135,7 @@ public class ExportCommand extends Command {
             return new CommandResult(MESSAGE_SUCCESS);
 
         } catch (IOException e) {
-                throw new CommandException("Error: " + e.getMessage());
+            throw new CommandException("Error: " + e.getMessage());
         }
     }
 }
