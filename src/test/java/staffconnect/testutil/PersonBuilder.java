@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.Phone;
@@ -20,11 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_VENUE = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_MODULE = "CS2103T";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Venue venue;
+    private Module module;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         venue = new Venue(DEFAULT_VENUE);
+        module = new Module(DEFAULT_MODULE);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         venue = personToCopy.getVenue();
+        module = personToCopy.getModule();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -54,22 +59,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Venue} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withVenue(String venue) {
-        this.venue = new Venue(venue);
         return this;
     }
 
@@ -89,8 +78,32 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Venue} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withVenue(String venue) {
+        this.venue = new Venue(venue);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Module} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withModule(String module) {
+        this.module = new Module(module);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, venue, tags);
+        return new Person(name, phone, email, venue, module, tags);
     }
 
 }
