@@ -352,6 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **State**: The page that displays the results from the last command given.
 * **UID**: A unique numerical identifier for any person added in NetConnect.
 * **CSV file**: A plain text file format that uses commas to separate values, and newlines to separate records.
+* **Alias**: A shortcut name/format for commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
