@@ -5,11 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.ModelManager;
 import seedu.address.model.task.Task;
 
 class AddTaskCommandTest {
+
+    private ModelManager model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager();
+    }
+
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
@@ -17,7 +28,21 @@ class AddTaskCommandTest {
     }
 
     @Test
-    void execute() {
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        Task validTask = new Task("sample");
+
+        CommandResult commandResult = new AddTaskCommand(validTask).execute(model);
+
+        assertTrue(model.hasTask(validTask));
+    }
+
+    @Test
+    public void execute_duplicateTask_throwsCommandException() throws CommandException {
+        Task validTask = new Task("sample");
+        new AddTaskCommand(validTask).execute(model);
+
+        assertThrows(CommandException.class,
+                AddTaskCommand.MESSAGE_DUPLICATE_TASK, () -> new AddTaskCommand(validTask).execute(model));
     }
 
     @Test
