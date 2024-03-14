@@ -14,11 +14,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
-<<<<<<< HEAD
 import seedu.address.logic.commands.AddFavouriteCommand;
-=======
 import seedu.address.logic.commands.AddOrderCommand;
->>>>>>> master
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
