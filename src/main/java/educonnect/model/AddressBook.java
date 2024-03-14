@@ -3,9 +3,13 @@ package educonnect.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.model.student.Email;
 import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
 
@@ -60,11 +64,81 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with same unique identifier as {@code student} exists in the address book.
      */
-    public boolean hasStudent(Student student) {
+    public boolean hasSameUniqueIdentifier(Student student) {
         requireNonNull(student);
-        return students.contains(student);
+        return students.containsSameUniqueIdentifier(student);
+    }
+
+    /**
+     * Returns true if a student with same student id as {@code student} exists in the address book.
+     */
+    public boolean hasStudentId(Student student) {
+        requireNonNull(student);
+        return students.containsStudentId(student);
+    }
+
+    /**
+     * Returns true if a student with same student id as {@code studentId} exists in the address book.
+     */
+    public boolean hasStudentId(StudentId studentId) {
+        requireNonNull(studentId);
+        return students.containsStudentId(studentId);
+    }
+
+    /**
+     * Returns Optional of Student if a student with same student id as {@code studentId} exists in the address book.
+     */
+    public Optional<Student> getStudentWithStudentId(StudentId studentId) {
+        return students.getStudentWithStudentId(studentId);
+    }
+
+    /**
+     * Returns true if a student with same email  as {@code student} exists in the address book.
+     */
+    public boolean hasEmail(Student student) {
+        requireNonNull(student);
+        return students.containsEmail(student);
+    }
+
+    /**
+     * Returns true if a student with same email as {@code email} exists in the address book.
+     */
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return students.containsEmail(email);
+    }
+
+    /**
+     * Returns Optional of Student if a student with same email as {@code email} exists in the address book.
+     */
+    public Optional<Student> getStudentWithEmail(Email email) {
+        return students.getStudentWithEmail(email);
+    }
+
+    /**
+     * Returns true if a student with same telegram handle  as {@code student} exists in the address book.
+     */
+    public boolean hasTelegramHandle(Student student) {
+        requireNonNull(student);
+        return students.containsTelegramHandle(student);
+    }
+
+    /**
+     * Returns true if a student with same telegram handle as {@code telegramHandle} exists in the address book.
+     */
+    public boolean hasTelegramHandle(TelegramHandle telegramHandle) {
+        requireNonNull(telegramHandle);
+        return students.containsTelegramHandle(telegramHandle);
+    }
+
+    /**
+     * Returns Optional of Student if a student with same telegram handle
+     * as {@code telegramHandle} exists in the address book.
+     */
+    public Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle) {
+        return students.getStudentWithTelegramHandle(telegramHandle);
     }
 
     /**

@@ -154,7 +154,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // handle
         userInput = targetIndex.getOneBased() + TELEGRAM_HANDLE_DESC_AMY;
         descriptor = new EditStudentDescriptorBuilder().withTelegramHandle(VALID_TELEGRAM_HANDLE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -183,7 +183,7 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDENT_ID));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + STUDENT_ID_DESC_AMY + TELEGRAM_HANDLE_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + STUDENT_ID_DESC_AMY + TELEGRAM_HANDLE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + STUDENT_ID_DESC_BOB + TELEGRAM_HANDLE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;

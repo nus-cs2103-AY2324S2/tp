@@ -19,7 +19,12 @@ import educonnect.model.student.Student;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT_ID =
+        "Students list contains duplicate student id(s).";
+    public static final String MESSAGE_DUPLICATE_EMAIL =
+            "Students list contains duplicate email(s).";
+    public static final String MESSAGE_DUPLICATE_TELEGRAM_HANDLE =
+            "Students list contains duplicate telegram handle(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
@@ -49,9 +54,17 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasStudent(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
+
+            if (addressBook.hasStudentId(student)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT_ID);
             }
+            if (addressBook.hasEmail(student)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EMAIL);
+            }
+            if (addressBook.hasTelegramHandle(student)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TELEGRAM_HANDLE);
+            }
+
             addressBook.addStudent(student);
         }
         return addressBook;

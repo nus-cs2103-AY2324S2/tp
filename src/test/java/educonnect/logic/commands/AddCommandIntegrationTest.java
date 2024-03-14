@@ -19,6 +19,11 @@ import educonnect.testutil.StudentBuilder;
  */
 public class AddCommandIntegrationTest {
 
+    private static final String VALID_NAME = "Barbara Choo";
+    private static final String VALID_STUDENT_ID = "A7777777B";
+    private static final String VALID_EMAIL = "barbarachoo@gmail.com";
+    private static final String VALID_TELEGRAM_HANDLE = "@babchoo";
+
     private Model model;
 
     @BeforeEach
@@ -39,10 +44,41 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
+    public void execute_duplicateStudentId_throwsCommandException() {
         Student studentInList = model.getAddressBook().getStudentList().get(0);
-        assertCommandFailure(new AddCommand(studentInList), model,
-                AddCommand.MESSAGE_DUPLICATE_STUDENT);
+        Student duplicateStudentIdStudent = new StudentBuilder(studentInList)
+                .withName(VALID_NAME)
+                .withEmail(VALID_EMAIL)
+                .withTelegramHandle(VALID_TELEGRAM_HANDLE)
+                .build();
+
+        assertCommandFailure(new AddCommand(duplicateStudentIdStudent), model,
+                AddCommand.MESSAGE_DUPLICATE_STUDENT_ID);
     }
 
+    @Test
+    public void execute_duplicateEmail_throwsCommandException() {
+        Student studentInList = model.getAddressBook().getStudentList().get(0);
+        Student duplicateEmailStudent = new StudentBuilder(studentInList)
+                .withName(VALID_NAME)
+                .withStudentId(VALID_STUDENT_ID)
+                .withTelegramHandle(VALID_TELEGRAM_HANDLE)
+                .build();
+
+        assertCommandFailure(new AddCommand(duplicateEmailStudent), model,
+                AddCommand.MESSAGE_DUPLICATE_EMAIL);
+    }
+
+    @Test
+    public void execute_duplicateTelegramHandle_throwsCommandException() {
+        Student studentInList = model.getAddressBook().getStudentList().get(0);
+        Student duplicateTelegramHandleStudent = new StudentBuilder(studentInList)
+                .withName(VALID_NAME)
+                .withEmail(VALID_EMAIL)
+                .withStudentId(VALID_STUDENT_ID)
+                .build();
+
+        assertCommandFailure(new AddCommand(duplicateTelegramHandleStudent), model,
+                AddCommand.MESSAGE_DUPLICATE_TELEGRAM_HANDLE);
+    }
 }
