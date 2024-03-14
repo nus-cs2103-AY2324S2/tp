@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Type;
 
@@ -13,10 +14,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Appointment {
 
     // The doctor in charge of the appointment
-    private final Doctor doctor;
+    private final Nric doctorNric;
 
     // The patient benefiting from the appointment
-    private final Patient patient;
+    private final Nric patientNric;
 
     // The date of the appointment
     private final AppointmentDate appointmentDate;
@@ -33,11 +34,11 @@ public class Appointment {
      * @param patient patient of the appointment
      * @param appointmentDate date of the appointment
      */
-    public Appointment(Doctor doctor, Patient patient, AppointmentDate appointmentDate) {
-        requireAllNonNull(doctor, patient, appointmentDate);
+    public Appointment(Nric doctorNric, Nric patientNric, AppointmentDate appointmentDate) {
+        requireAllNonNull(doctorNric, patientNric, appointmentDate);
         checkArgument(isValidAppointment(appointmentDate), MESSAGE_CONSTRAINTS_INVALID_DATE);
-        this.doctor = doctor;
-        this.patient = patient;
+        this.doctorNric = doctorNric;
+        this.patientNric = patientNric;
         this.appointmentDate = appointmentDate;
         this.appointmentId = new AppointmentId();
     }
@@ -58,16 +59,16 @@ public class Appointment {
      * Gets doctor in charge
      * @return Doctor in charge
      */
-    public Doctor getDoctor() {
-        return doctor;
+    public Nric getDoctoNric() {
+        return doctorNric;
     }
 
     /**
      * Gets patient of the appointment
      * @return patient of the appointment
      */
-    public Patient getPatient() {
-        return patient;
+    public Nric getPatientNric() {
+        return patientNric;
     }
 
     public AppointmentId getAppointmentId() {
@@ -88,8 +89,8 @@ public class Appointment {
         }
 
         return appt != null
-                && appt.getDoctor().isSamePerson(this.getDoctor())
-                && appt.getPatient().isSamePerson(this.getPatient())
+                && appt.getDoctoNric().equals(this.getDoctoNric())
+                && appt.getPatientNric().equals(this.getPatientNric())
                 && appt.getAppointmentDate().equals(this.getAppointmentDate());
     }
 
@@ -97,8 +98,8 @@ public class Appointment {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("Date", getAppointmentDate())
-                .add("Doctor", getDoctor())
-                .add("Patient", getPatient())
+                .add("Doctor", getDoctoNric())
+                .add("Patient", getPatientNric())
                 .add("Id", getAppointmentId())
                 .toString();
     }

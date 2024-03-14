@@ -54,9 +54,9 @@ public class Messages {
         builder.append("Date: ")
                 .append(appointment.getAppointmentDate())
                 .append("; Doctor: ")
-                .append(appointment.getDoctor())
+                .append(appointment.getDoctoNric())
                 .append("; Patient: ")
-                .append(appointment.getPatient())
+                .append(appointment.getPatientNric())
                 .append("; ID: ")
                 .append(appointment.getAppointmentId());
         return builder.toString();

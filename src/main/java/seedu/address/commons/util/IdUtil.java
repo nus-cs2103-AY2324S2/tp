@@ -4,6 +4,7 @@ import jdk.jshell.spi.ExecutionControl;
 
 import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.UUID;
 
 import static java.util.Objects.requireNonNull;
@@ -63,9 +64,12 @@ public class IdUtil {
      */
     public static String generateNewId(Entities entity) {
         HashSet<String> idSet = allIds.get(entity);
-
-        String initId = UUID.randomUUID().toString().substring(0, 8);
-        while (!idSet.contains(initId)) {
+        if (idSet == null) {
+            idSet = new HashSet<>();
+        }
+        Random random = new Random();
+        String initId = String.valueOf(random.nextInt(90000000) + 10000000);
+        while (idSet.contains(initId)) {
             initId = UUID.randomUUID().toString().substring(0, 8);
         }
         idSet.add(initId);

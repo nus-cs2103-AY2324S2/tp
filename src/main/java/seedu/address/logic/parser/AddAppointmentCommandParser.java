@@ -32,12 +32,12 @@ public class AddAppointmentCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_DOCTORNRIC, PREFIX_PATIENTNRIC);
         AppointmentDate appointmentDate = ParserUtil.parseAppointmentDate(argMultimap.getValue(PREFIX_DATE).get());
-        Doctor doctor = ParserUtil.parseDoctorNric(argMultimap.getValue(PREFIX_DOCTORNRIC).get());
-        Patient patient = ParserUtil.parsePatientNric(argMultimap.getValue(PREFIX_PATIENTNRIC).get());
+        Nric doctorNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_DOCTORNRIC).get());
+        Nric patientNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_PATIENTNRIC).get());
 
-        Appointment appointment = new Appointment(doctor, patient, appointmentDate);
+        Appointment appointment = new Appointment(doctorNric, patientNric, appointmentDate);
 
         return new AddAppointmentCommand(appointment);
     }

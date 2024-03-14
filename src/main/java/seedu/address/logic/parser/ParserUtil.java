@@ -10,6 +10,7 @@ import jdk.jshell.spi.ExecutionControl;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.appointment.AppointmentDate;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
@@ -182,15 +183,5 @@ public class ParserUtil {
             throw new ParseException(AppointmentDate.MESSAGE_CONSTRAINTS);
         }
         return new AppointmentDate(trimmedDate);
-    }
-
-    public static Doctor parseDoctorNric(String doctorNric) {
-        // TODO: implement
-        return null;
-    }
-
-    public static Patient parsePatientNric(String s) {
-        // TODO: implement
-        return null;
     }
 }

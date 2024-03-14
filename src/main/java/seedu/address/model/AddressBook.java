@@ -72,9 +72,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
-    public Person getPersonByNric(String nric) {
-        requireNonNull(nric);
-        Nric nricObj = new Nric(nric);
+    public Person getPersonByNric(Nric nricObj) {
+        requireNonNull(nricObj);
         return persons.getPersonByNric(nricObj);
     }
 
@@ -83,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param nric input nric string
      * @return boolean stating if addressbook contains nric
      */
-    public boolean hasPerson(String nric) {
+    public boolean hasPersonNric(String nric) {
         requireNonNull(nric);
         return persons.containsNric(nric);
     }
