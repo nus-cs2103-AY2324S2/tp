@@ -38,7 +38,8 @@ public class AddCommand extends Command {
             + PREFIX_GITHUB + "johnDoeGithub ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person contains duplicate fields with another person";
+    public static final String MESSAGE_DUPLICATE_FIELD = "This person contains duplicate fields"
+            + "(Email, Phone, Telegram, or Github) with another person.";
 
     private final Person toAdd;
 
@@ -55,7 +56,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_FIELD);
         }
 
         model.addPerson(toAdd);
