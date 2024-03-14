@@ -39,10 +39,16 @@ public class Faculty {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Faculty) {
-            return ((Faculty) obj).value.equals(this.value);
+        if (obj == this) {
+            return true;
         }
-        return false;
+
+        if (!(obj instanceof Faculty)) {
+            return false;
+        }
+
+        Faculty otherFaculty = (Faculty) obj;
+        return this.value.equals(otherFaculty.value);
     }
 
     @Override
