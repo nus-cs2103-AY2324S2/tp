@@ -23,6 +23,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final int count;
     private final Borrow bookTitle;
     private final Set<Tag> tags = new HashSet<>();
     
@@ -30,13 +31,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Borrow bookTitle, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, int count, Borrow bookTitle, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.count = count;
         this.bookTitle = bookTitle;
     }
 
@@ -64,8 +66,18 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * @return the book title of the book
+     */
     public Borrow getBook(){
         return bookTitle;
+    }
+
+    /**
+     * @return the book title of the book
+     */
+    public int getCount(){
+        return count;
     }
 
     /**
@@ -119,6 +131,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("Merit score", count)
                 .add("book borrowed", bookTitle)
                 .toString();
     }
