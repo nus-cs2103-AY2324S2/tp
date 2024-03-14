@@ -30,25 +30,25 @@ public class TypicalPatients {
     public static final Patient ALICE = new PatientBuilder().withPatientHospitalId("12234").withName("Alice Pauline")
         .withPreferredName("Alice").withFoodPreference("Duck rice")
         .withFamilyCondition("Have 2 daughters working overseas").withHobby("Watching Hong Kong drama")
-        .withTags("friends").build();
+        .withTags("depression").build();
     public static final Patient BENSON = new PatientBuilder().withPatientHospitalId("12235").withName("Benson Meier")
         .withPreferredName("Benson").withFoodPreference("Kampung Fried Rice").withFamilyCondition("Wife in ICU")
-        .withHobby("Listen to Coldplay songs").withTags("owesMoney", "friends").build();
+        .withHobby("Listen to Coldplay songs").withTags("diabetes", "cholesterol").build();
     public static final Patient CARL = new PatientBuilder().withPatientHospitalId("12236").withName("Carl Kurz")
         .withPreferredName("Ah Carl").withFoodPreference("Sambal fish").withFamilyCondition("Has no children")
         .withHobby("Likes to play mahjong").build();
     public static final Patient DANIEL = new PatientBuilder().withPatientHospitalId("12237").withName("Daniel Meier")
         .withPreferredName("Ah Da").withFoodPreference("Steak").withFamilyCondition("Nieces not around Singapore")
-        .withHobby("Ride bicycle").withTags("friends").build();
+        .withHobby("Cycling").withTags("eczema").build();
     public static final Patient ELLE = new PatientBuilder().withPatientHospitalId("12238").withName("Elle Meyer")
         .withPreferredName("Elle").withFoodPreference("Maggie Goreng").withFamilyCondition("Husband working overseas")
         .withHobby("Dancing").build();
     public static final Patient FIONA = new PatientBuilder().withPatientHospitalId("12239").withName("Fiona Kunz")
         .withPreferredName("Ms Fi").withFoodPreference("Fish soup without milk")
-        .withFamilyCondition("Daughter fights with her every week").withHobby("Count pebbles").build();
+        .withFamilyCondition("Daughter fights with her every week").withHobby("dancing").build();
     public static final Patient GEORGE = new PatientBuilder().withPatientHospitalId("12240").withName("George Best")
         .withPreferredName("George").withFoodPreference("Salmon with lemon").withFamilyCondition("no children")
-        .withHobby("Likes to talk with people").build();
+        .withHobby("reading books").build();
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withPatientHospitalId("12241").withName("Hoon Meier")

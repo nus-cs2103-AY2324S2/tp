@@ -70,9 +70,9 @@ public class EditPatientDescriptorTest {
     @Test
     public void toStringMethod() {
         EditCommand.EditPatientDescriptor editPatientDescriptor = new EditCommand.EditPatientDescriptor();
-        String expected = EditCommand.EditPatientDescriptor.class.getCanonicalName() + "{name="
+        String expected = EditCommand.EditPatientDescriptor.class.getCanonicalName() + "{patientHospitalId="
+                + editPatientDescriptor.getPatientHospitalId().orElse(null) + ", name="
                 + editPatientDescriptor.getName().orElse(null) + ", preferredName="
-                + editPatientDescriptor.getPatientHospitalId().orElse(null) + ", patientHospitalId="
                 + editPatientDescriptor.getPreferredName().orElse(null) + ", foodPreference="
                 + editPatientDescriptor.getFoodPreference().orElse(null) + ", familyCondition="
                 + editPatientDescriptor.getFamilyCondition().orElse(null) + ", hobby="

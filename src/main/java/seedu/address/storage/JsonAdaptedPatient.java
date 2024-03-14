@@ -86,7 +86,7 @@ class JsonAdaptedPatient {
                 PatientHospitalId.class.getSimpleName()));
         }
 
-        if (!PatientHospitalId.isValidPatientHospitalId(String.valueOf(patientHospitalId))) {
+        if (!PatientHospitalId.isValidPatientHospitalId(patientHospitalId)) {
             throw new IllegalValueException(PatientHospitalId.MESSAGE_CONSTRAINTS);
         }
         final PatientHospitalId modelPatientHospitalId = new PatientHospitalId(patientHospitalId);

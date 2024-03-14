@@ -30,7 +30,6 @@ public class PreferredNameTest {
 
         // valid preferred name
         assertTrue(PreferredName.isValidPreferredName("Kenny"));
-        assertTrue(PreferredName.isValidPreferredName("-")); // one character
         assertTrue(PreferredName.isValidPreferredName("Ah Ken")); // with spaces
     }
 

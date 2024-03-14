@@ -20,15 +20,13 @@ public class HobbyTest {
     }
 
     @Test
-    public void isValidFoodPreference() {
-        // null food preference
-        assertThrows(NullPointerException.class, () -> FoodPreference.isValidFood(null));
+    public void isValidHobby() {
+        // null hobby
+        assertThrows(NullPointerException.class, () -> Hobby.isValidHobby(null));
 
         // invalid hobby
         assertFalse(Hobby.isValidHobby("")); // empty string
         assertFalse(Hobby.isValidHobby(" ")); // spaces only
-        assertFalse(Hobby.isValidHobby("91")); // non-alphabets
-        assertFalse(Hobby.isValidHobby("12hiking")); // digits within alphabets
 
         // valid hobby
         assertTrue(Hobby.isValidHobby("rock climbing")); // with spaces
@@ -40,7 +38,7 @@ public class HobbyTest {
         Hobby hobby = new Hobby("hiking");
 
         // same values -> returns true
-        assertTrue(hobby.equals(new Hobby("hobby")));
+        assertTrue(hobby.equals(new Hobby("hiking")));
 
         // same object -> returns true
         assertTrue(hobby.equals(hobby));

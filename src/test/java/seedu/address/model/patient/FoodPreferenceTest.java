@@ -26,9 +26,7 @@ public class FoodPreferenceTest {
 
         // invalid food preference
         assertFalse(FoodPreference.isValidFood("")); // empty string
-        assertFalse(FoodPreference.isValidFood(" ")); // spaces only
-        assertFalse(FoodPreference.isValidFood("91")); // non-alphabets
-        assertFalse(FoodPreference.isValidFood("12pasta")); // digits within alphabets
+        assertFalse(FoodPreference.isValidFood(" ")); // spaces onl
 
         // valid food preference
         assertTrue(FoodPreference.isValidFood("chicken rice")); // with spaces

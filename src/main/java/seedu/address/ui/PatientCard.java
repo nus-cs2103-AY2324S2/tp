@@ -52,7 +52,7 @@ public class PatientCard extends UiPart<Region> {
         super(FXML);
         this.patient = patient;
         id.setText(displayedIndex + ". ");
-        patientHospitalId.setText(String.valueOf(patient.getPatientHospitalId().patientHospitalId));
+        patientHospitalId.setText(patient.getPatientHospitalId().patientHospitalId);
         name.setText(patient.getName().fullName);
         preferredName.setText(patient.getPreferredName().preferredName);
         foodPreference.setText(patient.getFoodPreference().foodPreference);

@@ -38,7 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_FAMILY_CONDITION = "Facing financial difficulty";
     private static final String VALID_HOBBY = "Singing";
     private static final String VALID_TAG_1 = "diabetes";
-    private static final String VALID_TAG_2 = "high cholesterol";
+    private static final String VALID_TAG_2 = "highCholesterol";
 
     private static final String WHITESPACE = " \t\r\n";
 

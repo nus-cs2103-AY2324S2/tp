@@ -175,7 +175,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, preferredName, foodPreference, familyCondition, hobby, tags);
+            return CollectionUtil.isAnyNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition,
+                hobby, tags);
         }
 
         /**
@@ -276,11 +277,11 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                .add("patient_hospital_id", patientHospitalId)
+                .add("patientHospitalId", patientHospitalId)
                 .add("name", name)
-                .add("preferred_name", preferredName)
-                .add("food_preference", foodPreference)
-                .add("family_condition", familyCondition)
+                .add("preferredName", preferredName)
+                .add("foodPreference", foodPreference)
+                .add("familyCondition", familyCondition)
                 .add("hobby", hobby)
                 .add("tags", tags)
                 .toString();

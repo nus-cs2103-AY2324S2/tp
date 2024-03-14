@@ -66,7 +66,8 @@ public class CommandTestUtil {
     // empty string not allowed for family condition
     public static final String INVALID_FAMILY_DESC = " " + PREFIX_FAMILY;
     public static final String INVALID_HOBBY_DESC = " " + PREFIX_HOBBY; // empty string not allowed for hobby
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hearing loss*"; // '*' not allowed in tags
+    // '*' and spacing not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hearing loss*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

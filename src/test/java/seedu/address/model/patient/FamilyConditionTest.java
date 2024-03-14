@@ -27,12 +27,11 @@ public class FamilyConditionTest {
         // invalid family condition
         assertFalse(FamilyCondition.isValidFamilyCondition("")); // empty string
         assertFalse(FamilyCondition.isValidFamilyCondition(" ")); // spaces only
-        assertFalse(FamilyCondition.isValidFamilyCondition("91")); // non-alphabets
-        assertFalse(FamilyCondition.isValidFamilyCondition("12hello")); // digits within alphabets
 
         // valid family condition
         assertTrue(FamilyCondition.isValidFamilyCondition("Wife not around")); // with spaces
         assertTrue(FamilyCondition.isValidFamilyCondition("Overseas")); // without spaces
+        assertTrue(FamilyCondition.isValidFamilyCondition("Has 2 sons")); // allow numeric and alphabets
     }
 
     @Test

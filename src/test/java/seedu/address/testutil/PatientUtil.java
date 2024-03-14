@@ -54,6 +54,8 @@ public class PatientUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPreferredName().ifPresent(preferredName -> sb.append(PREFIX_PRENAME)
             .append(preferredName.preferredName).append(" "));
+        descriptor.getFoodPreference().ifPresent(foodPreference -> sb.append(PREFIX_FOOD)
+            .append(foodPreference.foodPreference).append(" "));
         descriptor.getFamilyCondition().ifPresent(familyCondition -> sb.append(PREFIX_FAMILY)
             .append(familyCondition.familyCondition).append(" "));
         descriptor.getHobby().ifPresent(hobby -> sb.append(PREFIX_HOBBY).append(hobby.hobby).append(" "));

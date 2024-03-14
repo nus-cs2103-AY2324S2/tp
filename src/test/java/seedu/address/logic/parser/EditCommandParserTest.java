@@ -152,7 +152,7 @@ public class EditCommandParserTest {
 
         // preferred name
         userInput = targetIndex.getOneBased() + PREFERRED_NAME_DESC_AMY;
-        descriptor = new EditPatientDescriptorBuilder().withFoodPreference(VALID_PREFERRED_NAME_AMY).build();
+        descriptor = new EditPatientDescriptorBuilder().withPreferredName(VALID_PREFERRED_NAME_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
