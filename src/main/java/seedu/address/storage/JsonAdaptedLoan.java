@@ -12,20 +12,20 @@ import seedu.address.model.person.Loan;
  */
 public class JsonAdaptedLoan {
 
-    private final float amount;
+    private final float value;
     private final String startDate;
-    private final String endDate;
+    private final String returnDate;
     private final int id;
 
     /**
      * Constructs a {@code JsonAdaptedLoan} with the given loan details.
      */
     @JsonCreator
-    public JsonAdaptedLoan(@JsonProperty("amount") float amount, @JsonProperty("startDate") String startDate,
-                           @JsonProperty("endDate") String endDate, @JsonProperty("id") int id) {
-        this.amount = amount;
+    public JsonAdaptedLoan(@JsonProperty("value") float value, @JsonProperty("startDate") String startDate,
+                           @JsonProperty("returnDate") String returnDate, @JsonProperty("id") int id) {
+        this.value = value;
         this.startDate = startDate;
-        this.endDate = endDate;
+        this.returnDate = returnDate;
         this.id = id;
     }
 
@@ -33,9 +33,9 @@ public class JsonAdaptedLoan {
      * Converts a given {@code Loan} into this class for Jackson use.
      */
     public JsonAdaptedLoan(Loan source) {
-        amount = source.getAmount();
+        value = source.getValue();
         startDate = DateUtil.format(source.getStartDate());
-        endDate = DateUtil.format(source.getEndDate());
+        returnDate = DateUtil.format(source.getReturnDate());
         id = source.getId();
     }
 
@@ -45,13 +45,13 @@ public class JsonAdaptedLoan {
      * @throws IllegalValueException if there were any data constraints violated in the adapted loan.
      */
     public Loan toModelType() throws IllegalValueException {
-        if (!Loan.isValidAmount(amount)) {
+        if (!Loan.isValidValue(value)) {
             throw new IllegalValueException(Loan.MESSAGE_CONSTRAINTS);
         }
-        if (!Loan.isValidDates(DateUtil.parse(startDate), DateUtil.parse(endDate))) {
+        if (!Loan.isValidDates(DateUtil.parse(startDate), DateUtil.parse(returnDate))) {
             throw new IllegalValueException(Loan.MESSAGE_CONSTRAINTS);
         }
-        return new Loan(id, amount, DateUtil.parse(startDate), DateUtil.parse(endDate));
+        return new Loan(id, value, DateUtil.parse(startDate), DateUtil.parse(returnDate));
     }
 
 }
