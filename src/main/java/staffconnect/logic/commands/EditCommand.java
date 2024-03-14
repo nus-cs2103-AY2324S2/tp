@@ -1,6 +1,7 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
@@ -22,6 +23,7 @@ import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
@@ -46,7 +48,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_VENUE + "VENUE] "
             + "[" + PREFIX_MODULE + "MODULE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_AVAILABILITY + "AVAILABILITY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -104,8 +107,11 @@ public class EditCommand extends Command {
         Venue updatedVenue = editPersonDescriptor.getVenue().orElse(personToEdit.getVenue());
         Module updatedModule = editPersonDescriptor.getModule().orElse(personToEdit.getModule());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Availability> updatedAvailabilities = editPersonDescriptor.getAvailabilities()
+                .orElse(personToEdit.getAvailabilities());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedVenue, updatedModule, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedVenue, updatedModule,
+                updatedTags, updatedAvailabilities);
     }
 
     @Override
@@ -143,12 +149,13 @@ public class EditCommand extends Command {
         private Venue venue;
         private Module module;
         private Set<Tag> tags;
+        private Set<Availability> availabilities;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tags} and {@code availabilities} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
@@ -157,13 +164,14 @@ public class EditCommand extends Command {
             setVenue(toCopy.venue);
             setModule(toCopy.module);
             setTags(toCopy.tags);
+            setAvailabilities(toCopy.availabilities);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, venue, module, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, venue, module, tags, availabilities);
         }
 
         public void setName(Name name) {
@@ -223,6 +231,25 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code availabilities} to this object's {@code availabilities}.
+         * A defensive copy of {@code availabilities} is used internally.
+         */
+        public void setAvailabilities(Set<Availability> availabilities) {
+            this.availabilities = (availabilities != null) ? new HashSet<>(availabilities) : null;
+        }
+
+        /**
+         * Returns an unmodifiable availability set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code availabilities} is null.
+         */
+        public Optional<Set<Availability>> getAvailabilities() {
+            return (availabilities != null)
+                    ? Optional.of(Collections.unmodifiableSet(availabilities))
+                    : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -240,7 +267,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(venue, otherEditPersonDescriptor.venue)
                     && Objects.equals(module, otherEditPersonDescriptor.module)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(availabilities, otherEditPersonDescriptor.availabilities);
         }
 
         @Override
@@ -252,6 +280,7 @@ public class EditCommand extends Command {
                     .add("venue", venue)
                     .add("module", module)
                     .add("tags", tags)
+                    .add("availabilities", availabilities)
                     .toString();
         }
     }
