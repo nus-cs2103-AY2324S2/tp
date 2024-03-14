@@ -17,6 +17,8 @@ import seedu.address.model.tag.Tag;
 public class Employee {
 
     // Identity fields
+    private static int universalEmployeeId = 1;
+    private final EmployeeId employeeId;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -28,13 +30,37 @@ public class Employee {
     /**
      * Every field must be present and not null.
      */
-    public Employee(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Employee(EmployeeId employeeId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.employeeId = employeeId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Updates Employee.EMPLOYEE_ID when loading from JSON
+     */
+    public static void setUniversalEmployeeId(int id) {
+        Employee.universalEmployeeId = id;
+    }
+
+    public static int getUniversalId() {
+        int ret = Employee.universalEmployeeId;
+        return ret;
+    }
+
+    /**
+     * Increments Employee.EMPLOYEE_ID
+     */
+    public static void incrementEmployeeId() {
+        Employee.universalEmployeeId++;
+    }
+
+    public EmployeeId getEmployeeId() {
+        return employeeId;
     }
 
     public Name getName() {
@@ -93,19 +119,19 @@ public class Employee {
         return name.equals(otherEmployee.name)
                 && phone.equals(otherEmployee.phone)
                 && email.equals(otherEmployee.email)
-                && address.equals(otherEmployee.address)
-                && tags.equals(otherEmployee.tags);
+                && address.equals(otherEmployee.address);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(employeeId, name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("employeeId", employeeId)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

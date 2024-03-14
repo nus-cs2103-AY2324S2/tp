@@ -73,7 +73,7 @@ public class EditCommand extends Command {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEEID);
         }
 
         Employee employeeToEdit = lastShownList.get(index.getZeroBased());
@@ -102,7 +102,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Employee(employeeToEdit.getEmployeeId(), updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTags);
     }
 
     @Override
