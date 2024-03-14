@@ -1,0 +1,19 @@
+2024-03-14T11:31:02.911Z - error: No config file found in parent directories of /Users/feiyangshang/Desktop/CS2103/tp
+2024-03-14T11:31:02.923Z - error: uncaughtException: The "path" argument must be of type string. Received undefined date=Thu Mar 14 2024 19:31:02 GMT+0800 (Singapore Standard Time), pid=39294, uid=501, gid=20, cwd=/Users/feiyangshang/Desktop/CS2103/tp, execPath=/opt/homebrew/Cellar/node/21.6.1/bin/node, version=v21.6.1, argv=[/opt/homebrew/Cellar/node/21.6.1/bin/node, /opt/homebrew/bin/markbind, serve], rss=108642304, heapTotal=60702720, heapUsed=34669640, external=2290887, arrayBuffers=16867, loadavg=[2.1025390625, 2.0791015625, 2.615234375], uptime=2455252
+TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at Object.join (node:path:1175:7)
+    at serve (/opt/homebrew/lib/node_modules/markbind-cli/src/cmd/serve.js:57:27)
+    at Command.<anonymous> (/opt/homebrew/lib/node_modules/markbind-cli/index.js:62:5)
+    at Command.listener [as _actionHandler] (/opt/homebrew/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:488:17)
+    at /opt/homebrew/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:65
+    at Command._chainOrCall (/opt/homebrew/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1144:12)
+    at Command._parseCommand (/opt/homebrew/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:27)
+    at Command._dispatchSubcommand (/opt/homebrew/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1050:25)
+    at Command._parseCommand (/opt/homebrew/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1193:19)
+    at Command.parse (/opt/homebrew/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:897:10)
+    at Object.<anonymous> (/opt/homebrew/lib/node_modules/markbind-cli/index.js:87:9)
+    at Module._compile (node:internal/modules/cjs/loader:1378:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+    at Module.load (node:internal/modules/cjs/loader:1212:32)
+    at Module._load (node:internal/modules/cjs/loader:1028:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:142:12)
