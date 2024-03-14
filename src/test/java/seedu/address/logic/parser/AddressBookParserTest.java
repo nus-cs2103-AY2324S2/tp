@@ -95,7 +95,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_add_class() throws Exception {
+    public void parseCommand_addClass() throws Exception {
         final String moduleCode = "CS2103T";
         final String tutorialClass = "T09";
         AddClassCommand command = (AddClassCommand) parser.parseCommand(AddClassCommand.COMMAND_WORD + " "

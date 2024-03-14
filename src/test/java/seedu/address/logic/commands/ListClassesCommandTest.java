@@ -52,7 +52,9 @@ public class ListClassesCommandTest {
         CommandResult commandResult = listClassesCommand.execute(emptyModel);
 
         // Check if command result message states that no modules are added
-        assertEquals(ListClassesCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(ListClassesCommand.MESSAGE_EMPTY, commandResult.getFeedbackToUser());
+        // Check if the result is truly empty
+        assertTrue(emptyModel.getAddressBook().getModuleList().isEmpty());
     }
 
     @Test
