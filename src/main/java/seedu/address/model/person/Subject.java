@@ -40,8 +40,16 @@ public class Subject {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Subject // instanceof handles nulls
-                && value == ((Subject) other).value); // state check
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Subject)) {
+            return false;
+        }
+
+        Subject otherSubject = (Subject) other;
+        return value.equals(otherSubject.value);
     }
 }

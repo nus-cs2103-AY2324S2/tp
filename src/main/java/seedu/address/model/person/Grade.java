@@ -44,8 +44,16 @@ public class Grade {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Grade // instanceof handles nulls
-                && value == ((Grade) other).value); // state check
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Grade)) {
+            return false;
+        }
+
+        Grade otherGrade = (Grade) other;
+        return value.equals(otherGrade.value);
     }
 }
