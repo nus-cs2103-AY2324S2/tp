@@ -2,9 +2,13 @@ package educonnect.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.Optional;
 
 import educonnect.commons.core.GuiSettings;
+import educonnect.model.student.Email;
 import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import javafx.collections.ObservableList;
 
 /**
@@ -62,16 +66,22 @@ public interface Model {
      * Returns true if a student with the student id as {@code student} exists in the address book.
      */
     boolean hasStudentId(Student student);
+    boolean hasStudentId(StudentId studentId);
+    Optional<Student> getStudentWithStudentId(StudentId studentId);
 
     /**
      * Returns true if a student with the email as {@code student} exists in the address book.
      */
     boolean hasEmail(Student student);
+    boolean hasEmail(Email email);
+    Optional<Student> getStudentWithEmail(Email email);
 
     /**
      * Returns true if a student with the telegram handle as {@code student} exists in the address book.
      */
     boolean hasTelegramHandle(Student student);
+    boolean hasTelegramHandle(TelegramHandle telegramHandle);
+    Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle);
 
     /**
      * Deletes the given student.

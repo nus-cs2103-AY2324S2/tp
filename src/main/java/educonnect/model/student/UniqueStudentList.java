@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import educonnect.commons.util.CollectionUtil;
 import educonnect.model.student.exceptions.DuplicateStudentException;
@@ -48,6 +49,15 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalList.stream().anyMatch(toCheck::isSameStudentId);
     }
 
+    public boolean containsStudentId(StudentId studentIdToCheck) {
+        requireNonNull(studentIdToCheck);
+        return internalList.stream().anyMatch(student -> student.isSameStudentId(studentIdToCheck));
+    }
+
+    public Optional<Student> getStudentWithStudentId(StudentId studentId) {
+        return internalList.stream().filter(student -> student.isSameStudentId(studentId)).findFirst();
+    }
+
     /**
      * Returns true if the list contains an equivalent email as the given argument.
      */
@@ -56,12 +66,30 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalList.stream().anyMatch(toCheck::isSameEmail);
     }
 
+    public boolean containsEmail(Email email) {
+        requireNonNull(email);
+        return internalList.stream().anyMatch(student -> student.isSameEmail(email));
+    }
+
+    public Optional<Student> getStudentWithEmail(Email email) {
+        return internalList.stream().filter(student -> student.isSameEmail(email)).findFirst();
+    }
+
     /**
      * Returns true if the list contains an equivalent telegram handle as the given argument.
      */
     public boolean containsTelegramHandle(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameTelegramHandle);
+    }
+
+    public boolean containsTelegramHandle(TelegramHandle telegramHandle) {
+        requireNonNull(telegramHandle);
+        return internalList.stream().anyMatch(student -> student.isSameTelegramHandle(telegramHandle));
+    }
+
+    public Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle) {
+        return internalList.stream().filter(student -> student.isSameTelegramHandle(telegramHandle)).findFirst();
     }
 
     /**

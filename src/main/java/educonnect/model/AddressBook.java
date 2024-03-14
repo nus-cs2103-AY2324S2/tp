@@ -3,9 +3,13 @@ package educonnect.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.model.student.Email;
 import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
 
@@ -75,6 +79,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.containsStudentId(student);
     }
 
+    public boolean hasStudentId(StudentId studentId) {
+        requireNonNull(studentId);
+        return students.containsStudentId(studentId);
+    }
+
+    public Optional<Student> getStudentWithStudentId(StudentId studentId) {
+        return students.getStudentWithStudentId(studentId);
+    }
+
     /**
      * Returns true if a student with same email  as {@code student} exists in the address book.
      */
@@ -83,12 +96,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.containsEmail(student);
     }
 
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return students.containsEmail(email);
+    }
+
+    public Optional<Student> getStudentWithEmail(Email email) {
+        return students.getStudentWithEmail(email);
+    }
+
     /**
      * Returns true if a student with same telegram handle  as {@code student} exists in the address book.
      */
     public boolean hasTelegramHandle(Student student) {
         requireNonNull(student);
         return students.containsTelegramHandle(student);
+    }
+
+    public boolean hasTelegramHandle(TelegramHandle telegramHandle) {
+        requireNonNull(telegramHandle);
+        return students.containsTelegramHandle(telegramHandle);
+    }
+
+    public Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle) {
+        return students.getStudentWithTelegramHandle(telegramHandle);
     }
 
     /**
