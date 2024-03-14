@@ -41,7 +41,7 @@ public class Messages {
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
-                .append("; Address: ")
+                .append("; Country: ")
                 .append(person.getAddress())
                 .append("; Comment: ")
                 .append(person.getComment())
