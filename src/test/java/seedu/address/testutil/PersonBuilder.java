@@ -28,7 +28,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private ArrayList<Order> orderList;
+    private ArrayList<Order> orders;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,7 +39,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        orderList = new ArrayList<>();
+        orders = new ArrayList<>();
     }
 
     /**
@@ -51,7 +51,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        orderList = new ArrayList<>(personToCopy.getOrderList());
+        orders = new ArrayList<>(personToCopy.getOrders());
     }
 
     /**
@@ -97,13 +97,13 @@ public class PersonBuilder {
     /**
      * Set the {@code ArrayList<Order>} of the {@code Person} that we are building.
      */
-    public PersonBuilder withOrderList(ArrayList<Order> orderList) {
-        this.orderList = orderList;
+    public PersonBuilder withOrders(ArrayList<Order> orders) {
+        this.orders = orders;
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, orderList);
+        return new Person(name, phone, email, address, tags, orders);
     }
 
 }

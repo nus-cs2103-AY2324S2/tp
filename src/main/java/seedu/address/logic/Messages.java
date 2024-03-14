@@ -49,7 +49,7 @@ public class Messages {
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         builder.append("; Orders: ");
-        person.getOrderList().forEach(builder::append);
+        person.getOrders().forEach(builder::append);
         return builder.toString();
     }
 

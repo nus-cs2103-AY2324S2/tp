@@ -28,7 +28,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
-    private final ArrayList<Order> orderList;
+    private final ArrayList<Order> orders;
 
     /**
      * Every field must be present and not null.
@@ -40,7 +40,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.orderList = new ArrayList<>();
+        this.orders = new ArrayList<>();
     }
 
     /**
@@ -48,14 +48,14 @@ public class Person {
      * This constructor is used to create a person with orders.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ArrayList<Order> orderList) {
+                  ArrayList<Order> orders) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.orderList = orderList;
+        this.orders = orders;
     }
 
     public Name getName() {
@@ -89,11 +89,11 @@ public class Person {
      */
     public void addOrder(Date arrivalDate, String remark) {
         Order order = new Order(arrivalDate, remark);
-        orderList.add(order);
+        orders.add(order);
     }
 
-    public ArrayList<Order> getOrderList() {
-        return orderList;
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
     /**
@@ -135,7 +135,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, orderList);
+        return Objects.hash(name, phone, email, address, tags, orders);
     }
 
     @Override
@@ -146,7 +146,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
-                .add("orders", orderList)
+                .add("orders", orders)
                 .toString();
     }
 
