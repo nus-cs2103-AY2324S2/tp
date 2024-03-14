@@ -3,25 +3,25 @@ package staffconnect.logic.parser;
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static staffconnect.logic.commands.CommandTestUtil.FACULTY_DESC_AMY;
+import static staffconnect.logic.commands.CommandTestUtil.FACULTY_DESC_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static staffconnect.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_FACULTY_DESC;
+import static staffconnect.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_VENUE_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
-import static staffconnect.logic.commands.CommandTestUtil.FACULTY_DESC_AMY;
-import static staffconnect.logic.commands.CommandTestUtil.FACULTY_DESC_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static staffconnect.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_FACULTY_AMY;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -31,8 +31,8 @@ import static staffconnect.logic.commands.CommandTestUtil.VALID_VENUE_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VENUE_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VENUE_DESC_BOB;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
@@ -49,8 +49,8 @@ import staffconnect.logic.Messages;
 import staffconnect.logic.commands.EditCommand;
 import staffconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import staffconnect.model.person.Email;
-import staffconnect.model.person.Module;
 import staffconnect.model.person.Faculty;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
 import staffconnect.model.person.Venue;
@@ -98,7 +98,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "`1" + INVALID_FACULTY_DESC,
+        assertParseFailure(parser, "1" + INVALID_FACULTY_DESC,
                 Faculty.MESSAGE_CONSTRAINTS); // invalid faculty
         assertParseFailure(parser, "1" + INVALID_VENUE_DESC, Venue.MESSAGE_CONSTRAINTS); // invalid venue
         assertParseFailure(parser, "1" + INVALID_MODULE_DESC, Module.MESSAGE_CONSTRAINTS); // invalid module

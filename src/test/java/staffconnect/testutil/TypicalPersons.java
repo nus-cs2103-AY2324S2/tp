@@ -2,10 +2,10 @@ package staffconnect.testutil;
 
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_FACULTY_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_FACULTY_BOB;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -33,7 +33,7 @@ public class TypicalPersons {
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withVenue("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com")
-            .withFaculty("Science").withPhone("98765432").withModule("CS1231S")
+            .withFaculty("Computing").withPhone("98765432").withModule("CS1231S")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withFaculty("Computing")

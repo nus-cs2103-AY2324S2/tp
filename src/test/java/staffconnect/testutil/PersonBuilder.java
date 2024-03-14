@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import staffconnect.model.person.Email;
-import staffconnect.model.person.Module;
 import staffconnect.model.person.Faculty;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.Phone;
