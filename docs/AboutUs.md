@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chua Joon Peng, Gabriel
 
-<img src="images/gabrielchua.png" width="200px">
+<img src="images/1rbg.png" width="200px">
 
 [[homepage](https://www.linkedin.com/in/gabriel-chua-087543229/)]
 [[github](https://github.com/1rbg)]
@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Teo Hao Wei
 
-<img src="images/haowei.png" width="200px">
+<img src="images/h4ow3i.png" width="200px">
 
 [[github](http://github.com/h4ow3i)]
 [[portfolio](team/teohaowei.md)]
@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Martin Ng Jinn Kai
 
-<img src="images/martinng.png" width="200px">
+<img src="images/martinng01.png" width="200px">
 
 [[github](http://github.com/martinng01)]
 [[portfolio](team/martinng.md)]
@@ -52,10 +52,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### James Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jxunze.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jxunze)]
+[[portfolio](team/jinxunze.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration
