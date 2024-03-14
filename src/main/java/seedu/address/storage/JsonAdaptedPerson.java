@@ -96,7 +96,7 @@ class JsonAdaptedPerson {
         final ClassGroup modelClassGroup = new ClassGroup(classGroup);
 
         final Optional<Telegram> modelTelegram;
-        if (telegram == null) {
+        if (telegram == null || telegram.isEmpty()) {
             modelTelegram = Optional.of(Telegram.EMPTY);
         } else if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
@@ -105,7 +105,7 @@ class JsonAdaptedPerson {
         }
 
         final Optional<Github> modelGithub;
-        if (github == null) {
+        if (github == null || github.isEmpty()) {
             modelGithub = Optional.of(Github.EMPTY);
         } else if (!Github.isValidGithub(github)) {
             throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
