@@ -6,7 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyTaskMasterPro;
 import seedu.address.model.TaskMasterPro;
-import seedu.address.model.employee.*;
+import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
