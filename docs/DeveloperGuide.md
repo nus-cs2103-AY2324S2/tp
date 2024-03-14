@@ -314,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Phone number is invalid.
 
   * 1a1. ModContacts shows an error message.
-    
+
     Use case resumes at step 1.
 
 ---
