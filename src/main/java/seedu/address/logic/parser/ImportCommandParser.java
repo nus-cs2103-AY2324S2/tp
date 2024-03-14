@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.ImportCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.nio.file.Path;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new {@code ImportCommand} object

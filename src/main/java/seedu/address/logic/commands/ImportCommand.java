@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-
 import java.nio.file.Path;
 
+import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT;
 
 /**
  * Changes the  of an existing person in the address book.
@@ -23,8 +26,9 @@ public class ImportCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_IMPORT + "import] "
             + "Example: " + COMMAND_WORD + PREFIX_IMPORT + "C:usr/lib/text.csv";
-    public static final String MESSAGE_ARGUMENTS = "filePath: %s";
-    public static final String MESSAGE_IMPORT_SUCCESS = "Imported Contacts from: %s";
+    private static final String MESSAGE_ARGUMENTS = "filePath: %s";
+    private static final String MESSAGE_IMPORT_SUCCESS = "Imported Contacts from: %s";
+    private static final String MESSAGE_DATA_LOAD_ERROR = "Unable to load data from %s";
     private final Path filePath;
 
     /**
@@ -37,8 +41,17 @@ public class ImportCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.setAddressBookFilePath(filePath);
-        return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, filePath.toString()));
+        AddressBookStorage newAddressBookStorage = new JsonAddressBookStorage(filePath);
+        try {
+            model.setAddressBook(
+                    newAddressBookStorage
+                            .readAddressBook()
+                            .orElseGet(SampleDataUtil::getSampleAddressBook));
+        } catch (DataLoadingException e) {
+            throw new CommandException(String.format(MESSAGE_DATA_LOAD_ERROR, filePath));
+        }
+
+        return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, filePath));
     }
 
     @Override
