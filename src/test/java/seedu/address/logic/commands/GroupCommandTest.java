@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_BOB;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_GROUP;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_GROUP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NUSID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,8 @@ class GroupCommandTest {
                 .build();
         GroupCommand groupCommand = new GroupCommand(groupedPerson.getNusId(), descriptor);
 
-        String expectedMessage = String.format(GroupCommand.MESSAGE_GROUP_PERSON_SUCCESS, Messages.format(groupedPerson));
+        String expectedMessage = String.format(GroupCommand.MESSAGE_GROUP_PERSON_SUCCESS,
+                Messages.format(groupedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), groupedPerson);
@@ -75,7 +76,8 @@ class GroupCommandTest {
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
         GroupCommand.GroupPersonDescriptor groupPersonDescriptor = new GroupCommand.GroupPersonDescriptor();
-        GroupCommand groupCommand = new GroupCommand(new NusId(VALID_NUSID_BOB), groupPersonDescriptor);
+        GroupCommand groupCommand = new GroupCommand(new NusId(VALID_NUSID_BOB),
+                groupPersonDescriptor);
         String expected = GroupCommand.class.getCanonicalName() + "{nusId =" + VALID_NUSID_BOB + ", groupPersonDescriptor="
                 + groupPersonDescriptor + "}";
 

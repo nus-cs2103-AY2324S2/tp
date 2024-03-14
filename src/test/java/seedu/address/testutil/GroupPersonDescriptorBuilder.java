@@ -8,7 +8,9 @@ import seedu.address.logic.commands.GroupCommand;
 import seedu.address.logic.commands.GroupCommand.GroupPersonDescriptor;
 
 import seedu.address.model.group.Group;
-import seedu.address.model.person.*;
+import seedu.address.model.person.NusId;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Tag;
 
 /**
  * A utility class to help with building GroupPersonDescriptor objects.
