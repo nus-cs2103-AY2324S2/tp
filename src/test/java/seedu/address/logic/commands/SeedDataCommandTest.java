@@ -1,20 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 public class SeedDataCommandTest {
@@ -24,7 +17,11 @@ public class SeedDataCommandTest {
     @Test
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
-        Model expectedModel = model;
+
+        Model expectedModel = new ModelManager();
+        for (Person person: sampleData) {
+            expectedModel.addPerson(person);
+        }
 
         assertCommandSuccess(new SeedDataCommand(), model, SeedDataCommand.MESSAGE_SUCCESS, expectedModel);
     }
@@ -35,7 +32,19 @@ public class SeedDataCommandTest {
         model.addPerson(sampleData[0]);
         model.addPerson(sampleData[1]);
         model.addPerson(sampleData[3]);
-        Model expectedModel = model;
+
+        Model expectedModel = new ModelManager();
+
+        // pre-existing contacts
+        expectedModel.addPerson(sampleData[0]);
+        expectedModel.addPerson(sampleData[1]);
+        expectedModel.addPerson(sampleData[3]);
+        // new contacts added
+        for (int i = 0; i < sampleData.length; i++) {
+            if (i != 0 && i != 1 && i != 3) {
+                expectedModel.addPerson(sampleData[i]);
+            }
+        }
 
         assertCommandSuccess(new SeedDataCommand(), model, SeedDataCommand.MESSAGE_SUCCESS, expectedModel);
     }
@@ -46,10 +55,8 @@ public class SeedDataCommandTest {
         for (Person person: sampleData) {
             model.addPerson(person);
         }
-        Model expectedModel = model;
 
-        assertCommandSuccess(new SeedDataCommand(), model, SeedDataCommand.MESSAGE_FAILURE, expectedModel);
+        assertCommandFailure(new SeedDataCommand(), model, SeedDataCommand.MESSAGE_FAILURE);
     }
-
 
 }
