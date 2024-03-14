@@ -142,9 +142,4 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
-    public Optional<Person> getPersonByNusNet(NusNet nusNet) {
-        requireNonNull(nusNet);
-        return persons.asUnmodifiableObservableList().stream()
-                .filter(person -> person.getNusNet().equals(nusNet)).findFirst();
-    }
 }

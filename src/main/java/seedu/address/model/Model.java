@@ -94,11 +94,4 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Unmarks the attendance of the given person.
-     * The person must exist in the address book.
-     */
-    void unmarkAttendance(Person person);
-
-    Optional<Person> getPersonByNusNet(NusNet nusNet);
 }

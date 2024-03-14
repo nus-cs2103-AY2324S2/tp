@@ -27,8 +27,6 @@ public class UnmarkAttendanceCommand extends Command {
             + PREFIX_WEEK + "WEEK\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NUSNET + "e0123456 " + PREFIX_WEEK + " 1";
 
-    public static final String MESSAGE_UNMARKED_ATTENDANCE_SUCCESS = "Unmarked Attendance: %1$s";
-
     private final NusNet nusNet;
     private final WeekNumber weekNumber;
 
@@ -47,6 +45,7 @@ public class UnmarkAttendanceCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Optional<Person> optionalPersonToMark = model.getPersonByNusNet(nusNet);
+
         if (!optionalPersonToMark.isPresent()) {
             throw new CommandException(Messages.MESSAGE_MISSING_NUSNET);
         }
@@ -54,10 +53,20 @@ public class UnmarkAttendanceCommand extends Command {
 
         Set<WeekNumber> updatedWeekAttendance = new HashSet<>(personToUnmark.getAttendance());
 
+        if (!updatedWeekAttendance.remove(weekNumber)) {
+            String message = String.format("%s%s, %s, Week %s", Messages.MESSAGE_UNMARK_NONEXISITING_ATTENDANCE_SUCCESS,
+                    personToUnmark.getName(), personToUnmark.getNusNet(), weekNumber);
+            return new CommandResult(message);
+        }
+
         Person updatedPerson = new Person(personToUnmark.getName(), personToUnmark.getPhone(), personToUnmark.getEmail(),
                 personToUnmark.getNusNet(), personToUnmark.getAddress(), updatedWeekAttendance, personToUnmark.getTags());
+
         model.setPerson(personToUnmark, updatedPerson);
-        return new CommandResult(String.format(MESSAGE_UNMARKED_ATTENDANCE_SUCCESS, updatedPerson));
+
+        String message = String.format("%s%s, %s, Week %s", Messages.MESSAGE_UNMARKED_ATTENDANCE_SUCCESS,
+                updatedPerson.getName(), updatedPerson.getNusNet(), weekNumber);
+        return new CommandResult(message);
 
     }
 
