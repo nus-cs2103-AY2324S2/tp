@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CourseMateListPanel courseMateListPanel;
+    private CourseMateDetailPanel courseMateDetailPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +43,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane courseMateListPanelPlaceholder;
+
+    @FXML
+    private StackPane courseMateDetailPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,8 +114,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        courseMateListPanel = new CourseMateListPanel(logic.getFilteredCourseMateList());
-        personListPanelPlaceholder.getChildren().add(courseMateListPanel.getRoot());
+        courseMateDetailPanel = new CourseMateDetailPanel(logic.getFilteredCourseMateList().get(0));
+        courseMateDetailPanelPlaceholder.getChildren().add(courseMateDetailPanel.getRoot());
+
+        courseMateListPanel = new CourseMateListPanel(logic.getFilteredCourseMateList(), courseMateDetailPanel);
+        courseMateListPanelPlaceholder.getChildren().add(courseMateListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -184,6 +191,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowCourseMate()) {
+                courseMateDetailPanel.loadCourseMate(logic.getRecentlyProcessedCourseMate());
             }
 
             return commandResult;

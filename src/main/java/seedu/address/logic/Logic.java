@@ -33,6 +33,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of course mates */
     ObservableList<CourseMate> getFilteredCourseMateList();
 
+    /** Returns the most recently processed course mate */
+    CourseMate getRecentlyProcessedCourseMate();
+
     /**
      * Returns the user prefs' contact list file path.
      */

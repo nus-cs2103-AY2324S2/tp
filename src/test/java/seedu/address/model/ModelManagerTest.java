@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -91,6 +92,23 @@ public class ModelManagerTest {
     @Test
     public void getFilteredCourseMateList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCourseMateList().remove(0));
+    }
+
+    @Test
+    public void getRecentlyProcessedCourseMate_newModelManager_returnsNull() {
+        assertNull(modelManager.getRecentlyProcessedCourseMate());
+    }
+
+    @Test
+    public void setRecentlyProcessedCourseMate_setToAlice_returnsAlice() {
+        modelManager.setRecentlyProcessedCourseMate(ALICE);
+        assertEquals(ALICE, modelManager.getRecentlyProcessedCourseMate());
+    }
+
+    @Test
+    public void setRecentlyProcessedCourseMate_nullCourseMate_returnsNull() {
+        modelManager.setRecentlyProcessedCourseMate(null);
+        assertNull(modelManager.getRecentlyProcessedCourseMate());
     }
 
     @Test

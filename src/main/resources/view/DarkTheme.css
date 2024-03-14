@@ -132,6 +132,23 @@
     -fx-text-fill: #010504;
 }
 
+.detail-card {
+    -fx-border-radius: 10 10 10 10;
+    -fx-border-color: white;
+}
+
+.detail_big_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #010504;
+}
+
+.detail_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }

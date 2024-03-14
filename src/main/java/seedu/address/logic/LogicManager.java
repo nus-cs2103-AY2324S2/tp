@@ -72,6 +72,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CourseMate getRecentlyProcessedCourseMate() {
+        return model.getRecentlyProcessedCourseMate();
+    }
+
+    @Override
     public Path getContactListFilePath() {
         return model.getContactListFilePath();
     }
