@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalInternships.getTypicalInternshipData;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
+import seedu.address.model.InternshipData;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInternshipData;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -20,13 +23,16 @@ public class StorageManagerTest {
     @TempDir
     public Path testFolder;
 
-    private StorageManager storageManager;
+    private StorageManager addressBookStorageManager;
+    private StorageManager internshipDataStorageManager;
 
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonInternshipDataStorage internshipDataStorage = new JsonInternshipDataStorage(getTempFilePath("id"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        addressBookStorageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        internshipDataStorageManager = new StorageManager(internshipDataStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -42,10 +48,15 @@ public class StorageManagerTest {
          */
         UserPrefs original = new UserPrefs();
         original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
-        storageManager.saveUserPrefs(original);
-        UserPrefs retrieved = storageManager.readUserPrefs().get();
-        assertEquals(original, retrieved);
+        addressBookStorageManager.saveUserPrefs(original);
+        UserPrefs addressBookRetrieved = addressBookStorageManager.readUserPrefs().get();
+        internshipDataStorageManager.saveUserPrefs(original);
+        UserPrefs internshipDataRetrieved = internshipDataStorageManager.readUserPrefs().get();
+        assertEquals(original, addressBookRetrieved);
+        assertEquals(original, internshipDataRetrieved);
     }
+
+    // ================ AddressBook methods ==============================
 
     @Test
     public void addressBookReadSave() throws Exception {
@@ -55,14 +66,34 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
         AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        addressBookStorageManager.saveAddressBook(original);
+        ReadOnlyAddressBook retrieved = addressBookStorageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(addressBookStorageManager.getAddressBookFilePath());
     }
 
+    // ================ InternshipData methods ==============================
+
+
+    @Test
+    public void internshipDataReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonInternshipDataStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonInternshipDataStorageTest} class.
+         */
+        InternshipData original = getTypicalInternshipData();
+        internshipDataStorageManager.saveInternshipData(original);
+        ReadOnlyInternshipData retrieved = internshipDataStorageManager.readInternshipData().get();
+        assertEquals(original, new InternshipData(retrieved));
+    }
+
+    @Test
+    public void getInternshipDataFilePath() {
+        assertNotNull(internshipDataStorageManager.getInternshipDataFilePath());
+    }
 }
