@@ -2,9 +2,17 @@ package seedu.address.model.person.attribute;
 
 import java.time.LocalDate;
 
-class DateAttribute extends Attribute {
+/**
+ * Date attribute with LocalDate value
+ */
+public class DateAttribute extends Attribute {
     private LocalDate value;
-
+    /**
+     * Constructs a DateAttribute.
+     *
+     * @param name Name of the attribute.
+     * @param value A LocalDate.
+     */
     public DateAttribute(String name, LocalDate value) {
         super(name);
         this.value = value;

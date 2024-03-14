@@ -1,8 +1,16 @@
 package seedu.address.model.person.attribute;
 
-class StringAttribute extends Attribute {
+/**
+ * String attribute with string value
+ */
+public class StringAttribute extends Attribute {
     private String value;
-
+    /**
+     * Constructor for StringAttribute
+     *
+     * @param name name of the attribute
+     * @param value value of the attribute
+     */
     public StringAttribute(String name, String value) {
         super(name);
         this.value = value;

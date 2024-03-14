@@ -1,6 +1,9 @@
 package seedu.address.model.person.attribute;
 
-abstract class Attribute {
+/**
+ * Attribute with type and value
+ */
+public abstract class Attribute {
     protected String name;
 
     public Attribute(String name) {
