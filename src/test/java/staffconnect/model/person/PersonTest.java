@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -34,7 +35,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withVenue(VALID_VENUE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withVenue(VALID_VENUE_BOB).withModule(VALID_MODULE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,6 +86,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withVenue(VALID_VENUE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different module -> returns false
+        editedAlice = new PersonBuilder(ALICE).withModule(VALID_MODULE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -93,7 +98,8 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", venue=" + ALICE.getVenue() + ", tags=" + ALICE.getTags() + "}";
+                + ", email=" + ALICE.getEmail() + ", venue=" + ALICE.getVenue() + ", module=" + ALICE.getModule()
+                + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
