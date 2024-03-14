@@ -13,10 +13,21 @@ import seedu.address.commons.core.LogsCenter;
 /**
  * Controller for a help page.
  */
-public class HelpWindow extends UiPart<Stage> {
+public class HelpSearchWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-w10-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Searches through the address book using specified fields and keyword"
+            + "\n" + "" + "\n"
+            + "Formats:" + "\n"
+            + "/search ; name : [full/partial name]" + "\n"
+            + "/search ; phone : [full/partial phone]" + "\n"
+            + "/search ; address : [full/partial address]" + "\n"
+            + "/search ; email : [full/partial email]" + "\n"
+            + "/search ; product : [full/partial product name]" + "\n"
+            + "/search ; employment : [employment]" + "\n"
+            + " address : [address] ; email : [email] ; salary : [salary] ; employment : [part/full] ; "
+            + "\n" + "" + "\n"
+            + "Go to our UG for more information : " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -32,7 +43,7 @@ public class HelpWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public HelpWindow(Stage root) {
+    public HelpSearchWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
     }
@@ -40,7 +51,7 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
+    public HelpSearchWindow() {
         this(new Stage());
     }
 
