@@ -2,10 +2,10 @@ package seedu.address.model.person.relationship;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
 
 public class RelationshipTest {
 
@@ -20,13 +20,13 @@ public class RelationshipTest {
     }
 
     @Test
-    public void getPerson1_returnsCorrectUUID() {
+    public void getPerson1_returnsCorrectUuid() {
         UUID person1 = relationship.getPerson1();
         assertEquals(person1, relationship.getPerson1());
     }
 
     @Test
-    public void getPerson2_returnsCorrectUUID() {
+    public void getPerson2_returnsCorrectUuid() {
         UUID person2 = relationship.getPerson2();
         assertEquals(person2, relationship.getPerson2());
     }
