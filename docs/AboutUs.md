@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/darryl-chan.md)]
 
 * Role: Developer
-* Responsibilities: UI + model
+* Responsibilities: model
 
 ### Shang Feiyang
 
@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jia Jun
 
-<img src="images/tanjiajun.png" width="200px">
+<img src="images/tanjiajiajun.png" width="200px">
 
 [[github](https://github.com/tanjiajiajun)] [[portfolio](team/jiajun.md)]
 
@@ -69,12 +69,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities:
 
-### James Doe
+### Matthew Elmer Ken
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/matthewken19.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/matthewken19)]
+[[portfolio](team/matthewken19.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and deadlines

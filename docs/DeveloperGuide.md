@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# EduConnect Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,13 +274,12 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Teaching Assistants, managing one or more classes.
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Our app helps you, an active TA, manage contact details of students in both big or small tutorial
+classes. Keep track of student progress, access links to their projects, or simply de-conflict class schedules.
 
 
 ### User stories

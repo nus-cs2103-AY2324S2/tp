@@ -19,45 +19,75 @@ import educonnect.model.AddressBook;
 import educonnect.model.Model;
 import educonnect.model.ReadOnlyAddressBook;
 import educonnect.model.ReadOnlyUserPrefs;
-import educonnect.model.person.Person;
+import educonnect.model.student.Student;
 import educonnect.testutil.Assert;
-import educonnect.testutil.PersonBuilder;
-import educonnect.testutil.TypicalPersons;
+import educonnect.testutil.StudentBuilder;
+import educonnect.testutil.TypicalStudents;
 import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullStudent_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
+        Student validStudent = new StudentBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validStudent)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
+
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateStudentId_throwsCommandException() {
+        Student validStudent1 = new StudentBuilder().build();
+        Student validStudent2 = new StudentBuilder().alternate()
+                .withStudentId(validStudent1.getStudentId().value).build();
+        AddCommand addCommand = new AddCommand(validStudent1);
+        ModelStub modelStub = new ModelStubAcceptingStudentAdded();
+        modelStub.addStudent(validStudent2);
 
         Assert.assertThrows(CommandException.class, AddCommand
-                .MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                .MESSAGE_DUPLICATE_STUDENT_ID, () -> addCommand.execute(modelStub));
     }
 
     @Test
+    public void execute_duplicateEmail_throwsCommandException() {
+        Student validStudent1 = new StudentBuilder().build();
+        Student validStudent2 = new StudentBuilder().alternate()
+                .withEmail(validStudent1.getEmail().value).build();
+        AddCommand addCommand = new AddCommand(validStudent1);
+        ModelStub modelStub = new ModelStubAcceptingStudentAdded();
+        modelStub.addStudent(validStudent2);
+
+        Assert.assertThrows(CommandException.class, AddCommand
+                .MESSAGE_DUPLICATE_EMAIL, () -> addCommand.execute(modelStub));
+    }
+    @Test
+    public void execute_duplicateTelegramId_throwsCommandException() {
+        Student validStudent1 = new StudentBuilder().build();
+        Student validStudent2 = new StudentBuilder().alternate()
+                .withTelegramHandle(validStudent1.getTelegramHandle().value).build();
+        AddCommand addCommand = new AddCommand(validStudent1);
+        ModelStub modelStub = new ModelStubAcceptingStudentAdded();
+        modelStub.addStudent(validStudent2);
+
+        Assert.assertThrows(CommandException.class, AddCommand
+                .MESSAGE_DUPLICATE_TELEGRAM_HANDLE, () -> addCommand.execute(modelStub));
+    }
+
+    @SuppressWarnings("unlikely-arg-type")
+    @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Student alice = new StudentBuilder().withName("Alice").build();
+        Student bob = new StudentBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -74,14 +104,14 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(TypicalPersons.ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + TypicalPersons.ALICE + "}";
+        AddCommand addCommand = new AddCommand(TypicalStudents.ALICE);
+        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + TypicalStudents.ALICE + "}";
         assertEquals(expected, addCommand.toString());
     }
 
@@ -120,7 +150,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addStudent(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameUniqueIdentifier(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasStudentId(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEmail(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTelegramHandle(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,65 +185,68 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single student.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithStudent extends ModelStub {
+        private final Student student;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
 
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+
+        ModelStubWithStudent(Student student) {
+            requireNonNull(student);
+            this.student = student;
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the student being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingStudentAdded extends ModelStub {
+        final ArrayList<Student> studentsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasStudentId(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSameStudentId);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public boolean hasEmail(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSameEmail);
+        }
+
+        @Override
+        public boolean hasTelegramHandle(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSameTelegramHandle);
+        }
+
+        @Override
+        public void addStudent(Student student) {
+            requireNonNull(student);
+            studentsAdded.add(student);
         }
 
         @Override

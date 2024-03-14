@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import educonnect.commons.core.GuiSettings;
-import educonnect.model.person.Person;
+import educonnect.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,52 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same unique identifer as {@code student} exists in the address book.
+     * The unique identifiers are student id, email, telegram handle
      */
-    boolean hasPerson(Person person);
+    boolean hasSameUniqueIdentifier(Student student);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a student with the student id as {@code student} exists in the address book.
      */
-    void deletePerson(Person target);
+    boolean hasStudentId(Student student);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Returns true if a student with the email as {@code student} exists in the address book.
      */
-    void addPerson(Person person);
+    boolean hasEmail(Student student);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Returns true if a student with the telegram handle as {@code student} exists in the address book.
+     */
+    boolean hasTelegramHandle(Student student);
+
+    /**
+     * Deletes the given student.
+     * The student must exist in the address book.
+     */
+    void deleteStudent(Student target);
+
+    /**
+     * Adds the given student.
+     * {@code student} must not already exist in the address book.
+     */
+    void addStudent(Student student);
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in
+     * the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setStudent(Student target, Student editedStudent);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 }

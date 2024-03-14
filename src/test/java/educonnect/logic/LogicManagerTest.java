@@ -1,9 +1,13 @@
 package educonnect.logic;
 
-import static educonnect.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static educonnect.logic.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static educonnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static educonnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static educonnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static educonnect.logic.commands.CommandTestUtil.STUDENT_ID_DESC_AMY;
+import static educonnect.logic.commands.CommandTestUtil.TELEGRAM_HANDLE_DESC_AMY;
 import static educonnect.testutil.Assert.assertThrows;
-import static educonnect.testutil.TypicalPersons.AMY;
+import static educonnect.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -16,7 +20,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.commands.CommandResult;
-import educonnect.logic.commands.CommandTestUtil;
 import educonnect.logic.commands.ListCommand;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.logic.parser.exceptions.ParseException;
@@ -24,11 +27,11 @@ import educonnect.model.Model;
 import educonnect.model.ModelManager;
 import educonnect.model.ReadOnlyAddressBook;
 import educonnect.model.UserPrefs;
-import educonnect.model.person.Person;
+import educonnect.model.student.Student;
 import educonnect.storage.JsonAddressBookStorage;
 import educonnect.storage.JsonUserPrefsStorage;
 import educonnect.storage.StorageManager;
-import educonnect.testutil.PersonBuilder;
+import educonnect.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
@@ -43,7 +46,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("educonnect.json"));
+                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -58,7 +61,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -80,8 +83,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
 
     /**
@@ -162,11 +165,11 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
-                + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + STUDENT_ID_DESC_AMY
+                + EMAIL_DESC_AMY + TELEGRAM_HANDLE_DESC_AMY;
+        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addStudent(expectedStudent);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }
