@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import java.util.Optional;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;\
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import java.util.Optional;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
