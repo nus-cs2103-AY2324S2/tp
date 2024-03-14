@@ -27,7 +27,7 @@ public class DeleteLoanCommand extends Command {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Delete loan command not implemented yet";
     public static final String MESSAGE_ARGUMENTS = "Person number: %1$d, Loan Index: %2$d";
-    public static final String MESSAGE_SUCCESS = "Loan deleted: Person Name: %1$s, Loan: %2$s";
+    public static final String MESSAGE_SUCCESS = "Loan deleted.\nPerson Name: %1$s\nLoan: %2$s";
     public static final String MESSAGE_FAILURE_PERSON = "No person found for Person number: %1$d";
     public static final String MESSAGE_FAILURE_LOAN = "No loan found for Loan number: %1$d for given person";
     private final Index personIndex;
