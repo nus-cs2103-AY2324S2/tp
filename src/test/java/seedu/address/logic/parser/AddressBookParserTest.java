@@ -7,8 +7,8 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
