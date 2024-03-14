@@ -2,12 +2,18 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Logger;
+
+import com.google.zxing.WriterException;
 
 import seedu.address.QrCodeGenerator;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
@@ -16,7 +22,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
+    private static final Logger logger = LogsCenter.getLogger(Person.class);
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -36,6 +42,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.generateQrCode();
     }
 
     public Name getName() {
@@ -67,8 +74,19 @@ public class Person {
      *
      * @return the path of the generated QR code
      */
-    public String getQrCodePath() {
+    public Path getQrCodePath() {
         return QrCodeGenerator.getQrCodePath(this);
+    }
+
+    /**
+     * Generates a QR code for the person.
+     */
+    public void generateQrCode() {
+        try {
+            QrCodeGenerator.generateQrCode(this);
+        } catch (WriterException | IOException e) {
+            logger.warning("Unable to generate QR code for " + this);
+        }
     }
 
     /**

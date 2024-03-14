@@ -7,12 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
-import com.google.zxing.WriterException;
-
-import seedu.address.QrCodeGenerator;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -64,12 +60,6 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-
-        try {
-            QrCodeGenerator.generateQrCode(toAdd);
-        } catch (WriterException | IOException e) {
-            logger.warning("Could not generate QR code for " + toAdd.getName());
-        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

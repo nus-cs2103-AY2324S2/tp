@@ -1,9 +1,9 @@
 package seedu.address;
 
 import java.io.IOException;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class QrCodeGenerator {
     /**
      * The folder where QR codes are stored.
      */
-    public static final String QR_CODE_FOLDER = "data/qrcodes/";
+    public static final Path QR_CODE_FOLDER = Paths.get("data", "qrcodes");
     /**
      * The width of the QR code.
      */
@@ -52,7 +52,7 @@ public class QrCodeGenerator {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = qrCodeWriter.encode(vCard, BarcodeFormat.QR_CODE, QR_CODE_WIDTH, QR_CODE_HEIGHT, hints);
 
-        Path path = FileSystems.getDefault().getPath(getQrCodePath(person));
+        Path path = getQrCodePath(person);
         Files.createDirectories(path.getParent()); // Create necessary folders along the path if they do not exist
         MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
     }
@@ -74,7 +74,8 @@ public class QrCodeGenerator {
      * @param person the person for whom the QR code path is generated
      * @return the file path for the QR code
      */
-    public static String getQrCodePath(Person person) {
-        return QR_CODE_FOLDER + person.getName() + person.getPhone() + ".png";
+    public static Path getQrCodePath(Person person) {
+        return Paths.get(QR_CODE_FOLDER.toString(),
+                person.getName().toString() + "_" + person.getPhone().toString() + ".png");
     }
 }
