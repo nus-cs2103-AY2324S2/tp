@@ -1,10 +1,10 @@
 package seedu.address.model.internship;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class ContactNumberTest {
 
@@ -56,4 +56,5 @@ public class ContactNumberTest {
 
         // different values -> returns false
         assertFalse(contactNumber.equals(new ContactNumber("995")));
-    }}
+    }
+}

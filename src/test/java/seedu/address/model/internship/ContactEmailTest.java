@@ -1,10 +1,10 @@
 package seedu.address.model.internship;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class ContactEmailTest {
 
@@ -44,13 +44,13 @@ public class ContactEmailTest {
         assertFalse(ContactEmail.isValidContactEmail("peter@jack@example.com")); // '@' symbol in local part
         assertFalse(ContactEmail.isValidContactEmail("-peterjack@example.com")); // local part starts with a hyphen
         assertFalse(ContactEmail.isValidContactEmail("peterjack-@example.com")); // local part ends with a hyphen
-        assertFalse(ContactEmail.isValidContactEmail("peter..jack@example.com")); // local part has two consecutive periods
+        assertFalse(ContactEmail.isValidContactEmail("peter..jack@example.com"));
         assertFalse(ContactEmail.isValidContactEmail("peterjack@example@com")); // '@' symbol in domain name
-        assertFalse(ContactEmail.isValidContactEmail("peterjack@.example.com")); // domain name starts with a period
+        assertFalse(ContactEmail.isValidContactEmail("peterjack@.example.com"));
         assertFalse(ContactEmail.isValidContactEmail("peterjack@example.com.")); // domain name ends with a period
-        assertFalse(ContactEmail.isValidContactEmail("peterjack@-example.com")); // domain name starts with a hyphen
+        assertFalse(ContactEmail.isValidContactEmail("peterjack@-example.com"));
         assertFalse(ContactEmail.isValidContactEmail("peterjack@example.com-")); // domain name ends with a hyphen
-        assertFalse(ContactEmail.isValidContactEmail("peterjack@example.c")); // top level domain has less than two chars
+        assertFalse(ContactEmail.isValidContactEmail("peterjack@example.c"));
 
         // valid contactEmail
         assertTrue(ContactEmail.isValidContactEmail("PeterJack_1190@example.com")); // underscore in local part
@@ -60,9 +60,9 @@ public class ContactEmailTest {
         assertTrue(ContactEmail.isValidContactEmail("a@bc")); // minimal
         assertTrue(ContactEmail.isValidContactEmail("test@localhost")); // alphabets only
         assertTrue(ContactEmail.isValidContactEmail("123@145")); // numeric local part and domain name
-        assertTrue(ContactEmail.isValidContactEmail("a1+be.d@example1.com")); // mixture of alphanumeric and special characters
-        assertTrue(ContactEmail.isValidContactEmail("peter_jack@very-very-very-long-example.com")); // long domain name
-        assertTrue(ContactEmail.isValidContactEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
+        assertTrue(ContactEmail.isValidContactEmail("a1+be.d@example1.com"));
+        assertTrue(ContactEmail.isValidContactEmail("peter_jack@very-very-very-long-example.com"));
+        assertTrue(ContactEmail.isValidContactEmail("if.you.dream.it_you.can.do.it@example.com"));
         assertTrue(ContactEmail.isValidContactEmail("e1234567@u.nus.edu")); // more than one period in domain
     }
 
@@ -84,4 +84,5 @@ public class ContactEmailTest {
 
         // different values -> returns false
         assertFalse(contactEmail.equals(new ContactEmail("other.valid@email")));
-    }}
+    }
+}
