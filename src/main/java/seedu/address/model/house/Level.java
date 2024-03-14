@@ -13,6 +13,8 @@ public class Level {
     public static final String MESSAGE_CONSTRAINTS =
             "Level should only contain numbers, and it should only be at most 2 digits long";
     public static final String VALIDATION_REGEX = "\\d{1,2}";
+    public static final String ZERO_REGEX = "^0+$";
+
     public final String value;
 
     /**
@@ -30,7 +32,7 @@ public class Level {
      * Returns true if a given string is a valid level.
      */
     public static boolean isValidLevel(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && !test.matches(ZERO_REGEX);
     }
 
     @Override

@@ -29,6 +29,8 @@ public class LevelTest {
         assertFalse(Level.isValidLevel(" ")); // spaces only
 
         // invalid levels
+        assertFalse(Level.isValidLevel("0")); // 1 zero only
+        assertFalse(Level.isValidLevel("00")); // 2 zeroes only
         assertFalse(Level.isValidLevel("a")); // non-digit only
         assertFalse(Level.isValidLevel("aa")); // non-digit only
         assertFalse(Level.isValidLevel("###")); // non-digit only
