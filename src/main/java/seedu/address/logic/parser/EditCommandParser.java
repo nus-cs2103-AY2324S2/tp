@@ -31,6 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        //Todo This checks for all prefix but i can change to just look for /c /d
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
@@ -41,11 +42,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
-
+        //Todo check if there are duplicate prefix. can change to /c and /d only
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-
+        //This basically sets a new class for the editpersondescriptor
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-
+        //here,they check whether the String that is parsed in contains the following prefix.
+        //Todo look through all these prefixes and see whether i can just change to /c /d.
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.set("Name", (ParserUtil.parse("Name", argMultimap.getValue(PREFIX_NAME).get())));
         }
@@ -59,12 +61,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.set("Address", ParserUtil
                     .parse("Address", argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
+        //tag in this case is an Array list and over here, it shows how it
+        //get all the values and check whether the prefix is there.
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
+        //Checks if there is any file edited as suggested.
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-
         return new EditCommand(index, editPersonDescriptor);
     }
 

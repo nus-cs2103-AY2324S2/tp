@@ -30,7 +30,6 @@ import seedu.address.model.tag.Tag;
  * Edits the details of an existing person in the address book.
  */
 public class EditCommand extends Command {
-
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
@@ -73,8 +72,9 @@ public class EditCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        //Finds the person
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        //Over here, they replaced the old person info with the new person (editpersondescriptor)
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -92,13 +92,16 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-
+        //In this class, the editPersonDescriptor is manually added into the person.
+        //Todo Make sure that here isnt hard coded as they literally is finding the new person info,
+        //Todo see whether there is a change, if yes, set to new info, else use old info.
         Entry updatedName = editPersonDescriptor.get("Name").orElse(personToEdit.getEntry("Name"));
         Entry updatedPhone = editPersonDescriptor.get("Phone").orElse(personToEdit.getEntry("Phone"));
         Entry updatedEmail = editPersonDescriptor.get("Email").orElse(personToEdit.getEntry("Email"));
         Entry updatedAddress = editPersonDescriptor.get("Address").orElse(personToEdit.getEntry("Address"));
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
+        //Here they are creating a new person with the edited stuff
         Person result = new Person(updatedName, updatedTags);
         result.addEntry(updatedPhone);
         result.addEntry(updatedEmail);
