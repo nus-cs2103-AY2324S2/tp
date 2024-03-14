@@ -30,44 +30,39 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        //Todo This checks for all prefix but i can change to just look for /c /d
-        //Changed to accept only c/ d/ t/
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_DESCRIPTION, PREFIX_TAG);
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
-        //Todo check if there are duplicate prefix. can change to /c and /d only
-        // done
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CATEGORY, PREFIX_DESCRIPTION);
-        //here,they check whether the String that is parsed in contains the following prefix.
+        //Check whether the String that is parsed in contains the following prefix.
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         String category = "";
-        String description = "";
-        //Todo look through all these prefixes and see whether i can just change to /c /d.
-        //Changed to check for only c/ d/ t/
+        String description;
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
             category = argMultimap.getValue(PREFIX_CATEGORY).get();
+            editPersonDescriptor.set(category, ParserUtil.parse(category, category));
+            editPersonDescriptor.setCategory(category);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+            editPersonDescriptor.set(category, ParserUtil.parse(category, description));
+            editPersonDescriptor.setDescription(description);
         }
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor(category, description);
-        //tag in this case is an Array list and over here, it shows how it
-        //get all the values and check whether the prefix is there.
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        //Checks if there is any file edited as suggested.
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        // Checks if both category and description are provided.
+        boolean isCategorySpecified = editPersonDescriptor.getCategory().isEmpty();
+        boolean isDescriptionSpecified = editPersonDescriptor.getDescription() == null
+                || editPersonDescriptor.getDescription().isEmpty();
+        if (isCategorySpecified && isDescriptionSpecified && !editPersonDescriptor.isAnyTagEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        // Checks if both category and description are not provided.
-        if (editPersonDescriptor.getCategory() == null || editPersonDescriptor.getCategory().isEmpty()) {
-            if (editPersonDescriptor.getDescription() == null || editPersonDescriptor.getDescription().isEmpty()) {
-                throw new ParseException("Error: At least one of category (c/) or description (d/) must be provided.");
-            }
+        if (editPersonDescriptor.getEntryList().get(category) == null) {
+            throw new ParseException(EditCommand.MESSAGE_CATEGORY_DOESNT_EXIST);
         }
         return new EditCommand(index, editPersonDescriptor);
     }

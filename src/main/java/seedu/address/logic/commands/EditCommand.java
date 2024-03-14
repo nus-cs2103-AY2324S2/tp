@@ -44,6 +44,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_CATEGORY_DOESNT_EXIST = "Category doesnt exist!";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
@@ -89,12 +90,11 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-        Entry personToEditEntry = personToEdit.getEntry(editPersonDescriptor.getCategory());
-        //returns a null error
-        personToEditEntry.setDescription(editPersonDescriptor.getDescription());
+        if (editPersonDescriptor.getCategory() != null) {
+            Entry personToEditEntry = personToEdit.getEntry(editPersonDescriptor.getCategory());
+            personToEditEntry.setDescription(editPersonDescriptor.getDescription());
+        }
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        //return new Person(personToEdit.getEntry("Name"), updatedTags);
-        personToEdit.addEntry(personToEditEntry);
         personToEdit.setTags(updatedTags);
         return personToEdit;
     }
@@ -136,10 +136,7 @@ public class EditCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(String category, String description) {
-            this.category = category;
-            this.description = description;
-        }
+        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
@@ -148,6 +145,8 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             this.entryList = toCopy.entryList;
             this.tags = toCopy.tags;
+            this.category = toCopy.getCategory();
+            this.description = toCopy.getDescription();
         }
         // Getter and setter for category and description
         public String getCategory() {
@@ -166,10 +165,12 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          * Todo change this when implementation done
          */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(get("Name"), get("Phone"), get("Email"), get("Address"), tags);
+        public boolean isAnyTagEdited() {
+            return CollectionUtil.isAnyNonNull(tags);
         }
-
+        public EntryList getEntryList() {
+            return this.entryList;
+        }
         public void set(String category, Entry entry) {
             Entry e = entryList.get(category);
             if (e == null) {
