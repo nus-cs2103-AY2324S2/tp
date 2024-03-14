@@ -92,11 +92,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a person object
+     * @return a person object
+     */
     public Person build() {
         if (id == null) {
             return new Person(name, phone, email, address, tags);
-        }
-        else {
+        } else {
             return new Person(id, name, phone, email, address, tags);
         }
     }
