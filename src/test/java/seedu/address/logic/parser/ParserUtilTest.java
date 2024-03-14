@@ -189,7 +189,10 @@ public class ParserUtilTest {
     @Test
     public void parseGroups_collectionWithValidGroups_returnsGroupSet() throws Exception {
         Set<Group> actualGroupSet = ParserUtil.parseGroups(Arrays.asList(VALID_GROUP_1, VALID_GROUP_2));
-        Set<Group> expectedGroupSet = new HashSet<Group>(Arrays.asList(new Group(VALID_GROUP_1), new Group(VALID_GROUP_2)));
+        Set<Group> expectedGroupSet = new HashSet<Group>(Arrays.asList(
+                new Group(VALID_GROUP_1),
+                new Group(VALID_GROUP_2)
+        ));
 
         assertEquals(expectedGroupSet, actualGroupSet);
     }
