@@ -6,9 +6,27 @@
 
 # EduConnect User Guide
 
-EduConnect is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduConnect can get your contact management tasks done faster than traditional GUI apps.
+EduConnect is a **desktop app for managing student contacts, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduConnect can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
+- [EduConnect User Guide](#educonnect-user-guide)
+  - [Quick start](#quick-start)
+  - [Features](#features)
+    - [Viewing help : `help`](#viewing-help--help)
+    - [Adding a person: `add`](#adding-a-person-add)
+    - [Listing all persons : `list`](#listing-all-persons--list)
+    - [Editing a person : `edit`](#editing-a-person--edit)
+    - [Locating persons by name: `find`](#locating-persons-by-name-find)
+    - [Deleting a person : `delete`](#deleting-a-person--delete)
+    - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+    - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  - [FAQ](#faq)
+  - [Known issues](#known-issues)
+  - [Command summary](#command-summary)
+
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
