@@ -105,7 +105,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPersonForEdit(Person person) {
+    public void addPersonKeepFilter(Person person) {
         addressBook.addPerson(person);
     }
     @Override

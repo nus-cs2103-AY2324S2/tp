@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPersonForEdit(Person person) {
+        public void addPersonKeepFilter(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
