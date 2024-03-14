@@ -31,4 +31,3 @@ public class RelationshipTest {
         assertEquals(person2, relationship.getPerson2());
     }
 }
-
