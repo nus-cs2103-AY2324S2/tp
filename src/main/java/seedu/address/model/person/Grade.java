@@ -10,7 +10,7 @@ public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Grade should only contain a single letter from A to D, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[A-D]";
+    public static final String VALIDATION_REGEX = "[A-C][+-]?|D";
     public final String value;
 
     /**
