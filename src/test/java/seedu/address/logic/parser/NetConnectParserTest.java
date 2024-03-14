@@ -32,9 +32,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class NetConnectParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final NetConnectParser parser = new NetConnectParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -101,8 +101,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), (
+                ) -> parser.parseCommand(""));
     }
 
     @Test
