@@ -30,17 +30,17 @@ public class FacultyTest {
         assertFalse(Faculty.isValidFaculty(" ")); // spaces only
 
         // valid Faculties
-        assertTrue(Faculty.isValidFaculty("~")); // one character
-        assertTrue(Faculty.isValidFaculty("School of Computing")); // long faculty
-        assertTrue(Faculty.isValidFaculty("abcdefg"));
+        assertTrue(Faculty.isValidFaculty("science")); // ignore capitals
+        assertTrue(Faculty.isValidFaculty("Computing"));
+        assertTrue(Faculty.isValidFaculty("Arts and Social Sciences")); // long faculty
     }
 
     @Test
     public void equals() {
-        Faculty faculty = new Faculty("a faculty");
+        Faculty faculty = new Faculty("Computing");
 
         // same values -> returns true
-        assertEquals(faculty, new Faculty("a faculty"));
+        assertEquals(faculty, new Faculty("Computing"));
 
         // same object -> returns true
         assertEquals(faculty, faculty);
@@ -52,6 +52,6 @@ public class FacultyTest {
         assertFalse(faculty.equals(5.0f));
 
         // different values -> returns false
-        assertNotEquals(faculty, new Faculty("Other Faculty"));
+        assertNotEquals(faculty, new Faculty("Science"));
     }
 }
