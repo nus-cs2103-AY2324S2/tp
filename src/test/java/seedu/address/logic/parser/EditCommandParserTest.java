@@ -54,9 +54,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
-
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
