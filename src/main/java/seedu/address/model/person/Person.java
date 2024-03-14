@@ -28,6 +28,7 @@ public class Person {
     private final HashMap<String, Attribute> attributes = new HashMap<>();
 
     /**
+     * THIS CONSTRUCTOR WILL BE DEPRECATED.
      * Constructs a person with a random UUID.
      * Every field must be present and not null.
      */
@@ -40,6 +41,21 @@ public class Person {
         this.attributes.put("Address", new StringAttribute("Address", address.toString()));
 
         this.tags.addAll(tags); // Earmarked for deprecation - to be superseded by relations
+    }
+
+    /** Constructs a person with a random UUID and a list of attributes.
+     * There are no compulsory fields, attribute list can be null.
+     *
+     * @params attributes A list of attributes to be added to the person.
+     * If the list is null, the person will have no attributes.
+     * If there are multiple attributes of the same type, the last one will be used.
+     * @return A person with the given attributes.
+     */
+    public Person(Attribute[] attributes) {
+        this.uuid = UUID.randomUUID();
+        for (Attribute attribute : attributes) {
+            this.attributes.put(attribute.getName(), attribute);
+        }
     }
 
     public Name getName() { //Earmarked for deprecation - superseded by getAttribute - name should be optional
@@ -132,6 +148,12 @@ public class Person {
     private static void assertValidAttributeName(String attributeType) {
         if (attributeType == "") {
             throw new IllegalArgumentException("Attribute name cannot be empty.");
+        }
+    }
+
+    private static void assertAttributeExistsInPerson(String attributeType, Map<String, Attribute> attributes) {
+        if (!attributes.containsKey(attributeType)) {
+            throw new IllegalArgumentException("Attribute with name " + attributeType + " does not exist");
         }
     }
 
