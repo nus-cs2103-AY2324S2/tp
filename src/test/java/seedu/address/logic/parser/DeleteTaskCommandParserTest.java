@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,9 +23,9 @@ public class DeleteTaskCommandParserTest {
 
         DeleteTaskCommand dtc = parser.parse("123");
 
-        assertTrue(m.getFilteredTaskList().size() == 1);
+        assertEquals(1, m.getFilteredTaskList().size());
         dtc.execute(m);
-        assertTrue(m.getFilteredTaskList().size() == 0);
+        assertEquals(0, m.getFilteredTaskList().size());
     }
 
     @Test
