@@ -163,7 +163,8 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `find alex` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+  ![result for 'find alex', followed by 'delete 1'](images/findAndDelete.png)
 
 ### Clearing all entries : `clear`
 
