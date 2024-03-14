@@ -3,6 +3,7 @@ package staffconnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,6 +25,7 @@ import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.Phone;
@@ -44,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_FACULTY + "FACULTY] "
             + "[" + PREFIX_VENUE + "VENUE] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -101,11 +104,13 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
         Venue updatedVenue = editPersonDescriptor.getVenue().orElse(personToEdit.getVenue());
         Module updatedModule = editPersonDescriptor.getModule().orElse(personToEdit.getModule());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedVenue, updatedModule, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedFaculty,
+                updatedVenue, updatedModule, updatedTags);
     }
 
     @Override
@@ -140,6 +145,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Faculty faculty;
         private Venue venue;
         private Module module;
         private Set<Tag> tags;
@@ -154,6 +160,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setFaculty(toCopy.faculty);
             setVenue(toCopy.venue);
             setModule(toCopy.module);
             setTags(toCopy.tags);
@@ -163,7 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, venue, module, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, faculty, venue, module, tags);
         }
 
         public void setName(Name name) {
@@ -188,6 +195,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setFaculty(Faculty faculty) {
+            this.faculty = faculty;
+        }
+
+        public Optional<Faculty> getFaculty() {
+            return Optional.ofNullable(faculty);
         }
 
         public void setVenue(Venue venue) {
@@ -238,6 +253,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(faculty, otherEditPersonDescriptor.faculty)
                     && Objects.equals(venue, otherEditPersonDescriptor.venue)
                     && Objects.equals(module, otherEditPersonDescriptor.module)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
@@ -249,6 +265,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
+                    .add("faculty", faculty)
                     .add("venue", venue)
                     .add("module", module)
                     .add("tags", tags)
