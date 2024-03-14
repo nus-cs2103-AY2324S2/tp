@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Person;
 
 /**
@@ -37,6 +38,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label venue;
     @FXML
+    private Label faculty;
+    @FXML
     private Label module;
     @FXML
     private Label email;
@@ -52,6 +55,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        faculty.setText(person.getFaculty().value);
         venue.setText(person.getVenue().value);
         module.setText(person.getModule().value);
         email.setText(person.getEmail().value);
