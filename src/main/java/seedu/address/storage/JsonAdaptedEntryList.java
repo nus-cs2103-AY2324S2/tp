@@ -1,8 +1,14 @@
 package seedu.address.storage;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+/**
+ * Custom class to store Json EntryList
+ */
 public class JsonAdaptedEntryList {
     private final List<JsonAdaptedEntry> entryList;
 
