@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 
 * Role: Developer
-* Responsibilities: Scheduling and tracking + Documentation
+* Responsibilities: Scheduling and tracking + Documentation + Commons
 
 ### Eugene Hirose
 
@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Testing + UI
+* Responsibilities: Testing + UI + Logic
 
 ### Jeong Jaeho
 
@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Team lead + Integration
+* Responsibilities: Team lead + Integration + Storage
 
 ### Kim Junseo
 
@@ -50,4 +50,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Code Quality + Model
+* Responsibilities: Code Quality + Model + JavaFX visuals
