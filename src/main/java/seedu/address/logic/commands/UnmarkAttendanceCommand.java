@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEK;
+
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -7,21 +15,16 @@ import seedu.address.model.person.NusNet;
 import seedu.address.model.person.Person;
 import seedu.address.model.weeknumber.WeekNumber;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEK;
-
+/**
+ *
+ */
 public class UnmarkAttendanceCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unmarks the attendance of the person identified by their NusNetID by removing the specified week to " +
-            "their attendance set. "
+            + ": Unmarks the attendance of the person identified by their NusNetID by removing the specified week to "
+            + "their attendance set. "
             + "Parameters: "
             + PREFIX_NUSNET + "NUSNET "
             + PREFIX_WEEK + "WEEK\n"
@@ -61,8 +64,9 @@ public class UnmarkAttendanceCommand extends Command {
             return new CommandResult(formattedMessage);
         }
 
-        Person updatedPerson = new Person(personToUnmark.getName(), personToUnmark.getPhone(), personToUnmark.getEmail(),
-                personToUnmark.getNusNet(), personToUnmark.getAddress(), updatedWeekAttendance, personToUnmark.getTags());
+        Person updatedPerson = new Person(personToUnmark.getName(), personToUnmark.getPhone(),
+                personToUnmark.getEmail(), personToUnmark.getNusNet(), personToUnmark.getAddress(),
+                updatedWeekAttendance, personToUnmark.getTags());
 
         model.setPerson(personToUnmark, updatedPerson);
 

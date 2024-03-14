@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEK;
+
 import seedu.address.logic.commands.UnmarkAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NusNet;
 import seedu.address.model.weeknumber.WeekNumber;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEK;
 
 /**
  * Parses input arguments and creates a new UnmarkAttendanceCommand object.
