@@ -21,4 +21,19 @@ public class Task {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        //instanceof handles null
+        if (!(other instanceof Task)) {
+            return false;
+        }
+
+        Task otherTask = (Task) other;
+        return this.getDescription().equals(((Task) other).getDescription());
+    }
 }

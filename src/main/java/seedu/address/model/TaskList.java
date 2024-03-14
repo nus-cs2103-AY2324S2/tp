@@ -41,4 +41,5 @@ public class TaskList {
     public boolean hasTask(Task task) {
         return taskList.contains(task);
     }
+
 }

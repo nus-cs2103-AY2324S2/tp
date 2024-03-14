@@ -19,13 +19,11 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     @Override
     public AddTaskCommand parse(String userInput) throws ParseException {
-        String description = userInput;
-
-        if (description.isEmpty()) {
+        if (userInput.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        Task task = new Task(description);
+        Task task = new Task(userInput);
         return new AddTaskCommand(task);
     }
 
