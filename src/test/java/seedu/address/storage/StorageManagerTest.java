@@ -28,7 +28,7 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        JsonTaskListStorage taskListStorage = new JsonTaskListStorage(getTempFilePath("tasks"));
+        JsonTaskListStorage taskListStorage = new JsonTaskListStorage(getTempFilePath("samples"));
         storageManager = new StorageManager(addressBookStorage, taskListStorage, userPrefsStorage);
     }
 
@@ -64,10 +64,11 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void taskListReadSave() throws Exception {
-        TaskList sample = getTypicalTaskList();
-        assertNotNull(sample);
-
+    public void taskListSaveTest() throws Exception {
+        TaskList testList = getTypicalTaskList();
+        Path testPath = getTempFilePath("test");
+        storageManager.saveTaskList(testList, testPath);
+        assertNotNull(testList);
     }
 
     @Test
