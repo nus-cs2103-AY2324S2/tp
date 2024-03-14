@@ -1,12 +1,16 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
+/**
+ * Represents a Patient's date of birth.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateOfBirth(String)}
+ */
 public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -18,16 +22,30 @@ public class DateOfBirth {
     public static final DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-M-d");
     public final LocalDate dateOfBirth;
 
+    /**
+     * Constructs a {@code DateOfBirth}.
+     *
+     * @param dateOfBirth A valid date of birth.
+     */
     public DateOfBirth(String dateOfBirth) {
         requireNonNull(dateOfBirth);
         checkArgument(isValidDateOfBirth(dateOfBirth), MESSAGE_CONSTRAINTS);
         this.dateOfBirth = parseDateOfBirth(dateOfBirth);
     }
 
+    /**
+     * Returns true if a given string is a valid date of birth.
+     */
     public static boolean isValidDateOfBirth(String test) {
         return parseDateOfBirth(test) == null ? false : true;
     }
 
+    /**
+     * Parse String date of birth into LocalDate.
+     *
+     * @param dateOfBirthString date of birth input.
+     * @return date of birth in LocalDate type.
+     */
     public static LocalDate parseDateOfBirth(String dateOfBirthString) {
         String cleanDateString = dateOfBirthString.strip();
         DateTimeFormatter inputFormat = determineInputFormat(cleanDateString);
@@ -41,6 +59,11 @@ public class DateOfBirth {
         }
     }
 
+    /**
+     * Determines in which format the date of birth is input.
+     *
+     * @return the input format of String date of birth.
+     */
     private static DateTimeFormatter determineInputFormat(String dateOfBirth) {
         boolean isInputFromat1 = dateOfBirth.split("/").length > 1;
         return isInputFromat1 ? inputFormat1 : inputFormat2;
