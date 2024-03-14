@@ -31,6 +31,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
     }
 
+    /**
+     * Constructor for AddressBook
+     */
     public AddressBook() {
         try {
             moduleMap = new ModuleMap();

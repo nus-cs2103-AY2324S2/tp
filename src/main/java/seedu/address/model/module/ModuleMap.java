@@ -1,17 +1,19 @@
 package seedu.address.model.module;
 
-import seedu.address.commons.core.Config;
-import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.commons.util.JsonUtil;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Optional;
 
+import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.util.JsonUtil;
+
+/**
+ * Wrapper for a hashmap that stores all Module objects
+ */
 public class ModuleMap {
     public static final Path DEFAULT_MODULE_DATA_FILE = Paths.get("src/main/resources/module_data.json");
-    public HashMap<String, Module> moduleMap;
+    private HashMap<String, Module> moduleMap;
 
     /**
      * Initialises ModuleMap object, which stores a mapping from the module name to the Module object.

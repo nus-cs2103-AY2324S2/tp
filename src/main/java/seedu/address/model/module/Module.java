@@ -1,9 +1,9 @@
 package seedu.address.model.module;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Module in the address book.
@@ -18,7 +18,11 @@ public class Module {
      * The constructor for a Module. This requires that all fields cannot be null.
      */
     @JsonCreator
-    public Module(@JsonProperty("moduleCode") Code moduleCode, @JsonProperty("title") Title title, @JsonProperty("description") Description description) {
+    public Module(
+            @JsonProperty("moduleCode") Code moduleCode,
+            @JsonProperty("title") Title title,
+            @JsonProperty("description") Description description
+    ) {
         requireAllNonNull(moduleCode, title, description);
         this.moduleCode = moduleCode;
         this.title = title;
