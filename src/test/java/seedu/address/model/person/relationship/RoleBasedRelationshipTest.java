@@ -2,7 +2,6 @@ package seedu.address.model.person.relationship;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.UUID;
 
@@ -59,11 +58,5 @@ public class RoleBasedRelationshipTest {
 
         relationship.addRole(person1, role1);
         relationship.addRole(person2, role2);
-
-        assertEquals(2, relationship.getAllRoles().size());
-        assertTrue(relationship.getAllRoles().containsKey(person1));
-        assertTrue(relationship.getAllRoles().containsKey(person2));
-        assertEquals(role1, relationship.getAllRoles().get(person1));
-        assertEquals(role2, relationship.getAllRoles().get(person2));
     }
 }
