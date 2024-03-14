@@ -269,7 +269,29 @@ Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add 
 * Upon successful validation, it creates an `AddImportantDatesCommand` instance.
 
 --------------------------------------------------------------------------------------------------------------------
+### 3.4 Deleting a Patient
 
+#### Introduction
+
+The `DeleteCommand` is responsible for deleting a patient in the address book.
+
+#### Specifications
+
+* Delete command is used when the user wants to remove a patient from the address book.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user see all the patients in the address book.
+
+Step 3: The user decide to remove the first patient in the address book.
+
+Step 4: The user executes the `delete 1` command to remove the first patient in the address book.
+
+--------------------------------------------------------------------------------------------------------------------
 ## 4 Planned Enhancements
 
 ### 4.1 \[Proposed\] Undo/redo feature
