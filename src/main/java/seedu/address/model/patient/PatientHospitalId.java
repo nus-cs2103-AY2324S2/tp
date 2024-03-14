@@ -16,18 +16,18 @@ public class PatientHospitalId {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String VALIDATION_REGEX = "^[1-9]\\d*$\n";
 
-    public final int patientHospitalId;
+    public final String patientHospitalId;
 
     /**
      * Constructs a {@code id}.
      *
      * @param id A valid patient hospital ID.
      */
-    public PatientHospitalId(Integer id) {
+    public PatientHospitalId(String id) {
         requireNonNull(id);
-        checkArgument(isValidPatientHospitalId(String.valueOf(id)), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPatientHospitalId(id), MESSAGE_CONSTRAINTS);
         patientHospitalId = id;
     }
 
@@ -41,7 +41,7 @@ public class PatientHospitalId {
 
     @Override
     public String toString() {
-        return Integer.toString(patientHospitalId);
+        return patientHospitalId;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class PatientHospitalId {
 
     @Override
     public int hashCode() {
-        return Integer.hashCode(patientHospitalId);
+        return patientHospitalId.hashCode();
     }
 
 }
