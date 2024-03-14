@@ -2,6 +2,7 @@ package staffconnect.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
@@ -18,6 +19,7 @@ import staffconnect.commons.core.index.Index;
 import staffconnect.logic.commands.EditCommand;
 import staffconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import staffconnect.logic.parser.exceptions.ParseException;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.tag.Tag;
 
 /**
@@ -34,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                    PREFIX_VENUE, PREFIX_MODULE, PREFIX_TAG);
+                    PREFIX_VENUE, PREFIX_MODULE, PREFIX_TAG, PREFIX_AVAILABILITY);
 
         Index index;
 
@@ -65,6 +67,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseAvailabilitiesForEdit(argMultimap.getAllValues(PREFIX_AVAILABILITY))
+                .ifPresent(editPersonDescriptor::setAvailabilities);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -88,4 +92,23 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> availabilities} into a {@code Set<Availability>}
+     * if {@code availabilities} is non-empty.
+     * If {@code availabilities} contain only one element which is an empty string, it will be parsed
+     * into a {@code Set<Availability>} containing zero availabilities.
+     */
+    private Optional<Set<Availability>> parseAvailabilitiesForEdit(Collection<String> availabilities)
+            throws ParseException {
+        assert availabilities != null;
+
+        if (availabilities.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> availabilitySet =
+                availabilities.size() == 1 && availabilities.contains("")
+                        ? Collections.emptySet()
+                        : availabilities;
+        return Optional.of(ParserUtil.parseAvailabilities(availabilitySet));
+    }
 }
