@@ -77,6 +77,12 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        Set<Tag> currentTags = personToEdit.getTags();
+        if (editPersonDescriptor.getTags().isPresent() && currentTags.contains(new Tag("Favourite"))) {
+            Set<Tag> newTags = new HashSet<>(editPersonDescriptor.getTags().get());
+            newTags.add(new Tag("Favourite"));
+            editPersonDescriptor.setTags(newTags);
+        }
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
