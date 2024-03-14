@@ -18,7 +18,7 @@ public class Person {
 
     // Identity fields
 
-    private final EntryList entryList = new EntryList();
+    private EntryList entryList = new EntryList();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -96,5 +96,7 @@ public class Person {
         return entryList;
     }
 
-
+    public void setList(EntryList e) {
+        entryList = e;
+    }
 }
