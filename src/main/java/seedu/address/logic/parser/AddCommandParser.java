@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -34,16 +35,16 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY, PREFIX_HOBBY,
-                    PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_PID, PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY,
+                    PREFIX_HOBBY, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY, PREFIX_HOBBY)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_PID, PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY,
+            PREFIX_HOBBY) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY, PREFIX_HOBBY);
-        PatientHospitalId patientHospitalId = ParserUtil.parsePatientHospitalId(argMultimap.getPreamble());
+        PatientHospitalId patientHospitalId = ParserUtil.parsePatientHospitalId(argMultimap.getValue(PREFIX_PID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         PreferredName preferredName = ParserUtil.parsePreferredName(argMultimap.getValue(PREFIX_PRENAME).get());
         FoodPreference foodPreference = ParserUtil.parseFoodPreference(argMultimap.getValue(PREFIX_FOOD).get());

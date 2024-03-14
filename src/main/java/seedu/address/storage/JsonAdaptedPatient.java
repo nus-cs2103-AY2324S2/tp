@@ -26,7 +26,7 @@ class JsonAdaptedPatient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
-    private final Integer patientHospitalId;
+    private final String patientHospitalId;
     private final String name;
     private final String preferredName;
     private final String foodPreference;
@@ -38,7 +38,7 @@ class JsonAdaptedPatient {
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("patientHospitalId") Integer patientHospitalId,
+    public JsonAdaptedPatient(@JsonProperty("patientHospitalId") String patientHospitalId,
                               @JsonProperty("name") String name, @JsonProperty("preferredName") String preferredName,
                               @JsonProperty("foodPreference") String foodPreference,
                               @JsonProperty("familyCondition") String familyCondition,

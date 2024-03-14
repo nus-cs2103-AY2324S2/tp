@@ -49,7 +49,7 @@ public class ParserUtil {
         if (!PatientHospitalId.isValidPatientHospitalId(trimmedId)) {
             throw new ParseException(PatientHospitalId.MESSAGE_CONSTRAINTS);
         }
-        return new PatientHospitalId(Integer.parseInt(trimmedId));
+        return new PatientHospitalId(trimmedId);
     }
 
     /**
