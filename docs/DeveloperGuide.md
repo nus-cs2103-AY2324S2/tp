@@ -269,7 +269,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: User will be able to manage and schedule interview contacts, timings and job listings from a 
+centralised location. Also manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
