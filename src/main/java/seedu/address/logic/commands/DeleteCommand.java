@@ -9,21 +9,21 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.employee.Employee;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a employee identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the employee identified by the index number used in the displayed employee list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";
 
     private final Index targetIndex;
     private final String targetName;
@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
     /**
      * Constructor for index-based deletion
      *
-     * @param targetIndex index of the person in the filtered person list to delete
+     * @param targetIndex index of the employee in the filtered employee list to delete
      */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
     /**
      * Constructor for name-based deletion
      *
-     * @param targetName name of the person to delete
+     * @param targetName name of the employee to delete
      */
     public DeleteCommand(String targetName) {
         this.targetIndex = null; // Index is not used in this context
@@ -64,40 +64,40 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes a person by index
+     * Deletes a employee by index
      *
      * @param model the model to execute the command
      * @return the result of the command
      * @throws CommandException if the index is invalid
      */
     private CommandResult deleteByIndex(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Employee> lastShownList = model.getFilteredEmployeeList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        Employee employeeToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteEmployee(employeeToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeeToDelete)));
     }
 
     /**
-     * Deletes a person by name
+     * Deletes a employee by name
      *
      * @param model the model to execute the command
      * @return the result of the command
-     * @throws CommandException if the person is not found
+     * @throws CommandException if the employee is not found
      */
     private CommandResult deleteByName(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
-        for (Person person : lastShownList) {
-            if (person.getName().fullName.equalsIgnoreCase(targetName)) {
-                model.deletePerson(person);
-                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(person)));
+        List<Employee> lastShownList = model.getFilteredEmployeeList();
+        for (Employee employee : lastShownList) {
+            if (employee.getName().fullName.equalsIgnoreCase(targetName)) {
+                model.deleteEmployee(employee);
+                return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employee)));
             }
         }
-        throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+        throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
     }
 
     @Override

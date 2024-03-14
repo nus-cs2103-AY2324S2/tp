@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.employee;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -11,10 +11,10 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Employee in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Employee {
 
     // Identity fields
     private final Name name;
@@ -28,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Employee(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -62,21 +62,21 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both employees have the same name.
+     * This defines a weaker notion of equality between two employees.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameEmployee(Employee otherEmployee) {
+        if (otherEmployee == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherEmployee != null
+                && otherEmployee.getName().equals(getName());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both employees have the same identity and data fields.
+     * This defines a stronger notion of equality between two employees.
      */
     @Override
     public boolean equals(Object other) {
@@ -85,16 +85,16 @@ public class Person {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Employee)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+        Employee otherEmployee = (Employee) other;
+        return name.equals(otherEmployee.name)
+                && phone.equals(otherEmployee.phone)
+                && email.equals(otherEmployee.email)
+                && address.equals(otherEmployee.address)
+                && tags.equals(otherEmployee.tags);
     }
 
     @Override
