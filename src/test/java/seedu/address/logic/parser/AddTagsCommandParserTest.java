@@ -55,11 +55,11 @@ public class AddTagsCommandParserTest {
         // Missing index
         assertThrows(ParseException.class, () -> parser.parse(TAG_DESC_FRIEND));
 
-        // Empty tags
+        // Empty or missing tags
         assertThrows(ParseException.class, () -> parser.parse("1"));
 
-        // Missing tags
-        assertThrows(ParseException.class, () -> parser.parse("1 "));
+        // Only Whitespace tags
+        assertThrows(ParseException.class, () -> parser.parse("1  "));
 
         // Mixed invalid and valid tags
         assertThrows(ParseException.class, () -> parser.parse("1" + INVALID_TAG_DESC
