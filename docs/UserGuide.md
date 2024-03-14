@@ -6,8 +6,7 @@
 
 # NetConnect User Guide
 
-NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still 
-having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
+NetConnect is a desktop app for managing contacts in SMEs, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It enables managers to efficiently manage their employees, clients, as well as suppliers, **all in one place** ☝🏻.
 
 <!-- * Table of Contents -->
 
@@ -217,10 +216,10 @@ _Details coming soon ..._
 
 | Action      | Format, Examples                                                                                                                                                                      |
 |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/client t/friend t/colleague` | 
-| **Clear**   | `clear`                                                                                                                                                                               |                                                                                                                                                               
-| **Delete**  | `delete [n/NAME] [i/ID]`<br> e.g., `delete i/123`, `delete n/John Doe`                                                                                                                |                                                                                                                                       
-| **Edit**    | `edit i/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit i/123 n/James Lee e/jameslee@example.com`                                               |  
+| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/client t/friend t/colleague` |
+| **Clear**   | `clear`                                                                                                                                                                               |
+| **Delete**  | `delete [n/NAME] [i/ID]`<br> e.g., `delete i/123`, `delete n/John Doe`                                                                                                                |
+| **Edit**    | `edit i/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit i/123 n/James Lee e/jameslee@example.com`                                               |
 | **Find**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                            |
 | **Findnum** | `findnum PHONE_NUMBER`<br> e.g., `findnum 83647382`                                                                                                                                   |
 | **List**    | `list`                                                                                                                                                                                |
