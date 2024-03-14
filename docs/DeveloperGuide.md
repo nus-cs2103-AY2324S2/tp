@@ -320,8 +320,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Florists.
-* Prefers efficient ways to manage customer lists.
+* Florists business owners or freelance hobbyist.
+* Prefers efficient ways to manage customer and loyalty points.
+* Prefers an efficient way to keep track of customer's orders.
 * Values productivity and time-saving solutions.
 
 **User Needs and Preferences**:
@@ -330,15 +331,14 @@ _{Explain here how the data archiving feature will be implemented}_
   * Can organize and manage customer lists effectively.
   * Prefers streamlined processes for handling customer information.
   * Values tools that optimize workflows and save time.
-* Mobile Accessibility:
-  * Appreciates the ability to access customer information on the go.
-  * Values mobile-friendly features for managing orders and inquiries efficiently.
-* Data Security and Backup:
-  * Values secure access controls and data privacy compliance.
+* Organised Orders
+  * Prefers to organize orders and sort them via due date.
+  * Helps to keep track of customer's delivery deadlines.
+* Persistent Data Storage:
   * Prefers applications with backup and synchronization capabilities for data integrity.
 
 **Value proposition**:
-* manage contacts faster than a typical mouse/GUI driven app.
+* Manage contacts faster than a typical mouse/GUI driven app.
 
 ### User stories
 

@@ -5,7 +5,7 @@
 ![Ui](docs/images/Ui.png)
 
 # Introduction
-Welcome to BookKeeper, your solution for efficient customer management for **small business owners in the crochet
+Welcome to BookKeeper, your solution for efficient customer management for **small business owners in the floral
 industry**. <br>
 
 This application is designed to streamline customer lists and enhance productivity for individuals operating
@@ -72,7 +72,7 @@ Successfully set <customer name> as VIP
 ## Order Feature
 
 ### 1. Add Order
-Adds a order into the order's storage, together with the customer name.
+Adds an order into the order's storage, together with the customer name.
 
 Example: `add <customer name, order, due date>`
 
@@ -102,7 +102,7 @@ Successfully edit <customer name> order
 ```
 
 ### 4. Prioritize Order
-Prioritize the customer' order.
+Prioritize the customer's order.
 
 Example: `prioritize <customer name, order>`
 
@@ -131,7 +131,7 @@ Example: `view <order>`
 
 Expected output:
 ```
-Frog Crochet: 
+Petite Bouquet: 
 1. total of <quantity> order by <customer name> on <date> 
 2. total of <quantity> order by <customer name> on <date> 
 [...]
@@ -148,13 +148,13 @@ Expected output:
 ```
 
 ### 4. View Ranking
-View which crochet sell the best and total sell quantity.
+View which florist sell the best and total sell quantity.
 
 Example: `view ranking`
 
 Expected output:
 ```
-Top 1: Frog Crochet, total sold of <quantity> 
+Top 1: Preserved Hydrangea Bouquet, total sold of <quantity> 
 [...]
 ```
 
@@ -167,8 +167,8 @@ Example: `sort orderdate`
 
 Expected output:
 ```
-1. Jasper Tan, frog crochet, 24 Feb 2024 
-2. Tan Qin Yong, pig crochet, 1 Apr 2024 
+1. Jasper Tan, Eternal Love Preserved Red Rose Flower Bouquet, 24 Feb 2024 
+2. Tan Qin Yong, Mocha Romance Bouquet, 1 Apr 2024 
 [...]
 ```
 
@@ -179,7 +179,7 @@ Example: `sort ordertype`
 
 Expected output:
 ```
-Frog Crochet:
+Mocha Romance Bouquet:
 1. Jasper Tan, 24 Feb 2024 
 2. QinYong, 1 Apr 2024 
 [...]
