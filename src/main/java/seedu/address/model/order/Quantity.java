@@ -1,12 +1,14 @@
 package seedu.address.model.order;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Product quantity should only be a number.";
     public static final String VALIDATION_REGEX = "\\d";
     public int value;
 
-    public Quantity(int value) {
+    public Quantity(@JsonProperty("order") int value) {
         this.value = value;
     }
 

@@ -1,8 +1,6 @@
 package seedu.address.model.order;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Order {
     public static final String MESSAGE_CONSTRAINTS = "Orders need to contain alphanumeric product names and numeric quantities";
@@ -86,6 +84,15 @@ public class Order {
 
     @Override
     public String toString() {
-        return productMap.toString();
+        Set<Product> set = productMap.keySet();
+        ArrayList<Product> productList = new ArrayList<>();
+        productList.addAll(set);
+        String str = "";
+        for (int k = 0; k < productList.size(); k++) {
+            str += productList.get(k).getName();
+            str += ",";
+            str += productMap.get(productList.get(k)).getValue();
+        }
+        return str;
     }
 }

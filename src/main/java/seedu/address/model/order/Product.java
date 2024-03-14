@@ -1,5 +1,7 @@
 package seedu.address.model.order;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Product {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -12,7 +14,7 @@ public class Product {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     private String name;
 
-    public Product(String name) {
+    public Product(@JsonProperty("order") String name) {
         this.name = name;
     }
 
