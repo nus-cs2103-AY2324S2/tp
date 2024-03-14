@@ -111,8 +111,7 @@ public class PersonTest {
      */
     @Test
     void deleteQrCode_qrCodeExists_returnsTrue() {
-        // A QR code was already generated for ALICE when the test object was created, so
-        // we can assume that it exists.
+        ALICE.generateQrCode();
         boolean result = ALICE.deleteQrCode();
 
         assertTrue(result);
