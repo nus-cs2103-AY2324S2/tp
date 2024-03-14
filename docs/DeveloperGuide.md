@@ -104,7 +104,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a employee).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -178,11 +178,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th employee in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new employee. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
@@ -192,7 +192,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the employee was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
@@ -248,7 +248,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 - **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Pros: Will use less memory (e.g. for `delete`, just save the employee being deleted).
   - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -384,15 +384,15 @@ _{More to be added}_
 ### Non-Functional Requirements
 
 1.  Cross-Platform Compatibility: Must be executable on any mainstream operating system (Windows, macOS, Linux) with Java Runtime Environment (JRE) version 11 or above installed. This ensures that the application can serve a wide user base without being restricted by their OS choice.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The design and user interaction model of the software should cater to users with above-average typing speeds for regular English text. It implies that the command-line interface (CLI) or similar input methods should allow for faster task accomplishment compared to traditional graphical user interface (GUI) interactions involving the mouse. This would include quick command shortcuts for adding, deleting, and searching for contacts, among other actions.
 5.  Intuitive User Interface: Despite the focus on efficiency and command-line usage, the software should still offer an intuitive interface for those moments when a user prefers or needs to interact with the software in a more traditional manner. This includes clear visual cues, easy navigation, and minimalistic design to reduce cognitive load.
 6.  Data Security: The software should ensure that private contact details are stored securely and are not accessible to unauthorized users. This includes encryption of sensitive data and secure access control mechanisms.
 7.  Data Integrity: The software should ensure that contact details are stored accurately and are not lost or corrupted due to software errors or hardware failures. This includes regular data backups and error-checking mechanisms.
 8.  Portability: As a Java application packaged in a .jar file, it should ensure that all dependencies are included or easily resolvable, making the application easily portable and runnable across different systems without additional setup.
-9.  All operations should run in under 0.5 seconds for a typical user with a typical address book size (1000 persons).
-10. Should work well with 500 MB of memory, and should not consume more than 0.5 GB of memory for a typical user with a typical address book size (50k persons).
+9.  All operations should run in under 0.5 seconds for a typical user with a typical address book size (1000 employees).
+10. Should work well with 500 MB of memory, and should not consume more than 0.5 GB of memory for a typical user with a typical address book size (50k employees).
 
 <!-- *{More to be added}* -->
 
@@ -456,17 +456,17 @@ testers are expected to do more _exploratory_ testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a employee
 
-1. Deleting a person while all persons are being shown
+1. Deleting a employee while all employees are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
