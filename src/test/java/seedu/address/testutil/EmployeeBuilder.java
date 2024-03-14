@@ -11,7 +11,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Employee objects.
  */
-public class PersonBuilder {
+public class EmployeeBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -25,9 +25,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code EmployeeBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public EmployeeBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -36,9 +36,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code employeeToCopy}.
+     * Initializes the EmployeeBuilder with the data of {@code employeeToCopy}.
      */
-    public PersonBuilder(Employee employeeToCopy) {
+    public EmployeeBuilder(Employee employeeToCopy) {
         name = employeeToCopy.getName();
         phone = employeeToCopy.getPhone();
         email = employeeToCopy.getEmail();
@@ -49,7 +49,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Employee} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public EmployeeBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -57,7 +57,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Employee} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public EmployeeBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -65,7 +65,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Employee} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public EmployeeBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -73,7 +73,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Employee} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public EmployeeBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -81,7 +81,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Employee} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public EmployeeBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }

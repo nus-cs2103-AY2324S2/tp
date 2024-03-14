@@ -18,7 +18,7 @@ public class Messages {
     public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employees listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "The person could not be found.";
+    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The employee could not be found.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
