@@ -1,8 +1,10 @@
 package staffconnect.logic.parser;
 
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static staffconnect.logic.commands.CommandTestUtil.AVAILABILITY_DESC_MON;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static staffconnect.logic.commands.CommandTestUtil.INVALID_AVAILABILITY_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -19,6 +21,8 @@ import static staffconnect.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static staffconnect.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static staffconnect.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static staffconnect.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_AVAILABILITY_MON;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_AVAILABILITY_THUR;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -42,6 +46,7 @@ import org.junit.jupiter.api.Test;
 
 import staffconnect.logic.Messages;
 import staffconnect.logic.commands.AddCommand;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
@@ -60,19 +65,30 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON,
+                new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
+
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VENUE_DESC_BOB
                         + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleTags));
+
+        // multiple availabilities - all accepted
+        Person expectedPersonMultipleAvailabilities = new PersonBuilder(BOB)
+                .withAvailabilities(VALID_AVAILABILITY_MON, VALID_AVAILABILITY_THUR).build();
+
+        assertParseSuccess(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VENUE_DESC_BOB
+                    + MODULE_DESC_BOB + VALID_AVAILABILITY_MON + VALID_AVAILABILITY_THUR,
+                new AddCommand(expectedPersonMultipleAvailabilities));
     }
 
     @Test
-    public void parse_repeatedNonTagValue_failure() {
+    public void parse_repeatedNonTagAvailabilityValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_FRIEND;
 
@@ -150,8 +166,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        // zero tags and availabilities
+        Person expectedPerson = new PersonBuilder(AMY).withTags().withAvailabilities().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + VENUE_DESC_AMY + MODULE_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
@@ -195,33 +211,38 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid venue
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_VENUE_DESC + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + INVALID_VENUE_DESC + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON,
             Venue.MESSAGE_CONSTRAINTS);
 
         // invalid module
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VENUE_DESC_BOB + INVALID_MODULE_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + VENUE_DESC_BOB + INVALID_MODULE_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON,
                 Module.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VENUE_DESC_BOB + MODULE_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND,
+                + VENUE_DESC_BOB + MODULE_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND + AVAILABILITY_DESC_MON,
                 Tag.MESSAGE_CONSTRAINTS);
+
+        // invalid availability
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_AVAILABILITY_DESC,
+                Availability.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -230,7 +251,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
