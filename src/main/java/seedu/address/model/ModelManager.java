@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyTaskMasterPro taskMasterPro, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(taskMasterPro, userPrefs);
 
-        logger.fine("Initializing with address book: " + taskMasterPro + " and user prefs " + userPrefs);
+        logger.fine("Initializing with task master pro: " + taskMasterPro + " and user prefs " + userPrefs);
 
         this.taskMasterPro = new TaskMasterPro(taskMasterPro);
         this.userPrefs = new UserPrefs(userPrefs);
