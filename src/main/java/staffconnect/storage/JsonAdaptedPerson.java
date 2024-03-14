@@ -60,7 +60,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        faculty = source.getFaculty().toString();
+        faculty = source.getFaculty().value;
         venue = source.getVenue().value;
         module = source.getModule().value;
         tags.addAll(source.getTags().stream()
