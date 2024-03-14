@@ -17,6 +17,12 @@ public class Volunteer extends Person {
     }
 
     @Override
+    public String getRole() {
+        return "volunteer";
+    }
+
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

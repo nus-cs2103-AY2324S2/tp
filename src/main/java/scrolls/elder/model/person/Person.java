@@ -77,6 +77,7 @@ public abstract class Person {
     * Returns true if person is a volunteer, and false if person is not a volunteer
     */
     public abstract boolean isVolunteer();
+    public abstract String getRole();
 
     /**
      * Returns true if both persons have the same identity and data fields.

@@ -139,6 +139,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Boolean isVolunteer;
 
         public EditPersonDescriptor() {}
 
@@ -152,6 +153,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setIsVolunteer(toCopy.isVolunteer);
         }
 
         /**
@@ -210,6 +212,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setIsVolunteer(boolean isVolunteer) {
+            this.isVolunteer = isVolunteer;
+        }
+
+        Optional<Boolean> getIsVolunteer() {
+            return Optional.ofNullable(isVolunteer);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -226,17 +236,20 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(isVolunteer, otherEditPersonDescriptor.isVolunteer);
         }
 
         @Override
         public String toString() {
+            String role = isVolunteer ? "volunteer" : "befriendee";
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("role", role)
                     .toString();
         }
     }

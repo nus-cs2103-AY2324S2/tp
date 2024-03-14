@@ -10,11 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import scrolls.elder.commons.exceptions.IllegalValueException;
-import scrolls.elder.model.person.Address;
-import scrolls.elder.model.person.Email;
-import scrolls.elder.model.person.Name;
-import scrolls.elder.model.person.Person;
-import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.*;
 import scrolls.elder.model.tag.Tag;
 
 /**
@@ -103,7 +99,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

@@ -3,11 +3,7 @@ package scrolls.elder.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import scrolls.elder.model.person.Address;
-import scrolls.elder.model.person.Email;
-import scrolls.elder.model.person.Name;
-import scrolls.elder.model.person.Person;
-import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.*;
 import scrolls.elder.model.tag.Tag;
 import scrolls.elder.model.util.SampleDataUtil;
 
@@ -20,12 +16,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final boolean DEFAULT_IS_VOLUNTEER = true;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private boolean isVolunteer;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +34,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        isVolunteer = DEFAULT_IS_VOLUNTEER;
     }
 
     /**
@@ -47,6 +46,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        isVolunteer = personToCopy.isVolunteer();
     }
 
     /**
@@ -89,8 +89,23 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isVolunteer} of the {@code Person} that we are building.
+     */
+    public PersonBuilder asVolunteer(boolean isVolunteer) {
+        this.isVolunteer = isVolunteer;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        Person person;
+        if (isVolunteer) {
+            person = new Volunteer(name, phone, email, address, tags);
+        } else {
+            person = new Befriendee(name, phone, email, address, tags);
+        }
+
+        return person;
     }
 
 }

@@ -16,6 +16,11 @@ public class Befriendee extends Person {
     }
 
     @Override
+    public String getRole() {
+        return "befriendee";
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
