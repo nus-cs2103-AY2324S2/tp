@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
@@ -10,7 +12,6 @@ import seedu.address.model.person.IndustryContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -20,10 +21,13 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all startups that contain any of "
+            + "the specified keywords (case-insensitive) of either name / industry / funding stage"
+            + " and displays them as a list with index numbers.\n"
+            + "Example: " + COMMAND_WORD + " n/ Names \n"
+            + "Example: " + COMMAND_WORD + " i/ Industries \n"
+            + "Example: " + COMMAND_WORD + " f/ Funding Stages \n"
+            + "Example: " + COMMAND_WORD + " f/ B C";;
 
     private final Predicate<Person> predicate;
 

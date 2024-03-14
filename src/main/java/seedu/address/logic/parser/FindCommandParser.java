@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FundingStageContainsKeywordsPredicate;
@@ -40,14 +41,16 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
             nameKeywords = argMultimap.getValue(CliSyntax.PREFIX_NAME).get().split("\\s+");
             findCommand = new FindCommand(new NameContainsKeywordsPredicate((Arrays.asList(nameKeywords))));
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_INDUSTRY).isPresent()) {
+        } else if (argMultimap.getValue(CliSyntax.PREFIX_INDUSTRY).isPresent()) {
             industryKeywords = argMultimap.getValue(CliSyntax.PREFIX_INDUSTRY).get().split("\\s+");
             findCommand = new FindCommand(new IndustryContainsKeywordsPredicate((Arrays.asList(industryKeywords))));
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_FUNDING_STAGE).isPresent()) {
+        } else if (argMultimap.getValue(CliSyntax.PREFIX_FUNDING_STAGE).isPresent()) {
             fundingStageKeywords = argMultimap.getValue(CliSyntax.PREFIX_FUNDING_STAGE).get().split("\\s+");
-            findCommand = new FindCommand(new FundingStageContainsKeywordsPredicate((Arrays.asList(fundingStageKeywords))));
+            findCommand = new FindCommand(
+                    new FundingStageContainsKeywordsPredicate((Arrays.asList(fundingStageKeywords))));
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE));
         }
 
         return findCommand;

@@ -1,10 +1,12 @@
 package seedu.address.model.person;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
-import java.util.List;
-import java.util.function.Predicate;
+
 
 /**
  * Tests that a {@code Startup}'s {@code Industry} matches any of the keywords given.
@@ -33,7 +35,8 @@ public class IndustryContainsKeywordsPredicate implements Predicate<Person> {
             return false;
         }
 
-        IndustryContainsKeywordsPredicate otherIndustryContainsKeywordsPredicate = (IndustryContainsKeywordsPredicate) other;
+        IndustryContainsKeywordsPredicate otherIndustryContainsKeywordsPredicate =
+                (IndustryContainsKeywordsPredicate) other;
         return keywords.equals(otherIndustryContainsKeywordsPredicate.keywords);
     }
 
