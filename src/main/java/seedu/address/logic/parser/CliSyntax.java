@@ -13,5 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ROLE = new Prefix("/role");
     public static final Prefix PREFIX_STAGE = new Prefix("/stage");
     public static final Prefix PREFIX_TAG = new Prefix("/tag");
+    public static final Prefix PREFIX_NOTE = new Prefix("/note");
+    public static final Prefix PREFIX_NOTE_WITH_DATE = new Prefix("/date");
 
 }
