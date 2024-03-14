@@ -14,6 +14,7 @@ import staffconnect.logic.commands.Command;
 import staffconnect.logic.commands.DeleteCommand;
 import staffconnect.logic.commands.EditCommand;
 import staffconnect.logic.commands.ExitCommand;
+import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.commands.FindCommand;
 import staffconnect.logic.commands.HelpCommand;
 import staffconnect.logic.commands.ListCommand;
@@ -78,9 +79,11 @@ public class StaffConnectParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
+
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
-
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

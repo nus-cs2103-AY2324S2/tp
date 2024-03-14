@@ -43,6 +43,8 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Venue: ")
                 .append(person.getVenue())
+                .append("; Module: ")
+                .append(person.getModule())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

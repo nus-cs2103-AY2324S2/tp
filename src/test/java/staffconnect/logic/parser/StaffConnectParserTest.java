@@ -8,7 +8,9 @@ import static staffconnect.testutil.Assert.assertThrows;
 import static staffconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -19,12 +21,15 @@ import staffconnect.logic.commands.DeleteCommand;
 import staffconnect.logic.commands.EditCommand;
 import staffconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import staffconnect.logic.commands.ExitCommand;
+import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.commands.FindCommand;
 import staffconnect.logic.commands.HelpCommand;
 import staffconnect.logic.commands.ListCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
+import staffconnect.model.person.PersonHasTagsPredicate;
+import staffconnect.model.tag.Tag;
 import staffconnect.testutil.EditPersonDescriptorBuilder;
 import staffconnect.testutil.PersonBuilder;
 import staffconnect.testutil.PersonUtil;
@@ -66,6 +71,23 @@ public class StaffConnectParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        // single tag
+        String tag = "hello";
+        Set<Tag> singleTag = new HashSet<Tag>(Arrays.asList(new Tag(tag)));
+        FilterCommand singleTagCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " t/" + tag);
+        assertEquals(new FilterCommand(new PersonHasTagsPredicate(singleTag)), singleTagCommand);
+
+        // multiple tags
+        String tag2 = "hello2";
+        Set<Tag> multipleTags = new HashSet<Tag>(Arrays.asList(new Tag(tag), new Tag(tag2)));
+        FilterCommand multipleTagsCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " t/" + tag + " t/" + tag2);
+        assertEquals(new FilterCommand(new PersonHasTagsPredicate(multipleTags)), multipleTagsCommand);
     }
 
     @Test

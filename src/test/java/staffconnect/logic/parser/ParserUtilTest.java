@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
 import staffconnect.model.person.Venue;
@@ -24,13 +25,15 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_VENUE = " ";
+    private static final String INVALID_MODULE = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_VENUE = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_VENUE = "123 Main Street #0505";
+    private static final String VALID_MODULE = "CS2103";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -103,6 +106,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseEmail_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    }
+
+    @Test
+    public void parseEmail_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    }
+
+    @Test
+    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    }
+
+    @Test
+    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
     public void parseVenue_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseVenue((String) null));
     }
@@ -126,26 +152,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseModule_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseModule((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseModule_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseModule(INVALID_MODULE));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseModule_validValueWithoutWhitespace_returnsModule() throws Exception {
+        Module expectedModule = new Module(VALID_MODULE);
+        assertEquals(expectedModule, ParserUtil.parseModule(VALID_MODULE));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseModule_validValueWithWhitespace_returnsTrimmedModule() throws Exception {
+        String moduleWithWhitespace = WHITESPACE + VALID_MODULE + WHITESPACE;
+        Module expectedModule = new Module(VALID_MODULE);
+        assertEquals(expectedModule, ParserUtil.parseModule(moduleWithWhitespace));
     }
 
     @Test
