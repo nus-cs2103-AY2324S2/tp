@@ -193,12 +193,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action      | Format, Examples                                                                                                                                                                      |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/client t/friend t/colleague` | 
+| **Clear**   | `clear`                                                                                                                                                                               |                                                                                                                                                               
+| **Delete**  | `delete [n/NAME] [i/ID]`<br> e.g., `delete i/123`, `delete n/John Doe`                                                                                                                |                                                                                                                                       
+| **Edit**    | `edit i/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit i/123 n/James Lee e/jameslee@example.com`                                               |  
+| **Find**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                            |
+| **Findnum** | `findnum PHONE_NUMBER`<br> e.g., `findnum 83647382`                                                                                                                                   |
+| **List**    | `list`                                                                                                                                                                                |
+| **Tag**     | `tag i/ID t/TAG…​`<br> e.g., `tag i/123 t/friend t/colleague`                                                                                                                         |
+| **Export**  | `[TBA]`                                                                                                                                                                               |
+| **Help**    | `help`                                                                                                                                                                                |
