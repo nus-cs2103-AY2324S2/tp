@@ -14,9 +14,13 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.BirthdayAttribute;
 import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.attribute.StringAttribute;
 import seedu.address.testutil.PersonBuilder;
+
+import java.time.LocalDate;
 
 public class PersonTest {
 
@@ -230,5 +234,18 @@ public class PersonTest {
         Person aliceCopy = new PersonBuilder(ALICE).build();
         aliceCopy.deleteAttribute("Name");
         assertFalse(aliceCopy.hasAttribute("Name"));
+    }
+    @Test
+    public void Person_NameAttribute() {
+        NameAttribute name = new NameAttribute("Name", "Alice Pauline");
+        BirthdayAttribute birthday = new BirthdayAttribute(
+                "Birthday",
+                LocalDate.of(1999, 1, 1));
+        Person aliceCopy = new Person(new Attribute[]{name, birthday});
+
+        assertEquals("Alice Pauline", aliceCopy.getAttribute("Name").getValueAsString());
+        assertEquals(
+                LocalDate.of(1999, 1, 1).toString(),
+                aliceCopy.getAttribute("Birthday").getValueAsString());
     }
 }
