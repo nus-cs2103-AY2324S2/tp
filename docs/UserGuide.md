@@ -3,37 +3,37 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TaskMasterPro is a **desktop app for managing team members and group tasks**, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskMasterPro can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-
+## This section to be done after v1.2 is released
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `taskmasterpro.jar` from [here](https://github.com/se-edu/taskmasterpro-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your TaskMasterPro.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taskmasterpro.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -65,85 +65,119 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Adding an employee: `add`
 
-### Adding a person: `add`
-
-Adds a person to the address book.
+Adds an employee to TaskMasterPro.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+Make sure that your parameter's formats are valid!
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/AikenDueet p/12311231 e/aiken@example.com a/Dueet street, block 123, #01-01`
+* `add n/Ben Diddle t/friend e/bendiddle@example.com a/Newgate Prison p/21092109 t/criminal`
 
-### Listing all persons : `list`
+### Listing all employees: `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all employees in TaskMasterPro.
 
-Format: `list`
+Format: `listemployees`
 
-### Editing a person : `edit`
+### Deleting an employee: `delete`
 
-Edits an existing person in the address book.
+Deletes the specified employee from TaskMasterPro.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `delete EMPLOYEE_ID`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* The `EMPLOYEE_ID` refers to the index number shown in the displayed employee list.
+  Make sure that its valid!
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `listemployees` followed by `delete 3` deletes the employee with id 3 in TaskMasterPro.
 
-### Locating persons by name: `find`
+### Adding a task: `task`
 
-Finds persons whose names contain any of the given keywords.
+Adds a task to TaskMasterPro.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `task TASK_DESCRIPTION`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The description for the task is required and can be any length with spaces in between
+</div>
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `task Weekly meeting`
+* `task Submitting report`
 
-### Deleting a person : `delete`
+### Listing all tasks : `listtasks`
 
-Deletes the specified person from the address book.
+Shows a list of all tasks in TaskMasterPro.
 
-Format: `delete INDEX`
+Format: `listtasks`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+### Deleting a task : `deletetask TASK_ID`
+
+Deletes the specified task from TaskMasterPro.
+
+Format: `deletetask TASK_ID`
+
+* Deletes the task with the specified `TASK_ID`.
+* The task id refers to the number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `listtasks` followed by `deletetask 2` deletes the task with id 2 in TaskMasterPro.
+
+### Assign a task to employee : `assigntask`
+
+Assigns a task object to employee.
+
+Format: `assigntask t/TASK_ID  e/EMPLOYEE_ID`
+
+* Assigns a task object with id `TASK_ID` to an employee with id `EMPLOYEE_ID`.
+
+Examples:
+* `assigntask` followed by `2 3` assigns task object with id 2 to an employee with id 3.
+
+### Mark a task : `mark`
+
+Marks a task as done.
+
+Format: `mark TASK_ID`
+
+* Marks a specified task with id `TASK_ID`.
+
+Examples:
+* `mark` followed by a valid integer `TASK_ID` which corresponds to a real task in the database.
+* `mark 1`
+* `mark 2`
+
+### Unmark a task : `unmark`
+
+Unmarks a task.
+
+Format: `unmark TASK_ID`
+
+* Unmarks a specified task with id `TASK_ID`.
+* task to be unmarked should be marked as done before.
+
+Examples:
+* `unmark` followed by a valid integer `TASK_ID` which corresponds to a real task in the database.
+* `unmark 1`
+* `unmark 2`
+
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from TaskMasterPro.
 
 Format: `clear`
 
@@ -153,29 +187,12 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskMasterPro home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,10 +206,17 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add employee** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Ben Diddle t/friend e/bendiddle@example.com a/Newgate Prison p/21092109 t/criminal`
+**List employees** | `listemployees`
+**Delete employee** | `delete EMPLOYEE_ID` <br> e.g., `delete 2`
+**Add task** | `task TASK_DESCRIPTION` <br> e.g., `task Weekly meeting`
+**List tasks** | `listtasks`
+**Delete task** | `deletetask TASK_ID`<br> e.g., `deletetask 3`
+**Mark task** | `mark TASK_ID`<br> e.g., `mark 1` 
+**Unmark task** | `unmark TASK_ID`<br> e.g., `unmark 1` 
+**Assign task to an employee** | `assigntask t/TASK_ID  e/EMPLOYEE_ID` <br> e.g., `assigntask t/1 e/2`
+**Remove employee from a task** | `removetask t/ TASK_ID e/EMPLOYEE_ID` <br> e.g., `removetask t/1 e/1`
+**List all tasks and employees assigned to them** | `listassignments`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Save the current state** | `save`
 **Help** | `help`
