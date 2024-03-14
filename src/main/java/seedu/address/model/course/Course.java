@@ -1,7 +1,5 @@
 package seedu.address.model.course;
 
-import seedu.address.model.person.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -28,8 +26,9 @@ public class Course {
      */
     public Course(String code) {
         requireNonNull(code);
-        checkArgument(isValidCode(code), MESSAGE_CONSTRAINTS);
+
         course_code = code;
+
     }
 
     public static boolean isValidCode(String test) {
@@ -39,6 +38,10 @@ public class Course {
     @Override
     public String toString() {
         return course_code;
+    }
+
+    public void changeCode(String code) {
+        this.course_code = code;
     }
 
     @Override

@@ -4,6 +4,8 @@ import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.course.Course.isValidCode;
+
 public class SetCourseCommand extends Command {
     public static final String COMMAND_WORD = "setcrs";
 
@@ -12,6 +14,11 @@ public class SetCourseCommand extends Command {
     public static final String MESSAGE_CONSTRAINTS =
             "Course code should follow the format \"XX1234Y\", Y is optional";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "Sets course";
+
+    public static final String MESSAGE_SUCCESS = "Successfully updated course";
+
+
     private final Course course;
 
     public SetCourseCommand(Course course) {
@@ -19,12 +26,13 @@ public class SetCourseCommand extends Command {
         this.course = course;
     }
 
-
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Course command not implemented yet";
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET + course);
+        if (!isValidCode(course.toString())) {
+            throw new CommandException(MESSAGE_CONSTRAINTS);
+        }
+        model.changeCode(course.toString());
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

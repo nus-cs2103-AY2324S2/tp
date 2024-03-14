@@ -24,6 +24,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SetCourseCommand;
 import seedu.address.logic.commands.ListPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -97,7 +98,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_setcourse() throws Exception {
-        assertTrue(parser.parseCommand(SetCourseCommand.COMMAND_WORD) instanceof SetCourseCommand);
+        final String code = "CS2103T";
+         SetCourseCommand command = (SetCourseCommand) parser.parseCommand(SetCourseCommand.COMMAND_WORD + " "
+                + code);
+        assertEquals(new SetCourseCommand(new Course(code)), command);
     }
 
     @Test

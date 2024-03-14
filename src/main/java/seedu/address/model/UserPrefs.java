@@ -15,7 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-
+    private Path courseNameFilePath = Paths.get("data", "coursename.json");
     /**
      * Creates a {@code UserPrefs} with default values.
      */
@@ -36,6 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+
     }
 
     public GuiSettings getGuiSettings() {
@@ -50,10 +51,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
     }
+    public Path getCourseNameFilePath() {
+        return courseNameFilePath;
+    }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    public void setCourseNameFilePath(Path courseNameFilePath) {
+        requireNonNull(courseNameFilePath);
+        this.courseNameFilePath = courseNameFilePath;
     }
 
     @Override
@@ -69,12 +78,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath);
+                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
+                && courseNameFilePath.equals(otherUserPrefs.courseNameFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, courseNameFilePath);
     }
 
     @Override
@@ -82,6 +92,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal Course Name file location : " + courseNameFilePath);
         return sb.toString();
     }
 

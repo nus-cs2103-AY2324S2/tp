@@ -23,6 +23,27 @@ public class SetCourseCommandTest {
     @Test
     public void execute() {
         Course course = new Course("CS2103T");
-        assertCommandFailure(new SetCourseCommand(course), model, "hi");
+        assertCommandFailure(new SetCourseCommand(course), model, "CS2103T" );
+    }
+
+    @Test
+    public void equals() {
+        final SetCourseCommand standardCommand = new SetCourseCommand(new Course(VALID_COURSE_CODE_AMY));
+
+        // same values -> returns true
+        SetCourseCommand commandWithSameValues = new SetCourseCommand(new Course(VALID_COURSE_CODE_AMY));
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
+        // different course_code -> returns false
+        assertFalse(standardCommand.equals(new SetCourseCommand(new Course(VALID_COURSE_CODE_BOB))));
     }
 }

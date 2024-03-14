@@ -23,6 +23,7 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
+
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
