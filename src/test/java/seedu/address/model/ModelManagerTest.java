@@ -22,6 +22,7 @@ import seedu.address.testutil.TypicalTasks;
 
 public class ModelManagerTest {
 
+    private TaskList taskList = new TaskList();
     private ModelManager modelManager = new ModelManager();
 
     @Test

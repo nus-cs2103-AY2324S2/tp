@@ -55,6 +55,10 @@ class AddTaskCommandTest {
         // same object -> returns true
         assertTrue(addTaskCommand1.equals(addTaskCommand1));
 
+        // same values -> returns false
+        AddTaskCommand addTaskCommandCopy1 = new AddTaskCommand(testTask1);
+        assertFalse(addTaskCommandCopy1.equals(addTaskCommand1));
+
         // different types -> returns false
         assertFalse(addTaskCommand1.equals(1));
 
