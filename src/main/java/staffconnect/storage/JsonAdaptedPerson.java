@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import staffconnect.commons.exceptions.IllegalValueException;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String venue;
     private final String module;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedAvailability> availabilities = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +40,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("venue") String venue,
-            @JsonProperty("module") String module, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("module") String module, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("availabilities") List<JsonAdaptedAvailability> availabilities) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +49,9 @@ class JsonAdaptedPerson {
         this.module = module;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (availabilities != null) {
+            this.availabilities.addAll(availabilities);
         }
     }
 
@@ -61,6 +67,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        availabilities.addAll(source.getAvailabilities().stream()
+            .map(JsonAdaptedAvailability::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -72,6 +81,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Availability> personAvailabilities = new ArrayList<>();
+        for (JsonAdaptedAvailability availability : availabilities) {
+            personAvailabilities.add(availability.toModelType());
         }
 
         if (name == null) {
@@ -115,7 +129,9 @@ class JsonAdaptedPerson {
         final Module modelModule = new Module(module);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelVenue, modelModule, modelTags);
+
+        final Set<Availability> modelAvailabilities = new HashSet<>(personAvailabilities);
+        return new Person(modelName, modelPhone, modelEmail, modelVenue, modelModule, modelTags, modelAvailabilities);
     }
 
 }
