@@ -1,5 +1,7 @@
 package staffconnect.testutil;
 
+import static staffconnect.logic.commands.CommandTestUtil.VALID_AVAILABILITY_MON;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_AVAILABILITY_THUR;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
@@ -28,16 +30,16 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withVenue("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withModule("CS1101S")
-            .withTags("friends").build();
+            .withTags("friends").withAvailabilities("mon").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withVenue("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withModule("CS1231S")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withAvailabilities("tues", "wed").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withVenue("wall street").withModule("CS2030S").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withVenue("10th street").withModule("CS2040S")
-            .withTags("friends").build();
+            .withTags("friends").withAvailabilities("thurs", "fri").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withVenue("michegan ave").withModule("CS2100").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
@@ -54,10 +56,11 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withVenue(VALID_VENUE_AMY).withModule(VALID_MODULE_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_FRIEND).withAvailabilities(VALID_AVAILABILITY_MON).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withVenue(VALID_VENUE_BOB).withModule(VALID_MODULE_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withAvailabilities(VALID_AVAILABILITY_MON, VALID_AVAILABILITY_THUR).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
