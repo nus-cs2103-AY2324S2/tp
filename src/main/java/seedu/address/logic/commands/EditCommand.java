@@ -51,8 +51,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Updated Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to update must be provided.";
     public static final String MESSAGE_NO_CHANGE = "The updated person is the same as the original person";
-    public static final String MESSAGE_DUPLICATE_PERSON = "The updated person contains duplicate fields with "
-            + "another person.";
+    public static final String MESSAGE_DUPLICATE_FIELD = "The updated person contains duplicate fields"
+            + "(Email, Phone, Telegram, or Github) with another person.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -87,7 +87,7 @@ public class EditCommand extends Command {
         model.deletePerson(personToEdit);
         if (model.hasPerson(editedPerson)) {
             model.addPersonForEdit(personToEdit);
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_FIELD);
         }
 
         model.addPersonForEdit(editedPerson);
