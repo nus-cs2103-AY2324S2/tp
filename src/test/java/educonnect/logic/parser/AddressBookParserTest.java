@@ -2,14 +2,13 @@ package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static educonnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.testutil.Assert.assertThrows;
 import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import educonnect.model.student.StudentId;
 import org.junit.jupiter.api.Test;
 
 import educonnect.logic.commands.AddCommand;
@@ -24,6 +23,7 @@ import educonnect.logic.commands.ListCommand;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.student.NameContainsKeywordsPredicate;
 import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
 import educonnect.testutil.EditStudentDescriptorBuilder;
 import educonnect.testutil.StudentBuilder;
 import educonnect.testutil.StudentUtil;

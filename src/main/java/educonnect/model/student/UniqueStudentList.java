@@ -42,52 +42,70 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns true if the list contains an equivalent student id as the given argument.
+     * Returns true if the list contains a student with an equivalent student id as the given argument.
      */
     public boolean containsStudentId(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameStudentId);
     }
 
+    /**
+     * Returns true if the list contains an equivalent student id as the given argument.
+     */
     public boolean containsStudentId(StudentId studentIdToCheck) {
         requireNonNull(studentIdToCheck);
         return internalList.stream().anyMatch(student -> student.isSameStudentId(studentIdToCheck));
     }
 
+    /**
+     * Returns Optional of Student if the list contains an equivalent student id as the given argument.
+     */
     public Optional<Student> getStudentWithStudentId(StudentId studentId) {
         return internalList.stream().filter(student -> student.isSameStudentId(studentId)).findFirst();
     }
 
     /**
-     * Returns true if the list contains an equivalent email as the given argument.
+     * Returns true if the list contains a student with equivalent email as the given argument.
      */
     public boolean containsEmail(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEmail);
     }
 
+    /**
+     * Returns true if the list contains an equivalent email as the given argument.
+     */
     public boolean containsEmail(Email email) {
         requireNonNull(email);
         return internalList.stream().anyMatch(student -> student.isSameEmail(email));
     }
 
+    /**
+     * Returns Optional of Student if the list contains an equivalent email as the given argument.
+     */
     public Optional<Student> getStudentWithEmail(Email email) {
         return internalList.stream().filter(student -> student.isSameEmail(email)).findFirst();
     }
 
     /**
-     * Returns true if the list contains an equivalent telegram handle as the given argument.
+     * Returns true if the list contains a student with an equivalent telegram handle as the given argument.
      */
     public boolean containsTelegramHandle(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameTelegramHandle);
     }
 
+    /**
+     * Returns true if the list contains an equivalent telegram handle as the given argument.
+     */
     public boolean containsTelegramHandle(TelegramHandle telegramHandle) {
         requireNonNull(telegramHandle);
         return internalList.stream().anyMatch(student -> student.isSameTelegramHandle(telegramHandle));
     }
 
+    /**
+     * Returns Optional of Student if the list contains an equivalent telegram handle as the given argument.
+     */
     public Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle) {
         return internalList.stream().filter(student -> student.isSameTelegramHandle(telegramHandle)).findFirst();
     }

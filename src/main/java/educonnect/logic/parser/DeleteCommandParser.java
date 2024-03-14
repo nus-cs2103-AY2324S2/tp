@@ -69,13 +69,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         return new DeleteCommand(deletePersonDescriptor);
 
-//        try {
-//            Index index = ParserUtil.parseIndex(args);
-//            return new DeleteCommand(index);
-//        } catch (ParseException pe) {
-//            throw new ParseException(
-//                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-//        }
     }
 
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

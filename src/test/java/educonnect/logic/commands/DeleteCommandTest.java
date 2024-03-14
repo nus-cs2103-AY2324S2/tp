@@ -1,13 +1,16 @@
 package educonnect.logic.commands;
 
-import static educonnect.logic.commands.CommandTestUtil.*;
+import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
+import static educonnect.logic.commands.CommandTestUtil.assertCommandFailure;
+import static educonnect.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static educonnect.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static educonnect.testutil.TypicalStudents.JOHHNY;
 import static educonnect.testutil.TypicalStudents.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import educonnect.commons.core.index.Index;

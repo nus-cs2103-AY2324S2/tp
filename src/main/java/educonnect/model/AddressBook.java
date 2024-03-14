@@ -79,11 +79,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.containsStudentId(student);
     }
 
+    /**
+     * Returns true if a student with same student id as {@code studentId} exists in the address book.
+     */
     public boolean hasStudentId(StudentId studentId) {
         requireNonNull(studentId);
         return students.containsStudentId(studentId);
     }
 
+    /**
+     * Returns Optional of Student if a student with same student id as {@code studentId} exists in the address book.
+     */
     public Optional<Student> getStudentWithStudentId(StudentId studentId) {
         return students.getStudentWithStudentId(studentId);
     }
@@ -96,11 +102,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.containsEmail(student);
     }
 
+    /**
+     * Returns true if a student with same email as {@code email} exists in the address book.
+     */
     public boolean hasEmail(Email email) {
         requireNonNull(email);
         return students.containsEmail(email);
     }
 
+    /**
+     * Returns Optional of Student if a student with same email as {@code email} exists in the address book.
+     */
     public Optional<Student> getStudentWithEmail(Email email) {
         return students.getStudentWithEmail(email);
     }
@@ -113,11 +125,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.containsTelegramHandle(student);
     }
 
+    /**
+     * Returns true if a student with same telegram handle as {@code telegramHandle} exists in the address book.
+     */
     public boolean hasTelegramHandle(TelegramHandle telegramHandle) {
         requireNonNull(telegramHandle);
         return students.containsTelegramHandle(telegramHandle);
     }
 
+    /**
+     * Returns Optional of Student if a student with same telegram handle
+     * as {@code telegramHandle} exists in the address book.
+     */
     public Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle) {
         return students.getStudentWithTelegramHandle(telegramHandle);
     }

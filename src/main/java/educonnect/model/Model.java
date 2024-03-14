@@ -1,8 +1,8 @@
 package educonnect.model;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import educonnect.commons.core.GuiSettings;
 import educonnect.model.student.Email;

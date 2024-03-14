@@ -11,9 +11,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import educonnect.model.student.Email;
-import educonnect.model.student.StudentId;
-import educonnect.model.student.TelegramHandle;
 import org.junit.jupiter.api.Test;
 
 import educonnect.commons.core.GuiSettings;
@@ -23,7 +20,10 @@ import educonnect.model.AddressBook;
 import educonnect.model.Model;
 import educonnect.model.ReadOnlyAddressBook;
 import educonnect.model.ReadOnlyUserPrefs;
+import educonnect.model.student.Email;
 import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.testutil.Assert;
 import educonnect.testutil.StudentBuilder;
 import educonnect.testutil.TypicalStudents;
