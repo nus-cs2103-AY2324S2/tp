@@ -11,51 +11,55 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ethan Wei Yuxin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/belligerentbeagle.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](http://www.ethanwei.me)]
+[[github](https://github.com/belligerentbeagle)]
+[[portfolio](team/ethanwei.md)]
 
-* Role: Project Advisor
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### Jane Doe
+### Sai Utkarsh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/saiutkarsh33.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/saiutkarsh33)]
+[[portfolio](team/sai.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### Johnny Doe
+### Titus Chew 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tituschewxj.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/tituschewxj)] 
+[[portfolio](team/titus.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### Jean Doe
+### Wu Xiaoyun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/foraeons.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ForAeons)]
+[[portfolio](team/xiaoyun.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Software Engineer
+* Responsibilities: Software Development
 
-### James Doe
 
-<img src="images/johndoe.png" width="200px">
+### Anant Shanker
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/anant1902.png" width="200px">
 
-* Role: Developer
-* Responsibilities: UI
+[[github](http://github.com/anant1902)]
+[[portfolio](team/anant.md)]
+
+* Role: Software Engineer
+* Responsibilities: Software Development
+

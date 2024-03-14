@@ -96,6 +96,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Returns the person in the address book whose NusNet ID matches the given NusNet.
+     * @param nusNet The NusNet ID to search for.
+     * @return An Optional containing the matched person if found, or an empty Optional otherwise.
+     */
+    public Optional<Person> getPersonByNusNet(NusNet nusNet) {
+        requireNonNull(nusNet);
+        return persons.asUnmodifiableObservableList().stream()
+                .filter(person -> person.getNusNet().equals(nusNet))
+                .findFirst();
+    }
+
     //// util methods
 
     @Override

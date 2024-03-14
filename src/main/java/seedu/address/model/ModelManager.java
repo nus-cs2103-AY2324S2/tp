@@ -113,6 +113,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public Optional<Person> getPersonByNusNet(NusNet nusNet) {
+        requireNonNull(nusNet);
+        return addressBook.getPersonByNusNet(nusNet);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -148,11 +153,10 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
-    public Optional<Person> getPersonByNusNet(NusNet nusNet) {
-        requireNonNull(nusNet);
-        return addressBook.getPersonByNusNet(nusNet);
-    }
 
-
-
+    // todo - Used for Debugging purposes. Consider creating more robust toString()
+    //    @Override
+    //    public String toString() {
+    //        return addressBook.toString() + filteredPersons.toString();
+    //    }
 }
