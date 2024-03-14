@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Represents a relationship between two persons with roles.
+ */
 class RoleBasedRelationship extends Relationship {
     private static final int MAX_ROLES = 2;
     private Map<UUID, String> roles; // Map of person UUID to their role in the relationship
@@ -22,14 +25,13 @@ class RoleBasedRelationship extends Relationship {
         }
     }
 
-    // Get role for a person
+    // Get role of a person
     public String getRole(UUID personUuid) {
-        return roles.get(personUuid);
-    }
-
-    // Get all roles in the relationship
-    public Map<UUID, String> getAllRoles() {
-        return roles;
+        String role = roles.get(personUuid);
+        if (role == null) {
+            throw new IllegalArgumentException("UUID not found in the roles map.");
+        }
+        return role;
     }
 }
 
