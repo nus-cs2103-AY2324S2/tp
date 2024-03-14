@@ -88,10 +88,7 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            // Convert lists to sets
-            Set<Person> expectedSet = new HashSet<>(expectedModel.getFilteredPersonList());
-            Set<Person> actualSet = new HashSet<>(actualModel.getFilteredPersonList());
-            assertEquals(expectedSet, actualSet);
+            assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
