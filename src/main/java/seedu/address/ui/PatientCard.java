@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -7,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -41,7 +44,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane importantDates;
+    private VBox importantDates;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
@@ -60,8 +63,12 @@ public class PatientCard extends UiPart<Region> {
 
         if (patient.getImportantDates().size() >= 1) {
             importantDates.getChildren().add(new Label("Upcoming:\n"));
-            patient.getImportantDates().stream()
-                    .forEach(importantDate -> importantDates.getChildren().add(new Label(importantDate.toString() + "\n")));
+
+            ArrayList<ImportantDate> allImportantDates = new ArrayList<>(patient.getImportantDates());
+            for (int i = 1; i <= allImportantDates.size(); i++) {
+                String currentImportantDate = allImportantDates.get(i - 1).toString();
+                importantDates.getChildren().add(new Label((i) + ". " + currentImportantDate + "\n"));
+            }
         }
     }
 }
