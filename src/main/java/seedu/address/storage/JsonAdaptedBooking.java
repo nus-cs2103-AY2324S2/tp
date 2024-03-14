@@ -1,12 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,7 +8,8 @@ import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.EndTime;
 import seedu.address.model.booking.StartTime;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 
 
 /**
@@ -57,13 +51,11 @@ class JsonAdaptedBooking {
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Booking.class.getSimpleName()));
         }
-//        if (!Description.isValidDescription(name)) {
-//            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-//        }
         final Description modelDescription = new Description(description);
 
         if (start == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StartTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                                          StartTime.class.getSimpleName()));
         }
         if (!StartTime.isValidStartTime(start)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -80,5 +72,4 @@ class JsonAdaptedBooking {
 
         return new Booking(modelDescription, modelStart, modelEnd);
     }
-
 }
