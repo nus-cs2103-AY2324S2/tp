@@ -127,7 +127,7 @@ public class Internship {
                 .toString();
     }
 
-    public Object getName() {
+    public CompanyName getName() {
         return companyName;
     }
 }
