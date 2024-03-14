@@ -14,8 +14,8 @@ import java.time.format.DateTimeParseException;
 public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date of birth should only contain numeric values in dd/MM/yyyy or yyyy-MM-dd format, and it should not " +
-                    "be left blank";
+            "Date of birth should only contain numeric values in dd/MM/yyyy or yyyy-MM-dd format, and it should not "
+                    + "be left blank";
 
     public static final DateTimeFormatter inputFormat1 = DateTimeFormatter.ofPattern("d/M/yyyy");
     public static final DateTimeFormatter inputFormat2 = DateTimeFormatter.ofPattern("yyyy-M-d");
