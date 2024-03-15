@@ -29,20 +29,23 @@ public class Person {
     private final Email email;
 
     // Data fields
+    private final DrugAllergy drugAllergy;
     private final Set<Illness> illnesses = new HashSet<>();
     private final ObservableList<Note> notes = FXCollections.observableArrayList();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Gender gender, BirthDate birthDate,Phone phone, Email email, Set<Illness> illnesses, ObservableList<Note> notes) {
-        requireAllNonNull(name, phone, email, illnesses, notes);
+    public Person(Nric nric, Name name, Gender gender, BirthDate birthDate,Phone phone,
+                  Email email, DrugAllergy drugAllergy, Set<Illness> illnesses, ObservableList<Note> notes) {
+        requireAllNonNull(nric, name, phone, email, illnesses, notes);
         this.nric = nric;
         this.name = name;
         this.gender = gender;
         this.birthDate = birthDate;
         this.phone = phone;
         this.email = email;
+        this.drugAllergy = drugAllergy;
         this.illnesses.addAll(illnesses);
         this.notes.addAll(notes);
     }
@@ -67,6 +70,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public DrugAllergy getDrugAllergy() {
+        return drugAllergy;
     }
 
     /**
@@ -120,13 +127,14 @@ public class Person {
             && birthDate.equals(otherPerson.birthDate)
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
+            && drugAllergy.equals(otherPerson.drugAllergy)
             && illnesses.equals(otherPerson.illnesses)
             && notes.equals(otherPerson.notes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nric, name, gender, birthDate, phone, email, illnesses, notes);
+        return Objects.hash(nric, name, gender, birthDate, phone, email, drugAllergy, illnesses, notes);
     }
 
     @Override
@@ -138,6 +146,7 @@ public class Person {
             .add("birthDate", birthDate)
             .add("phone", phone)
             .add("email", email)
+            .add("drugAllergy", drugAllergy)
             .add("tags", illnesses)
             .add("notes", notes)
             .toString();
@@ -153,6 +162,7 @@ public class Person {
         private BirthDate birthDate;
         private Phone phone;
         private Email email;
+        private DrugAllergy drugAllergy;
         private Set<Illness> illnesses = new HashSet<>();
         private ObservableList<Note> notes = FXCollections.observableArrayList();
 
@@ -165,6 +175,7 @@ public class Person {
                        BirthDate birthDate,
                        Phone phone,
                        Email email,
+                       DrugAllergy drugAllergy,
                        Set<Illness> illnesses,
                        ObservableList<Note> notes) {
             this.nric = nric;
@@ -173,6 +184,7 @@ public class Person {
             this.birthDate = birthDate;
             this.phone = phone;
             this.email = email;
+            this.drugAllergy = drugAllergy;
             this.illnesses.addAll(illnesses);
             this.notes.addAll(notes);
         }
@@ -187,6 +199,7 @@ public class Person {
                 person.getBirthDate(),
                 person.getPhone(),
                 person.getEmail(),
+                person.getDrugAllergy(),
                 person.getIllnesses(),
                 person.getNotes());
         }
@@ -206,6 +219,9 @@ public class Person {
         }
         public Email getEmail() {
             return email;
+        }
+        public DrugAllergy getDrugAllergy() {
+            return drugAllergy;
         }
 
         public Set<Illness> getIllnesses() {
@@ -258,6 +274,13 @@ public class Person {
             return this;
         }
 
+        public Builder setDrugAllergy(DrugAllergy drugAllergy) {
+            requireNonNull(drugAllergy);
+
+            this.drugAllergy = drugAllergy;
+            return this;
+        }
+
         public Builder setIllnesses(Set<Illness> illnesses) {
             requireNonNull(illnesses);
 
@@ -278,7 +301,7 @@ public class Person {
          * Builds a {@link Person} with the latest values.
          */
         public Person build() {
-            return new Person(nric, name, gender, birthDate, phone, email, illnesses, notes);
+            return new Person(nric, name, gender, birthDate, phone, email, drugAllergy, illnesses, notes);
         }
     }
 }

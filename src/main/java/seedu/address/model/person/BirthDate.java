@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -9,6 +7,10 @@ import java.time.format.DateTimeParseException;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's birthdate in the patient book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidBirthDate(String)}
+ */
 public class BirthDate {
 
     public static final String MESSAGE_CONSTRAINTS =

@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.BirthDate;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -108,7 +109,6 @@ public class ParserUtil {
         return new BirthDate(trimmedBirthDate);
     }
 
-
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
@@ -144,7 +144,7 @@ public class ParserUtil {
      * Parses a {@code String illness} into a {@code Illness}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code illness} is invalid.
      */
     public static Illness parseIllness(String illness) throws ParseException {
         requireNonNull(illness);
@@ -165,6 +165,17 @@ public class ParserUtil {
             illnessSet.add(parseIllness(illnessName));
         }
         return illnessSet;
+    }
+
+    /**
+     * Parses a {@code String drugAllergy} into a {@code Drug Allergy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static DrugAllergy parseDrugAllergy(String drugAllergy) {
+        requireNonNull(drugAllergy);
+        String trimmedDrugAllergy = drugAllergy.trim();
+        return new DrugAllergy(trimmedDrugAllergy);
     }
 
     /**

@@ -14,5 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
     public static final Prefix PREFIX_BIRTHDATE = new Prefix("b/");
     public static final Prefix PREFIX_ILLNESS = new Prefix("i/");
-    public static final Prefix PREFIX_DRUG_ALLERGIES = new Prefix("d/");
+    public static final Prefix PREFIX_DRUG_ALLERGY = new Prefix("d/");
 }

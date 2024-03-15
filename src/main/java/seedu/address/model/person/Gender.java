@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's gender in the patient book.
- * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)} (String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
 public class Gender {
 

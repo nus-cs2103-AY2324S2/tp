@@ -8,10 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidIllnessName(String)} (String)}
  */
 public class Illness {
-
     public static final String MESSAGE_CONSTRAINTS = "Illness names should be alphanumeric";
     public static final String VALIDATION_REGEX = "^[A-Za-z0-9]+$";
-
     public final String illnessName;
 
     /**

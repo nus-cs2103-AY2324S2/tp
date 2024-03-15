@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Person;
 
 /**
@@ -43,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label drugAllergy;
+    @FXML
     private FlowPane illnesses;
 
     /**
@@ -58,6 +61,7 @@ public class PersonCard extends UiPart<Region> {
         birthDate.setText(person.getBirthDate().birthDate);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
+        drugAllergy.setText(person.getDrugAllergy().drugAllergy);
         person.getIllnesses().stream()
                 .sorted(Comparator.comparing(illness -> illness.illnessName))
                 .forEach(illness -> illnesses.getChildren().add(new Label(illness.illnessName)));

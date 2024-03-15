@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.BirthDate;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -35,6 +36,7 @@ class JsonAdaptedPerson {
     private final String birthDate;
     private final String phone;
     private final String email;
+    private final String drugAllergy;
     private final List<JsonAdaptedIllness> illnesses = new ArrayList<>();
     private final List<JsonAdapatedNote> notes = new ArrayList<>();
 
@@ -48,7 +50,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("birthdate") String birthDate,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
-                             @JsonProperty("tags") List<JsonAdaptedIllness> illnesses,
+                             @JsonProperty("drugAllergy") String drugAllergy,
+                             @JsonProperty("illnesses") List<JsonAdaptedIllness> illnesses,
                              @JsonProperty("notes") List<JsonAdapatedNote> notes) {
         this.nric = nric;
         this.name = name;
@@ -56,6 +59,7 @@ class JsonAdaptedPerson {
         this.birthDate = birthDate;
         this.phone = phone;
         this.email = email;
+        this.drugAllergy = drugAllergy;
         if (illnesses != null) {
             this.illnesses.addAll(illnesses);
         }
@@ -74,6 +78,7 @@ class JsonAdaptedPerson {
         birthDate = source.getBirthDate().birthDate;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        drugAllergy = source.getDrugAllergy().drugAllergy;
         illnesses.addAll(source.getIllnesses().stream()
             .map(JsonAdaptedIllness::new)
             .collect(Collectors.toList()));
@@ -146,8 +151,14 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (drugAllergy == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DrugAllergy.class.getSimpleName()));
+        }
+        final DrugAllergy modelDrugAllergy = new DrugAllergy(drugAllergy);
+
         final Set<Illness> modelIllnesses = new HashSet<>(illnesses);
         return new Person(modelNric, modelName, modelGender, modelBirthDate,
-                modelPhone, modelEmail, modelIllnesses, notes);
+                modelPhone, modelEmail, modelDrugAllergy, modelIllnesses, notes);
     }
 }
