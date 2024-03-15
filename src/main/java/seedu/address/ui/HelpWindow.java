@@ -1,5 +1,13 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.AddCommand.MESSAGE_ADD_HELP;
+import static seedu.address.logic.commands.ClearCommand.MESSAGE_CLEAR_HELP;
+import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_HELP;
+import static seedu.address.logic.commands.EditCommand.MESSAGE_EDIT_HELP;
+import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_HELP;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_FIND_HELP;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_LIST_HELP;
+
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -15,8 +23,9 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-w10-1.github.io/tp/";
+    public static final String HELP_MESSAGE = "For more information, you may refer to the user guide: "
+            + "\n" + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -34,7 +43,14 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        helpMessage.setText(MESSAGE_ADD_HELP + "\n"
+                + MESSAGE_DELETE_HELP + "\n"
+                + MESSAGE_CLEAR_HELP + "\n"
+                + MESSAGE_EDIT_HELP + "\n"
+                + MESSAGE_LIST_HELP + "\n"
+                + MESSAGE_FIND_HELP + "\n"
+                + MESSAGE_EXIT_HELP + "\n"
+                + HELP_MESSAGE);
     }
 
     /**

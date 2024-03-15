@@ -22,7 +22,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the Realodex. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -41,8 +41,11 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the Realodex";
+    public static final String MESSAGE_ADD_HELP = "Add Command: Adds a client to the Realodex. You may input client"
+            + " details in any order. Tags are optional to input.\n"
+            + "Format: add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY [t/TAG]...\n";
 
     private final Person toAdd;
 
