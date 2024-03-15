@@ -1,22 +1,32 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 
 /**
  * Represents a patient's admission date in the address book.
  */
 public class AdmissionDate {
-    public static final String MESSAGE_CONSTRAINTS = "Admission dates can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Admission dates can take any date, and it should be in DD/MM/YYYY";
+    public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
 
-    public final LocalDate admissionDate;
+    public final String admissionDate;
 
     /**
      * Constructs a {@code AdmissionDate}.
      *
      * @param admissionDate A valid admission date.
      */
-    public AdmissionDate(LocalDate admissionDate) {
+    public AdmissionDate(String admissionDate) {
+        requireNonNull(admissionDate);
+        checkArgument(isValidAdmissionDate(admissionDate), MESSAGE_CONSTRAINTS);
         this.admissionDate = admissionDate;
+    }
+    public static boolean isValidAdmissionDate(String admissionDate) {
+        return admissionDate.matches(VALIDATION_REGEX);
     }
 
     @Override
