@@ -1,32 +1,39 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.EmailContainsKeywordPredicate;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 
-public class ListCommandParser implements Parser<ListCommand>{
+
+/**
+ * Parses input arguments and creates a new ListCommand object
+ */
+public class ListCommandParser implements Parser<ListCommand> {
     @Override
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ALIAS);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE,
+                        CliSyntax.PREFIX_EMAIL, PREFIX_ALIAS);
 
 
         List<Predicate<Person>> predicates = new ArrayList<>();
 
-        if (!hasAtLeastOnePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ALIAS)
+        if (!hasAtLeastOnePrefixPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE,
+                CliSyntax.PREFIX_EMAIL, PREFIX_ALIAS)
                 || !argMultimap.getPreamble().isEmpty()) {
             // If there is no prefix specified, then display all records.
             // TODO: Show an error message here.
@@ -35,19 +42,19 @@ public class ListCommandParser implements Parser<ListCommand>{
 
 
         // All these criterias are OR not AND
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
+            Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
             predicates.add(new NameContainsKeywordsPredicate(Collections.singletonList(name.fullName)));
         }
 
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()) {
+            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
             predicates.add(new PhoneContainsKeywordsPredicate(Collections.singletonList(phone.value)));
         }
 
 
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            String email = argMultimap.getValue(PREFIX_EMAIL).get();
+        if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
+            String email = argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get();
             predicates.add(new EmailContainsKeywordPredicate(Collections.singletonList(email)));
         }
 

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -101,7 +100,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-//        final int sid = new Integer(toModelType().getSid());
+        // final int sid = new Integer(toModelType().getSid());
         // TODO: Dummy value for ID
         return new Person(modelName, modelPhone, modelEmail, modelTags, sid);
     }

@@ -9,12 +9,13 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
-
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+
+    public static int idTracker = 1;
 
     // Identity fields
     private final Name name;
@@ -26,13 +27,11 @@ public class Person {
 
     private final int id;
 
-    public static int idTracker = 1;
-
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Set<Tag> tags, int id) {
-        requireAllNonNull(name, phone, email,  tags, id);
+        requireAllNonNull(name, phone, email, tags, id);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +50,7 @@ public class Person {
     public Email getEmail() {
         return email;
     }
+
     public int getSid() {
         return id;
     }
@@ -95,7 +95,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-//                && id == otherPerson.id
+                // && id == otherPerson.id
                 && tags.equals(otherPerson.tags);
     }
 
