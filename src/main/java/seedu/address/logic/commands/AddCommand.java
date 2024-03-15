@@ -29,11 +29,11 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ALIAS + "friends "
+            + PREFIX_ALIAS + "Johnny "
             + PREFIX_ALIAS + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the CogniCare address book";
 
     private final Person toAdd;
 
