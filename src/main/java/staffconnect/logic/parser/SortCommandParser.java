@@ -11,7 +11,10 @@ import java.util.Comparator;
 import staffconnect.logic.commands.SortCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.Person;
-
+import staffconnect.model.person.comparators.ModuleComparator;
+import staffconnect.model.person.comparators.NameComparator;
+import staffconnect.model.person.comparators.PhoneComparator;
+import staffconnect.model.person.comparators.VenueComparator;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -37,39 +40,18 @@ public class SortCommandParser implements Parser<SortCommand> {
     private Comparator<Person> parseComparatorForKeywords(String keyword) throws ParseException {
 
         if (keyword.equals(PREFIX_NAME.getPrefix())) {
-            return new Comparator<Person>() {
-                @Override
-                public int compare(Person person1, Person person2) {
-                    return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
-                }
-            };
+            return NameComparator.NAME_COMPARATOR;
         } else if (keyword.equals(PREFIX_PHONE.getPrefix())) {
-            return new Comparator<Person>() {
-                @Override
-                public int compare(Person person1, Person person2) {
-                    return person1.getPhone().toString().compareToIgnoreCase(person2.getPhone().toString());
-                }
-            };
+            return PhoneComparator.PHONE_COMPARATOR;
         } else if (keyword.equals(PREFIX_MODULE.getPrefix())) {
-            return new Comparator<Person>() {
-                @Override
-                public int compare(Person person1, Person person2) {
-                    return person1.getModule().toString().compareToIgnoreCase(person2.getModule().toString());
-                }
-            };
+            return ModuleComparator.MODULE_COMPARATOR;
         } else if (keyword.equals(PREFIX_VENUE.getPrefix())) {
-            return new Comparator<Person>() {
-                @Override
-                public int compare(Person person1, Person person2) {
-                    return person1.getVenue().toString().compareToIgnoreCase(person2.getVenue().toString());
-                }
-            };
+            return VenueComparator.VENUE_COMPARATOR;
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-
-
-
     }
+
+
 }

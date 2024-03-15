@@ -5,12 +5,10 @@ import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static staffconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static staffconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Comparator;
-
 import org.junit.jupiter.api.Test;
 
 import staffconnect.logic.commands.SortCommand;
-import staffconnect.model.person.Person;
+import staffconnect.model.person.comparators.VenueComparator;
 
 public class SortCommandParserTest {
 
@@ -23,13 +21,9 @@ public class SortCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsSortCommand() {
-        Comparator<Person> temp = new Comparator<Person>() {
-            @Override
-            public int compare(Person person1, Person person2) {
-                return person1.getVenue().toString().compareToIgnoreCase(person2.getVenue().toString());
-            }
-        };
-        SortCommand expectedSortCommand = new SortCommand(temp);
+
+        SortCommand expectedSortCommand = new SortCommand(VenueComparator.VENUE_COMPARATOR);
+
         // no leading and trailing whitespaces
         assertParseSuccess(parser, " v/ ", expectedSortCommand);
 
