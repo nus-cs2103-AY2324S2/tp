@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_EMAIL_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.showInternshipAtIndex;
 import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_SECOND_INTERNSHIP;
@@ -124,7 +124,8 @@ public class InternshipEditCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         // edit person in filtered list into a duplicate in address book
-        Internship personInList = model.getInternshipData().getInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
+        Internship personInList = model.getInternshipData().getInternshipList().get(INDEX_SECOND_INTERNSHIP
+                .getZeroBased());
         InternshipEditCommand editCommand = new InternshipEditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder(personInList).build());
 
@@ -189,8 +190,8 @@ public class InternshipEditCommandTest {
         Index index = Index.fromOneBased(1);
         EditInternshipDescriptor editInternshipDescriptor = new EditInternshipDescriptor();
         InternshipEditCommand editCommand = new InternshipEditCommand(index, editInternshipDescriptor);
-        String expected = InternshipEditCommand.class.getCanonicalName() +
-                "{index=" + index + ", editInternshipDescriptor=" + editInternshipDescriptor + "}";
+        String expected = InternshipEditCommand.class.getCanonicalName() + "{index=" + index
+                + ", editInternshipDescriptor=" + editInternshipDescriptor + "}";
         assertEquals(expected, editCommand.toString());
     }
 

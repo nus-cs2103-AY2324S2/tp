@@ -21,7 +21,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.InternshipMessages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.InternshipModel;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.CompanyName;
@@ -93,14 +92,16 @@ public class InternshipEditCommand extends InternshipCommand {
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
-        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, InternshipMessages.format(editedInternship)));
+        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS,
+                InternshipMessages.format(editedInternship)));
     }
 
     /**
      * Creates and returns a {@code Internship} with the details of {@code internshipToEdit}
      * edited with {@code editInternshipDescriptor}.
      */
-    private static Internship createEditedInternship(Internship internshipToEdit, EditInternshipDescriptor editInternshipDescriptor) {
+    private static Internship createEditedInternship(Internship internshipToEdit,
+                                                     EditInternshipDescriptor editInternshipDescriptor) {
         assert internshipToEdit != null;
 
         CompanyName updatedCompanyName = editInternshipDescriptor.getCompanyName()
@@ -191,20 +192,48 @@ public class InternshipEditCommand extends InternshipCommand {
         public Optional<CompanyName> getCompanyName() {
             return Optional.ofNullable(companyName);
         }
-        public void setLocation(Location location) { this.location = location; }
-        public Optional<Location> getLocation() { return Optional.ofNullable(location); }
-        public void setDescription(Description description) { this.description = description; }
-        public Optional<Description> getDescription() { return Optional.ofNullable(description); }
-        public void setRole(Role role) { this.role = role; }
-        public Optional<Role> getRole() { return Optional.ofNullable(role); }
-        public void setContactName(ContactName contactName) { this.contactName = contactName; }
-        public Optional<ContactName> getContactName() { return Optional.ofNullable(contactName); }
-        public void setContactEmail(ContactEmail contactEmail) { this.contactEmail = contactEmail; }
-        public Optional<ContactEmail> getContactEmail() { return Optional.ofNullable(contactEmail); }
-        public void setContactNumber(ContactNumber contactNumber) { this.contactNumber = contactNumber; }
-        public Optional<ContactNumber> getContactNumber() { return Optional.ofNullable(contactNumber); }
-        public void setApplicationStatus(ApplicationStatus applicationStatus) { this.applicationStatus = applicationStatus; }
-        public Optional<ApplicationStatus> getApplicationStatus() { return Optional.ofNullable(applicationStatus); }
+        public void setLocation(Location location) {
+            this.location = location;
+        }
+        public Optional<Location> getLocation() {
+            return Optional.ofNullable(location);
+        }
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
+        }
+        public void setRole(Role role) {
+            this.role = role;
+        }
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
+        }
+        public void setContactName(ContactName contactName) {
+            this.contactName = contactName;
+        }
+        public Optional<ContactName> getContactName() {
+            return Optional.ofNullable(contactName);
+        }
+        public void setContactEmail(ContactEmail contactEmail) {
+            this.contactEmail = contactEmail;
+        }
+        public Optional<ContactEmail> getContactEmail() {
+            return Optional.ofNullable(contactEmail);
+        }
+        public void setContactNumber(ContactNumber contactNumber) {
+            this.contactNumber = contactNumber;
+        }
+        public Optional<ContactNumber> getContactNumber() {
+            return Optional.ofNullable(contactNumber);
+        }
+        public void setApplicationStatus(ApplicationStatus applicationStatus) {
+            this.applicationStatus = applicationStatus;
+        }
+        public Optional<ApplicationStatus> getApplicationStatus() {
+            return Optional.ofNullable(applicationStatus);
+        }
 
         @Override
         public boolean equals(Object other) {

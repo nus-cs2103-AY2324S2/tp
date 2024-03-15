@@ -5,15 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.ContactEmail;
-import seedu.address.model.internship.ContactName;
-import seedu.address.model.internship.ContactNumber;
-import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Location;
-import seedu.address.model.internship.Role;
 
 /**
  * Container for user visible messages.

@@ -18,9 +18,9 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.InternshipEditCommand;
+import seedu.address.logic.commands.InternshipEditCommand.EditInternshipDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.logic.commands.InternshipEditCommand.EditInternshipDescriptor;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -43,7 +43,8 @@ public class InternshipEditCommandParser implements InternshipParser<InternshipE
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipEditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipEditCommand.MESSAGE_USAGE),
+                    pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
@@ -52,28 +53,36 @@ public class InternshipEditCommandParser implements InternshipParser<InternshipE
         EditInternshipDescriptor editPersonDescriptor = new EditInternshipDescriptor();
 
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
-            editPersonDescriptor.setCompanyName(InternshipParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY).get()));
+            editPersonDescriptor.setCompanyName(InternshipParserUtil.parseCompanyName(argMultimap
+                    .getValue(PREFIX_COMPANY).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT_NAME).isPresent()) {
-            editPersonDescriptor.setContactName(InternshipParserUtil.parseContactName(argMultimap.getValue(PREFIX_CONTACT_NAME).get()));
+            editPersonDescriptor.setContactName(InternshipParserUtil.parseContactName(argMultimap
+                    .getValue(PREFIX_CONTACT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT_NUMBER).isPresent()) {
-            editPersonDescriptor.setContactNumber(InternshipParserUtil.parseContactNumber(argMultimap.getValue(PREFIX_CONTACT_NUMBER).get()));
+            editPersonDescriptor.setContactNumber(InternshipParserUtil.parseContactNumber(argMultimap
+                    .getValue(PREFIX_CONTACT_NUMBER).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT_EMAIL).isPresent()) {
-            editPersonDescriptor.setContactEmail(InternshipParserUtil.parseContactEmail(argMultimap.getValue(PREFIX_CONTACT_EMAIL).get()));
+            editPersonDescriptor.setContactEmail(InternshipParserUtil.parseContactEmail(argMultimap
+                    .getValue(PREFIX_CONTACT_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
-            editPersonDescriptor.setLocation(InternshipParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
+            editPersonDescriptor.setLocation(InternshipParserUtil.parseLocation(argMultimap
+                    .getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            editPersonDescriptor.setApplicationStatus(InternshipParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
+            editPersonDescriptor.setApplicationStatus(InternshipParserUtil.parseStatus(argMultimap
+                    .getValue(PREFIX_STATUS).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editPersonDescriptor.setDescription(InternshipParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editPersonDescriptor.setDescription(InternshipParserUtil.parseDescription(argMultimap
+                    .getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
-            editPersonDescriptor.setRole(InternshipParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
+            editPersonDescriptor.setRole(InternshipParserUtil.parseRole(argMultimap
+                    .getValue(PREFIX_ROLE).get()));
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
