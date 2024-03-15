@@ -50,7 +50,7 @@ public class Email extends Attribute<String> {
     }
 
     /**
-     * Determine if the email value stored is a match with a specified email string.
+     * Determine if the email value stored is a match with a specified string.
      * Returns true if specified value is a substring of the email value stored.
      *
      * @param otherValue Other value to check against
