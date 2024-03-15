@@ -92,7 +92,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
 
-        if (sid < 0) {
+        if (sid <= 0) {
             // TODO: Custom type for SID
             throw new IllegalValueException("Please only use positive index.");
         }
