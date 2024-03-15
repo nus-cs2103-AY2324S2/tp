@@ -22,10 +22,14 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AdmissionDate;
+import seedu.address.model.person.Dob;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,8 +104,14 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Ic updatedIc = editPersonDescriptor.getIc().orElse(personToEdit.getIc());
+        Dob updatedDob = editPersonDescriptor.getDob().orElse(personToEdit.getDob());
+        AdmissionDate updatedAdmissionDate =
+                editPersonDescriptor.getAdmissionDate().orElse(personToEdit.getAdmissionDate());
+        Ward updatedWard = editPersonDescriptor.getWard().orElse(personToEdit.getWard());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedDob, updatedIc, updatedAdmissionDate, updatedWard);
     }
 
     @Override
@@ -138,6 +148,10 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Ic ic;
+        private Dob dob;
+        private AdmissionDate admissionDate;
+        private Ward ward;
 
         public EditPersonDescriptor() {}
 
@@ -208,7 +222,30 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-
+        public void setIc(Ic ic) {
+            this.ic = ic;
+        }
+        public Optional<Ic> getIc() {
+            return Optional.ofNullable(ic);
+        }
+        public void setDob(Dob dob) {
+            this.dob = dob;
+        }
+        public Optional<Dob> getDob() {
+            return Optional.ofNullable(dob);
+        }
+        public void setAdmissionDate(AdmissionDate admissionDate) {
+            this.admissionDate = admissionDate;
+        }
+        public Optional<AdmissionDate> getAdmissionDate() {
+            return Optional.ofNullable(admissionDate);
+        }
+        public void setWard(Ward ward) {
+            this.ward = ward;
+        }
+        public Optional<Ward> getWard() {
+            return Optional.ofNullable(ward);
+        }
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -225,7 +262,12 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(ic, otherEditPersonDescriptor.ic)
+                    && Objects.equals(dob, otherEditPersonDescriptor.dob)
+                    && Objects.equals(admissionDate, otherEditPersonDescriptor.admissionDate)
+                    && Objects.equals(ward, otherEditPersonDescriptor.ward);
+
         }
 
         @Override
@@ -236,6 +278,10 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("ic", ic)
+                    .add("dob", dob)
+                    .add("admissionDate", admissionDate)
+                    .add("ward", ward)
                     .toString();
         }
     }
