@@ -4,15 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a project identified using it's name from the project list.
  */
 public class DeleteProjectCommand extends Command {
 
@@ -23,12 +23,12 @@ public class DeleteProjectCommand extends Command {
             + "Parameters: PROJECT_NAME\n"
             + "Example: " + COMMAND_WORD + " CS2103";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "[%1$s] has been deleted from the project list.";
+    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "[%1$s] has been deleted from the project list.";
 
-    private final Index targetIndex;
+    private final String targetName;
 
-    public DeleteProjectCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteProjectCommand(String targetName) {
+        this.targetName = targetName;
     }
 
     @Override
@@ -36,13 +36,21 @@ public class DeleteProjectCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        Person targetProject = new Person(new Name(targetName));
+        Person projectToDelete = null;
+        for(Person person : lastShownList) {
+            if(person.isSamePerson(targetProject)) {
+                projectToDelete = person;
+                break;
+            }
+        }
+
+        if(projectToDelete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        model.deletePerson(projectToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, Messages.format(projectToDelete)));
     }
 
     @Override
@@ -57,13 +65,13 @@ public class DeleteProjectCommand extends Command {
         }
 
         DeleteProjectCommand otherDeleteCommand = (DeleteProjectCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        return targetName.equals(otherDeleteCommand.targetName);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add("targetName", targetName)
                 .toString();
     }
 }
