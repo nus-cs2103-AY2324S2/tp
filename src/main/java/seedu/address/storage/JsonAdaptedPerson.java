@@ -129,7 +129,6 @@ class JsonAdaptedPerson {
         final Grade modelGrade = new Grade(grade);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-      
         return new Person(modelName, modelStudentId, modelPhone, modelEmail, modelAddress, modelGrade, modelTags);
     }
 
