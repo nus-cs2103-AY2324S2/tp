@@ -75,4 +75,11 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Returns true if the prefix exists as a key in the map.
+     */
+    public boolean contains(Prefix prefix) {
+        return argMultimap.containsKey(prefix);
+    }
 }
