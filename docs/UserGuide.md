@@ -117,15 +117,14 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [g/GROUP] [t/TAG]`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The NAME search is case-insensitive. e.g `hans` will match `Hans`
-* The order of NAME keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched for NAME e.g. `Han` will not match `Hans`
-* Persons matching ANY word will be selected for NAME (e.g. `Hans Bo` will fetch `Hans Gruber`, `Bo Yang`)
-* For all other parameters PHONE, EMAIL, GROUP, TAG: they will be selected using prefixSearch
-* Persons matching all parameters will be returned (i.e. `AND` search).
-  
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
