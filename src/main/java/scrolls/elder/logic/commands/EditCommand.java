@@ -89,13 +89,13 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-        boolean isVolunteer = personToEdit.isVolunteer();
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Boolean isVolunteer = editPersonDescriptor.getIsVolunteer().orElse(personToEdit.isVolunteer());
 
         // edits the values, and returns new volunteer or befriendee object
         if (isVolunteer) {
@@ -212,11 +212,11 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setIsVolunteer(boolean isVolunteer) {
+        public void setIsVolunteer(Boolean isVolunteer) {
             this.isVolunteer = isVolunteer;
         }
 
-        Optional<Boolean> getIsVolunteer() {
+        public Optional<Boolean> getIsVolunteer() {
             return Optional.ofNullable(isVolunteer);
         }
 
@@ -242,6 +242,8 @@ public class EditCommand extends Command {
 
         @Override
         public String toString() {
+            // Default to volunteer
+            Boolean isVolunteer = this.getIsVolunteer().orElse(true);
             String role = isVolunteer ? "volunteer" : "befriendee";
             return new ToStringBuilder(this)
                     .add("name", name)
