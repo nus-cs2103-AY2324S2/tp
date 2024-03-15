@@ -1,6 +1,7 @@
 package staffconnect.model.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,8 @@ class MeetingTest {
         Meeting testMeeting = new Meeting(testDescription, testDate);
         Meeting diffMeetingDescription = new Meeting(otherDescription, testDate);
         Meeting diffMeetingTime = new Meeting(testDescription, otherDate);
+        MeetDateTime testDate = new MeetDateTime("12/04/2023 12:00");
+
 
         // same values -> returns true
         assertEquals(testMeeting, new Meeting(new Description("Valid description"),
@@ -30,6 +33,9 @@ class MeetingTest {
 
         // different type -> returns false
         assertNotEquals(5, testMeeting);
+
+        //Different object type -> returns false
+        assertFalse(testMeeting.equals(testDate));
 
         // different description -> returns false
         assertNotEquals(testMeeting, diffMeetingDescription);

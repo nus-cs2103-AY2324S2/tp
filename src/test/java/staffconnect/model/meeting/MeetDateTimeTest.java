@@ -48,6 +48,7 @@ class MeetDateTimeTest {
     @Test
     public void equals() {
         MeetDateTime date = new MeetDateTime("20/01/2023 12:00");
+        Description testDescription = new Description("Valid Description");
 
         // same values -> returns true
         assertEquals(date, new MeetDateTime("20/01/2023 12:00"));
@@ -60,6 +61,9 @@ class MeetDateTimeTest {
 
         // different types -> returns false
         assertNotEquals(1234, date);
+
+        //Different object type -> returns false
+        assertFalse(date.equals(testDescription));
 
         // different values -> returns false
         assertNotEquals(date, new MeetDateTime("15/02/2024 12:00"));

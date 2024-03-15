@@ -46,6 +46,7 @@ class DescriptionTest {
     @Test
     public void equals() {
         Description description = new Description("Valid Description");
+        MeetDateTime testDate = new MeetDateTime("12/04/2023 12:00");
 
         // same values -> returns true
         assertEquals(description, new Description("Valid Description"));
@@ -58,6 +59,9 @@ class DescriptionTest {
 
         // different types -> returns false
         assertNotEquals(5.0f, description);
+
+        //Different object type -> returns false
+        assertFalse(description.equals(testDate));
 
         // different values -> returns false
         assertNotEquals(description, new Name("Other valid description"));

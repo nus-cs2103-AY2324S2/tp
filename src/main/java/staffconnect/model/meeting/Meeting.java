@@ -18,6 +18,7 @@ public class Meeting {
      * Constructs a {@code Meeting}.
      *
      * @param description A valid meeting description.
+     * @param startDate A valid time and date for the meeting.
      */
 
     public Meeting(Description description, MeetDateTime startDate) {
