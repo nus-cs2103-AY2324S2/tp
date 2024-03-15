@@ -132,9 +132,9 @@ public class InternshipEditCommandParserTest {
                 .withContactName(VALID_CONTACT_NAME_AMY).withContactEmail(VALID_CONTACT_EMAIL_AMY)
                 .withContactNumber(VALID_CONTACT_NUMBER_AMY).withApplicationStatus(VALID_APPLICATION_STATUS_AMY)
                 .build();
-        
+
         InternshipEditCommand expectedCommand = new InternshipEditCommand(targetIndex, descriptor);
-        
+
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
