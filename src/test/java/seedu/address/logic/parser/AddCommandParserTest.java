@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.GRADE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GRADE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GRADE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -28,6 +29,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -41,6 +43,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -88,6 +91,19 @@ public class AddCommandParserTest {
         // multiple addresses
         assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
+
+        // multiple fields repeated
+        assertParseFailure(parser,
+                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
+                        + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_GRADE, PREFIX_ADDRESS, PREFIX_EMAIL,
+                        PREFIX_PHONE));
+
+        assertParseFailure(parser,
+                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
+                        + GRADE_DESC_AMY + GRADE_DESC_AMY,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_GRADE, PREFIX_ADDRESS, PREFIX_EMAIL,
+                        PREFIX_PHONE));
 
         // invalid value followed by valid value
 
@@ -177,6 +193,10 @@ public class AddCommandParserTest {
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + GRADE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+
+        // invalid grade
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + INVALID_GRADE_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Grade.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
