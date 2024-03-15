@@ -10,6 +10,7 @@ import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Role;
 import scrolls.elder.model.tag.Tag;
 
 /**
@@ -37,7 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        descriptor.setIsVolunteer(person.isVolunteer());
+        descriptor.setRole(person.getRole());
     }
 
     /**
@@ -85,8 +86,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code role} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withRole(boolean isVolunteer) {
-        descriptor.setIsVolunteer(isVolunteer);
+    public EditPersonDescriptorBuilder withRole(String roleString) {
+        descriptor.setRole(new Role(roleString));
         return this;
     }
 

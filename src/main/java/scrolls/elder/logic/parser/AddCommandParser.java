@@ -62,7 +62,6 @@ public class AddCommandParser implements Parser<AddCommand> {
                 CliSyntax.PREFIX_ADDRESS,
                 CliSyntax.PREFIX_NAME);
 
-
         String role = argMultimap.getValue(CliSyntax.PREFIX_ROLE).get();
         if (role.equals("volunteer")) {
             isVolunteer = true;

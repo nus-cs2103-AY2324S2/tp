@@ -26,6 +26,7 @@ import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Role;
 import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
@@ -101,14 +102,16 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Boolean isVolunteer = editPersonDescriptor.getIsVolunteer().orElse(personToEdit.isVolunteer());
+        Role role = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
 
-        // edits the values, and returns new volunteer or befriendee object
+        boolean isVolunteer = role.equals(new Role("volunteer"));
+
         if (isVolunteer) {
             return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        } else {
+            return new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
         }
 
-        return new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -145,7 +148,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private Boolean isVolunteer;
+        private Role role;
 
         public EditPersonDescriptor() {}
 
@@ -159,7 +162,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setIsVolunteer(toCopy.isVolunteer);
+            setRole(toCopy.role);
         }
 
         /**
@@ -218,12 +221,12 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setIsVolunteer(Boolean isVolunteer) {
-            this.isVolunteer = isVolunteer;
+        public void setRole(Role role) {
+            this.role = role;
         }
 
-        public Optional<Boolean> getIsVolunteer() {
-            return Optional.ofNullable(isVolunteer);
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
         }
 
         @Override
@@ -243,19 +246,11 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(isVolunteer, otherEditPersonDescriptor.isVolunteer);
+                    && Objects.equals(role, otherEditPersonDescriptor.role);
         }
 
         @Override
         public String toString() {
-            // Default to volunteer
-            Boolean isVolunteer = this.getIsVolunteer().orElse(null);
-            String role = null;
-
-            if (isVolunteer != null) {
-                role = isVolunteer ? "volunteer" : "befriendee";
-            }
-
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("phone", phone)

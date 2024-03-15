@@ -10,7 +10,7 @@ import scrolls.elder.model.tag.Tag;
  */
 public class Volunteer extends Person {
     public Volunteer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email, address, tags, new Role("volunteer"));
     }
 
     @Override
@@ -19,8 +19,8 @@ public class Volunteer extends Person {
     }
 
     @Override
-    public String getRole() {
-        return "volunteer";
+    public Role getRole() {
+        return this.role;
     }
 
 
@@ -51,7 +51,7 @@ public class Volunteer extends Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
-                .add("role", "volunteer")
+                .add("role", role)
                 .toString();
     }
 }
