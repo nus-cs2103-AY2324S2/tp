@@ -3,6 +3,7 @@ package staffconnect.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_AVAILABILITY_THUR;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -93,13 +94,17 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different availabilities -> returns false
+        editedAlice = new PersonBuilder(ALICE).withAvailabilities(VALID_AVAILABILITY_THUR).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", venue=" + ALICE.getVenue() + ", module=" + ALICE.getModule()
-                + ", tags=" + ALICE.getTags() + "}";
+                + ", tags=" + ALICE.getTags() + ", availabilities=" + ALICE.getAvailabilities() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
