@@ -9,6 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Note {
 
+    public static final Note DEFAULT = new Note("");
     public static final String MESSAGE_CONSTRAINTS = "Notes can take any values, and it should not be blank";
 
     public final String value;

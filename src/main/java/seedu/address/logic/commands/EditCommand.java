@@ -101,7 +101,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        // Use the same person for existing fields, but copies the object for every thing else
+        // TODO: change this when the command is updated
+        return new Person(updatedName, updatedPhone, updatedEmail, personToEdit.getIdentityCardNumber(),
+                personToEdit.getAge(), personToEdit.getSex(), updatedAddress, personToEdit.getNote(), updatedTags);
     }
 
     @Override

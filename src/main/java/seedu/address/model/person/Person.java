@@ -19,6 +19,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
+    private final Email email;
     private final IdentityCardNumber identityCardNumber;
 
     // Data fields
@@ -31,11 +32,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, IdentityCardNumber identityCardNumber, Age age, Sex sex, Address address,
-                  Note note, Set<Tag> tags) {
-        requireAllNonNull(name, phone, identityCardNumber, age, sex, address, tags);
+    public Person(Name name, Phone phone, Email email, IdentityCardNumber identityCardNumber, Age age, Sex sex,
+                  Address address, Note note, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, identityCardNumber, age, sex, address, note, tags);
         this.name = name;
         this.phone = phone;
+        this.email = email;
         this.identityCardNumber = identityCardNumber;
         this.age = age;
         this.sex = sex;
@@ -50,6 +52,10 @@ public class Person {
 
     public Phone getPhone() {
         return phone;
+    }
+
+    public Email getEmail() {
+        return email;
     }
 
     public IdentityCardNumber getIdentityCardNumber() {
@@ -113,6 +119,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
+                && email.equals(otherPerson.email)
                 && identityCardNumber.equals(otherPerson.identityCardNumber)
                 && age.equals(otherPerson.age)
                 && sex.equals(otherPerson.sex)
@@ -124,7 +131,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, identityCardNumber, age, sex, address, note, tags);
+        return Objects.hash(name, phone, email, identityCardNumber, age, sex, address, note, tags);
     }
 
     @Override
@@ -132,6 +139,7 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
+                .add("email", email)
                 .add("identityCardNumber", identityCardNumber)
                 .add("age", age)
                 .add("sex", sex)

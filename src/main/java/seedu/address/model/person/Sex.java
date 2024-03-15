@@ -9,7 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Sex {
 
-    public enum ValidSex {Male, Female}
+    public static final Sex DEFAULT = new Sex("F");
+    public static final String MALE = "M";
+    public static final String FEMALE = "F";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Sex should only contain either 'M' or 'F', and it should not be blank";
@@ -20,7 +22,7 @@ public class Sex {
      */
     public static final String VALIDATION_REGEX = "[MF]";
 
-    public final ValidSex fullSex;
+    public final String value;
 
     /**
      * Constructs a {@code Sex}
@@ -31,39 +33,31 @@ public class Sex {
         requireNonNull(sex);
         checkArgument(isValidSex(sex), MESSAGE_CONSTRAINTS);
         if (isFemaleString(sex)) {
-            fullSex = ValidSex.Female;
+            value = FEMALE;
         } else if (isMaleString(sex)) {
-            fullSex = ValidSex.Male;
+            value = MALE;
         } else {
             // This should never happen
             // Prevents linter from detecting fullSex as potentially unassigned
-            fullSex = null;
+            value = "";
         }
     }
 
     public boolean isMaleString(String sex) {
-        return sex.equals("M");
+        return sex.equals(MALE);
     }
 
     public boolean isFemaleString(String sex) {
-        return sex.equals("F");
+        return sex.equals(FEMALE);
     }
 
-    public boolean isValidSex(String test) {
+    public static boolean isValidSex(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    public boolean isMale() {
-        return fullSex.equals(ValidSex.Male);
-    }
-
-    public boolean isFemale() {
-        return fullSex.equals(ValidSex.Female);
     }
 
     @Override
     public String toString() {
-        return fullSex.toString();
+        return value;
     }
 
     @Override
@@ -78,11 +72,11 @@ public class Sex {
         }
 
         Sex otherSex = (Sex) other;
-        return fullSex.equals(otherSex.fullSex);
+        return value.equals(otherSex.value);
     }
 
     @Override
     public int hashCode() {
-        return fullSex.hashCode();
+        return value.hashCode();
     }
 }

@@ -9,6 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Age {
 
+    public static final Age DEFAULT = new Age(0);
     public static final String MESSAGE_CONSTRAINTS =
             "Age should only contain non-negative numbers, and it should not be blank";
     public static final String VALIDATION_REGEX = "[0-9]+";
@@ -27,10 +28,27 @@ public class Age {
     }
 
     /**
+     * Constructs a {@code Age}.
+     *
+     * @param age A valid age.
+     */
+    public Age(int age) {
+        checkArgument(isValidAge(age), MESSAGE_CONSTRAINTS);
+        value = age;
+    }
+
+    /**
      * Returns true if a given string is a valid age.
      */
     public static boolean isValidAge(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given integer is a valid age.
+     */
+    public static boolean isValidAge(int test) {
+        return test >= 0;
     }
 
     @Override

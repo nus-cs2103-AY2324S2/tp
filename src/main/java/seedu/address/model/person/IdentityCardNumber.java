@@ -9,11 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class IdentityCardNumber {
 
+    public static final IdentityCardNumber DEFAULT = new IdentityCardNumber("S0000000A");
     public static final String MESSAGE_CONSTRAINTS =
-            "IC number starts with one letter (S,T,F,G,M) followed by seven digits and one letter behind" +
-                    " It is case insensitive. An example is S1234567A.";
+        "IC number starts with one letter (S,T,F,G,M) followed by seven digits and one letter behind"
+            + " It is case insensitive. An example is S1234567A.";
 
-    public static final String VALIDATION_REGEX = "[STFGM][0-9][A-Z]";
+    public static final String VALIDATION_REGEX = "[STFGM][0-9]{7}[A-Z]";
+
     public final String value;
 
     /**
