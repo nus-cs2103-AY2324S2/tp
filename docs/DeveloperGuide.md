@@ -274,27 +274,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* a tutor that has a need to manage a significant number of contacts of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* Easier time managing their contacts (fast retrieval of relevant info)
+* More organization & personalisation
+* Easier time to track Student’s grades and weaknesses
+* Manage parent’s expectations
+* Easy tracking of payment
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                              | So that I can…​                                           |
+|----------|---------|-------------------------------------------|-----------------------------------------------------------|
+| `* * *`  | Tutor   | add a student                             | track the details of the student                          |
+| `* * *`  | Tutor   | view student details summary on main page | get a brief idea of the student while navigating the list |
+| `* * *`  | Tutor   | delete a person                           | remove entries that I no longer need                      |
+| `* * *`  | Tutor   | view single students detail               | see the individual detail for a single student            |
+| `* * *`  | Tutor   | view total number of students             | check if I have space for more students                   |
+
 
 *{More to be added}*
 
@@ -302,14 +309,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a Student**
+
+**MSS** (Main Success Story)
+
+1. User initiates the command to add a student by providing the student's name, address, contact number, subject, and level.
+
+2. The AddressBook processes the provided information, adds the student particulars into the system, and assigns a unique ID to the student.
+
+3. AddressBook displays a confirmation message along with the details of the newly added student at the top of the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs the command in an incorrect format.
+
+   * 1a1. AddressBook shows an error message and the correct command format.
+
+   Use case ends.
+
+* 1b. User enters a name that already exists in the AddressBook.
+
+   * 1b1. AddressBook generates and assigns a unique ID to the new student to avoid duplication.
+
+   Use case resumes at step 2.
+
+* 1c. User omits a required field in the command.
+
+   * 1c1. AddressBook shows an error message indicating the missing field.
+
+   Use case ends.
+
+**Use case: View Student Detail**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to view details of students either by listing all or searching by name or ID.
+
+2. AddressBook retrieves and shows the relevant student details based on the request.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The requested student does not exist or the list is empty.
+
+   * 2a1. AddressBook displays a message indicating no such student exists or the list is empty.
+
+   Use case ends.
+
+* 2b. User inputs an incorrect command format for viewing details.
+
+   * 2b1. AddressBook shows an error message and the correct command format.
+
+Use case ends.
+
+**Use case: View Summary Statistics**
+
+**MSS**
+
+1. User requests to view summary statistics of students.
+
+2. AddressBook processes the request and displays the total number of students along with other relevant statistics.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There is an error in processing the request.
+
+   * 2a1. AddressBook displays an error message in red.
+
+   Use case ends.
+
+**Use case: Delete a Student**
+
+**MSS**
+
+1.  User requests to list Student
+2.  AddressBook shows a list of Student
+3.  User requests to delete a specific Student in the list
+4.  AddressBook deletes the Student
 
     Use case ends.
 
@@ -325,20 +406,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+
+
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  System should provide quick responses to user commands.
+5.  Should have user-friendly design for interface, so it is intuitive to use.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
