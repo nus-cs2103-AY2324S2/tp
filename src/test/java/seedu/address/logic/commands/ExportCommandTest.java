@@ -69,9 +69,9 @@ public class ExportCommandTest {
     @Test
     public void execute_unableToCreateCsvDirectory_throwsCommandException() throws Exception {
         exportCommand.updateCsvFilePath("/nonexistent/path");
-        assertThrows(CommandException.class, () -> exportCommand.execute(model));
-        // CommandException thrown = assertThrows(CommandException.class, () -> exportCommand.execute(model));
-        // assertEquals("Could not create directory for CSV file.", thrown.getMessage());
+
+        CommandException thrown = assertThrows(CommandException.class, () -> exportCommand.execute(model));
+        assertEquals("Could not create directory for CSV file.", thrown.getMessage());
     }
 
     @Test
