@@ -9,13 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.StateStorage;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -24,7 +17,6 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
     private final CommandExecutor commandExecutor;
-    private String lastCommandText = "";
 
     @FXML
     private TextField commandTextField;
@@ -35,16 +27,14 @@ public class CommandBox extends UiPart<Region> {
      */
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
-        StateStorage stateStorage = new StateStorage("./data/state.txt");
+        StateStorage stateStorage = new StateStorage();
+        String lastCommand = stateStorage.loadState();
         this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-//        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setText(lastCommand);
         commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            lastCommandText = newValue;
             setStyleToDefault();
-            StateStorage.writeFile(lastCommandText);
+            StateStorage.writeState(newValue);
         });
-
     }
 
 
