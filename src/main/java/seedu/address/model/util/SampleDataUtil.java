@@ -3,6 +3,7 @@ package seedu.address.model.util;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.logging.Logger;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -27,7 +28,7 @@ public class SampleDataUtil {
                        new Email("alexyeoh@example" + ".com"),
                        new Address("Blk 30 Geylang Street 29, #06-40"),
                        new Family("20"),
-                       getTagSet("buyer")),
+                       getTagSet("Buyer")),
             new Person(new Name("Bernice Yu"),
                        new Phone("99272758"),
                        new Income("1000"),
@@ -55,7 +56,7 @@ public class SampleDataUtil {
                        new Email("irfan@example" + ".com"),
                        new Address("Blk 47 Tampines Street 20, #17-35"),
                        new Family("20"),
-                getTagSet("buyer")),
+                getTagSet("BUYER")),
             new Person(new Name("Roy Balakrishnan"),
                        new Phone("92624417"),
                        new Income("1000"),
@@ -78,8 +79,10 @@ public class SampleDataUtil {
      * Returns a tag set containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
+        Set<Tag> s = Arrays.stream(strings)
+                .filter(Tag::isValidTagName)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+        return s;
     }
 }

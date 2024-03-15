@@ -57,10 +57,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Family family = ParserUtil.parseFamily(argMultimap.getValue(PREFIX_FAMILY).get());
-        Set<Tag> tagList;
-        try {
-            tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        } catch (IllegalArgumentException e) {
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        if (tagList.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 

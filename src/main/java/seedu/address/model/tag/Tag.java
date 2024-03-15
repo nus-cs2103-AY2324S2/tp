@@ -70,7 +70,7 @@ public class Tag {
         }
 
         Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        return tagName.roleName.equals(otherTag.tagName.roleName);
     }
 
     @Override
