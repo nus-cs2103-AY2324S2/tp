@@ -7,7 +7,7 @@ public class Subject {
 
     public static final String MESSAGE_CONSTANTS = "Subject should be string of at least of length of 1";
 
-    private String value;
+    public final String value;
 
     /**
      * Constructs a {@code Subject}.
