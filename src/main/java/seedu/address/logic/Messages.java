@@ -43,6 +43,8 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
+                .append("; Postal Code: ")
+                .append(person.getPostalCode())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
