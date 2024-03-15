@@ -14,7 +14,7 @@ public class NusId {
     /*
      * Ensures that the input nusid is of the form: EXXXXXXX
      */
-    public static final String VALIDATION_REGEX = "^E\\d{7}$\n";
+    public static final String VALIDATION_REGEX = "^E\\d{7}";
 
     public final String value;
 
