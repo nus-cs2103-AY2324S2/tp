@@ -33,7 +33,7 @@ public class LastContactCommand extends Command {
      * @param name of the person in the contact list
      */
     public LastContactCommand(String name, LastContact lastcontact) {
-        requireAllNonNull(name);
+        requireAllNonNull(name, lastcontact);
 
         this.name = name;
         this.lastcontact = lastcontact;
@@ -54,11 +54,33 @@ public class LastContactCommand extends Command {
         }
         return new CommandResult(generateFailedMessage(name));
     }
-    private String generateSuccessMessage(Person personToEdit) {
+    public static String generateSuccessMessage(Person personToEdit) {
         return String.format(MESSAGE_ADD_LAST_CONTACTED_SUCCESS, Messages.format(personToEdit));
     }
 
-    private String generateFailedMessage(String name) {
+    public static String generateFailedMessage(String name) {
         return String.format(MESSAGE_ADD_LAST_CONTACTED_FAIL, name);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public LastContact getLastContact() {
+        return this.lastcontact;
+    }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof LastContactCommand)) {
+            return false;
+        }
+
+        LastContactCommand otherLastContactCommand = (LastContactCommand) other;
+        return lastcontact.equals(otherLastContactCommand.lastcontact);
     }
 }
