@@ -165,6 +165,10 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setDob(toCopy.dob);
+            setIc(toCopy.ic);
+            setAdmissionDate(toCopy.admissionDate);
+            setWard(toCopy.ward);
         }
 
         /**
