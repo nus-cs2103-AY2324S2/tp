@@ -5,7 +5,11 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.EmailMatchesPredicate;
+import seedu.address.model.person.GroupMatchesPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneMatchesPredicate;
+import seedu.address.model.tag.TagMatchesPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -21,6 +25,10 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
+    private EmailMatchesPredicate emailPredicate;
+    private GroupMatchesPredicate groupPredicate;
+    private PhoneMatchesPredicate phonePredicate;
+    private TagMatchesPredicate tagMatchesPredicate;
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
