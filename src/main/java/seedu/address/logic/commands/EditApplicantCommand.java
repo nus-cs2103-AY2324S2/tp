@@ -49,7 +49,7 @@ public class EditApplicantCommand extends Command {
             + "[" + PREFIX_TAG + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + " 91234567 "
-            + PREFIX_EMAIL + " johndoe@example.com"
+            + PREFIX_EMAIL + " johndoe@example.com "
             + PREFIX_ADDRESS + " 311, Clementi Ave 2, #02-25 "
             + PREFIX_ROLE + " SWE "
             + PREFIX_TAG + " friends "
@@ -85,18 +85,28 @@ public class EditApplicantCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Applicant applicantToEdit = (Applicant) lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Applicant applicantToEdit; // against code quality will edit later
+
+        if (personToEdit instanceof Applicant) {
+            applicantToEdit = (Applicant) personToEdit;
+        } else {
+            applicantToEdit = new Applicant((Person) personToEdit,
+                    editApplicantDescriptor.getRole().orElse(null),
+                    editApplicantDescriptor.getStage().orElse(null));
+        }
         Applicant editedApplicant = createEditedApplicant(applicantToEdit, editApplicantDescriptor);
 
-        if (!applicantToEdit.isSameApplicant(editedApplicant) && model.hasPerson(editedApplicant)) {
+        if (personToEdit.equals(editedApplicant) && model.hasPerson(editedApplicant)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }
 
-        model.setPerson(applicantToEdit, editedApplicant);
+        model.setPerson(personToEdit, editedApplicant);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICANT_SUCCESS,
                 Messages.format(editedApplicant)));
     }
+
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
