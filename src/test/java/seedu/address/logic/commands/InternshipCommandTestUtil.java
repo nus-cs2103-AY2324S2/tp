@@ -126,7 +126,7 @@ public class InternshipCommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the internship data, filtered internship list and selected internship in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(InternshipCommand command, InternshipModel actualModel,
                                             String expectedMessage) {
@@ -141,7 +141,7 @@ public class InternshipCommandTestUtil {
     }
     /**
      * Updates {@code model}'s filtered list to show only the internship at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s internship data.
      */
     public static void showInternshipAtIndex(InternshipModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredInternshipList().size());

@@ -32,7 +32,7 @@ public class InternshipMessages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code internship} for display to the user.
      */
     public static String format(Internship internship) {
         final StringBuilder builder = new StringBuilder();

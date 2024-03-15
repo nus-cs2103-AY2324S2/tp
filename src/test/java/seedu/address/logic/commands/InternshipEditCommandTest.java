@@ -29,7 +29,7 @@ import seedu.address.testutil.EditInternshipDescriptorBuilder;
 import seedu.address.testutil.InternshipBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the InternshipModel) and unit tests for InternshipEditCommand.
  */
 public class InternshipEditCommandTest {
 

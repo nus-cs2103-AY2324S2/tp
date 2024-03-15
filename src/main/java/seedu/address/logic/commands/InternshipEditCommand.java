@@ -57,13 +57,13 @@ public class InternshipEditCommand extends InternshipCommand {
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This person already exists in the internship data.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This entry already exists in the internship data.";
 
     private final Index index;
     private final EditInternshipDescriptor editInternshipDescriptor;
 
     /**
-     * @param index of the person in the filtered internship list to edit
+     * @param index of the internship in the filtered internship list to edit
      * @param editInternshipDescriptor details to edit the internship with
      */
     public InternshipEditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
