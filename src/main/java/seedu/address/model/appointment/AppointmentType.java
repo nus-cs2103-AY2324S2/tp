@@ -5,12 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an AppointmentType in CLInic.
- * Guarantees: immutable; name is valid as declared in {@link #isValidAppointmentType(String)}
+ * Guarantees: immutable; typeName is valid as declared in {@link #isValidAppointmentType(String)}
  */
 public class AppointmentType {
 
     public static final String MESSAGE_CONSTRAINTS = "Appointment type should not be empty";
-    public static final String VALIDATION_REGEX = ".+";
+    public static final String VALIDATION_REGEX = "^.+$";
 
     public final String typeName;
 
