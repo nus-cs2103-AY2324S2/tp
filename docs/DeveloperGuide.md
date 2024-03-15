@@ -274,7 +274,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Tech-savvy university Computer Science teaching assistants
+* manages an array of students and professors’ contacts
+* appreciates an organized and vibrant approach to query, and manage contacts with CLI
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -314,30 +316,210 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: View all contacts**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to view all contacts.
+2.  AddressBook shows a list of contacts added.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User uses the wrong format in his request.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Add a contact**
+
+
+**MSS**
+
+1.  User requests to add a contact.
+2.  User inputs all information required to add a contact into AddressBook.
+3.  AddressBook adds the contact with all relevant information into a list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given information is in an incorrect format.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+* 2b. The given information is insufficient to form a contact.
+
+    * 2b1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Edit a contact's particulars**
+
+**MSS**
+
+1.  User requests to edit a contact.
+2.  User inputs all fields he wishes to edit about said contact,as well as the information required to edit a contact into AddressBook.
+3.  AddressBook edits the contact by changing all the specified fields into the newly inputted information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given information is in an incorrect format.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The contact does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to delete a specific contact.
+2.  AddressBook deletes the specified contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User uses the wrong format in his request.
+
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
+
+      Use case resumes at step 2.
+
+* 2a. The contact does not exist.
+
+  * 2a1. AddressBook shows an error message.
+
+    Use case ends.
+
+
+
+**Use case: Find a specific existing contact**
+
+**MSS**
+
+1.  User requests to find a specific contact.
+2.  AddressBook outputs the contact with all relevant information about the contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User uses the wrong format in his request.
+
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
+
+      Use case resumes at step 2.
+
+* 2a. The contact does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+  
+**Use case: Assign an existing contact to a tutorial group**
+
+**MSS**
+
+1.  User requests to tag a specific contact to a tutorial group.
+2.  AddressBook tags the contact to the tutorial group.
+
+**Extensions**
+
+* 1a. User uses the wrong format in his request.
+
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
+
+      Use case resumes at step 2.
+
+* 2a. The contact does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. The tutorial group does not yet exist.
+
+    * 2a1. AddressBook creates a new tag with the name of the tutorial group.
+
+        Use case resumes at step 2.
+
+**Use case: Classify an existing contact (Prof, TA, Student)**
+
+**MSS**
+
+1.  User requests to classify a specific contact.
+2.  AddressBook classifies the contact as either a Professor, TA or Student.
+
+**Extensions**
+
+* 1a. User uses the wrong format in his request.
+
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
+
+      Use case resumes at step 2.
+
+* 2a. The contact does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. The tag does not exist.
+
+    * 2a1. AddressBook shows an error message.
+    * 2a2. User has to request the classification again using a correct classifier
+
+      Use case resumes at step 1.
+
+**Use case: schedules an event with a contact**
+
+**MSS**
+
+1.  User requests to schedule an event with a specific contact.
+2.  User inputs all necessary information into AddressBook in order for the event to be scheduled.
+3.  AddressBook creates the event and classifies it under the contact.
+
+**Extensions**
+
+* 1a. User uses the wrong format in his request.
+
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
+
+      Use case resumes at step 2.
+
+* 2a. The contact does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. The information required is not sufficiently inputted.
+
+    * 2a1. AddressBook shows an error message.
+    * 2a2. User has to request the classification again using a correct classifier
+
+      Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
@@ -353,8 +535,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Teaching Assistant (TA)**: A student-tutor hired by NUS. TAs are responsible for conducting tutorial lessons and assist in the students' learning whenever required.
 
 --------------------------------------------------------------------------------------------------------------------
 
