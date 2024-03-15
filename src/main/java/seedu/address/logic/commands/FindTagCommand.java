@@ -1,34 +1,62 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Finds and lists all persons in address book that has a tag that contains the given text. Matching is
+ * case insensitive.
+ */
 public class FindTagCommand extends Command {
     public static final String COMMAND_WORD = "findtag";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tags contain the specified" +
-            " text (case-insensitive) and displays them in the list.\n" +
-            "Parameters: KEYWORD [TEXT]...”\n";
-    private static boolean containsCaseInsensitive(String str, String subStr) {
-        return str.toLowerCase().contains(subStr.toLowerCase());
-    }
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tags contain the specified"
+        + " text (case-insensitive) and displays them in the list.\n"
+        + "Parameters: KEYWORD [TEXT]...”\n";
+    public static final String MESSAGE_FOUND_PEOPLE = "Found %d people with a tag that has '%s'";
 
-    private final String tagName;
-
-    public FindTagCommand(String tagName) {
-        this.tagName = tagName;
+    private final String subString;
+    public FindTagCommand(String str) {
+        this.subString = str;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(person -> person
+
+        model.updateFilteredPersonList(person -> subString.isEmpty()
+                || person
                 .getTags()
                 .stream()
-                .anyMatch(tag -> containsCaseInsensitive(tag.tagName, tagName)));
-        return new CommandResult
-                (String.format("Found %d people with a tag that has '%s'", model.getFilteredPersonList().size(), tagName));
+                .anyMatch(tag -> StringUtil.containsIgnoreCase(tag.tagName, subString))
+        );
+        return new CommandResult(String.format(MESSAGE_FOUND_PEOPLE,
+                model.getFilteredPersonList().size(), subString));
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FindTagCommand)) {
+            return false;
+        }
+
+        FindTagCommand otherFindTagCommand = (FindTagCommand) other;
+        return subString.equals(otherFindTagCommand.subString);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("subString", subString)
+                .toString();
     }
 }
