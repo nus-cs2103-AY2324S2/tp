@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
  * Represents a command to view the loans associated with a contact.
  */
 public class ViewLoanCommand extends Command {
-    public static final String COMMAND_WORD = "viewLoan";
+    public static final String COMMAND_WORD = "viewloan";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View loans associated with the person identified by the index used in the displayed person list.\n"
@@ -43,6 +43,7 @@ public class ViewLoanCommand extends Command {
         LoanRecords loanRecords = personToShowLoan.getLoanRecords();
 
         // TODO model.updateLoanList or something
+        model.setLoanViewPerson(personToShowLoan);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToShowLoan)));
     }
