@@ -18,7 +18,6 @@ import seedu.findvisor.logic.commands.exceptions.CommandException;
 import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.person.Meeting;
-import seedu.findvisor.model.person.NameContainsKeywordsPredicate;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
