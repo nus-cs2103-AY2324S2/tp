@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
@@ -24,6 +26,8 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.*;
 import seedu.address.model.tag.Tag;
 
+import javax.swing.text.html.Option;
+
 /**
  * Edits the details of an existing employee in the address book.
  */
@@ -39,6 +43,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TEAM + "TEAM] "
+            + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -95,9 +101,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
+        Team updatedTeam = editEmployeeDescriptor.getTeam().orElse(employeeToEdit.getTeam());
+        Role updatedRole = editEmployeeDescriptor.getRole().orElse(employeeToEdit.getRole());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTeam, updatedRole,
+                updatedTags);
     }
 
     @Override
@@ -133,6 +142,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Team team;
+        private Role role;
         private Set<Tag> tags;
 
         public EditEmployeeDescriptor() {}
@@ -146,6 +157,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setTeam(toCopy.team);
+            setRole(toCopy.role);
             setTags(toCopy.tags);
         }
 
@@ -153,7 +166,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, team, role, tags);
         }
 
         public void setName(Name name) {
@@ -186,6 +199,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setTeam(Team team) {
+            this.team = team;
+        }
+
+        public Optional<Team> getTeam() {
+            return Optional.ofNullable(team);
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
+        }
+
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
         }
 
         /**
@@ -221,6 +250,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditEmployeeDescriptor.phone)
                     && Objects.equals(email, otherEditEmployeeDescriptor.email)
                     && Objects.equals(address, otherEditEmployeeDescriptor.address)
+                    && Objects.equals(team, otherEditEmployeeDescriptor.team)
+                    && Objects.equals(role, otherEditEmployeeDescriptor.role)
                     && Objects.equals(tags, otherEditEmployeeDescriptor.tags);
         }
 
@@ -231,6 +262,8 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("team", team)
+                    .add("role", role)
                     .add("tags", tags)
                     .toString();
         }

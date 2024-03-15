@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.employee.Employee;
 
 /**
- * An UI component that displays information of a {@code Employee}.
+ * A UI component that displays information of a {@code Employee}.
  */
 public class EmployeeCard extends UiPart<Region> {
 
@@ -26,6 +26,8 @@ public class EmployeeCard extends UiPart<Region> {
 
     public final Employee employee;
 
+    @FXML
+    private Label teamRole;
     @FXML
     private HBox cardPane;
     @FXML
@@ -47,6 +49,7 @@ public class EmployeeCard extends UiPart<Region> {
     public EmployeeCard(Employee employee, int displayedIndex) {
         super(FXML);
         this.employee = employee;
+        teamRole.setText(employee.getTeam().toString() + " | " + employee.getRole().value);
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
         phone.setText(employee.getPhone().value);

@@ -11,29 +11,33 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Employee in the address book.
+ * Represents an Employee in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Employee {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Team team;
+    private final Role role;
 
     // Data fields
+    private final Phone phone;
+    private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Employee(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Employee(Name name, Phone phone, Email email, Address address, Team team, Role role, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.team = team;
+        this.role = role;
         this.tags.addAll(tags);
     }
 
@@ -51,6 +55,14 @@ public class Employee {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     /**
@@ -94,13 +106,15 @@ public class Employee {
                 && phone.equals(otherEmployee.phone)
                 && email.equals(otherEmployee.email)
                 && address.equals(otherEmployee.address)
+                && team.equals(otherEmployee.team)
+                && role.equals(otherEmployee.role)
                 && tags.equals(otherEmployee.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, team, role, tags);
     }
 
     @Override
@@ -110,6 +124,8 @@ public class Employee {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("team", team)
+                .add("role", role)
                 .add("tags", tags)
                 .toString();
     }
