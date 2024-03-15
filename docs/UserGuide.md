@@ -196,13 +196,12 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list [type]`                                                                                                                                                         |
-| **Help**   | `help`                                                                                                                                                                |
+| Action     | Format, Examples                                                                                                                                                                                                                       |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add TYPE /name NAME /email EMAIL /country_code CODE /number NUMBER /address ADDRESS …​` <br> e.g., `add client /name Elon /email elon@gmail.com /country_code +60 /number 88888888 /address Elon Street, Block 123, 101010 Singapore` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                |
+| **Delete** | `delete TYPE INDEX`<br> e.g., `delete client 3`                                                                                                                                                                                        |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                            |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                             |
+| **List**   | `list [type]`                                                                                                                                                                                                                          |
+| **Help**   | `help`                                                                                                                                                                                                                                 |
