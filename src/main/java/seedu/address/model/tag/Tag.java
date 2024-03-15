@@ -2,6 +2,9 @@ package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Tag in the address book.
@@ -12,7 +15,25 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public Role tagName;
+
+    public enum Role {
+        BUYER("Buyer"),
+        SELLER("Seller");
+
+        private String roleName;
+
+        // Constructor for the enum to set the custom role name
+        Role(String roleName) {
+            this.roleName = roleName;
+        }
+
+        // Overriding the toString method to return the custom role name
+        @Override
+        public String toString() {
+            return this.roleName;
+        }
+    }
 
     /**
      * Constructs a {@code Tag}.
@@ -22,7 +43,11 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        try {
+            this.tagName = Role.valueOf(tagName.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            this.tagName = Role.valueOf("BUYER");;
+        }
     }
 
     /**
@@ -56,7 +81,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + tagName.toString() + ']';
     }
 
 }
