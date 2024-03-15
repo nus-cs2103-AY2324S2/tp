@@ -94,7 +94,7 @@ public class JsonAdaptedInternship {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ContactEmail.class.getSimpleName()));
         }
-        if (!ContactEmail.isValidEmail(contactEmail)) {
+        if (!ContactEmail.isValidContactEmail(contactEmail)) {
             throw new IllegalValueException(ContactEmail.MESSAGE_CONSTRAINTS);
         }
         final ContactEmail modelContactEmail = new ContactEmail(contactEmail);
