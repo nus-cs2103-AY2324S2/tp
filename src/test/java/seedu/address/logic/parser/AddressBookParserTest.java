@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddProjectCommand;
+import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,14 +32,15 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
-        //clear function not yet implemented
-        assertEquals(0, 0);
+    public void parseCommand_deleteProject() throws Exception {
+        DeleteProjectCommand command = (DeleteProjectCommand) parser.parseCommand(
+            DeleteProjectCommand.COMMAND_WORD + " " + "Dummy Project");
+        assertEquals(new DeleteProjectCommand("Dummy Project"), command);
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        //Delete function not yet implemented
+    public void parseCommand_clear() throws Exception {
+        //clear function not yet implemented
         assertEquals(0, 0);
     }
 
