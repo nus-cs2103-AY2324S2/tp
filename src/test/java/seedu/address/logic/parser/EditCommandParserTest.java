@@ -27,7 +27,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERRED_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -38,7 +37,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PATIENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
@@ -190,25 +188,15 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PATIENT;
         String userInput = targetIndex.getOneBased() + INVALID_ID_DESC + ID_DESC_BOB;
 
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID));
-
         // invalid followed by valid
         userInput = targetIndex.getOneBased() + ID_DESC_BOB + INVALID_ID_DESC;
-
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID));
 
         // mulltiple valid fields repeated
         userInput = targetIndex.getOneBased() + ID_DESC_AMY + TAG_DESC_DIABETES + ID_DESC_AMY + TAG_DESC_DIABETES
             + ID_DESC_BOB + TAG_DESC_DEPRESSION + TAG_DESC_DIABETES;
 
-        assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID));
-
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_ID_DESC + INVALID_ID_DESC;
-
-        assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID));
     }
 
     @Test

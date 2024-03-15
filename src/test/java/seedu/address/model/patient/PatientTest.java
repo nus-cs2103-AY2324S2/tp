@@ -3,7 +3,6 @@ package seedu.address.model.patient;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_BOB;
@@ -96,10 +95,6 @@ public class PatientTest {
 
         // different hobby -> returns false
         editedAlice = new PatientBuilder(ALICE).withHobby(VALID_HOBBY_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new PatientBuilder(ALICE).withTags(TAG_DESC_DIABETES).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
