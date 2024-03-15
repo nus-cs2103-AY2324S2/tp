@@ -18,7 +18,7 @@ public class Faculty {
      * For this version, a valid faculty value should match exactly the full name of the faculty,
      * or the value is invalid. The enum class serves as the purpose for parsing user strings into the faculty name.
      */
-    public enum FacultyEnum {
+    public enum FacultyName {
         ARTS_AND_SOCIAL_SCIENCES("Arts and Social Sciences"),
         BUSINESS("Business"),
         COMPUTING("Computing"),
@@ -37,10 +37,10 @@ public class Faculty {
         UNIVERSITY_SCHOLARS_PROGRAMME("University Scholars Programme"),
         YALE_NUS_COLLEGE("Yale-NUS College");
 
-        private final String facultyName;
+        private final String facultyNameValue;
 
-        FacultyEnum(String facultyName) {
-            this.facultyName = facultyName;
+        FacultyName(String facultyName) {
+            this.facultyNameValue = facultyName;
         }
 
         /**
@@ -49,10 +49,10 @@ public class Faculty {
          * @return name of the faculty
          */
         public String getFacultyName() {
-            return facultyName;
+            return facultyNameValue;
         }
     }
-    public final FacultyEnum value;
+    public final FacultyName value;
 
     /**
      * Constructs a {@code Faculty}.
@@ -74,12 +74,12 @@ public class Faculty {
     public static boolean isValidFaculty(String test) {
         requireNonNull(test, "faculty cannot be null");
 
-        return Arrays.stream(FacultyEnum.values())
+        return Arrays.stream(FacultyName.values())
                 .anyMatch(faculty -> faculty.getFacultyName().equalsIgnoreCase(test));
     }
 
-    private static FacultyEnum fromString(String name) {
-        for (FacultyEnum faculty : FacultyEnum.values()) {
+    private static FacultyName fromString(String name) {
+        for (FacultyName faculty : FacultyName.values()) {
             if (faculty.getFacultyName().equalsIgnoreCase(name)) {
                 return faculty;
             }
