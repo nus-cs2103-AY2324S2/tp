@@ -4,6 +4,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATETIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -18,6 +21,7 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.patient.Patient;
 
+
 /**
  * A utility class containing a list of {@code Patient} objects to be used in tests.
  */
@@ -30,7 +34,9 @@ public class TypicalPatients {
     public static final Patient BENSON = new PatientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withImportantDates(
+                    new String[] { VALID_IMPORTANT_DATE_NAME, VALID_IMPORTANT_DATE_NAME },
+                    new String[] { VALID_IMPORTANT_DATE, VALID_IMPORTANT_DATETIME }).build();
     public static final Patient CARL = new PatientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Patient DANIEL = new PatientBuilder().withName("Daniel Meier").withPhone("87652533")
