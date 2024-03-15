@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.FindOrderCommand;
+import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -73,6 +76,23 @@ public class ArgumentMultimap {
 
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
+        }
+    }
+
+    /**
+     * Throws a {@code ParseException} if not exactly one prefix given in {@code prefixes} appears among the arguments
+     */
+    public void verifyOnlyOnePrefixFor(Prefix... prefixes) throws ParseException {
+        Prefix[] appearedPrefixes = Stream.of(prefixes).distinct()
+                .filter(prefix -> argMultimap.containsKey(prefix) && getValue(prefix).isPresent())
+                .toArray(Prefix[]::new);
+        if (appearedPrefixes.length > 1) {
+            throw new ParseException(Messages.MESSAGE_ONLY_ONE_FIELD);
+        }
+        if (appearedPrefixes.length == 0) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE) + "\n"
+                            + String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE));
         }
     }
 }

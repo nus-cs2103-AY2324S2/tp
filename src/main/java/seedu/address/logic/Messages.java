@@ -16,12 +16,14 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_ORDER_LISTED = "Order listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
     public static final String MESSAGE_INVALID_PHONE_NUMBER = "Phone number provided not found";
 
     public static final String MESSAGE_PHONE_NUMBER_NOT_FOUND = "Phone number provided not found";
+    public static final String MESSAGE_ONLY_ONE_FIELD = "Only one field can be provided";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
