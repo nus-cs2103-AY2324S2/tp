@@ -2,6 +2,7 @@ package staffconnect.logic.parser;
 
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static staffconnect.logic.commands.CommandTestUtil.AVAILABILITY_DESC_MON;
+import static staffconnect.logic.commands.CommandTestUtil.AVAILABILITY_DESC_THUR;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_AVAILABILITY_DESC;
@@ -65,7 +66,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON,
+                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_FRIEND + AVAILABILITY_DESC_MON + AVAILABILITY_DESC_THUR,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
@@ -74,7 +75,8 @@ public class AddCommandParserTest {
 
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VENUE_DESC_BOB
-                        + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                        + AVAILABILITY_DESC_MON + AVAILABILITY_DESC_THUR,
                 new AddCommand(expectedPersonMultipleTags));
 
         // multiple availabilities - all accepted
@@ -83,7 +85,8 @@ public class AddCommandParserTest {
 
         assertParseSuccess(parser,
             NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VENUE_DESC_BOB
-                    + MODULE_DESC_BOB + VALID_AVAILABILITY_MON + VALID_AVAILABILITY_THUR,
+                    + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                    + AVAILABILITY_DESC_MON + AVAILABILITY_DESC_THUR,
                 new AddCommand(expectedPersonMultipleAvailabilities));
     }
 
