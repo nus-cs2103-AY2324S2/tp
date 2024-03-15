@@ -57,13 +57,14 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.set(category, ParserUtil.parse(category, description));
             editPersonDescriptor.setDescription(description);
         }
+        //check for tags not empty
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        // Checks if both category and description are provided.
-        boolean isCategorySpecified = editPersonDescriptor.getCategory() == null
+        // Checks if either category, description or tags are provided.
+        boolean isCategoryNotSpecified = editPersonDescriptor.getCategory() == null
                 || editPersonDescriptor.getCategory().isEmpty();
-        boolean isDescriptionSpecified = editPersonDescriptor.getDescription() == null
+        boolean isDescriptionNotSpecified = editPersonDescriptor.getDescription() == null
                 || editPersonDescriptor.getDescription().isEmpty();
-        if (isCategorySpecified && isDescriptionSpecified && !editPersonDescriptor.isAnyTagEdited()) {
+        if (isCategoryNotSpecified && isDescriptionNotSpecified && !editPersonDescriptor.isAnyTagEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 

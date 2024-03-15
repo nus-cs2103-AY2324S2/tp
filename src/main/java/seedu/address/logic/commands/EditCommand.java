@@ -167,7 +167,6 @@ public class EditCommand extends Command {
         }
         /**
          * Returns true if at least one field is edited.
-         * Todo change this when implementation done
          */
         public boolean isAnyTagEdited() {
             return CollectionUtil.isAnyNonNull(tags);
