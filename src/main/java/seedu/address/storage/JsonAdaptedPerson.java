@@ -111,7 +111,7 @@ class JsonAdaptedPerson {
         if (bookTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, BookList.class.getSimpleName()));
         }
-        final BookList modelBorrow = new BookList(bookTitle);
+        final BookList modelBookList = new BookList(bookTitle);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
