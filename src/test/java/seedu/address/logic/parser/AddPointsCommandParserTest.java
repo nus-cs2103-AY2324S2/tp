@@ -20,8 +20,8 @@ public class AddPointsCommandParserTest {
         // Successful scenario where both name and points are provided
         Name expectedName = new Name("Alice");
         Points expectedPoints = new Points("50");
-        assertParseSuccess(parser, PREFIX_NAME + " Alice " + PREFIX_POINTS + " 50",
-                new AddPointsCommand(expectedName, expectedPoints));
+        AddPointsCommand expectedCommand = new AddPointsCommand(expectedName, expectedPoints);
+        assertParseSuccess(parser, PREFIX_NAME + " Alice " + PREFIX_POINTS + " 50", expectedCommand);
 
     }
 
