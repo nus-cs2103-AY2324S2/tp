@@ -26,7 +26,6 @@ public class Person {
     private final int count;
     private final Borrow bookTitle;
     private final Set<Tag> tags = new HashSet<>();
-    
 
     /**
      * Every field must be present and not null.
@@ -69,7 +68,7 @@ public class Person {
     /**
      * @return the book title of the book
      */
-    public Borrow getBook(){
+    public Borrow getBook() {
         return bookTitle;
     }
 
@@ -113,14 +112,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags) 
+                && tags.equals(otherPerson.tags)
                 && bookTitle.equals(otherPerson.bookTitle);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, bookTitle, tags );
+        return Objects.hash(name, phone, email, address, bookTitle, tags);
     }
 
     @Override

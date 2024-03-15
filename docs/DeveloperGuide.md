@@ -325,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Librarian requests to list borrowers.
 3.  MyBookshelf shows a list of borrowers.
 4.  Librarian removes the book from the borrower.
-5.  MyBookshelf updates the borrower's details. 
+5.  MyBookshelf updates the borrower's details.
 
 
     Use case ends.

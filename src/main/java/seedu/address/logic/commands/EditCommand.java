@@ -103,7 +103,7 @@ public class EditCommand extends Command {
         Borrow updatedBorrow = personToEdit.getBook();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,updatedBorrow, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBorrow, updatedTags);
     }
 
     @Override
