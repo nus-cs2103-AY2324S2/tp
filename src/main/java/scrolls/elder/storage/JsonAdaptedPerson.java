@@ -10,7 +10,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import scrolls.elder.commons.exceptions.IllegalValueException;
-import scrolls.elder.model.person.*;
+import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Befriendee;
+import scrolls.elder.model.person.Email;
+import scrolls.elder.model.person.Name;
+import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Role;
+import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
 /**
@@ -107,8 +114,7 @@ class JsonAdaptedPerson {
         Role modelRole;
         if (role == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
-        }
-        else if (!Role.isValidRole(role)) {
+        } else if (!Role.isValidRole(role)) {
             throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
         } else {
             modelRole = new Role(role);

@@ -1,7 +1,12 @@
 package scrolls.elder.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static scrolls.elder.logic.parser.CliSyntax.*;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_NAME;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_PHONE;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_ROLE;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_TAG;
 
 import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
