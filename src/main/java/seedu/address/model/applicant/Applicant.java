@@ -66,4 +66,25 @@ public class Applicant extends Person {
             && role.equals(otherApplicant.role)
             && stage.equals(otherApplicant.stage);
     }
+
+    /**
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two applicants.
+     */
+    public boolean isSameApplicant(Applicant otherApplicant) {
+        if (otherApplicant == this) {
+            return true;
+        }
+
+        return otherApplicant != null
+                && otherApplicant.getName().equals(getName())
+                && otherApplicant.getPhone().equals(getPhone())
+                && otherApplicant.getEmail().equals(getEmail())
+                && otherApplicant.getAddress().equals(getAddress())
+                && otherApplicant.getRole().equals(getRole())
+                && otherApplicant.getStage().equals(getStage())
+                && otherApplicant.getTags().equals(getTags())
+                && otherApplicant.getNote().equals(getNote());
+    }
+
 }
