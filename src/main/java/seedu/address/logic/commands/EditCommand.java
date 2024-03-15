@@ -44,9 +44,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_CATEGORY_DOESNT_EXIST = "Category doesnt exist!";
-    public static final String MESSAGE_TAG_NOT_EDITED = "Invalid tag edit, please specify new tag to edit";
+    public static final String MESSAGE_TAG_NOT_EDITED = "Invalid tag edit, please specify new tag to edit!";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
+    public static final String MESSAGE_EMPTY_DESCRIPTION = "Invalid edit, please provide a description!";
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
