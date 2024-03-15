@@ -46,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Upcoming upcoming = ParserUtil.parseUpcoming(argMultimap.getValue(PREFIX_UPCOMING).get());
+        Upcoming upcoming = ParserUtil.parseUpcoming(argMultimap.getValue(PREFIX_UPCOMING).orElse(""));
 
         Person person = new Person(name, phone, email, address, tagList, upcoming);
 
