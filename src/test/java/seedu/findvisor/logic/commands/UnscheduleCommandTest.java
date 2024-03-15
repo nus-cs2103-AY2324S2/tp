@@ -87,6 +87,13 @@ public class UnscheduleCommandTest {
     }
 
     @Test
+    public void execute_noMeetingToUnschedule_throwsCommandException() {
+        UnscheduleCommand unscheduleCommand = new UnscheduleCommand(INDEX_FIRST_PERSON);
+
+        assertCommandFailure(unscheduleCommand, model, UnscheduleCommand.MESSAGE_NO_MEETING_TO_UNSCHEDULE);
+    }
+
+    @Test
     public void equals() {
         UnscheduleCommand unscheduleFirstCommand = new UnscheduleCommand(INDEX_FIRST_PERSON);
         UnscheduleCommand unscheduleSecondCommand = new UnscheduleCommand(INDEX_SECOND_PERSON);
