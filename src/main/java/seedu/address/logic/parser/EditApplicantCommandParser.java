@@ -30,7 +30,7 @@ public class EditApplicantCommandParser implements Parser<EditApplicantCommand> 
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_STAGE, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_STAGE, PREFIX_TAG, PREFIX_NOTE);
 
         Index index;
 
@@ -42,7 +42,7 @@ public class EditApplicantCommandParser implements Parser<EditApplicantCommand> 
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_ROLE);
+                PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_STAGE, PREFIX_NOTE);
 
         EditApplicantDescriptor editApplicantDescriptor = new EditApplicantDescriptor();
 
@@ -63,10 +63,13 @@ public class EditApplicantCommandParser implements Parser<EditApplicantCommand> 
             editApplicantDescriptor.setRole(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
         }
 
-        //if (argMultimap.getValue(PREFIX_STAGE).isPresent()) {
-            //editApplicantDescriptor.setStage(ParserUtil.parseStage(argMultimap.getValue
-        // (PREFIX_STAGE).get()));
-        //}
+        if (argMultimap.getValue(PREFIX_STAGE).isPresent()) {
+            editApplicantDescriptor.setStage(ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            editApplicantDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
+        }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editApplicantDescriptor::setTags);
 

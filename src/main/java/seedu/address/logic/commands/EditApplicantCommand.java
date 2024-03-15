@@ -86,8 +86,7 @@ public class EditApplicantCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Applicant applicantToEdit; // against code quality will edit later
-
+        Applicant applicantToEdit; // AGAINST CODE QUALITY IIRC, WILL CHANGE LATER
         if (personToEdit instanceof Applicant) {
             applicantToEdit = (Applicant) personToEdit;
         } else {
@@ -191,7 +190,8 @@ public class EditApplicantCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, role, stage,
+                    note);
         }
 
         public void setName(Name name) {
