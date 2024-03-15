@@ -47,11 +47,12 @@ public class EditCommandTest {
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson =
                 personInList.withName(CommandTestUtil.VALID_NAME_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
-                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND).asVolunteer(false).build();
 
         EditCommand.EditPersonDescriptor descriptor =
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-                        .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+                        .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                        .withRole(false).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
