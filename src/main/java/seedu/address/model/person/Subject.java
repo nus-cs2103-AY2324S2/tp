@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's enrolled subjects in the address book.
@@ -23,6 +24,7 @@ public class Subject {
      */
     public Subject(String subject) {
         requireNonNull(subject);
+        checkArgument(isValidSubject(subject), MESSAGE_CONSTRAINTS);
         value = subject;
     }
 

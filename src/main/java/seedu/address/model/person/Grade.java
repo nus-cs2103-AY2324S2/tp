@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's grade in the address book.
@@ -10,7 +11,7 @@ public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Grade should only contain a single letter from A to D, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[A-C][+-]?|D";
+    public static final String VALIDATION_REGEX = "[A-C][+-]?|D|-";
     public final String value;
 
     /**
@@ -27,6 +28,7 @@ public class Grade {
      */
     public Grade(String score) {
         requireNonNull(score);
+        checkArgument(isValidGrade(score), MESSAGE_CONSTRAINTS);
         value = score;
     }
 
