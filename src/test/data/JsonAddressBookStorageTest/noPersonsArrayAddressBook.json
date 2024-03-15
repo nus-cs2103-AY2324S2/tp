@@ -1,0 +1,8 @@
+{
+  "users": [ {
+    "name": "Danielle",
+    "phone": "81234567",
+    "email": "danielle@example.com",
+    "address": "4th Street"
+  } ]
+}

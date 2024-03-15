@@ -25,6 +25,10 @@ public class ExportCommandTest {
             "JsonSerializableAddressBookTest", "emptyPersonAddressBook.json");
     private static final Path INVALID_JSON_FORMAT_PATH = Paths.get("src", "test", "data",
             "JsonAddressBookStorageTest", "notJsonFormatAddressBook.json");
+    private static final Path INVALID_JSON_STRUCTURE_PATH = Paths.get("src", "test", "data",
+            "JsonAddressBookStorageTest", "invalidJsonStructureAddressBook.json");
+    private static final Path NO_PERSONS_ARRAY_PATH = Paths.get("src", "test", "data",
+            "JsonAddressBookStorageTest", "noPersonsArrayAddressBook.json");
     private static final Path TYPICAL_PERSONS_PATH = Paths.get("src", "test", "data",
             "JsonSerializableAddressBookTest", "typicalPersonsAddressBook.json");
     private ExportCommand exportCommand = new ExportCommand();
@@ -32,11 +36,16 @@ public class ExportCommandTest {
     private Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
     private Model modelWithNoFilePath = new ModelManager(new AddressBook(), new UserPrefs());
     private Model modelWithInvalidJsonFormat = new ModelManager(new AddressBook(), new UserPrefs());
+    private Model modelWithNoPersonsArray = new ModelManager(new AddressBook(), new UserPrefs());
+    private Model modelWithInvalidStructure = new ModelManager(new AddressBook(), new UserPrefs());
 
     @BeforeEach
     public void setUp() {
         model.setAddressBookFilePath(TYPICAL_PERSONS_PATH);
         emptyModel.setAddressBookFilePath(EMPTY_PERSONS_PATH);
+        modelWithInvalidJsonFormat.setAddressBookFilePath(INVALID_JSON_FORMAT_PATH);
+        modelWithNoPersonsArray.setAddressBookFilePath(NO_PERSONS_ARRAY_PATH);
+        modelWithInvalidStructure.setAddressBookFilePath(INVALID_JSON_STRUCTURE_PATH);
     }
 
     @Test
@@ -74,15 +83,28 @@ public class ExportCommandTest {
 
     @Test
     public void execute_withInvalidJsonFormat_throwsCommandException() {
-        modelWithInvalidJsonFormat.setAddressBookFilePath(INVALID_JSON_FORMAT_PATH);
         CommandException thrown = assertThrows(CommandException.class, () -> exportCommand
                 .execute(modelWithInvalidJsonFormat));
         assertEquals("Error parsing JSON data.", thrown.getMessage());
     }
 
     @Test
-    public void execute_emptyPersonsAddressBook_throwsCommandException() throws Exception {
+    public void execute_withInvalidJsonStructure_throwsCommandException() {
+        CommandException thrown = assertThrows(CommandException.class, () -> exportCommand
+                .execute(modelWithInvalidStructure));
+        assertEquals("Error parsing JSON data.", thrown.getMessage());
+    }
+
+    @Test
+    public void execute_emptyPersonsAddressBook_throwsCommandException() {
         CommandException thrown = assertThrows(CommandException.class, () -> exportCommand.execute(emptyModel));
+        assertEquals("The JSON File is empty.", thrown.getMessage());
+    }
+
+    @Test
+    public void execute_noPersonsArrayAddressBook_throwsCommandException() {
+        CommandException thrown = assertThrows(CommandException.class, () -> exportCommand
+                .execute(modelWithNoPersonsArray));
         assertEquals("The JSON File is empty.", thrown.getMessage());
     }
 
