@@ -39,12 +39,12 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Person> parseComparatorForKeywords(String keyword) throws ParseException {
 
-        if (keyword.equals(PREFIX_NAME.getPrefix())) {
+        if (keyword.equals(PREFIX_MODULE.getPrefix())) {
+            return ModuleComparator.MODULE_COMPARATOR;
+        } else if (keyword.equals(PREFIX_NAME.getPrefix())) {
             return NameComparator.NAME_COMPARATOR;
         } else if (keyword.equals(PREFIX_PHONE.getPrefix())) {
             return PhoneComparator.PHONE_COMPARATOR;
-        } else if (keyword.equals(PREFIX_MODULE.getPrefix())) {
-            return ModuleComparator.MODULE_COMPARATOR;
         } else if (keyword.equals(PREFIX_VENUE.getPrefix())) {
             return VenueComparator.VENUE_COMPARATOR;
         } else {
