@@ -17,9 +17,8 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-
     private EntryList entryList = new EntryList();
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -44,6 +43,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     /**

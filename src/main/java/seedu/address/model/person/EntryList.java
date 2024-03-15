@@ -11,6 +11,7 @@ public class EntryList {
         entryList.add(entry);
     }
 
+    //get specific entry via index
     public Entry get(int num) {
         if (num >= 0 && num < entryList.size()) {
             return entryList.get(num);
@@ -18,6 +19,8 @@ public class EntryList {
         return null;
     }
 
+    //get specific entry via string
+    //Gets entry with category
     public Entry get(String category) {
         Entry result = null;
         for (Entry entry : entryList) {

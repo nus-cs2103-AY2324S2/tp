@@ -2,10 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -21,6 +19,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
+ * Testing
  */
 public class EditCommandParser implements Parser<EditCommand> {
 
@@ -32,36 +31,35 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_DESCRIPTION, PREFIX_TAG);
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CATEGORY, PREFIX_DESCRIPTION);
+        //Check whether the String that is parsed in contains the following prefix.
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.set("Name", (ParserUtil.parse("Name", argMultimap.getValue(PREFIX_NAME).get())));
+        String category = "";
+        String description;
+        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
+            category = argMultimap.getValue(PREFIX_CATEGORY).get();
+            editPersonDescriptor.set(category, ParserUtil.parse(category, category));
+            editPersonDescriptor.setCategory(category);
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.set("Phone", ParserUtil.parse("Phone", argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.set("Email", ParserUtil.parse("Email", argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.set("Address", ParserUtil
-                    .parse("Address", argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+            editPersonDescriptor.set(category, ParserUtil.parse(category, description));
+            editPersonDescriptor.setDescription(description);
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        // Checks if both category and description are provided.
+        boolean isCategorySpecified = editPersonDescriptor.getCategory() == null
+                || editPersonDescriptor.getCategory().isEmpty();
+        boolean isDescriptionSpecified = editPersonDescriptor.getDescription() == null
+                || editPersonDescriptor.getDescription().isEmpty();
+        if (isCategorySpecified && isDescriptionSpecified && !editPersonDescriptor.isAnyTagEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 

@@ -274,6 +274,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* for clan managers or hard core gamers of the game
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
@@ -287,29 +288,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                                                                              | So that I can…​                                                             |
+|----------|---------------------|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| `* * `   | Rainbow Dragon user | create and manage multiple character profiles, including their names, classes, and progress  | keep track of my gaming experience for different games                         |
+| `* * `   | Rainbow Dragon user | add custom notes or tags to character profiles                                               | jot down important details or strategies for future reference                  |
+| `* * `   | Rainbow Dragon user | learn comprehensive help documentation and tutorials accessible within the interface         | learn its features and commands more efficiently                               |
+| `* * `   | Rainbow Dragon user | easily search for specific characters or games within the CLI tool                           | quickly access the information I need without navigating through complex menus |
+| `* * `   | Rainbow Dragon user | gain insights and analytics about my gaming habits and progress from the CLI tool            | identify areas for improvement and set goals for future gameplay               |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `RainbowDragon` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  RainbowDragon shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  RainbowDragon deletes the person
 
     Use case ends.
 
@@ -321,17 +321,112 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. RainbowDragon shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  RainbowDragon prompts user to enter person's details
+3.  User enters person's details
+4.  RainbowDragon validates the details
+5.  RainbowDragon adds the person to the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. User cancels the operation.
+
+  Use case ends.
+
+* 4b. User enters invalid details.
+
+    * 4b1. RainbowDragon shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit a person's details**
+
+**MSS**
+
+1.  User requests to edit a person's details
+2.  RainbowDragon prompts user to select a person from the list
+3.  User selects a person from the list
+4.  RainbowDragon shows the person's details.
+5.  User edits the details
+6.  RainbowDragon validates the edited details
+7.  RainbowDragon updates the person's details
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty.
+
+  Use case ends.
+
+* 5a. User cancels the operation.
+
+  Use case ends.
+
+* 6a. User enters invalid details.
+
+    * 6a1. RainbowDragon shows an error message.
+
+      Use case resumes at step 5.
+
+**Use case: View all persons**
+
+**MSS**
+
+1.  User requests to view all persons
+2.  RainbowDragon shows a list of all persons.
+
+    Use case ends.
+
+**Use case: Search for a person**
+
+**MSS**
+
+1.  User requests to search for a person
+2.  RainbowDragon prompts user to enter search keyword
+3.  User enters search keyword
+4.  RainbowDragon searches for persons matching the keyword
+5.  RainbowDragon shows a list of matching persons
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User cancels the operation.
+
+  Use case ends.
+
+**Use case: View all persons**
+
+**MSS**
+
+1.  User requests to view all persons
+2.  RainbowDragon shows a list of all persons
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should work on any _mainstream OS_. 
+2.  Java `11` or above installed in the user's device.
+3.  The application should not have access to the internet.
+4.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+6.  The user should be someone who plays strategy games, MOBAs (Multiplayer Online Battle Arenas), or certain RPGs (Role-Playing Games).
+7.  The application should implement robust security measures to protect user data as the user will be adding sensitive information of others.
+8.  The application will provide comprehensive documentation and tutorials for users to get the most out of the application.
+9.  The application should feature an optimized search algorithm to handle quick searches through extensive data, providing immediate feedback and results to users.
+
 
 *{More to be added}*
 
@@ -339,6 +434,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **AddressBook**: A software application used to store and manage contact information, such as names, phone numbers, and email addresses.
+* **Actor**: In the context of use cases, an actor is a user or system component that interacts with the system to achieve a specific goal.
+* **Use Case**: A description of how a system interacts with its users or other systems to achieve a particular goal.
+* **MSS**: Stands for Main Success Scenario, which outlines the basic steps that should occur when a use case is executed successfully.
+* **Extension**: Describes alternative paths or exceptional conditions that may occur during the execution of a use case.
+* **GUI**: Stands for Graphical User Interface, which is a visual way for users to interact with a software application using graphical elements such as windows, buttons, and menus.
+* **CLI**: Stands for Command Line Interface, which is a text-based way for users to interact with a software application by typing commands into a terminal or command prompt.
+* **Timestamp**: A record of the date and time when an event occurred, often used for tracking changes or actions in a system.
+* **Status Bar**: A horizontal bar typically located at the bottom of a window or application interface, providing information about the current status or state of the system.
+* **Exploratory Testing**: A testing approach where testers explore the software application freely, without predefined test cases, to discover bugs or issues.
+* **Jar file**: Stands for Java Archive file, which is a compressed file format used to package Java applications, libraries, or components.
+* **Prerequisites**: Conditions or actions that must be met or completed before a test case can be executed.
+* **Test Case**: A detailed description of steps to be followed and expected outcomes to be observed when testing a specific aspect or feature of a software application.
+* **Corrupted Data File**: A file that has been damaged or altered in such a way that it cannot be read or processed correctly by the software application.
+* **Status Message**: Information displayed to the user indicating the outcome or result of an action performed by the system.
 
 --------------------------------------------------------------------------------------------------------------------
 

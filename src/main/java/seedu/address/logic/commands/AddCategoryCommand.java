@@ -55,12 +55,13 @@ public class AddCategoryCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        //Gets the list of already existing person
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        //Get the person you want to edit based on index
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Entry e = personToEdit.getEntry(entry.getCategory());
 
