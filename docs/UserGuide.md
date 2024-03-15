@@ -105,13 +105,31 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, existing tags other than the Favourite tag of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+
+### Add Contacts as Favourites `addfav`
+
+- Adds the contacts specified by index as favourites
+
+Format: `addfav [i/INDICES]`
+- Adds the contacts at the specified `INDICES` as favourites. The indices refer to comma-separated index numbers (i.e. index, index, index) shown in the displayed person list. Each index **must be a positive integer** 1,2,3, ...
+
+Examples:
+- `addfav i/ 1` Sets the contact at index `1` as favourite
+- `addfav i/ 1, 1, 1` Sets the contact at index `1` as favourite once
+- `addfav i/ 1, 2, 5` Sets the contacts at the indices `1, 2, 5` as favourites
+- `addfav i/ -10, 0, -100`, `addfav i/ abc` and `addfav i/////` return an error message as the 'INDICES' field must consist of comma-separated positive integers
+- `addfav i/ 10, 1` returns an error message as the 'INDICES' field must consist of valid index values which are positive integers from 1 to the total number of contacts in the address book
+- `addfav i/` returns an error message as the 'INDICES' field cannot be empty
+- `addfav` returns an error message as it must be accompanied by the 'INDICES' field
+- `addfav 1 i/ 2, 5` returns an error message as there should not be prefixes before the 'INDICES' field
 
 ### Search Contact `find`
 
@@ -266,5 +284,6 @@ _Details coming soon ..._
 | **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**      | `find KEYWORD/ [KEYWORD]`<br> e.g., `find n/ James n/ T t/ friend t/ rich`                                                                                            |
 | **Add Order** | `addorder INDEX d/DATE r/REMARK`<br> e.g., `addorder 1 d/ 2020-01-01 r/ 100 chicken wings`                                                                            |
+| **Add Favourite** | `addfav [i/INDICES]` |
 | **List**      | `list`                                                                                                                                                                |
 | **Help**      | `help`                                                                                                                                                                |
