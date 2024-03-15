@@ -36,6 +36,9 @@ public interface Logic {
     /** Returns the most recently processed course mate */
     CourseMate getRecentlyProcessedCourseMate();
 
+    /** Sets the most recently processed course mate */
+    void setRecentlyProcessedCourseMate(CourseMate courseMate);
+
     /**
      * Returns the user prefs' contact list file path.
      */

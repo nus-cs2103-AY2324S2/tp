@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertRecentlyProcessedCourseMateEdited;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -35,7 +36,8 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(new AddCommand(validCourseMate), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourseMate)),
-                expectedModel);
+                expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, validCourseMate);
     }
 
     @Test
@@ -43,6 +45,7 @@ public class AddCommandIntegrationTest {
         CourseMate courseMateInList = model.getContactList().getCourseMateList().get(0);
         assertCommandFailure(new AddCommand(courseMateInList), model,
                 AddCommand.MESSAGE_DUPLICATE_COURSE_MATE);
+        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
 }

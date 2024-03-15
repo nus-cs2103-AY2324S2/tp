@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertRecentlyProcessedCourseMateEdited;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
@@ -38,7 +39,8 @@ public class DeleteCommandTest {
         ModelManager expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
         expectedModel.deleteCourseMate(courseMateToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, courseMateToDelete);
     }
 
     @Test
@@ -47,6 +49,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test
@@ -63,7 +66,8 @@ public class DeleteCommandTest {
         expectedModel.deleteCourseMate(courseMateToDelete);
         showNoCourseMate(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, courseMateToDelete);
     }
 
     @Test
@@ -77,6 +81,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test

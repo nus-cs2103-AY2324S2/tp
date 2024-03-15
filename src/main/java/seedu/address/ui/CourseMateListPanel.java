@@ -20,7 +20,6 @@ import seedu.address.model.coursemate.CourseMate;
 public class CourseMateListPanel extends UiPart<Region> {
     private static final String FXML = "CourseMateListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CourseMateListPanel.class);
-    private final CourseMateDetailPanel courseMateDetailPanel;
 
     @FXML
     private ListView<CourseMate> courseMateListView;
@@ -30,15 +29,14 @@ public class CourseMateListPanel extends UiPart<Region> {
      * and {@code CourseMateDetailPanel}.
      */
     public CourseMateListPanel(ObservableList<CourseMate> courseMateList,
-                               CourseMateDetailPanel courseMateDetailPanel) {
+                               MainWindow mainWindow) {
         super(FXML);
-        this.courseMateDetailPanel = courseMateDetailPanel;
         courseMateListView.setItems(courseMateList);
         courseMateListView.setCellFactory(listView -> new CourseMateListViewCell());
         courseMateListView.setOnMouseClicked(
-                new CourseMateListClickHandler(courseMateListView, courseMateDetailPanel));
+                new CourseMateListClickHandler(courseMateListView, mainWindow));
         courseMateListView.setOnKeyPressed(
-                new CourseMateListPressHandler(courseMateListView, courseMateDetailPanel));
+                new CourseMateListPressHandler(courseMateListView, mainWindow));
     }
 
     /**
@@ -62,12 +60,12 @@ public class CourseMateListPanel extends UiPart<Region> {
 
 class CourseMateListClickHandler implements EventHandler<MouseEvent> {
     private ListView<CourseMate> courseMateListView;
-    private CourseMateDetailPanel courseMateDetailPanel;
+    private MainWindow mainWindow;
 
     public CourseMateListClickHandler(ListView<CourseMate> courseMateListView,
-                                      CourseMateDetailPanel courseMateDetailPanel) {
+                                      MainWindow mainWindow) {
         this.courseMateListView = courseMateListView;
-        this.courseMateDetailPanel = courseMateDetailPanel;
+        this.mainWindow = mainWindow;
     }
 
     @Override
@@ -75,19 +73,19 @@ class CourseMateListClickHandler implements EventHandler<MouseEvent> {
         if (event.getClickCount() == 2) {
             CourseMate selectedCourseMate =
                     courseMateListView.getSelectionModel().getSelectedItem();
-            courseMateDetailPanel.loadCourseMate(selectedCourseMate);
+            mainWindow.handleCourseMateListSelect(selectedCourseMate);
         }
     }
 }
 
 class CourseMateListPressHandler implements EventHandler<KeyEvent> {
     private ListView<CourseMate> courseMateListView;
-    private CourseMateDetailPanel courseMateDetailPanel;
+    private MainWindow mainWindow;
 
     public CourseMateListPressHandler(ListView<CourseMate> courseMateListView,
-                                      CourseMateDetailPanel courseMateDetailPanel) {
+                                      MainWindow mainWindow) {
         this.courseMateListView = courseMateListView;
-        this.courseMateDetailPanel = courseMateDetailPanel;
+        this.mainWindow = mainWindow;
     }
 
     @Override
@@ -95,7 +93,7 @@ class CourseMateListPressHandler implements EventHandler<KeyEvent> {
         if (event.getCode().equals(KeyCode.ENTER)) {
             CourseMate selectedCourseMate =
                     courseMateListView.getSelectionModel().getSelectedItem();
-            courseMateDetailPanel.loadCourseMate(selectedCourseMate);
+            mainWindow.handleCourseMateListSelect(selectedCourseMate);
         }
     }
 }

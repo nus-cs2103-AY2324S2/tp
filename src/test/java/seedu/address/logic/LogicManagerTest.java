@@ -98,6 +98,12 @@ public class LogicManagerTest {
         assertEquals(AMY, logic.getRecentlyProcessedCourseMate());
     }
 
+    @Test
+    public void setRecentlyProcessedCourseMate_setToAmy_returnsAmy() {
+        logic.setRecentlyProcessedCourseMate(AMY);
+        assertEquals(AMY, logic.getRecentlyProcessedCourseMate());
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

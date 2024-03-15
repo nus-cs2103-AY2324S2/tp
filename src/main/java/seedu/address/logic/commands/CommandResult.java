@@ -76,10 +76,10 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        // TODO: include showCourseMate in equals
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showCourseMate == otherCommandResult.showCourseMate;
     }
 
     @Override
