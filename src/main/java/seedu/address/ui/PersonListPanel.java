@@ -7,11 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-<<<<<<< HEAD
 // import seedu.address.commons.core.LogsCenter;
-=======
-import seedu.address.commons.core.LogsCenter;
->>>>>>> parent of cf2a243d (Update UI project list part)
 import seedu.address.model.person.Person;
 
 /**
