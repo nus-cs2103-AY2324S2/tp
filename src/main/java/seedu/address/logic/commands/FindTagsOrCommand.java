@@ -5,25 +5,24 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TagFoundPredicate;
+import seedu.address.model.tag.TagsOrFoundPredicate;
 
 /**
- * Finds and lists all persons in address book who contains the tag in the argument.
+ * Finds and lists all persons in address book who contains any of tags in the argument.
  * Tag matching is case sensitive.
  */
+public class FindTagsOrCommand extends Command {
 
-public class FindTagCommand extends Command {
+    public static final String COMMAND_WORD = "findTagsOr";
 
-    public static final String COMMAND_WORD = "tagfind";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who contains the tag "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who contains any of the tags "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: TAG \n"
-            + "Example: " + COMMAND_WORD + " car";
+            + "Parameters: TAG [MORE_TAGS]...\n"
+            + "Example: " + COMMAND_WORD + " car health death";
 
-    private final TagFoundPredicate predicate;
+    private final TagsOrFoundPredicate predicate;
 
-    public FindTagCommand(TagFoundPredicate predicate) {
+    public FindTagsOrCommand(TagsOrFoundPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -41,12 +40,12 @@ public class FindTagCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof FindTagCommand)) {
+        if (!(other instanceof FindTagsOrCommand)) {
             return false;
         }
 
-        FindTagCommand otherFindTagCommand = (FindTagCommand) other;
-        return predicate.equals(otherFindTagCommand.predicate);
+        FindTagsOrCommand otherFindTagOrCommand = (FindTagsOrCommand) other;
+        return predicate.equals(otherFindTagOrCommand.predicate);
     }
 
     @Override
@@ -57,4 +56,3 @@ public class FindTagCommand extends Command {
     }
 
 }
-
