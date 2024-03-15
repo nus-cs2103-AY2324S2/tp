@@ -3,6 +3,7 @@ on: [push]
 jobs:
 
   build:
+    if: github.repository == 'AY2324S2-CS2103T-F14-3/tp'
     name: Build
     runs-on: ubuntu-latest
     steps:
