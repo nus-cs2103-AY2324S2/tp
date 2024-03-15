@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -79,6 +80,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    void setLastMentionedPerson(Person p);
+
+    Optional<Person> getLastMentionedPerson();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

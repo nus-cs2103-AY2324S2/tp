@@ -14,6 +14,7 @@ import seedu.address.logic.commands.CommentCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.ClearConfirmationStageParser;
+import seedu.address.logic.parser.DeleteConfirmationStageParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -35,6 +36,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
     private final ClearConfirmationStageParser clearConfirmationStageParser;
+    private final DeleteConfirmationStageParser deleteConfirmationStageParser;
     private CommandBoxState state;
 
     /**
@@ -45,6 +47,7 @@ public class LogicManager implements Logic {
         this.storage = storage;
         addressBookParser = new AddressBookParser();
         clearConfirmationStageParser = new ClearConfirmationStageParser();
+        deleteConfirmationStageParser = new DeleteConfirmationStageParser();
         this.state = CommandBoxState.NORMAL;
     }
 
@@ -60,6 +63,9 @@ public class LogicManager implements Logic {
             break;
         case CLEARCONFIRM:
             command = clearConfirmationStageParser.parseCommand(commandText);
+            break;
+        case DELETECONFIRM:
+            command = deleteConfirmationStageParser.parseCommand(commandText);
             break;
         default:
             break;
