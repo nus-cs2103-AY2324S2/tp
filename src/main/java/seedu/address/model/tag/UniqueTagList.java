@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
-import seedu.address.model.person.Person;
 
 /**
  * Represents a list of unique tags.
