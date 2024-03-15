@@ -17,6 +17,7 @@ Class Person
 Class Venue
 Class Availability
 Class Email
+Class Faculty
 Class Module
 Class Name
 Class Phone
@@ -42,6 +43,7 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
+Person *--> Faculty
 Person *--> Venue
 Person *--> Module
 Person *--> Availability
@@ -52,6 +54,7 @@ UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Venue
+Faculty -[hidden]right-> Faculty
 Venue -[hidden]right-> Email
 Email -[hidden]right-> Module
 Module -[hidden]right-> Availability
