@@ -50,7 +50,7 @@ public class SampleDataUtil {
                 getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                new Description("Suffers from errectile dysfunction"),
+                new Description("Suffers from erectile dysfunction"),
                 new NextOfKin("Pam Balakrishnan"),
                 getTagSet("colleagues"))
         };

@@ -4,14 +4,14 @@
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street",
-    "nok": "Valid NOK",
+    "NOK": "Valid NOK",
     "description": "Suffers from depression"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street",
-    "nok": "Valid nok",
+    "NOK": "Valid nok",
     "description": "Suffers from anxiety"
   } ]
 }
