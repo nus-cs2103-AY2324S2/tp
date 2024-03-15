@@ -144,6 +144,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person getPersonByUniqueId(int uniqueId) {
+        for (Person person : addressBook.getPersonList()) {
+            if (Integer.parseInt(person.getUniqueId()) == uniqueId) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

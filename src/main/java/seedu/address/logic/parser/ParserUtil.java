@@ -131,4 +131,18 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code uniqueId} into an int and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified uniqueId is not an integer.
+     */
+    public static int parseUniqueId(String uniqueId) throws ParseException {
+        String trimmedUniqueId = uniqueId.trim();
+        try {
+            return Integer.parseInt(trimmedUniqueId);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Unique ID must be an integer.");
+        }
+    }
 }

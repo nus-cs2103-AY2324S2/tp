@@ -85,5 +85,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /** Returns the next unique id for a person. */
     String getNextUniqueId();
+
+    /**
+     * Returns the person with the given unique ID.
+     * Returns null if the person does not exist.
+     */
+    Person getPersonByUniqueId(int uniqueId);
 }
