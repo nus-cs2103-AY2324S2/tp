@@ -103,7 +103,7 @@ public class AddCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
         // multiple grades
         assertParserFailure(parser, GRADE_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixed(PREFIX_GRADE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_GRADE));
 
         // multiple fields repeated
         assertParseFailure(parser,
@@ -168,7 +168,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + STUDENTID_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                        + ADDRESS_DESC_AMY, + GRADE_DESC_AMY,
+                        + ADDRESS_DESC_AMY + GRADE_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -197,7 +197,7 @@ public class AddCommandParserTest {
                 + VALID_ADDRESS_BOB + GRADE_DESC_BOB, expectedMessage);
         // missing grade prefix
         assertParseFailure(parser, NAME_DESC_BOB + STUDENTID_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + VALIDE_GRADE_BOB, expectedMessage);
+                + ADDRESS_DESC_BOB + VALID_GRADE_BOB, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_STUDENTID_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
@@ -218,7 +218,7 @@ public class AddCommandParserTest {
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + STUDENTID_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + + GRADE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + GRADE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
