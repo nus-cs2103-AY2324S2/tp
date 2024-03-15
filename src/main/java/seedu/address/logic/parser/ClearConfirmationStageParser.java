@@ -1,26 +1,22 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.*;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_CLEAR_CONFIRMATION;
 
-/**
- * Parses user input.
- */
-public class AddressBookParser {
-
+public class ClearConfirmationStageParser {
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+    private static final Logger logger = LogsCenter.getLogger(ClearConfirmationStageParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -44,38 +40,13 @@ public class AddressBookParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
-
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new InitClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case CommentCommand.COMMAND_WORD:
-            return new CommentCommandParser().parse(arguments);
-
+        case "Y":
+            return new ClearCommand();
+        case "N":
+            return new AbortClearCommand();
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND_CLEAR_CONFIRMATION);
         }
     }
-
 }

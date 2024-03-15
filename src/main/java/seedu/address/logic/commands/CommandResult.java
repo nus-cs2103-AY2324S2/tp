@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.CommandBoxState.NORMAL;
 
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandBoxState;
 
 /**
  * Represents the result of a command execution.
@@ -18,6 +20,17 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+    private final CommandBoxState state;
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, CommandBoxState state) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.state = state;
+    }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -26,6 +39,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.state = NORMAL;
     }
 
     /**
@@ -33,7 +47,10 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, NORMAL);
+    }
+    public CommandResult(String feedbackToUser, CommandBoxState state) {
+        this(feedbackToUser, false, false, state);
     }
 
     public String getFeedbackToUser() {
@@ -46,6 +63,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public CommandBoxState getCommandBoxState() {
+        return state;
     }
 
     @Override
