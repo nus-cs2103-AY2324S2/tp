@@ -116,7 +116,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (identityCardNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IdentityCardNumber.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                IdentityCardNumber.class.getSimpleName()));
         }
         if (!IdentityCardNumber.isValidIdentityCardNumber(identityCardNumber)) {
             throw new IllegalValueException(IdentityCardNumber.MESSAGE_CONSTRAINTS);
