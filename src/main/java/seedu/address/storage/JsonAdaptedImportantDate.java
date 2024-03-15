@@ -32,14 +32,6 @@ public class JsonAdaptedImportantDate {
         this.dateTime = convertToExpectedDateTimeFormat(source.importantDate, source.startTime, source.endTime);
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public String getDateTime() {
-        return this.dateTime;
-    }
-
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code ImportantDate} object.
      *
