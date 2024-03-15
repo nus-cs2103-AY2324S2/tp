@@ -27,6 +27,17 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Exported all person's information to CSV file. \n"
             + "CSV file can be found in addressbookdata file.";
 
+    public String csvFilePath = "./addressbookdata/addressbook.csv";
+
+    /**
+     * Updates the CSV file path if needed.
+     *
+     * @param filePath The file path to change to.
+     */
+    public void updateCsvFilePath(String filePath) {
+        this.csvFilePath = filePath;
+    }
+
     /**
      * Creates the directory for the CSV file if it does not exist.
      *
@@ -122,7 +133,6 @@ public class ExportCommand extends Command {
 
         Path jsonFilePath = model.getAddressBookFilePath();
         File jsonFile = jsonFilePath.toFile();
-        String csvFilePath = "./addressbookdata/addressbook.csv";
         File csvFile = new File(csvFilePath);
 
         createCsvDirectory(csvFile);
