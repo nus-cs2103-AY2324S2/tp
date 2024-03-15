@@ -36,7 +36,8 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
-        this.id = idTracker++;
+        this.id = idTracker;
+        idTracker++;
     }
 
     public Name getName() {
