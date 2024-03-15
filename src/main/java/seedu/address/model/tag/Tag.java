@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either 'BUYER' or 'Seller'";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public Role tagName;
@@ -43,17 +43,18 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        try {
-            this.tagName = Role.valueOf(tagName.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            this.tagName = Role.valueOf("BUYER");;
-        }
+        this.tagName = Role.valueOf(tagName.toUpperCase());
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
+        try {
+            Role.valueOf(test.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
