@@ -44,6 +44,7 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        String dummyName = " ";
 
         if (targetIndex != null) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -53,7 +54,7 @@ public class DeleteCommand extends Command {
             model.deletePerson(personToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
 
-        } else if (targetName != null) {
+        } else if (targetName != dummyName) {
             Optional<Person> personToFind = lastShownList.stream().filter(person -> person.getName()
                     .toString().equals(targetName)).findFirst();
             if (personToFind.isPresent()) {

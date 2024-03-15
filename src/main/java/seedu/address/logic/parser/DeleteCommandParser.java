@@ -22,7 +22,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             Object parsedObject = ParserUtil.parseNameIndex(args);
             if (parsedObject instanceof Index) {
                 Index index = (Index) parsedObject;
-                return new DeleteCommand(index, null);
+                String dummyName = " ";
+                return new DeleteCommand(index, dummyName);
             } else if (parsedObject instanceof Name) {
                 Name name = (Name) parsedObject;
                 String nameString = name.toString();

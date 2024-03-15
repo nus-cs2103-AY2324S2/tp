@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalNames.NAME_ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -29,8 +30,9 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
+        String dummyName = " ";
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON, null);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON, dummyName);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -43,18 +45,20 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+        String dummyName = " ";
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, null);
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, dummyName);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
+        String dummyName = " ";
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON, null);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON, dummyName);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -68,27 +72,29 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
+        String dummyName = " ";
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, null);
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, dummyName);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON, null);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON, null);
+        String dummyName = " ";
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON, dummyName);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON, dummyName);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON, null);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON, dummyName);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -104,8 +110,9 @@ public class DeleteCommandTest {
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(targetIndex, null);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        String targetName = NAME_ALICE.toString();
+        DeleteCommand deleteCommand = new DeleteCommand(targetIndex, targetName);
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + ", targetName=" + targetName + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
