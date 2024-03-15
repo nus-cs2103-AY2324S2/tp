@@ -35,6 +35,10 @@ public class CommandResult {
         this.isLoanRelated = isLoanRelated;
     }
 
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, false);
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
@@ -42,6 +46,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false);
     }
+
 
     public String getFeedbackToUser() {
         return feedbackToUser;
