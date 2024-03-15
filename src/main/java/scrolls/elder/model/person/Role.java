@@ -1,8 +1,8 @@
 package scrolls.elder.model.person;
 
-import scrolls.elder.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
+
+import scrolls.elder.commons.util.AppUtil;
 
 /**
  * Represents a Person's name in the address book.
@@ -17,7 +17,7 @@ public class Role {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "(?i)(befriendee|volunteer)";;
+    public static final String VALIDATION_REGEX = "(?i)(befriendee|volunteer)";
     // FIX THIS
 
     public final String roleString;

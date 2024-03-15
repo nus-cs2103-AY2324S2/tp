@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import scrolls.elder.model.AddressBook;
-import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.person.Person;
 
 /**

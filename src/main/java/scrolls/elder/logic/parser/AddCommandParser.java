@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap,
                 CliSyntax.PREFIX_ROLE, CliSyntax.PREFIX_NAME,
                 CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_PHONE,
-                CliSyntax.PREFIX_EMAIL ) || !argMultimap.getPreamble().isEmpty()) {
+                CliSyntax.PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
