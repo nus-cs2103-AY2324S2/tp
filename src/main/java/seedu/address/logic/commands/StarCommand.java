@@ -29,7 +29,7 @@ public class StarCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_STAR + "3";
 
-    public static final String MESSAGE_ADD_STAR_SUCCESS = "Added stars to Person: %1$d";
+    public static final String MESSAGE_ADD_STAR_SUCCESS = "Added stars to Person: %1$s";
 
     private final Index index; // Index to give star
     private final Star star; // Number of stars given
