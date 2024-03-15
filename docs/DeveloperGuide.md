@@ -274,7 +274,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Tech-savvy university Computer Science teaching assistants
+* manages an array of students and professors’ contacts
+* appreciates an organized and vibrant approach to query, and manage contacts with CLI
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -430,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. AddressBook shows an error message.
 
       Use case ends.
-  
+
 **Use case: Assign an existing contact to a tutorial group**
 
 **MSS**
