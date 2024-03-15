@@ -13,8 +13,8 @@ import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.employee.Team;
 import seedu.address.model.employee.Role;
+import seedu.address.model.employee.Team;
 import seedu.address.model.tag.Tag;
 
 /**
