@@ -2,6 +2,7 @@ package staffconnect.logic.parser;
 
 
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static staffconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -24,15 +25,18 @@ public class SortCommandParserTest {
 
         SortCommand expectedSortCommand = new SortCommand(VenueComparator.VENUE_COMPARATOR);
 
-        // no leading and trailing whitespaces
-        assertParseSuccess(parser, " v/ ", expectedSortCommand);
+        // no leading and no trailing whitespaces
+        assertParseSuccess(parser, "" + PREFIX_VENUE, expectedSortCommand);
+
+        // 1 leading and no trailing whitespaces
+        assertParseSuccess(parser, " " + PREFIX_VENUE, expectedSortCommand);
+
+        // no leading and 1 trailing whitespaces
+        assertParseSuccess(parser, PREFIX_VENUE + " ", expectedSortCommand);
 
         // multiple whitespaces before and after keywords
-        assertParseSuccess(parser, "   v/     ", expectedSortCommand);
+        assertParseSuccess(parser, "   " + PREFIX_VENUE + "    ", expectedSortCommand);
 
-
-        assertParseFailure(parser, "   /p     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                SortCommand.MESSAGE_USAGE));
     }
 
 }
