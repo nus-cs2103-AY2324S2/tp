@@ -150,22 +150,24 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * This command will check for duplicate phone number before edit is executed. If the new phone number is used by another person, the command will not be executed.
 
 Examples:
-*  `edit 3 n/Bobby Tay e/bobbytay@u.nus.edu` Edits contact displayed at index 3 and changes the name of the contact to `Bobby Tay` and email to `bobbytay@u.nus.edu` respectively.
-*  `edit 1 t/PRUActive Saver III t/PRUActive Cash` Edits contact displayed at index 1 to change its tags to only `PRUActive Saver III` and `PRUActive Cash`. It will remove all other previous tags that are previously associated with the contact.
+* `edit 3 n/Bobby Tay e/bobbytay@u.nus.edu` Edits contact displayed at index 3 and changes the name of the contact to `Bobby Tay` and email to `bobbytay@u.nus.edu` respectively.
+* `edit 1 t/PRUActive Saver III t/PRUActive Cash` Edits contact displayed at index 1 to change its tags to only `PRUActive Saver III` and `PRUActive Cash`. It will remove all other previous tags that are previously associated with the contact.
 
 ### Locating persons by person's information: `find`
 
-Finds persons based on a category of a person's information, e.g. name, email, phone number, or tags.
+Finds persons using specified keywords for a specified category of a person's information, e.g. either name, email, phone number, or tags.
 
-Format: `find n/NAME|e/EMAIL|p/PHONE|t/TAG`
+Format: `find n/NAME|e/EMAIL|p/PHONE|t/TAG...`
 
-* Only the parameter specified in the command is searched. e.g. `find n/John` will only search for person's name.
+* Only the category specified in the command is searched. e.g. `find n/John` will only search for person's name.
+* The search checks if a person's information contains the keyword specified, e.g. `find n/Ali` will match `Alice`.
 * The search is case-insensitive. e.g `find n/hans` will match `Hans`.
-* Only full words will be matched. e.g. `find n/Alex` will **not match** `Alex Tan`.
 * Order of keywords matter. e.g. `find n/Doe John` will **not match** `John Doe`.
+* Multiple keywords can be specified for tags **only**.
 
 Examples:
-* `find t/PRUActiveCash` returns all persons with tag `PRUActiveCash`.
+* `find t/PRUActiveCash t/friends` returns all persons with tags containing `PRUActiveCash` and `friends`.
+* `find e/example` returns all persons with email containing the string "example".
 * `find p/91234567` returns person with phone number `91234567`.
 ### Deleting a person : `delete`
 
@@ -193,6 +195,7 @@ Format: `schedule INDEX s/START_DATETIME e/END_DATETIME`
 * The index **must be a positive integer** 1, 2, 3, …​
 * START_DATETIME must be after the system's current datetime.
 * END_DATETIME must be after START_DATETIME
+* There can be **at most** one scheduled meeting with a person.
 
 Examples:
 ```
@@ -211,6 +214,7 @@ Format: `unschedule INDEX`
 
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Specified person must have a meeting scheduled.
 
 Examples:
 ```
