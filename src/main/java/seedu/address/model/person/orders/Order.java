@@ -12,6 +12,8 @@ public class Order implements Cloneable {
 
     public static final String MESSAGE_CONSTRAINTS = "Orders items can take any values, and it should not be blank";
 
+    public static final String MESSAGE_INVALID_DATETIME = "Order DateTime is invalid";
+
     /*
      * The first character of the order must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -55,7 +57,7 @@ public class Order implements Cloneable {
 
     @Override
     public String toString() {
-        return orderDateTime.toString() + "\n" + items;
+        return orderDateTime.toString() + " " + items;
     }
 
     @Override

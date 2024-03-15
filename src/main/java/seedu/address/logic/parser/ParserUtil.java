@@ -129,7 +129,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code order} is invalid.
      */
-    public static Order parseOrder(String order) throws ParseException{
+    public static Order parseOrder(String order) throws ParseException {
         requireNonNull(order);
         String trimmedOrder = order.trim();
         if (!Address.isValidAddress(trimmedOrder)) {

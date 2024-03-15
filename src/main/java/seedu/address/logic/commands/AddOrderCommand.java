@@ -59,7 +59,7 @@ public class AddOrderCommand extends Command {
             }
         }
 
-        if (isNull(personToUpdate)){
+        if (isNull(personToUpdate)) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 

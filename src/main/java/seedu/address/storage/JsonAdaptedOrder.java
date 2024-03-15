@@ -9,6 +9,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.orders.Order;
 
+/**
+ * Jackson-friendly version of {@link Order}.
+ */
 public class JsonAdaptedOrder {
     private final String items;
     private final String orderDateTime;
@@ -17,9 +20,9 @@ public class JsonAdaptedOrder {
      * Constructs a {@code JsonAdaptedOrder} with the given {@code items} and {@code orderDateTime}.
      */
     @JsonCreator
-    public JsonAdaptedOrder(String items, LocalDateTime orderDateTime) {
+    public JsonAdaptedOrder(String items, String orderDateTime) {
         this.items = items;
-        this.orderDateTime = orderDateTime.toString();
+        this.orderDateTime = orderDateTime;
     }
 
     /**
@@ -54,7 +57,7 @@ public class JsonAdaptedOrder {
             LocalDateTime modelOrderDateTime = LocalDateTime.parse(orderDateTime);
             return new Order(items, modelOrderDateTime);
         } catch (DateTimeParseException e) {
-            throw new IllegalValueException("Order DateTime is invalid");
+            throw new IllegalValueException(Order.MESSAGE_INVALID_DATETIME);
         }
     }
 }
