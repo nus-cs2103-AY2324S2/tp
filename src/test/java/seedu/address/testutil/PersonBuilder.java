@@ -94,6 +94,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Borrow} of the {@code Person} that we are building.
+     */
     public PersonBuilder withBook(String bookTitle) {
         this.bookTitle = new BookList(bookTitle);
         return this;

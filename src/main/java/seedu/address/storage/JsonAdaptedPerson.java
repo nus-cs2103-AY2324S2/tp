@@ -114,7 +114,7 @@ class JsonAdaptedPerson {
         final BookList modelBorrow = new BookList(bookTitle);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBorrow, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, 0, modelBorrow, modelTags);
     }
 
 }

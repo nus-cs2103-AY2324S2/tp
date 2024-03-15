@@ -35,6 +35,17 @@ public class MeritScore {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public MeritScore incrementScore() {
+        return new MeritScore(this.meritScore + 1);
+    }
+
+    public MeritScore decrementScore() {
+        return new MeritScore(this.meritScore - 1);
+    }
+
+    public int getScore() {
+        return meritScore;
+    }
 
     @Override
     public String toString() {

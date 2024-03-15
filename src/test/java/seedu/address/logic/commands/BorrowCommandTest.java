@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -28,7 +30,7 @@ public class BorrowCommandTest {
 
         BorrowCommand borrowCommand = new BorrowCommand(INDEX_FIRST_PERSON, new BookList(editedPerson.getBook().value));
 
-        String expectedMessage = String.format(BorrowCommand.MESSAGE_ADD_borrow_SUCCESS, editedPerson);
+        String expectedMessage = String.format(BorrowCommand.MESSAGE_ADD_BORROW_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);

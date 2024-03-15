@@ -2,12 +2,20 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a borrower's book.
+ */
 public class BookList {
     public final String value;
 
-    public BookList(String remark) {
-        requireNonNull(remark);
-        value = remark;
+    /**
+     * Constructs an {@code Borrow}.
+     *
+     * @param bookTitle A valid email address.
+     */
+    public BookList(String bookTitle) {
+        requireNonNull(bookTitle);
+        value = bookTitle;
     }
 
     @Override

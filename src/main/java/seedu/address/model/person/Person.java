@@ -26,7 +26,6 @@ public class Person {
     private final MeritScore meritScore;
     private final BookList bookTitle;
     private final Set<Tag> tags = new HashSet<>();
-    
 
     /**
      * Every field must be present and not null.
@@ -81,14 +80,14 @@ public class Person {
     /**
      * @return the merit score of the person
      */
-    public MeritScore getMeritScore(){
+    public MeritScore getMeritScore() {
         return meritScore;
     }
 
     /**
      * @return the book title of the book
      */
-    public BookList getBook(){
+    public BookList getBook() {
         return bookTitle;
     }
 

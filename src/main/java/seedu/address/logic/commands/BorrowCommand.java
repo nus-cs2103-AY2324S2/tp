@@ -1,4 +1,5 @@
 package seedu.address.logic.commands;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKLIST;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -9,9 +10,13 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.MeritScore;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.BookList;
 
+/**
+ * Adds a borrow to the specific borrower.
+ */
 public class BorrowCommand extends Command {
     public static final String COMMAND_WORD = "borrow";
 
@@ -23,8 +28,8 @@ public class BorrowCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_BOOKLIST + "Likes to swim.";
 
-    public static final String MESSAGE_ADD_borrow_SUCCESS = "Added borrow to Person: %1$s";
-    public static final String MESSAGE_DELETE_borrow_SUCCESS = "Removed borrow from Person: %1$s";
+    public static final String MESSAGE_ADD_BORROW_SUCCESS = "Added borrow to Person: %1$s";
+    public static final String MESSAGE_DELETE_BORROW_SUCCESS = "Removed borrow from Person: %1$s";
 
     private final Index index;
     private final BookList bookTitle;
@@ -51,7 +56,7 @@ public class BorrowCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getCount() - 1,  bookTitle, personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(),  bookTitle, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -65,10 +70,11 @@ public class BorrowCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !bookTitle.value.isEmpty() ? MESSAGE_ADD_borrow_SUCCESS : MESSAGE_DELETE_borrow_SUCCESS;
+        String message = !bookTitle.value.isEmpty() ? MESSAGE_ADD_BORROW_SUCCESS : MESSAGE_DELETE_BORROW_SUCCESS;
         return String.format(message, personToEdit);
     }
 
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
