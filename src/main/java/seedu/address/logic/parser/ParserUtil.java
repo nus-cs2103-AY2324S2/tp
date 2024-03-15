@@ -9,9 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.house.UnitNumber;
 import seedu.address.model.house.Block;
 import seedu.address.model.house.PostalCode;
+import seedu.address.model.house.UnitNumber;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -139,6 +139,8 @@ public class ParserUtil {
             throw new ParseException(UnitNumber.MESSAGE_CONSTRAINTS);
         }
         return new UnitNumber(trimmedLevel);
+    }
+    /**
      * Parses a {@code String block} into an {@code Block}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -151,7 +153,8 @@ public class ParserUtil {
             throw new ParseException(Block.MESSAGE_CONSTRAINTS);
         }
         return new Block(trimmedBlock);
-
+    }
+    /**    
      * Parses a {@code String postalCode} into a {@code postalCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
