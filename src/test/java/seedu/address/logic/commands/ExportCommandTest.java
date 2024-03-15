@@ -43,7 +43,7 @@ public class ExportCommandTest {
     public void updateCsvFilePathTest_success() {
         String newFilePath = "./src/test/data/addressbookdata/addressbooktest.csv";
         exportCommand.updateCsvFilePath(newFilePath);
-        assertEquals(newFilePath, exportCommand.csvFilePath);
+        assertEquals(newFilePath, exportCommand.getCsvFilePath());
     }
 
     @Test

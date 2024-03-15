@@ -27,7 +27,16 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Exported all person's information to CSV file. \n"
             + "CSV file can be found in addressbookdata file.";
 
-    public String csvFilePath = "./addressbookdata/addressbook.csv";
+    private String csvFilePath = "./addressbookdata/addressbook.csv";
+
+    /**
+     * Gets the current CSV file path.
+     *
+     * @return The file path that the data is being exported to.
+     */
+    public String getCsvFilePath() {
+        return this.csvFilePath;
+    }
 
     /**
      * Updates the CSV file path if needed.
