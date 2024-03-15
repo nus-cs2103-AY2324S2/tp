@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -44,6 +45,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         String category = "";
         String description;
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
+            if (argMultimap.getValue(PREFIX_DESCRIPTION).isEmpty()) {
+                throw new ParseException(MESSAGE_INVALID_EDIT);
+            }
             category = argMultimap.getValue(PREFIX_CATEGORY).get();
             editPersonDescriptor.set(category, ParserUtil.parse(category, category));
             editPersonDescriptor.setCategory(category);
