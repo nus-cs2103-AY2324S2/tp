@@ -11,8 +11,8 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be a valid Singaporean mobile number.\n" +
-    "For example: 91234567 or 81234567";
+            "Phone numbers should only contain numbers, and it should be a valid Singaporean mobile number.\n"
+                    + "For example: 91234567 or 81234567";
     public static final String VALIDATION_REGEX = "[89]\\d{7}";
     public final String value;
 
