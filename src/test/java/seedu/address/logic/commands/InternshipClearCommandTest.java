@@ -21,7 +21,8 @@ public class InternshipClearCommandTest {
         InternshipModel model = new InternshipModelManager();
         InternshipModel expectedModel = new InternshipModelManager();
 
-        assertCommandSuccess(new InternshipClearCommand(), model, InternshipClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new InternshipClearCommand(), model,
+                InternshipClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -30,7 +31,8 @@ public class InternshipClearCommandTest {
         InternshipModel expectedModel = new InternshipModelManager(getTypicalInternshipData(), new UserPrefs());
         expectedModel.setInternshipData(new InternshipData());
 
-        assertCommandSuccess(new InternshipClearCommand(), model, InternshipClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new InternshipClearCommand(), model,
+                InternshipClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
