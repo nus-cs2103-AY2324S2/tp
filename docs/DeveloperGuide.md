@@ -290,128 +290,196 @@ streamlined approach to communicate with and track information about their stude
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                 | So that I can…​                                                   |
-|----------|----------------------------------------|----------------------------------------------|-------------------------------------------------------------------|
-| `* * *`  | tutor                                  | add a student's contact                      |                                                                   |
-| `* * *`  | tutor                                  | delete a student's contact                   | remove entries of students that I no longer need to keep track of |
-| `* * *`  | tutor                                  | edit a student's contact                     | correct mistakes I made when adding a contact                     |
-| `* * *`  | tutor                                  | search for a student's contact               | I can find a student's contact                                    |
-| `* * *`  | tutor with many students in TutorTrack | view all students' contact                   |                                                                   |
-| `* * `   | new tutor                              | see usage instructions                       | refer to instructions when I forget how to use the app            |
-| `* * `   | new tutor                              | try out the programme with sample data       | I can explore the functionalities of the product                  |
-| `* * `   | advanced tutor                         | create shortcuts for commands                | I can more efficiently type commands                              |
-| `* `     | administrative tutor                   | broadcast information to groups of students  | I can quickly relay information to my tutees                      |
-| `* * `   | forgetful tutor                        | attach tags to tutees                        | I can quickly access important information related to them        |
-| `* * `   | proactive tutor                        | get a summary of my tutees current abilities | I can better prepare for classes                                  |
-| `* * `   | forgetful tutor                        | set and get reminders on lessons             | I will not miss any lessons                                       |
-| `* * `   | tutor                                  | group students by tags                       | I can easily communicate with different teams indicated by tags   |
-| `* * `   | clumsy typer                           | do fuzzy search                              | I can quickly find the record I need even if there are some typos |
+| Priority | As a …​                                    | I want to …​                                 | So that I can…​                                                    |
+|----------|--------------------------------------------|----------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | user                                       | add a student's contact                      |                                                                    |
+| `* * *`  | user                                       | delete a student's contact                   | remove entries of students that I no longer need to keep track of  |
+| `* * *`  | user                                       | edit a student's contact                     | correct mistakes i made when adding a contact                      |
+| `* * *`  | user                                       | search for a student's contact               | I can find a student's contact                                     |
+| `* * *`  | user with many persons in the address book | view all students' contact                   |                                                                    |
+| `* * `   | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App             |
+| `* * `   | new user                                   | try out the programme with sample data       | I can explore the functionalities of the product                   |
+| `* * `   | advanced user                              | create shortcuts for commands                | I can more efficiently type commands                               |
+| `* `     | administrative tutor                       | broadcast information to groups of students  | I can quickly relay information to my tutees                       |
+| `* * `   | forgetful tutor                            | attach tags to tutees                        | I can quickly access important information related to them         |
+| `* * `   | proactive tutor                            | get a summary of my tutees current abilities | I can better prepare for classes                                   |
+| `* * `   | forgetful tutor                            | set and get reminders on lessons             | I will not miss any lessons                                        |
+| `* * `   | tutor                                      | group students by tags                       | I can easily communicate with different teams indicated by tags    |
+| `* * `   | clumsy typer                               | do fuzzy search                              | I can quickly find the record I need even if there are some typos  |
  
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TutorTrack` and the **Actor** is the `Tutor`, unless specified otherwise)
+(For all use cases below, the System is the `TutorTrack` and the Actor is the `Tutor`, unless specified otherwise)
 
-**Use case: UC01 - Add a student**
+**Use case:** UC01 - View all students.<br>
 
-**MSS**
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
 
-1.  Tutor enters student's information to be added.
-2.  TutorTrack adds the student's data.
-3.  TutorTrack displays success message.
     Use case ends.
 
-**Extensions**
+**Extensions:**
+
+* 2a. The list is empty. 
+  * 2a1. System shows an error message.
+
+    Use case ends.
+
+**Use case:** UC02 - Add a student.<br>
+
+**MSS:**
+1. User requests to add a specific student information.
+2. System adds the student information.
+
+   Use case ends.
+
+**Extensions:**
 
 * 2a. Required fields are left empty.
-
-    * 2a1. TutorTrack shows an error message.    
-
-    Use case ends.
-
+    * 2a1. System shows an error message.
+      
+      Use case ends.
 * 2b. The given phone number is invalid.
+    * 2b1. System shows an error message.
 
-    * 2b1. TutorTrack shows an error message.
-
-    Use case ends.
-
+      Use case ends.
 * 2c. The given email is invalid.
+    * 2c1. System shows an error message.
 
-    * 2c1. TutorTrack shows an error message.
-
-    Use case ends.
-
+      Use case ends.
 * 2d. The given grades are invalid.
+    * 2d1. System shows an error message.
 
-    * 2d1. TutorTrack shows an error message.
-
-    Use case ends.
-
+      Use case ends.
 * 2e. The student exists in the database already.
+    * 2e1. System shows an error message.
 
-    * 2e1. TutorTrack shows an error message.
+      Use case ends.
 
-    Use case ends.
+**Use case:** UC03 - Update a student.<br>
 
-**Use case: UC02 - Delete a student**
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to update a specific student information.
+4. System updates the student information.
 
-**MSS**
+   Use case ends.
 
-1.  Tutor requests to list students.
-2.  TutorTrack displays the list of students.
-3.  Tutor requests to delete a specific patient in the list
-4.  TutorTrack requests for confirmation
-5.  Tutor confirms
-6.  TutorTrack deletes the student from the database.
-    Use case ends.
+**Extensions:**
 
-**Extensions**
+* 2a. The list is empty.
+    * 2a1. System shows an error message.
 
-* 2a. List is empty.
+      Use case ends.
+* 3a. The given phone number is invalid.
+    * 3a1. System shows an error message.
 
-    * 2a1. TutorTrack shows an error message.
+      Use case ends.
+* 3b. The given email is invalid.
+    * 3b1. System shows an error message.
 
-    Use case ends.
+      Use case ends.
+* 3c. The given grades are invalid.
+    * 3c1. System shows an error message.
 
+      Use case ends.
+* 3d. The given index is invalid.
+    * 3d1. System shows an error message.
+
+      Use case ends.
+
+**Use case:** UC04 - Delete a student.<br>
+
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to delete a specific student information.
+4. System request for confirmation.
+5. User give confirmation.
+6. System delete the student information from the database.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. The list is empty.
+    * 2a1. System shows an error message.
+
+      Use case ends.
 * 3a. The given index is invalid.
+    * 3a1. System shows an error message.
+    * 3a2. System requests for the correct index.
+    * 3a3. User enters new index.
 
-    * 3a1. TutorTrack shows an error message.
-    * 3a2. TutorTrack requests for the correct data
-    * 3a3. Tutor enters new data
-  
-    Steps 3a2-3a3 are repeated until the data entered are correct.
-  
-    Use case resumes from step 4.
+      Steps 3a2-3a3 are repeated until the data entered are correct.
 
-* 4a. Tutor cancels deletion.
+      Use case resumes from step 4.
+* 4a. User cancels deletion.
+    * 4a1. System displays confirmation message.
+* 4b. User enters invalid syntax for confirmation.
+    * 4a1. System displays error message.
+    * 4a2. System requests for the correct data.
+    * 4a3. User enters new data.
 
-    * 4a1. TutorTrack displays confirmation message
+      Steps 4a2-4a3 are repeated until the data entered is correct.
 
-* 4b. Tutor enteres invalid syntax for confirmation.
+      Use case continues from step 5.
 
-    * 4a1. TutorTrack displays error message
-    * 4a2. TutorTrack requests for the correct data
-    * 4a3. Tutor enters new data
+**Use case:** UC05 - Find a student.<br>
 
-  Steps 4a2-4a3 are repeated until the data entered is correct.
-  Use case continues from step 5..
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to find a specific student information.
+4. System show the student information.
 
-*{More to be added}*
+   Use case ends.
+
+**Extensions:**
+
+* 2a. The list is empty.
+    * 2a1. System shows an error message.
+
+      Use case ends.
+* 3a. The given keyword is invalid.
+    * 3a1. System shows an error message.
+    * 3a2. System requests for the correct index.
+    * 3a3. User enters new index.
+
+      Steps 3a2-3a3 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+* 3b. The given keyword is not found.
+    * 3a1. System shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Should not take a lot of memory while in operation.
+5.  Should be able to view and load 100 contacts without a noticeable lag.
+6.  Should not lose the result of the latest execution of an instruction in the case of connectivity loss.
+7.  Should allow use only by authorized users.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tutor**: A user who wants to keep track of their students' contacts
+* **Tutee**: A student that is assigned to a tutor
+* **Contact List**: A collection of tutees' personal and contact information accessible by the tutor.
+* **Assessment Record**: A log of scores from quizzes, tests, assignments, and other forms of assessment for a tutee.
+* **Grade Entry**: The action or feature that allows a tutor to input a student's grade into the system.
+* **Grade Reporting**: The functionality to generate reports or summaries of tutees' grades for review by tutees.
+* **Grading Scale**: The standard by which tutees' performance is measured, such as A-F, 1-10, or percentage.
 
 --------------------------------------------------------------------------------------------------------------------
 
