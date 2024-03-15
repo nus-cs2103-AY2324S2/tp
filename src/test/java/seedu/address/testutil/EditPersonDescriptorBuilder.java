@@ -78,8 +78,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Tag} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String tags) {
-        descriptor.setTag(new Tag(tags));
+    public EditPersonDescriptorBuilder withTags(String tag) {
+        descriptor.setTag(new Tag(tag));
         return this;
     }
 

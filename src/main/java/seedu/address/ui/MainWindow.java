@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -52,8 +51,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
     @FXML
-    private ScrollPane viewPanelPlaceHolder;
+    private VBox viewPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -115,10 +115,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        viewPanelPlaceHolder.setVisible(false);
-        //viewPanelPlaceHolder.setStyle("-fx-background: #383838");
-        //viewPanelPlaceHolder.setContent(null);
-
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -130,8 +126,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-
     }
 
     /**
@@ -184,15 +178,19 @@ public class MainWindow extends UiPart<Stage> {
     //        viewPanelPlaceHolder.getChildren().add(viewPanel.getRoot());
     //    }
 
+    //    private void handleView(Person p) {
+    //        ViewPanel viewPanel = new ViewPanel(p);
+    //        //viewPanelPlaceHolder.getChildren().clear();
+    //        VBox holder = viewPanelPlaceHolder.getContent() == null ? new VBox()
+    //                : (VBox) viewPanelPlaceHolder.getContent();
+    //        holder.getChildren().add(viewPanel.getRoot());
+    //        viewPanelPlaceHolder.setContent(holder);
+    //    }
     private void handleView(Person p) {
-        viewPanelPlaceHolder.setVisible(true);
         ViewPanel viewPanel = new ViewPanel(p);
-        //viewPanelPlaceHolder.getChildren().clear();
-        VBox holder = viewPanelPlaceHolder.getContent() == null ? new VBox()
-                : (VBox) viewPanelPlaceHolder.getContent();
-        holder.getChildren().add(viewPanel.getRoot());
-        viewPanelPlaceHolder.setContent(holder);
+        viewPanelPlaceholder.getChildren().add(viewPanel.getRoot());
     }
+
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -205,7 +203,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            viewPanelPlaceHolder.setContent(null);
+            // viewPanelPlaceHolder.setContent(null);
+            viewPanelPlaceholder.getChildren().clear();
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -216,16 +215,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.getViewPerson() != null) {
                 Person p = commandResult.getViewPerson();
                 handleView(p);
-            } else if (commandResult.getViewList() != null) {
-                if (commandResult.getViewList().isEmpty()) {
-                    viewPanelPlaceHolder.setVisible(false);
-                } else {
-                    for (Person p : commandResult.getViewList()) {
-                        handleView(p);
-                    }
+            }
+            if (commandResult.getViewList() != null) {
+                for (Person p : commandResult.getViewList()) {
+                    handleView(p);
                 }
-            } else {
-                viewPanelPlaceHolder.setVisible(false);
             }
 
             if (commandResult.isExit()) {
@@ -236,7 +230,6 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
-            viewPanelPlaceHolder.setVisible(false);
             throw e;
         }
     }
