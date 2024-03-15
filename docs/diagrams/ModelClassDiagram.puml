@@ -14,8 +14,10 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
+Class Venue
+Class Availability
 Class Email
+Class Module
 Class Name
 Class Phone
 Class Tag
@@ -40,15 +42,19 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> Venue
+Person *--> Module
+Person *--> Availability
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Venue
+Venue -[hidden]right-> Email
+Email -[hidden]right-> Module
+Module -[hidden]right-> Availability
 
 ModelManager --> "~* filtered" Person
 @enduml
