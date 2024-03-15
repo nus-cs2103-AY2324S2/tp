@@ -110,13 +110,15 @@ public class DeleteImportantDateCommand extends Command {
         }
 
         DeleteImportantDateCommand otherDeleteImportantDateCommand = (DeleteImportantDateCommand) other;
-        return targetPatientIndex.equals(otherDeleteImportantDateCommand.targetPatientIndex);
+        return targetPatientIndex.equals(otherDeleteImportantDateCommand.targetPatientIndex)
+                && targetEventIndex.equals(otherDeleteImportantDateCommand.targetEventIndex);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetPatientIndex", targetPatientIndex)
+                .add("targetEventIndex", targetEventIndex)
                 .toString();
     }
 }
