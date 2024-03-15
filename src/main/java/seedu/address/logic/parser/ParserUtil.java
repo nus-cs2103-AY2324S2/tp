@@ -77,7 +77,7 @@ public class ParserUtil {
         requireNonNull(address);
 
         String trimmedAddress = "";
-        if (address.isPresent()) {
+        if (address.isPresent() && !address.get().isEmpty()) {
             trimmedAddress = address.get().trim();
             if (!Address.isValidAddress(trimmedAddress)) {
                 throw new ParseException(Address.MESSAGE_CONSTRAINTS);
@@ -107,7 +107,7 @@ public class ParserUtil {
         requireNonNull(email);
 
         String trimmedEmail = "";
-        if (email.isPresent()) {
+        if (email.isPresent() && !email.get().isEmpty()) {
             trimmedEmail = email.get().trim();
             if (!Email.isValidEmail(trimmedEmail)) {
                 throw new ParseException(Email.MESSAGE_CONSTRAINTS);
