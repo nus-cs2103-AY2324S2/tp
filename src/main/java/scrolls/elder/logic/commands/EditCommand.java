@@ -249,8 +249,13 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             // Default to volunteer
-            Boolean isVolunteer = this.getIsVolunteer().orElse(true);
-            String role = isVolunteer ? "volunteer" : "befriendee";
+            Boolean isVolunteer = this.getIsVolunteer().orElse(null);
+            String role = null;
+
+            if (isVolunteer != null) {
+                role = isVolunteer ? "volunteer" : "befriendee";
+            }
+
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("phone", phone)
