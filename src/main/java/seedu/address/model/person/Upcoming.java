@@ -19,6 +19,7 @@ public class Upcoming implements Comparable<Upcoming> {
     private static final String DATETIME_REGEX = "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}$";
     private static final Pattern DATETIME_PATTERN = Pattern.compile(DATETIME_REGEX);
 
+    private boolean hasUpcoming;
     private LocalDateTime dateTime;
 
     /**
@@ -29,6 +30,11 @@ public class Upcoming implements Comparable<Upcoming> {
     public Upcoming(String dateTimeStr) {
         requireNonNull(dateTimeStr);
         checkArgument(isValidUpcoming(dateTimeStr), MESSAGE_CONSTRAINTS);
+        if (dateTimeStr.isEmpty()) {
+            this.hasUpcoming = false;
+            this.dateTime = null;
+            return;
+        }
         this.dateTime = LocalDateTime.parse(dateTimeStr, DATETIME_FORMATTER);
     }
 
@@ -39,11 +45,11 @@ public class Upcoming implements Comparable<Upcoming> {
      * @return true if the string is a valid date and time combination, false otherwise
      */
     public static boolean isValidUpcoming(String dateTimeStr) {
-        return DATETIME_PATTERN.matcher(dateTimeStr).matches();
+        return dateTimeStr.isEmpty() || DATETIME_PATTERN.matcher(dateTimeStr).matches();
     }
 
     @Override
-    public int compareTo(Upcoming other) {
+    public int compareTo(Upcoming other) {  
         return this.dateTime.compareTo(other.dateTime);
     }
 
@@ -54,6 +60,9 @@ public class Upcoming implements Comparable<Upcoming> {
      */
     @Override
     public String toString() {
+        if (!hasUpcoming) {
+            return "No upcoming appointment";
+        }
         return dateTime.format(DATETIME_FORMATTER);
     }
 
@@ -72,7 +81,7 @@ public class Upcoming implements Comparable<Upcoming> {
             return false;
         }
         Upcoming other = (Upcoming) obj;
-        return this.dateTime.equals(other.dateTime);
+        return this.hasUpcoming == other.hasUpcoming && this.dateTime.equals(other.dateTime);
     }
 
     /**
