@@ -77,9 +77,8 @@ public class StringUtil {
         requireNonNull(s);
 
         try {
-            int value = Integer.parseInt(s);
-            return value >= 100000
-                    && value <= 999999 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
+            return s.matches("[1-9]\\d{5}")
+                    && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
         } catch (NumberFormatException nfe) {
             return false;
         }

@@ -50,7 +50,6 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        System.out.println(person.getId().value);
         personId.setText(Integer.toString(person.getId().value));
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);

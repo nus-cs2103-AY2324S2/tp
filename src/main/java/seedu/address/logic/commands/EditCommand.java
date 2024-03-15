@@ -83,8 +83,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_ID);
         }
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-        System.out.println(editedPerson);
-
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }

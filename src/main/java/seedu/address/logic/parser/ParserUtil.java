@@ -88,7 +88,7 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.replace(" :tag", "").trim();
+        String trimmedAddress = address.replace(":tag", "").trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
