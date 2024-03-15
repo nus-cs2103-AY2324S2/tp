@@ -17,6 +17,7 @@ import seedu.findvisor.logic.commands.ExitCommand;
 import seedu.findvisor.logic.commands.FindCommand;
 import seedu.findvisor.logic.commands.HelpCommand;
 import seedu.findvisor.logic.commands.ListCommand;
+import seedu.findvisor.logic.commands.ScheduleCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
 
 /**
@@ -55,6 +56,9 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case ScheduleCommand.COMMAND_WORD:
+            return new ScheduleCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
