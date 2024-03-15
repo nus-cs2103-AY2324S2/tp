@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -121,4 +122,15 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String eventName} into a {@code EventName}.
+     */
+    public static EventName parseEventName(String eventName) {
+        requireNonNull(eventName);
+        String trimmedEventName = eventName.trim();
+        // Currently all event names are valid
+        return new EventName(trimmedEventName);
+    }
+
 }
