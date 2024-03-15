@@ -4,49 +4,49 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "classGroup" : "B01",
+    "classGroup" : "A-1",
     "telegram": "@alicepauline",
     "github": "alicep"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "classGroup" : "B02",
+    "classGroup" : "A-1",
     "telegram": "@bensonmeier",
     "github": "meierbenson"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "classGroup" : "B03",
+    "classGroup" : "A-2",
     "telegram": "@carlkurz",
     "github": "kurzcarl"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "classGroup" : "B04",
+    "classGroup" : "A-2",
     "telegram": "@danielmeier",
     "github": "meierdaniel"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "classGroup" : "B05",
+    "classGroup" : "B-1",
     "telegram": "@ellemeyer",
     "github": "meyerelle"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "classGroup" : "B06",
+    "classGroup" : "B-1",
     "telegram": "@fionakunz",
     "github": "kunzfiona"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "classGroup" : "B07",
+    "classGroup" : "B-2",
     "telegram": "@georgebest",
     "github": "bestgeorge"
   } ]
