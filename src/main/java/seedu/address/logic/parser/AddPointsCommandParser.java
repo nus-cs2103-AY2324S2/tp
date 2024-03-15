@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
+import java.util.Optional;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 
 import seedu.address.logic.commands.AddPointsCommand;
@@ -21,22 +23,31 @@ public class AddPointsCommandParser implements Parser<AddPointsCommand> {
      */
     public AddPointsCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_POINTS);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POINTS);
 
-        Name name;
-        try {
-            name = ParserUtil.parseName(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPointsCommand.MESSAGE_USAGE), pe);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_POINTS) ||
+                !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPointsCommand.MESSAGE_USAGE));
         }
 
-        Points points;
-        try {
-            points = ParserUtil.parsePoints(argMultimap.getValue(PREFIX_POINTS).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPointsCommand.MESSAGE_USAGE), pe);
-        }
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
+        Points points = ParserUtil.parsePoints(argMultimap.getValue(PREFIX_POINTS).orElse(""));
 
         return new AddPointsCommand(name, points);
     }
+
+    /**
+     * Returns true if all the given prefixes are present in the given ArgumentMultimap and not empty.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        for (Prefix prefix : prefixes) {
+            Optional<String> value = argumentMultimap.getValue(prefix);
+            if (!value.isPresent() || value.get().isEmpty()) {  // Modified line
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

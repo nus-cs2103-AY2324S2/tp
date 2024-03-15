@@ -31,9 +31,9 @@ public final class Points {
      * @param test The string to test.
      * @return true if the string represents a non-negative integer.
      */
-    public static boolean isValidPoints(final String test) {
+    public static boolean isValidPoints( String test) {
         try {
-            final int value = Integer.parseInt(test);
+            int value = Integer.parseInt(test);
             return value >= 0; // Points must be non-negative
         } catch (NumberFormatException e) {
             return false; // The string was not an integer.

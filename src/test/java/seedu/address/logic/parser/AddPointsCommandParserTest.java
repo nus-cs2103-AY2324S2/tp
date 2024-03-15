@@ -20,18 +20,19 @@ public class AddPointsCommandParserTest {
         // Successful scenario where both name and points are provided
         Name expectedName = new Name("Alice");
         Points expectedPoints = new Points("50");
-        assertParseSuccess(parser, PREFIX_NAME + "Alice " + PREFIX_POINTS + 50,
+        assertParseSuccess(parser, PREFIX_NAME + " Alice " + PREFIX_POINTS + " 50",
                 new AddPointsCommand(expectedName, expectedPoints));
+
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         // Missing name prefix
-        assertParseFailure(parser, "Alice " + PREFIX_POINTS + "50",
+        assertParseFailure(parser, " Alice " + PREFIX_POINTS + " 50",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddPointsCommand.MESSAGE_USAGE));
 
         // Missing points prefix
-        assertParseFailure(parser, PREFIX_NAME + "Alice " + "50",
+        assertParseFailure(parser, PREFIX_NAME + " Alice " + " 50",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddPointsCommand.MESSAGE_USAGE));
 
         // Missing all fields
@@ -42,11 +43,11 @@ public class AddPointsCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // Invalid name
-        assertParseFailure(parser, PREFIX_NAME + "1-lice " + PREFIX_POINTS + "50",
+        assertParseFailure(parser, PREFIX_NAME + " 1-lice " + PREFIX_POINTS + " 50",
                 Name.MESSAGE_CONSTRAINTS); // Name.MESSAGE_CONSTRAINTS contains the message for invalid names
 
         // Invalid points
-        assertParseFailure(parser, PREFIX_NAME + "Alice " + PREFIX_POINTS + "-50",
+        assertParseFailure(parser, PREFIX_NAME + " Alice " + PREFIX_POINTS + " -50",
                 Points.MESSAGE_CONSTRAINTS); // Points.MESSAGE_CONSTRAINTS contains the message for invalid points
     }
 }
