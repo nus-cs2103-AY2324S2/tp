@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.findvisor.logic.parser.Prefix;
+import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Person;
 
 /**
@@ -45,6 +46,18 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code meeting} for display to the user.
+     */
+    public static String format(Meeting meeting) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Meeting Start: ")
+                .append(meeting.getStartString())
+                .append("; End: ")
+                .append(meeting.getEndString());
         return builder.toString();
     }
 

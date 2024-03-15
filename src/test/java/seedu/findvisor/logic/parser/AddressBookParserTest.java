@@ -2,6 +2,7 @@ package seedu.findvisor.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.findvisor.commons.util.DateTimeUtil.dateTimeToInputString;
 import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.findvisor.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -13,6 +14,9 @@ import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeeting;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 import static seedu.findvisor.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -29,9 +33,12 @@ import seedu.findvisor.logic.commands.ExitCommand;
 import seedu.findvisor.logic.commands.FindCommand;
 import seedu.findvisor.logic.commands.HelpCommand;
 import seedu.findvisor.logic.commands.ListCommand;
+import seedu.findvisor.logic.commands.ScheduleCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
 import seedu.findvisor.model.person.EmailContainsKeywordPredicate;
 import seedu.findvisor.model.person.NameContainsKeywordPredicate;
+import seedu.findvisor.model.person.Meeting;
+import seedu.findvisor.model.person.NameContainsKeywordsPredicate;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
 import seedu.findvisor.model.tag.TagsContainsKeywordsPredicate;
@@ -108,6 +115,16 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_schedule() throws Exception {
+        Meeting meeting = createValidMeeting();
+        ScheduleCommand command = (ScheduleCommand) parser.parseCommand(
+                ScheduleCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PREFIX_START_DATETIME + dateTimeToInputString(meeting.start) + " "
+                + PREFIX_END_DATETIME + dateTimeToInputString(meeting.end));
+        assertEquals(new ScheduleCommand(INDEX_FIRST_PERSON, meeting), command);
     }
 
     @Test
