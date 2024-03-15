@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.house.Block;
+import seedu.address.model.house.Level;
 import seedu.address.model.house.PostalCode;
 import seedu.address.model.house.UnitNumber;
 import seedu.address.model.person.Address;
@@ -29,6 +30,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_LEVEL = "aa";
     private static final String INVALID_UNIT_NUMBER = "1234";
     private static final String INVALID_BLOCK = "12a34";
     private static final String INVALID_POSTALCODE = "5678990";
@@ -40,6 +42,7 @@ public class ParserUtilTest {
     private static final String VALID_POSTALCODE = "654321";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_LEVEL = "10";
     private static final String VALID_UNIT_NUMBER = "123";
     private static final String VALID_BLOCK = "205A";
 
@@ -227,6 +230,27 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseLevel_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLevel((String) null));
+    }
+
+    @Test
+    public void parseLevel_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLevel(INVALID_LEVEL));
+    }
+
+    @Test
+    public void parseLevel_validValueWithoutWhitespace_returnsLevel() throws Exception {
+        Level expectedLevel = new Level(VALID_LEVEL);
+        assertEquals(expectedLevel, ParserUtil.parseLevel(VALID_LEVEL));
+    }
+
+    @Test
+    public void parseLevel_validValueWithWhitespace_returnsTrimmedLevel() throws Exception {
+        String levelWithWhitespace = WHITESPACE + VALID_LEVEL + WHITESPACE;
+        Level expectedLevel = new Level(VALID_LEVEL);
+        assertEquals(expectedLevel, ParserUtil.parseLevel(levelWithWhitespace));
+    }
     public void parseUnitNumber_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseUnitNumber((String) null));
     }
@@ -248,7 +272,6 @@ public class ParserUtilTest {
         UnitNumber expectedUnitNumber = new UnitNumber(VALID_UNIT_NUMBER);
         assertEquals(expectedUnitNumber, ParserUtil.parseUnitNumber(unitNumberWithWhitespace));
     }
-
     public void parseBlock_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseBlock((String) null));
     }
