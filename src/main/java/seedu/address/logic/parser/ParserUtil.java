@@ -21,6 +21,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX_OR_NAME = "Index is not a non-zero unsigned integer or Name is not a valid full name.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -48,6 +49,25 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Index} or {@code Name} object based on its content.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param input The string to parse, which can be either an index or a name.
+     * @return Either an {@code Index} or a {@code Name} object based on the input.
+     * @throws ParseException if the input is neither a valid index nor a valid name.
+     */
+    public static Object parseNameIndex(String input) throws ParseException {
+        String trimmedInput = input.trim();
+        if (StringUtil.isNonZeroUnsignedInteger(trimmedInput)) {
+            return Index.fromOneBased(Integer.parseInt(trimmedInput));
+        } else if (Name.isValidName(trimmedInput)) {
+            return new Name(trimmedInput);
+        } else {
+            throw new ParseException(MESSAGE_INVALID_INDEX_OR_NAME);
+        }
     }
 
     /**
