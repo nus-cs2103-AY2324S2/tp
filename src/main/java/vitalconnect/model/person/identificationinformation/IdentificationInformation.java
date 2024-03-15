@@ -3,7 +3,7 @@ package vitalconnect.model.person.identificationinformation;
 
 /**
  * Represents a Person's identification information
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidIdentificationInformation(String, String)}
  */
 public class IdentificationInformation {
     // Identity fields
@@ -14,14 +14,26 @@ public class IdentificationInformation {
      * Constructs a {@code IdentificationInformation}.
      *
      * @param name A valid name.
+     * @param nric A valid nric.
      */
-    public IdentificationInformation(Name name) {
+    public IdentificationInformation(Name name, Nric nric) {
         this.name = name;
-        this.nric = new Nric(); // TODO after adding Nric class
+        this.nric = nric;
     }
 
     /**
-     * TODO
+     * Constructs a {@code IdentificationInformation}.
+     *
+     * @param name A valid name.
+     * @param nric A valid nric.
+     */
+    public IdentificationInformation(String name, String nric) {
+        this.name = new Name(name);
+        this.nric = new Nric(nric);
+    }
+
+    /**
+     * Returns true if a given info is a valid IdentificationInformation.
      */
     public static boolean isValidIdentificationInformation(String nameTest, String nric) {
         return nameTest.matches(Name.VALIDATION_REGEX) && nric.matches(Nric.VALIDATION_REGEX);
@@ -52,7 +64,7 @@ public class IdentificationInformation {
         }
 
         IdentificationInformation otherInfo = (IdentificationInformation) other;
-        return name.equals(otherInfo.name) && nric.equals(otherInfo.nric);
+        return nric.equals(otherInfo.nric);
     }
 
     @Override

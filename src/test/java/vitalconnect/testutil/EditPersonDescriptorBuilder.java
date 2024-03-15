@@ -6,10 +6,8 @@ import java.util.stream.Stream;
 
 import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import vitalconnect.model.person.Person;
-import vitalconnect.model.person.contactinformation.Address;
-import vitalconnect.model.person.contactinformation.Email;
-import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.model.tag.Tag;
 
 /**
@@ -32,10 +30,8 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setName(person.getIdentificationInformation().getName());
+        descriptor.setNric(person.getIdentificationInformation().getNric());
         descriptor.setTags(person.getTags());
     }
 
@@ -48,26 +44,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withNric(String nric) {
+        descriptor.setNric(new Nric(nric));
         return this;
     }
 

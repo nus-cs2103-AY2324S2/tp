@@ -145,7 +145,7 @@ public class ModelManagerTest {
         ModelManager modelManager = new ModelManager();
         modelManager.addPerson(ALICE); // Assuming ALICE is a predefined Person object
 
-        assertTrue(modelManager.doesPersonExist(ALICE.getName().fullName));
+        assertTrue(modelManager.doesPersonExist(ALICE.getIdentificationInformation().getName().fullName));
         assertFalse(modelManager.doesPersonExist("Non Existing Person"));
     }
 
@@ -174,7 +174,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentClinic, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ALICE.getIdentificationInformation().getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(clinic, userPrefs)));
 

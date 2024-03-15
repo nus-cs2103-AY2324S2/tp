@@ -135,7 +135,7 @@ public class ModelManager implements Model {
     public boolean doesPersonExist(String name) {
         requireNonNull(name);
         return filteredPersons.stream()
-                .anyMatch(person -> person.getName().fullName.equalsIgnoreCase(name));
+                .anyMatch(person -> person.getIdentificationInformation().getName().fullName.equalsIgnoreCase(name));
     }
 
 

@@ -1,10 +1,8 @@
 package vitalconnect.logic.parser;
 
 import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -13,10 +11,9 @@ import java.util.stream.Stream;
 import vitalconnect.logic.commands.AddCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
 import vitalconnect.model.person.Person;
-import vitalconnect.model.person.contactinformation.Address;
-import vitalconnect.model.person.contactinformation.Email;
-import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.model.tag.Tag;
 
 /**
@@ -31,21 +28,20 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_NRIC);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        IdentificationInformation iInfo = new IdentificationInformation(name, nric);
+        Person person = new Person(iInfo, tagList);
 
         return new AddCommand(person);
     }
