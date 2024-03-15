@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.coursemate.Address;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
@@ -19,12 +18,10 @@ public class CourseMateBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
     private Set<Skill> skills;
 
     /**
@@ -34,7 +31,6 @@ public class CourseMateBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
         skills = new HashSet<>();
     }
 
@@ -45,7 +41,6 @@ public class CourseMateBuilder {
         name = courseMateToCopy.getName();
         phone = courseMateToCopy.getPhone();
         email = courseMateToCopy.getEmail();
-        address = courseMateToCopy.getAddress();
         skills = new HashSet<>(courseMateToCopy.getSkills());
     }
 
@@ -66,14 +61,6 @@ public class CourseMateBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code CourseMate} that we are building.
-     */
-    public CourseMateBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code CourseMate} that we are building.
      */
     public CourseMateBuilder withPhone(String phone) {
@@ -90,7 +77,7 @@ public class CourseMateBuilder {
     }
 
     public CourseMate build() {
-        return new CourseMate(name, phone, email, address, skills);
+        return new CourseMate(name, phone, email, skills);
     }
 
 }

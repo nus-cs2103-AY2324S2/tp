@@ -22,18 +22,16 @@ public class CourseMate {
     private final Email email;
 
     // Data fields
-    private final Address address;
     private final Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public CourseMate(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, address, skills);
+    public CourseMate(Name name, Phone phone, Email email, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.skills.addAll(skills);
     }
 
@@ -47,10 +45,6 @@ public class CourseMate {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -93,14 +87,13 @@ public class CourseMate {
         return name.equals(otherCourseMate.name)
                 && phone.equals(otherCourseMate.phone)
                 && email.equals(otherCourseMate.email)
-                && address.equals(otherCourseMate.address)
                 && skills.equals(otherCourseMate.skills);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, skills);
+        return Objects.hash(name, phone, email, skills);
     }
 
     @Override
@@ -109,7 +102,6 @@ public class CourseMate {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
                 .add("skills", skills)
                 .toString();
     }

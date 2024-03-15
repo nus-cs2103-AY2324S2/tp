@@ -35,8 +35,6 @@ public class CourseMateCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
     private FlowPane skills;
@@ -50,7 +48,6 @@ public class CourseMateCard extends UiPart<Region> {
         id.setText("#" + displayedIndex + " ");
         name.setText(courseMate.getName().fullName);
         phone.setText(courseMate.getPhone().value);
-        address.setText(courseMate.getAddress().value);
         email.setText(courseMate.getEmail().value);
         courseMate.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))

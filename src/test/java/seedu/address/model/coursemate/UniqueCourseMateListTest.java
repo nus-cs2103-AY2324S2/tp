@@ -3,7 +3,6 @@ package seedu.address.model.coursemate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourseMates.ALICE;
@@ -43,7 +42,7 @@ public class UniqueCourseMateListTest {
     public void contains_courseMateWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCourseMateList.add(ALICE);
         CourseMate editedAlice = new CourseMateBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
+                .withSkills(VALID_SKILL_JAVA).build();
         assertTrue(uniqueCourseMateList.contains(editedAlice));
     }
 
@@ -86,7 +85,7 @@ public class UniqueCourseMateListTest {
     public void setCourseMate_editedCourseMateHasSameIdentity_success() {
         uniqueCourseMateList.add(ALICE);
         CourseMate editedAlice = new CourseMateBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
+                .withSkills(VALID_SKILL_JAVA).build();
         uniqueCourseMateList.setCourseMate(ALICE, editedAlice);
         UniqueCourseMateList expectedUniqueCourseMateList = new UniqueCourseMateList();
         expectedUniqueCourseMateList.add(editedAlice);
