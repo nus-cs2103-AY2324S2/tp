@@ -139,7 +139,8 @@ public class ParserUtil {
             throw new ParseException(Level.MESSAGE_CONSTRAINTS);
         }
         return new Level(trimmedLevel);
-
+    }
+    /**
      * Parses a {@code String block} into an {@code Block}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -152,7 +153,8 @@ public class ParserUtil {
             throw new ParseException(Block.MESSAGE_CONSTRAINTS);
         }
         return new Block(trimmedBlock);
-
+    }
+    /**
      * Parses a {@code String postalCode} into a {@code postalCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
