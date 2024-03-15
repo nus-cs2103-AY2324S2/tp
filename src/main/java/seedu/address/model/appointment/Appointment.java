@@ -22,6 +22,13 @@ public class Appointment {
         this.personId = personId;
     }
 
+    public Appointment(UUID id, UUID personId, AppointmentTime appointmentTime) {
+        this.id = id;
+        this.appointmentTime = appointmentTime;
+        this.personId = personId;
+    }
+
+
     public UUID getID() {
         return id;
     }
