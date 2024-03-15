@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 import javax.swing.text.View;
@@ -22,17 +23,29 @@ public class ViewCommand extends Command {
             + "Example: " + COMMAND_WORD + " John OR " + COMMAND_WORD + " 12345";
 
     private final NameContainsKeywordsPredicate predicate;
+    private final Id id;
 
     public ViewCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
+        this.id = null;
+    }
+
+    public ViewCommand(Id id) {
+        this.id = id;
+        this.predicate = null;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        if (predicate != null) {
+            model.updateFilteredPersonList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        } else {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        }
     }
 
     @Override

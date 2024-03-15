@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -29,18 +30,22 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_ID);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split();
-        if (nameKeywords.length == 1) {
-
+        if (name == null && id == null) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        } else if (id == null) {
+            return new ViewCommand(id);
+        } else {
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+            return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
-
-        return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
