@@ -31,7 +31,7 @@ public class PhoneEqualsKeywordPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different email -> returns false
+        // different phone number -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

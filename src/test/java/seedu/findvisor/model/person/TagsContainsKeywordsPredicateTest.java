@@ -35,7 +35,7 @@ public class TagsContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different email -> returns false
+        // different tags-> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
