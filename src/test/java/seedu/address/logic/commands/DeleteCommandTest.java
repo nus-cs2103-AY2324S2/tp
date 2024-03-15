@@ -42,9 +42,9 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidNricUnfilteredList_throwsCommandException() {
-        Nric invalidNric = new Nric(Nric.VALID_NRIC);
-        DeleteCommand deleteCommand = new DeleteCommand(invalidNric);
+    public void execute_missingNricUnfilteredList_throwsCommandException() {
+        Nric missingNric = new Nric(Nric.MISSING_NRIC);
+        DeleteCommand deleteCommand = new DeleteCommand(missingNric);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);
     }
@@ -67,11 +67,11 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidNricFilteredList_throwsCommandException() {
+    public void execute_missingNricFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Nric invalidNric = new Nric(Nric.VALID_NRIC);
-        DeleteCommand deleteCommand = new DeleteCommand(invalidNric);
+        Nric missingNric = new Nric(Nric.MISSING_NRIC);
+        DeleteCommand deleteCommand = new DeleteCommand(missingNric);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);
     }

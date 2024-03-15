@@ -29,6 +29,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -62,7 +63,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete G0011223A";
+        String deleteCommand = "delete " + Nric.VALID_NRIC;
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);
     }
 
