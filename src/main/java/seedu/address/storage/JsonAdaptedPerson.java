@@ -46,6 +46,22 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        if (schedules != null) {
+            this.schedules.addAll(schedules);
+        }
+    }
+
+    @JsonCreator
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        if (tags != null) {
+            this.tags.addAll(tags);
+        }
     }
 
     /**
@@ -58,6 +74,9 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        schedules.addAll(source.getSchedules().stream()
+                .map(JsonAdaptedSchedule::new)
                 .collect(Collectors.toList()));
     }
 
@@ -106,7 +125,13 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final ArrayList<Schedule> modelSchedules = new ArrayList<>();
+        ArrayList<Schedule> modelSchedules = new ArrayList<>();
+        if (!schedules.isEmpty()) {
+
+            for (JsonAdaptedSchedule schedule : schedules) {
+                modelSchedules.add(schedule.toModelType());
+            }
+        }
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSchedules);
     }
 
