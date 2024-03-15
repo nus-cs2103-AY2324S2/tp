@@ -35,8 +35,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("sid") int sid) {
+                             @JsonProperty("email") String email,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("sid") int sid) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -91,6 +91,11 @@ class JsonAdaptedPerson {
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+
+        if (sid < 0) {
+            // TODO: Custom type for SID
+            throw new IllegalValueException("Please only use positive index.");
         }
         final Email modelEmail = new Email(email);
 
