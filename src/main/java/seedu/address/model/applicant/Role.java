@@ -1,22 +1,18 @@
-package seedu.address.model.application;
+package seedu.address.model.applicant;
 
 /**
  * A job role that an applicant can apply for.
  */
 public class Role {
-    private final String roleName;
+    public final String roleName;
 
     public Role(String roleName) {
         this.roleName = roleName;
     }
 
-    public String getRoleName() {
-        return roleName;
-    }
-
     @Override
     public String toString() {
-        return getRoleName();
+        return roleName;
     }
 
     @Override
@@ -31,11 +27,11 @@ public class Role {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.model.application.Role)) {
+        if (!(other instanceof Role)) {
             return false;
         }
 
-        seedu.address.model.application.Role otherStage = (seedu.address.model.application.Role) other;
+        Role otherStage = (Role) other;
         return roleName.equals(otherStage.roleName);
     }
 }

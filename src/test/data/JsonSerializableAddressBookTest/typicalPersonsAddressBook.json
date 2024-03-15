@@ -1,6 +1,7 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "@type" : "JsonAdaptedPerson",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -8,6 +9,7 @@
     "tags" : [ "friends" ],
     "note": ""
   }, {
+    "@type" : "JsonAdaptedPerson",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -15,6 +17,7 @@
     "tags" : [ "owesMoney", "friends" ],
     "note": ""
   }, {
+    "@type" : "JsonAdaptedPerson",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
@@ -22,6 +25,7 @@
     "tags" : [ ],
     "note": ""
   }, {
+    "@type" : "JsonAdaptedPerson",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
@@ -29,6 +33,7 @@
     "tags" : [ "friends" ],
     "note": ""
   }, {
+    "@type" : "JsonAdaptedPerson",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
@@ -36,6 +41,7 @@
     "tags" : [ ],
     "note": ""
   }, {
+    "@type" : "JsonAdaptedPerson",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
@@ -43,6 +49,7 @@
     "tags" : [ ],
     "note": ""
   }, {
+    "@type" : "JsonAdaptedPerson",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",

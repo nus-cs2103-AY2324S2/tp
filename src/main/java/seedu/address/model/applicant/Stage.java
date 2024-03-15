@@ -1,23 +1,19 @@
-package seedu.address.model.application;
+package seedu.address.model.applicant;
 
 /**
  * An object that represents the stage that an
  * applicant is in during a hiring process.
  */
 public class Stage {
-    private final String stageName;
+    public final String stageName;
 
     public Stage(String stageName) {
         this.stageName = stageName;
     }
 
-    public String getStageName() {
-        return stageName;
-    }
-
     @Override
     public String toString() {
-        return getStageName();
+        return stageName;
     }
 
     @Override
@@ -32,11 +28,11 @@ public class Stage {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.model.application.Stage)) {
+        if (!(other instanceof Stage)) {
             return false;
         }
 
-        seedu.address.model.application.Stage otherStage = (seedu.address.model.application.Stage) other;
+        Stage otherStage = (Stage) other;
         return stageName.equals(otherStage.stageName);
     }
 }

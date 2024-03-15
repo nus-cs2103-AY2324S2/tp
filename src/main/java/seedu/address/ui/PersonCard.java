@@ -64,4 +64,5 @@ public class PersonCard extends UiPart<Region> {
         }
         note.setText(person.getNote().value + noteDate);
     }
+
 }
