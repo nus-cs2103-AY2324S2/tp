@@ -1,25 +1,35 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a patient's IC in the address book.
  */
 public class Ic {
     public static final String MESSAGE_CONSTRAINTS = "ICs can take integer values only, and it should not be blank";
 
-    public final Integer ic;
+    // singapore regex for ic
+    public static final String VALIDATION_REGEX = "^[STFG]\\d{7}[A-Z]$";
+    public final String ic;
 
     /**
      * Constructs a {@code Ic}.
      *
      * @param ic A valid IC.
      */
-    public Ic(Integer ic) {
+    public Ic(String ic) {
+        requireNonNull(ic);
+        checkArgument(isValidIc(ic), MESSAGE_CONSTRAINTS);
         this.ic = ic;
+    }
+    public static boolean isValidIc(String ic) {
+        return ic.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return ic.toString();
+        return ic;
     }
 
     @Override
