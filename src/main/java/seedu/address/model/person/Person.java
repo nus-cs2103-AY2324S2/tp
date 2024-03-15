@@ -120,6 +120,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("subject", subject)
                 .add("tags", tags)
                 .toString();
     }
