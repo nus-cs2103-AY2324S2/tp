@@ -39,6 +39,13 @@ public class Period implements Comparable<Period> {
         this.timeEnd = timeEnd;
     }
 
+    /**
+     * Constructor for this class, accepts {@code String} as inputs.
+     *
+     * @param periodName the name of this {@code Period}
+     * @param periodString the period of this {@code Period}, accepts only "0-23" in this format.
+     * @throws InvalidPeriodException if the name is invalid or if the end timing is before the start timing.
+     */
     public Period(String periodName, String periodString) throws InvalidPeriodException {
         requireAllNonNull(periodName, periodString);
         String[] args = periodString.split("-");
@@ -54,6 +61,11 @@ public class Period implements Comparable<Period> {
         this.timeEnd = timeEnd;
     }
 
+    /**
+     * Checks if a {@code String} input is in a valid period format.
+     * @param period the period of this {@code Period}, accepts only "0-23" in this format.
+     * @return {@code true} if the {@code String} is in the correct format.
+     */
     public static boolean isValidPeriod(String period) {
         return period.matches(VALIDATION_REGEX);
     }

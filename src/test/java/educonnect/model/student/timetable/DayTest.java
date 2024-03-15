@@ -1,5 +1,6 @@
 package educonnect.model.student.timetable;
 
+import static educonnect.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -8,12 +9,12 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import educonnect.testutil.Assert;
+import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
 
 public class DayTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Day(null));
+        assertThrows(NullPointerException.class, () -> new Day(null));
     }
 
     @Test
@@ -30,7 +31,7 @@ public class DayTest {
         assertFalse(day.isSameDay(new Day(DayOfWeek.MONDAY)));
     }
     @Test
-    public void test_addPeriod() {
+    public void test_addPeriod() throws OverlapPeriodException {
         Day day = new Day(DayOfWeek.SUNDAY);
         Period period1 = // 1 AM to 3 AM
                 new Period("period1", LocalTime.of(1, 0, 0), LocalTime.of(3, 0, 0));
@@ -44,7 +45,7 @@ public class DayTest {
         assertTrue(day.addPeriod(period1));
 
         // has overlap, not successfully added -> returns false
-        assertFalse(day.addPeriod(period3));
+        assertThrows(OverlapPeriodException.class, () -> day.addPeriod(period3));
 
         // check if the periods added are sorted automatically.
         assertTrue(day.isSorted());

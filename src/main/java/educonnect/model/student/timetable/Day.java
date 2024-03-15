@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
+import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
+
 /**
  * Represents a day in a weekly timetable schedule.
  */
@@ -36,10 +38,10 @@ public class Day {
      * @param period a {@code Period} object.
      * @return {@code true} if added successfully.
      */
-    public boolean addPeriod(Period period) {
+    public boolean addPeriod(Period period) throws OverlapPeriodException {
         for (Period per : periods) {
             if (per.hasOverlap(period)) {
-                return false;
+                throw new OverlapPeriodException();
             }
         }
         this.periods.add(period);
@@ -55,6 +57,7 @@ public class Day {
     public boolean isSorted() {
         return this.periods.stream().sorted().collect(Collectors.toList()).equals(this.periods);
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

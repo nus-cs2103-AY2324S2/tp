@@ -3,7 +3,6 @@ package educonnect.logic.parser;
 import static educonnect.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-import educonnect.model.student.timetable.Period;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -17,7 +16,10 @@ import educonnect.model.student.Email;
 import educonnect.model.student.Name;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Period;
 import educonnect.model.student.timetable.Timetable;
+import educonnect.model.student.timetable.exceptions.NumberOfDaysException;
+import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
 import educonnect.model.tag.Tag;
 
 /**
@@ -173,7 +175,10 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static Timetable parseTimetable(ArrayList<String> allDays) throws ParseException {
+    /**
+     * Parses {@code ArrayList<String> allDays} into a {@code Timetable}.
+     */
+    public static Timetable parseTimetable(ArrayList<String> allDays) throws ParseException, OverlapPeriodException {
         requireNonNull(allDays);
         Timetable timetable = new Timetable();
         for (int i = 1; i < allDays.size(); i++) {
@@ -182,19 +187,23 @@ public class ParserUtil {
         return timetable;
     }
 
-    public static boolean parseDay(int dayNumber, Timetable timetable, Optional<ArrayList<Period>> allPeriods) {
+    /**
+     * Parses {@code Optional<ArrayList<String>> periods} into a {@code Day}. Helper method.
+     */
+    public static boolean parseDay(int dayNumber, Timetable timetable, Optional<ArrayList<Period>> allPeriods)
+            throws NumberOfDaysException, OverlapPeriodException {
         requireAllNonNull(dayNumber, timetable, allPeriods);
         if (allPeriods.isPresent()) {
             for (Period period : allPeriods.get()) {
-                boolean successfullyAdded = timetable.addPeriodToDay(dayNumber, period);
-                if (!successfullyAdded) {
-                    return false; // ToDo: probably need to change to throwing exception
-                }
+                timetable.addPeriodToDay(dayNumber, period);
             }
         }
         return true;
     }
 
+    /**
+     * Parses {@code String allPeriods} into a {@code Optional<ArrayList<String>> periods}. Helper method.
+     */
     public static Optional<ArrayList<Period>> parsePeriods(String allPeriodsString) throws ParseException {
         requireNonNull(allPeriodsString);
         if (allPeriodsString.isBlank()) { // no period in this day
@@ -209,6 +218,9 @@ public class ParserUtil {
         return Optional.of(periodsForDay);
     }
 
+    /**
+     * Parses {@code String period} into a {@code Period}. Helper method.
+     */
     public static Period parsePeriod(String eachPeriod) throws ParseException {
         String trimmedPeriod = eachPeriod.trim();
         if (!Period.isValidPeriod(trimmedPeriod)) {

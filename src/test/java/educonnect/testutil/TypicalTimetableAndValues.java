@@ -1,18 +1,24 @@
 package educonnect.testutil;
 
-import educonnect.model.student.timetable.Period;
-import educonnect.model.student.timetable.Timetable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import educonnect.model.student.timetable.Period;
+import educonnect.model.student.timetable.Timetable;
+import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
+
+/**
+ * A utility class containing a list of {@code String, Period, Timetable}
+ * and other peripheral objects to be used in tests.
+ */
 public class TypicalTimetableAndValues {
     // additional strings
     public static final String PERIOD_SPACER = ", ";
-    private static final String WHITESPACE = " \t\r\n";
-    private static final String EMPTY = "";
+    public static final String WHITESPACE = " \t\r\n";
+    public static final String EMPTY = "";
 
     // invalid period strings used in parsing
     public static final String INVALID_PERIOD1 = "25-30";
@@ -41,16 +47,20 @@ public class TypicalTimetableAndValues {
     public static final int VALID_PERIOD3_VALUE1 = 16;
     public static final int VALID_PERIOD3_VALUE2 = 18;
 
-    // valid period objects used in assertions
+    // add command arguments for Timetable
+    public static final String VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS_1 = " mon: 13-15, 16-18 thu: 16-18, 13-15";
+    public static final String VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS_2 = " tue: 16-18, 13-15 wed: 13-15, 16-18";
+
+    // valid period objects used in assertions.
     public static final Period EXPECTED_PERIOD_1 = new Period(VALID_PERIOD_NAME,
             LocalTime.of(VALID_PERIOD1_VALUE1, 0, 0),
-            LocalTime.of(VALID_PERIOD1_VALUE2, 0 ,0));
+            LocalTime.of(VALID_PERIOD1_VALUE2, 0, 0));
     public static final Period EXPECTED_PERIOD_2 = new Period(VALID_PERIOD_NAME,
             LocalTime.of(VALID_PERIOD2_VALUE1, 0, 0),
-            LocalTime.of(VALID_PERIOD2_VALUE2, 0 ,0));
+            LocalTime.of(VALID_PERIOD2_VALUE2, 0, 0));
     public static final Period EXPECTED_PERIOD_3 = new Period(VALID_PERIOD_NAME,
             LocalTime.of(VALID_PERIOD3_VALUE1, 0, 0),
-            LocalTime.of(VALID_PERIOD3_VALUE2, 0 ,0));
+            LocalTime.of(VALID_PERIOD3_VALUE2, 0, 0));
 
     // Optional ArrayList of Period objects, used in assertions.
     public static final Optional<ArrayList<Period>> VALID_PERIOD_OPTIONAL_ARRAYLIST =
@@ -64,18 +74,48 @@ public class TypicalTimetableAndValues {
     public static final ArrayList<Period> VALID_PERIODS_LIST2 =
             buildPeriodList(new Period[] {EXPECTED_PERIOD_3, EXPECTED_PERIOD_1});
 
-    // helper method to create List of Periods
+    // valid List of Period Strings for all days
+    public static final ArrayList<String> VALID_TIMETABLE_INPUT_1 = new ArrayList<>(
+            getListOfPeriods(List.of(VALID_PERIODS_STRING1, EMPTY, EMPTY, VALID_PERIODS_STRING2, EMPTY)));
+    public static final ArrayList<String> VALID_TIMETABLE_INPUT_2 = new ArrayList<>(
+            getListOfPeriods(List.of(EMPTY, VALID_PERIODS_STRING2, VALID_PERIODS_STRING1, EMPTY, EMPTY)));
+
+    // valid Timetable
+    public static final Timetable EXPECTED_TIMETABLE_1;
+    public static final Timetable EXPECTED_TIMETABLE_2;
+    static {
+        try {
+            EXPECTED_TIMETABLE_1 = buildTimetable(new int[] {1, 4},
+                    new ArrayList<>(List.of(VALID_PERIODS_LIST1, VALID_PERIODS_LIST2)));
+        } catch (OverlapPeriodException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    static {
+        try {
+            EXPECTED_TIMETABLE_2 = buildTimetable(new int[] {2, 3},
+                    new ArrayList<>(List.of(VALID_PERIODS_LIST2, VALID_PERIODS_LIST1)));
+        } catch (OverlapPeriodException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Helper method to create List of Periods
+     *
+     * @param periods an array pf {@code Period} objects.
+     * @return an {@code ArrayList} of {@code Period} objects.
+     */
     public static ArrayList<Period> buildPeriodList(Period[] periods) {
         return new ArrayList<>(Arrays.asList(periods));
     }
 
-    // valid List of Period Strings for all days
-    public static ArrayList<String> VALID_TIMETABLE_INPUT1 = new ArrayList<>(
-            getListOfPeriods(List.of(VALID_PERIODS_STRING1, EMPTY, EMPTY, VALID_PERIODS_STRING2, EMPTY)));
-    public static ArrayList<String> VALID_TIMETABLE_INPUT2 = new ArrayList<>(
-            getListOfPeriods(List.of(EMPTY, VALID_PERIODS_STRING2, VALID_PERIODS_STRING1, EMPTY, EMPTY)));
-
-    // helper method to get List of Period Strings, according to number of days in Timetable
+    /**
+     * Helper method to get List of Period Strings, according to number of days in Timetable
+     *
+     * @param original List of Strings for 5 days in the week.
+     * @return List of Strings for 7 days of the week, if {@code Timetable.getTimetable7Days()} is {@code true}.
+     */
     public static List<String> getListOfPeriods(List<String> original) {
         ArrayList<String> newList = new ArrayList<>(original);
         if (Timetable.getTimetable7Days()) {
@@ -84,23 +124,21 @@ public class TypicalTimetableAndValues {
         return newList;
     }
 
-    // valid Timetable
-    public static Timetable EXPECTED_TIMETABLE1 = buildTimetable(new int[] {1,4},
-            new ArrayList<>(List.of(VALID_PERIODS_LIST1, VALID_PERIODS_LIST2)));
-    public static Timetable EXPECTED_TIMETABLE2 = buildTimetable(new int[] {2,3},
-            new ArrayList<>(List.of(VALID_PERIODS_LIST2, VALID_PERIODS_LIST1)));
-
-    // helper method to build timetable
-    public static Timetable buildTimetable(int[] indexesOfDays, ArrayList<ArrayList<Period>> periodsEachDay) {
-        Timetable timetable = new Timetable(7);
+    /**
+     * Helper method to build timetable.
+     *
+     * @param indexesOfDays indexes containing days which has {@code Period} to add.
+     * @param periodsEachDay {@code ArrayList} of {@code ArrayList<Period>} objects corresponding to the indexes.
+     * @return a {@code Timetable} object.
+     * @throws OverlapPeriodException if there is an overlap in the periods given.
+     */
+    public static Timetable buildTimetable(int[] indexesOfDays, ArrayList<ArrayList<Period>> periodsEachDay)
+            throws OverlapPeriodException {
+        Timetable timetable = new Timetable();
 
         for (int i = 0; i < indexesOfDays.length; i++) {
             timetable.addPeriodsToDay(indexesOfDays[i], periodsEachDay.get(i));
         }
         return timetable;
     }
-
-    // add command arguments for Timetable
-    public static final String VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS1 = " mon: 13-15, 16-18 thu: 16-18, 13-15";
-    public static final String VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS2 = " tue: 16-18, 13-15 wed: 13-15, 16-18";
 }

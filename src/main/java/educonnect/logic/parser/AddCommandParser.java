@@ -65,6 +65,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(student);
     }
 
+    /**
+     * Tokenizes the input arguments for Timetable under Add Command.
+     *
+     * @param fullTimetableString a full {@code String} containing the arguments. E.g. "mon: 1-4, 12-14 tue: 14-16 ..."
+     * @return an {@code ArrayList<String>}, with each entry containing arguments for each day of the Timetable week.
+     */
     public static ArrayList<String> tokenizeForTimetable(String fullTimetableString) {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(fullTimetableString, PREFIX_TIMETABLE_MONDAY, PREFIX_TIMETABLE_TUESDAY,

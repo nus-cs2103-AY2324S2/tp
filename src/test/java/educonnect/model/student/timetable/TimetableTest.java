@@ -1,12 +1,15 @@
 package educonnect.model.student.timetable;
 
+import static educonnect.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import educonnect.model.student.timetable.exceptions.NumberOfDaysException;
+import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
 
 public class TimetableTest {
     private static final String EMPTY_TIMETABLE_FIVE =
@@ -26,13 +29,13 @@ public class TimetableTest {
         Timetable timetable7 = new Timetable(7);
         Timetable timetableDefault = new Timetable();
 
-        assertEquals(timetable5.toString(), EMPTY_TIMETABLE_FIVE);
-        assertEquals(timetable7.toString(), EMPTY_TIMETABLE_SEVEN);
-        assertEquals(timetableDefault.toString(), EMPTY_TIMETABLE_FIVE);
+        assertEquals(EMPTY_TIMETABLE_FIVE, timetable5.toString());
+        assertEquals(EMPTY_TIMETABLE_SEVEN, timetable7.toString());
+        assertEquals(EMPTY_TIMETABLE_FIVE, timetableDefault.toString());
     }
 
     @Test
-    public void test_addPeriodToDay() {
+    public void test_addPeriodToDay() throws OverlapPeriodException {
         Timetable timetable5 = new Timetable(5);
 
         // adding to Monday, period from 1 PM to 2 PM, success -> returns true
@@ -60,14 +63,16 @@ public class TimetableTest {
                         LocalTime.of(14, 0, 0))));
 
         // adding to Monday, period from 2 PM to 4 PM, failure -> returns false
-        assertFalse(timetable5.addPeriodToDay(1,
-                new Period("period1a",
+        assertThrows(OverlapPeriodException.class, () ->
+                timetable5.addPeriodToDay(1,
+                    new Period("period1a",
                         LocalTime.of(14, 0, 0),
                         LocalTime.of(16, 0, 0))));
 
         // adding to a day outside the normal 7 days, failure -> returns false
-        assertFalse(timetable5.addPeriodToDay(10,
-                new Period("period1a",
+        assertThrows(NumberOfDaysException.class, () ->
+                timetable5.addPeriodToDay(10,
+                    new Period("period1a",
                         LocalTime.of(14, 0, 0),
                         LocalTime.of(16, 0, 0))));
     }

@@ -34,6 +34,10 @@ import static educonnect.testutil.TypicalStudents.AMY;
 import static educonnect.testutil.TypicalStudents.BOB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 
 import educonnect.logic.Messages;
@@ -47,9 +51,6 @@ import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 import educonnect.testutil.StudentBuilder;
 import educonnect.testutil.TypicalTimetableAndValues;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -219,10 +220,13 @@ public class AddCommandParserTest {
     }
     @Test
     public void tokenizeForTimetable_validInputs_returnsArrayList() {
-        assertEquals(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT1,
-                AddCommandParser.tokenizeForTimetable(TypicalTimetableAndValues.VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS1));
-        assertEquals(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT2,
-                AddCommandParser.tokenizeForTimetable(TypicalTimetableAndValues.VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS2));
+        assertEquals(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT_1,
+                AddCommandParser.tokenizeForTimetable(
+                        TypicalTimetableAndValues.VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS_1));
+
+        assertEquals(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT_2,
+                AddCommandParser.tokenizeForTimetable(
+                        TypicalTimetableAndValues.VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS_2));
     }
 
     // ToDo: Modify test cases above to include Timetable

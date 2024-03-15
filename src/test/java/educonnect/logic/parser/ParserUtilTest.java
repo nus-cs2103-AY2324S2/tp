@@ -5,7 +5,6 @@ import static educonnect.testutil.Assert.assertThrows;
 import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,6 +21,8 @@ import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Period;
 import educonnect.model.student.timetable.Timetable;
+import educonnect.model.student.timetable.exceptions.NumberOfDaysException;
+import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
 import educonnect.model.tag.Tag;
 import educonnect.testutil.TypicalTimetableAndValues;
 
@@ -244,8 +245,8 @@ public class ParserUtilTest {
     }
     @Test
     public void parsePeriods_stringWithInvalidValues_throwsParseException() throws Exception {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parsePeriods(TypicalTimetableAndValues.FULL_STRING_WITH_INVALID_INPUT));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parsePeriods(TypicalTimetableAndValues.FULL_STRING_WITH_INVALID_INPUT));
     }
 
     @Test
@@ -267,18 +268,22 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDay_invalidInputs() {
+    public void parseDay_invalidInputs() throws OverlapPeriodException {
         Timetable timetable = new Timetable();
 
-        // ToDo: Change to Exception
         // invalid inputs, day cannot be 0 -> returns false
-        assertFalse(ParserUtil.parseDay(0, timetable, TypicalTimetableAndValues.INVALID_PERIOD_OPTIONAL_ARRAYLIST));
+        assertThrows(NumberOfDaysException.class, () ->
+                ParserUtil.parseDay(0, timetable,
+                        TypicalTimetableAndValues.INVALID_PERIOD_OPTIONAL_ARRAYLIST));
+
         // invalid inputs, allPeriods contains invalid inputs (overlap periods) -> returns false
-        assertFalse(ParserUtil.parseDay(1, timetable, TypicalTimetableAndValues.INVALID_PERIOD_OPTIONAL_ARRAYLIST));
+        assertThrows(OverlapPeriodException.class, () ->
+                ParserUtil.parseDay(1, timetable,
+                        TypicalTimetableAndValues.INVALID_PERIOD_OPTIONAL_ARRAYLIST));
     }
 
     @Test
-    public void parseDay_validInputs_returnsTimetableWithUpdatedDay() {
+    public void parseDay_validInputs_returnsTimetableWithUpdatedDay() throws OverlapPeriodException {
         Timetable timetable = new Timetable();
 
         String expectedTimetable = "Timetable\n"
@@ -293,11 +298,10 @@ public class ParserUtilTest {
                                    + "Period period: (16:00 to 18:00)\n\n";
 
         if (Timetable.getTimetable7Days()) {
-        expectedTimetable += "For SATURDAY, schedule is:\n\n"
-                             + "For SUNDAY, schedule is:\n\n";
+            expectedTimetable += "For SATURDAY, schedule is:\n\n"
+                                 + "For SUNDAY, schedule is:\n\n";
         }
 
-        // ToDo: Change to Exception
         // valid inputs, successfully added -> returns true
         assertTrue(ParserUtil.parseDay(1, timetable, TypicalTimetableAndValues.VALID_PERIOD_OPTIONAL_ARRAYLIST));
         assertTrue(ParserUtil.parseDay(5, timetable, TypicalTimetableAndValues.VALID_PERIOD_OPTIONAL_ARRAYLIST));
@@ -311,9 +315,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseTimetable_validInputs_returnsCompletedTimetable() throws Exception {
-        assertEquals(TypicalTimetableAndValues.EXPECTED_TIMETABLE1.toString(),
-                ParserUtil.parseTimetable(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT1).toString());
-        assertEquals(TypicalTimetableAndValues.EXPECTED_TIMETABLE2.toString(),
-                ParserUtil.parseTimetable(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT2).toString());
+        assertEquals(TypicalTimetableAndValues.EXPECTED_TIMETABLE_1.toString(),
+                ParserUtil.parseTimetable(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT_1).toString());
+        assertEquals(TypicalTimetableAndValues.EXPECTED_TIMETABLE_2.toString(),
+                ParserUtil.parseTimetable(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT_2).toString());
     }
 }
