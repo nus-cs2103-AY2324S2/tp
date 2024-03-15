@@ -28,7 +28,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private boolean isFavourite;
+    private boolean isFavourite = false;
     private Set<Tag> tags;
     private ArrayList<Order> orders;
 
@@ -115,7 +115,10 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, orders);
+        return new Person(name, phone, email, address, isFavourite, tags, orders);
     }
 
+    public Person buildWithFavourite() {
+        return new Person(name, phone, email, address, isFavourite, tags, orders);
+    }
 }

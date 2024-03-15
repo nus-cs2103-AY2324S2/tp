@@ -173,6 +173,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("isFavourite", isFavourite)
                 .add("tags", tags)
                 .add("orders", orders)
                 .toString();
