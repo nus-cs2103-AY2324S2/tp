@@ -30,7 +30,6 @@ public class NextOfKinTest {
 
         // valid next of kins
         assertTrue(NextOfKin.isValidNextOfKin("Sam Sung"));
-        assertTrue(NextOfKin.isValidNextOfKin("-")); // one character
         assertTrue(NextOfKin.isValidNextOfKin("Alexander Maximilian Bartholomew Fitzwilliam III")); // long next of kin
     }
 

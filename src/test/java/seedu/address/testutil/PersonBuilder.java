@@ -22,8 +22,8 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_DESCRIPTION = "Description placeholder";
-    public static final String DEFAULT_NOK = "Next of kin placeholder";
+    public static final String DEFAULT_DESCRIPTION = "Blood Disorder";
+    public static final String DEFAULT_NOK = "Ben Bee";
 
     private Name name;
     private Phone phone;
