@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,7 @@ import seedu.address.testutil.PersonBuilder;
 
 
 public class AddFavouriteCommandTest {
-    private static final List<Index> INDICES_STUB = List.of(Index.fromOneBased(1),
+    private static final Set<Index> INDICES_STUB = Set.of(Index.fromOneBased(1),
             Index.fromOneBased(2), Index.fromOneBased(4));
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -34,8 +35,8 @@ public class AddFavouriteCommandTest {
     @Test
     public void execute_addFavourite_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withTags("friends", "Favourite").build();
-        List<Index> indices = List.of(Index.fromOneBased(1));
+        Person editedPerson = new PersonBuilder(firstPerson).withFavourite(true).build();
+        Set<Index> indices = Set.of(Index.fromOneBased(1));
         List<String> modifiedContacts = List.of(firstPerson.getName().fullName);
         AddFavouriteCommand addFavouriteCommand = new AddFavouriteCommand(indices);
         String expectedMessage = String.format(AddFavouriteCommand.MESSAGE_SUCCESS, modifiedContacts);
@@ -48,7 +49,7 @@ public class AddFavouriteCommandTest {
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        List<Index> indices = List.of(Index.fromOneBased(model.getFilteredPersonList().size() + 1));
+        Set<Index> indices = Set.of(Index.fromOneBased(model.getFilteredPersonList().size() + 1));
         AddFavouriteCommand addFavouriteCommand = new AddFavouriteCommand(indices);
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
                 addFavouriteCommand.execute(model));
@@ -72,7 +73,7 @@ public class AddFavouriteCommandTest {
         assert (!addFavouriteCommand.equals(null));
 
         // different indices -> returns false
-        AddFavouriteCommand differentFavouriteCommand = new AddFavouriteCommand(List.of(Index.fromOneBased(1)));
+        AddFavouriteCommand differentFavouriteCommand = new AddFavouriteCommand(Set.of(Index.fromOneBased(1)));
         assert (!addFavouriteCommand.equals(differentFavouriteCommand));
     }
 

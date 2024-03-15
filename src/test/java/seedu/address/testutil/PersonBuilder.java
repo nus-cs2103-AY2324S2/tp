@@ -22,11 +22,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final boolean DEFAULT_ISFAVOURITE = false;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private boolean isFavourite;
     private Set<Tag> tags;
     private ArrayList<Order> orders;
 
@@ -38,6 +40,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        isFavourite = DEFAULT_ISFAVOURITE;
         tags = new HashSet<>();
         orders = new ArrayList<>();
     }
@@ -50,6 +53,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        isFavourite = personToCopy.getFavourite();
         tags = new HashSet<>(personToCopy.getTags());
         orders = new ArrayList<>(personToCopy.getOrders());
     }
@@ -91,6 +95,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the isFavourite of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
         return this;
     }
 

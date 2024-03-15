@@ -60,7 +60,7 @@ public class PersonCard extends UiPart<Region> {
         if (person.getFavourite()) {
             favourite.setText("Favourite");
         } else {
-            // Hides Favourite label when contact is not a favourite
+            // Collapse empty label
             favourite.setVisible(false);
             favourite.setManaged(false);
         }

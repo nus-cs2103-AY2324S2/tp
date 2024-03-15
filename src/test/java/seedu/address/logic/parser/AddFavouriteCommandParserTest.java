@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDICES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import seedu.address.logic.commands.AddFavouriteCommand;
 
 public class AddFavouriteCommandParserTest {
     private static final String NON_EMPTY_INDICES = "1,2,4";
-    private static final List<Index> NON_EMPTY_INDICES_LIST = List.of(Index.fromOneBased(1),
+    private static final Set<Index> NON_EMPTY_INDICES_SET = Set.of(Index.fromOneBased(1),
             Index.fromOneBased(2), Index.fromOneBased(4));
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             AddFavouriteCommand.MESSAGE_USAGE);
@@ -24,7 +24,7 @@ public class AddFavouriteCommandParserTest {
     public void parse_indicesSpecified_success() {
         String userInput = " " + PREFIX_INDICES + " " + NON_EMPTY_INDICES;
 
-        AddFavouriteCommand expectedCommand = new AddFavouriteCommand(NON_EMPTY_INDICES_LIST);
+        AddFavouriteCommand expectedCommand = new AddFavouriteCommand(NON_EMPTY_INDICES_SET);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

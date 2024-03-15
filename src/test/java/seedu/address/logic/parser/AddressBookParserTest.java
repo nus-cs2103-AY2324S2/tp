@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -90,7 +91,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addFavourite() throws Exception {
-        List<Index> indices = List.of(Index.fromOneBased(1), Index.fromOneBased(2), Index.fromOneBased(4));
+        Set<Index> indices = Set.of(Index.fromOneBased(1), Index.fromOneBased(2), Index.fromOneBased(4));
         AddFavouriteCommand command = (AddFavouriteCommand) parser.parseCommand(
                 AddFavouriteCommand.COMMAND_WORD + " "
                 + "i/ 1,2,4"

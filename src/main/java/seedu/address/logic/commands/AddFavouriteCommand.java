@@ -51,6 +51,7 @@ public class AddFavouriteCommand extends Command {
             Person person = people.get(index.getZeroBased());
             modifiedContacts.add(person.getName().fullName);
             person.addFavourite();
+            model.setPerson(person, person);
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, modifiedContacts));
