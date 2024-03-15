@@ -8,17 +8,17 @@ import java.time.LocalDateTime;
 /**
  * Represents an order made by a Person
  */
-public class Order {
+public class Order implements Cloneable {
 
-    public static final String MESSAGE_CONSTRAINTS = "Orders can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Orders items can take any values, and it should not be blank";
 
     /*
      * The first character of the order must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    private String items;
-    private final LocalDateTime orderDateTime;
+    public final String items;
+    public final LocalDateTime orderDateTime;
 
     /**
      * Constructs an {@code Order}.
@@ -27,7 +27,7 @@ public class Order {
      */
     public Order(String items) {
         requireNonNull(items);
-        checkArgument(isValidOrder(items), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidItems(items), MESSAGE_CONSTRAINTS);
         this.items = items;
         this.orderDateTime = LocalDateTime.now();
     }
@@ -41,15 +41,15 @@ public class Order {
     public Order(String items, LocalDateTime orderDateTime) {
         requireNonNull(items);
         requireNonNull(orderDateTime);
-        checkArgument(isValidOrder(items), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidItems(items), MESSAGE_CONSTRAINTS);
         this.items = items;
         this.orderDateTime = orderDateTime;
     }
 
     /**
-     * Returns true if a given string is a valid order.
+     * Returns true if a given string is a valid item.
      */
-    public static boolean isValidOrder(String test) {
+    public static boolean isValidItems(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -57,5 +57,11 @@ public class Order {
     public String toString() {
         return orderDateTime.toString() + "\n" + items;
     }
+
+    @Override
+    public Order clone() {
+        return new Order(items, orderDateTime);
+    }
+
 }
 

@@ -29,15 +29,16 @@ public class Person {
     private final ArrayList<Order> orders = new ArrayList<>();
 
     /**
-     * Every field except orders must be present and not null.
+     * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, tags, orders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.orders.addAll(orders);
     }
 
     public Name getName() {
@@ -62,6 +63,17 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns a copy of the orders of this Person
+     */
+    public ArrayList<Order> getOrders() {
+        ArrayList<Order> copy = new ArrayList<>();
+        for (Order order : orders) {
+            copy.add(order.clone());
+        }
+        return copy;
     }
 
     /**
