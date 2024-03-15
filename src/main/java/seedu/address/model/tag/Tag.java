@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import javax.management.relation.Role;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -12,8 +14,11 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be either 'BUYER' or 'Seller'";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public Role tagName;
+    public final Role tagName;
 
+    /**
+     * Enumeration of Roles that a Person can take on
+     */
     public enum Role {
         BUYER("Buyer"),
         SELLER("Seller");
