@@ -10,8 +10,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.house.Block;
+import seedu.address.model.house.Level;
 import seedu.address.model.house.PostalCode;
 import seedu.address.model.house.Street;
+import seedu.address.model.house.UnitNumber;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -141,6 +143,35 @@ public class ParserUtil {
         return new Street(trimmedStreet);
     }
 
+    /**
+     * Parses a {@code String level} into a {@code Level}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code level} is invalid.
+     */
+    public static Level parseLevel(String level) throws ParseException {
+        requireNonNull(level);
+        String trimmedLevel = level.trim();
+        if (!Level.isValidLevel(trimmedLevel)) {
+            throw new ParseException(Level.MESSAGE_CONSTRAINTS);
+        }
+        return new Level(trimmedLevel);
+    }
+
+    /**
+     * Parses a {@code String unitNumber} into a {@code unitNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code unitNumber} is invalid.
+     */
+    public static UnitNumber parseUnitNumber(String unitNumber) throws ParseException {
+        requireNonNull(unitNumber);
+        String trimmedLevel = unitNumber.trim();
+        if (!UnitNumber.isValidUnitNumber(trimmedLevel)) {
+            throw new ParseException(UnitNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new UnitNumber(trimmedLevel);
+    }
     /**
      * Parses a {@code String block} into an {@code Block}.
      * Leading and trailing whitespaces will be trimmed.
