@@ -9,17 +9,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentsException;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
- * A unique appointment is determined by {@link Appointment#equals(Appointment)}.
+ * A person is considered unique by comparing using {@code Appointment#equals(Appointment)}.
  *
- * Supports a minimal set of list operations.
- *
- * @see Appointment#equals(Appointment)
  */
 public class UniqueAppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
