@@ -55,7 +55,8 @@ public class LastContactCommandTest {
         if (model.hasPerson(person)) {
             model.deletePerson(person);
         }
-        String actualMessage = new LastContactCommand(name, new LastContact(lastContact)).execute(model).getFeedbackToUser();
+        String actualMessage = new LastContactCommand(name, new LastContact(lastContact))
+                .execute(model).getFeedbackToUser();
         assertEquals(expectedMessage, actualMessage);
     }
 
@@ -68,7 +69,8 @@ public class LastContactCommandTest {
         if (!model.hasPerson(person)) {
             model.addPerson(person);
         }
-        String actualMessage = new LastContactCommand(name, new LastContact(lastContact)).execute(model).getFeedbackToUser();
+        String actualMessage = new LastContactCommand(name, new LastContact(lastContact))
+                .execute(model).getFeedbackToUser();
         assertEquals(expectedMessage, actualMessage);
     }
 
