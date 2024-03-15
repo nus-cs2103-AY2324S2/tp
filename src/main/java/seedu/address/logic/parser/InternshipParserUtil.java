@@ -134,7 +134,7 @@ public class InternshipParserUtil {
     public static ContactEmail parseContactEmail(String contactEmail) throws ParseException {
         requireNonNull(contactEmail);
         String trimmedContactEmail = contactEmail.trim();
-        if (!ContactEmail.isValidEmail(trimmedContactEmail)) {
+        if (!ContactEmail.isValidContactEmail(trimmedContactEmail)) {
             throw new ParseException(ContactEmail.MESSAGE_CONSTRAINTS);
         }
         return new ContactEmail(trimmedContactEmail);
