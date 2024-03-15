@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -52,13 +53,15 @@ public class AddFavouriteCommand extends Command {
 
             Person person = people.get(index.getZeroBased());
             modifiedContacts.add(person.getName().fullName);
-            Set<Tag> tags = new HashSet<>(person.getTags());
-            tags.add(new Tag("Favourite"));
-            EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-            editPersonDescriptor.setTags(tags);
-            EditCommand editCommand = new EditCommand(index, editPersonDescriptor);
-            editCommand.execute(model);
+            person.addFavourite();
+//            Set<Tag> tags = new HashSet<>(person.getTags());
+//            tags.add(new Tag("Favourite"));
+//            EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+//            editPersonDescriptor.setTags(tags);
+//            EditCommand editCommand = new EditCommand(index, editPersonDescriptor);
+//            editCommand.execute(model);
         }
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, modifiedContacts));
     }
 
