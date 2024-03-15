@@ -324,6 +324,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Moddie` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to add a specific person in the list
+4.  AddressBook adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given information of person is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case ends.
+
 **Use case: Delete a person**
 
 **MSS**
@@ -346,6 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
 
 *{More to be added}*
 
