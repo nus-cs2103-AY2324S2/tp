@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Loan;
@@ -17,6 +18,8 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<Person> PREDICATE_SHOW_NONE = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -97,4 +100,8 @@ public interface Model {
     void updateLoanList(List<Loan> loanList);
 
     ObservableList<Loan> getLoanList();
+
+    BooleanProperty getIsLoansTab();
+
+    void setIsLoansTab(Boolean isLoansTab);
 }

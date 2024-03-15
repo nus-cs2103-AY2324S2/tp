@@ -44,8 +44,7 @@ public class ViewLoanCommand extends Command {
 
         // TODO model.updateLoanList or something
         model.updateLoanList(loanRecords.getLoanList());
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToShowLoan)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToShowLoan)), false, false, true);
     }
 
     @Override

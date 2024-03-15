@@ -5,6 +5,7 @@ import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -90,5 +91,15 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Loan> getLoanList() {
         return model.getLoanList();
+    }
+
+    @Override
+    public void updateIsLoansTab(boolean isLoansTab) {
+        model.setIsLoansTab(isLoansTab);
+    }
+
+    @Override
+    public BooleanProperty getIsLoansTab() {
+        return model.getIsLoansTab();
     }
 }

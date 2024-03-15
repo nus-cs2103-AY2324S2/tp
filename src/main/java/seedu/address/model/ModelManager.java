@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,6 +30,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     private final ObservableList<Loan> currLoanList;
+
+    private final BooleanProperty isLoansTab = new SimpleBooleanProperty(false);
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -161,6 +165,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Loan> getLoanList() {
         return currLoanList;
+    }
+
+    @Override
+    public BooleanProperty getIsLoansTab() {
+        return this.isLoansTab;
+    }
+
+    @Override
+    public void setIsLoansTab(Boolean isLoansTab) {
+        this.isLoansTab.setValue(isLoansTab);
     }
 
 }

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,22 +20,30 @@ public class LoanListPanel extends UiPart<Region> {
     private static final String FXML = "LoanListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(LoanListPanel.class);
 
+    private BooleanProperty isLoansTab;
     @FXML
     private ListView<Loan> loanListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public LoanListPanel(ObservableList<Loan> loanList) {
+    public LoanListPanel(ObservableList<Loan> loanList, BooleanProperty isLoansTab) {
         super(FXML);
         loanListView.setItems(loanList);
         loanListView.setCellFactory(listView -> new LoanListViewCell());
+        this.isLoansTab = isLoansTab;
+
+        this.isLoansTab.addListener((observable, oldValue, newValue) -> {
+            loanListView.setVisible(newValue);
+            System.out.println("Loans tab is now active: " + newValue);
+        });
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class LoanListViewCell extends ListCell<Loan> {
+
         @Override
         protected void updateItem(Loan loan, boolean empty) {
             super.updateItem(loan, empty);

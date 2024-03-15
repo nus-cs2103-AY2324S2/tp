@@ -117,10 +117,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getIsLoansTab());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        loanListPanel = new LoanListPanel(logic.getLoanList());
+        loanListPanel = new LoanListPanel(logic.getLoanList(), logic.getIsLoansTab());
         loanListPanelPlaceholder.getChildren().add(loanListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -195,6 +195,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            // Enable/Disable the loan tab based on whether command is loan related
+            logic.updateIsLoansTab(commandResult.isLoanRelated());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
