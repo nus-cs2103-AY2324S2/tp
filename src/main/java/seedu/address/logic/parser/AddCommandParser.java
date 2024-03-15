@@ -43,7 +43,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY, PREFIX_HOBBY);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PID, PREFIX_NAME, PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY,
+            PREFIX_HOBBY);
         PatientHospitalId patientHospitalId = ParserUtil.parsePatientHospitalId(argMultimap.getValue(PREFIX_PID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         PreferredName preferredName = ParserUtil.parsePreferredName(argMultimap.getValue(PREFIX_PRENAME).get());

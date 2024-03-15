@@ -180,13 +180,6 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns true if patientHospitalId is edited.
-         */
-        public boolean isPatientHospitalIdEdited() {
-            return patientHospitalId != null;
-        }
-
-        /**
          * Sets the flag indicating that patientHospitalId is edited.
          */
         public void setPatientHospitalId(PatientHospitalId id) {
@@ -266,7 +259,8 @@ public class EditCommand extends Command {
             }
 
             EditPatientDescriptor otherEditPatientDescriptor = (EditPatientDescriptor) other;
-            return Objects.equals(name, otherEditPatientDescriptor.name)
+            return Objects.equals(patientHospitalId, otherEditPatientDescriptor.patientHospitalId)
+                    && Objects.equals(name, otherEditPatientDescriptor.name)
                     && Objects.equals(preferredName, otherEditPatientDescriptor.preferredName)
                     && Objects.equals(foodPreference, otherEditPatientDescriptor.foodPreference)
                     && Objects.equals(familyCondition, otherEditPatientDescriptor.familyCondition)

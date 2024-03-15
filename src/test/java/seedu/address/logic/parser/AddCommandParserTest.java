@@ -83,8 +83,8 @@ public class AddCommandParserTest {
                 + FAMILY_DESC_BOB + HOBBY_DESC_BOB + TAG_DESC_DIABETES;
 
         // multiple patient hospital ID
-//        assertParseFailure(parser, ID_DESC_AMY + validExpectedPatientString,
-//            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID));
+        assertParseFailure(parser, ID_DESC_AMY + validExpectedPatientString,
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID));
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPatientString,
