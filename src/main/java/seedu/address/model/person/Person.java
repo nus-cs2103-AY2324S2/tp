@@ -51,9 +51,7 @@ public class Person {
         return email;
     }
 
-    public Role getRole() {
-        return role;
-    }
+    public Role getRole() { return role; }
 
     public Address getAddress() {
         return address;
