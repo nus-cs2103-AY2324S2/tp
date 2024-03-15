@@ -13,8 +13,7 @@ public class TestFxmlObject {
 
     private String text;
 
-    public TestFxmlObject() {
-    }
+    public TestFxmlObject() {}
 
     public TestFxmlObject(String text) {
         setText(text);
