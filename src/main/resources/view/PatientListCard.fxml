@@ -28,11 +28,26 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="preferredName" styleClass="cell_small_label" text="\$preferredName" />
-      <Label fx:id="patientHospitalId" styleClass="cell_small_label" text="\$patientHospitalId" />
-      <Label fx:id="foodPreference" styleClass="cell_small_label" text="\$foodPreference" />
-      <Label fx:id="familyCondition" styleClass="cell_small_label" text="\$familyCondition" />
-      <Label fx:id="hobby" styleClass="cell_small_label" text="\$hobby" />
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="preferredNameLabel" styleClass="cell_small_label" text="Preferred Name:"/>
+        <Label fx:id="preferredName" styleClass="cell_small_label" text="\$preferredName"/>
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="patientHospitalIdLabel" styleClass="cell_small_label" text="Patient Hospital ID:"/>
+        <Label fx:id="patientHospitalId" styleClass="cell_small_label" text="\$patientHospitalId" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="foodPreferenceLabel" styleClass="cell_small_label" text="Food Preference:"/>
+        <Label fx:id="foodPreference" styleClass="cell_small_label" text="\$foodPreference" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="familyConditionLabel" styleClass="cell_small_label" text="Family Condition:"/>
+        <Label fx:id="familyCondition" styleClass="cell_small_label" text="\$familyCondition" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="hobbyLabel" styleClass="cell_small_label" text="Hobby:"/>
+        <Label fx:id="hobby" styleClass="cell_small_label" text="\$hobby" />
+      </HBox>
 
     </VBox>
   </GridPane>
