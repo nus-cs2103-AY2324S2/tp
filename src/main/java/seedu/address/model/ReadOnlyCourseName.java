@@ -1,12 +1,11 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.course.Course;
 
 /**
  * Unmodifiable view of a list of course (only 1 for now)
  */
-public interface ReadOnlyCourse {
+public interface ReadOnlyCourseName {
 
     /**
      * Returns an unmodifiable view of the courses.

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCourseName;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -19,6 +20,8 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+
+    private CourseStorageName courseNameStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -74,5 +77,35 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
+
+    // ================ Course methods ==============================
+
+    @Override
+    public Path getCourseNameFilePath() {
+        return courseNameStorage.getCourseNameFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyCourseName> readCourse() throws DataLoadingException {
+        return readCourse(courseNameStorage.getCourseNameFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyCourseName> readCourse(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return courseNameStorage.readCourse(filePath);
+    }
+
+    @Override
+    public void saveCourse(ReadOnlyCourseName courseName) throws IOException {
+        saveCourse(courseName, courseNameStorage.getCourseNameFilePath());
+    }
+
+    @Override
+    public void saveCourse(ReadOnlyCourseName courseName, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        courseNameStorage.saveCourse(courseName, filePath);
+    }
+
 
 }

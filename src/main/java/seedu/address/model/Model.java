@@ -117,13 +117,13 @@ public interface Model {
 
     /**
      * Saves the given course name information to the storage.
-     * This method serializes the {@link ReadOnlyCourse} object and saves it
+     * This method serializes the {@link ReadOnlyCourseName} object and saves it
      * to the designated storage file. It is used to persist changes to the course
      * name across application runs.
      *
-     * @param course the {@link ReadOnlyCourse} object representing the course name to be saved.
+     * @param course the {@link ReadOnlyCourseName} object representing the course name to be saved.
      */
-    void setCourseName(ReadOnlyCourse course);
+    void setCourseName(ReadOnlyCourseName course);
 
 
     /**

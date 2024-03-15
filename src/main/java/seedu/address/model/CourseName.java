@@ -8,7 +8,7 @@ import seedu.address.model.course.Course;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class CourseName implements ReadOnlyCourse {
+public class CourseName implements ReadOnlyCourseName {
 
     private Course course;
 
@@ -18,7 +18,7 @@ public class CourseName implements ReadOnlyCourse {
     /**
      * Creates a Course using the course in the {@code toBeCopied}
      */
-    public CourseName(ReadOnlyCourse toBeCopied) {
+    public CourseName(ReadOnlyCourseName toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -35,7 +35,7 @@ public class CourseName implements ReadOnlyCourse {
     /**
      * Resets the existing data of this {@code CourseName} with {@code newData}.
      */
-    public void resetData(ReadOnlyCourse newData) {
+    public void resetData(ReadOnlyCourseName newData) {
         requireNonNull(newData);
 
         this.course = newData.getCourse();
