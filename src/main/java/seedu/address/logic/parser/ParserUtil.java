@@ -13,8 +13,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.person.Upcoming;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -123,6 +123,10 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Represents an upcoming event or task.
+     * It provides methods to validate and parse the upcoming string.
+     */
     public static Upcoming parseUpcoming(String upcoming) throws ParseException {
         requireNonNull(upcoming);
         String trimmedUpcoming = upcoming.trim();
