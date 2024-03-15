@@ -24,6 +24,8 @@ class JsonAdaptedEmployee {
     private final String phone;
     private final String email;
     private final String address;
+    private final String team;
+    private final String role;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -32,11 +34,14 @@ class JsonAdaptedEmployee {
     @JsonCreator
     public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("team") String team, @JsonProperty("role") String role,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.team = team;
+        this.role = role;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -50,6 +55,9 @@ class JsonAdaptedEmployee {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        team = source.getTeam().teamName;
+        role = source.getRole().value;
+
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -98,8 +106,24 @@ class JsonAdaptedEmployee {
         }
         final Address modelAddress = new Address(address);
 
+        if (team == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Team.class.getSimpleName()));
+        }
+        if (!Team.isValidTeam(team)) {
+            throw new IllegalValueException(Team.MESSAGE_CONSTRAINTS);
+        }
+        final Team modelTeam = new Team(team);
+
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+        }
+        if (!Role.isValidRole(role)) {
+            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        }
+        final Role modelRole = new Role(role);
+
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTeam, modelRole, modelTags);
     }
 
 }
