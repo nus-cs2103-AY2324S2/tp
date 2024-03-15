@@ -20,7 +20,13 @@ import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
-import scrolls.elder.model.person.*;
+import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Befriendee;
+import scrolls.elder.model.person.Email;
+import scrolls.elder.model.person.Name;
+import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
 /**

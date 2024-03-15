@@ -16,7 +16,6 @@ import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.model.person.Phone;
 import scrolls.elder.model.person.Volunteer;
-import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.tag.Tag;
 
 /**

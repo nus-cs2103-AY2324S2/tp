@@ -1,11 +1,13 @@
 package scrolls.elder.model.person;
+import java.util.Set;
 
-import scrolls.elder.commons.util.CollectionUtil;
 import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.model.tag.Tag;
 
-import java.util.Set;
-
+/**
+ * Represents a Volunteer in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Volunteer extends Person {
     public Volunteer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);

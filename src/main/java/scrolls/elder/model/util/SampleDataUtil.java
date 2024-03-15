@@ -6,7 +6,13 @@ import java.util.stream.Collectors;
 
 import scrolls.elder.model.AddressBook;
 import scrolls.elder.model.ReadOnlyAddressBook;
-import scrolls.elder.model.person.*;
+import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Befriendee;
+import scrolls.elder.model.person.Email;
+import scrolls.elder.model.person.Name;
+import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
 /**

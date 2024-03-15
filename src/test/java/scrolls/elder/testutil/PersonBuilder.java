@@ -3,7 +3,13 @@ package scrolls.elder.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import scrolls.elder.model.person.*;
+import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Befriendee;
+import scrolls.elder.model.person.Email;
+import scrolls.elder.model.person.Name;
+import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 import scrolls.elder.model.util.SampleDataUtil;
 
@@ -97,6 +103,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a Person based on the fields in the person builder
+     */
     public Person build() {
         Person person;
         if (isVolunteer) {

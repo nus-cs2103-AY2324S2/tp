@@ -1,12 +1,15 @@
 package scrolls.elder.model.person;
+import java.util.Set;
 
 import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.model.tag.Tag;
 
-import java.util.Set;
-
+/**
+ * Represents a Befriendee in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Befriendee extends Person {
-    public  Befriendee(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Befriendee(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
     }
 
@@ -31,7 +34,7 @@ public class Befriendee extends Person {
             return false;
         }
 
-         Befriendee otherBefriendee = (Befriendee) other;
+        Befriendee otherBefriendee = (Befriendee) other;
         return name.equals(otherBefriendee.name)
                 && phone.equals(otherBefriendee.phone)
                 && email.equals(otherBefriendee.email)

@@ -7,7 +7,12 @@ import java.util.stream.Stream;
 
 import scrolls.elder.logic.commands.AddCommand;
 import scrolls.elder.logic.parser.exceptions.ParseException;
-import scrolls.elder.model.person.*;
+import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Email;
+import scrolls.elder.model.person.Name;
+import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
 /**
