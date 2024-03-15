@@ -83,16 +83,20 @@ public class EditCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
-
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor
+            editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
         if (editPersonDescriptor.getCategory() != null) {
             Entry personToEditEntry = personToEdit.getEntry(editPersonDescriptor.getCategory());
-            personToEditEntry.setDescription(editPersonDescriptor.getDescription());
+            if (personToEditEntry == null) {
+                throw new CommandException(MESSAGE_CATEGORY_DOESNT_EXIST);
+            } else {
+                personToEditEntry.setDescription(editPersonDescriptor.getDescription());
+            }
         }
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         personToEdit.setTags(updatedTags);
@@ -167,9 +171,6 @@ public class EditCommand extends Command {
          */
         public boolean isAnyTagEdited() {
             return CollectionUtil.isAnyNonNull(tags);
-        }
-        public EntryList getEntryList() {
-            return this.entryList;
         }
         public void set(String category, Entry entry) {
             Entry e = entryList.get(category);
