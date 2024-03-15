@@ -21,7 +21,7 @@ public class MeetDateTime {
 
 
     /**
-     * Constructs a {@code MeetDate}.
+     * Constructs a {@code MeetDateTime}.
      *
      * @param date A valid date.
      */

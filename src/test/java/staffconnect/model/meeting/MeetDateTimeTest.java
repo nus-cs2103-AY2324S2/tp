@@ -27,7 +27,7 @@ class MeetDateTimeTest {
         // null Date
         assertThrows(NullPointerException.class, () -> MeetDateTime.isValidMeetDateTime(null));
 
-        // invalid Meeting Date  code
+        // invalid Meeting Date
         assertFalse(MeetDateTime.isValidMeetDateTime("")); // empty string
         assertFalse(MeetDateTime.isValidMeetDateTime(" ")); // spaces only
         assertFalse(MeetDateTime.isValidMeetDateTime("ABCD")); // letters only
@@ -40,7 +40,7 @@ class MeetDateTimeTest {
         assertFalse(MeetDateTime.isValidMeetDateTime("12/4/2023 12:00")); // wrong number digits for month
         assertFalse(MeetDateTime.isValidMeetDateTime("1/04/2023 12:00")); // wrong number digits for day
 
-        // valid module code
+        // valid meeting Date
         assertTrue(MeetDateTime.isValidMeetDateTime("12/04/2023 12:00")); // dd/MM/yyyy HH:mm
         assertTrue(MeetDateTime.isValidMeetDateTime("15/02/2024 12:00")); // dd/MM/yyyy HH:mm
     }
