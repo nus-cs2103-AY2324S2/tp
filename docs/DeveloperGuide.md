@@ -315,7 +315,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the System is the `TutorTrack` and the Actor is the `Tutor`, unless specified otherwise)
 
 **Use case:** UC01 - View all students.<br>
-**Preconditions:** Connection is stable. 
 
 **MSS:**
 1. User requests to list students.
@@ -331,7 +330,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Use case:** UC02 - Add a student.<br>
-**Preconditions:** Connection is stable.
 
 **MSS:**
 1. User requests to add a specific student information.
@@ -363,7 +361,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 **Use case:** UC03 - Update a student.<br>
-**Preconditions:** Connection is stable.
 
 **MSS:**
 1. User requests to list students.
@@ -397,7 +394,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 **Use case:** UC04 - Delete a student.<br>
-**Preconditions:** Connection is stable.
 
 **MSS:**
 1. User requests to list students.
@@ -435,7 +431,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case continues from step 5.
 
 **Use case:** UC05 - Find a student.<br>
-**Preconditions:** Connection is stable.
 
 **MSS:**
 1. User requests to list students.
