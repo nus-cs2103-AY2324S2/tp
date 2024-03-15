@@ -32,9 +32,11 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         List<Predicate<Person>> predicates = new ArrayList<>();
 
-        if (!hasAtLeastOnePrefixPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE,
-                CliSyntax.PREFIX_EMAIL, PREFIX_ALIAS)
-                || !argMultimap.getPreamble().isEmpty()) {
+        // Checks if there is at least one prefix available.
+        boolean hasAtLeastOnePrefixPresent = hasAtLeastOnePrefixPresent(argMultimap, CliSyntax.PREFIX_NAME,
+                CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL, PREFIX_ALIAS);
+
+        if (!hasAtLeastOnePrefixPresent || !argMultimap.getPreamble().isEmpty()) {
             // If there is no prefix specified, then display all records.
             // TODO: Show an error message here.
             return new ListCommand(PREDICATE_SHOW_ALL_PERSONS);
