@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.house.Block;
 import seedu.address.model.house.Level;
 import seedu.address.model.house.PostalCode;
+import seedu.address.model.house.Street;
 import seedu.address.model.house.UnitNumber;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -125,6 +126,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String street} into a {@code Street}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code street} is invalid.
+     */
+    public static Street parseStreet(String street) throws ParseException {
+        requireNonNull(street);
+        String trimmedStreet = street.trim();
+        if (!Street.isValidStreet(trimmedStreet)) {
+            throw new ParseException(Street.MESSAGE_CONSTRAINTS);
+        }
+        return new Street(trimmedStreet);
     }
 
     /**

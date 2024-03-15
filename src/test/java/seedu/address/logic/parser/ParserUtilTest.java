@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.house.Block;
 import seedu.address.model.house.Level;
 import seedu.address.model.house.PostalCode;
+import seedu.address.model.house.Street;
 import seedu.address.model.house.UnitNumber;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -30,6 +31,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_STREET = "t3$t!ng";
     private static final String INVALID_LEVEL = "aa";
     private static final String INVALID_UNIT_NUMBER = "1234";
     private static final String INVALID_BLOCK = "12a34";
@@ -42,10 +44,10 @@ public class ParserUtilTest {
     private static final String VALID_POSTALCODE = "654321";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_STREET = "292A East Coast Rd";
     private static final String VALID_LEVEL = "10";
     private static final String VALID_UNIT_NUMBER = "123";
     private static final String VALID_BLOCK = "205A";
-
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -230,6 +232,27 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseStreet_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStreet((String) null));
+    }
+
+    @Test
+    public void parseStreet_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStreet(INVALID_STREET));
+    }
+
+    @Test
+    public void parseStreet_validValueWithoutWhitespace_returnsStreet() throws Exception {
+        Street expectedStreet = new Street(VALID_STREET);
+        assertEquals(expectedStreet, ParserUtil.parseStreet(VALID_STREET));
+    }
+
+    @Test
+    public void parseStreet_validValueWithWhitespace_returnsTrimmedStreet() throws Exception {
+        String streetWithWhitespace = WHITESPACE + VALID_STREET + WHITESPACE;
+        Street expectedStreet = new Street(VALID_STREET);
+        assertEquals(expectedStreet, ParserUtil.parseStreet(streetWithWhitespace));
+    }
     public void parseLevel_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseLevel((String) null));
     }
