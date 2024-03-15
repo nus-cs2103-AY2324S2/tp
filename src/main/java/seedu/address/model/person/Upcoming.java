@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
+/**
+ * Represents a Person's upcoming appointment in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidUpcoming(String)}
+ */
 public class Upcoming implements Comparable<Upcoming> {
 
     private static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
@@ -39,16 +43,33 @@ public class Upcoming implements Comparable<Upcoming> {
         return DATETIME_PATTERN.matcher(dateTimeStr).matches();
     }
 
+    /**
+     * Compares this {@code Upcoming} object with another {@code Upcoming} object.
+     *
+     * @param other the other {@code Upcoming} object to compare with
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object
+     */
     @Override
     public int compareTo(Upcoming other) {
         return this.dateTime.compareTo(other.dateTime);
     }
 
+    /**
+     * Returns a string representation of this {@code Upcoming} object.
+     *
+     * @return a string representation of this object
+     */
     @Override
     public String toString() {
         return dateTime.format(DATETIME_FORMATTER);
     }
 
+    /**
+     * Checks if this {@code Upcoming} object is equal to another object.
+     *
+     * @param obj the object to compare with
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -61,8 +82,14 @@ public class Upcoming implements Comparable<Upcoming> {
         return this.dateTime.equals(other.dateTime);
     }
 
+    /**
+     * Returns the hash code value for this {@code Upcoming} object.
+     *
+     * @return the hash code value for this object
+     */
     @Override
     public int hashCode() {
         return dateTime.hashCode();
     }
+    
 }
