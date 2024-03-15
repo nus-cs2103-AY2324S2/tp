@@ -366,7 +366,7 @@ Use case ends.
 
   * 1b1. The application shows an error message and instructions for correct input format.
 
-    Use case ends.    
+    Use case ends.
 
 * 2a. No users are found with the given tag.
 
