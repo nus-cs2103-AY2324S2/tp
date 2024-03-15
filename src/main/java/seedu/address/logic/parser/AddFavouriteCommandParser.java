@@ -36,7 +36,9 @@ public class AddFavouriteCommandParser implements Parser<AddFavouriteCommand> {
         if (listIndices.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddFavouriteCommand.MESSAGE_USAGE));
         }
-        String[] indexKeywordsArray = listIndices.get(0).split(",");
+        // The regex ,(?=\\d|\\s) uses the lookahead operator to only split by commas that are followed by
+        // numbers or whitespace to handle invalid indices like ,,,,, and 1,,,,,,
+        String[] indexKeywordsArray = listIndices.get(0).split(",(?=\\d|\\s)");
         List<Index> indices = new ArrayList<>();
         for (String index : indexKeywordsArray) {
             try {
