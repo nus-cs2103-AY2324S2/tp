@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import scrolls.elder.logic.commands.AddCommand;
 import scrolls.elder.logic.parser.exceptions.ParseException;
 import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
@@ -39,78 +40,53 @@ public class AddCommandParser implements Parser<AddCommand> {
         boolean isBefriendee = false;
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_VOLUNTEER, CliSyntax.PREFIX_BEFRIENDEE,
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ROLE,
                         CliSyntax.PREFIX_PHONE,
                         CliSyntax.PREFIX_EMAIL,
                         CliSyntax.PREFIX_ADDRESS,
                         CliSyntax.PREFIX_TAG,
-
-                        // remove this once integrated
                         CliSyntax.PREFIX_NAME);
 
-        // Guard Clause: Check if command invalid due to both PREFIX_V and PREFIX_B used.
-        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_VOLUNTEER, CliSyntax.PREFIX_BEFRIENDEE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        // Check for all Prefixes present
+        if (!arePrefixesPresent(argMultimap,
+                CliSyntax.PREFIX_ROLE, CliSyntax.PREFIX_NAME,
+                CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_PHONE,
+                CliSyntax.PREFIX_EMAIL ) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        // Check for other Prefixes
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ADDRESS,
-                CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
+        // Check No duplicates for PREFIXES
+        argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_ROLE,
+                CliSyntax.PREFIX_PHONE,
+                CliSyntax.PREFIX_EMAIL,
+                CliSyntax.PREFIX_ADDRESS,
+                CliSyntax.PREFIX_NAME);
 
-        Name name = null;
 
-        // Either PREFIX_V or PREFIX_B is used
-        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_VOLUNTEER)) {
-            argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_VOLUNTEER);
+        String role = argMultimap.getValue(CliSyntax.PREFIX_ROLE).get();
+        if (role.equals("volunteer")) {
             isVolunteer = true;
-
-        } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_BEFRIENDEE)) {
-            argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_BEFRIENDEE);
+        } else if (role.equals("befriendee")) {
             isBefriendee = true;
-
-        }
-
-        // remove once integrated. @jerrong
-        else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)) {
-            argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_NAME,
-                    CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS);
-            name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
-        }
-        // remove once integrated. @jerrong
-
-        else {
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
 
-        argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_PHONE,
-                CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS);
-
-        if (isVolunteer) {
-            name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_VOLUNTEER).get());
-        } else if (isBefriendee) {
-            name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_BEFRIENDEE).get());
-        }
-
-        /* add once integrated @jerrong
-            else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-            }
-        */
-
+        Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
         // temporary solution, delete after merging
-        Person person = new Volunteer(name, phone, email, address, tagList);
+        Person person = null;
 
-
-
+        if (isVolunteer) {
+            person = new Volunteer(name, phone, email, address, tagList);
+        } else if (isBefriendee) {
+            person = new Befriendee(name, phone, email, address, tagList);
+        }
 
         return new AddCommand(person);
     }
