@@ -154,7 +154,7 @@ public class ParserUtil {
         }
         return new Block(trimmedBlock);
     }
-    /**    
+    /**
      * Parses a {@code String postalCode} into a {@code postalCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
