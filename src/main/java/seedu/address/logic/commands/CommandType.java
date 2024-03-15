@@ -4,6 +4,7 @@ package seedu.address.logic.commands;
  * Factory enumeration class for {@code Command} objects.
  */
 public enum CommandType {
+
     ADD {
         @Override
         public Command createCommand(String arguments) throws IllegalArgumentException {
