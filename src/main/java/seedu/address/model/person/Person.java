@@ -23,19 +23,37 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Borrow bookTitle;
+    private final MeritScore meritScore;
+    private final BookList bookTitle;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Borrow bookTitle, Set<Tag> tags) {
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.meritScore = new MeritScore(0);
+        this.bookTitle = new BookList("");
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  MeritScore meritScore, BookList bookTitle, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.meritScore = meritScore;
         this.bookTitle = bookTitle;
     }
 
@@ -63,7 +81,17 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Borrow getBook() {
+    /**
+     * @return the merit score of the person
+     */
+    public MeritScore getMeritScore() {
+        return meritScore;
+    }
+
+    /**
+     * @return the book title of the book
+     */
+    public BookList getBook() {
         return bookTitle;
     }
 
@@ -101,13 +129,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
+                && meritScore.equals(otherPerson.meritScore)
                 && bookTitle.equals(otherPerson.bookTitle);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, bookTitle, tags);
+        return Objects.hash(name, phone, email, address, meritScore, bookTitle, tags);
     }
 
     @Override
@@ -118,6 +147,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("Merit score", meritScore)
                 .add("book borrowed", bookTitle)
                 .toString();
     }

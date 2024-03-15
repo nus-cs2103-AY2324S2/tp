@@ -5,17 +5,17 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a borrower's book.
  */
-public class Borrow {
+public class BookList {
     public final String value;
 
     /**
      * Constructs an {@code Borrow}.
      *
-     * @param remark A valid email address.
+     * @param bookTitle A valid email address.
      */
-    public Borrow(String remark) {
-        requireNonNull(remark);
-        value = remark;
+    public BookList(String bookTitle) {
+        requireNonNull(bookTitle);
+        value = bookTitle;
     }
 
     @Override
@@ -26,8 +26,8 @@ public class Borrow {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Borrow // instanceof handles nulls
-                && value.equals(((Borrow) other).value)); // state check
+                || (other instanceof BookList // instanceof handles nulls
+                && value.equals(((BookList) other).value)); // state check
     }
 
     @Override
