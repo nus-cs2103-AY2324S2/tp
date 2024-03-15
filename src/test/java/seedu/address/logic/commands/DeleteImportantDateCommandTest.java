@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_IMPORTANT_DATE_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.DeleteImportantDateCommand.MESSAGE_DELETE_IMPORTANT_DATE_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
@@ -60,6 +61,18 @@ public class DeleteImportantDateCommandTest {
     }
 
     @Test
+    public void execute_deleteImportantDateToInvalidEventId_throwsCommandException() {
+        Index invalidIndex = Index.fromOneBased(model.getFilteredPatientList().get(1)
+                .getImportantDates().size() + 1);
+        DeleteImportantDateCommand deleteImportantDateCommand = new DeleteImportantDateCommand(invalidIndex,
+                INDEX_FIRST_EVENT);
+
+        CommandException exception = assertThrows(CommandException.class, () -> deleteImportantDateCommand
+                .execute(model));
+        assertEquals(MESSAGE_INVALID_IMPORTANT_DATE_DISPLAYED_INDEX, exception.getMessage());
+    }
+
+    @Test
     public void execute_deleteValidEventIndexFromValidPatient_success() throws CommandException {
         Index validIndex = Index.fromZeroBased(1);
         DeleteImportantDateCommand deleteImportantDateCommand = new DeleteImportantDateCommand(validIndex,
@@ -88,13 +101,16 @@ public class DeleteImportantDateCommandTest {
                 INDEX_FIRST_PATIENT, INDEX_SECOND_EVENT);
         DeleteImportantDateCommand deleteImportantDateCommandFourth = new DeleteImportantDateCommand(
                 INDEX_SECOND_PATIENT, INDEX_SECOND_EVENT);
-
+        ListCommand listCommand = new ListCommand();
 
         assertFalse(deleteImportantDateCommandFirst.equals(deleteImportantDateCommandSecond));
         assertFalse(deleteImportantDateCommandFirst.equals(deleteImportantDateCommandThird));
         assertFalse(deleteImportantDateCommandFirst.equals(deleteImportantDateCommandFourth));
 
+        assertFalse(deleteImportantDateCommandFirst.equals(listCommand));
+
         assertTrue(deleteImportantDateCommandFirst.equals(deleteImportantDateCommandFirst));
+
     }
 
     @Test
