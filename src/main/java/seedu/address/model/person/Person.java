@@ -18,7 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    //private final Phone phone;
+
     private final Email email;
 
     // Data fields
@@ -31,7 +31,7 @@ public class Person {
     public Person(Name name, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, email, address, tags);
         this.name = name;
-        //this.phone = phone;
+
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -41,9 +41,9 @@ public class Person {
         return name;
     }
 
-    //public Phone getPhone() {
-    //    return phone;
-    //}
+
+
+
 
     public Email getEmail() {
         return email;
@@ -91,7 +91,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                //&& phone.equals(otherPerson.phone)
+
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
@@ -107,7 +107,7 @@ public class Person {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                //.add("phone", phone)
+
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
