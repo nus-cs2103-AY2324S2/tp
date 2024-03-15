@@ -96,7 +96,7 @@ Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in the address book.
+Edits an existing client in the address book!
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
