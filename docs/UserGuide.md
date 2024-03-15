@@ -74,25 +74,27 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a client or housekeeper to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add TYPE /name NAME /email EMAIL /country_code CODE /number NUMBER /address ADDRESS`
+
+Notes: `TYPE` can be either 'client' or 'housekeeper'
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add client /name Elon /email elon@gmail.com /country_code +60 /number 88888888 /address Elon Street, Block 123, 101010 Singapore`
+* `add housekeeper /name Betsy Crowe /email betsycrowe@example.com /country_code +44 /number 1234567 /address Newgate Prison`
 
 ### Listing all persons : `list`
 
 Shows a list of all persons with the given type in the address book.
 
-Format: `list [type]`
+Format: `list TYPE`
 
-Notes: type can only be either client or housekeeper
+Notes: `TYPE` can only be either 'client' or 'housekeeper'
 
 Example:
 * `list client`
