@@ -25,7 +25,7 @@ public class ListCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + "[" + PREFIX_ALIAS + "TAG]...\n"
+            + "[" + PREFIX_ALIAS + "ALIAS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
