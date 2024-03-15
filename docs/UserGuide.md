@@ -83,7 +83,7 @@ Format: `help`
 
 Adds a patient to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add id/ <patient_hospital_id> n/ <patient_name> p/ <preferred_name> f/ <food_preference> c/ <family_condition> h/ <hobby> [t/TAG]…​`
 
 <box type="tip" seamless>
 
