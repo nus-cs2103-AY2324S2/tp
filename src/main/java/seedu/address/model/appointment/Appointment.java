@@ -22,6 +22,9 @@ public class Appointment {
         this.personId = personId;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Appointment(UUID id, UUID personId, AppointmentTime appointmentTime) {
         this.id = id;
         this.appointmentTime = appointmentTime;
