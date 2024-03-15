@@ -64,19 +64,19 @@ public class InternshipCommandTestUtil {
 
     public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_COMPANY + "Google&";
     // '&' not allowed in names
-    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION + "Mountain View&";
-    // '&' not allowed in locations
+    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION + "Mountain View";
+    // Locations have to be either local, overseas, or remote
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
     // empty string not allowed for descriptions
-    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "Intern&"; // '&' not allowed in roles
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + " "; // empty string not allowed for roles
     public static final String INVALID_CONTACT_NAME_DESC = " " + PREFIX_CONTACT_NAME + "John&";
     // '&' not allowed in names
     public static final String INVALID_CONTACT_EMAIL_DESC = " " + PREFIX_CONTACT_EMAIL + "johndoe!gmail";
     // missing '@' symbol
     public static final String INVALID_CONTACT_NUMBER_DESC = " " + PREFIX_CONTACT_NUMBER + "98765432a";
     // 'a' not allowed in contact numbers
-    public static final String INVALID_APPLICATION_STATUS_DESC = " " + PREFIX_STATUS + "Pending&";
-    // '&' not allowed in application status
+    public static final String INVALID_APPLICATION_STATUS_DESC = " " + PREFIX_STATUS + "WAITING";
+    // Application statuses have to be either to_apply, pending, rejected, accepted, or ongoing
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
