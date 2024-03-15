@@ -54,6 +54,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        company = personToCopy.getCompany();
         tags = new HashSet<>(personToCopy.getTags());
         orders = new ArrayList<>(personToCopy.getOrders());
     }
@@ -95,6 +96,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCompany(String companyName) {
+        this.company = new Company(companyName);
         return this;
     }
 
