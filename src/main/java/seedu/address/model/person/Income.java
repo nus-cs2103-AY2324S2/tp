@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the income of a person in the address book.
@@ -21,6 +22,7 @@ public class Income {
      */
     public Income(String incomeValue) {
         requireNonNull(incomeValue);
+        checkArgument(isValidIncome(incomeValue), MESSAGE_CONSTRAINTS);
         this.incomeValue = Integer.parseInt(incomeValue);
     }
 
