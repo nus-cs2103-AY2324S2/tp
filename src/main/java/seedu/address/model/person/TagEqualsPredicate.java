@@ -9,13 +9,14 @@ public class TagEqualsPredicate implements Predicate<Person> {
     private final String tagName;
 
     public TagEqualsPredicate(String tagName) {
-        this.tagName = tagName;
+        this.tagName = tagName.toLowerCase();
     }
 
     @Override
     public boolean test(Person person) {
         return person.getTags().stream()
-                .anyMatch(tag -> tag.tagName.equals(tagName));
+                .map(tag -> tag.tagName.toLowerCase())
+                .anyMatch(lowerCaseTagName -> lowerCaseTagName.equals(tagName.toLowerCase()));
     }
 
     @Override
