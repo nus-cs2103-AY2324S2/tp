@@ -3,12 +3,15 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * This Merit Score is the class of reputation of a borrower
+ */
 public class MeritScore {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Merit Score must be >= 0";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */

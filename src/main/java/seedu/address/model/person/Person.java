@@ -42,7 +42,11 @@ public class Person {
         this.bookTitle = new BookList("");
     }
 
-    public Person(Name name, Phone phone, Email email, Address address, MeritScore meritScore, BookList bookTitle, Set<Tag> tags) {
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  MeritScore meritScore, BookList bookTitle, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -132,7 +136,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, meritScore, bookTitle, tags );
+        return Objects.hash(name, phone, email, address, meritScore, bookTitle, tags);
     }
 
     @Override
