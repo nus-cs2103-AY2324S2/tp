@@ -1,0 +1,27 @@
+#exitMessage {
+    -fx-text-fill: white;
+}
+
+#yesButton {
+    -fx-text-fill: black;
+}
+#noButton {
+    -fx-background-color: dimgray;
+}
+
+#yesButton {
+    -fx-background-color: white;
+}
+
+
+#noButton:focused, #yesButton:focused {
+    -fx-background-color: "#a6ff6b";
+}
+
+#yesButton:armed {
+    -fx-background-color: darkgray;
+}
+
+#exitMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
