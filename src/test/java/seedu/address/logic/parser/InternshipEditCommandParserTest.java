@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.InternshipMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.APPLICATION_STATUS_DESC_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.COMPANY_NAME_DESC_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.COMPANY_NAME_DESC_BOB;
@@ -29,22 +29,20 @@ import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTA
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_AMY;
-import static seedu.address.logic.commands.InternshipEditCommand.EditInternshipDescriptor;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_SECOND_INTERNSHIP;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_THIRD_INTERNSHIP;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
+import seedu.address.logic.InternshipMessages;
 import seedu.address.logic.commands.InternshipEditCommand;
 import seedu.address.logic.commands.InternshipEditCommand.EditInternshipDescriptor;
 import seedu.address.model.internship.ApplicationStatus;
@@ -107,17 +105,17 @@ public class InternshipEditCommandParserTest {
         //invalid contact email
         assertParseFailure(parser, "1" + INVALID_CONTACT_NUMBER_DESC, ContactNumber.MESSAGE_CONSTRAINTS);
         //invalid contact number
-        assertParseFailure(parser, "1" + INVALID_APPLICATION_STATUS_DESC, ApplicationStatus.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_APPLICATION_STATUS_DESC,
+                ApplicationStatus.MESSAGE_CONSTRAINTS);
         //invalid application status
 
         // invalid company name followed by valid email
-        assertParseFailure(parser, "1" + INVALID_COMPANY_NAME_DESC + CONTACT_EMAIL_DESC_AMY, 
+        assertParseFailure(parser, "1" + INVALID_COMPANY_NAME_DESC + CONTACT_EMAIL_DESC_AMY,
                 CompanyName.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_COMPANY_NAME_DESC + INVALID_CONTACT_EMAIL_DESC 
-                        + VALID_CONTACT_NUMBER_AMY + VALID_COMPANY_NAME_AMY,
-                CompanyName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_COMPANY_NAME_DESC + INVALID_CONTACT_EMAIL_DESC
+                + VALID_CONTACT_NUMBER_AMY + VALID_COMPANY_NAME_AMY, CompanyName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -136,13 +134,13 @@ public class InternshipEditCommandParserTest {
                 .build();
         
         InternshipEditCommand expectedCommand = new InternshipEditCommand(targetIndex, descriptor);
-
+        
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + CONTACT_NUMBER_DESC_BOB + CONTACT_EMAIL_DESC_AMY;
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
@@ -156,7 +154,7 @@ public class InternshipEditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + COMPANY_NAME_DESC_AMY;
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_AMY).build();
@@ -168,37 +166,37 @@ public class InternshipEditCommandParserTest {
         descriptor = new EditInternshipDescriptorBuilder().withLocation(VALID_LOCATION_AMY).build();
         expectedCommand = new InternshipEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-        
+
         // description
         userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY;
         descriptor = new EditInternshipDescriptorBuilder().withDescription(VALID_DESCRIPTION_AMY).build();
         expectedCommand = new InternshipEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-        
+
         // role
         userInput = targetIndex.getOneBased() + ROLE_DESC_AMY;
         descriptor = new EditInternshipDescriptorBuilder().withRole(VALID_ROLE_AMY).build();
         expectedCommand = new InternshipEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-        
+
         // contact name
         userInput = targetIndex.getOneBased() + CONTACT_NAME_DESC_AMY;
         descriptor = new EditInternshipDescriptorBuilder().withContactName(VALID_CONTACT_NAME_AMY).build();
         expectedCommand = new InternshipEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-        
+
         // contact email
         userInput = targetIndex.getOneBased() + CONTACT_EMAIL_DESC_AMY;
         descriptor = new EditInternshipDescriptorBuilder().withContactEmail(VALID_CONTACT_EMAIL_AMY).build();
         expectedCommand = new InternshipEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-        
+
         // contact number
         userInput = targetIndex.getOneBased() + CONTACT_NUMBER_DESC_AMY;
         descriptor = new EditInternshipDescriptorBuilder().withContactNumber(VALID_CONTACT_NUMBER_AMY).build();
         expectedCommand = new InternshipEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-        
+
         // application status
         userInput = targetIndex.getOneBased() + APPLICATION_STATUS_DESC_AMY;
         descriptor = new EditInternshipDescriptorBuilder().withApplicationStatus(VALID_APPLICATION_STATUS_AMY).build();
@@ -212,23 +210,24 @@ public class InternshipEditCommandParserTest {
         // AddCommandParserTest#parse_repeatedNonTagValue_failure()
 
         // valid followed by invalid
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + INVALID_CONTACT_NUMBER_DESC + CONTACT_NUMBER_DESC_BOB;
 
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER));
+        assertParseFailure(parser, userInput, InternshipMessages
+                .getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER));
 
         // invalid followed by valid
         userInput = targetIndex.getOneBased() + CONTACT_NUMBER_DESC_BOB + INVALID_CONTACT_NUMBER_DESC;
 
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER));
+        assertParseFailure(parser, userInput, InternshipMessages
+                .getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER));
 
         // mulltiple valid fields repeated
-        userInput = targetIndex.getOneBased() + COMPANY_NAME_DESC_AMY + CONTACT_NUMBER_DESC_BOB 
+        userInput = targetIndex.getOneBased() + COMPANY_NAME_DESC_AMY + CONTACT_NUMBER_DESC_BOB
                 + CONTACT_NUMBER_DESC_BOB + COMPANY_NAME_DESC_BOB + CONTACT_EMAIL_DESC_AMY + CONTACT_NUMBER_DESC_BOB
                 + CONTACT_EMAIL_DESC_AMY + CONTACT_NAME_DESC_BOB;
 
-        assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY,
+        assertParseFailure(parser, userInput, InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY,
                         PREFIX_CONTACT_NUMBER, PREFIX_CONTACT_EMAIL));
 
         // multiple invalid values
@@ -236,7 +235,7 @@ public class InternshipEditCommandParserTest {
                 + INVALID_CONTACT_EMAIL_DESC + INVALID_CONTACT_NUMBER_DESC + INVALID_ROLE_DESC
                 + INVALID_CONTACT_EMAIL_DESC;
 
-        assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER, PREFIX_ROLE, PREFIX_CONTACT_EMAIL));
+        assertParseFailure(parser, userInput, InternshipMessages
+                .getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER, PREFIX_ROLE, PREFIX_CONTACT_EMAIL));
     }
 }
