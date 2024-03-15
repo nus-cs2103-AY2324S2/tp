@@ -35,7 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_FACULTY + person.getFaculty().value + " ");
+        sb.append(PREFIX_FACULTY + person.getFaculty().toString() + " ");
         sb.append(PREFIX_VENUE + person.getVenue().value + " ");
         sb.append(PREFIX_MODULE + person.getModule().value + " ");
         person.getTags().stream().forEach(
