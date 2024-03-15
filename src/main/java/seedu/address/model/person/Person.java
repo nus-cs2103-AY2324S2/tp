@@ -23,20 +23,25 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final MoneyOwed moneyOwed;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final Birthday birthday;
+    private final MoneyOwed moneyOwed;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, MoneyOwed moneyOwed, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Remark remark, Set<Tag> tags, Birthday birthday, MoneyOwed moneyOwed) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.moneyOwed = moneyOwed;
+        this.remark = remark;
         this.tags.addAll(tags);
+        this.birthday = birthday;
+        this.moneyOwed = moneyOwed;
     }
 
     public Name getName() {
@@ -50,6 +55,7 @@ public class Person {
     public Email getEmail() {
         return email;
     }
+
     public MoneyOwed getMoneyOwed() {
         return moneyOwed;
     }
@@ -58,12 +64,20 @@ public class Person {
         return address;
     }
 
+    public Remark getRemark() {
+        return remark;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Birthday getBirthday() {
+        return birthday;
     }
 
     /**
@@ -100,13 +114,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
+                && birthday.equals(otherPerson.birthday)
                 && moneyOwed.equals(otherPerson.moneyOwed);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, birthday);
     }
 
     @Override
@@ -116,8 +131,10 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("moneyOwed", moneyOwed)
+                .add("remark", remark)
                 .add("tags", tags)
+                .add("birthday", birthday)
+                .add("moneyOwed", moneyOwed)
                 .toString();
     }
 

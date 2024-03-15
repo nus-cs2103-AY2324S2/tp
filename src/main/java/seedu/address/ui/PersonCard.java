@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Person;
 
 /**
@@ -41,6 +43,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label birthday;
+    @FXML
+    private Label remark;
+    @FXML
     private Label moneyOwed;
 
     /**
@@ -54,9 +60,11 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        remark.setText(person.getRemark().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        birthday.setText(Optional.ofNullable(person.getBirthday()).orElse(new Birthday("")).toString());
         moneyOwed.setText(person.getMoneyOwed().toString());
     }
 }
