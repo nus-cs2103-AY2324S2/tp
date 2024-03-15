@@ -6,11 +6,9 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's note in the address book.
  * Guarantees: immutable; is always valid.
  */
-public class Note {
+public class Note extends Attribute<String> {
 
     public static final String MESSAGE_CONSTRAINTS = "Notes can take any values, and it should not be blank";
-
-    public final String value;
 
     /**
      * Constructs a {@code note}.
@@ -18,13 +16,26 @@ public class Note {
      * @param note A note.
      */
     public Note(String note) {
+        super(note);
         requireNonNull(note);
-        value = note;
+    }
+
+    /**
+     * Determine if the note value stored is a match with a specified string.
+     * Returns true if specified value is a substring of the note value stored.
+     *
+     * @param otherValue Other value to check against
+     *
+     * @return True if specified value is a match, False otherwise
+     */
+    @Override
+    public boolean isMatch(String otherValue) {
+        return this.getValue().toLowerCase().contains(otherValue.toLowerCase());
     }
 
     @Override
     public String toString() {
-        return value;
+        return this.getValue();
     }
 
     @Override
@@ -39,12 +50,11 @@ public class Note {
         }
 
         Note otherNote = (Note) other;
-        return value.equals(otherNote.value);
+        return this.getValue().equals(otherNote.getValue());
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.getValue().hashCode();
     }
-
 }
