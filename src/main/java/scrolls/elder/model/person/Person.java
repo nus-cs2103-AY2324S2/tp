@@ -19,6 +19,7 @@ public abstract class Person {
     protected final Name name;
     protected final Phone phone;
     protected final Email email;
+    protected final Role role;
 
     // Data fields
     protected final Address address;
@@ -27,13 +28,14 @@ public abstract class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Role role) {
+        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, role);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.role = role;
     }
 
     public Name getName() {
@@ -77,7 +79,7 @@ public abstract class Person {
     * Returns true if person is a volunteer, and false if person is not a volunteer
     */
     public abstract boolean isVolunteer();
-    public abstract String getRole();
+    public abstract Role getRole();
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -99,7 +101,8 @@ public abstract class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && role.equals(otherPerson.role);
     }
 
     @Override

@@ -9,6 +9,7 @@ import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Role;
 import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 import scrolls.elder.model.util.SampleDataUtil;
@@ -22,14 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final boolean DEFAULT_IS_VOLUNTEER = true;
+    public static final String DEFAULT_VOLUNTEER_ROLE_STRING = "volunteer";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private boolean isVolunteer;
+    private Role role;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,7 +41,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        isVolunteer = DEFAULT_IS_VOLUNTEER;
+        role = new Role(DEFAULT_VOLUNTEER_ROLE_STRING);
     }
 
     /**
@@ -52,7 +53,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        isVolunteer = personToCopy.isVolunteer();
+        role = personToCopy.getRole();
     }
 
     /**
@@ -98,8 +99,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code isVolunteer} of the {@code Person} that we are building.
      */
-    public PersonBuilder asVolunteer(boolean isVolunteer) {
-        this.isVolunteer = isVolunteer;
+    public PersonBuilder withRole(String roleString) {
+        this.role = new Role(roleString);
         return this;
     }
 
@@ -108,7 +109,7 @@ public class PersonBuilder {
      */
     public Person build() {
         Person person;
-        if (isVolunteer) {
+        if (Role.isVolunteer(role)) {
             person = new Volunteer(name, phone, email, address, tags);
         } else {
             person = new Befriendee(name, phone, email, address, tags);

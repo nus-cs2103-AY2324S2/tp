@@ -47,12 +47,12 @@ public class EditCommandTest {
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson =
                 personInList.withName(CommandTestUtil.VALID_NAME_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
-                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND).asVolunteer(false).build();
+                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND).withRole(CommandTestUtil.VALID_ROLE_BEFRIENDEE).build();
 
         EditCommand.EditPersonDescriptor descriptor =
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
                         .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND)
-                        .withRole(false).build();
+                        .withRole(CommandTestUtil.VALID_ROLE_BEFRIENDEE).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
@@ -146,11 +146,11 @@ public class EditCommandTest {
     @Test
     public void equals() {
         final EditCommand standardCommand =
-                new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, CommandTestUtil.DESC_AMY);
+                new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, CommandTestUtil.DESC_AMY_VOLUNTEER);
 
         // same values -> returns true
         EditCommand.EditPersonDescriptor copyDescriptor =
-                new EditCommand.EditPersonDescriptor(CommandTestUtil.DESC_AMY);
+                new EditCommand.EditPersonDescriptor(CommandTestUtil.DESC_AMY_VOLUNTEER);
         EditCommand commandWithSameValues = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -165,11 +165,11 @@ public class EditCommandTest {
 
         // different index -> returns false
         assertFalse(
-                standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON, CommandTestUtil.DESC_AMY)));
+                standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON, CommandTestUtil.DESC_AMY_VOLUNTEER)));
 
         // different descriptor -> returns false
         assertFalse(
-                standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, CommandTestUtil.DESC_BOB)));
+                standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, CommandTestUtil.DESC_BOB_BEFRIENDEE)));
     }
 
     @Test
