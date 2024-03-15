@@ -156,6 +156,16 @@ Format: `mark nn/NUSNET_ID wk/WEEK_NUMBER`
 Example:
 * `mark nn/e1234567 wk/3`
 
+### Unmarking a student's attendance for a given week by their NUSNet: `unmark`
+
+Unmarks a student's attendance for a particular week.
+
+Format: `unmark nn/NUSNET_ID wk/WEEK_NUMBER`
+
+Example:
+* `unmark nn/e1234567 wk/3`
+
+
 ### Deleting a student : `delete`
 
 Deletes the specified person from the address book.
@@ -224,6 +234,8 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Mark**   | `mark nn/NUSNET_ID wk/WEEK_NUMBER`<br> e.g., `mark nn/e1234567 wk/3`
+**Unmark**   | `unmark nn/NUSNET_ID wk/WEEK_NUMBER`<br> e.g., `unmark nn/e1234567 wk/3`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
