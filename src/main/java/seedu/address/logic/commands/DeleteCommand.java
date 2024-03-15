@@ -28,6 +28,9 @@ public class DeleteCommand extends Command {
 
     private final int targetUniqueId;
 
+    /**
+     * Creates a DeleteCommand to delete the person with the specified unique ID.
+     */
     public DeleteCommand(int targetUniqueId) {
         requireNonNull(targetUniqueId);
         this.targetUniqueId = targetUniqueId;

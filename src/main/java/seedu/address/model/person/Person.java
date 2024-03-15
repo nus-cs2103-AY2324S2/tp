@@ -15,7 +15,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-    public static int personId ;
 
     // Identity fields
     private final Name name;
@@ -33,6 +32,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject,
                   String uniqueId) {
+
         requireAllNonNull(name, phone, email, address, tags, subject);
         this.name = name;
         this.phone = phone;
@@ -62,6 +62,7 @@ public class Person {
     public Subject getSubject() {
         return subject;
     }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -69,8 +70,12 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-    public String getUniqueId() {return uniqueId;}
-    public String setUniqueId(String uniqueId) {return this.uniqueId = uniqueId;}
+
+    /** Returns the uniqueId of the person */
+    public String getUniqueId() { return uniqueId; }
+
+    /** Sets the uniqueId of the person */
+    public String setUniqueId(String uniqueId) { return this.uniqueId = uniqueId; }
 
     /**
      * Returns true if both persons have the same name.
