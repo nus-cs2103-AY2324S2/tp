@@ -13,6 +13,7 @@ import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Role;
 import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
@@ -36,11 +37,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        boolean isVolunteer = false;
-        boolean isBefriendee = false;
-
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ROLE,
+                ArgumentTokenizer.tokenize(args,
+                        CliSyntax.PREFIX_ROLE,
                         CliSyntax.PREFIX_PHONE,
                         CliSyntax.PREFIX_EMAIL,
                         CliSyntax.PREFIX_ADDRESS,
@@ -62,28 +61,20 @@ public class AddCommandParser implements Parser<AddCommand> {
                 CliSyntax.PREFIX_ADDRESS,
                 CliSyntax.PREFIX_NAME);
 
-        String role = argMultimap.getValue(CliSyntax.PREFIX_ROLE).get();
-        if (role.equals("volunteer")) {
-            isVolunteer = true;
-        } else if (role.equals("befriendee")) {
-            isBefriendee = true;
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
-
-
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
+        Role role = ParserUtil.parseRole(argMultimap.getValue(CliSyntax.PREFIX_ROLE).get());
 
         // temporary solution, delete after merging
         Person person = null;
 
-        if (isVolunteer) {
+        if (role.isVolunteer()) {
             person = new Volunteer(name, phone, email, address, tagList);
-        } else if (isBefriendee) {
+        } else {
+            assert role.isBefriendee();
             person = new Befriendee(name, phone, email, address, tagList);
         }
 

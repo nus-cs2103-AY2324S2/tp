@@ -2,11 +2,7 @@ package scrolls.elder.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static scrolls.elder.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static scrolls.elder.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static scrolls.elder.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static scrolls.elder.logic.parser.CliSyntax.PREFIX_NAME;
-import static scrolls.elder.logic.parser.CliSyntax.PREFIX_PHONE;
-import static scrolls.elder.logic.parser.CliSyntax.PREFIX_TAG;
+import static scrolls.elder.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +27,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE);
 
         Index index;
 
@@ -57,6 +54,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
+        if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
+            editPersonDescriptor.setRole(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

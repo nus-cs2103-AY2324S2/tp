@@ -104,9 +104,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Role role = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
 
-        boolean isVolunteer = role.equals(new Role("volunteer"));
-
-        if (isVolunteer) {
+        if (role.isVolunteer()) {
             return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
         } else {
             return new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
