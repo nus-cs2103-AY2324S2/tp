@@ -21,6 +21,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -100,8 +101,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Grade> updatedGrades = editPersonDescriptor.getGrades().orElse(personToEdit.getGrades());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedGrades);
     }
 
     @Override
@@ -139,6 +141,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
+        private Set<Grade> grades;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -151,13 +155,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setGrades(toCopy.grades);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, grades);
         }
 
         public void setName(Name name) {
@@ -209,6 +214,23 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code grades} to this object's {@code grades}.
+         * A defensive copy of {@code grades} is used internally.
+         */
+        public void setGrades(Set<Grade> grades) {
+            this.grades = (grades != null) ? new HashSet<>(grades) : null;
+        }
+
+        /**
+         * Returns an unmodifiable grades set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code grades} is null.
+         */
+        public Optional<Set<Grade>> getGrades() {
+            return (grades != null) ? Optional.of(Collections.unmodifiableSet(grades)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -236,6 +258,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("grades", grades)
                     .toString();
         }
     }
