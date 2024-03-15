@@ -17,7 +17,7 @@ public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> 
      */
     public DeleteProjectCommand parse(String args) throws ParseException {
         args = args.trim();
-        if(args.length() == 0) {
+        if (args.length() == 0) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE));
         }

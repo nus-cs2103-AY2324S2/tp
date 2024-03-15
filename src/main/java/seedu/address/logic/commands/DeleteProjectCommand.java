@@ -38,14 +38,14 @@ public class DeleteProjectCommand extends Command {
 
         Person targetProject = new Person(new Name(targetName));
         Person projectToDelete = null;
-        for(Person person : lastShownList) {
-            if(person.isSamePerson(targetProject)) {
+        for (Person person : lastShownList) {
+            if (person.isSamePerson(targetProject)) {
                 projectToDelete = person;
                 break;
             }
         }
 
-        if(projectToDelete == null) {
+        if (projectToDelete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
