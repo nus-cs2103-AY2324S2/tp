@@ -102,7 +102,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
         // multiple grades
-        assertParserFailure(parser, GRADE_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, GRADE_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_GRADE));
 
         // multiple fields repeated
