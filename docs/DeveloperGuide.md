@@ -480,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should have a simple menu structure with clear labels, guiding users to key actions without extensive tutorials.
-5. Should have graceful error handling with clear human-readable messages to the user in case of unexpected issues.
+5. Should have graceful error handling with clear human-readable messages to the user to guide them in fixing their command.
 6. Ability to filter contacts based on relevant criteria (location, demographics, skills, availability) to aid in pairing.
 7. Should have a robust data storage mechanism that can handle data corruption and large data sets.
 
@@ -488,8 +488,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Befriendee**: Elderly person seeking companionship
 * **Befriending Volunteer Organisations**: An organisation that aims to provide companionship to seniors by pairing them with volunteers
-* **Pairing**: Assigning of a volunteer to a befriendee so that they become a pair
-* **Tagging**: Adding an arbitrary detail to a volunteer or befriendee profile
+* **Pairing**: Assigning of a volunteer to a befriendee and a befriendee to a volunteer (one-to-one)) so that they become a pair
+* **Tagging**: Adding an arbitrary detail(s) to a volunteer or befriendee profile to aid in identifying special conditions
 
 --------------------------------------------------------------------------------------------------------------------
 
