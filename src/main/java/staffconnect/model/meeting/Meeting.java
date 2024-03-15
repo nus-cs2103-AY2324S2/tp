@@ -18,7 +18,7 @@ public class Meeting {
      * Constructs a {@code Meeting}.
      *
      * @param description A valid meeting description.
-     * @param startDate A valid time and date for the meeting.
+     * @param startDate   A valid time and date for the meeting.
      */
 
     public Meeting(Description description, MeetDateTime startDate) {
@@ -27,6 +27,13 @@ public class Meeting {
         this.startDate = startDate;
     }
 
+    public Description getDescription() {
+        return description;
+    }
+
+    public MeetDateTime getStartDate() {
+        return startDate;
+    }
 
     @Override
     public int hashCode() {
@@ -40,11 +47,11 @@ public class Meeting {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof staffconnect.model.meeting.Meeting)) {
+        if (!(other instanceof Meeting)) {
             return false;
         }
 
-        staffconnect.model.meeting.Meeting otherMeeting = (staffconnect.model.meeting.Meeting) other;
+        Meeting otherMeeting = (Meeting) other;
         return description.equals(otherMeeting.description) && startDate.equals(otherMeeting.startDate);
     }
 
