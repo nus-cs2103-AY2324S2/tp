@@ -33,7 +33,7 @@ public class BorrowCommandTest {
 
         BorrowCommand borrowCommand = new BorrowCommand(INDEX_FIRST_PERSON, new Borrow(editedPerson.getBook().value));
 
-        String expectedMessage = String.format(BorrowCommand.MESSAGE_ADD_borrow_SUCCESS, editedPerson);
+        String expectedMessage = String.format(BorrowCommand.MESSAGE_ADD_BORROW_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
