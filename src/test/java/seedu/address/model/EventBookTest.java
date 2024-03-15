@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
 
 public class EventBookTest {
@@ -105,6 +106,7 @@ public class EventBookTest {
      */
     private static class EventBookStub implements ReadOnlyEventBook {
         private final ObservableList<Event> events = FXCollections.observableArrayList();
+        private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
         EventBookStub(Collection<Event> events) {
             this.events.setAll(events);
@@ -113,6 +115,11 @@ public class EventBookTest {
         @Override
         public ObservableList<Event> getEventList() {
             return events;
+        }
+
+        @Override
+        public ObservableList<Person> getPersonsOfSelectedEventList() {
+            return persons;
         }
     }
 }
