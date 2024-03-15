@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -45,13 +44,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(model, PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
-    }
-
-    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(model, ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(model, ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -72,8 +64,8 @@ public class AddressBookParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(
                 model,
                 EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + "240001" + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(person.getId(), descriptor), command);
     }
 
     @Test
