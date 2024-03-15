@@ -151,7 +151,7 @@ public class AddCommandParserTest {
                 , new AddCommand(expectedPersonTags));
 
         // missing points
-        Person expectedPersonPoints = new PersonBuilder(AMY).withPoints().build();
+        Person expectedPersonPoints = new PersonBuilder(AMY).withPoints("0").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 , new AddCommand(expectedPersonPoints));
     }
