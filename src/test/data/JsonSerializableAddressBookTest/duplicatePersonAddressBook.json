@@ -1,11 +1,13 @@
 {
   "persons": [ {
+    "id": "1992a70f-8517-49b2-b911-e323eaf0b51c",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tags": [ "friends" ]
   }, {
+    "id": "1992a70f-8517-49b2-b911-e323eaf0b51c",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
