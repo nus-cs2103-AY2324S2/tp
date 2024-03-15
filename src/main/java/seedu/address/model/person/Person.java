@@ -22,6 +22,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Major major;
 
     // Data fields
     private final Address address;
@@ -34,6 +35,7 @@ public class Person {
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.id = new Id("A0265901E");
+        this.major = new Major("Computer Science");
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -43,6 +45,10 @@ public class Person {
 
     public Id getId() {
         return id;
+    }
+
+    public Major getMajor() {
+        return major;
     }
 
     public Name getName() {
@@ -102,7 +108,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags) && major.equals(otherPerson.major);
     }
 
     @Override
