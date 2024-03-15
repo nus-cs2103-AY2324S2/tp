@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPCOMING;
 
 import java.util.Set;
 
@@ -37,6 +38,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        sb.append(PREFIX_UPCOMING + person.getUpcoming().toString() + " ");
         return sb.toString();
     }
 
@@ -57,6 +59,7 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        descriptor.getUpcoming().ifPresent(upcoming -> sb.append(PREFIX_UPCOMING).append(upcoming.toString()).append(" "));
         return sb.toString();
     }
 }
