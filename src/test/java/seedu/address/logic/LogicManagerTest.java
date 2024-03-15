@@ -86,6 +86,23 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCourseMateList().remove(0));
     }
 
+    @Test
+    public void getRecentlyProcessedCourseMate_newLogicManager_returnsNull() {
+        assertEquals(null, logic.getRecentlyProcessedCourseMate());
+    }
+
+    @Test
+    public void getRecentlyProcessedCourseMate_setToAmy_returnsAmy() {
+        model.setRecentlyProcessedCourseMate(AMY);
+        assertEquals(AMY, logic.getRecentlyProcessedCourseMate());
+    }
+
+    @Test
+    public void setRecentlyProcessedCourseMate_setToAmy_returnsAmy() {
+        logic.setRecentlyProcessedCourseMate(AMY);
+        assertEquals(AMY, logic.getRecentlyProcessedCourseMate());
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

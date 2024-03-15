@@ -85,4 +85,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCourseMateList(Predicate<CourseMate> predicate);
+
+    /** Returns the most recently processed course mate */
+    CourseMate getRecentlyProcessedCourseMate();
+
+    /**
+     * Sets the most recently processed course mate.
+     * The course mate need not exist in the contact list, for example, when the user is deleting
+     * a course mate, the most recently processed course mate is set to the course mate that was deleted.
+     */
+    void setRecentlyProcessedCourseMate(CourseMate courseMate);
 }

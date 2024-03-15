@@ -84,9 +84,16 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+            Model expectedModel, boolean showCourseMate) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, showCourseMate);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Confirms that the {@code recentlyProcessedCourseMate} in the model is edited with {@code editedCourseMate}.
+     */
+    public static void assertRecentlyProcessedCourseMateEdited(Model model, CourseMate editedCourseMate) {
+        assertEquals(editedCourseMate, model.getRecentlyProcessedCourseMate());
     }
 
     /**

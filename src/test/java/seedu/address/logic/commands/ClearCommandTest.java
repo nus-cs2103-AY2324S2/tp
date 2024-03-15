@@ -17,7 +17,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, false);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalContactList(), new UserPrefs());
         expectedModel.setContactList(new ContactList());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, false);
     }
 
 }

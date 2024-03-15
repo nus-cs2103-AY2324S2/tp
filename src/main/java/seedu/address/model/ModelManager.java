@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<CourseMate> filteredCourseMates;
+    private CourseMate recentlyProcessedCourseMate;
 
     /**
      * Initializes a ModelManager with the given contact list and userPrefs.
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCourseMates = new FilteredList<>(this.contactList.getCourseMateList());
+        recentlyProcessedCourseMate = null;
     }
 
     public ModelManager() {
@@ -126,6 +128,18 @@ public class ModelManager implements Model {
     public void updateFilteredCourseMateList(Predicate<CourseMate> predicate) {
         requireNonNull(predicate);
         filteredCourseMates.setPredicate(predicate);
+    }
+
+    //=========== Most recently processed course mate ========================================================
+
+    @Override
+    public CourseMate getRecentlyProcessedCourseMate() {
+        return recentlyProcessedCourseMate;
+    }
+
+    @Override
+    public void setRecentlyProcessedCourseMate(CourseMate courseMate) {
+        recentlyProcessedCourseMate = courseMate;
     }
 
     @Override

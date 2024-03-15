@@ -82,7 +82,9 @@ public class EditCommand extends Command {
 
         model.setCourseMate(courseMateToEdit, editedCourseMate);
         model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
-        return new CommandResult(String.format(MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate)));
+        model.setRecentlyProcessedCourseMate(editedCourseMate);
+        return new CommandResult(String.format(MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate)),
+                false, false, true);
     }
 
     /**

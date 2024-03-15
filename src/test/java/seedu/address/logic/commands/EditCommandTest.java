@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertRecentlyProcessedCourseMateEdited;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
@@ -47,7 +48,8 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, editedCourseMate);
     }
 
     @Test
@@ -69,7 +71,8 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(lastCourseMate, editedCourseMate);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, editedCourseMate);
     }
 
     @Test
@@ -82,7 +85,8 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, editedCourseMate);
     }
 
     @Test
@@ -101,7 +105,8 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, editedCourseMate);
     }
 
     @Test
@@ -111,6 +116,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_SECOND_COURSE_MATE, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
+        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test
@@ -124,6 +130,7 @@ public class EditCommandTest {
                 new EditCourseMateDescriptorBuilder(courseMateInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COURSE_MATE);
+        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test
@@ -133,6 +140,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     /**
@@ -150,6 +158,7 @@ public class EditCommandTest {
                 new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_DISPLAYED_INDEX);
+        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test

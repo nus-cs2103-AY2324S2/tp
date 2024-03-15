@@ -54,7 +54,8 @@ public class AddCommand extends Command {
         }
 
         model.addCourseMate(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        model.setRecentlyProcessedCourseMate(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), false, false, true);
     }
 
     @Override

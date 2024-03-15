@@ -158,6 +158,16 @@ public class AddCommandTest {
         public void updateFilteredCourseMateList(Predicate<CourseMate> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public CourseMate getRecentlyProcessedCourseMate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRecentlyProcessedCourseMate(CourseMate courseMate) {
+            // does nothing
+        }
     }
 
     /**
