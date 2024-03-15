@@ -2,9 +2,6 @@ package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Tag in the address book.
