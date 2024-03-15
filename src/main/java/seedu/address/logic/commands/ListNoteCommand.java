@@ -73,18 +73,3 @@ public class ListNoteCommand extends Command {
         return new CommandResult(String.format(Messages.MESSAGE_LIST_NOTE_SUCCESS, selectedPerson.getName()));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
