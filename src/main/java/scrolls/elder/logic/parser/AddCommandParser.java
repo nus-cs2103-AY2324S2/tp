@@ -42,7 +42,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                         CliSyntax.PREFIX_PHONE,
                         CliSyntax.PREFIX_EMAIL,
                         CliSyntax.PREFIX_ADDRESS,
-                        CliSyntax.PREFIX_TAG);
+                        CliSyntax.PREFIX_TAG,
+
+                        // remove this once integrated
+                        CliSyntax.PREFIX_NAME);
 
         // Guard Clause: Check if command invalid due to both PREFIX_V and PREFIX_B used.
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_VOLUNTEER, CliSyntax.PREFIX_BEFRIENDEE)
@@ -56,7 +59,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name;
+        Name name = null;
 
         // Either PREFIX_V or PREFIX_B is used
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_VOLUNTEER)) {
@@ -67,7 +70,17 @@ public class AddCommandParser implements Parser<AddCommand> {
             argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_BEFRIENDEE);
             isBefriendee = true;
 
-        } else {
+        }
+
+        // remove once integrated. @jerrong
+        else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)) {
+            argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_NAME,
+                    CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS);
+            name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
+        }
+        // remove once integrated. @jerrong
+
+        else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -79,9 +92,13 @@ public class AddCommandParser implements Parser<AddCommand> {
             name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_VOLUNTEER).get());
         } else if (isBefriendee) {
             name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_BEFRIENDEE).get());
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+
+        /* add once integrated @jerrong
+            else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            }
+        */
 
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
