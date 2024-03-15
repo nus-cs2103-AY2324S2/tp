@@ -43,7 +43,7 @@ class AddRelationshipCommandTest {
         String uuid1 = personMap.keySet().iterator().next();
         String uuid2 = personMap.keySet().iterator().next();
         assertDoesNotThrow(() ->
-                command.parseCommand("addrelation /bioparent /child " + uuid1 + " /parent " + uuid2));
+                command.parseCommand("addrelation /bioparent /parent " + uuid1 + " /child " + uuid2));
     }
 
     @Test
@@ -57,7 +57,7 @@ class AddRelationshipCommandTest {
     void execute_invalidInputMissingParts_throwsIllegalArgumentException() {
         String uuid1 = personMap.keySet().iterator().next();
         assertThrows(IllegalArgumentException.class, () ->
-                command.parseCommand("addrelation /bioparent /child" + uuid1));
+                command.parseCommand("addrelation /bioparent /parent" + uuid1 + ", "));
     }
 
     @Test
@@ -65,12 +65,40 @@ class AddRelationshipCommandTest {
         String uuid1 = personMap.keySet().iterator().next();
         String uuid2 = personMap.keySet().iterator().next();
         assertThrows(IllegalArgumentException.class, () ->
-                command.parseCommand("addrelation /invalid " + uuid1 + ", " + uuid2));
+                command.parseCommand("addrelation /invalid /parent" + uuid1 + " /child " + uuid2));
+    }
+
+    @Test
+    void execute_roleBasedRelationshipPersonNotFound_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                command.parseCommand("addrelation /bioparent /parent 1234 /child 5678"));
+    }
+
+    @Test
+    void execute_rolelessRelationshipPersonNotFound_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                command.parseCommand("addrelation /friends 1234, 5678"));
     }
 
     @Test
     void execute_invalidInputIncorrectUuids_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
-                command.parseCommand("addrelation /bioparent /child invalid /parent invalid"));
+                command.parseCommand("addrelation /bioparent /parent invalid /child invalid"));
+    }
+
+    @Test
+    void execute_invalidRelationType_throwsIllegalArgumentException() {
+        String uuid1 = personMap.keySet().iterator().next();
+        String uuid2 = personMap.keySet().iterator().next();
+        assertThrows(IllegalArgumentException.class, () ->
+                command.parseCommand("addrelation /invalid /parent " + uuid1 + " /child " + uuid2));
+    }
+
+    @Test
+    void execute_invalidUuidCommandFormat_throwsIllegalArgumentException() {
+        String uuid1 = personMap.keySet().iterator().next();
+        String uuid2 = personMap.keySet().iterator().next();
+        assertThrows(IllegalArgumentException.class, () ->
+                command.parseCommand("addrelation /friends " + uuid1 + " " + uuid2));
     }
 }
