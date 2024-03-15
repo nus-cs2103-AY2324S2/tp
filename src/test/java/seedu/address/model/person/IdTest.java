@@ -15,14 +15,14 @@ public class IdTest {
 
     @Test
     public void isValidId() {
-        // null name
+        // null Id
         assertThrows(NullPointerException.class, () -> Id.isValidId(null));
 
-        // invalid name
+        // invalid Id
         assertFalse(Id.isValidId("$agsaga")); // empty string
-        assertFalse(Id.isValidId("%agaga")); // spaces only
-        assertFalse(Id.isValidId("a9326014")); // only non-alphanumeric characters
-        assertFalse(Id.isValidId("lfasaha")); // contains non-alphanumeric characters
+        assertFalse(Id.isValidId("%agaga"));
+        assertFalse(Id.isValidId("a9326014"));
+        assertFalse(Id.isValidId("lfasaha"));
 
         // valid name
         assertTrue(Name.isValidName("A0265841")); // alphabets only
@@ -30,6 +30,23 @@ public class IdTest {
         assertTrue(Name.isValidName("A0265901T")); // alphanumeric characters
     }
 
+    @Test
+    public void stringTest() {
+        Id id = new Id("A0265901E");
+
+        assertTrue(id.toString().equals("A0265901E"));
+        assertFalse(id.toString().equals("A91251516E"));
+    }
+
+    @Test
+    public void hashTest() {
+        Id id = new Id("A0265901E");
+        String valid = "A0265901E";
+        String inValid = "A02621405L";
+
+        assertTrue(id.hashCode() == valid.hashCode());
+        assertFalse(id.hashCode() == inValid.hashCode());
+    }
     @Test
     public void equals() {
         Id id = new Id("A0265901E");
