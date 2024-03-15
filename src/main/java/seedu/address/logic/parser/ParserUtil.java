@@ -83,8 +83,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String note} into a {@code Note}.
+     * Parses a {@code Optional<String> note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
+     * If the {@code Optional} is empty, return a {@code Note} with an empty string.
      */
     public static Note parseNote(Optional<String> note) {
         requireNonNull(note);
