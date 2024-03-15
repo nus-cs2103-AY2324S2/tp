@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.InternshipEditCommand.EditInternshipDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.InternshipData;
 import seedu.address.model.InternshipModel;
@@ -31,8 +30,8 @@ import seedu.address.testutil.EditInternshipDescriptorBuilder;
 public class InternshipCommandTestUtil {
     public static final String VALID_COMPANY_NAME_AMY = "Google";
     public static final String VALID_COMPANY_NAME_BOB = "Facebook";
-    public static final String VALID_LOCATION_AMY = "Mountain View";
-    public static final String VALID_LOCATION_BOB = "Menlo Park";
+    public static final String VALID_LOCATION_AMY = "Local";
+    public static final String VALID_LOCATION_BOB = "Overseas";
     public static final String VALID_DESCRIPTION_AMY = "Software Engineering Intern";
     public static final String VALID_DESCRIPTION_BOB = "Product Management Intern";
     public static final String VALID_ROLE_AMY = "Intern";
