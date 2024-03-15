@@ -96,7 +96,7 @@ public class EditApplicantCommand extends Command {
         }
         Applicant editedApplicant = createEditedApplicant(applicantToEdit, editApplicantDescriptor);
 
-        if (personToEdit.equals(editedApplicant) && model.hasPerson(editedApplicant)) {
+        if (editedApplicant.equals(personToEdit) && model.hasPerson(editedApplicant)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }
 

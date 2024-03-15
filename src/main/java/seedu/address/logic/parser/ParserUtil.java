@@ -115,7 +115,7 @@ public class ParserUtil {
 
     public static Stage parseStage(String stage) throws ParseException {
         requireNonNull(stage);
-        String trimmedStage = stage.trim();
+        String trimmedStage = stage;
         return new Stage(trimmedStage);
     }
 
@@ -128,7 +128,7 @@ public class ParserUtil {
 
     public static Note parseNote(String note) throws ParseException {
         requireNonNull(note);
-        String trimmedNote = note.trim();
+        String trimmedNote = note;
         return new Note(trimmedNote);
     }
 
