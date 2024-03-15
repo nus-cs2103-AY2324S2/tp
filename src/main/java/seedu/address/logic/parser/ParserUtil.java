@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 import seedu.address.model.order.Date;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
@@ -99,7 +98,6 @@ public class ParserUtil {
     }
 
     /**
-<<<<<<< HEAD
      * Parses a {@code String companyName} into an {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -113,8 +111,7 @@ public class ParserUtil {
         }
         return new Company(trimmedCompanyName);
     }
-//=======
-    /*
+    /**
      * Parses a {@code String date} into an {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -127,7 +124,6 @@ public class ParserUtil {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedDate);
-//>>>>>>> master
     }
 
     /**
