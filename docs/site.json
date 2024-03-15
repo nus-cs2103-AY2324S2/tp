@@ -1,7 +1,7 @@
 {
   "baseUrl": "",
   "titlePrefix": "NetConnect",
-  "titleSuffix": "AddressBook Level-3",
+  "titleSuffix": "NetConnect",
   "faviconPath": "images/SeEduLogo.png",
   "style": {
     "codeTheme": "light"

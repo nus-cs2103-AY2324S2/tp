@@ -18,8 +18,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/purivirakarin)]
 [[portfolio](team/purivirakarin.md)]
 
-* Role: Developer 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities:
 
 ### Rungrawin Chowiwattana
 
@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/nuyer.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
 
 ### Sia Zhong Qing
 
@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/starsia.md)]
 
 * Role: Team Lead
-* Responsibilities: 
+* Responsibilities:
 
 ### Shaun Lee Xuan Wei
 
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/shaunlxw.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
 
 ### Tan Jie Ling
 

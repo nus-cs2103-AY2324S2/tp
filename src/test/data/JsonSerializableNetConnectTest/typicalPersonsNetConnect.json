@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "NetConnect save file which contains the same Person values as in TypicalPersons#getTypicalNetConnect()",
   "persons": [
     {
       "name": "Alice Pauline",

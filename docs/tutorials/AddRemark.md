@@ -8,12 +8,11 @@
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the NetConnect application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
 We’ll assume that you have already set up the development environment as outlined in the Developer’s Guide.
-
 
 ## Create a new `remark` command
 
@@ -46,7 +45,7 @@ public class RemarkCommand extends Command {
 
 ### Hook `RemarkCommand` into the application
 
-Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
+Now that we have our `RemarkCommand` ready to be executed, we need to update `NetConnectParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this [diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-399c284cb892c20b7c04a69116fcff6ccc0666c5230a1db8e4a9145def8fa4ee).
 
@@ -217,7 +216,7 @@ public RemarkCommand parse(String args) throws ParseException {
 
 <box type="info" seamless>
 
-Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
+Don’t forget to update `NetConnectParser` to use our new `RemarkCommandParser`!
 
 </box>
 
@@ -252,14 +251,13 @@ Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/s
 private Label remark;
 ```
 
-
 `@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like Greek to you right now, don’t worry — we will get back to it later.
 
 Then insert the following into [`main/resources/view/PersonListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
 
 **`PersonListCard.fxml`:**
 
-``` xml
+```xml
 <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
 ```
 
@@ -287,16 +285,15 @@ Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find the
 
 Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998c37e65b92d35c91d28c7822cd139c2c0a5c) and check that you have got everything in order!
 
-
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+NetConnect stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
 <box type="warning" seamless>
 
-You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+You must delete NetConnect’s storage file located at `/data/netconnect.json` before running it! Not doing so will cause NetConnect to default to an empty address book!
 
 </box>
 
@@ -399,4 +396,4 @@ You should end up with a test that looks something like [this](https://github.co
 
 ## Conclusion
 
-This concludes the tutorial for adding a new `Command` to AddressBook.
+This concludes the tutorial for adding a new `Command` to NetConnect.
