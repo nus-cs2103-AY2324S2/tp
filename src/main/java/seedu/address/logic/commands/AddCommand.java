@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADMISSION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NO;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -27,14 +27,14 @@ public class AddCommand extends Command {
             + PREFIX_IC + "IC "
             + PREFIX_DOB + "DOB "
             + PREFIX_ADMISSION_DATE + "EMAIL "
-            + PREFIX_WARD_NO + "WARD NUMBER "
+            + PREFIX_WARD + "WARD NUMBER "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_IC + "S0123456A "
             + PREFIX_DOB + "1/1/2000 "
             + PREFIX_ADMISSION_DATE + "15/03/2024 "
-            + PREFIX_WARD_NO + "3"
+            + PREFIX_WARD + "3"
             + PREFIX_TAG + "Fall risk ";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
