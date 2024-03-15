@@ -43,11 +43,11 @@ public class AddFavouriteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> people = model.getFilteredPersonList();
         List<String> modifiedContacts = new ArrayList<>();
+        boolean anyGreaterThanSize = this.indices.stream().anyMatch(index -> index.getZeroBased() >= people.size());
+        if (anyGreaterThanSize) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
         for (Index index : this.indices) {
-            if (index.getZeroBased() >= people.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
             Person person = people.get(index.getZeroBased());
             modifiedContacts.add(person.getName().fullName);
             person.addFavourite();
