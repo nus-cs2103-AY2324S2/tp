@@ -1,6 +1,7 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
+    "studentId": "A0123456X",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
@@ -8,6 +9,7 @@
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
+    "studentId": "A0123456X",
     "phone": "94351253",
     "email": "pauline@example.com",
     "grade": "A+",
