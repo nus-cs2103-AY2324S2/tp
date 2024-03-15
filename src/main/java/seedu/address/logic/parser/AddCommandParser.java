@@ -2,10 +2,14 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADMISSION_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -13,10 +17,14 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AdmissionDate;
+import seedu.address.model.person.Dob;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,8 +52,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Dob dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).orElse(null));
+        Ic ic = ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).orElse(null));
+        AdmissionDate admissionDate = ParserUtil.parseAdmissionDate(argMultimap.getValue(PREFIX_ADMISSION_DATE).orElse(null));
+        Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null));
 
-        Person person = new Person(name, phone, email, address, tagList);
+
+        Person person = new Person(name, phone, email, address, tagList, dob, ic, admissionDate, ward);
 
         return new AddCommand(person);
     }
