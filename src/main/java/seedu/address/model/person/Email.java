@@ -64,7 +64,7 @@ public class Email extends Attribute<String> {
 
     @Override
     public String toString() {
-        return super.getValue();
+        return this.getValue();
     }
 
     @Override
