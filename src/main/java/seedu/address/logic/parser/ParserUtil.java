@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.house.Block;
+import seedu.address.model.house.PostalCode;
 import seedu.address.model.house.Street;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -26,6 +28,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -136,5 +139,34 @@ public class ParserUtil {
             throw new ParseException(Street.MESSAGE_CONSTRAINTS);
         }
         return new Street(trimmedStreet);
+    }
+
+    /**
+     * Parses a {@code String block} into an {@code Block}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code block} is invalid.
+     */
+    public static Block parseBlock(String block) throws ParseException {
+        requireNonNull(block);
+        String trimmedBlock = block.trim();
+        if (!Block.isValidBlock(trimmedBlock)) {
+            throw new ParseException(Block.MESSAGE_CONSTRAINTS);
+        }
+        return new Block(trimmedBlock);
+    }
+    /**
+     * Parses a {@code String postalCode} into a {@code postalCode}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code postalCode} is invalid.
+     */
+    public static PostalCode parsePostalCode(String postalCode) throws ParseException {
+        requireNonNull(postalCode);
+        String trimmedPostalCode = postalCode.trim();
+        if (!PostalCode.isValidPostalCode(trimmedPostalCode)) {
+            throw new ParseException(PostalCode.MESSAGE_CONSTRAINTS);
+        }
+        return new PostalCode(trimmedPostalCode);
     }
 }
