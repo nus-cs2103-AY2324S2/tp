@@ -119,4 +119,13 @@ public class PersonBuilder {
         return new Person(id, name, phone, email, yearJoined, address, tags);
     }
 
+    /**
+     * Return id of the employee.
+     *
+     * @return integer representation of id.
+     */
+    public int getIdValue() {
+        return this.id.value;
+    }
+
 }
