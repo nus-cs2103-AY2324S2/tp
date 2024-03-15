@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.awt.print.Book;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +23,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Borrow;
+import seedu.address.model.person.BookList;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -100,10 +101,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Borrow updatedBorrow = personToEdit.getBook();
+//        int updatedCount = editPersonDescriptor.getCount().orElse(personToEdit.getCount());
+        BookList updatedBookList = editPersonDescriptor.getBookList().orElse(personToEdit.getBook());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,updatedBorrow, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBookList, updatedTags);
     }
 
     @Override
@@ -140,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private BookList bookTitle;
 
         public EditPersonDescriptor() {}
 
@@ -193,6 +196,23 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+
+        public void setBookList(BookList bookList) {
+            this.bookTitle = bookList;
+        }
+
+        public Optional<BookList> getBookList() {
+            return Optional.ofNullable(bookTitle);
+        }
+
+//        public void setCount(int count) {
+//            this.count = count;
+//        }
+
+//        public Optional<Integer> getCount() {
+//            return Optional.ofNullable(count);
+//        }
+
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

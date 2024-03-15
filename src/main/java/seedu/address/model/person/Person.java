@@ -24,21 +24,44 @@ public class Person {
     // Data fields
     private final Address address;
     private final int count;
-    private final Borrow bookTitle;
+    private final BookList bookTitle;
     private final Set<Tag> tags = new HashSet<>();
     
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, int count, Borrow bookTitle, Set<Tag> tags) {
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.count = count;
+        this.count = 0;
+        this.bookTitle = new BookList("");
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, BookList bookTitle, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.count = 0;
+        this.bookTitle = bookTitle;
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, int count, BookList bookTitle, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.count = 0;
         this.bookTitle = bookTitle;
     }
 
@@ -69,7 +92,7 @@ public class Person {
     /**
      * @return the book title of the book
      */
-    public Borrow getBook(){
+    public BookList getBook(){
         return bookTitle;
     }
 

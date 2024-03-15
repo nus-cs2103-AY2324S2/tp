@@ -2,10 +2,10 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-public class Borrow {
+public class BookList {
     public final String value;
 
-    public Borrow(String remark) {
+    public BookList(String remark) {
         requireNonNull(remark);
         value = remark;
     }
@@ -18,8 +18,8 @@ public class Borrow {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Borrow // instanceof handles nulls
-                && value.equals(((Borrow) other).value)); // state check
+                || (other instanceof BookList // instanceof handles nulls
+                && value.equals(((BookList) other).value)); // state check
     }
 
     @Override
