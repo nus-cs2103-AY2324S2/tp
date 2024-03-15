@@ -41,6 +41,25 @@ public class ParserUtil {
     }
 
     /**
+     * Parses the input string containing one or more whitespace-separated indices into an array of {@code Index} objects.
+     * Leading and trailing whitespaces in the input string and around individual indices will be trimmed.
+     *
+     * @param indicesString the string containing one or more one-based indices separated by whitespace.
+     * @return an array of {@code Index} objects corresponding to the input indices.
+     * @throws ParseException if any of the specified indices are invalid (not non-zero unsigned integers).
+     */
+    public static Index[] parseIndices(String indicesString) throws ParseException {
+        String[] parts = indicesString.trim().split("\\s+");
+        Index[] indices = new Index[parts.length];
+
+        for (int i = 0; i < parts.length; i++) {
+            indices[i] = parseIndex(parts[i]);
+        }
+        return indices;
+    }
+
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

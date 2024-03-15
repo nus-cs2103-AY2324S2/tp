@@ -73,9 +73,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Note> getFilteredNoteList() {
-        return model.getFilteredNoteList();
-    }
+    public ObservableList<Note> getFilteredNoteList() { return model.getFilteredNoteList(); }
 
     @Override
     public Path getAddressBookFilePath() {

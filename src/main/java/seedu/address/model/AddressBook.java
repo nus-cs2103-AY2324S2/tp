@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.note.Note;
-import seedu.address.model.person.note.UniqueNoteList;
 
 /**
  * Wraps all data at the address-book level
@@ -18,7 +18,7 @@ import seedu.address.model.person.note.UniqueNoteList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueNoteList notes;
+    private final ObservableList<Note> notes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        notes = new UniqueNoteList();
+        notes = this.getNoteList();
     }
 
     public AddressBook() {}
@@ -57,7 +57,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code notes} must not contain duplicate notes.
      */
     public void setNotes(List<Note> notes) {
-        this.notes.setNotes(notes);
+        this.notes.clear(); // Clear the existing notes
+        this.notes.addAll(notes); // Add all from the new list
     }
 
     /**
@@ -107,8 +108,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-
-
     //// note-level operations
 
     /**
@@ -121,21 +120,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Adds a note to the address book.
-     * The note must not already exist in the address book.
      */
     public void addNote(Note n) {
         notes.add(n);
-    }
-
-    /**
-     * Replaces the given note {@code target} in the list with {@code editedNote}.
-     * {@code target} must exist in the address book.
-     * The note date-time of {@code editedNote} must not be the same as another existing note in the address book.
-     */
-    public void setNote(Note target, Note editedNote) {
-        requireNonNull(editedNote);
-
-        notes.setNote(target, editedNote);
     }
 
     /**
@@ -162,7 +149,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Note> getNoteList() {
-        return notes.asUnmodifiableObservableList();
+        ObservableList<Note> notes = FXCollections.observableArrayList();
+        ObservableList<Person> persons = this.getPersonList();
+        for (Person person : persons) {
+            notes.addAll(person.getNotes());
+        }
+        return notes;
     }
 
     @Override

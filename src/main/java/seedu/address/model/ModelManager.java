@@ -25,7 +25,6 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Note> filteredNotes;
 
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -115,8 +114,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    // Filtered Person List Accessors
-
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
@@ -130,6 +127,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredNoteList(Predicate<Note> predicate) {
+        requireNonNull(predicate);
+        filteredNotes.setPredicate(predicate);
     }
 
     @Override
@@ -149,25 +152,15 @@ public class ModelManager implements Model {
         updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
     }
 
-    @Override
-    public void setNote(Note target, Note editedNote) {
-        requireAllNonNull(target, editedNote);
-
-        addressBook.setNote(target, editedNote);
-    }
-
-    // Filtered Note List Accessors
-
+    /**
+     * Returns an unmodifiable view of the list of {@code Note} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
     public ObservableList<Note> getFilteredNoteList() {
         return filteredNotes;
     }
 
-    @Override
-    public void updateFilteredNoteList(Predicate<Note> predicate) {
-        requireNonNull(predicate);
-        filteredNotes.setPredicate(predicate);
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -183,7 +176,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
             && userPrefs.equals(otherModelManager.userPrefs)
-            && filteredPersons.equals(otherModelManager.filteredPersons);
+            && filteredPersons.equals(otherModelManager.filteredPersons)
+            && filteredNotes.equals(otherModelManager.filteredNotes);
     }
 
 }

@@ -34,7 +34,7 @@ public class AddNoteCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_DATE + "19-02-2024 "
         + PREFIX_TIME + "1430 "
-        + PREFIX_NOTE + "General FLu ";
+        + PREFIX_NOTE + "General Flu ";
 
     public static final String MESSAGE_SUCCESS = "New appointment note added: %1$s";
 
