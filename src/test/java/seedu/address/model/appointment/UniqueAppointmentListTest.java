@@ -151,4 +151,32 @@ public class UniqueAppointmentListTest {
     public void toStringMethod() {
         assertEquals(uniqueAppointmentList.asUnmodifiableObservableList().toString(), uniqueAppointmentList.toString());
     }
+
+    @Test
+    public void equalsSameObjectTrue() {
+        uniqueAppointmentList.add(APPT1);
+        assertTrue(uniqueAppointmentList.equals(uniqueAppointmentList));
+    }
+    @Test
+    public void equalsTrue() {
+        uniqueAppointmentList.add(APPT1);
+        UniqueAppointmentList otherList = new UniqueAppointmentList();
+        otherList.add(APPT1);
+        assertTrue(uniqueAppointmentList.equals(otherList));
+    }
+
+    @Test
+    public void equalsFalse() {
+        uniqueAppointmentList.add(APPT1);
+        UniqueAppointmentList otherList = new UniqueAppointmentList();
+        otherList.add(APPT2);
+        assertFalse(uniqueAppointmentList.equals(otherList));
+    }
+
+    @Test
+    public void equalsDifferentTypeFalse() {
+        uniqueAppointmentList.add(APPT1);
+        String s = "APPT1";
+        assertFalse(uniqueAppointmentList.equals(s));
+    }
 }
