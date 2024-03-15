@@ -99,10 +99,10 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (year == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Year.class.getSimpleName()));
         }
         if (!Year.isValidYear(year)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
         }
         final Year modelYear = new Year(year);
 
