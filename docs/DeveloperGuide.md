@@ -269,7 +269,49 @@ Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add 
 * Upon successful validation, it creates an `AddImportantDatesCommand` instance.
 
 --------------------------------------------------------------------------------------------------------------------
-### 3.4 Deleting a Patient
+
+### 3.4 Deleting Important Date from a Patient
+
+#### Introduction
+
+The `DeleteImportantDateCommand` class is responsible for deleting an Important Date from a patient in the address book. I
+
+#### Specifications
+
+* DeleteImportantDateCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients 
+shown on the UI after using the `list` or `find` command and Indexes of the specified Patient's events as defined in
+the `Index` class.
+
+* Deletion of important date can only happen for a single patient, and a single event at any given time.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday,
+which falls on the 20th January.
+* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+
+Step 3: The use executes the `deletee 1 e/1 command` to delete the Important Date as he realised he keyed in the wrong
+date.
+* Upon successful validation,  an `DeleteImportantDateCommand` instance is created.
+
+#### Design Considerations
+
+**Aspect: Choice of COMMAND_WORD**
+
+* **Alternative 1 (current choice)**: Use `deletee`
+    * Pros: Consistent with `adde` command to add new Important date.
+    * Cons: Might be counter-intuitive for user as command is unfamiliar.
+      <br></br>
+* **Alternative 2**: `deleteID`
+    * Pros: Clearer syntax.
+    * Cons: User might confuse ID as Patient ID and also inconsistency with `adde` command, further confusing user.
+
+--------------------------------------------------------------------------------------------------------------------
+### 3.5 Deleting a Patient
 
 #### Introduction
 
