@@ -18,9 +18,9 @@ import vitalconnect.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new IdentificationInformation(new Name("Alex Yeoh"), new Nric("S1234567D")),
+            new Person(new IdentificationInformation(new Name("Alex Yeoh"), new Nric("G7654321L")),
                 getTagSet("friends")),
-            new Person(new IdentificationInformation(new Name("Bernice Yu"), new Nric("S1234568B")),
+            new Person(new IdentificationInformation(new Name("Bernice Yu"), new Nric("M7654321J")),
                 getTagSet("colleagues"))
         };
     }

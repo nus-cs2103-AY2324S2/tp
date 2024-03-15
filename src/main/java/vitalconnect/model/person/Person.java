@@ -68,7 +68,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same identification info.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -77,7 +77,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getIdentificationInformation().equals(getIdentificationInformation());
+            && otherPerson.getIdentificationInformation().getNric().equals(getIdentificationInformation().getNric());
     }
 
     /**
@@ -96,9 +96,21 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return getIdentificationInformation().equals(otherPerson.getIdentificationInformation())
+
+        // If both have contact information
+        if (otherPerson.hasContactInformation() && hasContactInformation()) {
+            return getIdentificationInformation().equals(otherPerson.getIdentificationInformation())
                 && getContactInformation().equals(otherPerson.getContactInformation())
                 && tags.equals(otherPerson.tags);
+        }
+
+        // If neither has contact information
+        if (!otherPerson.hasContactInformation() && !hasContactInformation()) {
+            return getIdentificationInformation().equals(otherPerson.getIdentificationInformation())
+                && tags.equals(otherPerson.tags);
+        }
+
+        return false;
     }
 
     @Override

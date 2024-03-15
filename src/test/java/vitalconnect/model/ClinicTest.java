@@ -3,7 +3,7 @@ package vitalconnect.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static vitalconnect.testutil.Assert.assertThrows;
 import static vitalconnect.testutil.TypicalPersons.ALICE;
@@ -46,7 +46,7 @@ public class ClinicTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withNric(VALID_NRIC_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         ClinicStub newData = new ClinicStub(newPersons);
@@ -73,7 +73,7 @@ public class ClinicTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInClinic_returnsTrue() {
         clinic.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withNric(VALID_NRIC_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(clinic.hasPerson(editedAlice));
     }

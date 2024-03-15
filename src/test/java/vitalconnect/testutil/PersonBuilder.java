@@ -16,7 +16,7 @@ import vitalconnect.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_NRIC = "S1234567D";
+    public static final String DEFAULT_NRIC = "S7654321F";
 
     private Name name;
     private Nric nric;

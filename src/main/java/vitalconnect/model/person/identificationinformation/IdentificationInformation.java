@@ -49,7 +49,7 @@ public class IdentificationInformation {
 
     @Override
     public String toString() {
-        return name + " " + nric;
+        return "[name=" + name + ", nric=" + nric + "]";
     }
 
     @Override
@@ -64,7 +64,7 @@ public class IdentificationInformation {
         }
 
         IdentificationInformation otherInfo = (IdentificationInformation) other;
-        return nric.equals(otherInfo.nric);
+        return name.equals(otherInfo.name) && nric.equals(otherInfo.nric);
     }
 
     @Override

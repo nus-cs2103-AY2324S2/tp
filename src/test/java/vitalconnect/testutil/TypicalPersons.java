@@ -25,14 +25,16 @@ public class TypicalPersons {
         .withNric("S1234568B")
         .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
-        .withNric("S1234561E").build();
+        .withNric("T1234567J").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
-        .withNric("S1234562C")
+        .withNric("F1234567N")
         .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
-        .withNric("S1234563A").build();
+        .withNric("G1234567X").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
-        .withNric("S1234564Z").build();
+        .withNric("M1234567K").build();
+    public static final Person GEORGE = new PersonBuilder().withName("George Best")
+        .withNric("F1234560R").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withNric("S1234569J").build();
@@ -61,6 +63,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

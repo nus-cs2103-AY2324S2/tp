@@ -168,6 +168,14 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
+        if (clinic.equals(otherModelManager.clinic)) {
+            if (userPrefs.equals(otherModelManager.userPrefs)) {
+                if (filteredPersons.equals(otherModelManager.filteredPersons)) {
+                    return true;
+                }
+            }
+        }
+
         return clinic.equals(otherModelManager.clinic)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);

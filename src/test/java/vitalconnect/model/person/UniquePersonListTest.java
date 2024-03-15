@@ -3,6 +3,7 @@ package vitalconnect.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static vitalconnect.testutil.Assert.assertThrows;
@@ -42,7 +43,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withNric(VALID_NRIC_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }

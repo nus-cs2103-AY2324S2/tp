@@ -35,7 +35,7 @@ public class Nric {
         if (test.matches("test")) {
             return true;
         }
-        
+
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }
@@ -73,6 +73,8 @@ public class Nric {
             break;
         case 'G':
             total += 4;
+            checksumResultChar = new char[]{ 'X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K' };
+            break;
         case 'F':
             checksumResultChar = new char[]{ 'X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K' };
             break;

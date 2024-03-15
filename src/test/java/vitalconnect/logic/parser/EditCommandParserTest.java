@@ -146,12 +146,12 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_BOB + INVALID_NRIC_DESC;
 
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
+        assertParseFailure(parser, userInput, Nric.MESSAGE_CONSTRAINTS);
 
         // invalid followed by valid
         userInput = targetIndex.getOneBased() + INVALID_NRIC_DESC + NAME_DESC_BOB;
 
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
+        assertParseFailure(parser, userInput, Nric.MESSAGE_CONSTRAINTS);
 
         // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + NRIC_DESC_AMY + NRIC_DESC_AMY

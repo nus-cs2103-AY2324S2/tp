@@ -16,11 +16,8 @@ import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static vitalconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static vitalconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static vitalconnect.testutil.TypicalPersons.AMY;
@@ -65,15 +62,15 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
-        // multiple phones
+        // multiple nric
         assertParseFailure(parser, NRIC_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
 
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + NAME_DESC_AMY + NRIC_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_NRIC));
 
         // invalid value followed by valid value
 
@@ -93,7 +90,7 @@ public class AddCommandParserTest {
 
         // invalid nric
         assertParseFailure(parser, validExpectedPersonString + INVALID_NRIC_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
     }
 
     @Test
