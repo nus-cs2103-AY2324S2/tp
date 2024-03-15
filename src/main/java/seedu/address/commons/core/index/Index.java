@@ -63,6 +63,12 @@ public class Index {
     }
 
     @Override
+    public int hashCode() {
+        // Integer's hashcode is equal to its value
+        return zeroBasedIndex;
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this).add("zeroBasedIndex", zeroBasedIndex).toString();
     }

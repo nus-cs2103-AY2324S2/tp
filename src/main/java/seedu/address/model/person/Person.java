@@ -28,6 +28,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private boolean isFavourite = false;
 
     private final ArrayList<Order> orders;
 
@@ -35,7 +36,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Company company, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, company, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,12 +52,30 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Company company,
                   Set<Tag> tags, ArrayList<Order> orders) {
-        requireAllNonNull(name, phone, email, address, tags, orders);
+        requireAllNonNull(name, phone, email, address, company, tags, orders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.company = company;
+        this.tags.addAll(tags);
+        this.orders = orders;
+    }
+
+    /**
+     * Every field must be present and not null.
+     * This constructor is used to create a person with orders, and
+     * indicates whether they have been marked as favourite
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Company company, boolean isFavourite,
+                  Set<Tag> tags, ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, company, isFavourite, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.company = company;
+        this.isFavourite = isFavourite;
         this.tags.addAll(tags);
         this.orders = orders;
     }
@@ -99,6 +118,16 @@ public class Person {
         orders.add(order);
     }
 
+    /**
+     * Sets the person specified by the contact as favourite
+     */
+    public void addFavourite() {
+        this.isFavourite = true;
+    }
+
+    public boolean getFavourite() {
+        return this.isFavourite;
+    }
     public ArrayList<Order> getOrders() {
         return orders;
     }
@@ -154,6 +183,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("company", company)
+                .add("isFavourite", isFavourite)
                 .add("tags", tags)
                 .add("orders", orders)
                 .toString();
