@@ -19,15 +19,17 @@ public class IdTest {
         assertThrows(NullPointerException.class, () -> Id.isValidId(null));
 
         // invalid Id
-        assertFalse(Id.isValidId("$agsaga")); // empty string
-        assertFalse(Id.isValidId("%agaga"));
-        assertFalse(Id.isValidId("a9326014"));
-        assertFalse(Id.isValidId("lfasaha"));
+        assertFalse(Id.isValidId("$agsaga")); //special characters
+        assertFalse(Id.isValidId("agaga")); //all alphabets
+        assertFalse(Id.isValidId("a9326014")); //Missing alphabet at the end
+        assertFalse(Id.isValidId("MAGKAGHAG")); //All upper case
+        assertFalse(Id.isValidId("A09125K")); //Format correct but not correct length
+
 
         // valid name
-        assertTrue(Name.isValidName("A0265841")); // alphabets only
-        assertTrue(Name.isValidName("A26252R"));
-        assertTrue(Name.isValidName("A0265901T")); // alphanumeric characters
+        assertTrue(Name.isValidName("A0265901E")); // Correct Format
+        assertTrue(Name.isValidName("A0145156k")); //Combination of lower and uppercase
+        assertTrue(Name.isValidName("a0265901T")); // combination of lower and upper case
     }
 
     @Test
@@ -64,6 +66,6 @@ public class IdTest {
         assertFalse(id.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(id.equals(new Id("A356125M")));
+        assertFalse(id.equals(new Id("A3561256M")));
     }
 }

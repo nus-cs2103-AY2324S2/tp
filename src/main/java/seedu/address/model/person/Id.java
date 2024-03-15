@@ -11,7 +11,7 @@ public class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
             "ID should only contain alphanumeric characters, and it should not be blank";
-    public static final String VALIDATION_REGEX = "^[A-Z0-9]+$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z]\\d{7}[a-zA-Z]$";
 
     public final String id;
 
@@ -23,7 +23,7 @@ public class Id {
     public Id(String value) {
         requireNonNull(value);
         checkArgument(isValidId(value), MESSAGE_CONSTRAINTS);
-        id = value;
+        id = value.toUpperCase();
     }
     public static boolean isValidId(String test) {
         return test.matches(VALIDATION_REGEX);
