@@ -37,7 +37,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        star = Star.NOSTAR; // default value from Star
+        star = Star.NO_STAR; // default value from Star
         tags = new HashSet<>();
     }
 

@@ -35,7 +35,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.star = Star.NOSTAR;
+        this.star = Star.NO_STAR;
         this.tags.addAll(tags);
     }
 

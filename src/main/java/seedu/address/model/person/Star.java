@@ -11,19 +11,19 @@ public class Star {
     public static final String MESSAGE_CONSTRAINTS =
             "Stars given should be more than 0.";
 
-    public static final Star NOSTAR = new Star(0);
+    public static final Star NO_STAR = new Star(0);
 
-    public final Integer noOfStars; // number of stars given to a student
+    public final Integer numOfStars; // number of stars given to a student
 
     /**
      * Constructs a {@code Star}.
      *
-     * @param noOfStars A valid number.
+     * @param numOfStars A valid number.
      */
-    public Star(Integer noOfStars) {
-        requireNonNull(noOfStars);
-        checkArgument(isValidStar(noOfStars), MESSAGE_CONSTRAINTS);
-        this.noOfStars = noOfStars;
+    public Star(Integer numOfStars) {
+        requireNonNull(numOfStars);
+        checkArgument(isValidStar(numOfStars), MESSAGE_CONSTRAINTS);
+        this.numOfStars = numOfStars;
     }
 
     /**
@@ -35,7 +35,7 @@ public class Star {
 
     @Override
     public String toString() {
-        return this.noOfStars.toString();
+        return this.numOfStars.toString();
     }
 
     @Override
@@ -50,11 +50,11 @@ public class Star {
         }
 
         Star otherPhone = (Star) other;
-        return noOfStars.equals(otherPhone.noOfStars);
+        return numOfStars.equals(otherPhone.numOfStars);
     }
 
     @Override
     public int hashCode() {
-        return noOfStars.hashCode();
+        return numOfStars.hashCode();
     }
 }
