@@ -11,7 +11,7 @@ public class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
             "ID should only contain alphanumeric characters, and it should not be blank";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+$";
+    public static final String VALIDATION_REGEX = "^[A-Z0-9]+$";
 
     public final String id;
 
