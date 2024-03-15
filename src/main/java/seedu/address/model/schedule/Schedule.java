@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class Schedule {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Schedule names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String schedName;
@@ -124,12 +124,9 @@ public class Schedule {
      * Format state as text for viewing.
      */
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("schedule", schedName)
-                .add("start", startTime.toString())
-                .add("end", endTime.toString())
-                .add("participants", participants.stream().map(Person:: getName))
-                .toString();
+        return schedName +
+                " start " + startTime.toString() +
+                " end " + endTime.toString();
     }
 
 }

@@ -24,8 +24,8 @@ public class JsonAdaptedSchedule {
          * {@code dateTime} and {@code duration}.
          */
         @JsonCreator
-        public JsonAdaptedSchedule(@JsonProperty("name") String name, @JsonProperty("startTIme") String startTime,
-                                   @JsonProperty("duration") String endTime) {
+        public JsonAdaptedSchedule(@JsonProperty("name") String name, @JsonProperty("startTime") String startTime,
+                                   @JsonProperty("endTime") String endTime) {
             this.name = name;
             this.startTime = LocalDateTime.parse(startTime);
             this.endTime = LocalDateTime.parse(endTime);
