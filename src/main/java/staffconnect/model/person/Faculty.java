@@ -15,8 +15,8 @@ public class Faculty {
             "The content should be a String representing a real faculty of NUS";
 
     /**
-     * For this version, a valid faculty value should match exactly the full name of the facult,
-     * or the value is invalid
+     * For this version, a valid faculty value should match exactly the full name of the faculty,
+     * or the value is invalid. The enum class serves as the purpose for parsing user strings into the faculty name.
      */
     public enum FacultyEnum {
         ARTS_AND_SOCIAL_SCIENCES("Arts and Social Sciences"),
