@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + PREFIX_TAG + "TAG "
+            + PREFIX_TAG + "TAG " // tag by enums
             + PREFIX_JOB_DESCRIPTION + "JOB DESCRIPTION "
             + "[" + PREFIX_INTERVIEW_DATE + "INTERVIEW DATE] "
             + PREFIX_INTERN_DURATION + "INTERN DURATION "
