@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.house.Block;
 import seedu.address.model.house.PostalCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -27,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_BLOCK = "12a34";
     private static final String INVALID_POSTALCODE = "5678990";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -36,6 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_POSTALCODE = "654321";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_BLOCK = "205A";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -218,5 +221,28 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseBlock_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseBlock((String) null));
+    }
+
+    @Test
+    public void parseBlock_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseBlock(INVALID_BLOCK));
+    }
+
+    @Test
+    public void parseBlock_validValueWithoutWhitespace_returnsBlock() throws Exception {
+        Block expectedBlock = new Block(VALID_BLOCK);
+        assertEquals(expectedBlock, ParserUtil.parseBlock(VALID_BLOCK));
+    }
+
+    @Test
+    public void parseBlock_validValueWithWhitespace_returnsTrimmedBlock() throws Exception {
+        String blockWithWhitespace = WHITESPACE + VALID_BLOCK + WHITESPACE;
+        Block expectedBlock = new Block(VALID_BLOCK);
+        assertEquals(expectedBlock, ParserUtil.parseBlock(blockWithWhitespace));
     }
 }

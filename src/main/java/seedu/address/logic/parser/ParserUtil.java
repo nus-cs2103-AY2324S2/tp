@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.house.Block;
 import seedu.address.model.house.PostalCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -125,6 +126,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String block} into an {@code Block}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code block} is invalid.
+     */
+    public static Block parseBlock(String block) throws ParseException {
+        requireNonNull(block);
+        String trimmedBlock = block.trim();
+        if (!Block.isValidBlock(trimmedBlock)) {
+            throw new ParseException(Block.MESSAGE_CONSTRAINTS);
+        }
+        return new Block(trimmedBlock);
+
      * Parses a {@code String postalCode} into a {@code postalCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
