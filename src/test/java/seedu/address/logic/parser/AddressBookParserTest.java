@@ -64,8 +64,8 @@ public class AddressBookParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(
                 model,
                 EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + "240001" + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(person.getId(), descriptor), command);
     }
 
     @Test
