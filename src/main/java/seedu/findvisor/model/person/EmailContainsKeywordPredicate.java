@@ -2,27 +2,28 @@ package seedu.findvisor.model.person;
 
 import java.util.function.Predicate;
 
+import seedu.findvisor.commons.util.StringUtil;
 import seedu.findvisor.commons.util.ToStringBuilder;
 
 /**
- * A predicate for evaluating if a {@link Person}'s email equals (case-insensitive) a given keyword.
+ * A predicate for evaluating if a {@link Person}'s email contains (case-insensitive) a given keyword.
  * This is used to filter for persons based on their email attribute.
  */
-public class EmailEqualsKeywordPredicate implements Predicate<Person> {
+public class EmailContainsKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
     /**
-     * Constructs an {@code EmailEqualsKeywordPredicate} with the specified keyword.
+     * Constructs an {@code EmailContainsKeywordPredicate} with the specified keyword.
      *
      * @param keyword The keyword to be matched against the person's email. The match is case-insensitive.
      */
-    public EmailEqualsKeywordPredicate(String keyword) {
+    public EmailContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
 
     @Override
     public boolean test(Person person) {
-        return keyword.equalsIgnoreCase(person.getEmail().value);
+        return StringUtil.containsIgnoreCase(person.getEmail().value, keyword);
     }
 
     @Override
@@ -32,11 +33,11 @@ public class EmailEqualsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EmailEqualsKeywordPredicate)) {
+        if (!(other instanceof EmailContainsKeywordPredicate)) {
             return false;
         }
 
-        EmailEqualsKeywordPredicate otherEmailContainsKeywordsPredicate = (EmailEqualsKeywordPredicate) other;
+        EmailContainsKeywordPredicate otherEmailContainsKeywordsPredicate = (EmailContainsKeywordPredicate) other;
         return keyword.equals(otherEmailContainsKeywordsPredicate.keyword);
     }
 

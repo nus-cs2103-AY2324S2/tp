@@ -7,19 +7,13 @@ import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.findvisor.logic.commands.FindCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
-import seedu.findvisor.model.person.Email;
-import seedu.findvisor.model.person.EmailEqualsKeywordPredicate;
-import seedu.findvisor.model.person.Name;
+import seedu.findvisor.model.person.EmailContainsKeywordPredicate;
 import seedu.findvisor.model.person.NameContainsKeywordPredicate;
-import seedu.findvisor.model.person.Phone;
-import seedu.findvisor.model.person.PhoneEqualsKeywordPredicate;
-import seedu.findvisor.model.tag.Tag;
+import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
 import seedu.findvisor.model.tag.TagsContainsKeywordsPredicate;
 
 /**
@@ -43,21 +37,20 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            return new FindCommand(new NameContainsKeywordPredicate(name.fullName));
+            String nameKeyword = argMultimap.getValue(PREFIX_NAME).get();
+            return new FindCommand(new NameContainsKeywordPredicate(nameKeyword));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            return new FindCommand(new EmailEqualsKeywordPredicate(email.value));
+            String emailKeyword = argMultimap.getValue(PREFIX_EMAIL).get();
+            return new FindCommand(new EmailContainsKeywordPredicate(emailKeyword));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            return new FindCommand(new PhoneEqualsKeywordPredicate(phone.value));
+            String phoneKeyword = argMultimap.getValue(PREFIX_PHONE).get();
+            return new FindCommand(new PhoneContainsKeywordPredicate(phoneKeyword));
         }
 
-        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        List<String> keywords = tagSet.stream().map(tag -> tag.tagName).collect(Collectors.toList());
-        return new FindCommand(new TagsContainsKeywordsPredicate(keywords));
+        List<String> tagsKeywords = argMultimap.getAllValues(PREFIX_TAG);
+        return new FindCommand(new TagsContainsKeywordsPredicate(tagsKeywords));
     }
 
     /**

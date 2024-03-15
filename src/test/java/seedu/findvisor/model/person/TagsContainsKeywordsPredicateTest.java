@@ -40,11 +40,15 @@ public class TagsContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_tagsContainsKeyword_returnsTrue() {
+    public void test_tagsContainsKeywords_returnsTrue() {
         // single tag
         TagsContainsKeywordsPredicate predicate = new TagsContainsKeywordsPredicate(
                 Arrays.asList(new String[]{"friends"}));
         assertTrue(predicate.test(new PersonBuilder().withTags("friends").build()));
+
+        // keyword is a substring
+        predicate = new TagsContainsKeywordsPredicate(Arrays.asList(new String[]{"pru"}));
+        assertTrue(predicate.test(new PersonBuilder().withTags("PRUActive", "PRUEssential").build()));
 
         // multiple tags
         predicate = new TagsContainsKeywordsPredicate(Arrays.asList(new String[]{"friends", "husband"}));
@@ -52,7 +56,7 @@ public class TagsContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_tagsDoesNotContainKeywords_returnsFalse() {
+    public void test_tagsDoesNotContainsKeywords_returnsFalse() {
         // Non-matching keywords
         TagsContainsKeywordsPredicate predicate = new TagsContainsKeywordsPredicate(
                 Arrays.asList(new String[]{"basketball", "football"}));

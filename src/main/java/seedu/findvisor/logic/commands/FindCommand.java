@@ -29,7 +29,7 @@ public class FindCommand extends Command {
             + PREFIX_NAME + "NAME | "
             + PREFIX_EMAIL + "EMAIL | "
             + PREFIX_PHONE + "PHONE | "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG...\n"
             + "Example: " + COMMAND_WORD + " t/PRUActiveCash t/friends";
 
     private final Predicate<Person> predicate;

@@ -30,10 +30,10 @@ import seedu.findvisor.logic.commands.FindCommand;
 import seedu.findvisor.logic.commands.HelpCommand;
 import seedu.findvisor.logic.commands.ListCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
-import seedu.findvisor.model.person.EmailEqualsKeywordPredicate;
+import seedu.findvisor.model.person.EmailContainsKeywordPredicate;
 import seedu.findvisor.model.person.NameContainsKeywordPredicate;
 import seedu.findvisor.model.person.Person;
-import seedu.findvisor.model.person.PhoneEqualsKeywordPredicate;
+import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
 import seedu.findvisor.model.tag.TagsContainsKeywordsPredicate;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 import seedu.findvisor.testutil.PersonBuilder;
@@ -88,12 +88,12 @@ public class AddressBookParserTest {
         // Find using email
         FindCommand findEmailCommand = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_EMAIL + VALID_EMAIL_AMY);
-        assertEquals(new FindCommand(new EmailEqualsKeywordPredicate(VALID_EMAIL_AMY)), findEmailCommand);
+        assertEquals(new FindCommand(new EmailContainsKeywordPredicate(VALID_EMAIL_AMY)), findEmailCommand);
 
         // Find using phone
         FindCommand findPhoneCommand = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_PHONE + VALID_PHONE_AMY);
-        assertEquals(new FindCommand(new PhoneEqualsKeywordPredicate(VALID_PHONE_AMY)), findPhoneCommand);
+        assertEquals(new FindCommand(new PhoneContainsKeywordPredicate(VALID_PHONE_AMY)), findPhoneCommand);
 
         // Find using tags
         FindCommand findTagsCommand = (FindCommand) parser.parseCommand(

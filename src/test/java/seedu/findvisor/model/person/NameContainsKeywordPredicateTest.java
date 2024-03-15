@@ -66,10 +66,14 @@ public class NameContainsKeywordPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_nameDoesNotContainKeyword_returnsFalse() {
         // Non-matching keyword
         NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate("Carol");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Tan").build()));
+
+        // Reversed keyword
+        predicate = new NameContainsKeywordPredicate("Tan Alex");
+        assertFalse(predicate.test(new PersonBuilder().withName("Alex Tan").build()));
 
         // Keywords match phone, but does not match name
         predicate = new NameContainsKeywordPredicate("91002921");
@@ -79,7 +83,7 @@ public class NameContainsKeywordPredicateTest {
 
     @Test
     public void toStringMethod() {
-        String keyword = "keyword1";
+        String keyword = "Alice";
         NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate(keyword);
 
         String expected = NameContainsKeywordPredicate.class.getCanonicalName() + "{name=" + keyword + "}";

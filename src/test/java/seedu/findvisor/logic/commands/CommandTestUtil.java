@@ -17,7 +17,7 @@ import seedu.findvisor.logic.commands.exceptions.CommandException;
 import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.person.Person;
-import seedu.findvisor.model.person.PhoneEqualsKeywordPredicate;
+import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -120,7 +120,7 @@ public class CommandTestUtil {
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         // Use person's phone to identify
         String phone = person.getPhone().value;
-        model.updateFilteredPersonList(new PhoneEqualsKeywordPredicate(phone));
+        model.updateFilteredPersonList(new PhoneContainsKeywordPredicate(phone));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

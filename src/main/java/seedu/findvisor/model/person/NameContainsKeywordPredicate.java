@@ -23,7 +23,7 @@ public class NameContainsKeywordPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.startsWithSubStringIgnoreCase(person.getName().fullName, keyword);
+        return StringUtil.containsIgnoreCase(person.getName().fullName, keyword);
     }
 
     @Override

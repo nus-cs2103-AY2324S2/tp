@@ -8,21 +8,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.testutil.PersonBuilder;
 
-public class EmailEqualsKeywordPredicateTest {
+public class EmailContainsKeywordPredicateTest {
 
     @Test
     public void equals() {
         String firstPredicateKeyword = "example1@example.com";
         String secondPredicateKeyword = "example2@example.com";
 
-        EmailEqualsKeywordPredicate firstPredicate = new EmailEqualsKeywordPredicate(firstPredicateKeyword);
-        EmailEqualsKeywordPredicate secondPredicate = new EmailEqualsKeywordPredicate(secondPredicateKeyword);
+        EmailContainsKeywordPredicate firstPredicate = new EmailContainsKeywordPredicate(firstPredicateKeyword);
+        EmailContainsKeywordPredicate secondPredicate = new EmailContainsKeywordPredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        EmailEqualsKeywordPredicate firstPredicateCopy = new EmailEqualsKeywordPredicate(firstPredicateKeyword);
+        EmailContainsKeywordPredicate firstPredicateCopy = new EmailContainsKeywordPredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -36,27 +36,32 @@ public class EmailEqualsKeywordPredicateTest {
     }
 
     @Test
-    public void test_emailEqualsKeyword_returnsTrue() {
-        EmailEqualsKeywordPredicate predicate = new EmailEqualsKeywordPredicate("example@example.com");
+    public void test_emailContainsKeyword_returnsTrue() {
+        // Exact match
+        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate("example@example.com");
+        assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
+
+        // Substring match
+        predicate = new EmailContainsKeywordPredicate("example");
         assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
 
         // Mixed-case keyword
-        predicate = new EmailEqualsKeywordPredicate("EXAmple@example.COM");
+        predicate = new EmailContainsKeywordPredicate("EXAmple@example.COM");
         assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
     }
 
     @Test
-    public void test_emailDoesNotEqualKeywords_returnsFalse() {
+    public void test_emailDoesNotContainsKeyword_returnsFalse() {
         // Non-matching keyword
-        EmailEqualsKeywordPredicate predicate = new EmailEqualsKeywordPredicate("example@example.com");
+        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate("example@example.com");
         assertFalse(predicate.test(new PersonBuilder().withEmail("123@example.com").build()));
 
         // Substring keyword
-        predicate = new EmailEqualsKeywordPredicate("example");
+        predicate = new EmailContainsKeywordPredicate("com@example.com");
         assertFalse(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
 
         // Keywords match phone, but does not match email
-        predicate = new EmailEqualsKeywordPredicate("91002921");
+        predicate = new EmailContainsKeywordPredicate("91002921");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("91002921")
                 .withEmail("alice@email.com").withAddress("MainStreet").build()));
     }
@@ -64,9 +69,9 @@ public class EmailEqualsKeywordPredicateTest {
     @Test
     public void toStringMethod() {
         String keyword = "example@example.com";
-        EmailEqualsKeywordPredicate predicate = new EmailEqualsKeywordPredicate(keyword);
+        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate(keyword);
 
-        String expected = EmailEqualsKeywordPredicate.class.getCanonicalName() + "{email=" + keyword + "}";
+        String expected = EmailContainsKeywordPredicate.class.getCanonicalName() + "{email=" + keyword + "}";
         assertEquals(expected, predicate.toString());
     }
 }

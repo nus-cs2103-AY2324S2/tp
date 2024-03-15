@@ -39,19 +39,19 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if the {@code sentence} starts with the {@code subString}
+     * Returns true if the {@code sentence} contains the {@code subString}
      * Ignores case, but order of the words in {@code subString} matter.
      * @param sentence The string in which to search for the substring. This parameter cannot be null.
      * @param subString The substring to search within a {@code sentence}. This parameter is trimmed for leading and
      *      trailing whitespace and cannot be empty after trimming. This parameter cannot be null.
      */
-    public static boolean startsWithSubStringIgnoreCase(String sentence, String subString) {
+    public static boolean containsIgnoreCase(String sentence, String subString) {
         requireNonNull(sentence);
         requireNonNull(subString);
 
         String preppedSubString = subString.trim().toLowerCase();
         checkArgument(!preppedSubString.isEmpty(), "subString parameter cannot be empty");
-        return sentence.toLowerCase().startsWith(preppedSubString);
+        return sentence.toLowerCase().contains(preppedSubString);
     }
 
     /**

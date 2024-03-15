@@ -28,10 +28,10 @@ import org.junit.jupiter.api.Test;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.ModelManager;
 import seedu.findvisor.model.UserPrefs;
-import seedu.findvisor.model.person.EmailEqualsKeywordPredicate;
+import seedu.findvisor.model.person.EmailContainsKeywordPredicate;
 import seedu.findvisor.model.person.NameContainsKeywordPredicate;
 import seedu.findvisor.model.person.Person;
-import seedu.findvisor.model.person.PhoneEqualsKeywordPredicate;
+import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
 import seedu.findvisor.model.tag.TagsContainsKeywordsPredicate;
 
 /**
@@ -48,16 +48,16 @@ public class FindCommandTest {
         NameContainsKeywordPredicate secondNamePredicate =
                 new NameContainsKeywordPredicate(VALID_NAME_BOB);
 
-        EmailEqualsKeywordPredicate firstEmailPredicate =
-                new EmailEqualsKeywordPredicate(VALID_EMAIL_AMY);
-        EmailEqualsKeywordPredicate secondEmailPredicate =
-                new EmailEqualsKeywordPredicate(VALID_EMAIL_BOB);
+        EmailContainsKeywordPredicate firstEmailPredicate =
+                new EmailContainsKeywordPredicate(VALID_EMAIL_AMY);
+        EmailContainsKeywordPredicate secondEmailPredicate =
+                new EmailContainsKeywordPredicate(VALID_EMAIL_BOB);
 
-        PhoneEqualsKeywordPredicate firstPhonePredicate =
-                new PhoneEqualsKeywordPredicate(VALID_PHONE_AMY);
+        PhoneContainsKeywordPredicate firstPhonePredicate =
+                new PhoneContainsKeywordPredicate(VALID_PHONE_AMY);
 
-        PhoneEqualsKeywordPredicate secondPhonePredicate =
-                new PhoneEqualsKeywordPredicate(VALID_PHONE_BOB);
+        PhoneContainsKeywordPredicate secondPhonePredicate =
+                new PhoneContainsKeywordPredicate(VALID_PHONE_BOB);
 
         TagsContainsKeywordsPredicate firstTagsPredicate =
                 new TagsContainsKeywordsPredicate(Arrays.asList(VALID_TAG_HUSBAND));
@@ -104,7 +104,7 @@ public class FindCommandTest {
     @Test
     public void execute_nonExistentPhone_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PhoneEqualsKeywordPredicate phonePredicate = new PhoneEqualsKeywordPredicate(VALID_PHONE_AMY);
+        PhoneContainsKeywordPredicate phonePredicate = new PhoneContainsKeywordPredicate(VALID_PHONE_AMY);
         Command command = new FindCommand(phonePredicate);
         expectedModel.updateFilteredPersonList(phonePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -114,7 +114,7 @@ public class FindCommandTest {
     @Test
     public void execute_nonExistentEmail_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        EmailEqualsKeywordPredicate predicate = new EmailEqualsKeywordPredicate(VALID_EMAIL_AMY);
+        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate(VALID_EMAIL_AMY);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -146,7 +146,7 @@ public class FindCommandTest {
     @Test
     public void execute_existingPhone_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        PhoneEqualsKeywordPredicate predicate = new PhoneEqualsKeywordPredicate(BENSON.getPhone().value);
+        PhoneContainsKeywordPredicate predicate = new PhoneContainsKeywordPredicate(BENSON.getPhone().value);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -156,7 +156,7 @@ public class FindCommandTest {
     @Test
     public void execute_existingEmail_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        EmailEqualsKeywordPredicate predicate = new EmailEqualsKeywordPredicate(CARL.getEmail().value);
+        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate(CARL.getEmail().value);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

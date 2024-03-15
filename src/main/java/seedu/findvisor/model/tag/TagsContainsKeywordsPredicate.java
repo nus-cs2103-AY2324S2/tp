@@ -3,6 +3,7 @@ package seedu.findvisor.model.tag;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.findvisor.commons.util.StringUtil;
 import seedu.findvisor.commons.util.ToStringBuilder;
 import seedu.findvisor.model.person.Person;
 
@@ -25,7 +26,7 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream().anyMatch(keyword -> person.getTags().stream()
-                .anyMatch(tag -> keyword.equalsIgnoreCase(tag.tagName)));
+                .anyMatch(tag -> StringUtil.containsIgnoreCase(tag.tagName, keyword)));
     }
 
     @Override

@@ -5,10 +5,10 @@ import java.util.function.Predicate;
 import seedu.findvisor.commons.util.ToStringBuilder;
 
 /**
- * A predicate for evaluating if a {@link Person}'s phone equals a given keyword.
+ * A predicate for evaluating if a {@link Person}'s phone contains a given keyword.
  * This is used to filter for persons based on their phone attribute.
  */
-public class PhoneEqualsKeywordPredicate implements Predicate<Person> {
+public class PhoneContainsKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
     /**
@@ -16,13 +16,14 @@ public class PhoneEqualsKeywordPredicate implements Predicate<Person> {
      *
      * @param keyword The keyword to be used to lookup against the person's phone.
      */
-    public PhoneEqualsKeywordPredicate(String keyword) {
+    public PhoneContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
 
     @Override
     public boolean test(Person person) {
-        return keyword.equals(person.getPhone().value);
+        String personPhoneString = person.getPhone().value;
+        return personPhoneString.contains(keyword);
     }
 
     @Override
@@ -32,11 +33,11 @@ public class PhoneEqualsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PhoneEqualsKeywordPredicate)) {
+        if (!(other instanceof PhoneContainsKeywordPredicate)) {
             return false;
         }
 
-        PhoneEqualsKeywordPredicate otherPhoneEqualsKeywordsPredicate = (PhoneEqualsKeywordPredicate) other;
+        PhoneContainsKeywordPredicate otherPhoneEqualsKeywordsPredicate = (PhoneContainsKeywordPredicate) other;
         return keyword.equals(otherPhoneEqualsKeywordsPredicate.keyword);
     }
 
