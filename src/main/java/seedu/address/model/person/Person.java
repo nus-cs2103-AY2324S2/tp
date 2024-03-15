@@ -23,6 +23,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Star star;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -34,6 +35,20 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.star = Star.NO_STAR;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null. Alternative constructor to instantiate a Person with an existing star.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Star star, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, star, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.star = star;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +67,10 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
+    public Star getStar() {
+        return star;
+    } // get the stars
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -94,13 +113,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && star.equals(otherPerson.star)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, star, tags);
     }
 
     @Override
@@ -110,6 +130,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("star", star)
                 .add("tags", tags)
                 .toString();
     }
