@@ -60,6 +60,7 @@
                     </padding>
                     <StackPane fx:id="loanListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
+                
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
             </VBox>
         </Scene>
