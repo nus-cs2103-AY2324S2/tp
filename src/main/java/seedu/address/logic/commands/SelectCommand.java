@@ -25,7 +25,7 @@ public class SelectCommand extends Command {
 
     public static final String MESSAGE_SELECT_EVENT_SUCCESS = "Selected Event: %1$s";
 
-    private final Index targetIndex;
+    final Index targetIndex;
 
     public SelectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
