@@ -102,7 +102,7 @@ class JsonAdaptedPerson {
 
         // final int sid = new Integer(toModelType().getSid());
         // TODO: Dummy value for ID
-        return new Person(modelName, modelPhone, modelEmail, modelTags, sid);
+        return new Person(modelName, modelPhone, modelEmail, modelTags);
     }
 
 }

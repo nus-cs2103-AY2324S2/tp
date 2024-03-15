@@ -30,13 +30,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags, int id) {
-        requireAllNonNull(name, phone, email, tags, id);
+    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
-        this.id = id;
+        this.id = idTracker++;
     }
 
     public Name getName() {
