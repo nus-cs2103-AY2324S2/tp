@@ -3,14 +3,14 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.LinkLoanCommand.LinkLoanDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -135,21 +135,29 @@ public class ParserUtil {
     public static LinkLoanDescriptor parseLoan(String value, String startDate, String returnDate)
             throws ParseException {
         requireAllNonNull(value, startDate, returnDate);
+        String trimmedValue = value.trim();
+        String trimmedStartDate = startDate.trim();
+        String trimmedReturnDate = returnDate.trim();
+        float convertedValue;
+        Date convertedStartDate;
+        Date convertedReturnDate;
         try {
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            String trimmedValue = value.trim();
-            String trimmedStartDate = startDate.trim();
-            String trimmedReturnDate = returnDate.trim();
-            float convertedValue = Float.parseFloat(trimmedValue);
-            Date convertedStartDate = formatter.parse(trimmedStartDate);
-            Date convertedReturnDate = formatter.parse(trimmedReturnDate);
-            if (!Loan.isValidValue(convertedValue)
-                    || !Loan.isValidDates(convertedStartDate, convertedReturnDate)) {
-                throw new ParseException(Loan.MESSAGE_CONSTRAINTS);
-            }
-            return new LinkLoanDescriptor(convertedValue, convertedStartDate, convertedReturnDate);
-        } catch (java.text.ParseException p) {
+            convertedValue = Float.parseFloat(trimmedValue);
+            convertedStartDate = DateUtil.parse(trimmedStartDate);
+            convertedReturnDate = DateUtil.parse(trimmedReturnDate);
+        } catch (IllegalValueException i) {
+            // This is caught when the formatter is unable to parse the date correctly
+            throw new ParseException(Loan.DATE_CONSTRAINTS);
+        } catch (NumberFormatException n) {
+            // Ths is caught when the formatter is unable to parse the value correctly
+            throw new ParseException(Loan.VALUE_CONSTRAINTS);
+        }
+        if (!Loan.isValidValue(convertedValue)) {
+            throw new ParseException(Loan.VALUE_CONSTRAINTS);
+        }
+        if (!Loan.isValidDates(convertedStartDate, convertedReturnDate)) {
             throw new ParseException(Loan.DATE_CONSTRAINTS);
         }
+        return new LinkLoanDescriptor(convertedValue, convertedStartDate, convertedReturnDate);
     }
 }

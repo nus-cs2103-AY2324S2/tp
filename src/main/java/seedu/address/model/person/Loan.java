@@ -4,17 +4,18 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Date;
 
+import seedu.address.commons.util.DateUtil;
+
 /**
  * Represents a Loan in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Loan {
 
-    public static final String DATE_CONSTRAINTS = "Dates should be of the form dd-mm-yyyy";
+    public static final String DATE_CONSTRAINTS = "Dates should be of the form " + DateUtil.DATE_FORMAT
+            + " and the loan start date must be before the return date.";
 
-    public static final String MESSAGE_CONSTRAINTS = "Loans must be positive and have "
-                                                    + "a start date before the return date.";
-
+    public static final String VALUE_CONSTRAINTS = "Loan values must be a positive number.";
 
     private final int id;
     private final float value;

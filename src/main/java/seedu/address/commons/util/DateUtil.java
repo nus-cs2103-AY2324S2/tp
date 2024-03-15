@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class DateUtil {
 
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(DATE_FORMAT);
 
     /**
@@ -22,6 +22,7 @@ public class DateUtil {
      * @throws IllegalValueException If the date string is not in the correct format.
      */
     public static Date parse(String date) throws IllegalValueException {
+        DATE_FORMATTER.setLenient(false);
         try {
             return DATE_FORMATTER.parse(date);
         } catch (ParseException e) {

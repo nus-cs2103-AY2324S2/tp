@@ -46,10 +46,10 @@ public class JsonAdaptedLoan {
      */
     public Loan toModelType() throws IllegalValueException {
         if (!Loan.isValidValue(value)) {
-            throw new IllegalValueException(Loan.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Loan.VALUE_CONSTRAINTS);
         }
         if (!Loan.isValidDates(DateUtil.parse(startDate), DateUtil.parse(returnDate))) {
-            throw new IllegalValueException(Loan.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Loan.DATE_CONSTRAINTS);
         }
         return new Loan(id, value, DateUtil.parse(startDate), DateUtil.parse(returnDate));
     }

@@ -34,8 +34,8 @@ public class LinkLoanCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "5 "
             + PREFIX_VALUE + "500.00 "
-            + PREFIX_START_DATE + "15-02-2024 "
-            + PREFIX_RETURN_DATE + "21-04-2024";
+            + PREFIX_START_DATE + "2024-02-15 "
+            + PREFIX_RETURN_DATE + "2024-04-21";
 
     public static final String MESSAGE_SUCCESS = "New loan linked: %1$s";
 
