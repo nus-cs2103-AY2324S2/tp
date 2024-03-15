@@ -50,11 +50,11 @@ public class Description {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof staffconnect.model.meeting.Description)) {
+        if (!(other instanceof Description)) {
             return false;
         }
 
-        staffconnect.model.meeting.Description otherDecription = (staffconnect.model.meeting.Description) other;
+        Description otherDecription = (Description) other;
         return description.equals(otherDecription.description);
     }
 

@@ -50,11 +50,11 @@ public class MeetDateTime {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof staffconnect.model.meeting.MeetDateTime)) {
+        if (!(other instanceof MeetDateTime)) {
             return false;
         }
 
-        staffconnect.model.meeting.MeetDateTime otherDate = (staffconnect.model.meeting.MeetDateTime) other;
+        MeetDateTime otherDate = (MeetDateTime) other;
         return value.equals(otherDate.value);
     }
 
