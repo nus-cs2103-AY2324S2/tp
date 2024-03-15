@@ -4,18 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * Adds the indicated contacts in the address book as favourites
@@ -32,12 +29,12 @@ public class AddFavouriteCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "i/ 1,2,5";
 
-    private final List<Index> indices;
+    private final Set<Index> indices;
 
     /**
      * Creates an AddFavouriteCommand to mark the specified group of {@code Person} as favourites
      */
-    public AddFavouriteCommand(List<Index> indices) {
+    public AddFavouriteCommand(Set<Index> indices) {
         requireNonNull(indices);
         this.indices = indices;
     }
@@ -54,12 +51,6 @@ public class AddFavouriteCommand extends Command {
             Person person = people.get(index.getZeroBased());
             modifiedContacts.add(person.getName().fullName);
             person.addFavourite();
-//            Set<Tag> tags = new HashSet<>(person.getTags());
-//            tags.add(new Tag("Favourite"));
-//            EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-//            editPersonDescriptor.setTags(tags);
-//            EditCommand editCommand = new EditCommand(index, editPersonDescriptor);
-//            editCommand.execute(model);
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, modifiedContacts));

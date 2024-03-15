@@ -57,7 +57,13 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         orders.setText(person.getOrders().size() + " orders");
-        favourite.setText(person.getFavourite() ? "Favourite" : "");
+        if (person.getFavourite()) {
+            favourite.setText("Favourite");
+        } else {
+            // Hides Favourite label when contact is not a favourite
+            favourite.setVisible(false);
+            favourite.setManaged(false);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

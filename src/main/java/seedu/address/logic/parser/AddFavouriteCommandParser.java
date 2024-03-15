@@ -5,6 +5,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDICES;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -46,6 +47,6 @@ public class AddFavouriteCommandParser implements Parser<AddFavouriteCommand> {
                         AddFavouriteCommand.MESSAGE_USAGE), pe);
             }
         }
-        return new AddFavouriteCommand(indices);
+        return new AddFavouriteCommand(new HashSet<>(indices));
     }
 }
