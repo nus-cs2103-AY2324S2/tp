@@ -312,32 +312,157 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the System is the `TutorTrack` and the Actor is the `Tutor`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case:** UC01 - View all students.<br>
+**Preconditions:** Connection is stable. 
 
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
+
+* 2a. The list is empty. 
+  * 2a1. System shows an error message.
+
+    Use case ends.
+
+**Use case:** UC02 - Add a student.<br>
+**Preconditions:** Connection is stable.
+
+**MSS:**
+1. User requests to add a specific student information.
+2. System adds the student information.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. Required fields are left empty.
+    * 2a1. System shows an error message.
+      
+      Use case ends.
+* 2b. The given phone number is invalid.
+    * 2b1. System shows an error message.
+
+      Use case ends.
+* 2c. The given email is invalid.
+    * 2c1. System shows an error message.
+
+      Use case ends.
+* 2d. The given grades are invalid.
+    * 2d1. System shows an error message.
+
+      Use case ends.
+* 2e. The student exists in the database already.
+    * 2e1. System shows an error message.
+
+      Use case ends.
+
+**Use case:** UC03 - Update a student.<br>
+**Preconditions:** Connection is stable.
+
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to update a specific student information.
+4. System updates the student information.
+
+   Use case ends.
+
+**Extensions:**
 
 * 2a. The list is empty.
+    * 2a1. System shows an error message.
 
-  Use case ends.
+      Use case ends.
+* 3a. The given phone number is invalid.
+    * 3a1. System shows an error message.
 
+      Use case ends.
+* 3b. The given email is invalid.
+    * 3b1. System shows an error message.
+
+      Use case ends.
+* 3c. The given grades are invalid.
+    * 3c1. System shows an error message.
+
+      Use case ends.
+* 3d. The given index is invalid.
+    * 3d1. System shows an error message.
+
+      Use case ends.
+
+**Use case:** UC04 - Delete a student.<br>
+**Preconditions:** Connection is stable.
+
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to delete a specific student information.
+4. System request for confirmation.
+5. User give confirmation.
+6. System delete the student information from the database.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. The list is empty.
+    * 2a1. System shows an error message.
+
+      Use case ends.
 * 3a. The given index is invalid.
+    * 3a1. System shows an error message.
+    * 3a2. System requests for the correct index.
+    * 3a3. User enters new index.
 
-    * 3a1. AddressBook shows an error message.
+      Steps 3a2-3a3 are repeated until the data entered are correct.
 
-      Use case resumes at step 2.
+      Use case resumes from step 4.
+* 4a. User cancels deletion.
+    * 4a1. System displays confirmation message.
+* 4b. User enters invalid syntax for confirmation.
+    * 4a1. System displays error message.
+    * 4a2. System requests for the correct data.
+    * 4a3. User enters new data.
 
-*{More to be added}*
+      Steps 4a2-4a3 are repeated until the data entered is correct.
+
+      Use case continues from step 5.
+
+**Use case:** UC05 - Find a student.<br>
+**Preconditions:** Connection is stable.
+
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to find a specific student information.
+4. System show the student information.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. The list is empty.
+    * 2a1. System shows an error message.
+
+      Use case ends.
+* 3a. The given keyword is invalid.
+    * 3a1. System shows an error message.
+    * 3a2. System requests for the correct index.
+    * 3a3. User enters new index.
+
+      Steps 3a2-3a3 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+* 3b. The given keyword is not found.
+    * 3a1. System shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
