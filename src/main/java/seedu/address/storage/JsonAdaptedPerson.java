@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    private final String upcoming;    
+    private final String upcoming;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -109,7 +109,8 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (upcoming == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Upcoming.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+             Upcoming.class.getSimpleName()));
         }
         if (!Upcoming.isValidUpcoming(upcoming)) {
             throw new IllegalValueException(Upcoming.MESSAGE_CONSTRAINTS);

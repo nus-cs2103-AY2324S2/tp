@@ -36,14 +36,14 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+                s -> sb.append(PREFIX_TAG + s.tagName + " "));
         sb.append(PREFIX_UPCOMING + person.getUpcoming().toString() + " ");
         return sb.toString();
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given
+     * {@code EditPersonDescriptor}'s details.
      */
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
@@ -59,7 +59,8 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        descriptor.getUpcoming().ifPresent(upcoming -> sb.append(PREFIX_UPCOMING).append(upcoming.toString()).append(" "));
+        descriptor.getUpcoming()
+                .ifPresent(upcoming -> sb.append(PREFIX_UPCOMING).append(upcoming.toString()).append(" "));
         return sb.toString();
     }
 }
