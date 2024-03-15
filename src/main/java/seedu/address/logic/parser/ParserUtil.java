@@ -138,7 +138,8 @@ public class ParserUtil {
             throw new ParseException(Block.MESSAGE_CONSTRAINTS);
         }
         return new Block(trimmedBlock);
-
+    }
+    /**
      * Parses a {@code String postalCode} into a {@code postalCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
