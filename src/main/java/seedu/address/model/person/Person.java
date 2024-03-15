@@ -95,7 +95,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && id == otherPerson.id
+//                && id == otherPerson.id
                 && tags.equals(otherPerson.tags);
     }
 
