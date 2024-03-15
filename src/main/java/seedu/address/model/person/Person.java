@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
-    public static int idTracker = 1;
+    private static int idTracker = 1;
 
     // Identity fields
     private final Name name;

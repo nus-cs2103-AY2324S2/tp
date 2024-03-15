@@ -45,9 +45,6 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
         Person person = new Person(name, phone, email, tagList);
-
-        Person.idTracker++;
-
         return new AddCommand(person);
     }
 
