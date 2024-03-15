@@ -247,6 +247,8 @@ public class ParserUtilTest {
         String levelWithWhitespace = WHITESPACE + VALID_LEVEL + WHITESPACE;
         Level expectedLevel = new Level(VALID_LEVEL);
         assertEquals(expectedLevel, ParserUtil.parseLevel(levelWithWhitespace));
+    }
+    
     public void parseBlock_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseBlock((String) null));
     }
