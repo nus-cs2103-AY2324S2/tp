@@ -61,11 +61,11 @@ public class DeleteImportantDateCommandTest {
     }
 
     @Test
-    public void execute_deleteImportantDateToInvalidEventId_throwsCommandException() {
+    public void execute_deleteImportantDateWithInvalidEventId_throwsCommandException() {
         Index invalidIndex = Index.fromOneBased(model.getFilteredPatientList().get(1)
                 .getImportantDates().size() + 1);
-        DeleteImportantDateCommand deleteImportantDateCommand = new DeleteImportantDateCommand(invalidIndex,
-                INDEX_FIRST_EVENT);
+        DeleteImportantDateCommand deleteImportantDateCommand = new DeleteImportantDateCommand(INDEX_FIRST_PATIENT,
+                invalidIndex);
 
         CommandException exception = assertThrows(CommandException.class, () -> deleteImportantDateCommand
                 .execute(model));

@@ -46,7 +46,7 @@ public class DeleteImportantDateCommandParser implements Parser<DeleteImportantD
             return new DeleteImportantDateCommand(patientIndex, eventIndex);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteImportantDateCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteImportantDateCommand.MESSAGE_USAGE));
         }
     }
 }
