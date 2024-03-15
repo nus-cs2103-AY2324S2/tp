@@ -268,7 +268,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 nerdTrackerPlus helps Computer Science TAs manage students contacts through a CLI interface, which is much faster than a typical mouse/GUI driven app.
 
@@ -277,19 +277,20 @@ nerdTrackerPlus helps Computer Science TAs manage students contacts through a CL
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                          | I want to …​              | So that I can…​                                                         |
-|---------|----------------------------------|---------------------------|-------------------------------------------------------------------------|
-| `* * *` | new user                         | see usage instructions    | refer to instructions when I forget how to use the App                  |
-| `* * *` | cs2040s teaching assistant (TBC) | add a new student         | keep track of their contact details                                     |
-| `* * *` | cs2040s teaching assistant       | delete a student          | remove student entries that I no longer need                            |
-| `* * *` | cs2040s teaching assistant       | list students             | view all students currently in my contacts                              |
-| `* * *` | cs2040s teaching assistant       | find a student by name    | locate details of students without having to go through the entire list |
-| `* * *` | cs2040s teaching assistant       | edit student details      | ensure that student details is always updated                           |
-| `* * *` | cs2040s teaching assistant       | filter students by tag    | make it easier to search for particular students                        |
-| `* * *` | cs2040s teaching assistant       | add tags to students      | categorize student contacts for reference                               |
-| `* * *` | cs2040s teaching assistant       | delete tags               | remove tags that are currently unused                                   |
-| `* * *` | cs2040s teaching assistant       | delete tags from students | remove tags from students that do not belong to that category           |
-| `* * *` | user                             | close and exit the app    |                                                                         |
+| Priority | As a …​                | I want to …​                                                  | So that I can…​                                                                               |
+|---------|------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `* * *` | new user               | see usage instructions                                        | refer to instructions when I forget how to use the App                                        |
+| `* * *` | CS2103T teaching staff | add a new student                                             | keep track of their contact details                                                           |
+| `* * *` | CS2103T teaching staff | delete a student                                              | remove student entries that I no longer need                                                  |
+| `* * *` | CS2103T teaching staff | list students                                                 | view all students currently in my contacts                                                    |
+| `* * *` | CS2103T teaching staff | find a student by name                                        | locate details of students without having to go through the entire list                       |
+| `* * *` | CS2103T teaching staff | edit student details                                          | ensure that student details is always updated                                                 |
+| `* * *` | CS2103T teaching staff | filter students by tag                                        | make it easier to search for particular students                                              |
+| `* * *` | CS2103T teaching staff | add tags to students                                          | categorize student contacts for reference                                                     |
+| `* * *` | CS2103T teaching staff | delete tags                                                   | remove tags that are currently unused                                                         |
+| `* * *` | CS2103T teaching staff | delete tags from students                                     | remove tags from students that do not belong to that category                                 |
+| `* * *` | CS2103T teaching staff | mark the participation score for a student for specific weeks | so that I can keep track of their tutorial participation scores over the course of the module |
+| `* * *` | user                   | close and exit the app                                        |                                                                                               |
 
 
 *{More to be added}*
@@ -381,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list persons.
 2. nerdTrackerPlus shows a list of persons.
-3. User request to edit certain details of a particular student. 
+3. User request to edit certain details of a particular student.
 4. nerdTrackerPlus successfully edits student's details.
 
     Use case ends.
@@ -397,6 +398,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. nerdTrackerPlus shows an error message
 
         Use case ends.
+
+---
+
+**Use case UC06: Mark participation scores**
+
+**MSS**
+
+1. User requests to list persons.
+2. nerdTrackerPlus shows a list of persons.
+3. User request to mark the participation score of a specific student in a specific week.
+4. nerdTrackerPlus successfully marks the student's participation score.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User inputs invalid index or week number.
+
+    * 3a1. nerdTrackerPlus shows an error message
+
+      Use case ends.
 
 ---
 
