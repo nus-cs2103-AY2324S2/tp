@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
@@ -53,6 +54,7 @@ public class DeleteImportantDateCommand extends Command {
      * @param targetEventIndex
      */
     public DeleteImportantDateCommand(Index targetPatientIndex, Index targetEventIndex) {
+        requireAllNonNull(targetPatientIndex, targetEventIndex);
         this.targetPatientIndex = targetPatientIndex;
         this.targetEventIndex = targetEventIndex;
         this.editPatientDescriptor = new EditPatientDescriptor();
