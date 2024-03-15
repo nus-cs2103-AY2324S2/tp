@@ -54,10 +54,34 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().value);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        sex.setText(person.getSex().value);
-        employmentType.setText(person.getEmploymentType().value);
+        sex.setText(getFullSexString(person.getSex().value));
+        employmentType.setText(getFullEmploymentTypeString(person.getEmploymentType().value));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Returns the full employment type string based on the short form string returned from EmploymentType.
+     */
+    private String getFullEmploymentTypeString(String shortFormString) {
+        if (shortFormString.equals("ft")) {
+            return "Full-Time";
+        } else if (shortFormString.equals("pt")) {
+            return "Part-Time";
+        }
+        return "Invalid Employment Type"; // should not reach here
+    }
+
+    /**
+     * Returns the full sex string based on the short form string returned from Sex.
+     */
+    private String getFullSexString(String shortFormString) {
+        if (shortFormString.equals("m")) {
+            return "Male";
+        } else if (shortFormString.equals("f")) {
+            return "Female";
+        }
+        return "Invalid Sex"; // should not reach here
     }
 }
