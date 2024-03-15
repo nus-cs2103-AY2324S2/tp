@@ -62,7 +62,7 @@ public class SampleDataUtil {
                        new Email("royb" + "@example.com"),
                        new Address("Blk 45 Aljunied Street 85, #11-31"),
                        new Family("20"),
-                getTagSet("buyer"))
+                getTagSet())
         };
     }
 
