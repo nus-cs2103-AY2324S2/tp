@@ -30,12 +30,14 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_CHAD = "Chad Giga";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_NUSNET_AMY = "e1111111";
     public static final String VALID_NUSNET_BOB = "e2222222";
+    public static final String VALID_NUSNET_CHAD = "e3333333";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_WEEK_NUMBER_1 = "1";
@@ -45,12 +47,14 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_CHAD = " " + PREFIX_NAME + VALID_NAME_CHAD;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String NUSNET_DESC_AMY = " " + PREFIX_NUSNET + VALID_NUSNET_AMY;
     public static final String NUSNET_DESC_BOB = " " + PREFIX_NUSNET + VALID_NUSNET_BOB;
+    public static final String NUSNET_DESC_CHAD = " " + PREFIX_NUSNET + VALID_NUSNET_CHAD;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String WEEK_NUMBER_DESC_1 = " " + PREFIX_WEEK + VALID_WEEK_NUMBER_1;

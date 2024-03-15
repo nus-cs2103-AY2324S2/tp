@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -13,8 +14,10 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CHAD;
 import static seedu.address.logic.commands.CommandTestUtil.NUSNET_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NUSNET_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NUSNET_DESC_CHAD;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -157,6 +160,10 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + NUSNET_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddPersonCommand(expectedPerson2));
+
+        // only name and nusnet
+        assertAll("Optional fields missing", () ->
+                parser.parse(NAME_DESC_CHAD + NUSNET_DESC_CHAD)); // should not throw an error
     }
 
     @Test
