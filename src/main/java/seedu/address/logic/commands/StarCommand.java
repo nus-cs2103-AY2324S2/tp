@@ -63,7 +63,7 @@ public class StarCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_ADD_STAR_SUCCESS); // starCount <= 0 is handled in Star itself
+        return new CommandResult(String.format(MESSAGE_ADD_STAR_SUCCESS, Messages.format(editedPerson)));
     }
 
     @Override
