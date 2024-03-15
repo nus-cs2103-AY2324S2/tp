@@ -15,6 +15,7 @@ import seedu.address.model.person.GitHubUsername;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.techstack.TechStack;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -109,6 +110,33 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String techStack} into a {@code TechStack}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code techStack} is invalid.
+     */
+    public static TechStack parseTechStack(String techStack) throws ParseException {
+        requireNonNull(techStack);
+        String trimmedTechStack = techStack.trim();
+        if (!Tag.isValidTagName(trimmedTechStack)) {
+            throw new ParseException(TechStack.MESSAGE_CONSTRAINTS);
+        }
+        return new TechStack(trimmedTechStack);
+    }
+
+    /**
+     * Parses {@code Collection<String> techStack} into a {@code Set<TechStack>}.
+     */
+    public static Set<TechStack> parseTechStacks(Collection<String> techStack) throws ParseException {
+        requireNonNull(techStack);
+        final Set<TechStack> techStackSet = new HashSet<>();
+        for (String techStackName : techStack) {
+            techStackSet.add(parseTechStack(techStackName));
+        }
+        return techStackSet;
     }
 
     /**

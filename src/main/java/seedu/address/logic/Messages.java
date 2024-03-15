@@ -45,7 +45,9 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; GitHub Username: ")
                 .append(person.getGitHubUsername())
-                .append("; Tags: ");
+                .append("; Tech Stack: ");
+        person.getTechStack().forEach(builder::append);
+        builder.append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

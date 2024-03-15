@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TECH_STACK;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.techstack.TechStack;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -34,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_GITHUB_USERNAME, PREFIX_TAG);
+                        PREFIX_GITHUB_USERNAME, PREFIX_TECH_STACK, PREFIX_TAG);
 
         Index index;
 
@@ -65,6 +67,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_GITHUB_USERNAME).get()));
         }
+        parseTechStackForEdit(argMultimap.getAllValues(PREFIX_TECH_STACK))
+                .ifPresent(editPersonDescriptor::setTechStack);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -72,6 +76,22 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> tech stack} into a {@code Set<TechStack>} if {@code techStack} is non-empty.
+     * If {@code techStack} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<TechStack>} containing zero tech stack.
+     */
+    private Optional<Set<TechStack>> parseTechStackForEdit(Collection<String> techStack) throws ParseException {
+        assert techStack != null;
+
+        if (techStack.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> techStackSet = techStack.size() == 1 && techStack.contains("") ? Collections.emptySet() :
+                techStack;
+        return Optional.of(ParserUtil.parseTechStacks(techStackSet));
     }
 
     /**

@@ -41,7 +41,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label githubUsername;
     @FXML
-    private FlowPane tags;
+    private HBox techStacks;
+    @FXML
+    private HBox tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,12 +53,16 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        githubUsername.setText(person.getGitHubUsername().username);
+        phone.setText("Phone: " + person.getPhone().value);
+        address.setText("Address: " + person.getAddress().value);
+        email.setText("Email: " + person.getEmail().value);
+        githubUsername.setText("@"+person.getGitHubUsername().username);
+        person.getTechStack().stream()
+                .sorted(Comparator.comparing(techStack -> techStack.techStackName))
+                .forEach(techStack -> techStacks.getChildren().add(new Label(techStack.techStackName)));
+
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .sorted(Comparator.comparing(tag-> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

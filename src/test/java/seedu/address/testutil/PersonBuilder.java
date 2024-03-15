@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.techstack.TechStack;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,6 +29,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private GitHubUsername gitHubUsername;
+    private Set<TechStack> techStack;
     private Set<Tag> tags;
 
     /**
@@ -38,6 +40,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        gitHubUsername = new GitHubUsername(DEFAULT_GITHUB_USERNAME);
         tags = new HashSet<>();
     }
 
@@ -49,6 +52,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        techStack = new HashSet<>(personToCopy.getTechStack());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -65,6 +69,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tech stack} into a {@code Set<TechStack>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTechStack(String ... techStack) {
+        this.techStack = SampleDataUtil.getTechStackSet(techStack);
         return this;
     }
 
@@ -101,7 +113,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, gitHubUsername, tags);
+        return new Person(name, phone, email, address, gitHubUsername, techStack, tags);
     }
 
 

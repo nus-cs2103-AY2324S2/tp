@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TECH_STACK;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -20,6 +21,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.techstack.TechStack;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -34,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_GITHUB_USERNAME, PREFIX_TAG);
+                        PREFIX_GITHUB_USERNAME, PREFIX_TECH_STACK, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_GITHUB_USERNAME,
                 PREFIX_PHONE, PREFIX_EMAIL)
@@ -50,9 +52,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         GitHubUsername gitHubUsername =
                 ParserUtil.parseGitHubUsername(argMultimap.getValue(PREFIX_GITHUB_USERNAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Set<TechStack> techStackList = ParserUtil.parseTechStacks(argMultimap.getAllValues(PREFIX_TECH_STACK));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, gitHubUsername, tagList);
+        Person person = new Person(name, phone, email, address, gitHubUsername, techStackList, tagList);
 
         return new AddCommand(person);
     }
