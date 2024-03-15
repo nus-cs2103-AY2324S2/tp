@@ -67,7 +67,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
         //check if t/ is specified
-        if (editPersonDescriptor.getTagSize() == 0) {
+        if (editPersonDescriptor.getTags().isPresent() && editPersonDescriptor.getTagSize() == 0) {
             throw new ParseException(EditCommand.MESSAGE_TAG_NOT_EDITED);
         }
 
