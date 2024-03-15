@@ -25,21 +25,21 @@ It also has a sequence diagram (reproduced below) that tells us how a command pr
 
 <puml src="../diagrams/ArchitectureSequenceDiagram.puml" width="550" />
 
-Note how the diagram shows only the execution flows _between_ the main components. That is, it does not show details of the execution path _inside_ each component. By hiding those details, the diagram aims to inform the reader about the overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of how the code works.
+Note how the diagram shows only the execution flows _between_ the main components. That is, it does not show details of the execution path *inside* each component. By hiding those details, the diagram aims to inform the reader about the overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of how the code works.
 
 Before we proceed, ensure that you have done the following:
 
-1. Read the [_Architecture_ section of the DG](../DeveloperGuide.md#architecture)
+1. Read the [*Architecture* section of the DG](../DeveloperGuide.md#architecture)
 1. Set up the project in Intellij IDEA
 1. Learn basic debugging features of Intellij IDEA
-   - If you are using a different IDE, we'll leave it to you to figure out the equivalent feature to use in your IDE.
-   - If you are not using an IDE, we'll let you figure out how to achieve the same using your coding toolchain.
+   * If you are using a different IDE, we'll leave it to you to figure out the equivalent feature to use in your IDE.
+   * If you are not using an IDE, we'll let you figure out how to achieve the same using your coding toolchain.
 
 ## Setting a breakpoint
 
 As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution. For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement of the `main` method.
 
-In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various _event-driven mechanisms_ used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the `UI` transfers control to the `Logic` component.
+In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various *event-driven mechanisms* used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the `UI` transfers control to the `Logic` component.
 
 <puml src="../diagrams/ArchitectureSequenceDiagram.puml" width="550" />
 
@@ -80,7 +80,7 @@ Next, let's find out which statement(s) in the `UI` code is calling this method,
 **Intellij Tip:** The ['**Find Usages**' feature](https://www.jetbrains.com/help/idea/find-highlight-usages.html#find-usages) can find from which parts of the code a class/method/variable is being used.
 </box>
 
-![`Find Usages` tool window. `Edit` > `Find` > `Find Usages`.](../images/tracing/FindUsages.png)
+![`Find Usages` tool window. `Edit` \> `Find` \> `Find Usages`.](../images/tracing/FindUsages.png)
 
 Bingo\! `MainWindow#executeCommand()` seems to be exactly what we’re looking for\!
 
@@ -210,12 +210,12 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
 
-   - it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
-   - it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
+   * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
+   * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
      FYI, The 'filtered list' is the list of persons resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the persons so that the user can see the edited person along with all other persons. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
      To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of persons is being tracked.
      <puml src="../diagrams/ModelClassDiagram.puml" width="450" /><br>
-   - :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
+   * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
 
 1. As you step through the rest of the statements in the `EditCommand#execute()` method, you'll see that it creates a `CommandResult` object (containing information about the result of the execution) and returns it.<br>
    Advancing the debugger by one more step should take you back to the middle of the `LogicManager#execute()` method.<br>
@@ -223,7 +223,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. Given that you have already seen quite a few classes in the `Logic` component in action, see if you can identify in this partial class diagram some of the classes you've encountered so far, and see how they fit into the class structure of the `Logic` component:
    <puml src="../diagrams/LogicClassDiagram.puml" width="550"/>
 
-   - :bulb: This may be a good time to read through the [`Logic` component section of the DG](../DeveloperGuide.html#logic-component)
+   * :bulb: This may be a good time to read through the [`Logic` component section of the DG](../DeveloperGuide.html#logic-component)
 
 1. Similar to before, you can step over/into statements in the `LogicManager#execute()` method to examine how the control is transferred to the `Storage` component and what happens inside that component.
 
@@ -258,7 +258,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
    <puml src="../diagrams/StorageClassDiagram.puml" width="550" />
 
-   - :bulb: This may be a good time to read through the [`Storage` component section of the DG](../DeveloperGuide.html#storage-component)
+   * :bulb: This may be a good time to read through the [`Storage` component section of the DG](../DeveloperGuide.html#storage-component)
 
 1. We can continue to step through until you reach the end of the `LogicManager#execute()` method and return to the `MainWindow#executeCommand()` method (the place where we put the original breakpoint).
 
