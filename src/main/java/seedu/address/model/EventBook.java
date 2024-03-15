@@ -2,12 +2,21 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
 import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.UniquePersonList;
+
 
 /**
  * Wraps all data at the event-book level.
@@ -16,16 +25,32 @@ import seedu.address.model.event.UniqueEventList;
 public class EventBook implements ReadOnlyEventBook {
 
     private final UniqueEventList events;
+    private final UniquePersonList personsOfSelectedEvent;
+    private Event selectedEvent;
 
     // Non-static initialization block
     {
         events = new UniqueEventList();
+        personsOfSelectedEvent = new UniquePersonList();
     }
 
     /**
      * Creates an EventBook
      */
     public EventBook() {
+        Event event = new Event(new EventName("test"));
+        Person alice = new Person(new Name("ALice"), new Phone("95352563"), new Email("heinz@example.com"), new Address("wall street"), new HashSet<>());
+        Person ben = new Person(new Name("Ben"), new Phone("15312563"), new Email("heinz@example.com"), new Address("wall street"), new HashSet<>());
+        Person ben2 = new Person(new Name("Be2n"), new Phone("15312563"), new Email("heinz@example.com"), new Address("wall street"), new HashSet<>());
+        event.addPerson(alice);
+        event.addPerson(ben);
+        events.add(event);
+
+        Event event2 = new Event(new EventName("test2"));
+        event2.addPerson(ben2);
+        event2.addPerson(ben);
+        event2.addPerson(alice);
+        events.add(event2);
     }
 
     /**
@@ -90,6 +115,17 @@ public class EventBook implements ReadOnlyEventBook {
         events.remove(key);
     }
 
+    // Select Event Methods
+
+    /**
+     * Selects the given event {@code event} from this {@code EventBook}
+     * @param event must exist in the event book
+     */
+    public void selectEvent(Event event) {
+        selectedEvent = event;
+        personsOfSelectedEvent.setPersons(event.getPersonList());
+    }
+
     // Util methods
 
     @Override
@@ -102,6 +138,11 @@ public class EventBook implements ReadOnlyEventBook {
     @Override
     public ObservableList<Event> getEventList() {
         return events.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getPersonsOfSelectedEventList() {
+        return personsOfSelectedEvent.asUnmodifiableObservableList();
     }
 
     @Override

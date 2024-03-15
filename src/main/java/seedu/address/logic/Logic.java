@@ -31,10 +31,14 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Returns an unmodifiable view of the filtered list of events */
+    ObservableList<Event> getFilteredEventList();
+
+    /** Returns an unmodifiable view of the filtered list of persons of the selected event */
+    ObservableList<Person> getFilteredPersonListOfSelectedEvent();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
-
-    ObservableList<Event> getFilteredEventlist();
 
     /**
      * Returns the user prefs' address book file path.
