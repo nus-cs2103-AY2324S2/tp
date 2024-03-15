@@ -57,13 +57,13 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        phone = source.getPhone().toString();
+        email = source.getEmail().toString();
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        subject = source.getSubject().value;
+        subject = source.getSubject().toString();
         uniqueId = source.getUniqueId();
     }
 
