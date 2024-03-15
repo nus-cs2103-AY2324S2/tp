@@ -8,20 +8,19 @@ import static staffconnect.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import staffconnect.model.person.Name;
 
 class DescriptionTest {
 
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Name(null));
+        assertThrows(NullPointerException.class, () -> new Description(null));
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
+    public void constructor_invalidDescription_throwsIllegalArgumentException() {
         String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Name(invalidDescription));
+        assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
     }
 
     @Test
@@ -30,17 +29,17 @@ class DescriptionTest {
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
 
         // invalid Description
-        assertFalse(Name.isValidName("")); // empty string
-        assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter meeting*")); // contains non-alphanumeric characters
+        assertFalse(Description.isValidDescription("")); // empty string
+        assertFalse(Description.isValidDescription(" ")); // spaces only
+        assertFalse(Description.isValidDescription("^")); // only non-alphanumeric characters
+        assertFalse(Description.isValidDescription("peter meeting*")); // contains non-alphanumeric characters
 
         // valid Description
-        assertTrue(Name.isValidName("meeting")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("meeting at for 2nd finals")); // alphanumeric characters
-        assertTrue(Name.isValidName("Crush the exam")); // with capital letters
-        assertTrue(Name.isValidName("Super hard midterm with finals and project combined 2nd")); // long names
+        assertTrue(Description.isValidDescription("meeting")); // alphabets only
+        assertTrue(Description.isValidDescription("12345")); // numbers only
+        assertTrue(Description.isValidDescription("meeting at for 2nd finals")); // alphanumeric characters
+        assertTrue(Description.isValidDescription("Crush the exam")); // with capital letters
+        assertTrue(Description.isValidDescription("Super hard midterm with finals and project combined 2nd"));
     }
 
     @Test
@@ -64,7 +63,7 @@ class DescriptionTest {
         assertFalse(description.equals(testDate));
 
         // different values -> returns false
-        assertNotEquals(description, new Name("Other valid description"));
+        assertNotEquals(description, new Description("Other valid description"));
     }
     @Test
     public void asSymmetricHashcode() {

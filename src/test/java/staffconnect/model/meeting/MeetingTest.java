@@ -10,14 +10,14 @@ class MeetingTest {
     private static final Description TEST_DESCRIPTION = new Description("Valid description");
     private static final MeetDateTime TEST_DATE = new MeetDateTime("12/04/2023 12:00");
     private static final Description TEST_OTHERDESCRIPTION = new Description("Another valid description");
-    private static final MeetDateTime otherDate = new MeetDateTime("13/04/2023 13:00");
+    private static final MeetDateTime TEST_OTHERDATE = new MeetDateTime("13/04/2023 13:00");
 
     @Test
     public void equals() {
 
         Meeting testMeeting = new Meeting(TEST_DESCRIPTION, TEST_DATE);
         Meeting diffMeetingDescription = new Meeting(TEST_OTHERDESCRIPTION, TEST_DATE);
-        Meeting diffMeetingTime = new Meeting(TEST_DESCRIPTION, otherDate);
+        Meeting diffMeetingTime = new Meeting(TEST_DESCRIPTION, TEST_OTHERDATE);
         MeetDateTime testDate = new MeetDateTime("12/04/2023 12:00");
 
 

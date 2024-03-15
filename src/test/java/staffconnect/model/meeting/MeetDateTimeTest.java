@@ -23,7 +23,7 @@ class MeetDateTimeTest {
     }
 
     @Test
-    public void isValidMeetDate() {
+    public void isValidMeetDateTime() {
         // null Date
         assertThrows(NullPointerException.class, () -> MeetDateTime.isValidMeetDateTime(null));
 
