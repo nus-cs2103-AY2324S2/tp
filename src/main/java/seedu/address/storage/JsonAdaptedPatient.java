@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -29,6 +30,7 @@ class JsonAdaptedPatient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedImportantDate> importantDates = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
@@ -36,13 +38,17 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                              @JsonProperty("importantDates") List<JsonAdaptedImportantDate> importantDates) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (importantDates != null) {
+            this.importantDates.addAll(importantDates);
         }
     }
 
@@ -57,6 +63,9 @@ class JsonAdaptedPatient {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        importantDates.addAll(source.getImportantDates().stream()
+                .map(JsonAdaptedImportantDate::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +77,11 @@ class JsonAdaptedPatient {
         final List<Tag> patientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             patientTags.add(tag.toModelType());
+        }
+
+        final List<ImportantDate> patientImportantDates = new ArrayList<>();
+        for (JsonAdaptedImportantDate date : importantDates) {
+            patientImportantDates.add(date.toModelType());
         }
 
         if (name == null) {
@@ -103,7 +117,9 @@ class JsonAdaptedPatient {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(patientTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<ImportantDate> modelImportantDates = new HashSet<>(patientImportantDates);
+
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelImportantDates);
     }
 
 }
