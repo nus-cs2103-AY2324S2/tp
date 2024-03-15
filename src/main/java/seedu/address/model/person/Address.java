@@ -5,9 +5,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidAddress(String)}
  */
-public class Address {
+public class Address extends Attribute<String> {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
@@ -17,17 +18,15 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
-
     /**
      * Constructs an {@code Address}.
      *
      * @param address A valid address.
      */
     public Address(String address) {
+        super(address);
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
     }
 
     /**
@@ -37,9 +36,22 @@ public class Address {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Determine if the address value stored is a match with a specified string.
+     * Returns true if specified value is a substring of the address value stored.
+     *
+     * @param otherValue Other value to check against
+     *
+     * @return True if specified value is a match, False otherwise
+     */
+    @Override
+    public boolean isMatch(String otherValue) {
+        return this.getValue().toLowerCase().contains(otherValue.toLowerCase());
+    }
+
     @Override
     public String toString() {
-        return value;
+        return this.getValue();
     }
 
     @Override
@@ -54,12 +66,11 @@ public class Address {
         }
 
         Address otherAddress = (Address) other;
-        return value.equals(otherAddress.value);
+        return this.getValue().equals(otherAddress.getValue());
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.getValue().hashCode();
     }
-
 }
