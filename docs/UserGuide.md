@@ -203,92 +203,97 @@ Expected output:
 - Successful assignment: `Deadline <DEADLINE> has been assigned to <PROJECT_NAME>:<TASK_NAME>`
 - Failed assignment (example): `Deadline needs to be in MMM D YYYY format.`
 
-
 ### Add task : `add task`
 
 Add the specified task to a project.
 
 Format: `add task <TASK_NAME> /to <PROJECT_NAME>`
 
-* The specified project name must exist in the project list.
-* The task's name must be unique
+- The specified project name must exist in the project list.
+- The task's name must be unique
   Examples:
-* `add task add deadline command /to CS2103T Duke Chatbot Project`
+- `add task add deadline command /to CS2103T Duke Chatbot Project`
 
 Expected output:
-* Successful add command: `<TASK_NAME> has been added to <PROJECT_NAME>`
-* Failed commands:
-    - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
-    - repeated task: `Task <TASK_NAME> already exists in <PROJECT_NAME>`
 
-###  Remove task : `delete task`
+- Successful add command: `<TASK_NAME> has been added to <PROJECT_NAME>`
+- Failed commands:
+  - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+  - repeated task: `Task <TASK_NAME> already exists in <PROJECT_NAME>`
+
+### Remove task : `delete task`
 
 Deletes the specified task from a project.
 
 Format: `delete task <TASK_NAME> /in <PROJECT_NAME> `
 
-* The specified project name must exist in the project list.
-* The task name must exist
+- The specified project name must exist in the project list.
+- The task name must exist
   Examples:
-* `delete task add deadline command /in CS2103T Duke Chatbot Project`
+- `delete task add deadline command /in CS2103T Duke Chatbot Project`
 
 Expected output:
-* Successful deletion: `<TASK_NAME> has been deleted from <PROJECT_NAME>`
-* Failed commands:
-    - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
-    - invalid task name: `Task <TASK_NAME> not found: Please make sure the task exists`
 
-### Set Task Status  : `set status of Task`
+- Successful deletion: `<TASK_NAME> has been deleted from <PROJECT_NAME>`
+- Failed commands:
+  - invalid project name: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+  - invalid task name: `Task <TASK_NAME> not found: Please make sure the task exists`
+
+### Set Task Status : `set status of Task`
 
 sets the status of a task as finished or unfinished
 
 Format: `set status <STATUS> /to task <TASK_NAME> /in <PROJECT_NAME>`
 
-* The specified task name must exist in the task list.
-* The task status can either be `done` or `undone`
+- The specified task name must exist in the task list.
+- The task status can either be `done` or `undone`
 
 Examples:
-* `set status done /to unit test /in CS2103T Duke Chatbot Project`
+
+- `set status done /to unit test /in CS2103T Duke Chatbot Project`
 
 Expected output:
-* Successful status update: `Task <TASK_NAME> is set as <STATUS>`
-* Failed commands: `Task <TASK_NAME> not found: Please make sure the task exists.`
-* `Project <PROJECT_NAME> not found: Please make sure the project exists.`
-* `Status was entered incorrectly.`, 
 
-### Set Project Status  : `set status of Project`
+- Successful status update: `Task <TASK_NAME> is set as <STATUS>`
+- Failed commands: `Task <TASK_NAME> not found: Please make sure the task exists.`
+- `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+- `Status was entered incorrectly.`,
+
+### Set Project Status : `set status of Project`
 
 sets the status of a project as finished or unfinished
 
 Format: `set status <STATUS> project <PROJECT_NAME>`
 
-* The specified project name must exist in the project list.
-* The project status can either be `done` or `undone`
+- The specified project name must exist in the project list.
+- The project status can either be `done` or `undone`
 
 Examples:
-* `set status done project CS2103T Duke Chatbot Project`
+
+- `set status done project CS2103T Duke Chatbot Project`
 
 Expected output:
-* Successful status update: `Project <PROJECT_NAME> is set as <STATUS>`
-* Failed commands: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
-* `Status was entered incorrectly.`
 
+- Successful status update: `Project <PROJECT_NAME> is set as <STATUS>`
+- Failed commands: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
+- `Status was entered incorrectly.`
 
-### Show Project  : `show project`
+### Show Project : `show project`
 
 shows the project’s details
 
 Format: `show project <PROJECT_NAME>`
 
-* The specified project name must exist in the project list.
+- The specified project name must exist in the project list.
 
 Examples:
-* `show project CS2103T Duke Chatbot Project`
+
+- `show project CS2103T Duke Chatbot Project`
 
 Expected output:
-* Successful display: `The ui now shows the project’s information`
-* Failed commands: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
 
+- Successful display: `The ui now shows the project’s information`
+- Failed commands: `Project <PROJECT_NAME> not found: Please make sure the project exists.`
 
 ---
 
