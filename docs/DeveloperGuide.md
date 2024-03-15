@@ -324,7 +324,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Moddie` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### **Use case: Add a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to add a specific person in the list
+4.  AddressBook adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given information of person is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case ends.
+
+#### **Use case: Delete a person**
 
 **MSS**
 
@@ -346,6 +365,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+#### **Use case: Edit contact of a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to edit contact information of a specific person in the list
+4.  AddressBook edits contact information of the specific person as required by user
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given contact information is invalid.
+
+    * 3b1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### **Use case: List all contacts**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+#### **Use case: Find contacts of a specific person**
+
+**MSS**
+
+1.  User requests to find a person
+2.  AddressBook shows persons with the keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no matching result
+
+  AddressBook shows a message of no person found in contact list.
+
+#### **Use case: Find contacts of a specific person**
+
+**MSS**
+
+1.  User requests to find a person
+2.  AddressBook shows persons with the keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no matching result
+
+  AddressBook shows a message of no person found in contact list.
+
 
 *{More to be added}*
 
