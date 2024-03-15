@@ -9,7 +9,7 @@ import seedu.address.model.person.EmailMatchesPredicate;
 import seedu.address.model.person.GroupMatchesPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneMatchesPredicate;
-import seedu.address.model.tag.TagMatchesPredicate;
+import seedu.address.model.person.TagMatchesPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -18,26 +18,36 @@ import seedu.address.model.tag.TagMatchesPredicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+    // This string is used by Predicates to help them know when a parameter isn't required.
+    public static final String NOT_REQUIRED_VALUE = "$$NOT_REQUIRED$$";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
-    private EmailMatchesPredicate emailPredicate;
-    private GroupMatchesPredicate groupPredicate;
-    private PhoneMatchesPredicate phonePredicate;
-    private TagMatchesPredicate tagMatchesPredicate;
+    private final NameContainsKeywordsPredicate namePredicate;
+    private final EmailMatchesPredicate emailPredicate;
+    private final GroupMatchesPredicate groupPredicate;
+    private final PhoneMatchesPredicate phonePredicate;
+    private final TagMatchesPredicate tagMatchesPredicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(NameContainsKeywordsPredicate predicate, EmailMatchesPredicate e, GroupMatchesPredicate g, PhoneMatchesPredicate p, TagMatchesPredicate t) {
+        namePredicate = predicate;
+        emailPredicate = e;
+        groupPredicate = g;
+        phonePredicate = p;
+        tagMatchesPredicate = t;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPersonList(namePredicate
+                .and(emailPredicate)
+                .and(groupPredicate)
+                .and(phonePredicate)
+                .and(tagMatchesPredicate));
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -54,13 +64,13 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        return namePredicate.equals(otherFindCommand.namePredicate);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("predicate", namePredicate)
                 .toString();
     }
 }

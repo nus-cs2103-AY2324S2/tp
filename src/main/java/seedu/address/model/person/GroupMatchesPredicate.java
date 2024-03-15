@@ -1,15 +1,16 @@
 package seedu.address.model.person;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 /**
  * Tests if a keyword matches any {@code Person}'s {@code Groups}
  */
 public class GroupMatchesPredicate implements Predicate<Person> {
-    private final String keyword;
+    private final List<String> keywords;
 
-    public GroupMatchesPredicate(String s) {
-        keyword = s;
+    public GroupMatchesPredicate(List<String> s) {
+        keywords = s;
     }
 
     @Override
@@ -29,6 +30,6 @@ public class GroupMatchesPredicate implements Predicate<Person> {
         }
 
         GroupMatchesPredicate e = (GroupMatchesPredicate) other;
-        return keyword.equals(e.keyword);
+        return keywords.equals(e.keywords);
     }
 }

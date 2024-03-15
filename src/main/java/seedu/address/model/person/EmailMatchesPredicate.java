@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.logic.commands.FindCommand;
+
 import java.util.function.Predicate;
 
 /**
@@ -14,6 +16,9 @@ public class EmailMatchesPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (keyword.equals(FindCommand.NOT_REQUIRED_VALUE)) {
+            return true;
+        }
         return false;
     }
 
