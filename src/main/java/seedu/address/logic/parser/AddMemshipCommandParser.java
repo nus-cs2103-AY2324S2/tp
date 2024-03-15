@@ -11,7 +11,7 @@ import seedu.address.model.person.Name;
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
  */
-public class AddMemshipCommandParser implements Parser<AddMemshipCommand>{
+public class AddMemshipCommandParser implements Parser<AddMemshipCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
@@ -25,7 +25,8 @@ public class AddMemshipCommandParser implements Parser<AddMemshipCommand>{
         try {
             name = ParserUtil.parseName(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMemshipCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddMemshipCommand.MESSAGE_USAGE), pe);
         }
 
         String mship = argMultimap.getValue(PREFIX_MEMSHIP).orElse("");

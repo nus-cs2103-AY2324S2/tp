@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Membership;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -106,10 +106,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        //final Membership modelMembership = new Membership(""); //TODO: Implement parsing and marshalling in the storage commit.
-
         if (membership == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Membership.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Membership.class.getSimpleName()));
         }
         final Membership modelMembership = new Membership(membership);
 

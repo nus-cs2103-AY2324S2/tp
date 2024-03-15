@@ -10,23 +10,26 @@ import java.util.Optional;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Membership;
+
+/**
+ * Adds a membership tier for a person to the address book.
+ */
 public class AddMemshipCommand extends Command {
     public static final String COMMAND_WORD = "addmship";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add membership tier of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Add membership tier of the person " + "identified "
             + "by the name of the person in the listing. "
             + "Existing membership will be overwritten by the input.\n"
             + "Parameters: NAME " + PREFIX_MEMSHIP + "[MEMBERSHIP_TIER]\n"
             + "Example: " + COMMAND_WORD + " Alice Bob "
             + PREFIX_MEMSHIP + "T1";
-
-    //public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Membership Tier: %2$i";
     public static final String MESSAGE_ADD_MEMBERSHIP_SUCCESS = "Added membership to Person: %1$s";
-    public static final String MESSAGE_DELETE_MEMBERSHIP_SUCCESS = "Removed membership from Person: %1$s";
-
+    public static final String MESSAGE_DELETE_MEMBERSHIP_SUCCESS =
+          "Removed membership from Person: %1$s";
     private final Name name;
     private final String mship;
 
@@ -41,7 +44,7 @@ public class AddMemshipCommand extends Command {
         this.mship = mship;
     }
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         Optional<Person> personOptional = lastShownList.stream()
