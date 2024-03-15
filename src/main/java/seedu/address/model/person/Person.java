@@ -31,13 +31,22 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+        this(name, phone, email, tags, idTracker);
+    }
+
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Set<Tag> tags, int studentId) {
+        requireAllNonNull(name, phone, email, tags, studentId);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
-        this.id = idTracker;
-        idTracker++;
+        this.id = studentId;
+        // When we are recreating Person with the Id, the id tracker also keeps note of the next id.
+        idTracker = this.id + 1;
     }
 
     public Name getName() {
