@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditCourseMateDescriptor;
-import seedu.address.model.coursemate.Address;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
@@ -36,7 +35,6 @@ public class EditCourseMateDescriptorBuilder {
         descriptor.setName(courseMate.getName());
         descriptor.setPhone(courseMate.getPhone());
         descriptor.setEmail(courseMate.getEmail());
-        descriptor.setAddress(courseMate.getAddress());
         descriptor.setSkills(courseMate.getSkills());
     }
 
@@ -61,14 +59,6 @@ public class EditCourseMateDescriptorBuilder {
      */
     public EditCourseMateDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditCourseMateDescriptor} that we are building.
-     */
-    public EditCourseMateDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
         return this;
     }
 

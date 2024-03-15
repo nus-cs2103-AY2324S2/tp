@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourseMates.ALICE;
@@ -47,7 +46,7 @@ public class ContactListTest {
     public void resetData_withDuplicateCourseMates_throwsDuplicateCourseMateException() {
         // Two courseMates with the same identity fields
         CourseMate editedAlice = new CourseMateBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
+                .withSkills(VALID_SKILL_JAVA).build();
         List<CourseMate> newCourseMates = Arrays.asList(ALICE, editedAlice);
         ContactListStub newData = new ContactListStub(newCourseMates);
 
@@ -74,7 +73,7 @@ public class ContactListTest {
     public void hasCourseMate_courseMateWithSameIdentityFieldsInContactList_returnsTrue() {
         contactList.addCourseMate(ALICE);
         CourseMate editedAlice = new CourseMateBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
+                .withSkills(VALID_SKILL_JAVA).build();
         assertTrue(contactList.hasCourseMate(editedAlice));
     }
 

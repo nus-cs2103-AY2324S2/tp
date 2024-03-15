@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,7 +20,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.coursemate.Address;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
@@ -42,7 +40,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_SKILL + "SKILL]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -99,10 +96,9 @@ public class EditCommand extends Command {
         Name updatedName = editCourseMateDescriptor.getName().orElse(courseMateToEdit.getName());
         Phone updatedPhone = editCourseMateDescriptor.getPhone().orElse(courseMateToEdit.getPhone());
         Email updatedEmail = editCourseMateDescriptor.getEmail().orElse(courseMateToEdit.getEmail());
-        Address updatedAddress = editCourseMateDescriptor.getAddress().orElse(courseMateToEdit.getAddress());
         Set<Skill> updatedSkills = editCourseMateDescriptor.getSkills().orElse(courseMateToEdit.getSkills());
 
-        return new CourseMate(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills);
+        return new CourseMate(updatedName, updatedPhone, updatedEmail, updatedSkills);
     }
 
     @Override
@@ -137,7 +133,6 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Skill> skills;
 
         public EditCourseMateDescriptor() {}
@@ -150,7 +145,6 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setSkills(toCopy.skills);
         }
 
@@ -158,7 +152,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, skills);
+            return CollectionUtil.isAnyNonNull(name, phone, email, skills);
         }
 
         public void setName(Name name) {
@@ -183,14 +177,6 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -225,7 +211,6 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditCourseMateDescriptor.name)
                     && Objects.equals(phone, otherEditCourseMateDescriptor.phone)
                     && Objects.equals(email, otherEditCourseMateDescriptor.email)
-                    && Objects.equals(address, otherEditCourseMateDescriptor.address)
                     && Objects.equals(skills, otherEditCourseMateDescriptor.skills);
         }
 
@@ -235,7 +220,6 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("address", address)
                     .add("skills", skills)
                     .toString();
         }

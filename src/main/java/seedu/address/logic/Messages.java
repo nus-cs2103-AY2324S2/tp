@@ -41,8 +41,6 @@ public class Messages {
                 .append(courseMate.getPhone())
                 .append("; Email: ")
                 .append(courseMate.getEmail())
-                .append("; Address: ")
-                .append(courseMate.getAddress())
                 .append("; Skills: ");
         courseMate.getSkills().forEach(builder::append);
         return builder.toString();
