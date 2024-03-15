@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORTANT_DATE;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.logging.Level;
@@ -24,23 +25,28 @@ public class DeleteImportantDateCommandParser implements Parser<DeleteImportantD
      */
     public DeleteImportantDateCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IMPORTANT_DATE);
 
-        if (!arePrefixesPresent(argMultimap) || argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_IMPORTANT_DATE) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteImportantDateCommand.MESSAGE_USAGE));
         }
 
         Index patientIndex;
+        Index eventIndex;
         try {
             patientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
             logger.log(Level.INFO, "patient index: " + patientIndex);
-            return new DeleteImportantDateCommand(patientIndex);
+            if (argMultimap.getValue(PREFIX_IMPORTANT_DATE).isPresent()) {
+                eventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_IMPORTANT_DATE).get());
+                logger.log(Level.INFO, "Event index: " + eventIndex);
+            } else {
+                return new DeleteImportantDateCommand(patientIndex, null);
+            }
+            return new DeleteImportantDateCommand(patientIndex, eventIndex);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteImportantDateCommand.MESSAGE_USAGE), pe);
         }
-
-
     }
 }
