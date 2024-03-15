@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a patient's ward address in the address book.
  */
@@ -14,6 +17,7 @@ public class Ward {
     * @param ward A valid ward address.
     */
     public Ward(String ward) {
+        requireNonNull(ward);
         this.ward = ward;
     }
 
