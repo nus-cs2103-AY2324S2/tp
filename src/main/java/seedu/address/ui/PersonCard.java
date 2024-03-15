@@ -60,9 +60,18 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+
+        String fundingLevel = person.getFundingStage().value;
+        if (fundingLevel.equals("PS")) {
+            fundingLevel = "PRE-SEED";
+        } else if (fundingLevel.equals("S")) {
+            fundingLevel = "SEED";
+        } else {
+            fundingLevel = "SERIES " + fundingLevel;
+        }
         industryAndFundingStage.getChildren().addAll(
                 new Label(person.getIndustry().value),
-                new Label("SERIES " + person.getFundingStage().value));
+                new Label(fundingLevel));
         createNoteSection();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

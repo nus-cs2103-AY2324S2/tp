@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class FundingStage {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Funding stages should be either 'A', 'B' or 'C'.";
+        "Funding stages should be either 'A', 'B', 'S', 'PS' or 'C'.";
 
     public final String value;
 
@@ -28,7 +28,9 @@ public class FundingStage {
      * Returns true if a given industry is a valid industry.
      */
     public static boolean isValidFundingLevel(String fundingLevel) {
-        return fundingLevel.equals("A") || fundingLevel.equals("B") || fundingLevel.equals("C");
+        fundingLevel = fundingLevel.toUpperCase();
+        return fundingLevel.equals("A") || fundingLevel.equals("B") || fundingLevel.equals("C")
+            || fundingLevel.equals("S") || fundingLevel.equals("PS");
     }
 
     @Override
