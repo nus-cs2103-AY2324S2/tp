@@ -52,15 +52,25 @@ public class PatientCard extends UiPart<Region> {
     public PatientCard(Patient patient, int displayedIndex) {
         super(FXML);
         this.patient = patient;
+
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
+
+        this.displayTags(patient);
+        this.displayImportantDates(patient);
+    }
+
+    private void displayTags(Patient patient) {
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+    }
+
+    private void displayImportantDates(Patient patient) {
         if (patient.getImportantDates().size() >= 1) {
             importantDates.getChildren().add(new Label("Upcoming:\n"));
 
