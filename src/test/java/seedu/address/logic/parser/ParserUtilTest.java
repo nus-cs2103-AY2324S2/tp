@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.house.Block;
+import seedu.address.model.house.PostalCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -28,11 +29,13 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_BLOCK = "12a34";
+    private static final String INVALID_POSTALCODE = "5678990";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_POSTALCODE = "654321";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_BLOCK = "205A";
@@ -149,6 +152,29 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parsePostalCode_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePostalCode((String) null));
+    }
+
+    @Test
+    public void parsePostalCode_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePostalCode(INVALID_POSTALCODE));
+    }
+
+    @Test
+    public void parsePostalCode_validValueWithoutWhitespace_returnsPostalCode() throws Exception {
+        PostalCode expectedPostalCode = new PostalCode(VALID_POSTALCODE);
+        assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(VALID_POSTALCODE));
+    }
+
+    @Test
+    public void parsePostalCode_validValueWithWhitespace_returnsTrimmedPostalCode() throws Exception {
+        String postalCodeWithWhitespace = WHITESPACE + VALID_POSTALCODE + WHITESPACE;
+        PostalCode expectedPostalCode = new PostalCode(VALID_POSTALCODE);
+        assertEquals(expectedPostalCode, ParserUtil.parsePostalCode(postalCodeWithWhitespace));
     }
 
     @Test
