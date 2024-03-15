@@ -10,6 +10,11 @@ import educonnect.model.student.timetable.exceptions.InvalidPeriodException;
  * Class for a {@code Period} of time.
  */
 public class Period implements Comparable<Period> {
+    public static final String VALIDATION_REGEX = "([0-9]|1[0-9]|2[0-3])-([0-9]|1[0-9]|2[0-3])";
+    public static final String PERIOD_CONSTRAINTS =
+            "Periods should be in the format of time-time, "
+            + "where time can be any digit between 0 - 23. \n"
+            + "This means that all Period objects are tracked with a 24-hour clock.";
     private final String periodName;
     private final LocalTime timeStart;
     private final LocalTime timeEnd;
@@ -22,16 +27,35 @@ public class Period implements Comparable<Period> {
      * @param timeEnd the end timing of this {@code Period}
      * @throws InvalidPeriodException if the name is invalid or if the end timing is before the start timing.
      */
-    Period(String periodName, LocalTime timeStart, LocalTime timeEnd) throws InvalidPeriodException {
+    public Period(String periodName, LocalTime timeStart, LocalTime timeEnd) throws InvalidPeriodException {
         requireAllNonNull(periodName, timeStart, timeEnd);
 
         if (timeEnd.isBefore(timeStart) || periodName.isBlank()) {
             throw new InvalidPeriodException();
         }
 
-        this.periodName = periodName;
+        this.periodName = periodName.trim();
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
+    }
+
+    public Period(String periodName, String periodString) throws InvalidPeriodException {
+        requireAllNonNull(periodName, periodString);
+        String[] args = periodString.split("-");
+        LocalTime timeStart = LocalTime.of(Integer.parseInt(args[0]), 0, 0);
+        LocalTime timeEnd = LocalTime.of(Integer.parseInt(args[1]), 0, 0);
+
+        if (timeEnd.isBefore(timeStart) || periodName.isBlank()) {
+            throw new InvalidPeriodException();
+        }
+
+        this.periodName = periodName.trim();
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
+    }
+
+    public static boolean isValidPeriod(String period) {
+        return period.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -47,6 +71,20 @@ public class Period implements Comparable<Period> {
     @Override
     public int compareTo(Period period) {
         return this.timeStart.compareTo(period.timeStart);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Period)) {
+            return false;
+        }
+
+        Period period = (Period) obj;
+        return this.timeStart.equals(period.timeStart) && this.timeEnd.equals(period.timeEnd);
     }
 
     @Override

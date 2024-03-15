@@ -32,6 +32,7 @@ import static educonnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static educonnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static educonnect.testutil.TypicalStudents.AMY;
 import static educonnect.testutil.TypicalStudents.BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,8 +43,13 @@ import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 import educonnect.testutil.StudentBuilder;
+import educonnect.testutil.TypicalTimetableAndValues;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -203,4 +209,21 @@ public class AddCommandParserTest {
                 + TELEGRAM_HANDLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void tokenizeForTimetable_emptyInput_returnsEmptyArrayList() {
+        assertEquals(Stream.generate(() -> "")
+                        .limit(Timetable.getTimetable7Days() ? 7 : 5)
+                        .collect(Collectors.toCollection(ArrayList::new)),
+                AddCommandParser.tokenizeForTimetable(""));
+    }
+    @Test
+    public void tokenizeForTimetable_validInputs_returnsArrayList() {
+        assertEquals(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT1,
+                AddCommandParser.tokenizeForTimetable(TypicalTimetableAndValues.VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS1));
+        assertEquals(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT2,
+                AddCommandParser.tokenizeForTimetable(TypicalTimetableAndValues.VALID_ADD_COMMAND_TIMETABLE_ARGUMENTS2));
+    }
+
+    // ToDo: Modify test cases above to include Timetable
 }

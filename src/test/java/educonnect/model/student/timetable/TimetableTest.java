@@ -24,9 +24,11 @@ public class TimetableTest {
     public void test_constructor() {
         Timetable timetable5 = new Timetable(5);
         Timetable timetable7 = new Timetable(7);
+        Timetable timetableDefault = new Timetable();
 
         assertEquals(timetable5.toString(), EMPTY_TIMETABLE_FIVE);
         assertEquals(timetable7.toString(), EMPTY_TIMETABLE_SEVEN);
+        assertEquals(timetableDefault.toString(), EMPTY_TIMETABLE_FIVE);
     }
 
     @Test

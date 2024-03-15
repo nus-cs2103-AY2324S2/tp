@@ -9,15 +9,17 @@ import educonnect.model.student.timetable.exceptions.NumberOfDaysException;
  * Represents the timetable of a student for a week.
  */
 public class Timetable {
+    private static final boolean TIMETABLE_7_DAYS = true; // default is 5 days
     private static final int NUMBER_OF_DAYS_MAX = 7;
+    private static final int NUMBER_OF_DAYS_TYPICAL = 5;
     private final ArrayList<Day> days;
     private final int numOfDays;
 
-    Timetable() {
-        this.numOfDays = NUMBER_OF_DAYS_MAX;
+    public Timetable() {
+        this.numOfDays = TIMETABLE_7_DAYS ? NUMBER_OF_DAYS_MAX : NUMBER_OF_DAYS_TYPICAL;
         this.days = createTimetable(this.numOfDays);
     }
-    Timetable(int numOfDays) {
+    public Timetable(int numOfDays) {
         this.numOfDays = numOfDays;
         this.days = createTimetable(this.numOfDays);
     }
@@ -44,6 +46,10 @@ public class Timetable {
         return days;
     }
 
+    public static boolean getTimetable7Days() {
+        return TIMETABLE_7_DAYS;
+    }
+
     /**
      * Adds a {@code Period} to a specified day.
      *
@@ -59,6 +65,18 @@ public class Timetable {
         Day day = this.days.get(dayNumber - 1);
         return day.addPeriod(period);
     }
+
+    public boolean addPeriodsToDay(int dayNumber, ArrayList<Period> periods) {
+        if (dayNumber < 1 || dayNumber > this.numOfDays) {
+            return false;
+        }
+
+        for (Period period : periods) {
+            addPeriodToDay(dayNumber, period);
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
