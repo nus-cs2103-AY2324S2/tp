@@ -26,6 +26,9 @@ public class DeleteProjectCommandParserTest {
 
     @Test
     public void parse_emptyArgs_throwsParseException() {
-        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE));
+        assertParseFailure(
+            parser,
+            "",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE));
     }
 }
