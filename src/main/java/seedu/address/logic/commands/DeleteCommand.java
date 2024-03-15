@@ -29,6 +29,12 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
     private final String targetName;
 
+    /**
+     * Constructs a DeleteCommand with the specified target index and target name.
+     *
+     * @param targetIndex The index of the person to be deleted.
+     * @param targetName The name of the person to be deleted.
+     */
     public DeleteCommand(Index targetIndex, String targetName) {
         this.targetIndex = targetIndex;
         this.targetName = targetName;
@@ -48,7 +54,8 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
 
         } else if (targetName != null) {
-            Optional<Person> personToFind = lastShownList.stream().filter(person -> person.getName().toString().equals(targetName)).findFirst();
+            Optional<Person> personToFind = lastShownList.stream().filter(person -> person.getName()
+                    .toString().equals(targetName)).findFirst();
             if (personToFind.isPresent()) {
                 Person personToDelete = personToFind.get();
                 model.deletePerson(personToDelete);

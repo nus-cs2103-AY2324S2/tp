@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_INDEX_OR_NAME = "Index is not a non-zero unsigned integer or Name is not a valid full name.";
+    public static final String MESSAGE_INVALID_INDEX_OR_NAME = "Index or Name is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
