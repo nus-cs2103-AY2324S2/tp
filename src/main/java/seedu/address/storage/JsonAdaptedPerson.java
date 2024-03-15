@@ -30,8 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    private final String upcoming;
-    
+    private final String upcoming;    
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
