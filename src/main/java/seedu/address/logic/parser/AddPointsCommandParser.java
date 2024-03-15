@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 
 import java.util.Optional;
+
 import seedu.address.logic.commands.AddPointsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -44,7 +45,7 @@ public class AddPointsCommandParser implements Parser<AddPointsCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         for (Prefix prefix : prefixes) {
             Optional<String> value = argumentMultimap.getValue(prefix);
-            if (!value.isPresent() || value.get().isEmpty()) {  // Modified line
+            if (!value.isPresent() || value.get().isEmpty()) {
                 return false;
             }
         }
