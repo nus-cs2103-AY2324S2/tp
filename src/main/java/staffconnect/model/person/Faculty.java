@@ -52,7 +52,7 @@ public class Faculty {
             return facultyName;
         }
     }
-    public final String value;
+    public final FacultyEnum value;
 
     /**
      * Constructs a {@code Faculty}.
@@ -62,7 +62,7 @@ public class Faculty {
     public Faculty(String faculty) {
         requireNonNull(faculty);
         checkArgument(isValidFaculty(faculty), MESSAGE_CONSTRAINTS);
-        value = fromString(faculty).getFacultyName(); // can be extended
+        value = fromString(faculty); // can be extended
     }
 
     /**
@@ -89,7 +89,7 @@ public class Faculty {
 
     @Override
     public String toString() {
-        return value;
+        return value.getFacultyName();
     }
 
     @Override
