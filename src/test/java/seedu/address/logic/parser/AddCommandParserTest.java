@@ -100,7 +100,7 @@ public class AddCommandParserTest {
 
         // multiple addresses
         assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));        
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
         // multiple grades
         assertParserFailure(parser, GRADE_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixed(PREFIX_GRADE));
