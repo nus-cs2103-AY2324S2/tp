@@ -4,9 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
@@ -41,7 +43,14 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                // Create a VBox to wrap the PersonCard
+            VBox cardContainer = new VBox();
+            // Set the margin around the VBox
+            VBox.setMargin(cardContainer, new Insets(50, 10, 10, 10)); // Top, Right, Bottom, Left
+            // Add the PersonCard to the VBox
+            cardContainer.getChildren().add(new PersonCard(person, getIndex() + 1).getRoot());
+            // Set the VBox as the graphic of the ListCell
+            setGraphic(cardContainer);
             }
         }
     }
