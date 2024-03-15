@@ -54,7 +54,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Dob dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).orElse(null));
         Ic ic = ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).orElse(null));
-        AdmissionDate admissionDate = ParserUtil.parseAdmissionDate(argMultimap.getValue(PREFIX_ADMISSION_DATE).orElse(null));
+        AdmissionDate admissionDate =
+                ParserUtil.parseAdmissionDate(argMultimap.getValue(PREFIX_ADMISSION_DATE).orElse(null));
         Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null));
 
 

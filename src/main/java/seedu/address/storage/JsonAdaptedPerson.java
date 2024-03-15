@@ -139,7 +139,8 @@ class JsonAdaptedPerson {
         final Ic modelIc = new Ic(ic);
 
         if (admissionDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AdmissionDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AdmissionDate.class.getSimpleName()));
         }
         if (!AdmissionDate.isValidAdmissionDate(admissionDate)) {
             throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS);
