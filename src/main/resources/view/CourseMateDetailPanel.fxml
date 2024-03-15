@@ -33,10 +33,6 @@
         <Label fx:id="phone" styleClass="detail_small_label" text="\$phone" />
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label styleClass="detail_small_label" text="Address: " minWidth="180" />
-        <Label fx:id="address" styleClass="detail_small_label" text="\$address" />
-        </HBox>
-      <HBox spacing="5" alignment="CENTER_LEFT">
         <Label styleClass="detail_small_label" text="Email address: " minWidth="180" />
         <Label fx:id="email" styleClass="detail_small_label" text="\$email" />
       </HBox>
