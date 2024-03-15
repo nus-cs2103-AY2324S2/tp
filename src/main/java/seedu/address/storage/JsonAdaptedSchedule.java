@@ -15,7 +15,7 @@ public class JsonAdaptedSchedule {
     private static final String MESSAGE_INVALID_ScheduleNAME = "Schedule name must not contain invalid characters";
 
     private static final String MESSAGE_INVALID_ScheduleTime = "Schedule timing must fit constraints!";
-    private final String name;
+    private final String moduleName;
         private final LocalDateTime startTime;
         private final LocalDateTime endTime;
 
@@ -24,9 +24,9 @@ public class JsonAdaptedSchedule {
          * {@code dateTime} and {@code duration}.
          */
         @JsonCreator
-        public JsonAdaptedSchedule(@JsonProperty("name") String name, @JsonProperty("startTime") String startTime,
+        public JsonAdaptedSchedule(@JsonProperty("moduleName") String name, @JsonProperty("startTime") String startTime,
                                    @JsonProperty("endTime") String endTime) {
-            this.name = name;
+            this.moduleName = name;
             this.startTime = LocalDateTime.parse(startTime);
             this.endTime = LocalDateTime.parse(endTime);
         }
@@ -35,23 +35,23 @@ public class JsonAdaptedSchedule {
          * Converts a given {@code Slot} into this class for Jackson use.
          */
         public JsonAdaptedSchedule(Schedule schedule) {
-            name = schedule.getSchedName();
+            moduleName = schedule.getSchedName();
             startTime = schedule.getStartTime();
             endTime = schedule.getEndTime();
         }
 
         public Schedule toModelType() throws IllegalValueException {
-            if (name == null) {
+            if (moduleName == null) {
                 throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
             }
-            if (!Schedule.isValidSchedName(name)) {
-                throw new IllegalValueException(MESSAGE_INVALID_ScheduleNAME);
-            }
-            if (!Schedule.isValidTiming(startTime, endTime)) {
-                throw new IllegalValueException(MESSAGE_INVALID_ScheduleTime);
-            }
+//            if (!Schedule.isValidSchedName(name)) {
+//                throw new IllegalValueException(MESSAGE_INVALID_ScheduleNAME);
+//            }
+//            if (!Schedule.isValidTiming(startTime, endTime)) {
+//                throw new IllegalValueException(MESSAGE_INVALID_ScheduleTime);
+//            }
 
-            return new Schedule(name, startTime, endTime);
+            return new Schedule(moduleName, startTime, endTime);
         }
     }
 
