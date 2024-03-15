@@ -94,7 +94,7 @@ Shows a list of all persons with the given type in the address book.
 
 Format: `list TYPE`
 
-Notes: `TYPE` can only be either client or housekeeper
+Notes: `TYPE` can only be either 'client' or 'housekeeper'
 
 Example:
 * `list client`
