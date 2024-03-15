@@ -14,7 +14,7 @@
     "email" : "johnd@example.com",
     "roomNumber": "02-25",
     "telegram": "bensonMeier",
-    "birthday": "25/03/2001",
+    "birthday": "25/02/2001",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -34,7 +34,7 @@
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94822243",
     "email" : "werner@example.com",
     "roomNumber": "02-12",
     "telegram": "elleMeyer",
@@ -42,7 +42,7 @@
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "94822427",
     "email" : "lydia@example.com",
     "roomNumber": "05-12",
     "telegram": "fionaKunz",
@@ -50,7 +50,7 @@
     "tags" : [ ]
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94824142",
     "email" : "anna@example.com",
     "roomNumber": "23-12",
     "telegram": "georgeBest",
