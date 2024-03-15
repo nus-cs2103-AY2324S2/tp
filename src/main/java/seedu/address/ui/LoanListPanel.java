@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -24,9 +25,9 @@ public class LoanListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public LoanListPanel(Person targetPerson) {
+    public LoanListPanel(ObservableList<Loan> loanList) {
         super(FXML);
-        loanListView.setItems(FXCollections.observableArrayList(targetPerson.getLoanRecords().getLoanList()));
+        loanListView.setItems(loanList);
         loanListView.setCellFactory(listView -> new LoanListViewCell());
     }
 
