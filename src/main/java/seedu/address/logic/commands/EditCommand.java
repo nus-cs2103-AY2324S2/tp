@@ -22,12 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.BookList;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -101,11 +96,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-//        int updatedCount = editPersonDescriptor.getCount().orElse(personToEdit.getCount());
+        // create getMeritScore within edit person desciptor class shall be fine, and then uncomment below
+        // MeritScore updatedMeritScore = editPersonDescriptor.getMeritScore().orElse(personToEdit.getMeritScore());
+
         BookList updatedBookList = editPersonDescriptor.getBookList().orElse(personToEdit.getBook());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBookList, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+//        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBookList, updatedTags);
     }
 
     @Override
@@ -142,7 +140,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private BookList bookTitle;
+        private MeritScore meritScore;
+        private BookList bookList;
 
         public EditPersonDescriptor() {}
 
@@ -198,21 +197,12 @@ public class EditCommand extends Command {
         }
 
         public void setBookList(BookList bookList) {
-            this.bookTitle = bookList;
+            this.bookList = bookList;
         }
 
         public Optional<BookList> getBookList() {
-            return Optional.ofNullable(bookTitle);
+            return Optional.ofNullable(bookList);
         }
-
-//        public void setCount(int count) {
-//            this.count = count;
-//        }
-
-//        public Optional<Integer> getCount() {
-//            return Optional.ofNullable(count);
-//        }
-
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
