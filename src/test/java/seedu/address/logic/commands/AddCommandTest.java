@@ -162,7 +162,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateLoanList(List<Loan> loanList) {
+        public void setLoanList(List<Loan> loanList) {
             throw new AssertionError("This method should not be called.");
         }
 

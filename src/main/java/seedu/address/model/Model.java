@@ -19,8 +19,6 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    Predicate<Person> PREDICATE_SHOW_NONE = unused -> false;
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -97,7 +95,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void updateLoanList(List<Loan> loanList);
+    void setLoanList(List<Loan> loanList);
 
     ObservableList<Loan> getLoanList();
 

@@ -55,7 +55,7 @@ public interface Logic {
 
     ObservableList<Loan> getLoanList();
 
-    public void updateIsLoansTab(boolean isLoansTab);
+    void setIsLoansTab(boolean isLoansTab);
 
     BooleanProperty getIsLoansTab();
 }

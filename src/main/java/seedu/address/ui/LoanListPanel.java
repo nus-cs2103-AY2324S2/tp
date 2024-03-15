@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -18,22 +17,16 @@ public class LoanListPanel extends UiPart<Region> {
     private static final String FXML = "LoanListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(LoanListPanel.class);
 
-    private BooleanProperty isLoansTab;
     @FXML
     private ListView<Loan> loanListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public LoanListPanel(ObservableList<Loan> loanList, BooleanProperty isLoansTab) {
+    public LoanListPanel(ObservableList<Loan> loanList) {
         super(FXML);
         loanListView.setItems(loanList);
         loanListView.setCellFactory(listView -> new LoanListViewCell());
-        this.isLoansTab = isLoansTab;
-
-        this.isLoansTab.addListener((observable, oldValue, newValue) -> {
-            //loanListView.setVisible(newValue);
-        });
     }
 
     /**

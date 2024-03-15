@@ -94,7 +94,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void updateIsLoansTab(boolean isLoansTab) {
+    public void setIsLoansTab(boolean isLoansTab) {
         model.setIsLoansTab(isLoansTab);
     }
 

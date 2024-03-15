@@ -157,7 +157,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateLoanList(List<Loan> loanList) {
+    public void setLoanList(List<Loan> loanList) {
         currLoanList.clear();
         currLoanList.setAll(loanList);
     }

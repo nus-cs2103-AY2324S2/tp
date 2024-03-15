@@ -123,14 +123,13 @@ public class MainWindow extends UiPart<Stage> {
         this.isLoansTab = logic.getIsLoansTab();
 
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getIsLoansTab());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         // By default, the person list panel is shown
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        loanListPanel = new LoanListPanel(logic.getLoanList(), logic.getIsLoansTab());
+        loanListPanel = new LoanListPanel(logic.getLoanList());
 
         this.isLoansTab.addListener((observable, oldValue, newValue) -> {
-            // newValue == true means that the loans tab is now active
             if (newValue) {
                 personListPanelPlaceholder.getChildren().clear();
                 loanListPanelPlaceholder.getChildren().add(loanListPanel.getRoot());
@@ -214,7 +213,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             // Enable/Disable the loan tab based on whether command is loan related
-            logic.updateIsLoansTab(commandResult.isLoanRelated());
+            logic.setIsLoansTab(commandResult.isLoanRelated());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
