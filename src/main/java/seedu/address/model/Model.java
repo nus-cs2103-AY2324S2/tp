@@ -92,7 +92,5 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void setLoanViewPerson(Person p);
 
-    Person getLoanViewPerson();
 }

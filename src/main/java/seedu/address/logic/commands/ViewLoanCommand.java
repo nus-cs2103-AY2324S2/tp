@@ -43,7 +43,6 @@ public class ViewLoanCommand extends Command {
         LoanRecords loanRecords = personToShowLoan.getLoanRecords();
 
         // TODO model.updateLoanList or something
-        model.setLoanViewPerson(personToShowLoan);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToShowLoan)));
     }

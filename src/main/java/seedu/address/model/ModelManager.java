@@ -23,7 +23,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
-    private Person loanViewPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -145,16 +144,6 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
-    }
-
-    @Override
-    public void setLoanViewPerson(Person p) {
-        this.loanViewPerson = p;
-    }
-
-    @Override
-    public Person getLoanViewPerson() {
-        return this.loanViewPerson;
     }
 
 }
