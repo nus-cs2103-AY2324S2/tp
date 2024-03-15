@@ -24,7 +24,7 @@ import seedu.findvisor.model.person.Phone;
 import seedu.findvisor.model.tag.Tag;
 
 /**
- * Schedules a meeting with a contact.
+ * Schedules a meeting with a person.
  */
 public class ScheduleCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
@@ -48,7 +48,7 @@ public class ScheduleCommand extends Command {
     private final Meeting meeting;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an ScheduleCommand to schedule a meeting with the specified {@code Person}
      */
     public ScheduleCommand(Index targetIndex, Meeting meeting) {
         requireNonNull(meeting);
@@ -85,19 +85,19 @@ public class ScheduleCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Person} with the same details of {@code personToEdit}
+     * with the meeting scheduled.
      */
     private static Person createEditedPerson(Person personToEdit, Meeting meeting) {
         assert personToEdit != null;
 
-        Name updatedName = personToEdit.getName();
-        Phone updatedPhone = personToEdit.getPhone();
-        Email updatedEmail = personToEdit.getEmail();
-        Address updatedAddress = personToEdit.getAddress();
-        Set<Tag> updatedTags = personToEdit.getTags();
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Set<Tag> tags = personToEdit.getTags();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, Optional.of(meeting));
+        return new Person(name, phone, email, address, tags, Optional.of(meeting));
     }
 
     @Override

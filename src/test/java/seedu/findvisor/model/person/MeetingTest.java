@@ -20,21 +20,21 @@ public class MeetingTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidMeeting_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new Meeting(END, START));
     }
 
     @Test
-    public void isValidPhone() {
-        // null phone number
+    public void isValidMeeting() {
+        // null meeting
         assertThrows(NullPointerException.class, () -> Meeting.isValidDateTime(null, null));
         assertThrows(NullPointerException.class, () -> Meeting.isValidDateTime(START, null));
         assertThrows(NullPointerException.class, () -> Meeting.isValidDateTime(null, END));
 
-        // invalid phone numbers
+        // invalid meeting
         assertFalse(Meeting.isValidDateTime(END, START));
 
-        // valid phone numbers
+        // valid meeting
         assertTrue(Meeting.isValidDateTime(START, END));
     }
 

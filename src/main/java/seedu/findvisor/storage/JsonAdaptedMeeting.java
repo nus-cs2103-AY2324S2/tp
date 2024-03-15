@@ -12,14 +12,14 @@ import seedu.findvisor.commons.util.DateTimeUtil;
 import seedu.findvisor.model.person.Meeting;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Meeting}.
  */
 class JsonAdaptedMeeting {
     private final String start;
     private final String end;
 
     /**
-     * Constructs a {@code JsonAdaptedMeeting} with the given {@code meeting}.
+     * Constructs a {@code JsonAdaptedMeeting} with the given {@code start} and {@code end}.
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("start") String start, @JsonProperty("end") String end) {
@@ -28,7 +28,7 @@ class JsonAdaptedMeeting {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Optional<Meeting>} into this class for Jackson use.
      */
     public JsonAdaptedMeeting(Optional<Meeting> source) {
         start = source.map(meeting -> DateTimeUtil.dateTimeToInputString(meeting.start)).orElse("");
