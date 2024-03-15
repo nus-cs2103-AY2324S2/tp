@@ -126,6 +126,7 @@ Examples:
 - `addfav i/ 1, 1, 1` Sets the contact at index `1` as favourite once
 - `addfav i/ 1, 2, 5` Sets the contacts at the indices `1, 2, 5` as favourites
 - `addfav i/ -10, 0, -100`, `addfav i/ abc` and `addfav i/////` return an error message as the 'INDICES' field must consist of comma-separated positive integers
+- `addfav i/ 10, 1` returns an error message as the 'INDICES' field must consist of valid index values which are positive integers from 1 to the total number of contacts in the address book
 - `addfav i/` returns an error message as the 'INDICES' field cannot be empty
 - `addfav` returns an error message as it must be accompanied by the 'INDICES' field
 - `addfav 1 i/ 2, 5` returns an error message as there should not be prefixes before the 'INDICES' field
