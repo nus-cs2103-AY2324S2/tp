@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -55,6 +56,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane loanListPanelPlaceholder;
+
+    private BooleanProperty isLoansTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -117,11 +120,26 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        this.isLoansTab = logic.getIsLoansTab();
+
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getIsLoansTab());
+        // By default, the person list panel is shown
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         loanListPanel = new LoanListPanel(logic.getLoanList(), logic.getIsLoansTab());
-        loanListPanelPlaceholder.getChildren().add(loanListPanel.getRoot());
+
+        this.isLoansTab.addListener((observable, oldValue, newValue) -> {
+            // newValue == true means that the loans tab is now active
+            if (newValue) {
+                personListPanelPlaceholder.getChildren().clear();
+                loanListPanelPlaceholder.getChildren().add(loanListPanel.getRoot());
+            } else {
+                loanListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+        });
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

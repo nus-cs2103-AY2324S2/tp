@@ -32,7 +32,7 @@ public class PersonListPanel extends UiPart<Region> {
         this.isLoansTab = isLoansTab;
 
         this.isLoansTab.addListener((observable, oldValue, newValue) -> {
-            personListView.setVisible(!newValue);
+            //personListView.setVisible(!newValue);
         });
 
     }

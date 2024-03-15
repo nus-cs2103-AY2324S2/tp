@@ -34,8 +34,7 @@ public class LoanListPanel extends UiPart<Region> {
         this.isLoansTab = isLoansTab;
 
         this.isLoansTab.addListener((observable, oldValue, newValue) -> {
-            loanListView.setVisible(newValue);
-            System.out.println("Loans tab is now active: " + newValue);
+            //loanListView.setVisible(newValue);
         });
     }
 
