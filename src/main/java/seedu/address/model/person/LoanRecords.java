@@ -125,6 +125,12 @@ public class LoanRecords {
         nextLoanId++;
     }
 
+    /**
+     * @return The number of loans in the list.
+     */
+    public int size() {
+        return loans.size();
+    }
     @Override
     public String toString() {
         String output = "Loans:\n";
