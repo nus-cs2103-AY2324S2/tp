@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
@@ -19,6 +20,7 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_FACULTY = "Computing";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_VENUE = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_MODULE = "CS2103T";
@@ -26,6 +28,7 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
+    private Faculty faculty;
     private Venue venue;
     private Module module;
     private Set<Tag> tags;
@@ -37,6 +40,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        faculty = new Faculty(DEFAULT_FACULTY);
         venue = new Venue(DEFAULT_VENUE);
         module = new Module(DEFAULT_MODULE);
         tags = new HashSet<>();
@@ -49,6 +53,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        faculty = personToCopy.getFaculty();
         venue = personToCopy.getVenue();
         module = personToCopy.getModule();
         tags = new HashSet<>(personToCopy.getTags());
@@ -79,6 +84,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Faculty} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFaculty(String faculty) {
+        this.faculty = new Faculty(faculty);
+        return this;
+    }
+
+    /**
      * Sets the {@code Venue} of the {@code Person} that we are building.
      */
     public PersonBuilder withVenue(String venue) {
@@ -103,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, venue, module, tags);
+        return new Person(name, phone, email, faculty, venue, module, tags);
     }
 
 }

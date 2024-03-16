@@ -3,6 +3,7 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
+    "faculty": "Computing",
     "venue": "4th street",
     "module": "CS2030S"
   } ]
