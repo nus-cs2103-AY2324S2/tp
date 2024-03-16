@@ -2,6 +2,7 @@ package seedu.address.commons.util;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -50,8 +51,7 @@ public class StringUtil {
      * @param substring cannot be null, cannot be empty
      */
     public static boolean containsIgnoreCase(String sentence, String substring) {
-        requireNonNull(sentence);
-        requireNonNull(substring);
+        requireAllNonNull(sentence, substring);
 
         String preppedSentence = sentence.toLowerCase();
         String preppedSubstring = substring.toLowerCase();
