@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either 'BUYER' or 'Seller'";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either 'buyer' or 'seller'";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final Role tagName;
