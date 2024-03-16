@@ -8,7 +8,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; filename is valid as declared in {@link #isValidFilename(String)}
  */
 public class Filename {
-    public static final String MESSAGE_CONSTRAINTS = "Filenames should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Filenames should be alphanumeric.";
+
+    public static final String MESSAGE_DUPLICATE = "Filenames should be unique.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     public final String filename;
 

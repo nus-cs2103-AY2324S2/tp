@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.filename.Filename;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -127,15 +128,19 @@ public class ParserUtil {
     public static Set<File> parseFiles(Collection<String> filenames) throws ParseException {
         requireNonNull(filenames);
         final Set<File> fileSet = new HashSet<>();
+        final Set<Filename> filenameSet = new HashSet<>();
         for (String fname : filenames) {
-
+            String trimmedFname = fname.trim();
+            if (!Filename.isValidFilename(trimmedFname)) {
+                throw new ParseException(Filename.MESSAGE_CONSTRAINTS);
+            }
+            Filename curFilename = new Filename(trimmedFname);
+            if (filenameSet.contains(curFilename)) {
+                throw new ParseException(Filename.MESSAGE_DUPLICATE);
+            }
+            fileSet.add(new File(trimmedFname));
+            filenameSet.add(curFilename);
         }
-        final Set<File> fileSet = new HashSet<>(
-                filenames
-                .stream()
-                .distinct()
-                .map(fname -> new File(fname))
-                .collect(Collectors.toList()));
         return fileSet;
     }
 }
