@@ -12,8 +12,8 @@ title: Social Worker's Efficiency Enhancer
 
 * If you are interested in using SWEE, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing SWEE, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
-  
-  
+
+
 **Naming**
 * It is named `Social Worker's Efficiency Enhancer` (`SWEE` for short) because it a play on the acronym SWE (software engineering), what the course aims to teach, and [swee (Singapore slang)](http://www.mysmu.edu/faculty/jacklee/singlish_S.htm)
 
