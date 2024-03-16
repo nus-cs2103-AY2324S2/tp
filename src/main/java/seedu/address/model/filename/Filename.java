@@ -1,7 +1,6 @@
 package seedu.address.model.filename;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Filename containing contacts to be added to the contact manager.
@@ -65,6 +64,6 @@ public class Filename {
      */
     @Override
     public String toString() {
-       return this.filename;
+        return this.filename;
     }
 }

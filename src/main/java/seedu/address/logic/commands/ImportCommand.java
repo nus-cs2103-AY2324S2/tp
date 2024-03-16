@@ -6,10 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FILENAME;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.Optional;
+import java.util.Set;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
@@ -19,10 +19,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAdaptedPerson;
-
-import javax.xml.crypto.Data;
+import seedu.address.storage.JsonAddressBookStorage;
 
 /**
  * Imports contacts from a file into the contact manager.
@@ -39,7 +37,8 @@ public class ImportCommand extends Command {
             + "[" + PREFIX_FILENAME + "FILENAME_3] "
             + "...";
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "The person %s with phone number %s already exists in the contact manager.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "The person %s with phone number %s "
+            + "already exists in the contact manager.";
 
     public static final String MESSAGE_FILE_NOT_FOUND = "Filename %s is not found!";
 
@@ -98,7 +97,7 @@ public class ImportCommand extends Command {
      * @throws IllegalValueException If there are files not found or unable to be loaded.
      */
     public void retrievePersonsFromFile(List<JsonAdaptedPerson> savedPersons)
-        throws IllegalValueException, DataLoadingException {
+            throws IllegalValueException, DataLoadingException {
         for (File file : files) {
             if (!file.exists()) {
                 logger.info(String.format(MESSAGE_FILE_NOT_FOUND, file.getPath()));
@@ -122,7 +121,7 @@ public class ImportCommand extends Command {
      * @throws DataLoadingException If the {@code file} is unable to be loaded.
      */
     public List<JsonAdaptedPerson> readPersons(File file)
-    throws DataLoadingException {
+            throws DataLoadingException {
         JsonAddressBookStorage curStorage = new JsonAddressBookStorage(file.toPath());
         Optional<ReadOnlyAddressBook> readOnlyAddressBook = curStorage.readAddressBook();
         return readOnlyAddressBook

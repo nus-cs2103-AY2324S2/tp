@@ -4,9 +4,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILENAME;
 import static seedu.address.logic.parser.ParserUtil.parseFiles;
 
-import java.util.stream.Stream;
 import java.io.File;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -16,7 +16,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ImportCommandParser {
 
-    // Solution below adapted from AB3 code
+    /**
+     * Parses a given String of args into an ImportCommand.
+     *
+     * @param args String to be parsed.
+     * @return An ImportCommand containing the parsed information.
+     * @throws ParseException If prefixes are not present or the preamble is empty.
+     */
     public ImportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILENAME);
 

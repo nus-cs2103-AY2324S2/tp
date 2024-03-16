@@ -6,7 +6,6 @@ import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -125,6 +124,13 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code Collection<String> filenames} into a {@code Set<File>}.
+     *
+     * @param filenames String filenames.
+     * @return A set of files to be imported.
+     * @throws ParseException If the filenames are in an invalid format or are duplicated.
+     */
     public static Set<File> parseFiles(Collection<String> filenames) throws ParseException {
         requireNonNull(filenames);
         final Set<File> fileSet = new HashSet<>();
