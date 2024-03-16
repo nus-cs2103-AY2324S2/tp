@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 
 <VBox styleClass="list-container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane alignment="CENTER" prefHeight="32">
+    <columnConstraints>
+      <ColumnConstraints percentWidth="8" fx:id="idColumn" />
+      <ColumnConstraints percentWidth="24" fx:id="nameColumn" />
+      <ColumnConstraints percentWidth="25" fx:id="emailColumn" />
+      <ColumnConstraints percentWidth="23" fx:id="phoneColumn" />
+      <ColumnConstraints percentWidth="20" fx:id="categoryColumn" />
+    </columnConstraints>
+    <Label text="ID" GridPane.columnIndex="0" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
+    <Label text="NAME" GridPane.columnIndex="1" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
+    <Label text="EMAIL" GridPane.columnIndex="2" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
+    <Label text="PHONE" GridPane.columnIndex="3" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
+    <Label text="CATEGORY" GridPane.columnIndex="4" alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER" />
+  </GridPane>
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
 </VBox>
