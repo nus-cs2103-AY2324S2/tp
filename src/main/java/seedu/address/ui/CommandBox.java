@@ -132,9 +132,11 @@ public class CommandBox extends UiPart<Region> {
             // This code block allows users to continue redoing until there is an empty string, while still being able
             // to undo from there
             String currentText = commandTextField.getText();
-            undoStack.push(currentText);
+            if (!currentText.isEmpty()) {
+                undoStack.push(currentText);
 
-            commandTextField.setText(""); // Set as empty if there is nothing to redo
+                commandTextField.setText(""); // Set as empty if there is nothing to redo
+            }
         }
     }
 }
