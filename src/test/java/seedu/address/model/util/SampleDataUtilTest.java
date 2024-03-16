@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.illness.Illness;
 import seedu.address.model.person.note.Description;
 import seedu.address.model.person.note.Note;
-import seedu.address.model.person.illness.Illness;
 
 public class SampleDataUtilTest {
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2024, 1, 1, 12, 30);

@@ -15,10 +15,10 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDATE_DES
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DRUG_ALLERGY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ILLNESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ILLNESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
@@ -165,7 +165,7 @@ public class AddCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // invalid gender
-        assertParseFailure(parser,  validExpectedPersonString + INVALID_GENDER_DESC,
+        assertParseFailure(parser, validExpectedPersonString + INVALID_GENDER_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_GENDER));
 
         // invalid birthdate
@@ -181,7 +181,7 @@ public class AddCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
         // invalid drugAllergy
-        assertParseFailure(parser,  validExpectedPersonString + INVALID_DRUG_ALLERGY_DESC,
+        assertParseFailure(parser, validExpectedPersonString + INVALID_DRUG_ALLERGY_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DRUG_ALLERGY));
     }
 

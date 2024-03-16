@@ -39,13 +39,12 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withDrugAllergy("No allergy")
-            .withIllnesses("Infectious Disease").withNotes(
-                    new Note[] {
-                            new Note(LocalDateTime.of(2024, 2, 19, 21, 30),
-                                    new Description("General Flu")),
-                            new Note(LocalDateTime.of(2024, 2, 28, 8, 30),
-                                    new Description("Headache")),
-        }).build();
+            .withIllnesses("Infectious Disease").withNotes(new Note[]{
+                new Note(LocalDateTime.of(2024, 2, 19, 21, 30),
+                        new Description("General Flu")),
+                new Note(LocalDateTime.of(2024, 2, 28, 8, 30),
+                        new Description("Headache")),
+            }).build();
     public static final Person BENSON = new PersonBuilder()
             .withNric("S1234567B")
             .withName("Benson Meier")
@@ -55,14 +54,14 @@ public class TypicalPersons {
             .withPhone("98765432")
             .withDrugAllergy("Penicillin")
             .withIllnesses("Infectious Disease")
-            .withNotes(new Note[] {
-                    new Note(LocalDateTime.of(2024, 2, 20, 15, 30),
-                            new Description("Joint pain assessment")),
-                    new Note(LocalDateTime.of(2024, 4, 4, 10, 30),
-                            new Description("Post-surgery checkup")),
-                    new Note(LocalDateTime.of(2024, 5, 19, 17, 0),
-                            new Description("Sports injury follow-up")),
-        }).build();
+            .withNotes(new Note[]{
+                new Note(LocalDateTime.of(2024, 2, 20, 15, 30),
+                        new Description("Joint pain assessment")),
+                new Note(LocalDateTime.of(2024, 4, 4, 10, 30),
+                        new Description("Post-surgery checkup")),
+                new Note(LocalDateTime.of(2024, 5, 19, 17, 0),
+                        new Description("Sports injury follow-up")),
+            }).build();
     public static final Person CARL = new PersonBuilder()
             .withNric("T1234567A")
             .withName("Carl Kurz")
@@ -140,12 +139,11 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB)
             .withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
             .withIllnesses(VALID_ILLNESS_INFECTIOUS, VALID_ILLNESS_GENETIC)
-        .build();
+            .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {
-    } // prevents instantiation
+    private TypicalPersons() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.

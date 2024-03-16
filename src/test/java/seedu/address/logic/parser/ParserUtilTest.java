@@ -23,14 +23,14 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.note.Description;
 import seedu.address.model.person.illness.Illness;
+import seedu.address.model.person.note.Description;
 
 public class ParserUtilTest {
     private static final String INVALID_NRIC = "G3424GH";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_GENDER = "H";
-    private static final String INVALID_BIRTHDARTE = "99-99-9999";
+    private static final String INVALID_BIRTHDATE = "99-99-9999";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_ILLNESS = "#illness";
@@ -40,12 +40,12 @@ public class ParserUtilTest {
 
     private static final String VALID_NRIC = "S1234567Z";
     private static final String VALID_NAME = "Rachel Walker";
-    public static final String VALID_GENDER = "M";
-    public static final String VALID_BIRTHDATE = "01-02-1999";
+    private static final String VALID_GENDER = "M";
+    private static final String VALID_BIRTHDATE = "01-02-1999";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_DRUG_ALLERGY = "Penicillin";
-    private static final String VALID_ILLNESS_1= "Infectious Disease";
+    private static final String VALID_ILLNESS_1 = "Infectious Disease";
     private static final String VALID_ILLNESS_2 = "Chronic Conditions";
     private static final String VALID_DATE = "19-02-2024";
     private static final String VALID_TIME = "1130";
@@ -242,7 +242,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIllnesses_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIllnesses(Arrays.asList(VALID_ILLNESS_1, INVALID_ILLNESS)));
+        assertThrows(
+                ParseException.class, () -> ParserUtil.parseIllnesses(Arrays.asList(VALID_ILLNESS_1, INVALID_ILLNESS)));
     }
 
     @Test
@@ -253,7 +254,8 @@ public class ParserUtilTest {
     @Test
     public void parseIllnesses_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Illness> actualIllnessSet = ParserUtil.parseIllnesses(Arrays.asList(VALID_ILLNESS_1, VALID_ILLNESS_2));
-        Set<Illness> expectedIllnessSet = new HashSet<>(Arrays.asList(new Illness(VALID_ILLNESS_1), new Illness(VALID_ILLNESS_2)));
+        Set<Illness> expectedIllnessSet = new HashSet<>(
+                Arrays.asList(new Illness(VALID_ILLNESS_1), new Illness(VALID_ILLNESS_2)));
 
         assertEquals(expectedIllnessSet, actualIllnessSet);
     }
