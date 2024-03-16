@@ -8,6 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.PolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Policy;
 
 /**
  * Parses input arguments and creates a new {@code PolicyCommand} object
@@ -31,6 +32,6 @@ public class PolicyCommandParser implements Parser<PolicyCommand> {
 
         String policy = argMultimap.getValue(PREFIX_POLICY).orElse("");
 
-        return new PolicyCommand(index, policy);
+        return new PolicyCommand(index, new Policy(policy));
     }
 }

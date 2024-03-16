@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PolicyCommand;
+import seedu.address.model.person.Policy;
 
 public class PolicyCommandParserTest {
     private PolicyCommandParser parser = new PolicyCommandParser();
@@ -20,12 +21,12 @@ public class PolicyCommandParserTest {
         // have policy
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY + nonEmptyPolicy;
-        PolicyCommand expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, nonEmptyPolicy);
+        PolicyCommand expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(nonEmptyPolicy));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no policy
         userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY;
-        expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, "");
+        expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

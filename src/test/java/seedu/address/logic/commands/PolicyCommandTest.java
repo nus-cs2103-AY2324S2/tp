@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Policy;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for PolicyCommand.
@@ -26,7 +27,7 @@ public class PolicyCommandTest {
 
     @Test
     public void execute() {
-        final String policy = "Some policy";
+        final Policy policy = new Policy("Some policy");
 
         assertCommandFailure(new PolicyCommand(INDEX_FIRST_PERSON, policy), model,
                 String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), policy));
@@ -34,10 +35,10 @@ public class PolicyCommandTest {
 
     @Test
     public void equals() {
-        final PolicyCommand standardCommand = new PolicyCommand(INDEX_FIRST_PERSON, VALID_POLICY_AMY);
+        final PolicyCommand standardCommand = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(VALID_POLICY_AMY));
 
         // same values -> returns true
-        PolicyCommand commandWithSameValues = new PolicyCommand(INDEX_FIRST_PERSON, VALID_POLICY_AMY);
+        PolicyCommand commandWithSameValues = new PolicyCommand(INDEX_FIRST_PERSON, new Policy(VALID_POLICY_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -50,9 +51,9 @@ public class PolicyCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new PolicyCommand(INDEX_SECOND_PERSON, VALID_POLICY_AMY)));
+        assertFalse(standardCommand.equals(new PolicyCommand(INDEX_SECOND_PERSON, new Policy(VALID_POLICY_AMY))));
 
         // different policy -> returns false
-        assertFalse(standardCommand.equals(new PolicyCommand(INDEX_FIRST_PERSON, VALID_POLICY_BOB)));
+        assertFalse(standardCommand.equals(new PolicyCommand(INDEX_FIRST_PERSON, new Policy(VALID_POLICY_BOB))));
     }
 }

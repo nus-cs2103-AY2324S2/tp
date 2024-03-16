@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.client.Policy;
+import seedu.address.model.person.Policy;
 
 /**
  * Changes the policy of an existing person in the address book.
@@ -26,13 +26,13 @@ public class PolicyCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Policy: %2$s";
 
     private final Index index;
-    private final String policy;
+    private final Policy policy;
 
     /**
      * @param index of the person in the filtered person list to edit the remark
      * @param policy of the person to be updated to
      */
-    public PolicyCommand(Index index, String policy) {
+    public PolicyCommand(Index index, Policy policy) {
         requireAllNonNull(index, policy);
 
         this.index = index;
