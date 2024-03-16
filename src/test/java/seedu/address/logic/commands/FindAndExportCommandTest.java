@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-//import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -29,5 +29,22 @@ public class FindAndExportCommandTest {
         command.execute(model);
 
         assertTrue(Files.exists(filePath), "The file was not created.");
+    }
+
+    @Test
+    public void execute_exportSuccessful() throws Exception {
+        Model model = new ModelManager();
+        model.addPerson(ALICE);
+
+        String tag = "friends";
+        String name = ALICE.getName().toString();
+        String address = ALICE.getAddress().toString();
+        Path tempFile = Files.createTempFile("testExport", ".txt");
+        String filename = tempFile.toString();
+
+        FindAndExportCommand command = new FindAndExportCommand(tag, name, address, filename);
+        CommandResult result = command.execute(model);
+        assertTrue(Files.exists(tempFile));
+        Files.deleteIfExists(tempFile);
     }
 }
