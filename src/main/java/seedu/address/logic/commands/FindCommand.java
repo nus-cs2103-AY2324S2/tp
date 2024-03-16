@@ -24,8 +24,8 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all persons whose specified attribute contains the specified keyword"
-            + "and displays them as a list with index numbers."
-            + "Searches name field if no prefix is specified.\n"
+            + " and displays them as a list with index numbers."
+            + " Searches name field if no prefix is specified.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -33,7 +33,7 @@ public class FindCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NOTE + "NOTE] "
             + "[" + PREFIX_TAG + "TAG] "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_EMAIL + "example.com";
 
     private final CombinedPredicates predicates;
