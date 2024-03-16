@@ -18,7 +18,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            NusId nusId = ParserUtil.parsenusId(args);
+            NusId nusId = ParserUtil.parseNusId(args);
             return new DeleteCommand(nusId);
         } catch (ParseException pe) {
             throw new ParseException(
