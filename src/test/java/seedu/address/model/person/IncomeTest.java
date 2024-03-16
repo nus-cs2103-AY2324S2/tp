@@ -50,6 +50,9 @@ public class IncomeTest {
 
         // invalid income
         assertFalse(Income.isValidIncome("-1")); // less than 0
+        assertFalse(Income.isValidIncome("-3")); // less than 0
+        assertFalse(Income.isValidIncome("-1213313")); // less than 0 but very negative
+
 
         // valid income numbers
         assertTrue(Income.isValidIncome("2")); // more than 1
@@ -70,8 +73,11 @@ public class IncomeTest {
         // null -> returns false
         assertFalse(income.equals(null));
 
-        // different types -> returns false
+        // different types (integer vs float) -> returns false
         assertFalse(income.equals(5.0f));
+
+        // different types (integer vs word) -> returns false
+        assertFalse(income.equals("imaword!"));
 
         // different values -> returns false
         assertFalse(income.equals(new Income("995")));
