@@ -89,6 +89,9 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
+        // Store all emails in lowercase by default. Do not allow capitalisations
+        trimmedEmail = trimmedEmail.toLowerCase();
+
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
