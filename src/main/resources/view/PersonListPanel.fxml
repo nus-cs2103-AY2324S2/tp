@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 
 <VBox styleClass="list-container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane alignment="CENTER" prefHeight="32">
+  <GridPane styleClass="list-header" alignment="CENTER">
     <columnConstraints>
       <ColumnConstraints percentWidth="8" fx:id="idColumn" />
       <ColumnConstraints percentWidth="24" fx:id="nameColumn" />
