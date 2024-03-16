@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.application.Platform;
+import javafx.stage.Stage;
 import seedu.address.model.person.UniquePersonList;
 
 public class PersonListOfSelectedEventPanelTest {
@@ -23,28 +24,15 @@ public class PersonListOfSelectedEventPanelTest {
     private UniquePersonList personList;
 
     @BeforeAll
-    public static void setUpClass() throws InterruptedException {
+    public static void setUpToolkit() {
         // Initialize JavaFX toolkit
-        CountDownLatch latch = new CountDownLatch(1);
-        Platform.startup(() -> latch.countDown());
-        latch.await(TIMEOUT, TimeUnit.SECONDS);
+        Platform.startup(() -> {});
     }
 
     @BeforeEach
-    public void setUp() throws InterruptedException {
-        // Create your test objects within the JavaFX application thread
-        CountDownLatch latch = new CountDownLatch(1);
-        Platform.runLater(() -> {
-            personList = new UniquePersonList();
-            panel = new PersonListOfSelectedEventPanel(personList.asUnmodifiableObservableList());
-            latch.countDown();
-        });
-        latch.await(TIMEOUT, TimeUnit.SECONDS);
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-        Platform.exit();
+    public void setUp() {
+        personList = new UniquePersonList();
+        panel = new PersonListOfSelectedEventPanel(personList.asUnmodifiableObservableList());
     }
 
     @Test
@@ -75,4 +63,5 @@ public class PersonListOfSelectedEventPanelTest {
         assertFalse(panel.emptyListLabel.isVisible());
         assertFalse(panel.emptyListLabel.isManaged());
     }
+
 }
