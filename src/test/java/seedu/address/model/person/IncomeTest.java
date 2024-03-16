@@ -49,7 +49,7 @@ public class IncomeTest {
         assertThrows(NumberFormatException.class, () -> Income.isValidIncome(null));
 
         // invalid income
-        assertFalse(Income.isValidIncome("0")); // less than 1
+        assertFalse(Income.isValidIncome("-1")); // less than 0
 
         // valid income numbers
         assertTrue(Income.isValidIncome("2")); // more than 1
