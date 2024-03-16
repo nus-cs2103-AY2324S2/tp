@@ -1,0 +1,30 @@
+package seedu.address.logic.commands;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.nio.file.Files;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+
+public class FindAndExportCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @TempDir
+    java.nio.file.Path testFolder;
+
+    @Test
+    public void execute_exportSuccess_writesFile() throws Exception {
+        String testFileName = "testExport.csv";
+        java.nio.file.Path filePath = testFolder.resolve(testFileName);
+
+        FindAndExportCommand command = new FindAndExportCommand("friend", null, null, filePath.toString());
+        command.execute(model);
+
+        assertTrue(Files.exists(filePath));
+    }
+}
