@@ -3,17 +3,22 @@ package seedu.address.testutil;
 import java.util.HashMap;
 import java.util.Map;
 
+import seedu.address.model.order.Order;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
-import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
+/**
+ * A utility class to help with building Order objects.
+ * Example usage: <br>
+ *     {@code Order order = new OrderBuilder().withIndex(1).withProductQuantity("Cupcakes", "2").build();}
+ */
 public class OrderBuilder {
     public static final int DEFAULT_ID = 1;
     public static final Person DEFAULT_PERSON = TypicalPersons.ALICE;
 
     private int id;
-    private Map<Product,Quantity> productMap;
+    private Map<Product, Quantity> productMap;
     private Person person;
 
     /**

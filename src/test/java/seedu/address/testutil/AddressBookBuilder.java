@@ -29,11 +29,19 @@ public class AddressBookBuilder {
         return this;
     }
 
+    /**
+     * Adds a new {@code Order} to the {@code AddressBook} that we are building.
+     */
     public AddressBookBuilder withOrder(Order order) {
         addressBook.addOrder(order, order.getCustomer());
         return this;
     }
 
+    /**
+     * Builds the addressbook
+     *
+     * @return the addressbook
+     */
     public AddressBook build() {
         return addressBook;
     }

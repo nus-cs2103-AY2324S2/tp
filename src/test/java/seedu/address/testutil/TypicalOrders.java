@@ -1,14 +1,15 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_COOKIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_CUPCAKE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_DOUGHNUT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_THREE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderList;
 
