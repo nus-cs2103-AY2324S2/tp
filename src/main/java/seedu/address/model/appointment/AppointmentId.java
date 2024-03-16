@@ -17,9 +17,6 @@ public class AppointmentId {
     public final String appointmentId;
     public static final String VALIDATION_REGEX = "a\\d{8}";
 
-    // Message to output in case constraints are not met
-    public static final String MESSAGE_CONSTRAINTS =
-            "Appointment id should be in the format of aXXXXXXXX.";
 
     /**
      * Constructs new AppointmentId object by generating an appointment id string in aXXXXXXXX format
