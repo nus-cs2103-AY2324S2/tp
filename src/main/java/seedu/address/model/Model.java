@@ -100,14 +100,14 @@ public interface Model {
 
     /**
      * Adds the given appointment.
-     * {@code person} must not already exist in the address book.
+     * {@code appointment} must not already exist in the address book.
      */
     void addAppointment(Appointment appointment);
 
     /**
      * Replaces the given person {@code target} with {@code editedAppointment}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editetAppointment} must not be the same as another existing person in the
+     * The appointment identity of {@code editetAppointment} must not be the same as another existing appointment in the
      * address book.
      */
     void setAppointment(Appointment target, Appointment editedAppointment);

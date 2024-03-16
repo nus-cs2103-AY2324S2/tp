@@ -12,7 +12,7 @@ import seedu.address.model.appointment.exceptions.DuplicateAppointmentsException
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Appointment#equals(Appointment)}.
+ * An appointment is considered unique by comparing using {@code Appointment#equals(Appointment)}.
  *
  */
 public class UniqueAppointmentList implements Iterable<Appointment> {
@@ -48,9 +48,10 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedAppointment}.
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedAppointment} must not be the same as another existing person in the list.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
@@ -154,7 +155,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Returns true if {@code appointments} contains only unique persons.
+     * Returns true if {@code appointments} contains only unique appointments.
      */
     private boolean appointmentsAreUnique(List<Appointment> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {

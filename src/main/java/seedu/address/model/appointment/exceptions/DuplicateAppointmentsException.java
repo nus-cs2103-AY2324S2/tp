@@ -5,6 +5,6 @@ package seedu.address.model.appointment.exceptions;
  */
 public class DuplicateAppointmentsException extends RuntimeException {
     public DuplicateAppointmentsException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate appointments");
     }
 }
