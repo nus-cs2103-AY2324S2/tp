@@ -57,14 +57,4 @@ public interface Logic {
      * Returns true if there is a client in the display.
      */
     boolean hasDisplayClient();
-
-    /**
-     * Clears the client to display to null.
-     */
-    void clearDisplayClient();
-
-    /**
-     * Replaces the current client to be displayed to {@code person}.
-     */
-    void setDisplayClient(Person person);
 }

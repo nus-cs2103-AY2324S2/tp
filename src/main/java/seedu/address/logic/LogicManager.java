@@ -95,14 +95,4 @@ public class LogicManager implements Logic {
     public boolean hasDisplayClient() {
         return model.hasDisplayClient();
     }
-
-    @Override
-    public void clearDisplayClient() {
-        model.clearDisplayClient();
-    }
-
-    @Override
-    public void setDisplayClient(Person person) {
-        model.setDisplayClient(person);
-    }
 }
