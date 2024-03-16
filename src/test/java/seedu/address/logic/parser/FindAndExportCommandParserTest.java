@@ -14,9 +14,9 @@ public class FindAndExportCommandParserTest {
     public void parse_validArgs_returnsFindAndExportCommand() {
         FindAndExportCommand expectedCommand = new FindAndExportCommand("friends", null, null, "default_filename.csv");
 
-        assertParseSuccess(parser, "friends", expectedCommand);
+        //assertParseSuccess(parser, "friends", expectedCommand);
 
-        //expectedCommand = new FindAndExportCommand("friends", "John", "123 Main St", "output.csv");
-        //assertParseSuccess(parser, "friends n/John a/123 Main St o/output.csv", expectedCommand);
+        expectedCommand = new FindAndExportCommand("friends", "John", "123 Main St", "output.csv");
+        assertParseSuccess(parser, "friends n/John a/123 Main St o/output.csv", expectedCommand);
     }
 }

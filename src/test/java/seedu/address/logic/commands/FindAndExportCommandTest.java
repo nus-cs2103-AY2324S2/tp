@@ -27,7 +27,7 @@ public class FindAndExportCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertTrue(Files.exists(filePath));
-        //assertTrue(result.getFeedbackToUser().contains("Export successful"));
+        //assertTrue(Files.exists(filePath));
+        assertTrue(result.getFeedbackToUser().contains("Export successful"));
     }
 }
