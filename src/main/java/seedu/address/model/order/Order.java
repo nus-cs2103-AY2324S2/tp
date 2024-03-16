@@ -135,6 +135,18 @@ public class Order {
         return productMap.isEmpty();
     }
 
+    /**
+     * Checks if two orders are the same.
+     * @param otherOrder The other order to be checked against.
+     * @return A boolean value of whether the two orders are the same.
+     */
+    public boolean isSameOrder(Order otherOrder) {
+        if (otherOrder == this) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
