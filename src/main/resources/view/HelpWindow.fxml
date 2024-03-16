@@ -13,6 +13,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
+<?import java.lang.String?>
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
@@ -23,8 +24,8 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <VBox prefWidth="600.0" prefHeight="700.0">
-        <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <VBox prefWidth="700.0" prefHeight="700.0">
+        <HBox fx:id="helpMessageContainer">
           <children>
             <Label fx:id="helpMessage" text="Label" wrapText="true">
               <HBox.margin>
@@ -47,10 +48,11 @@
 
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" fitToWidth="true" fitToHeight="true" vvalue="1.0">
           <content>
-            <TableView fx:id="userGuideTable" prefHeight="700.0">
+            <TableView fx:id="userGuideTable" prefHeight="570.0" VBox.vgrow="always">
               <columns>
-                <TableColumn fx:id="commandColumn" text="Command" prefWidth="150.0"/>
-                <TableColumn fx:id="usageColumn" text="Usage" prefWidth="450.0"/>
+                <TableColumn fx:id="commandColumn" text="Command" prefWidth="100.0"/>
+                <TableColumn fx:id="usageColumn" text="Usage" prefWidth="600.0">
+                </TableColumn>
               </columns>
             </TableView>
           </content>
