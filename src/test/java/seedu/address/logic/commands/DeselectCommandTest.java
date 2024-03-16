@@ -11,7 +11,7 @@ import seedu.address.testutil.TypicalEvents;
 public class DeselectCommandTest {
 
     @Test
-    public void execute_deselectSuccessful() throws CommandException {
+    public void execute_deselect_success() throws CommandException {
         ModelManager model = new ModelManager();
         model.setEventBook(TypicalEvents.getTypicalEventBook());
         model.selectEvent(TypicalEvents.BINGO);

@@ -29,14 +29,14 @@ public class SelectCommandTest {
         assertThrows(NullPointerException.class, () -> new SelectCommand(Index.fromZeroBased(0)).execute(null));
     }
     @Test
-    public void event_index_outOfRange() {
+    public void eventIndex_outOfRange_throwsCommandException() {
         ModelManager model = new ModelManager();
         model.setEventBook(TypicalEvents.getTypicalEventBook());
         assertThrows(CommandException.class, () -> new SelectCommand(Index.fromZeroBased(100)).execute(model));
     }
 
     @Test
-    public void equals_same_index() {
+    public void equals_sameIndex_returnsTrue() {
         SelectCommand one = new SelectCommand(Index.fromZeroBased(5));
         SelectCommand two = new SelectCommand(Index.fromZeroBased(5));
         assertEquals(one, two);
@@ -49,7 +49,7 @@ public class SelectCommandTest {
     }
 
     @Test
-    public void equals_same_object() {
+    public void equals_sameObject_returnsTrue() {
         SelectCommand one = new SelectCommand(Index.fromZeroBased(5));
         assertEquals(one, one);
     }
