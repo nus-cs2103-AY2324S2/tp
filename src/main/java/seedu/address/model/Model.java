@@ -100,6 +100,8 @@ public interface Model {
 
     void selectEvent(Event event);
 
+    void deselectEvent();
+
     /**
      * Returns an unmodifiable view of the filtered event list.
      *

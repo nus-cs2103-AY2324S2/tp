@@ -192,6 +192,11 @@ public class ModelManager implements Model {
         eventBook.selectEvent(event);
     }
 
+    @Override
+    public void deselectEvent() {
+        eventBook.deselectEvent();
+    }
+
 
     //=========== Filtered Event List and Person List of Selected Event Accessors ====================================
     @Override

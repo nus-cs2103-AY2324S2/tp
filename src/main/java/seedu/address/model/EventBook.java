@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -105,6 +106,14 @@ public class EventBook implements ReadOnlyEventBook {
     public void selectEvent(Event event) {
         selectedEvent = event;
         personsOfSelectedEvent.setPersons(event.getPersonList());
+    }
+
+    /**
+     * Deselects event.
+     */
+    public void deselectEvent() {
+        selectedEvent = null;
+        personsOfSelectedEvent.setPersons(new ArrayList<>());
     }
 
     // Util methods
