@@ -28,7 +28,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validNusIdUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        NusId nusId = new NusId("E9846510"); // This is the supposed NusId of the first person in the address list
+        NusId nusId = new NusId("E0123456"); // This is the supposed NusId of the first person in the address list
         DeleteCommand deleteCommand = new DeleteCommand(nusId);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -51,7 +51,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validNusIdFilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        NusId nusId = new NusId("E9846510");
+        NusId nusId = new NusId("E0123456");
         DeleteCommand deleteCommand = new DeleteCommand(nusId);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
