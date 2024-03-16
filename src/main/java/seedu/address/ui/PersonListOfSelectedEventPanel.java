@@ -16,14 +16,14 @@ import seedu.address.model.person.Person;
  * Panel containing the list of persons.
  */
 public class PersonListOfSelectedEventPanel extends UiPart<Region> {
+
     private static final String FXML = "PersonListOfSelectedEventPanel.fxml";
+    @FXML
+    protected Label emptyListLabel;
+    @FXML
+    protected ListView<Person> personListView;
+
     private final Logger logger = LogsCenter.getLogger(PersonListOfSelectedEventPanel.class);
-
-    @FXML
-    private ListView<Person> personListView;
-
-    @FXML
-    private Label emptyListLabel;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -43,7 +43,7 @@ public class PersonListOfSelectedEventPanel extends UiPart<Region> {
     /**
      * Updates the visibility of personListView and emptyListLabel based on the list's emptiness.
      */
-    private void updateListView() {
+    void updateListView() {
         boolean isEmpty = personListView.getItems().isEmpty();
         personListView.setVisible(!isEmpty);
         personListView.setManaged(!isEmpty);
