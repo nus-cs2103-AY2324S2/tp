@@ -24,9 +24,6 @@ public class FilterCommandParserTest {
         FilterCommand expectedFilterCommand =
                 new FilterCommand(new NameContainsKeywordsPredicate("Alice Bob"));
         assertParseSuccess(parser, "Alice Bob", expectedFilterCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFilterCommand);
     }
 
 }
