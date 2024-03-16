@@ -13,11 +13,12 @@ import java.util.Optional;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAdaptedPerson;
 
@@ -36,9 +37,10 @@ public class ImportCommand extends Command {
             + "[" + PREFIX_FILENAME + "FILENAME_3 "
             + "...";
 
+    public static final String MESSAGE_DUPLICATE_PERSON = "The person %s already exists in the contact manager.";
+
     private static final Logger logger = LogsCenter.getLogger(ImportCommand.class);
     private final Set<File> files;
-    private final List<JsonAdaptedPerson> savedPersons = new ArrayList<>();
 
     public ImportCommand(Set<File> fileSet) {
         requireNonNull(fileSet);
@@ -46,6 +48,24 @@ public class ImportCommand extends Command {
     }
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<JsonAdaptedPerson> savedPersons = new ArrayList<>();
+        retrievePersonsFromFile(savedPersons);
+        for (JsonAdaptedPerson jsonAdaptedPerson : savedPersons) {
+            try {
+                Person person = jsonAdaptedPerson.toModelType();
+                if (model.hasPerson(person)) {
+                    logger.info(String.format(MESSAGE_DUPLICATE_PERSON, person.toString()));
+                    continue;
+                }
+                model.addPerson(person);
+            } catch (IllegalValueException ive) {
+                logger.info("Illegal value detected!");
+            }
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS));
+    }
+
+    private void retrievePersonsFromFile(List<JsonAdaptedPerson> savedPersons) {
         for (File file : files) {
             if (!file.exists()) {
                 logger.info("File path: " + file.getPath() + " not found");
@@ -61,10 +81,9 @@ public class ImportCommand extends Command {
                                 .map(JsonAdaptedPerson::new)
                                 .collect(Collectors.toList()));
             } catch (DataLoadingException dle) {
-
+                logger.info("Data loading exception in: " + file.getPath());
             }
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
     @Override
