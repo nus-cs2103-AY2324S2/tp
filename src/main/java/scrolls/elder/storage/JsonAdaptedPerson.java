@@ -11,10 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import scrolls.elder.commons.exceptions.IllegalValueException;
 import scrolls.elder.model.person.Address;
+import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.model.person.Phone;
+import scrolls.elder.model.person.Role;
 import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
@@ -29,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String role;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,12 +39,16 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email,
+            @JsonProperty("address") String address,
+            @JsonProperty("role") String role,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.role = role;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -55,6 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        role = source.getRole().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -103,8 +111,23 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        Role modelRole;
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+        } else if (!Role.isValidRole(role)) {
+            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        } else {
+            modelRole = new Role(role);
+        }
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (modelRole.isVolunteer()) {
+            return new Volunteer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        } else {
+            assert modelRole.isBefriendee();
+            return new Befriendee(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        }
+
     }
 
 }

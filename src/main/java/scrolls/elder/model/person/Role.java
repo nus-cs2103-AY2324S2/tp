@@ -1,8 +1,8 @@
 package scrolls.elder.model.person;
 
-import scrolls.elder.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
+
+import scrolls.elder.commons.util.AppUtil;
 
 /**
  * Represents a Person's name in the address book.
@@ -11,16 +11,15 @@ import static java.util.Objects.requireNonNull;
 public class Role {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Role should only be either 'volunteer' or befriendee', and it should not be blank";
+            "Role should only be either 'volunteer' or befriendee', and it should not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "(?i)(befriendee|volunteer)";;
-    // FIX THIS
+    public static final String VALIDATION_REGEX = "^befriendee|volunteer$";
 
-    public final String roleString;
+    public final String value;
 
     /**
      * Constructs a {@code Name}.
@@ -29,34 +28,29 @@ public class Role {
      */
     public Role(String role) {
         requireNonNull(role);
-
         AppUtil.checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-        this.roleString = role.toLowerCase();
+        this.value = role.toLowerCase();
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidRole(String test) {
-        if (test.equalsIgnoreCase("volunteer") || test.equalsIgnoreCase("befriendee")) {
-            return true;
-        }
-        return false;
-        // return test.matches(VALIDATION_REGEX);
+        return test.toLowerCase().matches(VALIDATION_REGEX);
     }
 
-    public static boolean isVolunteer(Role role) {
-        return role.roleString.equals("volunteer");
+    public boolean isVolunteer() {
+        return this.value.equals("volunteer");
     }
 
-    public static boolean isBefriendee(Role role) {
-        return role.roleString.equals("befriendee");
+    public boolean isBefriendee() {
+        return this.value.equals("befriendee");
     }
 
 
     @Override
     public String toString() {
-        return roleString;
+        return value;
     }
 
     @Override
@@ -71,12 +65,12 @@ public class Role {
         }
 
         Role otherName = (Role) other;
-        return roleString.equals(otherName.roleString);
+        return value.equals(otherName.value);
     }
 
     @Override
     public int hashCode() {
-        return roleString.hashCode();
+        return value.hashCode();
     }
 
 }

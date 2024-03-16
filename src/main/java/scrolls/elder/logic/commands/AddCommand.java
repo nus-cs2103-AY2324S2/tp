@@ -5,6 +5,7 @@ import static scrolls.elder.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static scrolls.elder.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static scrolls.elder.logic.parser.CliSyntax.PREFIX_NAME;
 import static scrolls.elder.logic.parser.CliSyntax.PREFIX_PHONE;
+import static scrolls.elder.logic.parser.CliSyntax.PREFIX_ROLE;
 import static scrolls.elder.logic.parser.CliSyntax.PREFIX_TAG;
 
 import scrolls.elder.commons.util.ToStringBuilder;
@@ -23,12 +24,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_ROLE + "{VOLUNTEER or BEFRIENDEE} "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_ROLE + "volunteer "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "

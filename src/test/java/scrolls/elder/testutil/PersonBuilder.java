@@ -109,7 +109,7 @@ public class PersonBuilder {
      */
     public Person build() {
         Person person;
-        if (Role.isVolunteer(role)) {
+        if (role.isVolunteer()) {
             person = new Volunteer(name, phone, email, address, tags);
         } else {
             person = new Befriendee(name, phone, email, address, tags);

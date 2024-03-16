@@ -47,7 +47,8 @@ public class EditCommandTest {
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson =
                 personInList.withName(CommandTestUtil.VALID_NAME_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
-                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND).withRole(CommandTestUtil.VALID_ROLE_BEFRIENDEE).build();
+                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                        .withRole(CommandTestUtil.VALID_ROLE_BEFRIENDEE).build();
 
         EditCommand.EditPersonDescriptor descriptor =
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
@@ -165,11 +166,13 @@ public class EditCommandTest {
 
         // different index -> returns false
         assertFalse(
-                standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON, CommandTestUtil.DESC_AMY_VOLUNTEER)));
+                standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON,
+                        CommandTestUtil.DESC_AMY_VOLUNTEER)));
 
         // different descriptor -> returns false
         assertFalse(
-                standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, CommandTestUtil.DESC_BOB_BEFRIENDEE)));
+                standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON,
+                        CommandTestUtil.DESC_BOB_BEFRIENDEE)));
     }
 
     @Test

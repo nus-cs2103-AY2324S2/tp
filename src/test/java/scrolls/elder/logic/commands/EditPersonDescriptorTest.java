@@ -20,7 +20,8 @@ public class EditPersonDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditPersonDescriptor descriptorWithSameValues = new EditCommand.EditPersonDescriptor(DESC_AMY_VOLUNTEER);
+        EditCommand.EditPersonDescriptor descriptorWithSameValues =
+                new EditCommand.EditPersonDescriptor(DESC_AMY_VOLUNTEER);
         assertTrue(DESC_AMY_VOLUNTEER.equals(descriptorWithSameValues));
 
         // same object -> returns true
