@@ -46,7 +46,7 @@ public class DeleteCommandTest {
 
         DeletePersonCommand deleteCommand = new DeletePersonCommand(new NusNet("e9999999"));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NUSNETID_NOT_FOUND);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_MISSING_NUSNET);
     }
 
     @Test
@@ -91,9 +91,9 @@ public class DeleteCommandTest {
 
     @Test
     public void toStringMethod() {
-        NusNet targetNusNetID = new NusNet(CommandTestUtil.VALID_NUSNET_AMY);
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(targetNusNetID);
-        String expected = DeletePersonCommand.class.getCanonicalName() + "{targetNUSNET_ID=" + targetNusNetID + "}";
+        NusNet targetNusNet = new NusNet(CommandTestUtil.VALID_NUSNET_AMY);
+        DeletePersonCommand deleteCommand = new DeletePersonCommand(targetNusNet);
+        String expected = DeletePersonCommand.class.getCanonicalName() + "{targetNusNet=" + targetNusNet + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 

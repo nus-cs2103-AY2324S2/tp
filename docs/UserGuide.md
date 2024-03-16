@@ -158,14 +158,14 @@ Example:
 
 ### Deleting a student: `delstu`
 
-Deletes the specified student from the address book.
+Deletes the specified student from the contact book.
 
 Format: `delstu NUSNET_ID`
 
 * Deletes the student with the specified NUSNET_ID from the contact book. 
 
 Examples:
-* `delstu e0957499` deletes the student with the NUSNET_ID person in the contact book.
+* `delstu e0957499` deletes the student with the NUSNET_ID of `e0957499` in the contact book.
 
 Pro Tip:
 * If you cannot remember your student's NUSNET_ID, you could use `find Betsy` or `list` followed by `delstu <Betsy's NUSNET_ID>` to find and delete the student.

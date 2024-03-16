@@ -46,7 +46,7 @@ public class DeletePersonCommand extends Command {
                 .orElse(null);
 
         if (personToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_NUSNETID_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_MISSING_NUSNET);
         }
 
         assert(personToDelete != null);
@@ -74,7 +74,7 @@ public class DeletePersonCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetNUSNET_ID", targetNusNet)
+                .add("targetNusNet", targetNusNet)
                 .toString();
     }
 }
