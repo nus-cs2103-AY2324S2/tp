@@ -3,6 +3,8 @@ package seedu.address.model.order;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,15 +13,21 @@ import seedu.address.model.person.Person;
 /**
  * Represents the list of active orders in the addressbook.
  */
-public class OrderList {
+public class OrderList implements Iterable<Order> {
     /**
      * Keeps track of the order ids, ensuring that all ids are unique.
      */
     private int orderIdCounter;
     /**
-     * The order list of all active orders.
+     * The hashmap with mappings from Orders to their OrderID
      */
     private HashMap<Integer, Order> orderList;
+    /**
+     * The Lists which stores the Order Objects.
+     */
+    private final ObservableList<Order> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Order> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * OrderList class constructor.
@@ -39,13 +47,15 @@ public class OrderList {
 
     /**
      * Adds an order to the order list.
-     * @param orderId The order id of the order to be added.
      * @param toAdd The order that is to be added.
      * @param person The person that the order is tagged to.
      */
-    public void addOrder(int orderId, Order toAdd, Person person) {
-        requireAllNonNull(orderId, toAdd);
-        orderList.put(orderId, toAdd);
+    public void addOrder(Order toAdd, Person person) {
+        requireAllNonNull(toAdd);
+        //make sure that our addordercommand has a means to set the OrderID
+        orderList.put(toAdd.getId(), toAdd);
+        toAdd.setID(orderIdCounter);
+        internalList.add(toAdd);
         person.addOrder(toAdd);
         orderIdCounter++;
     }
@@ -55,7 +65,10 @@ public class OrderList {
      * @param toDelete The order id of the order that is to be deleted.
      */
     public void deleteOrder(int toDelete) {
+        Order oldOrder = orderList.get(toDelete);
+        Integer oldOrderIndex = internalList.indexOf(oldOrder);
         orderList.remove(toDelete);
+        internalList.remove(oldOrderIndex);
     }
 
     /**
@@ -67,7 +80,10 @@ public class OrderList {
         requireAllNonNull(orderId, toEdit);
         Order currOrder = orderList.get(orderId);
         if (!currOrder.isSameOrder(toEdit)) {
+            Order oldOrder = orderList.get(orderId);
+            int oldOrderIndex = internalList.indexOf(oldOrder);
             orderList.put(orderId, toEdit);
+            internalList.set(oldOrderIndex, toEdit);
         }
     }
 
@@ -84,6 +100,7 @@ public class OrderList {
     }
 
     /**
+<<<<<<< HEAD
      * Gives the number of orders in the {@code OrderList}
      *
      * @return number of orders
@@ -100,5 +117,43 @@ public class OrderList {
      */
     public Order getOrder(int i) {
         return orderList.get(i);
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+
+     * @return the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Order> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
+    @Override
+    public Iterator<Order> iterator() {
+        return internalList.iterator();
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return internalList.toString();
+    }
+
+    /**
+     * Returns true if {@code persons} contains only unique persons.
+     */
+    private boolean ordersAreUnique(List<Order> orders) {
+        for (int i = 0; i < orders.size() - 1; i++) {
+            for (int j = i + 1; j < orders.size(); j++) {
+                if (orders.get(i).isSameOrder(orders.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

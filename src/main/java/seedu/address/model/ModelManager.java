@@ -25,6 +25,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    //need to include a means to pass this here from constructor
+    private final FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
     }
 
     public ModelManager() {
@@ -119,8 +122,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public OrderList getOrderList() {
-        return addressBook.getOrderList();
+    public int getOrderListSize() {
+        return addressBook.getOrderListSize();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -151,9 +154,21 @@ public class ModelManager implements Model {
         return Optional.empty();
     }
 
+    //=========== Filtered Order List Accessors =============================================================
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
+    }
+
     @Override
     public Order findOrderByIndex(int id) {
-        return getOrderList().getOrder(id);
+        return addressBook.findOrderByIndex(id);
     }
 
     @Override

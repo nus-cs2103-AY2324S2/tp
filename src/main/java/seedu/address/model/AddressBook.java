@@ -84,7 +84,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      */
     public void addOrder(Order order, Person person) {
-        orders.addOrder(order.getId(), order, person);
+        orders.addOrder(order, person);
+    }
+
+    public Order findOrderByIndex(int id) {
+        return orders.getOrder(id);
     }
 
     /**
@@ -130,9 +134,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    @Override
-    public OrderList getOrderList() {
-        return this.orders;
+    //Make sure to implement abstract method for this
+    public ObservableList<Order> getOrderList() {
+        return orders.asUnmodifiableObservableList();
+    }
+
+    public int getOrderListSize() {
+        return orders.size();
     }
 
     @Override
