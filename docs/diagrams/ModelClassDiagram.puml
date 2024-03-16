@@ -17,6 +17,7 @@ Class Person
 Class Venue
 Class Availability
 Class Email
+Class Faculty
 Class Module
 Class Name
 Class Phone
@@ -42,19 +43,22 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Venue
 Person *--> Module
-Person *--> Availability
+Person *--> Faculty
+Person *--> Venue
 Person *--> "*" Tag
+Person *--> "*" Availability
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Venue
-Venue -[hidden]right-> Email
+Phone -[hidden]right-> Email
 Email -[hidden]right-> Module
-Module -[hidden]right-> Availability
+Module -[hidden]right-> Faculty
+Faculty -[hidden]right-> Venue
+Venue -[hidden]right-> Tag
+Tag -[hidden]right-> Availability
 
 ModelManager --> "~* filtered" Person
 @enduml
