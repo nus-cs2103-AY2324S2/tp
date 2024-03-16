@@ -70,7 +70,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case PolicyCommand.COMMAND_WORD:
-            return new PolicyCommand();
+            return new PolicyCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

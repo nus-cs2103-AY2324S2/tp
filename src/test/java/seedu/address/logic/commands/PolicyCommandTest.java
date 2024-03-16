@@ -1,7 +1,14 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.PolicyCommand.MESSAGE_NOT_IMPLEMENTED_YET;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_BOB;
+import static seedu.address.logic.commands.PolicyCommand.MESSAGE_ARGUMENTS;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +26,33 @@ public class PolicyCommandTest {
 
     @Test
     public void execute() {
-        assertCommandFailure(new PolicyCommand(), model, MESSAGE_NOT_IMPLEMENTED_YET);
+        final String policy = "Some policy";
+
+        assertCommandFailure(new PolicyCommand(INDEX_FIRST_PERSON, policy), model,
+                String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), policy));
+    }
+
+    @Test
+    public void equals() {
+        final PolicyCommand standardCommand = new PolicyCommand(INDEX_FIRST_PERSON, VALID_POLICY_AMY);
+
+        // same values -> returns true
+        PolicyCommand commandWithSameValues = new PolicyCommand(INDEX_FIRST_PERSON, VALID_POLICY_AMY);
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new PolicyCommand(INDEX_SECOND_PERSON, VALID_POLICY_AMY)));
+
+        // different policy -> returns false
+        assertFalse(standardCommand.equals(new PolicyCommand(INDEX_FIRST_PERSON, VALID_POLICY_BOB)));
     }
 }

@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.client.Policy;
 
 /**
  * Changes the policy of an existing person in the address book.
@@ -20,10 +23,42 @@ public class PolicyCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_POLICY + "Likes to swim.";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Policy command not implemented yet";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Policy: %2$s";
+
+    private final Index index;
+    private final String policy;
+
+    /**
+     * @param index of the person in the filtered person list to edit the remark
+     * @param policy of the person to be updated to
+     */
+    public PolicyCommand(Index index, String policy) {
+        requireAllNonNull(index, policy);
+
+        this.index = index;
+        this.policy = policy;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
+        throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), policy));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PolicyCommand)) {
+            return false;
+        }
+
+        // state check
+        PolicyCommand e = (PolicyCommand) other;
+        return index.equals(e.index)
+                && policy.equals(e.policy);
     }
 }
