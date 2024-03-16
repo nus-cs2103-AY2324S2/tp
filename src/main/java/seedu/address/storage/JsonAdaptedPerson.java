@@ -115,12 +115,6 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (lastcontact == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LastContact.class.getSimpleName()));
-        }
-        final LastContact modelLastContact = new LastContact(lastcontact);
-
         if (upcoming == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Upcoming.class.getSimpleName()));
@@ -128,7 +122,13 @@ class JsonAdaptedPerson {
         if (!Upcoming.isValidUpcoming(upcoming)) {
             throw new IllegalValueException(Upcoming.MESSAGE_CONSTRAINTS);
         }
+        
         final Upcoming modelUpcoming = new Upcoming(upcoming);
+        if (lastcontact == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LastContact.class.getSimpleName()));
+        }
+        final LastContact modelLastContact = new LastContact(lastcontact);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelUpcoming, modelLastContact);
     }
