@@ -41,8 +41,8 @@ public class EditImportantDateCommand extends Command {
             + PREFIX_NAME + " Updated Event "
             + PREFIX_DATETIME + " 12-10-2024";
 
-    public static final String MESSAGE_SUCCESS = "Event %1$s with ID %2$s successfully updated "
-            + "for Patient %3$s with ID %4$s for %5$s";
+    public static final String MESSAGE_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully updated "
+            + "for Patient %4$s with ID %5$s";
 
     private final Index patientIndex;
     private final Index eventIndex;
@@ -88,7 +88,7 @@ public class EditImportantDateCommand extends Command {
         model.setPatient(patientToEditImportantDate, updatedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, dateToUpdate.name, eventIndex.getOneBased(),
-                patientToEditImportantDate.getName(), patientIndex.getOneBased(), dateToUpdate.importantDate));
+                dateToUpdate.importantDate, patientToEditImportantDate.getName(), patientIndex.getOneBased()));
     }
 
     @Override
