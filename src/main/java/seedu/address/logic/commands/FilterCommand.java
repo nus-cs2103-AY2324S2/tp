@@ -17,7 +17,7 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all clients whose names contain "
             + "the specified keyphrase (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYPHRASE \n"
+            + "Parameters: KEYPHRASE (Non-empty String)\n"
             + "Example: " + COMMAND_WORD + " alice tan";
 
     public static final String MESSAGE_FIND_HELP = "Filter Command: Filters clients whose names contain "
