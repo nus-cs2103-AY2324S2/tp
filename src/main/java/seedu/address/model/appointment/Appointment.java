@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import seedu.address.commons.util.ToStringBuilder;
 
 /**
  * Represents an Appointment attached to a Person in AddressBook
@@ -75,12 +76,13 @@ public class Appointment implements Comparable<Appointment> {
 
     @Override
     public String toString() {
-        return String.format("Appointment ID: %d\n"
-                        + "Appointment Date: %s \n"
-                        + "Student ID: %d \n"
-                        + "Appointment Description: %s\n",
-                appointmentId, appointmentDateTime.toString(),
-                studentId, appointmentDescription);
+        return new ToStringBuilder(this)
+                .add("appointmentId", appointmentId)
+                .add("appointmentDateTime", appointmentDateTime)
+                .add("studentId", studentId)
+                .add("appointmentDescription", appointmentDescription)
+                .add("hasAttended", hasAttended)
+                .toString();
     }
 
     @Override
