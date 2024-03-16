@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <TableView fx:id="policyTableView" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <placeholder>
-        <Label text="No policies under this client at the moment!"/>
+        <Label text="No policies under this client at the moment."/>
     </placeholder>
     <columns>
         <TableColumn fx:id="policyId" editable="false" minWidth="80.0" prefWidth="100.0" reorderable="false" text="Policy ID" />

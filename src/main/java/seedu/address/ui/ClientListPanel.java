@@ -18,15 +18,15 @@ public class ClientListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ClientListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Person> clientListView;
 
     /**
      * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
     public ClientListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new ClientListViewCell());
+        clientListView.setItems(personList);
+        clientListView.setCellFactory(listView -> new ClientListViewCell());
     }
 
     /**
