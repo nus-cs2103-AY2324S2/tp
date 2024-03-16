@@ -414,12 +414,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. Realodex shows an empty list. 
   * Use case ends.
 
-**Use case: Find**
+**Use case: Filter**
 
 **MSS**
 
-1.  User requests to find user
-2.  Realodex shows the list of all clients with name including the name input
+1.  User requests to filter user with input substring
+2.  Realodex shows the list of all clients with name including the input substring
 
     Use case ends.
 
