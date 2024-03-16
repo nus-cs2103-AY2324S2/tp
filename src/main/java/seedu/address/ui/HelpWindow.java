@@ -2,9 +2,14 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -16,7 +21,9 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "For more detail, refer to the user guide: " + USERGUIDE_URL
+            + "\nItems in square brackets are optional."
+            + "\nItems with '...' after them can be used multiple times including zero times.";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -27,6 +34,18 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private TableView<UserGuideItem> userGuideTable;
+
+    @FXML
+    private TableColumn<UserGuideItem, String> commandColumn;
+
+    @FXML
+    private TableColumn<UserGuideItem, String> usageColumn;
+
+    private final ObservableList<UserGuideItem> guideItems = FXCollections.observableArrayList();
+
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +54,32 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        commandColumn.setCellValueFactory(new PropertyValueFactory<>("command"));
+        usageColumn.setCellValueFactory(new PropertyValueFactory<>("usage"));
+
+        guideItems.add(new UserGuideItem("help", "Call this user guide.\n"));
+        guideItems.add(new UserGuideItem("add", "Add a new contact.\n"
+                + "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\n"
+                + "e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague"));
+        guideItems.add(new UserGuideItem("list", "List all contacts.\n"));
+        guideItems.add(new UserGuideItem("edit", "Edit a contact. This\n"
+                + "edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…\n"
+                + "e.g., edit 1 p/91234567 e/johndoe@example.com"));
+        guideItems.add(new UserGuideItem("find", "Find contacts with a keyword.\n"
+                + "find KEYWORD [MORE_KEYWORDS]\n"
+                + "e.g., find John"));
+        guideItems.add(new UserGuideItem("filter", "Filter contacts with specified tags\n"
+                + "filter TAG [MORE_TAGS]\n"
+                + "e.g., filter supplier"));
+        guideItems.add(new UserGuideItem("delete", "Delete a contact.\n"
+                + "delete INDEX\n"
+                + "e.g., delete 1"));
+        guideItems.add(new UserGuideItem("clear", "Clear every recorded contacts.\n"
+                + "A confirmation message will be shown, type y to proceed with clearing\n"
+                + "or otherwise to cancel clearing."));
+        guideItems.add(new UserGuideItem("exit", "Exit the chatbot.\n" + "bye"));
+
+        userGuideTable.setItems(guideItems);
     }
 
     /**
@@ -67,6 +112,7 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().show();
         getRoot().centerOnScreen();
     }
+
 
     /**
      * Returns true if the help window is currently being shown.
