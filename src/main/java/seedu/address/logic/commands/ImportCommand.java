@@ -22,6 +22,8 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAdaptedPerson;
 
+import javax.xml.crypto.Data;
+
 /**
  * Imports contacts from a file into the contact manager.
  */
@@ -64,6 +66,8 @@ public class ImportCommand extends Command {
             retrievePersonsFromFile(jsonAdaptedPersonList);
         } catch (IllegalValueException ive) {
             throw new CommandException(ive.getMessage());
+        } catch (DataLoadingException dle) {
+            throw new CommandException(dle.getMessage());
         }
 
         for (JsonAdaptedPerson jsonAdaptedPerson : jsonAdaptedPersonList) {
@@ -93,8 +97,8 @@ public class ImportCommand extends Command {
      * @param savedPersons A List of JsonAdaptedPerson.
      * @throws IllegalValueException If there are files not found or unable to be loaded.
      */
-    private void retrievePersonsFromFile(List<JsonAdaptedPerson> savedPersons)
-        throws IllegalValueException {
+    public void retrievePersonsFromFile(List<JsonAdaptedPerson> savedPersons)
+        throws IllegalValueException, DataLoadingException {
         for (File file : files) {
             if (!file.exists()) {
                 logger.info(String.format(MESSAGE_FILE_NOT_FOUND, file.getPath()));
@@ -105,6 +109,7 @@ public class ImportCommand extends Command {
                 savedPersons.addAll(readPersons(file));
             } catch (DataLoadingException dle) {
                 logger.info("Data loading exception in: " + file.getPath());
+                throw dle;
             }
         }
     }
@@ -116,7 +121,7 @@ public class ImportCommand extends Command {
      * @return A List of JsonAdaptedPerson present inside the {@code file}.
      * @throws DataLoadingException If the {@code file} is unable to be loaded.
      */
-    private List<JsonAdaptedPerson> readPersons(File file)
+    public List<JsonAdaptedPerson> readPersons(File file)
     throws DataLoadingException {
         JsonAddressBookStorage curStorage = new JsonAddressBookStorage(file.toPath());
         Optional<ReadOnlyAddressBook> readOnlyAddressBook = curStorage.readAddressBook();
