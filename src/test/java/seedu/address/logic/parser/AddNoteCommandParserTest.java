@@ -10,25 +10,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddNoteCommand;
+import seedu.address.model.person.IdentityCardNumber;
+import seedu.address.model.person.IdentityCardNumberMatchesPredicate;
 import seedu.address.model.person.Note;
+import seedu.address.model.person.Person;
 
 public class AddNoteCommandParserTest {
     private AddNoteCommandParser parser = new AddNoteCommandParser();
     private final String nonEmptyNote = "Some note.";
-
-    @Test
-    public void parse_indexSpecified_success() {
-        // have remark
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE + nonEmptyNote;
-        AddNoteCommand expectedCommand = new AddNoteCommand(INDEX_FIRST_PERSON, new Note(nonEmptyNote));
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // no remark
-        userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE;
-        expectedCommand = new AddNoteCommand(INDEX_FIRST_PERSON, new Note(""));
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
 
     @Test
     public void parse_missingCompulsoryField_failure() {

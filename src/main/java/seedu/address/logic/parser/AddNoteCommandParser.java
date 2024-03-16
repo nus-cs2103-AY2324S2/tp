@@ -2,17 +2,17 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddNoteCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.IdentityCardNumber;
 import seedu.address.model.person.IdentityCardNumberMatchesPredicate;
 import seedu.address.model.person.Note;
 
-import java.awt.dnd.InvalidDnDOperationException;
+import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new {@code AddNoteCommand} object
@@ -25,7 +25,12 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
      */
     public AddNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NOTE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IC, PREFIX_NOTE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_IC, PREFIX_NOTE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
+        }
 
         IdentityCardNumber ic;
         try {
@@ -38,11 +43,18 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
             } else {
                 isReplace = false;
             }
-            ic = ParserUtil.parseIC(argMultimap.getPreamble());
-            
+            ic = ParserUtil.parseIC(argMultimap.getValue(PREFIX_IC).get());
             return new AddNoteCommand(new IdentityCardNumberMatchesPredicate(ic), new Note(note), isReplace);
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE), ive);
         }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
