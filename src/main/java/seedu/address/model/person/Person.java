@@ -25,18 +25,20 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Upcoming upcoming;
+    private final LastContact lastcontact;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Upcoming upcoming) {
-        requireAllNonNull(name, phone, email, address, tags, upcoming);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Upcoming upcoming, LastContact lastcontact) {
+        requireAllNonNull(name, phone, email, address, tags, upcoming, lastcontact);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.upcoming = upcoming;
+        this.lastcontact = lastcontact;
     }
 
     public Name getName() {
@@ -65,6 +67,10 @@ public class Person {
 
     public Upcoming getUpcoming() {
         return upcoming;
+    }
+
+    public LastContact getLastcontact() {
+        return lastcontact;
     }
 
     /**
@@ -101,7 +107,8 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && upcoming.equals(otherPerson.upcoming);
+                && upcoming.equals(otherPerson.upcoming)
+                && lastcontact.equals(otherPerson.lastcontact);
     }
 
     @Override
@@ -119,6 +126,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("upcoming", upcoming)
+                .add("lastcontact", lastcontact)
                 .toString();
     }
 

@@ -42,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label upcoming;
+    @FXML
+    private Label lastcontact;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -58,5 +60,6 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         upcoming.setText(person.getUpcoming().toString());
+        lastcontact.setText("Last contacted: " + person.getLastcontact().getDateTimeString());
     }
 }

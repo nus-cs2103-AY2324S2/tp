@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -22,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_UPCOMING = "12-12-2024 12:00";
+    public static final String DEFAULT_LASTCONTACT = "13-03-2024 0600";
 
     private Name name;
     private Phone phone;
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Upcoming upcoming;
+    private LastContact lastContact;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         upcoming = new Upcoming(DEFAULT_UPCOMING);
+        lastContact = new LastContact(DEFAULT_LASTCONTACT);
     }
 
     /**
@@ -52,6 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         upcoming = personToCopy.getUpcoming();
+        lastContact = personToCopy.getLastcontact();
     }
 
     /**
@@ -102,8 +107,18 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code LastContact} of the {@code Person} that we are building.
+     * @param lastContact consists of a string of date and time
+     * @return the person we are building
+     */
+    public PersonBuilder withLastContact(String lastContact) {
+        this.lastContact = new LastContact(lastContact);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, upcoming);
+        return new Person(name, phone, email, address, tags, upcoming, lastContact);
     }
 
 }

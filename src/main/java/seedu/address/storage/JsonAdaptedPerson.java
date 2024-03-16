@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String upcoming;
+    private final String lastcontact;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +40,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("upcoming") String upcoming) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("upcoming") String upcoming, @JsonProperty("lastcontact") String lastcontact) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +49,7 @@ class JsonAdaptedPerson {
             this.tags.addAll(tags);
         }
         this.upcoming = upcoming;
+        this.lastcontact = lastcontact;
     }
 
     /**
@@ -61,6 +64,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         upcoming = source.getUpcoming().toString();
+        lastcontact = source.getLastcontact().getDateTimeString();
     }
 
     /**
@@ -108,6 +112,12 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        if (lastcontact == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LastContact.class.getSimpleName()));
+        }
+        final LastContact modelLastContact = new LastContact(lastcontact);
+
         if (upcoming == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
              Upcoming.class.getSimpleName()));
@@ -117,7 +127,7 @@ class JsonAdaptedPerson {
         }
         final Upcoming modelUpcoming = new Upcoming(upcoming);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelUpcoming);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelUpcoming, modelLastContact);
     }
 
 }

@@ -48,6 +48,8 @@ public class Messages {
         builder.append("; Upcoming: ")
                 .append(person.getUpcoming())
                 .append(";");
+        builder.append("; Last contacted: ")
+                .append(person.getLastcontact().getDateTimeString());
         return builder.toString();
     }
 

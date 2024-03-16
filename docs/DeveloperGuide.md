@@ -309,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `FAPro` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FAPro` and the **Actor** is the `financial advisor`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -319,20 +319,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  AddressBook shows a list of people
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
-
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. AddressBook shows an error message.
-
       Use case resumes at step 2.
+
+**Use case: Adding a client**
+
+**MSS**
+
+1.  User add a new client by providing the necessary information including the person's name, phone number, email, address, and optional tags.
+2.  FAPro validates the provided information and adds the person to the address book.
+3.  FAPro shows the client information in the list.
+    Use case ends.
+
+**Use case: Edit a client's info**
+
+**MSS**
+
+1.  User edits an existing client's information in FAPro by providing the updated information.
+2.  FAPro validates the provided information and edits the information.
+3.  FAPro shows the updated client information in the list.
+    Use case ends.
+
+**Use case: Find a client by name**
+
+**MSS**
+
+1.  User provides one or more keywords for the seach.
+2.  FAPro performs a case-insensitive search for people whose names contain any of the provided keywords.
+3.  FAPro returns a list of people matching at least one keyword.
+    Use case ends.
 
 **Use case: Viewing a client's profile**
 
@@ -342,19 +365,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FAPro shows a list of people
 3.  User requests to view the profile of the client in the list
 4.  FAPro shows the detailed profile of the client
-
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. AddressBook shows an error message.
-
       Use case resumes at step 2.
 
 **Use case: Tagging a client**
@@ -419,21 +438,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. AddressBook shows an error message.
       Use case resumes at step 1.
 
+**Use case: Clearing all contacts in FAPro**
+
+**MSS**
+
+1.  User requests to clear all contacts.
+2.  The system clears all contacts.
+
+**Use case: Exiting FAPro**
+
+**MSS**
+
+1.  User enters the exit command.
+2.  FAPro closes the window and its system.
+
+**Use case: Tagging a client as last contacted**
+
+**MSS**
+
+1.  User requests to tag a client with date and time.
+2.  The system tags the client as 'last contacted' with given date and time.
+
+**Extensions**
+* 2a. Client name does not exist.
+    * 2a1. The system shows an error message.
+      Use case resumes at step 1.
+* 2b. The system found more than 1 matching name.
+    * 2b1. The system lists all matching clients' name with their ID code and other details for identification.
+    * 2b2. User enters the ID code shown from the list.
+      Steps 2b1-2b2 are repeated until the data entered are valid.
+      Use case resumes at step 2.
+
 **Use case: Finding all upcoming contacts with appointments**
 
 **MSS**
 
-1.  User requests to find people containing an upcoming appointment
-2.  AddressBook shows a list of people
+1.  User requests to find people containing an upcoming appointment. 
+2.  AddressBook retrieves a list of people who have upcoming appointments. 
+3.  AddressBook shows the list of people to the user.
 
 **Extensions**
-* 1a. Able to set additional date filter, eg only show upcoming appointment in the next `x` days
+* 2a. Client name does not exist.
+    * 2a1. The system shows an error message.
+      Use case resumes at step 1.
+* 2b. The system found more than 1 matching name.
+    * 2b1. The system lists all matching clients' name with their ID code and other details for identification.
+    * 2b2. User enters the ID code shown from the list.
+      Steps 2b1-2b2 are repeated until the data entered are valid.
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 people without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The data in FAPro should be stored locally and should be in a human editable text file.
+5.  Should not use a _DBMS_ to store data.
+6.  Should work without requiring an installer.
+7.  Should not depend on any _remote server_.
+8.  _GUI_ should work well for standard screen resolutions 1920x080 and higher, and, for screen scales 100% and 125%.
+9.  The size of the documents should not exceed 15MB/file.
+10. The size of the final FAPro product should not exceed 100MB.
 
 *{More to be added}*
 
@@ -441,6 +506,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **DBMS**: Database Management System, a software suite that facilitates the creation, management, and manipulation of databases.
+* **Remote server**: A computer system or software application that provides services or resources to other computers or clients over a network, typically the internet.
+* **GUI**: Graphic User Interface, a visual interface that allows users to interact with electronic devices or software using graphical icons, menus, and other graphical elements, rather than text-based commands
 
 --------------------------------------------------------------------------------------------------------------------
 

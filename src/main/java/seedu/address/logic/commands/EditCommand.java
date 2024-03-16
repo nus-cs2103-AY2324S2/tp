@@ -24,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -104,8 +105,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Upcoming updatedUpcoming = editPersonDescriptor.getUpcoming().orElse(personToEdit.getUpcoming());
+        LastContact updatedLastContact = personToEdit.getLastcontact(); // Edit command does not allow editing remarks
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedUpcoming);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedUpcoming, updatedLastContact);
     }
 
     @Override
@@ -143,6 +145,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Upcoming upcoming;
+        private LastContact lastContact;
 
         public EditPersonDescriptor() {}
 
@@ -157,6 +160,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setUpcoming(toCopy.upcoming);
+            setLastContact(toCopy.lastContact);
         }
 
         /**
@@ -196,6 +200,9 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+        public void setLastContact(LastContact lastContact) {
+            this.lastContact = lastContact;
         }
 
         /**

@@ -50,7 +50,7 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different object -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -88,4 +88,5 @@ public class FindCommandTest {
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
+
 }

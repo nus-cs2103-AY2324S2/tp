@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Upcoming;
@@ -134,5 +135,21 @@ public class ParserUtil {
             throw new ParseException(Upcoming.MESSAGE_CONSTRAINTS);
         }
         return new Upcoming(trimmedUpcoming);
+    }
+
+    /**
+     * Parses a {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static LastContact parseLastContact(String lastContact) throws ParseException {
+        requireNonNull(lastContact);
+        String trimmedLastContact = lastContact.trim();
+        LastContact lastContactInstance = new LastContact("-"); // Creates a dummy instance to access static method
+        if (!trimmedLastContact.equals("-") && !lastContactInstance.isValidDateTime(trimmedLastContact)) {
+            throw new ParseException(String.format(LastContact.MESSAGE_CONSTRAINTS, trimmedLastContact));
+        }
+        return new LastContact(trimmedLastContact);
     }
 }

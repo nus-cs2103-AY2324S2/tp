@@ -67,6 +67,7 @@ FAPro can get your client management tasks done faster than traditional GUI apps
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* `DATETIME` format must be in `DD-MM-YYYY HHmm` format.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -86,15 +87,18 @@ Format: `help`
 
 Adds a person to FAPro.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [lc/DATETIME]`
 
 <box type="tip" seamless>
 
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
+**Note:** t/ and lc/ : tag and lastcontact field is optional. 
+
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 lc/16-03-2024 0800`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all people : `list`
@@ -180,6 +184,35 @@ Examples:
 * `list` followed by `select 2` shows the detailed profile of the 2nd person in FAPro.
 * `find Betsy` followed by `select 1` shows the detailed profile of the 1st person in the results of the `find` command.
 
+
+### View contacts of all upcoming appointments: `upcoming`
+
+View all the contacts of all upcoming appointments ordered by date (earliest to latest).
+
+Format: `upcoming`
+  
+- `upcoming` displays all upcoming appointments.
+
+Examples:
+- `upcoming` would show the 3 contacts if there are 3 contacts with upcoming appointments.
+
+### Tag a client's profile as last contacted : `lastcontact`
+
+Adds a client to the recently contacted list in FAPro.
+
+Format: `lastcontact n/NAME lc/DATETIME`
+
+* The input is case-insensitive. e.g. `JoHn Doe` will match `john doe`.
+* In case of duplicate names, all matching names will be listed with their ID code and other details.
+* User will need to add the respective ID code to existing input in case of duplicate.
+
+Example:
+* `lastcontact n/John doe lc/05-09-2024 1955` tags the client with name `john doe` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
+
+Example (For duplicate names):
+* `lastcontact n/John doe#0005 lc/05-09-2024 1955` tags the client with name `john doe#0005` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from FAPro.
@@ -225,13 +258,15 @@ Furthermore, certain edits can cause FAPro to behave in unexpected ways (e.g., i
 ## Command summary
 
 Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **TagFind**| `tagfind TAG` <br> e.g. `tagfind car`
+**Lastcontact**| `lastcontact NAME [d/DATE] [tm/TIME]` <br> e.g. `lastcontact John doe d/05-09-2024 tm/1955`
+**Upcoming**| `upcoming`
 **List**   | `list`
 **Select** | `select INDEX`<br> e.g. `select 1`
 **Help**   | `help`
