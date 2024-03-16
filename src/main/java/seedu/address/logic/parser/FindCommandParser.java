@@ -25,8 +25,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         try {
-            IdentityCardNumber IC = new IdentityCardNumber(trimmedArgs);
-            return new FindCommand(new IdentityCardNumberMatchesPredicate(IC));
+            IdentityCardNumber ic = ParserUtil.parseIC(trimmedArgs);
+            return new FindCommand(new IdentityCardNumberMatchesPredicate(ic));
         } catch (IllegalArgumentException e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE), e);
