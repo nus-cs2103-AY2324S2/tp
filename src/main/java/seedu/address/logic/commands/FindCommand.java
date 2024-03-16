@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.IdOrNameContainsQueryPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -20,9 +21,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final IdOrNameContainsQueryPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(IdOrNameContainsQueryPredicate predicate) {
         this.predicate = predicate;
     }
 
