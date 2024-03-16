@@ -10,12 +10,11 @@ import static seedu.findvisor.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.commons.core.GuiSettings;
-import seedu.findvisor.model.person.NameContainsKeywordsPredicate;
+import seedu.findvisor.model.person.NameContainsKeywordPredicate;
 import seedu.findvisor.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -117,8 +116,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String keyword = ALICE.getName().fullName;
+        modelManager.updateFilteredPersonList(new NameContainsKeywordPredicate(keyword));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

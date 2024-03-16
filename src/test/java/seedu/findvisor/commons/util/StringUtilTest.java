@@ -123,6 +123,52 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    //---------------- Tests for containsIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for substring: null, empty
+     * Invalid equivalence partitions for sentence: null
+     * The three test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void containsIgnoreCase_nullSubString_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsIgnoreCase(
+                "typical sentence", null));
+    }
+
+    @Test
+    public void containsIgnoreCase_emptySubString_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "subString parameter cannot be empty", ()
+                -> StringUtil.containsIgnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsIgnoreCase(null, "abc"));
+    }
+
+    @Test
+    public void containsIgnoreCase_validInputs_correctResult() {
+        // Empty sentence
+        assertFalse(StringUtil.containsIgnoreCase("", "abc")); // Boundary case
+        assertFalse(StringUtil.containsIgnoreCase("    ", "123"));
+
+        // Sentence does not fully contain substring
+        assertFalse(StringUtil.containsIgnoreCase("aaa bbb ccc", "bbbb"));
+
+        // Sentence contains substring, but does not start with substring
+        assertTrue(StringUtil.containsIgnoreCase("aaa bbb ccc", "bb"));
+
+        // Matches substring starting in the sentence, different upper/lower case letters
+        assertTrue(StringUtil.containsIgnoreCase("aaa bBb ccc", "aaa")); // First word (boundary case)
+        assertTrue(StringUtil.containsIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
+        assertTrue(StringUtil.containsIgnoreCase("aaa bbb ccc", "  aaa  ")); // Leading/trailing spaces
+
+        // Sentence matches multiple words in substring
+        assertTrue(StringUtil.containsIgnoreCase("AAA bBb ccc  bbb", "AAA bBb"));
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*

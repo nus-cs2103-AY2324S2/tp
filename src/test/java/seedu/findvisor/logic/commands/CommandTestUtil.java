@@ -9,16 +9,17 @@ import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.findvisor.commons.core.index.Index;
 import seedu.findvisor.logic.commands.exceptions.CommandException;
 import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.Model;
-import seedu.findvisor.model.person.NameContainsKeywordsPredicate;
+import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Person;
+import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -67,6 +68,20 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    /**
+     * Creates a valid meeting that is in the future
+     */
+    public static Meeting createValidMeeting() {
+        return new Meeting(LocalDateTime.now().plusDays(1), LocalDateTime.now().plusDays(1).plusHours(1));
+    }
+
+    /**
+     * Creates a meeting that is in the past
+     */
+    public static Meeting createOldMeeting() {
+        return new Meeting(LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(1).plusHours(1));
     }
 
     /**
@@ -119,8 +134,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        // Use person's phone to identify
+        String phone = person.getPhone().value;
+        model.updateFilteredPersonList(new PhoneContainsKeywordPredicate(phone));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
