@@ -20,8 +20,8 @@ import seedu.address.model.internship.ContactEmail;
 import seedu.address.model.internship.ContactName;
 import seedu.address.model.internship.ContactNumber;
 import seedu.address.model.internship.Description;
-import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Role;
 
 /**
@@ -38,8 +38,8 @@ public class InternshipAddCommandParser implements InternshipParser<InternshipAd
     public InternshipAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
-                                           PREFIX_CONTACT_NUMBER,PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION,
-                                           PREFIX_ROLE);
+                                           PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS,
+                                           PREFIX_DESCRIPTION, PREFIX_ROLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_DESCRIPTION, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,13 +47,14 @@ public class InternshipAddCommandParser implements InternshipParser<InternshipAd
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
-                                                 PREFIX_CONTACT_NUMBER,PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION,
-                                                 PREFIX_ROLE);
+                                                 PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS,
+                                                 PREFIX_DESCRIPTION, PREFIX_ROLE);
 
         CompanyName com = InternshipParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY).get());
         ContactName poc = InternshipParserUtil.parseContactName(argMultimap.getValue(PREFIX_CONTACT_NAME).get());
         ContactEmail email = InternshipParserUtil.parseContactEmail(argMultimap.getValue(PREFIX_CONTACT_EMAIL).get());
-        ContactNumber phone = InternshipParserUtil.parseContactNumber(argMultimap.getValue(PREFIX_CONTACT_NUMBER).get());
+        ContactNumber phone = 
+            InternshipParserUtil.parseContactNumber(argMultimap.getValue(PREFIX_CONTACT_NUMBER).get());
         Location loc = InternshipParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         ApplicationStatus status = InternshipParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Description desc = InternshipParserUtil.parseDescription(argMultimap.getValue( PREFIX_DESCRIPTION).get());
