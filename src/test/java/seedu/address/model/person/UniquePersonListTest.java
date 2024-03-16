@@ -163,6 +163,17 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void getPersonWithNric_existingPerson_person() {
+        uniquePersonList.add(ALICE);
+        assertEquals(ALICE, uniquePersonList.getPersonWithNric(ALICE.getNric()));
+    }
+
+    @Test
+    public void getPersonWithNric_invalidNric_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.getPersonWithNric(ALICE.getNric()));
+    }
+
+    @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));

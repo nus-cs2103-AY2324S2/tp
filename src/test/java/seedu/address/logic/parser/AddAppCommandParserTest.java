@@ -207,8 +207,4 @@ public class AddAppCommandParserTest {
                         + VALID_APPOINTMENT_TYPE_BOB + VALID_APPOINTMENT_NOTE_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppCommand.MESSAGE_USAGE));
     }
-
-
-
-
 }
