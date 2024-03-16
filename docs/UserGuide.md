@@ -67,6 +67,7 @@ FAPro can get your client management tasks done faster than traditional GUI apps
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* `DATETIME` format must be in `DD-MM-YYYY HHmm` format.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -86,15 +87,18 @@ Format: `help`
 
 Adds a person to FAPro.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [lc/DATETIME]`
 
 <box type="tip" seamless>
 
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
+**Note:** t/ and lc/ : tag and lastcontact field is optional. 
+
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 lc/16-03-2024 0800`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all people : `list`
@@ -196,18 +200,17 @@ Examples:
 
 Adds a client to the recently contacted list in FAPro.
 
-Format: `lastcontact NAME [d/DATE] [tm/TIME]`
+Format: `lastcontact n/NAME lc/DATETIME`
 
 * The input is case-insensitive. e.g. `JoHn Doe` will match `john doe`.
 * In case of duplicate names, all matching names will be listed with their ID code and other details.
 * User will need to add the respective ID code to existing input in case of duplicate.
-* `DATE` and `TIME` format should be in `DD-MM-YYYY` and `HHMM` respectively.
 
 Example:
-* `lastcontact John doe d/05-09-2024 tm/1955` tags the client with name `john doe` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
+* `lastcontact n/John doe lc/05-09-2024 1955` tags the client with name `john doe` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
 
 Example (For duplicate names):
-* `lastcontact John doe#0005 d/05-09-2024 tm/1955` tags the client with name `john doe#0005` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
+* `lastcontact n/John doe#0005 lc/05-09-2024 1955` tags the client with name `john doe#0005` and assigns the date `05 Sep 2024 7:55pm` as last contacted.
 
 
 ### Clearing all entries : `clear`
