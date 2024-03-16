@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import seedu.address.logic.parser.exceptions.ParseException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,22 +10,25 @@ import seedu.address.logic.commands.FindAndExportCommand;
 
 public class FindAndExportCommandParserTest {
 
-    private FindAndExportCommandParser parser = new FindAndExportCommandParser();
+    private final FindAndExportCommandParser parser = new FindAndExportCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        FindAndExportCommand expectedCommand = new FindAndExportCommand("friends", "John", "123 Main St", "output.csv");
-        assertParseSuccess(parser, "friends n/John a/123 Main St o/output.csv", expectedCommand);
+    public void parse_allFieldsPresent_success() throws Exception {
+        final String tag = "friends";
+        final String name = "John";
+        final String address = "123 Street";
+        final String filename = "export.txt";
+
+        FindAndExportCommand expectedCommand = new FindAndExportCommand(tag, name, address, filename);
+
+        assertEquals(expectedCommand, parser.parse("friends n/John a/123 Street o/export.txt"));
+
+        assertEquals(new FindAndExportCommand(tag, null, null, "default.csv"),
+                parser.parse("friends"));
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
-        FindAndExportCommand expectedCommand = new FindAndExportCommand("friends", null, null, "default.csv");
-        assertParseSuccess(parser, "friends", expectedCommand);
-    }
-
-    @Test
-    public void parse_missingTag_failure() {
-        assertParseFailure(parser, "", FindAndExportCommand.MESSAGE_USAGE);
+    public void parse_compulsoryFieldMissing_failure() {
+        assertThrows(ParseException.class, () -> parser.parse("n/John"));
     }
 }
