@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -21,7 +23,14 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final ObservableList<Person> defaultPersons; // serves as an unmodified default state for the students
+    private final FilteredList<Person> filteredPersons; // stores the current filtered state of the list
+    private final SortedList<Person> sortedPersons; // stores the current sorted state of the list
+    private enum ListOperation { // saves the latest state of the list
+        DEFAULT, SORTED, FILTERED
+    }
+
+    private ListOperation lastOperation = ListOperation.DEFAULT;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +42,10 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        defaultPersons = this.addressBook.getPersonList();
+        //initially both lists would be the same as the default
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        sortedPersons = new SortedList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -111,7 +123,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered & Sorted Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -126,6 +138,27 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        lastOperation = ListOperation.FILTERED;
+    }
+
+    @Override
+    public void updateSortedPersonListSortAscending() {
+        Comparator<Person> ascendingComparator = Comparator.comparingInt(Person::getStarCount);
+        sortedPersons.setComparator(ascendingComparator);
+        lastOperation = ListOperation.SORTED;
+    }
+
+    @Override
+    public ObservableList<Person> getCorrectPersonList() {
+        switch (lastOperation) {
+        case SORTED:
+            return sortedPersons;
+        case FILTERED:
+            return filteredPersons;
+        default:
+            // This defaults to the state without any sorting or filtering
+            return defaultPersons;
+        }
     }
 
     @Override

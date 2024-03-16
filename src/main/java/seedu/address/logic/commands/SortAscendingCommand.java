@@ -1,10 +1,28 @@
 package seedu.address.logic.commands;
 
-/**
- * Sorts all students in the address book to the user.
- */
-public class SortCommandAscending extends Command {
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-    public static final String COMMAND_WORD = "list";
+import java.util.Comparator;
+
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+
+
+
+
+/**
+ * Sorts all students in the address book based on their number of starts and lists to the user.
+ */
+public class SortAscendingCommand extends Command {
+
+    public static final String COMMAND_WORD = "sortStarsAscending";
     public static final String MESSAGE_SUCCESS = "Listed all persons";
+
+    @Override
+    public CommandResult execute(Model model) {
+        requireNonNull(model);
+        model.updateSortedPersonListSortAscending();
+        return new CommandResult(MESSAGE_SUCCESS);
+    }
 }

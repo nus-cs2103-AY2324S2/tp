@@ -72,6 +72,10 @@ public class Person {
         return star;
     } // get the stars
 
+    public int getStarCount() {
+        return star.numOfStars;
+    } //get the star count
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
