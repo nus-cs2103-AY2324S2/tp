@@ -98,5 +98,15 @@ public interface Model {
      */
     Optional<Person> findPersonByPhoneNumber(String phoneNumber);
 
+    /**
+     * Returns an unmodifiable view of the filtered person list.
+     * @return an unmodifiable view of the filtered person list.
+     */
+    ObservableList<Order> getFilteredOrderList();
+    /**
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     * @param predicate predicate to update the filtered order list with.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredOrderList(Predicate<Order> predicate);
 }

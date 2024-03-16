@@ -146,11 +146,12 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Order List Accessors =============================================================
-    //make sure to make abstract method for these 2
+    @Override
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
     }
 
+    @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);

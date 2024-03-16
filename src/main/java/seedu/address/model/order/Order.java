@@ -128,6 +128,12 @@ public class Order implements Comparable<Order> {
         return productMap.isEmpty();
     }
 
+    /**
+     * Compares the other Order Object with this Object based on the OrderID
+     * @param otherOrder the object to be compared.
+     * @return negative integer, zero, or a positive integer as this object is less than,
+     * equal to, or greater than the specified object.
+     */
     @Override
     public int compareTo(Order otherOrder) {
         if (this.id < otherOrder.id) {
@@ -137,6 +143,11 @@ public class Order implements Comparable<Order> {
         }
     }
 
+    /**
+     * Checks if two orders are the same.
+     * @param otherOrder The other order to be checked against.
+     * @return A boolean value of whether the two orders are the same.
+     */
     public boolean isSameOrder(Order otherOrder) {
         if (otherOrder == this) {
             return true;

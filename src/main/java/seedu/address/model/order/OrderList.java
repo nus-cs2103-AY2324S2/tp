@@ -19,9 +19,12 @@ public class OrderList implements Iterable<Order> {
      */
     private int orderIdCounter;
     /**
-     * The order list of all active orders.
+     * The hashmap with mappings from Orders to their OrderID
      */
     private HashMap<Integer, Order> orderList;
+    /**
+     * The Lists which stores the Order Objects.
+     */
     private final ObservableList<Order> internalList = FXCollections.observableArrayList();
     private final ObservableList<Order> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -75,11 +78,13 @@ public class OrderList implements Iterable<Order> {
      */
     public void editOrder(int orderId, Order toEdit) {
         requireAllNonNull(orderId, toEdit);
-        Order oldOrder = orderList.get(orderId);
-        int oldOrderIndex = internalList.indexOf(oldOrder);
-        // Check if order is same, wait for isSameOrder method
-        orderList.put(orderId, toEdit);
-        internalList.set(oldOrderIndex, toEdit);
+        Order currOrder = orderList.get(orderId);
+        if (!currOrder.isSameOrder(toEdit)) {
+            Order oldOrder = orderList.get(orderId);
+            int oldOrderIndex = internalList.indexOf(oldOrder);
+            orderList.put(orderId, toEdit);
+            internalList.set(oldOrderIndex, toEdit);
+        }
     }
 
     /**
@@ -94,6 +99,10 @@ public class OrderList implements Iterable<Order> {
         return ls;
     }
 
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * @return the backing list as an unmodifiable {@code ObservableList}.
+     */
     public ObservableList<Order> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
