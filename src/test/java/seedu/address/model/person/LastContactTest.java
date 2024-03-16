@@ -51,6 +51,7 @@ class LastContactTest {
         LastContact lastContact2 = new LastContact("05-03-2024 0600");
         LastContact lastContact3 = new LastContact("06-03-2024 0600");
 
+        assertFalse(lastContact1.equals(null)); // test null return false
         assertEquals(lastContact1, lastContact2); // Same date and time
         assertFalse(lastContact1.equals(lastContact3)); // Different date and time
     }
