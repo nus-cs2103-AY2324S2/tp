@@ -7,7 +7,6 @@ import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_FIRST_INTERN
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.InternshipCommand;
 import seedu.address.logic.commands.InternshipDeleteCommand;
 
 /**
@@ -20,17 +19,17 @@ import seedu.address.logic.commands.InternshipDeleteCommand;
 
 public class InternshipDeleteCommandParserTest {
 
-    private InternshipDeleteCommandParser parser = new InternshipDeleteCommandParser();
+    private final InternshipDeleteCommandParser parser = new InternshipDeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsInternshipDeleteCommand() {
-        assertParseSuccess((InternshipParser<? extends InternshipCommand>) parser, "1",
-                new InternshipDeleteCommand(INDEX_FIRST_INTERNSHIP));
+        assertParseSuccess(parser, "1", new InternshipDeleteCommand(INDEX_FIRST_INTERNSHIP));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure((InternshipParser<? extends InternshipCommand>) parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipDeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                InternshipDeleteCommand.MESSAGE_USAGE));
+
     }
 }
