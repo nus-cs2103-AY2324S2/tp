@@ -20,10 +20,6 @@ public class RelationshipManager {
         relationships.computeIfAbsent(relationshipType, k -> new ArrayList<>()).add(relationship);
     }
 
-    public void deleteRelationship(String relationshipType, Relationship relationship) {
-        relationships.get(relationshipType).remove(relationship);
-    }
-
     // Get relationships by type
     public List<Relationship> getRelationships(String relationshipType) {
         return relationships.getOrDefault(relationshipType, Collections.emptyList());
