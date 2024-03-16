@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Note;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -24,13 +25,13 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Note: %2$s";
     private final Index index;
-    private final String note;
+    private final Note note;
 
     /**
      * @param index of the person in the filtered person list to edit the remark
      * @param note of the person to be updated to
      */
-    public AddNoteCommand(Index index, String note) {
+    public AddNoteCommand(Index index, Note note) {
         requireAllNonNull(index, note);
 
         this.index = index;

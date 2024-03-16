@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddNoteCommand;
+import seedu.address.model.person.Note;
 
 public class AddNoteCommandParserTest {
     private AddNoteCommandParser parser = new AddNoteCommandParser();
@@ -20,12 +21,12 @@ public class AddNoteCommandParserTest {
         // have remark
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE + nonEmptyNote;
-        AddNoteCommand expectedCommand = new AddNoteCommand(INDEX_FIRST_PERSON, nonEmptyNote);
+        AddNoteCommand expectedCommand = new AddNoteCommand(INDEX_FIRST_PERSON, new Note(nonEmptyNote));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no remark
         userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE;
-        expectedCommand = new AddNoteCommand(INDEX_FIRST_PERSON, "");
+        expectedCommand = new AddNoteCommand(INDEX_FIRST_PERSON, new Note(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

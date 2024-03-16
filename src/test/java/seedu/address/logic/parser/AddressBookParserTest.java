@@ -16,6 +16,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.IdentityCardNumber;
 import seedu.address.model.person.IdentityCardNumberMatchesPredicate;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -82,9 +83,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addNote() throws Exception {
-        final String note = "Some note.";
+        final Note note = new Note("Some note.");
         AddNoteCommand command = (AddNoteCommand) parser.parseCommand(AddNoteCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_NOTE + note);
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_NOTE + note.value);
         assertEquals(new AddNoteCommand(INDEX_FIRST_PERSON, note), command);
     }
 

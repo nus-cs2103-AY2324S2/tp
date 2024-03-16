@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Note;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
  */
@@ -23,7 +25,7 @@ public class AddNoteCommandTest {
 
     @Test
     public void execute() {
-        final String note = "Some note";
+        final Note note = new Note("Some note");
 
         assertCommandFailure(new AddNoteCommand(INDEX_FIRST_PERSON, note), model,
                 String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), note));
@@ -31,10 +33,12 @@ public class AddNoteCommandTest {
 
     @Test
     public void equals() {
-        final AddNoteCommand standardCommand = new AddNoteCommand(INDEX_FIRST_PERSON, VALID_NOTE_AMY);
+        final AddNoteCommand standardCommand = new AddNoteCommand(INDEX_FIRST_PERSON,
+                new Note(VALID_NOTE_AMY));
 
         // same values -> returns true
-        AddNoteCommand commandWithSameValues = new AddNoteCommand(INDEX_FIRST_PERSON, VALID_NOTE_AMY);
+        AddNoteCommand commandWithSameValues = new AddNoteCommand(INDEX_FIRST_PERSON,
+                new Note(VALID_NOTE_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -47,9 +51,11 @@ public class AddNoteCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AddNoteCommand(INDEX_SECOND_PERSON, VALID_NOTE_AMY)));
+        assertFalse(standardCommand.equals(new AddNoteCommand(INDEX_SECOND_PERSON,
+                new Note(VALID_NOTE_AMY))));
 
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new AddNoteCommand(INDEX_FIRST_PERSON, VALID_NOTE_BOB)));
+        assertFalse(standardCommand.equals(new AddNoteCommand(INDEX_FIRST_PERSON,
+                new Note(VALID_NOTE_BOB))));
     }
 }
