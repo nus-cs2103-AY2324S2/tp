@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
@@ -24,6 +25,7 @@ class JsonAdaptedEmployee {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Employee's %s field is missing!";
 
+    private final int employeeId;
     private final String name;
     private final String phone;
     private final String email;
@@ -34,9 +36,11 @@ class JsonAdaptedEmployee {
      * Constructs a {@code JsonAdaptedEmployee} with the given employee details.
      */
     @JsonCreator
-    public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                               @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedEmployee(@JsonProperty("employeeId") int employeeId, @JsonProperty("name") String name,
+                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                               @JsonProperty("address") String address,
                                @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+        this.employeeId = employeeId;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +54,7 @@ class JsonAdaptedEmployee {
      * Converts a given {@code Employee} into this class for Jackson use.
      */
     public JsonAdaptedEmployee(Employee source) {
+        employeeId = source.getEmployeeId().employeeId;
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -69,6 +74,9 @@ class JsonAdaptedEmployee {
         for (JsonAdaptedTag tag : tags) {
             employeeTags.add(tag.toModelType());
         }
+
+        // Consider to add in checks like the fields below this
+        final EmployeeId modelEmployeeId = new EmployeeId(employeeId);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -103,7 +111,7 @@ class JsonAdaptedEmployee {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Employee(modelEmployeeId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

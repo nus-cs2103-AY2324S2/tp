@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
@@ -90,7 +91,7 @@ public class EmployeeBuilder {
     }
 
     public Employee build() {
-        return new Employee(name, phone, email, address, tags);
+        return new Employee(new EmployeeId(1), name, phone, email, address, tags);
     }
 
 }
