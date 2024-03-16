@@ -26,7 +26,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Note;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,10 +100,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark();
+        Note updatedNote = personToEdit.getNote();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNote, updatedTags);
     }
 
     @Override
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Remark remark;
+        private Note note;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -153,7 +153,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setRemark(toCopy.remark);
+            setNote(toCopy.note);
             setTags(toCopy.tags);
         }
 
@@ -196,12 +196,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setRemark(Remark remark) {
-            this.remark = remark;
+        public void setNote(Note note) {
+            this.note = note;
         }
 
-        public Optional<Remark> getRemark() {
-            return Optional.ofNullable(remark);
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
         }
 
         /**

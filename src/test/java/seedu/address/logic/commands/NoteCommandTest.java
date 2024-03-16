@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.RemarkCommand.MESSAGE_ARGUMENTS;
+import static seedu.address.logic.commands.NoteCommand.MESSAGE_ARGUMENTS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -15,29 +15,29 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Note;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for NoteCommand.
  */
-public class RemarkCommandTest {
+public class NoteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute() {
-        final Remark remark = new Remark("Some remark");
+        final Note note = new Note("Some note");
 
-        assertCommandFailure(new RemarkCommand(INDEX_FIRST_PERSON, remark), model,
-                String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), remark));
+        assertCommandFailure(new NoteCommand(INDEX_FIRST_PERSON, note), model,
+                String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), note));
     }
 
     @Test
     public void equals() {
-        final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(VALID_REMARK_AMY));
+        final NoteCommand standardCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note(VALID_NOTE_AMY));
 
         // same values -> returns true
-        RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(VALID_REMARK_AMY));
+        NoteCommand commandWithSameValues = new NoteCommand(INDEX_FIRST_PERSON, new Note(VALID_NOTE_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -50,9 +50,9 @@ public class RemarkCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_PERSON, new Remark(VALID_REMARK_AMY))));
+        assertFalse(standardCommand.equals(new NoteCommand(INDEX_SECOND_PERSON, new Note(VALID_NOTE_AMY))));
 
-        // different remark -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark(VALID_REMARK_BOB))));
+        // different note -> returns false
+        assertFalse(standardCommand.equals(new NoteCommand(INDEX_FIRST_PERSON, new Note(VALID_NOTE_BOB))));
     }
 }
