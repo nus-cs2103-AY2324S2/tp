@@ -58,7 +58,13 @@ public class PersonListOfSelectedEventPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
-            setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+
+            if (empty || person == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+            }
         }
     }
 }
