@@ -34,7 +34,7 @@ public class InternshipAddCommandIntegrationTest {
         expectedModel.addInternship(validInternship);
 
         assertCommandSuccess(new InternshipAddCommand(validInternship), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, InternshipMessages.format(validInternship)),
+                String.format(InternshipAddCommand.MESSAGE_SUCCESS, InternshipMessages.format(validInternship)),
                 expectedModel);
     }
 
