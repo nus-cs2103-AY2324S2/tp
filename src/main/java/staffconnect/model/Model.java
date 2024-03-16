@@ -88,7 +88,7 @@ public interface Model {
 
     /**
      * Updates the sort attribute of the sorted person list to sort by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedPersonList(Comparator<Person> com);
 }
