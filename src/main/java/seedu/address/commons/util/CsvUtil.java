@@ -9,6 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,10 +29,10 @@ public class CsvUtil {
      * @param csvFilePath cannot be null.
      * @param jsonFilePath cannot be null.
      */
-    public static void convertToJSON(String csvFilePath, String jsonFilePath) {
+    public static void convertToJSON(Path csvFilePath, String jsonFilePath) {
         try {
             // Step 1: Read CSV file
-            FileReader fileReader = new FileReader(csvFilePath);
+            FileReader fileReader = new FileReader(csvFilePath.toFile());
             CSVReader csvReader = new CSVReaderBuilder(fileReader).build();
 
             // Step 2: Parse CSV data

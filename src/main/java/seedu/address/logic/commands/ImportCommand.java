@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import java.nio.file.Path;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.util.CsvUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
@@ -41,16 +44,20 @@ public class ImportCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // change this to CsvAddressBookStorage
-
-        AddressBookStorage newAddressBookStorage = new JsonAddressBookStorage(filePath);
+        String newJsonFilePath = "data/importedAddressBook.json";
+        // convert csv file at filePath to json file
+        CsvUtil.convertToJSON(filePath, newJsonFilePath);
+        // convert json file to addressBook
         try {
+            AddressBookStorage newAddressBookStorage = new JsonAddressBookStorage(ParserUtil.parseFilePath(newJsonFilePath));
             model.setAddressBook(
                     newAddressBookStorage
                             .readAddressBook()
                             .orElseGet(SampleDataUtil::getSampleAddressBook));
         } catch (DataLoadingException e) {
             throw new CommandException(String.format(MESSAGE_DATA_LOAD_ERROR, filePath));
+        } catch (ParseException e) {
+            throw new CommandException(String.format(MESSAGE_DATA_LOAD_ERROR, newJsonFilePath));
         }
 
         return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, filePath));
