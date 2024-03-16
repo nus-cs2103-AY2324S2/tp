@@ -22,7 +22,6 @@ public class AddNoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE + "Healthy.";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Addnote command not implemented yet";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Note: %2$s";
     private final Index index;
     private final String note;
