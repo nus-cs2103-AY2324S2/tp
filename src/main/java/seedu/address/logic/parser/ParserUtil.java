@@ -128,21 +128,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nusId} into a {@code nusId}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code nusId} is invalid.
-     */
-    public static NusId parseNusId(String nusId) throws ParseException {
-        requireNonNull(nusId);
-        String trimmedNusId = nusId.trim();
-        if (!NusId.isValidNusId(trimmedNusId)) {
-            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
-        }
-        return new NusId(trimmedNusId);
-    }
-
-    /**
      * Parses {@code Collection<String> groups} into a {@code Set<Group>}.
      */
     public static Set<Group> parseGroups(Collection<String> groups) throws ParseException {
