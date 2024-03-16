@@ -50,7 +50,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return value.format(DATE_FORMATTER);
+        return this.value.format(DATE_FORMATTER);
     }
 
     @Override
@@ -65,11 +65,11 @@ public class Date {
         }
 
         Date otherDate = (Date) other;
-        return value.equals(otherDate.value);
+        return this.value.equals(otherDate.value);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.value.hashCode();
     }
 }
