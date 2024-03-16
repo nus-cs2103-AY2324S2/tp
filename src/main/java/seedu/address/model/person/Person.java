@@ -114,6 +114,11 @@ public class Person {
                 .toString();
     }
 
+    /**
+     *
+     * @param tag string to tag the person with
+     * @return new person object with new tags
+     */
     public Person addTag(Tag tag) {
         Set<Tag> newTags = new HashSet<>(tags);
         newTags.add(tag);

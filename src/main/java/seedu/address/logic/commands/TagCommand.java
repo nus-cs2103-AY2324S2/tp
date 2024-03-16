@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -7,11 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Tags a contact identified using its displayed index in the address book.
@@ -21,7 +21,8 @@ public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Tags the contact identified by the index number used in the displayed contact list with the specified tag.\n"
+            + ": Tags the contact identified by the index number" +
+            " used in the displayed contact list with the specified tag.\n"
             + "Parameters: INDEX (must be a positive integer) t/ TAG\n"
             + "Example: " + COMMAND_WORD + " 1 t/ friends";
 
@@ -30,6 +31,10 @@ public class TagCommand extends Command {
     private final Index targetIndex;
     private final Tag tag;
 
+    /**
+     * @param index of the person in the filtered person list to tag
+     * @param tag string to tag the person with
+     */
     public TagCommand(Index index, Tag tag) {
         this.targetIndex = index;
         this.tag = tag;
