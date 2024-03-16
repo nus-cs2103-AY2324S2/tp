@@ -51,6 +51,9 @@ public class FamilyTest {
 
         // invalid family sizes
         assertFalse(Family.isValidFamily("0")); // less than 1
+        assertFalse(Family.isValidFamily("-1"));
+        assertFalse(Family.isValidFamily("-2"));
+        assertFalse(Family.isValidFamily("-12313213"));
 
         // valid family numbers
         assertTrue(Family.isValidFamily("2")); // more than 1
@@ -71,8 +74,11 @@ public class FamilyTest {
         // null -> returns false
         assertFalse(family.equals(null));
 
-        // different types -> returns false
+        // different types (integer vs float) -> returns false
         assertFalse(family.equals(5.0f));
+
+        //different types (integer vs words) -> returns false
+        assertFalse(family.equals("OKKK"));
 
         // different values -> returns false
         assertFalse(family.equals(new Family("995")));
