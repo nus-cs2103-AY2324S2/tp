@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,6 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Tags implements Field {
 
+    public static final Prefix PREFIX_TAG = new Prefix("t/");
     private final Set<Tag> tags;
 
     /**
@@ -41,13 +41,9 @@ public class Tags implements Field {
     /**
      * Parses {@code Collection<String> tags} into a {@code Tags}.
      */
-    public static Tags of(Collection<String> tags) throws ParseException {
+    public static Tags of(Collection<String> tags) throws IllegalArgumentException {
         requireNonNull(tags);
-        try {
-            return new Tags(tags.toArray(new String[0]));
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Tags(tags.toArray(new String[0]));
     }
 
     @JsonValue

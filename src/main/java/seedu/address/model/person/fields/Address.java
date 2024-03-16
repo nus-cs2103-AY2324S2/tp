@@ -5,14 +5,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address implements Field {
 
+    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     private static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
@@ -45,16 +44,12 @@ public class Address implements Field {
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws IllegalArgumentException if the given {@code address} is invalid.
      */
-    public static Address of(String address) throws ParseException {
+    public static Address of(String address) throws IllegalArgumentException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        try {
-            return new Address(trimmedAddress);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Address(trimmedAddress);
     }
 
     @Override

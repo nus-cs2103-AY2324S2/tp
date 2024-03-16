@@ -8,8 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 public class EmailTest {
 
     private static final String WHITESPACE = " \t\r\n";
@@ -90,8 +88,8 @@ public class EmailTest {
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> Email.of(INVALID_EMAIL));
+    public void parseEmail_invalidValue_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Email.of(INVALID_EMAIL));
     }
 
     @Test

@@ -5,14 +5,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email implements Field {
 
+    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     private static final String SPECIAL_CHARACTERS = "+_.-";
     private static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -59,16 +58,12 @@ public class Email implements Field {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws IllegalArgumentException if the given {@code email} is invalid.
      */
-    public static Email of(String email) throws ParseException {
+    public static Email of(String email) throws IllegalArgumentException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        try {
-            return new Email(trimmedEmail);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Email(trimmedEmail);
     }
 
     @Override

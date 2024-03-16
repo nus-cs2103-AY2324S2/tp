@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.person.fields.Address.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.Email.PREFIX_EMAIL;
+import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+import static seedu.address.model.person.fields.Phone.PREFIX_PHONE;
+import static seedu.address.model.person.fields.Tags.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -113,6 +113,41 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
+     * equals to {@code expectedCommand}.
+     */
+    public static void assertParseSuccess(FactoryFunction commandFactoryMethod, String userInput,
+                                          Command expectedCommand) {
+        try {
+            Command command = commandFactoryMethod.apply(userInput);
+            assertEquals(expectedCommand, command);
+        } catch (IllegalArgumentException ie) {
+            throw new IllegalArgumentException("Invalid userInput.", ie);
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
+     * equals to {@code expectedMessage}.
+     */
+    public static void assertParseFailure(FactoryFunction commandFactoryMethod,
+                                          String userInput, String expectedMessage) {
+        try {
+            commandFactoryMethod.apply(userInput);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (IllegalArgumentException ie) {
+            assertEquals(expectedMessage, ie.getMessage());
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful.
+     */
+    public static void assertParseFailure(FactoryFunction commandFactoryMethod, String userInput) {
+        assertThrows(IllegalArgumentException.class, () -> commandFactoryMethod.apply(userInput));
     }
 
 }

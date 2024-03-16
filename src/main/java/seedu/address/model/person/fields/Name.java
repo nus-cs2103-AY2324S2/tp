@@ -5,14 +5,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name implements Field {
 
+    public static final Prefix PREFIX_NAME = new Prefix("n/");
     private static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -46,16 +45,12 @@ public class Name implements Field {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws IllegalArgumentException if the given {@code name} is invalid.
      */
-    public static Name of(String name) throws ParseException {
+    public static Name of(String name) throws IllegalArgumentException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        try {
-            return new Name(trimmedName);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Name(trimmedName);
     }
 
     @Override
