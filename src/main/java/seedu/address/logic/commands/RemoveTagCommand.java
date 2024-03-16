@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
@@ -16,12 +19,15 @@ import seedu.address.model.tag.Tag;
 
 
 
+
 /**
  * Removes a tag associated to a person identified using it's displayed index from the address book.
  */
 public class RemoveTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "Remove Tag";
+    public static final String COMMAND_WORD = "RemoveTag";
+
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Tags: %2$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the tag on the person identified by the index number used in the displayed person list.\n"
@@ -29,7 +35,7 @@ public class RemoveTagCommand extends Command {
             +  "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + "friends";
 
-    public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Tag %1$s removed from this person : %2$s";
+    public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Tags %1$s removed from this person : %2$s";
     public static final String MESSAGE_TAG_DOES_NOT_EXIST = "This person does not have that tag";
 
     private final Index targetIndex;
@@ -48,10 +54,21 @@ public class RemoveTagCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        
         Person personToRemove = lastShownList.get(targetIndex.getZeroBased());
-        model.removeTagFromPerson(personToRemove, tags);
-        return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS, Messages.format(personToRemove))); // need to find out how to add tag
+        Set<Tag> oldTags = personToRemove.getTags();
+        Set<Tag> newSet = new HashSet<>(oldTags);
+        for (Tag tag : tags) {
+            if (!oldTags.contains(tag)) {
+                throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST + " " + tag.toString());
+            }
+            newSet.remove(tag);
+        }
+        Person removedTagPerson = new Person(personToRemove.getName(), personToRemove.getPhone(), personToRemove.getEmail(),
+             personToRemove.getAddress(), newSet);
+        model.setPerson(personToRemove, removedTagPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS, tags.toString(), removedTagPerson.getName()));
     }
 
     @Override
