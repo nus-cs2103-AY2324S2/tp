@@ -27,7 +27,7 @@ import seedu.address.model.internship.Internship;
 /**
  * Parses input arguments and creates a new InternshipAddCommand object
  */
-public class InternshipAddCommandParser implements Parser<InternshipAddCommand> {
+public class InternshipAddCommandParser implements InternshipParser<InternshipAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the InternshipAddCommand
