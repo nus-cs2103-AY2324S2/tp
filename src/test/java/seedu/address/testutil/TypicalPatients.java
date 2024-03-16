@@ -8,6 +8,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATETIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERRED_NAME_AMY;
@@ -33,7 +36,9 @@ public class TypicalPatients {
         .withTags("depression").build();
     public static final Patient BENSON = new PatientBuilder().withPatientHospitalId("12235").withName("Benson Meier")
         .withPreferredName("Benson").withFoodPreference("Kampung Fried Rice").withFamilyCondition("Wife in ICU")
-        .withHobby("Listen to Coldplay songs").withTags("diabetes", "cholesterol").build();
+        .withHobby("Listen to Coldplay songs").withTags("diabetes", "cholesterol").withImportantDates(
+            new String[] { VALID_IMPORTANT_DATE_NAME, VALID_IMPORTANT_DATE_NAME },
+            new String[] { VALID_IMPORTANT_DATE, VALID_IMPORTANT_DATETIME }).build();;
     public static final Patient CARL = new PatientBuilder().withPatientHospitalId("12236").withName("Carl Kurz")
         .withPreferredName("Ah Carl").withFoodPreference("Sambal fish").withFamilyCondition("Has no children")
         .withHobby("Likes to play mahjong").build();

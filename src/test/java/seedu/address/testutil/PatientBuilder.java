@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Hobby;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.PatientHospitalId;
@@ -32,6 +33,7 @@ public class PatientBuilder {
     private FamilyCondition familyCondition;
     private Hobby hobby;
     private Set<Tag> tags;
+    private Set<ImportantDate> importantDates;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -44,6 +46,7 @@ public class PatientBuilder {
         familyCondition = new FamilyCondition(DEFAULT_FAMILY_CONDITION);
         hobby = new Hobby(DEFAULT_HOBBY);
         tags = new HashSet<>();
+        importantDates = new HashSet<>();
     }
 
     /**
@@ -57,6 +60,7 @@ public class PatientBuilder {
         familyCondition = patientToCopy.getFamilyCondition();
         hobby = patientToCopy.getHobby();
         tags = new HashSet<>(patientToCopy.getTags());
+        importantDates = new HashSet<>(patientToCopy.getImportantDates());
     }
 
     /**
@@ -115,8 +119,22 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the ImportantDate of the {@code Patient} that we are building,
+     * with the name and date/datetime of the event
+     *
+     * @param names description of important date
+     * @param importantDates array of string of dates
+     * @return return PatientBuilder withImportantDates
+     */
+    public PatientBuilder withImportantDates(String[] names, String[] importantDates) {
+        this.importantDates = SampleDataUtil.getImportantDateSet(names, importantDates);
+        return this;
+    }
+
     public Patient build() {
-        return new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        return new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
+            importantDates);
     }
 
 }

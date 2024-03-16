@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
@@ -19,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -42,6 +44,9 @@ public class CommandTestUtil {
     public static final String VALID_HOBBY_BOB = "Interested in calligraphy";
     public static final String VALID_TAG_DIABETES = "diabetes";
     public static final String VALID_TAG_DEPRESSION = "depression";
+    public static final String VALID_IMPORTANT_DATE_NAME = "Birthday";
+    public static final String VALID_IMPORTANT_DATE = "20-02-2022";
+    public static final String VALID_IMPORTANT_DATETIME = "20-02-2022, 12:12 - 15:15";
 
     public static final String ID_DESC_AMY = " " + PREFIX_PID + VALID_ID_AMY;
     public static final String ID_DESC_BOB = " " + PREFIX_PID + VALID_ID_BOB;
@@ -57,6 +62,10 @@ public class CommandTestUtil {
     public static final String HOBBY_DESC_BOB = " " + PREFIX_HOBBY + VALID_HOBBY_BOB;
     public static final String TAG_DESC_DIABETES = " " + PREFIX_TAG + VALID_TAG_DIABETES;
     public static final String TAG_DESC_DEPRESSION = " " + PREFIX_TAG + VALID_TAG_DEPRESSION;
+    public static final String IMPORTANT_DATE_DESC_DATE = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME + " "
+        + PREFIX_DATETIME + VALID_IMPORTANT_DATE;
+    public static final String IMPORTANT_DATE_DESC_DATETIME = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME + " "
+        + PREFIX_DATETIME + VALID_IMPORTANT_DATETIME;
 
     public static final String INVALID_ID_DESC = " " + PREFIX_PID + "10 a"; // only digits are allowed in ID
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James& Lee Kuang"; // '&' not allowed in names
@@ -68,12 +77,14 @@ public class CommandTestUtil {
     public static final String INVALID_HOBBY_DESC = " " + PREFIX_HOBBY; // empty string not allowed for hobby
     // '*' and spacing not allowed in tags
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hearing loss*";
+    public static final String INVALID_IMPORTANT_DATE_DESC = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME
+        + PREFIX_DATETIME + "Invalid";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPatientDescriptor DESC_AMY;
-    public static final EditCommand.EditPatientDescriptor DESC_BOB;
+    public static final EditPatientDescriptor DESC_AMY;
+    public static final EditPatientDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)

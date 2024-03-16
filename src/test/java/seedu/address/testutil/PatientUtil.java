@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -47,7 +47,7 @@ public class PatientUtil {
     /**
      * Returns the part of command string for the given {@code EditPatientDescriptor}'s details.
      */
-    public static String getEditPatientDescriptorDetails(EditCommand.EditPatientDescriptor descriptor) {
+    public static String getEditPatientDescriptorDetails(EditPatientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getPatientHospitalId().ifPresent(patientHospitalId -> sb.append(PREFIX_PID)
             .append(patientHospitalId.patientHospitalId).append(" "));

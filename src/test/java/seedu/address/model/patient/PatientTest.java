@@ -103,7 +103,8 @@ public class PatientTest {
         String expected = Patient.class.getCanonicalName() + "{patientHospitalId=" + ALICE.getPatientHospitalId()
             + ", name=" + ALICE.getName() + ", preferredName=" + ALICE.getPreferredName()
             + ", foodPreference=" + ALICE.getFoodPreference() + ", familyCondition=" + ALICE.getFamilyCondition()
-            + ", hobby=" + ALICE.getHobby() + ", tags=" + ALICE.getTags() + "}";
+            + ", hobby=" + ALICE.getHobby()
+            + ", tags=" + ALICE.getTags() + ", importantDates=" + ALICE.getImportantDates() + "}";;
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Hobby;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.PatientHospitalId;
@@ -33,6 +34,7 @@ class JsonAdaptedPatient {
     private final String familyCondition;
     private final String hobby;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedImportantDate> importantDates = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
@@ -43,7 +45,8 @@ class JsonAdaptedPatient {
                               @JsonProperty("foodPreference") String foodPreference,
                               @JsonProperty("familyCondition") String familyCondition,
                               @JsonProperty("hobby") String hobby,
-                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                              @JsonProperty("importantDates") List<JsonAdaptedImportantDate> importantDates) {
         this.patientHospitalId = patientHospitalId;
         this.name = name;
         this.preferredName = preferredName;
@@ -52,6 +55,9 @@ class JsonAdaptedPatient {
         this.hobby = hobby;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (importantDates != null) {
+            this.importantDates.addAll(importantDates);
         }
     }
 
@@ -68,6 +74,9 @@ class JsonAdaptedPatient {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        importantDates.addAll(source.getImportantDates().stream()
+                .map(JsonAdaptedImportantDate::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -79,6 +88,10 @@ class JsonAdaptedPatient {
         final List<Tag> patientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             patientTags.add(tag.toModelType());
+        }
+        final List<ImportantDate> patientImportantDates = new ArrayList<>();
+        for (JsonAdaptedImportantDate date : importantDates) {
+            patientImportantDates.add(date.toModelType());
         }
 
         if (patientHospitalId == null) {
@@ -136,8 +149,10 @@ class JsonAdaptedPatient {
         final Hobby modelHobby = new Hobby(hobby);
 
         final Set<Tag> modelTags = new HashSet<>(patientTags);
+        final Set<ImportantDate> modelImportantDates = new HashSet<>(patientImportantDates);
+
         return new Patient(modelPatientHospitalId, modelName, modelPreferredName, modelFoodPreference,
-            modelFamilyCondition, modelHobby, modelTags);
+            modelFamilyCondition, modelHobby, modelTags, modelImportantDates);
     }
 
 }

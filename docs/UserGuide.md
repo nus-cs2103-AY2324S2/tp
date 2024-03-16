@@ -4,7 +4,7 @@
 
 # PatientSync User Guide
 
-PatientSync is a **desktop app made for nurses to manage patient, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PatientSync allows you to add and view patients intimate details tasks done faster than traditional GUI apps.
+PatientSync is a **desktop app made for nurses to manage patient, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PatientSync allows you to add and view patients intimate details and also manage patient-specific tasks faster than traditional GUI apps.
 
 
 <!-- * Table of Contents -->
@@ -54,7 +54,10 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/diabetes` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend t/family` etc.
+
+* Items with `+`​ after them can be used multiple times, but requires at least one usage.<br>
+    e.g. `[t/TAG]+​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PREFERRED_NAME`, `p/PREFERRED_NAME n/NAME` is also acceptable.
@@ -149,6 +152,47 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
+### Adding Tags to a Patient : `addt`
+
+Adds one or more tags to a patient in the address book.
+
+Format: `addt INDEX [t/TAG]+`
+
+* Adds one or more tags (**single word**) to a patient identified by the index number used in the last patient listing.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one tag must be provided.
+* Tags should be alphanumeric and should not include special characters like `-`.
+* When adding tags, if a tag is repeated in the command, it will be added as a single tag.
+  E.g. `t/friend t/friend` will be added as a single `friend` tag.
+* If the patient already has a tag provided in the command, new tag will override the existing tag. This is counted as a successful addition of that tag.
+
+<box type="info" seamless>
+    <b>Note:</b> The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
+</box>
+
+
+Examples:
+* `addt 1 t/friend t/fallRisk`
+* `addt 2 t/critical`
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Adding Important Dates to a Patient : `adde`
+
+Adds an Important Date to a patient in the address book.
+
+Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
+
+* Adds an Important Date with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
+* The format of the Date must be: DD-MM-YYYY
+* If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm
+* The index **must be a positive integer** 1, 2, 3, ...
+* Neither the Name or the Date / DateTime can be empty
+
+Examples:
+* `adde 1 n/Birthday d/20-01-2022`
+* `adde 2 n/Family Visit d/30-09-2024, 12:00 - 15:00`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -176,10 +220,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -199,10 +239,11 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**AddTags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 2 t/critical`
 **List**   | `list`
 **Help**   | `help`

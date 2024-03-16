@@ -1,13 +1,16 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Hobby;
+import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.PatientHospitalId;
@@ -19,21 +22,21 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPatientDescriptorBuilder {
 
-    private EditCommand.EditPatientDescriptor descriptor;
+    private EditPatientDescriptor descriptor;
 
     public EditPatientDescriptorBuilder() {
-        descriptor = new EditCommand.EditPatientDescriptor();
+        descriptor = new EditPatientDescriptor();
     }
 
-    public EditPatientDescriptorBuilder(EditCommand.EditPatientDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditPatientDescriptor(descriptor);
+    public EditPatientDescriptorBuilder(EditPatientDescriptor descriptor) {
+        this.descriptor = new EditPatientDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPatientDescriptor} with fields containing {@code patient}'s details
      */
     public EditPatientDescriptorBuilder(Patient patient) {
-        descriptor = new EditCommand.EditPatientDescriptor();
+        descriptor = new EditPatientDescriptor();
         descriptor.setPatientHospitalId(patient.getPatientHospitalId());
         descriptor.setName(patient.getName());
         descriptor.setPreferredName(patient.getPreferredName());
@@ -101,7 +104,19 @@ public class EditPatientDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditPatientDescriptor build() {
+    /**
+     * Parses the name and important date into a {@code Set<ImportantDate>} and set it to the
+     * {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withImportantDate(String name, String date) {
+        Set<ImportantDate> importantDates = new HashSet<>();
+        importantDates.add(new ImportantDate(name, date));
+        descriptor.setImportantDate(importantDates);
+        return this;
+    }
+
+
+    public EditPatientDescriptor build() {
         return descriptor;
     }
 }

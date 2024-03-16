@@ -26,13 +26,24 @@ public class Patient {
     private final FamilyCondition familyCondition;
     private final Hobby hobby;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<ImportantDate> importantDates = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Constructs a Patient with {@param patientHospitalId},{@param name}, {@param preferredName},
+     * {@param foodPreference}, {@param familyCondition}, {@param hobby},{@param tags}, {@param importantDates}
+     *
+     * @param patientHospitalId patient's hospital ID
+     * @param name patient's full name
+     * @param preferredName patient's preferred name
+     * @param foodPreference patient's preferred food
+     * @param familyCondition patient's family condition
+     * @param hobby patient's hobby
+     * @param tags tag for patient
+     * @param importantDates patient's important date
      */
     public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
                    FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
-                   Set<Tag> tags) {
+                   Set<Tag> tags, Set<ImportantDate> importantDates) {
         requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
         this.patientHospitalId = patientHospitalId;
         this.name = name;
@@ -41,6 +52,7 @@ public class Patient {
         this.familyCondition = familyCondition;
         this.hobby = hobby;
         this.tags.addAll(tags);
+        this.importantDates.addAll(importantDates);
     }
 
     public PatientHospitalId getPatientHospitalId() {
@@ -73,6 +85,14 @@ public class Patient {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable date set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<ImportantDate> getImportantDates() {
+        return Collections.unmodifiableSet(this.importantDates);
     }
 
     /**
@@ -110,13 +130,15 @@ public class Patient {
                 && foodPreference.equals(otherPatient.foodPreference)
                 && familyCondition.equals(otherPatient.familyCondition)
                 && hobby.equals(otherPatient.hobby)
-                && tags.equals(otherPatient.tags);
+                && tags.equals(otherPatient.tags)
+                && importantDates.equals(otherPatient.importantDates);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        return Objects.hash(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
+            importantDates);
     }
 
     @Override
@@ -129,6 +151,7 @@ public class Patient {
             .add("familyCondition", familyCondition)
             .add("hobby", hobby)
             .add("tags", tags)
+            .add("importantDates", this.importantDates)
             .toString();
     }
 

@@ -13,6 +13,7 @@
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
@@ -50,5 +51,7 @@
       </HBox>
 
     </VBox>
+
+    <VBox fx:id="importantDates" GridPane.columnIndex="1" alignment="CENTER" />
   </GridPane>
 </HBox>

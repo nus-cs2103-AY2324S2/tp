@@ -11,21 +11,36 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 1. Introduction
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+### **1.1 Product Overview**
+
+PatientSync addresses a crucial gap in the current hospital systems by providing nurses with a comprehensive tool to manage patient information beyond administrative details.
+
+In many hospitals, the existing systems typically offer basic administrative information such as patient names and contact details. However, they often lack the capacity to delve into the intimate details of patient care.
+
+This app can help with personalised and effective care by:
+* viewing and managing upcoming checkup and appointment dates for each patient.
+* Utilising tags to categorize patients into groups based on conditions, treatment plans, or other criteria.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+### 1.2 Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+### 1.3 Acknowledgements
 
-### Architecture
+PatientSync is a brownfield Java Project based on the AB3 project template created by the SE-EDU initiative.
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## 2 Design
+
+### 2.1 Architecture
 
 <puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
@@ -33,7 +48,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+**2.1.1. Main components of the architecture**
 
 **`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
@@ -48,7 +63,7 @@ The bulk of the app's work is done by the following four components:
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-**How the architecture components interact with each other**
+**2.1.2. How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
@@ -65,7 +80,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 2.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -82,7 +97,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Patient` object residing in the `Model`.
 
-### Logic component
+### 2.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -115,7 +130,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 2.4 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
@@ -137,7 +152,7 @@ The `Model` component,
 </box>
 
 
-### Storage component
+### 2.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -148,17 +163,138 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 3 Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 3.1 Adding a Patient
+
+#### Introduction
+
+#### Specifications
+
+#### Example Usage Scenario
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.2 Adding Tags to a Patient
+
+#### Introduction
+
+The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book. 
+
+#### Specifications
+
+* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.
+
+* The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
+
+* If the patient already has a particular tag, it will not be added again.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `addt 1 t/christian t/fallRisk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
+
+<box type="info" seamless>
+<b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
+</box>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Design Considerations
+
+**Aspect: Handling Repeated Tags**
+
+* **Alternative 1 (current choice)**: Repeated tags are added as a single tag.
+    * Pros: Simplifies tag management, avoids redundancy.
+    * Cons: Requires additional logic to detect and merge repeated tags.
+<br></br>
+* **Alternative 2**: Each tag is added individually, including duplicates.
+    * Pros: Explicitly shows every tag provided.
+    * Cons: May clutter patient data with redundant tags.
+
+**Aspect: Cumulative Tag Addition**
+
+* **Alternative 1 (current choice)**: Cumulative addition of tags to existing set.
+    * Pros: Preserves previous tags, allows for gradual building of patient profile.
+    * Cons: Requires additional memory for storing updated tag sets.
+<br></br>
+* **Alternative 2**: Overwrite existing tags with new ones.
+    * Pros: Simplifies data handling, avoids tag duplication.
+    * Cons: Risk of losing previously assigned tags, less flexibility in tag management.
+
+**Aspect: Error Handling for Duplicate Tags**
+
+* **Alternative 1 (current choice)**: Do not add tags already present for the patient.
+    * Pros: Prevents tag redundancy, maintains data integrity. Better user experience, do not need to worry about the intricacies of tag duplication.
+    * Cons: Users do not explicitly receive direct feedback about skipped tags.
+<br></br>
+* **Alternative 2**: Return error message for duplicate tags.
+    * Pros: Notifies user about duplicate inputs, ensures data consistency.
+    * Cons: In the case of the addition of multiple existing or duplicate tags, users have to find and remove the duplicated tags from the given command, which would be cumbersome especially when there are many tags listed in the command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.3 Adding Important Dates to a Patient
+
+#### Introduction
+
+The `AddImportantDate` class is responsible for adding an Important Date to a patient in the address book. I
+
+#### Specifications
+
+* ImportantDates, as defined by the `ImportantDate` class, contain both the Name of the Event that falls on that date, as well as the Date of the Event and optionally, the Time Period for which the Event is happening.
+
+* The addition of Important Dates is cumulative, and new Important Dates will be added to the existing set of Important Dates for the patient, preserving the previously assigned Important Dates.
+
+* If the patient already has a particular Important Date, it will not be added again.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday, which falls on the 20th January.
+* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+
+--------------------------------------------------------------------------------------------------------------------
+### 3.4 Deleting a Patient
+
+#### Introduction
+
+The `DeleteCommand` is responsible for deleting a patient in the address book.
+
+#### Specifications
+
+* Delete command is used when the user wants to remove a patient from the address book.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user see all the patients in the address book.
+
+Step 3: The user decide to remove the first patient in the address book.
+
+Step 4: The user executes the `delete 1` command to remove the first patient in the address book.
+
+--------------------------------------------------------------------------------------------------------------------
+## 4 Planned Enhancements
+
+### 4.1 \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -251,14 +387,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5 Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -268,24 +401,24 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6 Appendix: Requirements
 
-### Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 
-- has a need to manage a significant number of patients 
+- has a need to manage a significant number of patients
 - values comprehensive patient information for tailored treatment
-- prefer desktop apps over other types 
-- can type fast 
-- prefers typing to mouse interactions 
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: 
-- manage patients' information faster than a typical mouse/GUI driven app
+**Value proposition**:\
+PatientSync is meticulously crafted for nurses who prioritize the well-being of their patients above all else. It allows nurses to input intimate details about their patients, such as food preferences and family conditions. This personalized approach enables nurses to deliver tailored care that meets the unique needs of each individual.
 
 
-### User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -307,9 +440,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-### Use cases
+### 6.3 Use cases
 
-(For all use cases below, the **System** is the `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
+(For all use cases below, the **System** is `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
 
 **Use case: Add a patient**
 
@@ -481,25 +614,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should operate without the need for internet access to fulfill its core purpose.
-5. Should be designed to be usable by a patient new to patient management without extensive training.
-6. Should provide clear, comprehensive error messages in plain language, guiding users on how to recover from errors due to incorrect inputs. 
-7. Should offer comprehensive, well-organized user documentation that guides users on how to effectively use PatientSync.
-8. Should provide detailed developer documentation for those looking to enhance, customize, or develop extensions. 
+1. Compatibility: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Performance: Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+3. Usability: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Accessibility: Should operate without the need for internet access to fulfill its core purpose.
+5. Ease of Use: Should be designed to be usable by a patient new to patient management without extensive training.
+6. Error Handling: Should provide clear, comprehensive error messages in plain language, guiding users on how to recover from errors due to incorrect inputs.
+7. User Documentation: Should offer comprehensive, well-organized user documentation that guides users on how to effectively use PatientSync.
+8. Developer Documentation: Should provide detailed developer documentation for those looking to enhance, customize, or develop extensions.
 
-### Glossary
+### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 7 Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -510,7 +643,7 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
-### Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -527,7 +660,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a patient
+### 7.2 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -544,7 +677,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 7.3 Saving data
 
 1. Dealing with missing/corrupted data files
 

@@ -7,7 +7,8 @@
     "foodPreference" : "Duck rice",
     "familyCondition" : "Have 2 daughters working overseas",
     "hobby" : "Watching Hong Kong drama",
-    "tags" : [ "depression" ]
+    "tags" : [ "depression" ],
+    "importantDates" : []
   }, {
     "patientHospitalId" : "12235",
     "name" : "Benson Meier",
@@ -15,7 +16,14 @@
     "foodPreference" : "Kampung Fried Rice",
     "familyCondition" : "Wife in ICU",
     "hobby" : "Listen to Coldplay songs",
-    "tags" : [ "diabetes", "cholesterol" ]
+    "tags" : [ "diabetes", "cholesterol" ],
+    "importantDates" : [ {
+      "name": "Birthday",
+      "dateTime": "20-02-2022"
+    }, {
+      "name": "Birthday",
+      "dateTime": "20-02-2022, 12:12 - 15:15"
+    } ]
   }, {
     "patientHospitalId" : "12236",
     "name" : "Carl Kurz",
@@ -23,7 +31,8 @@
     "foodPreference" : "Sambal fish",
     "familyCondition" : "Has no children",
     "hobby" : "Likes to play mahjong",
-    "tags" : [ ]
+    "tags" : [ ],
+    "importantDates" : []
   }, {
     "patientHospitalId" : "12237",
     "name" : "Daniel Meier",
@@ -31,7 +40,8 @@
     "foodPreference" : "Steak",
     "familyCondition" : "Nieces not around Singapore",
     "hobby" : "Cycling",
-    "tags" : [ "eczema" ]
+    "tags" : [ "eczema" ],
+    "importantDates" : []
   }, {
     "patientHospitalId" : "12238",
     "name" : "Elle Meyer",
@@ -39,7 +49,8 @@
     "foodPreference" : "Maggie Goreng",
     "familyCondition" : "Husband working overseas",
     "hobby": "Dancing",
-    "tags" : [ ]
+    "tags" : [ ],
+    "importantDates" : []
   }, {
     "patientHospitalId" : "12239",
     "name" : "Fiona Kunz",
@@ -47,7 +58,8 @@
     "foodPreference" : "Fish soup without milk",
     "familyCondition" : "Daughter fights with her every week",
     "hobby" : "dancing",
-    "tags" : [ ]
+    "tags" : [ ],
+    "importantDates" : []
   }, {
     "patientHospitalId" : "12240",
     "name" : "George Best",
@@ -55,6 +67,7 @@
     "foodPreference" : "Salmon with lemon",
     "familyCondition" : "no children",
     "hobby" : "reading books",
-    "tags" : [ ]
+    "tags" : [ ],
+    "importantDates" : []
   } ]
 }
