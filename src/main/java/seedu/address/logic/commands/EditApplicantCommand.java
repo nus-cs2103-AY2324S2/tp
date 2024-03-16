@@ -40,6 +40,8 @@ import seedu.address.model.tag.Tag;
 public class EditApplicantCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_applicant";
+    public static final String DEFAULT_ROLE = "SWE";
+    public static final String DEFAULT_STAGE = "initial_application";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the "
@@ -93,13 +95,13 @@ public class EditApplicantCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Applicant applicantToEdit; // AGAINST CODE QUALITY IIRC, WILL CHANGE LATER
+        Applicant applicantToEdit;
         if (personToEdit instanceof Applicant) {
             applicantToEdit = (Applicant) personToEdit;
         } else {
             applicantToEdit = new Applicant((Person) personToEdit,
-                    editApplicantDescriptor.getRole().orElse(null),
-                    editApplicantDescriptor.getStage().orElse(null));
+                    editApplicantDescriptor.getRole().orElse(new Role(DEFAULT_ROLE)),
+                    editApplicantDescriptor.getStage().orElse(new Stage(DEFAULT_STAGE)));
         }
         Applicant editedApplicant = createEditedApplicant(applicantToEdit, editApplicantDescriptor);
 
