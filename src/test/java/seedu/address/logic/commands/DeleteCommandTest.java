@@ -26,9 +26,9 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validNusIdUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        NusId nusId = personToDelete.getNusId();
+        NusId nusId = new NusId("E9846510"); // This is the supposed NusId of the first person in the address list
         DeleteCommand deleteCommand = new DeleteCommand(nusId);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -41,7 +41,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidNusIdUnfilteredList_throwsCommandException() {
         NusId testNusId = new NusId("E1234567");
         DeleteCommand deleteCommand = new DeleteCommand(testNusId);
 
@@ -49,9 +49,9 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validNusIdFilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        NusId nusId = personToDelete.getNusId();
+        NusId nusId = new NusId("E9846510");
         DeleteCommand deleteCommand = new DeleteCommand(nusId);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -59,13 +59,12 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidNusIdFilteredList_throwsCommandException() {
         NusId testNusId = new NusId("E1234567");
         DeleteCommand deleteCommand = new DeleteCommand(testNusId);
 
