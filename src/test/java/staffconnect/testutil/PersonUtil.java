@@ -2,6 +2,7 @@ package staffconnect.testutil;
 
 import static staffconnect.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -36,6 +37,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
+        sb.append(PREFIX_FACULTY + person.getFaculty().toString() + " ");
         sb.append(PREFIX_VENUE + person.getVenue().value + " ");
         sb.append(PREFIX_MODULE + person.getModule().value + " ");
         person.getTags().stream().forEach(
@@ -55,6 +57,7 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getFaculty().ifPresent(faculty -> sb.append(PREFIX_FACULTY).append(faculty.value).append(" "));
         descriptor.getVenue().ifPresent(venue -> sb.append(PREFIX_VENUE).append(venue.value).append(" "));
         descriptor.getModule().ifPresent(module -> sb.append(PREFIX_MODULE).append(module.value).append(" "));
         if (descriptor.getTags().isPresent()) {

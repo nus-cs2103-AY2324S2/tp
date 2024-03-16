@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static staffconnect.logic.commands.CommandTestUtil.DESC_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.DESC_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_FACULTY_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -49,6 +50,10 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different faculty -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withFaculty(VALID_FACULTY_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different venue -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withVenue(VALID_VENUE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
@@ -68,6 +73,7 @@ public class EditPersonDescriptorTest {
         String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
+                + editPersonDescriptor.getFaculty().orElse(null) + ", faculty="
                 + editPersonDescriptor.getEmail().orElse(null) + ", venue="
                 + editPersonDescriptor.getVenue().orElse(null) + ", module="
                 + editPersonDescriptor.getModule().orElse(null) + ", tags="

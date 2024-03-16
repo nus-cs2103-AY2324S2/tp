@@ -27,7 +27,7 @@ StaffConnect (SC) is a **desktop app for managing contacts of Professors and Tut
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com v/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
+   * `add n/John Doe p/98765432 e/johnd@example.com v/John street, block 123, #01-01 m/CS2103` : Adds a contact named `John Doe` to the contacts list.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -76,15 +76,15 @@ Format: `help`
 
 Adds a person to the contacts.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL v/VENUE [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL v/VENUE m/MODULE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com v/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com v/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com v/John street, block 123, #01-01 m/CS2103`
+* `add n/Betsy Crowe t/friend m/CS2103T e/betsycrowe@example.com v/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -96,7 +96,7 @@ Format: `list`
 
 Edits an existing person in the contacts.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [v/VENUE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [v/VENUE] [m/MODULE] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -159,7 +159,7 @@ StaffConnect data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-StaffConnect data are saved automatically as a JSON file `[JAR file location]/data/StaffConnect.json`. Advanced users are welcome to update data directly by editing that data file.
+StaffConnect data are saved automatically as a JSON file `[JAR file location]/data/staffconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, StaffConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
@@ -189,10 +189,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL v/VENUE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com v/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL v/VENUE m/MODULE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com v/123, Clementi Rd, 1234665 m/CS2103 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [v/VENUE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [v/VENUE] [m/MODULE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`

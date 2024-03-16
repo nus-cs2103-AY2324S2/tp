@@ -25,10 +25,15 @@ import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.commands.FindCommand;
 import staffconnect.logic.commands.HelpCommand;
 import staffconnect.logic.commands.ListCommand;
+import staffconnect.logic.commands.SortCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.PersonHasTagsPredicate;
+import staffconnect.model.person.comparators.ModuleComparator;
+import staffconnect.model.person.comparators.NameComparator;
+import staffconnect.model.person.comparators.PhoneComparator;
+import staffconnect.model.person.comparators.VenueComparator;
 import staffconnect.model.tag.Tag;
 import staffconnect.testutil.EditPersonDescriptorBuilder;
 import staffconnect.testutil.PersonBuilder;
@@ -88,6 +93,18 @@ public class StaffConnectParserTest {
         FilterCommand multipleTagsCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " t/" + tag + " t/" + tag2);
         assertEquals(new FilterCommand(new PersonHasTagsPredicate(multipleTags)), multipleTagsCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand nameSortCommand = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " " + "n/");
+        SortCommand phoneSortCommand = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " " + "p/");
+        SortCommand venueSortCommand = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " " + "v/");
+        SortCommand moduleSortCommand = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " " + "m/");
+        assertEquals(new SortCommand(NameComparator.NAME_COMPARATOR), nameSortCommand); // name
+        assertEquals(new SortCommand(PhoneComparator.PHONE_COMPARATOR), phoneSortCommand); // phone
+        assertEquals(new SortCommand(VenueComparator.VENUE_COMPARATOR), venueSortCommand); // venue
+        assertEquals(new SortCommand(ModuleComparator.MODULE_COMPARATOR), moduleSortCommand); // module
     }
 
     @Test

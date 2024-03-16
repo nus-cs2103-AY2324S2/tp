@@ -3,6 +3,7 @@ package staffconnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,6 +26,7 @@ import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
 import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
@@ -46,8 +48,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_VENUE + "VENUE] "
             + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_FACULTY + "FACULTY] "
+            + "[" + PREFIX_VENUE + "VENUE] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AVAILABILITY + "AVAILABILITY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -104,14 +107,15 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Venue updatedVenue = editPersonDescriptor.getVenue().orElse(personToEdit.getVenue());
         Module updatedModule = editPersonDescriptor.getModule().orElse(personToEdit.getModule());
+        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
+        Venue updatedVenue = editPersonDescriptor.getVenue().orElse(personToEdit.getVenue());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Availability> updatedAvailabilities = editPersonDescriptor.getAvailabilities()
                 .orElse(personToEdit.getAvailabilities());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedVenue, updatedModule,
-                updatedTags, updatedAvailabilities);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedModule,
+                updatedFaculty, updatedVenue, updatedTags, updatedAvailabilities);
     }
 
     @Override
@@ -146,8 +150,9 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Venue venue;
         private Module module;
+        private Faculty faculty;
+        private Venue venue;
         private Set<Tag> tags;
         private Set<Availability> availabilities;
 
@@ -161,8 +166,9 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setVenue(toCopy.venue);
             setModule(toCopy.module);
+            setFaculty(toCopy.faculty);
+            setVenue(toCopy.venue);
             setTags(toCopy.tags);
             setAvailabilities(toCopy.availabilities);
         }
@@ -171,7 +177,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, venue, module, tags, availabilities);
+            return CollectionUtil.isAnyNonNull(name, phone, email, module, faculty, venue, tags,
+                    availabilities);
         }
 
         public void setName(Name name) {
@@ -198,20 +205,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setVenue(Venue venue) {
-            this.venue = venue;
-        }
-
-        public Optional<Venue> getVenue() {
-            return Optional.ofNullable(venue);
-        }
-
         public void setModule(Module module) {
             this.module = module;
         }
 
         public Optional<Module> getModule() {
             return Optional.ofNullable(module);
+        }
+
+        public void setFaculty(Faculty faculty) {
+            this.faculty = faculty;
+        }
+
+        public Optional<Faculty> getFaculty() {
+            return Optional.ofNullable(faculty);
+        }
+
+        public void setVenue(Venue venue) {
+            this.venue = venue;
+        }
+
+        public Optional<Venue> getVenue() {
+            return Optional.ofNullable(venue);
         }
 
         /**
@@ -265,8 +280,9 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(venue, otherEditPersonDescriptor.venue)
                     && Objects.equals(module, otherEditPersonDescriptor.module)
+                    && Objects.equals(faculty, otherEditPersonDescriptor.faculty)
+                    && Objects.equals(venue, otherEditPersonDescriptor.venue)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(availabilities, otherEditPersonDescriptor.availabilities);
         }
@@ -277,8 +293,9 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("venue", venue)
                     .add("module", module)
+                    .add("faculty", faculty)
+                    .add("venue", venue)
                     .add("tags", tags)
                     .add("availabilities", availabilities)
                     .toString();

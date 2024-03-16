@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import staffconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
@@ -37,6 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
+        descriptor.setFaculty(person.getFaculty());
         descriptor.setVenue(person.getVenue());
         descriptor.setModule(person.getModule());
         descriptor.setTags(person.getTags());
@@ -64,6 +66,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Faculty} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withFaculty(String faculty) {
+        descriptor.setFaculty(new Faculty(faculty));
         return this;
     }
 
