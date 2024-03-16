@@ -115,7 +115,6 @@ public class Person {
     }
 
     /**
-     *
      * @param tag string to tag the person with
      * @return new person object with new tags
      */
