@@ -25,18 +25,23 @@ public class Person {
     // Data fields
     private final Tag tag;
     private final Set<Group> groups = new HashSet<>();
+    private final Schedule schedule;
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(NusId nusId, Name name, Phone phone, Email email, Tag tag, Set<Group> groups) {
-        requireAllNonNull(nusId, name, phone, email, tag, groups);
+    public Person(NusId nusId, Name name, Phone phone, Email email, Tag tag, Set<Group> groups,
+                  Schedule schedule, Remark remark) {
+        requireAllNonNull(nusId, name, phone, email, tag, groups, schedule, remark);
         this.nusId = nusId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.tag = tag;
         this.groups.addAll(groups);
+        this.schedule = schedule;
+        this.remark = remark;
     }
 
     public Name getName() {
@@ -57,6 +62,14 @@ public class Person {
 
     public NusId getNusId() {
         return nusId;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -96,6 +109,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+        // A person's identity does not depend on schedule or remark
         return name.equals(otherPerson.name)
                 && nusId.equals(otherPerson.nusId)
                 && phone.equals(otherPerson.phone)
@@ -107,7 +121,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(nusId, name, phone, email, tag, groups);
+        return Objects.hash(nusId, name, phone, email, tag, groups, schedule, remark);
     }
 
     @Override
@@ -119,6 +133,8 @@ public class Person {
                 .add("email", email)
                 .add("tag", tag)
                 .add("groups", groups)
+                .add("schedule", schedule)
+                .add("remark", remark)
                 .toString();
     }
 

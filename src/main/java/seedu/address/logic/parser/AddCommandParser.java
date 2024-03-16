@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -19,6 +21,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 
 /**
@@ -47,9 +51,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        Schedule schedule = new Schedule("");
+        Remark remark = new Remark("");
+
+
         Set<Group> groupList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
-        Person person = new Person(nusId, name, phone, email, tag, groupList);
+        Person person = new Person(nusId, name, phone, email, tag, groupList, schedule, remark);
 
         return new AddCommand(person);
     }

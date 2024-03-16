@@ -6,48 +6,62 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "tag" : "Student",
-    "groups" : [ "friends" ]
+    "groups" : [ "friends" ],
+    "schedule" : "",
+    "remark" : ""
   }, {
     "nusId": "E9682156",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "tag" : "Student",
-    "groups" : [ "owesMoney", "friends" ]
+    "groups" : [ "owesMoney", "friends" ],
+    "schedule" : "01-01-2020",
+    "remark" : "Consultation at 3pm"
   }, {
     "nusId": "E0358435",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "tag" : "TA",
-    "groups" : [ ]
+    "groups" : [ ],
+    "schedule" : "02-01-2020",
+    "remark" : ""
   }, {
     "nusId": "E1237864",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "tag" : "Professor",
-    "groups" : [ "friends" ]
+    "groups" : [ "friends" ],
+    "schedule" : "03/01/2020",
+    "remark" : "Lunch"
   }, {
     "nusId": "E6546506",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "tag" : "TA",
-    "groups" : [ ]
+    "groups" : [ ],
+    "schedule" : "",
+    "remark" : ""
   }, {
     "nusId": "E5419832",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "tag" : "None",
-    "groups" : [ ]
+    "groups" : [ ],
+    "schedule" : "04/01/2020",
+    "remark" : "Meet at MRT"
   }, {
     "nusId": "E3548135",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "tag" : "Student",
-    "groups" : [ ]
+    "groups" : [ ],
+    "schedule" : "01-01-2020",
+    "remark" : ""
   } ]
 }
