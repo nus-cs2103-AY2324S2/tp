@@ -3,8 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NameKeywordPredicate;
+import seedu.address.model.person.KeywordPredicate;
 
 import static java.util.Objects.requireNonNull;
 
@@ -12,18 +11,24 @@ import static java.util.Objects.requireNonNull;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class SearchNameCommand extends Command {
+public class SearchCommand extends Command {
 
-    public static final String COMMAND_WORD = "/search-name";
+    public static final String COMMAND_WORD = "/search";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD
+            + " /search ; name : [full/partial name]\n"
+            + "/search ; phone : [full/partial phone]\n"
+            + "/search ; address : [full/partial address]\n"
+            + "/search ; email : [full/partial email]\n"
+            + "/search ; product : [full/partial product name]\n"
+            + "/search ; employment : [employment]";
 
-    private final NameKeywordPredicate predicate;
+    private final KeywordPredicate predicate;
 
-    public SearchNameCommand(NameKeywordPredicate predicate) {
+    public SearchCommand(KeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -42,11 +47,11 @@ public class SearchNameCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SearchNameCommand)) {
+        if (!(other instanceof SearchCommand)) {
             return false;
         }
 
-        SearchNameCommand otherSearchNameCommand = (SearchNameCommand) other;
+        SearchCommand otherSearchNameCommand = (SearchCommand) other;
         return predicate.equals(otherSearchNameCommand.predicate);
     }
 

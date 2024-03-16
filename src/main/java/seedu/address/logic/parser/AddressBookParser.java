@@ -96,8 +96,8 @@ public class AddressBookParser {
         case HelpEditCommand.COMMAND_WORD:
             return new HelpEditCommand();
 
-        case SearchNameCommand.COMMAND_WORD:
-            return new SearchNameCommandParser().parse(arguments);
+        case SearchCommand.COMMAND_WORD:
+            return new SearchCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
