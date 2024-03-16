@@ -75,7 +75,7 @@ public class ImportCommand extends Command {
                 Optional<ReadOnlyAddressBook> readOnlyAddressBook = curStorage.readAddressBook();
                 savedPersons.addAll(
                         readOnlyAddressBook
-                                .get()
+                                .orElseThrow(() -> new DataLoadingException(new Exception("Cannot load file: " + file.getPath())))
                                 .getPersonList()
                                 .stream()
                                 .map(JsonAdaptedPerson::new)
