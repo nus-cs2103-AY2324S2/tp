@@ -28,7 +28,8 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withFamily("4")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withRemark("this is a remark").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withIncome("20000")
             .withAddress("311, Clementi Ave 2, #02-25")
@@ -38,10 +39,12 @@ public class TypicalPersons {
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563")
             .withIncome("30000")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withAddress("wall street")
+            .withRemark("Carl was supposed to start with a K, but the doctor misspelled when he was born").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withIncome("40000")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
+            .withRemark("White VANS").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withIncome("50000")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
@@ -51,7 +54,8 @@ public class TypicalPersons {
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withIncome("70000")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street")
+            .withRemark("Fun fact: George's brother's name is \"The\".").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
