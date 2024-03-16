@@ -36,9 +36,6 @@ public class StatusCommand extends Command {
     public static final String MESSAGE_STATUS_PERSON_SUCCESS = "Status of Candidate Number %1$d Successfully"
             + " Updated to %2$s";
 
-    public static final String STATUS_NOT_EDITED = "Please specify the desired status to update "
-            + "the candidate to together with the candidate number";
-
     public static final String MESSAGE_DUPLICATE_PERSON = "This candidate with identical recruitment status "
             + "already exists in the address book or this candidate's status is already set to %1$s.";
 

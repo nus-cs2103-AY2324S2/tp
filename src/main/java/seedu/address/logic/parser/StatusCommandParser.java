@@ -22,7 +22,7 @@ public class StatusCommandParser implements Parser<StatusCommand> {
         String[] parsedIndexStatus = args.trim().split(" ", 2);
 
         if (parsedIndexStatus.length < 2 || parsedIndexStatus[1].trim().equals("")) {
-            throw new ParseException(StatusCommand.STATUS_NOT_EDITED);
+            throw new ParseException(StatusCommand.MESSAGE_USAGE);
         }
 
         Index index;
