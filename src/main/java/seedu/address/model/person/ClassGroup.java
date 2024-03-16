@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ClassGroup {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Class/groups should only contain alphanumeric characters delimited by a colon.\n"
+            "Class/groups should only contain alphanumeric characters delimited by a dash.\n"
                     + "It cannot contain symbols, whitespaces and it should not be blank";
 
     /*
