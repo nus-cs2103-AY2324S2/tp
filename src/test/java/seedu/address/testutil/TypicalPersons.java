@@ -39,11 +39,12 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withDrugAllergy("No allergy")
-            .withIllnesses("Infectious Disease").withNotes(new Note[] {
-                    new Note(LocalDateTime.of(2024, 2, 19, 21, 30),
-                    new Description("General Flu")),
-                    new Note(LocalDateTime.of(2024, 2, 28, 8, 30),
-                    new Description("Headache")),
+            .withIllnesses("Infectious Disease").withNotes(
+                    new Note[] {
+                            new Note(LocalDateTime.of(2024, 2, 19, 21, 30),
+                                    new Description("General Flu")),
+                            new Note(LocalDateTime.of(2024, 2, 28, 8, 30),
+                                    new Description("Headache")),
         }).build();
     public static final Person BENSON = new PersonBuilder()
             .withNric("S1234567B")

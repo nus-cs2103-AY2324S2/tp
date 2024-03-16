@@ -17,9 +17,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.illness.Illness;
 import seedu.address.model.person.note.Description;
 import seedu.address.model.person.note.Note;
-import seedu.address.model.person.illness.Illness;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -27,7 +27,7 @@ import seedu.address.model.person.illness.Illness;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[]{
-            new Person(new Nric("S1234567D"),new Name("Alex Yeoh"), new Gender("M"), new BirthDate("10-07-1999"),
+            new Person(new Nric("S1234567D"), new Name("Alex Yeoh"), new Gender("M"), new BirthDate("10-07-1999"),
                     new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new DrugAllergy("Penicillin, Antibiotic"),
                 getIllnesses("friends"), getNotes(

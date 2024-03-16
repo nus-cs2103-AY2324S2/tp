@@ -20,8 +20,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.note.Note;
 import seedu.address.model.person.illness.Illness;
+import seedu.address.model.person.note.Note;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -128,7 +128,8 @@ class JsonAdaptedPerson {
         final Gender modelGender = new Gender(gender);
 
         if (birthDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, BirthDate.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, BirthDate.class.getSimpleName()));
         }
         if (!BirthDate.isValidBirthDate(birthDate)) {
             throw new IllegalValueException(BirthDate.MESSAGE_CONSTRAINTS);

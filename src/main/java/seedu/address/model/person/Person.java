@@ -11,8 +11,8 @@ import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.note.Note;
 import seedu.address.model.person.illness.Illness;
+import seedu.address.model.person.note.Note;
 
 /**
  * Represents a Person in the patient book.
@@ -36,7 +36,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Gender gender, BirthDate birthDate,Phone phone,
+    public Person(Nric nric, Name name, Gender gender, BirthDate birthDate, Phone phone,
                   Email email, DrugAllergy drugAllergy, Set<Illness> illnesses, ObservableList<Note> notes) {
         requireAllNonNull(nric, name, phone, email, illnesses, notes);
         this.nric = nric;
@@ -50,7 +50,9 @@ public class Person {
         this.notes.addAll(notes);
     }
 
-    public Nric getNric() { return nric; }
+    public Nric getNric() {
+        return nric;
+    }
 
     public Name getName() {
         return name;
@@ -204,7 +206,9 @@ public class Person {
                 person.getNotes());
         }
 
-        public Nric getNric() { return nric; }
+        public Nric getNric() {
+            return nric;
+        }
         public Name getName() {
             return name;
         }
