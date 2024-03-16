@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Tag;
 
@@ -21,6 +22,7 @@ import seedu.address.model.person.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -33,6 +35,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String nusId} into a {@code NusId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nusId} is invalid.
+     */
+    public static NusId parseNusId(String nusId) throws ParseException {
+        requireNonNull(nusId);
+        String trimmedNusId = nusId.trim();
+        if (!NusId.isValidNusId(trimmedNusId)) {
+            throw new ParseException(NusId.MESSAGE_CONSTRAINTS);
+        }
+        return new NusId(trimmedNusId);
     }
 
     /**
