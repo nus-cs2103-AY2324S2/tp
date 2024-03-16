@@ -29,15 +29,14 @@ public class AddOrderCommandTest {
 
     @Test
     public void constructor_nullNameContainsKeywordsPredicate_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new AddOrderCommand(null, new Order("testitem")));
+        assertThrows(NullPointerException.class, () ->
+                new AddOrderCommand(null, new Order("testitem")));
     }
 
     @Test
     public void constructor_nullOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new AddOrderCommand(
-                        new NameContainsKeywordsPredicate(Collections.singletonList("test")), null));
+        assertThrows(NullPointerException.class, () ->
+                new AddOrderCommand(new NameContainsKeywordsPredicate(Collections.singletonList("test")), null));
     }
 
     @Test
@@ -72,8 +71,8 @@ public class AddOrderCommandTest {
 
         AddOrderCommand addOrderToSecondTypicalPerson = new AddOrderCommand(nobodyPredicate, orderToBeAdded);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NOT_FOUND,
-                () -> addOrderToSecondTypicalPerson.execute(model));
+        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NOT_FOUND, () ->
+                addOrderToSecondTypicalPerson.execute(model));
     }
 
     @Test
