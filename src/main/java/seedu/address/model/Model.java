@@ -79,18 +79,6 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-
-    /**
-     * Returns true if a note with the same date-time as {@code note} exists in the address book.
-     */
-    boolean hasNote(Note note);
-
-    /**
-     * Deletes the given note.
-     * The note must exist in the address book.
-     */
-    void deleteNote(Note target);
-
     /**
      * Adds the given note.
      * {@code note} must not already exist in the address book.

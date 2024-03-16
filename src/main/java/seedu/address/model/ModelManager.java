@@ -136,17 +136,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasNote(Note note) {
-        requireNonNull(note);
-        return addressBook.hasNote(note);
-    }
-
-    @Override
-    public void deleteNote(Note target) {
-        addressBook.removeNote(target);
-    }
-
-    @Override
     public void addNote(Note note) {
         addressBook.addNote(note);
         updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);

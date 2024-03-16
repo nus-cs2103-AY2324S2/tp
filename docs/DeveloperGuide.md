@@ -277,17 +277,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                          | So that I can…​                                          |
-| -------- | ------------------------------------------ |---------------------------------------|----------------------------------------------------------|
-| `* * *`  | user                                       | view all my patient's medical records | have a clear overview of all my records                  |
-| `* * *`  | user                                       | add a patient's medical record     | record new patients I work with                          |
-| `* * *`  | user                                       | edit a patient's medical record     | amend necessary details of a medical record when needed |
-| `* * *`  | user                                       | delete a patient's medical record     | remove patient's medical record that I no longer need |
-| `* * *`  | user                                       | list all patients' appointment notes | view all existing appointment notes         |
-| `* * *`  | user                                       | add a patient's appointment note      | record keep the details of each appointment              |
-| `* * *`  | user                                       | edit a patient's appointment note    | update the details of an appointment        |
-| `* * *`  | user                                       | delete a patient's appointment note   | remove entries that I no longer need                     |
-| `* * *`  | user                                       | access a help page for quick reference  | have a better idea where to get started                     |
+| Priority | As a …​                                    | I want to …​                                  | So that I can…​                                         |
+| -------- | ------------------------------------------ |-----------------------------------------------|---------------------------------------------------------|
+| `* * *`  | user                                       | view all my patient's medical records         | have a clear overview of all my records                 |
+| `* * *`  | user                                       | add a patient's medical record                | record new patients I work with                         |
+| `* * *`  | user                                       | edit a patient's medical record               | amend necessary details of a medical record when needed |
+| `* * *`  | user                                       | delete a patient's medical record             | remove patient's medical record that I no longer need   |
+| `* * *`  | user                                       | list all patients' appointment notes          | view all existing appointment notes                     |
+| `* * *`  | user                                       | list a particular patients' appointment notes | view a particular patient's existing appointment notes  |
+| `* * *`  | user                                       | add a patient's appointment note              | record keep the details of each appointment             |
+| `* * *`  | user                                       | edit a patient's appointment note             | update the details of an appointment                    |
+| `* * *`  | user                                       | delete a patient's appointment note           | remove entries that I no longer need                    |
+| `* * *`  | user                                       | access a help page for quick reference        | have a better idea where to get started                 |
 
 *{More to be added}*
 
@@ -309,6 +310,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list of patients is empty.
 
   Use case ends.
+
+#### Use case: List a particular patients' appointment notes
+
+**MSS**
+
+1.  User requests to view a particular patients' appointment notes
+2.  HealthSync shows a list of patients
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given patient index is invalid. 
+  * 1a1. HealthSync shows an error message. 
+
+    Use case resumes at step 1.
+* 2a. The list of patients is empty.
+
+  Use case ends.
+
 
 #### Use case: Add a patient's appointment note
 

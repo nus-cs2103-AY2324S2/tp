@@ -111,26 +111,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// note-level operations
 
     /**
-     * Returns true if a note with the same date-time as {@code note} exists in the address book.
-     */
-    public boolean hasNote(Note note) {
-        requireNonNull(note);
-        return notes.contains(note);
-    }
-
-    /**
      * Adds a note to the address book.
      */
     public void addNote(Note n) {
         notes.add(n);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeNote(Note key) {
-        notes.remove(key);
     }
 
     //// util methods

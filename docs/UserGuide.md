@@ -13,7 +13,9 @@ title: User Guide
   - [Listing all patient medical records](#listing-all-patient-medical-records--list)
   - [Editing a patient medical record](#editing-a-patient-medical-record--edit)
   - [Deleting a patient medical record](#deleting-a-patient-medical-record--delete)
+  - [Listing all appointment notes](#listing-all-appointment-notes-list-an)
   - [Adding an appointment note](#adding-an-appointment-note-add-an)
+  - [Editing an appointment note](#editing-an-appointment-note-edit-an)
   - [Deleting an appointment note](#deleting-an-appointment-note--delete-an)
   - [Clearing all entries](#clearing-all-entries--clear)
   - [Exiting the program](#exiting-the-program--exit)
@@ -196,6 +198,20 @@ Shows a list of all appointment notes.
 
 Format: `list-an`
 
+### Listing a particular patients' appointment notes: `list-an`
+
+Shows a list a particular patients' appointment notes.
+
+Format: `list-an PATIENT_INDEX`
+
+* Lists all appointment notes at the specified `INDEX` for given patient from `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list-an 1`
+
 ### Adding an appointment note: `add-an`
 
 Adds an appointment note to a patient. Please note that the time parameter is in 24-hour format.
@@ -294,7 +310,8 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List Appointment Note** | `list-an`
+**List All Appointment Notes** | `list-an`
+**List A Patient's Appointment Notes** | `list-an PATIENT_INDEX` <br> e.g., `list-an 1`
 **Add Appointment Note** | `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `add-an 1 d/30-12-2023 t/2100 n/Headache`
 **Edit Appointment Note** | `edit-an PATIENT_INDEX INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `edit-an 1 1 d/19-02-2024 t/1230 n/General Flu`
 **Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete-an 1 2`
