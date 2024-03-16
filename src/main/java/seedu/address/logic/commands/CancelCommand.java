@@ -31,9 +31,8 @@ public class CancelCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        OrderList orderList = model.getOrderList();
 
-        if (targetIndex.getZeroBased() >= orderList.size()) {
+        if (targetIndex.getZeroBased() >= model.getOrderListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
