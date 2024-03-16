@@ -21,7 +21,7 @@ public class AddPointsCommandParserTest {
         Name expectedName = new Name("Alice");
         Points expectedPoints = new Points("50");
         AddPointsCommand expectedCommand = new AddPointsCommand(expectedName, expectedPoints);
-        assertParseSuccess(parser, PREFIX_NAME + "Alice " + PREFIX_POINTS + "50", expectedCommand);
+        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_POINTS + "50", expectedCommand);
 
     }
 
@@ -43,11 +43,11 @@ public class AddPointsCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // Invalid name
-        assertParseFailure(parser, PREFIX_NAME + " 1-lice " + PREFIX_POINTS + " 50",
+        assertParseFailure(parser, " " + PREFIX_NAME + " 1-lice " + PREFIX_POINTS + " 50",
                 Name.MESSAGE_CONSTRAINTS); // Name.MESSAGE_CONSTRAINTS contains the message for invalid names
 
         // Invalid points
-        assertParseFailure(parser, PREFIX_NAME + " Alice " + PREFIX_POINTS + " -50",
+        assertParseFailure(parser, " " + PREFIX_NAME + " Alice " + PREFIX_POINTS + " -50",
                 Points.MESSAGE_CONSTRAINTS); // Points.MESSAGE_CONSTRAINTS contains the message for invalid points
     }
 }
