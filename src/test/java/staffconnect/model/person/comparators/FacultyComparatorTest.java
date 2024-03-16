@@ -8,13 +8,13 @@ import static staffconnect.model.person.comparators.ModuleComparator.MODULE_COMP
 import static staffconnect.model.person.comparators.NameComparator.NAME_COMPARATOR;
 import static staffconnect.model.person.comparators.PhoneComparator.PHONE_COMPARATOR;
 import static staffconnect.model.person.comparators.VenueComparator.VENUE_COMPARATOR;
-import static staffconnect.testutil.TypicalPersons.CARL;
-import static staffconnect.testutil.TypicalPersons.ELLE;
-import static staffconnect.testutil.TypicalPersons.GEORGE;
+import static staffconnect.testutil.TypicalPersons.ALICE;
+import static staffconnect.testutil.TypicalPersons.LEONARDO;
+import static staffconnect.testutil.TypicalPersons.MICHAEL;
 
 import org.junit.jupiter.api.Test;
 
-public class VenueComparatorTest {
+public class FacultyComparatorTest {
     @Test
     public void doesNotEquals() {
         assertNotEquals(VENUE_COMPARATOR, FACULTY_COMPARATOR);
@@ -26,13 +26,14 @@ public class VenueComparatorTest {
     @Test
     public void checkComparator() {
 
-        assertTrue(PHONE_COMPARATOR.compare(ELLE, CARL) <= -1); // michegan ave < wall street
-        assertTrue(PHONE_COMPARATOR.compare(CARL, ELLE) >= 1); // wall street > michegan ave
+        assertTrue(FACULTY_COMPARATOR.compare(ALICE, MICHAEL) <= -1); // Computing < Music
+        assertTrue(FACULTY_COMPARATOR.compare(MICHAEL, ALICE) >= 1); // Music > Computing
 
-        assertTrue(PHONE_COMPARATOR.compare(ELLE, GEORGE) <= -1); // michegan ave < 4th street
-        assertTrue(PHONE_COMPARATOR.compare(GEORGE, ELLE) >= 1); //  4th street > michegan ave
+        assertTrue(FACULTY_COMPARATOR.compare(LEONARDO, MICHAEL) <= -1); // Arts and Social Sciences < Music
+        assertTrue(FACULTY_COMPARATOR.compare(MICHAEL, LEONARDO) >= 1); //  Music > Arts and Social Sciences
 
-        assertEquals(PHONE_COMPARATOR.compare(ELLE, ELLE), 0); // michegan ave = michegan ave
-        assertEquals(PHONE_COMPARATOR.compare(GEORGE, GEORGE), 0); // 4th street = 4th street
+        assertEquals(FACULTY_COMPARATOR.compare(LEONARDO, LEONARDO), 0);
+        // Arts and Social Sciences = Arts and Social Sciences
+        assertEquals(FACULTY_COMPARATOR.compare(MICHAEL, MICHAEL), 0); // Music = Music
     }
 }

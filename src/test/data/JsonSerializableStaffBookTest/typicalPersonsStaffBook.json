@@ -56,5 +56,21 @@
     "venue" : "4th street",
     "module": "CS2102",
     "tags" : [ ]
+  }, {
+    "name" : "Leonardo DiCaprio",
+    "phone" : "88472234",
+    "email" : "lcaprio@gmail.com",
+    "faculty": "Arts and Social Sciences",
+    "venue" : "LT13",
+    "module": "TS2237",
+    "tags" : [ ]
+  }, {
+    "name" : "Michael Jackson",
+    "phone" : "92347123",
+    "email" : "heehee@gmail.com",
+    "faculty": "Music",
+    "venue" : "YSTCM-SR9",
+    "module": "MUA1163",
+    "tags" : [ ]
   } ]
 }

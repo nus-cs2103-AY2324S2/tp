@@ -1,6 +1,7 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -27,7 +28,7 @@ public class SortCommand extends Command {
             + "[" + PREFIX_NAME + "] "
             + "[" + PREFIX_PHONE + "] "
             + "[" + PREFIX_MODULE + "] "
-            // + "[FACULTY] "
+            + "[" + PREFIX_FACULTY + "] "
             + "[" + PREFIX_VENUE + "] "
             + "Example: " + COMMAND_WORD + " n";
 

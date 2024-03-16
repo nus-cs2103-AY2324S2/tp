@@ -2,12 +2,14 @@ package staffconnect.logic.parser;
 
 
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static staffconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static staffconnect.model.person.comparators.FacultyComparator.FACULTY_COMPARATOR;
 import static staffconnect.model.person.comparators.ModuleComparator.MODULE_COMPARATOR;
 import static staffconnect.model.person.comparators.NameComparator.NAME_COMPARATOR;
 import static staffconnect.model.person.comparators.PhoneComparator.PHONE_COMPARATOR;
@@ -56,10 +58,11 @@ public class SortCommandParserTest {
     @Test
     public void parse_validArgs_returnsSortCorrectAttribute() {
 
-        assertParseSuccess(parser, "" + PREFIX_MODULE, new SortCommand(MODULE_COMPARATOR));
         assertParseSuccess(parser, "" + PREFIX_NAME, new SortCommand(NAME_COMPARATOR));
         assertParseSuccess(parser, "" + PREFIX_PHONE, new SortCommand(PHONE_COMPARATOR));
+        assertParseSuccess(parser, "" + PREFIX_MODULE, new SortCommand(MODULE_COMPARATOR));
         assertParseSuccess(parser, "" + PREFIX_VENUE, new SortCommand(VENUE_COMPARATOR));
+        assertParseSuccess(parser, "" + PREFIX_FACULTY, new SortCommand(FACULTY_COMPARATOR));
 
     }
 
