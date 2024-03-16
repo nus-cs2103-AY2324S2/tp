@@ -4,27 +4,25 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.JAMES;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.File;
 import java.util.HashSet;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAdaptedPerson;
 
 
 public class ImportCommandTest {
-    private static final String ADDRESS_BOOK_PATH = "./data/addressbook.json";
-    private static final String UNKNOWN_FILE_NAME = "./data/1234abcd1234efgh5678.json";
+    private static final String UNKNOWN_FILE_NAME = "./src/test/data/1234abcd1234efgh5678.json";
+    private static final String ADDRESS_BOOK_PATH = "./src/test/data/ImportCommandTest/addressbook.json";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -44,30 +42,14 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_existingFile_failure() {
+    public void execute_existingFile_success() {
         HashSet<File> curHashSet = new HashSet<>();
         curHashSet.add(new File(ADDRESS_BOOK_PATH));
         ImportCommand importCommand = new ImportCommand(curHashSet);
-        List<JsonAdaptedPerson> jsonAdaptedPersons = model
-                .getAddressBook()
-                .getPersonList()
-                .stream()
-                .limit(1)
-                .map(JsonAdaptedPerson::new)
-                .collect(Collectors.toList());
-        try {
-            Person person = jsonAdaptedPersons.get(0).toModelType();
-            String expectedMessage = String.format(ImportCommand.MESSAGE_DUPLICATE_PERSON,
-                    person.getName(), person.getAddress());
-            assertCommandFailure(importCommand, model, expectedMessage);
-        } catch (IllegalValueException ive) {
-            assertFalse(false);
-        }
-    }
-
-    @Test
-    public void execute_importFile_success() {
-
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        String expectedMessage = "Contacts from files imported";
+        expectedModel.addPerson(JAMES);
+        assertCommandSuccess(importCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -85,10 +67,5 @@ public class ImportCommandTest {
         assertFalse(importCommand.equals(new ClearCommand()));
 
         assertFalse(importCommand.equals(new ImportCommand(otherHashSet)));
-    }
-
-    @Test
-    public void retrievePersonsFromFile_fileExist_success() {
-
     }
 }

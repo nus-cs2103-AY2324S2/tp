@@ -28,7 +28,7 @@ import seedu.address.storage.JsonAddressBookStorage;
 public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
 
-    public static final String MESSAGE_SUCCESS = "Contacts from file imported";
+    public static final String MESSAGE_SUCCESS = "Contacts from files imported";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports a datafile into the contact manager.\n"
             + "Parameters: "
