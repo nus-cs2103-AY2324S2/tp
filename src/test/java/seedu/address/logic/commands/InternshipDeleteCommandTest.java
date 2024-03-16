@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.InternshipMessages;
-import seedu.address.model.InternshipData;
 import seedu.address.model.InternshipModel;
 import seedu.address.model.InternshipModelManager;
 import seedu.address.model.UserPrefs;
