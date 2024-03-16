@@ -67,12 +67,10 @@ public class SelectCommandTest {
 
     @Test
     public void toStringMethod() {
-        SelectCommand selectCommand = new SelectCommand(Index.fromZeroBased(0));
-        String expected = new ToStringBuilder(selectCommand)
-                .add("targetIndex", selectCommand.targetIndex) // Accessing targetIndex via selectCommand
-                .toString();
-        String actual = selectCommand.toString();
-        assertEquals(expected, actual);
+        Index targetIndex = Index.fromOneBased(1);
+        SelectCommand selectCommand = new SelectCommand(targetIndex);
+        String expected = SelectCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        assertEquals(expected, selectCommand.toString());
     }
 
 }
