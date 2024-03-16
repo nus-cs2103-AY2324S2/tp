@@ -56,7 +56,6 @@ public class AddCommandTest {
     }
 
 
-
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
@@ -94,7 +93,6 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         assertThrows(NullPointerException.class, () -> addCommand.execute(null));
     }
-
 
 
     /**
