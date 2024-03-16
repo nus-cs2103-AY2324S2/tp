@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
@@ -32,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_SKILL + "friends "
             + PREFIX_SKILL + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New courseMate added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New courseMate added";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
 
     private final CourseMate toAdd;
@@ -55,7 +54,7 @@ public class AddCommand extends Command {
 
         model.addCourseMate(toAdd);
         model.setRecentlyProcessedCourseMate(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), false, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 
     @Override

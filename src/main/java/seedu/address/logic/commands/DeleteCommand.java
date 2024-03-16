@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_COURSE_MATE_SUCCESS = "Deleted CourseMate: %1$s";
+    public static final String MESSAGE_DELETE_COURSE_MATE_SUCCESS = "Deleted CourseMate";
 
     private final Index targetIndex;
 
@@ -43,8 +43,7 @@ public class DeleteCommand extends Command {
         CourseMate courseMateToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCourseMate(courseMateToDelete);
         model.setRecentlyProcessedCourseMate(courseMateToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_COURSE_MATE_SUCCESS,
-                Messages.format(courseMateToDelete)), false, false, true);
+        return new CommandResult(MESSAGE_DELETE_COURSE_MATE_SUCCESS, false, false, true);
     }
 
     @Override

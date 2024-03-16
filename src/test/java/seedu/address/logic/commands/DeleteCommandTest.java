@@ -33,8 +33,7 @@ public class DeleteCommandTest {
         CourseMate courseMateToDelete = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_COURSE_MATE);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS,
-                Messages.format(courseMateToDelete));
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
 
         ModelManager expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
         expectedModel.deleteCourseMate(courseMateToDelete);
@@ -59,8 +58,7 @@ public class DeleteCommandTest {
         CourseMate courseMateToDelete = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_COURSE_MATE);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS,
-                Messages.format(courseMateToDelete));
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
 
         Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
         expectedModel.deleteCourseMate(courseMateToDelete);

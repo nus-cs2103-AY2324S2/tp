@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
 import seedu.address.model.Model;
@@ -39,8 +38,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validCourseMate).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourseMate)),
-                commandResult.getFeedbackToUser());
+        assertEquals(AddCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCourseMate), modelStub.courseMatesAdded);
     }
 

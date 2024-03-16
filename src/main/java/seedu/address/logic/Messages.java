@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.coursemate.CourseMate;
 
 /**
  * Container for user visible messages.
@@ -30,20 +29,4 @@ public class Messages {
 
         return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
     }
-
-    /**
-     * Formats the {@code courseMate} for display to the user.
-     */
-    public static String format(CourseMate courseMate) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(courseMate.getName())
-                .append("; Phone: ")
-                .append(courseMate.getPhone())
-                .append("; Email: ")
-                .append(courseMate.getEmail())
-                .append("; Skills: ");
-        courseMate.getSkills().forEach(builder::append);
-        return builder.toString();
-    }
-
 }
