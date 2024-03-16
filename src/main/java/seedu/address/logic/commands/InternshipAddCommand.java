@@ -47,7 +47,7 @@ public class InternshipAddCommand extends InternshipCommand {
     private final Internship toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Internship}.
+     * Creates an InternshipAddCommand to add the specified {@code Internship}.
      */
     public InternshipAddCommand(Internship internship) {
         requireNonNull(internship);
@@ -73,7 +73,7 @@ public class InternshipAddCommand extends InternshipCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof InternshipsAddCommand)) {
             return false;
         }
 
