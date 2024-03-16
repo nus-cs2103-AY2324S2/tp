@@ -50,6 +50,9 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns value as the string representation.
+     */
     @Override
     public String toString() {
         return value;
