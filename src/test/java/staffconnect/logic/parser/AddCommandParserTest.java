@@ -91,8 +91,9 @@ public class AddCommandParserTest {
                 .withAvailabilities(VALID_AVAILABILITY_MON, VALID_AVAILABILITY_THUR).build();
 
         assertParseSuccess(parser,
-            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VENUE_DESC_BOB
-                    + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_BOB
+                    + FACULTY_DESC_BOB + VENUE_DESC_BOB
+                    + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
                     + AVAILABILITY_DESC_MON + AVAILABILITY_DESC_THUR,
                 new AddCommand(expectedPersonMultipleAvailabilities));
     }
@@ -272,8 +273,8 @@ public class AddCommandParserTest {
                 Tag.MESSAGE_CONSTRAINTS);
 
         // invalid availability
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VENUE_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_AVAILABILITY_DESC,
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_BOB
+                + FACULTY_DESC_BOB + VENUE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_AVAILABILITY_DESC,
                 Availability.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
