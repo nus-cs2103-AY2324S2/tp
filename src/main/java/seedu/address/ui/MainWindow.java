@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         addClientViewPanel();
 
         resultDisplay = new ResultDisplay();
-        
+
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

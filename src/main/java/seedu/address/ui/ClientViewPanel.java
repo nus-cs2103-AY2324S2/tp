@@ -11,6 +11,9 @@ public class ClientViewPanel {
     private ClientDetailsCard clientDetailsCard;
     private ClientPolicyTable clientPolicyTable;
 
+    /**
+     * Creates a {@code ClientViewPanel} with the given {@code person}.
+     */
     public ClientViewPanel(Person person) {
         this.clientDetailsCard = new ClientDetailsCard(person);
         this.clientPolicyTable = new ClientPolicyTable();

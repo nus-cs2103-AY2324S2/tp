@@ -168,5 +168,4 @@ public class ModelManager implements Model {
     public void setDisplayClient(Person person) {
         displayClient.setDisplayClient(person);
     }
-    
 }
