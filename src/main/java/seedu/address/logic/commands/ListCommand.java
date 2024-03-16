@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.ListCommandPredicate;
 
 /**
- * Lists students in the address book to the user.
+ * Lists students in the TA Toolkit to the user.
  */
 public class ListCommand extends Command {
 
