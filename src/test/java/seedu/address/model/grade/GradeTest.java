@@ -35,7 +35,6 @@ public class GradeTest {
     @Test
     public void stringTest() {
         Grade grade = new Grade("A");
-        
         Grades valid = Grades.A;
         Grades inValid = Grades.B;
 

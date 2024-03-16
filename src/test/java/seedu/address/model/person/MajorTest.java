@@ -37,7 +37,7 @@ public class MajorTest {
 
         assertTrue(major.toString().equals("Physics"));
         assertFalse(major.toString().equals("Chemistry"));
-   }
+    }
 
     @Test
     public void hashTest() {

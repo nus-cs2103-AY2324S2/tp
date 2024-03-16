@@ -23,6 +23,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
+import seedu.address.model.person.Intake;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -138,6 +141,9 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Id id;
+        private Major major;
+        private Intake intake;
 
         public EditPersonDescriptor() {}
 
@@ -151,6 +157,9 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setId(toCopy.id);
+            setMajor(toCopy.major);
+            setIntake(toCopy.intake);
         }
 
         /**
@@ -162,6 +171,27 @@ public class EditCommand extends Command {
 
         public void setName(Name name) {
             this.name = name;
+        }
+
+        public void setId(Id id) {
+            this.id = id;
+        }
+
+        public void setMajor(Major major) {
+            this.major = major;
+        }
+
+        public void setIntake(Intake intake) {
+            this.intake = intake;
+        }
+        public Optional<Id> getId() {
+            return Optional.ofNullable(id);
+        }
+        public Optional<Major> getMajor() {
+            return Optional.ofNullable(major);
+        }
+        public Optional<Intake> getIntake() {
+            return Optional.ofNullable(intake);
         }
 
         public Optional<Name> getName() {
