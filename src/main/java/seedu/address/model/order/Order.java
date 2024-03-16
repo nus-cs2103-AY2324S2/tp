@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Person;
-
 /**
  * Represents a Customer's Order in the Addressbook.
  */
@@ -132,7 +130,7 @@ public class Order implements Comparable<Order> {
      * Compares the other Order Object with this Object based on the OrderID
      * @param otherOrder the object to be compared.
      * @return negative integer, zero, or a positive integer as this object is less than,
-     * equal to, or greater than the specified object.
+     *         equal to, or greater than the specified object.
      */
     @Override
     public int compareTo(Order otherOrder) {
