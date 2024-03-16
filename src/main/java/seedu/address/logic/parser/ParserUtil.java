@@ -73,12 +73,17 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static Address parseAddress(Optional<String> address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+
+        String trimmedAddress = "";
+        if (address.isPresent() && !address.get().isEmpty()) {
+            trimmedAddress = address.get().trim();
+            if (!Address.isValidAddress(trimmedAddress)) {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
         }
+
         return new Address(trimmedAddress);
     }
 
@@ -98,12 +103,17 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static Email parseEmail(Optional<String> email) throws ParseException {
         requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+
+        String trimmedEmail = "";
+        if (email.isPresent() && !email.get().isEmpty()) {
+            trimmedEmail = email.get().trim();
+            if (!Email.isValidEmail(trimmedEmail)) {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
         }
+
         return new Email(trimmedEmail);
     }
 
