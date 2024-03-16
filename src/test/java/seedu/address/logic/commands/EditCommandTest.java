@@ -127,8 +127,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidEmployeeIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder()
-                .withName(VALID_NAME_BOB).build();
+        EditCommand.EditEmployeeDescriptor descriptor =
+                new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
