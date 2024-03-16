@@ -26,8 +26,8 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "meeting" : {
-      "start" : "",
-      "end" : ""
+      "start" : "12-03-2024T14:00",
+      "end" : "12-03-2024T15:00"
     },
     "tags" : [ ]
   }, {

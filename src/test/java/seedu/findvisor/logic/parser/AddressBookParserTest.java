@@ -34,6 +34,7 @@ import seedu.findvisor.logic.commands.FindCommand;
 import seedu.findvisor.logic.commands.HelpCommand;
 import seedu.findvisor.logic.commands.ListCommand;
 import seedu.findvisor.logic.commands.ScheduleCommand;
+import seedu.findvisor.logic.commands.UnscheduleCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
 import seedu.findvisor.model.person.EmailContainsKeywordPredicate;
 import seedu.findvisor.model.person.Meeting;
@@ -124,6 +125,13 @@ public class AddressBookParserTest {
                 + PREFIX_START_DATETIME + dateTimeToInputString(meeting.start) + " "
                 + PREFIX_END_DATETIME + dateTimeToInputString(meeting.end));
         assertEquals(new ScheduleCommand(INDEX_FIRST_PERSON, meeting), command);
+    }
+
+    @Test
+    public void parseCommand_unschedule() throws Exception {
+        UnscheduleCommand command = (UnscheduleCommand) parser.parseCommand(
+                UnscheduleCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new UnscheduleCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
