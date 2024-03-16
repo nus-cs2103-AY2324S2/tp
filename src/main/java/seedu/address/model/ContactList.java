@@ -100,7 +100,8 @@ public class ContactList implements ReadOnlyContactList {
                 new Group(new Name("Group 3"), Set.of(member1, member2, member3)),
                 new Group(new Name("Group 4"), Set.of(member2, member3, member4)),
                 new Group(new Name("Group 5"), Set.of(member2, member3))));
-        // setGroups(newData.getGroupList()); todo To be replace with this
+// TODO: Replace with this
+// setGroups(newData.getGroupList());
     }
 
     //// courseMate-level operations
