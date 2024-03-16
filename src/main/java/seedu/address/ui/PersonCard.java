@@ -26,6 +26,8 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
+
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -36,6 +38,10 @@ public class PersonCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
+
+    @FXML
+    private Label relationship;
+
     @FXML
     private Label email;
     @FXML
@@ -52,8 +58,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        relationship.setText(person.getRelationship().value); // Add this line
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
 }

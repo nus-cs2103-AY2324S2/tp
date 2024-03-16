@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -13,7 +14,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class InsuraConnectBook implements ReadOnlyInsuraConnectBook {
 
     private final UniquePersonList persons;
 
@@ -28,12 +29,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public InsuraConnectBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public InsuraConnectBook(ReadOnlyInsuraConnectBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,7 +52,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyInsuraConnectBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -105,8 +106,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+       return persons.asUnmodifiableObservableList();
+
     }
+
+
+
+
 
     @Override
     public boolean equals(Object other) {
@@ -115,11 +121,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof InsuraConnectBook)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
+        InsuraConnectBook otherAddressBook = (InsuraConnectBook) other;
         return persons.equals(otherAddressBook.persons);
     }
 
