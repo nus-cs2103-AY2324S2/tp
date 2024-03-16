@@ -60,7 +60,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -107,7 +107,8 @@ public class EditCommand extends Command {
         Upcoming updatedUpcoming = editPersonDescriptor.getUpcoming().orElse(personToEdit.getUpcoming());
         LastContact updatedLastContact = personToEdit.getLastcontact(); // Edit command does not allow editing remarks
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedUpcoming, updatedLastContact);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedUpcoming,
+                updatedLastContact);
     }
 
     @Override
@@ -135,7 +136,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
@@ -147,7 +149,8 @@ public class EditCommand extends Command {
         private Upcoming upcoming;
         private LastContact lastContact;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -201,6 +204,7 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+
         public void setLastContact(LastContact lastContact) {
             this.lastContact = lastContact;
         }
@@ -214,7 +218,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */

@@ -9,7 +9,8 @@ import java.util.regex.Pattern;
 
 /**
  * Represents a Person's upcoming appointment in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidUpcoming(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidUpcoming(String)}
  */
 public class Upcoming implements Comparable<Upcoming> {
 
@@ -23,9 +24,11 @@ public class Upcoming implements Comparable<Upcoming> {
     private LocalDateTime dateTime;
 
     /**
-     * Constructs an {@code Upcoming} object from a valid date and time string in the format "DD-MM-YYYY HH:MM".
+     * Constructs an {@code Upcoming} object from a valid date and time string in
+     * the format "DD-MM-YYYY HH:MM".
      *
-     * @param dateTimeStr a string representing the date and time in the format "DD-MM-YYYY HH:MM"
+     * @param dateTimeStr a string representing the date and time in the format
+     *                    "DD-MM-YYYY HH:MM"
      */
     public Upcoming(String dateTimeStr) {
         requireNonNull(dateTimeStr);
@@ -40,17 +43,20 @@ public class Upcoming implements Comparable<Upcoming> {
     }
 
     /**
-     * Checks if the given string is a valid date and time combination in the format "DD-MM-YYYY HH:MM".
+     * Checks if the given string is a valid date and time combination in the format
+     * "DD-MM-YYYY HH:MM".
      *
-     * @param dateTimeStr a string representing the date and time in the format "DD-MM-YYYY HH:MM"
-     * @return true if the string is a valid date and time combination, false otherwise
+     * @param dateTimeStr a string representing the date and time in the format
+     *                    "DD-MM-YYYY HH:MM"
+     * @return true if the string is a valid date and time combination, false
+     *         otherwise
      */
     public static boolean isValidUpcoming(String dateTimeStr) {
         return dateTimeStr.isEmpty() || DATETIME_PATTERN.matcher(dateTimeStr).matches();
     }
 
     @Override
-    public int compareTo(Upcoming other) {  
+    public int compareTo(Upcoming other) {
         return this.dateTime.compareTo(other.dateTime);
     }
 
@@ -82,7 +88,7 @@ public class Upcoming implements Comparable<Upcoming> {
             return false;
         }
         Upcoming other = (Upcoming) obj;
-        
+
         if (!this.hasUpcoming && !other.hasUpcoming) {
             return true;
         }
