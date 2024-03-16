@@ -8,24 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddMaintainerCommand;
-import seedu.address.logic.commands.AddStaffCommand;
-import seedu.address.logic.commands.AddSupplierCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.HelpDeleteCommand;
-import seedu.address.logic.commands.HelpEditCommand;
-import seedu.address.logic.commands.HelpPoochMaintenanceCommand;
-import seedu.address.logic.commands.HelpPoochStaffCommand;
-import seedu.address.logic.commands.HelpPoochSupplierCommand;
-import seedu.address.logic.commands.HelpSearchCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -112,6 +95,9 @@ public class AddressBookParser {
 
         case HelpEditCommand.COMMAND_WORD:
             return new HelpEditCommand();
+
+        case SearchNameCommand.COMMAND_WORD:
+            return new SearchNameCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
