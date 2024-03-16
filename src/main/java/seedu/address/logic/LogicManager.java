@@ -32,6 +32,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private boolean previouslyClear;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,11 +41,26 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        this.previouslyClear = false;
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        if (this.previouslyClear) {
+            this.previouslyClear = false;
+            if (commandText.equalsIgnoreCase("y")) {
+                model.setConfirmClear(true);
+                // execute clear command, clear successful
+            }
+            // execute clear command, clear cancelled
+            commandText = "clear";
+        }
+
+        if (commandText.equalsIgnoreCase("clear")) {
+            this.previouslyClear = true;
+        }
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);

@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -51,6 +52,36 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
+
+    @Test
+    public void execute_logicManagerRequestsClearConfirmation_promptsConfirmation() throws Exception {
+        String clearCommand = "clear";
+        CommandResult result = logic.execute(clearCommand);
+        assertEquals(ClearCommand.MESSAGE_CONFIRMATION, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_logicManagerProcessesClearConfirmation_clearsAddressBook() throws Exception {
+        model.setAwaitingClear(true);
+        model.setConfirmClear(true);
+
+        String clearCommand = "clear";
+        CommandResult result = logic.execute(clearCommand);
+        assertEquals(ClearCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_logicManagerHandlesClearCancellation_cancellationAcknowledged() throws Exception {
+        model.setAwaitingClear(true);
+        model.setConfirmClear(false);
+
+        String clearCommand = "clear";
+        CommandResult result = logic.execute(clearCommand);
+        assertEquals(ClearCommand.MESSAGE_CANCELLED, result.getFeedbackToUser());
+    }
+
+
+
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
