@@ -35,6 +35,9 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withVenue("wall street").withModule("CS2030S").build();
+    public static final Person CLARA = new PersonBuilder().withName("Clara Svarog").withPhone("9681384")
+            .withEmail("svarog@example.com").withVenue("belobog avenue").withModule("CS2102")
+            .withTags("classmate").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withVenue("10th street").withModule("CS2040S")
             .withTags("friends").build();
@@ -44,6 +47,9 @@ public class TypicalPersons {
             .withEmail("lydia@example.com").withVenue("little tokyo").withModule("CS2101").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withVenue("4th street").withModule("CS2102").build();
+    public static final Person KAFKA = new PersonBuilder().withName("Kafka Apache").withPhone("9452413")
+            .withEmail("apache@example.com").withVenue("pteruges avenue").withModule("CS2102")
+            .withTags("classmate").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -75,6 +81,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, CLARA, DANIEL, ELLE, FIONA, GEORGE, KAFKA));
     }
 }
