@@ -16,31 +16,31 @@ public class IncomeTest {
     @Test
     public void constructor_invalidIncome_throwsNumberFormatException() {
         String invalidIncome = "";
-        assertThrows(NumberFormatException.class,() -> new Income(invalidIncome));
+        assertThrows(NumberFormatException.class, () -> new Income(invalidIncome));
     }
 
     @Test
     public void constructor_invalidIncome_throwsNumberFormatException2() {
         String invalidIncome = " ";
-        assertThrows(NumberFormatException.class,() -> new Income(invalidIncome));
+        assertThrows(NumberFormatException.class, () -> new Income(invalidIncome));
     }
 
     @Test
     public void constructor_invalidIncome_throwsNumberFormatException3() {
         String invalidIncome = "income"; //alphabets
-        assertThrows(NumberFormatException.class,() -> new Income(invalidIncome));
+        assertThrows(NumberFormatException.class, () -> new Income(invalidIncome));
     }
 
     @Test
     public void constructor_invalidIncome_throwsNumberFormatException4() {
         String invalidIncome = "9011p041"; //alphabet within digits
-        assertThrows(NumberFormatException.class,() -> new Income(invalidIncome));
+        assertThrows(NumberFormatException.class, () -> new Income(invalidIncome));
     }
 
     @Test
     public void constructor_invalidIncome_throwsNumberFormatException5() {
         String invalidIncome = "9312 1534"; // spaces within digits
-        assertThrows(NumberFormatException.class,() -> new Income(invalidIncome));
+        assertThrows(NumberFormatException.class, () -> new Income(invalidIncome));
     }
 
     @Test
