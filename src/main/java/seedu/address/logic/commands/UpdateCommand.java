@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -32,13 +33,13 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Updates the details of an existing person in the address book.
  */
-public class EditCommand extends Command {
+public class UpdateCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "update";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the person identified "
             + "by their full name used in the displayed person list. "
             + "The full name provided is not required to be case sensitive."
             + "Existing values will be overwritten by the input values.\n"
@@ -54,23 +55,23 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_UPDATE_PERSON_SUCCESS = "Updated Person: %1$s";
+    public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Name name;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final UpdatePersonDescriptor updatePersonDescriptor;
 
     /**
-     * @param name of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param name of the person in the filtered person list to update
+     * @param updatePersonDescriptor details to update the person with
      */
-    public EditCommand(Name name, EditPersonDescriptor editPersonDescriptor) {
+    public UpdateCommand(Name name, UpdatePersonDescriptor updatePersonDescriptor) {
         requireNonNull(name);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(updatePersonDescriptor);
 
         this.name = name;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.updatePersonDescriptor = new UpdatePersonDescriptor(updatePersonDescriptor);
     }
 
     @Override
@@ -78,43 +79,41 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        Person personToEdit = null;
+        List<Person> sameNamePeople = lastShownList.stream()
+                .filter(person -> person.getLowerCaseName().equals(name))
+                .collect(Collectors.toList());
 
-        for (Person person: lastShownList) {
-            if (person.getLowerCaseName().equals(name)) {
-                personToEdit = person;
-            }
-        }
-
-        if (personToEdit == null) {
+        if (sameNamePeople.size() != 1) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
         }
 
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person personToUpdate = sameNamePeople.get(0);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        Person updatedPerson = createUpdatedPerson(personToUpdate, updatePersonDescriptor);
+
+        if (!personToUpdate.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(personToUpdate, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(MESSAGE_UPDATE_PERSON_SUCCESS, Messages.format(updatedPerson)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Person} with the details of {@code personToUpdate}
+     * updated with {@code updatePersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Person createUpdatedPerson(Person personToUpdate, UpdatePersonDescriptor updatePersonDescriptor) {
+        assert personToUpdate != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Description updatedDescription = editPersonDescriptor.getDescription().orElse(personToEdit.getDescription());
-        NextOfKin updatedNextOfKin = editPersonDescriptor.getNextOfKin().orElse(personToEdit.getNextOfKin());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = updatePersonDescriptor.getName().orElse(personToUpdate.getName());
+        Phone updatedPhone = updatePersonDescriptor.getPhone().orElse(personToUpdate.getPhone());
+        Email updatedEmail = updatePersonDescriptor.getEmail().orElse(personToUpdate.getEmail());
+        Address updatedAddress = updatePersonDescriptor.getAddress().orElse(personToUpdate.getAddress());
+        Description updatedDescription = updatePersonDescriptor.getDescription().orElse(personToUpdate.getDescription());
+        NextOfKin updatedNextOfKin = updatePersonDescriptor.getNextOfKin().orElse(personToUpdate.getNextOfKin());
+        Set<Tag> updatedTags = updatePersonDescriptor.getTags().orElse(personToUpdate.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedDescription, updatedNextOfKin, updatedTags
@@ -128,28 +127,28 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof UpdateCommand)) {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return name.equals(otherEditCommand.name)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+        UpdateCommand otherUpdateCommand = (UpdateCommand) other;
+        return name.equals(otherUpdateCommand.name)
+                && updatePersonDescriptor.equals(otherUpdateCommand.updatePersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("updatePersonDescriptor", updatePersonDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to update the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class UpdatePersonDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
@@ -158,13 +157,13 @@ public class EditCommand extends Command {
         private NextOfKin nextOfKin;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public UpdatePersonDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public UpdatePersonDescriptor(UpdatePersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -175,9 +174,9 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns true if at least one field is updated.
          */
-        public boolean isAnyFieldEdited() {
+        public boolean isAnyFieldUpdated() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
@@ -253,18 +252,18 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof UpdatePersonDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(description, otherEditPersonDescriptor.description)
-                    && Objects.equals(nextOfKin, otherEditPersonDescriptor.nextOfKin)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            UpdatePersonDescriptor otherUpdatePersonDescriptor = (UpdatePersonDescriptor) other;
+            return Objects.equals(name, otherUpdatePersonDescriptor.name)
+                    && Objects.equals(phone, otherUpdatePersonDescriptor.phone)
+                    && Objects.equals(email, otherUpdatePersonDescriptor.email)
+                    && Objects.equals(address, otherUpdatePersonDescriptor.address)
+                    && Objects.equals(description, otherUpdatePersonDescriptor.description)
+                    && Objects.equals(nextOfKin, otherUpdatePersonDescriptor.nextOfKin)
+                    && Objects.equals(tags, otherUpdatePersonDescriptor.tags);
         }
 
         @Override
