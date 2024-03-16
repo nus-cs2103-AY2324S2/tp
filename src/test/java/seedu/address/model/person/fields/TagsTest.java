@@ -9,7 +9,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 class TagsTest {
@@ -33,8 +32,8 @@ class TagsTest {
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> Tags.of(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseTags_collectionWithInvalidTags_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Tags.of(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
     }
 
     @Test

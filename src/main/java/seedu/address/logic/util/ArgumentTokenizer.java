@@ -1,9 +1,11 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import seedu.address.model.person.fields.Prefix;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
