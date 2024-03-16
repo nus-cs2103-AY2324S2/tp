@@ -1,17 +1,20 @@
 package seedu.address.model.appointment;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Nric;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.Type;
 
 import java.time.LocalDate;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Appointment class that describes an appointment
+ */
 public class Appointment {
+
+    private static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
+            "Appointment should be made with a date today onwards";
 
     // The doctor in charge of the appointment
     private final Nric doctorNric;
@@ -23,8 +26,6 @@ public class Appointment {
     private final AppointmentDate appointmentDate;
 
     // Message to outputs in case constraints are not met
-    private static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
-            "Appointment should be made with a date today onwards";
 
     private final AppointmentId appointmentId;
 
@@ -83,6 +84,11 @@ public class Appointment {
         return appointmentDate;
     }
 
+    /**
+     * Checks if appointment is same as input one by comparing persons involved and date.
+     * @param appt input appointment to compare current appointment against
+     * @return boolean indicating if appointments are the same or not
+     */
     public boolean isSameAppointment(Appointment appt) {
         if (appt == this) {
             return true;

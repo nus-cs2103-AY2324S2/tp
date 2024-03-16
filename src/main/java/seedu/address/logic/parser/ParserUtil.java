@@ -1,19 +1,17 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentDate;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Tag;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import jdk.jshell.spi.ExecutionControl;
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.appointment.AppointmentDate;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -176,6 +174,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses AppointmentDate from string to return an AppointmentDate object
+     * @param apptDate String to parse
+     * @return instance of AppointmentDate
+     * @throws ParseException if string is invalid date
+     */
     public static AppointmentDate parseAppointmentDate(String apptDate) throws ParseException {
         requireNonNull(apptDate);
         String trimmedDate = apptDate.trim();

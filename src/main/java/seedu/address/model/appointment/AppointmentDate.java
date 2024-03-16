@@ -8,6 +8,9 @@ import java.time.format.FormatStyle;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Class encapsulating an appointment's date and corresponding methods
+ */
 public class AppointmentDate {
 
     // Variable storing appointment date in a local date instance

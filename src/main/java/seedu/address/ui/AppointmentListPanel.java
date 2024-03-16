@@ -7,12 +7,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
 
 import java.util.logging.Logger;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of Appointments.
  */
 public class AppointmentListPanel extends UiPart<Region> {
     private static final String FXML = "AppointmentListPanel.fxml";
@@ -22,7 +21,7 @@ public class AppointmentListPanel extends UiPart<Region> {
     private ListView<Appointment> appointmentListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code AppointmentListPanel} with the given {@code ObservableList}.
      */
     public AppointmentListPanel(ObservableList<Appointment> appointmentList) {
         super(FXML);

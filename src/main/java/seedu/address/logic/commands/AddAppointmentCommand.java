@@ -5,15 +5,18 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.exceptions.InvalidAppointmentException;
-import seedu.address.model.person.Person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTORNRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENTNRIC;
 
-public class AddAppointmentCommand extends Command{
+
+/**
+ * Command to add an appointment to MediCLI
+ */
+public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "addappt";
 

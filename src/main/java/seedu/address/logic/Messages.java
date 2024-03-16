@@ -49,6 +49,11 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats appointment for display in result box
+     * @param appointment the appointment in question
+     * @return String formatted string as per requirements
+     */
     public static String format(Appointment appointment) {
         final StringBuilder builder = new StringBuilder();
         builder.append("Date: ")

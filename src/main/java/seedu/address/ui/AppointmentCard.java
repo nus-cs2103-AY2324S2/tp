@@ -5,10 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Appointment}.
  */
 public class AppointmentCard extends UiPart<Region> {
 
@@ -38,11 +37,11 @@ public class AppointmentCard extends UiPart<Region> {
     private Label appointmentId;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code AppointmentCard} with the given {@code Appointment} and index to display.
      */
     public AppointmentCard(Appointment appt, int displayedIndex) {
         super(FXML);
-        this.appointment  = appt;
+        this.appointment = appt;
         id.setText(displayedIndex + ". ");
         doctorNric.setText(appointment.getDoctoNric().nric);
         patientNric.setText(appointment.getPatientNric().nric);

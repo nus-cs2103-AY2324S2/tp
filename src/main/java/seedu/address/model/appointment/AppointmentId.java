@@ -2,10 +2,16 @@ package seedu.address.model.appointment;
 
 import seedu.address.commons.util.IdUtil;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Class encapsulating appointment id and corresponding methods
+ */
 public class AppointmentId {
+
+    // Message to output in case constraints are not met
+    public static final String MESSAGE_CONSTRAINTS =
+            "Appointment id should be in the format of aXXXXXXXX.";
 
     // Variable storing appointment id as a string object
     public final String appointmentId;
@@ -69,7 +75,7 @@ public class AppointmentId {
      */
     @Override
     public int hashCode() {
-        String postfix = appointmentId.substring(1,appointmentId.length());
+        String postfix = appointmentId.substring(1, appointmentId.length());
         Integer prefix = (int) appointmentId.charAt(0);
         String prefixString = prefix.toString();
 

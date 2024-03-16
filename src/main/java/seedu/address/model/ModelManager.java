@@ -169,6 +169,11 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    /**
+     * Checks if an appointment is valid by comparing if doctor and patient involved exist.
+     * @param appointment appointment to check validity of
+     * @return boolean indicating if appointment is valid
+     */
     public boolean isValidAppointment(Appointment appointment) {
         Nric doctorNric = appointment.getDoctoNric();
         Nric patientNric = appointment.getPatientNric();

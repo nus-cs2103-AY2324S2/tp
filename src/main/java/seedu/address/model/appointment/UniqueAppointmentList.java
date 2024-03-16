@@ -12,6 +12,18 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
+ * An appointment is considered unique by comparing using {@code Appointment#isSameAppointment(Appointment)}.
+ * As such, adding and updating of appointments uses Appointment#isSameAppointment(Appointment) for equality
+ * so as to ensure that the Appointment being added or updated is
+ * unique in terms of identity in the UniqueAppointmentList. However, the removal of a person uses
+ * Appointment#equals(Object) so as to ensure that the person with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Appointment#isSameAppointment(Appointment)
+ */
 public class UniqueAppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Appointment> internalUnmodifiableList =

@@ -1,21 +1,21 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDate;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Nric;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTORNRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENTNRIC;
 
+/**
+ * Parses addAppointment Command
+ */
 public class AddAppointmentCommandParser {
 
     /**
@@ -29,7 +29,8 @@ public class AddAppointmentCommandParser {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_DOCTORNRIC, PREFIX_PATIENTNRIC)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_DOCTORNRIC, PREFIX_PATIENTNRIC);
