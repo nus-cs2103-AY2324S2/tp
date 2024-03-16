@@ -16,7 +16,7 @@ import staffconnect.model.person.PersonHasModulePredicate;
 import staffconnect.model.person.PersonHasTagsPredicate;
 
 /**
- * Filters all persons in staff book whose module code or faculty shorthand or
+ * Filters all persons in staff book whose module code or faculty or
  * tags include the given filtering criteria.
  * Criteria matching is case-insensitive.
  */
@@ -80,7 +80,8 @@ public class FilterCommand extends Command {
         }
 
         FilterCommand otherFilterCommand = (FilterCommand) other;
-        return modulePredicate.toString().equals(otherFilterCommand.modulePredicate.toString())
+        return facultyPredicate.toString().equals(otherFilterCommand.facultyPredicate.toString())
+                && modulePredicate.toString().equals(otherFilterCommand.modulePredicate.toString())
                 && tagsPredicate.toString().equals(otherFilterCommand.tagsPredicate.toString());
     }
 

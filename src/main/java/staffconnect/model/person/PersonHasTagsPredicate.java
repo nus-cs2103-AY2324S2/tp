@@ -46,8 +46,8 @@ public class PersonHasTagsPredicate implements Predicate<Person> {
             return false;
         }
 
-        PersonHasTagsPredicate otherPersonHasTagPredicate = (PersonHasTagsPredicate) other;
-        return tags.equals(otherPersonHasTagPredicate.tags);
+        PersonHasTagsPredicate otherPersonHasTagsPredicate = (PersonHasTagsPredicate) other;
+        return tags.equals(otherPersonHasTagsPredicate.tags);
     }
 
     @Override
