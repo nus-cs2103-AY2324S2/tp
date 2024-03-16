@@ -1,16 +1,22 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AbortDeleteCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses the user input when the user intends to delete a person.
+ */
 public class DeleteConfirmationStageParser {
     /**
      * Used for initial separation of command word and args.
@@ -40,13 +46,13 @@ public class DeleteConfirmationStageParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
-            case "Y":
-                return new DeleteCommand();
-            case "N":
-                return new AbortDeleteCommand();
-            default:
-                logger.finer("This user input caused a ParseException: " + userInput);
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION);
+        case "Y":
+            return new DeleteCommand();
+        case "N":
+            return new AbortDeleteCommand();
+        default:
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION);
         }
     }
 }

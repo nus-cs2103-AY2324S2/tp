@@ -1,11 +1,13 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.CommandBoxState;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.CommandBoxState;
+import seedu.address.model.Model;
+
+/**
+ * Aborts the clearing of the database.
+ */
 public class AbortClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Clearing aborted";
 

@@ -1,16 +1,22 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_CLEAR_CONFIRMATION;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_CLEAR_CONFIRMATION;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AbortClearCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses the user input when the user intends to clear the database.
+ */
 public class ClearConfirmationStageParser {
     /**
      * Used for initial separation of command word and args.

@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -150,6 +151,16 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Person> getLastMentionedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setLastMentionedPerson(Person p) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.CommandBoxState;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-
-public class AbortDeleteCommand extends Command{
+/**
+ * Aborts the delete command.
+ */
+public class AbortDeleteCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Deletion aborted";
 
     @Override
