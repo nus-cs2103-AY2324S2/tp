@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -21,8 +23,13 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.AddressContainsSubstringPredicate;
 import seedu.address.model.person.predicates.CombinedPredicates;
+import seedu.address.model.person.predicates.EmailContainsSubstringPredicate;
 import seedu.address.model.person.predicates.NameContainsSubstringPredicate;
+import seedu.address.model.person.predicates.NoteContainsSubstringPredicate;
+import seedu.address.model.person.predicates.PhoneContainsSubstringPredicate;
+import seedu.address.model.person.predicates.TagSetContainsAllTagsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -70,7 +77,16 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_NAME + "Alex");
-        assertEquals(new FindCommand(new CombinedPredicates(new NameContainsSubstringPredicate("Alex"))), command);
+
+        NameContainsSubstringPredicate namePredicate = new NameContainsSubstringPredicate("Alex");
+        PhoneContainsSubstringPredicate phonePredicate = new PhoneContainsSubstringPredicate("");
+        EmailContainsSubstringPredicate emailPredicate = new EmailContainsSubstringPredicate("");
+        AddressContainsSubstringPredicate addressPredicate = new AddressContainsSubstringPredicate("");
+        NoteContainsSubstringPredicate notePredicate = new NoteContainsSubstringPredicate("");
+        TagSetContainsAllTagsPredicate tagsPredicate = new TagSetContainsAllTagsPredicate(new HashSet<>());
+        FindCommand expectedCommand = new FindCommand(new CombinedPredicates(
+                namePredicate, phonePredicate, emailPredicate, addressPredicate, notePredicate, tagsPredicate));
+        assertEquals(expectedCommand, command);
     }
 
     @Test

@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -62,7 +61,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         FindCommand command = new FindCommand(new CombinedPredicates());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(getTypicalAddressBook().getPersonList(), model.getFilteredPersonList());
     }
 
     @Test
@@ -78,8 +77,9 @@ public class FindCommandTest {
     @Test
     public void toStringMethod() {
         NameContainsSubstringPredicate predicate = new NameContainsSubstringPredicate("Fiona");
-        FindCommand findCommand = new FindCommand(new CombinedPredicates(predicate));
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        CombinedPredicates combinedPredicates = new CombinedPredicates(predicate);
+        FindCommand findCommand = new FindCommand(combinedPredicates);
+        String expected = FindCommand.class.getCanonicalName() + "{predicates=" + combinedPredicates + "}";
         assertEquals(expected, findCommand.toString());
     }
 }
