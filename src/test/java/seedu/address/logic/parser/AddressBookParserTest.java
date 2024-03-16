@@ -97,8 +97,8 @@ public class AddressBookParserTest {
     public void parseCommand_addpoints() throws Exception {
         final Name name = new Name("Alice");
         final Points points = new Points("50");
-        AddPointsCommand command = (AddPointsCommand) parser.parseCommand(
-                AddPointsCommand.COMMAND_WORD + " " + PREFIX_NAME + " " + PREFIX_POINTS + points.value);
+        String input = AddPointsCommand.COMMAND_WORD + " " + PREFIX_NAME + " " + name.fullName + " " + PREFIX_POINTS + " " + points.value;
+        AddPointsCommand command = (AddPointsCommand) parser.parseCommand(input);
         assertEquals(new AddPointsCommand(name, points), command);
     }
 
