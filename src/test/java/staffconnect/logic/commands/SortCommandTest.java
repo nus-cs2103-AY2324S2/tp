@@ -9,14 +9,11 @@ import static staffconnect.model.person.comparators.PhoneComparator.PHONE_COMPAR
 import static staffconnect.model.person.comparators.VenueComparator.VENUE_COMPARATOR;
 import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
-import java.util.Comparator;
-
 import org.junit.jupiter.api.Test;
 
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
 import staffconnect.model.UserPrefs;
-import staffconnect.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SortCommand}.
@@ -28,12 +25,7 @@ public class SortCommandTest {
     @Test
     public void equals() {
 
-        SortCommand moduleSortCommand = new SortCommand(MODULE_COMPARATOR);
         SortCommand nameSortCommand = new SortCommand(NAME_COMPARATOR);
-        SortCommand venueSortCommand = new SortCommand(VENUE_COMPARATOR);
-        SortCommand phoneSortCommand = new SortCommand(PHONE_COMPARATOR);
-
-
 
         // same object -> returns true
         assertTrue(nameSortCommand.equals(nameSortCommand));
@@ -47,22 +39,17 @@ public class SortCommandTest {
         // null -> returns false
         assertFalse(nameSortCommand.equals(null));
 
-        // different attribute -> returns false
-        assertFalse(nameSortCommand.equals(moduleSortCommand));
-        assertFalse(nameSortCommand.equals(venueSortCommand));
-        assertFalse(nameSortCommand.equals(phoneSortCommand));
+        // different values -> returns false
+        assertFalse(nameSortCommand.equals(new SortCommand(MODULE_COMPARATOR)));
+        assertFalse(nameSortCommand.equals(new SortCommand(VENUE_COMPARATOR)));
+        assertFalse(nameSortCommand.equals(new SortCommand(PHONE_COMPARATOR)));
     }
 
     @Test
     public void toStringMethod() {
-        Comparator<Person> comparator = new Comparator<Person>() {
-            @Override
-            public int compare(Person person1, Person person2) {
-                return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
-            }
-        };
-        SortCommand sortCommand = new SortCommand(comparator);
-        String expected = SortCommand.class.getCanonicalName() + "{comparator=" + comparator + "}";
+
+        SortCommand sortCommand = new SortCommand(NAME_COMPARATOR);
+        String expected = SortCommand.class.getCanonicalName() + "{comparator=" + NAME_COMPARATOR + "}";
         assertEquals(expected, sortCommand.toString());
     }
 
