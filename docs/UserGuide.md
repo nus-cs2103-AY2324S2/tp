@@ -95,22 +95,22 @@ Example:
 
 Adds a patient medical record to the system.
 
-Format: `add ic/NRIC n/NAME p/PHONE_NUMBER [g/GENDER] b/BIRTHDATE i/ILLNESS_CATEGORY [d/DRUG_ALLERGIES]`
+Format: `add ic/NRIC n/NAME [g/GENDER] b/BIRTHDATE p/PHONE_NUMBER e/EMAIL [d/DRUG_ALLERGY] [i/ILLNESS_CATEGORY]...`
 
 * `NRIC` must be an alphanumeric and it must follow Singapore's NRIC format
 * `NAME` can contain an alphanumeric, spaces, special characters.
+* `GENDER` M, F or exclude from the command for 'Prefer not to say' option.
 * `PHONE_NUMBER` numeric characters and must follow the format "+65 XXXXXXXX".
-* `GENDER` Male or M, Female F or exclude from the command for Prefer not to say option.
 * `BIRTHDATE` must be in the form of DD-MM-YYYY and must not be in the future.
+* `EMAIL` Emails should be of the format 'local-part@domain'.
 * `ILLNESS` one of the following options - Infectious Disease, Chronic Conditions, Autoimmune Disorders, 
 Genetic Disorders, Mental Health Disorders, Neurological Disorders, Metabolic Disorder, Nutritional Deficiencies, 
 Environmental Illnesses, Degenerative Diseases or Others.
-* `DRUG_ALLERGIES` can contain an alphanumeric, spaces, special characters.
 
 Examples:
-* `add ic/S9974944F n/John Doe p/91234567 g/Male b/11-11-1990 i/Infectious Disease d/Paracetamol Allergy` Adds a new 
+* `add ic/S9974944F n/John Doe p/91234567 g/M b/11-11-1990 i/Infectious Disease d/Paracetamol Allergy` Adds a new 
 patient record with nric of `S9974944F` name of `John Doe`, phone no. of `+65 91234567`, gender of `Male`, 
-birthdate of `11-11-1990`, llness of `Infectious Disease` and allergy of `Paracetamol Allergy`.
+birthdate of `11-11-1990`, allergy of `Paracetamol Allergy`, and an illness of `Infectious Disease`.
 ### Listing all patient medical records : `list`
 
 Displays the list of patients in the application. Each row of patients displays a basic details of the patients 
