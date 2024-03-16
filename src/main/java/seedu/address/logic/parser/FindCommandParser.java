@@ -41,15 +41,15 @@ public class FindCommandParser implements Parser<FindCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         NameContainsSubstringPredicate namePredicate = new NameContainsSubstringPredicate(
-                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_NAME).get()));
+                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_NAME).orElse("")));
         PhoneContainsSubstringPredicate phonePedicate = new PhoneContainsSubstringPredicate(
-                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_PHONE).get()));
+                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_PHONE).orElse("")));
         EmailContainsSubstringPredicate emailPedicate = new EmailContainsSubstringPredicate(
-                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_EMAIL).get()));
+                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_EMAIL).orElse("")));
         AddressContainsSubstringPredicate addressPedicate = new AddressContainsSubstringPredicate(
-                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_ADDRESS).get()));
+                ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_ADDRESS).orElse("")));
         NoteContainsSubstringPredicate notePedicate = new NoteContainsSubstringPredicate(ParserUtil
-                .parseSearchString(argMultimap.getValue(PREFIX_NOTE).get()));
+                .parseSearchString(argMultimap.getValue(PREFIX_NOTE).orElse("")));
         TagSetContainsAnyTagPredicate tagsPredicate = new TagSetContainsAnyTagPredicate(
                 ParserUtil.parseSearchTagSet(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))));
 
