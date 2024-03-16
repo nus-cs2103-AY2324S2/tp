@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.StarCommand;
+import seedu.address.logic.commands.FindStarsLessThanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -80,6 +81,9 @@ public class AddressBookParser {
 
         case StarCommand.COMMAND_WORD:
             return new StarCommandParser().parse(arguments);
+
+        case FindStarsLessThanCommand.COMMAND_WORD:
+            return new FindStarsLessThanCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
