@@ -38,7 +38,6 @@ import static educonnect.testutil.TypicalStudents.AMY;
 import static educonnect.testutil.TypicalStudents.BOB;
 import static educonnect.testutil.TypicalTimetableAndValues.DEFAULT_EMPTY_TIMETABLE;
 import static educonnect.testutil.TypicalTimetableAndValues.VALID_TIMETABLE_1;
-import static educonnect.testutil.TypicalTimetableAndValues.VALID_TIMETABLE_2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;

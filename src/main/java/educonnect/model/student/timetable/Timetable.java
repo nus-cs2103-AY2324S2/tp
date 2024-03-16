@@ -1,6 +1,5 @@
 package educonnect.model.student.timetable;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 
 import educonnect.model.student.timetable.exceptions.NumberOfDaysException;

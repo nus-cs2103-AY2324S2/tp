@@ -7,7 +7,8 @@ import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE;
 import static educonnect.testutil.Assert.assertThrows;
-import static educonnect.testutil.TypicalTimetableAndValues.*;
+import static educonnect.testutil.TypicalTimetableAndValues.VALID_TIMETABLE_1;
+import static educonnect.testutil.TypicalTimetableAndValues.VALID_TIMETABLE_2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -65,11 +66,11 @@ public class CommandTestUtil {
         " " + PREFIX_TELEGRAM_HANDLE; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_TIMETABLE_DESC = " " + PREFIX_TIMETABLE
-                                                        + "mon: 13 to 15"   // 'to' is not allowed, use '-'
-                                                        + "tue: 2pm-4pm "   // 'pm' is not recognised, use 0-23 clock
-                                                        + "wed: 1-3 4-7 "   // no ',' between periods
-                                                        + "thu: 24-27 "     // numbers above 23 not recognised, use 0-23
-                                                        + "fri 12-14";      // no ':' after 'fri'
+                                                        + "mon: 13 to 15" // 'to' is not allowed, use '-'
+                                                        + "tue: 2pm-4pm " // 'pm' is not recognised, use 0-23 clock
+                                                        + "wed: 1-3 4-7 " // no ',' between periods
+                                                        + "thu: 24-27 " // numbers above 23 not recognised, use 0-23
+                                                        + "fri 12-14"; // no ':' after 'fri'
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

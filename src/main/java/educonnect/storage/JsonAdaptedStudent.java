@@ -1,6 +1,5 @@
 package educonnect.storage;
 
-import educonnect.model.student.timetable.Timetable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +15,7 @@ import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
 /**
@@ -36,8 +36,10 @@ class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
-                              @JsonProperty("email") String email, @JsonProperty("telegramHandle") String telegramHandle,
+    public JsonAdaptedStudent(@JsonProperty("name") String name,
+                              @JsonProperty("studentId") String studentId,
+                              @JsonProperty("email") String email,
+                              @JsonProperty("telegramHandle") String telegramHandle,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("timetable") Timetable timetable) {
         this.name = name;

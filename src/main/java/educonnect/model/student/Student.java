@@ -2,13 +2,13 @@ package educonnect.model.student;
 
 import static educonnect.commons.util.CollectionUtil.requireAllNonNull;
 
-import educonnect.model.student.timetable.Timetable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
 /**

@@ -5,8 +5,6 @@ import static educonnect.testutil.Assert.assertThrows;
 import static educonnect.testutil.TypicalStudents.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import educonnect.model.student.timetable.Timetable;
-import educonnect.testutil.TypicalTimetableAndValues;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +16,8 @@ import educonnect.model.student.Email;
 import educonnect.model.student.Name;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Timetable;
+import educonnect.testutil.TypicalTimetableAndValues;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";

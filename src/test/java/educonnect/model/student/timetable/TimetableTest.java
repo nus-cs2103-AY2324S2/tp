@@ -52,7 +52,7 @@ public class TimetableTest {
 
         // adding to Monday, period from 2 PM to 4 PM, failure -> throws OverlapPeriodException
         assertThrows(OverlapPeriodException.class, () ->
-                timetable5.addPeriodToDay(1,PERIOD_3));
+                timetable5.addPeriodToDay(1, PERIOD_3));
 
         // adding to a day outside the normal 7 days, failure -> returns false
         assertThrows(NumberOfDaysException.class, () ->

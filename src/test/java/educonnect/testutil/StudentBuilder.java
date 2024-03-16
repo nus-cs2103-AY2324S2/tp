@@ -1,6 +1,5 @@
 package educonnect.testutil;
 
-import educonnect.model.student.timetable.Timetable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +8,7 @@ import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 import educonnect.model.util.SampleDataUtil;
 

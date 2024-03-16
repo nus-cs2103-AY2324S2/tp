@@ -1,6 +1,5 @@
 package educonnect.logic.commands;
 
-
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
@@ -8,7 +7,6 @@ import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 import static java.util.Objects.requireNonNull;
 
-import educonnect.model.student.timetable.Timetable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +25,7 @@ import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
 /**

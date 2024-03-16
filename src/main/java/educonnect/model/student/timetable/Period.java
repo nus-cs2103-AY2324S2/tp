@@ -64,7 +64,7 @@ public class Period implements Comparable<Period> {
     /**
      * Constructor for JSON Serialisation, included only for JSON to work, not intended as a constructor to be used!
      */
-    private Period(){
+    private Period() {
         this.periodName = "";
         this.timeStart = null;
         this.timeEnd = null;

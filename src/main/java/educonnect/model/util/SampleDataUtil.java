@@ -1,6 +1,5 @@
 package educonnect.model.util;
 
-import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +15,7 @@ import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Period;
 import educonnect.model.student.timetable.Timetable;
+import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
 import educonnect.model.tag.Tag;
 
 /**
