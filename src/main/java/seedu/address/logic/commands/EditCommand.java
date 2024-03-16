@@ -89,10 +89,6 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!editPersonDescriptor.equals(new EditPersonDescriptor(personToEdit))) {
-            throw new CommandException(MESSAGE_NO_CHANGE);
-        }
-
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
@@ -177,6 +173,10 @@ public class EditCommand extends Command {
             setIntake(toCopy.intake);
         }
 
+        /**
+         * Constructor to create EditPersonDescriptior
+         * @param toCopy , person Object to initialise the EditPersonDescriptor
+         */
         public EditPersonDescriptor(Person toCopy) {
             setName(toCopy.getName());
             setPhone(toCopy.getPhone());
