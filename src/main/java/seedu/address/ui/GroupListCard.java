@@ -12,7 +12,7 @@ import java.util.Comparator;
 /**
  * An UI component that displays information of a {@code Group}.
  */
-public class GroupCard extends UiPart<Region> {
+public class GroupListCard extends UiPart<Region> {
 
     private static final String FXML = "GroupListCard.fxml";
 
@@ -27,9 +27,8 @@ public class GroupCard extends UiPart<Region> {
 
     /**
      * Creates a {@code GroupCard} with the given {@code Group}.
-     * @param group
      */
-    public GroupCard(Group group) {
+    public GroupListCard(Group group) {
         super(FXML);
         this.group = group;
         name.setText(group.getName().fullName);

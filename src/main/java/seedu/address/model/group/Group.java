@@ -32,4 +32,23 @@ public class Group {
     public Set<CourseMate> getMembers() {
         return Collections.unmodifiableSet(members);
     }
+
+    /**
+     * Returns true if both groups have the same name.
+     * This defines a weaker notion of equality between two groups.
+     */
+    public boolean isSameGroup(Group otherGroup) {
+        //todo To be implemented.
+        return false;
+    }
+
+    /**
+     * Returns true if both groups have the same ??? todo
+     * This defines a stronger notion of equality between two groups.
+     */
+    @Override
+    public boolean equals(Object other) {
+        //todo To be implemented.
+        return false;
+    }
 }

@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.group.Group;
 
 /**
  * API of the Logic component
@@ -32,6 +33,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of course mates */
     ObservableList<CourseMate> getFilteredCourseMateList();
+
+    /** Returns an unmodifiable view of the filtered list of groups */
+    ObservableList<Group> getFilteredGroupList();
 
     /** Returns the most recently processed course mate */
     CourseMate getRecentlyProcessedCourseMate();

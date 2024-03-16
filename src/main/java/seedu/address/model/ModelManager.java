@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.group.Group;
 
 /**
  * Represents the in-memory model of the contact list data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<CourseMate> filteredCourseMates;
+    private final FilteredList<Group> filteredGroups;
     private CourseMate recentlyProcessedCourseMate;
 
     /**
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCourseMates = new FilteredList<>(this.contactList.getCourseMateList());
+        filteredGroups = new FilteredList<>(this.contactList.getGroupList());
         recentlyProcessedCourseMate = null;
     }
 
@@ -128,6 +131,17 @@ public class ModelManager implements Model {
     public void updateFilteredCourseMateList(Predicate<CourseMate> predicate) {
         requireNonNull(predicate);
         filteredCourseMates.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Group> getFilteredGroupList() {
+        return filteredGroups;
+    }
+
+    @Override
+    public void updateFilteredGroupList(Predicate<Group> predicate) {
+        requireNonNull(predicate);
+        //todo To be implemented
     }
 
     //=========== Most recently processed course mate ========================================================
