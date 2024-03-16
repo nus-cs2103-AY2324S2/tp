@@ -21,8 +21,8 @@ import seedu.address.model.internship.ContactName;
 import seedu.address.model.internship.ContactNumber;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Location;
-import seedu.address.model.internship.Role;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Role;
 
 /**
  * Parses input arguments and creates a new InternshipAddCommand object
@@ -37,16 +37,18 @@ public class InternshipAddCommandParser implements InternshipParser<InternshipAd
 
     public InternshipAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, PREFIX_CONTACT_NUMBER,
-                        PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, 
+                                           PREFIX_CONTACT_NUMBER,PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, 
+                                           PREFIX_ROLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_DESCRIPTION, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipAddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, PREFIX_CONTACT_NUMBER,
-                PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, 
+                                                 PREFIX_CONTACT_NUMBER,PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, 
+                                                 PREFIX_ROLE);
 
         CompanyName com = InternshipParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY).get());
         ContactName poc = InternshipParserUtil.parseContactName(argMultimap.getValue(PREFIX_CONTACT_NAME).get());
