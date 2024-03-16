@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import staffconnect.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the tag names given.
+ * Tests that a {@code Person}'s {@code Module} matches the given module to filter for.
  */
 public class PersonHasModulePredicate implements Predicate<Person> {
     private final Module module;
@@ -33,8 +33,8 @@ public class PersonHasModulePredicate implements Predicate<Person> {
             return false;
         }
 
-        PersonHasModulePredicate otherPersonHasTagPredicate = (PersonHasModulePredicate) other;
-        return module.equals(otherPersonHasTagPredicate.module);
+        PersonHasModulePredicate otherPersonHasModulePredicate = (PersonHasModulePredicate) other;
+        return module.equals(otherPersonHasModulePredicate.module);
     }
 
     @Override

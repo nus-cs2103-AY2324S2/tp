@@ -10,7 +10,7 @@ import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.model.tag.Tag;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the tag names given.
+ * Tests that a {@code Person}'s {@code Tags} matches any of the tag names given.
  */
 public class PersonHasTagsPredicate implements Predicate<Person> {
     private final Set<Tag> tags;
@@ -52,6 +52,6 @@ public class PersonHasTagsPredicate implements Predicate<Person> {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("tag name", tags).toString();
+        return new ToStringBuilder(this).add("tag names", tags).toString();
     }
 }

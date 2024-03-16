@@ -2,7 +2,7 @@ package staffconnect.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-// import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY; // TODO: add parsing for faculty and module
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -10,7 +10,9 @@ import java.util.Set;
 
 import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
+import staffconnect.model.person.PersonHasFacultyPredicate;
 import staffconnect.model.person.PersonHasModulePredicate;
 import staffconnect.model.person.PersonHasTagsPredicate;
 import staffconnect.model.tag.Tag;
@@ -27,17 +29,22 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FACULTY, PREFIX_MODULE, PREFIX_TAG);
 
-        if (!argMultimap.getValue(PREFIX_MODULE).isPresent() && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_FACULTY).isPresent() && !argMultimap.getValue(PREFIX_MODULE).isPresent()
+                && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_MODULE); // TODO: update for faculty
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_FACULTY, PREFIX_MODULE);
 
+        Faculty faculty = null;
         Module module = null;
         Set<Tag> tags = null;
 
+        if (argMultimap.getValue(PREFIX_FACULTY).isPresent()) {
+            faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get());
+        }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         }
@@ -45,11 +52,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         }
 
-        // PersonHasFacultyPredicate facultyPredicate = new PersonHasFacultyPredicate(module);
+        PersonHasFacultyPredicate facultyPredicate = new PersonHasFacultyPredicate(faculty);
         PersonHasModulePredicate modulePredicate = new PersonHasModulePredicate(module);
         PersonHasTagsPredicate tagsPredicate = new PersonHasTagsPredicate(tags);
 
-        return new FilterCommand(modulePredicate, tagsPredicate);
+        return new FilterCommand(facultyPredicate, modulePredicate, tagsPredicate);
     }
 
 }

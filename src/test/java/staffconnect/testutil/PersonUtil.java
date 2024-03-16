@@ -1,5 +1,6 @@
 package staffconnect.testutil;
 
+import static staffconnect.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 import staffconnect.logic.commands.AddCommand;
 import staffconnect.logic.commands.EditCommand.EditPersonDescriptor;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Person;
 import staffconnect.model.tag.Tag;
 
@@ -41,6 +43,9 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        person.getAvailabilities().stream().forEach(
+            s -> sb.append(PREFIX_AVAILABILITY + s.value + " ")
+        );
         return sb.toString();
     }
 
@@ -58,9 +63,17 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getAvailabilities().isPresent()) {
+            Set<Availability> availabilities = descriptor.getAvailabilities().get();
+            if (availabilities.isEmpty()) {
+                sb.append(PREFIX_AVAILABILITY);
+            } else {
+                availabilities.forEach(s -> sb.append(PREFIX_AVAILABILITY).append(s.value).append(" "));
             }
         }
         return sb.toString();

@@ -1,7 +1,7 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-// import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY; // TODO: add filtering for faculty
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -11,6 +11,7 @@ import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;
 import staffconnect.model.Model;
 import staffconnect.model.person.Person;
+import staffconnect.model.person.PersonHasFacultyPredicate;
 import staffconnect.model.person.PersonHasModulePredicate;
 import staffconnect.model.person.PersonHasTagsPredicate;
 
@@ -27,20 +28,24 @@ public class FilterCommand extends Command {
             + " module, faculty or tags contain the specified criteria (tags are case-insensitive)"
             + " and displays them as a list with index numbers.\n"
             + "Parameters: "
-            // + "[" + PREFIX_FACULTY + "FACULTY]"
+            + "[" + PREFIX_FACULTY + "FACULTY]"
             + " [" + PREFIX_MODULE + "MODULE]"
             + " [" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "BestProf";
 
+    private final PersonHasFacultyPredicate facultyPredicate;
     private final PersonHasModulePredicate modulePredicate;
     private final PersonHasTagsPredicate tagsPredicate;
     private final Predicate<Person> personPredicate;
 
     /**
-     * Creates a FilterCommand to filter for the specified {@code Tag}
+     * Creates a FilterCommand to filter for the specified {@code Faculty},
+     * {@code Module}, {@code Tags}.
      */
-    public FilterCommand(PersonHasModulePredicate modulePredicate, PersonHasTagsPredicate tagsPredicate) {
+    public FilterCommand(PersonHasFacultyPredicate facultyPredicate, PersonHasModulePredicate modulePredicate,
+            PersonHasTagsPredicate tagsPredicate) {
+        this.facultyPredicate = facultyPredicate;
         this.modulePredicate = modulePredicate;
         this.tagsPredicate = tagsPredicate;
         this.personPredicate = setPersonPredicate();
@@ -54,8 +59,13 @@ public class FilterCommand extends Command {
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
+    /**
+     * Sets the filtering criteria for a person, given any {@code Faculty},
+     * {@code Module}, {@code Tags}.
+     * @return the person predicate to filter persons from.
+     */
     private Predicate<Person> setPersonPredicate() {
-        return this.modulePredicate.and(this.tagsPredicate);
+        return this.facultyPredicate.and(modulePredicate.and(tagsPredicate));
     }
 
     @Override
@@ -77,6 +87,7 @@ public class FilterCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("facultyPredicate", facultyPredicate)
                 .add("modulePredicate", modulePredicate)
                 .add("tagsPredicate", tagsPredicate)
                 .toString();
