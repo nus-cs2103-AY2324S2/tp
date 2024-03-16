@@ -37,8 +37,8 @@ public class InternshipAddCommandParser implements InternshipParser<InternshipAd
 
     public InternshipAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, 
-                                           PREFIX_CONTACT_NUMBER,PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, 
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
+                                           PREFIX_CONTACT_NUMBER,PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION,
                                            PREFIX_ROLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_DESCRIPTION, PREFIX_STATUS)
@@ -46,8 +46,8 @@ public class InternshipAddCommandParser implements InternshipParser<InternshipAd
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipAddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, 
-                                                 PREFIX_CONTACT_NUMBER,PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
+                                                 PREFIX_CONTACT_NUMBER,PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION,
                                                  PREFIX_ROLE);
 
         CompanyName com = InternshipParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY).get());
