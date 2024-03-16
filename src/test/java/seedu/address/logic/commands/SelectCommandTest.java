@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -35,10 +36,22 @@ public class SelectCommandTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_same_index() {
         SelectCommand one = new SelectCommand(Index.fromZeroBased(5));
         SelectCommand two = new SelectCommand(Index.fromZeroBased(5));
         assertEquals(one, two);
+    }
+
+    @Test
+    public void equals_handles_null() {
+        SelectCommand one = new SelectCommand(Index.fromZeroBased(5));
+        assertNotEquals(null, one);
+    }
+
+    @Test
+    public void equals_same_object() {
+        SelectCommand one = new SelectCommand(Index.fromZeroBased(5));
+        assertEquals(one, one);
     }
 
     @Test
