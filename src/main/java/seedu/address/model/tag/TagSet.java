@@ -46,7 +46,11 @@ public class TagSet extends Attribute<Set<Tag>> {
 
         Set<?> other = ((Set<?>) otherValue);
 
-        if (other.isEmpty() || other.iterator().next() instanceof Tag) {
+        if (other.isEmpty()) {
+            return true;
+        }
+
+        if (!(other.iterator().next() instanceof Tag)) {
             return false;
         }
 
@@ -58,7 +62,7 @@ public class TagSet extends Attribute<Set<Tag>> {
             return true;
         }
 
-        return otherTags.stream().anyMatch(tag -> this.getValue().contains(tag));
+        return otherTags.stream().allMatch(tag -> this.getValue().contains(tag));
     }
 
     @Override

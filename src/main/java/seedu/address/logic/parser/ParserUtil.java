@@ -16,7 +16,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TagSet;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -152,17 +151,5 @@ public class ParserUtil {
         String trimmedAddress = searchString.trim();
 
         return trimmedAddress;
-    }
-
-    /**
-     * Parses a {@code Set<Tag>} into a TagSet.
-     *
-     * @param tags Set of tags
-     *
-     * @return TagSet representing the set of tags
-     */
-    public static TagSet parseSearchTagSet(Set<Tag> tags) {
-        requireNonNull(tags);
-        return new TagSet(tags);
     }
 }
