@@ -1,8 +1,12 @@
 package seedu.address.model.tag;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.person.Nric;
 
 public class TagTest {
 
@@ -23,4 +27,23 @@ public class TagTest {
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
 
+    @Test
+    public void equals() {
+        Tag tag = new Tag("Insulin");
+
+        // same values -> returns true
+        assertTrue(tag.equals(new Tag("Insulin")));
+
+        // same object -> returns true
+        assertTrue(tag.equals(tag));
+
+        // null -> returns false
+        assertFalse(tag.equals(null));
+
+        // different types -> returns false
+        assertFalse(tag.equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(tag.equals(new Tag("Panadol")));
+    }
 }
