@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private Label schedules;
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -55,5 +57,8 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        StringBuilder sb = new StringBuilder();
+        person.getSchedules().forEach(schedule -> sb.append(schedule.toString()));
+        schedules.setText(sb.toString());
     }
 }

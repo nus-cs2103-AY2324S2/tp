@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 
 /**
@@ -17,13 +16,32 @@ import seedu.address.model.person.Person;
  */
 public class Schedule {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Schedule names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String schedName;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final ArrayList<Person> participants;
+
+    /**
+     * Constructs a {@code Schedule}.
+     *
+     * @param schedName A valid schedule name
+     * @param startTime A valid start time
+     * @param endTime A valid end time
+     */
+
+    public Schedule(String schedName, LocalDateTime startTime,
+                    LocalDateTime endTime) {
+        requireNonNull(schedName);
+        checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTiming(startTime, endTime));
+        this.schedName = schedName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.participants = null;
+    }
 
     /**
      * Constructs a {@code Schedule}.
@@ -105,12 +123,9 @@ public class Schedule {
      * Format state as text for viewing.
      */
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("schedule", schedName)
-                .add("start", startTime)
-                .add("end", endTime)
-                .add("participants", participants.stream().map(Person:: getName))
-                .toString();
+        return schedName
+                + " start " + startTime.toString()
+                + " end " + endTime.toString();
     }
 
 }

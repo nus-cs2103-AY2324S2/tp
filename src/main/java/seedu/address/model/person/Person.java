@@ -41,6 +41,18 @@ public class Person {
         this.schedules.addAll(schedules);
     }
 
+    /**
+     * Overloaded constructor to consider if Schedule is empty
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
     public Name getName() {
         return name;
     }
@@ -66,7 +78,7 @@ public class Person {
     }
 
     public ArrayList<Schedule> getSchedules() {
-        return new ArrayList<>(Collections.unmodifiableList(schedules));
+        return schedules;
     }
 
     /**
@@ -120,7 +132,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
-                .add("schedules", schedules)
+                .add("schedules", schedules.toString())
                 .toString();
     }
 
