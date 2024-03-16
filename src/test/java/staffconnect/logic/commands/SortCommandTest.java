@@ -3,6 +3,10 @@ package staffconnect.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static staffconnect.model.person.comparators.ModuleComparator.MODULE_COMPARATOR;
+import static staffconnect.model.person.comparators.NameComparator.NAME_COMPARATOR;
+import static staffconnect.model.person.comparators.PhoneComparator.PHONE_COMPARATOR;
+import static staffconnect.model.person.comparators.VenueComparator.VENUE_COMPARATOR;
 import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
 import java.util.Comparator;
@@ -23,37 +27,30 @@ public class SortCommandTest {
 
     @Test
     public void equals() {
-        Comparator<Person> firstComparator = new Comparator<Person>() {
-            @Override
-            public int compare(Person person1, Person person2) {
-                return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
-            }
-        };
-        Comparator<Person> secondComparator = new Comparator<Person>() {
-            @Override
-            public int compare(Person person1, Person person2) {
-                return person1.getModule().toString().compareToIgnoreCase(person2.getModule().toString());
-            }
-        };
 
-        SortCommand sortFirstCommand = new SortCommand(firstComparator);
-        SortCommand sortSecondCommand = new SortCommand(secondComparator);
+        SortCommand moduleSortCommand = new SortCommand(MODULE_COMPARATOR);
+        SortCommand nameSortCommand = new SortCommand(NAME_COMPARATOR);
+        SortCommand venueSortCommand = new SortCommand(VENUE_COMPARATOR);
+        SortCommand phoneSortCommand = new SortCommand(PHONE_COMPARATOR);
+
+
 
         // same object -> returns true
-        assertTrue(sortFirstCommand.equals(sortFirstCommand));
+        assertTrue(nameSortCommand.equals(nameSortCommand));
 
         // same values -> returns true
-        SortCommand sortFirstCommandCopy = new SortCommand(firstComparator);
-        assertTrue(sortFirstCommand.equals(sortFirstCommandCopy));
+        assertTrue(nameSortCommand.equals(new SortCommand(NAME_COMPARATOR)));
 
         // different types -> returns false
-        assertFalse(sortFirstCommand.equals(1));
+        assertFalse(nameSortCommand.equals(1));
 
         // null -> returns false
-        assertFalse(sortFirstCommand.equals(null));
+        assertFalse(nameSortCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(sortFirstCommand.equals(sortSecondCommand));
+        // different attribute -> returns false
+        assertFalse(nameSortCommand.equals(moduleSortCommand));
+        assertFalse(nameSortCommand.equals(venueSortCommand));
+        assertFalse(nameSortCommand.equals(phoneSortCommand));
     }
 
     @Test
