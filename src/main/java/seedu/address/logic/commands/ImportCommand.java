@@ -30,11 +30,11 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Contacts from file imported";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports a datafile into the contact manager."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports a datafile into the contact manager.\n"
             + "Parameters: "
             + PREFIX_FILENAME + "FILENAME_1 "
-            + "[" + PREFIX_FILENAME + "FILENAME_2 "
-            + "[" + PREFIX_FILENAME + "FILENAME_3 "
+            + "[" + PREFIX_FILENAME + "FILENAME_2] "
+            + "[" + PREFIX_FILENAME + "FILENAME_3] "
             + "...";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "The person %s already exists in the contact manager.";

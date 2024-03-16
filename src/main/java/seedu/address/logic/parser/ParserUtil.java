@@ -126,6 +126,10 @@ public class ParserUtil {
 
     public static Set<File> parseFiles(Collection<String> filenames) throws ParseException {
         requireNonNull(filenames);
+        final Set<File> fileSet = new HashSet<>();
+        for (String fname : filenames) {
+
+        }
         final Set<File> fileSet = new HashSet<>(
                 filenames
                 .stream()
