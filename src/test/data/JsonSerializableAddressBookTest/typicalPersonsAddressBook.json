@@ -7,7 +7,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "grade" : "A+",
-    "tags" : [ "friends" ]
+    "groups" : [ "Group 1" ]
   }, {
     "name" : "Benson Meier",
     "studentId": "A0323456X",
@@ -15,7 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "grade" : "A",
-    "tags" : [ "owesMoney", "friends" ]
+    "groups" : [ "Group 2B", "Group 1" ]
   }, {
     "name" : "Carl Kurz",
     "studentId": "A0823456X",
@@ -23,7 +23,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "grade" : "A-",
-    "tags" : [ ]
+    "groups" : [ ]
   }, {
     "name" : "Daniel Meier",
     "studentId": "A0923456X",
@@ -31,7 +31,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "grade" : "B+",
-    "tags" : [ "friends" ]
+    "groups" : [ "Group 1" ]
   }, {
     "name" : "Elle Meyer",
     "studentId": "A1023456X",
@@ -39,7 +39,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "grade" : "B",
-    "tags" : [ ]
+    "groups" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "studentId": "A0123656X",
@@ -47,7 +47,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "grade" : "B-",
-    "tags" : [ ]
+    "groups" : [ ]
   }, {
     "name" : "George Best",
     "studentId": "A0128956X",
@@ -55,6 +55,6 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "grade" : "C",
-    "tags" : [ ]
+    "groups" : [ ]
   } ]
 }

@@ -15,7 +15,7 @@ public class StudentId {
     // The studentId must start with A followed by digits and end with a letter.
     public static final String VALIDATION_REGEX = "A\\d{7}[A-Z]";
 
-    public final String ID;
+    public final String id;
 
     /**
      * Constructs a {@code StudentId}.
@@ -25,7 +25,7 @@ public class StudentId {
     public StudentId(String studentId) {
         requireNonNull(studentId);
         checkArgument(isValidStudentId(studentId), MESSAGE_CONSTRAINTS);
-        ID = studentId;
+        id = studentId;
     }
 
     /**
@@ -37,7 +37,7 @@ public class StudentId {
 
     @Override
     public String toString() {
-        return ID;
+        return id;
     }
 
     @Override
@@ -52,11 +52,11 @@ public class StudentId {
         }
 
         StudentId otherName = (StudentId) other;
-        return ID.equals(otherName.ID);
+        return id.equals(otherName.id);
     }
 
     @Override
     public int hashCode() {
-        return ID.hashCode();
+        return id.hashCode();
     }
 }

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
@@ -17,7 +18,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -32,25 +32,26 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String grade;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedGroup> groups = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
+
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("address") String address, @JsonProperty("grade") String grade,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
         this.name = name;
         this.studentId = studentId;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.grade = grade;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (groups != null) {
+            this.groups.addAll(groups);
         }
+        this.grade = grade;
     }
 
     /**
@@ -58,13 +59,13 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        studentId = source.getStudentId().ID;
+        studentId = source.getStudentId().id;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         grade = source.getGrade().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        groups.addAll(source.getGroups().stream()
+                .map(JsonAdaptedGroup::new)
                 .collect(Collectors.toList()));
     }
 
@@ -74,9 +75,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<Group> personGroups = new ArrayList<>();
+        for (JsonAdaptedGroup group : groups) {
+            personGroups.add(group.toModelType());
         }
 
         if (name == null) {
@@ -128,8 +129,8 @@ class JsonAdaptedPerson {
         }
         final Grade modelGrade = new Grade(grade);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelStudentId, modelPhone, modelEmail, modelAddress, modelGrade, modelTags);
+        final Set<Group> modelGroups = new HashSet<>(personGroups);
+        return new Person(modelName, modelStudentId, modelPhone, modelEmail, modelAddress, modelGrade, modelGroups);
     }
 
 }
