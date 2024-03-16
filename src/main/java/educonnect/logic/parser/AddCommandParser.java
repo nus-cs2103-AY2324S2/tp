@@ -83,7 +83,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         allDays.add(argMultimap.getValue(PREFIX_TIMETABLE_WEDNESDAY).orElse(""));
         allDays.add(argMultimap.getValue(PREFIX_TIMETABLE_THURSDAY).orElse(""));
         allDays.add(argMultimap.getValue(PREFIX_TIMETABLE_FRIDAY).orElse(""));
-        if (Timetable.getTimetable7Days()) {
+
+        if (Timetable.is7Days()) {
             allDays.add(argMultimap.getValue(PREFIX_TIMETABLE_SATURDAY).orElse(""));
             allDays.add(argMultimap.getValue(PREFIX_TIMETABLE_SUNDAY).orElse(""));
         }

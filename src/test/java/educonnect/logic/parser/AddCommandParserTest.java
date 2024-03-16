@@ -214,7 +214,7 @@ public class AddCommandParserTest {
     @Test
     public void tokenizeForTimetable_emptyInput_returnsEmptyArrayList() {
         assertEquals(Stream.generate(() -> "")
-                        .limit(Timetable.getTimetable7Days() ? 7 : 5)
+                        .limit(Timetable.is7Days() ? 7 : 5)
                         .collect(Collectors.toCollection(ArrayList::new)),
                 AddCommandParser.tokenizeForTimetable(""));
     }

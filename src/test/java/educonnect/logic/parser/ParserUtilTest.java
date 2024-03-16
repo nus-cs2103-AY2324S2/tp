@@ -297,7 +297,7 @@ public class ParserUtilTest {
                                    + "Period period: (13:00 to 15:00)\n"
                                    + "Period period: (16:00 to 18:00)\n\n";
 
-        if (Timetable.getTimetable7Days()) {
+        if (Timetable.is7Days()) {
             expectedTimetable += "For SATURDAY, schedule is:\n\n"
                                  + "For SUNDAY, schedule is:\n\n";
         }

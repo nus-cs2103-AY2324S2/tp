@@ -60,7 +60,7 @@ public class Timetable {
      * Gets a {@code boolean} of whether the timetable is 5 or 7 days.
      * @return {@code true} if 7 days, {@code false} if 5 days.
      */
-    public static boolean getTimetable7Days() {
+    public static boolean is7Days() {
         return TIMETABLE_7_DAYS;
     }
 

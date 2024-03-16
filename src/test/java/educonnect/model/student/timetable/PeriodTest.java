@@ -24,7 +24,7 @@ public class PeriodTest {
         Assert.assertThrows(InvalidPeriodException.class, () -> new Period(" ", time1, time2));
     }
     @Test
-    public void test_hasOverlap() {
+    public void hasOverlap() {
         Period period1 = // 1 AM to 3 AM
                 new Period("period1", LocalTime.of(1, 0, 0), LocalTime.of(3, 0, 0));
         Period period2 = // 3 AM to 5 AM
@@ -45,7 +45,7 @@ public class PeriodTest {
     }
 
     @Test
-    public void test_compareTo() {
+    public void compareTo() {
         Period period1 = // 1 AM to 3 AM
                 new Period("period1", LocalTime.of(1, 0, 0), LocalTime.of(3, 0, 0));
         Period period2 = // 3 AM to 5 AM

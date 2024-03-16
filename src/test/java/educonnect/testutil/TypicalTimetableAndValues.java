@@ -118,7 +118,7 @@ public class TypicalTimetableAndValues {
      */
     public static List<String> getListOfPeriods(List<String> original) {
         ArrayList<String> newList = new ArrayList<>(original);
-        if (Timetable.getTimetable7Days()) {
+        if (Timetable.is7Days()) {
             newList.addAll(List.of(EMPTY, EMPTY));
         }
         return newList;
