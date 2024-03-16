@@ -34,9 +34,9 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> allPatients = model.getAddressBook().getPersonList();
 
-        Person personToDelete = lastShownList.stream()
+        Person personToDelete = allPatients.stream()
                 .filter(predicate::test)
                 .findFirst()
                 .orElseThrow(() -> new CommandException(Messages.MESSAGE_NO_MATCHING_IC));
