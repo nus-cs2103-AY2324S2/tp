@@ -6,10 +6,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents a Customer's Order in the Addressbook.
  */
-public class Order {
+public class Order implements Comparable<Order> {
     public static final String MESSAGE_CONSTRAINTS = "Orders need to contain alphanumeric "
             + "product names and numeric quantities";
     private int id;
@@ -124,6 +126,24 @@ public class Order {
      */
     public boolean isEmpty() {
         return productMap.isEmpty();
+    }
+
+    @Override
+    public int compareTo(Order otherOrder) {
+        if (this.id < otherOrder.id) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
+    public boolean isSameOrder(Order otherOrder) {
+        if (otherOrder == this) {
+            return true;
+        }
+
+        return otherOrder != null
+                && otherOrder.id == this.id;
     }
 
     @Override
