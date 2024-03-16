@@ -70,8 +70,8 @@ public class FilterCommand extends Command {
         }
 
         FilterCommand otherFilterCommand = (FilterCommand) other;
-        return modulePredicate.toString().equals(otherFilterCommand.modulePredicate.toString()) &&
-                tagsPredicate.toString().equals(otherFilterCommand.tagsPredicate.toString());
+        return modulePredicate.toString().equals(otherFilterCommand.modulePredicate.toString())
+                && tagsPredicate.toString().equals(otherFilterCommand.tagsPredicate.toString());
     }
 
     @Override

@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,10 +25,9 @@ import org.junit.jupiter.api.Test;
 import staffconnect.model.Model;
 import staffconnect.model.ModelManager;
 import staffconnect.model.UserPrefs;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.PersonHasModulePredicate;
 import staffconnect.model.person.PersonHasTagsPredicate;
-import staffconnect.model.person.Module;
-import staffconnect.model.person.Person;
 import staffconnect.model.tag.Tag;
 
 public class FilterCommandTest {

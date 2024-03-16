@@ -9,10 +9,8 @@ import static staffconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.HashSet;
-// import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-// import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -28,11 +26,11 @@ import staffconnect.logic.commands.FindCommand;
 import staffconnect.logic.commands.HelpCommand;
 import staffconnect.logic.commands.ListCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
 import staffconnect.model.person.PersonHasModulePredicate;
 import staffconnect.model.person.PersonHasTagsPredicate;
-import staffconnect.model.person.Module;
 import staffconnect.model.tag.Tag;
 import staffconnect.testutil.EditPersonDescriptorBuilder;
 import staffconnect.testutil.PersonBuilder;
@@ -86,7 +84,7 @@ public class StaffConnectParserTest {
         Module module = new Module("CS2102");
         PersonHasModulePredicate modulePredicate = new PersonHasModulePredicate(module);
         FilterCommand moduleFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
-        + " m/" + module);
+                + " m/" + module);
         assertEquals(new FilterCommand(modulePredicate, emptyTagsPredicate), moduleFilterCommand);
 
         // single tag
