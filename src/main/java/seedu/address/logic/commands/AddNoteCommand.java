@@ -4,13 +4,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
-
-import java.util.List;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.Person;
 
 /**
  * Changes the note of an existing person in the address book.
@@ -21,10 +22,9 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing remark will be appended by default. Use '-r' flag to replace instead.\n"
+            + "Existing remark will be appended by default.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NOTE + "NOTE] "
-            + "[-r]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE + "Healthy.";
 
@@ -56,15 +56,26 @@ public class AddNoteCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Note updatedNote = isReplace ? note : personToEdit.getNote().append(note.toString());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getIdentityCardNumber(), personToEdit.getAge(), personToEdit.getSex(),
-                personToEdit.getAddress(), updatedNote, personToEdit.getTags());
+        if (isReplace) {
+            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getIdentityCardNumber(), personToEdit.getAge(), personToEdit.getSex(),
+                    personToEdit.getAddress(), note, personToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.setPerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+            return new CommandResult(generateSuccessMessage(editedPerson));
+        } else {
+            Note updatedNote = personToEdit.getNote().append(note.toString());
+            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getIdentityCardNumber(), personToEdit.getAge(), personToEdit.getSex(),
+                    personToEdit.getAddress(), updatedNote, personToEdit.getTags());
+
+            model.setPerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+            return new CommandResult(generateSuccessMessage(editedPerson));
+        }
     }
 
     /**
