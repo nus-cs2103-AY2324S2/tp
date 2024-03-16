@@ -40,7 +40,7 @@ public class CancelCommandTest {
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getOrderList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getOrderListSize() + 1);
         CancelCommand cancelCommand = new CancelCommand(outOfBoundIndex);
 
         assertCommandFailure(cancelCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
