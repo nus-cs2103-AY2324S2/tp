@@ -14,7 +14,8 @@ public class Major {
             "Majors should be at least 2 characters long";
 
     /**
-     * Regular expression for validating strings containing alphabetic characters and spaces with a minimum length of 2 characters.
+     * Regular expression for validating strings containing alphabetic characters and spaces with a
+     * minimum length of 2 characters.
      *
      * <p>
      * The expression ensures that the input:
@@ -25,7 +26,9 @@ public class Major {
      * </ul>
      * </p>
      *
-     * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">java.util.regex.Pattern</a>
+     * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">
+     *     java.util.regex.Pattern
+     *     </a>
      */
     public static final String VALIDATION_REGEX = "(?<!\\s)[\\p{Alpha} ]{2,}";
 
