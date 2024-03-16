@@ -9,8 +9,10 @@ import static staffconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.HashSet;
+// import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+// import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +30,9 @@ import staffconnect.logic.commands.ListCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
+import staffconnect.model.person.PersonHasModulePredicate;
 import staffconnect.model.person.PersonHasTagsPredicate;
+import staffconnect.model.person.Module;
 import staffconnect.model.tag.Tag;
 import staffconnect.testutil.EditPersonDescriptorBuilder;
 import staffconnect.testutil.PersonBuilder;
@@ -75,19 +79,31 @@ public class StaffConnectParserTest {
 
     @Test
     public void parseCommand_filter() throws Exception {
+        PersonHasModulePredicate emptyModulePredicate = new PersonHasModulePredicate(null);
+        PersonHasTagsPredicate emptyTagsPredicate = new PersonHasTagsPredicate(null);
+
+        // module
+        Module module = new Module("CS2102");
+        PersonHasModulePredicate modulePredicate = new PersonHasModulePredicate(module);
+        FilterCommand moduleFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+        + " m/" + module);
+        assertEquals(new FilterCommand(modulePredicate, emptyTagsPredicate), moduleFilterCommand);
+
         // single tag
         String tag = "hello";
         Set<Tag> singleTag = new HashSet<Tag>(Arrays.asList(new Tag(tag)));
-        FilterCommand singleTagCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+        PersonHasTagsPredicate singleTagPredicate = new PersonHasTagsPredicate(singleTag);
+        FilterCommand singleTagFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " t/" + tag);
-        assertEquals(new FilterCommand(new PersonHasTagsPredicate(singleTag)), singleTagCommand);
+        assertEquals(new FilterCommand(emptyModulePredicate, singleTagPredicate), singleTagFilterCommand);
 
         // multiple tags
         String tag2 = "hello2";
         Set<Tag> multipleTags = new HashSet<Tag>(Arrays.asList(new Tag(tag), new Tag(tag2)));
-        FilterCommand multipleTagsCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+        PersonHasTagsPredicate multipleTagsPredicate = new PersonHasTagsPredicate(multipleTags);
+        FilterCommand multipleTagsFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " t/" + tag + " t/" + tag2);
-        assertEquals(new FilterCommand(new PersonHasTagsPredicate(multipleTags)), multipleTagsCommand);
+        assertEquals(new FilterCommand(emptyModulePredicate, multipleTagsPredicate), multipleTagsFilterCommand);
     }
 
     @Test
