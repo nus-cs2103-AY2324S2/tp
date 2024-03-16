@@ -47,7 +47,7 @@ public class InternshipAddCommand extends InternshipCommand {
     private final Internship toAdd;
 
     /**
-     * Creates an InternshipAddCommand to add the specified {@code Internship}.
+     * Creates an AddCommand to add the specified {@code Internship}.
      */
     public InternshipAddCommand(Internship internship) {
         requireNonNull(internship);
