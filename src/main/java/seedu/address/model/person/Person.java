@@ -18,27 +18,36 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final StudentId studentId;
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
     private final Set<Group> groups = new HashSet<>();
+    private final Grade grade;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Group> groups) {
-        requireAllNonNull(name, phone, email, address, groups);
+    public Person(Name name, StudentId studentId, Phone phone, Email email, Address address, Grade grade,
+                  Set<Group> groups) {
+        requireAllNonNull(name, studentId, phone, email, address, grade, groups);
         this.name = name;
+        this.studentId = studentId;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.groups.addAll(groups);
+        this.grade = grade;
     }
 
     public Name getName() {
         return name;
+    }
+
+    public StudentId getStudentId() {
+        return studentId;
     }
 
     public Phone getPhone() {
@@ -51,6 +60,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Grade getGrade() {
+        return grade;
     }
 
     /**
@@ -91,25 +104,29 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
+                && studentId.equals(otherPerson.studentId)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && grade.equals(otherPerson.grade)
                 && groups.equals(otherPerson.groups);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, groups);
+        return Objects.hash(name, studentId, phone, email, address, grade, groups);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("studentId", studentId)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("grade", grade)
                 .add("groups", groups)
                 .toString();
     }
