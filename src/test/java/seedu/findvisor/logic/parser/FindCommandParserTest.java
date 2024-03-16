@@ -54,7 +54,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, EMAIL_DESC_AMY, expectedFindCommand);
 
         // parse phone
-        expectedFindCommand = new FindCommand(new PhoneContainsKeywordPredicate("22222222"));
+        expectedFindCommand = new FindCommand(new PhoneContainsKeywordPredicate("81234567"));
         assertParseSuccess(parser, PHONE_DESC_BOB, expectedFindCommand);
 
         // parse multiple tags
