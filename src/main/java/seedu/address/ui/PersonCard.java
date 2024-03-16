@@ -44,6 +44,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ImageView qrcode;
+    private Label note;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,6 +52,7 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        // Set fields with information from the person
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -59,6 +61,16 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        note.setText(person.getNote().value);
         qrcode.setImage(new Image(person.getQrCodePath().toUri().toString()));
+
+        // Bind manageability (presence) of node based on presence of value for optional fields
+        address.setVisible(!person.getAddress().value.isEmpty());
+        email.setVisible(!person.getEmail().value.isEmpty());
+        note.setVisible(!person.getNote().value.isEmpty());
+
+        address.managedProperty().bind(address.visibleProperty());
+        email.managedProperty().bind(email.visibleProperty());
+        note.managedProperty().bind(note.visibleProperty());
     }
 }

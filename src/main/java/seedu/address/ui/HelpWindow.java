@@ -23,6 +23,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "add \t- Adds a client to FitBook.\n"
             + "list \t\t- Shows a list of all clients saved in FitBook.\n"
             + "edit \t- Edits an existing client in FitBook.\n"
+            + "note \t- Adds a new note to a client.\n"
             + "find \t- Finds clients whose names contain any of the given keywords.\n"
             + "delete \t- Deletes the specified client from FitBook.\n"
             + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"

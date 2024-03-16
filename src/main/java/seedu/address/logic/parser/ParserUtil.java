@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -12,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -71,13 +73,28 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static Address parseAddress(Optional<String> address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+
+        String trimmedAddress = "";
+        if (address.isPresent() && !address.get().isEmpty()) {
+            trimmedAddress = address.get().trim();
+            if (!Address.isValidAddress(trimmedAddress)) {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
         }
+
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code Optional<String> note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     * If the {@code Optional} is empty, return a {@code Note} with an empty string.
+     */
+    public static Note parseNote(Optional<String> note) {
+        requireNonNull(note);
+        return note.isEmpty() ? new Note("") : new Note(note.get().trim());
     }
 
     /**
@@ -86,12 +103,17 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static Email parseEmail(Optional<String> email) throws ParseException {
         requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+
+        String trimmedEmail = "";
+        if (email.isPresent() && !email.get().isEmpty()) {
+            trimmedEmail = email.get().trim();
+            if (!Email.isValidEmail(trimmedEmail)) {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
         }
+
         return new Email(trimmedEmail);
     }
 
