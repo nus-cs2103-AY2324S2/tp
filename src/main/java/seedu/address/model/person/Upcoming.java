@@ -82,6 +82,11 @@ public class Upcoming implements Comparable<Upcoming> {
             return false;
         }
         Upcoming other = (Upcoming) obj;
+        
+        if (!this.hasUpcoming && !other.hasUpcoming) {
+            return true;
+        }
+
         return this.hasUpcoming == other.hasUpcoming && this.dateTime.equals(other.dateTime);
     }
 
