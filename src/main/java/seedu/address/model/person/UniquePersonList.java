@@ -100,6 +100,10 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+    /**
+     * Adds a tag to a person in the list.
+     * The person must exist in the list.
+     */
     public void removeTagFromPerson(Person target, Set<Tag> tags) {
         requireNonNull(target);
         int index = internalList.indexOf(target);
@@ -107,7 +111,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
         // check if the tag exists in the person
-        
+
         for (Tag tag : tags) {
             requireNonNull(tag);
             if (target.hasTag(tag)) {

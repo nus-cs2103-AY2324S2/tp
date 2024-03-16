@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -19,13 +19,18 @@ import seedu.address.model.tag.Tag;
  */
 public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
 
-    
+    /**
+     * Parses the given {@code String} of arguments in the context of the RemoveTagCommand
+     * and returns an RemoveTagCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public RemoveTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         System.out.println("RemoveTagCommandParser: parsing the input");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
-        System.out.println(arePrefixesPresent(argMultimap, PREFIX_TAG) + " " + !argMultimap.getAllValues(PREFIX_TAG).isEmpty());
+        System.out.println(arePrefixesPresent(argMultimap, PREFIX_TAG)
+            + " " + !argMultimap.getAllValues(PREFIX_TAG).isEmpty());
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE));
@@ -33,7 +38,8 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        System.out.println("RemoveTagCommandParser: returning the RemoveTagCommand object " + index.toString() + " " + tagSet.toString());
+        System.out.println("RemoveTagCommandParser: returning the RemoveTagCommand object "
+            + index.toString() + " " + tagSet.toString());
         return new RemoveTagCommand(index, tagSet);
     }
 
