@@ -130,5 +130,4 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelIncome, modelEmail, modelAddress, modelFamily, modelTags);
     }
-
 }
