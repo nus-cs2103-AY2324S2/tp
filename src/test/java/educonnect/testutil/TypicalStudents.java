@@ -49,10 +49,12 @@ public class TypicalStudents {
             .withEmail("hans@example.com").withTelegramHandle("@idaho").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
-    public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withStudentId(VALID_STUDENT_ID_AMY)
+    public static final Student AMY = new StudentBuilder()
+            .withName(VALID_NAME_AMY).withStudentId(VALID_STUDENT_ID_AMY)
             .withEmail(VALID_EMAIL_AMY).withTelegramHandle(VALID_TELEGRAM_HANDLE_AMY)
             .withTags(VALID_TAG_FRIEND).build();
-    public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withStudentId(VALID_STUDENT_ID_BOB)
+    public static final Student BOB = new StudentBuilder()
+            .withName(VALID_NAME_BOB).withStudentId(VALID_STUDENT_ID_BOB)
             .withEmail(VALID_EMAIL_BOB).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();

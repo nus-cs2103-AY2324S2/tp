@@ -81,11 +81,14 @@ public class TypicalTimetableAndValues {
             getListOfPeriods(List.of(EMPTY, VALID_PERIODS_STRING2, VALID_PERIODS_STRING1, EMPTY, EMPTY)));
 
     // valid Timetable
-    public static final Timetable EXPECTED_TIMETABLE_1;
-    public static final Timetable EXPECTED_TIMETABLE_2;
+    public static final Timetable VALID_TIMETABLE_1;
+    public static final Timetable VALID_TIMETABLE_2;
+
+    public static final Timetable DEFAULT_EMPTY_TIMETABLE = new Timetable();
+
     static {
         try {
-            EXPECTED_TIMETABLE_1 = buildTimetable(new int[] {1, 4},
+            VALID_TIMETABLE_1 = buildTimetable(new int[] {1, 4},
                     new ArrayList<>(List.of(VALID_PERIODS_LIST1, VALID_PERIODS_LIST2)));
         } catch (OverlapPeriodException e) {
             throw new RuntimeException(e);
@@ -93,7 +96,7 @@ public class TypicalTimetableAndValues {
     }
     static {
         try {
-            EXPECTED_TIMETABLE_2 = buildTimetable(new int[] {2, 3},
+            VALID_TIMETABLE_2 = buildTimetable(new int[] {2, 3},
                     new ArrayList<>(List.of(VALID_PERIODS_LIST2, VALID_PERIODS_LIST1)));
         } catch (OverlapPeriodException e) {
             throw new RuntimeException(e);

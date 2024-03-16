@@ -1,5 +1,6 @@
 package educonnect.testutil;
 
+import educonnect.model.student.timetable.Timetable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,17 +21,20 @@ public class StudentBuilder {
     public static final String DEFAULT_STUDENT_ID = "A1234567X";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_TELEGRAM_HANDLE = "@Beeam";
+    public static final Timetable DEFAULT_TIMETABLE = TypicalTimetableAndValues.DEFAULT_EMPTY_TIMETABLE;
 
     public static final String ALTERNATE_NAME = "Bob Builder";
     public static final String ALTERNATE_STUDENT_ID = "A9876543U";
     public static final String ALTERNATE_EMAIL = "builderbob@gmail.com";
     public static final String ALTERNATE_TELEGRAM_HANDLE = "@bobthebuilder";
+    public static final Timetable ALTERNATE_TIMETABLE = TypicalTimetableAndValues.VALID_TIMETABLE_1;
 
     private Name name;
     private StudentId studentId;
     private Email email;
     private TelegramHandle telegramHandle;
     private Set<Tag> tags;
+    private Timetable timetable;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -41,6 +45,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         tags = new HashSet<>();
+        timetable = DEFAULT_TIMETABLE;
     }
 
     /**
@@ -52,6 +57,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         telegramHandle = studentToCopy.getTelegramHandle();
         tags = new HashSet<>(studentToCopy.getTags());
+        timetable = studentToCopy.getTimetable();
     }
 
     /**
@@ -62,7 +68,8 @@ public class StudentBuilder {
                 .withName(ALTERNATE_NAME)
                 .withTelegramHandle(ALTERNATE_TELEGRAM_HANDLE)
                 .withEmail(ALTERNATE_EMAIL)
-                .withStudentId(ALTERNATE_STUDENT_ID);
+                .withStudentId(ALTERNATE_STUDENT_ID)
+                .withTimetable(ALTERNATE_TIMETABLE);
     }
 
     /**
@@ -82,7 +89,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Student} that we are building.
+     * Sets the {@code TelegramHandle} of the {@code Student} that we are building.
      */
     public StudentBuilder withTelegramHandle(String telegramHandle) {
         this.telegramHandle = new TelegramHandle(telegramHandle);
@@ -90,7 +97,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Student} that we are building.
+     * Sets the {@code StudentId} of the {@code Student} that we are building.
      */
     public StudentBuilder withStudentId(String studentId) {
         this.studentId = new StudentId(studentId);
@@ -105,8 +112,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Timetable} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withTimetable(Timetable timetable) {
+        this.timetable = timetable;
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, studentId, email, telegramHandle, tags);
+        return new Student(name, studentId, email, telegramHandle, tags, timetable);
     }
 
 }

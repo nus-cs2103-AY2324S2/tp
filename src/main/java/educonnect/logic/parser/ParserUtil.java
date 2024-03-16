@@ -177,8 +177,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code ArrayList<String> allDays} into a {@code Timetable}.
+     * Defaults to empty Timetable if no arguments (empty {@code allDays}).
      */
-    public static Timetable parseTimetable(ArrayList<String> allDays) throws ParseException, OverlapPeriodException {
+    public static Timetable parseTimetable(ArrayList<String> allDays) throws ParseException {
         requireNonNull(allDays);
         Timetable timetable = new Timetable();
         for (int i = 1; i < allDays.size(); i++) {

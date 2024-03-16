@@ -315,9 +315,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseTimetable_validInputs_returnsCompletedTimetable() throws Exception {
-        assertEquals(TypicalTimetableAndValues.EXPECTED_TIMETABLE_1.toString(),
+        assertEquals(TypicalTimetableAndValues.VALID_TIMETABLE_1.toString(),
                 ParserUtil.parseTimetable(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT_1).toString());
-        assertEquals(TypicalTimetableAndValues.EXPECTED_TIMETABLE_2.toString(),
+        assertEquals(TypicalTimetableAndValues.VALID_TIMETABLE_2.toString(),
                 ParserUtil.parseTimetable(TypicalTimetableAndValues.VALID_TIMETABLE_INPUT_2).toString());
     }
 }

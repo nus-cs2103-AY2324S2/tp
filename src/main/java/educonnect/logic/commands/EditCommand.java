@@ -8,6 +8,7 @@ import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 import static java.util.Objects.requireNonNull;
 
+import educonnect.model.student.timetable.Timetable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -115,8 +116,9 @@ public class EditCommand extends Command {
         TelegramHandle updatedTelegramHandle = editStudentDescriptor.getTelegramHandle().orElse(
                     studentToEdit.getTelegramHandle());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Timetable timetable = new Timetable(); // ToDo: Placeholder, requires update.
 
-        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedTags);
+        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedTags, timetable);
     }
 
     @Override
