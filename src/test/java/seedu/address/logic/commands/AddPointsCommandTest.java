@@ -30,7 +30,8 @@ public class AddPointsCommandTest {
     @Test
     public void execute_addPointsUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withPoints(POINTS_STUB).build();
+        Integer newPoints = Integer.parseInt(POINTS_STUB) + firstPerson.getPoints().getValue();
+        Person editedPerson = new PersonBuilder(firstPerson).withPoints(Integer.toString(newPoints)).build();
 
         AddPointsCommand addPointsCommand = new AddPointsCommand(firstPerson.getName(), new Points(POINTS_STUB));
 
