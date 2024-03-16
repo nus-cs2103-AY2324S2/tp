@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.tag.Tag;
 
 /**
@@ -22,21 +23,26 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Venue venue;
     private final Module module;
+    private final Faculty faculty;
+    private final Venue venue;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Availability> availabilities = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Venue venue, Module module, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, venue, module, tags);
+    public Person(Name name, Phone phone, Email email, Module module, Faculty faculty, Venue venue,
+            Set<Tag> tags, Set<Availability> availabilities) {
+        requireAllNonNull(name, phone, email, module, faculty, venue, tags, availabilities);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.venue = venue;
         this.module = module;
+        this.faculty = faculty;
+        this.venue = venue;
         this.tags.addAll(tags);
+        this.availabilities.addAll(availabilities);
     }
 
     public Name getName() {
@@ -51,12 +57,16 @@ public class Person {
         return email;
     }
 
-    public Venue getVenue() {
-        return venue;
-    }
-
     public Module getModule() {
         return module;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public Venue getVenue() {
+        return venue;
     }
 
     /**
@@ -65,6 +75,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable availability set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Availability> getAvailabilities() {
+        return Collections.unmodifiableSet(availabilities);
     }
 
     /**
@@ -99,15 +117,17 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && venue.equals(otherPerson.venue)
                 && module.equals(otherPerson.module)
-                && tags.equals(otherPerson.tags);
+                && faculty.equals(otherPerson.faculty)
+                && venue.equals(otherPerson.venue)
+                && tags.equals(otherPerson.tags)
+                && availabilities.equals(otherPerson.availabilities);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, venue, module, tags);
+        return Objects.hash(name, phone, email, module, faculty, venue, tags, availabilities);
     }
 
     @Override
@@ -116,9 +136,11 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("venue", venue)
                 .add("module", module)
+                .add("faculty", faculty)
+                .add("venue", venue)
                 .add("tags", tags)
+                .add("availabilities", availabilities)
                 .toString();
     }
 
