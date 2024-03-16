@@ -39,8 +39,22 @@ public class TagSet extends Attribute<Set<Tag>> {
      * @return True if specified value is a match, False otherwise
      */
     @Override
-    public boolean isMatch(Set<Tag> otherValue) {
-        return this.getValue().stream().anyMatch(tag -> otherValue.contains(tag));
+    public boolean isMatch(Object otherValue) {
+        if (!(otherValue instanceof Set<?>)) {
+            return false;
+        }
+
+        Set<?> other = ((Set<?>) otherValue);
+
+        if (other.isEmpty() || other.iterator().next() instanceof Tag) {
+            return false;
+        }
+
+        // Already checked that set contains Tag objects, so it is safe to cast
+        @SuppressWarnings("unchecked")
+        Set<Tag> otherTags = (Set<Tag>) other;
+
+        return this.getValue().stream().anyMatch(tag -> otherTags.contains(tag));
     }
 
     @Override

@@ -58,8 +58,14 @@ public class Email extends Attribute<String> {
      * @return True if specified value is a match, False otherwise
      */
     @Override
-    public boolean isMatch(String otherValue) {
-        return this.getValue().toLowerCase().contains(otherValue.toLowerCase());
+    public boolean isMatch(Object otherValue) {
+        if (!(otherValue instanceof String)) {
+            return false;
+        }
+
+        String other = (String) otherValue;
+
+        return this.getValue().toLowerCase().contains(other.toLowerCase());
     }
 
     @Override

@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone extends Attribute<String> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers,"
+            + " and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
 
     /**
@@ -39,8 +40,14 @@ public class Phone extends Attribute<String> {
      * @return True if specified value is a match, False otherwise
      */
     @Override
-    public boolean isMatch(String otherValue) {
-        return this.getValue().toLowerCase().contains(otherValue.toLowerCase());
+    public boolean isMatch(Object otherValue) {
+        if (!(otherValue instanceof String)) {
+            return false;
+        }
+
+        String other = (String) otherValue;
+
+        return this.getValue().toLowerCase().contains(other.toLowerCase());
     }
 
     @Override

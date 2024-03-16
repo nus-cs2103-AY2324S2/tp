@@ -27,5 +27,5 @@ public abstract class Attribute<T extends Object> {
      *
      * @return True if specified value is a match, False otherwise
      */
-    public abstract boolean isMatch(T otherValue);
+    public abstract boolean isMatch(Object otherValue);
 }

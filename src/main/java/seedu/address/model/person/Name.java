@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Name extends Attribute<String> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric"
+            + " characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -44,8 +45,14 @@ public class Name extends Attribute<String> {
      * @return True if specified value is a match, False otherwise
      */
     @Override
-    public boolean isMatch(String otherValue) {
-        return this.getValue().toLowerCase().contains(otherValue.toLowerCase());
+    public boolean isMatch(Object otherValue) {
+        if (!(otherValue instanceof String)) {
+            return false;
+        }
+
+        String other = (String) otherValue;
+
+        return this.getValue().toLowerCase().contains(other.toLowerCase());
     }
 
     @Override
