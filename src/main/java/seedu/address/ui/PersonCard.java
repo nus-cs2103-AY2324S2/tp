@@ -58,5 +58,14 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         note.setText(person.getNote().value);
+
+        // Bind manageability (presence) of node based on presence of value for optional fields
+        address.setVisible(!person.getAddress().value.isEmpty());
+        email.setVisible(!person.getEmail().value.isEmpty());
+        note.setVisible(!person.getNote().value.isEmpty());
+
+        address.managedProperty().bind(address.visibleProperty());
+        email.managedProperty().bind(email.visibleProperty());
+        note.managedProperty().bind(note.visibleProperty());
     }
 }
