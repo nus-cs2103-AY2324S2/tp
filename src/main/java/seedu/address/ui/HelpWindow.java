@@ -57,31 +57,7 @@ public class HelpWindow extends UiPart<Stage> {
         helpMessage.setText(HELP_MESSAGE);
         commandColumn.setCellValueFactory(new PropertyValueFactory<>("command"));
         usageColumn.setCellValueFactory(new PropertyValueFactory<>("usage"));
-
-        guideItems.add(new UserGuideItem("help", "Call this user guide.\n"
-                + "Can also call by typing F1 on keyboard"));
-        guideItems.add(new UserGuideItem("add", "Add a new contact.\n"
-                + "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\n"
-                + "e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/supplier "
-                + "t/seafood"));
-        guideItems.add(new UserGuideItem("list", "List all contacts.\n"));
-        guideItems.add(new UserGuideItem("edit", "Edit a contact.\n"
-                + "edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…\n"
-                + "e.g., edit 1 p/91234567 e/johndoe@example.com"));
-        guideItems.add(new UserGuideItem("find", "Find contacts with a keyword.\n"
-                + "find KEYWORD [MORE_KEYWORDS]\n"
-                + "e.g., find John"));
-        guideItems.add(new UserGuideItem("filter", "Filter contacts with specified tags.\n"
-                + "filter TAG [MORE_TAGS]\n"
-                + "e.g., filter supplier"));
-        guideItems.add(new UserGuideItem("delete", "Delete a contact.\n"
-                + "delete INDEX\n"
-                + "e.g., delete 1"));
-        guideItems.add(new UserGuideItem("clear", "Clear every recorded contacts.\n"
-                + "A confirmation message will be shown, type y to proceed with clearing "
-                + "or otherwise to cancel clearing."));
-        guideItems.add(new UserGuideItem("exit", "Close the address book."));
-
+        fillCommandSummaryTable();
         userGuideTable.setItems(guideItems);
     }
 
@@ -147,5 +123,34 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Fills the command summary table with all available commands.
+     */
+    private void fillCommandSummaryTable() {
+        guideItems.add(new UserGuideItem("help", "Call this user guide.\n"
+                + "Can also call by typing F1 on keyboard"));
+        guideItems.add(new UserGuideItem("add", "Add a new contact.\n"
+                + "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\n"
+                + "e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/supplier "
+                + "t/seafood"));
+        guideItems.add(new UserGuideItem("list", "List all contacts.\n"));
+        guideItems.add(new UserGuideItem("edit", "Edit a contact.\n"
+                + "edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…\n"
+                + "e.g., edit 1 p/91234567 e/johndoe@example.com"));
+        guideItems.add(new UserGuideItem("find", "Find contacts with a keyword.\n"
+                + "find KEYWORD [MORE_KEYWORDS]\n"
+                + "e.g., find John"));
+        guideItems.add(new UserGuideItem("filter", "Filter contacts with specified tags.\n"
+                + "filter TAG [MORE_TAGS]\n"
+                + "e.g., filter supplier"));
+        guideItems.add(new UserGuideItem("delete", "Delete a contact.\n"
+                + "delete INDEX\n"
+                + "e.g., delete 1"));
+        guideItems.add(new UserGuideItem("clear", "Clear every recorded contacts.\n"
+                + "A confirmation message will be shown, type y to proceed with clearing "
+                + "or otherwise to cancel clearing."));
+        guideItems.add(new UserGuideItem("exit", "Close the address book."));
     }
 }

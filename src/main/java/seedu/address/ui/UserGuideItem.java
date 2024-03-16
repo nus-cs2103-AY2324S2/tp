@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
 import javafx.beans.property.SimpleStringProperty;
+
+/**
+ * An item in the table of HelpWindow.
+ */
 public class UserGuideItem {
     private final SimpleStringProperty command;
     private final SimpleStringProperty usage;
