@@ -23,6 +23,10 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    /** Fields to track clear confirmation */
+    private boolean isConfirmClear;
+    private boolean isAwaitingClear;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.isConfirmClear = false;
+        this.isAwaitingClear = false;
     }
 
     public ModelManager() {
@@ -145,4 +151,25 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    //=========== Command State Management =============================================================
+
+    @Override
+    public boolean isAwaitingClear() {
+        return this.isAwaitingClear;
+    }
+
+    @Override
+    public void setAwaitingClear(boolean isAwaitingClear) {
+        this.isAwaitingClear = isAwaitingClear;
+    }
+
+    @Override
+    public boolean isConfirmClear() {
+        return this.isConfirmClear;
+    }
+
+    @Override
+    public void setConfirmClear(boolean isConfirmClear) {
+        this.isConfirmClear = isConfirmClear;
+    }
 }

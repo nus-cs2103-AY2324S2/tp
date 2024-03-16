@@ -80,9 +80,6 @@ public class LogicManagerTest {
         assertEquals(ClearCommand.MESSAGE_CANCELLED, result.getFeedbackToUser());
     }
 
-
-
-
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
