@@ -1,13 +1,21 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_APPLICATION_STATUS_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_APPLICATION_STATUS_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_EMAIL_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_EMAIL_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_NAME_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_NAME_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_NUMBER_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_NUMBER_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DESCRIPTION_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_LOCATION_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +62,12 @@ public class TypicalInternships {
             .withContactNumber(VALID_CONTACT_NUMBER_AMY).withLocation(VALID_LOCATION_AMY)
             .withApplicationStatus(VALID_APPLICATION_STATUS_AMY).withDescription(VALID_DESCRIPTION_AMY)
             .withRole(VALID_ROLE_AMY).build();
+
+    public static final Internship BOB = new InternshipBuilder().withCompanyName(VALID_COMPANY_NAME_BOB)
+            .withContactName(VALID_CONTACT_NAME_BOB).withContactEmail(VALID_CONTACT_EMAIL_BOB)
+            .withContactNumber(VALID_CONTACT_NUMBER_BOB).withLocation(VALID_LOCATION_BOB)
+            .withApplicationStatus(VALID_APPLICATION_STATUS_BOB).withDescription(VALID_DESCRIPTION_BOB)
+            .withRole(VALID_ROLE_BOB).build();
 
     private TypicalInternships() {
     } // prevents instantiation
