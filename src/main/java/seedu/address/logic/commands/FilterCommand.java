@@ -9,19 +9,20 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Filters and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all clients whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all clients whose names contain "
+            + "the specified keyphrase (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: KEYPHRASE \n"
+            + "Example: " + COMMAND_WORD + " alice tan";
 
-    public static final String MESSAGE_FIND_HELP = "Filter Command: (Coming soon)\n"
-            + "Format: (Coming soon)\n";
+    public static final String MESSAGE_FIND_HELP = "Filter Command: Filters clients whose names contain "
+            + "the specified keyphrase (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Format: filter KEYPHRASE\n";
 
     private final NameContainsKeywordsPredicate predicate;
 
