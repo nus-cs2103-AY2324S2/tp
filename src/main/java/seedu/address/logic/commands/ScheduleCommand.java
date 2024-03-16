@@ -2,18 +2,20 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_NUSID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.List;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_NUSID;
 import seedu.address.logic.commands.exceptions.CommandException;
-import static seedu.address.logic.parser.CliSyntax.*;
 import seedu.address.model.Model;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.NusId;
 import seedu.address.model.person.Schedule;
 
 /**

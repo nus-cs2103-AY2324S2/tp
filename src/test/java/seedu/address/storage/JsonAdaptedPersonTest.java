@@ -16,6 +16,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 
 public class JsonAdaptedPersonTest {
@@ -145,4 +147,30 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidSchedule_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NUSID, VALID_NAME, VALID_PHONE,
+                        VALID_EMAIL, VALID_TAG, VALID_GROUPS, INVALID_SCHEDULE, VALID_REMARK);
+        String expectedMessage = Schedule.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullSchedule_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NUSID, VALID_NAME, VALID_PHONE,
+                        VALID_EMAIL, VALID_TAG, VALID_GROUPS, null, VALID_REMARK);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Schedule.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullRemark_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NUSID, VALID_NAME, VALID_PHONE,
+                        VALID_EMAIL, VALID_TAG, VALID_GROUPS, VALID_SCHEDULE, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 }

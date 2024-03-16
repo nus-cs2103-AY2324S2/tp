@@ -5,12 +5,16 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "tag": "Student",
-    "groups": [ "friends" ]
+    "groups": [ "friends" ],
+    "schedule" : "09/09/2020",
+    "remark" : ""
   }, {
     "nusId": "E0123456",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "tag": "Student"
+    "tag": "Student",
+    "schedule" : "09/09/2020",
+    "remark" : ""
   } ]
 }

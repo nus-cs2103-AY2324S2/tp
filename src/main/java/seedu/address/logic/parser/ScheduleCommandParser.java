@@ -2,21 +2,27 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import seedu.address.model.person.NusId;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Schedule;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.ScheduleCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.NusId;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
+
+/**
+ * Parses input arguments and creates a new ScheduleCommand object
+ */
 public class ScheduleCommandParser implements Parser<ScheduleCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the ScheduleCommand
+     * and returns an ScheduleCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public ScheduleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,

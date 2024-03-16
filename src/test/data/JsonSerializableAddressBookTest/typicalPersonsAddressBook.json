@@ -7,7 +7,7 @@
     "email" : "alice@example.com",
     "tag" : "Student",
     "groups" : [ "friends" ],
-    "schedule" : "",
+    "schedule" : "10-09-2020",
     "remark" : ""
   }, {
     "nusId": "E9682156",
@@ -43,7 +43,7 @@
     "email" : "werner@example.com",
     "tag" : "TA",
     "groups" : [ ],
-    "schedule" : "",
+    "schedule" : "09/09/2020",
     "remark" : ""
   }, {
     "nusId": "E5419832",
