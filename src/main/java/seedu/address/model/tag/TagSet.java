@@ -54,7 +54,11 @@ public class TagSet extends Attribute<Set<Tag>> {
         @SuppressWarnings("unchecked")
         Set<Tag> otherTags = (Set<Tag>) other;
 
-        return this.getValue().stream().anyMatch(tag -> otherTags.contains(tag));
+        if (otherTags.isEmpty()) {
+            return true;
+        }
+
+        return otherTags.stream().anyMatch(tag -> this.getValue().contains(tag));
     }
 
     @Override
