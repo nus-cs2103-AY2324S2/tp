@@ -84,4 +84,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns the client to be displayed in ClientViewPanel.
+     */
+    Person getDisplayClient();
+
+    /**
+     * Returns true if there is a client in the display.
+     */
+    boolean hasDisplayClient();
+
+    /**
+     * Clears the client to display to null.
+     */
+    void clearDisplayClient();
+
+    /**
+     * Replaces the current client to be displayed to {@code person}.
+     */
+    void setDisplayClient(Person person);
 }

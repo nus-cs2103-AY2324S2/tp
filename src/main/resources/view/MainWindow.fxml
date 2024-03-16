@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -48,18 +47,18 @@
         </StackPane>
         
         <HBox VBox.vgrow="ALWAYS">
-          <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="250" prefWidth="250" maxWidth="300" HBox.hgrow="ALWAYS">
+          <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="250" prefWidth="300" maxWidth="300" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="clientView" styleClass="pane-with-border" minWidth="400" prefWidth="500" HBox.hgrow="ALWAYS">
+          <VBox fx:id="clientView" styleClass="pane-with-border" minWidth="300" prefWidth="800" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
-            <StackPane fx:id="clientDetailsPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            <StackPane fx:id="clientPoliciesPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="clientDetailsCardPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="clientPolicyTablePlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
           <VBox fx:id="schedule" styleClass="pane-with-border" minWidth="250" prefWidth="300" maxWidth="350" HBox.hgrow="ALWAYS">
             <padding>

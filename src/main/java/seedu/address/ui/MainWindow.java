@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
+    private ClientViewPanel clientViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane clientListPanelPlaceholder;
+
+    @FXML
+    private StackPane clientDetailsCardPlaceholder;
+
+    @FXML
+    private StackPane clientPolicyTablePlaceholder;
+
+    @FXML
+    private StackPane schedulePanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,7 +123,11 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanel = new ClientListPanel(logic.getFilteredPersonList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
+        clientViewPanel = new ClientViewPanel(logic.getDisplayClient());
+        addClientViewPanel();
+
         resultDisplay = new ResultDisplay();
+        
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -121,6 +135,36 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Fills up placeholders of client view panel.
+     */
+    private void addClientViewPanel() {
+        ClientDetailsCard clientDetailsCard = clientViewPanel.getClientDetailsCard();
+        clientDetailsCardPlaceholder.getChildren().add(clientDetailsCard.getRoot());
+
+        ClientPolicyTable clientPolicyTable = clientViewPanel.getClientPolicyTable();
+        clientPolicyTablePlaceholder.getChildren().add(clientPolicyTable.getRoot());
+    }
+
+    /**
+     * Clears the placeholders of client view panel.
+     */
+    private void clearClientViewPanel() {
+        clientDetailsCardPlaceholder.getChildren().clear();
+        clientPolicyTablePlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Refreshes the client view panel.
+     */
+    private void refreshClientViewPanel() {
+        clearClientViewPanel();
+        if (logic.hasDisplayClient()) {
+            clientViewPanel.updateClientViewPanel(logic.getDisplayClient());
+            addClientViewPanel();
+        }
     }
 
     /**
@@ -163,10 +207,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ClientListPanel getClientListPanel() {
-        return clientListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +217,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            refreshClientViewPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -85,4 +85,24 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public Person getDisplayClient() {
+        return model.getDisplayClient();
+    }
+
+    @Override
+    public boolean hasDisplayClient() {
+        return model.hasDisplayClient();
+    }
+
+    @Override
+    public void clearDisplayClient() {
+        model.clearDisplayClient();
+    }
+
+    @Override
+    public void setDisplayClient(Person person) {
+        model.setDisplayClient(person);
+    }
 }

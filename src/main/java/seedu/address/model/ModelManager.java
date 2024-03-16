@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.DisplayClient;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final DisplayClient displayClient;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        displayClient = new DisplayClient(filteredPersons.get(0));
     }
 
     public ModelManager() {
@@ -145,4 +148,25 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    //=========== Client Being Displayed =====================================================================
+    @Override
+    public Person getDisplayClient() {
+        return displayClient.getDisplayClient();
+    }
+
+    @Override
+    public boolean hasDisplayClient() {
+        return displayClient.hasDisplayClient();
+    }
+
+    @Override
+    public void clearDisplayClient() {
+        displayClient.setDisplayClient(null);
+    }
+
+    @Override
+    public void setDisplayClient(Person person) {
+        displayClient.setDisplayClient(person);
+    }
+    
 }
