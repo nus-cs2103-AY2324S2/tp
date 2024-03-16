@@ -24,9 +24,10 @@ public class Meeting {
     public final LocalDateTime end;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Meeting}.
      *
-     * @param address A valid address.
+     * @param start The start datetime of the meeting.
+     * @param end The end datetime of the meeting.
      */
     public Meeting(LocalDateTime start, LocalDateTime end) {
         requireAllNonNull(start, end);
@@ -36,7 +37,8 @@ public class Meeting {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if the given start and end datetimes are valid.
+     * The start and end datetime are valid if the start is before the end datetime.
      */
     public static boolean isValidDateTime(LocalDateTime start, LocalDateTime end) {
         return start.isBefore(end);
