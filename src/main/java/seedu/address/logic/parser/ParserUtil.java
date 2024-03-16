@@ -9,12 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.BankDetails;
-import seedu.address.model.person.EmploymentType;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -154,4 +149,19 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static WorkHours parseWorkHours(String workHours) throws ParseException {
+        requireNonNull(workHours);
+        String trimmedWorkHours = workHours.trim();
+        try {
+            int hours = Integer.parseInt(trimmedWorkHours);
+            if (hours < 0) {
+                throw new ParseException("Work hours cannot be negative");
+            }
+            return new WorkHours(hours);
+        } catch (NumberFormatException e) {
+            throw new ParseException(WorkHours.MESSAGE_CONSTRAINTS);
+        }
+    }
+
 }

@@ -19,13 +19,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.BankDetails;
-import seedu.address.model.person.EmploymentType;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,7 +73,7 @@ public class EditCommand extends Command {
         return new Person(new Name(""), new Name(""), new Phone(""), new Sex(""),
                 new EmploymentType(""),
                 new Address(""),
-                new BankDetails(""), new HashSet<>());
+                new BankDetails(""), new WorkHours(),new HashSet<>());
     }
 
     @Override

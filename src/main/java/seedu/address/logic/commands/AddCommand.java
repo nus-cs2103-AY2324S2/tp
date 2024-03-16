@@ -31,9 +31,9 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_SEX + "SEX "
             + PREFIX_EMPLOYMENTTYPE + "EMPLOYMENT TYPE "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_BANKDETAILS + "BANK DETAILS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_BANKDETAILS + "BANK DETAILS \n"
+          //  + PREFIX_TAG + "TAG...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_FIRSTNAME + "John "
             + PREFIX_LASTNAME + "Doe "
@@ -41,8 +41,8 @@ public class AddCommand extends Command {
             + PREFIX_SEX + "m "
             + PREFIX_EMPLOYMENTTYPE + "ft "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_BANKDETAILS + "0495858505";
+          //  + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
