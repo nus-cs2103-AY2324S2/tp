@@ -17,7 +17,10 @@ You can reach us at the email `mashfi.i@u.nus.edu`
 [[github](https://github.com/miffi)]
 [[portfolio](team/miffi.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities:
+  - UI
+  - Tools
 
 ### Leong Jia Hao, Derek
 
@@ -26,8 +29,11 @@ You can reach us at the email `mashfi.i@u.nus.edu`
 [[github](http://github.com/derekljh)]
 [[portfolio](team/derekljh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+* Responsibilities:
+  * Tasks and Deadlines
+  - Scheduling and tracking
+  - Logic
 
 ### Mahindroo Aashim
 
@@ -37,7 +43,9 @@ You can reach us at the email `mashfi.i@u.nus.edu`
 [[portfolio](team/radeon2525.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities:
+  - Testing
+  - Model
 
 ### Kyaw Swar Myint
 
@@ -47,7 +55,10 @@ You can reach us at the email `mashfi.i@u.nus.edu`
 [[portfolio](team/jukeboxk.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities:
+  - Documentation
+  - Main
+  - Commons
 
 ### Dude Lorenz Leonardo Crescenzio
 
@@ -57,4 +68,6 @@ You can reach us at the email `mashfi.i@u.nus.edu`
 [[portfolio](team/the-dudeski.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+  - Integration
+  - Storage
