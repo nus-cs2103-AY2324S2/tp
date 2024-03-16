@@ -84,6 +84,9 @@ public class AddRelationshipCommand {
      * @throws IllegalArgumentException If the person cannot be found or the relationship type is invalid.
      */
     private void handleAddRolelessRelationship(String[] commandParts) {
+        if (commandParts.length < 4) {
+            throw new IllegalArgumentException("Invalid command format");
+        }
         String relationType = commandParts[1].substring(1);
         String[] personUuids = (commandParts[2] + commandParts[3]).split(",");
         if (personUuids.length != 2) {
