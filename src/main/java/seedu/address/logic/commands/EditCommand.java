@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -27,6 +29,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.relationship.Relationship;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -43,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_RELATIONSHIP + "RELATIONSHIP] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -99,10 +103,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Relationship updatedRelationship = editPersonDescriptor.getRelationship().orElse(personToEdit.getRelationship()); // Add this line
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRelationship, updatedTags); // Include updatedRelationship
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -139,6 +145,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
+        private Relationship relationship;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -151,21 +159,34 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setRelationship((toCopy.relationship));
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+
+
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, relationship, tags);
         }
 
         public void setName(Name name) {
             this.name = name;
         }
 
+        public void setRelationship(Relationship relationship) {
+            this.relationship = relationship;
+        }
+
+        
+
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public Optional<Relationship> getRelationship() {
+            return Optional.ofNullable(relationship);
         }
 
         public void setPhone(Phone phone) {
@@ -225,7 +246,9 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(relationship, otherEditPersonDescriptor.relationship)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
+
         }
 
         @Override
@@ -235,6 +258,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("relationship", relationship)
                     .add("tags", tags)
                     .toString();
         }
