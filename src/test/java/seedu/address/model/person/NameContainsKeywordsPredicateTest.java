@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
@@ -41,6 +42,11 @@ public class NameContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
+        // Successfully skips checking when not required to by the FindCommand class
+        NameContainsKeywordsPredicate optionalParameterNotFilled =
+                new NameContainsKeywordsPredicate(List.of(FindCommand.NOT_REQUIRED_VALUE));
+        assertTrue(optionalParameterNotFilled.test(new PersonBuilder().build()));
+
         // One keyword
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));

@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
+import static seedu.address.logic.commands.FindCommand.NOT_REQUIRED_VALUE;
+
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
@@ -18,6 +20,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (keywords.contains(NOT_REQUIRED_VALUE)) {
+            return true;
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
     }

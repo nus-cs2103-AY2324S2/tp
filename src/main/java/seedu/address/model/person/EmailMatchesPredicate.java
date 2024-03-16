@@ -18,8 +18,9 @@ public class EmailMatchesPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         if (keyword.equals(FindCommand.NOT_REQUIRED_VALUE)) {
             return true;
+        } else {
+            return person.getEmail().value.toLowerCase().contains(keyword.trim().toLowerCase());
         }
-        return false;
     }
 
     @Override
