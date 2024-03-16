@@ -9,6 +9,11 @@ import static java.util.Objects.requireNonNull;
 public class Policy {
     public final String value;
 
+    /**
+     * Constructs a {@code Policy}.
+     *
+     * @param policy A valid policy.
+     */
     public Policy(String policy) {
         requireNonNull(policy);
         value = policy;
