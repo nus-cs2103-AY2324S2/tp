@@ -89,4 +89,17 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Trims whitesapce on both inside and outside the string. E.g. "  Tom     Dick " -> "Tom Dick"
+     * @param input Input to trim
+     * @return Trimmed input
+     */
+    public static String trimWhitespace(String input) {
+        // Remove leading and trailing whitespace
+        input = input.trim();
+        // Replace multiple whitespaces with a single space
+        input = input.replaceAll("\\s+", " ");
+        return input;
+    }
 }
