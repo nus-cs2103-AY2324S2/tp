@@ -10,14 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ClassGroup {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Class/groups should only contain alphanumeric characters, symbols, and spaces. "
-                    + "It cannot start with a symbol and it should not be blank";
+            "Class/groups should only contain alphanumeric characters delimited by a colon.\n"
+                    + "It cannot contain symbols, whitespaces and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][-\\p{Alnum}_. ]*";
+    public static final String VALIDATION_REGEX = "^(?:[\\p{Alnum}]+-?)*[\\p{Alnum}]+$";
 
     public final String classGroup;
 
