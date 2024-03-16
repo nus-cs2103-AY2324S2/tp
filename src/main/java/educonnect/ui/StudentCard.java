@@ -51,8 +51,14 @@ public class StudentCard extends UiPart<Region> {
 
     @FXML
     void openLink(ActionEvent action) throws URISyntaxException, IOException {
-        System.out.println("Link clicked!");
-        Desktop.getDesktop().browse(new URI(student.getLink().toString()));
+        String url = student.getLink().toString();
+        if (url != null || !url.isEmpty()) {
+
+            Desktop.getDesktop().browse(new URI(url));
+
+        } else {
+            System.out.println("No Link has been added yet");
+        }
     }
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
@@ -64,6 +70,15 @@ public class StudentCard extends UiPart<Region> {
         studentID.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
         telegram.setText(student.getTelegramHandle().value);
+
+        // Set the visibility of the hyperlink based on whether the student has a non-empty URL
+//        String url = student.getLink().url; // Assuming getLink().url returns a String
+//        boolean isUrlPresent = url != null && !url.isEmpty();
+//        hyperlink.setVisible(isUrlPresent);
+
+        // Optionally, disable the hyperlink if the URL is not present to prevent any action
+//        hyperlink.setDisable(!isUrlPresent);
+
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

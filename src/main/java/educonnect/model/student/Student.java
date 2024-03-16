@@ -36,7 +36,7 @@ public class Student {
         this.studentId = studentId;
         this.email = email;
         this.telegramHandle = telegramHandle;
-        this.link = null;
+        this.link = new Link("");
         this.tags.addAll(tags);
     }
 

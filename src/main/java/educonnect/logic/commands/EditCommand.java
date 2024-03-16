@@ -21,11 +21,7 @@ import educonnect.commons.util.ToStringBuilder;
 import educonnect.logic.Messages;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.Model;
-import educonnect.model.student.Email;
-import educonnect.model.student.Name;
-import educonnect.model.student.Student;
-import educonnect.model.student.StudentId;
-import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.*;
 import educonnect.model.tag.Tag;
 
 /**
@@ -114,9 +110,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         TelegramHandle updatedTelegramHandle = editStudentDescriptor.getTelegramHandle().orElse(
                     studentToEdit.getTelegramHandle());
+        Link updatedLink = editStudentDescriptor.getLink().orElse(studentToEdit.getLink());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedTags);
+        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedLink, updatedTags);
     }
 
     @Override
@@ -153,6 +150,7 @@ public class EditCommand extends Command {
         private Email email;
         private TelegramHandle telegramHandle;
         private Set<Tag> tags;
+        private Link link;
 
         public EditStudentDescriptor() {}
 
@@ -166,6 +164,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setTelegramHandle(toCopy.telegramHandle);
             setTags(toCopy.tags);
+            setLink(toCopy.link);
         }
 
         /**
@@ -197,6 +196,13 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
+        public Optional<Link> getLink() {
+            return Optional.ofNullable(link);
         }
 
         public void setTelegramHandle(TelegramHandle telegramHandle) {
@@ -240,7 +246,8 @@ public class EditCommand extends Command {
                     && Objects.equals(studentId, otherEditStudentDescriptor.studentId)
                     && Objects.equals(email, otherEditStudentDescriptor.email)
                     && Objects.equals(telegramHandle, otherEditStudentDescriptor.telegramHandle)
-                    && Objects.equals(tags, otherEditStudentDescriptor.tags);
+                    && Objects.equals(tags, otherEditStudentDescriptor.tags)
+                    && Objects.equals(link, otherEditStudentDescriptor.link);
         }
 
         @Override
@@ -251,6 +258,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("telegram handle", telegramHandle)
                     .add("tags", tags)
+                    .add("link", link)
                     .toString();
         }
     }
