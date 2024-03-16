@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Person;
+import seedu.address.logic.commands.FindCommand;
 
 
 /**
@@ -17,6 +17,12 @@ public class TagMatchesPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return false;
+        if (keyword.equals(FindCommand.NOT_REQUIRED_VALUE)) {
+            return true;
+        } else if (!Tag.isValidTag(keyword)) {
+            return false;
+        } else {
+            return person.getTag().equals(new Tag(keyword));
+        }
     }
 }
