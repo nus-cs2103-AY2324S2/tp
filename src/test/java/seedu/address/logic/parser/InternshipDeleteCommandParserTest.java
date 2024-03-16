@@ -24,11 +24,13 @@ public class InternshipDeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsInternshipDeleteCommand() {
-        assertParseSuccess((InternshipParser<? extends InternshipCommand>) parser, "1", new InternshipDeleteCommand(INDEX_FIRST_INTERNSHIP));
+        assertParseSuccess((InternshipParser<? extends InternshipCommand>) parser, "1",
+                new InternshipDeleteCommand(INDEX_FIRST_INTERNSHIP));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure((InternshipParser<? extends InternshipCommand>) parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipDeleteCommand.MESSAGE_USAGE));
+        assertParseFailure((InternshipParser<? extends InternshipCommand>) parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipDeleteCommand.MESSAGE_USAGE));
     }
 }
