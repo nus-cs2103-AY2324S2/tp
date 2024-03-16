@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeyphrasePredicate;
 
 /**
- * Filters and lists all persons in address book whose name contains any of the argument keyphrase.
+ * Filters and lists all persons in address book whose name contains the argument keyphrase.
  * Keyphrase matching is case-insensitive.
  */
 public class FilterCommand extends Command {

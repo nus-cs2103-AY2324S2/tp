@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches the key phrase given.
+ * Tests that a {@code Person}'s {@code Name} contains the keyphrase given.
  */
 public class NameContainsKeyphrasePredicate implements Predicate<Person> {
     private final String keyphrase;
