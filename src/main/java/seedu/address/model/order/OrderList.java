@@ -100,7 +100,6 @@ public class OrderList implements Iterable<Order> {
     }
 
     /**
-<<<<<<< HEAD
      * Gives the number of orders in the {@code OrderList}
      *
      * @return number of orders
