@@ -75,14 +75,14 @@ public class AddressBookParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
+        case DeleteCategoryCommand.COMMAND_WORD:
+            return new DeleteCategoryCommandParser().parse(arguments);
+
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
         case AddCategoryCommand.COMMAND_WORD:
             return new AddCategoryCommandParser().parse(arguments);
-
-        case DeleteCategoryCommand.COMMAND_WORD:
-            return new DeleteCategoryCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
