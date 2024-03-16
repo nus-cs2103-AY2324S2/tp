@@ -275,6 +275,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage all the employees in company.
+* can assign tasks to employees.
 * has a need to check employees' efficiency.
 * can generate a fire list to cut company costs.
 * prefers smooth and eye-catching GUI.
