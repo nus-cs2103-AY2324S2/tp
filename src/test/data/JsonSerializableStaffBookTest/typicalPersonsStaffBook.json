@@ -81,5 +81,14 @@
     "module": "CS2102",
     "tags" : [ "classmate" ],
     "availabilities" : [ "FRIDAY" ]
+  }, {
+    "name" : "Natasha Harrower",
+    "phone" : "8019394",
+    "email" : "harrower@example.com",
+    "faculty" : "Computing",
+    "venue" : "underworld avenue",
+    "module": "CS2102",
+    "tags" : [ "classmate" ],
+    "availabilities" : [ "FRIDAY" ]
   } ]
 }
