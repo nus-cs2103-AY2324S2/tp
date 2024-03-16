@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -38,7 +39,7 @@ public class FindAndExportCommandTest {
         Path filePath = testFolder.resolve(testFileName);
 
         FindAndExportCommand command = new FindAndExportCommand("nonExistentTag", null, null, filePath.toString());
-
+        
         assertThrows(CommandException.class, () -> command.execute(model));
 
         assertFalse(Files.exists(filePath));

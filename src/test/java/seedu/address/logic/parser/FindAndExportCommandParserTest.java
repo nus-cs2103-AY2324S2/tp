@@ -21,8 +21,8 @@ public class FindAndExportCommandParserTest {
 
     @Test
     public void parse_invalidFilename_failure() {
-        assertParseFailure(parser, "friends n/John a/123 Main St o/|\\?*<\":>+[]/'",
-                MESSAGE_INVALID_FILENAME);
+        String input = "friends n/John a/123 Main St o/invalid|filename.csv";
+        assertParseFailure(parser, input, MESSAGE_INVALID_FILENAME);
     }
 
     @Test
