@@ -22,7 +22,8 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing remark will be appended by default.\n"
+            + "Existing remark will be appended by default. To replace the original note, add -replace at "
+            + "the end of your command. E.g. addnote 1 n/Diabetes -replace\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NOTE + "NOTE] "
             + "Example: " + COMMAND_WORD + " 1 "
@@ -66,7 +67,7 @@ public class AddNoteCommand extends Command {
 
             return new CommandResult(generateSuccessMessage(editedPerson));
         } else {
-            Note updatedNote = personToEdit.getNote().append(note.toString());
+            Note updatedNote = personToEdit.getNote().append("\n" + note.toString());
             Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getIdentityCardNumber(), personToEdit.getAge(), personToEdit.getSex(),
                     personToEdit.getAddress(), updatedNote, personToEdit.getTags());
