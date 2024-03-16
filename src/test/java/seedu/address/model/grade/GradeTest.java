@@ -12,7 +12,6 @@ public class GradeTest {
         assertThrows(NullPointerException.class, () -> new Grade(null));
     }
 
-
     @Test
     public void isValidMajor() {
         // null Grade
@@ -28,7 +27,10 @@ public class GradeTest {
 
         // valid Grade
         assertTrue(Grade.isValidGrade("A")); // Correct Format
+        assertTrue(Grade.isValidGrade("B"));
         assertTrue(Grade.isValidGrade("D"));
+        assertTrue(Grade.isValidGrade("C"));
+        assertTrue(Grade.isValidGrade("F"));
         assertTrue(Grade.isValidGrade("a"));
     }
 

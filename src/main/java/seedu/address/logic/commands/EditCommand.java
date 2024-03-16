@@ -65,7 +65,6 @@ public class EditCommand extends Command {
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
-
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
@@ -103,8 +102,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Id updatedId = editPersonDescriptor.getId().orElse(personToEdit.getId());
+        Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
+        Intake updatedIntake = editPersonDescriptor.getIntake().orElse(personToEdit.getIntake());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedId, updatedMajor, updatedIntake, updatedName, updatedPhone,
+                updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -166,7 +169,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(id, major, intake, name, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -251,7 +254,10 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
+            return Objects.equals(id, otherEditPersonDescriptor.id)
+                    && Objects.equals(name, otherEditPersonDescriptor.name)
+                    && Objects.equals(major, otherEditPersonDescriptor.major)
+                    && Objects.equals(intake, otherEditPersonDescriptor.intake)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
@@ -261,10 +267,13 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
+                    .add("id", id)
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("major", major)
+                    .add("intake", intake)
                     .add("tags", tags)
                     .toString();
         }
