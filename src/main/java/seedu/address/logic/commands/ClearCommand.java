@@ -35,12 +35,4 @@ public class ClearCommand extends Command {
             }
         }
     }
-
-    public static boolean isAwaitingConfirmation() {
-        return awaitingConfirmation;
-    }
-
-    public static void setAwaitingConfirmation(boolean awaitingConfirmation) {
-        ClearCommand.awaitingConfirmation = awaitingConfirmation;
-    }
 }
