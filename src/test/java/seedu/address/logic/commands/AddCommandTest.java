@@ -42,6 +42,7 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(validPerson, modelStub.displayClient);
     }
 
     @Test
@@ -157,6 +158,26 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person getDisplayClient() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDisplayClient() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearDisplayClient() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDisplayClient(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -175,6 +196,7 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
     }
 
     /**
@@ -182,6 +204,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private Person displayClient;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -198,6 +221,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void setDisplayClient(Person person) {
+            displayClient = person;
         }
     }
 

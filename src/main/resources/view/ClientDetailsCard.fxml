@@ -12,7 +12,6 @@
 
 <ScrollPane prefHeight="250.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-       
        <GridPane prefHeight="250.0" prefWidth="700.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" prefWidth="350.0" />

@@ -36,7 +36,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        displayClient = new DisplayClient(filteredPersons.get(0));
+        displayClient = filteredPersons.isEmpty()
+                ? new DisplayClient(null)
+                : new DisplayClient(filteredPersons.get(0));
     }
 
     public ModelManager() {
