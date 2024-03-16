@@ -46,7 +46,8 @@ public class Messages {
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         builder.append("; Upcoming: ")
-                .append(person.getUpcoming());
+                .append(person.getUpcoming())
+                .append(";");
         return builder.toString();
     }
 
