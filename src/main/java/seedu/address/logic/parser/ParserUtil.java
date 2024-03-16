@@ -129,12 +129,7 @@ public class ParserUtil {
         if (!Id.isValidId(trimmedId)) {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
-        try {
-            Integer.parseInt(trimmedId);
-        } catch(NumberFormatException e) {
-            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
-        }
-        return new Id(parsedId);
+        return new Id(id);
     }
 
     /**

@@ -10,12 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Subject;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -64,7 +59,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         subject = source.getSubject().value;
-        uniqueId = source.getUniqueId();
+        uniqueId = source.getUniqueId().id;
     }
 
     /**
@@ -114,10 +109,11 @@ class JsonAdaptedPerson {
         if(uniqueId == null) {
             throw new IllegalValueException("Missing Unique Id");
         }
+        final Id modelId = new Id(uniqueId);
         final  Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSubject, uniqueId);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSubject, modelId);
     }
 
 }

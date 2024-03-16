@@ -3,8 +3,9 @@ package seedu.address.model.person;
 public class Id {
     public static final String MESSAGE_CONSTRAINTS =
             "Ids should only contain numbers";
-    private int id;
-    public Id(int id) {
+    public final String id;
+
+    public Id(String id) {
         this.id = id;
     }
 
@@ -15,6 +16,11 @@ public class Id {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.id;
     }
 
 }

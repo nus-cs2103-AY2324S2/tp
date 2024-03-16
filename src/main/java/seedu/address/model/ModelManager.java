@@ -134,7 +134,7 @@ public class ModelManager implements Model {
         int uniqueId = 0;
         // get max unique id with int parse
         for (Person person : addressBook.getPersonList()) {
-            int currentId = Integer.parseInt(person.getUniqueId());
+            int currentId = Integer.parseInt(person.getUniqueId().id);
             if (currentId > uniqueId) {
                 uniqueId = currentId;
             }

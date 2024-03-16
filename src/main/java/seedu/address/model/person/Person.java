@@ -21,7 +21,8 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private String uniqueId;
+    //private String uniqueId;
+    private Id uniqueId;
 
     // Data fields
     private final Address address;
@@ -32,7 +33,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject,
-                  String uniqueId) {
+                  Id uniqueId) {
         requireAllNonNull(name, phone, email, address, tags, subject);
         this.name = name;
         this.phone = phone;
@@ -69,8 +70,8 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-    public String getUniqueId() {return uniqueId;}
-    public String setUniqueId(String uniqueId) {return this.uniqueId = uniqueId;}
+    public Id getUniqueId() {return uniqueId;}
+    public Id setUniqueId(Id uniqueId) {return this.uniqueId = uniqueId;}
 
     /**
      * Returns true if both persons have the same name.
