@@ -107,8 +107,9 @@ public class EditCommand extends Command {
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         ArrayList<Order> updatedOrders = personToEdit.getOrders();
+        boolean updatedIsFavourite = personToEdit.getFavourite();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedCompany,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedCompany, updatedIsFavourite,
                 updatedTags, updatedOrders);
     }
 
