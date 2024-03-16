@@ -3,13 +3,13 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.util.Arrays;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.IdentityCardNumber;
+import seedu.address.model.person.IdentityCardNumberMatchesPredicate;
 
 public class FindCommandParserTest {
 
@@ -22,13 +22,33 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FindCommand(new IdentityCardNumberMatchesPredicate(new IdentityCardNumber("S1234567A")));
+        assertParseSuccess(parser, "S1234567A", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n"
+                + " S1234567A \n"
+                + " \t  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        // IC with incorrect format
+        assertParseFailure(parser, "S1234", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // IC with incorrect format and additional arguments
+        assertParseFailure(parser, "S1234 extra", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE));
+
+        // IC with correct format but contains non-alphanumeric characters
+        assertParseFailure(parser, "S1234$%^", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_nullArgs_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> parser.parse(null));
     }
 
 }
