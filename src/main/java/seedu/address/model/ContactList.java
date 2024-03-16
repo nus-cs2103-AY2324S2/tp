@@ -37,7 +37,7 @@ public class ContactList implements ReadOnlyContactList {
 
     /*
      * Temporary measure
-     * Could possibly move to something like GroupList
+     * TODO: Could possibly move to something like GroupList
      */
     private final UniqueGroupList groups = new UniqueGroupList();
 
@@ -78,7 +78,6 @@ public class ContactList implements ReadOnlyContactList {
 
         setCourseMates(newData.getCourseMateList());
 
-        // todo To be implemented
         // For now initialize groups with hard-coded data
 
         CourseMate member1 = new CourseMate(
@@ -100,7 +99,8 @@ public class ContactList implements ReadOnlyContactList {
                 new Group(new Name("Group 3"), Set.of(member1, member2, member3)),
                 new Group(new Name("Group 4"), Set.of(member2, member3, member4)),
                 new Group(new Name("Group 5"), Set.of(member2, member3))));
-        // setGroups(newData.getGroupList()); todo To be replace with this
+        // TODO: replace with this
+        // setGroups(newData.getGroupList());
     }
 
     //// courseMate-level operations

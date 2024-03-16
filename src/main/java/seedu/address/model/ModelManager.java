@@ -141,7 +141,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
-        //todo To be implemented
+        //  TODO: implement
     }
 
     //=========== Most recently processed course mate ========================================================

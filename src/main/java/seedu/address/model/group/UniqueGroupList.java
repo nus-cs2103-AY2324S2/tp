@@ -46,7 +46,7 @@ public class UniqueGroupList implements Iterable<Group> {
      * The group must not already exist in the list.
      */
     public void add(Group toAdd) {
-        //todo To be implemented.
+        //    TODO: implement
     }
 
     /**
@@ -56,7 +56,7 @@ public class UniqueGroupList implements Iterable<Group> {
      * must not be the same as another existing group in the list.
      */
     public void setGroup(Group target, Group editedGroup) {
-        //todo To be implemented.
+        //    TODO: implement
     }
 
     /**
@@ -64,7 +64,7 @@ public class UniqueGroupList implements Iterable<Group> {
      * The group must exist in the list.
      */
     public void remove(Group toRemove) {
-        //todo To be implemented.
+        //    TODO: implement
     }
 
     public void setGroups(UniqueGroupList replacement) {
@@ -99,7 +99,7 @@ public class UniqueGroupList implements Iterable<Group> {
 
     @Override
     public boolean equals(Object other) {
-        //todo To be implemented.
+        //    TODO: implement
         return false;
     }
 

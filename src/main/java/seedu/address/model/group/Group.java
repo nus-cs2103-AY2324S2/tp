@@ -45,7 +45,7 @@ public class Group {
      * This defines a weaker notion of equality between two groups.
      */
     public boolean isSameGroup(Group otherGroup) {
-        //todo To be implemented.
+        //    TODO: implement
         return false;
     }
 
@@ -55,7 +55,7 @@ public class Group {
      */
     @Override
     public boolean equals(Object other) {
-        //todo To be implemented.
+        //    TODO: implement
         return false;
     }
 }
