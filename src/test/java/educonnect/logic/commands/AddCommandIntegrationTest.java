@@ -72,13 +72,13 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateTelegramHandle_throwsCommandException() {
         Student studentInList = model.getAddressBook().getStudentList().get(0);
-        Student DuplicateTelegramHandleStudent = new StudentBuilder(studentInList)
+        Student duplicateTelegramHandleStudent = new StudentBuilder(studentInList)
                 .withName(VALID_NAME)
                 .withEmail(VALID_EMAIL)
                 .withStudentId(VALID_STUDENT_ID)
                 .build();
 
-        assertCommandFailure(new AddCommand(DuplicateTelegramHandleStudent), model,
+        assertCommandFailure(new AddCommand(duplicateTelegramHandleStudent), model,
                 AddCommand.MESSAGE_DUPLICATE_TELEGRAM_HANDLE);
     }
 }

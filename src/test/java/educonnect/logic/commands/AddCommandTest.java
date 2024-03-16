@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,10 @@ import educonnect.model.AddressBook;
 import educonnect.model.Model;
 import educonnect.model.ReadOnlyAddressBook;
 import educonnect.model.ReadOnlyUserPrefs;
+import educonnect.model.student.Email;
 import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.testutil.Assert;
 import educonnect.testutil.StudentBuilder;
 import educonnect.testutil.TypicalStudents;
@@ -165,12 +169,42 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasStudentId(StudentId studentId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Student> getStudentWithStudentId(StudentId studentId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasEmail(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public boolean hasEmail(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Student> getStudentWithEmail(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasTelegramHandle(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTelegramHandle(TelegramHandle telegramHandle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Student> getStudentWithTelegramHandle(TelegramHandle telegramHandle) {
             throw new AssertionError("This method should not be called.");
         }
 
