@@ -33,7 +33,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private EventListPanel eventListPanel;
     private PersonListPanel personListPanel;
-    private PersonListOfSelectedEventPanel personListOfSelectedEventPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -123,10 +122,6 @@ public class MainWindow extends UiPart<Stage> {
 
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
-
-        personListOfSelectedEventPanel = new PersonListOfSelectedEventPanel(
-                logic.getFilteredPersonListOfSelectedEvent());
-        personListOfSelectedEventPanelPlaceholder.getChildren().add(personListOfSelectedEventPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
