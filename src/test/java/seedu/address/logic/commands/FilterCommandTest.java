@@ -21,7 +21,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
  */
 public class FilterCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -30,28 +30,28 @@ public class FilterCommandTest {
     @Test
     public void equals() {
         NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+                new NameContainsKeywordsPredicate("first");
         NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+                new NameContainsKeywordsPredicate("second");
 
-        FilterCommand findFirstCommand = new FilterCommand(firstPredicate);
-        FilterCommand findSecondCommand = new FilterCommand(secondPredicate);
+        FilterCommand filterFirstCommand = new FilterCommand(firstPredicate);
+        FilterCommand filterSecondCommand = new FilterCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(filterFirstCommand.equals(filterFirstCommand));
 
         // same values -> returns true
-        FilterCommand findFirstCommandCopy = new FilterCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FilterCommand filterFirstCommandCopy = new FilterCommand(firstPredicate);
+        assertTrue(filterFirstCommand.equals(filterFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertFalse(filterFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertFalse(filterFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(filterFirstCommand.equals(filterSecondCommand));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class FilterCommandTest {
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("keyphrase");
         FilterCommand filterCommand = new FilterCommand(predicate);
         String expected = FilterCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, filterCommand.toString());
@@ -86,6 +86,6 @@ public class FilterCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new NameContainsKeywordsPredicate(userInput);
     }
 }
