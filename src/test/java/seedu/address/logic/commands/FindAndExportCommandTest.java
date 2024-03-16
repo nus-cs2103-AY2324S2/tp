@@ -39,9 +39,7 @@ public class FindAndExportCommandTest {
         Path filePath = testFolder.resolve(testFileName);
 
         FindAndExportCommand command = new FindAndExportCommand("nonExistentTag", null, null, filePath.toString());
-        
         assertThrows(CommandException.class, () -> command.execute(model));
-
         assertFalse(Files.exists(filePath));
     }
 }
