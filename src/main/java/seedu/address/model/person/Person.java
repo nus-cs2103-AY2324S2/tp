@@ -23,21 +23,19 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
     private final Set<Group> groups = new HashSet<>();
     private final Grade grade;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, StudentId studentId, Phone phone, Email email, Address address, Grade grade,
+    public Person(Name name, StudentId studentId, Phone phone, Email email, Grade grade,
                   Set<Group> groups) {
-        requireAllNonNull(name, studentId, phone, email, address, grade, groups);
+        requireAllNonNull(name, studentId, phone, email, grade, groups);
         this.name = name;
         this.studentId = studentId;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.groups.addAll(groups);
         this.grade = grade;
     }
@@ -56,10 +54,6 @@ public class Person {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     public Grade getGrade() {
@@ -107,7 +101,6 @@ public class Person {
                 && studentId.equals(otherPerson.studentId)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
                 && grade.equals(otherPerson.grade)
                 && groups.equals(otherPerson.groups);
     }
@@ -115,7 +108,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, studentId, phone, email, address, grade, groups);
+        return Objects.hash(name, studentId, phone, email, grade, groups);
     }
 
     @Override
@@ -125,7 +118,6 @@ public class Person {
                 .add("studentId", studentId)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
                 .add("grade", grade)
                 .add("groups", groups)
                 .toString();

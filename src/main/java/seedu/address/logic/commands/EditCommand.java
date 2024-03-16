@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
@@ -24,7 +23,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
@@ -47,7 +45,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GRADE + "GRADE] "
             + "[" + PREFIX_GROUP + "GROUP]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -105,12 +102,10 @@ public class EditCommand extends Command {
         StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Grade updatedGrade = editPersonDescriptor.getGrade().orElse(personToEdit.getGrade());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
 
-        return new Person(updatedName, updatedStudentId, updatedPhone, updatedEmail, updatedAddress,
-                updatedGrade, updatedGroups);
+        return new Person(updatedName, updatedStudentId, updatedPhone, updatedEmail, updatedGrade, updatedGroups);
     }
 
     @Override
@@ -146,7 +141,6 @@ public class EditCommand extends Command {
         private StudentId studentId;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Group> groups;
         private Grade grade;
 
@@ -161,7 +155,6 @@ public class EditCommand extends Command {
             setStudentId(toCopy.studentId);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setGroups(toCopy.groups);
             setGrade(toCopy.grade);
         }
@@ -170,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, studentId, phone, email, address, grade, groups);
+            return CollectionUtil.isAnyNonNull(name, studentId, phone, email, grade, groups);
         }
 
         public void setName(Name name) {
@@ -203,14 +196,6 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         public void setGrade(Grade grade) {
@@ -254,7 +239,6 @@ public class EditCommand extends Command {
                     && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(grade, otherEditPersonDescriptor.grade)
                     && Objects.equals(groups, otherEditPersonDescriptor.groups);
         }
@@ -266,7 +250,6 @@ public class EditCommand extends Command {
                     .add("studentId", studentId)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("address", address)
                     .add("grade", grade)
                     .add("groups", groups)
                     .toString();

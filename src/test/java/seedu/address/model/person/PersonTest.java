@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_GROUP1;
@@ -37,8 +36,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withStudentId(VALID_STUDENTID_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
+                .withEmail(VALID_EMAIL_BOB).withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -89,16 +87,13 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
         // different grade -> returns false
         editedAlice = new PersonBuilder(ALICE).withGrade(VALID_GRADE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different groups -> returns false
         editedAlice = new PersonBuilder(ALICE).withGroups(VALID_GROUP_GROUP2B).build();
+
         assertFalse(ALICE.equals(editedAlice));
     }
 
@@ -106,8 +101,7 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", studentId="
                 + ALICE.getStudentId() + ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail()
-                + ", address=" + ALICE.getAddress() + ", grade=" + ALICE.getGrade()
-                + ", groups=" + ALICE.getGroups() + "}";
+                + ", grade=" + ALICE.getGrade() + ", groups=" + ALICE.getGroups() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

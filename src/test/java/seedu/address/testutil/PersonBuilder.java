@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
@@ -22,7 +21,6 @@ public class PersonBuilder {
     public static final String DEFAULT_STUDENTID = "A0123456X";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GRADE = "A+";
 
     private Name name;
@@ -30,7 +28,6 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Grade grade;
-    private Address address;
     private Set<Group> groups;
 
     /**
@@ -42,7 +39,6 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         grade = new Grade(DEFAULT_GRADE);
-        address = new Address(DEFAULT_ADDRESS);
         groups = new HashSet<>();
     }
 
@@ -55,7 +51,6 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         grade = personToCopy.getGrade();
-        address = personToCopy.getAddress();
         groups = new HashSet<>(personToCopy.getGroups());
     }
 
@@ -84,14 +79,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -116,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, studentId, phone, email, address, grade, groups);
+        return new Person(name, studentId, phone, email, grade, groups);
     }
 
 }

@@ -37,8 +37,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
     private FlowPane groups;
@@ -55,7 +53,6 @@ public class PersonCard extends UiPart<Region> {
         studentId.setText(person.getStudentId().id);
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         grade.setText(person.getGrade().value);
         email.setText(person.getEmail().value);
         person.getGroups().stream()

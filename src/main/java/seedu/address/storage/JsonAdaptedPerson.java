@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
@@ -30,7 +29,6 @@ class JsonAdaptedPerson {
     private final String studentId;
     private final String phone;
     private final String email;
-    private final String address;
     private final String grade;
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
 
@@ -41,13 +39,11 @@ class JsonAdaptedPerson {
 
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("address") String address, @JsonProperty("grade") String grade,
-            @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
+            @JsonProperty("grade") String grade, @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
         this.name = name;
         this.studentId = studentId;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         if (groups != null) {
             this.groups.addAll(groups);
         }
@@ -62,7 +58,6 @@ class JsonAdaptedPerson {
         studentId = source.getStudentId().id;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
         grade = source.getGrade().value;
         groups.addAll(source.getGroups().stream()
                 .map(JsonAdaptedGroup::new)
@@ -113,14 +108,6 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         if (grade == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
         }
@@ -130,7 +117,7 @@ class JsonAdaptedPerson {
         final Grade modelGrade = new Grade(grade);
 
         final Set<Group> modelGroups = new HashSet<>(personGroups);
-        return new Person(modelName, modelStudentId, modelPhone, modelEmail, modelAddress, modelGrade, modelGroups);
+        return new Person(modelName, modelStudentId, modelPhone, modelEmail, modelGrade, modelGroups);
     }
 
 }
