@@ -125,6 +125,9 @@ class JsonAdaptedPerson {
         if (family == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Family.class.getSimpleName()));
         }
+        if (!Family.isValidFamily(family)) {
+            throw new IllegalValueException(Family.MESSAGE_CONSTRAINTS);
+        }
         final Family modelFamily = new Family(family);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
