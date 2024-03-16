@@ -3,11 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -19,6 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -42,6 +47,17 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_APPOINTMENT_DATE_AMY = "2024-03-16";
+    public static final String VALID_APPOINTMENT_DATE_BOB = "2024-03-17";
+    public static final String VALID_APPOINTMENT_START_TIME_AMY = "11:00";
+    public static final String VALID_APPOINTMENT_END_TIME_AMY = "11:30";
+    public static final String VALID_APPOINTMENT_START_TIME_BOB = "15:00";
+    public static final String VALID_APPOINTMENT_END_TIME_BOB = "16:00";
+    public static final String VALID_APPOINTMENT_TYPE_AMY = "X-RAY";
+    public static final String VALID_APPOINTMENT_TYPE_BOB = "Health Check-up";
+    public static final String VALID_APPOINTMENT_NOTE_AMY = "Fractured her ankle";
+    public static final String VALID_APPOINTMENT_NOTE_BOB = "Yearly check in";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -57,6 +73,21 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DATE_DESC_APPOINTMENT_AMY = " " + PREFIX_DATE + VALID_APPOINTMENT_DATE_AMY;
+    public static final String DATE_DESC_APPOINTMENT_BOB = " " + PREFIX_DATE + VALID_APPOINTMENT_DATE_BOB;
+    public static final String START_TIME_DESC_APPOINTMENT_AMY = " " + PREFIX_START_TIME
+            + VALID_APPOINTMENT_START_TIME_AMY;
+    public static final String END_TIME_DESC_APPOINTMENT_AMY = " " + PREFIX_END_TIME
+            + VALID_APPOINTMENT_END_TIME_AMY;
+    public static final String START_TIME_DESC_APPOINTMENT_BOB = " " + PREFIX_START_TIME
+            + VALID_APPOINTMENT_START_TIME_BOB;
+    public static final String END_TIME_DESC_APPOINTMENT_BOB = " " + PREFIX_END_TIME
+            + VALID_APPOINTMENT_END_TIME_BOB;
+    public static final String TYPE_DESC_APPOINTMENT_AMY = " " + PREFIX_TAG + VALID_APPOINTMENT_TYPE_AMY;
+    public static final String TYPE_DESC_APPOINTMENT_BOB = " " + PREFIX_TAG + VALID_APPOINTMENT_TYPE_BOB;
+    public static final String NOTE_DESC_APPOINTMENT_AMY = " " + PREFIX_NOTE + VALID_APPOINTMENT_NOTE_AMY;
+    public static final String NOTE_DESC_APPOINTMENT_BOB = " " + PREFIX_NOTE + VALID_APPOINTMENT_NOTE_BOB;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "t0123456A"; // first letter must be capital
@@ -65,7 +96,12 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2024-32-32"; // exceeds month and day range
+    public static final String INVALID_TIME_DESC = " " + PREFIX_START_TIME + "24:00"; // exceeds 24 hour clock range
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "11:30"; // is after end time
+    public static final String INVALID_END_TIME_DESC = " " + PREFIX_END_TIME + "11:00"; // is before start time
+    public static final String INVALID_APPOINTMENT_TYPE_DESC = " " + PREFIX_TAG + "  "; // only white spaces
+    public static final String INVALID_APPOINTMENT_NOTE_DESC = " " + PREFIX_NOTE + "@@"; // non-alphanumeric
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -113,17 +149,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered person list, filtered appointment list and
+     * - selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Person> expectedFilteredPersonList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Appointment> expectedFilteredAppointmentList =
+                new ArrayList<>(actualModel.getFilteredAppointmentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredPersonList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredAppointmentList, actualModel.getFilteredAppointmentList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

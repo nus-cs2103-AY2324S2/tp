@@ -58,7 +58,7 @@ public class TypicalPersons {
             .withNric("T0123456H").withDateOfBirth("2001-01-08")
             .withEmail("stefan@example.com").withAddress("little india").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withNric("T0123456H").withDateOfBirth("2001-01-09")
+            .withNric("T0123456I").withDateOfBirth("2001-01-09")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

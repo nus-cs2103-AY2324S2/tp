@@ -60,7 +60,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         nric = source.getNric().value;
-        dob = source.getDob().value;
+        dob = source.getDob().toString();
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;

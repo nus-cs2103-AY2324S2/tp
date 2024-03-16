@@ -6,8 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAddressBookWithAppointments;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,8 +19,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -29,6 +33,7 @@ public class AddressBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getAppointmentList());
     }
 
     @Test
@@ -38,7 +43,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AddressBook newData = getTypicalAddressBookWithAppointments();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -49,7 +54,8 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Appointment> newAppointments = List.of();
+        AddressBookStub newData = new AddressBookStub(newPersons, newAppointments);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -79,8 +85,32 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasPerson_personWithNricInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        Nric aliceNric = ALICE.getNric();
+        assertTrue(addressBook.hasPersonWithNric(aliceNric));
+    }
+
+    @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void hasAppointment_withAppointmentInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        addressBook.addAppointment(ALICE_APPT);
+        assertTrue(addressBook.hasAppointment(ALICE_APPT));
+    }
+
+    @Test
+    public void hasAppointment_withAppointmentWithSameDetailsInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        addressBook.addAppointment(ALICE_APPT);
+        Appointment editedAliceAppt = new AppointmentBuilder(ALICE_APPT)
+                .withAppointmentType("Blood test").withNote("routine checks")
+                .build();
+        assertTrue(addressBook.hasAppointment(editedAliceAppt));
     }
 
     @Test
@@ -94,14 +124,21 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments) {
             this.persons.setAll(persons);
+            this.appointments.setAll(appointments);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Appointment> getAppointmentList() {
+            return appointments;
         }
     }
 
