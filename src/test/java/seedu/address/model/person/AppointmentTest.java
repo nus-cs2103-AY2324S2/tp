@@ -15,10 +15,12 @@ public class AppointmentTest {
     @Test
     public void equals() {
         LocalDateTime appointmentDate = LocalDateTime.now();
-        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test");
+        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
+                1, "Test", false);
 
         // same values -> returns true
-        Appointment appointmentCopy = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test");
+        Appointment appointmentCopy = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
+                1, "Test", false);
         assertEquals(appointment, appointmentCopy);
 
         // same object -> returns true
@@ -31,19 +33,28 @@ public class AppointmentTest {
         assertNotEquals(5, appointment);
 
         // different appointmentId -> returns false
-        Appointment differentAppointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate, 1, "Test");
+        Appointment differentAppointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate,
+                1, "Test", false);
         assertNotEquals(appointment, differentAppointment);
 
         // different appointmentDate -> returns false
-        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate.plusDays(1), 1, "Test");
+        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate.plusDays(1),
+                1, "Test", false);
         assertNotEquals(appointment, differentAppointment);
 
         // different studentId -> returns false
-        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 2, "Test");
+        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
+                2, "Test", false);
         assertNotEquals(appointment, differentAppointment);
 
         // different appointmentDescription -> returns false
-        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Different");
+        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
+                1, "Different", false);
+        assertNotEquals(appointment, differentAppointment);
+
+        // different hasAttended -> returns false
+        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate,
+                1, "Test", true);
         assertNotEquals(appointment, differentAppointment);
     }
 
@@ -52,20 +63,20 @@ public class AppointmentTest {
         LocalDateTime appointmentDate = LocalDateTime.now();
 
 
-        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test");
+        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", false);
 
         // same values -> returns 0
-        Appointment appointmentCopy = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test");
+        Appointment appointmentCopy = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", false);
         assertEquals(0, appointment.compareTo(appointmentCopy));
 
         // another Appointment has larger appointmentId -> returns less than 0;
         Appointment differentAppointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate.plusDays(1),
-                1, "Test");
+                1, "Test", false);
         assertTrue(appointment.compareTo(differentAppointment) < 0);
 
         // another Appointment has smaller appointmentId -> returns more than 0;
-        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 2, "Test");
-        appointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate.plusDays(1), 1, "Test");
+        differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 2, "Test", false);
+        appointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate.plusDays(1), 1, "Test", false);
         assertTrue(appointment.compareTo(differentAppointment) > 0);
     }
 }
