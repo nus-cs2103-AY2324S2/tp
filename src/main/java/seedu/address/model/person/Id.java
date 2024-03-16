@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's ID in the address book.
+ * Represents a Person's ID in the Application.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
 public class Id {
@@ -45,8 +45,8 @@ public class Id {
             return false;
         }
 
-        Id otherName = (Id) other;
-        return this.id.equals(otherName.id);
+        Id otherId = (Id) other;
+        return this.id.equals(otherId.id);
     }
 
     @Override

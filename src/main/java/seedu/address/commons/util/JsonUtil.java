@@ -98,6 +98,7 @@ public class JsonUtil {
      * @return The instance of T with the specified values in the JSON string
      */
     public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException {
+        System.out.println("No issues here!");
         return objectMapper.readValue(json, instanceClass);
     }
 
