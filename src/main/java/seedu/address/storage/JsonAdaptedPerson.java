@@ -10,7 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Relationship;
+import seedu.address.model.person.Policy;
+
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String policy;
+    private final String relationship;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -33,12 +42,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("policy") String policy, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("relationship") String relationship, @JsonProperty("policy") String policy,
+            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.policy = policy;
+        this.relationship = relationship;
+
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -53,6 +66,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         policy = source.getPolicy().value;
+        relationship = source.getRelationship().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -101,13 +115,24 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (relationship == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Relationship.class.getSimpleName()));
+        }
+        if (!Relationship.isValidRelationship(relationship)) {
+            throw new IllegalValueException(Relationship.MESSAGE_CONSTRAINTS);
+        }
+        final Relationship modelRelationship = new Relationship(relationship);
+
         if (policy == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Policy.class.getSimpleName()));
         }
         final Policy modelPolicy = new Policy(policy);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPolicy, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRelationship, modelPolicy, modelTags);
+
     }
 
 }
