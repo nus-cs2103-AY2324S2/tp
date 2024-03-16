@@ -3,10 +3,22 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+nerdTrackerPlus is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, nerdTrackerPlus can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+### Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [1. Viewing Help](#1-viewing-help--help) : `help`
+  - [2. Adding a person](#2-adding-a-person--add) : `add`
+  - [3. Listing all persons](#3-listing-all-persons--list) : `list`
+  - [4. Editing a person](#4-editing-a-person--edit) : `edit`
+  - [5. Locating persons by name](#5-locating-persons-by-name--find) : `find`
+  - [6. Delete a person](#6-deleting-a-person--delete) : `delete`
+  - [7. Remove a tag](#7-remove-a-tag--remove-tag) : `Remove Tag`
+  - [8. Clearing all entries](#8-clearing-all-entries--clear) : `clear`
+  - [9. Filtering by tags](#9-filtering-by-tags--filter) : `filter`
+  - [10. Marking participation scores](#10-marking-participation-scores--mark) : `mark`
+  - [11. Exiting the program](#11-exiting-the-program--exit) : `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -63,16 +75,16 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
+### 1. Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+### 2. Adding a person : `add`
 
 Adds a person to the address book.
 
@@ -86,13 +98,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### 3. Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### 4. Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -109,7 +121,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### 5. Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -127,7 +139,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### 6. Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -141,13 +153,50 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### 7. Remove a tag : `Remove Tag`
+
+Deletes the specified person from the address book.
+
+Format: `Remove Tag INDEX [t/TAG]…`
+
+* Removes tags of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The tag must exist on the person
+
+Examples:
+* `list` followed by `Remove Tag 2 t/friend` Removes the friend tag from the 2nd person in the address book.
+
+
+### 8. Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### 9. Filtering by tags : `filter`
+
+Filters all entries with specified tags.
+
+Format: `filter [all/any] NUMBEROFTAGS TAGNAME [TAGNAME]`
+
+* If `filter all` is used and more than 1 tag is used to filter, only entries that match all tags will be shown.
+* If `filter any` is used and more than 1 tag is used to filter, all entries that match any one of the tags will be shown.
+* Tags are case in-sensitive.
+* The number of tags cannot be `0`.
+
+### 10. Marking participation scores : `mark`
+
+Marks the participation scores of particular students for a particular week.
+
+Format: `mark INDEX WEEKNUMBER`
+
+* Marks the participation score of the student at the specified `INDEX` in the specified `WEEK`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The week must be a valid week from the range [1, 13].
+
+### 11. Exiting the program : `exit`
 
 Exits the program.
 

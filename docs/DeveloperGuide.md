@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* nerdTrackerPlus is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -268,36 +268,67 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+nerdTrackerPlus helps Computer Science TAs manage students contacts through a CLI interface, which is much faster than a typical mouse/GUI driven app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                | I want to …​                                                  | So that I can…​                                                                               |
+|---------|------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `* * *` | new user               | see usage instructions                                        | refer to instructions when I forget how to use the App                                        |
+| `* * *` | CS2103T teaching staff | add a new student                                             | keep track of their contact details                                                           |
+| `* * *` | CS2103T teaching staff | delete a student                                              | remove student entries that I no longer need                                                  |
+| `* * *` | CS2103T teaching staff | list students                                                 | view all students currently in my contacts                                                    |
+| `* * *` | CS2103T teaching staff | find a student by name                                        | locate details of students without having to go through the entire list                       |
+| `* * *` | CS2103T teaching staff | edit student details                                          | ensure that student details is always updated                                                 |
+| `* * *` | CS2103T teaching staff | filter students by tag                                        | make it easier to search for particular students                                              |
+| `* * *` | CS2103T teaching staff | add tags to students                                          | categorize student contacts for reference                                                     |
+| `* * *` | CS2103T teaching staff | delete tags                                                   | remove tags that are currently unused                                                         |
+| `* * *` | CS2103T teaching staff | delete tags from students                                     | remove tags from students that do not belong to that category                                 |
+| `* * *` | CS2103T teaching staff | mark the participation score for a student for specific weeks | so that I can keep track of their tutorial participation scores over the course of the module |
+| `* * *` | user                   | close and exit the app                                        |                                                                                               |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `nerdTrackerPlus` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+---
+
+**Use case UC01: Adding a student**
+
+**Main Success Scenario (MSS)**
+
+1. User request to add student.
+2. nerdTrackerPlus adds the students with the relevant particulars.
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given particulars are invalid/missing.
+
+  * 1a1. nerdTrackerPlus shows an error message.
+
+    Use case resumes at step 2.
+
+---
+
+**Use case UC02: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list persons.
+2. nerdTrackerPlus shows a list of persons.
+3. User requests to delete a specific person in the list.
+4. nerdTrackerPlus deletes the person.
 
     Use case ends.
 
@@ -309,9 +340,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. nerdTrackerPlus shows an error message.
 
       Use case resumes at step 2.
+
+---
+
+**Use case UC03: List students**
+
+**MSS**
+
+1. User requests to list persons.
+2. nerdTrackerPlus shows a list of persons.
+
+    Use case ends.
+
+---
+
+**Use case UC04: Find student**
+
+**MSS**
+
+1. User requests to search a student in the contacts list by name.
+2. nerdTrackerPlus shows all students in the list with the matching name.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User searches with invalid input.
+
+  * 1a1. nerdTrackerPlus shows an error message.
+
+    Use case resumes at step 1.
+
+---
+
+**Use case UC05: Edit student details**
+
+**MSS**
+
+1. User requests to list persons.
+2. nerdTrackerPlus shows a list of persons.
+3. User request to edit certain details of a particular student.
+4. nerdTrackerPlus successfully edits student's details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    Use case ends.
+
+* 3a. User inputs invalid index or student particulars.
+
+    * 3a1. nerdTrackerPlus shows an error message
+
+        Use case ends.
+
+---
+
+**Use case UC06: Mark participation scores**
+
+**MSS**
+
+1. User requests to list persons.
+2. nerdTrackerPlus shows a list of persons.
+3. User request to mark the participation score of a specific student in a specific week.
+4. nerdTrackerPlus successfully marks the student's participation score.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User inputs invalid index or week number.
+
+    * 3a1. nerdTrackerPlus shows an error message
+
+      Use case ends.
+
+---
 
 *{More to be added}*
 
@@ -320,6 +433,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The commands should be clear and concise that are easy for teaching assistants to understand and use without extensive training.
+5. The application should only be designed for a single user.
+6. The application should respond promptly to user inputs, with minimal latency between command execution and feedback.
 
 *{More to be added}*
 
@@ -327,6 +443,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **API**: Application Programming Interface, a set of rules, protocols, and tools that allows different software applications to communicate with each other.
+* **GUI**: Graphical User Interface, a type of user interface that allows users to interact with a computer system using graphical elements on the screen such as windows, icons, menus, and buttons.
 
 --------------------------------------------------------------------------------------------------------------------
 

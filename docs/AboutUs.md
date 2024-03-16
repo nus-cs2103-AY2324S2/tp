@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shawn Lim
 
-<img src="images/shawn.png" width="200px">
+<img src="images/shawnnlimm.png" width="200px">
 
 [[github](https://github.com/shawnnlimm)]
 
@@ -19,38 +19,27 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ryo Seah
 
-<img src="images/ryo.png" width="200px">
+<img src="images/ryo-seah.png" width="200px">
 
 [[github](http://github.com/Ryo-Seah)]
 
 * Role: Developer
 * Responsibilities: Everything
 
-### Johnny Doe
+### Dylan Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thewongdylan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/thewongdylan)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Everything
 
-### James Doe
+### James Shen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shamesjen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/shamesjen)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Search Features
