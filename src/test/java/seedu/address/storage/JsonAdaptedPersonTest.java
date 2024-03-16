@@ -18,7 +18,6 @@ import seedu.address.model.person.EmploymentType;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
-import seedu.address.model.person.WorkHours;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_FIRSTNAME = "R@chel";
@@ -38,7 +37,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_EMPLOYMENTTYPE = BENSON.getEmploymentType().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_BANK_DETAILS = BENSON.getBankDetails().toString();
-    private static final WorkHours VALID_WORK_HOURS = BENSON.getWorkHours();
+    private static final int VALID_WORK_HOURS = BENSON.getWorkHours().getHoursWorked();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
         .map(JsonAdaptedTag::new)
         .collect(Collectors.toList());
