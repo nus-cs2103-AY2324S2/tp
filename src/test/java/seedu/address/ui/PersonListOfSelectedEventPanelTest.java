@@ -2,7 +2,7 @@ package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -67,7 +67,7 @@ public class PersonListOfSelectedEventPanelTest {
 
     @Test
     public void updateListView_nonEmptyPersonList_correctVisibility() {
-        personList.add(ALICE);
+        personList.add(BENSON);
         panel.updateListView();
 
         assertTrue(panel.personListView.isVisible());
