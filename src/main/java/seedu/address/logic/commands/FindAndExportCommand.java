@@ -97,7 +97,10 @@ public class FindAndExportCommand extends Command {
     }
 
     private void exportData(List<Person> users, String filename) throws IOException {
-        Path path = Paths.get(filename);
+        Path path = Paths.get(filename).toAbsolutePath();
+        if (Files.exists(path) && !Files.isWritable(path)) {
+            throw new IOException("File exists but is not writable: " + path);
+        }
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write("Name,Email,Address\n");
 
