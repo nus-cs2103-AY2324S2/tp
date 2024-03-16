@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_COURSE_MATES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCourseMates.CARL;
-import static seedu.address.testutil.TypicalCourseMates.ELLE;
 import static seedu.address.testutil.TypicalCourseMates.FIONA;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 
@@ -18,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.coursemate.NameContainsKeywordsPredicate;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,10 +28,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        ContainsKeywordPredicate firstPredicate =
+                new ContainsKeywordPredicate("first");
+        ContainsKeywordPredicate secondPredicate =
+                new ContainsKeywordPredicate("second");
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -55,9 +54,9 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noCourseMateFound() {
+    public void execute_nonMatchingKeywords_noCourseMateFound() {
         String expectedMessage = String.format(MESSAGE_COURSE_MATES_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        ContainsKeywordPredicate predicate = preparePredicate("foo bar");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredCourseMateList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel, false);
@@ -65,27 +64,27 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleCourseMatesFound() {
-        String expectedMessage = String.format(MESSAGE_COURSE_MATES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+    public void execute_commonSubstring_multipleCourseMatesFound() {
+        String expectedMessage = String.format(MESSAGE_COURSE_MATES_LISTED_OVERVIEW, 2);
+        ContainsKeywordPredicate predicate = preparePredicate("z");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredCourseMateList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel, false);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredCourseMateList());
+        assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredCourseMateList());
     }
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        ContainsKeywordPredicate predicate = new ContainsKeywordPredicate("keyword");
         FindCommand findCommand = new FindCommand(predicate);
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code ContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private ContainsKeywordPredicate preparePredicate(String userInput) {
+        return new ContainsKeywordPredicate(userInput.trim());
     }
 }

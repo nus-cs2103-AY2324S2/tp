@@ -7,10 +7,6 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -22,8 +18,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
-import seedu.address.model.coursemate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.CourseMateBuilder;
 import seedu.address.testutil.CourseMateUtil;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
@@ -70,10 +66,10 @@ public class MatchMateParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String keyword = "foo bar baz";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + keyword);
+        assertEquals(new FindCommand(new ContainsKeywordPredicate(keyword)), command);
     }
 
     @Test

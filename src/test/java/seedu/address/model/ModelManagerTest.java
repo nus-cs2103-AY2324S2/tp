@@ -11,12 +11,11 @@ import static seedu.address.testutil.TypicalCourseMates.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.coursemate.NameContainsKeywordsPredicate;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.testutil.ContactListBuilder;
 
 public class ModelManagerTest {
@@ -136,7 +135,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredCourseMateList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredCourseMateList(new ContainsKeywordPredicate(String.join(" ", keywords)));
         assertFalse(modelManager.equals(new ModelManager(contactList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

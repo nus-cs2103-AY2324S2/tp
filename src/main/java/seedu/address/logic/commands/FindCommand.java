@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.coursemate.NameContainsKeywordsPredicate;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 
 /**
  * Finds and lists all course mates in contact list whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final ContainsKeywordPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(ContainsKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
