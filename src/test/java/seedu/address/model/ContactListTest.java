@@ -12,13 +12,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
+import seedu.address.model.group.Group;
 import seedu.address.testutil.CourseMateBuilder;
 
 public class ContactListTest {
@@ -48,7 +51,8 @@ public class ContactListTest {
         CourseMate editedAlice = new CourseMateBuilder(ALICE)
                 .withSkills(VALID_SKILL_JAVA).build();
         List<CourseMate> newCourseMates = Arrays.asList(ALICE, editedAlice);
-        ContactListStub newData = new ContactListStub(newCourseMates);
+        List<Group> newGroups = Arrays.asList(new Group(new Name("Grp1"), Set.of(ALICE)));
+        ContactListStub newData = new ContactListStub(newCourseMates, newGroups);
 
         assertThrows(DuplicateCourseMateException.class, () -> contactList.resetData(newData));
     }
@@ -95,13 +99,21 @@ public class ContactListTest {
     private static class ContactListStub implements ReadOnlyContactList {
         private final ObservableList<CourseMate> courseMates = FXCollections.observableArrayList();
 
-        ContactListStub(Collection<CourseMate> courseMates) {
+        private final ObservableList<Group> groups = FXCollections.observableArrayList();
+
+        ContactListStub(Collection<CourseMate> courseMates, Collection<Group> groups) {
             this.courseMates.setAll(courseMates);
+            this.groups.setAll(groups);
         }
 
         @Override
         public ObservableList<CourseMate> getCourseMateList() {
             return courseMates;
+        }
+
+        @Override
+        public ObservableList<Group> getGroupList() {
+            return groups;
         }
     }
 
