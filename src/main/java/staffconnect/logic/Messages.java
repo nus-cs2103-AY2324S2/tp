@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import staffconnect.logic.parser.Prefix;
+import staffconnect.model.meeting.Meeting;
 import staffconnect.model.person.Person;
 
 /**
@@ -49,5 +50,19 @@ public class Messages {
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
+    /**
+     * Formats the {@code meeting} for display to the user.
+     */
+    public static String format(Meeting meeting) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(meeting.getDescription())
+            .append("; At: ")
+            .append(meeting.getStartDate());
+        return builder.toString();
+    }
+
+
+
+
 
 }

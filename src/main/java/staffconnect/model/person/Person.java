@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.model.meeting.Meeting;
 import staffconnect.model.tag.Tag;
 
 /**
@@ -25,6 +26,8 @@ public class Person {
     private final Venue venue;
     private final Module module;
     private final Set<Tag> tags = new HashSet<>();
+
+    private final Set<Meeting> meetings = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -79,6 +82,19 @@ public class Person {
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }
+
+    /**
+     * Returns true if the meeting to add is already tagged to the current person.
+     *
+     */
+    public boolean hasDuplicateMeeting(Meeting toAdd) {
+        return meetings.contains(toAdd);
+    }
+
+    public boolean setMeeting(Meeting toAdd) {
+        return meetings.add(toAdd);
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
