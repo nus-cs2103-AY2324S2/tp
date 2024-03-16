@@ -34,7 +34,7 @@ public class CombinedPredicates implements Predicate<Person> {
         }
 
         CombinedPredicates otherCombinedPredicate = (CombinedPredicates) other;
-        return predicates.equals(otherCombinedPredicate.predicates);
+        return Arrays.equals(predicates, otherCombinedPredicate.predicates);
     }
 
     @Override
