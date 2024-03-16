@@ -5,6 +5,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Comparator;
 
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -17,12 +18,12 @@ import seedu.address.model.person.Person;
 public class SortAscendingCommand extends Command {
 
     public static final String COMMAND_WORD = "sortStarsAscending";
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Sorted all persons";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateSortedPersonListSortAscending();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }
