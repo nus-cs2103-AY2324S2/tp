@@ -68,7 +68,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a employee to the address book.
+     * Adds an employee to the address book.
      * The employee must not already exist in the address book.
      */
     public void addEmployee(Employee p) {

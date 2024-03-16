@@ -9,7 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +54,14 @@ public class EditEmployeeDescriptorTest {
         editedAmy = new EditEmployeeDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different role -> returns false
+        editedAmy = new EditEmployeeDescriptorBuilder(DESC_AMY).withAddress(VALID_ROLE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different team -> returns false
+        editedAmy = new EditEmployeeDescriptorBuilder(DESC_AMY).withAddress(VALID_TEAM_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different tags -> returns false
         editedAmy = new EditEmployeeDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
@@ -64,7 +74,9 @@ public class EditEmployeeDescriptorTest {
                 + editEmployeeDescriptor.getName().orElse(null) + ", phone="
                 + editEmployeeDescriptor.getPhone().orElse(null) + ", email="
                 + editEmployeeDescriptor.getEmail().orElse(null) + ", address="
-                + editEmployeeDescriptor.getAddress().orElse(null) + ", tags="
+                + editEmployeeDescriptor.getAddress().orElse(null) + ", team="
+                + editEmployeeDescriptor.getTeam().orElse(null) + ", role="
+                + editEmployeeDescriptor.getRole().orElse(null) + ", tags="
                 + editEmployeeDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editEmployeeDescriptor.toString());
     }
