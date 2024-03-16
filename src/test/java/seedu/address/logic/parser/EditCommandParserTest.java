@@ -134,7 +134,8 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditCommand.EditEmployeeDescriptor descriptor =
+                new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
