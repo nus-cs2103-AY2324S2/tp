@@ -14,7 +14,7 @@ public class IdentityCardNumber {
         "IC number starts with one letter (S,T,F,G,M) followed by seven digits and one letter behind"
             + " It is case insensitive. An example is S1234567A.";
 
-    public static final String VALIDATION_REGEX = "[STFGM][0-9]{7}[A-Z]";
+    public static final String VALIDATION_REGEX = "[STFGMstfgm][0-9]{7}[A-Z,a-z]";
 
     public final String value;
 
