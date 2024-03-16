@@ -40,6 +40,10 @@ public class Person {
         this.tags.addAll(tags);
         this.schedules.addAll(schedules);
     }
+
+    /**
+     * Overloaded constructor to consider if Schedule is empty
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;

@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 
 /**
@@ -124,9 +123,9 @@ public class Schedule {
      * Format state as text for viewing.
      */
     public String toString() {
-        return schedName +
-                " start " + startTime.toString() +
-                " end " + endTime.toString();
+        return schedName
+                + " start " + startTime.toString()
+                + " end " + endTime.toString();
     }
 
 }

@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -126,7 +125,13 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static Schedule parseSchedule (String schedule) throws ParseException {
+    /**
+     * Parses a {@code String name, startTime, endTime} into an {@code Schedule}.
+     * @param schedule
+     * @return Schedule
+     * @throws ParseException
+     */
+    public static Schedule parseSchedule(String schedule) throws ParseException {
         requireNonNull(schedule);
         String[] formatinputs = schedule.split(" ");
         if (formatinputs.length != 3) {
@@ -141,13 +146,18 @@ public class ParserUtil {
         if (!Schedule.isValidTiming(startTime, endTime)) {
             throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
         }
-        return new Schedule(name, startTime, endTime );
+        return new Schedule(name, startTime, endTime);
     }
 
-
-    public static ArrayList<Schedule> parseSchedules (Collection<String> schedules) throws ParseException {
+    /**
+     * Parses a List of Schedules Strings and convert them into Schedule objects
+     * @param schedules
+     * @return ArrayList of Schedules
+     * @throws ParseException
+     */
+    public static ArrayList<Schedule> parseSchedules(Collection<String> schedules) throws ParseException {
         requireNonNull(schedules);
-        final ArrayList<Schedule> scheduler= new ArrayList<>();
+        final ArrayList<Schedule> scheduler = new ArrayList<>();
         for (String schName : schedules) {
             scheduler.add(parseSchedule(schName));
         }
