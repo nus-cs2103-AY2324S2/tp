@@ -12,7 +12,7 @@ public class Status {
      * Constructs an enum class containing 5 fixed, different recruitment status
      * for individual candidates.
      */
-    enum STATUS {
+    enum CandidateStatus {
         PRESCREEN,
         IN_PROGRESS,
         WAITLIST,
@@ -20,10 +20,10 @@ public class Status {
         REJECTED
     }
 
-    public final String value;
-
     public static final String MESSAGE_CONSTRAINTS = "Interview status must be one of the following values: "
             + "PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED";
+
+    public final String value;
 
     /**
      * Constructs an {@code Status}.
@@ -67,7 +67,7 @@ public class Status {
      */
     public static boolean isValidStatus(String status) {
         boolean isValid = false;
-        for (STATUS enumValue : STATUS.values()) {
+        for (CandidateStatus enumValue : CandidateStatus.values()) {
             if (enumValue.name().equals(status.toUpperCase())) {
                 isValid = true;
                 break;

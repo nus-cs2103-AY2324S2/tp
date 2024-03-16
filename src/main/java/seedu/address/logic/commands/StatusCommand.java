@@ -3,23 +3,27 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.*;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Comment;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Updates recruitment status for candidates in the address book.
  */
 public class StatusCommand extends Command {
-    private final Index index;
-    private final Status status;
 
     public static final String COMMAND_WORD = "status";
 
@@ -32,14 +36,16 @@ public class StatusCommand extends Command {
     public static final String MESSAGE_STATUS_PERSON_SUCCESS = "Status of Candidate Number %1$d Successfully"
             + " Updated to %2$s";
 
-    public static final String STATUS_NOT_EDITED = "Please specify the desired status to update the candidate to together with"
-            + " the candidate number";
+    public static final String STATUS_NOT_EDITED = "Please specify the desired status to update "
+            + "the candidate to together with the candidate number";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This candidate with identical recruitment status "
             + "already exists in the address book or this candidate's status is already set to %1$s.";
 
     public static final String STATUS_CANNOT_BE_EDITED = "Status of candidates cannot be edited via edit method.\n"
             + "Please use status command instead in order to update recruitment status for candidates.";
+    private final Index index;
+    private final Status status;
 
     /**
      * Creates an StatusCommand to update the candidate status for specified {@code Person}
@@ -62,18 +68,21 @@ public class StatusCommand extends Command {
         }
 
         Person personToUpdateStatus = lastShownList.get(index.getZeroBased());
-        Person StatusUpdatedPerson = updatePersonStatus(personToUpdateStatus);
+        Person statusUpdatedPerson = updatePersonStatus(personToUpdateStatus);
 
-        if (personToUpdateStatus.equals(StatusUpdatedPerson) && model.hasPerson(StatusUpdatedPerson)) {
+        if (personToUpdateStatus.equals(statusUpdatedPerson) && model.hasPerson(statusUpdatedPerson)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, status.toString()));
         }
 
-        model.setPerson(personToUpdateStatus, StatusUpdatedPerson);
+        model.setPerson(personToUpdateStatus, statusUpdatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_STATUS_PERSON_SUCCESS,
                 index.getOneBased(), status.toString()));
     }
 
+    /**
+     * Updates a person with a new user-provided status among one of the five enum values
+     */
     public Person updatePersonStatus(Person personToUpdateStatus) {
         assert personToUpdateStatus != null;
 
@@ -82,9 +91,11 @@ public class StatusCommand extends Command {
         Email updatedEmail = personToUpdateStatus.getEmail();
         Address updatedAddress = personToUpdateStatus.getAddress();
         Status updatedStatus = status;
+        Comment updatedComment = personToUpdateStatus.getComment();
         Set<Tag> updatedTags = personToUpdateStatus.getTags();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus,
+                updatedComment, updatedTags);
     }
 
     @Override
