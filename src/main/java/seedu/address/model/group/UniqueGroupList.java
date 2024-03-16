@@ -1,19 +1,15 @@
 package seedu.address.model.group;
 
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.coursemate.CourseMate;
-import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
-import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
-import seedu.address.model.group.exceptions.DuplicateGroupException;
-import seedu.address.model.group.exceptions.GroupNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.group.exceptions.DuplicateGroupException;
 
 /**
  * A list of groups that enforces uniqueness between its elements and does not allow nulls.

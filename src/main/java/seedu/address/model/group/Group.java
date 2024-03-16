@@ -1,11 +1,14 @@
 package seedu.address.model.group;
 
-import seedu.address.model.coursemate.CourseMate;
-import seedu.address.model.coursemate.Name;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
+
 
 /**
  * Represents a Group in the group list.
@@ -16,7 +19,11 @@ public class Group {
     private final Name name;
     private final Set<CourseMate> members = new HashSet<>();
 
+    /**
+     * Every field must be present and not null.
+     */
     public Group(Name name, Set<CourseMate> members) {
+        requireNonNull(name);
         this.name = name;
         this.members.addAll(members);
     }
