@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.Prefix;
 
 import java.util.function.Predicate;
 
@@ -21,56 +22,38 @@ public class KeywordPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         boolean predicate = true;
 
-        if (keywords.getValue(PREFIX_NAME).isPresent()) {
-            predicate &= person.getName().fullName.contains(keywords.getValue(PREFIX_NAME).get());
-        }
-
-        if (keywords.getValue(PREFIX_PHONE).isPresent()) {
-            predicate &= person.getPhone().toString().contains(keywords.getValue(PREFIX_PHONE).get());
-        }
-
-        if (keywords.getValue(PREFIX_EMAIL).isPresent()) {
-            predicate &= person.getEmail().toString().contains(keywords.getValue(PREFIX_EMAIL).get());
-        }
-
-        if (keywords.getValue(PREFIX_ADDRESS).isPresent()) {
-            predicate &= person.getAddress().toString().contains(keywords.getValue(PREFIX_ADDRESS).get());
-        }
+        predicate &= contains(person.getName().fullName.toLowerCase(), PREFIX_NAME);
+        predicate &= contains(person.getPhone().toString(), PREFIX_PHONE);
+        predicate &= contains(person.getEmail().toString(), PREFIX_EMAIL);
+        predicate &= contains(person.getAddress().toString(), PREFIX_ADDRESS);
 
         if (person instanceof Staff) {
             Staff staff = (Staff) person;
-            if (keywords.getValue(PREFIX_SALARY).isPresent()) {
-                predicate &= staff.getSalary().toString().contains(keywords.getValue(PREFIX_SALARY).get());
-            }
-
-            if (keywords.getValue(PREFIX_EMPLOYMENT).isPresent()) {
-                predicate &= staff.getEmployment().toString().contains(keywords.getValue(PREFIX_EMPLOYMENT).get());
-            }
+            predicate &= contains(staff.getSalary().toString(), PREFIX_SALARY);
+            predicate &= contains(staff.getEmployment().toString(), PREFIX_EMPLOYMENT);
         }
 
         if (person instanceof Supplier) {
             Supplier supplier = (Supplier) person;
-            if (keywords.getValue(PREFIX_PRICE).isPresent()) {
-                predicate &= supplier.getPrice().toString().contains(keywords.getValue(PREFIX_PRICE).get());
-            }
-
-            if (keywords.getValue(PREFIX_PRODUCT).isPresent()) {
-                predicate &= supplier.getProduct().toString().contains(keywords.getValue(PREFIX_PRODUCT).get());
-            }
+            predicate &= contains(supplier.getPrice().toString(), PREFIX_PRICE);
+            predicate &= contains(supplier.getProduct().toString(), PREFIX_PRODUCT);
         }
 
         if (person instanceof Maintainer) {
             Maintainer maintainer = (Maintainer) person;
-            if (keywords.getValue(PREFIX_SKILL).isPresent()) {
-                predicate &= maintainer.getSkill().toString().contains(keywords.getValue(PREFIX_SALARY).get());
-            }
-
-            if (keywords.getValue(PREFIX_COMMISSION).isPresent()) {
-                predicate &= maintainer.getCommission().toString().contains(keywords.getValue(PREFIX_COMMISSION).get());
-            }
+            predicate &= contains(maintainer.getSkill().toString(), PREFIX_SKILL);
+            predicate &= contains(maintainer.getCommission().toString(), PREFIX_COMMISSION);
         }
 
         return predicate;
+    }
+
+    boolean contains(String identifier, Prefix keyword) {
+        if (keywords.getValue(keyword).isPresent()) {
+            return identifier.contains(keywords.getValue(keyword).get());
+        }
+
+        return true;
     }
 
     @Override
