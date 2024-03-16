@@ -30,8 +30,8 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_ADD_ORDER_SUCCESS = "Added order to Person: %1$s";
 
-    private final NameContainsKeywordsPredicate personNamePredicate;
-    private final Order order;
+    public final NameContainsKeywordsPredicate personNamePredicate;
+    public final Order order;
 
     /**
      * @param personNamePredicate of the person to add the order to
