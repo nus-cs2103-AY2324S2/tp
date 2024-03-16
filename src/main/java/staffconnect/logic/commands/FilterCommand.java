@@ -11,6 +11,8 @@ import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;
 import staffconnect.model.Model;
 import staffconnect.model.person.Person;
+import staffconnect.model.person.PersonHasModulePredicate;
+import staffconnect.model.person.PersonHasTagsPredicate;
 
 /**
  * Filters all persons in staff book whose module code or faculty shorthand or
@@ -31,16 +33,17 @@ public class FilterCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "BestProf";
 
-    // private final PersonHasModulePredicate modulePredicate;
-    // private final PersonHasTagsPredicate tagPredicate;
-    // private final PersonMatchesFilterCriteriaPredicate filterPredicate;
+    private final PersonHasModulePredicate modulePredicate;
+    private final PersonHasTagsPredicate tagsPredicate;
     private final Predicate<Person> personPredicate;
 
     /**
      * Creates a FilterCommand to filter for the specified {@code Tag}
      */
-    public FilterCommand(Predicate<Person> personPredicate) {
-        this.personPredicate = personPredicate;
+    public FilterCommand(PersonHasModulePredicate modulePredicate, PersonHasTagsPredicate tagsPredicate) {
+        this.modulePredicate = modulePredicate;
+        this.tagsPredicate = tagsPredicate;
+        this.personPredicate = setPersonPredicate();
     }
 
     @Override
@@ -49,6 +52,10 @@ public class FilterCommand extends Command {
         model.updateFilteredPersonList(personPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+    }
+
+    private Predicate<Person> setPersonPredicate() {
+        return this.modulePredicate.and(this.tagsPredicate);
     }
 
     @Override
@@ -63,13 +70,15 @@ public class FilterCommand extends Command {
         }
 
         FilterCommand otherFilterCommand = (FilterCommand) other;
-        return personPredicate.equals(otherFilterCommand.personPredicate);
+        return modulePredicate.toString().equals(otherFilterCommand.modulePredicate.toString()) &&
+                tagsPredicate.toString().equals(otherFilterCommand.tagsPredicate.toString());
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("personPredicate", personPredicate)
+                .add("modulePredicate", modulePredicate)
+                .add("tagsPredicate", tagsPredicate)
                 .toString();
     }
 

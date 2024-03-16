@@ -48,9 +48,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         // PersonHasFacultyPredicate facultyPredicate = new PersonHasFacultyPredicate(module);
         PersonHasModulePredicate modulePredicate = new PersonHasModulePredicate(module);
-        PersonHasTagsPredicate tagPredicate = new PersonHasTagsPredicate(tags);
+        PersonHasTagsPredicate tagsPredicate = new PersonHasTagsPredicate(tags);
 
-        return new FilterCommand(modulePredicate.and(tagPredicate));
+        return new FilterCommand(modulePredicate, tagsPredicate);
     }
 
 }
