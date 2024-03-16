@@ -58,10 +58,10 @@ public class TypicalEmployees {
     // Manually added - Employee's details found in {@code CommandTestUtil}
     public static final Employee AMY = new EmployeeBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withTeam("A").withRole("Advisor").withTags(VALID_TAG_FRIEND).build();
+            .withTeam("A").withRole("Manager").withTags(VALID_TAG_FRIEND).build();
     public static final Employee BOB = new EmployeeBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withTeam("A").withRole("Secretary").withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withTeam("B").withRole("Engineer").withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

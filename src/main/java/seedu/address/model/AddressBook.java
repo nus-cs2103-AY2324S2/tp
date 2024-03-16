@@ -68,7 +68,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a employee to the address book.
+     * Adds an employee to the address book.
      * The employee must not already exist in the address book.
      */
     public void addEmployee(Employee p) {
@@ -78,7 +78,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in the address book.
-     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address book.
+     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address
+     * book.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
