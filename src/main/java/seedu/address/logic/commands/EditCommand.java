@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTAKE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,18 +45,23 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MAJOR + "MAJOR] "
+            + "[" + PREFIX_INTAKE + "INTAKE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ID + "A0951516M "
             + PREFIX_PHONE + "91234567 "
+            + PREFIX_MAJOR + "Physics "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_NO_CHANGE = "There are no Changes according to the Arguments Provided";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -80,6 +88,10 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        if (!editPersonDescriptor.equals(new EditPersonDescriptor(personToEdit))) {
+            throw new CommandException(MESSAGE_NO_CHANGE);
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -163,6 +175,17 @@ public class EditCommand extends Command {
             setId(toCopy.id);
             setMajor(toCopy.major);
             setIntake(toCopy.intake);
+        }
+
+        public EditPersonDescriptor(Person toCopy) {
+            setName(toCopy.getName());
+            setPhone(toCopy.getPhone());
+            setEmail(toCopy.getEmail());
+            setAddress(toCopy.getAddress());
+            setTags(toCopy.getTags());
+            setId(toCopy.getId());
+            setMajor(toCopy.getMajor());
+            setIntake(toCopy.getIntake());
         }
 
         /**
