@@ -21,6 +21,8 @@ public class Messages {
     public static final String MESSAGE_SCHEDULE_DONE = "This schedule has already been completed.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_DUPLICATE_POLICY =
+            "You cannot add a policy with the same Policy ID as an existing policy";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -29,6 +29,7 @@ import seedu.address.model.person.LastMet;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PolicyList;
 import seedu.address.model.person.Schedule;
 import seedu.address.model.tag.Tag;
 
@@ -108,9 +109,10 @@ public class EditCommand extends Command {
         LastMet currentLastMet = personToEdit.getLastMet();
         Schedule currentSchedule = personToEdit.getSchedule();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        PolicyList currentPolicyList = personToEdit.getPolicyList();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
-                currentLastMet, currentSchedule, updatedTags);
+                currentLastMet, currentSchedule, updatedTags, currentPolicyList);
     }
 
     @Override
