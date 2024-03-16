@@ -39,6 +39,62 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case and a full word match is not required, however must be in chronological order.
+     *   <br>examples:<pre>
+     *       containsIgnoreCase("ABc def", "abc") == true
+     *       containsIgnoreCase("ABc def", "DEF") == true
+     *       containsIgnoreCase("ABc def", "AB") == true
+     *       containsIgnoreCase("ABc def", "de") == true
+     *       containsIgnoreCase("ABc def", "bd def") == false // not in chronological order.
+     *       </pre>
+     * @param sentence cannot be null
+     * @param words cannot be null, cannot be empty
+     * @return {@code true} if the {@code sentence} contains the {@code word}, {@code false} otherwise.
+     */
+    public static boolean containsIgnoreCase(String sentence, String words) {
+        requireNonNull(sentence);
+        requireNonNull(words);
+
+        final String preppedSentence = sentence.toLowerCase().trim();
+        final String preppedWords = words.toLowerCase().trim();
+
+        checkArgument(!preppedWords.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWords.split("\\s+").length >= 1, "Word parameter should not be empty");
+
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] wordsInPreppedWords = words.split("\\s+");
+
+        if (wordsInPreppedWords.length > wordsInPreppedSentence.length) {
+            return false;
+        } else if (wordsInPreppedSentence.length == wordsInPreppedWords.length) {
+            return StringUtil.isChronologicalSubstring(preppedSentence, preppedWords);
+        } else {
+            return Arrays.stream(wordsInPreppedSentence)
+                    .anyMatch(sentencePart -> StringUtil.isChronologicalSubstring(sentencePart, preppedWords));
+        }
+    }
+
+    /**
+     * Checks if a given substring is contained within a string in chronological order.
+     *
+     * @param str The string to search within.
+     * @param sub The substring to search for.
+     * @return {@code true} if the substring is found within the string in chronological order, {@code false} otherwise.
+     */
+    public static boolean isChronologicalSubstring(String str, String sub) {
+        int strIndex = 0;
+        int subIndex = 0;
+        while (strIndex < str.length() && subIndex < sub.length()) {
+            if (str.charAt(strIndex) == sub.charAt(subIndex)) {
+                subIndex++;
+            }
+            strIndex++;
+        }
+        return subIndex == sub.length();
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
