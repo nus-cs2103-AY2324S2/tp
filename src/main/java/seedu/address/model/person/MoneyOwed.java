@@ -39,10 +39,17 @@ public class MoneyOwed {
     }
 
     /**
-     * Returns true if an amount owed is negative.
+     * Returns message to display on UI in String.
      */
-    public boolean isNegativeMoney() {
-        return this.isNegative;
+    public String getMessage() {
+        if (moneyOwed == 0) {
+            return String.format("You don't owe each other anything");
+        }
+        if (isNegative) {
+            return String.format("You owe $" + toString().substring(1));
+        } else {
+            return String.format("Owes you $" + this);
+        }
     }
 
     @Override
