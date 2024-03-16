@@ -16,31 +16,31 @@ public class FamilyTest {
     @Test
     public void constructor_invalidFamily_throwsNumberFormatException() {
         String invalidFamily = "";
-        assertThrows(NumberFormatException.class,() -> new Family(invalidFamily));
+        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
     }
 
     @Test
     public void constructor_invalidFamily_throwsNumberFormatException2() {
         String invalidFamily = " ";
-        assertThrows(NumberFormatException.class,() -> new Family(invalidFamily));
+        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
     }
 
     @Test
     public void constructor_invalidFamily_throwsNumberFormatException3() {
         String invalidFamily = " family"; //alphabets
-        assertThrows(NumberFormatException.class,() -> new Family(invalidFamily));
+        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
     }
 
     @Test
     public void constructor_invalidFamily_throwsNumberFormatException4() {
         String invalidFamily = "9011p041"; //alphabet within digits
-        assertThrows(NumberFormatException.class,() -> new Family(invalidFamily));
+        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
     }
 
     @Test
     public void constructor_invalidFamily_throwsNumberFormatException5() {
         String invalidFamily = "9312 1534"; // spaces within digits
-        assertThrows(NumberFormatException.class,() -> new Family(invalidFamily));
+        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
     }
 
     @Test
