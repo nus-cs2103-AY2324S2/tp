@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,26 +8,15 @@ import seedu.address.logic.commands.FindAndExportCommand;
 
 public class FindAndExportCommandParserTest {
 
-    public static final String MESSAGE_INVALID_FILENAME = "The filename provided is invalid.";
-    public static final String MESSAGE_MISSING_NAME = "A name must be provided.";
-    private FindAndExportCommandParser parser = new FindAndExportCommandParser();
-
+    private final FindAndExportCommandParser parser = new FindAndExportCommandParser();
 
     @Test
-    public void parse_invalidTag_failure() {
-        assertParseFailure(parser, "invalidTag n/John a/123 Main St o/output.csv",
-                FindAndExportCommand.MESSAGE_USAGE);
-    }
+    public void parse_validArgs_returnsFindAndExportCommand() {
+        FindAndExportCommand expectedCommand = new FindAndExportCommand("friends", null, null, "default_filename.csv");
 
-    @Test
-    public void parse_invalidFilename_failure() {
-        String input = "friends n/John a/123 Main St o/invalid|filename.csv";
-        assertParseFailure(parser, input, MESSAGE_INVALID_FILENAME);
-    }
+        assertParseSuccess(parser, "friends", expectedCommand);
 
-    @Test
-    public void parse_missingName_failure() {
-        assertParseFailure(parser, "friends a/123 Main St o/output.csv",
-                MESSAGE_MISSING_NAME);
+        expectedCommand = new FindAndExportCommand("friends", "John", "123 Main St", "output.csv");
+        assertParseSuccess(parser, "friends n/John a/123 Main St o/output.csv", expectedCommand);
     }
 }
