@@ -200,5 +200,4 @@ public class InternshipAddCommandTest {
             return new InternshipData();
         }
     }
-
 }
