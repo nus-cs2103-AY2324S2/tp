@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.StarsLessThanPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all persons in address book whose number of stars is less than the argument.

@@ -1,13 +1,16 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.FindStarsLessThanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.StarsLessThanPredicate;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-public class FindStarsLessThanCommandParser implements Parser<FindStarsLessThanCommand>{
+/**
+ * Parser for the FindStarsLessThanCommand.
+ */
+public class FindStarsLessThanCommandParser implements Parser<FindStarsLessThanCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindStarsLessThanCommand
      * and returns an FindStarsLessThan object for execution.
