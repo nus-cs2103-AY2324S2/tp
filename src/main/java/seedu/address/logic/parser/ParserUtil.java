@@ -9,10 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Star;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +22,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_STAR = "Star is not a non-zero unsigned integer.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -66,18 +69,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String major} into an {@code Major}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code major} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Major parseMajor(String major) throws ParseException {
+        requireNonNull(major);
+        String trimmedMajor = major.trim();
+        if (!Major.isValidMajor(trimmedMajor)) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Major(trimmedMajor);
     }
 
     /**
@@ -93,6 +96,25 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String star} into a {@code Star}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Star} is invalid.
+     */
+    public static Star parseStar(String star) throws ParseException {
+        requireNonNull(star);
+        String trimmedStar = star.trim(); // trim the string to only get the number
+        if (!StringUtil.isUnsignedInteger(trimmedStar)) {
+            throw new ParseException(MESSAGE_INVALID_STAR);
+        } // checks if Star is in fact an Integer
+        Integer starCount = Integer.parseInt(trimmedStar);
+        if (!Star.isValidStar(starCount)) { // check whether star is a valid Integer >= 0
+            throw new ParseException(Star.MESSAGE_CONSTRAINTS);
+        }
+        return new Star(starCount);
     }
 
     /**

@@ -9,8 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -262,11 +261,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Teaching Assistant (TA) who is responsible for managing classes of students
+* Has a need to track class participation across students
+* prefers desktop apps on a laptop
+* prefers typing in a CLI interface to mouse interactions
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
@@ -275,29 +273,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                  | I want to …​                                      | So that I can…​                                                                           |
+|----------|------------------------------------------|---------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | TA using the App for the first time      | see usage instructions                            | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | TA                                       | add a new student                                 |                                                                                           |
+| `* * *`  | TA                                       | delete a student                                  | remove entries that I no longer need                                                      |
+| `* * *`  | TA                                       | find a student by name                            | locate details of students without having to go through the entire list                   |
+| `* * *`  | TA                                       | know the majors of my students                    | understand their learning needs                                                           |
+| `*`      | TA                                       | have a personal description of the student        | know more about them                                                                      |
+| `* * *`  | TA                                       | give student stars for class participation        | give credit for class participation                                                       |
+| `* * *`  | TA                                       | view a student's participation                    | gauge their engagement in class                                                           |
+| `*`      | TA                                       | sort students based on participation              | praise those who have taken initiative and remind those who have not to be more proactive |
+| `* * *`  | TA                                       | tag the students by their TGs                     | remember which class my students are in                                                   |
+| `* * *`  | TA                                       | tag the students by their modules                 | remember which module my students are in                                                  |
+| `* *`    | TA                                       | filter the students by their TGs                  | view all the students from a TG                                                           |
+| `* *`    | TA                                       | filter students by their modules                  | view all the students from a module                                                       |
+| `* *`    | TA                                       | identify underperforming students with bad grades | intervene and help them                                                                   |
+| `* *`    | TA                                       | check who's work I havent graded yet              | remember to do so                                                                         |
+| `* * `   | TA                                       | exit the program                                  |                                                                                           |
+| `* `     | TA                                       | clear all students' details                       | remove all entries quickly                                                                |
+| `*`      | TA with many persons in the address book | sort students by name                             | locate a student easily                                                                   |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ClassMonitor` and the **Actor** is the `TA`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA requests to delete a specific student in the list
+4.  ClassMonitor deletes the student
 
     Use case ends.
 
@@ -309,24 +319,150 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClassMonitor shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a student**
+
+**MSS**
+
+1.  TA requests to add a student in the list
+2. TA includes the relevant student's info 
+3. ClassMonitor adds the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. TA did not follow the correct format as stated in the instructions.
+  * 2a1. ClassMonitor shows an error message. 
+
+    Use case ends.
+
+**Use case: Add a tag to a student**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA requests to add a tag to a specific student in the list
+4.  ClassMonitor adds the tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ClassMonitor shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find a student by name**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA searches a specific student in the list
+4.  ClassMonitor returns the specific student's details
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keyword does not match any student's name.
+
+    * 3a1. ClassMonitor shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a star to a student**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA adds a star to a specific student in the list
+4.  ClassMonitor adds a star to the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Filter students by tag**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA requests to filter students by a specific tag
+4.  ClassMonitor shows a filtered list of students
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+* 3a. The given tag does not exist.
+
+    * 3a1. ClassMonitor shows an error message.
+
+      Use case resumes at step 2.
+
+  Use case ends.
+
+**Use case: Sort list of students by parameter**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA requests to sort students by a specific parameter in ascending/descending order
+4.  ClassMonitor shows a sorted list of students.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+* 3a. The given parameter does not exist.
+
+    * 3a1. ClassMonitor shows an error message.
+
+      Use case resumes at step 2.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+4.  All user operations should be completed within 100 milliseconds.
+5.  The project must adhere to a bi-weekly iterative development schedule, ensuring continuous delivery or improvement of a working product every two weeks.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, MacOS 
+* **Course**: A course with a program and syllabus. e.g. CS2030S
+* **Tutorial Group (TG)**: A group of students from a particular course. e.g. G13
+* **Teaching Assistant (TA)**: A tutor attached to class
 
 --------------------------------------------------------------------------------------------------------------------
 

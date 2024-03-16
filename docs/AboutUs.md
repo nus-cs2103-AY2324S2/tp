@@ -5,55 +5,58 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0959970@u.nus.edu`
 
 ## Project team
 
 ### Evelyn
 
-<img src="images/evedaktyl.png" width="200px">
+<img src="images/evedaktyl.png" height="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/evedaktyl)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[portfolio](team/evedaktyl.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsiblity: README
 
-### Jean Doe
+### Ryan Chia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chiaryan.png" height="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chiaryan)]
+[[portfolio](team/chiaryan.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Create issues
+
+### Laksh
+
+<img src="images/r-laksh.png" height="200px">
+
+[[github](http://github.com/r-laksh)] 
+[[portfolio](team/r-laksh.md)]
+
+* Role: Developer
+* Responsibilities: About Us
+
+### Kai
+
+<img src="images/c-wenlong.png" height="200px">
+
+[[github](http://github.com/c-wenlong)]
+[[portfolio](team/c-wenlong.md)]
+[[Personal Website](https://capyscript.super.site/)]
+
+* Role: Developer
+* Responsibilities: UI Design
+
+### Kwun
+
+<img src="images/kwuunnn.png" height="200px">
+
+[[github](http://github.com/kwuunnn)]
+[[portfolio](team/kwuunnn.md)]
+
+* Role: Developer
+* Responsibilities: User Stories
