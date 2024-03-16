@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.InternshipMessages;
-import seedu.address.model.InternshipData;
 import seedu.address.model.InternshipModel;
 import seedu.address.model.InternshipModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,7 +31,7 @@ public class InternshipDeleteCommandTest {
         Internship internshipToDelete = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
         InternshipDeleteCommand deleteCommand = new InternshipDeleteCommand(INDEX_FIRST_INTERNSHIP);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+        String expectedMessage = String.format(InternshipDeleteCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS,
                 InternshipMessages.format(internshipToDelete));
 
         InternshipModelManager expectedModel = new InternshipModelManager(model.getInternshipData(), new UserPrefs());
