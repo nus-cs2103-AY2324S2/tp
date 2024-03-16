@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,11 +27,11 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_TAG_CONTACT_SUCCESS = "Tagged Contact: %1$s with %2$s";
 
-    private final Index index;
+    private final Index targetIndex;
     private final Tag tag;
 
     public TagCommand(Index index, Tag tag) {
-        this.index = index;
+        this.targetIndex = index;
         this.tag = tag;
     }
 
@@ -39,11 +40,11 @@ public class TagCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToTag = lastShownList.get(index.getZeroBased());
+        Person personToTag = lastShownList.get(targetIndex.getZeroBased());
 
         Person taggedPerson = personToTag.addTag(tag);
         model.setPerson(personToTag, taggedPerson);
@@ -53,9 +54,24 @@ public class TagCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof TagCommand
-                && index == ((TagCommand) other).index
-                && tag.equals(((TagCommand) other).tag));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TagCommand)) {
+            return false;
+        }
+
+        TagCommand otherTagCommand = (TagCommand) other;
+        return targetIndex.equals(otherTagCommand.targetIndex)
+                && tag.equals(otherTagCommand.tag);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .add("tag", tag)
+                .toString();
     }
 }
