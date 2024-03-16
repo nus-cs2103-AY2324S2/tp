@@ -23,7 +23,7 @@ import scrolls.elder.testutil.TypicalPersons;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final AddressBook addressBook = new AddressBook(0);
 
     @Test
     public void constructor() {
@@ -94,10 +94,16 @@ public class AddressBookTest {
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
+        private int globalId = 0;
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
+        }
+
+        @Override
+        public int getGlobalId() {
+            return globalId;
         }
 
         @Override

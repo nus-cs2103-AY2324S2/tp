@@ -15,6 +15,7 @@ import scrolls.elder.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private int globalId;
     private final UniquePersonList persons;
 
     /*
@@ -28,17 +29,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook(int gid) {
+        this.globalId = gid;
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
-        this();
+        this(toBeCopied.getGlobalId());
         resetData(toBeCopied);
     }
 
     //// list overwrite operations
+
+    @Override
+    public int getGlobalId() {
+        return globalId;
+    }
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -54,6 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
+        this.globalId = newData.getGlobalId();
         setPersons(newData.getPersonList());
     }
 
@@ -72,6 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
+        globalId += 1;
         persons.add(p);
     }
 

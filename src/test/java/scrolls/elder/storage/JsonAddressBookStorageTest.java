@@ -13,6 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 import scrolls.elder.commons.exceptions.DataLoadingException;
 import scrolls.elder.model.AddressBook;
 import scrolls.elder.model.ReadOnlyAddressBook;
+import scrolls.elder.model.person.Person;
 import scrolls.elder.testutil.Assert;
 import scrolls.elder.testutil.TypicalPersons;
 
@@ -69,14 +70,18 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(TypicalPersons.HOON);
+        Person hoon = TypicalPersons.HOON;
+        hoon.setId(original.getGlobalId());
+        original.addPerson(hoon);
         original.removePerson(TypicalPersons.ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(TypicalPersons.IDA);
+        Person ida = TypicalPersons.IDA;
+        ida.setId(original.getGlobalId());
+        original.addPerson(ida);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
@@ -102,6 +107,6 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null));
+        Assert.assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(0), null));
     }
 }

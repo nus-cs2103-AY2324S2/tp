@@ -16,6 +16,7 @@ import scrolls.elder.model.tag.Tag;
 public abstract class Person {
 
     // Identity fields
+    protected int id;
     protected final Name name;
     protected final Phone phone;
     protected final Email email;
@@ -36,6 +37,14 @@ public abstract class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Name getName() {
@@ -71,8 +80,7 @@ public abstract class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getId() == this.getId();
     }
 
     /**
@@ -97,7 +105,8 @@ public abstract class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return id == otherPerson.id
+                && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
@@ -108,12 +117,13 @@ public abstract class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, role);
+        return Objects.hash(id, name, phone, email, address, tags, role);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

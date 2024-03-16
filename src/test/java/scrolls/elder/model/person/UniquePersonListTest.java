@@ -107,9 +107,9 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.add(TypicalPersons.BOB);
+        uniquePersonList.add(TypicalPersons.BENSON);
         Assert.assertThrows(DuplicatePersonException.class, ()
-                -> uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.BOB));
+                -> uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.BENSON));
     }
 
     @Test
