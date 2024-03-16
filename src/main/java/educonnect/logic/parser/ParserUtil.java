@@ -9,10 +9,7 @@ import java.util.Set;
 import educonnect.commons.core.index.Index;
 import educonnect.commons.util.StringUtil;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.Email;
-import educonnect.model.student.Name;
-import educonnect.model.student.StudentId;
-import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.*;
 import educonnect.model.tag.Tag;
 
 /**
@@ -166,5 +163,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Link parseLink(String s) throws ParseException {
+        requireNonNull(s);
+        String trimmedLink = s.trim();
+        if (!Link.isValidLink(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
     }
 }

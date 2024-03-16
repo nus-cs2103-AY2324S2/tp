@@ -26,7 +26,7 @@
       <Label fx:id="studentID" styleClass="cell_small_label" text="\$studentID" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
-         <Hyperlink text="URL" />
+         <Hyperlink onAction="#openLink" text="Hyperlink" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

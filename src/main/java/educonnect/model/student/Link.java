@@ -10,9 +10,10 @@ public class Link {
         this.url = url;
     }
 
-    public static boolean isValidEmail(String test) {
+    public static boolean isValidLink(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
 
     public String toString() {
         return url;

@@ -40,6 +40,16 @@ public class Student {
         this.tags.addAll(tags);
     }
 
+    public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Link link, Set<Tag> tags) {
+        requireAllNonNull(name, studentId, email, telegramHandle, tags);
+        this.name = name;
+        this.studentId = studentId;
+        this.email = email;
+        this.telegramHandle = telegramHandle;
+        this.link = link;
+        this.tags.addAll(tags);
+    }
+
     public Name getName() {
         return name;
     }
@@ -191,6 +201,7 @@ public class Student {
                 .add("email", email)
                 .add("telegram handle", telegramHandle)
                 .add("tags", tags)
+                .add("link", link)
                 .toString();
     }
 

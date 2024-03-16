@@ -44,7 +44,9 @@ public class Messages {
                 .append(student.getEmail())
                 .append("; Telegram Handle: ")
                 .append(student.getTelegramHandle())
-                .append("; Tags: ");
+                .append("; Tags: ")
+                .append("; Link: ")
+                .append(student.getLink());
         student.getTags().forEach(builder::append);
         return builder.toString();
     }

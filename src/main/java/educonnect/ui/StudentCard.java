@@ -1,13 +1,19 @@
 package educonnect.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import educonnect.model.student.Student;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.event.ActionEvent;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -40,7 +46,14 @@ public class StudentCard extends UiPart<Region> {
     private Label telegram;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Hyperlink hyperlink;
 
+    @FXML
+    void openLink(ActionEvent action) throws URISyntaxException, IOException {
+        System.out.println("Link clicked!");
+        Desktop.getDesktop().browse(new URI(student.getLink().toString()));
+    }
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
      */
