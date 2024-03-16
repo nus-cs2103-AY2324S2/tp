@@ -41,7 +41,7 @@ public class AddAppCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(ALICE);
         CommandResult commandResult = new AddAppCommand(validAppointment).execute(modelStub);
 
-        assertEquals(String.format(AddAppCommand.MESSAGE_SUCCESS, Messages.format(validAppointment)),
+        assertEquals(String.format(AddAppCommand.MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(validAppointment)),
                 commandResult.getFeedbackToUser());
         assertTrue(modelStub.hasAppointment(validAppointment));
     }

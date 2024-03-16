@@ -37,7 +37,7 @@ public class AddAppCommandIntegrationTest {
         expectedModel.addAppointment(validAppointment);
 
         assertCommandSuccess(new AddAppCommand(validAppointment), model,
-                String.format(AddAppCommand.MESSAGE_SUCCESS, Messages.format(validAppointment)),
+                String.format(AddAppCommand.MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(validAppointment)),
                 expectedModel);
     }
 
