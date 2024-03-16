@@ -12,7 +12,8 @@ import seedu.address.model.person.Person;
 public class CombinedPredicates implements Predicate<Person> {
     private final SearchPredicate<? extends Object>[] predicates;
 
-    public CombinedPredicates(SearchPredicate<? extends Object>[] predicates) {
+    @SafeVarargs
+    public CombinedPredicates(SearchPredicate<? extends Object>... predicates) {
         this.predicates = predicates;
     }
 

@@ -12,14 +12,13 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.predicates.CombinedPredicates;
-import seedu.address.model.person.predicates.SearchPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the
  * argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand<T extends Object> extends Command {
+public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
@@ -39,9 +38,8 @@ public class FindCommand<T extends Object> extends Command {
 
     private final CombinedPredicates predicates;
 
-    @SafeVarargs
-    public FindCommand(SearchPredicate<? super T>... predicates) {
-        this.predicates = new CombinedPredicates(predicates);
+    public FindCommand(CombinedPredicates predicates) {
+        this.predicates = predicates;
     }
 
     @Override
@@ -63,7 +61,7 @@ public class FindCommand<T extends Object> extends Command {
             return false;
         }
 
-        FindCommand<?> otherFindCommand = (FindCommand<?>) other;
+        FindCommand otherFindCommand = (FindCommand) other;
         return predicates.equals(otherFindCommand.predicates);
     }
 
