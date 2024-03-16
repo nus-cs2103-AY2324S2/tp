@@ -25,7 +25,7 @@ public class Major {
         this.major = major;
     }
 
-    public static boolean isValidMajor (String test) {
+    public static boolean isValidMajor(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -5,6 +5,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.Year;
 
+/**
+ * Represents a Student's Intake in the Application.
+ * Guarantees: immutable; is valid as declared in {@link #isValidIntake(String)}
+ */
 public class Intake {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -24,12 +28,19 @@ public class Intake {
         this.intake = parseIntake(intake);
     }
 
+    /**
+     * Returns true if a given string is a valid Intake.
+     */
     public static boolean isValidIntake(String test) {
         if (test.matches(VALIDATION_REGEX)) {
             return !Year.of(Integer.parseInt(test)).isAfter(Year.now());
         }
         return false;
     }
+
+    /**
+     * Parses the input into Java Year
+     */
     public Year parseIntake(String intake) {
         return Year.of(Integer.parseInt(intake));
     }
