@@ -1,12 +1,12 @@
 package seedu.address.commons.util;
 
-import jdk.jshell.spi.ExecutionControl;
+import static java.util.Objects.requireNonNull;
 
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Random;
 
-import static java.util.Objects.requireNonNull;
+import jdk.jshell.spi.ExecutionControl;
 
 /**
  * Generates unique  String IDs for patients, doctors, and appointments

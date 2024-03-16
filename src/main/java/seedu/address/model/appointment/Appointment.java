@@ -1,12 +1,12 @@
 package seedu.address.model.appointment;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Nric;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Nric;
 
 /**
  * Appointment class that describes an appointment

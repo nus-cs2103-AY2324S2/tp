@@ -1,24 +1,24 @@
 package seedu.address.model.appointment;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Class encapsulating an appointment's date and corresponding methods
  */
 public class AppointmentDate {
 
-    // Variable storing appointment date in a local date instance
-    public final LocalDate appointmentDate;
-
     // Message to output in case constraints are not met
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment date should be in the format of yyyy-MM-dd.";
+
+    // Variable storing appointment date in a local date instance
+    public final LocalDate appointmentDate;
 
     /**
      * Constructs new AppointmentDate object using an input date string in yyyy-MM-dd format

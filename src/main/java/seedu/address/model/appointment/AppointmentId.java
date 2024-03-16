@@ -1,13 +1,15 @@
 package seedu.address.model.appointment;
 
-import seedu.address.commons.util.IdUtil;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.commons.util.IdUtil;
 
 /**
  * Class encapsulating appointment id and corresponding methods
  */
 public class AppointmentId {
+
+    public static final String VALIDATION_REGEX = "a\\d{8}";
 
     // Message to output in case constraints are not met
     public static final String MESSAGE_CONSTRAINTS =
@@ -15,7 +17,6 @@ public class AppointmentId {
 
     // Variable storing appointment id as a string object
     public final String appointmentId;
-    public static final String VALIDATION_REGEX = "a\\d{8}";
 
 
     /**
