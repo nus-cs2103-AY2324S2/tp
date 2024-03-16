@@ -4,6 +4,7 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
+    "faculty": "Computing",
     "venue" : "123, Jurong West Ave 6, #08-111",
     "module": "CS1101S",
     "tags" : [ "friends" ]
@@ -11,6 +12,7 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
+    "faculty": "Computing",
     "venue" : "311, Clementi Ave 2, #02-25",
     "module": "CS1231S",
     "tags" : [ "owesMoney", "friends" ]
@@ -18,6 +20,7 @@
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
+    "faculty": "Computing",
     "venue" : "wall street",
     "module": "CS2030S",
     "tags" : [ ]
@@ -25,6 +28,7 @@
     "name" : "Clara Svarog",
     "phone" : "9681384",
     "email" : "svarog@example.com",
+    "faculty" : "Computing",
     "venue" : "belobog avenue",
     "module": "CS2102",
     "tags" : [ "classmate" ]
@@ -32,6 +36,7 @@
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
+    "faculty": "Computing",
     "venue" : "10th street",
     "module": "CS2040S",
     "tags" : [ "friends" ]
@@ -39,6 +44,7 @@
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
+    "faculty": "Computing",
     "venue" : "michegan ave",
     "module": "CS2100",
     "tags" : [ ]
@@ -46,6 +52,7 @@
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
+    "faculty": "Computing",
     "venue" : "little tokyo",
     "module": "CS2101",
     "tags" : [ ]
@@ -53,6 +60,7 @@
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
+    "faculty": "Computing",
     "venue" : "4th street",
     "module": "CS2102",
     "tags" : [ ]
@@ -60,6 +68,7 @@
     "name" : "Kafka Apache",
     "phone" : "9452413",
     "email" : "apache@example.com",
+    "faculty" : "Computing",
     "venue" : "pteruges avenue",
     "module": "CS2102",
     "tags" : [ "classmate" ]

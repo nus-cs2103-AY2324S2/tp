@@ -20,6 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Faculty faculty;
 
     // Data fields
     private final Venue venue;
@@ -29,11 +30,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Venue venue, Module module, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, venue, module, tags);
+    public Person(Name name, Phone phone, Email email, Faculty faculty, Venue venue, Module module, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, faculty, venue, module, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.faculty = faculty;
         this.venue = venue;
         this.module = module;
         this.tags.addAll(tags);
@@ -49,6 +51,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
     }
 
     public Venue getVenue() {
@@ -99,6 +105,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && faculty.equals(otherPerson.faculty)
                 && venue.equals(otherPerson.venue)
                 && module.equals(otherPerson.module)
                 && tags.equals(otherPerson.tags);
@@ -107,7 +114,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, venue, module, tags);
+        return Objects.hash(name, phone, email, faculty, venue, module, tags);
     }
 
     @Override
@@ -116,6 +123,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
+                .add("faculty", faculty)
                 .add("venue", venue)
                 .add("module", module)
                 .add("tags", tags)

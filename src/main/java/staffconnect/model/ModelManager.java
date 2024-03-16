@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import staffconnect.commons.core.GuiSettings;
 import staffconnect.commons.core.LogsCenter;
 import staffconnect.model.person.Person;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final StaffBook staffBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final SortedList<Person> sortedFilteredPersons;
 
     /**
      * Initializes a ModelManager with the given staffBook and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.staffBook = new StaffBook(staffBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.staffBook.getPersonList());
+        sortedFilteredPersons = new SortedList<>(filteredPersons);
     }
 
     public ModelManager() {
@@ -119,13 +123,24 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+        return sortedFilteredPersons;
     }
+
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        sortedFilteredPersons.setComparator(null);
+
+    }
+
+    @Override
+    public void updateSortedPersonList(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        filteredPersons.setPredicate(null);
+        sortedFilteredPersons.setComparator(comparator);
+
     }
 
     @Override
