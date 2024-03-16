@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add new patient information
-2.  CLInic validates the information 
+2.  CLInic validates the information
 3.  CLInic adds the patient's information to the database
 
     Use case ends.
@@ -405,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  CLInic shows a list of persons
 3.  User requests to schedule an appointment for a specific person in the list
 4.  CLInic prompts User to input appointment details
-5.  User inputs appointment details 
+5.  User inputs appointment details
 6.  CLInic schedules appointment for the patient
 
     Use case ends.
@@ -497,9 +497,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 7. The project is expected to adhere to a schedule that delivers a feature set for each milestone
-8. The product is not required to have mouse-click navigation 
-9. The product is not required to integrate with other systems 
-10. The product should avoid terminology or graphics that are insensitive to patients 
+8. The product is not required to have mouse-click navigation
+9. The product is not required to integrate with other systems
+10. The product should avoid terminology or graphics that are insensitive to patients
 11. The product should be for a single user (not a multi-user product)
 
 ### Glossary
@@ -507,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Appointment**: A designated time slot for a patient to visit the clinic
-* **Appointment Type**: Categorises the purpose of visit eg. Vaccination, Medical Check-up, etc 
+* **Appointment Type**: Categorises the purpose of visit eg. Vaccination, Medical Check-up, etc
 * **Insurance Type**: Categorises insurance schemes applicable to the patient eg. Medisave, ElderShield, etc.
 * **Medical Records**: Refer to details of patients' medical allergies only (as at v1.2)
 * **Recurring Appointments**: Refer to appointments that occur regularly eg. weekly or monthly

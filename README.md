@@ -11,7 +11,7 @@
 
 * The project simulates an ongoing software project for a desktop application (called CLInic) used for managing patient and appointment details.
   * It is built on the AddressBook-Level3 project.
-  * It is **written in OOP fashion**. 
+  * It is **written in OOP fashion**.
   * It comes with a **reasonable level of user and developer documentation**.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
