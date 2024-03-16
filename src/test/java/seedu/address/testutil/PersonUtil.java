@@ -35,7 +35,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        sb.append(PREFIX_REMARK +person.getRemark().toString() + " ");
+        sb.append(PREFIX_REMARK + person.getRemark().toString() + " ");
         return sb.toString();
     }
 
