@@ -24,12 +24,20 @@ public class ClientPolicyTable extends UiPart<Region> {
     */
 
     /**
-     * Creates a {@code ClientPolicyTable} with the given {@code } and index to display.
+     * Creates an empty {@code ClientPolicyTable}.
      */
     public ClientPolicyTable() {
-        // argument should be some kind of list? ObservableList maybe
         super(FXML);
-        // policyId.setCellValueFactory(new PropertyValueFactory<Policy, String>("policyId"));
-        // policyTableView.setItems(xxx);
     }
+
+    //    /**
+    //     * Creates a {@code ClientPolicyTable} with the given {@code }.
+    //     */
+    //    public ClientPolicyTable() {
+    //        // argument should be some kind of list? ObservableList maybe
+    //        super(FXML);
+    //        // policyId.setCellValueFactory(new PropertyValueFactory<Policy, String>("policyId"));
+    //        // policyTableView.setItems(xxx);
+    //    }
+
 }

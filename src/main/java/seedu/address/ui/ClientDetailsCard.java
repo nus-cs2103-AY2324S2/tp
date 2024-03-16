@@ -35,7 +35,15 @@ public class ClientDetailsCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code ClientDetailsCard} with the given {@code Person} and index to display.
+     * Creates an empty {@code ClientDetailsCard}.
+     */
+    public ClientDetailsCard() {
+        super(FXML);
+        this.person = null;
+    }
+
+    /**
+     * Creates a {@code ClientDetailsCard} with the given {@code Person}.
      */
     public ClientDetailsCard(Person person) {
         super(FXML);

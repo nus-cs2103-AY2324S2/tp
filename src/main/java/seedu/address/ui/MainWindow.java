@@ -125,6 +125,10 @@ public class MainWindow extends UiPart<Stage> {
 
         clientViewPanel = new ClientViewPanel(logic.getDisplayClient());
         addClientViewPanel();
+        // Clear table if no clients to keep UI consistent
+        if (!logic.hasDisplayClient()) {
+            clearClientViewPanel();
+        }
 
         resultDisplay = new ResultDisplay();
 

@@ -15,8 +15,13 @@ public class ClientViewPanel {
      * Creates a {@code ClientViewPanel} with the given {@code person}.
      */
     public ClientViewPanel(Person person) {
-        this.clientDetailsCard = new ClientDetailsCard(person);
-        this.clientPolicyTable = new ClientPolicyTable();
+        if (person == null) {
+            this.clientDetailsCard = new ClientDetailsCard();
+            this.clientPolicyTable = new ClientPolicyTable();
+        } else {
+            this.clientDetailsCard = new ClientDetailsCard(person);
+            this.clientPolicyTable = new ClientPolicyTable();
+        }
     }
 
     public ClientDetailsCard getClientDetailsCard() {
@@ -31,12 +36,12 @@ public class ClientViewPanel {
      * Updates the {@code ClientDetailsCard} with new {@code Person}.
      */
     public void updateClientDetailsCard(Person person) {
-        this.clientDetailsCard = new ClientDetailsCard(person);
+        clientDetailsCard = new ClientDetailsCard(person);
     }
 
     /*
     public void updateClientPolicyTable(xxx) {
-        this.clientPolicyTable = newClientPolicyTable(xxx);
+        clientPolicyTable = new ClientPolicyTable(xxx);
     }
      */
 
