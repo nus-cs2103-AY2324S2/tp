@@ -10,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.StudentId;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -24,22 +26,28 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String studentId;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String grade;
+    private final List<JsonAdaptedGroup> groups = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
+            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+            @JsonProperty("grade") String grade, @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
         this.name = name;
+        this.studentId = studentId;
         this.phone = phone;
         this.email = email;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (groups != null) {
+            this.groups.addAll(groups);
         }
+        this.grade = grade;
     }
 
     /**
@@ -47,10 +55,12 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        studentId = source.getStudentId().id;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        grade = source.getGrade().value;
+        groups.addAll(source.getGroups().stream()
+                .map(JsonAdaptedGroup::new)
                 .collect(Collectors.toList()));
     }
 
@@ -60,9 +70,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<Group> personGroups = new ArrayList<>();
+        for (JsonAdaptedGroup group : groups) {
+            personGroups.add(group.toModelType());
         }
 
         if (name == null) {
@@ -72,6 +82,15 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (studentId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                StudentId.class.getSimpleName()));
+        }
+        if (!StudentId.isValidStudentId(studentId)) {
+            throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
+        }
+        final StudentId modelStudentId = new StudentId(studentId);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -89,8 +108,16 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+        if (grade == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
+        }
+        if (!Grade.isValidGrade(grade)) {
+            throw new IllegalValueException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        final Grade modelGrade = new Grade(grade);
+
+        final Set<Group> modelGroups = new HashSet<>(personGroups);
+        return new Person(modelName, modelStudentId, modelPhone, modelEmail, modelGrade, modelGroups);
     }
 
 }

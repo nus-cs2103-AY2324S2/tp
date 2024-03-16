@@ -14,24 +14,29 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.StudentId;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_STUDENTID = "P0123";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_GRADE = "F-";
+
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_GROUP = "Gr@up";
 
     private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_STUDENTID = "A0123456X";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_GRADE = "A+";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_GROUP_1 = "Group1";
+    private static final String VALID_GROUP_2 = "Group 2";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -79,6 +84,22 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseStudentId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStudentId((String) null));
+    }
+
+    @Test
+    public void parseStudentId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudentId(INVALID_STUDENTID));
+    }
+
+    @Test
+    public void parseStudentId_validValueWithoutWhitespace_returnsStudentId() throws Exception {
+        StudentId expectedStudentId = new StudentId(VALID_STUDENTID);
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_STUDENTID));
+    }
+
+    @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
     }
@@ -99,6 +120,29 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseGrade_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGrade((String) null));
+    }
+
+    @Test
+    public void parseGrade_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_GRADE));
+    }
+
+    @Test
+    public void parseGrade_validValueWithoutWhitespace_returnsGrade() throws Exception {
+        Grade expectedGrade = new Grade(VALID_GRADE);
+        assertEquals(expectedGrade, ParserUtil.parseGrade(VALID_GRADE));
+    }
+
+    @Test
+    public void parseGrade_validValueWithWhitespace_returnsTrimmedGrade() throws Exception {
+        String gradeWithWhitespace = WHITESPACE + VALID_GRADE + WHITESPACE;
+        Grade expectedGrade = new Grade(VALID_GRADE);
+        assertEquals(expectedGrade, ParserUtil.parseGrade(gradeWithWhitespace));
     }
 
     @Test
@@ -125,48 +169,51 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseGroup_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGroup(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseGroup_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroup(INVALID_GROUP));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseGroup_validValueWithoutWhitespace_returnsGroup() throws Exception {
+        Group expectedGroup = new Group(VALID_GROUP_1);
+        assertEquals(expectedGroup, ParserUtil.parseGroup(VALID_GROUP_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseGroup_validValueWithWhitespace_returnsTrimmedGroup() throws Exception {
+        String groupWithWhitespace = WHITESPACE + VALID_GROUP_1 + WHITESPACE;
+        Group expectedGroup = new Group(VALID_GROUP_1);
+        assertEquals(expectedGroup, ParserUtil.parseGroup(groupWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseGroups_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGroups(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseGroups_collectionWithInvalidGroups_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroups(Arrays.asList(VALID_GROUP_1, INVALID_GROUP)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseGroups_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseGroups(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseGroups_collectionWithValidGroups_returnsGroupSet() throws Exception {
+        Set<Group> actualGroupSet = ParserUtil.parseGroups(Arrays.asList(VALID_GROUP_1, VALID_GROUP_2));
+        Set<Group> expectedGroupSet = new HashSet<Group>(Arrays.asList(
+                new Group(VALID_GROUP_1),
+                new Group(VALID_GROUP_2)
+        ));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedGroupSet, actualGroupSet);
     }
 }
