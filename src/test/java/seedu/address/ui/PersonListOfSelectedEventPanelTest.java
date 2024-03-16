@@ -22,7 +22,6 @@ public class PersonListOfSelectedEventPanelTest {
     private PersonListOfSelectedEventPanel panel;
     private UniquePersonList personList;
 
-
     @BeforeAll
     public static void setUpClass() throws InterruptedException {
         // Initialize JavaFX toolkit
