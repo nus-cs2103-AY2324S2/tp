@@ -4,7 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeyphrasePredicate;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
@@ -23,7 +23,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        return new FilterCommand(new NameContainsKeywordsPredicate(keyPhrase));
+        return new FilterCommand(new NameContainsKeyphrasePredicate(keyPhrase));
     }
 
 }

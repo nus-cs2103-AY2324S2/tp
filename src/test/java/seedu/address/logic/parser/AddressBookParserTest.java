@@ -19,7 +19,7 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeyphrasePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -69,7 +69,7 @@ public class AddressBookParserTest {
         String keyphrase = "foo bar baz";
         FilterCommand command = (FilterCommand) parser.parseCommand(
                 FilterCommand.COMMAND_WORD + " " + keyphrase);
-        assertEquals(new FilterCommand(new NameContainsKeywordsPredicate(keyphrase)), command);
+        assertEquals(new FilterCommand(new NameContainsKeyphrasePredicate(keyphrase)), command);
     }
 
     @Test

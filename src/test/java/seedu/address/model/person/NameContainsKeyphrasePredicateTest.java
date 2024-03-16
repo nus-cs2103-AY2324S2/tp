@@ -8,21 +8,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class NameContainsKeyphrasePredicateTest {
 
     @Test
     public void equals() {
         String firstPredicateKeyphrase = "first";
         String secondPredicateKeyphrase = "first second";
 
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeyphrase);
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeyphrase);
+        NameContainsKeyphrasePredicate firstPredicate = new NameContainsKeyphrasePredicate(firstPredicateKeyphrase);
+        NameContainsKeyphrasePredicate secondPredicate = new NameContainsKeyphrasePredicate(secondPredicateKeyphrase);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeyphrase);
+        NameContainsKeyphrasePredicate firstPredicateCopy = new NameContainsKeyphrasePredicate(firstPredicateKeyphrase);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -36,54 +36,54 @@ public class NameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("Alice");
+    public void test_nameContainsKeyphrase_returnsTrue() {
+        // Keyphrase is one word
+        NameContainsKeyphrasePredicate predicate = new NameContainsKeyphrasePredicate("Alice");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
 
-        // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate("Alice Tan");
+        // Keyphrase is more than one word
+        predicate = new NameContainsKeyphrasePredicate("Alice Tan");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Tan").build()));
 
-        // Not starting with matching keyword
-        predicate = new NameContainsKeywordsPredicate("Alice");
+        // Name does not start with matching keyphrase
+        predicate = new NameContainsKeyphrasePredicate("Alice");
         assertTrue(predicate.test(new PersonBuilder().withName("Annoying Alice").build()));
 
-        // Still substring but not exact word
-        predicate = new NameContainsKeywordsPredicate("lice");
+        // Keyphrase is not the full word
+        predicate = new NameContainsKeyphrasePredicate("lice");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
 
-        // Not exact word and not starting with keyword
-        predicate = new NameContainsKeywordsPredicate("lice");
+        // Not exact word and not starting with keyphrase
+        predicate = new NameContainsKeyphrasePredicate("lice");
         assertTrue(predicate.test(new PersonBuilder().withName("Annoying Alice").build()));
 
-        // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate("aLIce bOB");
+        // Mixed-case keyphrase
+        predicate = new NameContainsKeyphrasePredicate("aLIce bOB");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_nameDoesNotContainKeyphrase_returnsFalse() {
 
-        // Non-matching keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("Carol");
+        // Non-matching keyphrase
+        NameContainsKeyphrasePredicate predicate = new NameContainsKeyphrasePredicate("Carol");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         Person alice = new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build();
 
-        // Keywords match phone but does not match name
-        predicate = new NameContainsKeywordsPredicate("12345");
+        // Keyphrase match phone but does not match name
+        predicate = new NameContainsKeyphrasePredicate("12345");
         assertFalse(predicate.test(alice));
 
-        // Keywords match email but does not match name
-        predicate = new NameContainsKeywordsPredicate("alice@email.com");
+        // Keyphrase match email but does not match name
+        predicate = new NameContainsKeyphrasePredicate("alice@email.com");
         assertFalse(predicate.test(alice));
 
-        // Keywords match address but does not match name
-        predicate = new NameContainsKeywordsPredicate("Main");
+        // Keyphrase match address but does not match name
+        predicate = new NameContainsKeyphrasePredicate("Main");
         assertFalse(predicate.test(alice));
-        predicate = new NameContainsKeywordsPredicate("Street");
+        predicate = new NameContainsKeyphrasePredicate("Street");
         assertFalse(predicate.test(alice));
 
     }
@@ -91,8 +91,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void toStringMethod() {
         String keyphrase = "keyphrase yapyap";
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(keyphrase);
-        String expected = NameContainsKeywordsPredicate.class.getCanonicalName() + "{keyphrase=" + keyphrase + "}";
+        NameContainsKeyphrasePredicate predicate = new NameContainsKeyphrasePredicate(keyphrase);
+        String expected = NameContainsKeyphrasePredicate.class.getCanonicalName() + "{keyphrase=" + keyphrase + "}";
         assertEquals(expected, predicate.toString());
     }
 }

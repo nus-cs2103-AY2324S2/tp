@@ -5,11 +5,11 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeyphrasePredicate;
 
 /**
- * Filters and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case-insensitive.
+ * Filters and lists all persons in address book whose name contains any of the argument keyphrase.
+ * Keyphrase matching is case-insensitive.
  */
 public class FilterCommand extends Command {
 
@@ -24,9 +24,9 @@ public class FilterCommand extends Command {
             + "the specified keyphrase (case-insensitive) and displays them as a list with index numbers.\n"
             + "Format: filter KEYPHRASE\n";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NameContainsKeyphrasePredicate predicate;
 
-    public FilterCommand(NameContainsKeywordsPredicate predicate) {
+    public FilterCommand(NameContainsKeyphrasePredicate predicate) {
         this.predicate = predicate;
     }
 

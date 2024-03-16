@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeyphrasePredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -117,7 +117,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String keyphrase = ALICE.getName().fullName;
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(keyphrase));
+        modelManager.updateFilteredPersonList(new NameContainsKeyphrasePredicate(keyphrase));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
