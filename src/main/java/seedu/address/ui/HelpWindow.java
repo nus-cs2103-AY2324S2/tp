@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -12,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -24,7 +27,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_MESSAGE = "For more detail, refer to the user guide:\n" + USERGUIDE_URL
             + "\n\nThings to note on:"
             + "\n  • Items in square brackets are optional."
-            + "\n  • Items with '...' after them can be used multiple times including zero times.";
+            + "\n  • Items with '...' after them can be used multiple times including zero times."
+            + "\n  • Close this window by typing 'q' on keyboard.";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -59,6 +63,11 @@ public class HelpWindow extends UiPart<Stage> {
         usageColumn.setCellValueFactory(new PropertyValueFactory<>("usage"));
         fillCommandSummaryTable();
         userGuideTable.setItems(guideItems);
+
+        Scene scene = getRoot().getScene();
+        if (scene != null) {
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
+        }
     }
 
     /**
@@ -152,5 +161,16 @@ public class HelpWindow extends UiPart<Stage> {
                 + "A confirmation message will be shown, type y to proceed with clearing "
                 + "or otherwise to cancel clearing."));
         guideItems.add(new UserGuideItem("exit", "Close the address book."));
+    }
+
+    /**
+     * Handles the key pressed event to close the help window when "q" is pressed.
+     * @param event The key event.
+     */
+    private void handleKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.Q) {
+            hide();
+            event.consume();
+        }
     }
 }
