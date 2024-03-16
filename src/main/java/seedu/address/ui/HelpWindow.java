@@ -20,14 +20,14 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-t17-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Available commands:\n"
             + "help \t- Shows this window.\n"
-            + "add \t- Adds a client to FitBook.\n"
+            + "add \t\t- Adds a client to FitBook.\n"
             + "list \t\t- Shows a list of all clients saved in FitBook.\n"
-            + "edit \t- Edits an existing client in FitBook.\n"
+            + "edit \t\t- Edits an existing client in FitBook.\n"
             + "note \t- Adds a new note to a client.\n"
-            + "find \t- Finds clients whose names contain any of the given keywords.\n"
+            + "find \t- Finds all persons whose specified attribute contains the specified keyword.\n"
             + "delete \t- Deletes the specified client from FitBook.\n"
             + "clear \t- Clears all entries from FitBook. USE WITH CAUTION.\n"
-            + "exit \t- Exits FitBook.\n"
+            + "exit \t\t- Exits FitBook.\n"
             + "\n"
             + "To view more information about a specific command, enter the command into the input box and press "
             + "<Enter>.\n"
@@ -62,21 +62,24 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
+     * 
      * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *                               <ul>
+     *                               <li>
+     *                               if this method is called on a thread other than
+     *                               the JavaFX Application Thread.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called during animation or
+     *                               layout processing.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called on the primary stage.
+     *                               </li>
+     *                               <li>
+     *                               if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
