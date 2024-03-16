@@ -1,6 +1,7 @@
 package seedu.address.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -9,6 +10,8 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 public class AppointmentTest {
+
+
     private static final int TEST_APPOINTMENT_ID = 1;
     private static final int TEST_LATER_APPOINTMENT_ID = 2;
 
@@ -78,5 +81,33 @@ public class AppointmentTest {
         differentAppointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 2, "Test", false);
         appointment = new Appointment(TEST_LATER_APPOINTMENT_ID, appointmentDate.plusDays(1), 1, "Test", false);
         assertTrue(appointment.compareTo(differentAppointment) > 0);
+    }
+
+    @Test
+    void getAttendedStatus() {
+        LocalDateTime appointmentDate = LocalDateTime.now();
+
+        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", false);
+        assertFalse(appointment.getAttendedStatus());
+
+        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", true);
+        assertTrue(appointment.getAttendedStatus());
+    }
+
+    @Test
+    void setAttendedStatus() {
+        LocalDateTime appointmentDate = LocalDateTime.now();
+
+        Appointment appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", false);
+        appointment.setAttendedStatus(true);
+        assertTrue(appointment.getAttendedStatus());
+
+        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", true);
+        appointment.setAttendedStatus(true);
+        assertTrue(appointment.getAttendedStatus());
+
+        appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", true);
+        appointment.setAttendedStatus(false);
+        assertFalse(appointment.getAttendedStatus());
     }
 }
