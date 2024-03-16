@@ -16,7 +16,7 @@ import seedu.address.model.person.predicates.EmailContainsSubstringPredicate;
 import seedu.address.model.person.predicates.NameContainsSubstringPredicate;
 import seedu.address.model.person.predicates.NoteContainsSubstringPredicate;
 import seedu.address.model.person.predicates.PhoneContainsSubstringPredicate;
-import seedu.address.model.person.predicates.TagSetContainsAnyTagPredicate;
+import seedu.address.model.person.predicates.TagSetContainsAllTagsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -49,7 +49,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_ADDRESS).orElse("")));
         NoteContainsSubstringPredicate notePredicate = new NoteContainsSubstringPredicate(ParserUtil
                 .parseSearchString(argMultimap.getValue(PREFIX_NOTE).orElse("")));
-        TagSetContainsAnyTagPredicate tagsPredicate = new TagSetContainsAnyTagPredicate(
+        TagSetContainsAllTagsPredicate tagsPredicate = new TagSetContainsAllTagsPredicate(
                 ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
         CombinedPredicates predicates = new CombinedPredicates(namePredicate, phonePredicate, emailPredicate,

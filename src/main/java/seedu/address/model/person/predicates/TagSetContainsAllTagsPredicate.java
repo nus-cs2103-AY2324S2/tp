@@ -12,8 +12,8 @@ import seedu.address.model.tag.Tag;
  * Tests that a {@code Person}'s {@code TagSet} contains any tags in a given
  * TagSet.
  */
-public class TagSetContainsAnyTagPredicate extends SearchPredicate<Set<Tag>> {
-    public TagSetContainsAnyTagPredicate(Set<Tag> tags) {
+public class TagSetContainsAllTagsPredicate extends SearchPredicate<Set<Tag>> {
+    public TagSetContainsAllTagsPredicate(Set<Tag> tags) {
         super(tags, PersonAttribute.TAGS);
         requireNonNull(tags);
     }
