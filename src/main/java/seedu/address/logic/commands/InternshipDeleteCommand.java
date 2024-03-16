@@ -53,7 +53,7 @@ public class InternshipDeleteCommand extends InternshipCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof InternshipDeleteCommand)) {
             return false;
         }
 
