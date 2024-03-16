@@ -69,6 +69,32 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.containsIgnoreCase(null, "abc"));
     }
 
+    /*
+     * Valid equivalence partitions for word:
+     *   - any word
+     *   - multiple words
+     *   - word containing symbols/numbers
+     *   - word with leading/trailing spaces
+     *
+     * Valid equivalence partitions for sentence:
+     *   - empty string
+     *   - one word
+     *   - multiple words
+     *   - sentence with extra spaces
+     *
+     * Possible scenarios returning true:
+     *   - matches first word in sentence
+     *   - last word in sentence
+     *   - middle word in sentence
+     *   - matches multiple words
+     *   - matches the first few characters of any words
+     *
+     * Possible scenarios returning false:
+     *   - Does not match does the search word chronologically. e.g. ABC & BC will return false.
+     *
+     * The test method below tries to verify all above with a reasonably low number of test cases.
+     */
+
     @Test
     public void containsIgnoreCase_partialMatch_returnsTrue() {
         assertTrue(StringUtil.containsIgnoreCase("Johnathan Doe", "John"));
