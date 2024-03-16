@@ -1,34 +1,33 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import seedu.address.logic.commands.FindAndExportCommand;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindAndExportCommand;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 public class FindAndExportCommandParserTest {
 
-    private final FindAndExportCommandParser parser = new FindAndExportCommandParser();
+    private FindAndExportCommandParser parser = new FindAndExportCommandParser();
+    public static final String MESSAGE_INVALID_FILENAME = "The filename provided is invalid.";
+    public static final String MESSAGE_MISSING_NAME = "A name must be provided.";
+
 
     @Test
-    public void parse_allFieldsPresent_success() throws Exception {
-        final String tag = "friends";
-        final String name = "John";
-        final String address = "123 Street";
-        final String filename = "export.txt";
-
-        FindAndExportCommand expectedCommand = new FindAndExportCommand(tag, name, address, filename);
-
-        assertEquals(expectedCommand, parser.parse("friends n/John a/123 Street o/export.txt"));
-
-        assertEquals(new FindAndExportCommand(tag, null, null, "default.csv"),
-                parser.parse("friends"));
+    public void parse_invalidTag_failure() {
+        assertParseFailure(parser, "invalidTag n/John a/123 Main St o/output.csv",
+                FindAndExportCommand.MESSAGE_USAGE);
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
-        assertThrows(ParseException.class, () -> parser.parse("n/John"));
+    public void parse_invalidFilename_failure() {
+        assertParseFailure(parser, "friends n/John a/123 Main St o/|\\?*<\":>+[]/'",
+                MESSAGE_INVALID_FILENAME);
+    }
+
+    @Test
+    public void parse_missingName_failure() {
+        assertParseFailure(parser, "friends a/123 Main St o/output.csv",
+                MESSAGE_MISSING_NAME);
     }
 }
