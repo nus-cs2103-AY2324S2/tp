@@ -2,12 +2,16 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
+
 
 /**
  * Wraps all data at the event-book level.
@@ -16,10 +20,13 @@ import seedu.address.model.event.UniqueEventList;
 public class EventBook implements ReadOnlyEventBook {
 
     private final UniqueEventList events;
+    private final UniquePersonList personsOfSelectedEvent;
+    private Event selectedEvent;
 
     // Non-static initialization block
     {
         events = new UniqueEventList();
+        personsOfSelectedEvent = new UniquePersonList();
     }
 
     /**
@@ -90,6 +97,25 @@ public class EventBook implements ReadOnlyEventBook {
         events.remove(key);
     }
 
+    // Select Event Methods
+
+    /**
+     * Selects the given event {@code event} from this {@code EventBook}
+     * @param event must exist in the event book
+     */
+    public void selectEvent(Event event) {
+        selectedEvent = event;
+        personsOfSelectedEvent.setPersons(event.getPersonList());
+    }
+
+    /**
+     * Deselects event.
+     */
+    public void deselectEvent() {
+        selectedEvent = null;
+        personsOfSelectedEvent.setPersons(new ArrayList<>());
+    }
+
     // Util methods
 
     @Override
@@ -102,6 +128,11 @@ public class EventBook implements ReadOnlyEventBook {
     @Override
     public ObservableList<Event> getEventList() {
         return events.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getPersonsOfSelectedEventList() {
+        return personsOfSelectedEvent.asUnmodifiableObservableList();
     }
 
     @Override

@@ -98,6 +98,26 @@ public interface Model {
 
     void setEvent(Event target, Event editedEvent);
 
-    /** Returns an unmodifiable view of the filtered event list */
+    void selectEvent(Event event);
+
+    void deselectEvent();
+
+    /**
+     * Returns an unmodifiable view of the filtered event list.
+     *
+     * @return An unmodifiable view of the filtered event list.
+     */
     ObservableList<Event> getFilteredEventList();
+
+
+    /**
+     * Returns an unmodifiable view of the filtered person list of the selected event.
+     * If no event is selected, returns an empty list.
+     *
+     * @return An unmodifiable view of the filtered person list of the selected event,
+     *         or an empty list if no event is selected.
+     */
+    ObservableList<Person> getFilteredPersonListOfSelectedEvent();
+
+
 }

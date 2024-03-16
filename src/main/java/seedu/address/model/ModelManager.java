@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Person> filteredPersonsOfSelectedEvent;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.eventBook.getEventList());
+        filteredPersonsOfSelectedEvent = new FilteredList<>(this.eventBook.getPersonsOfSelectedEventList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -185,11 +187,26 @@ public class ModelManager implements Model {
         eventBook.setEvent(target, editedEvent);
     }
 
+    @Override
+    public void selectEvent(Event event) {
+        eventBook.selectEvent(event);
+    }
 
-    //=========== Filtered Event List Accessors =============================================================
+    @Override
+    public void deselectEvent() {
+        eventBook.deselectEvent();
+    }
+
+
+    //=========== Filtered Event List and Person List of Selected Event Accessors ====================================
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
+    }
+
+    @Override
+    public ObservableList<Person> getFilteredPersonListOfSelectedEvent() {
+        return filteredPersonsOfSelectedEvent;
     }
 
 }
