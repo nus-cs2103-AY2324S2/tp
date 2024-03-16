@@ -17,27 +17,35 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.note.Description;
 import seedu.address.model.person.illness.Illness;
 
 public class ParserUtilTest {
+    private static final String INVALID_NRIC = "G3424GH";
     private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_GENDER = "H";
+    private static final String INVALID_BIRTHDARTE = "99-99-9999";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_ILLNESS = "#illness";
     private static final String INVALID_DATE = "2024-02-19";
     private static final String INVALID_TIME = "5006";
     private static final String INVALID_DESCRIPTION = "";
 
+    private static final String VALID_NRIC = "S1234567Z";
     private static final String VALID_NAME = "Rachel Walker";
+    public static final String VALID_GENDER = "M";
+    public static final String VALID_BIRTHDATE = "01-02-1999";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_ILLNESS_1 = "Infectious Disease";
+    private static final String VALID_DRUG_ALLERGY = "Penicillin";
+    private static final String VALID_ILLNESS_1= "Infectious Disease";
     private static final String VALID_ILLNESS_2 = "Chronic Conditions";
     private static final String VALID_DATE = "19-02-2024";
     private static final String VALID_TIME = "1130";
@@ -66,6 +74,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseNric_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNric((String) null));
+    }
+
+    @Test
+    public void parseNric_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNric(INVALID_NRIC));
+    }
+
+    @Test
+    public void parseNric_validValueWithoutWhitespace_returnsNric() throws Exception {
+        Nric expectedNric = new Nric(VALID_NRIC);
+        assertEquals(expectedNric, ParserUtil.parseNric(VALID_NRIC));
+    }
+
+    @Test
+    public void parseNric_validValueWithWhitespace_returnsTrimmedNric() throws Exception {
+        String nricWithWhitespace = WHITESPACE + VALID_NRIC + WHITESPACE;
+        Nric expectedNric = new Nric(VALID_NRIC);
+        assertEquals(expectedNric, ParserUtil.parseNric(nricWithWhitespace));
+    }
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
@@ -89,6 +120,53 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseGender_null_returnsTrimmedGender() throws Exception {
+        Gender expectedGender = new Gender("Prefer not to say");
+        assertEquals(expectedGender, ParserUtil.parseGender(null));
+    }
+
+    @Test
+    public void parseGender_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGender(INVALID_GENDER));
+    }
+
+    @Test
+    public void parseGender_validValueWithoutWhitespace_returnsGender() throws Exception {
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(VALID_GENDER));
+    }
+
+    @Test
+    public void parseGender_validValueWithWhitespace_returnsTrimmedGender() throws Exception {
+        String genderWithWhitespace = WHITESPACE + VALID_GENDER + WHITESPACE;
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(genderWithWhitespace));
+    }
+
+    @Test
+    public void parseBirthDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseBirthDate((String) null));
+    }
+
+    @Test
+    public void parseBirthDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseBirthDate(INVALID_GENDER));
+    }
+
+    @Test
+    public void parseBirthDate_validValueWithoutWhitespace_returnsBirthDate() throws Exception {
+        BirthDate expectedBirthDate = new BirthDate(VALID_BIRTHDATE);
+        assertEquals(expectedBirthDate, ParserUtil.parseBirthDate(VALID_BIRTHDATE));
+    }
+
+    @Test
+    public void parseBirthDate_validValueWithWhitespace_returnsTrimmedBirthDate() throws Exception {
+        String birthDateWithWhitespace = WHITESPACE + VALID_BIRTHDATE + WHITESPACE;
+        BirthDate expectedBirthDate = new BirthDate(VALID_BIRTHDATE);
+        assertEquals(expectedBirthDate, ParserUtil.parseBirthDate(birthDateWithWhitespace));
+    }
+
+    @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
     }
@@ -109,29 +187,6 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
-    }
-
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test

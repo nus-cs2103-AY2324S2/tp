@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ILLNESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -55,7 +54,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_ILLNESS)).ifPresent(editPersonDescriptor::setIllnesses);
+        parseIllnessesForEdit(argMultimap.getAllValues(PREFIX_ILLNESS)).ifPresent(editPersonDescriptor::setIllnesses);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -65,18 +64,19 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> illnesses} into a {@code Set<Illness>} if {@code illnesses} is non-empty.
+     * If {@code illnesses} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Illness>} containing zero illnesses.
      */
-    private Optional<Set<Illness>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Illness>> parseIllnessesForEdit(Collection<String> illnesses) throws ParseException {
+        assert illnesses != null;
 
-        if (tags.isEmpty()) {
+        if (illnesses.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseIllnesses(tagSet));
+        Collection<String> illnessSet =
+                illnesses.size() == 1 && illnesses.contains("") ? Collections.emptySet() : illnesses;
+        return Optional.of(ParserUtil.parseIllnesses(illnessSet));
     }
 
 }

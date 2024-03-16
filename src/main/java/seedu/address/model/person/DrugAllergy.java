@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class DrugAllergy {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Drug Allergy can contain alphanumerics and spaces";
+            "Drug Allergy can only contain alphanumerics and spaces";
 
     public final String drugAllergy;
 

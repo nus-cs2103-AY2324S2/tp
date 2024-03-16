@@ -147,7 +147,7 @@ public class Person {
             .add("phone", phone)
             .add("email", email)
             .add("drugAllergy", drugAllergy)
-            .add("tags", illnesses)
+            .add("illnesses", illnesses)
             .add("notes", notes)
             .toString();
     }

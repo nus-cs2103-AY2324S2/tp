@@ -18,9 +18,9 @@ public class IllnessTest {
     }
 
     @Test
-    public void isValidTagName() {
+    public void isValidIllnessName() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> Illness.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> Illness.isValidIllnessName(null));
     }
 
 }

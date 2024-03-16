@@ -173,8 +173,13 @@ public class ParserUtil {
      *
      */
     public static DrugAllergy parseDrugAllergy(String drugAllergy) {
-        requireNonNull(drugAllergy);
-        String trimmedDrugAllergy = drugAllergy.trim();
+        String trimmedDrugAllergy;
+        if (drugAllergy == null) {
+            trimmedDrugAllergy = "No allergy";
+        } else {
+            trimmedDrugAllergy = drugAllergy.trim();
+        }
+
         return new DrugAllergy(trimmedDrugAllergy);
     }
 
