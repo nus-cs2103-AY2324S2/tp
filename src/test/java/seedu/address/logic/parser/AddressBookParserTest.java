@@ -120,7 +120,6 @@ public class AddressBookParserTest {
         FindAndExportCommand expectedCommand = new FindAndExportCommand(tag, name, address, filename);
 
         FindAndExportCommand resultCommand = (FindAndExportCommand) parser.parseCommand(input);
-        
         assertEquals(expectedCommand.getName(), resultCommand.getName());
         assertEquals(expectedCommand.getAddress(), resultCommand.getAddress());
         assertEquals(expectedCommand.getFilename(), resultCommand.getFilename());
