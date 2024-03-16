@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's category in the address book.
+ */
 public class Category {
     public static final String MESSAGE_CONSTRAINTS =
             "Category should be one of participant, staff, and sponsor.";
@@ -42,8 +45,8 @@ public class Category {
             return false;
         }
 
-        Category otherPhone = (Category) other;
-        return value.equals(otherPhone.value);
+        Category otherCategory = (Category) other;
+        return value.equals(otherCategory.value);
     }
 
     @Override
