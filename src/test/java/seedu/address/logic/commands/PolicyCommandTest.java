@@ -102,7 +102,6 @@ public class PolicyCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         PolicyCommand policyCommand = new PolicyCommand(outOfBoundIndex, new Policy(VALID_POLICY_BOB));
-        
         assertCommandFailure(policyCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
