@@ -96,7 +96,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedStudentString = NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB
-                + TELEGRAM_HANDLE_DESC_BOB + TAG_DESC_FRIEND;
+                + TELEGRAM_HANDLE_DESC_BOB + TAG_DESC_FRIEND + TIMETABLE_DESC_VALID1;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedStudentString,
@@ -119,7 +119,7 @@ public class AddCommandParserTest {
                 validExpectedStudentString + STUDENT_ID_DESC_AMY + EMAIL_DESC_AMY
                         + NAME_DESC_AMY + TELEGRAM_HANDLE_DESC_AMY + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME,
-                        PREFIX_TELEGRAM_HANDLE, PREFIX_EMAIL, PREFIX_STUDENT_ID));
+                        PREFIX_TELEGRAM_HANDLE, PREFIX_EMAIL, PREFIX_STUDENT_ID, PREFIX_TIMETABLE));
 
         // multiple timetables
         assertParseFailure(parser, TIMETABLE_DESC_VALID1 + validExpectedStudentString,

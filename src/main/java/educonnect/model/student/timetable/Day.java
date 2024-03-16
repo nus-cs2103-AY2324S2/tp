@@ -15,7 +15,31 @@ import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
 public class Day {
     private final DayOfWeek dayOfWeek;
     private final ArrayList<Period> periods;
-    Day(DayOfWeek day) {
+
+    /**
+     * Constructor for JSON Serialisation, included only for JSON to work, not intended as a constructor to be used!
+     */
+    private Day() {
+        this.dayOfWeek = null;
+        this.periods = new ArrayList<>();
+    }
+
+    /**
+     * Constructor for {@code Day} objects, uses {@code int} as input.
+     * @param day int representing the day of the week,
+     *            starts from 1, representing MONDAY,
+     *            till 7, representing SUNDAY.
+     */
+    public Day(int day) {
+        this.dayOfWeek = DayOfWeek.of(day);
+        this.periods = new ArrayList<>();
+    }
+
+    /**
+     * Constructor for {@code Day} objects, uses {@code DayOfWeek} as input.
+     * @param day {@code DayOfWeek} enum, e.g {@code DayOfWeek.MONDAY}.
+     */
+    public Day(DayOfWeek day) {
         requireNonNull(day);
         this.dayOfWeek = day;
         this.periods = new ArrayList<>();

@@ -23,6 +23,17 @@ public class TimetableTest {
             EMPTY_TIMETABLE_FIVE
             + "For SATURDAY, schedule is:\n\n"
             + "For SUNDAY, schedule is:\n\n";
+
+    private static final Period PERIOD_1 = new Period("period1",
+            LocalTime.of(13, 0, 0),
+            LocalTime.of(14, 0, 0));
+    private static final Period PERIOD_2 = new Period("period2",
+            LocalTime.of(15, 0, 0),
+            LocalTime.of(17, 0, 0));
+    private static final Period PERIOD_3 = new Period("period3",
+            LocalTime.of(14, 0, 0),
+            LocalTime.of(16, 0, 0));
+
     @Test
     public void constructor() {
         Timetable timetable5 = new Timetable(5);
@@ -35,22 +46,17 @@ public class TimetableTest {
     }
 
     @Test
-    public void addPeriodToDay_invalidInputs_throwsOverlapPeriodException() {
+    public void addPeriodToDay_invalidInputs_throwsOverlapPeriodException() throws OverlapPeriodException {
         Timetable timetable5 = new Timetable(5);
+        timetable5.addPeriodToDay(1, PERIOD_3);
 
         // adding to Monday, period from 2 PM to 4 PM, failure -> throws OverlapPeriodException
         assertThrows(OverlapPeriodException.class, () ->
-                timetable5.addPeriodToDay(1,
-                        new Period("period1a",
-                                LocalTime.of(14, 0, 0),
-                                LocalTime.of(16, 0, 0))));
+                timetable5.addPeriodToDay(1,PERIOD_3));
 
         // adding to a day outside the normal 7 days, failure -> returns false
         assertThrows(NumberOfDaysException.class, () ->
-                timetable5.addPeriodToDay(10,
-                        new Period("period1a",
-                                LocalTime.of(14, 0, 0),
-                                LocalTime.of(16, 0, 0))));
+                timetable5.addPeriodToDay(10, PERIOD_3));
     }
 
     @Test
@@ -58,27 +64,15 @@ public class TimetableTest {
         Timetable timetable5 = new Timetable(5);
 
         // adding to Monday, period from 1 PM to 2 PM, success -> returns true
-        assertTrue(timetable5.addPeriodToDay(1,
-                new Period("period1",
-                        LocalTime.of(13, 0, 0),
-                        LocalTime.of(14, 0, 0))));
+        assertTrue(timetable5.addPeriodToDay(1, PERIOD_1));
 
         // adding to Monday, period from 3 PM to 5 PM, success -> returns true
-        assertTrue(timetable5.addPeriodToDay(1,
-                new Period("period2",
-                        LocalTime.of(15, 0, 0),
-                        LocalTime.of(17, 0, 0))));
+        assertTrue(timetable5.addPeriodToDay(1, PERIOD_2));
 
         // adding to Friday, period from 3 PM to 5 PM, success -> returns true
-        assertTrue(timetable5.addPeriodToDay(5,
-                new Period("period2",
-                        LocalTime.of(15, 0, 0),
-                        LocalTime.of(17, 0, 0))));
+        assertTrue(timetable5.addPeriodToDay(5, PERIOD_2));
 
         // adding to Friday, period from 1 PM to 2 PM, success -> returns true
-        assertTrue(timetable5.addPeriodToDay(5,
-                new Period("period1",
-                        LocalTime.of(13, 0, 0),
-                        LocalTime.of(14, 0, 0))));
+        assertTrue(timetable5.addPeriodToDay(5, PERIOD_1));
     }
 }

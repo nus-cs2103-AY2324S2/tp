@@ -62,6 +62,15 @@ public class Period implements Comparable<Period> {
     }
 
     /**
+     * Constructor for JSON Serialisation, included only for JSON to work, not intended as a constructor to be used!
+     */
+    private Period(){
+        this.periodName = "";
+        this.timeStart = null;
+        this.timeEnd = null;
+    }
+
+    /**
      * Checks if a {@code String} input is in a valid period format.
      * @param period the period of this {@code Period}, accepts only "0-23" in this format.
      * @return {@code true} if the {@code String} is in the correct format.

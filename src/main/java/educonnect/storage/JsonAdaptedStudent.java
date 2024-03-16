@@ -39,7 +39,7 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
                               @JsonProperty("email") String email, @JsonProperty("telegramHandle") String telegramHandle,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                              @JsonProperty("timetable")Timetable timetable) {
+                              @JsonProperty("timetable") Timetable timetable) {
         this.name = name;
         this.studentId = studentId;
         this.email = email;

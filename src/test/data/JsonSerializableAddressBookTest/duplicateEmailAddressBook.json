@@ -4,11 +4,65 @@
     "studentId": "A1234567B",
     "email": "dexter@example.com",
     "telegramHandle": "@bobDexter",
-    "tags": [ "friends" ]
+    "tags": [ "friends" ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   }, {
     "name": "Alice Pauline",
     "studentId": "A1234567P",
     "email": "dexter@example.com",
-    "telegramHandle": "@alicepaul"
+    "telegramHandle": "@alicepaul",
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   } ]
 }

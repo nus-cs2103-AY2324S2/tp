@@ -57,7 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         TelegramHandle telegramHandle = ParserUtil.parseTelegramHandle(
                     argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Timetable timetable = // ToDo: add support for timetable in student
+        Timetable timetable =
                 ParserUtil.parseTimetable(tokenizeForTimetable(argMultimap.getValue(PREFIX_TIMETABLE).orElse("")));
 
         Student student = new Student(name, studentId, email, telegramHandle, tagList, timetable);

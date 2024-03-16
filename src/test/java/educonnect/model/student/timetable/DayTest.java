@@ -32,7 +32,7 @@ public class DayTest {
     }
 
     @Test
-    public void addPeriod_invalidInputs_throwsOverlapPeriodException() {
+    public void addPeriod_invalidInputs_throwsOverlapPeriodException() throws OverlapPeriodException {
         Day day = new Day(DayOfWeek.SUNDAY);
         Period period1 = // 1 AM to 3 AM
                 new Period("period1", LocalTime.of(1, 0, 0), LocalTime.of(3, 0, 0));
@@ -40,6 +40,9 @@ public class DayTest {
                 new Period("period2", LocalTime.of(3, 0, 0), LocalTime.of(5, 0, 0));
         Period period3 = // 2 AM to 4 PM
                 new Period("period3", LocalTime.of(2, 0, 0), LocalTime.of(4, 0, 0));
+
+        day.addPeriod(period1);
+        day.addPeriod(period2);
 
         // has overlap, not successfully added -> throws Exception
         assertThrows(OverlapPeriodException.class, () -> day.addPeriod(period3));

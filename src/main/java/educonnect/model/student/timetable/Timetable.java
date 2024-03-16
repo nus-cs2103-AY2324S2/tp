@@ -48,8 +48,7 @@ public class Timetable {
 
         ArrayList<Day> days = new ArrayList<>(numOfDays);
         for (int i = 1; i <= numOfDays; i++) {
-            DayOfWeek dayOfWeek = DayOfWeek.of(i);
-            Day day = new Day(dayOfWeek);
+            Day day = new Day(i);
             days.add(i - 1, day);
         }
 
