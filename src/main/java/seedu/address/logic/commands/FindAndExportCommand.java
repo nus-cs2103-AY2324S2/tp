@@ -44,6 +44,22 @@ public class FindAndExportCommand extends Command {
         this.filename = filename;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Predicate<Person> predicate = createPredicateForFiltering(tag, name, address);

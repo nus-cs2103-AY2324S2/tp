@@ -1,22 +1,26 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindAndExportCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class FindAndExportCommandParserTest {
 
     private final FindAndExportCommandParser parser = new FindAndExportCommandParser();
 
     @Test
-    public void parse_validArgs_returnsFindAndExportCommand() {
-        FindAndExportCommand expectedCommand = new FindAndExportCommand("friends", null, null, "default_filename.csv");
+    public void parse_validArgs_returnsFindAndExportCommand() throws ParseException {
+        String input = "friends n/John a/123 Main St o/output.csv";
+        FindAndExportCommand expectedCommand = new FindAndExportCommand("friends", "John", "123 Main St", "output.csv");
 
-        //assertParseSuccess(parser, "friends", expectedCommand);
+        FindAndExportCommand resultCommand = parser.parse(input);
 
-        expectedCommand = new FindAndExportCommand("friends", "John", "123 Main St", "output.csv");
-        assertParseSuccess(parser, "friends n/John a/123 Main St o/output.csv", expectedCommand);
+        assertEquals(expectedCommand.getTag(), resultCommand.getTag());
+        assertEquals(expectedCommand.getName(), resultCommand.getName());
+        assertEquals(expectedCommand.getAddress(), resultCommand.getAddress());
+        assertEquals(expectedCommand.getFilename(), resultCommand.getFilename());
     }
 }
