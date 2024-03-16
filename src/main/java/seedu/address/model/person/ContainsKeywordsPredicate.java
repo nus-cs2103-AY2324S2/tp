@@ -28,12 +28,11 @@ public class ContainsKeywordsPredicate<T> implements Predicate<Person> {
         this.keywords = keywords;
     }
 
-
     @Override
     public boolean test(Person person) {
         if (prefix.equals(PREFIX_NAME)) {
             Optional<Name> name = (Optional<Name>) keywords;
-            return person.getName().fullName.contains(name.orElse(new Name("")).fullName);
+            return name.isEmpty() || person.getName().fullName.contains(name.get().fullName);
         } else if (prefix.equals(PREFIX_PHONE)) {
             Optional<Phone> phone = (Optional<Phone>) keywords;
             return person.getPhone().value.equals(phone.orElse(person.getPhone()).value);

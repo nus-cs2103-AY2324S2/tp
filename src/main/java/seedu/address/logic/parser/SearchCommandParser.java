@@ -38,7 +38,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COMMENT, PREFIX_TAG);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_COMMENT, PREFIX_TAG);
 
         SearchPersonDescriptor searchPersonDescriptor = new SearchPersonDescriptor();
 
@@ -53,6 +54,9 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             searchPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_COMMENT).isPresent()) {
+            searchPersonDescriptor.setComment(new Comment(argMultimap.getValue(PREFIX_COMMENT).get()));
         }
         parseTagsForSearch(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(searchPersonDescriptor::setTags);
 

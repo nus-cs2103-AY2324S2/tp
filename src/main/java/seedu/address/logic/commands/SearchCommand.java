@@ -168,7 +168,7 @@ public class SearchCommand extends Command {
                     new ContainsKeywordsPredicate<>(PREFIX_PHONE, this.getPhone());
             predicateList.add(phoneSearch);
             ContainsKeywordsPredicate<Email> emailSearch =
-                    new ContainsKeywordsPredicate<>(PREFIX_NAME, this.getEmail());
+                    new ContainsKeywordsPredicate<>(PREFIX_EMAIL, this.getEmail());
             predicateList.add(emailSearch);
             ContainsKeywordsPredicate<Address> addressSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_ADDRESS, this.getAddress());
@@ -180,11 +180,6 @@ public class SearchCommand extends Command {
                     new ContainsKeywordsPredicate<>(PREFIX_TAG, this.getTags());
             predicateList.add(tagSearch);
             return new SearchPredicate(predicateList);
-//            if (this.getTags().isPresent()) {
-//                for (Tag tag : this.getTags().get()) {
-//                    predicateList.add(new ContainsKeywordsPredicate<>(PREFIX_TAG, Optional.of(tag)));
-//                }
-//            }
         }
 
         @Override
@@ -204,6 +199,7 @@ public class SearchCommand extends Command {
                     && Objects.equals(phone, otherSearchPersonDescriptor.phone)
                     && Objects.equals(email, otherSearchPersonDescriptor.email)
                     && Objects.equals(address, otherSearchPersonDescriptor.address)
+                    && Objects.equals(comment, otherSearchPersonDescriptor.comment)
                     && Objects.equals(tags, otherSearchPersonDescriptor.tags);
         }
 
