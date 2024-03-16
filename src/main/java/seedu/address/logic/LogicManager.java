@@ -48,6 +48,8 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        String originalCommandText = commandText;
+
         if (this.previouslyClear) {
             this.previouslyClear = false;
             if (commandText.equalsIgnoreCase("y")) {
@@ -58,7 +60,7 @@ public class LogicManager implements Logic {
             commandText = "clear";
         }
 
-        if (commandText.equalsIgnoreCase("clear")) {
+        if (originalCommandText.equalsIgnoreCase("clear")) {
             this.previouslyClear = true;
         }
 
