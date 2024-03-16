@@ -14,6 +14,8 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
+import javax.swing.text.View;
+
 /**
  * Parses input arguments and creates a new FindCommand object
  */
@@ -27,10 +29,29 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     public ViewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                && !arePrefixesPresent(argMultimap, PREFIX_ID)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_ID);
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        Name name = null;
+        try {
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+                name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            }
+        } catch (ParseException e) {
+            System.out.println("aftername");
+        }
+
+        Id id = null;
+        try {
+            if (arePrefixesPresent(argMultimap, PREFIX_ID)) {
+                id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+            }
+        } catch (ParseException e) {
+            System.out.println("after id");
+        }
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -46,6 +67,10 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             String[] nameKeywords = trimmedArgs.split("\\s+");
             return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
+    }
+
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
