@@ -5,14 +5,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone implements Field {
 
+    public static final Prefix PREFIX_PHONE = new Prefix("p/");
     private static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     private static final String VALIDATION_REGEX = "\\d{3,}";
@@ -40,16 +39,12 @@ public class Phone implements Field {
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws IllegalArgumentException if the given {@code phone} is invalid.
      */
-    public static Phone of(String phone) throws ParseException {
+    public static Phone of(String phone) throws IllegalArgumentException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        try {
-            return new Phone(trimmedPhone);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return new Phone(trimmedPhone);
     }
 
     @Override

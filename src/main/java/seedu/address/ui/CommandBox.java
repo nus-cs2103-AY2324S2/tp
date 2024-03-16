@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.exceptions.ParseException;
 import seedu.address.storage.exceptions.StorageException;
 
 /**
