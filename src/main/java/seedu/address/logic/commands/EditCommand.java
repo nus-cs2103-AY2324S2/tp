@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -43,8 +45,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_INCOME + "INCOME] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_FAMILY + "FAMILY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -170,7 +174,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, income, email, address, family, tags);
         }
 
         public void setName(Name name) {
@@ -252,8 +256,10 @@ public class EditCommand extends Command {
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
+                    && Objects.equals(income, otherEditPersonDescriptor.income)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(family, otherEditPersonDescriptor.family)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -262,8 +268,10 @@ public class EditCommand extends Command {
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("phone", phone)
+                    .add("income", income)
                     .add("email", email)
                     .add("address", address)
+                    .add("family", family)
                     .add("tags", tags)
                     .toString();
         }
