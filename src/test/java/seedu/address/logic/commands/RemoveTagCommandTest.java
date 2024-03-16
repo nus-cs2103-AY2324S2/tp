@@ -19,11 +19,11 @@ import seedu.address.testutil.PersonBuilder;
 
 public class RemoveTagCommandTest {
 
-    private static final String TAG_STUB_1 = "Some tag 1";
+    private static final String TAG_STUB_1 = "Sometag1";
 
-    private static final String TAG_STUB_2 = "Some tag 2";
+    private static final String TAG_STUB_2 = "Sometag2";
 
-    private static final String TAG_STUB_3 = "Some tag 3";
+    private static final String TAG_STUB_3 = "Sometag3";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -31,10 +31,11 @@ public class RemoveTagCommandTest {
     public void execute_removeTagUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person originalPerson = new PersonBuilder(firstPerson).withTags(TAG_STUB_1, TAG_STUB_2, TAG_STUB_3).build();
+        model.setPerson(firstPerson, originalPerson);
         Person editedPerson = new PersonBuilder(firstPerson).withTags(TAG_STUB_1).build();
         Set<Tag> tags = new HashSet<Tag>();
-        tags.add(new Tag(TAG_STUB_3));
         tags.add(new Tag(TAG_STUB_2));
+        tags.add(new Tag(TAG_STUB_3));
         RemoveTagCommand removeTagCommand = new RemoveTagCommand(INDEX_FIRST_PERSON, tags);
 
         String expectedMessage = String.format(RemoveTagCommand.MESSAGE_REMOVE_TAG_SUCCESS,
