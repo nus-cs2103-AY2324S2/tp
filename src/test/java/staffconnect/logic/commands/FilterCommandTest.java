@@ -7,10 +7,14 @@ import static staffconnect.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static staffconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static staffconnect.testutil.TypicalPersons.ALICE;
 import static staffconnect.testutil.TypicalPersons.BENSON;
+import static staffconnect.testutil.TypicalPersons.CARL;
 import static staffconnect.testutil.TypicalPersons.CLARA;
 import static staffconnect.testutil.TypicalPersons.DANIEL;
+import static staffconnect.testutil.TypicalPersons.ELLE;
+import static staffconnect.testutil.TypicalPersons.FIONA;
 import static staffconnect.testutil.TypicalPersons.GEORGE;
 import static staffconnect.testutil.TypicalPersons.KAFKA;
+import static staffconnect.testutil.TypicalPersons.NATASHA;
 import static staffconnect.testutil.TypicalPersons.getTypicalStaffBook;
 
 import java.util.Arrays;
@@ -41,31 +45,52 @@ public class FilterCommandTest {
     private PersonHasTagsPredicate emptyTagsPredicate = new PersonHasTagsPredicate(null);
 
     @Test
+    public void execute_personHasFaculty_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Dentistry");
+        FilterCommand command = new FilterCommand(facultyPredicate, emptyModulePredicate, emptyTagsPredicate);
+        expectedModel.updateFilteredPersonList(facultyPredicate.and(emptyModulePredicate.and(emptyTagsPredicate)));
+        assertCommandSuccess(command, model, expectedMessage, model);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_personHasFaculty_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 9);
+        PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Computing");
+        FilterCommand command = new FilterCommand(facultyPredicate, emptyModulePredicate, emptyTagsPredicate);
+        expectedModel.updateFilteredPersonList(facultyPredicate.and(emptyModulePredicate.and(emptyTagsPredicate)));
+        assertCommandSuccess(command, model, expectedMessage, model);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, CLARA, DANIEL, ELLE, FIONA, GEORGE, NATASHA),
+                model.getFilteredPersonList());
+    }
+
+    @Test
     public void execute_personHasModule_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         PersonHasModulePredicate modulePredicate = prepareModulePredicate("GESS1025");
         FilterCommand command = new FilterCommand(emptyFacultyPredicate, modulePredicate, emptyTagsPredicate);
-        expectedModel.updateFilteredPersonList(modulePredicate.and(emptyTagsPredicate));
+        expectedModel.updateFilteredPersonList(emptyFacultyPredicate.and(modulePredicate.and(emptyTagsPredicate)));
         assertCommandSuccess(command, model, expectedMessage, model);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_personHasModule_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         PersonHasModulePredicate modulePredicate = prepareModulePredicate("CS2102");
         FilterCommand command = new FilterCommand(emptyFacultyPredicate, modulePredicate, emptyTagsPredicate);
-        expectedModel.updateFilteredPersonList(modulePredicate.and(emptyTagsPredicate));
+        expectedModel.updateFilteredPersonList(emptyFacultyPredicate.and(modulePredicate.and(emptyTagsPredicate)));
         assertCommandSuccess(command, model, expectedMessage, model);
-        assertEquals(Arrays.asList(CLARA, GEORGE, KAFKA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CLARA, GEORGE, KAFKA, NATASHA), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_personHasTag_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonHasTagsPredicate tagsPredicate = prepareTagPredicate("hello");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("hello");
         FilterCommand command = new FilterCommand(emptyFacultyPredicate, emptyModulePredicate, tagsPredicate);
-        expectedModel.updateFilteredPersonList(emptyModulePredicate.and(tagsPredicate));
+        expectedModel.updateFilteredPersonList(emptyFacultyPredicate.and(emptyModulePredicate.and(tagsPredicate)));
         assertCommandSuccess(command, model, expectedMessage, model);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -73,9 +98,9 @@ public class FilterCommandTest {
     @Test
     public void execute_personHasTag_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonHasTagsPredicate tagsPredicate = prepareTagPredicate("friends");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("friends");
         FilterCommand command = new FilterCommand(emptyFacultyPredicate, emptyModulePredicate, tagsPredicate);
-        expectedModel.updateFilteredPersonList(emptyModulePredicate.and(tagsPredicate));
+        expectedModel.updateFilteredPersonList(emptyFacultyPredicate.and(emptyModulePredicate.and(tagsPredicate)));
         assertCommandSuccess(command, model, expectedMessage, model);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
@@ -84,39 +109,165 @@ public class FilterCommandTest {
     public void execute_personHasModuleAndTag_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         PersonHasModulePredicate modulePredicate = prepareModulePredicate("GESS1025");
-        PersonHasTagsPredicate tagsPredicate = prepareTagPredicate("hello");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("hello");
         FilterCommand command = new FilterCommand(emptyFacultyPredicate, modulePredicate, tagsPredicate);
-        expectedModel.updateFilteredPersonList(modulePredicate.and(tagsPredicate));
+        expectedModel.updateFilteredPersonList(emptyFacultyPredicate.and(modulePredicate.and(tagsPredicate)));
         assertCommandSuccess(command, model, expectedMessage, model);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_personHasModuleAndTag_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonHasModulePredicate modulePredicate = prepareModulePredicate("CS2102");
-        PersonHasTagsPredicate tagsPredicate = prepareTagPredicate("classmate");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("classmate");
         FilterCommand command = new FilterCommand(emptyFacultyPredicate, modulePredicate, tagsPredicate);
-        expectedModel.updateFilteredPersonList(modulePredicate.and(tagsPredicate));
+        expectedModel.updateFilteredPersonList(emptyFacultyPredicate.and(modulePredicate.and(tagsPredicate)));
         assertCommandSuccess(command, model, expectedMessage, model);
-        assertEquals(Arrays.asList(CLARA, KAFKA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CLARA, KAFKA, NATASHA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_personHasFacultyAndModule_noPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Computing");
+        PersonHasModulePredicate modulePredicate = prepareModulePredicate("CS2109");
+        FilterCommand command = new FilterCommand(facultyPredicate, modulePredicate, emptyTagsPredicate);
+        expectedModel.updateFilteredPersonList(facultyPredicate.and(modulePredicate.and(emptyTagsPredicate)));
+        assertCommandSuccess(command, model, expectedMessage, model);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_personHasFacultyAndModule_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Computing");
+        PersonHasModulePredicate modulePredicate = prepareModulePredicate("CS2102");
+        FilterCommand command = new FilterCommand(facultyPredicate, modulePredicate, emptyTagsPredicate);
+        expectedModel.updateFilteredPersonList(facultyPredicate.and(modulePredicate.and(emptyTagsPredicate)));
+        assertCommandSuccess(command, model, expectedMessage, model);
+        assertEquals(Arrays.asList(CLARA, GEORGE, NATASHA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_personHasFacultyAndTag_noPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Science");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("friends");
+        FilterCommand command = new FilterCommand(facultyPredicate, emptyModulePredicate, tagsPredicate);
+        expectedModel.updateFilteredPersonList(facultyPredicate.and(emptyModulePredicate.and(tagsPredicate)));
+        assertCommandSuccess(command, model, expectedMessage, model);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_personHasFacultyAndTag_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Computing");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("friends");
+        FilterCommand command = new FilterCommand(facultyPredicate, emptyModulePredicate, tagsPredicate);
+        expectedModel.updateFilteredPersonList(facultyPredicate.and(emptyModulePredicate.and(tagsPredicate)));
+        assertCommandSuccess(command, model, expectedMessage, model);
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_personHasFacultyAndModuleAndTag_noPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Science");
+        PersonHasModulePredicate modulePredicate = prepareModulePredicate("CS2100");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("classmate");
+        FilterCommand command = new FilterCommand(facultyPredicate, modulePredicate, tagsPredicate);
+        expectedModel.updateFilteredPersonList(facultyPredicate.and(modulePredicate.and(tagsPredicate)));
+        assertCommandSuccess(command, model, expectedMessage, model);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_personHasFacultyAndModuleAndTag_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Computing");
+        PersonHasModulePredicate modulePredicate = prepareModulePredicate("CS2102");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("classmate");
+        FilterCommand command = new FilterCommand(facultyPredicate, modulePredicate, tagsPredicate);
+        expectedModel.updateFilteredPersonList(facultyPredicate.and(modulePredicate.and(tagsPredicate)));
+        assertCommandSuccess(command, model, expectedMessage, model);
+        assertEquals(Arrays.asList(CLARA, NATASHA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void equals_onlyFacultyPredicateExists() {
+        PersonHasFacultyPredicate firstFacultyPredicate = prepareFacultyPredicate("Business");
+        PersonHasFacultyPredicate secondFacultyPredicate = prepareFacultyPredicate("Computing");
+
+        FilterCommand filterFacultyFirstCommand = new FilterCommand(firstFacultyPredicate, emptyModulePredicate,
+                emptyTagsPredicate);
+        FilterCommand filterFacultySecondCommand = new FilterCommand(secondFacultyPredicate, emptyModulePredicate,
+                emptyTagsPredicate);
+
+        // same object -> returns true
+        assertTrue(filterFacultyFirstCommand.equals(filterFacultyFirstCommand));
+
+        // same values -> returns true
+        FilterCommand filterFacultyFirstCommandCopy = new FilterCommand(firstFacultyPredicate, emptyModulePredicate,
+                emptyTagsPredicate);
+        assertTrue(filterFacultyFirstCommand.equals(filterFacultyFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(filterFacultyFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(filterFacultyFirstCommand.equals(null));
+
+        // different faculty -> returns false
+        System.err.println(filterFacultyFirstCommand.toString());
+        System.err.println(filterFacultySecondCommand);
+        assertFalse(filterFacultyFirstCommand.equals(filterFacultySecondCommand));
+    }
+
+    @Test
+    public void equals_onlyModulePredicateExists() {
+        PersonHasModulePredicate firstModulePredicate = prepareModulePredicate("CS2102");
+        PersonHasModulePredicate secondModulePredicate = prepareModulePredicate("CS2100");
+
+        FilterCommand filterModuleFirstCommand = new FilterCommand(emptyFacultyPredicate, firstModulePredicate,
+                emptyTagsPredicate);
+        FilterCommand filterModuleSecondCommand = new FilterCommand(emptyFacultyPredicate, secondModulePredicate,
+                emptyTagsPredicate);
+
+        // same object -> returns true
+        assertTrue(filterModuleFirstCommand.equals(filterModuleFirstCommand));
+
+        // same values -> returns true
+        FilterCommand filterModuleFirstCommandCopy = new FilterCommand(emptyFacultyPredicate, firstModulePredicate,
+                emptyTagsPredicate);
+        assertTrue(filterModuleFirstCommand.equals(filterModuleFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(filterModuleFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(filterModuleFirstCommand.equals(null));
+
+        // different module -> returns false
+        assertFalse(filterModuleFirstCommand.equals(filterModuleSecondCommand));
     }
 
     @Test
     public void equals_onlyTagPredicateExists() {
-        PersonHasModulePredicate modulePredicate = prepareModulePredicate(null);
-        PersonHasTagsPredicate firstTagPredicate = prepareTagPredicate("friend");
-        PersonHasTagsPredicate secondTagPredicate = prepareTagPredicate("colleagues");
+        PersonHasTagsPredicate firstTagPredicate = prepareTagsPredicate("friend");
+        PersonHasTagsPredicate secondTagPredicate = prepareTagsPredicate("colleagues");
 
-        FilterCommand filterTagFirstCommand = new FilterCommand(emptyFacultyPredicate, modulePredicate,
+        FilterCommand filterTagFirstCommand = new FilterCommand(emptyFacultyPredicate, emptyModulePredicate,
                 firstTagPredicate);
-        FilterCommand filterTagSecondCommand = new FilterCommand(emptyFacultyPredicate, modulePredicate, secondTagPredicate);
+        FilterCommand filterTagSecondCommand = new FilterCommand(emptyFacultyPredicate, emptyModulePredicate,
+                secondTagPredicate);
 
         // same object -> returns true
         assertTrue(filterTagFirstCommand.equals(filterTagFirstCommand));
 
         // same values -> returns true
-        FilterCommand filterTagFirstCommandCopy = new FilterCommand(emptyFacultyPredicate, modulePredicate,
+        FilterCommand filterTagFirstCommandCopy = new FilterCommand(emptyFacultyPredicate, emptyModulePredicate,
                 firstTagPredicate);
         assertTrue(filterTagFirstCommand.equals(filterTagFirstCommandCopy));
 
@@ -126,7 +277,7 @@ public class FilterCommandTest {
         // null -> returns false
         assertFalse(filterTagFirstCommand.equals(null));
 
-        // different tag -> returns false
+        // different tags -> returns false
         assertFalse(filterTagFirstCommand.equals(filterTagSecondCommand));
     }
 
@@ -134,7 +285,7 @@ public class FilterCommandTest {
     public void toStringMethod() {
         PersonHasFacultyPredicate facultyPredicate = prepareFacultyPredicate("Computing");
         PersonHasModulePredicate modulePredicate = prepareModulePredicate("CS2102");
-        PersonHasTagsPredicate tagsPredicate = prepareTagPredicate("hello");
+        PersonHasTagsPredicate tagsPredicate = prepareTagsPredicate("hello");
         FilterCommand filterCommand = new FilterCommand(facultyPredicate, modulePredicate, tagsPredicate);
         String expected = FilterCommand.class.getCanonicalName() + "{facultyPredicate=" + facultyPredicate
                 + ", modulePredicate=" + modulePredicate
@@ -165,9 +316,9 @@ public class FilterCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code PersonHasTagPredicate}.
+     * Parses {@code userInput} into a {@code PersonHasTagsPredicate}.
      */
-    private PersonHasTagsPredicate prepareTagPredicate(String userInput) {
+    private PersonHasTagsPredicate prepareTagsPredicate(String userInput) {
         List<Tag> tagList = Stream.of(userInput.split(" ")).map(str -> new Tag(str)).collect(Collectors.toList());
         for (String separatedTag : userInput.split(" ")) {
             tagList.add(new Tag(separatedTag));

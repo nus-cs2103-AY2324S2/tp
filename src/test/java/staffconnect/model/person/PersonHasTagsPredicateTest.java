@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import staffconnect.model.tag.Tag;
 import staffconnect.testutil.PersonBuilder;
 
-public class PersonHasTagPredicateTest {
+public class PersonHasTagsPredicateTest {
 
     @Test
     public void equals() {
@@ -36,7 +36,7 @@ public class PersonHasTagPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different tags -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -104,7 +104,7 @@ public class PersonHasTagPredicateTest {
         Set<Tag> tag = new HashSet<Tag>(Arrays.asList(new Tag("hello")));
         PersonHasTagsPredicate predicate = new PersonHasTagsPredicate(tag);
 
-        String expected = PersonHasTagsPredicate.class.getCanonicalName() + "{tag name=" + tag + "}";
+        String expected = PersonHasTagsPredicate.class.getCanonicalName() + "{tag names=" + tag + "}";
         assertEquals(expected, predicate.toString());
     }
 }

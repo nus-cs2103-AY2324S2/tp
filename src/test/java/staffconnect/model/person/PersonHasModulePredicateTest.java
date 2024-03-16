@@ -31,7 +31,7 @@ public class PersonHasModulePredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different module -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -51,7 +51,7 @@ public class PersonHasModulePredicateTest {
         Module module = new Module("MOD1000");
         PersonHasModulePredicate predicate = new PersonHasModulePredicate(module);
 
-        // person does not have module "MOD1"
+        // person does not have module "MOD1000"
         assertFalse(predicate.test(new PersonBuilder().withModule("MOD2000").build()));
     }
 
