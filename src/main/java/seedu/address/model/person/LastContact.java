@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a client's last contacted date and time in the address book.
@@ -33,9 +34,10 @@ public class LastContact {
      * Returns true if a given string is in valid dateTime format.
      * @param dateTime String to parse into formatter to check whether is valid.
      */
-    public boolean isValidDateTime(String dateTime) {
+    public static boolean isValidDateTime(String dateTime) {
         String trimmedDateTime = dateTime.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
+                .withResolverStyle(ResolverStyle.STRICT);
         try {
             LocalDateTime.parse(trimmedDateTime, formatter);
             return true; // Successfully parsed, input matches the format
