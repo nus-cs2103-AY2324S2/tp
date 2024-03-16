@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKLIST;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -15,35 +14,29 @@ import seedu.address.model.person.BookList;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a book to the book list to the specific borrower.
+ * Removes a book from the book list of the specific borrower.
  */
-public class BorrowCommand extends Command {
-    public static final String COMMAND_WORD = "borrow";
+public class ReturnCommand extends Command {
+    public static final String COMMAND_WORD = "return";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the book list of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing borrow will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_BOOKLIST + "[borrow]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_BOOKLIST + "Likes to swim.";
+            + "Existing borrow will be overwritten to an empty string.\n"
+            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_ADD_BORROW_SUCCESS = "Added borrow to Person: %1$s";
-    public static final String MESSAGE_DELETE_BORROW_SUCCESS = "Removed borrow from Person: %1$s";
+    public static final String MESSAGE_RETURN_BOOK_SUCCESS = "Removed book from Person: %1$s";
 
     private final Index index;
-    private final BookList bookTitle;
 
     /**
-     * @param index     of the person in the filtered person list to edit the
-     *                  bookTitle
-     * @param bookTitle of the person to be updated to
+     * Creates a ReturnCommand object.
+     *
+     * @param index The index of the person returning the book.
      */
-    public BorrowCommand(Index index, BookList bookTitle) {
-        requireAllNonNull(index, bookTitle);
-
+    public ReturnCommand(Index index) {
+        requireAllNonNull(index);
         this.index = index;
-        this.bookTitle = bookTitle;
     }
 
     @Override
@@ -55,9 +48,14 @@ public class BorrowCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        if (personToEdit.getBook().toString().isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_BOOKLIST_FIELD);
+        }
+
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(),
-                bookTitle, personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getMeritScore().incrementScore(),
+                new BookList(""), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -66,13 +64,11 @@ public class BorrowCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the bookTitle
-     * is added to or removed from
+     * Generates a command execution success message when book title is successfully removed
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !bookTitle.value.isEmpty() ? MESSAGE_ADD_BORROW_SUCCESS : MESSAGE_DELETE_BORROW_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(MESSAGE_RETURN_BOOK_SUCCESS, personToEdit);
     }
 
     @Override
@@ -82,12 +78,11 @@ public class BorrowCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof BorrowCommand)) {
+        if (!(other instanceof ReturnCommand)) {
             return false;
         }
 
-        BorrowCommand e = (BorrowCommand) other;
-        return index.equals(e.index)
-                && bookTitle.equals(e.bookTitle);
+        ReturnCommand e = (ReturnCommand) other;
+        return index.equals(e.index);
     }
 }
