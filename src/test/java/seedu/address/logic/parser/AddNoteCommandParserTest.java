@@ -13,14 +13,14 @@ import seedu.address.logic.commands.AddNoteCommand;
 
 public class AddNoteCommandParserTest {
     private AddNoteCommandParser parser = new AddNoteCommandParser();
-    private final String nonEmptyRemark = "Some remark.";
+    private final String nonEmptyNote = "Some note.";
 
     @Test
     public void parse_indexSpecified_success() {
         // have remark
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE + nonEmptyRemark;
-        AddNoteCommand expectedCommand = new AddNoteCommand(INDEX_FIRST_PERSON, nonEmptyRemark);
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE + nonEmptyNote;
+        AddNoteCommand expectedCommand = new AddNoteCommand(INDEX_FIRST_PERSON, nonEmptyNote);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no remark
@@ -37,6 +37,6 @@ public class AddNoteCommandParserTest {
         assertParseFailure(parser, AddNoteCommand.COMMAND_WORD, expectedMessage);
 
         // no index
-        assertParseFailure(parser, AddNoteCommand.COMMAND_WORD + " " + nonEmptyRemark, expectedMessage);
+        assertParseFailure(parser, AddNoteCommand.COMMAND_WORD + " " + nonEmptyNote, expectedMessage);
     }
 }
