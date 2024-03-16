@@ -87,6 +87,28 @@ public class StringUtilTest {
      */
 
     @Test
+    void containsIgnoreCase_nullWord_throws() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsIgnoreCase("sentence", null));
+    }
+
+    @Test
+    void containsIgnoreCase_success() {
+        // regular test
+        assertTrue(StringUtil.containsIgnoreCase("sentence", "sent"));
+        // false
+        assertFalse(StringUtil.containsIgnoreCase("sentence", "abc"));
+        // case insensitive
+        assertTrue(StringUtil.containsIgnoreCase("sent", "SeNt"));
+        // empty string
+        assertTrue(StringUtil.containsIgnoreCase("", ""));
+        // empty substring
+        assertTrue(StringUtil.containsIgnoreCase("A", ""));
+        // spaces
+        assertTrue(StringUtil.containsIgnoreCase("  A  ", " A "));
+        assertFalse(StringUtil.containsIgnoreCase(" A ", "  A  "));
+    }
+
+    @Test
     public void containsWordIgnoreCase_nullWord_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase("typical sentence", null));
     }

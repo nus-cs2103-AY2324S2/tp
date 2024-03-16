@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,5 +52,31 @@ public class FindTagCommandTest {
 
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(model.getFilteredPersonList(), OWES);
+    }
+
+    @Test
+    void equals() {
+        FindTagCommand cmd = new FindTagCommand("tag");
+
+        // same keyword -> returns true
+        assertEquals(cmd, new FindTagCommand("tag"));
+
+        // same object -> returns true
+        assertEquals(cmd, cmd);
+
+        // different keyword -> returns false
+        assertNotEquals(cmd, new FindTagCommand("stag"));
+
+        // different types -> returns false
+        assertNotEquals(new FindTagCommand("tag"), new ListCommand());
+
+        // null -> returns false
+        assertNotEquals(new FindTagCommand("tag"), null);
+    }
+
+    @Test
+    void testToString() {
+        FindTagCommand cmd = new FindTagCommand("tag");
+        assertEquals(cmd.toString(), FindTagCommand.class.getCanonicalName() + "{subString=tag}");
     }
 }
