@@ -65,8 +65,10 @@ public class OrderList {
      */
     public void editOrder(int orderId, Order toEdit) {
         requireAllNonNull(orderId, toEdit);
-        // Check if order is same, wait for isSameOrder method
-        orderList.put(orderId, toEdit);
+        Order currOrder = orderList.get(orderId);
+        if (!currOrder.isSameOrder(toEdit)) {
+            orderList.put(orderId, toEdit);
+        }
     }
 
     /**
