@@ -274,7 +274,7 @@ Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add 
 
 #### Introduction
 
-The `DeleteImportantDateCommand` class is responsible for deleting an Important Date from a patient in the address book. I
+The `DeleteImportantDateCommand` class is responsible for deleting an Important Date from a patient in the address book.
 
 #### Specifications
 
@@ -311,7 +311,48 @@ date.
     * Cons: User might confuse ID as Patient ID and also inconsistency with `adde` command, further confusing user.
 
 --------------------------------------------------------------------------------------------------------------------
-### 3.5 Deleting a Patient
+
+### 3.5 Editing an Important Date for a Patient
+
+#### Introduction
+
+The `EditImportantDateCommand` class is responsible for editing a specific Important Date for a patient 
+in the address book.
+
+#### Specifications
+
+* EditImportantDateCommand takes in four parameters: `PATIENT_INDEX`, `EVENT_INDEX`, `EVENT_NAME` and `DATE`.
+  All parameters are compulsory. Optionally, you may include `TIME` in the `DATE` parameter.
+* EditImportantDateCommand will edit the selected `EVENT_INDEX` with a new important date event.
+* Editing of an important date can only happen for a single patient, and a single event at any given time.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `adde 1 n/Birthday d/20-01-2022` command to add the Important Date, Birthday,
+which falls on the 20th January.
+* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+
+Step 3: The user executes the `edite 1 e/1 n/New Birthday d/20-01-2023` to edit the Important Date.
+* Upon successful validation,  an `EditImportantDateCommand` instance is created.
+
+#### Design Considerations
+
+**Aspect: Choice of COMMAND_WORD**
+
+* **Alternative 1 (current choice)**: Use `edite` 
+    * Pros: Consistent with `adde` and `deletee` commands.
+    * Cons: May not be as intuitive for user.
+    <br></br>
+* **Alternative 2**: Use `editID`
+    * Pros: Clearer Syntax.
+    * Cons: Inconsistent with `adde` and `deletee` commands.
+
+--------------------------------------------------------------------------------------------------------------------
+### 3.6 Deleting a Patient
 
 #### Introduction
 
@@ -323,7 +364,7 @@ The `DeleteCommand` is responsible for deleting a patient in the address book.
 
 #### Example Usage Scenario
 
-Given below is an example usage scenario.
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
 
 Step 1: The user accesses the PatientSync application.
 

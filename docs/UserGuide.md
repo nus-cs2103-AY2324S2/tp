@@ -208,6 +208,27 @@ Examples:
 * `deletee 1 e/1`
 * `deletee 3 e/4`
 
+### Editing an Important Date for a Patient: `edite`
+
+Edits an Important Date for a Patient in the address book.
+
+Format `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
+
+* Edits an Important Date for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT_ON_THAT_DATE` and
+  `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`.
+* `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT_ON_THAT_DATE` and `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` 
+  are compulsory parameters. 
+* Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
+* The format of `DATE_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY.
+* The format of `DATETIME_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY, HH:mm - HH:mm.
+* Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
+* Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
+  Patients/Events).
+
+Examples:
+* `edite 1 e/1 n/Papa Birthday d/20-01-2023`
+* `edite 2 e/1 n/Mama Birthday d/21-02-2024`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -260,5 +281,8 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **AddTags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 2 t/critical`
+**AddImportantDate** | `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
+**DeleteImportantDate** | `deletee PATIENT_INDEX [e/EVENT_INDEX]` <br> e.g. `deletee 1 e/1`
+**EditImportantDate** | `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
 **List**   | `list`
 **Help**   | `help`
