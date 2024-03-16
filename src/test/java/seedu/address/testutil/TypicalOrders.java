@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_COOKIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_CUPCAKE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_ONE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_THREE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_TWO;
 
 import java.util.ArrayList;
 import java.util.Arrays;

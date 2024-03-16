@@ -67,7 +67,11 @@ public class OrderBuilder {
     }
 
 
-
+    /**
+     * Builds the order
+     *
+     * @return the order
+     */
     public Order build() {
         Order order = new Order(this.id);
         order.setProductMap(this.productMap);
