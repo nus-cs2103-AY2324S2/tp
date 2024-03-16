@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -50,6 +51,14 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private LoanListPanel loanListPanel;
+
+    @FXML
+    private StackPane loanListPanelPlaceholder;
+
+    private BooleanProperty isLoansTab;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -78,6 +87,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,8 +120,25 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        this.isLoansTab = logic.getIsLoansTab();
+
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        // By default, the person list panel is shown
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        loanListPanel = new LoanListPanel(logic.getLoanList());
+
+        this.isLoansTab.addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                personListPanelPlaceholder.getChildren().clear();
+                loanListPanelPlaceholder.getChildren().add(loanListPanel.getRoot());
+            } else {
+                loanListPanelPlaceholder.getChildren().clear();
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+        });
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -185,6 +212,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            // Enable/Disable the loan tab based on whether command is loan related
+            logic.setIsLoansTab(commandResult.isLoanRelated());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
