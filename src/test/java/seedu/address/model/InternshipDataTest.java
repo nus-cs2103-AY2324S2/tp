@@ -13,9 +13,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.CompanyName;
@@ -227,16 +227,16 @@ public class InternshipDataTest {
     }
 
     @Test
-    public void hasInternship_internshipInInternshipData_returnsTrue() {
+    public void hasInternship_internshipInInternshipData() {
         internshipData.addInternship(ALICE_MICROSOFT);
         assertTrue(internshipData.hasInternship(ALICE_MICROSOFT));
     }
 
     @Test
-    public void hasInternship_internshipWithSameIdentityFieldsInInternshipData_returnsFalse() {
+    public void hasInternship_internshipWithSameIdentityFieldsInInternshipData() {
         internshipData.addInternship(ALICE_MICROSOFT);
-        Internship editedAlice = new InternshipBuilder(ALICE_MICROSOFT).withCompanyName("Google").withContactName("John Doe")
-                .build();
+        Internship editedAlice = new InternshipBuilder(ALICE_MICROSOFT).withCompanyName("Google")
+                .withContactName("John Doe").build();
         assertFalse(internshipData.hasInternship(editedAlice));
     }
 
@@ -247,7 +247,8 @@ public class InternshipDataTest {
 
     @Test
     public void toStringMethod() {
-        String expected = InternshipData.class.getCanonicalName() + "{Internship list=" + internshipData.getInternshipList() + "}";
+        String expected = InternshipData.class.getCanonicalName() + "{Internship list="
+                + internshipData.getInternshipList() + "}";
         assertEquals(expected, internshipData.toString());
     }
 
