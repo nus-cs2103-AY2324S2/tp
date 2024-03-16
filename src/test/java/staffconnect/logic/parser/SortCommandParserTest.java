@@ -27,6 +27,14 @@ public class SortCommandParserTest {
     }
 
     @Test
+    public void parse_invalidArgs_throwsParseException() {
+
+        assertParseFailure(parser, "l/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+
+
+    }
+
+    @Test
     public void parse_validArgs_returnsSortCommand() {
 
         SortCommand expectedSortCommand = new SortCommand(VENUE_COMPARATOR);
@@ -54,5 +62,6 @@ public class SortCommandParserTest {
         assertParseSuccess(parser, "" + PREFIX_VENUE, new SortCommand(VENUE_COMPARATOR));
 
     }
+
 
 }
