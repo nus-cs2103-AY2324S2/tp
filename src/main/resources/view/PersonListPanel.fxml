@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
-</VBox>
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"  spacing="30.0">
+  <VBox HBox.hgrow="ALWAYS">
+    <children>
+        <Label text="Patients" />
+        <ListView fx:id="personListView" HBox.hgrow="ALWAYS" />
+    </children>
+  </VBox>
+  <VBox HBox.hgrow="ALWAYS">
+    <children>
+        <Label text="Upcoming Appointments" />
+        <ListView fx:id="listView2" HBox.hgrow="ALWAYS" />
+    </children>
+  </VBox>
+</HBox>
