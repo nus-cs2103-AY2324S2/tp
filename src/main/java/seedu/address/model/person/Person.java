@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,6 +26,8 @@ public class Person {
     // Data fields
     private final Address address;
     private final Birthday birthday;
+    private final LastMet lastMet;
+    private final Schedule schedule;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -36,6 +40,24 @@ public class Person {
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.lastMet = new LastMet(LocalDate.now());
+        this.schedule = new Schedule(LocalDateTime.now(), true);
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Person constructor used for subsequent LastMet, Schedule and Mark Commands.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
+                  LastMet lastmet, Schedule schedule, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, birthday, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.birthday = birthday;
+        this.lastMet = checkNullLastMet(lastmet);
+        this.schedule = checkNullSchedule(schedule);
         this.tags.addAll(tags);
     }
 
@@ -57,6 +79,30 @@ public class Person {
 
     public Birthday getBirthday() {
         return birthday;
+    }
+
+    public LastMet getLastMet() {
+        return lastMet;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    private LastMet checkNullLastMet(LastMet lastmet) {
+        if (lastmet == null) {
+            return new LastMet(LocalDate.now());
+        } else {
+            return lastmet;
+        }
+    }
+
+    private Schedule checkNullSchedule(Schedule schedule) {
+        if (schedule == null) {
+            return new Schedule(LocalDateTime.now(), true);
+        } else {
+            return schedule;
+        }
     }
 
     /**

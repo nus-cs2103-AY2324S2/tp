@@ -41,6 +41,10 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label birthday;
     @FXML
+    private Label lastMet;
+    @FXML
+    private Label schedule;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -55,6 +59,9 @@ public class ClientCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         birthday.setText(person.getBirthday().toString());
+        lastMet.setText(person.getLastMet().showLastMet());
+        schedule.setText(person.getSchedule().showSchedule());
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
