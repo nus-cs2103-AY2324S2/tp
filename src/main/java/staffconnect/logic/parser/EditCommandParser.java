@@ -3,6 +3,7 @@ package staffconnect.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static staffconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -33,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_FACULTY,
                     PREFIX_VENUE, PREFIX_MODULE, PREFIX_TAG);
 
         Index index;
@@ -44,7 +45,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_FACULTY,
                 PREFIX_VENUE, PREFIX_MODULE);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -57,6 +58,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_FACULTY).isPresent()) {
+            editPersonDescriptor.setFaculty(ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get()));
         }
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
             editPersonDescriptor.setVenue(ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get()));
