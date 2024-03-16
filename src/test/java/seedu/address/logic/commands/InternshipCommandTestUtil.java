@@ -28,19 +28,19 @@ import seedu.address.testutil.EditInternshipDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class InternshipCommandTestUtil {
-    public static final String VALID_COMPANY_NAME_AMY = "Google";
+    public static final String VALID_COMPANY_NAME_AMY = "Microsoft";
     public static final String VALID_COMPANY_NAME_BOB = "Facebook";
-    public static final String VALID_LOCATION_AMY = "Local";
+    public static final String VALID_LOCATION_AMY = "remote";
     public static final String VALID_LOCATION_BOB = "Overseas";
-    public static final String VALID_DESCRIPTION_AMY = "Software Engineering Intern";
+    public static final String VALID_DESCRIPTION_AMY = "Develop new microsoft web applications";
     public static final String VALID_DESCRIPTION_BOB = "Product Management Intern";
-    public static final String VALID_ROLE_AMY = "Intern";
+    public static final String VALID_ROLE_AMY = "Application Engineer";
     public static final String VALID_ROLE_BOB = "Intern";
     public static final String VALID_CONTACT_NAME_AMY = "John Doe";
     public static final String VALID_CONTACT_NAME_BOB = "Jane Doe";
     public static final String VALID_CONTACT_EMAIL_AMY = "johndoe@gmail.com";
     public static final String VALID_CONTACT_EMAIL_BOB = "janedoe@gmail.com";
-    public static final String VALID_CONTACT_NUMBER_AMY = "98765432";
+    public static final String VALID_CONTACT_NUMBER_AMY = "91001274";
     public static final String VALID_CONTACT_NUMBER_BOB = "12345678";
     public static final String VALID_APPLICATION_STATUS_AMY = "Pending";
     public static final String VALID_APPLICATION_STATUS_BOB = "Pending";

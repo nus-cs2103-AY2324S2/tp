@@ -20,14 +20,14 @@ import seedu.address.model.internship.ContactEmail;
 import seedu.address.model.internship.ContactName;
 import seedu.address.model.internship.ContactNumber;
 import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Role;
-import seedu.address.model.internship.Internship;
 
 /**
  * Parses input arguments and creates a new InternshipAddCommand object
  */
-public class InternshipAddCommandParser implements Parser<InternshipAddCommand> {
+public class InternshipAddCommandParser implements InternshipParser<InternshipAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the InternshipAddCommand
@@ -37,27 +37,29 @@ public class InternshipAddCommandParser implements Parser<InternshipAddCommand> 
 
     public InternshipAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, PREFIX_CONTACT_NUMBER,
-                        PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
+                        PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS,
+                        PREFIX_DESCRIPTION, PREFIX_ROLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_DESCRIPTION, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipAddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, PREFIX_CONTACT_NUMBER,
-                PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL,
+                PREFIX_CONTACT_NUMBER, PREFIX_LOCATION, PREFIX_STATUS,
+                PREFIX_DESCRIPTION, PREFIX_ROLE);
 
         CompanyName com = InternshipParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY).get());
         ContactName poc = InternshipParserUtil.parseContactName(argMultimap.getValue(PREFIX_CONTACT_NAME).get());
         ContactEmail email = InternshipParserUtil.parseContactEmail(argMultimap.getValue(PREFIX_CONTACT_EMAIL).get());
-        ContactNumber phone = InternshipParserUtil.parseContactNumber(argMultimap.getValue(PREFIX_CONTACT_NUMBER).get());
+        ContactNumber phon = InternshipParserUtil.parseContactNumber(argMultimap.getValue(PREFIX_CONTACT_NUMBER).get());
         Location loc = InternshipParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         ApplicationStatus status = InternshipParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        Description desc = InternshipParserUtil.parseDescription(argMultimap.getValue( PREFIX_DESCRIPTION).get());
+        Description desc = InternshipParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Role role = InternshipParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
 
-        Internship internship = new Internship(com, poc, email, phone, loc, status, desc, role);
+        Internship internship = new Internship(com, poc, email, phon, loc, status, desc, role);
 
         return new InternshipAddCommand(internship);
     }
@@ -69,5 +71,4 @@ public class InternshipAddCommandParser implements Parser<InternshipAddCommand> 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

@@ -1,196 +1,278 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.logic.InternshipMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.APPLICATION_STATUS_DESC_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.APPLICATION_STATUS_DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.COMPANY_NAME_DESC_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.COMPANY_NAME_DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.CONTACT_EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.CONTACT_EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.CONTACT_NAME_DESC_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.CONTACT_NAME_DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.CONTACT_NUMBER_DESC_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.CONTACT_NUMBER_DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.DESCRIPTION_DESC_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.DESCRIPTION_DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_APPLICATION_STATUS_DESC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_COMPANY_NAME_DESC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_CONTACT_EMAIL_DESC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_CONTACT_NAME_DESC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_CONTACT_NUMBER_DESC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_LOCATION_DESC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_ROLE_DESC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.LOCATION_DESC_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.LOCATION_DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.ROLE_DESC_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.ROLE_DESC_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_APPLICATION_STATUS_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOB;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DESCRIPTION_BOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalInternships.AMY;
+import static seedu.address.testutil.TypicalInternships.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.logic.InternshipMessages;
+import seedu.address.logic.commands.InternshipAddCommand;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.ContactEmail;
+import seedu.address.model.internship.ContactName;
+import seedu.address.model.internship.ContactNumber;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Location;
+import seedu.address.model.internship.Role;
+import seedu.address.testutil.InternshipBuilder;
 
 public class InternshipAddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private InternshipAddCommandParser parser = new InternshipAddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Internship expectedInternship = new InternshipBuilder(BOB).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
-
-        // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
-        assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedPersonMultipleTags));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_NAME_DESC_BOB + CONTACT_NAME_DESC_BOB
+                + CONTACT_EMAIL_DESC_BOB + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB
+                + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB + ROLE_DESC_BOB,
+                new InternshipAddCommand(expectedInternship));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
+        String validExpectedInternshipString = COMPANY_NAME_DESC_BOB + INVALID_CONTACT_NAME_DESC
+                + CONTACT_EMAIL_DESC_BOB + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB
+                + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB + ROLE_DESC_BOB;
 
-        // multiple names
-        assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+        // multiple company names
+        assertParseFailure(parser, COMPANY_NAME_DESC_AMY + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY));
 
-        // multiple phones
-        assertParseFailure(parser, PHONE_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+        // multiple contact names
+        assertParseFailure(parser, CONTACT_NAME_DESC_AMY + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NAME));
 
-        // multiple emails
-        assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+        // multiple contact emails
+        assertParseFailure(parser, CONTACT_EMAIL_DESC_AMY + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_EMAIL));
 
-        // multiple addresses
-        assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
+        // multiple contact numbers
+        assertParseFailure(parser, CONTACT_NUMBER_DESC_AMY + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER));
+
+        // multiple locations
+        assertParseFailure(parser, LOCATION_DESC_AMY + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_LOCATION));
+
+        // multiple application statuses
+        assertParseFailure(parser, APPLICATION_STATUS_DESC_AMY + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_STATUS));
+
+        // multiple descriptions
+        assertParseFailure(parser, DESCRIPTION_DESC_AMY + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
+
+        // multiple roles
+        assertParseFailure(parser, ROLE_DESC_AMY + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_ROLE));
+
 
         // multiple fields repeated
         assertParseFailure(parser,
-                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
-                        + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
+                validExpectedInternshipString + COMPANY_NAME_DESC_BOB + INVALID_CONTACT_NAME_DESC
+                        + CONTACT_EMAIL_DESC_BOB + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB
+                        + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB + ROLE_DESC_BOB
+                        + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(
+                        PREFIX_COMPANY, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, PREFIX_CONTACT_NUMBER,
+                        PREFIX_LOCATION, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_ROLE));
 
         // invalid value followed by valid value
 
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+        // invalid company name
+        assertParseFailure(parser, INVALID_COMPANY_NAME_DESC + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY));
 
-        // invalid email
-        assertParseFailure(parser, INVALID_EMAIL_DESC + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+        // invalid contact name
+        assertParseFailure(parser, INVALID_CONTACT_NAME_DESC + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NAME));
 
-        // invalid phone
-        assertParseFailure(parser, INVALID_PHONE_DESC + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+        // invalid contact email
+        assertParseFailure(parser, INVALID_CONTACT_EMAIL_DESC + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_EMAIL));
 
-        // invalid address
-        assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
+        // invalid contact number
+        assertParseFailure(parser, INVALID_CONTACT_NUMBER_DESC + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER));
+
+        // invalid location
+        assertParseFailure(parser, INVALID_LOCATION_DESC + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_LOCATION));
+
+        // invalid application status
+        assertParseFailure(parser, INVALID_APPLICATION_STATUS_DESC + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_STATUS));
+
+        // invalid description
+        assertParseFailure(parser, INVALID_DESCRIPTION_DESC + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
+
+        // invalid role
+        assertParseFailure(parser, INVALID_ROLE_DESC + validExpectedInternshipString,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_ROLE));
+
 
         // valid value followed by invalid value
 
-        // invalid name
-        assertParseFailure(parser, validExpectedPersonString + INVALID_NAME_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+        // invalid company name
+        assertParseFailure(parser, validExpectedInternshipString + INVALID_COMPANY_NAME_DESC,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY));
 
-        // invalid email
-        assertParseFailure(parser, validExpectedPersonString + INVALID_EMAIL_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+        // invalid contact name
+        assertParseFailure(parser, validExpectedInternshipString + INVALID_CONTACT_NAME_DESC,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NAME));
 
-        // invalid phone
-        assertParseFailure(parser, validExpectedPersonString + INVALID_PHONE_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+        // invalid contact email
+        assertParseFailure(parser, validExpectedInternshipString + INVALID_CONTACT_EMAIL_DESC,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_EMAIL));
 
-        // invalid address
-        assertParseFailure(parser, validExpectedPersonString + INVALID_ADDRESS_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
+        // invalid contact number
+        assertParseFailure(parser, validExpectedInternshipString + INVALID_CONTACT_NUMBER_DESC,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_CONTACT_NUMBER));
+
+        // invalid location
+        assertParseFailure(parser, validExpectedInternshipString + INVALID_LOCATION_DESC,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_LOCATION));
+
+        // invalid application status
+        assertParseFailure(parser, validExpectedInternshipString + INVALID_APPLICATION_STATUS_DESC,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_STATUS));
+
+        // invalid description
+        assertParseFailure(parser, validExpectedInternshipString + INVALID_DESCRIPTION_DESC,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
+
+        // invalid role
+        assertParseFailure(parser, validExpectedInternshipString + INVALID_ROLE_DESC,
+                InternshipMessages.getErrorMessageForDuplicatePrefixes(PREFIX_ROLE));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+        // No optional fields filled in
+        Internship expectedInternship = new InternshipBuilder(AMY).build();
+        assertParseSuccess(parser, COMPANY_NAME_DESC_AMY + CONTACT_NAME_DESC_AMY + CONTACT_EMAIL_DESC_AMY
+                + CONTACT_NUMBER_DESC_AMY + LOCATION_DESC_AMY + APPLICATION_STATUS_DESC_AMY + DESCRIPTION_DESC_AMY
+                + ROLE_DESC_AMY, new InternshipAddCommand(expectedInternship));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipAddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        // missing company name prefix
+        assertParseFailure(parser, VALID_COMPANY_NAME_BOB + DESCRIPTION_DESC_BOB + APPLICATION_STATUS_DESC_BOB,
                 expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        // missing description prefix
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + VALID_DESCRIPTION_BOB + APPLICATION_STATUS_DESC_BOB,
                 expectedMessage);
 
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
+        // missing status prefix
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + DESCRIPTION_DESC_BOB + VALID_APPLICATION_STATUS_BOB,
                 expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_COMPANY_NAME_BOB + VALID_DESCRIPTION_BOB
+                + VALID_APPLICATION_STATUS_BOB, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+        // invalid company name
+        assertParseFailure(parser, INVALID_COMPANY_NAME_DESC + CONTACT_NAME_DESC_BOB + CONTACT_EMAIL_DESC_BOB
+                + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB
+                + ROLE_DESC_BOB, CompanyName.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        // invalid contact name
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + INVALID_CONTACT_NAME_DESC + CONTACT_EMAIL_DESC_BOB
+                + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB
+                + ROLE_DESC_BOB, ContactName.MESSAGE_CONSTRAINTS);
 
-        // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+        // invalid contact email
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + CONTACT_NAME_DESC_BOB + INVALID_CONTACT_EMAIL_DESC
+                + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB
+                + ROLE_DESC_BOB, ContactEmail.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+        // invalid contact number
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + CONTACT_NAME_DESC_BOB + CONTACT_EMAIL_DESC_BOB
+                + INVALID_CONTACT_NUMBER_DESC + LOCATION_DESC_BOB + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB
+                + ROLE_DESC_BOB, ContactNumber.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        // invalid location
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + CONTACT_NAME_DESC_BOB + CONTACT_EMAIL_DESC_BOB
+                + CONTACT_NUMBER_DESC_BOB + INVALID_LOCATION_DESC + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB
+                + ROLE_DESC_BOB, Location.MESSAGE_CONSTRAINTS);
+
+        // invalid application status
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + CONTACT_NAME_DESC_BOB + CONTACT_EMAIL_DESC_BOB
+                + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB + INVALID_APPLICATION_STATUS_DESC + DESCRIPTION_DESC_BOB
+                + ROLE_DESC_BOB, ApplicationStatus.MESSAGE_CONSTRAINTS);
+
+        // invalid description
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + CONTACT_NAME_DESC_BOB + CONTACT_EMAIL_DESC_BOB
+                + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB + APPLICATION_STATUS_DESC_BOB + INVALID_DESCRIPTION_DESC
+                + ROLE_DESC_BOB, Description.MESSAGE_CONSTRAINTS);
+
+        // invalid role
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + CONTACT_NAME_DESC_BOB + CONTACT_EMAIL_DESC_BOB
+                + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB
+                + INVALID_ROLE_DESC, Role.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, COMPANY_NAME_DESC_BOB + INVALID_CONTACT_NAME_DESC + CONTACT_EMAIL_DESC_BOB
+                + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB
+                + INVALID_ROLE_DESC, ContactName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + COMPANY_NAME_DESC_BOB + INVALID_CONTACT_NAME_DESC
+                        + CONTACT_EMAIL_DESC_BOB + CONTACT_NUMBER_DESC_BOB + LOCATION_DESC_BOB
+                        + APPLICATION_STATUS_DESC_BOB + DESCRIPTION_DESC_BOB + ROLE_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipAddCommand.MESSAGE_USAGE));
     }
 }

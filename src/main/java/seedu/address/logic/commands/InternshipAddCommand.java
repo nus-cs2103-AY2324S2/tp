@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.InternshipMessages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.InternshipModel;
 import seedu.address.model.internship.Internship;
@@ -63,7 +64,7 @@ public class InternshipAddCommand extends InternshipCommand {
         }
 
         model.addInternship(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, InternshipMessages.format(toAdd)));
     }
 
     @Override
@@ -73,7 +74,7 @@ public class InternshipAddCommand extends InternshipCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof InternshipAddCommand)) {
             return false;
         }
 

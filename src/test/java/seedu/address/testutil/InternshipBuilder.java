@@ -16,13 +16,13 @@ import seedu.address.model.internship.Role;
 public class InternshipBuilder {
 
     public static final String DEFAULT_COMPANY_NAME = "Microsoft";
-    public static final String DEFAULT_CONTACT_NAME = "Alice Pauline";
-    public static final String DEFAULT_CONTACT_EMAIL = "alice@example.com";
-    public static final String DEFAULT_CONTACT_NUMBER = "94351253";
+    public static final String DEFAULT_CONTACT_NAME = "Amy Pauline";
+    public static final String DEFAULT_CONTACT_EMAIL = "amy@example.com";
+    public static final String DEFAULT_CONTACT_NUMBER = "91001274";
     public static final String DEFAULT_LOCATION = "remote";
-    public static final String DEFAULT_APPLICATION_STATUS = "ongoing";
-    public static final String DEFAULT_DESCRIPTION = "Use Figma to design User-friendly web interfaces";
-    public static final String DEFAULT_ROLE = "Frontend Engineer";
+    public static final String DEFAULT_APPLICATION_STATUS = "pending";
+    public static final String DEFAULT_DESCRIPTION = "Develop new microsoft web applications";
+    public static final String DEFAULT_ROLE = "Application Engineer";
 
     private CompanyName companyName;
     private ContactName contactName;

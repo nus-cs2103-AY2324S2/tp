@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalInternships.ALICE_MICROSOFT;
+import static seedu.address.testutil.TypicalInternships.HOON_APPLE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class InternshipAddCommandTest {
     }
 
     @Test
-    public void execute_InternshipAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_internshipAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingInternshipAdded modelStub = new ModelStubAcceptingInternshipAdded();
         Internship validInternship = new InternshipBuilder().build();
 
@@ -41,16 +41,17 @@ public class InternshipAddCommandTest {
 
         assertEquals(String.format(InternshipAddCommand.MESSAGE_SUCCESS, InternshipMessages.format(validInternship)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validInternship), modelStub.InternshipsAdded);
+        assertEquals(Arrays.asList(validInternship), modelStub.internshipsAdded);
     }
 
     @Test
     public void execute_duplicateInternship_throwsCommandException() {
         Internship validInternship = new InternshipBuilder().build();
-        InternshipAddCommand InternshipAddCommand = new InternshipAddCommand(validInternship);
+        InternshipAddCommand internshipAddCommand = new InternshipAddCommand(validInternship);
         ModelStub modelStub = new ModelStubWithInternship(validInternship);
 
-        assertThrows(CommandException.class, InternshipAddCommand.MESSAGE_DUPLICATE_INTERNSHIP, () -> InternshipAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, internshipAddCommand.MESSAGE_DUPLICATE_INTERNSHIP, ()
+                -> internshipAddCommand.execute(modelStub));
     }
 
     @Test
@@ -79,9 +80,9 @@ public class InternshipAddCommandTest {
 
     @Test
     public void toStringMethod() {
-        InternshipAddCommand InternshipAddCommand = new InternshipAddCommand(ALICE_MICROSOFT);
-        String expected = InternshipAddCommand.class.getCanonicalName() + "{toAdd=" + ALICE_MICROSOFT + "}";
-        assertEquals(expected, InternshipAddCommand.toString());
+        InternshipAddCommand internshipAddCommand = new InternshipAddCommand(HOON_APPLE);
+        String expected = InternshipAddCommand.class.getCanonicalName() + "{toAdd=" + HOON_APPLE + "}";
+        assertEquals(expected, internshipAddCommand.toString());
     }
 
     /**
@@ -114,12 +115,12 @@ public class InternshipAddCommandTest {
         }
 
         @Override
-        public void setInternshipDataFilePath(Path InternshipDataFilePath) {
+        public void setInternshipDataFilePath(Path internshipDataFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addInternship(Internship Internship) {
+        public void addInternship(Internship internship) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,7 +135,7 @@ public class InternshipAddCommandTest {
         }
 
         @Override
-        public boolean hasInternship(Internship Internship) {
+        public boolean hasInternship(Internship internship) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -200,5 +201,4 @@ public class InternshipAddCommandTest {
             return new InternshipData();
         }
     }
-
 }
