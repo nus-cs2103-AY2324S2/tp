@@ -9,7 +9,7 @@ TaskMasterPro is a desktop application designed to aid managers with managing em
 * Add or remove
   * Employees
   * Tasks
-* Assign tasks to employees
+* Assign or Unassign tasks to employees
 * List all information
 * Mark tasks as completed or not completed
 * Save and Load

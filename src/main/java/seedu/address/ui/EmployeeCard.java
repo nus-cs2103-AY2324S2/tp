@@ -33,6 +33,8 @@ public class EmployeeCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label employeeId;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -48,6 +50,8 @@ public class EmployeeCard extends UiPart<Region> {
         super(FXML);
         this.employee = employee;
         id.setText(displayedIndex + ". ");
+
+        employeeId.setText("Employee ID: " + employee.getEmployeeId().employeeId);
         name.setText(employee.getName().fullName);
         phone.setText(employee.getPhone().value);
         address.setText(employee.getAddress().value);
