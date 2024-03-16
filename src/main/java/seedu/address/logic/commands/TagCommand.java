@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -29,15 +32,14 @@ public class TagCommand extends Command {
     public static final String MESSAGE_TAG_CONTACT_SUCCESS = "Tagged Contact: %1$s with %2$s";
 
     private final Index targetIndex;
-    private final Tag tag;
+    private final Set<Tag> tags;
 
     /**
-     * @param index of the person in the filtered person list to tag
-     * @param tag string to tag the person with
+     * Creates a command to add a {@code tag} to the person at {@code index}.
      */
-    public TagCommand(Index index, Tag tag) {
+    public TagCommand(Index index, Collection<Tag> tags) {
         this.targetIndex = index;
-        this.tag = tag;
+        this.tags = new HashSet<>(tags);
     }
 
     @Override
@@ -51,10 +53,23 @@ public class TagCommand extends Command {
 
         Person personToTag = lastShownList.get(targetIndex.getZeroBased());
 
-        Person taggedPerson = personToTag.addTag(tag);
+        Person taggedPerson = addTag(personToTag);
         model.setPerson(personToTag, taggedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_TAG_CONTACT_SUCCESS, personToTag, tag));
+        return new CommandResult(String.format(MESSAGE_TAG_CONTACT_SUCCESS, personToTag, tags));
+    }
+
+    private Person addTag(Person personToTag) {
+        HashSet<Tag> personTags = new HashSet<>(personToTag.getTags());
+
+        personTags.addAll(tags);
+
+        return new Person(
+                personToTag.getName(),
+                personToTag.getPhone(),
+                personToTag.getEmail(),
+                personToTag.getAddress(),
+                personTags);
     }
 
     @Override
@@ -69,14 +84,14 @@ public class TagCommand extends Command {
 
         TagCommand otherTagCommand = (TagCommand) other;
         return targetIndex.equals(otherTagCommand.targetIndex)
-                && tag.equals(otherTagCommand.tag);
+                && tags.equals(otherTagCommand.tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
-                .add("tag", tag)
+                .add("tag", tags)
                 .toString();
     }
 }
