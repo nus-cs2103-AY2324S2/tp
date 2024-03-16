@@ -27,7 +27,13 @@ public class SelectCommand extends Command {
 
     final Index targetIndex;
 
+    /**
+     * Constructor of SelectCommand
+     *
+     * @param targetIndex Index of event user wants to select.
+     */
     public SelectCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
