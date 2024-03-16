@@ -1,8 +1,8 @@
 package seedu.address.model.attendance;
 
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
 
 /**
  * Represents an attendance entry in the address book.

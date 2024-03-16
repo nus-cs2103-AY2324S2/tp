@@ -37,6 +37,11 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code indexes} into a {@code Set<Index>} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified indexes are invalid (not non-zero unsigned integer).
+     */
     public static Set<Index> parseIndexes(Collection<String> indexes) throws ParseException {
         requireNonNull(indexes);
         final Set<Index> indexSet = new HashSet<>();

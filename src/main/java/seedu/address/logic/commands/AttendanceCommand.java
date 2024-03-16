@@ -1,28 +1,31 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.attendance.Attendance;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
+/**
+ * Marks a person's attendance in the address book.
+ */
 public class AttendanceCommand extends Command {
-
     public static final String MESSAGE_ARGUMENTS = "Indexes: %1$d, Date: %2$s";
-
-    private final Set<Index> indexes;
-    private final LocalDate date;
 
     public static final String COMMAND_WORD = "att";
 
@@ -33,10 +36,16 @@ public class AttendanceCommand extends Command {
             + "d/ [DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 2 "
             + "d/ 2024-02-02";
-
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Persons: %1$s";
     public static final String MESSAGE_DUPLICATE_ATTENDANCE = "This attendance has already been marked for %1$s";
 
+    private final Set<Index> indexes;
+    private final LocalDate date;
+
+
+    /**
+     * Creates an AttendanceCommand to add the specified {@code date} to the persons identified by {@code indexes}
+     */
     public AttendanceCommand(Set<Index> indexes, LocalDate date) {
         requireAllNonNull(indexes, date);
 
