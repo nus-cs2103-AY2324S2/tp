@@ -49,6 +49,8 @@ public class Messages {
                 .append(person.getModule())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Availabilities: ");
+        person.getAvailabilities().forEach(builder::append);
         return builder.toString();
     }
 
