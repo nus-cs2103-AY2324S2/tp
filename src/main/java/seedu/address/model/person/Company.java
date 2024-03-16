@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Company {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Company name should only contain alphanumeric characters, spaces, hyphens and/or apostrophes, " +
-                    "and it should not be blank";
+            "Company name should only contain alphanumeric characters, spaces, hyphens and/or apostrophes, "
+                    + "and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
