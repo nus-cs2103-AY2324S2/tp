@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_APPOINTMENT = "jjjjjjjj";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +35,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_APPOINTMENT_1 = "23:59 WED";
+    private static final String VALID_APPOINTMENT_2 = "00:01 SUN";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +196,53 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+    @Test
+    public void parseAppointment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAppointments(null));
+    }
+
+    @Test
+    public void parseAppointment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppointment(INVALID_APPOINTMENT));
+    }
+
+    @Test
+    public void parseAppointment_validValueWithoutWhitespace_returnsAppointment() throws Exception {
+        Appointment expectedAppointment = new Appointment(VALID_APPOINTMENT_1);
+        assertEquals(expectedAppointment, ParserUtil.parseAppointment(VALID_APPOINTMENT_1));
+    }
+
+    @Test
+    public void parseAppointment_validValueWithWhitespace_returnsTrimmedAppointment() throws Exception {
+        String appointmentWithWhitespace = WHITESPACE + VALID_APPOINTMENT_1 + WHITESPACE;
+        Appointment expectedAppointment = new Appointment(VALID_APPOINTMENT_1);
+        assertEquals(expectedAppointment, ParserUtil.parseAppointment(appointmentWithWhitespace));
+    }
+
+    @Test
+    public void parseAppointments_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAppointments(null));
+    }
+
+    @Test
+    public void parseAppointments_collectionWithInvalidAppointments_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseAppointments(Arrays.asList(VALID_APPOINTMENT_1, INVALID_APPOINTMENT)));
+    }
+
+    @Test
+    public void parseAppointments_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseAppointments(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseAppointments_collectionWithValidAppointments_returnsAppointmentSet() throws Exception {
+        Set<Appointment> actualAppointmentSet = ParserUtil
+                .parseAppointments(Arrays.asList(VALID_APPOINTMENT_1, VALID_APPOINTMENT_2));
+        Set<Appointment> expectedAppointmentSet = new HashSet<Appointment>(Arrays
+                .asList(new Appointment(VALID_APPOINTMENT_1), new Appointment(VALID_APPOINTMENT_2)));
+
+        assertEquals(expectedAppointmentSet, actualAppointmentSet);
     }
 }
