@@ -18,7 +18,7 @@ import staffconnect.model.person.Person;
 /**
  * Adds a meeting to the staff book.
  */
-public class MeetingCommand extends Command {
+public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "";
 
@@ -38,7 +38,7 @@ public class MeetingCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public MeetingCommand(Index index, Meeting meeting) {
+    public AddMeetingCommand(Index index, Meeting meeting) {
         requireNonNull(index);
         requireNonNull(meeting);
         this.index = index;
@@ -71,12 +71,12 @@ public class MeetingCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MeetingCommand)) {
+        if (!(other instanceof AddMeetingCommand)) {
             return false;
         }
 
-        MeetingCommand otherMeetingCommand = (MeetingCommand) other;
-        return index.equals(otherMeetingCommand.index) && toAdd.equals(otherMeetingCommand.toAdd);
+        AddMeetingCommand otherAddMeetingCommand = (AddMeetingCommand) other;
+        return index.equals(otherAddMeetingCommand.index) && toAdd.equals(otherAddMeetingCommand.toAdd);
     }
 
     @Override

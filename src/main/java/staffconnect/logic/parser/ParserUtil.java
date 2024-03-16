@@ -9,6 +9,8 @@ import java.util.Set;
 import staffconnect.commons.core.index.Index;
 import staffconnect.commons.util.StringUtil;
 import staffconnect.logic.parser.exceptions.ParseException;
+import staffconnect.model.meeting.Description;
+import staffconnect.model.meeting.MeetDateTime;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
@@ -136,5 +138,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code MeetDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static MeetDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!MeetDateTime.isValidMeetDateTime(trimmedDateTime)) {
+            throw new ParseException(MeetDateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetDateTime(trimmedDateTime);
     }
 }
