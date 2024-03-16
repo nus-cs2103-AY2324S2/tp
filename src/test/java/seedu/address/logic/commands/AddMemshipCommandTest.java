@@ -2,9 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MSHIP_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MSHIP_BOB;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_MSHIP_AMY;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_MSHIP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -16,6 +15,7 @@ import org.junit.jupiter.api.Test;
 //import seedu.address.model.Model;
 //import seedu.address.model.ModelManager;
 //import seedu.address.model.UserPrefs;
+//import seedu.address.model.person.Membership;
 import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -23,7 +23,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Membership;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddMemshipCommandTest {
@@ -41,7 +40,8 @@ public class AddMemshipCommandTest {
         AddMemshipCommand addMembershipCommand = new AddMemshipCommand(firstPerson.getName(), MEMBERSHIP_STUB);
 
         // Expected success message
-        String expectedMessage = String.format(AddMemshipCommand.MESSAGE_ADD_MEMBERSHIP_SUCCESS, firstPerson.getName(), MEMBERSHIP_STUB);
+        String expectedMessage = String.format(AddMemshipCommand.MESSAGE_ADD_MEMBERSHIP_SUCCESS,
+                firstPerson.getName(), MEMBERSHIP_STUB);
 
         // Set up the expected model with the person's membership updated
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
