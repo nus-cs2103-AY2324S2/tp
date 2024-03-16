@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.course.Course;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level

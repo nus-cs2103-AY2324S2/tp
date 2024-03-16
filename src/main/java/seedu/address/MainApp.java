@@ -15,19 +15,9 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -58,13 +48,14 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        CourseStorageName courseStorageName = new JsonCourseNameStorage(userPrefs.getCourseNameFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, courseStorageName);
 
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic, model);
+        ui = new UiManager(logic, model, storage);
     }
 
     /**
@@ -74,23 +65,35 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
-
+        logger.info("Using course data file : " + storage.getCourseNameFilePath());
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyCourseName> courseNameOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyCourseName initialCourseNameData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
             }
+            courseNameOptional = storage.readCourse();
+
+            if (!courseNameOptional.isPresent()) {
+                logger.info("Creating a new course data file " + storage.getCourseNameFilePath()
+                        + " populated with a course.");
+            }
+
+            initialCourseNameData = courseNameOptional.orElseGet(SampleDataUtil::getSampleCourseName);
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
+            // Room to add logging for course name file here too
             initialData = new AddressBook();
+            initialCourseNameData = new CourseName();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, initialCourseNameData);
     }
 
     private void initLogging(Config config) {

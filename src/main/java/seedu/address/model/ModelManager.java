@@ -34,7 +34,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook, userPrefs and currentCourse.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyCourseName currentCourse) {
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, currentCourse);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -147,8 +147,6 @@ public class ModelManager implements Model {
         requireNonNull(courseNameFilePath);
         userPrefs.setAddressBookFilePath(courseNameFilePath);
     }
-
-    //=========== AddressBook ================================================================================
 
     @Override
     public void setCourseName(ReadOnlyCourseName course) {

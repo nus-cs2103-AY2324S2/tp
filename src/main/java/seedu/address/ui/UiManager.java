@@ -12,6 +12,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.model.Model;
+import seedu.address.storage.Storage;
 
 /**
  * The manager of the UI component.
@@ -25,15 +26,18 @@ public class UiManager implements Ui {
 
     private Logic logic;
 
+    private Storage storage;
+
     private Model model;
     private MainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic, Model model) {
+    public UiManager(Logic logic, Model model, Storage storage) {
         this.logic = logic;
         this.model = model;
+        this.storage = storage;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic, model);
+            mainWindow = new MainWindow(primaryStage, logic, model, storage);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
