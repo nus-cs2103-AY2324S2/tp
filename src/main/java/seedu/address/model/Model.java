@@ -105,4 +105,6 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     boolean isValidAppointment(Appointment toAdd);
+
+    ObservableList<Appointment> getAppointmentList();
 }
