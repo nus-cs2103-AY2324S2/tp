@@ -6,7 +6,7 @@ title: User Guide
 StaffConnect (SC) is a **desktop app for managing contacts of Professors and Tutors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SC can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,15 +25,15 @@ StaffConnect (SC) is a **desktop app for managing contacts of Professors and Tut
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com v/John street, block 123, #01-01 m/CS2103` : Adds a contact named `John Doe` to the contacts list.
+    * `add n/John Doe p/98765432 e/johnd@example.com v/John street, block 123, #01-01 m/CS2103` : Adds a contact named `John Doe` to the contacts list.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -103,7 +103,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [v/VENUE] [m/MODULE] [t/TAG]…
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -126,6 +126,23 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Sorting persons by attribute: `sort`
+
+Sorts the list of persons based on specified attribute.
+
+Format: `sort [ATTRIBUTE]`
+
+* By default, sorting is done in ascending order.
+* The order of character priority would be letters (A-Z), numbers (0-9), special characters (!@#$%^&*).
+* The capitalisation of the letters do not affect their priority such that `Aaron` will have same priority as `aaron`.
+* For attribute with exact same values, the tie-breaker is determined by their added order.
+* `[ATTRIBUTE]` is to be noted by their prefix. e.g `name` will be `n/`.
+
+Examples:
+* `sort n/` returns person by ascending names `Alex`, `Bernice` followed by `Charlotte`
+* `sort p/` returns person by ascending phone numbers `87438807`, `91031282` followed by `92492021`<br>
+  ![result for 'sort p/'](images/sortByPhoneNumberResult.png)
 
 ### Deleting a person : `delete`
 
@@ -194,5 +211,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [v/VENUE] [m/MODULE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Sort** | `sort [ATTRIBUTE]`<br> e.g., `sort p/`
 **List** | `list`
 **Help** | `help`
