@@ -84,7 +84,7 @@ public class PersonHasTagPredicateTest {
     }
 
     @Test
-    public void test_personDoesNotHaveMultipleTags_returnsTrue() {
+    public void test_personDoesNotHaveMultipleTags_returnsFalse() {
         // predicate set to track "tester", "tester2", "tester3" tags
         Set<Tag> multipleTags = new HashSet<Tag>(
                 Arrays.asList(new Tag("tester"), new Tag("tester2"), new Tag("tester3")));
