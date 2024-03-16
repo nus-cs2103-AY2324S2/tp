@@ -9,7 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.BankDetails;
+import seedu.address.model.person.EmploymentType;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.WorkHours;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -150,6 +156,13 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a string representation of work hours into a WorkHours object.
+     *
+     * @param workHours A string representing the number of work hours.
+     * @return A WorkHours object representing the parsed work hours.
+     * @throws ParseException if the work hours string is invalid or cannot be parsed.
+     */
     public static WorkHours parseWorkHours(String workHours) throws ParseException {
         requireNonNull(workHours);
         String trimmedWorkHours = workHours.trim();

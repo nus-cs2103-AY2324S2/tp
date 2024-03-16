@@ -41,8 +41,12 @@ public class WorkHours {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         WorkHours workHours = (WorkHours) o;
         return hoursWorked == workHours.hoursWorked;
     }

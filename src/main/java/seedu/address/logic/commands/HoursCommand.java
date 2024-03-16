@@ -47,7 +47,8 @@ public class HoursCommand extends Command {
         personToUpdate.setHoursWorked(hoursWorked);
         model.updatePerson(personToUpdate);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToUpdate.getName(), hoursWorked.getHoursWorked()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToUpdate.getName(),
+                hoursWorked.getHoursWorked()));
 
     }
 

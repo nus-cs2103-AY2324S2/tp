@@ -17,8 +17,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.person.WorkHours;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -153,11 +153,12 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, WorkHours.class.getSimpleName()));
         }
+        final WorkHours modelWorkHours = new WorkHours(workHours.getHoursWorked());
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelFirstName, modelLastName, modelPhone, modelSex, modelEmploymentType,
             modelAddress,
-            modelBankDetails, workHours, modelTags);
+            modelBankDetails, modelWorkHours, modelTags);
     }
 
 }

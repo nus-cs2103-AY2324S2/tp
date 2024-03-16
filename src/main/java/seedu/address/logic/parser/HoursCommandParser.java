@@ -1,14 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_HOURS_WORKED;
 
 import seedu.address.logic.commands.HoursCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.WorkHours;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new HoursCommand object
@@ -26,11 +23,9 @@ public class HoursCommandParser implements Parser<HoursCommand> {
         if (tokens.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HoursCommand.MESSAGE_USAGE));
         }
-
         Phone phoneNumber = ParserUtil.parsePhone(tokens[0]);
         WorkHours hoursWorked;
-            hoursWorked = ParserUtil.parseWorkHours(tokens[1]);
-
+        hoursWorked = ParserUtil.parseWorkHours(tokens[1]);
         return new HoursCommand(phoneNumber, hoursWorked);
     }
 }

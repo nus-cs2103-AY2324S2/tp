@@ -43,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_BANKDETAILS_AMY = "8374219837";
     public static final String VALID_BANKDETAILS_BOB = "3214213212";
+    public static final int VALID_WORK_HOURS_AMY = 10;
+    public static final int VALID_WORK_HOURS_BOB = 20;
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
