@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the list of active orders in the addressbook.
@@ -40,10 +41,12 @@ public class OrderList {
      * Adds an order to the order list.
      * @param orderId The order id of the order to be added.
      * @param toAdd The order that is to be added.
+     * @param person The person that the order is tagged to.
      */
-    public void addOrder(int orderId, Order toAdd) {
+    public void addOrder(int orderId, Order toAdd, Person person) {
         requireAllNonNull(orderId, toAdd);
         orderList.put(orderId, toAdd);
+        person.addOrder(toAdd);
         orderIdCounter++;
     }
 
