@@ -33,7 +33,7 @@ public class InternshipAddCommandTest {
     }
 
     @Test
-    public void execute_InternshipAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_internshipAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingInternshipAdded modelStub = new ModelStubAcceptingInternshipAdded();
         Internship validInternship = new InternshipBuilder().build();
 
@@ -41,7 +41,7 @@ public class InternshipAddCommandTest {
 
         assertEquals(String.format(InternshipAddCommand.MESSAGE_SUCCESS, InternshipMessages.format(validInternship)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validInternship), modelStub.InternshipsAdded);
+        assertEquals(Arrays.asList(validInternship), modelStub.internshipsAdded);
     }
 
     @Test
@@ -50,7 +50,8 @@ public class InternshipAddCommandTest {
         InternshipAddCommand InternshipAddCommand = new InternshipAddCommand(validInternship);
         ModelStub modelStub = new ModelStubWithInternship(validInternship);
 
-        assertThrows(CommandException.class, InternshipAddCommand.MESSAGE_DUPLICATE_INTERNSHIP, () -> InternshipAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, InternshipAddCommand.MESSAGE_DUPLICATE_INTERNSHIP, ()
+                -> InternshipAddCommand.execute(modelStub));
     }
 
     @Test
