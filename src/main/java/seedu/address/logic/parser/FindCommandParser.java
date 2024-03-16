@@ -33,7 +33,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_NOTE, PREFIX_TAG);
 
-        if (!argMultimap.getPreamble().isEmpty()) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
@@ -41,19 +41,19 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         NameContainsSubstringPredicate namePredicate = new NameContainsSubstringPredicate(
                 ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_NAME).orElse("")));
-        PhoneContainsSubstringPredicate phonePedicate = new PhoneContainsSubstringPredicate(
+        PhoneContainsSubstringPredicate phonePredicate = new PhoneContainsSubstringPredicate(
                 ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_PHONE).orElse("")));
-        EmailContainsSubstringPredicate emailPedicate = new EmailContainsSubstringPredicate(
+        EmailContainsSubstringPredicate emailPredicate = new EmailContainsSubstringPredicate(
                 ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_EMAIL).orElse("")));
-        AddressContainsSubstringPredicate addressPedicate = new AddressContainsSubstringPredicate(
+        AddressContainsSubstringPredicate addressPredicate = new AddressContainsSubstringPredicate(
                 ParserUtil.parseSearchString(argMultimap.getValue(PREFIX_ADDRESS).orElse("")));
-        NoteContainsSubstringPredicate notePedicate = new NoteContainsSubstringPredicate(ParserUtil
+        NoteContainsSubstringPredicate notePredicate = new NoteContainsSubstringPredicate(ParserUtil
                 .parseSearchString(argMultimap.getValue(PREFIX_NOTE).orElse("")));
         TagSetContainsAnyTagPredicate tagsPredicate = new TagSetContainsAnyTagPredicate(
-                ParserUtil.parseSearchTagSet(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))));
+                ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        CombinedPredicates predicates = new CombinedPredicates(namePredicate, phonePedicate, emailPedicate,
-                addressPedicate, notePedicate, tagsPredicate);
+        CombinedPredicates predicates = new CombinedPredicates(namePredicate, phonePredicate, emailPredicate,
+                addressPredicate, notePredicate, tagsPredicate);
 
         return new FindCommand(predicates);
     }
