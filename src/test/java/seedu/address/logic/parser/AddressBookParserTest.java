@@ -25,6 +25,7 @@ import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListPersonCommand;
 import seedu.address.logic.commands.MarkAttendanceCommand;
+import seedu.address.logic.commands.UnmarkAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NusNet;
@@ -96,6 +97,16 @@ public class AddressBookParserTest {
                 MarkAttendanceCommand.COMMAND_WORD + " " + PREFIX_NUSNET
                         + nusNet.value + " " + PREFIX_WEEK + weekNumber.value);
         assertEquals(new MarkAttendanceCommand(nusNet, weekNumber), command);
+    }
+
+    @Test
+    public void parseCommand_unmark() throws Exception {
+        final NusNet nusNet = new NusNet("e1234567");
+        final WeekNumber weekNumber = new WeekNumber("10");
+        UnmarkAttendanceCommand command = (UnmarkAttendanceCommand) parser.parseCommand(
+                UnmarkAttendanceCommand.COMMAND_WORD + " " + PREFIX_NUSNET
+                        + nusNet.value + " " + PREFIX_WEEK + weekNumber.value);
+        assertEquals(new UnmarkAttendanceCommand(nusNet, weekNumber), command);
     }
 
     @Test

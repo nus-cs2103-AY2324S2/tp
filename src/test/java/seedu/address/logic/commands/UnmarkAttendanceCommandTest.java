@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_NUSNET;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -49,6 +51,20 @@ public class UnmarkAttendanceCommandTest {
         // different person -> fails
         assertNotEquals(unmarkAttendanceCommand1, unmarkAttendanceCommand3);
     }
+
+    @Test
+    public void equals_sameObject_success() {
+        UnmarkAttendanceCommand command = new UnmarkAttendanceCommand(testValidNusNet, testValidWeekNo6);
+        assertTrue(command.equals(command));
+    }
+
+    @Test
+    public void equals_nonUnmarkAttendanceObject_failure() {
+        UnmarkAttendanceCommand command = new UnmarkAttendanceCommand(testValidNusNet, testValidWeekNo6);
+        MarkAttendanceCommand command2 = new MarkAttendanceCommand(testValidNusNet, testValidWeekNo6);
+        assertFalse(command.equals(command2));
+    }
+
 
     @Test
     public void execute_validNusNetValidWeekNumber_unmarkSuccess() {
