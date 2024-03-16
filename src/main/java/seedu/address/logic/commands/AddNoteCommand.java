@@ -6,10 +6,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.IdentityCardNumberMatchesPredicate;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 
@@ -20,43 +20,44 @@ public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "addnote";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person whose profile matches "
+            + "the specified IC (case-insensitive). "
             + "Existing remark will be appended by default. To replace the original note, add -replace at "
-            + "the end of your command. E.g. addnote 1 n/Diabetes -replace\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "the end of your command. E.g. addnote S0123456Q n/Diabetes -replace\n"
+            + "Parameters: IC "
             + "[" + PREFIX_NOTE + "NOTE] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " S0123456Q "
             + PREFIX_NOTE + "Healthy.";
 
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
-    private final Index index;
+    private final IdentityCardNumberMatchesPredicate ic;
     private final Note note;
     private final boolean isReplace;
 
     /**
-     * @param index of the person in the filtered person list to edit the note
+     * @param ic of the person in the filtered person list to edit the note
      * @param note of the person to be updated to
      */
-    public AddNoteCommand(Index index, Note note, boolean isReplace) {
-        requireAllNonNull(index, note);
+    public AddNoteCommand(IdentityCardNumberMatchesPredicate ic, Note note, boolean isReplace) {
+        requireAllNonNull(ic, note);
 
-        this.index = index;
+        this.ic = ic;
         this.note = note;
         this.isReplace = isReplace;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        model.updateFilteredPersonList(ic);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.get(0);
         if (isReplace) {
             Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                     personToEdit.getIdentityCardNumber(), personToEdit.getAge(), personToEdit.getSex(),
@@ -100,7 +101,7 @@ public class AddNoteCommand extends Command {
         }
 
         AddNoteCommand e = (AddNoteCommand) other;
-        return index.equals(e.index)
+        return ic.equals(e.ic)
                 && note.equals(e.note);
     }
 }
