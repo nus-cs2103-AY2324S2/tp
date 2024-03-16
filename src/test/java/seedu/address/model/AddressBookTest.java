@@ -17,6 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.AppParameters;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -92,6 +95,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -101,18 +105,25 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
+        @Override
+        public ObservableList<Appointment> getAppointmentList() {
+            return appointments;
+        }
+
+
     }
 
     @Test
     public void getPersonByNric_bookHasPerson_returnsPerson() {
         addressBook.addPerson(ALICE);
-        assertEquals(ALICE, addressBook.getPersonByNric(ALICE.getNric().toString()));
+        assertEquals(ALICE, addressBook.getPersonByNric(ALICE.getNric()));
     }
 
     @Test
     public void getPersonByNric_bookDoesNotHavePerson_throwsPersonNotFoundException() {
         addressBook.addPerson(ALICE);
-        assertThrows(PersonNotFoundException.class, () -> addressBook.getPersonByNric("T1234567G"));
+        assertThrows(PersonNotFoundException.class, () -> addressBook.getPersonByNric(new Nric("T1234567G")));
     }
 
     @Test
@@ -122,7 +133,7 @@ public class AddressBookTest {
 
     @Test
     public void getPersonByNric_addressbookIsEmpty_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> addressBook.getPersonByNric(ALICE.getNric().toString()));
+        assertThrows(PersonNotFoundException.class, () -> addressBook.getPersonByNric(ALICE.getNric()));
     }
 
 }
