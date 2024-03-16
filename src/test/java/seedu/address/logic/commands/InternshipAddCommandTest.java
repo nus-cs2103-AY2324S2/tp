@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalInternships.ALICE_MICROSOFT;
+import static seedu.address.testutil.TypicalInternships.HOON_APPLE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -80,8 +80,8 @@ public class InternshipAddCommandTest {
 
     @Test
     public void toStringMethod() {
-        InternshipAddCommand InternshipAddCommand = new InternshipAddCommand(ALICE_MICROSOFT);
-        String expected = InternshipAddCommand.class.getCanonicalName() + "{toAdd=" + ALICE_MICROSOFT + "}";
+        InternshipAddCommand InternshipAddCommand = new InternshipAddCommand(HOON_APPLE);
+        String expected = InternshipAddCommand.class.getCanonicalName() + "{toAdd=" + HOON_APPLE + "}";
         assertEquals(expected, InternshipAddCommand.toString());
     }
 
