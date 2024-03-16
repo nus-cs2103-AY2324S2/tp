@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 public class Upcoming implements Comparable<Upcoming> {
 
     public static final String MESSAGE_CONSTRAINTS = "Invalid input. Please follow the format: DD-MM-YYYY HH:mm";
+    public static final String MESSAGE_NO_UPCOMING = "No upcoming appointment";
     private static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
     private static final String DATETIME_REGEX = "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}$";
@@ -35,6 +36,7 @@ public class Upcoming implements Comparable<Upcoming> {
             this.dateTime = null;
             return;
         }
+        this.hasUpcoming = true;
         this.dateTime = LocalDateTime.parse(dateTimeStr, DATETIME_FORMATTER);
     }
 
@@ -61,7 +63,7 @@ public class Upcoming implements Comparable<Upcoming> {
     @Override
     public String toString() {
         if (!hasUpcoming) {
-            return "No upcoming appointment";
+            return MESSAGE_NO_UPCOMING;
         }
         return dateTime.format(DATETIME_FORMATTER);
     }
