@@ -37,7 +37,7 @@ public class ImportCommand extends Command {
             + "[" + PREFIX_FILENAME + "FILENAME_3] "
             + "...";
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "The person %s already exists in the contact manager.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "The person %s with phone number %s already exists in the contact manager.";
 
     public static final String MESSAGE_FILE_NOT_FOUND = "Filename %s is not found!";
 
@@ -70,8 +70,9 @@ public class ImportCommand extends Command {
             try {
                 Person person = jsonAdaptedPerson.toModelType();
                 if (model.hasPerson(person)) {
-                    logger.info(String.format(MESSAGE_DUPLICATE_PERSON, person.toString()));
-                    throw new IllegalValueException(String.format(MESSAGE_DUPLICATE_PERSON, person.toString()));
+                    logger.info(String.format(MESSAGE_DUPLICATE_PERSON, person.getName(), person.getPhone()));
+                    throw new IllegalValueException(String.format(MESSAGE_DUPLICATE_PERSON,
+                            person.getName(), person.getPhone()));
                 }
                 persons.add(person);
             } catch (IllegalValueException ive) {

@@ -134,6 +134,8 @@ public class ParserUtil {
             if (!Filename.isValidFilename(trimmedFname)) {
                 throw new ParseException(Filename.MESSAGE_CONSTRAINTS);
             }
+            trimmedFname += ".json";
+            trimmedFname = "./data/" + trimmedFname;
             Filename curFilename = new Filename(trimmedFname);
             if (filenameSet.contains(curFilename)) {
                 throw new ParseException(Filename.MESSAGE_DUPLICATE);
