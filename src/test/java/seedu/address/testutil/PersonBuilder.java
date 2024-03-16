@@ -131,7 +131,7 @@ public class PersonBuilder {
         return new Person(name, phone, email, address, company, isFavourite, tags, orders);
     }
 
-    public Person buildWithFavourite() {
+    public Person buildWithOrdersAndFavourite() {
         return new Person(name, phone, email, address, company, isFavourite, tags, orders);
     }
 }

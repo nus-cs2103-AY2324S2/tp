@@ -48,22 +48,6 @@ public class Person {
 
     /**
      * Every field must be present and not null.
-     * This constructor is used to create a person with orders.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Company company,
-                  Set<Tag> tags, ArrayList<Order> orders) {
-        requireAllNonNull(name, phone, email, address, company, tags, orders);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.company = company;
-        this.tags.addAll(tags);
-        this.orders = orders;
-    }
-
-    /**
-     * Every field must be present and not null.
      * This constructor is used to create a person with orders, and
      * indicates whether they have been marked as favourite
      */
