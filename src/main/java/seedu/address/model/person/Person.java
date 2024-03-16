@@ -22,19 +22,19 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Major major;
     private final Star star;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Major major, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, major, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.major = major;
         this.star = Star.NO_STAR;
         this.tags.addAll(tags);
     }
@@ -42,12 +42,12 @@ public class Person {
     /**
      * Every field must be present and not null. Alternative constructor to instantiate a Person with an existing star.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Star star, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, star, tags);
+    public Person(Name name, Phone phone, Email email, Major major, Star star, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, major, star, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.major = major;
         this.star = star;
         this.tags.addAll(tags);
     }
@@ -64,8 +64,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Major getMajor() {
+        return major;
     }
 
     public Star getStar() {
@@ -112,7 +112,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && major.equals(otherPerson.major)
                 && star.equals(otherPerson.star)
                 && tags.equals(otherPerson.tags);
     }
@@ -120,7 +120,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, star, tags);
+        return Objects.hash(name, phone, email, major, star, tags);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
+                .add("major", major)
                 .add("star", star)
                 .add("tags", tags)
                 .toString();
