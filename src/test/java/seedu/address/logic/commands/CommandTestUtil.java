@@ -9,15 +9,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
 import seedu.address.model.Model;
+import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
-import seedu.address.model.coursemate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditCourseMateDescriptorBuilder;
 
 /**
@@ -121,7 +120,7 @@ public class CommandTestUtil {
 
         CourseMate courseMate = model.getFilteredCourseMateList().get(targetIndex.getZeroBased());
         final String[] splitName = courseMate.getName().fullName.split("\\s+");
-        model.updateFilteredCourseMateList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredCourseMateList(new ContainsKeywordPredicate(splitName[0]));
 
         assertEquals(1, model.getFilteredCourseMateList().size());
     }
