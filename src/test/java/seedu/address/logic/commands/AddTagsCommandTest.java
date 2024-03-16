@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIENDS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
@@ -32,7 +32,7 @@ public class AddTagsCommandTest {
     public void execute_validTagsUnfilteredList_success() {
         Index index = INDEX_FIRST_PATIENT;
         Set<Tag> tagsToAdd = new HashSet<>();
-        tagsToAdd.add(new Tag(VALID_TAG_NICE));
+        tagsToAdd.add(new Tag(VALID_TAG_DIABETES));
 
         AddTagsCommand addTagsCommand = new AddTagsCommand(index, tagsToAdd);
 
@@ -43,7 +43,7 @@ public class AddTagsCommandTest {
             assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
             Set<Tag> expectedTagsSet = new HashSet<>(editedPatient.getTags());
-            expectedTagsSet.add(new Tag(VALID_TAG_NICE));
+            expectedTagsSet.add(new Tag(VALID_TAG_DIABETES));
 
             assertTrue(editedPatient.getTags().equals(expectedTagsSet));
         } catch (CommandException e) {
@@ -56,8 +56,8 @@ public class AddTagsCommandTest {
     public void execute_addDuplicateTagsUnfilteredList_success() {
         Index index = INDEX_FIRST_PATIENT;
         Set<Tag> tagsToAdd = new HashSet<>();
-        tagsToAdd.add(new Tag(VALID_TAG_NICE));
-        tagsToAdd.add(new Tag(VALID_TAG_NICE)); // Adding a duplicate tag should result in one unique tag
+        tagsToAdd.add(new Tag(VALID_TAG_DIABETES));
+        tagsToAdd.add(new Tag(VALID_TAG_DIABETES)); // Adding a duplicate tag should result in one unique tag
 
         AddTagsCommand addTagsCommand = new AddTagsCommand(index, tagsToAdd);
 
@@ -68,7 +68,7 @@ public class AddTagsCommandTest {
             assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
             Set<Tag> expectedTagsSet = new HashSet<>(editedPatient.getTags());
-            expectedTagsSet.add(new Tag(VALID_TAG_NICE));
+            expectedTagsSet.add(new Tag(VALID_TAG_DIABETES));
 
             assertTrue(editedPatient.getTags().equals(expectedTagsSet));
         } catch (CommandException e) {
@@ -81,7 +81,7 @@ public class AddTagsCommandTest {
     public void execute_addPreExistingTagsUnfilteredList_success() {
         Index index = INDEX_FIRST_PATIENT;
         Set<Tag> tagsToAdd = new HashSet<>();
-        tagsToAdd.add(new Tag(VALID_TAG_FRIENDS));
+        tagsToAdd.add(new Tag(VALID_TAG_DEPRESSION));
 
         AddTagsCommand addTagsCommand = new AddTagsCommand(index, tagsToAdd);
 
@@ -104,7 +104,7 @@ public class AddTagsCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
         Set<Tag> tagsToAdd = new HashSet<>();
-        tagsToAdd.add(new Tag(VALID_TAG_FRIENDS));
+        tagsToAdd.add(new Tag(VALID_TAG_DEPRESSION));
         AddTagsCommand addTagsCommand = new AddTagsCommand(outOfBoundIndex, tagsToAdd);
 
         CommandException exception = assertThrows(CommandException.class, () -> addTagsCommand.execute(model));
@@ -115,9 +115,9 @@ public class AddTagsCommandTest {
     public void equals() {
         final Index index = INDEX_FIRST_PATIENT;
         final Set<Tag> firstTags = new HashSet<>();
-        firstTags.add(new Tag(VALID_TAG_FRIENDS));
+        firstTags.add(new Tag(VALID_TAG_DEPRESSION));
         final Set<Tag> secondTags = new HashSet<>();
-        secondTags.add(new Tag(VALID_TAG_FRIENDS));
+        secondTags.add(new Tag(VALID_TAG_DEPRESSION));
 
         final AddTagsCommand standardCommand = new AddTagsCommand(index, firstTags);
 
@@ -145,8 +145,8 @@ public class AddTagsCommandTest {
     public void toStringTest() {
         Index index = Index.fromOneBased(1);
         Set<Tag> tags = new HashSet<>();
-        tags.add(new Tag(VALID_TAG_FRIENDS));
-        tags.add(new Tag(VALID_TAG_NICE));
+        tags.add(new Tag(VALID_TAG_DEPRESSION));
+        tags.add(new Tag(VALID_TAG_DIABETES));
 
         AddTagsCommand addTagsCommand = new AddTagsCommand(index, tags);
 

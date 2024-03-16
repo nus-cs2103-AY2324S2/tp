@@ -15,10 +15,12 @@ import seedu.address.model.tag.Tag;
  * corresponding field value of the patient.
  */
 public class EditPatientDescriptor {
+    private PatientHospitalId patientHospitalId;
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private PreferredName preferredName;
+    private FoodPreference foodPreference;
+    private FamilyCondition familyCondition;
+    private Hobby hobby;
     private Set<Tag> tags;
     private Set<ImportantDate> importantDate;
 
@@ -30,10 +32,12 @@ public class EditPatientDescriptor {
      * A defensive copy of {@code tags} is used internally.
      */
     public EditPatientDescriptor(EditPatientDescriptor toCopy) {
+        setPatientHospitalId(toCopy.patientHospitalId);
         setName(toCopy.name);
-        setPhone(toCopy.phone);
-        setEmail(toCopy.email);
-        setAddress(toCopy.address);
+        setPreferredName(toCopy.preferredName);
+        setFoodPreference(toCopy.foodPreference);
+        setFamilyCondition(toCopy.familyCondition);
+        setHobby(toCopy.hobby);
         setTags(toCopy.tags);
         setImportantDate(toCopy.importantDate);
     }
@@ -42,7 +46,16 @@ public class EditPatientDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, importantDate);
+        return CollectionUtil.isAnyNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition,
+            hobby, tags, importantDate);
+    }
+
+    public void setPatientHospitalId(PatientHospitalId id) {
+        this.patientHospitalId = id;
+    }
+
+    public Optional<PatientHospitalId> getPatientHospitalId() {
+        return Optional.ofNullable(patientHospitalId);
     }
 
     public void setName(Name name) {
@@ -53,28 +66,36 @@ public class EditPatientDescriptor {
         return Optional.ofNullable(name);
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
+    public void setPreferredName(PreferredName preferredName) {
+        this.preferredName = preferredName;
     }
 
-    public Optional<Phone> getPhone() {
-        return Optional.ofNullable(phone);
+    public Optional<PreferredName> getPreferredName() {
+        return Optional.ofNullable(preferredName);
     }
 
-    public void setEmail(Email email) {
-        this.email = email;
+    public void setFoodPreference(FoodPreference foodPreference) {
+        this.foodPreference = foodPreference;
     }
 
-    public Optional<Email> getEmail() {
-        return Optional.ofNullable(email);
+    public Optional<FoodPreference> getFoodPreference() {
+        return Optional.ofNullable(foodPreference);
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setFamilyCondition(FamilyCondition familyCondition) {
+        this.familyCondition = familyCondition;
     }
 
-    public Optional<Address> getAddress() {
-        return Optional.ofNullable(address);
+    public Optional<FamilyCondition> getFamilyCondition() {
+        return Optional.ofNullable(familyCondition);
+    }
+
+    public void setHobby(Hobby hobby) {
+        this.hobby = hobby;
+    }
+
+    public Optional<Hobby> getHobby() {
+        return Optional.ofNullable(hobby);
     }
 
     /**
@@ -115,23 +136,27 @@ public class EditPatientDescriptor {
         }
 
         EditPatientDescriptor otherEditPatientDescriptor = (EditPatientDescriptor) other;
-        return Objects.equals(name, otherEditPatientDescriptor.name)
-                && Objects.equals(phone, otherEditPatientDescriptor.phone)
-                && Objects.equals(email, otherEditPatientDescriptor.email)
-                && Objects.equals(address, otherEditPatientDescriptor.address)
-                && Objects.equals(tags, otherEditPatientDescriptor.tags)
-                && Objects.equals(importantDate, otherEditPatientDescriptor.importantDate);
+        return Objects.equals(patientHospitalId, otherEditPatientDescriptor.patientHospitalId)
+            && Objects.equals(name, otherEditPatientDescriptor.name)
+            && Objects.equals(preferredName, otherEditPatientDescriptor.preferredName)
+            && Objects.equals(foodPreference, otherEditPatientDescriptor.foodPreference)
+            && Objects.equals(familyCondition, otherEditPatientDescriptor.familyCondition)
+            && Objects.equals(hobby, otherEditPatientDescriptor.hobby)
+            && Objects.equals(tags, otherEditPatientDescriptor.tags)
+            && Objects.equals(importantDate, otherEditPatientDescriptor.importantDate);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .add("importantDate", importantDate)
-                .toString();
+            .add("patientHospitalId", patientHospitalId)
+            .add("name", name)
+            .add("preferredName", preferredName)
+            .add("foodPreference", foodPreference)
+            .add("familyCondition", familyCondition)
+            .add("hobby", hobby)
+            .add("tags", tags)
+            .add("importantDate", importantDate)
+            .toString();
     }
 }

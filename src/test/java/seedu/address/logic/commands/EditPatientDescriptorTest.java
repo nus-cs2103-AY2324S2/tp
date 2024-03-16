@@ -89,7 +89,7 @@ public class EditPatientDescriptorTest {
                 + editPatientDescriptor.getFoodPreference().orElse(null) + ", familyCondition="
                 + editPatientDescriptor.getFamilyCondition().orElse(null) + ", hobby="
                 + editPatientDescriptor.getHobby().orElse(null) + ", tags="
-                + editPatientDescriptor.getTags().orElse(null) + "}"
+                + editPatientDescriptor.getTags().orElse(null) + ", importantDate="
                 + editPatientDescriptor.getImportantDates().orElse(null) + "}";
         assertEquals(expected, editPatientDescriptor.toString());
     }

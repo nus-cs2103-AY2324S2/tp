@@ -29,6 +29,22 @@ public class Patient {
     private final Set<ImportantDate> importantDates = new HashSet<>();
 
     /**
+     * Every field must be present and not null.
+     */
+    public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
+                   FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
+                   Set<Tag> tags) {
+        requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        this.patientHospitalId = patientHospitalId;
+        this.name = name;
+        this.preferredName = preferredName;
+        this.foodPreference = foodPreference;
+        this.familyCondition = familyCondition;
+        this.hobby = hobby;
+        this.tags.addAll(tags);
+    }
+
+    /**
      * Constructs a Patient with {@param patientHospitalId},{@param name}, {@param preferredName},
      * {@param foodPreference}, {@param familyCondition}, {@param hobby},{@param tags}, {@param importantDates}
      *

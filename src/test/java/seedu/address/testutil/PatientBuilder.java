@@ -132,6 +132,9 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Builds {@code Patient} with new Patient.
+     */
     public Patient build() {
         return new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
             importantDates);
