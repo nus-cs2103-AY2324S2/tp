@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -91,9 +92,45 @@ public class PersonTest {
     }
 
     @Test
+    public void hash() {
+        // same object -> returns true
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+
+        // same object -> returns true
+        Person bobCopy = new PersonBuilder(BOB).build();
+        assertEquals(BOB.hashCode(), bobCopy.hashCode());
+
+        // different name -> returns false
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different phone -> returns false
+        Person editedAlice2 = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice2.hashCode());
+
+        // different email -> returns false
+        Person editedAlice3 = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice3.hashCode());
+
+        // different address -> returns false
+        Person editedAlice4 = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice4.hashCode());
+
+        // different tags -> returns false
+        Person editedAlice5 = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice5.hashCode());
+
+        // different person -> returns false
+        assertNotEquals(ALICE.hashCode(), BOB.hashCode());
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
+                + ", email=" + ALICE.getEmail() + ", identityCardNumber=" + ALICE.getIdentityCardNumber()
+                + ", age=" + ALICE.getAge() + ", sex=" + ALICE.getSex() + ", address=" + ALICE.getAddress()
+                + ", note=" + ALICE.getNote() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
