@@ -109,5 +109,23 @@ public class AppointmentTest {
         appointment = new Appointment(TEST_APPOINTMENT_ID, appointmentDate, 1, "Test", true);
         appointment.setAttendedStatus(false);
         assertFalse(appointment.getAttendedStatus());
+
+        // default status
+        appointment = new Appointment(appointmentDate, 1, "Test");
+        assertFalse(appointment.getAttendedStatus());
+
+        appointment = new Appointment(appointmentDate, 1, "Test", true);
+        assertTrue(appointment.getAttendedStatus());
+    }
+
+    @Test
+    void constructorTest() {
+        LocalDateTime appointmentDate = LocalDateTime.now();
+
+        //increasing id
+        Appointment appointment = new Appointment(appointmentDate, 1, "Test");
+        Appointment otherAppointment = new Appointment(appointmentDate, 1, "Test");
+        assertTrue(appointment.compareTo(otherAppointment) < 0);
+        assertEquals(appointment.appointmentId + 1, otherAppointment.appointmentId);
     }
 }
