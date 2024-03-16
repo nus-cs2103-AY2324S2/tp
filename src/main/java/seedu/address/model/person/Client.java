@@ -3,8 +3,11 @@ package seedu.address.model.person;
 import seedu.address.model.tag.Tag;
 
 import java.util.Set;
-
-public class Client extends Person{
+/**
+ * Represents a Person in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
+public class Client extends Person {
 
     /**
      * Every field must be present and not null.
