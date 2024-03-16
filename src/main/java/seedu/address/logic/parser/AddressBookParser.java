@@ -79,6 +79,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddOrderCommand.COMMAND_WORD:
+
             return new AddOrderCommandParser().parse(arguments);
 
         default:
