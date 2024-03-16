@@ -73,7 +73,7 @@ public class AddOrderCommand extends Command {
      * the order is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Person personToUpdate) {
+    static String generateSuccessMessage(Person personToUpdate) {
         return String.format(MESSAGE_ADD_ORDER_SUCCESS, personToUpdate.getName());
     }
 
