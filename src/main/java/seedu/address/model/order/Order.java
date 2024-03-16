@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents a Customer's Order in the Addressbook.
  */
@@ -14,6 +16,8 @@ public class Order implements Comparable<Order> {
             + "product names and numeric quantities";
     private int id;
     private Map<Product, Quantity> productMap;
+
+    private Person customer;
 
     /**
      * Constructs an {@code Order} Object.
@@ -119,11 +123,29 @@ public class Order implements Comparable<Order> {
     }
 
     /**
+     * Sets the ProductMap of the order.
+     *
+     * @param productMap ProductMap to set to
+     */
+    public void setProductMap(Map<Product, Quantity> productMap) {
+        this.productMap = productMap;
+    }
+
+    /**
      * Checks if the product map is empty.
      * @return boolean value of whether the product map is empty.
      */
     public boolean isEmpty() {
         return productMap.isEmpty();
+    }
+
+    /**
+     * Gets the {@code Person} ordering the order
+     *
+     * @return the customer ordering the order
+     */
+    public Person getCustomer() {
+        return this.customer;
     }
 
     /**

@@ -110,10 +110,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteOrder(int id) {
+        addressBook.removeOrder(id);
+    }
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public int getOrderListSize() {
+        return addressBook.getOrderListSize();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -154,6 +163,11 @@ public class ModelManager implements Model {
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+    }
+
+    @Override
+    public Order findOrderByIndex(int id) {
+        return addressBook.findOrderByIndex(id);
     }
 
     @Override
