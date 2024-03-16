@@ -9,7 +9,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
 
 import java.util.List;
 
@@ -22,26 +21,30 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + "Existing remark will be appended by default. Use '-r' flag to replace instead.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_NOTE + "[NOTE]\n"
+            + "[" + PREFIX_NOTE + "NOTE] "
+            + "[-r]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE + "Healthy.";
+
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
     private final Index index;
     private final Note note;
+    private final boolean isReplace;
 
     /**
      * @param index of the person in the filtered person list to edit the note
      * @param note of the person to be updated to
      */
-    public AddNoteCommand(Index index, Note note) {
+    public AddNoteCommand(Index index, Note note, boolean isReplace) {
         requireAllNonNull(index, note);
 
         this.index = index;
         this.note = note;
+        this.isReplace = isReplace;
     }
 
     @Override
@@ -53,9 +56,10 @@ public class AddNoteCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        Note updatedNote = isReplace ? note : personToEdit.getNote().append(note.toString());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getIdentityCardNumber(), personToEdit.getAge(), personToEdit.getSex(),
-                personToEdit.getAddress(), note, personToEdit.getTags());
+                personToEdit.getAddress(), updatedNote, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

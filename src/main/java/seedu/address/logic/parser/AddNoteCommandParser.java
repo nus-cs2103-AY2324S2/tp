@@ -31,7 +31,12 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
         }
 
         String note = argMultimap.getValue(PREFIX_NOTE).orElse("");
+        boolean isReplace = false;
 
-        return new AddNoteCommand(index, new Note(note));
+        if (argMultimap.getPreamble().endsWith("-r")) {
+            isReplace = true; // If -r flag is present, set isReplace to false for append behavior
+        }
+
+        return new AddNoteCommand(index, new Note(note), isReplace);
     }
 }
