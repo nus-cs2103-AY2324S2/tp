@@ -53,14 +53,13 @@ public class InternshipAddCommandParser implements InternshipParser<InternshipAd
         CompanyName com = InternshipParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY).get());
         ContactName poc = InternshipParserUtil.parseContactName(argMultimap.getValue(PREFIX_CONTACT_NAME).get());
         ContactEmail email = InternshipParserUtil.parseContactEmail(argMultimap.getValue(PREFIX_CONTACT_EMAIL).get());
-        ContactNumber phone = 
-            InternshipParserUtil.parseContactNumber(argMultimap.getValue(PREFIX_CONTACT_NUMBER).get());
+        ContactNumber phon = InternshipParserUtil.parseContactNumber(argMultimap.getValue(PREFIX_CONTACT_NUMBER).get());
         Location loc = InternshipParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         ApplicationStatus status = InternshipParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        Description desc = InternshipParserUtil.parseDescription(argMultimap.getValue( PREFIX_DESCRIPTION).get());
+        Description desc = InternshipParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Role role = InternshipParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
 
-        Internship internship = new Internship(com, poc, email, phone, loc, status, desc, role);
+        Internship internship = new Internship(com, poc, email, phon, loc, status, desc, role);
 
         return new InternshipAddCommand(internship);
     }
