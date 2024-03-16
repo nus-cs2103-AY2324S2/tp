@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.orders.Order;
@@ -12,7 +12,7 @@ import seedu.address.model.person.orders.Order;
 /**
  * Jackson-friendly version of {@link Order}.
  */
-public class JsonAdaptedOrder {
+class JsonAdaptedOrder {
     private final String items;
     private final String orderDateTime;
 
@@ -20,7 +20,7 @@ public class JsonAdaptedOrder {
      * Constructs a {@code JsonAdaptedOrder} with the given {@code items} and {@code orderDateTime}.
      */
     @JsonCreator
-    public JsonAdaptedOrder(String items, String orderDateTime) {
+    public JsonAdaptedOrder(@JsonProperty("items") String items, @JsonProperty("orderDateTime") String orderDateTime) {
         this.items = items;
         this.orderDateTime = orderDateTime;
     }
@@ -31,16 +31,6 @@ public class JsonAdaptedOrder {
     public JsonAdaptedOrder(Order source) {
         items = source.items;
         orderDateTime = source.orderDateTime.toString();
-    }
-
-    @JsonValue
-    public String getItems() {
-        return items;
-    }
-
-    @JsonValue
-    public String getOrderDateTime() {
-        return orderDateTime;
     }
 
     /**

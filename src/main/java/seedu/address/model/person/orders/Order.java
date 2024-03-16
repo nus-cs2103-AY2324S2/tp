@@ -65,5 +65,19 @@ public class Order implements Cloneable {
         return new Order(items, orderDateTime);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Order)) {
+            return false;
+        }
+
+        Order otherOrder = (Order) other;
+        return items.equals(otherOrder.items) && orderDateTime.equals(otherOrder.orderDateTime);
+    }
 }
 

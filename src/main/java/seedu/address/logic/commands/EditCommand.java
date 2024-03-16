@@ -104,7 +104,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        ArrayList<Order> updatedOrders = personToEdit.getOrders();
+        ArrayList<Order> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedOrders);
     }
@@ -143,6 +143,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private ArrayList<Order> orders;
 
         public EditPersonDescriptor() {}
 
@@ -156,6 +157,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setOrders(toCopy.orders);
         }
 
         /**
@@ -212,6 +214,22 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code orders} to this object's {@code orders}.
+         * A defensive copy of {@code orders} is used internally.
+         */
+        public void setOrders(ArrayList<Order> orders) {
+            this.orders = (orders != null) ? new ArrayList<>(orders) : null;
+        }
+
+        /**
+         * Returns an order ArrayList
+         * Returns {@code Optional#empty()} if {@code ArrayList} is null.
+         */
+        public Optional<ArrayList<Order>> getOrders() {
+            return (orders != null) ? Optional.of(orders) : Optional.empty();
         }
 
         @Override
