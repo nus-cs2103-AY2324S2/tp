@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,12 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Entry;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Deletes one existing category of an existing person in the address book.
+ */
 public class DeleteCategoryCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteCategory";
@@ -33,10 +36,15 @@ public class DeleteCategoryCommand extends Command {
 
     private final String category;
 
+    /**
+     * @param targetIndex of the person in the filtered person list to edit
+     * @param category    the category needed to be deleted
+     */
     public DeleteCategoryCommand(Index targetIndex, String category) {
         this.targetIndex = targetIndex;
         this.category = category;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -61,6 +69,8 @@ public class DeleteCategoryCommand extends Command {
 
         model.setPerson(personToEdit, personToEdit);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_CATEGORY_SUCCESS, category, Messages.format(personToEdit)));
+        return new CommandResult(String.format(
+                MESSAGE_DELETE_CATEGORY_SUCCESS, category, Messages.format(personToEdit)
+        ));
     }
 }
