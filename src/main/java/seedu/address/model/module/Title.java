@@ -1,5 +1,7 @@
 package seedu.address.model.module;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 /**
  * Represents a Module's title in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
@@ -7,6 +9,7 @@ package seedu.address.model.module;
 public class Title {
     private final String title;
 
+    @JsonCreator
     public Title(String title) {
         this.title = title;
     }

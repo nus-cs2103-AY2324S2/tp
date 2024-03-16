@@ -48,6 +48,11 @@ public class JsonUtil {
         return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
     }
 
+    static <T> T[] deserializeArrayFromJsonFile(Path jsonFile, Class<T[]> classOfObjectToDeserialize)
+            throws IOException {
+        return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
+    }
+
     /**
      * Returns the JSON object from the given file or {@code Optional.empty()} object if the file is not found.
      * If any values are missing from the file, default values will be used, as long as the file is a valid JSON file.
@@ -75,6 +80,34 @@ public class JsonUtil {
         }
 
         return Optional.of(jsonFile);
+    }
+
+    /**
+     * Returns the JSON Array object from the given file or {@code Optional.empty()} object if the file is not found.
+     * If any values are missing from the file, default values will be used, as long as the file is a valid JSON file.
+     *
+     * @param filePath cannot be null.
+     * @param classOfObjectToDeserialize JSON file has to correspond to the structure in the class given here.
+     * @throws DataLoadingException if loading of the JSON file failed.
+     */
+    public static <T> Optional<T[]> readJsonArrayFile(
+            Path filePath, Class<T[]> classOfObjectToDeserialize) throws DataLoadingException {
+        requireNonNull(filePath);
+
+        if (!Files.exists(filePath)) {
+            return Optional.empty();
+        }
+        logger.info("JSON file " + filePath + " found.");
+
+        T[] jsonArrayFile;
+        try {
+            jsonArrayFile = deserializeArrayFromJsonFile(filePath, classOfObjectToDeserialize);
+        } catch (IOException e) {
+            logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
+            throw new DataLoadingException(e);
+        }
+
+        return Optional.of(jsonArrayFile);
     }
 
     /**
