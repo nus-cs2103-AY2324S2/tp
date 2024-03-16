@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final OrderList orders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        orders = new OrderList();
     }
 
     public AddressBook() {}
@@ -76,6 +80,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds an {@code Order} to the {@code OrderList} of this address book.
+     *
+     */
+    public void addOrder(Order order, Person person) {
+        orders.addOrder(order.getId(), order, person);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -94,6 +106,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code Order} from the {@code OrderList} of this {@code AddressBook}.
+     *
+     * @param id index of order to remove
+     */
+    public void removeOrder(int id) {
+        orders.deleteOrder(id);
+    }
+
+
     //// util methods
 
     @Override
@@ -106,6 +128,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public OrderList getOrderList() {
+        return this.orders;
     }
 
     @Override

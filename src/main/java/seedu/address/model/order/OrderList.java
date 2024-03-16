@@ -82,4 +82,23 @@ public class OrderList {
         }
         return ls;
     }
+
+    /**
+     * Gives the number of orders in the {@code OrderList}
+     *
+     * @return number of orders
+     */
+    public int size() {
+        return orderList.size();
+    }
+
+    /**
+     * Gets the order corresponding to the index
+     *
+     * @param i the order index
+     * @return the order corresponding to the index
+     */
+    public Order getOrder(int i) {
+        return orderList.get(i);
+    }
 }

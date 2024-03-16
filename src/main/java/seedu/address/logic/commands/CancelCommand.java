@@ -1,13 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderList;
 
 /**
  * Deletes an order by its Order ID.
@@ -31,15 +30,14 @@ public class CancelCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Order> orderList = model.getOrderList();
+        OrderList orderList = model.getOrderList();
 
         if (targetIndex.getZeroBased() >= orderList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        Order orderToCancel = orderList.get(targetIndex.getZeroBased());
-        model.cancelOrder(orderToCancel);
-        return new CommandResult(String.format(MESSAGE_CANCEL_ORDER_SUCCESS, orderToCancel.getId()));
+        model.deleteOrder(targetIndex.getOneBased());
+        return new CommandResult(String.format(MESSAGE_CANCEL_ORDER_SUCCESS, targetIndex.getOneBased()));
     }
 
     @Override

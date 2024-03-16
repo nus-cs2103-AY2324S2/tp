@@ -30,7 +30,7 @@ public class AddressBookBuilder {
     }
 
     public AddressBookBuilder withOrder(Order order) {
-        addressBook.addOrder(order);
+        addressBook.addOrder(order, order.getCustomer());
         return this;
     }
 

@@ -26,14 +26,13 @@ public class CancelCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        Order orderToCancel = model.getOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
         CancelCommand cancelCommand = new CancelCommand(INDEX_FIRST_ORDER);
 
         String expectedMessage = String.format(CancelCommand.MESSAGE_CANCEL_ORDER_SUCCESS,
-                orderToCancel.getId());
+                INDEX_FIRST_ORDER.getOneBased());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.cancelOrder(orderToCancel);
+        expectedModel.deleteOrder(INDEX_FIRST_ORDER.getOneBased());
 
         assertCommandSuccess(cancelCommand, model, expectedMessage, expectedModel);
     }

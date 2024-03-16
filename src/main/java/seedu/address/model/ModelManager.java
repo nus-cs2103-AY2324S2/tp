@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderList;
 import seedu.address.model.person.Person;
 
 /**
@@ -107,10 +108,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteOrder(int id) {
+        addressBook.removeOrder(id);
+    }
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public OrderList getOrderList() {
+        return addressBook.getOrderList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -139,6 +149,11 @@ public class ModelManager implements Model {
             }
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Order findOrderByIndex(int id) {
+        return getOrderList().getOrder(id);
     }
 
     @Override

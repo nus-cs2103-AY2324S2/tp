@@ -6,12 +6,15 @@ import java.util.Map;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.order.Order;
+import seedu.address.model.person.Person;
 
 public class OrderBuilder {
     public static final int DEFAULT_ID = 1;
+    public static final Person DEFAULT_PERSON = TypicalPersons.ALICE;
 
     private int id;
     private Map<Product,Quantity> productMap;
+    private Person person;
 
     /**
      * Creates a {@code OrderBuilder} with the default details.
@@ -19,6 +22,7 @@ public class OrderBuilder {
     public OrderBuilder() {
         id = DEFAULT_ID;
         productMap = new HashMap<>();
+        person = DEFAULT_PERSON;
     }
 
     /**
@@ -48,6 +52,16 @@ public class OrderBuilder {
         this.productMap.put(productToAdd, quantityToAdd);
         return this;
     }
+
+    /**
+     * Sets the {@code Person} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withPerson(Person person) {
+        this.person = person;
+        return this;
+    }
+
+
 
     public Order build() {
         Order order = new Order(this.id);

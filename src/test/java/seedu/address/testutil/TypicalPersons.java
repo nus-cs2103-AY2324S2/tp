@@ -70,7 +70,7 @@ public class TypicalPersons {
             ab.addPerson(person);
         }
         for (Order order : getTypicalOrders()) {
-            ab.addOrder(order);
+            ab.addOrder(order, order.getCustomer());
         }
         return ab;
     }
