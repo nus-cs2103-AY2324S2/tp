@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -35,8 +34,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addCourseMate(validCourseMate);
 
         assertCommandSuccess(new AddCommand(validCourseMate), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourseMate)),
-                expectedModel, true);
+                AddCommand.MESSAGE_SUCCESS, expectedModel, true);
         assertRecentlyProcessedCourseMateEdited(model, validCourseMate);
     }
 

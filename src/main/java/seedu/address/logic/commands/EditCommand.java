@@ -45,7 +45,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_COURSE_MATE_SUCCESS = "Edited CourseMate: %1$s";
+    public static final String MESSAGE_EDIT_COURSE_MATE_SUCCESS = "Edited CourseMate";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list.";
 
@@ -83,8 +83,7 @@ public class EditCommand extends Command {
         model.setCourseMate(courseMateToEdit, editedCourseMate);
         model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
         model.setRecentlyProcessedCourseMate(editedCourseMate);
-        return new CommandResult(String.format(MESSAGE_EDIT_COURSE_MATE_SUCCESS, Messages.format(editedCourseMate)),
-                false, false, true);
+        return new CommandResult(MESSAGE_EDIT_COURSE_MATE_SUCCESS, false, false, true);
     }
 
     /**

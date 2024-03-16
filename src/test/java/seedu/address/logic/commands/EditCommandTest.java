@@ -42,8 +42,7 @@ public class EditCommandTest {
         EditCommand.EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder(editedCourseMate).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
-                Messages.format(editedCourseMate));
+        String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
@@ -65,8 +64,7 @@ public class EditCommandTest {
                 .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
         EditCommand editCommand = new EditCommand(indexLastCourseMate, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
-                Messages.format(editedCourseMate));
+        String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(lastCourseMate, editedCourseMate);
@@ -80,8 +78,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE, new EditCourseMateDescriptor());
         CourseMate editedCourseMate = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
-                Messages.format(editedCourseMate));
+        String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
 
@@ -99,8 +96,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COURSE_MATE,
                 new EditCourseMateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS,
-                Messages.format(editedCourseMate));
+        String expectedMessage = EditCommand.MESSAGE_EDIT_COURSE_MATE_SUCCESS;
 
         Model expectedModel = new ModelManager(new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
