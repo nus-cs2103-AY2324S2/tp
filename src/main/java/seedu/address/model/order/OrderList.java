@@ -120,7 +120,6 @@ public class OrderList implements Iterable<Order> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
-
      * @return the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Order> asUnmodifiableObservableList() {
