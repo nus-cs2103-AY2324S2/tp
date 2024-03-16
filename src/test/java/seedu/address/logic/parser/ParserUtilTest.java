@@ -57,6 +57,12 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseName_validWithInnerWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = "  Bob   Choo  ";
+        Name expectedName = new Name("Bob Choo");
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
@@ -125,6 +131,11 @@ public class ParserUtilTest {
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
+    @Test
+    public void parseEmail_validValue_returnsLowerCaseMeail() throws Exception {
+        Email expectedEmail = new Email("test@gmail.com");
+        assertEquals(expectedEmail, ParserUtil.parseEmail(expectedEmail.value.toUpperCase()));
+    }
     @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
