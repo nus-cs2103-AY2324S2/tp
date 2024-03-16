@@ -275,58 +275,194 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                    | I want to …​                                      | So that I can…​                                                                                |
+|---------|--------------------------------------------|---------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `* * *` | new user                                   | see usage instructions                            | refer to instructions when I forget how to use the App                                         |
+| `* * *` | user                                       | add a new patient and his/her information         | retrieve them when needed                                                                      |
+| `*`     | user with many persons in the address book | sort patients by name                             | locate a patient easily                                                                        |
+| `* * *` | user                                       | find a patient by name                            | locate details of persons without having to go through the entire list                         |
+| `* *`   | user                                       | find all patients living in a certain area        | identify areas with high concentrations of sick patients as potential infectious clusters      |
+| `* *`   | user                                       | find all patients with a certain health condition | monitor wellbeing of patients if the condition(s) increases their vulnerability in an epidemic |
+| `* * *` | user                                       | read a patient's profile                          | use the information to make important medical decisions on the patient's behalf                |
+| `* * *` | user                                       | update a patient's profile                        | always have access to the patient's latest information                                         |
+| `* * *` | user                                       | delete a patient and his/her profile              | reduce clutter from past patients in the app                                                   |
+| `* * *` | user                                       | delete a field of a patient's profile             | keep each profile lean with only the most updated and relevant information                     |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: UC01 - Create Patient Record**
 
-**MSS**
+- **Actor:** Healthcare Worker
+- **Description:** Healthcare worker creates a new patient record in the ImmuniMate Address Book System.
+- **Preconditions:** Healthcare worker has opened the app.
+- **Guarantees:** New patient record is successfully created in the ImmuniMate Address Book System.
+- **MSS:**
+    1. Healthcare worker chooses to create a new patient record.
+    2. IABS requests the necessary details for the new patient record (name, NRIC, date of birth, sex, phone number, address, email, country of nationality, date of admission, blood type, allergies).
+    3. Healthcare worker enters the patient's details.
+    4. IABS validates the entered data and adds the new patient record to the database.
+- **Extensions:**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+  3a. IABS detects a conflict in the entered data (user existing).
 
-    Use case ends.
+  - 3a1. IABS shows the conflicting existing entry, requests for the correct data.
+  - 3a2. Healthcare Worker enters new data. 
+  - Steps 3a1-3a2 are repeated until the data entered are correct, or the user cancels the action. Use case resumes from step 4.
 
-**Extensions**
+  3b. IABS detects an error in the entered data.
+  - 3b1. IABS requests for the correct data.
+  - 3b2. Healthcare Worker enters new data. 
+  - Steps 3b1-3b2 are repeated until the data entered are correct. Use case resumes from step 4.
 
-* 2a. The list is empty.
+  *a. At any time, Healthcare Worker chooses to cancel creating the patient record.
+  - *a1. IABS requests confirmation to cancel.
+  - *a2. Healthcare Worker confirms the cancellation. 
+  - Use case ends.
 
-  Use case ends.
+**Use Case: UC02 - Find Patient Information**
 
-* 3a. The given index is invalid.
+- **Actor:** Healthcare Worker
+- **Description:** Healthcare worker searches for specific patient information in the ImmuniMate Address Book System.
+- **Preconditions:** Healthcare worker has opened the app.
+- **Guarantees:** Relevant patient information is displayed for the healthcare worker to view.
+- **MSS:**
+    1. Healthcare worker chooses to find patient information meeting specified criteria.
+    2. IABS searches for and displays the relevant patients.
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: UC03 - Update Patient Information**
 
-      Use case resumes at step 2.
+- **Actor:** Healthcare Worker
+- **Description:** Healthcare worker updates a patient's information in the ImmuniMate Address Book System.
+- **Preconditions:** Healthcare worker has logged into the system and has selected the patient whose information needs to be updated.
+- **Guarantees:** Patient's information is successfully updated in the ImmuniMate Address Book System.
+- **MSS:**
+    1. Healthcare worker chooses to update certain fields of a certain patient's profile.
+    2. IABS validates the new content and updates the patient's information in the database.
+- **Extensions:**
 
-*{More to be added}*
+  2a. IABS detects an error in the entered data.
+
+  - 2a1. IABS requests for the correct data.
+  - 2a2. Healthcare Worker enters new data. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct. Use case resumes from step 3.
+
+**Use Case: UC04 - Delete Patient Record**
+
+- **Actor:** Healthcare worker
+- **Description:** Healthcare worker deletes a patient's record from the ImmuniMate Address Book System.
+- **Preconditions:** Healthcare worker has opened the app and has selected the patient whose record needs to be deleted.
+- **Guarantees:** Patient's record is successfully deleted from the ImmuniMate Address Book System.
+- **MSS:**
+    1. Healthcare worker choose to delete a specified patient’s record.
+    2. IABS validates the NRIC and deletes the patient's record from the database.
+- **Extensions:**
+
+  2a. IABS cannot find the patient specified.
+
+  - 2a1. IABS requests for the correct NRIC.
+  - 2a2. Healthcare worker enters new NRIC. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
+
+**Use Case: UC05 - Delete Patient Information**
+
+- **Actor:** Healthcare Worker
+- **Description:** Healthcare worker deletes specific information from a patient's record in the ImmuniMate Address Book System.
+- **Preconditions:** Healthcare worker has logged into the system and has selected the patient whose information needs to be deleted.
+- **Guarantees:** Specified information is successfully deleted from the patient's record in the ImmuniMate Address Book System.
+- **MSS:**
+    1. Healthcare worker chooses to delete certain fields of a certain patient's profile.
+    2. IABS validates the information to be deleted and deletes the specified information from the patient's record in the database.
+- **Extensions:**
+
+  2a. IABS cannot find the patient specified.
+
+  - 2a1. IABS requests for the correct NRIC.
+  - 2a2. Healthcare worker enters new NRIC. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
+
+  2b. IABS cannot find the specified information.
+
+  - 2b1. IABS alerts healthcare worker that the specified information is not found.
+  - 2b2. Healthcare worker enters new field.
+  - Steps 2b1-2b2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
+
+  2c. Healthcare worker chooses to delete a mandatory field.
+
+  - 2c1. IABS alerts healthcare worker that mandatory field cannot be deleted.
+  - 2c2. Healthcare worker enters new field.
+  - Steps 2c1-2c2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+3.  
 *{More to be added}*
+
+Data Requirements:
+* the app should have high data persistency
+
+Environment Requirements:
+* the app should work on both 32-bit and 64-bit environments
+
+Accessibility:
+* the app should be easily downloaded from websites/app stores, and need no prior setup
+
+Capacity:
+* the app should be able to store 10000 profiles 
+* the app should not exceed 10GB in storage space
+
+Compliance with regulations:
+* personal data collection on the app should adhere to the Personal Data Protection Act (PDPA)
+
+Extensibility:
+* the app should enable new profile fields to be added easily
+* the app should be convenient to expand its capacity when needed
+
+Interoperability:
+* the app should be compatible with Windows, MacOS, Linux platforms
+
+Maintainability:
+* the app should use automated testing
+
+Performance requirements:
+* the app should respond to queries within 1 second
+
+Process requirements:
+* the project should adhere to a schedule to deliver new features fortnightly
+* the project should aim to solve bugs found in one version by the next version
+
+Quality requirements:
+* the app should be usable by doctors/nurses/receptionists with limited guidance
+* the app should be faster to use by typing queries than using the mouse
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+1. **Patient Name**: The name of the patient. Case insensitive alphabetical characters with spaces, capped at 30 characters.
+2. **NRIC**: National Registration Identity Card number, follows Singapore NRIC format.
+3. **Date of Birth (DOB)**: The patient's date of birth, in the format `yyyy-MM-dd`.
+4. **Sex**: The biological sex of the patient, limited to Male/Female.
+5. **Phone Number**: The contact number of the patient, numbers with a plus sign.
+6. **Address**: The home address of the patient, alphanumerical characters with spaces.
+7. **Email**: The email address of the patient, follows a valid format: `<a-zA-Z0-9>@<a-zA-Z0-9>.com`.
+8. **Country of Nationality**: The country name of the patient's nationality, alphabetical characters with spaces.
+9. **Date of Admission (DOA)**: The date when the patient was admitted for the current visit, in the format `yyyy-MM-dd`.
+10. **Blood Type**: The blood type of the patient, accepts A/B/AB/O (+ or -).
+11. **Allergies**: Any allergies the patient may have, alphanumerical characters with spaces.
+12. **Conditions**: Any prior medical conditions of the patient.
+13. **Symptoms**: The latest symptoms experienced by the patient.
+14. **Diagnosis**: The latest diagnosis of the patient's condition.
+15. **Status**: The current infectious status of the patient, can be healthy (green), at risk (yellow), or infected (red).
+16. **Location**: A specific area or zone, which can be a neighbourhood or an institution (school).
+17. **Cluster ID**: Unique identifier for a cluster of related cases.
+18. **Fields**: The fields of the patient's information, such as name, status, contact.
+19. **Infection Source**: The source of infection if known.
+20. **Cluster Members**: Patients who are part of the cluster.
+21. **Cluster Location**: Location associated with the cluster.
+22. **Date of First Infection**: The date when the first infection within the cluster occurred.
+23. **Cluster Status**: The current status of the cluster, such as active, under observation, resolved, etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
