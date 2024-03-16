@@ -1,5 +1,7 @@
 ---
-  layout: default.md title: "User Guide" pageNav: 3
+  layout: default.md
+  title: "User Guide"
+  pageNav: 3
 ---
 
 # PatientSync User Guide
@@ -193,6 +195,24 @@ Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_
 Examples:
 * `adde 1 n/Birthday d/20-01-2022`
 * `adde 2 n/Family Visit d/30-09-2024, 12:00 - 15:00`
+
+### Deleting an Important Date from a Patient : `deletee`
+
+Deletes an Important Date from a patient in the address book.
+
+Format `deletee PATIENT_INDEX [e/EVENT_INDEX]`
+
+* Deletes an Important Date from a specified Patient using `PATIENT_INDEX` and `EVENT_INDEX`.
+* `PATIENT_INDEX` is the index of the patient shown in the UI after using `list` or `find` command.
+* `EVENT_INDEX` is the index of the event that is saved under a Patient's data.
+* Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
+* Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
+Patients/Events)
+* Both `PATIENT_INDEX` and `EVENT_INDEX` are compulsory fields (Neither can be **EMPTY**)
+
+Examples:
+* `deletee 1 e/1`
+* `deletee 3 e/4`
 
 ### Clearing all entries : `clear`
 

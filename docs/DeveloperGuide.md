@@ -173,7 +173,170 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 3.1 Adding a Patient
+
+#### Introduction
+
+#### Specifications
+
+#### Example Usage Scenario
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.2 Adding Tags to a Patient
+
+#### Introduction
+
+The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book. 
+
+#### Specifications
+
+* Tags, as defined by the `Tag` class, are alphanumeric, single-word identifiers without spaces, and repeated tags in the command are added as a single tag.
+
+* The addition of tags is cumulative, and new tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
+
+* If the patient already has a particular tag, it will not be added again.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `addt 1 t/christian t/fallRisk` command to add the tags christian and fallRisk to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
+
+<box type="info" seamless>
+<b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
+</box>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Design Considerations
+
+**Aspect: Handling Repeated Tags**
+
+* **Alternative 1 (current choice)**: Repeated tags are added as a single tag.
+    * Pros: Simplifies tag management, avoids redundancy.
+    * Cons: Requires additional logic to detect and merge repeated tags.
+<br></br>
+* **Alternative 2**: Each tag is added individually, including duplicates.
+    * Pros: Explicitly shows every tag provided.
+    * Cons: May clutter patient data with redundant tags.
+
+**Aspect: Cumulative Tag Addition**
+
+* **Alternative 1 (current choice)**: Cumulative addition of tags to existing set.
+    * Pros: Preserves previous tags, allows for gradual building of patient profile.
+    * Cons: Requires additional memory for storing updated tag sets.
+<br></br>
+* **Alternative 2**: Overwrite existing tags with new ones.
+    * Pros: Simplifies data handling, avoids tag duplication.
+    * Cons: Risk of losing previously assigned tags, less flexibility in tag management.
+
+**Aspect: Error Handling for Duplicate Tags**
+
+* **Alternative 1 (current choice)**: Do not add tags already present for the patient.
+    * Pros: Prevents tag redundancy, maintains data integrity. Better user experience, do not need to worry about the intricacies of tag duplication.
+    * Cons: Users do not explicitly receive direct feedback about skipped tags.
+<br></br>
+* **Alternative 2**: Return error message for duplicate tags.
+    * Pros: Notifies user about duplicate inputs, ensures data consistency.
+    * Cons: In the case of the addition of multiple existing or duplicate tags, users have to find and remove the duplicated tags from the given command, which would be cumbersome especially when there are many tags listed in the command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.3 Adding Important Dates to a Patient
+
+#### Introduction
+
+The `AddImportantDate` class is responsible for adding an Important Date to a patient in the address book. I
+
+#### Specifications
+
+* ImportantDates, as defined by the `ImportantDate` class, contain both the Name of the Event that falls on that date, as well as the Date of the Event and optionally, the Time Period for which the Event is happening.
+
+* The addition of Important Dates is cumulative, and new Important Dates will be added to the existing set of Important Dates for the patient, preserving the previously assigned Important Dates.
+
+* If the patient already has a particular Important Date, it will not be added again.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday, which falls on the 20th January.
+* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.4 Deleting Important Date from a Patient
+
+#### Introduction
+
+The `DeleteImportantDateCommand` class is responsible for deleting an Important Date from a patient in the address book. I
+
+#### Specifications
+
+* DeleteImportantDateCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients 
+shown on the UI after using the `list` or `find` command and Indexes of the specified Patient's events as defined in
+the `Index` class.
+
+* Deletion of important date can only happen for a single patient, and a single event at any given time.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday,
+which falls on the 20th January.
+* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+
+Step 3: The use executes the `deletee 1 e/1 command` to delete the Important Date as he realised he keyed in the wrong
+date.
+* Upon successful validation,  an `DeleteImportantDateCommand` instance is created.
+
+#### Design Considerations
+
+**Aspect: Choice of COMMAND_WORD**
+
+* **Alternative 1 (current choice)**: Use `deletee`
+    * Pros: Consistent with `adde` command to add new Important date.
+    * Cons: Might be counter-intuitive for user as command is unfamiliar.
+      <br></br>
+* **Alternative 2**: `deleteID`
+    * Pros: Clearer syntax.
+    * Cons: User might confuse ID as Patient ID and also inconsistency with `adde` command, further confusing user.
+
+--------------------------------------------------------------------------------------------------------------------
+### 3.5 Deleting a Patient
+
+#### Introduction
+
+The `DeleteCommand` is responsible for deleting a patient in the address book.
+
+#### Specifications
+
+* Delete command is used when the user wants to remove a patient from the address book.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user see all the patients in the address book.
+
+Step 3: The user decide to remove the first patient in the address book.
+
+Step 4: The user executes the `delete 1` command to remove the first patient in the address book.
+
+--------------------------------------------------------------------------------------------------------------------
+## 4 Planned Enhancements
+
+### 4.1 \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
