@@ -127,6 +127,11 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsIgnoreCase("Johnathan Oliver", "liver"));
     }
 
+    @Test
+    public void containsIgnoreCase_queryWordsGreaterThanSentence_returnsFalse() {
+        assertFalse(StringUtil.containsIgnoreCase("John Doe", "John Doe Mike"));
+    }
+
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 
