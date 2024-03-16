@@ -47,11 +47,11 @@ public class InternshipAddCommandTest {
     @Test
     public void execute_duplicateInternship_throwsCommandException() {
         Internship validInternship = new InternshipBuilder().build();
-        InternshipAddCommand InternshipAddCommand = new InternshipAddCommand(validInternship);
+        InternshipAddCommand internshipAddCommand = new InternshipAddCommand(validInternship);
         ModelStub modelStub = new ModelStubWithInternship(validInternship);
 
-        assertThrows(CommandException.class, InternshipAddCommand.MESSAGE_DUPLICATE_INTERNSHIP, ()
-                -> InternshipAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, internshipAddCommand.MESSAGE_DUPLICATE_INTERNSHIP, ()
+                -> internshipAddCommand.execute(modelStub));
     }
 
     @Test
@@ -80,9 +80,9 @@ public class InternshipAddCommandTest {
 
     @Test
     public void toStringMethod() {
-        InternshipAddCommand InternshipAddCommand = new InternshipAddCommand(HOON_APPLE);
+        InternshipAddCommand internshipAddCommand = new InternshipAddCommand(HOON_APPLE);
         String expected = InternshipAddCommand.class.getCanonicalName() + "{toAdd=" + HOON_APPLE + "}";
-        assertEquals(expected, InternshipAddCommand.toString());
+        assertEquals(expected, internshipAddCommand.toString());
     }
 
     /**
@@ -115,12 +115,12 @@ public class InternshipAddCommandTest {
         }
 
         @Override
-        public void setInternshipDataFilePath(Path InternshipDataFilePath) {
+        public void setInternshipDataFilePath(Path internshipDataFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addInternship(Internship Internship) {
+        public void addInternship(Internship internship) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,7 +135,7 @@ public class InternshipAddCommandTest {
         }
 
         @Override
-        public boolean hasInternship(Internship Internship) {
+        public boolean hasInternship(Internship internship) {
             throw new AssertionError("This method should not be called.");
         }
 
