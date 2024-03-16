@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -11,7 +11,7 @@ import java.util.Objects;
  * TODO: check if need to enforcing immutable
  */
 public class Appointment implements Comparable<Appointment> {
-
+    //TODO: is there any specific constraints to check in appointment?
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment constraints";
     private static final boolean DEFAULT_ATTENDED_STATUS = false;
@@ -115,13 +115,13 @@ public class Appointment implements Comparable<Appointment> {
     public void setAttendedStatus(boolean hasAttended) {
         this.hasAttended = hasAttended;
     }
-    
+
     /**
      * Compares the appointment id of this appointment with another appointment.
      *
      * @param other the other appointment to compare with.
      * @return a negative integer, zero, or a positive integer as this appointment id is less than, equal to,
-     * or greater than the other appointment id.
+     *         or greater than the other appointment id.
      */
     @Override
     public int compareTo(Appointment other) {
