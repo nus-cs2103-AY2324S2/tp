@@ -24,8 +24,8 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <VBox fx:id="mainContainer" prefWidth="700.0" prefHeight="700.0">
-        <HBox fx:id="helpMessageContainer">
+      <VBox fx:id="mainContainer" prefWidth="700.0" prefHeight="605.0">
+        <HBox fx:id="helpMessageContainer" prefHeight="135.0">
           <children>
             <Label fx:id="helpMessage" text="Label" wrapText="true">
               <HBox.margin>
