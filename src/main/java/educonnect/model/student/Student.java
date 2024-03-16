@@ -22,7 +22,7 @@ public class Student {
     private final TelegramHandle telegramHandle;
     private final Email email;
 
-    
+    private final Link link;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -36,6 +36,7 @@ public class Student {
         this.studentId = studentId;
         this.email = email;
         this.telegramHandle = telegramHandle;
+        this.link = null;
         this.tags.addAll(tags);
     }
 
@@ -55,6 +56,7 @@ public class Student {
         return telegramHandle;
     }
 
+    public Link getLink() { return link; }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
