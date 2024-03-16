@@ -1,8 +1,7 @@
-package seedu.address.model.person;
+package seedu.address.model.order;
 
 import java.util.function.Predicate;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.order.Order;
 
 /**
  * Tests that a {@code Order}'s index matches the input.

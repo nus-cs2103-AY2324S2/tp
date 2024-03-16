@@ -91,8 +91,8 @@ public class ArgumentMultimap {
         }
         if (appearedPrefixes.length == 0) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE) + "\n"
-                            + String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE + "\n"
+                            + FindOrderCommand.MESSAGE_USAGE));
         }
     }
 }

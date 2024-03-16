@@ -8,16 +8,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.util.Arrays;
-
+import java.util.List;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindOrderCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.MatchingOrderIndexPredicate;
-import seedu.address.model.person.PhoneContainsNumberPredicate;
+import seedu.address.model.person.MatchingEmailPredicate;
+import seedu.address.model.order.MatchingOrderIndexPredicate;
+import seedu.address.model.person.MatchingPhonePredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -34,32 +33,53 @@ public class FindCommandParser implements Parser<FindCommand> {
     @Override
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (args.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE) + "\n"
-                    + String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE + "\n" +
+                            FindOrderCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORDER);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORDER);
 
         argMultimap.verifyOnlyOnePrefixFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORDER);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            return new FindPersonCommand(new NameContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME)));
+            List<String> names = argMultimap.getAllValues(PREFIX_NAME);
+            for (int i = 0; i < names.size(); i++) {
+                String parsedName = ParserUtil.parseName(names.get(i)).fullName;
+                names.set(i, parsedName);
+            }
+            return new FindPersonCommand(new NameContainsKeywordsPredicate(names));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            return new FindPersonCommand(new PhoneContainsNumberPredicate(argMultimap.getAllValues(PREFIX_PHONE)));
+            List<String> phoneNumbers = argMultimap.getAllValues(PREFIX_PHONE);
+            for (int i = 0; i < phoneNumbers.size(); i++) {
+                String parsedPhoneNumber = ParserUtil.parsePhone(phoneNumbers.get(i)).value;
+                phoneNumbers.set(i, parsedPhoneNumber);
+            }
+            return new FindPersonCommand(new MatchingPhonePredicate(phoneNumbers));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            return new FindPersonCommand(new EmailContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_EMAIL)));
+            List<String> emails = argMultimap.getAllValues(PREFIX_EMAIL);
+            for (int i = 0; i < emails.size(); i++) {
+                String parsedEmail = ParserUtil.parseEmail(emails.get(i)).value;
+                emails.set(i, parsedEmail);
+            }
+            return new FindPersonCommand(new MatchingEmailPredicate(emails));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            List<String> addresses = argMultimap.getAllValues(PREFIX_ADDRESS);
+            for (int i = 0; i < addresses.size(); i++) {
+                String parsedAddress = ParserUtil.parseAddress(addresses.get(i)).value;
+                addresses.set(i, parsedAddress);
+            }
             return new FindPersonCommand(new AddressContainsKeywordsPredicate
-                    (argMultimap.getAllValues(PREFIX_ADDRESS)));
+                    (addresses));
         }
 
-        return new FindOrderCommand(new MatchingOrderIndexPredicate(Integer.parseInt(trimmedArgs)));
+        return new FindOrderCommand(new MatchingOrderIndexPredicate
+                (Integer.parseInt(argMultimap.getValue(PREFIX_ORDER).get())));
     }
 }

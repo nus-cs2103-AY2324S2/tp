@@ -8,8 +8,10 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
+/**
+ * Finds and list order with the corresponding index.
+ */
 public class FindOrderCommand extends FindCommand {
-    public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the details of the order identified "
             + "by the specified index and displays them as a list.\n"

@@ -8,10 +8,10 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Person}'s {@code Phone} matches the input.
  */
-public class PhoneContainsNumberPredicate implements Predicate<Person> {
+public class MatchingPhonePredicate implements Predicate<Person> {
     private final List<String> numbers;
 
-    public PhoneContainsNumberPredicate(List<String> numbers) {
+    public MatchingPhonePredicate(List<String> numbers) {
         this.numbers = numbers;
     }
 
@@ -28,16 +28,16 @@ public class PhoneContainsNumberPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PhoneContainsNumberPredicate)) {
+        if (!(other instanceof MatchingPhonePredicate)) {
             return false;
         }
 
-        PhoneContainsNumberPredicate otherPhoneContainsNumberPredicate = (PhoneContainsNumberPredicate) other;
-        return this.numbers.equals(otherPhoneContainsNumberPredicate.numbers);
+        MatchingPhonePredicate otherMatchingPhonePredicate = (MatchingPhonePredicate) other;
+        return this.numbers.equals(otherMatchingPhonePredicate.numbers);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("input", this.numbers).toString();
+        return new ToStringBuilder(this).add("keywords", this.numbers).toString();
     }
 }
