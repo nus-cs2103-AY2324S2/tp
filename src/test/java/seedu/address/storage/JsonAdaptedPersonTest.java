@@ -131,14 +131,14 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidUpcoming_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_TAGS, INVALID_UPCOMING);
+                VALID_TAGS, INVALID_UPCOMING, VALID_LASTCONTACT);
         String expectedMessage = Upcoming.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
     @Test
     public void toModelType_invalidLastContact_throwsIllegalArgumentException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_TAGS, INVALID_LASTCONTACT);
+                VALID_TAGS, VALID_UPCOMING, INVALID_LASTCONTACT);
         String expectedMessage = String.format(LastContact.MESSAGE_CONSTRAINTS, INVALID_LASTCONTACT);
         assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
     }
@@ -146,7 +146,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullLastContact_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_TAGS, null);
+                VALID_TAGS, VALID_UPCOMING, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LastContact.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
