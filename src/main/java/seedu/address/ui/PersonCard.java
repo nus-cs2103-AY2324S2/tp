@@ -44,6 +44,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ImageView qrcode;
+    @FXML
     private Label note;
 
     /**
