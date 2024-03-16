@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.logic.commands.AddInterviewerCommand;
 import seedu.address.logic.commands.AddApplicantCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -70,12 +71,18 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_interviewerStorageThrowsIoException_throwsCommandException() {
+        assertInterviewerCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
+
     public void execute_applicantStorageThrowsIoException_throwsCommandException() {
         assertApplicantCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
+
                 LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
     }
 
     @Test
+    public void execute_interviewerStorageThrowsAdException_throwsCommandException() {
+        assertInterviewerCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
     public void execute_applicantStorageThrowsAdException_throwsCommandException() {
         assertApplicantCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
@@ -145,6 +152,8 @@ public class LogicManagerTest {
      * @param e the exception to be thrown by the Storage component
      * @param expectedMessage the message expected inside exception thrown by the Logic component
      */
+
+    private void assertInterviewerCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
     private void assertApplicantCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
@@ -164,6 +173,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
+        String addCommand = AddInterviewerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
         String addApplicantCommand = AddApplicantCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
