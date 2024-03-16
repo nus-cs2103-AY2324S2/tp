@@ -60,38 +60,18 @@ public class StringUtil {
         final String preppedWords = words.toLowerCase().trim();
 
         checkArgument(!preppedWords.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWords.split("\\s+").length >= 1, "Word parameter should not be empty");
 
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] wordsInPreppedSentence = preppedSentence.split(" ");
         String[] wordsInPreppedWords = words.split("\\s+");
 
         if (wordsInPreppedWords.length > wordsInPreppedSentence.length) {
             return false;
         } else if (wordsInPreppedSentence.length == wordsInPreppedWords.length) {
-            return StringUtil.isChronologicalSubstring(preppedSentence, preppedWords);
+            return preppedSentence.indexOf(preppedWords) == 0;
         } else {
             return Arrays.stream(wordsInPreppedSentence)
-                    .anyMatch(sentencePart -> StringUtil.isChronologicalSubstring(sentencePart, preppedWords));
+                    .anyMatch(sentencePart -> sentencePart.indexOf(preppedWords) == 0);
         }
-    }
-
-    /**
-     * Checks if a given substring is contained within a string in chronological order.
-     *
-     * @param str The string to search within.
-     * @param sub The substring to search for.
-     * @return {@code true} if the substring is found within the string in chronological order, {@code false} otherwise.
-     */
-    public static boolean isChronologicalSubstring(String str, String sub) {
-        int strIndex = 0;
-        int subIndex = 0;
-        while (strIndex < str.length() && subIndex < sub.length()) {
-            if (str.charAt(strIndex) == sub.charAt(subIndex)) {
-                subIndex++;
-            }
-            strIndex++;
-        }
-        return subIndex == sub.length();
     }
 
     /**
