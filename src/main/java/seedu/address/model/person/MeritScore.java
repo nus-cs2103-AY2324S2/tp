@@ -47,12 +47,22 @@ public class MeritScore {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Increases the merit score by 1.
+     *
+     * @return new incremented MeritScore
+     */
     public MeritScore incrementScore() {
         int score = Integer.parseInt(meritScore);
         score++;
         return new MeritScore(String.valueOf(score));
     }
 
+    /**
+     * Decreases the merit score by 1.
+     *
+     * @return new decremented MeritScore
+     */
     public MeritScore decrementScore() {
         int score = Integer.parseInt(meritScore);
         score--;
