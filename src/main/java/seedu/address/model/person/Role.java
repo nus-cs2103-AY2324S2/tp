@@ -10,14 +10,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Role {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Roles should be either 'Student', 'TA', or 'Professor'.";
+            "Roles should be either 'STUDENT', 'TA', or 'PROFESSOR'.";
 
     /*
-     * The role of the person should be "Student", "TA", or "Professor".
+     * The role of the person should be "STUDENT", "TA", or "PROFESSOR".
      */
-    public static final String[] VALID_ROLES = {"Student", "TA", "Professor"};
+    public enum RoleType {
+        STUDENT, TA, PROFESSOR
+    }
 
-    public final String role;
+    public final RoleType role;
 
     /**
      * Constructs a {@code role}.
@@ -27,25 +29,25 @@ public class Role {
     public Role(String role) {
         requireNonNull(role);
         checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-        this.role = role;
+        this.role = RoleType.valueOf(role);
     }
 
     /**
      * Returns true if a given string is a valid role.
      */
     public static boolean isValidRole(String test) {
-        for (String validRole : VALID_ROLES) {
-            if (validRole.equals(test)) {
-                return true;
-            }
+        try {
+            RoleType.valueOf(test);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
         }
-        return false;
     }
 
 
     @Override
     public String toString() {
-        return role;
+        return role.name();
     }
 
     @Override
