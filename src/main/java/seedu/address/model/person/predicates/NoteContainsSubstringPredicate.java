@@ -10,7 +10,7 @@ import seedu.address.model.person.Person.PersonAttribute;
  */
 public class NoteContainsSubstringPredicate extends SearchPredicate<String> {
     public NoteContainsSubstringPredicate(String substring) {
-        super(substring, PersonAttribute.NAME);
+        super(substring, PersonAttribute.NOTE);
         requireNonNull(substring);
     }
 
