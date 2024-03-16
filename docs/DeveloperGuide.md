@@ -127,7 +127,7 @@ How the `Logic` component works:
    a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which
    is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a client).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take
    several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -218,14 +218,14 @@ initial address book state, and the `currentStatePointer` pointing to that singl
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
+Step 2. The user executes `delete 5` command to delete the 5th client in the address book. The `delete` command
 calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also
+Step 3. The user executes `add n/David …​` to add a new client. The `add` command also
 calls `Model#commitAddressBook()`, causing another modified address book state to be saved into
 the `addressBookStateList`.
 
@@ -235,7 +235,7 @@ the `addressBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
+Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing
 the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
@@ -292,7 +292,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the client being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -321,7 +321,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * prefer desktop apps over other types
-* prefers typing over mouse interactions (i.e. should be able to type fast)
+* prefers typing to mouse interactions (i.e. should be able to type fast)
 * is reasonably comfortable using CLI apps
 * is a personal trainer
 
@@ -331,21 +331,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                                                                                 | So that I can…​                                                                              |
+| Priority | As a ...                                      | I want to ...                                                                                | So that I can ...                                                                            |
 |----------|-----------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
 | `* * *`  | user                                          | see usage instructions                                                                       | refer to instructions when I forget how to use the application                               |
 | `* * *`  | user                                          | add a client name and phone number                                                           | quickly take down contact details even in a rush                                             |
 | `* * *`  | user                                          | delete contact                                                                               | remove them when I no longer need to contact them                                            |
 | `* * *`  | user                                          | display all contacts                                                                         | I can see all my clients at a glance.                                                        |
 | `* * *`  | user                                          | add personal health information for each contact                                             | store additional information associated with the client                                      |
-| `* * *`  | user with many contacts in the address book   | search for contacts by their name                                                            | locate details of persons without having to go through the entire list                       |                                              |
+| `* * *`  | user with many contacts in the address book   | search for contacts by their name                                                            | locate details of clients without having to go through the entire list                       |                                              |
 | `* *`    | user                                          | add a picture to my contacts                                                                 | easily identify my contacts and add a personal touch to them                                 |
 | `* *`    | user                                          | hide private contact details                                                                 | minimize chance of someone else seeing them by accident                                      |
-| `* *`    | user                                          | update a person's contact information                                                        | keep my address book relevant and up-to-date                                                 |
+| `* *`    | user                                          | quickly view the available commands                                                          | view quick command help without needing to leave the application                             |
+| `* *`    | user                                          | update a client's contact information                                                        | keep my address book relevant and up-to-date                                                 |
 | `*`      | user                                          | have a graphical overview of the changes of my client's health details over a certain period | easily keep track of my client's progress                                                    |
 | `*`      | user who has completed dealings with a client | archive contacts                                                                             | remove them from the contact list but still have their contact information in case I need it |
 | `*`      | user with many clients                        | sort contacts based on next session                                                          | easily locate the details of the client I am going to meet next                              |
-| `*`      | user with many contacts in the address book   | sort contacts by name                                                                        | locate a person easily                                                                       |
+| `*`      | user with many contacts in the address book   | sort contacts by name                                                                        | locate a client easily                                                                       |
 
 ### Use cases
 
@@ -442,7 +443,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <a id="nfr-1"></a>
 
 1. Should work on any _mainstream OS_ (Windows, macOS and Linux) as long as it has Java `11` or above installed.
-1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+1. Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
 1. Should provide responsive performance, users should experience minimal delays in critical functionalities such as searching and updating contacts (feedback should be within 1 second).
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 1. Should provide an intuitive and user-friendly interface. Users should be able to easily and quickly navigate the user interface to identify crucial information (E.g Name, Contact, Health information) at a glance.
@@ -507,18 +508,18 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a client
 
-1. Deleting a person while all persons are being shown
+1. Deleting a client while all clients are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
     1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
        Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
