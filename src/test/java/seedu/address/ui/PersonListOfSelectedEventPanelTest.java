@@ -4,21 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.application.Platform;
-import javafx.stage.Stage;
 import seedu.address.model.person.UniquePersonList;
 
 public class PersonListOfSelectedEventPanelTest {
-
-    private static final int TIMEOUT = 5;
 
     private PersonListOfSelectedEventPanel panel;
     private UniquePersonList personList;
