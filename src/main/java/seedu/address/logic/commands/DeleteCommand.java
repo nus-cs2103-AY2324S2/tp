@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,7 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed name from the address book.
  */
 public class DeleteCommand extends Command {
 
@@ -34,6 +33,14 @@ public class DeleteCommand extends Command {
         this.targetName = name;
     }
 
+    /**
+     * Finds a person from a List of persons identified by its name.
+     *
+     * @param personList The list of persons to search from.
+     * @param targetName The name of the person to return.
+     *
+     * @return The person object with name equals to {@code targetName}.
+     * */
     public Person findByName(List<Person> personList, Name targetName) {
         for (Person person: personList) {
             Name name = person.getName();
