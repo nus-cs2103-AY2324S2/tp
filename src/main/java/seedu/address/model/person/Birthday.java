@@ -27,7 +27,7 @@ public class Birthday {
      */
     public Birthday(String birthday) {
         birthday = birthday == null ? "" : birthday;
-        if (birthday.isEmpty()) {
+        if (birthday.isBlank()) {
             this.birthday = null;
             return;
         }
@@ -40,12 +40,14 @@ public class Birthday {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidBirthday(String test) {
-        if (test == null || test.isEmpty()) {
+        if (test == null || test.isBlank()) {
             return true;
         }
+        test = test.strip();
         try {
             LocalDate date = LocalDate.parse(test, DateTimeFormatter.ofPattern(BIRTHDAY_FORMAT));
-            return date.isBefore(LocalDate.now());
+            return date.format(DateTimeFormatter.ofPattern(BIRTHDAY_FORMAT)).equals(test)
+                    && date.isBefore(LocalDate.now());
         } catch (DateTimeParseException e) {
             return false;
         }
