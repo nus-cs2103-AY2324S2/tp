@@ -1,5 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_APPLICATION_STATUS_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_EMAIL_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_NAME_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_NUMBER_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DESCRIPTION_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_LOCATION_AMY;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_AMY;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +47,13 @@ public class TypicalInternships {
             .withContactName("Ida Mueller").withContactEmail("ida@example.com").withContactNumber("8482131")
             .withLocation("remote").withApplicationStatus("ongoing").withDescription("Write REST APIs for netflix")
             .withRole("Backend Engineer").build();
+
+    // Manually added - Internship details found in {@code InternshipCommandTestUtil}
+    public static final Internship AMY = new InternshipBuilder().withCompanyName(VALID_COMPANY_NAME_AMY)
+            .withContactName(VALID_CONTACT_NAME_AMY).withContactEmail(VALID_CONTACT_EMAIL_AMY)
+            .withContactNumber(VALID_CONTACT_NUMBER_AMY).withLocation(VALID_LOCATION_AMY)
+            .withApplicationStatus(VALID_APPLICATION_STATUS_AMY).withDescription(VALID_DESCRIPTION_AMY)
+            .withRole(VALID_ROLE_AMY).build();
 
     private TypicalInternships() {
     } // prevents instantiation
