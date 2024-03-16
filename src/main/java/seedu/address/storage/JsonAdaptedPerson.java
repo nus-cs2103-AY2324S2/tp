@@ -149,10 +149,6 @@ class JsonAdaptedPerson {
         }
         final BankDetails modelBankDetails = new BankDetails(bankDetails);
 
-        //        if (workHours == null) {
-        //            throw new IllegalValueException(
-        //                    String.format(MISSING_FIELD_MESSAGE_FORMAT, WorkHours.class.getSimpleName()));
-        //        }
         final WorkHours modelWorkHours = new WorkHours(workHours);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
