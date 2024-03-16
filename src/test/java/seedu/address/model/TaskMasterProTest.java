@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class TaskMasterProTest {
@@ -86,7 +87,7 @@ public class TaskMasterProTest {
     @Test
     public void toStringMethod() {
         String expected = TaskMasterPro.class.getCanonicalName()
-                + "{employees=" + taskMasterPro.getEmployeeList() + "}";
+                + "{Employees=" + taskMasterPro.getEmployeeList() + "}";
         assertEquals(expected, taskMasterPro.toString());
     }
 
@@ -104,6 +105,10 @@ public class TaskMasterProTest {
         public ObservableList<Employee> getEmployeeList() {
             return employees;
         }
-    }
 
+        @Override
+        public ObservableList<Task> getTaskList() {
+            return null;
+        }
+    }
 }

@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -28,6 +30,8 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
         employees = new UniqueEmployeeList();
     }
 
+    private final TaskList tasks = new TaskList();
+
     public TaskMasterPro() {}
 
     /**
@@ -41,11 +45,18 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the employee list with {@code employees}.
-     * {@code employees} must not contain duplicate employees.
+     * Replaces the contents of the Employee list with {@code Employees}.
+     * {@code Employees} must not contain duplicate Employees.
      */
     public void setEmployees(List<Employee> employees) {
         this.employees.setEmployees(employees);
+    }
+
+    /**
+     * Replaces the contents of the task list with {@code tasks}.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
     }
 
     /**
@@ -55,12 +66,13 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
         requireNonNull(newData);
 
         setEmployees(newData.getEmployeeList());
+        setTasks(newData.getTaskList());
     }
 
-    //// employee-level operations
+    //// Employee-level operations
 
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if a Employee with the same identity as {@code employee} exists in the address book.
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
@@ -68,18 +80,18 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
     }
 
     /**
-     * Adds a employee to the address book.
-     * The employee must not already exist in the address book.
+     * Adds a Employee to the address book.
+     * The Employee must not already exist in the address book.
      */
     public void addEmployee(Employee p) {
         employees.add(p);
     }
 
     /**
-     * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
+     * Replaces the given Employee {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in the address book.
-     * The employee identity of {@code editedEmployee} must not be the same as another
-     * existing employee in the address book.
+     * The Employee identity of {@code editedEmployee} must not be the same as
+     * another existing Employee in the address book.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
@@ -89,18 +101,39 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
 
     /**
      * Removes {@code key} from this {@code TaskMasterPro}.
-     * {@code key} must exist in the TaskMasterPro.
+     * {@code key} must exist in the address book.
      */
     public void removeEmployee(Employee key) {
         employees.remove(key);
     }
+
+    /**
+     * Adds a Employee to the address book.
+     * The Employee must not already exist in the address book.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
+     * Removes {@code key} from this {@code TaskMasterPro}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTask(Task task) {
+        tasks.remove(task);
+    }
+
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
 
     //// util methods
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("employees", employees)
+                .add("Employees", employees)
                 .toString();
     }
 

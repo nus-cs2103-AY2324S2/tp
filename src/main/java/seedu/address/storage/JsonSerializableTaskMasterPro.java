@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskMasterPro;
 import seedu.address.model.TaskMasterPro;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.Task;
 
 /**
  * An Immutable TaskMasterPro that is serializable to JSON format.
@@ -22,6 +23,10 @@ class JsonSerializableTaskMasterPro {
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "Employees list contains duplicate employee(s).";
 
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+
+    private final int employeeId;
+    private final int taskId;
 
     /**
      * Constructs a {@code JsonSerializableTaskMasterPro} with the given employees.
@@ -29,6 +34,8 @@ class JsonSerializableTaskMasterPro {
     @JsonCreator
     public JsonSerializableTaskMasterPro(@JsonProperty("employees") List<JsonAdaptedEmployee> employees) {
         this.employees.addAll(employees);
+        employeeId = Employee.getUniversalId();
+        taskId = Task.getUniversalId();
     }
 
     /**
@@ -38,10 +45,13 @@ class JsonSerializableTaskMasterPro {
      */
     public JsonSerializableTaskMasterPro(ReadOnlyTaskMasterPro source) {
         employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
+        employeeId = Employee.getUniversalId();
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        taskId = Task.getUniversalId();
     }
 
     /**
-     * Converts this TaskMasterPro into the model's {@code TaskMasterPro} object.
+     * Converts this address book into the model's {@code TaskMasterPro} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -54,6 +64,16 @@ class JsonSerializableTaskMasterPro {
             }
             taskMasterPro.addEmployee(employee);
         }
+
+        Employee.setUniversalEmployeeId(employeeId);
+
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+
+            taskMasterPro.addTask(task);
+        }
+
+        Task.setUniversalTaskId(taskId);
         return taskMasterPro;
     }
 

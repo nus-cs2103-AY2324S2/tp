@@ -21,7 +21,7 @@ public class EmployeeCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/TaskMasterPro-level4/issues/336">The issue on TaskMasterPro level 4</a>
      */
 
     public final Employee employee;
@@ -32,6 +32,8 @@ public class EmployeeCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label employeeId;
     @FXML
     private Label phone;
     @FXML
@@ -48,6 +50,8 @@ public class EmployeeCard extends UiPart<Region> {
         super(FXML);
         this.employee = employee;
         id.setText(displayedIndex + ". ");
+
+        employeeId.setText("Employee ID: " + employee.getEmployeeId().employeeId);
         name.setText(employee.getName().fullName);
         phone.setText(employee.getPhone().value);
         address.setText(employee.getAddress().value);

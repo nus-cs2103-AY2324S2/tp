@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyTaskMasterPro;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskMasterPro;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddCommandTest {
@@ -157,6 +158,26 @@ public class AddCommandTest {
         @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            return null;
         }
     }
 
