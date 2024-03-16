@@ -12,8 +12,9 @@ public class Role {
     public static final String MESSAGE_CONSTRAINTS =
             "Roles should be either 'STUDENT', 'TA', or 'PROFESSOR'.";
 
-    /*
-     * The role of the person should be "STUDENT", "TA", or "PROFESSOR".
+    /**
+     * Enum representing different roles in an educational system.
+     * This enum defines three role types: STUDENT, TA (Teaching Assistant), and PROFESSOR.
      */
     public enum RoleType {
         STUDENT, TA, PROFESSOR
