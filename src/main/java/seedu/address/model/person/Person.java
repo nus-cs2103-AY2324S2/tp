@@ -23,6 +23,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Company company;
 
     // Data fields
     private final Address address;
@@ -34,29 +35,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Company company, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, company, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.company = company;
         this.tags.addAll(tags);
         this.orders = new ArrayList<>();
-    }
-
-    /**
-     * Every field must be present and not null.
-     * This constructor is used to create a person with orders.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ArrayList<Order> orders) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.orders = orders;
     }
 
     /**
@@ -64,13 +51,14 @@ public class Person {
      * This constructor is used to create a person with orders, and
      * indicates whether they have been marked as favourite
      */
-    public Person(Name name, Phone phone, Email email, Address address, boolean isFavourite, Set<Tag> tags,
-                  ArrayList<Order> orders) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Company company, boolean isFavourite,
+                  Set<Tag> tags, ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, company, isFavourite, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.company = company;
         this.isFavourite = isFavourite;
         this.tags.addAll(tags);
         this.orders = orders;
@@ -90,6 +78,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Company getCompany() {
+        return company;
     }
 
     /**
@@ -157,13 +149,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && company.equals(otherPerson.company)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, orders);
+        return Objects.hash(name, phone, email, address, company, tags, orders);
     }
 
     @Override
@@ -173,6 +166,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("company", company)
                 .add("isFavourite", isFavourite)
                 .add("tags", tags)
                 .add("orders", orders)
