@@ -1,16 +1,16 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.FindAndExportCommand;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import seedu.address.logic.commands.FindAndExportCommand;
 
 public class FindAndExportCommandParserTest {
 
-    private FindAndExportCommandParser parser = new FindAndExportCommandParser();
     public static final String MESSAGE_INVALID_FILENAME = "The filename provided is invalid.";
     public static final String MESSAGE_MISSING_NAME = "A name must be provided.";
+    private FindAndExportCommandParser parser = new FindAndExportCommandParser();
 
 
     @Test
