@@ -14,6 +14,7 @@ public class MoneyOwed {
     public static final String VALIDATION_REGEX = "^(?:-)?\\d+(\\.\\d{0,2})?";
 
     public final Float moneyOwed;
+    public final boolean isNegative;
 
     /**
      * Constructs a {@code MoneyOwed}.
@@ -24,18 +25,29 @@ public class MoneyOwed {
         requireNonNull(money);
         checkArgument(isValidMoney(money), MESSAGE_CONSTRAINTS);
         moneyOwed = Float.parseFloat(money);
+        isNegative = money.charAt(0) == '-';
     }
 
     /**
      * Returns true if a given string is a valid money amount.
      */
     public static boolean isValidMoney(String test) {
+        if (test == null) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if an amount owed is negative.
+     */
+    public boolean isNegativeMoney() {
+        return this.isNegative;
     }
 
     @Override
     public String toString() {
-        return moneyOwed.toString();
+        return String.format("%.2f", moneyOwed);
     }
 
     @Override

@@ -127,14 +127,10 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Birthday.BIRTHDAY_CONSTRAINTS);
         }
         final Birthday modelBirthday = new Birthday(birthday);
-
-        if (moneyOwed == null) {
-            throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
-        }
         if (!MoneyOwed.isValidMoney(moneyOwed)) {
             throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
         }
-        final MoneyOwed modelMoneyOwed = new MoneyOwed(moneyOwed);
+        final MoneyOwed modelMoneyOwed = new MoneyOwed(Optional.ofNullable(moneyOwed).orElse("0"));
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
                 modelTags, modelBirthday, modelMoneyOwed);

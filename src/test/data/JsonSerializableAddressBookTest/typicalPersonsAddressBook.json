@@ -15,7 +15,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tags" : [ "owesMoney", "friends" ],
     "remark" : "",
-    "moneyOwed" : "0"
+    "moneyOwed" : "2.50"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -31,7 +31,7 @@
     "address" : "10th street",
     "tags" : [ "friends" ],
     "remark" : "",
-    "moneyOwed" : "0"
+    "moneyOwed" : "-8.00"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -47,7 +47,7 @@
     "address" : "little tokyo",
     "tags" : [ ],
     "remark" : "",
-    "moneyOwed" : "0"
+    "moneyOwed" : "23.60"
   }, {
     "name" : "George Best",
     "phone" : "9482442",

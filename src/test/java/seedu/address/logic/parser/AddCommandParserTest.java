@@ -12,8 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MONEYOWED_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.MONEYOWED_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.MONEY_OWED_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.MONEY_OWED_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -58,7 +58,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + BIRTHDAY_BOB + MONEYOWED_BOB, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + BIRTHDAY_BOB + MONEY_OWED_BOB, new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted
@@ -66,7 +66,7 @@ public class AddCommandParserTest {
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + BIRTHDAY_BOB + MONEYOWED_BOB,
+                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + BIRTHDAY_BOB + MONEY_OWED_BOB,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -139,7 +139,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + BIRTHDAY_AMY + MONEYOWED_AMY,
+                        + BIRTHDAY_AMY + MONEY_OWED_AMY,
                 new AddCommand(expectedPerson));
     }
 

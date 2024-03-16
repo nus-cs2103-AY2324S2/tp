@@ -65,6 +65,10 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         birthday.setText(Optional.ofNullable(person.getBirthday()).orElse(new Birthday("")).toString());
-        moneyOwed.setText(person.getMoneyOwed().toString());
+        if (person.getMoneyOwed().isNegativeMoney()) {
+            moneyOwed.setText("You owe $" + person.getMoneyOwed().toString().substring(1));
+        } else {
+            moneyOwed.setText("Owes you $" + person.getMoneyOwed().toString());
+        }
     }
 }
