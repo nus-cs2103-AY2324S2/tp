@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import staffconnect.logic.commands.EditCommand.EditPersonDescriptor;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
@@ -41,6 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setVenue(person.getVenue());
         descriptor.setModule(person.getModule());
         descriptor.setTags(person.getTags());
+        descriptor.setAvailabilities(person.getAvailabilities());
     }
 
     /**
@@ -98,6 +100,17 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code availabilities} into a {@code Set<Availability>} and set it to the
+     * {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withAvailabilities(String... availabilities) {
+        Set<Availability> availabilitySet =
+                Stream.of(availabilities).map(Availability::new).collect(Collectors.toSet());
+        descriptor.setAvailabilities(availabilitySet);
         return this;
     }
 
