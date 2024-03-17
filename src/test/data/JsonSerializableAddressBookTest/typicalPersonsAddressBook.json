@@ -29,7 +29,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tags" : [ "covid" ],
+    "tags" : [ "covid", "flight", "disability" ],
     "upcoming": "12-12-2024 1200",
     "lastcontact": "13-03-2024 0600"
   }, {
