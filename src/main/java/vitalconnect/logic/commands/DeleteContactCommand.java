@@ -21,6 +21,7 @@ import vitalconnect.model.person.identificationinformation.Nric;
  */
 public class DeleteContactCommand extends Command {
     public static final String COMMAND_WORD = "delContact";
+    public static final String MESSAGE_SUCCESS = "Contact deleted successfully";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a contact of a person. "
         + "Parameters: (required field)\n"
@@ -49,7 +50,7 @@ public class DeleteContactCommand extends Command {
         ContactInformation contactInformation = new ContactInformation(new Email(""), new Phone(""), new Address(""));
         model.updatePersonContactInformation(nric, contactInformation);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult("Contact deleted successfully");
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

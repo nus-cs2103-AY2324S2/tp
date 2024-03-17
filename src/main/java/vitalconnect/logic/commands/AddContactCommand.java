@@ -20,6 +20,7 @@ import vitalconnect.model.person.identificationinformation.Nric;
  */
 public class AddContactCommand extends Command {
     public static final String COMMAND_WORD = "addContact";
+    public static final String MESSAGE_SUCCESS = "Contact added successfully";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact of a person. "
         + "Parameters: (required field)\n"
@@ -61,7 +62,7 @@ public class AddContactCommand extends Command {
         model.updatePersonContactInformation(nric, contactInformation);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         // update the person to the model
-        return new CommandResult("Contact added successfully");
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
@@ -70,5 +71,10 @@ public class AddContactCommand extends Command {
             || (other instanceof AddContactCommand // instanceof handles nulls
             && nric.equals(((AddContactCommand) other).nric)
             && contactInformation.equals(((AddContactCommand) other).contactInformation));
+    }
+
+    @Override
+    public String toString() {
+        return "addContact" + nric + contactInformation;
     }
 }
