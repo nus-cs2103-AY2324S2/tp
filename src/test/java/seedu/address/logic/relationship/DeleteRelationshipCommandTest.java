@@ -49,33 +49,52 @@ class DeleteRelationshipCommandTest {
     @Test
     void parseCommand_validInput_relationshipRemoved() {
         // Create a relationship between two persons
-        UUID person1Uuid = UUID.randomUUID();
-        UUID person2Uuid = UUID.randomUUID();
-        Relationship relationship = new RoleBasedRelationship(person1Uuid, person2Uuid);
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        String uuid1 = person1.getUuidString();
+        String uuid2 = person2.getUuidString();
+        personMap.put(uuid1, person1);
+        personMap.put(uuid2, person2);
+
+        Relationship relationship = new RoleBasedRelationship(person1.getUuid(), person2.getUuid());
 
         // Add the relationship to the RelationshipManager
         relationshipManager.addRelationship("TestRelationship", relationship);
 
         // Parse the command to delete the relationship
-        assertDoesNotThrow(() -> command.parseCommand("delete /TestRelationship " + person1Uuid + "," + person2Uuid));
+        assertDoesNotThrow(() -> command.parseCommand("deleterelation /TestRelationship " + person1.getUuid() + "," + person2.getUuid()));
 
         // Check if the relationship is removed
         assertTrue(relationshipManager.getRelationships("TestRelationship").isEmpty());
     }
 
     @Test
+    void parseCommand_invalidInput_relationshipRemoved() {
+        String uuid1 = personMap.keySet().iterator().next();
+        String uuid2 = personMap.keySet().iterator().next();
+        assertThrows(IllegalArgumentException.class, () ->
+                command.parseCommand("deleterelation /friends " + uuid1 + " " + uuid2));
+    }
+
+    @Test
     void parseCommand_invalidRelationshipType_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("delete /InvalidType 1234,5678"));
+        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /InvalidType 1234,5678"));
     }
 
     @Test
     void parseCommand_invalidMissingParts_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("delete /TestRelationship 1234"));
+        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /TestRelationship 1234"));
     }
 
     @Test
     void parseCommand_invalidIncorrectUuids_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
-                command.parseCommand("delete /TestRelationship invalid,invalid"));
+                command.parseCommand("deleterelation /TestRelationship invalid,invalid"));
     }
 }

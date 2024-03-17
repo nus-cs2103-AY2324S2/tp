@@ -33,20 +33,15 @@ public class DeleteRelationshipCommand {
      * @throws IllegalArgumentException If the command is invalid.
      */
     public void parseCommand(String command) {
-        String[] commandParts = command.split("\\s+");
+        String[] commandParts = command.split("\\s+|,");
 
         if (commandParts.length != 4) {
             throw new IllegalArgumentException("Invalid command format");
         }
 
         String relationType = commandParts[1].substring(1);
-        String[] personUuids = commandParts[2].split(",");
-        if (personUuids.length != 2) {
-            throw new IllegalArgumentException("Invalid command format");
-        }
-
-        String uuid1 = matchUuid(personUuids[0]);
-        String uuid2 = matchUuid(personUuids[1]);
+        String uuid1 = matchUuid(commandParts[2]);
+        String uuid2 = matchUuid(commandParts[3]);
 
         List<Relationship> relationships = relationshipManager.getRelationships(relationType);
         if (relationships.isEmpty()) {

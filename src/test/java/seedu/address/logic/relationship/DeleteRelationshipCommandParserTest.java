@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
 import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.relationship.BioParentsRelationship;
 import seedu.address.model.person.relationship.RelationshipManager;
 
 class DeleteRelationshipCommandParserTest {
@@ -40,26 +41,27 @@ class DeleteRelationshipCommandParserTest {
         Person person2 = new Person(attributes2);
         personMap.put(person1.getUuidString(), person1);
         personMap.put(person2.getUuidString(), person2);
-        relationshipManager.addRelationship("TestRelationship", null);
+        relationshipManager.addRelationship("TestRelationship",
+                new BioParentsRelationship(person1.getUuid(), person2.getUuid()));
 
         // Parse a valid delete relationship command
-        assertDoesNotThrow(() -> parser.parse("delete /TestRelationship "
+        assertDoesNotThrow(() -> parser.parse("deleterelation /TestRelationship "
                 + person1.getUuidString() + "," + person2.getUuidString()));
     }
 
     @Test
     void parse_invalidMissingParts_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> parser.parse("delete /TestRelationship 1234"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("deleterelation /TestRelationship 1234"));
     }
 
     @Test
     void parse_invalidIncorrectUuids_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
-                parser.parse("delete /TestRelationship invalid,invalid"));
+                parser.parse("deleterelation /TestRelationship invalid,invalid"));
     }
 
     @Test
     void parse_invalidRelationshipType_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> parser.parse("delete /InvalidType 1234,5678"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("deleterelation /InvalidType 1234,5678"));
     }
 }
