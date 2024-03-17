@@ -75,7 +75,7 @@ public class Article {
         if (otherArticle == this) {
             return true;
 
-        /**
+        /*
          * Same authors may have many drafts of same article. If it is not draft and has same title and authors,
          * consider it as same article
          */
