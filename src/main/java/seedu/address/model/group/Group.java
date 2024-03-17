@@ -2,42 +2,42 @@ package seedu.address.model.group;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
-
+import seedu.address.model.coursemate.UniqueCourseMateList;
 
 /**
- * Represents a Group in the group list.
+ * Represents a Group in the group list. All its members must be unique.
  */
-public class Group {
+public class Group extends UniqueCourseMateList {
 
-    // temporary
     private final Name name;
-    private final Set<CourseMate> members = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * A basic constructor for a group that also initializes an iterable collection as a list of members.
+     *
+     * @param name the name of the group
+     * @param members the Collection of members to initialize the group
      */
-    public Group(Name name, Set<CourseMate> members) {
+    public Group(Name name, Iterable<CourseMate> members) {
+        super();
         requireNonNull(name);
         this.name = name;
-        this.members.addAll(members);
+        members.forEach(this::add);
+    }
+
+    /**
+     * A basic constructor for a group.
+     *
+     * @param name the name of the group
+     */
+    public Group(Name name) {
+        super();
+        this.name = name;
     }
 
     public Name getName() {
         return name;
-    }
-
-    /**
-     * Returns an immutable coursemate set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<CourseMate> getMembers() {
-        return Collections.unmodifiableSet(members);
     }
 
     /**
