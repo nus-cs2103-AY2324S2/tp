@@ -109,6 +109,7 @@ class AssignCommandTest {
     public void equals() {
         AssignCommand assignOneToOneCommand = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
         AssignCommand assignOneToTwoCommand = new AssignCommand(INDEX_FIRST, INDEX_SECOND);
+        AssignCommand assignTwoToOneCommand = new AssignCommand(INDEX_SECOND, INDEX_FIRST);
 
         // same object -> returns true
         assertEquals(assignOneToOneCommand, assignOneToOneCommand);
@@ -122,5 +123,6 @@ class AssignCommandTest {
 
         // different indices -> returns false
         assertNotEquals(assignOneToOneCommand, assignOneToTwoCommand);
+        assertNotEquals(assignOneToOneCommand, assignTwoToOneCommand);
     }
 }
