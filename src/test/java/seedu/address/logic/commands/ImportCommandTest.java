@@ -31,16 +31,6 @@ public class ImportCommandTest {
         assertThrows(NullPointerException.class, () -> new ImportCommand(null));
     }
 
-//    @Test
-//    public void execute_fileExist_failure() {
-//        HashSet<File> curHashSet = new HashSet<>();
-//        curHashSet.add(new File(UNKNOWN_FILE_NAME));
-//        ImportCommand importCommand = new ImportCommand(curHashSet);
-//
-//        String expectedMessage = String.format(ImportCommand.MESSAGE_FILE_NOT_FOUND, UNKNOWN_FILE_NAME);
-//        assertThrows(CommandException.class, expectedMessage, () -> importCommand.execute(model));
-//    }
-
     @Test
     public void execute_existingFile_success() {
         HashSet<File> curHashSet = new HashSet<>();
