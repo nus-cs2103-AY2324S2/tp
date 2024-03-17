@@ -32,9 +32,9 @@
                   <Menu mnemonicParsing="false" text="ImmuniMate" style="-fx-font-family: Arial; -fx-font-size: 14px; -fx-font-weight: bold;" />
                 </MenuBar>
 
-                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <StackPane fx:id="commandBoxPlaceholder" minHeight="75" prefHeight="75" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets bottom="5" left="10" right="10" top="5"/>
+                        <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>
                 </StackPane>
 
