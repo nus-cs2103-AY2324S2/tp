@@ -117,7 +117,7 @@ public class ParserUtil {
         requireNonNull(sex);
         String trimmedSex = sex.trim();
         if (!Sex.isValidSex(trimmedSex)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
         }
         return new Sex(trimmedSex);
     }
@@ -131,8 +131,8 @@ public class ParserUtil {
     public static Age parseAge(String age) throws ParseException {
         requireNonNull(age);
         String trimmedAge = age.trim();
-        if (!Sex.isValidSex(trimmedAge)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Age.isValidAge(trimmedAge)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
         }
         return new Age(trimmedAge);
     }
