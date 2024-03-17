@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.Address;
-import seedu.address.model.employee.Email;
-import seedu.address.model.employee.Name;
-import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -108,6 +105,13 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    public static AssignedTasks parseTasks(String tasks) throws ParseException {
+        if (!AssignedTasks.isValidTask(tasks)) {
+            throw new ParseException(AssignedTasks.MESSAGE_CONSTRAINTS);
+        }
+        return new AssignedTasks(tasks);
+    }
+
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
@@ -134,4 +138,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }

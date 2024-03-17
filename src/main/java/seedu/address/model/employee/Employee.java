@@ -25,18 +25,22 @@ public class Employee {
 
     // Data fields
     private final Address address;
+    private AssignedTasks tasks;
+
     private final Set<Tag> tags = new HashSet<>();
+
 
     /**
      * Every field must be present and not null.
      */
-    public Employee(EmployeeId employeeId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Employee(EmployeeId employeeId, Name name, Phone phone, Email email, Address address, AssignedTasks tasks, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags, tasks);
         this.employeeId = employeeId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.tasks = tasks;
         this.tags.addAll(tags);
     }
 
@@ -79,12 +83,21 @@ public class Employee {
         return address;
     }
 
+    public AssignedTasks getTasks() {
+        return tasks;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Employee assignTask(int taskID) {
+        tasks = tasks.updateTask(taskID);
+        return this;
     }
 
     /**
@@ -136,8 +149,10 @@ public class Employee {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("tasks", tasks)
                 .add("tags", tags)
                 .toString();
     }
+
 
 }

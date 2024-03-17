@@ -10,13 +10,14 @@ public class Task {
     private static int universalTaskId = 1;
     private final TaskName taskName;
     private final TaskId taskId;
-
+    private final TaskStatus taskStatus;
     /**
      * Every field must be present and not null.
      */
-    public Task(TaskName name, TaskId id) {
+    public Task(TaskName name, TaskId id, TaskStatus status) {
         taskName = name;
         taskId = id;
+        taskStatus = status;
     }
 
     /**
@@ -44,12 +45,24 @@ public class Task {
     public TaskId getTaskId() {
         return taskId;
     }
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void markTask() {
+        taskStatus.setTaskDone();
+    }
+
+    public void unmarkTask() {
+        taskStatus.setTaskNotDone();
+    }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("taskId", taskId)
                 .add("taskName", taskName)
+                .add("taskStatus", taskStatus)
                 .toString();
     }
 }

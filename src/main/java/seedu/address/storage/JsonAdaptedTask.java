@@ -9,6 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -18,15 +19,20 @@ public class JsonAdaptedTask {
     private final String taskName;
     private final int taskId;
 
+    private boolean taskStatus;
 
     /**
      * Constructs a {@code JsonAdaptedEmployee} with the given Employee details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("taskName") String taskName, @JsonProperty("taskId") int taskId) {
+    public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
+                           @JsonProperty("taskId") int taskId,
+                           @JsonProperty("taskStatus") boolean taskStatus) {
         this.taskName = taskName;
         this.taskId = taskId;
+        this.taskStatus = taskStatus;
     }
+
 
     /**
      * Converts a given {@code Task} into this class for Jackson use.
@@ -34,6 +40,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         taskName = source.getName().taskName;
         taskId = source.getTaskId().taskId;
+        taskStatus = source.getTaskStatus().status;
     }
 
     /**
@@ -49,6 +56,7 @@ public class JsonAdaptedTask {
 
         final TaskName modelName = new TaskName(taskName);
         final TaskId modelId = new TaskId(taskId);
-        return new Task(modelName, modelId);
+        final TaskStatus modelStatus = new TaskStatus(taskStatus);
+        return new Task(modelName, modelId, modelStatus);
     }
 }
