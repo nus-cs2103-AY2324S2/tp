@@ -27,8 +27,8 @@ public class AddAppointmentCommandParser {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_DOCTORNRIC, PREFIX_PATIENTNRIC);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_DOCTORNRIC, PREFIX_PATIENTNRIC)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()
+                || !arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_DOCTORNRIC, PREFIX_PATIENTNRIC)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
