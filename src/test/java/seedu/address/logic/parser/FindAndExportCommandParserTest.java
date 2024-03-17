@@ -13,7 +13,7 @@ public class FindAndExportCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindAndExportCommand() throws ParseException {
-        String input = "friends n/John a/123 Main St o/output.csv";
+        String input = "friends n/John a/123 Main St f/output.csv";
         FindAndExportCommand expectedCommand = new FindAndExportCommand("friends", "John", "123 Main St", "output.csv");
 
         FindAndExportCommand resultCommand = parser.parse(input);
