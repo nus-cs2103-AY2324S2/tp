@@ -81,7 +81,7 @@ public class AddressBookParser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
-        
+
         case RemoveTagCommand.COMMAND_WORD:
             return new RemoveTagCommandParser().parse(arguments);
 
