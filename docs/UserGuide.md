@@ -27,7 +27,7 @@ StaffConnect (SC) is a **desktop app for managing contacts of Professors and Tut
 
     * `list` : Lists all contacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com f/Computing v/John street, block 123, #01-01 m/CS2103` : Adds a contact named `John Doe` to the contacts list.
+    * `add n/John Doe p/98765432 e/johnd@example.com m/CS2103 f/Computing v/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -76,7 +76,7 @@ Format: `help`
 
 Adds a person to the contacts.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL f/FACULTY v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE f/FACULTY v/VENUE [t/TAG]…​ [a/AVAILABILITY]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and availabilities (including 0)
@@ -96,7 +96,7 @@ Format: `list`
 
 Edits an existing person in the contacts.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [f/FACULTY] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [f/FACULTY] [v/VENUE] [t/TAG]…​ [a/AVAILABILITY]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -248,10 +248,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL f/FACULTY v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com f/Computing v/123, Clementi Rd, 1234665 m/CS2103 t/friend t/colleague a/monday`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE f/FACULTY v/VENUE [t/TAG]…​ [a/AVAILABILITY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com m/CS2103 f/Computing v/123, Clementi Rd, 1234665 t/friend t/colleague a/monday`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [f/FACULTY] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [f/FACULTY] [v/VENUE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Filter** | `filter [m/MODULE] [f/FACULTY] [t/TAG]…`<br> e.g., `filter m/CS2100 t/friends`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Sort** | `sort [ATTRIBUTE]`<br> e.g., `sort p/`
