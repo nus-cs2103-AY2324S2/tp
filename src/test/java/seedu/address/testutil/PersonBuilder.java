@@ -24,7 +24,7 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Availability availability;
+    private Set<Availability> availabilities;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +34,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        availability = new Availability(DEFAULT_AVAILABILITY);
+        availabilities = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        availability = personToCopy.getAvailability();
+        availabilities = new HashSet<>(personToCopy.getAvailabilities());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -69,7 +69,7 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAvailability(String availability) {
-        this.availability = new Availability(availability);
+        this.availabilities = SampleDataUtil.getAvailabilitySet(availability);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, availability, tags);
+        return new Person(name, phone, email, availabilities, tags);
     }
 
 }

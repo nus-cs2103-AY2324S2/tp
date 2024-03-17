@@ -98,8 +98,8 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Availability updatedAvailability = editPersonDescriptor.getAvailability()
-                .orElse(personToEdit.getAvailability());
+        Set<Availability> updatedAvailability = editPersonDescriptor.getAvailabilities()
+                .orElse(personToEdit.getAvailabilities());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAvailability, updatedTags);
@@ -137,7 +137,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Availability availability;
+        private Set<Availability> availabilities;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -150,7 +150,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAvailability(toCopy.availability);
+            setAvailabilities(toCopy.availabilities);
             setTags(toCopy.tags);
         }
 
@@ -158,7 +158,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, availability, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, availabilities, tags);
         }
 
         public void setName(Name name) {
@@ -185,12 +185,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAvailability(Availability availability) {
-            this.availability = availability;
+        public void setAvailabilities(Set<Availability> availabilities) {
+            this.availabilities = availabilities;
         }
 
-        public Optional<Availability> getAvailability() {
-            return Optional.ofNullable(availability);
+        public Optional<Set<Availability>> getAvailabilities() {
+            return (availabilities != null) ? Optional.of(Collections.unmodifiableSet(availabilities)) : Optional.empty();
         }
 
         /**
@@ -225,7 +225,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(availability, otherEditPersonDescriptor.availability)
+                    && Objects.equals(availabilities, otherEditPersonDescriptor.availabilities)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -235,7 +235,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("availability", availability)
+                    .add("availabilities", availabilities)
                     .add("tags", tags)
                     .toString();
         }

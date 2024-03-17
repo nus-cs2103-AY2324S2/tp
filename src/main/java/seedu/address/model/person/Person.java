@@ -22,18 +22,18 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Availability availability;
+    private final Set<Availability> availabilities;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Availability availability, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, availability, tags);
+    public Person(Name name, Phone phone, Email email, Set<Availability> availabilities, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, availabilities, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.availability = availability;
+        this.availabilities = availabilities;
         this.tags.addAll(tags);
     }
 
@@ -49,8 +49,8 @@ public class Person {
         return email;
     }
 
-    public Availability getAvailability() {
-        return availability;
+    public Set<Availability> getAvailabilities() {
+        return availabilities;
     }
 
     /**
@@ -93,14 +93,14 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && availability.equals(otherPerson.availability)
+                && availabilities.equals(otherPerson.availabilities)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, availability, tags);
+        return Objects.hash(name, phone, email, availabilities, tags);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("availability", availability)
+                .add("availabilities", availabilities)
                 .add("tags", tags)
                 .toString();
     }

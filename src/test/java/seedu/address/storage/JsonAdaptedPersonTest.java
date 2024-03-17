@@ -27,7 +27,9 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_AVAILABILITY = BENSON.getAvailability().toString();
+    private static final List<JsonAdaptedAvailability> VALID_AVAILABILITY = BENSON.getAvailabilities().stream()
+            .map(JsonAdaptedAvailability::new)
+            .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -86,8 +88,10 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidAvailability_throwsIllegalValueException() {
+        List<JsonAdaptedAvailability> invalidAvailabilities = new ArrayList<>(VALID_AVAILABILITY);
+        invalidAvailabilities.add(new JsonAdaptedAvailability(INVALID_AVAILABILITY));
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_AVAILABILITY, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, invalidAvailabilities, VALID_TAGS);
         String expectedMessage = Availability.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

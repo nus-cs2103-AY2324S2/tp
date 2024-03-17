@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Availability;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -33,7 +34,9 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_AVAIL + person.getAvailability().value + " ");
+        person.getAvailabilities().stream().forEach(
+            s -> sb.append(PREFIX_AVAIL + s.toString() + " ")
+        );
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -48,8 +51,16 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAvailability().ifPresent(availability -> sb.append(PREFIX_AVAIL).append(availability.value)
-                .append(" "));
+        // descriptor.getAvailability().ifPresent(availability -> sb.append(PREFIX_AVAIL).append(availability.dates.toString())
+        //         .append(" "));
+        if (descriptor.getAvailabilities().isPresent()) {
+            Set<Availability> availabilities = descriptor.getAvailabilities().get();
+            if (availabilities.isEmpty()) {
+                sb.append(PREFIX_AVAIL);
+            } else {
+                availabilities.forEach(s -> sb.append(PREFIX_AVAIL).append(s).append(" "));
+            }
+        }
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
