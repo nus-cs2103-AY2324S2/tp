@@ -16,15 +16,16 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.InternshipModel;
 import seedu.address.model.InternshipModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.InternshipUserPrefs;
 import seedu.address.model.internship.CompanyNameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the InternshipModel) for {@code InternshipFindCommand}.
  */
 public class InternshipFindCommandTest {
-    private InternshipModel model = new InternshipModelManager(getTypicalInternshipData(), new UserPrefs());
-    private InternshipModel expectedModel = new InternshipModelManager(getTypicalInternshipData(), new UserPrefs());
+    private InternshipModel model = new InternshipModelManager(getTypicalInternshipData(), new InternshipUserPrefs());
+    private InternshipModel expectedModel = new InternshipModelManager(getTypicalInternshipData(),
+            new InternshipUserPrefs());
 
     @Test
     public void equals() {

@@ -29,7 +29,8 @@ public class JsonUserPrefsStorageTest {
         assertThrows(NullPointerException.class, () -> readUserPrefs(null));
     }
 
-    private Optional<InternshipUserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder) throws DataLoadingException {
+    private Optional<InternshipUserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder)
+            throws DataLoadingException {
         Path prefsFilePath = addToTestDataPathIfNotNull(userPrefsFileInTestDataFolder);
         return new JsonUserPrefsStorage(prefsFilePath).readUserPrefs(prefsFilePath);
     }
