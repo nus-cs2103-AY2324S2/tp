@@ -21,6 +21,7 @@ public class Loan {
     private final float value;
     private final Date startDate;
     private final Date returnDate;
+    private boolean isReturned;
 
     /**
      * Constructs a {@code Loan} with a given id.
@@ -36,6 +37,25 @@ public class Loan {
         this.value = value;
         this.startDate = startDate;
         this.returnDate = returnDate;
+        this.isReturned = false;
+    }
+
+    /**
+     * Constructs a {@code Loan} with a given id and return status.
+     *
+     * @param id A valid id.
+     * @param value A valid value.
+     * @param startDate A valid start date.
+     * @param returnDate A valid return date.
+     * @param isReturned A valid return status.
+     */
+    public Loan(int id, float value, Date startDate, Date returnDate, boolean isReturned) {
+        requireAllNonNull(id, value, startDate, returnDate, isReturned);
+        this.id = id;
+        this.value = value;
+        this.startDate = startDate;
+        this.returnDate = returnDate;
+        this.isReturned = isReturned;
     }
 
     /**
@@ -68,9 +88,31 @@ public class Loan {
         return returnDate;
     }
 
+    public boolean isReturned() {
+        return isReturned;
+    }
+
+    public boolean isActive() {
+        return !isReturned;
+    }
+
+    /**
+     * Marks the loan as returned.
+     */
+    public void markAsReturned() {
+        isReturned = true;
+    }
+
     @Override
     public String toString() {
-        return String.format("$%.2f, %s, %s", value, startDate, returnDate);
+        // return String.format("$%.2f, %s, %s", value, startDate, returnDate);
+        if (isReturned) {
+            return String.format("$%.2f, %s, %s (Returned)", value, DateUtil.format(startDate),
+                    DateUtil.format(returnDate));
+        } else {
+            return String.format("$%.2f, %s, %s", value, DateUtil.format(startDate),
+                    DateUtil.format(returnDate));
+        }
     }
 
     @Override
