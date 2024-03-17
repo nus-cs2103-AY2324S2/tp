@@ -73,4 +73,24 @@ public class DateOfBirth {
     public String toString() {
         return dateOfBirth.format(outputFormat);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DateOfBirth)) {
+            return false;
+        }
+
+        DateOfBirth otherDateOfBirth = (DateOfBirth) other;
+        return dateOfBirth.equals(otherDateOfBirth.dateOfBirth);
+    }
+
+    @Override
+    public int hashCode() {
+        return dateOfBirth.hashCode();
+    }
 }
