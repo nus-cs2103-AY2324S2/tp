@@ -117,13 +117,16 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [g/GROUP] [t/TAG]`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [g/GROUP] [g/MORE GROUPS]`
 
 * The NAME search is case-insensitive. e.g `hans` will match `Hans`
 * The order of NAME keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched for NAME e.g. `Han` will not match `Hans`
 * Persons matching ANY word will be selected for NAME (e.g. `Hans Bo` will fetch `Hans Gruber`, `Bo Yang`)
-* For all other parameters PHONE, EMAIL, GROUP, TAG: they will be selected using prefixSearch
+* The PHONE search matches people that has a number that STARTS WITH the query (e.g `9123` fetches `91237654`)
+* The EMAIL search uses a PARTIAL, case-insensitive match. (e.g. `charles` matches `PrinceCharles@kingston.com`)
+* The TAG search uses an EXACT case-sensitive match. 
+* The GROUP search fetches people with ALL specified groups (e.g `g/CS2101 g/CS2103T` matches a person who minimally has BOTH these Groups)
 * Persons matching all parameters will be returned (i.e. `AND` search).
   
 
@@ -194,12 +197,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**   | `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG] [g/GROUP]`<br> e.g., `find n/James g/CS2103T`                                                                       |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |

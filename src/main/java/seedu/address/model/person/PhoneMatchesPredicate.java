@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.logic.commands.FindCommand;
+
 import java.util.function.Predicate;
 
 /**
@@ -12,9 +14,20 @@ public class PhoneMatchesPredicate implements Predicate<Person> {
         numToMatch = s;
     }
 
+    /**
+     * Returns true if a person's {@code Phone} starts with or matches the given number.
+     * False otherwise
+     *
+     * @param person the person to check against
+     * @return if a person's phone starts with or fully matches the given number
+     */
     @Override
     public boolean test(Person person) {
-        return false;
+        if (numToMatch.equals(FindCommand.NOT_REQUIRED_VALUE)) {
+            return true;
+        } else {
+            return person.getPhone().value.startsWith(numToMatch.trim());
+        }
     }
 
     @Override
