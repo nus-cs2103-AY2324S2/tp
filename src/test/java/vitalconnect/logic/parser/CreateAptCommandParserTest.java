@@ -3,9 +3,6 @@ package vitalconnect.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static vitalconnect.testutil.Assert.assertThrows;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.logic.commands.CreateAptCommand;
@@ -16,13 +13,10 @@ public class CreateAptCommandParserTest {
 
     private final CreateAptCommandParser parser = new CreateAptCommandParser();
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-
     @Test
     public void parse_validArgs_returnsCreateAptCommand() throws Exception {
         String patientName = "John Doe";
         String dateTimeStr = "02/02/2024 1330";
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
 
         String userInput = patientName + " /time " + dateTimeStr;
         CreateAptCommand expectedCommand = new CreateAptCommand(patientName, dateTimeStr);
