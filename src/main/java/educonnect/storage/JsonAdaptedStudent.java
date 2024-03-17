@@ -95,6 +95,11 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
+
+
+        if (!Link.isValidLink(link)) {
+            throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
+        }
         final Link modelLink = new Link(link);
 
         if (telegramHandle == null) {

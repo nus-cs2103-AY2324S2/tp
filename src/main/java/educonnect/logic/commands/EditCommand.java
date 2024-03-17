@@ -163,15 +163,15 @@ public class EditCommand extends Command {
             setStudentId(toCopy.studentId);
             setEmail(toCopy.email);
             setTelegramHandle(toCopy.telegramHandle);
-            setTags(toCopy.tags);
             setLink(toCopy.link);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, studentId, email, telegramHandle, tags);
+            return CollectionUtil.isAnyNonNull(name, studentId, email, telegramHandle, link, tags);
         }
 
         public void setName(Name name) {
@@ -257,8 +257,8 @@ public class EditCommand extends Command {
                     .add("student id", studentId)
                     .add("email", email)
                     .add("telegram handle", telegramHandle)
-                    .add("tags", tags)
                     .add("link", link)
+                    .add("tags", tags)
                     .toString();
         }
     }

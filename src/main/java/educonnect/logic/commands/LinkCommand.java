@@ -64,8 +64,7 @@ public class LinkCommand extends Command{
             Student newStudent = createEditedStudent(studentToLink, linkStudentDescriptor);
             model.setStudent(studentToLink, newStudent);
             model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
-            System.out.println(newStudent);
-            return new CommandResult(String.format(MESSAGE_LINK_STUDENT_SUCCESS, Messages.format(studentToLink)));
+            return new CommandResult(String.format(MESSAGE_LINK_STUDENT_SUCCESS, Messages.format(newStudent)));
         }).orElseThrow(() -> new CommandException(Messages.MESSAGE_NO_STUDENT_FOUND));
     }
     public static class LinkStudentDescriptor {

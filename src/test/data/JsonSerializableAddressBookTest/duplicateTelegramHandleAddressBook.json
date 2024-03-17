@@ -4,11 +4,13 @@
     "studentId": "A1234567P",
     "email": "alice@example.com",
     "telegramHandle": "@alicepaul",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "studentId": "A1234567X",
     "email": "dexter@example.com",
-    "telegramHandle": "@alicepaul"
+    "telegramHandle": "@alicepaul",
+    "link": "https://github.com/tanjiajiajun/tp"
   } ]
 }

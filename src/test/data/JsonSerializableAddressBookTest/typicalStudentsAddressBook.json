@@ -5,42 +5,49 @@
     "studentId" : "A0077493U",
     "email" : "alice@example.com",
     "telegramHandle" : "@Paulice",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags" : [ "tutorial-1" ]
   }, {
     "name" : "Benson Meier",
     "studentId" : "A1235678J",
     "email" : "johnd@example.com",
     "telegramHandle" : "@benmeier",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags" : [ "tutorial-2", "strong-student" ]
   }, {
     "name" : "Carl Kurz",
     "studentId" : "A9876543N",
     "email" : "heinz@example.com",
     "telegramHandle" : "@wallstreet",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
     "studentId" : "A1357924D",
     "email" : "cornelia@example.com",
     "telegramHandle" : "@danelia",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags" : [ "tutorial-3" ]
   }, {
     "name" : "Elle Meyer",
     "studentId" : "A9482224Y",
     "email" : "werner@example.com",
     "telegramHandle" : "@michegan",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "studentId" : "A9482427K",
     "email" : "lydia@example.com",
     "telegramHandle" : "@littletokyo",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags" : [ ]
   }, {
     "name" : "George Best",
     "studentId" : "A6482442L",
     "email" : "anna@example.com",
     "telegramHandle" : "@georgie",
+    "link": "https://github.com/tanjiajiajun/tp",
     "tags" : [ ]
   } ]
 }

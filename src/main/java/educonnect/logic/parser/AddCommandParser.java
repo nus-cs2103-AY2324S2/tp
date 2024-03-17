@@ -1,22 +1,14 @@
 package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
-import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
-import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static educonnect.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.parser.exceptions.ParseException;
-import educonnect.model.student.Email;
-import educonnect.model.student.Name;
-import educonnect.model.student.Student;
-import educonnect.model.student.StudentId;
-import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.*;
 import educonnect.model.tag.Tag;
 
 /**
@@ -45,6 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         TelegramHandle telegramHandle = ParserUtil.parseTelegramHandle(
                     argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).get());
+        Link link = new Link(" ");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Student student = new Student(name, studentId, email, telegramHandle, tagList);

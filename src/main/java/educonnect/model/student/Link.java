@@ -7,6 +7,7 @@ public class Link {
     public static final String VALIDATION_REGEX = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
     public String url;
     public Link(String url) {
+        requireNonNull(url);
         this.url = url;
     }
 

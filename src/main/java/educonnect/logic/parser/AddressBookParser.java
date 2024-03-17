@@ -70,7 +70,6 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case LinkCommand.COMMAND_WORD:
-            System.out.println(arguments);
             return new LinkCommandParser().parse(arguments);
 
         default:

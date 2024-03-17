@@ -3,11 +3,13 @@
     "name": "Valid Student",
     "studentId": "A1234567P",
     "email": "hans@example.com",
-    "telegramHandle": "@hans"
+    "telegramHandle": "@hans",
+    "link": "https://github.com/tanjiajiajun/tp"
   }, {
     "name": "Student With Invalid student Id Field",
     "studentId": "AA123456P",
     "email": "hans@example.com",
-    "telegramHandle": "@studentT"
+    "telegramHandle": "@studentT",
+    "link": "https://github.com/tanjiajiajun/tp"
   } ]
 }

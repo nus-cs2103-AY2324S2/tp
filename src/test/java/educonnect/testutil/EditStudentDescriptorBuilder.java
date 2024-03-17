@@ -36,6 +36,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setStudentId(student.getStudentId());
         descriptor.setEmail(student.getEmail());
         descriptor.setTelegramHandle(student.getTelegramHandle());
+        descriptor.setLink(student.getLink());
         descriptor.setTags(student.getTags());
     }
 

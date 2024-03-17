@@ -44,11 +44,10 @@ public class Messages {
                 .append(student.getEmail())
                 .append("; Telegram Handle: ")
                 .append(student.getTelegramHandle())
-                .append("; Tags: ")
                 .append("; Link: ")
-                .append(student.getLink());
+                .append(student.getLink())
+                .append("; Tags: ");
         student.getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }

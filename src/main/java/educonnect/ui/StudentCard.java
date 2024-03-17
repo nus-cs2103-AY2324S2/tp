@@ -70,14 +70,11 @@ public class StudentCard extends UiPart<Region> {
         studentID.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
         telegram.setText(student.getTelegramHandle().value);
-
+        hyperlink.setText("Project Link");
         // Set the visibility of the hyperlink based on whether the student has a non-empty URL
-//        String url = student.getLink().url; // Assuming getLink().url returns a String
-//        boolean isUrlPresent = url != null && !url.isEmpty();
-//        hyperlink.setVisible(isUrlPresent);
-
-        // Optionally, disable the hyperlink if the URL is not present to prevent any action
-//        hyperlink.setDisable(!isUrlPresent);
+        String url = student.getLink().url; // Assuming getLink().url returns a String
+        boolean isUrlPresent = url != null && !url.isEmpty();
+        hyperlink.setVisible(isUrlPresent);
 
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

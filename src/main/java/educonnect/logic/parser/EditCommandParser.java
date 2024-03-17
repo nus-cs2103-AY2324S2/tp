@@ -1,11 +1,7 @@
 package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
-import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
-import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static educonnect.logic.parser.CliSyntax.*;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -32,7 +28,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID,
-                        PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE, PREFIX_TAG);
+                        PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE, PREFIX_LINK, PREFIX_TAG);
 
         Index index;
 
@@ -59,6 +55,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).isPresent()) {
             editPersonDescriptor.setTelegramHandle(ParserUtil.parseTelegramHandle(argMultimap.getValue(
                         PREFIX_TELEGRAM_HANDLE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_LINK).isPresent()) {
+            editPersonDescriptor.setLink(ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
