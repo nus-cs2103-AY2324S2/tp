@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,7 +67,8 @@ class DeleteRelationshipCommandTest {
         relationshipManager.addRelationship("TestRelationship", relationship);
 
         // Parse the command to delete the relationship
-        assertDoesNotThrow(() -> command.parseCommand("deleterelation /TestRelationship " + person1.getUuid() + "," + person2.getUuid()));
+        assertDoesNotThrow(() -> command.parseCommand("deleterelation /TestRelationship "
+                + person1.getUuid() + "," + person2.getUuid()));
 
         // Check if the relationship is removed
         assertTrue(relationshipManager.getRelationships("TestRelationship").isEmpty());
@@ -84,12 +84,14 @@ class DeleteRelationshipCommandTest {
 
     @Test
     void parseCommand_invalidRelationshipType_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /InvalidType 1234,5678"));
+        assertThrows(IllegalArgumentException.class, () ->
+                command.parseCommand("deleterelation /InvalidType 1234,5678"));
     }
 
     @Test
     void parseCommand_invalidMissingParts_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /TestRelationship 1234"));
+        assertThrows(IllegalArgumentException.class, () ->
+                command.parseCommand("deleterelation /TestRelationship 1234"));
     }
 
     @Test
