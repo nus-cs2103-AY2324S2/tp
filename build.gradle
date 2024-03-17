@@ -63,9 +63,6 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
-
-    testImplementation 'org.mockito:mockito-core:4.0.0' // Use the latest version appropriate for your project
-    testImplementation 'org.mockito:mockito-junit-jupiter:4.0.0'
 }
 
 shadowJar {
