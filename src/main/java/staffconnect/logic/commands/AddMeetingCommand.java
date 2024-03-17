@@ -5,6 +5,7 @@ import static staffconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static staffconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -85,12 +86,11 @@ public class AddMeetingCommand extends Command {
         Venue currentVenue = personToEdit.getVenue();
         Module currentModule = personToEdit.getModule();
         Set<Tag> currentTags = personToEdit.getTags();
-        //Set<Meeting> currentMeetings = personToEdit.getMeetings();
+        Set<Meeting> currentMeetings = new HashSet<>(personToEdit.getMeetings()); //to reduce coupling with Person
         Person editedPerson = new Person(currentName, currentPhone, currentEmail, currentVenue, currentModule,
                                       currentTags);
-        //currentMeetings.add(meeting);
-        editedPerson.addMeetings(meeting);
-        //editedPerson.setMeetings(currentMeetings);
+        currentMeetings.add(meeting);
+        editedPerson.setMeetings(currentMeetings);
         return editedPerson;
     }
 
