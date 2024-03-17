@@ -25,6 +25,7 @@ public abstract class Person {
     // Data fields
     protected final Address address;
     protected final Set<Tag> tags = new HashSet<>();
+    protected Person pairedWith;
 
     /**
      * Every field must be present and not null.
@@ -37,6 +38,7 @@ public abstract class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.role = role;
+        this.pairedWith = null;
     }
 
     public int getId() {
@@ -69,6 +71,14 @@ public abstract class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Person getPairedWith() {
+        return pairedWith;
+    }
+
+    public void setPairedWith(Person pairedWith) {
+        this.pairedWith = pairedWith;
     }
 
     /**
@@ -111,13 +121,14 @@ public abstract class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && role.equals(otherPerson.role);
+                && role.equals(otherPerson.role)
+                && pairedWith.equals(otherPerson.pairedWith);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, name, phone, email, address, tags, role);
+        return Objects.hash(id, name, phone, email, address, tags, role, pairedWith);
     }
 
     @Override
@@ -130,6 +141,7 @@ public abstract class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("role", role)
+                .add("pairedWith", pairedWith == null ? "None" : pairedWith.getName())
                 .toString();
     }
 

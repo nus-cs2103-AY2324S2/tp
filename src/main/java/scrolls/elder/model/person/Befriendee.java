@@ -39,7 +39,8 @@ public class Befriendee extends Person {
                 && phone.equals(otherBefriendee.phone)
                 && email.equals(otherBefriendee.email)
                 && address.equals(otherBefriendee.address)
-                && tags.equals(otherBefriendee.tags);
+                && tags.equals(otherBefriendee.tags)
+                && pairedWith.equals(otherBefriendee.pairedWith);
     }
 
     @Override
@@ -51,6 +52,7 @@ public class Befriendee extends Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("role", role)
+                .add("pairedWith", pairedWith == null ? "None" : pairedWith.getName())
                 .toString();
     }
 }
