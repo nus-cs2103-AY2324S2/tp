@@ -17,12 +17,12 @@ public class OrderBuilder {
 
     // Solution below adapted from https://stackoverflow.com/a/29059595
     public static final String DEFAULT_ORDER_ID = "58b76419-f9ff-4aa1-8e70-604993fc1a20";
-    public static final String DEFAULT_ORDER_DATE = "2021-10-10";
-    public static final String DEFAULT_DEADLINE = "2021-10-10";
-    public static final String DEFAULT_AMOUNT = "100.00";
+    public static final String DEFAULT_ORDER_DATE = "10-10-2024 00:00";
+    public static final String DEFAULT_DEADLINE = "11-10-2024 23:59";
+    public static final String DEFAULT_AMOUNT = "100";
     public static final String DEFAULT_REMARK = "No remark";
     public static final String DEFAULT_STATUS = "PENDING";
-    public static final String DEFAULT_DISCOUNT = "0.00";
+    public static final String DEFAULT_DISCOUNT = "0";
 
     private OrderId orderId;
     private OrderDate orderDate;

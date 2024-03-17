@@ -31,7 +31,7 @@ class OrderTest {
         Order editedRoses;
 
         // different amount -> returns false
-        editedRoses = new OrderBuilder(ROSES).withAmount("200.00").build();
+        editedRoses = new OrderBuilder(ROSES).withAmount("200").build();
         assertNotEquals(ROSES, editedRoses);
 
         // different deadline -> returns false
@@ -60,7 +60,7 @@ class OrderTest {
 
         // different discount -> returns false
         editedRoses = new OrderBuilder(ROSES)
-                .withDiscount("0.10")
+                .withDiscount("10")
                 .build();
         assertNotEquals(ROSES, editedRoses);
 
