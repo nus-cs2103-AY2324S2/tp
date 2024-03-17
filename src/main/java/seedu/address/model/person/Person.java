@@ -26,12 +26,13 @@ public class Person {
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
     private final Birthday birthday;
+    private final MoneyOwed moneyOwed;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email,
-                  Address address, Remark remark, Set<Tag> tags, Birthday birthday) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Remark remark, Set<Tag> tags, Birthday birthday, MoneyOwed moneyOwed) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -40,6 +41,7 @@ public class Person {
         this.remark = remark;
         this.tags.addAll(tags);
         this.birthday = birthday;
+        this.moneyOwed = moneyOwed;
     }
 
     public Name getName() {
@@ -52,6 +54,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public MoneyOwed getMoneyOwed() {
+        return moneyOwed;
     }
 
     public Address getAddress() {
@@ -108,7 +114,8 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && birthday.equals(otherPerson.birthday);
+                && birthday.equals(otherPerson.birthday)
+                && moneyOwed.equals(otherPerson.moneyOwed);
     }
 
     @Override
@@ -127,6 +134,7 @@ public class Person {
                 .add("remark", remark)
                 .add("tags", tags)
                 .add("birthday", birthday)
+                .add("moneyOwed", moneyOwed)
                 .toString();
     }
 

@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -39,6 +40,7 @@ public class PersonUtil {
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         sb.append(PREFIX_BIRTHDAY + person.getBirthday().toString() + " ");
+        sb.append(PREFIX_MONEY_OWED + person.getMoneyOwed().toString() + " ");
         return sb.toString();
     }
 
@@ -61,6 +63,8 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        descriptor.getMoneyOwed().ifPresent(moneyOwed -> sb.append(PREFIX_MONEY_OWED)
+                .append(moneyOwed.toString()).append(" "));
         return sb.toString();
     }
 }
