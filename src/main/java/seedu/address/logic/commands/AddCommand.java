@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -25,14 +24,14 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_STUDENTID + "STUDENTID "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
+
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GRADE + "GRADE"
             + "[" + PREFIX_GROUP + "GROUP]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENTID + "A0123456H "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
+
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GRADE + "A+"
             + PREFIX_GROUP + "Group 1 "

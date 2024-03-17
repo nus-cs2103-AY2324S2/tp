@@ -18,7 +18,6 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
 
 public class ParserUtilTest {
@@ -83,6 +82,7 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
+
     @Test
     public void parseStudentId_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseStudentId((String) null));
@@ -99,28 +99,12 @@ public class ParserUtilTest {
         assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_STUDENTID));
     }
 
-    @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
 
-    @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
-    }
 
-    @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
-    }
 
-    @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
-    }
+
+
+
 
     @Test
     public void parseGrade_null_throwsNullPointerException() {
@@ -129,7 +113,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseGrade_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_GRADE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseGrade(INVALID_GRADE));
     }
 
     @Test

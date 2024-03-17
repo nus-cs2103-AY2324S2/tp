@@ -18,8 +18,10 @@ public class Person {
 
     // Identity fields
     private final Name name;
+
     private final StudentId studentId;
-    private final Phone phone;
+
+
     private final Email email;
 
     // Data fields
@@ -29,12 +31,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, StudentId studentId, Phone phone, Email email, Grade grade,
+
+    public Person(Name name, StudentId studentId, Email email, Grade grade,
                   Set<Group> groups) {
-        requireAllNonNull(name, studentId, phone, email, grade, groups);
+        requireAllNonNull(name, studentId, email, grade, groups);
         this.name = name;
         this.studentId = studentId;
-        this.phone = phone;
         this.email = email;
         this.groups.addAll(groups);
         this.grade = grade;
@@ -44,13 +46,11 @@ public class Person {
         return name;
     }
 
+
     public StudentId getStudentId() {
         return studentId;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
 
     public Email getEmail() {
         return email;
@@ -98,8 +98,9 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
+
                 && studentId.equals(otherPerson.studentId)
-                && phone.equals(otherPerson.phone)
+
                 && email.equals(otherPerson.email)
                 && grade.equals(otherPerson.grade)
                 && groups.equals(otherPerson.groups);
@@ -108,7 +109,9 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, studentId, phone, email, grade, groups);
+
+        return Objects.hash(name, studentId, email, grade, groups);
+
     }
 
     @Override
@@ -116,7 +119,6 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("studentId", studentId)
-                .add("phone", phone)
                 .add("email", email)
                 .add("grade", grade)
                 .add("groups", groups)

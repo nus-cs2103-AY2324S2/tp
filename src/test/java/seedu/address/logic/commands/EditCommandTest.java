@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_GROUP1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -58,11 +57,12 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
 
+
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withStudentId(VALID_STUDENTID_BOB)
-            .withGrade(VALID_GRADE_BOB).withPhone(VALID_PHONE_BOB).withGroups(VALID_GROUP_GROUP1).build();
+            .withGrade(VALID_GRADE_BOB).withGroups(VALID_GROUP_GROUP1).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-            .withStudentId(VALID_STUDENTID_BOB).withPhone(VALID_PHONE_BOB).withGrade(VALID_GRADE_BOB)
+            .withStudentId(VALID_STUDENTID_BOB).withGrade(VALID_GRADE_BOB)
             .withGroups(VALID_GROUP_GROUP1).build();
 
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
