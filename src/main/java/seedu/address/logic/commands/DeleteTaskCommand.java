@@ -15,7 +15,7 @@ public class DeleteTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + "<index> : Deletes a task in the task list.";
     public static final String MESSAGE_SUCCESS = "Task number %1$s has been deleted.";
     public static final String MESSAGE_INDEX_TOO_LARGE = "The index is not valid, use \"list task\" to "
-            + "display all valid tasks.";
+            + "display all tasks.";
     public static final String MESSAGE_INDEX_BELOW_ONE = "The index must be greater than 0.";
 
     private final Integer taskIndexToDelete;
