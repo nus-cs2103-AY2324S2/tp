@@ -163,6 +163,16 @@ public class AddCommandTest {
         public void addBooking(Booking booking) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasBooking(Booking booking) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Booking> getFilteredBookingList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

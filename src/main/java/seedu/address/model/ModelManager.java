@@ -155,14 +155,33 @@ public class ModelManager implements Model {
         updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
+    @Override
+    public boolean hasBooking(Booking booking) {
+        requireNonNull(booking);
+        return addressBook.hasBooking(booking);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Booking} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Booking} backed by the
+     * internal list of
      * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Booking> getFilteredBookingList() {
+        return filteredBookings;
+    }
+
+    /**
+     * Updates an unmodifiable view of the list of {@code Booking} backed by the
+     * internal list of
+     * {@code predicate}
      */
     public void updateFilteredBookingList(Predicate<Booking> predicate) {
         requireNonNull(predicate);
         filteredBookings.setPredicate(predicate);
     }
+
+
 }

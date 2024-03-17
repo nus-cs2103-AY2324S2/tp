@@ -92,6 +92,10 @@ public interface Model {
      */
     void addBooking(Booking booking);
 
+    /**
+     * Returns True if booking exists, else False
+     */
+    boolean hasBooking(Booking booking);
 
-
+    ObservableList<Booking> getFilteredBookingList();
 }
