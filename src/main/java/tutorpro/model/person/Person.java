@@ -1,7 +1,5 @@
 package tutorpro.model.person;
 
-//import static tutorpro.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -63,7 +61,7 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public boolean addTags(Tag... tags) {
+    protected boolean addTags(Tag... tags) {
         return this.tags.addAll(Arrays.asList(tags));
     }
 
