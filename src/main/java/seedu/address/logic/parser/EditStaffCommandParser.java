@@ -83,9 +83,6 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
     private EditStaffDescriptor editStaffDescription(ArgumentMultimap fieldArgMultimap) throws ParseException {
         EditStaffDescriptor editStaffDescription = new EditStaffDescriptor();
 
-        if (fieldArgMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editStaffDescription.setName(ParserUtil.parseName(fieldArgMultimap.getValue(PREFIX_NAME).get()));
-        }
         if (fieldArgMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editStaffDescription.setPhone(ParserUtil.parsePhone(fieldArgMultimap.getValue(PREFIX_PHONE).get()));
         }

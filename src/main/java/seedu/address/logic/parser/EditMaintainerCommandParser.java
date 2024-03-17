@@ -87,9 +87,6 @@ public class EditMaintainerCommandParser implements Parser<EditMaintainerCommand
                 ArgumentMultimap fieldArgMultimap) throws ParseException {
         EditMaintainerDescriptor editMaintainerDescriptor = new EditMaintainerDescriptor();
 
-        if (fieldArgMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editMaintainerDescriptor.setName(ParserUtil.parseName(fieldArgMultimap.getValue(PREFIX_NAME).get()));
-        }
         if (fieldArgMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editMaintainerDescriptor.setPhone(ParserUtil.parsePhone(fieldArgMultimap.getValue(PREFIX_PHONE).get()));
         }

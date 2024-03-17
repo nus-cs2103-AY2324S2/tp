@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALICEMAINTAINER;
+import static seedu.address.testutil.TypicalPersons.ALICESTAFF;
+import static seedu.address.testutil.TypicalPersons.ALICESUPPLIER;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
@@ -128,5 +131,17 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+
+        // finds a valid person by name
+        assertEquals(ALICE, modelManagerCopy.findByName(ALICE.getName()));
+
+        // finds a valid staff by name
+        assertEquals(ALICESTAFF, modelManagerCopy.findStaffByName(ALICESTAFF.getName()));
+
+        // finds a valid supplier by name
+        assertEquals(ALICESUPPLIER, modelManagerCopy.findSupplierByName(ALICESUPPLIER.getName()));
+
+        // finds a valid maintainer by name
+        assertEquals(ALICEMAINTAINER, modelManagerCopy.findMaintainerByName(ALICEMAINTAINER.getName()));
     }
 }

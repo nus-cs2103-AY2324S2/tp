@@ -55,7 +55,7 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
         }
 
         ArgumentMultimap fieldArgMultimap =
-                ArgumentTokenizer.tokenize(fieldArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                ArgumentTokenizer.tokenize(fieldArgs, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_PRODUCT, PREFIX_PRICE);
 
         fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
@@ -85,9 +85,6 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
     private EditSupplierDescriptor editSupplierDescription(ArgumentMultimap fieldArgMultimap) throws ParseException {
         EditSupplierDescriptor editSupplierDescription = new EditSupplierDescriptor();
 
-        if (fieldArgMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editSupplierDescription.setName(ParserUtil.parseName(fieldArgMultimap.getValue(PREFIX_NAME).get()));
-        }
         if (fieldArgMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editSupplierDescription.setPhone(ParserUtil.parsePhone(fieldArgMultimap.getValue(PREFIX_PHONE).get()));
         }
