@@ -83,8 +83,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_import() throws Exception {
-        assertTrue(parser.parseCommand(ImportCommand.COMMAND_WORD) instanceof ImportCommand);
-        assertTrue(parser.parseCommand(ImportCommand.COMMAND_WORD + " 3") instanceof ImportCommand);
+        assertTrue(parser.parseCommand(ImportCommand.COMMAND_WORD + " f/filename") instanceof ImportCommand);
+        assertTrue(parser.parseCommand(ImportCommand.COMMAND_WORD + " f/filename1 f/filename2") instanceof ImportCommand);
     }
 
     @Test
