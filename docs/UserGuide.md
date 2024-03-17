@@ -27,9 +27,9 @@ MyBookshelf is a **desktop app for librarians managing contacts and borrowing st
 
     * `list` : Lists all contacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to User List.
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the User List.
 
     * `clear` : Deletes all contacts.
 
@@ -65,53 +65,53 @@ MyBookshelf is a **desktop app for librarians managing contacts and borrowing st
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a borrower: `add`
+### Adding a user: `add`
 
-Adds a borrower into the address book using the borrower's personal information.
+Adds a user with user's personal information into the User List .
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A borrower can have any number of tags (including 0)
+A user can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all borrowers : `list`
+### Listing all users : `list`
 
-Shows a list of all borrowers in the address book.
+Shows a list of all users in the User List.
 
 Format: `list`
 
-### Editing a borrower : `edit`
+### Editing a user : `edit`
 
-Edits an existing borrowers' perrsonal information in the address book.
+Edits an existing user's personal information from the User List.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the borrower at the specified `INDEX`. The index refers to the index number shown in the displayed borrower list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the user at the specified `INDEX`. The index refers to the index number shown in the displayed User List. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the borrower will be removed i.e adding of tags is not cumulative.
-* You can remove all the borrower’s tags by typing `t/` without
+* When editing tags, the existing tags of the user will be removed i.e adding of tags is not cumulative.
+* You can remove all the user’s tags by typing `t/` without
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st borrower to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st user to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating borrowers by name: `find`
+### Locating users by name: `find`
 
-Finds borrowers whose names contain any of the given keywords.
+Finds users whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -119,7 +119,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Borrowers matching at least one keyword will be returned (i.e. `OR` search).
+* Users matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -127,60 +127,57 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a borrower : `delete`
+### Deleting a user : `delete`
 
-Deletes the specified borrower from the address book using index.
+Deletes the specified user from the User List using index.
 
 Format: `delete INDEX`
 
-* Deletes the borrower at the specified `INDEX`.
-* The index refers to the index number shown in the displayed borrower list.
+* Deletes the user at the specified `INDEX`.
+* The index refers to the index number shown in the displayed User List.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd borrower in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st borrower in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd user in the User List.
+* `find Betsy` followed by `delete 1` deletes the 1st user in the results of the `find` command.
 
-### Borrow a book by a borrower: `borrow`
+### Borrow a book by a user: `borrow`
 
-Borrow a book from the library by a borrower.
+Borrow a book from the library by a user.
 
 Format: `borrow INDEX BOOKTITLE`
 
-* Borrow the book with `BOOKTITLE` to borrower with index `INDEX`
-* The index refers to the index number shown in the displayed borrower list.
+* Borrow the book with `BOOKTITLE` to user `INDEX`
+* The index refers to the index number shown in the displayed User List.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `borrow 2 I Love CS2103T CS2101` will record borrower index 2, borrows a book called "I Love CS2103T CS2101".
-* `borrow 4 The Hero with a Thousand Faces` will record borrower index 4, borrows a book called "The Hero with a Thousand Face".
+* `borrow 2 I Love CS2103T CS2101` will record user index 2, borrows a book called "I Love CS2103T CS2101".
+* `borrow 4 The Hero with a Thousand Faces` will record user index 4, borrows a book called "The Hero with a Thousand Face".
 
-Note:
-* Borrow is only allowed for borrower with **Merit Score > 0**.
+### Return a book from a user : `return`
 
-### Return a book from a borrower : `return`
-
-Return the book borrowed by a borrower.
+Return the book borrowed by a user.
 
 Format: `return INDEX`
 
-* Return the book borrowed by borrower with `INDEX`
-* The index refers to the index number shown in the displayed borrower list.
+* Return the book borrowed by user `INDEX`
+* The index refers to the index number shown in the displayed User List.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-### Donate a book from a borrower : `donate`
+### Donate a book from a user : `donate`
 
-Records a borrower donating a book to the library.
+Records a user donating a book to the library.
 
 Format: `donate INDEX BOOKTITLE`
 
-* A borrower with `INDEX` has donated book `BOOKTITLE`
-* The index refers to the index number shown in the displayed borrower list.
+* A user `INDEX` has donated book `BOOKTITLE`
+* The index refers to the index number shown in the displayed User List.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the User List.
 
 Format: `clear`
 
@@ -214,6 +211,19 @@ Furthermore, certain edits can cause the MyBookshelf to behave in unexpected way
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Note
+
+1. Borrowing is **ONLY** allowed for user with **Merit Score > 0**.
+2. Every user starts from merit score 0.
+3. Donating increases merit score by 1, which means, all users must donate before able to borrow books from the library.
+4. For current iteration, every user can only borrow one book at a time. Return the borrowed book to borrow another book.
+5. Deadline for returning borrowed book is two weeks. But there is no penalty if returning it later or not returning it at all.
+6. Edit command only supports editing user's personal information (name, phone number, email, address and tags, but not merit score and borrowed books).
+7. Add command is used to record new user's personal information into the User List.
+8. Add and Edit Command **DOES NOT** support adding/editing merit score or borrowed book.
 
 --------------------------------------------------------------------------------------------------------------------
 
