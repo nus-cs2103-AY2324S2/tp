@@ -1,8 +1,6 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -13,7 +11,9 @@ import static seedu.address.testutil.TypicalTags.FRIEND;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -107,13 +110,64 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void addDuplicatePerson_throwsDuplicatePersonException() {
+        addressBook.addPerson(ALICE);
+        assertThrows(DuplicatePersonException.class, () -> addressBook.addPerson(ALICE));
     }
 
     @Test
-    public void getTagList_modifySet_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTagList().remove(FRIEND));
+    public void addDuplicateTag_throwsDuplicateTagException() {
+        addressBook.addTag(FRIEND);
+        assertThrows(DuplicateTagException.class, () -> addressBook.addTag(FRIEND));
+    }
+
+    @Test
+    public void setPerson_withSameIdentityFields_throwsDuplicatePersonException() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        assertThrows(DuplicatePersonException.class, () -> addressBook.setPerson(ALICE, editedAlice));
+    }
+
+    @Test
+    public void setTags_withDuplicateTags_throwsDuplicateTagException() {
+        addressBook.addTag(FRIEND);
+        Set<Tag> duplicateTags = new HashSet<>(Arrays.asList(FRIEND, new Tag("friend")));
+        assertThrows(DuplicateTagException.class, () -> addressBook.setTagList(duplicateTags));
+    }
+
+    @Test
+    public void setPerson_withDifferentIdentityFields_success() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        assertDoesNotThrow(() -> addressBook.setPerson(ALICE, editedAlice));
+    }
+
+    @Test
+    public void setTags_withUniqueTags_success() {
+        Set<Tag> uniqueTags = new HashSet<>(Arrays.asList(FRIEND, new Tag("colleague")));
+        assertDoesNotThrow(() -> addressBook.setTagList(uniqueTags));
+    }
+
+    @Test
+    public void removePerson_notExistingPerson_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> addressBook.removePerson(ALICE));
+    }
+
+    @Test
+    public void removeTag_notExistingTag_throwsTagNotFoundException() {
+        assertThrows(TagNotFoundException.class, () -> addressBook.removeTag(FRIEND));
+    }
+
+    @Test
+    public void removePerson_existingPerson_success() {
+        addressBook.addPerson(ALICE);
+        assertDoesNotThrow(() -> addressBook.removePerson(ALICE));
+    }
+
+    @Test
+    public void removeTag_existingTag_success() {
+        addressBook.addTag(FRIEND);
+        assertDoesNotThrow(() -> addressBook.removeTag(FRIEND));
     }
 
     @Test
@@ -121,6 +175,16 @@ public class AddressBookTest {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList()
                 + ", tags=" + addressBook.getTagList() + "}";
         assertEquals(expected, addressBook.toString());
+    }
+
+    @Test
+    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void getTagList_modifySet_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTagList().remove(FRIEND));
     }
 
     /**
