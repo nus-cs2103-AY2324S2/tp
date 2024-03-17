@@ -23,7 +23,7 @@ public class FindAndExportCommandTest {
 
     @Test
     public void execute_validTagAndFilename_success() throws Exception {
-        Path filePath = testFolder.resolve("output.csv");
+        Path filePath = testFolder.resolve("output.json");
         FindAndExportCommand command = new FindAndExportCommand("friends", null, null, filePath.toString());
 
         command.execute(model);

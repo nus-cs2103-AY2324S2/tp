@@ -109,7 +109,7 @@ public class AddressBookParserTest {
         String tag = "friends";
         String name = "John";
         String address = "123 Main St";
-        String filename = "output.csv";
+        String filename = "output.json";
 
         String input = FindAndExportCommand.COMMAND_WORD + " "
                 + PREFIX_TAG + tag + " "
