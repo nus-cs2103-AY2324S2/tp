@@ -21,8 +21,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.*;
-//import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.IdAndNameContainsQueryIdAndNamePredicate;
+import seedu.address.model.person.IdContainsQueryIdPredicate;
+import seedu.address.model.person.NameContainsQueryNamePredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
