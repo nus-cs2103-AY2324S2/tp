@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -56,7 +57,16 @@ public class TagCommand extends Command {
         Person taggedPerson = addTag(personToTag);
         model.setPerson(personToTag, taggedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_TAG_CONTACT_SUCCESS, Messages.format(personToTag)));
+        return new CommandResult(String.format(
+                MESSAGE_TAG_CONTACT_SUCCESS,
+                Messages.format(taggedPerson),
+                showTags(tags)));
+    }
+
+    private static String showTags(Collection<Tag> tags) {
+        return tags.stream().map((tag) -> tag.tagName)
+                .sorted() // making the output order deterministic
+                .collect(Collectors.joining(", "));
     }
 
     private Person addTag(Person personToTag) {
