@@ -11,10 +11,11 @@ public class Family {
 
     /** Message for constraints on family size. */
     public static final String MESSAGE_CONSTRAINTS = "Family size should be at least 1";
+    public static final String VALIDATION_REGEX = "^[1-9]\\d*$";
 
     /** The family size. */
     private String familySize;
-    public static final String VALIDATION_REGEX = "^[1-9]\\d*$";
+
 
     /**
      * Constructs a {@code Family} instance with the given family size including him or herself.

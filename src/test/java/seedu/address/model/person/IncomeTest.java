@@ -18,7 +18,7 @@ public class IncomeTest {
         String invalidIncome = "";
         assertThrows(IllegalArgumentException.class, () -> new Income(invalidIncome));
 
-        String invalidIncomeWithSpaces= " ";
+        String invalidIncomeWithSpaces = " ";
         assertThrows(IllegalArgumentException.class, () -> new Income(invalidIncomeWithSpaces));
     }
 

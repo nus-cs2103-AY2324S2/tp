@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.FAMILY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FAMILY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.INCOME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_FAMILY_DESC;
@@ -228,18 +227,40 @@ public class EditCommandParserTest {
 
         // mulltiple valid fields repeated
         userInput =
-                targetIndex.getOneBased() + PHONE_DESC_AMY + INCOME_DESC_AMY + INCOME_DESC_AMY + ADDRESS_DESC_AMY
-                        + EMAIL_DESC_AMY + FAMILY_DESC_AMY + FAMILY_DESC_AMY + TAG_DESC_BOB + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_BOB
-                        + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + CommandTestUtil.TAG_DESC_BOB;
+                targetIndex.getOneBased()
+                        + PHONE_DESC_AMY
+                        + INCOME_DESC_AMY
+                        + INCOME_DESC_AMY
+                        + ADDRESS_DESC_AMY
+                        + EMAIL_DESC_AMY
+                        + FAMILY_DESC_AMY
+                        + FAMILY_DESC_AMY
+                        + TAG_DESC_BOB
+                        + PHONE_DESC_AMY
+                        + ADDRESS_DESC_AMY
+                        + EMAIL_DESC_AMY
+                        + TAG_DESC_BOB
+                        + PHONE_DESC_BOB
+                        + ADDRESS_DESC_BOB
+                        + EMAIL_DESC_BOB
+                        + CommandTestUtil.TAG_DESC_BOB;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                                                              PREFIX_INCOME, PREFIX_FAMILY));
 
         // multiple invalid values
-        userInput =
-                targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_INCOME_DESC + INVALID_FAMILY_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC
-                + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC + INVALID_INCOME_DESC + INVALID_FAMILY_DESC;
+        userInput = targetIndex.getOneBased()
+                + INVALID_PHONE_DESC
+                + INVALID_INCOME_DESC
+                + INVALID_FAMILY_DESC
+                + INVALID_ADDRESS_DESC
+                + INVALID_EMAIL_DESC
+                + INVALID_PHONE_DESC
+                + INVALID_ADDRESS_DESC
+                + INVALID_EMAIL_DESC
+                + INVALID_INCOME_DESC
+                + INVALID_FAMILY_DESC;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
