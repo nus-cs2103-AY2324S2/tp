@@ -23,7 +23,7 @@ If you can type fast, TalentTracker can get your hiring management tasks done fa
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. 
+1. Type the command in the command box and press Enter to execute it.
 2. Refer to the [Features](#features) below for details of each command.
 
  

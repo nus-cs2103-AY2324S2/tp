@@ -3,7 +3,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..." style="-fx-background-color: #012A4A"/>
+<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..." style="-fx-background-color: #012A4A; -fx-border-color: white; -fx-border-radius: 5px;" />
 </StackPane>
-
