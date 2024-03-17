@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.filename.Filename;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -120,5 +122,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> filenames} into a {@code Set<File>}.
+     *
+     * @param filenames String filenames.
+     * @return A set of files to be imported.
+     * @throws ParseException If the filenames are in an invalid format or are duplicated.
+     */
+    public static Set<File> parseFiles(Collection<String> filenames) throws ParseException {
+        requireNonNull(filenames);
+        final Set<File> fileSet = new HashSet<>();
+        final Set<Filename> filenameSet = new HashSet<>();
+        for (String fname : filenames) {
+            String trimmedFname = fname.trim();
+            if (!Filename.isValidFilename(trimmedFname)) {
+                throw new ParseException(Filename.MESSAGE_CONSTRAINTS);
+            }
+            trimmedFname += ".json";
+            trimmedFname = "./data/" + trimmedFname;
+            Filename curFilename = new Filename(trimmedFname);
+            if (filenameSet.contains(curFilename)) {
+                throw new ParseException(Filename.MESSAGE_DUPLICATE);
+            }
+            fileSet.add(new File(trimmedFname));
+            filenameSet.add(curFilename);
+        }
+        return fileSet;
     }
 }
