@@ -4,13 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "year": "1",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "major": "Computer Science",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "year": "1",
-    "address": "4th street"
+    "major": "Computer Science"
   } ]
 }

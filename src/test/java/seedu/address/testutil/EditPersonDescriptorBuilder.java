@@ -36,7 +36,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setMajor(person.getMajor());
         descriptor.setTags(person.getTags());
     }
 
@@ -75,8 +75,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Major} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Major(address));
+    public EditPersonDescriptorBuilder withMajor(String major) {
+        descriptor.setMajor(new Major(major));
         return this;
     }
 
