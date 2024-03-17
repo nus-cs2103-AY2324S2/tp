@@ -62,8 +62,8 @@ public class Role {
             return false;
         }
 
-        Role otherrole = (Role) other;
-        return role.equals(otherrole.role);
+        Role otherRole = (Role) other;
+        return role.equals(otherRole.role);
     }
 
     @Override
