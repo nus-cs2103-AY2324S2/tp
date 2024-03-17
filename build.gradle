@@ -1,9 +1,10 @@
 plugins {
-    id 'java'
-    id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
-    id 'application'
-    id 'jacoco'
+	id 'java'
+	id 'checkstyle'
+	id 'com.github.johnrengelman.shadow' version '7.1.2'
+	id 'application'
+	id 'jacoco'
+	id 'com.diffplug.spotless' version "6.25.0"
 }
 
 mainClassName = 'seedu.address.Main'
@@ -12,61 +13,80 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
-    mavenCentral()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+	mavenCentral()
+	maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 checkstyle {
-    toolVersion = '10.2'
+	toolVersion = '10.2'
 }
 
 test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
 }
 
 task coverage(type: JacocoReport) {
-    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
-    classDirectories.from files(sourceSets.main.output)
-    executionData.from files(jacocoTestReport.executionData)
-    afterEvaluate {
-        classDirectories.from files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/*.jar'])
-        })
-    }
-    reports {
-        html.required = true
-        xml.required = true
-    }
+	sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
+	classDirectories.from files(sourceSets.main.output)
+	executionData.from files(jacocoTestReport.executionData)
+	afterEvaluate {
+		classDirectories.from files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: ['**/*.jar'])
+		})
+	}
+	reports {
+		html.required = true
+		xml.required = true
+	}
 }
 
 dependencies {
-    String jUnitVersion = '5.4.0'
-    String javaFxVersion = '17.0.7'
+	String jUnitVersion = '5.4.0'
+	String javaFxVersion = '17.0.7'
 
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+	implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
+	implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
+	implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
+	implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
+	implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
+	implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
+	implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
+	implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
+	implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
+	implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
+	implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
+	implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
+	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+	testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+	archiveFileName = 'addressbook.jar'
 }
 
+spotless {
+format 'misc', {
+	// define the files to apply `misc` to
+	target '*.gradle', '.gitattributes', '.gitignore', '*.fxml'
+
+	// define the steps to apply to those files
+	trimTrailingWhitespace()
+	indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
+	endWithNewline()
+}
+java {
+	importOrder()
+	removeUnusedImports()
+
+	palantirJavaFormat('2.9.0').style("AOSP")
+
+	formatAnnotations()
+}
+}
 defaultTasks 'clean', 'test'
