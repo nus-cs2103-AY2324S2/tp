@@ -100,6 +100,15 @@ public class EventBook implements ReadOnlyEventBook {
     // Select Event Methods
 
     /**
+     * Checks if an event is currently selected.
+     *
+     * @return true if an event is selected, false otherwise
+     */
+    public boolean isAnEventSelected() {
+        return selectedEvent != null;
+    }
+
+    /**
      * Selects the given event {@code event} from this {@code EventBook}
      * @param event must exist in the event book
      */
@@ -114,6 +123,31 @@ public class EventBook implements ReadOnlyEventBook {
     public void deselectEvent() {
         selectedEvent = null;
         personsOfSelectedEvent.setPersons(new ArrayList<>());
+    }
+
+    /**
+     * Checks if a person is part of the selected event.
+     *
+     * @param person The person to check.
+     * @return {@code true} if the person is part of the selected event, {@code false} otherwise.
+     */
+    public boolean isPersonInSelectedEvent(Person person) {
+        if (!isAnEventSelected()) {
+            return false;
+        }
+        return selectedEvent.hasPerson(person);
+    }
+
+    /**
+     * Adds a person to the selected event if an event is currently selected.
+     * If no event is selected, the person will not be added.
+     *
+     * @param person The person to be added to the selected event.
+     */
+    public void addPersonToSelectedEvent(Person person) {
+        if (isAnEventSelected()) {
+            selectedEvent.addPerson(person);
+        }
     }
 
     // Util methods

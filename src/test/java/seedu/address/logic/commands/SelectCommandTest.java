@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
-import seedu.address.testutil.TypicalEvents;
 
 
 
@@ -23,14 +23,13 @@ public class SelectCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        ModelManager model = new ModelManager();
-        model.setEventBook(TypicalEvents.getTypicalEventBook());
-        assertThrows(NullPointerException.class, () -> new SelectCommand(Index.fromZeroBased(0)).execute(null));
+        assertThrows(NullPointerException.class, () ->
+                new SelectCommand(Index.fromZeroBased(0)).execute(null));
     }
     @Test
     public void eventIndex_outOfRange_throwsCommandException() {
         ModelManager model = new ModelManager();
-        model.setEventBook(TypicalEvents.getTypicalEventBook());
+        model.setEventBook(getTypicalEventBook());
         assertThrows(CommandException.class, () -> new SelectCommand(Index.fromZeroBased(100)).execute(model));
     }
 
@@ -56,7 +55,7 @@ public class SelectCommandTest {
     @Test
     public void execute_selectSuccessful() throws CommandException {
         ModelManager model = new ModelManager();
-        model.setEventBook(TypicalEvents.getTypicalEventBook());
+        model.setEventBook(getTypicalEventBook());
         SelectCommand selectCommand = new SelectCommand(Index.fromZeroBased(0));
         CommandResult commandResult = selectCommand.execute(model);
         assertEquals(String.format(SelectCommand.MESSAGE_SELECT_EVENT_SUCCESS,

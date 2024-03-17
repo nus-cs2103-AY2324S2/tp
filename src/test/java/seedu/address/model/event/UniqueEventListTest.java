@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.BINGO;
-import static seedu.address.testutil.TypicalEvents.HIKING;
+import static seedu.address.testutil.TypicalEvents.getBingoEvent;
+import static seedu.address.testutil.TypicalEvents.getHikingEvent;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,19 +28,19 @@ public class UniqueEventListTest {
 
     @Test
     public void contains_eventNotInList_returnsFalse() {
-        assertFalse(uniqueEventList.contains(BINGO));
+        assertFalse(uniqueEventList.contains(getBingoEvent()));
     }
 
     @Test
     public void contains_eventInList_returnsTrue() {
-        uniqueEventList.add(BINGO);
-        assertTrue(uniqueEventList.contains(BINGO));
+        uniqueEventList.add(getBingoEvent());
+        assertTrue(uniqueEventList.contains(getBingoEvent()));
     }
 
     @Test
     public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueEventList.add(BINGO);
-        Event editedBingo = new EventBuilder(BINGO).build();
+        uniqueEventList.add(getBingoEvent());
+        Event editedBingo = new EventBuilder(getBingoEvent()).build();
         assertTrue(uniqueEventList.contains(editedBingo));
     }
 
@@ -51,39 +51,39 @@ public class UniqueEventListTest {
 
     @Test
     public void add_duplicateEvent_throwsDuplicateEventException() {
-        uniqueEventList.add(BINGO);
-        assertThrows(DuplicateEventException.class, () -> uniqueEventList.add(BINGO));
+        uniqueEventList.add(getBingoEvent());
+        assertThrows(DuplicateEventException.class, () -> uniqueEventList.add(getBingoEvent()));
     }
 
     @Test
     public void setEvent_nullTargetEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(null, BINGO));
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(null, getBingoEvent()));
     }
 
     @Test
     public void setEvent_nullEditedEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(BINGO, null));
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(getBingoEvent(), null));
     }
 
     @Test
     public void setEvent_targetEventNotInList_throwsEventNotFoundException() {
-        assertThrows(EventNotFoundException.class, () -> uniqueEventList.setEvent(BINGO, BINGO));
+        assertThrows(EventNotFoundException.class, () -> uniqueEventList.setEvent(getBingoEvent(), getBingoEvent()));
     }
 
     @Test
     public void setEvent_editedEventIsSameEvent_success() {
-        uniqueEventList.add(BINGO);
-        uniqueEventList.setEvent(BINGO, BINGO);
+        uniqueEventList.add(getBingoEvent());
+        uniqueEventList.setEvent(getBingoEvent(), getBingoEvent());
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
-        expectedUniqueEventList.add(BINGO);
+        expectedUniqueEventList.add(getBingoEvent());
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
 
     @Test
     public void setEvent_editedEventHasSameIdentity_success() {
-        uniqueEventList.add(BINGO);
-        Event editedBingo = new EventBuilder(BINGO).build();
-        uniqueEventList.setEvent(BINGO, editedBingo);
+        uniqueEventList.add(getBingoEvent());
+        Event editedBingo = new EventBuilder(getBingoEvent()).build();
+        uniqueEventList.setEvent(getBingoEvent(), editedBingo);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
         expectedUniqueEventList.add(editedBingo);
         assertEquals(expectedUniqueEventList, uniqueEventList);
@@ -91,18 +91,18 @@ public class UniqueEventListTest {
 
     @Test
     public void setEvent_editedEventHasDifferentIdentity_success() {
-        uniqueEventList.add(BINGO);
-        uniqueEventList.setEvent(BINGO, HIKING);
+        uniqueEventList.add(getBingoEvent());
+        uniqueEventList.setEvent(getBingoEvent(), getHikingEvent());
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
-        expectedUniqueEventList.add(HIKING);
+        expectedUniqueEventList.add(getHikingEvent());
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
 
     @Test
     public void setEvent_editedEventHasNonUniqueIdentity_throwsDuplicateEventException() {
-        uniqueEventList.add(BINGO);
-        uniqueEventList.add(HIKING);
-        assertThrows(DuplicateEventException.class, () -> uniqueEventList.setEvent(BINGO, HIKING));
+        uniqueEventList.add(getBingoEvent());
+        uniqueEventList.add(getHikingEvent());
+        assertThrows(DuplicateEventException.class, () -> uniqueEventList.setEvent(getBingoEvent(), getHikingEvent()));
     }
 
     @Test
@@ -112,13 +112,13 @@ public class UniqueEventListTest {
 
     @Test
     public void remove_eventDoesNotExist_throwsEventNotFoundException() {
-        assertThrows(EventNotFoundException.class, () -> uniqueEventList.remove(BINGO));
+        assertThrows(EventNotFoundException.class, () -> uniqueEventList.remove(getBingoEvent()));
     }
 
     @Test
     public void remove_existingEvent_removesEvent() {
-        uniqueEventList.add(BINGO);
-        uniqueEventList.remove(BINGO);
+        uniqueEventList.add(getBingoEvent());
+        uniqueEventList.remove(getBingoEvent());
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
@@ -130,9 +130,9 @@ public class UniqueEventListTest {
 
     @Test
     public void setEvents_uniqueEventList_replacesOwnListWithProvidedUniqueEventList() {
-        uniqueEventList.add(BINGO);
+        uniqueEventList.add(getBingoEvent());
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
-        expectedUniqueEventList.add(HIKING);
+        expectedUniqueEventList.add(getHikingEvent());
         uniqueEventList.setEvents(expectedUniqueEventList);
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
@@ -144,17 +144,17 @@ public class UniqueEventListTest {
 
     @Test
     public void setEvents_list_replacesOwnListWithProvidedList() {
-        uniqueEventList.add(BINGO);
-        List<Event> eventList = Collections.singletonList(HIKING);
+        uniqueEventList.add(getBingoEvent());
+        List<Event> eventList = Collections.singletonList(getHikingEvent());
         uniqueEventList.setEvents(eventList);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
-        expectedUniqueEventList.add(HIKING);
+        expectedUniqueEventList.add(getHikingEvent());
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
 
     @Test
     public void setEvents_listWithDuplicateEvents_throwsDuplicateEventException() {
-        List<Event> listWithDuplicateEvents = Arrays.asList(BINGO, BINGO);
+        List<Event> listWithDuplicateEvents = Arrays.asList(getBingoEvent(), getBingoEvent());
         assertThrows(DuplicateEventException.class, () -> uniqueEventList.setEvents(listWithDuplicateEvents));
     }
 

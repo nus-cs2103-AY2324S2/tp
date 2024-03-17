@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_BING
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalEvents.BINGO;
+import static seedu.address.testutil.TypicalEvents.getBingoEvent;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Event expectedEvent = new EventBuilder(BINGO).build();
+        Event expectedEvent = new EventBuilder(getBingoEvent()).build();
 
         assertParseSuccess(parser, EVENT_NAME_DESC_BINGO, new AddEventCommand(expectedEvent));
     }
