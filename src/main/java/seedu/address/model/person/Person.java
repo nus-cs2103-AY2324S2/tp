@@ -41,13 +41,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.note = note;
-        
-        if (noteDate.toLowerCase().equals("true")) {
-            LocalDate currentDate = LocalDate.now();
-            this.noteDate = currentDate.format(DateTimeFormatter.ofPattern("MMMM d, yy"));
-        } else {
-            this.noteDate = "";
-        }
+        this.noteDate = handleNoteDateNull(noteDate);
     }
 
     public Name getName() {
@@ -135,5 +129,19 @@ public class Person {
                 .add("note", note)
                 .add("noteDate", noteDate)
                 .toString();
+    }
+
+    private String handleNoteDateNull(String noteDate) {
+
+        if (noteDate == null) {
+            return "";
+        }
+
+        if (noteDate.toLowerCase().equals("true")) {
+            LocalDate currentDate = LocalDate.now();
+            return currentDate.format(DateTimeFormatter.ofPattern("MMMM d, yy"));
+        }
+
+        return "";
     }
 }
