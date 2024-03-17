@@ -159,8 +159,8 @@ Finds persons using specified keywords for a specified category of a person's in
 
 Format: `find n/NAME|e/EMAIL|p/PHONE|t/TAG...`
 
+* The search checks if a person's information **contains** the keyword specified, e.g. `find n/Ali` will match `Alice`.
 * Only the category specified in the command is searched. e.g. `find n/John` will only search for person's name.
-* The search checks if a person's information contains the keyword specified, e.g. `find n/Ali` will match `Alice`.
 * The search is case-insensitive. e.g `find n/hans` will match `Hans`.
 * Order of keywords matter. e.g. `find n/Doe John` will **not match** `John Doe`.
 * Multiple keywords can be specified for tags **only**.
@@ -277,7 +277,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find n/NAME|e/EMAIL|p/PHONE|t/TAG...`<br> e.g., `find n/Alice Tan`
 **List** | `list`
 **Schedule** | `schedule INDEX s/START_DATETIME e/END_DATETIME`<br> e.g., `schedule 1 s/23-02-2024T16:00 e/23-02-2024T17:00`
 **Unschedule** | `unschedule INDEX`<br> e.g., `unschedule 1`
