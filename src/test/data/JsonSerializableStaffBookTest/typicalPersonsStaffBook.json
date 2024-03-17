@@ -90,5 +90,23 @@
     "venue" : "underworld avenue",
     "tags" : [ "classmate" ],
     "availabilities" : [ "FRIDAY" ]
+  }, {
+    "name" : "Leonardo DiCaprio",
+    "phone" : "88472234",
+    "email" : "lcaprio@gmail.com",
+    "module": "TS2237",
+    "faculty": "Arts and Social Sciences",
+    "venue" : "LT13",
+    "tags" : [ ],
+    "availabilities" : [ ]
+  }, {
+    "name" : "Michael Jackson",
+    "phone" : "92347123",
+    "email" : "heehee@gmail.com",
+    "module": "MUA1163",
+    "faculty": "Music",
+    "venue" : "YSTCM-SR9",
+    "tags" : [ ],
+    "availabilities" : [ ]
   } ]
 }
