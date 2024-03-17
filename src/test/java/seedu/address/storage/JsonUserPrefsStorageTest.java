@@ -15,11 +15,11 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.InternshipUserPrefs;
-import seedu.address.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonUserPrefsStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -61,7 +61,7 @@ public class JsonUserPrefsStorageTest {
     @Test
     public void readUserPrefs_valuesMissingFromFile_defaultValuesUsed() throws DataLoadingException {
         InternshipUserPrefs actual = readUserPrefs("EmptyUserPrefs.json").get();
-        assertEquals(new UserPrefs(), actual);
+        assertEquals(new InternshipUserPrefs(), actual);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class JsonUserPrefsStorageTest {
     private InternshipUserPrefs getTypicalUserPrefs() {
         InternshipUserPrefs userPrefs = new InternshipUserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setInternshipDataFilePath(Paths.get("addressbook.json"));
+        userPrefs.setInternshipDataFilePath(Paths.get("data//internshipdata.json"));
         return userPrefs;
     }
 
