@@ -80,6 +80,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds an {@code Order} to the {@code OrderList} of this address book.
+     *
+     */
+    public void addOrder(Order order, Person person) {
+        orders.addOrder(order, person);
+    }
+
+    public Order findOrderByIndex(int id) {
+        return orders.getOrder(id);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -98,6 +110,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code Order} from the {@code OrderList} of this {@code AddressBook}.
+     *
+     * @param id index of order to remove
+     */
+    public void removeOrder(int id) {
+        orders.deleteOrder(id);
+    }
+
+
     //// util methods
 
     @Override
@@ -115,6 +137,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     //Make sure to implement abstract method for this
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
+    }
+
+    public int getOrderListSize() {
+        return orders.size();
     }
 
     @Override

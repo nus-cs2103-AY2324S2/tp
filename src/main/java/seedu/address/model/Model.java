@@ -81,6 +81,12 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Deletes the given order.
+     * The order must exist in the address book.
+     */
+    void deleteOrder(int id);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -98,15 +104,25 @@ public interface Model {
      */
     Optional<Person> findPersonByPhoneNumber(String phoneNumber);
 
+    Order findOrderByIndex(int id);
     /**
      * Returns an unmodifiable view of the filtered person list.
+     *
      * @return an unmodifiable view of the filtered person list.
      */
     ObservableList<Order> getFilteredOrderList();
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     *
      * @param predicate predicate to update the filtered order list with.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
+
+    /**
+     * Returns the number of orders in the order list.
+     *
+     * @return the number of orders in the order list
+     */
+    int getOrderListSize();
 }
