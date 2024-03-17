@@ -44,7 +44,7 @@ public class AddAppointmentCommand extends Command {
     public AddAppointmentCommand(Index index, AppointmentTime appointmentTime) {
         requireNonNull(index);
         requireNonNull(appointmentTime);
-        
+
         this.index = index;
         this.appointmentTime = appointmentTime;
     }

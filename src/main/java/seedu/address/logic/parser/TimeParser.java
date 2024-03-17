@@ -26,7 +26,7 @@ public class TimeParser {
     /**
      * Parses a {@code String appointmentTime} into a {@code AppointmentTime}.
      * The expected format is dd/MM/yyyy [x]am-[y]pm.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public static AppointmentTime parse(String args) throws ParseException {

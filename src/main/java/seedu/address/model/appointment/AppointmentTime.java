@@ -17,7 +17,7 @@ public class AppointmentTime {
 
     /**
      * Constructor for an AppointmentTime object.
-     * 
+     *
      * @param time Follow the format "dd/MM/yyyy [x]am-[y]pm".
      */
     public AppointmentTime(String time) {

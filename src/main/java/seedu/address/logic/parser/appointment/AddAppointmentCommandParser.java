@@ -30,13 +30,13 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
     public AddAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE);
-            
+
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX 
+            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
                 + AddAppointmentCommand.MESSAGE_USAGE);
         }
 
