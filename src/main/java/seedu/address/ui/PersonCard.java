@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.asset.Asset;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -41,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane assets;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,6 +59,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
               .sorted(Comparator.comparing(Tag::get))
               .forEach(tag -> tags.getChildren().add(new Label(tag.get())));
+        person.getAssets().stream()
+              .sorted(Comparator.comparing(Asset::get))
+              .forEach(asset -> assets.getChildren().add(new Label(asset.get())));
     }
 
 }
