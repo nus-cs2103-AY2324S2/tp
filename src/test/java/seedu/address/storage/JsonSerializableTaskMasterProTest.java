@@ -43,5 +43,4 @@ public class JsonSerializableTaskMasterProTest {
         assertThrows(IllegalValueException.class, JsonSerializableTaskMasterPro.MESSAGE_DUPLICATE_EMPLOYEE,
                 dataFromFile::toModelType);
     }
-
 }

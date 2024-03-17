@@ -12,6 +12,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
 
 
 public class DeleteTaskCommandParserTest {
@@ -19,7 +20,7 @@ public class DeleteTaskCommandParserTest {
     public void test() throws ParseException, CommandException {
         DeleteTaskCommandParser parser = new DeleteTaskCommandParser();
         Model m = new ModelManager();
-        m.addTask(new Task(new TaskName("Test"), new TaskId(123)));
+        m.addTask(new Task(new TaskName("Test"), new TaskId(123), new TaskStatus(false)));
 
         DeleteTaskCommand dtc = parser.parse("123");
 

@@ -20,6 +20,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_TASKID = "The Task ID provided is invalid";
+    public static final String MESSAGE_DUPLICATE_TASKID = "The Task ID provided is already assigned to this employee";
 
 
     /**
@@ -46,6 +47,8 @@ public class Messages {
                 .append(employee.getEmail())
                 .append("; Address: ")
                 .append(employee.getAddress())
+                .append("; Tasks Assigned: ")
+                .append(employee.getTasks())
                 .append("; Tags: ");
         employee.getTags().forEach(builder::append);
         return builder.toString();
@@ -58,7 +61,9 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(task.getName())
                 .append("; TaskID: ")
-                .append(task.getTaskId().taskId); // Add more append if got more fields to show
+                .append(task.getTaskId().taskId)
+                .append("; TaskStatus: ")
+                .append(task.getTaskStatus()); // Add more append if got more fields to show
         return builder.toString();
     }
 

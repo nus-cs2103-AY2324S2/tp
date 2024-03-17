@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,18 +26,23 @@ public class Employee {
 
     // Data fields
     private final Address address;
+    private AssignedTasks tasks;
+
     private final Set<Tag> tags = new HashSet<>();
+
 
     /**
      * Every field must be present and not null.
      */
-    public Employee(EmployeeId employeeId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Employee(EmployeeId employeeId, Name name,
+                    Phone phone, Email email, Address address, AssignedTasks tasks, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags, tasks);
         this.employeeId = employeeId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.tasks = tasks;
         this.tags.addAll(tags);
     }
 
@@ -79,12 +85,28 @@ public class Employee {
         return address;
     }
 
+    public AssignedTasks getTasks() {
+        return tasks;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Assigns a task to the employee by updating the employee's task list with the given task ID.
+     *
+     * @param taskID The ID of the task to be assigned to the employee.
+     * @return The updated Employee object with the assigned task.
+     * @throws CommandException If the task ID is already present in the employee's task list.
+     */
+    public Employee assignTask(int taskID) throws CommandException {
+        tasks = tasks.updateTask(taskID);
+        return this;
     }
 
     /**
@@ -136,8 +158,10 @@ public class Employee {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("tasks", tasks)
                 .add("tags", tags)
                 .toString();
     }
+
 
 }

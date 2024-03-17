@@ -7,6 +7,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
+
 
 /**
  * Adds a task to the address book.
@@ -27,8 +29,9 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         TaskName taskName = new TaskName(trimmedArgs);
         TaskId taskId = new TaskId(Task.getUniversalId());
+        TaskStatus taskStatus = new TaskStatus(false);
         Task.incrementTaskId();
-        Task task = new Task(taskName, taskId);
+        Task task = new Task(taskName, taskId, taskStatus);
 
         return new AddTaskCommand(task);
     }
