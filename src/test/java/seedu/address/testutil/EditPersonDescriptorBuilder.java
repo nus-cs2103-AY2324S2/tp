@@ -41,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setFamily(person.getFamily());
         descriptor.setTags(person.getTags());
+        descriptor.setRemark(person.getRemark());
     }
 
     /**

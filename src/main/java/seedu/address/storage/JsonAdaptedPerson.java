@@ -17,6 +17,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +34,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String family;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String remark;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -44,7 +46,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("family") String family,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("remark") String remark) {
         this.name = name;
         this.phone = phone;
         this.income = income;
@@ -54,6 +57,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.remark = remark;
     }
 
     /**
@@ -69,6 +73,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        remark = source.getRemark().toString();
     }
 
     /**
@@ -131,6 +136,10 @@ class JsonAdaptedPerson {
         final Family modelFamily = new Family(family);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelIncome, modelEmail, modelAddress, modelFamily, modelTags);
+
+        final Remark modelRemark = new Remark(remark);
+
+        return new Person(modelName, modelPhone, modelIncome, modelEmail, modelAddress, modelFamily,
+                modelTags, modelRemark);
     }
 }

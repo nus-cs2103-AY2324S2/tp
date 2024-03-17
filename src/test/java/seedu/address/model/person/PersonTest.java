@@ -112,7 +112,8 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail()
                 + ", address=" + ALICE.getAddress()
                 + ", family=" + ALICE.getFamily()
-                + ", tags=" + ALICE.getTags() + "}";
+                + ", tags=" + ALICE.getTags()
+                + ", remark=" + ALICE.getRemark() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
