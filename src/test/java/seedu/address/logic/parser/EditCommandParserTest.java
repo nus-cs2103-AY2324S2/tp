@@ -150,7 +150,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // 
+        //
         userInput = targetIndex.getOneBased() + COUNTRY_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withCountry(VALID_COUNTRY_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
