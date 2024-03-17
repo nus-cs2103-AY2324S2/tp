@@ -56,7 +56,7 @@ public class TagCommand extends Command {
         Person taggedPerson = addTag(personToTag);
         model.setPerson(personToTag, taggedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_TAG_CONTACT_SUCCESS, personToTag, tags));
+        return new CommandResult(String.format(MESSAGE_TAG_CONTACT_SUCCESS, Messages.format(personToTag)));
     }
 
     private Person addTag(Person personToTag) {
