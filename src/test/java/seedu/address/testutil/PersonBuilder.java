@@ -5,9 +5,11 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Points;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,12 +22,17 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_MEMBERSHIP = "T1";
+
+    public static final String DEFAULT_POINTS = "0";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Membership membership;
     private Set<Tag> tags;
+    private Points points;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +42,9 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        membership = new Membership(DEFAULT_MEMBERSHIP);
         tags = new HashSet<>();
+        points = new Points(DEFAULT_POINTS);
     }
 
     /**
@@ -46,7 +55,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        membership = personToCopy.getMembership();
         tags = new HashSet<>(personToCopy.getTags());
+        points = personToCopy.getPoints();
     }
 
     /**
@@ -89,8 +100,35 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    /**
+     * Sets the {@code Points} of the {@code Points} that we are building.
+     */
+    public PersonBuilder withPoints(String points) {
+        this.points = new Points(points);
+        return this;
     }
 
+    /**
+     * Sets the {@code Membership} of the {@code Person} that we are building.
+     */
+
+    public PersonBuilder withMembership(String membership) {
+        this.membership = new Membership(membership);
+        return this;
+    }
+
+    /**
+     * Builds and returns a {@code Person} with the current attributes set in the {@code PersonBuilder}.
+     *
+     * This method provides a way to construct a new {@code Person} instance using the builder pattern. Attributes set
+     * in the builder are used to instantiate the {@code Person}. This includes the person's name, phone number, email,
+     * address, membership status, set of tags, and points. If an attribute has not been explicitly set in the builder,
+     * the default value for that attribute is used.
+     *
+     * @return A new {@code Person} instance with attributes specified in the {@code PersonBuilder}.
+     */
+    public Person build() {
+        return new Person(name, phone, email, address, membership, tags, points);
+
+    }
 }
