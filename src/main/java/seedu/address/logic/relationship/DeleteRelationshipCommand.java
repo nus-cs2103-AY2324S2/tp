@@ -50,8 +50,8 @@ public class DeleteRelationshipCommand {
         for (Relationship relationship : relationships) {
             UUID person1Uuid = relationship.getPerson1();
             UUID person2Uuid = relationship.getPerson2();
-            if ((person1Uuid.equals(UUID.fromString(uuid1)) && person2Uuid.equals(UUID.fromString(uuid2))) ||
-                    (person1Uuid.equals(UUID.fromString(uuid2)) && person2Uuid.equals(UUID.fromString(uuid1)))) {
+            if ((person1Uuid.equals(UUID.fromString(uuid1)) && person2Uuid.equals(UUID.fromString(uuid2))) 
+                || (person1Uuid.equals(UUID.fromString(uuid2)) && person2Uuid.equals(UUID.fromString(uuid1)))) {
                 relationshipManager.deleteRelationship(relationType, relationship);
                 return; // Exit early if relationship is found and deleted
             }
