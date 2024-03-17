@@ -4,49 +4,42 @@
     "id": "1992a70f-8517-49b2-b911-e323eaf0b51c",
     "name" : "Alice Pauline",
     "phone" : "94351253",
-    "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tags" : [ "friends" ]
   }, {
     "id": "a1577f3b-c8f6-40f3-b0df-e6af13118951",
     "name" : "Benson Meier",
     "phone" : "98765432",
-    "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "id": "c7cc471f-32b4-4ba5-880a-3cf25ba855a6",
     "name" : "Carl Kurz",
     "phone" : "95352563",
-    "email" : "heinz@example.com",
     "address" : "wall street",
     "tags" : [ ]
   }, {
     "id": "0fc8e682-4048-4c8d-9108-0f275132aad7",
     "name" : "Daniel Meier",
     "phone" : "87652533",
-    "email" : "cornelia@example.com",
     "address" : "10th street",
     "tags" : [ "friends" ]
   }, {
     "id": "d36fee3a-03ea-4ad9-af5a-e6b1e76f6251",
     "name" : "Elle Meyer",
     "phone" : "9482224",
-    "email" : "werner@example.com",
     "address" : "michegan ave",
     "tags" : [ ]
   }, {
     "id": "d08cd77c-19d8-4c7a-8a28-aedf7a4f3c80",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
-    "email" : "lydia@example.com",
     "address" : "little tokyo",
     "tags" : [ ]
   }, {
     "id": "60eb3b8c-247d-4dcd-b71c-9ecf9dd52237",
     "name" : "George Best",
     "phone" : "9482442",
-    "email" : "anna@example.com",
     "address" : "4th street",
     "tags" : [ ]
   } ]
