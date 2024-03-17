@@ -7,8 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddInterviewerPersonCommand;
 import seedu.address.logic.commands.AddApplicantPersonCommand;
+import seedu.address.logic.commands.AddInterviewerPersonCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -23,6 +24,7 @@ public class PersonUtil {
 
     public static String getAddInterviewerCommand(Person person) {
         return AddInterviewerPersonCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    }
 
     public static String getAddApplicantCommand(Person person) {
         return AddApplicantPersonCommand.COMMAND_WORD + " " + getPersonDetails(person);
@@ -37,7 +39,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
