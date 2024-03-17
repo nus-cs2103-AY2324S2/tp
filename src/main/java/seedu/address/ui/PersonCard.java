@@ -52,19 +52,46 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + "");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    label.getStyleClass().add(getStyleClassForTag(tag.tagName));
+                    tags.getChildren().add(label);
+                });
         person.getAttendances().stream()
                 .sorted(Comparator.comparing(attendance -> attendance.attendanceDate))
                 .forEach(attendance -> {
                     String formattedDate = attendance.attendanceDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
                     attendances.getChildren().add(new Label(formattedDate));
                 });
+    }
+
+    /**
+     * Retrieves and returns the tag name for custom tag colour.
+     *
+     * @param tagName The name of the tag assigned to the Person.
+     * @return String representation of the tag name.
+     */
+    private String getStyleClassForTag(String tagName) {
+        switch(tagName) {
+            case "friends":
+                return "friends";
+            case "colleagues":
+                return "colleagues";
+            case "neighbours":
+                return "neighbours";
+            case "family":
+                return "family";
+            case "classmates":
+                return "classmates";
+            default:
+                return "";
+        }
     }
 }
