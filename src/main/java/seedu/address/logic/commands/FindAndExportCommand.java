@@ -27,7 +27,7 @@ public class FindAndExportCommand extends Command {
     public static final String COMMAND_WORD = "find_and_export";
     public static final String MESSAGE_USAGE = "find_and_export: Exports the users filtered by a tag "
             + "and other optional parameters.\n"
-            + "Parameters: TAG [n/NAME] [a/ADDRESS] [o/FILENAME]\n"
+            + "Parameters: TAG [n/NAME] [a/ADDRESS] [f/FILENAME]\n"
             + "Example: find_and_export cs2103t n/john a/olive street 42 o/output1";
     private final String tag;
     private final String name;
