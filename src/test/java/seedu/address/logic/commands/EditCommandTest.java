@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UPCOMING_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UPCOMING_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -153,6 +155,9 @@ public class EditCommandTest {
         // same values -> returns true
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditPersonDescriptor editedDescriptor = new EditPersonDescriptorBuilder(DESC_AMY)
+            .withUpcoming(VALID_UPCOMING_BOB).build();
+
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -169,6 +174,19 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+
+        // different upcoming -> returns false
+        assertFalse(DESC_AMY.equals(editedDescriptor));
+
+        // different upcoming, same other fields -> returns false
+        editedDescriptor = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withUpcoming(VALID_UPCOMING_BOB).build();
+        assertFalse(DESC_AMY.equals(editedDescriptor));
+
+        // same upcoming, different other fields -> returns false
+        editedDescriptor = new EditPersonDescriptorBuilder(DESC_BOB)
+                .withUpcoming(VALID_UPCOMING_AMY).build();
+        assertFalse(DESC_AMY.equals(editedDescriptor));
     }
 
     @Test
