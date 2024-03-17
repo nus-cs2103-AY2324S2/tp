@@ -91,7 +91,8 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
+                editedPersonMessageGenerator(editedPerson)));
     }
 
     /**
@@ -105,9 +106,45 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNote, updatedTags);
+    }
+
+    /**
+     * Takes a person object and only returns non-null fields
+     * @param person
+     * @return a String of non-null fields
+     */
+    private String editedPersonMessageGenerator(Person person) {
+        StringBuilder sb = new StringBuilder();
+        Name name = person.getName();
+        Phone phone = person.getPhone();
+        Email email = person.getEmail();
+        Address address = person.getAddress();
+        Note note = person.getNote();
+        Set<Tag> tags = person.getTags();
+
+        sb.append(name);
+        sb.append("; Phone: ").append(phone);
+
+        if (!email.value.isEmpty()) {
+            sb.append("; Email: ").append(email);
+        }
+
+        if (!address.value.isEmpty()) {
+            sb.append("; Address: ").append(address);
+        }
+
+        if (!note.value.isEmpty()) {
+            sb.append("; Note: ").append(note);
+        }
+
+        if (!tags.isEmpty()) {
+            sb.append("; Tags: ").append(tags);
+        }
+
+        return sb.toString();
     }
 
     @Override
