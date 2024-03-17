@@ -40,38 +40,33 @@ public class TagsContainKeywordsPredicateTest{
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_tagsContainsKeywords_returnsTrue() {
         // One keyword
-        TagsContainKeywordsPredicate predicate = new TagsContainKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        TagsContainKeywordsPredicate predicate = new TagsContainKeywordsPredicate(Collections.singletonList("School"));
+        assertTrue(predicate.test(new PersonBuilder().withTags("School", "Work").build()));
 
         // Multiple keywords
-        predicate = new TagsContainKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Only one matching keyword
-        predicate = new TagsContainKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+        predicate = new TagsContainKeywordsPredicate(Arrays.asList("School", "Work"));
+        assertTrue(predicate.test(new PersonBuilder().withTags("School", "Work").build()));
 
         // Mixed-case keywords
-        predicate = new TagsContainKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new TagsContainKeywordsPredicate(List.of("School"));
+        assertTrue(predicate.test(new PersonBuilder().withTags("sChooL").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TagsContainKeywordsPredicate predicate = new TagsContainKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("School").build()));
+
+        // Only one matching keyword
+        predicate = new TagsContainKeywordsPredicate(Arrays.asList("School", "Work"));
+        assertFalse(predicate.test(new PersonBuilder().withTags("School").build()));
 
         // Non-matching keyword
-        predicate = new TagsContainKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Keywords match phone, email and address, but does not match name
-        predicate = new TagsContainKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        predicate = new TagsContainKeywordsPredicate(List.of("Work"));
+        assertFalse(predicate.test(new PersonBuilder().withName("School").build()));
     }
 
     @Test
