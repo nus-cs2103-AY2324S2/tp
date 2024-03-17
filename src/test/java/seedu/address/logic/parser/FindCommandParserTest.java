@@ -9,7 +9,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.person.IdAndNameContainsQueryIdAndNamePredicate;
+import seedu.address.model.person.IdContainsQueryIdPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsQueryNamePredicate;
 
 public class FindCommandParserTest {
 
@@ -22,13 +25,30 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        // Query by Name - no leading and trailing whitespaces
+        FindCommand expectedFindNameCommand =
+                new FindCommand(new NameContainsQueryNamePredicate("John Doe"));
+        assertParseSuccess(parser, "find n/John Doe", expectedFindNameCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        // Query by Name - multiple whitespaces
+        assertParseSuccess(parser, "find n/ John Doe   ", expectedFindNameCommand);
+
+        // Query by ID - no leading and trailing whitespaces
+        FindCommand expectedFindIdCommand =
+                new FindCommand(new IdContainsQueryIdPredicate("A1234567X"));
+        assertParseSuccess(parser, "find i/A1234567X", expectedFindIdCommand);
+
+        // Query by ID - multiple whitespaces
+        assertParseSuccess(parser, "find i/    A1234567X   ", expectedFindIdCommand);
+
+        // Query by ID And Name - no leading and trailing whitespaces
+        FindCommand expectedFindIdAndNameCommand =
+                new FindCommand(new IdAndNameContainsQueryIdAndNamePredicate("A1234567X", "John Doe"));
+        assertParseSuccess(parser, "find i/A1234567X n/John Doe", expectedFindIdAndNameCommand);
+
+        // Query by ID And Name - multiple whitespaces between keywords
+        assertParseSuccess(parser, "find i/    A1234567X    n/  John Doe   ", expectedFindIdAndNameCommand);
+
     }
 
 }
