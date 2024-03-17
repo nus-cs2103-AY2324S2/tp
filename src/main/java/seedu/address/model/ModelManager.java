@@ -26,11 +26,12 @@ public class ModelManager implements Model {
     private final ObservableList<Person> defaultPersons; // serves as an unmodified default state for the students
     private final FilteredList<Person> filteredPersons; // stores the current filtered state of the list
     private final SortedList<Person> sortedPersons; // stores the current sorted state of the list
-    private enum ListOperation { // saves the latest state of the list
+
+    public enum ListOperation { // saves the latest state of the list
         DEFAULT, SORTED, FILTERED
     }
 
-    private ListOperation lastOperation = ListOperation.DEFAULT;
+    public ListOperation lastOperation = ListOperation.SORTED;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -147,7 +148,7 @@ public class ModelManager implements Model {
         sortedPersons.setComparator(ascendingComparator);
         lastOperation = ListOperation.SORTED;
     }
-
+    /*
     @Override
     public ObservableList<Person> getCorrectPersonList() {
         switch (lastOperation) {
@@ -157,6 +158,18 @@ public class ModelManager implements Model {
             return filteredPersons;
         default:
             // This defaults to the state without any sorting or filtering
+            return defaultPersons;
+        }
+    }
+    */
+    @Override
+    public ObservableList<Person> getCorrectPersonList() {
+        System.out.println(lastOperation);
+        if (lastOperation == ListOperation.SORTED) {
+            return sortedPersons;
+        } else if (lastOperation == ListOperation.FILTERED) {
+            return filteredPersons;
+        } else {
             return defaultPersons;
         }
     }

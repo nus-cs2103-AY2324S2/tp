@@ -89,6 +89,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredPersonList_modifiesLastOperation() {
+        modelManager.getFilteredPersonList();
+        assertEquals(ModelManager.ListOperation.FILTERED, modelManager.lastOperation);
+    }
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
