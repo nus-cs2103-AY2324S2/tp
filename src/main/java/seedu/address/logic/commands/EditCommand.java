@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         // create getMeritScore within edit person desciptor class shall be fine, and then uncomment below
         // MeritScore updatedMeritScore = editPersonDescriptor.getMeritScore().orElse(personToEdit.getMeritScore());
 
-        BookList updatedBookList = editPersonDescriptor.getBookList().orElse(personToEdit.getBook());
+        BookList updatedBookList = editPersonDescriptor.getBookList().orElse(personToEdit.getBookList());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);

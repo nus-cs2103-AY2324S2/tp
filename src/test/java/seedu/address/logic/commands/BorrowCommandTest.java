@@ -28,7 +28,7 @@ public class BorrowCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withBook(BORROW_STUB).build();
 
-        BorrowCommand borrowCommand = new BorrowCommand(INDEX_FIRST_PERSON, new BookList(editedPerson.getBook().value));
+        BorrowCommand borrowCommand = new BorrowCommand(INDEX_FIRST_PERSON, new BookList(editedPerson.getBookList().value));
 
         String expectedMessage = String.format(BorrowCommand.MESSAGE_ADD_BORROW_SUCCESS, editedPerson);
 

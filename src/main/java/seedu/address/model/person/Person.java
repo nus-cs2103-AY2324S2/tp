@@ -24,10 +24,11 @@ public class Person {
     // Data fields
     private final Address address;
     private final MeritScore meritScore;
-    private final BookList bookTitle;
+    private final BookList bookList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
+     * Constructs a person without any books borrowed.
      * Every field must be present and not null.
      */
 
@@ -39,14 +40,15 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.meritScore = new MeritScore(0);
-        this.bookTitle = new BookList("");
+        this.bookList = new BookList("");
     }
 
     /**
+     * Constructs a person with books borrowed.
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  MeritScore meritScore, BookList bookTitle, Set<Tag> tags) {
+                  MeritScore meritScore, BookList bookList, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -54,7 +56,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.meritScore = meritScore;
-        this.bookTitle = bookTitle;
+        this.bookList = bookList;
     }
 
     public Name getName() {
@@ -91,8 +93,8 @@ public class Person {
     /**
      * @return the book title of the book
      */
-    public BookList getBook() {
-        return bookTitle;
+    public BookList getBookList() {
+        return bookList;
     }
 
     /**
@@ -130,13 +132,13 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
                 && meritScore.equals(otherPerson.meritScore)
-                && bookTitle.equals(otherPerson.bookTitle);
+                && bookList.equals(otherPerson.bookList);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, meritScore, bookTitle, tags);
+        return Objects.hash(name, phone, email, address, meritScore, bookList, tags);
     }
 
     @Override
@@ -148,7 +150,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("Merit score", meritScore)
-                .add("book borrowed", bookTitle)
+                .add("book borrowed", bookList)
                 .toString();
     }
 
