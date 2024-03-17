@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -21,6 +23,12 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditMaintainerCommand;
+import seedu.address.logic.commands.EditMaintainerCommand.EditMaintainerDescriptor;
+import seedu.address.logic.commands.EditStaffCommand;
+import seedu.address.logic.commands.EditStaffCommand.EditStaffDescriptor;
+import seedu.address.logic.commands.EditSupplierCommand;
+import seedu.address.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -37,7 +45,10 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
+import seedu.address.testutil.EditMaintainerDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditStaffDescriptorBuilder;
+import seedu.address.testutil.EditSupplierDescriptorBuilder;
 import seedu.address.testutil.MaintainerBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -96,9 +107,44 @@ public class AddressBookParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " " + PREFIX_NAME
+            + person.getName() + " " + PREFIX_FIELD + "{ "
+            + PersonUtil.getEditPersonDescriptorDetails(descriptor) + "}");
+        assertEquals(command, new EditCommand(person.getName(), descriptor));
+    }
+
+    @Test
+    public void parseCommand_editStaff() throws Exception {
+        Staff staff = new StaffBuilder().build();
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(staff).build();
+        EditStaffCommand command = (EditStaffCommand) parser.parseCommand(EditStaffCommand.COMMAND_WORD + " "
+                + PREFIX_NAME
+                + staff.getName() + " " + PREFIX_FIELD + "{ "
+                + PersonUtil.getEditStaffDescriptorDetails(descriptor) + "}");
+        assertEquals(command, new EditStaffCommand(staff.getName(), descriptor));
+    }
+
+    @Test
+    public void parseCommand_editSupplier() throws Exception {
+        Supplier supplier = new SupplierBuilder().build();
+        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder(supplier).build();
+        EditSupplierCommand command = (EditSupplierCommand) parser.parseCommand(EditSupplierCommand.COMMAND_WORD + " "
+                + PREFIX_NAME
+                + supplier.getName() + " " + PREFIX_FIELD + "{ "
+                + PersonUtil.getEditSupplierDescriptorDetails(descriptor) + "}");
+        assertEquals(new EditSupplierCommand(supplier.getName(), descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editMaintainer() throws Exception {
+        Maintainer maintainer = new MaintainerBuilder().build();
+        EditMaintainerDescriptor descriptor = new EditMaintainerDescriptorBuilder(maintainer).build();
+        EditMaintainerCommand command = (EditMaintainerCommand)
+                parser.parseCommand(EditMaintainerCommand.COMMAND_WORD + " "
+                + PREFIX_NAME
+                + maintainer.getName() + " " + PREFIX_FIELD + "{ "
+                + PersonUtil.getEditMaintainerDescriptorDetails(descriptor) + "}");
+        assertEquals(new EditMaintainerCommand(maintainer.getName(), descriptor), command);
     }
 
     @Test

@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -22,18 +24,20 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Price;
+import seedu.address.model.person.Product;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing supplier in the address book.
  */
-public class EditCommand extends Command {
+public class EditSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = "/edit";
+    public static final String COMMAND_WORD = "/edit-supplier";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the supplier identified "
             + "by the name used in the displayed person list.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
@@ -41,6 +45,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_PRODUCT + "PRODUCT] "
+            + "[" + PREFIX_PRICE + "PRICE] "
             + "Example: " + COMMAND_WORD
             + PREFIX_NAME + "John Doe Others "
             + PREFIX_FIELD + "{ "
@@ -48,60 +54,65 @@ public class EditCommand extends Command {
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_SUPPLIER_SUCCESS = "Edited Supplier: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person's name already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier's name already exists in the address book.";
 
     private final Name name;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditSupplierDescriptor editSupplierDescriptor;
 
     /**
-     * @param name of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param name of the supplier in the filtered person list to edit
+     * @param editSupplierDescriptor details to edit the supplier with
      */
-    public EditCommand(Name name, EditPersonDescriptor editPersonDescriptor) {
+    public EditSupplierCommand(Name name, EditSupplierDescriptor editSupplierDescriptor) {
         requireNonNull(name);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editSupplierDescriptor);
 
         this.name = name;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editSupplierDescriptor = new EditSupplierDescriptor(editSupplierDescriptor);
     }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person personToEdit = model.findByName(name);
+        Supplier supplierToEdit = model.findSupplierByName(name);
 
-        if (personToEdit == null) {
+        if (supplierToEdit == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
         }
 
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Supplier editedSupplier = createEditedSupplier(supplierToEdit, editSupplierDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!supplierToEdit.isSamePerson(editedSupplier) && model.hasPerson(editedSupplier)) {
+            throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(supplierToEdit, editedSupplier);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(MESSAGE_EDIT_SUPPLIER_SUCCESS, Messages.format(editedSupplier)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Supplier} with the details of {@code supplierToEdit}
+     * edited with {@code editSupplierDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Supplier createEditedSupplier(Supplier supplierToEdit,
+            EditSupplierDescriptor editSupplierDescriptor) {
+        assert supplierToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editSupplierDescriptor.getName().orElse(supplierToEdit.getName());
+        Phone updatedPhone = editSupplierDescriptor.getPhone().orElse(supplierToEdit.getPhone());
+        Email updatedEmail = editSupplierDescriptor.getEmail().orElse(supplierToEdit.getEmail());
+        Address updatedAddress = editSupplierDescriptor.getAddress().orElse(supplierToEdit.getAddress());
+        Set<Tag> updatedTags = editSupplierDescriptor.getTags().orElse(supplierToEdit.getTags());
+        Product updatedProduct = editSupplierDescriptor.getProduct().orElse(supplierToEdit.getProduct());
+        Price updatedPrice = editSupplierDescriptor.getPrice().orElse(supplierToEdit.getPrice());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedProduct, updatedPrice);
     }
 
     @Override
@@ -115,49 +126,53 @@ public class EditCommand extends Command {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
+        EditSupplierCommand otherEditCommand = (EditSupplierCommand) other;
         return name.equals(otherEditCommand.name)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editSupplierDescriptor.equals(otherEditCommand.editSupplierDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editSupplierDescriptor", editSupplierDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the supplier with. Each non-empty field value will replace the
+     * corresponding field value of the supplier.
      */
-    public static class EditPersonDescriptor {
+    public static class EditSupplierDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Product product;
+        private Price price;
 
-        public EditPersonDescriptor() {}
+        public EditSupplierDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditSupplierDescriptor(EditSupplierDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setProduct(toCopy.product);
+            setPrice(toCopy.price);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, product, price);
         }
 
         public void setName(Name name) {
@@ -192,6 +207,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setProduct(Product product) {
+            this.product = product;
+        }
+
+        public Optional<Product> getProduct() {
+            return Optional.ofNullable(product);
+        }
+
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -216,21 +247,22 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditSupplierDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
+            EditSupplierDescriptor otherEditSupplierDescriptor = (EditSupplierDescriptor) other;
 
             // Compare each field individually
-            boolean phoneEquals = Objects.equals(phone, otherEditPersonDescriptor.phone);
-            boolean emailEquals = Objects.equals(email, otherEditPersonDescriptor.email);
-            boolean addressEquals = Objects.equals(address, otherEditPersonDescriptor.address);
-            boolean tagsEquals = Objects.equals(tags, otherEditPersonDescriptor.tags);
+            boolean phoneEquals = Objects.equals(phone, otherEditSupplierDescriptor.phone);
+            boolean emailEquals = Objects.equals(email, otherEditSupplierDescriptor.email);
+            boolean addressEquals = Objects.equals(address, otherEditSupplierDescriptor.address);
+            boolean tagsEquals = Objects.equals(tags, otherEditSupplierDescriptor.tags);
+            boolean productEquals = Objects.equals(tags, otherEditSupplierDescriptor.tags);
+            boolean priceEquals = Objects.equals(tags, otherEditSupplierDescriptor.tags);
 
-            return phoneEquals && emailEquals && addressEquals && tagsEquals;
+            return phoneEquals && emailEquals && addressEquals && tagsEquals && productEquals && priceEquals;
         }
-
 
         @Override
         public String toString() {
@@ -239,6 +271,8 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("product", product)
+                    .add("price", product)
                     .toString();
         }
     }
