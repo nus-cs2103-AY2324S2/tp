@@ -66,12 +66,12 @@ public class AddAppointmentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddAppointmentCommand)) {
             return false;
         }
 
         AddAppointmentCommand otherAddCommand = (AddAppointmentCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        return toAdd.isSameAppointment(otherAddCommand.toAdd);
     }
 
     @Override
