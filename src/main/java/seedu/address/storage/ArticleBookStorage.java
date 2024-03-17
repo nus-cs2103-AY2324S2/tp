@@ -19,7 +19,7 @@ public interface ArticleBookStorage {
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyArticleBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyArticleBook> readArticleBook() throws DataLoadingException;
 
     /**
      * @see #getArticleBookFilePath()
@@ -28,10 +28,10 @@ public interface ArticleBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param articleBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyArticleBook addressBook) throws IOException;
+   void saveArticleBook(ReadOnlyArticleBook articleBook) throws IOException;
 
     /**
      * @see #saveArticleBook(ReadOnlyArticleBook)

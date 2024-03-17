@@ -30,18 +30,18 @@ public class JsonSerializableArticleBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    /* public JsonSerializableArticleBook(ReadOnlyArticleBook source) {
+     public JsonSerializableArticleBook(ReadOnlyArticleBook source) {
         articles.addAll(source.getArticleList().stream().map(JsonAdaptedArticle::new).collect(Collectors.toList()));
     }
 
-     */
+
 
     /**
      * Converts this address book into the model's {@code AddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-  /*  public ArticleBook toModelType() throws IllegalValueException {
+    public ArticleBook toModelType() throws IllegalValueException {
         ArticleBook articleBook = new ArticleBook();
         for (JsonAdaptedArticle jsonAdaptedArticle : articles) {
             Article article = jsonAdaptedArticle.toModelType();
@@ -51,5 +51,5 @@ public class JsonSerializableArticleBook {
             articleBook.addArticle(article);
         }
         return articleBook;
-    } */
+    }
 }

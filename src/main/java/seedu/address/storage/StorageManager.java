@@ -20,6 +20,8 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
+    private  ArticleBookStorage articleBookStorage;
+
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
@@ -74,5 +76,42 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
+
+    @Override
+    Path getArticleBookFilePath() {
+        return readArticleBook(articleBookStorage.getArticleBookFilePath());
+    };
+    Optional<ReadOnlyArticleBook> readArticleBook() throws DataLoadingException {
+        return readArticleBook(articleBookStorage.getArticleBookFilePath());
+    };
+
+    /**
+     * @see #getArticleBookFilePath()
+     */
+    @Override
+    Optional<ReadOnlyArticleBook> readAddressBook(Path filePath) throws DataLoadingException{
+        logger.fine("Attempting to read data from file: " + filePath);
+        return articleBookStorage.readArticleBook(filePath);
+    };
+
+    /**
+     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * @param articleBook cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    @Override
+    void saveArticleBook(ReadOnlyArticleBook articleBook) throws IOException {
+        saveAddressBook(articleBook, articleBookStorage.getArticleBookFilePath());
+    };
+
+    /**
+     * @see #saveArticleBook(ReadOnlyArticleBook)
+     */
+    @Override
+    void saveArticleBook(ReadOnlyArticleBook articleBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        articleBookStorage.saveArticleBook(articleBook, filePath);
+    };
+
 
 }

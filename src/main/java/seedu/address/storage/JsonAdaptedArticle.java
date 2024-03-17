@@ -23,11 +23,11 @@ public class JsonAdaptedArticle {
         return name;
     }
 
-  /*  public Tag toModelType() throws IllegalValueException {
+    public Tag toModelType() throws IllegalValueException {
         if (!Article.isValidName(name)) {
             throw new IllegalValueException(Article.MESSAGE_CONSTRAINTS);
         }
-        return new Article(name); */
+        return new Article(name);
 
 
 
