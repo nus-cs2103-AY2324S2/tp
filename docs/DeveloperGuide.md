@@ -361,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student                                 | delete the contacts of student developers                                                                         | remove entries that I no longer need                                    |
 | `* * *`  | Student                                 | search for the contacts of student developers                                                                     | locate details of contacts without having to go through the entire list |
 | `* * *`  | Student                                 | update the details of contacts that I already have in my address book                                             | keep my contact details up to date                                      |
-| `* *`    | Student                                 | sort contacts by tags                                                                                             | locate a group of student developers easily                             |
+| `* *`    | Student                                 | search for contacts by tags                                                                                       | locate a category of student developers easily                          |
 | `* *`    | Student                                 | categorise the contacts I have saved into the projects I am working on                                            | have an organised address book                                          |
 | `* *`    | Forgetful Student                       | add profile pictures for each contact                                                                             | know who I am contacting                                                |
 | `* * *`  | Student                                 | search for contacts based on their technical skills                                                               | form teams for hackathons more easily                                   |
@@ -469,6 +469,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. There are no contacts in the list that match the criteria.
   * 1b1. CodeConnect shows an empty list.
   Use case ends.
+
+**Use case: UC06 - Search a contact by tags**
+
+**MSS**
+
+1. User requests to look up contacts with specific tags.
+2. CodeConnect checks each contact’s tags in the list.
+3. CodeConnect shows a list of contacts that match the criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No tag is given.
+    * 1a1. CodeConnect shows an error message.
+      Use case ends.
+
+* 1b. There are no contacts in the list that match the criteria.
+    * 1b1. CodeConnect shows an empty list.
+      Use case ends.
 
 *{More to be added}*
 

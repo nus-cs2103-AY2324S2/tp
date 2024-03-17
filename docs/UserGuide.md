@@ -133,6 +133,21 @@ Examples:
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Locating contacts by tags: `findTag`
+
+Finds contacts whose tags contain all the given keywords.
+
+Format: `findTag KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g `school` will match `School`
+- Only the tags are searched.
+- Only full words will be matched e.g. `school` will not match `schools`
+- contacts matching all keywords will be returned (i.e. `AND` search).
+
+Examples:
+- image to be replaced
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
 ### Deleting a contact : `delete`
 
 Deletes the specified contact from the address book.
