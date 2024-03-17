@@ -9,11 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.matric.Matric;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +49,22 @@ public class ParserUtil {
             throw new ParseException(Matric.MESSAGE_CONSTRAINTS);
         }
         return new Matric(trimmedMatric);
+    }
+
+    /**
+     * Parses {@code reflection} into a {@code Reflection} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @param reflection the reflection to be parsed
+     * @return the parsed reflection
+     * @throws ParseException if the specified reflection is invalid
+     */
+    public static Reflection parseReflection(String reflection) throws ParseException {
+        requireNonNull(reflection);
+        String trimmedReflection = reflection.trim();
+        if (!Reflection.isValidReflection(trimmedReflection)) {
+            throw new ParseException(Reflection.MESSAGE_CONSTRAINTS);
+        }
+        return new Reflection(trimmedReflection);
     }
 
     /**

@@ -10,12 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.matric.Matric;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String matric;
+    private final String reflection;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +40,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("matric") String matric) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("matric") String matric,
+            @JsonProperty("reflection") String reflection) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +50,7 @@ class JsonAdaptedPerson {
             this.tags.addAll(tags);
         }
         this.matric = matric;
+        this.reflection = reflection;
     }
 
     /**
@@ -61,6 +65,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         matric = source.getMatric().matricNumber;
+        reflection = source.getReflection().reflection;
     }
 
     /**
@@ -104,13 +109,23 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
+        if (!Matric.isValidMatric(matric)) {
+            throw new IllegalValueException(Matric.MESSAGE_CONSTRAINTS);
+        }
+        if (!Reflection.isValidReflection(reflection)) {
+            throw new IllegalValueException(Reflection.MESSAGE_CONSTRAINTS);
+        }
 
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Matric modelMatric = new Matric(matric);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMatric);
+
+        final Reflection modelReflection = new Reflection(reflection);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelMatric, modelReflection);
     }
 
 }

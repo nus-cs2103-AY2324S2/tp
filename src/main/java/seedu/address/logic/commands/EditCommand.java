@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -22,12 +23,13 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.matric.Matric;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,6 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_MATRIC_NUMBER + "MATRICULATION NUMBER] "
+            + "[" + PREFIX_REFLECTION + "REFLECTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -103,9 +106,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Matric matric = editPersonDescriptor.getMatric().orElse(personToEdit.getMatric());
+        Matric updatedMatric = editPersonDescriptor.getMatric().orElse(personToEdit.getMatric());
+        Reflection updatedReflection = editPersonDescriptor.getReflection().orElse(personToEdit.getReflection());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, matric);
+        return new Person(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTags, updatedMatric, updatedReflection);
     }
 
     @Override
@@ -144,6 +149,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
 
         private Matric matric;
+        private Reflection reflection;
 
         public EditPersonDescriptor() {}
 
@@ -158,13 +164,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setMatric(toCopy.matric);
+            setReflection(toCopy.reflection);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, matric);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, matric, reflection);
         }
 
         public void setName(Name name) {
@@ -224,6 +231,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(matric);
         }
 
+        public void setReflection(Reflection reflection) {
+            this.reflection = reflection;
+        }
+
+        public Optional<Reflection> getReflection() {
+            return Optional.ofNullable(reflection);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -241,7 +256,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(matric, otherEditPersonDescriptor.matric);
+                    && Objects.equals(matric, otherEditPersonDescriptor.matric)
+                    && Objects.equals(reflection, otherEditPersonDescriptor.reflection);
         }
 
         @Override
@@ -253,6 +269,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("matriculation number", matric)
+                    .add("reflection", reflection)
                     .toString();
         }
 

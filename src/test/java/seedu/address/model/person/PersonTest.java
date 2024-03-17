@@ -85,13 +85,21 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different matriculation number -> returns false
+        editedAlice = new PersonBuilder(ALICE).withMatric("A1234567A").build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different reflection -> returns false
+        editedAlice = new PersonBuilder(ALICE).withReflection("R10").build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void hashCodeMethod() {
         int expected = Objects.hash(
                 ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getAddress(), ALICE.getTags(), ALICE.getMatric());
+                ALICE.getAddress(), ALICE.getTags(), ALICE.getMatric(), ALICE.getReflection());
         int actual = ALICE.hashCode();
         assertEquals(expected, actual);
     }
@@ -100,7 +108,8 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
-                + ", tags=" + ALICE.getTags() + ", matriculation number=" + ALICE.getMatric() + "}";
+                + ", tags=" + ALICE.getTags() + ", matriculation number=" + ALICE.getMatric()
+                + ", reflection=" + ALICE.getReflection() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
