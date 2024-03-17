@@ -5,6 +5,9 @@ import seedu.address.model.booking.Description;
 import seedu.address.model.booking.EndTime;
 import seedu.address.model.booking.StartTime;
 
+/**
+ * A utility class to help with building Booking objects.
+ */
 public class BookingBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Default booking description";
