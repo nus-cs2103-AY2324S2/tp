@@ -1,11 +1,11 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.commands.SearchCommand;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests that all a {@code Person}'s {@code Attributes} matches the corresponding keywords given.
+ */
 public class SearchPredicate implements Predicate<Person> {
     private List<ContainsKeywordsPredicate> predicateList;
 

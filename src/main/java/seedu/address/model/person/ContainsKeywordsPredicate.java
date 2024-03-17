@@ -1,28 +1,32 @@
 package seedu.address.model.person;
 
-import java.util.List;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.tag.Tag;
 
-import javax.swing.text.html.Option;
-
-import static seedu.address.logic.parser.CliSyntax.*;
-
 /**
- * Tests that all a {@code Person}'s {@code Attributes} matches the corresponding keywords given.
+ * Tests that a {@code Person}'s {@code Attribute} matches the corresponding keyword given.
  */
 public class ContainsKeywordsPredicate<T> implements Predicate<Person> {
 
     private final Prefix prefix;
     private final Optional<T> keywords;
 
+    /**
+     * @param prefix of the corresponding field.
+     * @param keywords that the test is run against.
+     */
     public ContainsKeywordsPredicate(Prefix prefix, Optional<T> keywords) {
         this.prefix = prefix;
         this.keywords = keywords;

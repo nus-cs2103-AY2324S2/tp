@@ -1,18 +1,35 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.util.CollectionUtil;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Comment;
+import seedu.address.model.person.ContainsKeywordsPredicate;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.SearchPredicate;
 import seedu.address.model.tag.Tag;
 
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Searches all persons whose attributes match the specified attributes.
+ */
 public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
 
@@ -57,8 +74,7 @@ public class SearchCommand extends Command {
             return false;
         }
 
-        seedu.address.logic.commands.SearchCommand otherSearchCommand
-                = (seedu.address.logic.commands.SearchCommand) other;
+        SearchCommand otherSearchCommand = (SearchCommand) other;
         return searchPersonDescriptor.equals(otherSearchCommand.searchPersonDescriptor);
     }
 
@@ -82,25 +98,6 @@ public class SearchCommand extends Command {
         private Set<Tag> tags;
 
         public SearchPersonDescriptor() {}
-
-//        /**
-//         * Copy constructor.
-//         * A defensive copy of {@code tags} is used internally.
-//         */
-//        public EditPersonDescriptor(SearchCommand.SearchPersonDescriptor toCopy) {
-//            setName(toCopy.name);
-//            setPhone(toCopy.phone);
-//            setEmail(toCopy.email);
-//            setAddress(toCopy.address);
-//            setTags(toCopy.tags);
-//        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldSpecified() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, comment, tags);
-        }
 
         public void setName(Name name) {
             this.name = name;
