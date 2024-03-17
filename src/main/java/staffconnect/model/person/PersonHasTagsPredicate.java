@@ -10,10 +10,10 @@ import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.model.tag.Tag;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the tag names given.
+ * Tests that a {@code Person}'s {@code Tags} matches any of the tag names given.
  */
 public class PersonHasTagsPredicate implements Predicate<Person> {
-    private final Set<Tag> tags; // TODO: change to multiple ss in later iterations
+    private final Set<Tag> tags;
 
     public PersonHasTagsPredicate(Set<Tag> tags) {
         this.tags = tags;
@@ -21,6 +21,9 @@ public class PersonHasTagsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (tags == null) {
+            return true;
+        }
         // get list of person tags
         List<String> personTags = person.getTags().stream().map(t -> t.tagName.toLowerCase())
                 .collect(Collectors.toList());
@@ -43,12 +46,12 @@ public class PersonHasTagsPredicate implements Predicate<Person> {
             return false;
         }
 
-        PersonHasTagsPredicate otherPersonHasTagPredicate = (PersonHasTagsPredicate) other;
-        return tags.equals(otherPersonHasTagPredicate.tags);
+        PersonHasTagsPredicate otherPersonHasTagsPredicate = (PersonHasTagsPredicate) other;
+        return tags.equals(otherPersonHasTagsPredicate.tags);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("tag name", tags).toString();
+        return new ToStringBuilder(this).add("tag names", tags).toString();
     }
 }

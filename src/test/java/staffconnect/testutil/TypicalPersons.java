@@ -1,5 +1,7 @@
 package staffconnect.testutil;
 
+import static staffconnect.logic.commands.CommandTestUtil.VALID_AVAILABILITY_MON;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_AVAILABILITY_THUR;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_FACULTY_AMY;
@@ -28,47 +30,59 @@ import staffconnect.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withVenue("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withFaculty("Computing").withPhone("94351253").withModule("CS1101S")
-            .withTags("friends").build();
+            .withPhone("94351253").withEmail("alice@example.com").withModule("CS1101S")
+            .withFaculty("Computing").withVenue("123, Jurong West Ave 6, #08-111")
+            .withTags("friends").withAvailabilities("mon").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withVenue("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com")
-            .withFaculty("Computing").withPhone("98765432").withModule("CS1231S")
-            .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withFaculty("Computing")
-            .withVenue("wall street").withModule("CS2030S").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withFaculty("Computing")
-            .withVenue("10th street").withModule("CS2040S")
-            .withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withFaculty("Computing")
-            .withVenue("michegan ave").withModule("CS2100").build();
+            .withPhone("98765432").withEmail("johnd@example.com").withModule("CS1231S")
+            .withFaculty("Computing").withVenue("311, Clementi Ave 2, #02-25")
+            .withTags("owesMoney", "friends").withAvailabilities("tues", "wed").build();
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
+            .withPhone("95352563").withEmail("heinz@example.com").withModule("CS2030S")
+            .withFaculty("Computing").withVenue("wall street").build();
+    public static final Person CLARA = new PersonBuilder().withName("Clara Svarog")
+            .withPhone("9681384").withEmail("svarog@example.com").withModule("CS2102")
+            .withFaculty("Computing").withVenue("belobog avenue")
+            .withTags("classmate").build();
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
+            .withPhone("87652533").withEmail("cornelia@example.com").withModule("CS2040S")
+            .withFaculty("Computing").withVenue("10th street")
+            .withTags("friends").withAvailabilities("thurs", "fri").build();
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
+            .withPhone("9482224").withEmail("werner@example.com").withModule("CS2100")
+            .withFaculty("Computing").withVenue("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withFaculty("Computing")
-            .withVenue("little tokyo").withModule("CS2101").build();
+            .withEmail("lydia@example.com").withVenue("little tokyo")
+            .withFaculty("Computing").withModule("CS2101").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withFaculty("Computing")
-            .withVenue("4th street").withModule("CS2102").build();
+            .withEmail("anna@example.com").withVenue("4th street")
+            .withFaculty("Computing").withModule("CS2102").build();
+    public static final Person KAFKA = new PersonBuilder().withName("Kafka Apache").withPhone("9452413")
+            .withEmail("apache@example.com").withModule("CS2102").withFaculty("Business")
+            .withVenue("pteruges avenue").withTags("classmate").withAvailabilities("FRIDAY").build();
+    public static final Person NATASHA = new PersonBuilder().withName("Natasha Harrower").withPhone("8019394")
+            .withEmail("harrower@example.com").withModule("CS2102")
+            .withFaculty("Computing").withVenue("underworld avenue")
+            .withTags("classmate").withAvailabilities("FRIDAY").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withFaculty("Computing")
-            .withVenue("little india").withModule("CS2103").build();
+            .withEmail("stefan@example.com").withModule("CS2103")
+            .withFaculty("Computing").withVenue("little india").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withFaculty("Computing")
-            .withVenue("chicago ave").withModule("CS2103T").build();
+            .withEmail("hans@example.com").withModule("CS2103T")
+            .withFaculty("Computing").withVenue("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withFaculty(VALID_FACULTY_AMY)
-            .withVenue(VALID_VENUE_AMY).withModule(VALID_MODULE_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withModule(VALID_MODULE_AMY)
+            .withFaculty(VALID_FACULTY_AMY).withVenue(VALID_VENUE_AMY)
+            .withTags(VALID_TAG_FRIEND).withAvailabilities(VALID_AVAILABILITY_MON).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withFaculty(VALID_FACULTY_BOB)
-            .withVenue(VALID_VENUE_BOB).withModule(VALID_MODULE_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_BOB).withModule(VALID_MODULE_BOB)
+            .withFaculty(VALID_FACULTY_BOB).withVenue(VALID_VENUE_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withAvailabilities(VALID_AVAILABILITY_MON, VALID_AVAILABILITY_THUR).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -86,6 +100,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, CLARA, DANIEL, ELLE, FIONA, GEORGE, KAFKA, NATASHA));
     }
 }
