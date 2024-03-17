@@ -125,10 +125,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Optional<String> birthday} into a {@code Optional<LocalDate>}.
+     * Parses {@code String birthday} into a {@code Birthday}.
      */
     public static Birthday parseBirthday(String birthday) throws ParseException {
-        requireNonNull(birthday);
-        return new Birthday(birthday);
+        birthday = birthday == null ? "" : birthday;
+        String trimmedBirthday = birthday.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.BIRTHDAY_CONSTRAINTS);
+        }
+        return new Birthday(trimmedBirthday);
     }
 }

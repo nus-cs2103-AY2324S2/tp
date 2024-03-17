@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
@@ -26,7 +27,7 @@ public class Birthday {
      * @param birthday A valid birthday, or an empty string.
      */
     public Birthday(String birthday) {
-        birthday = birthday == null ? "" : birthday;
+        requireNonNull(birthday);
         if (birthday.isBlank()) {
             this.birthday = null;
             return;
@@ -37,7 +38,7 @@ public class Birthday {
 
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid birthday.
      */
     public static boolean isValidBirthday(String test) {
         if (test == null || test.isBlank()) {
