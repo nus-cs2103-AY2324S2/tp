@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model as ModelPackage <<Rectangle>>{
-Class "<<interface>>\nReadOnlyTaKit" as ReadOnlyTaKit
+Class "<<interface>>\nReadOnlyTaToolkit" as ReadOnlyTaToolkit
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class TaKit
+Class TaToolkit
 Class ModelManager
 Class UserPrefs
 
@@ -27,16 +27,16 @@ Class I #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-TaKit .up.|> ReadOnlyTaKit
+TaToolkit .up.|> ReadOnlyTaToolkit
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyTaKit
-ModelManager -left-> "1" TaKit
+Model .left.> ReadOnlyTaToolkit
+ModelManager -left-> "1" TaToolkit
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-TaKit *--> "1" UniquePersonList
+TaToolkit *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> ClassGroup
