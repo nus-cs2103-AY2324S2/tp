@@ -81,12 +81,14 @@ format 'misc', {
 	endWithNewline()
 }
 java {
-	importOrder()
+	// importOrder()
 	removeUnusedImports()
+	trimTrailingWhitespace()
+	endWithNewline()
 
-	palantirJavaFormat('2.9.0').style("AOSP")
+	cleanthat()
 
-	formatAnnotations()
+	// formatAnnotations()
 }
 }
 defaultTasks 'clean', 'test'

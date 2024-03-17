@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.appointment;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.stream.Stream;
