@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 
 import java.util.stream.Stream;
 
@@ -28,24 +28,28 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IC, PREFIX_NOTE, PREFIX_FLAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_IC, PREFIX_NOTE, PREFIX_FLAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_IC, PREFIX_NOTE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
 
         IdentityCardNumber ic;
         try {
-            String note = argMultimap.getValue(PREFIX_NOTE).orElse("");
+            String note = "";
+            boolean isReplace = false;
 
-            boolean isReplace = argMultimap.getValue(PREFIX_FLAG).isPresent();
-            if (isReplace) {
+            if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
                 int startIndex = args.indexOf(PREFIX_NOTE.getPrefix()) + PREFIX_NOTE.getPrefix().length();
                 int endIndex = args.indexOf(PREFIX_FLAG.getPrefix());
                 if (endIndex == -1) {
                     endIndex = args.length();
                 }
                 note = args.substring(startIndex, endIndex).trim();
+                isReplace = true;
+            } else {
+                note = argMultimap.getValue(PREFIX_NOTE).orElse("");
             }
+
             ic = ParserUtil.parseIC(argMultimap.getValue(PREFIX_IC).get());
             return new AddNoteCommand(new IdentityCardNumberMatchesPredicate(ic), new Note(note), isReplace);
         } catch (IllegalValueException ive) {

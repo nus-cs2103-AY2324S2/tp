@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -91,7 +92,16 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addNote() throws Exception {
+    public void parseCommand_addNote_withReplaceFlag() throws Exception {
+        final Note note = new Note("Some note.");
+        AddNoteCommand command = (AddNoteCommand) parser.parseCommand(AddNoteCommand.COMMAND_WORD + " "
+                + PREFIX_IC + "S0123456Q " + PREFIX_NOTE + note.value + " " + PREFIX_FLAG + "-replace");
+        assertEquals(new AddNoteCommand(new IdentityCardNumberMatchesPredicate(new IdentityCardNumber("S0123456Q")),
+                note, true), command);
+    }
+
+    @Test
+    public void parseCommand_addNote_withoutReplaceFlag() throws Exception {
         final Note note = new Note("Some note.");
         AddNoteCommand command = (AddNoteCommand) parser.parseCommand(AddNoteCommand.COMMAND_WORD + " "
                 + PREFIX_IC + "S0123456Q " + PREFIX_NOTE + note.value);
