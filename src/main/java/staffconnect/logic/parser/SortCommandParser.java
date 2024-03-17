@@ -45,12 +45,12 @@ public class SortCommandParser implements Parser<SortCommand> {
             return NAME_COMPARATOR;
         } else if (keyword.equals(PREFIX_PHONE.getPrefix())) {
             return PHONE_COMPARATOR;
+        } else if (keyword.equals(PREFIX_MODULE.getPrefix())) {
+            return MODULE_COMPARATOR;
         } else if (keyword.equals(PREFIX_FACULTY.getPrefix())) {
             return FACULTY_COMPARATOR;
         } else if (keyword.equals(PREFIX_VENUE.getPrefix())) {
             return VENUE_COMPARATOR;
-        } else if (keyword.equals(PREFIX_MODULE.getPrefix())) {
-            return MODULE_COMPARATOR;
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
