@@ -1,11 +1,11 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMSHIP;
 
 import seedu.address.logic.commands.AddMemshipCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 
 /**
@@ -25,11 +25,13 @@ public class AddMemshipCommandParser implements Parser<AddMemshipCommand> {
         try {
             name = ParserUtil.parseName(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddMemshipCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE);
         }
 
         String mship = argMultimap.getValue(PREFIX_MEMSHIP).orElse("");
+        if (!Membership.isValidMembership(mship) || mship.isBlank()) {
+            throw new ParseException(Membership.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE);
+        }
 
         return new AddMemshipCommand(name, mship);
     }
