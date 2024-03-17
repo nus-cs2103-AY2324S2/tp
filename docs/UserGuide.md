@@ -156,6 +156,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+### Locating a person by tag: `findtag`
+
+Finds all persons whose tags contain the specified text (case-insensitive) and displays them in the list.
+
+Format: `findtag TAG`
+
+* The search is case-insensitive. e.g `friend` will match `FRIEND`
+* Tags are matched as long as it contains the specified text. e.g. `friend` will match `myFriend`
+
+Examples:
+* `findtag friend` returns all persons with the tag `friend`.
+* `findtag e` returns all persons that have the tag `friend` and `colleague`.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -210,5 +223,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Star** | `star INDEX [s/STAR]` <br> e.g., `star 1 s/5`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**FindTag** | `findtag TAG`<br> e.g., `find Friend`
 **List** | `list`
 **Help** | `help`
