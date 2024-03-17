@@ -52,7 +52,7 @@ public class DoctorNameContainsKeywordsPredicateTest {
         Doctor p = new Doctor(new Nric("T1234567A"), new Name("Alice"), new DoB("2001-01-01"), new Phone("98765432"));
         assertTrue(firstPredicate.test(p));
 
-        Doctor d = new Doctor(new Nric("T1234567A"), new Name("Alice"), new DoB("2001-01-01"), new Phone("98765432"));
+        Patient d = new Patient(new Nric("T1234567A"), new Name("Alice"), new DoB("2001-01-01"), new Phone("98765432"));
         // Object type Doctor -> returns false
         assertFalse(firstPredicate.test(d));
     }
