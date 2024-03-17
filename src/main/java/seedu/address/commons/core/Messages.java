@@ -19,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_EMPTY_BOOKLIST_FIELD = "Person is currently not borrowing any books!";
+    public static final String MESSAGE_FILLED_BOOKLIST_FIELD = "Person has reached his maximum borrowing limit!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
