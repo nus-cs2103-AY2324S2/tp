@@ -1,10 +1,8 @@
 package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static vitalconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -22,10 +20,9 @@ import vitalconnect.logic.Messages;
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.model.Model;
 import vitalconnect.model.person.Person;
-import vitalconnect.model.person.contactinformation.Address;
-import vitalconnect.model.person.contactinformation.Email;
-import vitalconnect.model.person.contactinformation.Phone;
+import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.model.tag.Tag;
 
 /**
@@ -40,13 +37,9 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,13 +88,16 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getIdentificationInformation().getName());
+        Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getIdentificationInformation().getNric());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        IdentificationInformation updatedInfo = new IdentificationInformation(updatedName, updatedNric);
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        if (personToEdit.hasContactInformation()) {
+            return new Person(updatedInfo, personToEdit.getContactInformation(), updatedTags);
+        } else {
+            return new Person(updatedInfo, updatedTags);
+        }
     }
 
     @Override
@@ -134,9 +130,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private Nric nric;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -147,9 +141,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setNric(toCopy.nric);
             setTags(toCopy.tags);
         }
 
@@ -157,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, nric, tags);
         }
 
         public void setName(Name name) {
@@ -168,28 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setNric(Nric nric) {
+            this.nric = nric;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Nric> getNric() {
+            return Optional.ofNullable(nric);
         }
 
         /**
@@ -222,9 +198,7 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(nric, otherEditPersonDescriptor.nric)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -232,9 +206,7 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("phone", phone)
-                    .add("email", email)
-                    .add("address", address)
+                    .add("nric", nric)
                     .add("tags", tags)
                     .toString();
         }
