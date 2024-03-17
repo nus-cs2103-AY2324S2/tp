@@ -5,7 +5,7 @@ import seedu.address.model.Model;
 /**
  * Toggles the display (shows/hides depending on whether the display is already being displayed or not).
  */
-public class ToggleCommand extends Command {
+public class ToggleDisplayCommand extends Command {
 
     public static final String COMMAND_WORD = "$";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Toggles the display on/off. ";
@@ -13,7 +13,6 @@ public class ToggleCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_TOGGLE_ACKNOWLEDGEMENT);
+        return new CommandResult(MESSAGE_TOGGLE_ACKNOWLEDGEMENT, false, false, true);
     }
-
 }
