@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -39,11 +41,12 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.note = note;
-
-        if (noteDate == null) {
-            this.noteDate = "";
+        
+        if (noteDate.toLowerCase().equals("true")) {
+            LocalDate currentDate = LocalDate.now();
+            this.noteDate = currentDate.format(DateTimeFormatter.ofPattern("MMMM d, yy"));
         } else {
-            this.noteDate = noteDate;
+            this.noteDate = "";
         }
     }
 

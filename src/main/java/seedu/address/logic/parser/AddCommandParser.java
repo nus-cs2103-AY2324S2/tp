@@ -4,6 +4,8 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_WITH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -32,7 +34,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_NOTE, PREFIX_NOTE_WITH_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -45,10 +47,26 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Note note = getOptionalNoteParameter(argMultimap);
+        String noteWithDate = getOptionalNoteDateParameter(argMultimap);
 
-        Person person = new Person(name, phone, email, address, tagList, new Note(""), "");
+        Person person = new Person(name, phone, email, address, tagList, note, noteWithDate);
 
         return new AddCommand(person);
+    }
+
+    private Note getOptionalNoteParameter(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            return ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+        }
+        return new Note("");
+    }
+
+    private String getOptionalNoteDateParameter(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getValue(PREFIX_NOTE_WITH_DATE).isPresent()) {
+            return ParserUtil.parseNoteWithDate(argMultimap.getValue(PREFIX_NOTE_WITH_DATE).get());
+        }
+        return "";
     }
 
     /**
