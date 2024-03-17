@@ -10,7 +10,6 @@ import java.util.Optional;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -58,12 +57,12 @@ public class AddMemshipCommand extends Command {
 
         Person personToEdit = personOptional.get();
 
-        Membership newMembership = new Membership(this.mship);
+        //Membership newMembership = new Membership(this.mship);
 
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), newMembership,
-                personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getMembership(),
+                personToEdit.getTags(), personToEdit.getPoints());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

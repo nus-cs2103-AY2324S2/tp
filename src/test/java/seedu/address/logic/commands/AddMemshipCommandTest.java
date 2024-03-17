@@ -26,7 +26,7 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddMemshipCommandTest {
-    private static final String MEMBERSHIP_STUB = "T2";
+    private static final String MEMBERSHIP_STUB = "T1";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
