@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label upcoming;
+    @FXML
     private Label lastcontact;
 
     /**
@@ -57,6 +59,7 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        upcoming.setText(person.getUpcoming().toString());
         lastcontact.setText("Last contacted: " + person.getLastcontact().getDateTimeString());
     }
 }

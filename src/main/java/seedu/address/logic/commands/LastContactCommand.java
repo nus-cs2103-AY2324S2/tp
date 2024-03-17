@@ -46,7 +46,7 @@ public class LastContactCommand extends Command {
         for (Person currPerson : lastShownList) {
             if (currPerson.getName().toString().equalsIgnoreCase(this.name)) {
                 Person editedPerson = new Person(currPerson.getName(), currPerson.getPhone(), currPerson.getEmail(),
-                        currPerson.getAddress(), currPerson.getTags(), this.lastcontact);
+                        currPerson.getAddress(), currPerson.getTags(), currPerson.getUpcoming(), this.lastcontact);
                 model.setPerson(currPerson, editedPerson);
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 return new CommandResult(generateSuccessMessage(editedPerson));

@@ -12,6 +12,7 @@ import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Upcoming;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,22 +24,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), DUMMY_LASTCONTACT),
+                getTagSet("friends"), new Upcoming("23-08-2024 1500"), DUMMY_LASTCONTACT),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), DUMMY_LASTCONTACT),
+                getTagSet("colleagues", "friends"), new Upcoming("08-08-2024 1515"), DUMMY_LASTCONTACT),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), DUMMY_LASTCONTACT),
+                getTagSet("neighbours"), new Upcoming("03-03-2024 0930"), DUMMY_LASTCONTACT),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), DUMMY_LASTCONTACT),
+                getTagSet("family"), new Upcoming("01-01-2024 1200"), DUMMY_LASTCONTACT),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"), DUMMY_LASTCONTACT),
+                getTagSet("classmates"), new Upcoming("12-12-2023 1800"), DUMMY_LASTCONTACT),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"), DUMMY_LASTCONTACT)
+                getTagSet("colleagues"), new Upcoming("25-12-2023 2000"), DUMMY_LASTCONTACT)
         };
     }
 

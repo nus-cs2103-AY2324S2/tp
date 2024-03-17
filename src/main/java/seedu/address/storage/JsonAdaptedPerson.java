@@ -16,6 +16,7 @@ import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Upcoming;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String upcoming;
     private final String lastcontact;
 
     /**
@@ -38,7 +40,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("lastcontact") String lastcontact) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("upcoming") String upcoming,
+            @JsonProperty("lastcontact") String lastcontact) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +49,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.upcoming = upcoming;
         this.lastcontact = lastcontact;
     }
 
@@ -60,13 +64,16 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        upcoming = source.getUpcoming().toString();
         lastcontact = source.getLastcontact().getDateTimeString();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
@@ -108,12 +115,22 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        if (upcoming == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Upcoming.class.getSimpleName()));
+        }
+        if (!Upcoming.isValidUpcoming(upcoming)) {
+            throw new IllegalValueException(Upcoming.MESSAGE_CONSTRAINTS);
+        }
+
+        final Upcoming modelUpcoming = new Upcoming(upcoming);
         if (lastcontact == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LastContact.class.getSimpleName()));
         }
         final LastContact modelLastContact = new LastContact(lastcontact);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLastContact);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelUpcoming, modelLastContact);
     }
 
 }

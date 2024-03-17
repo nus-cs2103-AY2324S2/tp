@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Upcoming;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -121,6 +122,19 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Represents an upcoming event or task.
+     * It provides methods to validate and parse the upcoming string.
+     */
+    public static Upcoming parseUpcoming(String upcoming) throws ParseException {
+        requireNonNull(upcoming);
+        String trimmedUpcoming = upcoming.trim();
+        if (!Upcoming.isValidUpcoming(trimmedUpcoming)) {
+            throw new ParseException(Upcoming.MESSAGE_CONSTRAINTS);
+        }
+        return new Upcoming(trimmedUpcoming);
     }
 
     /**

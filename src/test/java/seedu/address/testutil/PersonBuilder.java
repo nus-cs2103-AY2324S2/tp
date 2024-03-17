@@ -9,6 +9,7 @@ import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Upcoming;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_UPCOMING = "12-12-2024 1200";
     public static final String DEFAULT_LASTCONTACT = "13-03-2024 0600";
 
     private Name name;
@@ -28,6 +30,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Upcoming upcoming;
     private LastContact lastContact;
 
     /**
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        upcoming = new Upcoming(DEFAULT_UPCOMING);
         lastContact = new LastContact(DEFAULT_LASTCONTACT);
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        upcoming = personToCopy.getUpcoming();
         lastContact = personToCopy.getLastcontact();
     }
 
@@ -95,6 +100,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Upcoming} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withUpcoming(String upcoming) {
+        this.upcoming = new Upcoming(upcoming);
+        return this;
+    }
+
+    /**
      * Sets the {@code LastContact} of the {@code Person} that we are building.
      * @param lastContact consists of a string of date and time
      * @return the person we are building
@@ -105,7 +118,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, lastContact);
+        return new Person(name, phone, email, address, tags, upcoming, lastContact);
     }
 
 }
