@@ -20,9 +20,9 @@ public class TypePredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         if (type.equals("housekeeper")) {
-            return person instanceof Housekeeper;
+            return !person.isClient();
         } else if (type.equals("client")) {
-            return person instanceof Client;
+            return person.isClient();
         } else {
             return false;
         }
