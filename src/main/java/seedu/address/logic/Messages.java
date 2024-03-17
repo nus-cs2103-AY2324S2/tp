@@ -19,7 +19,11 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-
+    public static final String MESSAGE_MISSING_NUSNET =
+            "There is no student with this NUSNet ID!";
+    public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked Attendance for Person: ";
+    public static final String MESSAGE_MARK_EXISTING_ATTENDANCE_SUCCESS =
+            "Re-marked Attendance for Person: ";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
@@ -49,7 +53,9 @@ public class Messages {
                 .append(person.getNusNet())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
+                .append("; Attendance: ");
+        person.getAttendance().forEach(builder::append);
+        builder.append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
