@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -21,12 +22,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_POLICY = "";
     public static final String DEFAULT_RELATIONSHIP = "client";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Policy policy;
     private Relationship relationship;
     private Set<Tag> tags;
 
@@ -38,6 +41,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        policy = new Policy(DEFAULT_POLICY);
         relationship = new Relationship(DEFAULT_RELATIONSHIP);
         tags = new HashSet<>();
     }
@@ -50,6 +54,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        policy = personToCopy.getPolicy();
         relationship = personToCopy.getRelationship();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -95,6 +100,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Policy} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPolicy(String policy) {
+        this.policy = new Policy(policy);
+        return this;
+    }
+
+    /**
      * Sets the {@code Relationship} of the {@code Person} that we are building.
      */
     public PersonBuilder withRelationship(String relationship) {
@@ -103,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, relationship, tags);
+        return new Person(name, phone, email, address, relationship, policy, tags);
     }
 
 }

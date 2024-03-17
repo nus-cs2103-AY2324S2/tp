@@ -22,8 +22,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.InsuraConnectBookStorage;
+import seedu.address.storage.JsonInsuraConnectBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        InsuraConnectBookStorage insuraConnectBookStorage = new JsonInsuraConnectBookStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(insuraConnectBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
