@@ -65,6 +65,10 @@ public class Person {
         return id;
     }
 
+    public static int getIdTracker() {
+        return Person.idTracker;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

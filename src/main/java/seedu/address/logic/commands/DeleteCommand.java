@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -36,13 +37,23 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= Person.getIdTracker()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        Optional<Person> personToDelete = lastShownList.stream()
+                .filter(person -> person.getSid() == targetIndex.getOneBased())
+                .findFirst();
+
+        if (personToDelete.isPresent()) {
+            model.deletePerson(personToDelete.get());
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                    Messages.format(personToDelete.get())));
+
+        } else {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
     }
 
     @Override
