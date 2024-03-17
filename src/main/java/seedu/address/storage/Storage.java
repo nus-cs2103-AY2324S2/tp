@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -24,9 +25,18 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
+    Path getOrderBookFilePath();
+
+    @Override
     Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
 
     @Override
+    Optional<ReadOnlyOrderBook> readOrderBook() throws DataLoadingException;
+
+    @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+
+    @Override
+    void saveOrderBook(ReadOnlyOrderBook orderBook) throws IOException;
 
 }

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -74,5 +75,34 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
+
+    // ================ OrderBook methods ==============================
+    @Override
+    public Path getOrderBookFilePath() {
+        return addressBookStorage.getOrderBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyOrderBook> readOrderBook() throws DataLoadingException {
+        return readOrderBook(addressBookStorage.getOrderBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyOrderBook> readOrderBook(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return addressBookStorage.readOrderBook(filePath);
+    }
+
+    @Override
+    public void saveOrderBook(ReadOnlyOrderBook orderBook) throws IOException {
+        saveOrderBook(orderBook, addressBookStorage.getOrderBookFilePath());
+    }
+
+    @Override
+    public void saveOrderBook(ReadOnlyOrderBook orderBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        addressBookStorage.saveOrderBook(orderBook, filePath);
+    }
+
 
 }
