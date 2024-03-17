@@ -128,7 +128,7 @@ public class UniqueBookingList implements Iterable<Booking> {
     private boolean bookingsAreUnique(List<Booking> bookings) {
         for (int i = 0; i < bookings.size() - 1; i++) {
             for (int j = i + 1; j < bookings.size(); j++) {
-                if ( bookings.get(i).equals(bookings.get(j))) {
+                if (bookings.get(i).equals(bookings.get(j))) {
                     return false;
                 }
             }
