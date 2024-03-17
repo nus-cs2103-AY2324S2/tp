@@ -55,6 +55,13 @@ public class FindCommandTest {
     }
 
     @Test
+    public void execute_RelationshipNamKeywords_noPersonFound() {
+
+
+        
+    }
+
+    @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
@@ -73,6 +80,10 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
+
+
+
+
 
     @Test
     public void toStringMethod() {
