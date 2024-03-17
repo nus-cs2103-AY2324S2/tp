@@ -76,7 +76,10 @@ Format: `help`
 Adds a set of pre-defined sample data into the application.
 
 Format: `seedData`
-* If there is existing data, it will retain the current data on top of the new sample data to be added
+* If there is existing data, it will retain the current data on top of the new sample data to be added.
+* `seedData` will only add sample members which do not exist in the application yet.
+* If all members in sample data already exists, it will display the following message:  
+  `Every member from seed data already exist in the address book!`
 
 ### Adding a person : `addmember`
 
@@ -103,8 +106,8 @@ Format: `addorder n/MEMBER_NAME o/ORDER_DETAILS`
 
 * The order will be added to the person with the closest resembling name to `MEMBER_NAME`.
 * If no person with a resembling name is found, no order will be added to any person.
-* All persons are considered, not just those in the displayed person list
-* `ORDER_DETAILS` must not be empty
+* All persons are considered, not just those in the displayed person list.
+* `ORDER_DETAILS` must not be empty.
 
 Examples:
 * `addorder n/John Doe o/Butter Cake` Adds an order of `Butter Cake` to `John Doe`
@@ -118,7 +121,7 @@ Format: `delorder n/MEMBER_NAME i/ORDER_INDEX`
 
 * The order with corresponding `ORDER_INDEX` will be removed from the person with the closest resembling name to `MEMBER_NAME`.
 * If no person with a resembling name is found, no order will be removed from any person.
-* All persons are considered, not just those in the displayed person list
+* All persons are considered, not just those in the displayed person list.
 * `ORDER_INDEX` **must be a positive integer** 1, 2, 3, ...
 
 Examples:
@@ -136,7 +139,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -176,13 +179,13 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the application.
 
 Format: `clear`
-* Will clear:
-  * Contacts added by users
+* Deletes all members, including:
+  * Members added by users
   * Seed data added from `seedData` command
-* User will be prompted to verify the clear command, before carrying out the clearing.
+* User will be prompted to verify the clear command.
 * To bypass the verification prompt, the user can follow `clear` with `--force`. This will clear the address book without additional prompting.
 
 ### Adding points: `addpoints`

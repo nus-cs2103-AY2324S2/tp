@@ -23,18 +23,21 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Membership membership;
     private final Set<Tag> tags = new HashSet<>();
     private final Points points;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Points points) {
-        requireAllNonNull(name, phone, email, address, tags, points);
+    public Person(Name name, Phone phone, Email email, Address address, Membership membership, Set<Tag> tags,
+                  Points points) {
+        requireAllNonNull(name, phone, email, address, membership, tags, points);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.membership = membership;
         this.tags.addAll(tags);
         this.points = points;
     }
@@ -53,6 +56,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Membership getMembership() {
+        return membership;
     }
 
     /**
@@ -100,6 +107,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && membership.equals(otherPerson.membership)
                 && tags.equals(otherPerson.tags)
                 && points.equals(otherPerson.points);
     }
@@ -107,7 +115,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, points);
+        return Objects.hash(name, phone, email, address, membership, tags, points);
     }
 
     @Override
@@ -117,6 +125,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("membership", membership)
                 .add("tags", tags)
                 .add("points", points)
                 .toString();
