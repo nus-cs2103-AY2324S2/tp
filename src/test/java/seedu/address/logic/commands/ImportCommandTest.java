@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -68,6 +69,23 @@ public class ImportCommandTest {
         assertThrows(IllegalValueException.class, () -> importCommand.retrievePersonsFromFile(list));
     }
 
+    @Test
+    public void execute_dataLoadingException_failure() {
+        HashSet<File> curHashSet = new HashSet<>();
+        curHashSet.add(new File(ADDRESS_BOOK_PATH));
+        List<JsonAdaptedPerson> list = new ArrayList<>();
+        assertThrows(DataLoadingException.class, () -> new ImportCommandStubDataLoadingException(curHashSet)
+                .retrievePersonsFromFile(list));
+    }
+
+    @Test
+    public void execute_illegalValueException_failure() {
+        HashSet<File> curHashSet = new HashSet<>();
+        curHashSet.add(new File(ADDRESS_BOOK_PATH));
+        List<JsonAdaptedPerson> list = new ArrayList<>();
+        assertThrows(IllegalValueException.class, () -> new ImportCommandStubIllegalValueException(curHashSet)
+                .retrievePersonsFromFile(list));
+    }
 
     @Test
     public void equals() {
@@ -86,4 +104,38 @@ public class ImportCommandTest {
         assertFalse(importCommand.equals(new ImportCommand(otherHashSet)));
     }
 
+    private class ImportCommandStubDataLoadingException extends ImportCommand {
+        /**
+         * Constructs a new ImportCommand to add the contacts in the specified files in {@code fileSet}.
+         *
+         * @param fileSet A set of Files.
+         */
+        public ImportCommandStubDataLoadingException(Set<File> fileSet) {
+            super(fileSet);
+        }
+
+        @Override
+        public void retrievePersonsFromFile(List<JsonAdaptedPerson> savedPersons)
+                throws IllegalValueException, DataLoadingException {
+            throw new DataLoadingException(new Exception("Data loading exception."));
+        }
+    }
+
+    private class ImportCommandStubIllegalValueException extends ImportCommand {
+
+        /**
+         * Constructs a new ImportCommand to add the contacts in the specified files in {@code fileSet}.
+         *
+         * @param fileSet A set of Files.
+         */
+        public ImportCommandStubIllegalValueException(Set<File> fileSet) {
+            super(fileSet);
+        }
+
+        @Override
+        public void retrievePersonsFromFile(List<JsonAdaptedPerson> savedPersons)
+                throws IllegalValueException, DataLoadingException {
+            throw new IllegalValueException("Illegal value exception.");
+        }
+    }
 }
