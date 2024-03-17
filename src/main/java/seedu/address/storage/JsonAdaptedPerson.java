@@ -50,7 +50,6 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        //phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
@@ -76,14 +75,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-
-        //if (phone == null) {
-        //    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        //}
-        //if (!Phone.isValidPhone(phone)) {
-        //    throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        //}
-        //final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
