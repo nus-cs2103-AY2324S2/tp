@@ -63,5 +63,24 @@
     "major" : "Computer Science",
     "intake" : "2023",
     "tags" : [ ]
-  } ]
+  }, {
+    "id": "A2327063Y",
+    "name": "Oliver Tan",
+    "phone": "8432131",
+    "email": "tan@example.com",
+    "address": "new york ave",
+    "major": "Computer Science",
+    "intake": "2024",
+    "tags": []
+  }, {
+      "id": "A1237863R",
+      "name": "Oliver Pie",
+      "phone": "8481245",
+      "email": "pie@example.com",
+      "address": "hk ave",
+      "major": "Computer Science",
+      "intake": "2022",
+      "tags": []
+    }
+  ]
 }

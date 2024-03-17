@@ -101,6 +101,6 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays
-                .asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA, OLIVER_1, OLIVER_2));
+                .asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, OLIVER_1, OLIVER_2));
     }
 }
