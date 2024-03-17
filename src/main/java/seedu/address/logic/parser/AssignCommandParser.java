@@ -23,6 +23,7 @@ public class AssignCommandParser implements Parser<AssignCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_TO);
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TO);
         Index taskIndex;
         Index personIndex;
         try {
