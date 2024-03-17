@@ -78,6 +78,9 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ListInterviewsCommand.COMMAND_WORD:
+            return new ListInterviewsCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
