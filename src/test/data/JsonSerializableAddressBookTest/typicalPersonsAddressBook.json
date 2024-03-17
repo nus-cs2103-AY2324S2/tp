@@ -13,7 +13,8 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "note" : "",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "appointments" : [ "23:59 SUN" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
