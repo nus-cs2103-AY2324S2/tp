@@ -1,7 +1,10 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +22,13 @@ public class InternshipUserPrefsTest {
     public void constructor_nullInternshipUserPrefsAndNullGuiSettings_throwsNullPointerException() {
         InternshipUserPrefs userPrefs = new InternshipUserPrefs();
         assertThrows(NullPointerException.class, () -> userPrefs.setGuiSettings(null));
+    }
+
+    @Test
+    public void constructor_nonNullInternshipUserPrefsAndNonNullGuiSettings_success() {
+        ReadOnlyInternshipUserPrefs emptyUserPrefs= new InternshipUserPrefs();
+        InternshipUserPrefs userPrefs = new InternshipUserPrefs(emptyUserPrefs);
+        assertEquals(emptyUserPrefs, userPrefs);
     }
 
     @Test
@@ -51,6 +61,46 @@ public class InternshipUserPrefsTest {
         InternshipUserPrefs userPrefs = new InternshipUserPrefs();
         assertThrows(NullPointerException.class, () -> userPrefs.resetData(null));
     }
+
+    @Test
+    public void resetData_nullUserPrefsAndNullGuiSettings_throwsNullPointerException() {
+        InternshipUserPrefs userPrefs = new InternshipUserPrefs();
+        assertThrows(NullPointerException.class, () -> userPrefs.setGuiSettings(null));
+    }
+
+    @Test
+    public void resetData_nullUserPrefsAndNonNullGuiSettings_throwsNullPointerException() {
+        InternshipUserPrefs userPrefs = new InternshipUserPrefs();
+        GuiSettings guiSettings = userPrefs.getGuiSettings();
+        userPrefs = null;
+        InternshipUserPrefs finalUserPrefs = userPrefs;
+        assertThrows(NullPointerException.class, () -> finalUserPrefs.setGuiSettings(guiSettings));
+    }
+
+    @Test
+    public void resetData_nonNullUserPrefsAndNonNullGuiSettings_success() {
+        InternshipUserPrefs userPrefs = new InternshipUserPrefs();
+        GuiSettings guiSettings = userPrefs.getGuiSettings();
+        InternshipUserPrefs userPrefs2 = new InternshipUserPrefs();
+        userPrefs2.setGuiSettings(guiSettings);
+        userPrefs.resetData(userPrefs2);
+        assert(userPrefs.equals(userPrefs2));
+    }
+
+    @Test
+    public void getInternshipDataFilePath_nonNullInternshipDataFilePath_success() {
+        InternshipUserPrefs userPrefs = new InternshipUserPrefs();
+        Path intershipDataPath = userPrefs.getInternshipDataFilePath();
+        userPrefs.setInternshipDataFilePath(Paths.get("data", "internshipdata2.json"));
+        assert(intershipDataPath != null);
+    }
+
+    @Test
+    public void setInternshipDataFilePath_nonNullInternshipDataFilePath_success() {
+        InternshipUserPrefs userPrefs = new InternshipUserPrefs();
+        userPrefs.setInternshipDataFilePath(Paths.get("data", "internshipdata2.json"));
+        assertEquals (Paths.get("data", "internshipdata2.json"),userPrefs.getInternshipDataFilePath());
+    }
     @Test
     public void hashCode_nonNullInternshipDataFilePath_success() {
         InternshipUserPrefs userPrefs = new InternshipUserPrefs();
@@ -66,7 +116,7 @@ public class InternshipUserPrefsTest {
     @Test
     public void equals_nullInternshipDataFilePath_success() {
         InternshipUserPrefs userPrefs = new InternshipUserPrefs();
-        userPrefs.equals(userPrefs);
+        assertFalse(userPrefs.equals(null));
     }
     @Test
     public void equals_differentInternshipDataFilePath_success() {
