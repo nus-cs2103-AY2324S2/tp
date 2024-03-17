@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 /**
@@ -15,24 +14,42 @@ public class InterviewTime {
 
     public static final String MESSAGE_CONSTRAINTS = "Error thrown, date and time format may be wrong. Check UG.";
 
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String REGEX_YYYY = "\\d{4}";
+    public static final String REGEX_DD = "(0[1-9]|[1-2][0-9]|3[01])";
+    public static final String REGEX_MM = "(0[1-9]|1[0-2])";
+    public static final String REGEX_HHMM = "^([0-1][0-9]|2[0-3])[0-5][0-9]$";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm"); //set format
 
     public final LocalDateTime dateTime;
 
+    /**
+     * Constructs InterviewTime object
+     * @param dateTime input
+     */
     public InterviewTime(String dateTime) {
         requireNonNull(dateTime);
-        checkArgument(isValid(dateTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidInterviewTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, formatter); //set format
     }
 
-    public static boolean isValid(String test) {
-        try {
-            LocalDateTime.parse(test, formatter);
-            return true;
-        } catch (DateTimeParseException e) {
+    /**
+     * Checks if date input is valid
+     * @param test input
+     * @return true if correct format, false otherwise
+     */
+    public static boolean isValidInterviewTime(String test) {
+        if (test.length() != 12) {
             return false;
+        } else {
+            if (!test.substring(0, 2).matches(REGEX_DD) | !test.substring(2, 4).matches(REGEX_MM)) {
+                return false;
+            }
         }
+        return true;
+    }
+
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
     }
 
     @Override

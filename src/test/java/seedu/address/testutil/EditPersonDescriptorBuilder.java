@@ -7,10 +7,10 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.InterviewTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -73,6 +73,11 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * To add interview-time to the person object
+     * @param dateTime input
+     * @return the object
+     */
     public EditPersonDescriptorBuilder withInterviewTime(String dateTime) {
         descriptor.setDateTime(new InterviewTime(dateTime));
         return this;
