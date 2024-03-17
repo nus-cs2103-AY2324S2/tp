@@ -118,6 +118,16 @@ public class ModelManager implements Model {
         throw new CommandException("NOT IMPLEMENTED");
     }
 
+    @Override
+    public void deleteOrder(Order order) throws CommandException {
+        throw new CommandException("NOT IMPLEMENTED");
+    }
+
+    @Override
+    public ObservableList<Order> getOrderList() throws CommandException {
+        throw new CommandException("NOT IMPLEMENTED");
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

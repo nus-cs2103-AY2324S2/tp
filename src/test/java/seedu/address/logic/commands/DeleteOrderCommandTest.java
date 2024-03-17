@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.orders.AddOrderCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.orders.DeleteOrderCommand.MESSAGE_SUCCESS;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -12,21 +12,22 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.orders.AddOrderCommand;
+import seedu.address.logic.commands.orders.DeleteOrderCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderList;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.OrderBuilder;
-public class AddOrderCommandTest {
+public class DeleteOrderCommandTest {
 
     @Test
-    public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_deleteOrderByModel_deleteSuccessful() throws Exception {
         OrderBuilder builder = new OrderBuilder();
         Order order = builder.build();
-        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded(order);
-        CommandResult commandResult = new AddOrderCommand(order).execute(modelStub);
+        ModelStubDeletingOrder modelStub = new ModelStubDeletingOrder(order);
+        CommandResult commandResult = new DeleteOrderCommand(order.getOrderId()).execute(modelStub);
         assertEquals(String.format(MESSAGE_SUCCESS, Messages.format(order)),
                 commandResult.getFeedbackToUser());
     }
@@ -124,17 +125,24 @@ public class AddOrderCommandTest {
     /**
      * A Model stub that always accepts the order being added.
      */
-    private class ModelStubAcceptingOrderAdded extends AddOrderCommandTest.ModelStub {
+    private class ModelStubDeletingOrder extends ModelStub {
         private final Order order;
 
-        ModelStubAcceptingOrderAdded(Order order) {
+        ModelStubDeletingOrder(Order order) {
             requireNonNull(order);
             this.order = order;
         }
 
         @Override
-        public void addOrder(Order order) {
+        public void deleteOrder(Order order) {
             requireNonNull(order);
+        }
+
+        @Override
+        public ObservableList<Order> getOrderList() {
+            OrderList orderList = new OrderList();
+            orderList.add(order);
+            return orderList.asUnmodifiableObservableList();
         }
     }
 }

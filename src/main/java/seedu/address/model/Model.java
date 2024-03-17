@@ -92,4 +92,14 @@ public interface Model {
      * Adds the given order.
      */
     void addOrder(Order order) throws CommandException;
+
+    /**
+     * Deletes the given Order.
+     * The order must exist in the order list.
+     */
+    void deleteOrder(Order order) throws CommandException;
+
+    /** Returns an unmodifiable view of the order list */
+    public ObservableList<Order> getOrderList() throws CommandException;
+
 }
