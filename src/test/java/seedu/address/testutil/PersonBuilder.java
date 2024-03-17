@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -44,10 +45,18 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+
+        // Handle Optional<Email>
+        Optional<Email> optionalEmail = personToCopy.getEmail();
+        email = optionalEmail.isPresent() ? optionalEmail.get() : null;
+
+        // Handle Optional<Address>
+        Optional<Address> optionalAddress = personToCopy.getAddress();
+        address = optionalAddress.isPresent() ? optionalAddress.get() : null;
+
         tags = new HashSet<>(personToCopy.getTags());
     }
+
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.

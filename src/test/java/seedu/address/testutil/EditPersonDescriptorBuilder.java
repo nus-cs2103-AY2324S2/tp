@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -34,10 +35,18 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+
+        // Handle Optional<Email>
+        Optional<Email> optionalEmail = person.getEmail();
+        descriptor.setEmail(optionalEmail.isPresent() ? optionalEmail.get() : null);
+
+        // Handle Optional<Address>
+        Optional<Address> optionalAddress = person.getAddress();
+        descriptor.setAddress(optionalAddress.isPresent() ? optionalAddress.get() : null);
+
         descriptor.setTags(person.getTags());
     }
+
 
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.

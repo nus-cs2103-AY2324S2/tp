@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Client> filteredClient;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClient = new FilteredList<>(this.addressBook.getClientList());
     }
 
     public ModelManager() {
@@ -111,6 +114,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return addressBook.hasClient(client);
+    }
+
+    @Override
+    public void deleteClient(Client target) {
+        addressBook.removeClient(target);
+    }
+
+    @Override
+    public void addClient(Client client) {
+        addressBook.addClient(client);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
+
+        addressBook.setClient(target, editedClient);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -127,6 +154,20 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    //    /**
+    //     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
+    //     * {@code versionedAddressBook}
+    //     */
+    //    @Override
+    //    public ObservableList<Client> getFilteredClientList() {
+    //        return filteredClient;
+    //    }
+    //    @Override
+    //    public void updateFilteredClientList(Predicate<Client> predicate) {
+    //        requireNonNull(predicate);
+    //        filteredClient.setPredicate(predicate);
+    //    }
 
     @Override
     public boolean equals(Object other) {
