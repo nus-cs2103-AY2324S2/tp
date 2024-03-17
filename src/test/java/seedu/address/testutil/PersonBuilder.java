@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.WorkHours;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -25,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMPLOYMENT_TYPE = "ft";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BANK_ADDRESS = "12345678";
+    public static final int DEFAULT_WORK_HOURS = 0;
 
     private Name firstName;
     private Name lastName;
@@ -33,6 +35,7 @@ public class PersonBuilder {
     private EmploymentType employmentType;
     private Address address;
     private BankDetails bankDetails;
+    private WorkHours hoursWorked;
     private Set<Tag> tags;
 
     /**
@@ -46,6 +49,7 @@ public class PersonBuilder {
         employmentType = new EmploymentType(DEFAULT_EMPLOYMENT_TYPE);
         address = new Address(DEFAULT_ADDRESS);
         bankDetails = new BankDetails(DEFAULT_BANK_ADDRESS);
+        hoursWorked = new WorkHours(DEFAULT_WORK_HOURS);
         tags = new HashSet<>();
     }
 
@@ -128,8 +132,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code WorkHours} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withWorkedHours(int hoursWorked) {
+        this.hoursWorked = new WorkHours(hoursWorked);
+        return this;
+    }
+
     public Person build() {
-        return new Person(firstName, lastName, phone, sex, employmentType, address, bankDetails, tags);
+        return new Person(firstName, lastName, phone, sex, employmentType, address, bankDetails, hoursWorked, tags);
     }
 
 }
