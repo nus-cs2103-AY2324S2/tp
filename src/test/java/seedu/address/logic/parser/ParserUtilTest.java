@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.policy.Policy;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +27,9 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_POLICYNAME = "#Life";
+    private static final String INVALID_POLICYID = "#123";
+
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +37,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+
+    private static final String VALID_POLICYNAME = "Life";
+    private static final String VALID_POLICYID = "123";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +199,45 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parsePolicyInfo_nullPolicyName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePolicyInfo((String) null, VALID_POLICYID));
+    }
+
+    @Test
+    public void parsePolicyInfo_nullPolicyId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePolicyInfo(VALID_POLICYNAME, (String) null));
+    }
+
+    @Test
+    public void parsePolicyInfo_invalidValuePolicyName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePolicyInfo(INVALID_POLICYNAME, VALID_POLICYID));
+    }
+
+    @Test
+    public void parsePolicyInfo_invalidValuePolicyId_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePolicyInfo(VALID_POLICYNAME, INVALID_POLICYID));
+    }
+
+    @Test
+    public void parsePolicyInfo_validValueWithoutWhitespace_returnsPolicy() throws Exception {
+        Policy expectedPolicy = new Policy(VALID_POLICYNAME, VALID_POLICYID);
+        assertEquals(expectedPolicy, ParserUtil.parsePolicyInfo(VALID_POLICYNAME, VALID_POLICYID));
+    }
+
+    @Test
+    public void parsePolicyInfo_validValueWithWhitespacePolicyName_returnsTrimmedPolicy() throws Exception {
+        String policyNameWithWhitespace = WHITESPACE + VALID_POLICYNAME + WHITESPACE;
+        Policy expectedPolicy = new Policy(VALID_POLICYNAME, VALID_POLICYID);
+        assertEquals(expectedPolicy, ParserUtil.parsePolicyInfo(policyNameWithWhitespace, VALID_POLICYID));
+    }
+
+    @Test
+    public void parsePolicyInfo_validValueWithWhitespacePolicyID_returnsTrimmedPolicy() throws Exception {
+        String policyIdWithWhitespace = WHITESPACE + VALID_POLICYID + WHITESPACE;
+        Policy expectedPolicy = new Policy(VALID_POLICYNAME, VALID_POLICYID);
+        assertEquals(expectedPolicy, ParserUtil.parsePolicyInfo(VALID_POLICYNAME, policyIdWithWhitespace));
     }
 }
