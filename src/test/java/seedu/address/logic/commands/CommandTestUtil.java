@@ -45,6 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_BANKDETAILS_BOB = "3214213212";
     public static final String VALID_TAG_WAITER = "waiter";
     public static final String VALID_TAG_COOK = "cook";
+    public static final int VALID_WORK_HOURS_AMY = 10;
+    public static final int VALID_WORK_HOURS_BOB = 20;
 
     public static final String FIRSTNAME_DESC_AMY = " " + PREFIX_FIRSTNAME + VALID_FIRSTNAME_AMY;
     public static final String LASTNAME_DESC_AMY = " " + PREFIX_LASTNAME + VALID_LASTNAME_AMY;

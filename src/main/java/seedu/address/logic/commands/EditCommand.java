@@ -30,6 +30,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.WorkHours;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,18 +80,19 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Name updatedFirstName = editPersonDescriptor.getFirstName().orElse(personToEdit.getFirstName());
         Name updatedLastName = editPersonDescriptor.getLastName().orElse(personToEdit.getLastName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Sex updatedSex = editPersonDescriptor.getSex().orElse(personToEdit.getSex());
         EmploymentType updatedEmploymentType = editPersonDescriptor.getEmploymentType()
                 .orElse(personToEdit.getEmploymentType());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         BankDetails updatedBankDetails = editPersonDescriptor.getBankDetails().orElse(personToEdit.getBankDetails());
+        WorkHours updatedWorkHours = editPersonDescriptor.getHoursWorked().orElse(personToEdit.getWorkHours());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+
         return new Person(updatedFirstName, updatedLastName, updatedPhone, updatedSex, updatedEmploymentType,
-                updatedAddress, updatedBankDetails, updatedTags);
+                updatedAddress, updatedBankDetails, updatedWorkHours, updatedTags);
     }
 
     @Override
@@ -159,6 +161,7 @@ public class EditCommand extends Command {
         private Sex sex;
         private EmploymentType employmentType;
         private BankDetails bankDetails;
+        private WorkHours hoursWorked;
 
         public EditPersonDescriptor() {
         }
@@ -171,11 +174,12 @@ public class EditCommand extends Command {
             setFirstName(toCopy.firstName);
             setLastName(toCopy.lastName);
             setPhone(toCopy.phone);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
             setEmploymentType(toCopy.employmentType);
             setSex(toCopy.sex);
+            setAddress(toCopy.address);
             setBankDetails(toCopy.bankDetails);
+            setHoursWorked(toCopy.hoursWorked);
         }
 
         /**
@@ -238,6 +242,14 @@ public class EditCommand extends Command {
             this.address = address;
         }
 
+        public Optional<WorkHours> getHoursWorked() {
+            return Optional.ofNullable(hoursWorked);
+        }
+
+        public void setHoursWorked(WorkHours hoursWorked) {
+            this.hoursWorked = hoursWorked;
+        }
+
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
@@ -270,11 +282,12 @@ public class EditCommand extends Command {
             return Objects.equals(firstName, otherEditPersonDescriptor.firstName)
                     && Objects.equals(lastName, otherEditPersonDescriptor.lastName)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(sex, otherEditPersonDescriptor.sex)
                     && Objects.equals(employmentType, otherEditPersonDescriptor.employmentType)
-                    && Objects.equals(bankDetails, otherEditPersonDescriptor.bankDetails);
+                    && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(bankDetails, otherEditPersonDescriptor.bankDetails)
+                    && Objects.equals(hoursWorked, otherEditPersonDescriptor.hoursWorked);
         }
 
         @Override
@@ -283,10 +296,11 @@ public class EditCommand extends Command {
                     .add("firstName", firstName)
                     .add("lastName", lastName)
                     .add("phone", phone)
-                    .add("address", address)
                     .add("sex", sex)
                     .add("employmentType", employmentType)
+                    .add("address", address)
                     .add("bankDetails", bankDetails)
+                    .add("hoursWorked", hoursWorked)
                     .add("tags", tags)
                     .toString();
         }

@@ -16,6 +16,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_WAITER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WORK_HOURS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WORK_HOURS_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -115,7 +117,7 @@ public class TypicalPersons {
         .withSex(VALID_SEX_AMY)
         .withEmploymentType(VALID_EMPLOYMENTTYPE_AMY)
         .withAddress(VALID_ADDRESS_AMY)
-        .withBankDetails(VALID_BANKDETAILS_AMY)
+        .withBankDetails(VALID_BANKDETAILS_AMY).withWorkedHours(VALID_WORK_HOURS_AMY)
         .withTags(VALID_TAG_COOK).build();
     public static final Person BOB = new PersonBuilder()
         .withFirstName(VALID_FIRSTNAME_BOB)
@@ -124,7 +126,7 @@ public class TypicalPersons {
         .withSex(VALID_SEX_BOB)
         .withEmploymentType(VALID_EMPLOYMENTTYPE_BOB)
         .withAddress(VALID_ADDRESS_BOB)
-        .withBankDetails(VALID_BANKDETAILS_BOB)
+        .withBankDetails(VALID_BANKDETAILS_BOB).withWorkedHours(VALID_WORK_HOURS_BOB)
         .withTags(VALID_TAG_WAITER, VALID_TAG_COOK)
         .build();
 
