@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -101,5 +103,21 @@ class AssignCommandTest {
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST, outOfBoundIndex);
 
         assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals() {
+        AssignCommand assignOneToOneCommand = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
+        AssignCommand assignOneToTwoCommand = new AssignCommand(INDEX_FIRST, INDEX_SECOND);
+
+        // same values -> returns true
+        AssignCommand assignCommandCopy = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
+        assertEquals(assignOneToOneCommand, assignCommandCopy);
+
+        // null -> returns false
+        assertNotEquals(assignOneToOneCommand, null);
+
+        // different indices -> returns false
+        assertNotEquals(assignOneToOneCommand, assignOneToTwoCommand);
     }
 }
