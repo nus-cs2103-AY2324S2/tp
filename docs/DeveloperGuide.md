@@ -281,7 +281,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Requires an interface that allows for quick navigation and manipulation of datasets without relying on a mouse, favoring keyboard commands for efficiency.
 
 
-**Value proposition**: 
+**Value proposition**:
 
 A simple and intuitive GUI with a keyboard-driven interface that mirrors the efficiency of Vim.
 

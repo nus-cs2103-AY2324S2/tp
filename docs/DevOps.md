@@ -25,7 +25,7 @@ Note:
 ### Updating Local Fork
 1. First, ensure that you did git remote add upstream https://github.com/AY2324S2-CS2103T-T10-2/tp.git
     - So now you have two remotes on github (origin: the fork, upstream: the main)
-2. To update your local forked branch: git pull upstream main. 
+2. To update your local forked branch: git pull upstream main.
     - If you're working on a branch, then make sure you merge changes from main to that branch; i.e. git checkout that branch, then git merge main.
 3. Once you're ready, just push the BRANCH to your fork (remote).
 

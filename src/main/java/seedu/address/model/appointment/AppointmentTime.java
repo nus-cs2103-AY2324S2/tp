@@ -5,7 +5,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
+<<<<<<< HEAD
  * Represents an Appointment's Date, startTime and endTime in the address book.
+=======
+ * Represents an Appointment's time in the address book.
+>>>>>>> 57db8e6af9200374dbcc28419da9ac2cf31af32a
  * ASSUMPTION: An Appointment CANNOT SPAN MULTIPLE DAYS!!!
  * Guarantees: none at the moment.
  */
@@ -17,6 +21,7 @@ public class AppointmentTime {
 
     /**
      * Constructor for an AppointmentTime object.
+     *
      * @param time Follow the format "dd/MM/yyyy [x]am-[y]pm".
      */
     public AppointmentTime(String time) {
@@ -77,5 +82,14 @@ public class AppointmentTime {
         boolean sameStart = startTime.equals(otherAppointmentTime.getStartTime());
         boolean sameEnd = endTime.equals(otherAppointmentTime.getEndTime());
         return (sameDate && sameStart && sameEnd);
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("h:mma");
+        String formattedDate = appointmentDate.format(DATE_FORMAT);
+        String formattedStartTime = startTime.format(timeFormat);
+        String formattedEndTime = endTime.format(timeFormat);
+        return formattedDate + ": from " + formattedStartTime + " to " + formattedEndTime;
     }
 }
