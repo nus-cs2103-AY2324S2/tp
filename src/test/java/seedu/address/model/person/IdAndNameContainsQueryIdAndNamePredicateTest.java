@@ -67,6 +67,14 @@ public class IdAndNameContainsQueryIdAndNamePredicateTest {
         IdAndNameContainsQueryIdAndNamePredicate predicate2 =
                 new IdAndNameContainsQueryIdAndNamePredicate("B9876543Y", "Doe");
         assertFalse(predicate1.equals(predicate2));
+
+        predicate1 = new IdAndNameContainsQueryIdAndNamePredicate("A1234567X", "John");
+        predicate2 = new IdAndNameContainsQueryIdAndNamePredicate("A1234567X", "Doe");
+        assertFalse(predicate1.equals(predicate2));
+
+        predicate1 = new IdAndNameContainsQueryIdAndNamePredicate("A1234567X", "John");
+        predicate2 = new IdAndNameContainsQueryIdAndNamePredicate("B9876543Y", "John");
+        assertFalse(predicate1.equals(predicate2));
     }
 
     @Test

@@ -14,16 +14,15 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.IdAndNameContainsQueryIdAndNamePredicate;
-import seedu.address.model.person.IdContainsQueryIdPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsQueryNamePredicate;
+import seedu.address.model.person.*;
+//import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -34,10 +33,12 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+
+        // TEST NAME ---------------------------------------
+        Predicate<Person> firstPredicate =
+                new NameContainsQueryNamePredicate("first");
+        Predicate<Person> secondPredicate =
+                new NameContainsQueryNamePredicate("second");
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -55,7 +56,57 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different name -> returns false
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+
+        // TEST ID  ---------------------------------------
+        firstPredicate =
+                new IdContainsQueryIdPredicate("A1234567X");
+        secondPredicate =
+                new IdContainsQueryIdPredicate("B9876543Z");
+
+        findFirstCommand = new FindCommand(firstPredicate);
+        findSecondCommand = new FindCommand(secondPredicate);
+
+        // same object -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // same values -> returns true
+        findFirstCommandCopy = new FindCommand(firstPredicate);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(findFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(findFirstCommand.equals(null));
+
+        // different id -> returns false
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+
+        // TEST NAME & ID -------------------------------------
+        firstPredicate =
+                new IdAndNameContainsQueryIdAndNamePredicate("A1234567X", "John");
+        secondPredicate =
+                new IdAndNameContainsQueryIdAndNamePredicate("B9876543Z", "John");
+
+        findFirstCommand = new FindCommand(firstPredicate);
+        findSecondCommand = new FindCommand(secondPredicate);
+
+        // same object -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // same values -> returns true
+        findFirstCommandCopy = new FindCommand(firstPredicate);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(findFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(findFirstCommand.equals(null));
+
+        // different id and name-> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -155,16 +206,19 @@ public class FindCommandTest {
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        Predicate<Person> predicate = new NameContainsQueryNamePredicate("first");
         FindCommand findCommand = new FindCommand(predicate);
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
-    }
 
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        predicate = new IdContainsQueryIdPredicate("A1234567X");
+        findCommand = new FindCommand(predicate);
+        expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        assertEquals(expected, findCommand.toString());
+
+        predicate = new IdAndNameContainsQueryIdAndNamePredicate("A1234567X", "John Doe");
+        findCommand = new FindCommand(predicate);
+        expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        assertEquals(expected, findCommand.toString());
     }
 }

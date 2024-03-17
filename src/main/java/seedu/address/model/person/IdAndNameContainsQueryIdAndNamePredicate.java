@@ -46,7 +46,8 @@ public class IdAndNameContainsQueryIdAndNamePredicate implements Predicate<Perso
 
         IdAndNameContainsQueryIdAndNamePredicate otherIdAndNameContainsQueryIdAndNamePredicate =
                 (IdAndNameContainsQueryIdAndNamePredicate) other;
-        return queryName.equals(otherIdAndNameContainsQueryIdAndNamePredicate.queryName);
+        return queryName.equals(otherIdAndNameContainsQueryIdAndNamePredicate.queryName)
+                && queryId.equals(otherIdAndNameContainsQueryIdAndNamePredicate.queryId);
     }
 
     @Override
