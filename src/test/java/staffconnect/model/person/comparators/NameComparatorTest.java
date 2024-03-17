@@ -3,6 +3,7 @@ package staffconnect.model.person.comparators;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static staffconnect.model.person.comparators.FacultyComparator.FACULTY_COMPARATOR;
 import static staffconnect.model.person.comparators.ModuleComparator.MODULE_COMPARATOR;
 import static staffconnect.model.person.comparators.NameComparator.NAME_COMPARATOR;
 import static staffconnect.model.person.comparators.PhoneComparator.PHONE_COMPARATOR;
@@ -17,8 +18,9 @@ public class NameComparatorTest {
 
     @Test
     public void doesNotEquals() {
-        assertNotEquals(NAME_COMPARATOR, MODULE_COMPARATOR);
         assertNotEquals(NAME_COMPARATOR, PHONE_COMPARATOR);
+        assertNotEquals(NAME_COMPARATOR, MODULE_COMPARATOR);
+        assertNotEquals(NAME_COMPARATOR, FACULTY_COMPARATOR);
         assertNotEquals(NAME_COMPARATOR, VENUE_COMPARATOR);
     }
 

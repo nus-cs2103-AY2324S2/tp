@@ -28,6 +28,15 @@
     "tags" : [ ],
     "availabilities" : [ ]
   }, {
+    "name" : "Clara Svarog",
+    "phone" : "9681384",
+    "email" : "svarog@example.com",
+    "module": "CS2102",
+    "faculty" : "Computing",
+    "venue" : "belobog avenue",
+    "tags" : [ "classmate" ],
+    "availabilities" : [ ]
+  }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
@@ -61,6 +70,42 @@
     "module": "CS2102",
     "faculty": "Computing",
     "venue" : "4th street",
+    "tags" : [ ],
+    "availabilities" : [ ]
+  }, {
+    "name" : "Kafka Apache",
+    "phone" : "9452413",
+    "email" : "apache@example.com",
+    "module": "CS2102",
+    "faculty" : "Business",
+    "venue" : "pteruges avenue",
+    "tags" : [ "classmate" ],
+    "availabilities" : [ "FRIDAY" ]
+  }, {
+    "name" : "Natasha Harrower",
+    "phone" : "8019394",
+    "email" : "harrower@example.com",
+    "module": "CS2102",
+    "faculty" : "Computing",
+    "venue" : "underworld avenue",
+    "tags" : [ "classmate" ],
+    "availabilities" : [ "FRIDAY" ]
+  }, {
+    "name" : "Leonardo DiCaprio",
+    "phone" : "88472234",
+    "email" : "lcaprio@gmail.com",
+    "module": "TS2237",
+    "faculty": "Arts and Social Sciences",
+    "venue" : "LT13",
+    "tags" : [ ],
+    "availabilities" : [ ]
+  }, {
+    "name" : "Michael Jackson",
+    "phone" : "92347123",
+    "email" : "heehee@gmail.com",
+    "module": "MUA1163",
+    "faculty": "Music",
+    "venue" : "YSTCM-SR9",
     "tags" : [ ],
     "availabilities" : [ ]
   } ]

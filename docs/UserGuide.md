@@ -27,7 +27,7 @@ StaffConnect (SC) is a **desktop app for managing contacts of Professors and Tut
 
     * `list` : Lists all contacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com v/John street, block 123, #01-01 m/CS2103` : Adds a contact named `John Doe` to the contacts list.
+    * `add n/John Doe p/98765432 e/johnd@example.com f/Computing v/John street, block 123, #01-01 m/CS2103` : Adds a contact named `John Doe` to the contacts list.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -76,15 +76,15 @@ Format: `help`
 
 Adds a person to the contacts.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL f/FACULTY v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and availabilities (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com v/John street, block 123, #01-01 m/CS2103`
-* `add n/Betsy Crowe t/friend m/CS2103T e/betsycrowe@example.com v/Newgate Prison p/1234567 t/criminal a/monday a/wednesday`
+* `add n/John Doe p/98765432 e/johnd@example.com f/Computing v/John street, block 123, #01-01 m/CS2103`
+* `add n/Betsy Crowe t/friend m/CS2103T e/betsycrowe@example.com f/Computing v/Newgate Prison p/1234567 t/criminal a/monday a/wednesday`
 
 ### Listing all persons : `list`
 
@@ -96,7 +96,7 @@ Format: `list`
 
 Edits an existing person in the contacts.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [f/FACULTY] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -202,18 +202,35 @@ _Details coming soon ..._
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
+2. **Restrictions on the valid user input of `Faculty` values**: For the current version, a valid user input for `Faculty` with prefix `f/` can only match exactly the same string as suggested below. Cases can be ignored though.
+   - Arts and Social Sciences
+   - Business
+   - Computing
+   - Continuing and Lifelong Education
+   - Dentistry
+   - Design and Environment
+   - Duke-NUS Medical School
+   - Engineering
+   - Integrative Sciences and Engineering
+   - Law
+   - Medicine
+   - Music
+   - Public Health
+   - Public Policy
+   - Science
+   - University Scholars Programme
+   - Yale-NUS College
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com v/123, Clementi Rd, 1234665 m/CS2103 t/friend t/colleague a/monday`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Sort** | `sort [ATTRIBUTE]`<br> e.g., `sort p/`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                                                                                        |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL f/FACULTY v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com f/Computing v/123, Clementi Rd, 1234665 m/CS2103 t/friend t/colleague a/monday` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                 |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                     |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [f/FACULTY] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                     |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                              |
+| **Sort**   | `sort [ATTRIBUTE]`<br> e.g., `sort p/`                                                                                                                                                                                                  |
+| **List**   | `list`                                                                                                                                                                                                                                  |
+| **Help**   | `help`                                                                                                                                                                                                                                  |
