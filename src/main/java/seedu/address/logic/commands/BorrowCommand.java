@@ -55,6 +55,11 @@ public class BorrowCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        if (!personToEdit.getBook().toString().isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_FILLED_BOOKLIST_FIELD);
+        }
+
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(),
                 bookTitle, personToEdit.getTags());
