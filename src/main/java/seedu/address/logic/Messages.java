@@ -20,6 +20,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
+    public static final String MESSAGE_SELECT_EVENT = "No event is selected!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

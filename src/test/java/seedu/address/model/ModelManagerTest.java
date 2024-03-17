@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.BINGO;
+import static seedu.address.testutil.TypicalEvents.getBingoEvent;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -105,13 +105,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasEvent_eventNotInEventBook_returnsFalse() {
-        assertFalse(modelManager.hasEvent(BINGO));
+        assertFalse(modelManager.hasEvent(getBingoEvent()));
     }
 
     @Test
     public void hasEvent_eventInEventBook_returnsTrue() {
-        modelManager.addEvent(BINGO);
-        assertTrue(modelManager.hasEvent(BINGO));
+        modelManager.addEvent(getBingoEvent());
+        assertTrue(modelManager.hasEvent(getBingoEvent()));
     }
 
     @Test
@@ -121,14 +121,14 @@ public class ModelManagerTest {
 
     @Test
     public void deleteEvent_eventNotInEventBook_throwsEventNotFoundException() {
-        assertThrows(EventNotFoundException.class, () -> modelManager.deleteEvent(BINGO));
+        assertThrows(EventNotFoundException.class, () -> modelManager.deleteEvent(getBingoEvent()));
     }
 
     @Test
     public void deleteEvent_eventInEventBook_removesEvent() {
-        modelManager.addEvent(BINGO);
-        modelManager.deleteEvent(BINGO);
-        assertFalse(modelManager.hasEvent(BINGO));
+        modelManager.addEvent(getBingoEvent());
+        modelManager.deleteEvent(getBingoEvent());
+        assertFalse(modelManager.hasEvent(getBingoEvent()));
     }
 
     @Test

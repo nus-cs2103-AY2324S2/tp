@@ -14,7 +14,7 @@ public class DeselectCommandTest {
     public void execute_deselect_success() throws CommandException {
         ModelManager model = new ModelManager();
         model.setEventBook(TypicalEvents.getTypicalEventBook());
-        model.selectEvent(TypicalEvents.BINGO);
+        model.selectEvent(TypicalEvents.getBingoEvent());
         DeselectCommand deselectCommand = new DeselectCommand();
         CommandResult commandResult = deselectCommand.execute(model);
         assertEquals(DeselectCommand.MESSAGE_DESELECT_EVENT_SUCCESS, commandResult.getFeedbackToUser());

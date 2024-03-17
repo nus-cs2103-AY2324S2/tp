@@ -178,13 +178,17 @@ public class ModelManager implements Model {
     @Override
     public void addEvent(Event event) {
         eventBook.addEvent(event);
-        // updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
         eventBook.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public boolean isAnEventSelected() {
+        return eventBook.isAnEventSelected();
     }
 
     @Override
@@ -195,6 +199,18 @@ public class ModelManager implements Model {
     @Override
     public void deselectEvent() {
         eventBook.deselectEvent();
+    }
+
+    @Override
+    public boolean isPersonInSelectedEvent(Person person) {
+        requireNonNull(person);
+        return eventBook.isPersonInSelectedEvent(person);
+    }
+
+    @Override
+    public void addPersonToSelectedEvent(Person person) {
+        requireNonNull(person);
+        eventBook.addPersonToSelectedEvent(person);
     }
 
 

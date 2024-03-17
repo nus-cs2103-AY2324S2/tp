@@ -98,9 +98,15 @@ public interface Model {
 
     void setEvent(Event target, Event editedEvent);
 
+    boolean isAnEventSelected();
+
     void selectEvent(Event event);
 
     void deselectEvent();
+
+    boolean isPersonInSelectedEvent(Person person);
+
+    void addPersonToSelectedEvent(Person person);
 
     /**
      * Returns an unmodifiable view of the filtered event list.
@@ -108,7 +114,6 @@ public interface Model {
      * @return An unmodifiable view of the filtered event list.
      */
     ObservableList<Event> getFilteredEventList();
-
 
     /**
      * Returns an unmodifiable view of the filtered person list of the selected event.
@@ -118,6 +123,5 @@ public interface Model {
      *         or an empty list if no event is selected.
      */
     ObservableList<Person> getFilteredPersonListOfSelectedEvent();
-
 
 }

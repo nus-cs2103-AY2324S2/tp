@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.BINGO;
+import static seedu.address.testutil.TypicalEvents.getBingoEvent;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 
 import java.util.Arrays;
@@ -45,9 +45,9 @@ public class EventBookTest {
     @Test
     public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
         // Two events with the same identity fields
-        Event editedBingo = new EventBuilder(BINGO)
+        Event editedBingo = new EventBuilder(getBingoEvent())
                 .build();
-        List<Event> newEvents = Arrays.asList(BINGO, editedBingo);
+        List<Event> newEvents = Arrays.asList(getBingoEvent(), editedBingo);
         EventBookStub newData = new EventBookStub(newEvents);
 
         assertThrows(DuplicateEventException.class, () -> eventBook.resetData(newData));
@@ -60,19 +60,19 @@ public class EventBookTest {
 
     @Test
     public void hasEvent_eventNotInEventBook_returnsFalse() {
-        assertFalse(eventBook.hasEvent(BINGO));
+        assertFalse(eventBook.hasEvent(getBingoEvent()));
     }
 
     @Test
     public void hasEvent_eventInEventBook_returnsTrue() {
-        eventBook.addEvent(BINGO);
-        assertTrue(eventBook.hasEvent(BINGO));
+        eventBook.addEvent(getBingoEvent());
+        assertTrue(eventBook.hasEvent(getBingoEvent()));
     }
 
     @Test
     public void hasEvent_eventWithSameIdentityFieldsInEventBook_returnsTrue() {
-        eventBook.addEvent(BINGO);
-        Event editedBingo = new EventBuilder(BINGO)
+        eventBook.addEvent(getBingoEvent());
+        Event editedBingo = new EventBuilder(getBingoEvent())
                 .build();
         assertTrue(eventBook.hasEvent(editedBingo));
     }
