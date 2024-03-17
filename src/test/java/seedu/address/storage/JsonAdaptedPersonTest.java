@@ -135,7 +135,7 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = Upcoming.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-    
+
     @Test
     public void toModelType_invalidLastContact_throwsIllegalArgumentException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
