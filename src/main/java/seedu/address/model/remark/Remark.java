@@ -2,12 +2,10 @@ package seedu.address.model.remark;
 
 /**
  * Represents a remark in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidRemark(String)}
  */
 public class Remark {
 
     public static final String MESSAGE_CONSTRAINTS = "Remarks should be non-empty";
-    public static final String VALIDATION_REGEX = ".+";
 
     public final String remarkName;
 
@@ -18,13 +16,6 @@ public class Remark {
      */
     public Remark(String remarkName) {
         this.remarkName = remarkName;
-    }
-
-    /**
-     * Returns true if a given string is a valid remark.
-     */
-    public static boolean isValidRemark(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
