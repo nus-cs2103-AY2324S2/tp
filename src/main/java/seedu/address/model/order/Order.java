@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -120,6 +119,13 @@ public class Order implements Comparable<Order> {
         return new Order(productMap);
     }
 
+    /**
+     * Updates the specified product from the order.
+     * If new Quantity is zero, the product is removed from the map.
+     * @param currProduct Product to be updated.
+     * @param newQuantity Quantity to update to.
+     * @return Updated order.
+     */
     public Order updateOrder(Product currProduct, Quantity newQuantity) {
         return newQuantity.getValue() == 0
                 ? deleteProduct(currProduct)

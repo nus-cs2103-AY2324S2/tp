@@ -18,11 +18,15 @@ import seedu.address.model.order.Order;
 import seedu.address.model.order.Product;
 import seedu.address.model.order.Quantity;
 
+/**
+ * Edits the details of an existing order.
+ */
 public class EditOrderCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the order identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the details of the order identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: [" + PREFIX_ORDER_ID + "INDEX (must be a positive integer)] "
@@ -33,7 +37,8 @@ public class EditOrderCommand extends EditCommand {
             + PREFIX_PRODUCT_QUANTITY + "2";
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "Both product and quantity must be provided.";
+    public static final String MESSAGE_NOT_EDITED =
+            "Both product and quantity must be provided.";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -62,9 +67,11 @@ public class EditOrderCommand extends EditCommand {
         Order orderToEdit = lastShownList.get(index.getZeroBased());
         assert orderToEdit != null;
 
-        Order editedOrder = model.setOrder(orderToEdit, editOrderDescriptor.getProduct(), editOrderDescriptor.getQuantity());
+        Order editedOrder = model.setOrder(orderToEdit,
+                editOrderDescriptor.getProduct(), editOrderDescriptor.getQuantity());
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, Messages.format(editedOrder)));
+        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS,
+                Messages.format(editedOrder)));
     }
 
     @Override

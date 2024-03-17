@@ -11,7 +11,13 @@ import seedu.address.logic.commands.EditCustomerCommand;
 import seedu.address.logic.commands.EditOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input for EditOrderCommand.
+ */
 public class EditOrderCommandParser implements Parser<EditOrderCommand> {
+    /**
+     * Parses input arguments and creates a new EditOrderCommand object.
+     */
     public EditOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =

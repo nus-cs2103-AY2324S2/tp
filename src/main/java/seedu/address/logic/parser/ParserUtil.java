@@ -176,7 +176,7 @@ public class ParserUtil {
             return true;
         } else if (!hasCustomer && hasOrder) {
             return false;
-        } else if (hasCustomer && hasOrder){
+        } else if (hasCustomer && hasOrder) {
             throw new ParseException(Messages.MESSAGE_COEXISTING_CUSTOMER_AND_ORDER);
         } else {
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);

@@ -19,23 +19,34 @@ import seedu.address.logic.commands.EditCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments for EditCustomerCommand.
+ */
 public class EditCustomerCommandParser implements Parser<EditCustomerCommand> {
+    /**
+     * Parses input arguments and creates a new EditCustomerCommand object.
+     */
     public EditCustomerCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CUSTOMER_ID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_CUSTOMER_ID, PREFIX_NAME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CUSTOMER_ID).orElseThrow(() -> new ParseException("")));
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CUSTOMER_ID)
+                    .orElseThrow(() -> new ParseException("")));
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCustomerCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCustomerCommand.MESSAGE_USAGE), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
-        EditCustomerCommand.EditPersonDescriptor editPersonDescriptor = new EditCustomerCommand.EditPersonDescriptor();
+        EditCustomerCommand.EditPersonDescriptor editPersonDescriptor =
+                new EditCustomerCommand.EditPersonDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -47,7 +58,8 @@ public class EditCustomerCommandParser implements Parser<EditCustomerCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editPersonDescriptor.setAddress(ParserUtil.parseAddress(
+                    argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
