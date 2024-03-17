@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.book.Book;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BookList;
 import seedu.address.model.person.Email;
@@ -116,13 +117,19 @@ class JsonAdaptedPerson {
 
         if (meritScore == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    BookList.class.getSimpleName()));
+                    MeritScore.class.getSimpleName()));
+        }
+        if (!MeritScore.isValidMeritScore(meritScore)) {
+            throw new IllegalValueException(MeritScore.MESSAGE_CONSTRAINTS);
         }
         final MeritScore modelMeritScore = new MeritScore(meritScore);
 
         if (bookTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     BookList.class.getSimpleName()));
+        }
+        if (!Book.isValidBookTitle(bookTitle)) {
+            throw new IllegalValueException(Book.MESSAGE_CONSTRAINTS);
         }
         final BookList modelBookList = new BookList(bookTitle);
 
