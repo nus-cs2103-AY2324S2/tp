@@ -352,7 +352,7 @@ Preconditions: Operator is logged in.
 
 * 2a. The list is empty.
 
-    * 2a1. HouseKeeping Hub shows a message that the list is empty. 
+    * 2a1. HouseKeeping Hub shows a message that the list is empty.
 
       Use case ends.
 

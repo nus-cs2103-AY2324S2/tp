@@ -23,4 +23,32 @@ public class Client extends Person {
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
     }
+
+    /**
+     * Returns true if both clients have the same identity and data fields.
+     * This defines a stronger notion of equality between two clients.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Client)) {
+            return false;
+        }
+
+        Client otherPerson = (Client) other;
+        return this.getName().equals(otherPerson.getName())
+                && this.getPhone().equals(otherPerson.getPhone())
+                && this.getEmail().equals(otherPerson.getEmail())
+                && this.getAddress().equals(otherPerson.getAddress())
+                && this.getTags().equals(otherPerson.getTags());
+    }
+
+    @Override
+    public boolean isClient() {
+        return true;
+    }
 }
