@@ -47,7 +47,7 @@ public class Person {
     @JsonCreator
     private Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                    @JsonProperty("email") String email, @JsonProperty("address") String address,
-                   @JsonProperty("tags") String[] tagNames, @JsonProperty("assets") String assetNames) {
+                   @JsonProperty("tags") String[] tagNames, @JsonProperty("assets") String[] assetNames) {
         requireAllNonNull(name, phone, email, address, tagNames);
         this.name = new Name(name);
         this.phone = new Phone(phone);

@@ -57,7 +57,6 @@ public class Assets implements Field {
     }
 
     @Override
-    @JsonValue
     public String toString() {
         return assets.toString();
     }
