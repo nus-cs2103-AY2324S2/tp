@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,7 +32,6 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Note note;
-
     private String noteDate;
 
     /**
@@ -104,6 +105,11 @@ public class PersonBuilder {
      */
     public PersonBuilder withNote(String note) {
         this.note = new Note(note);
+        return this;
+    }
+
+    public PersonBuilder withNoteDate() {
+        this.noteDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d, yy"));
         return this;
     }
 

@@ -39,7 +39,7 @@ class NoteCommandTest {
     void execute_addNoteUnfilteredListWithDate_success() {
 
         Person targetPerson = model.getFilteredPersonList().get(0);
-        Person editedPerson = new PersonBuilder(targetPerson).withNote("Updated Note").build();
+        Person editedPerson = new PersonBuilder(targetPerson).withNote("Updated Note").withNoteDate().build();
 
         NoteCommand executeCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note("Updated Note"), true);
 
