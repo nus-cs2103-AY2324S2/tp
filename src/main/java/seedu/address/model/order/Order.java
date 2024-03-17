@@ -174,7 +174,8 @@ public class Order implements Comparable<Order> {
         }
 
         return otherOrder != null
-                && otherOrder.id == this.id;
+                && otherOrder.id == this.id
+                && otherOrder.customer == this.customer;
     }
 
     @Override
