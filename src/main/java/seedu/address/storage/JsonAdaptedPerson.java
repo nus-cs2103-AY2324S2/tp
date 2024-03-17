@@ -19,6 +19,7 @@ import seedu.address.model.person.LastMet;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.person.Schedule;
 import seedu.address.model.tag.Tag;
 
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String birthday;
+    private final String priority;
     private final String lastmet;
     private final String schedule;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -44,14 +46,15 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("birthday") String birthday, @JsonProperty("lastmet") String lastmet,
-                             @JsonProperty("schedule") String schedule,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("birthday") String birthday, @JsonProperty("priority") String priority,
+            @JsonProperty("lastmet") String lastmet, @JsonProperty("schedule") String schedule,
+            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.priority = priority;
         this.lastmet = lastmet;
         this.schedule = schedule;
         if (tags != null) {
@@ -68,6 +71,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
+        priority = source.getPriority().toString();
         lastmet = source.getLastMet().toString();
         schedule = source.getSchedule().toString();
         tags.addAll(source.getTags().stream()
@@ -127,6 +131,15 @@ class JsonAdaptedPerson {
         }
         final Birthday modelBirthday = new Birthday(birthday);
 
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
+        }
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        final Priority modelPriority = new Priority(priority);
+
         final LastMet modelLastMet = new LastMet(DateUtil.parseStringToDate(lastmet));
 
         String[] scheduleString = schedule.toString().split("/");
@@ -136,7 +149,7 @@ class JsonAdaptedPerson {
                 Schedule.checkIsDoneFromString(isDoneString));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelPriority,
                 modelLastMet, modelSchedule, modelTags);
     }
 

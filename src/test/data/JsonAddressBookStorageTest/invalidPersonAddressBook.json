@@ -4,6 +4,7 @@
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street",
-    "birthday": "1980-01-01"
+    "birthday": "1980-01-01",
+    "priority": "low"
   } ]
 }

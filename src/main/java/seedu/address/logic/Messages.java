@@ -48,6 +48,8 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Birthday: ")
                 .append(person.getBirthday())
+                .append("; Priority: ")
+                .append(person.getPriority())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

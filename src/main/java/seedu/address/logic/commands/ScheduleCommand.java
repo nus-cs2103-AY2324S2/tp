@@ -65,7 +65,7 @@ public class ScheduleCommand extends Command {
         Person personToMeet = lastShownList.get(index.getZeroBased());
         Person metPerson = new Person(
                 personToMeet.getName(), personToMeet.getPhone(), personToMeet.getEmail(),
-                personToMeet.getAddress(), personToMeet.getBirthday(),
+                personToMeet.getAddress(), personToMeet.getBirthday(), personToMeet.getPriority(),
                 personToMeet.getLastMet(), this.schedule, personToMeet.getTags());
 
         model.setPerson(personToMeet, metPerson);

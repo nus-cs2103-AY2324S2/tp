@@ -5,6 +5,7 @@
     "email": "hans@example.com",
     "address": "4th street",
     "birthday": "1980-01-01",
+    "priority": "high",
     "lastmet": "2023-02-03",
     "schedule": "2023-04-05 12:00/0"
   }, {
@@ -13,6 +14,7 @@
     "email": "hans@example.com",
     "address": "4th street",
     "birthday": "1983-05-09",
+    "priority": "medium",
     "lastmet": "2023-02-03",
     "schedule": "2023-04-05 12:00/0"
   } ]

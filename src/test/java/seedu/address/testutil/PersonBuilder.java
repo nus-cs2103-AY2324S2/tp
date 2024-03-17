@@ -9,6 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BIRTHDAY = "1990-01-01";
+    public static final String DEFAULT_PRIORITY = "medium";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Birthday birthday;
+    private Priority priority;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
+        priority = new Priority(DEFAULT_PRIORITY);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         birthday = personToCopy.getBirthday();
+        priority = personToCopy.getPriority();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -87,6 +92,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Priority} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriority(String priority) {
+        this.priority = new Priority(priority);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -103,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, birthday, tags);
+        return new Person(name, phone, email, address, birthday, priority, tags);
     }
 
 }

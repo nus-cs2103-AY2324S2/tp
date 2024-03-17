@@ -3,9 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -29,6 +30,7 @@ import seedu.address.model.person.LastMet;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.person.Schedule;
 import seedu.address.model.tag.Tag;
 
@@ -44,13 +46,14 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_CONTACT_NUMBER + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_CONTACT_NUMBER + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -105,11 +108,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
+        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
         LastMet currentLastMet = personToEdit.getLastMet();
         Schedule currentSchedule = personToEdit.getSchedule();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday, updatedPriority,
                 currentLastMet, currentSchedule, updatedTags);
     }
 
@@ -147,6 +151,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Birthday birthday;
+        private Priority priority;
         private LastMet lastMet;
         private Schedule schedule;
         private Set<Tag> tags;
@@ -163,6 +168,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setBirthday(toCopy.birthday);
+            setPriority(toCopy.priority);
             setTags(toCopy.tags);
         }
 
@@ -170,7 +176,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, priority, tags);
         }
 
         public void setName(Name name) {
@@ -213,6 +219,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(birthday);
         }
 
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -247,6 +261,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(birthday, otherEditPersonDescriptor.birthday)
+                    && Objects.equals(priority, otherEditPersonDescriptor.priority)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -258,6 +273,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("birthday", birthday)
+                    .add("priority", priority)
                     .add("tags", tags)
                     .toString();
         }

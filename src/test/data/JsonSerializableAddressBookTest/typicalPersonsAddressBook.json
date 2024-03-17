@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "birthday": "1993-09-22",
+    "priority": "vip",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/1",
     "tags" : [ "friends" ]
@@ -15,6 +16,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "birthday": "1998-12-03",
+    "priority": "high",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/0",
     "tags" : [ "owesMoney", "friends" ]
@@ -24,6 +26,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "birthday": "1978-05-06",
+    "priority": "medium",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/1",
     "tags" : [ ]
@@ -33,6 +36,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "birthday": "1999-07-23",
+    "priority": "medium",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/1",
     "tags" : [ "friends" ]
@@ -42,6 +46,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "birthday": "1995-09-15",
+    "priority": "medium",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/1",
     "tags" : [ ]
@@ -51,6 +56,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "birthday": "2000-01-01",
+    "priority": "medium",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/1",
     "tags" : [ ]
@@ -60,6 +66,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "birthday": "1978-11-03",
+    "priority": "low",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/1",
     "tags" : [ ]

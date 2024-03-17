@@ -56,7 +56,7 @@ public class MarkCommand extends Command {
 
         Person metPerson = new Person(
                 personToMeet.getName(), personToMeet.getPhone(), personToMeet.getEmail(),
-                personToMeet.getAddress(), personToMeet.getBirthday(),
+                personToMeet.getAddress(), personToMeet.getBirthday(), personToMeet.getPriority(),
                 personToMeet.getLastMet(), personToMeet.getSchedule(), personToMeet.getTags());
 
         metPerson.getSchedule().markIsDone();

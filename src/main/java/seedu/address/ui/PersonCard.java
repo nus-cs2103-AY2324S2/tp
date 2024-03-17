@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label birthday;
     @FXML
+    private Label priority;
+    @FXML
     private Label lastMet;
     @FXML
     private Label schedule;
@@ -59,6 +61,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         birthday.setText(person.getBirthday().toString());
+        priority.setText(person.getPriority().toString());
         lastMet.setText(person.getLastMet().showLastMet());
         schedule.setText(person.getSchedule().showSchedule());
 
