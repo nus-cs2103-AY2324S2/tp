@@ -12,9 +12,12 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ClassBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClassBook;
+import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -32,6 +35,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final ClassBookParser classBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,6 +44,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        classBookParser = new ClassBookParser();
     }
 
     @Override
@@ -58,6 +63,14 @@ public class LogicManager implements Logic {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
 
+        try {
+            storage.saveClassBook(model.getClassBook());
+        } catch (AccessDeniedException e) {
+            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
+        } catch (IOException ioe) {
+            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+        }
+
         return commandResult;
     }
 
@@ -67,13 +80,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyClassBook getClassBook() {
+        return model.getClassBook();
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 
     @Override
+    public ObservableList<Classes> getFilteredClassList() {
+        return model.getFilteredClassList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public Path getClassBookFilePath() {
+        return model.getClassBookFilePath();
     }
 
     @Override

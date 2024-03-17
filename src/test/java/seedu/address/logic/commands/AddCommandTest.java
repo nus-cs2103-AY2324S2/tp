@@ -18,10 +18,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
+import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -114,7 +112,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getClassBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClassBookFilePath(Path classBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -130,6 +138,16 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClassBook(ReadOnlyClassBook classBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyClassBook getClassBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -154,8 +172,28 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Classes> getFilteredClassList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void createClass(Classes classes) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeClass(Classes classes) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClass(Classes classes) {
+            return false;
         }
     }
 

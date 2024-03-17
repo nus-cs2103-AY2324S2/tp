@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ClassBook;
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
 import seedu.address.model.person.Person;
 
 /**
@@ -72,5 +75,11 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static ClassBook getTypicalClassBook() {
+        ClassBook cb = new ClassBook();
+        cb.createClass(new Classes(new CourseCode("cs2103")));
+        return cb;
     }
 }

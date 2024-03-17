@@ -5,12 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Classes;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,24 +22,29 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final ClassBook classBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Classes> filteredClasses;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyClassBook classBook) {
+        requireAllNonNull(addressBook, userPrefs, classBook);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs
+                + "and class book: " + classBook);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.classBook = new ClassBook(classBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClasses = new FilteredList<>(this.classBook.getClassList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new ClassBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -75,6 +82,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getClassBookFilePath() {
+        return userPrefs.getClassBookFilePath();
+    }
+
+    @Override
+    public void setClassBookFilePath(Path classBookFilePath) {
+        requireNonNull(classBookFilePath);
+        userPrefs.setClassBookFilePath(classBookFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -88,9 +106,25 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setClassBook(ReadOnlyClassBook classBook) {
+        this.classBook.resetData(classBook);
+    }
+
+    @Override
+    public ReadOnlyClassBook getClassBook() {
+        return classBook;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasClass(Classes classes) {
+        requireNonNull(classes);
+        return classBook.hasClass(classes);
     }
 
     @Override
@@ -102,6 +136,16 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void createClass(Classes classes) {
+        classBook.createClass(classes);
+    }
+
+    @Override
+    public void removeClass(Classes classes) {
+        classBook.removeClass(classes);
     }
 
     @Override
@@ -120,6 +164,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Classes> getFilteredClassList() {
+        return filteredClasses;
     }
 
     @Override

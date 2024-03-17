@@ -5,12 +5,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ClassBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.ReadOnlyClassBook;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -55,6 +53,21 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+
+    public static Classes[] getSampleClasses() {
+        return new Classes[] {
+                new Classes(new CourseCode("CS2103T")),
+                new Classes(new CourseCode("CS2101"))
+        };
+    }
+    public static ReadOnlyClassBook getSampleClassBook() {
+        ClassBook sampleCb = new ClassBook();
+        for (Classes sampleClasses : getSampleClasses()) {
+            sampleCb.createClass(sampleClasses);
+        }
+        return sampleCb;
     }
 
 }
