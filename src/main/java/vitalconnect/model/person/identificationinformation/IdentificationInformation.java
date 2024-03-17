@@ -35,8 +35,8 @@ public class IdentificationInformation {
     /**
      * Returns true if a given info is a valid IdentificationInformation.
      */
-    public static boolean isValidIdentificationInformation(String nameTest, String nric) {
-        return nameTest.matches(Name.VALIDATION_REGEX) && nric.matches(Nric.VALIDATION_REGEX);
+    public static boolean isValidIdentificationInformation(String nameTest, String nricTest) {
+        return Name.isValidName(nameTest) && Nric.isValidNric(nricTest);
     }
 
     public Name getName() {
