@@ -99,7 +99,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, seedu.address.model.person.Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    seedu.address.model.person.Phone.class.getSimpleName()));
         }
         if (!seedu.address.model.person.Phone.isValidPhone(phone)) {
             throw new IllegalValueException(seedu.address.model.person.Phone.MESSAGE_CONSTRAINTS);
