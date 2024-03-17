@@ -3,6 +3,8 @@ package seedu.address.logic.commands.articlecommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARTICLES;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +17,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.article.Article;
+import seedu.address.model.article.Article.Status;
 
 /**
  * Edits the details of an existing article in the article book.
@@ -81,9 +85,16 @@ public class EditArticleCommand extends Command {
     private static Article createEditedArticle(Article articleToEdit, EditArticleDescriptor editArticleDescriptor) {
         assert articleToEdit != null;
 
-        // Body to be implemented with reference to EditCommand.java class.
+        String title = editArticleDescriptor.getTitle().orElse(articleToEdit.getTitle());
+        String[] authors = editArticleDescriptor.getAuthors().orElse(articleToEdit.getAuthors());
+        LocalDateTime publicationDate = editArticleDescriptor.getPublicationDate()
+                .orElse(articleToEdit.getPublicationDate());
+        String[] source = editArticleDescriptor.getSource().orElse(articleToEdit.getSource());
+        String category = editArticleDescriptor.getCategory().orElse(articleToEdit.getCategory());
+        Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
 
-        return new Article(); // Include all article attributes here.
+        return new Article(title, authors, publicationDate,
+                source, category, status); // Include all article attributes here.
     }
 
     @Override
@@ -117,8 +128,11 @@ public class EditArticleCommand extends Command {
     public static class EditArticleDescriptor {
 
         private String title;
-
-        // Declare article attributes here.
+        private String[] authors;
+        private LocalDateTime publicationDate;
+        private String[] source;
+        private String category;
+        private Status status;
 
         public EditArticleDescriptor() {}
 
@@ -127,8 +141,11 @@ public class EditArticleCommand extends Command {
          */
         public EditArticleDescriptor(EditArticleDescriptor toCopy) {
             setTitle(toCopy.title);
-
-            //set article attributes here.
+            setAuthors(toCopy.authors);
+            setPublicationDate(toCopy.publicationDate);
+            setSource(toCopy.source);
+            setCategory(toCopy.category);
+            setStatus(toCopy.status);
         }
 
         /**
@@ -146,9 +163,45 @@ public class EditArticleCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        /*
-         * Add setter and getter methods for article attributes here.
-         */
+        public void setAuthors(String[] authors) {
+            this.authors = authors;
+        }
+
+        public Optional<String[]> getAuthors() {
+            return Optional.ofNullable(authors);
+        }
+
+        public void setPublicationDate(LocalDateTime publicationDate) {
+            this.publicationDate = publicationDate;
+        }
+
+        public Optional<LocalDateTime> getPublicationDate() {
+            return Optional.ofNullable(publicationDate);
+        }
+
+        public void setSource(String[] source) {
+            this.source = source;
+        }
+
+        public Optional<String[]> getSource() {
+            return Optional.ofNullable(source);
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
+        public Optional<String> getCategory() {
+            return Optional.ofNullable(category);
+        }
+
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -164,7 +217,12 @@ public class EditArticleCommand extends Command {
             EditArticleDescriptor otherEditArticleDescriptor = (EditArticleDescriptor) other;
 
             // Add more equality checks for article attributes below here.
-            return Objects.equals(title, otherEditArticleDescriptor.title);
+            return Objects.equals(title, otherEditArticleDescriptor.title)
+                    && Arrays.equals(authors, otherEditArticleDescriptor.authors)
+                    && Objects.equals(publicationDate, otherEditArticleDescriptor.publicationDate)
+                    && Arrays.equals(source, otherEditArticleDescriptor.source)
+                    && Objects.equals(category, otherEditArticleDescriptor.category)
+                    && Objects.equals(status, otherEditArticleDescriptor.status);
         }
 
         @Override

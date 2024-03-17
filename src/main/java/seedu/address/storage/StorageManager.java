@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyArticleBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -18,13 +19,16 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private ArticleBookStorage articleBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, ArticleBookStorage articleBookStorage,
+                          UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
+        this.articleBookStorage = articleBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -73,6 +77,24 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ ArticleBook methods ==============================
+
+    @Override
+    public Path getArticleBookFilePath() {
+        return articleBookStorage.getArticleBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyArticleBook> readArticleBook() throws DataLoadingException {
+        return readArticleBook(articleBookStorage.getArticleBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyArticleBook> readArticleBook(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return articleBookStorage.readArticleBook(filePath);
     }
 
 }

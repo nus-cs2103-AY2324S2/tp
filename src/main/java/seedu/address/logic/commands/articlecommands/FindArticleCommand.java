@@ -7,6 +7,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.article.TitleContainsKeywordsPredicate;
 
 /**
  * Finds and lists all articles in article book whose title contains any of the argument keywords.
@@ -26,7 +27,7 @@ public class FindArticleCommand extends Command {
     private final TitleContainsKeywordsPredicate predicate;
 
     /**
-     * @param TitleContainsKeywordsPredicate predicate to filter the list of articles
+     * @param predicate predicate to filter the list of articles
      *                                       with titles containing the keyword(s)
      */
     public FindArticleCommand(TitleContainsKeywordsPredicate predicate) {

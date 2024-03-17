@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.article.Article;
 import seedu.address.model.person.Person;
 
 /**
@@ -87,4 +88,49 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //=========== Article ================================================================================
+
+    /**
+     * Replaces article book data with the data in {@code articleBook}.
+     */
+    void setArticleBook(ReadOnlyArticleBook articleBook);
+
+    /** Returns the ArticleBook */
+    ReadOnlyArticleBook getArticleBook();
+
+    /**
+     * Returns true if an article with the same identity as {@code article} exists in the article book.
+     */
+    boolean hasArticle(Article article);
+
+    /**
+     * Adds the given article.
+     * {@code article} must not already exist in the article book.
+     */
+    void addArticle(Article article);
+
+    /** Returns an unmodifiable view of the filtered article list */
+    ObservableList<Article> getFilteredArticleList();
+
+    /**
+     * Replaces the given article {@code target} with {@code editedArticle}.
+     * {@code target} must exist in the article book.
+     * The article identity of {@code editedArticle} must not be the same as
+     * another existing article in the article book.
+     */
+    void setArticle(Article target, Article editedArticle);
+
+    /**
+     * Deletes the given article.
+     * The article must exist in the article book.
+     */
+    void deleteArticle(Article target);
+
+    /**
+     * Updates the filter of the filtered article list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredArticleList(Predicate<Article> predicate);
+
 }
