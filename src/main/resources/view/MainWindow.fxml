@@ -25,13 +25,11 @@
             </stylesheets>
 
             <VBox>
-                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-                    <Menu mnemonicParsing="false" text="File">
-                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="Help">
-                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
-                    </Menu>
+                <MenuBar fx:id="menuBar" style="-fx-background-color: #2FAD66;" VBox.vgrow="NEVER">
+                  <Menu mnemonicParsing="false" text="Help" style="-fx-font-family: Arial; -fx-font-size: 14px;">
+                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" style="-fx-font-family: Arial; -fx-font-size: 14px;" />
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="ImmuniMate" style="-fx-font-family: Arial; -fx-font-size: 14px; -fx-font-weight: bold;" />
                 </MenuBar>
 
                 <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
