@@ -5,7 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.HOON;
+import static seedu.address.testutil.TypicalPersons.Oliver1;
+import static seedu.address.testutil.TypicalPersons.Oliver2;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -117,7 +123,8 @@ public class FindCommandTest {
     @Test
     public void execute_existentIDnonExistentName_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        IdAndNameContainsQueryIdAndNamePredicate predicate = new IdAndNameContainsQueryIdAndNamePredicate("A0251893P", "Marry Jane");
+        IdAndNameContainsQueryIdAndNamePredicate predicate =
+                new IdAndNameContainsQueryIdAndNamePredicate("A0251893P", "Marry Jane");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -125,9 +132,10 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_nonExistentIDExistentName_onePersonFound() {
+    public void execute_nonExistentIdExistentName_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        IdAndNameContainsQueryIdAndNamePredicate predicate = new IdAndNameContainsQueryIdAndNamePredicate("Y1234567Z", "Oliver Tan");
+        IdAndNameContainsQueryIdAndNamePredicate predicate =
+                new IdAndNameContainsQueryIdAndNamePredicate("Y1234567Z", "Oliver Tan");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -135,9 +143,10 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_existentIDExistentName_onePersonFound() {
+    public void execute_existentIdExistentName_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        IdAndNameContainsQueryIdAndNamePredicate predicate = new IdAndNameContainsQueryIdAndNamePredicate("A0251893P", "Alice Pauline");
+        IdAndNameContainsQueryIdAndNamePredicate predicate =
+                new IdAndNameContainsQueryIdAndNamePredicate("A0251893P", "Alice Pauline");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

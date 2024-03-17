@@ -100,6 +100,7 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA, Oliver1, Oliver2));
+        return new ArrayList<>(Arrays
+                .asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA, Oliver1, Oliver2));
     }
 }
