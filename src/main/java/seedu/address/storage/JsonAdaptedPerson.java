@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -24,8 +26,12 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    //TODO: add final, resolve the "may have not been initialized" error
+    private String nric;
     private final String name;
     private final String phone;
+    private String dateOfBirth;
+    private String sex;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -34,11 +40,15 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+    public JsonAdaptedPerson(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone, @JsonProperty("dateOfBirth") String dob,
+                             @JsonProperty("sex") String sex, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+        this.nric = nric;
         this.name = name;
         this.phone = phone;
+        this.dateOfBirth = dob;
+        this.sex = sex;
         this.email = email;
         this.address = address;
         if (tags != null) {
@@ -86,6 +96,31 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
+        if (nric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+        }
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        final Nric modelNric = new Nric(nric);
+
+        if (dateOfBirth == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateOfBirth.class.getSimpleName()));
+        }
+        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
+
+        if (sex == null || sex.isBlank()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, sex.toString()));
+        }
+        if (!(sex.equals("F") || sex.equals("M"))) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final int modelSex = sex == "F" ? 0 : 1;
+
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
@@ -103,7 +138,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelNric, modelName, modelPhone, modelAddress, modelDateOfBirth, modelSex,
+                modelEmail, modelTags);
     }
 
 }

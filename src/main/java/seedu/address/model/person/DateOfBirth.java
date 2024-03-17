@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Represents a Person's date of admission in the address book.
@@ -8,7 +9,7 @@ import java.time.LocalDate;
  */
 public class DateOfBirth {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date of birth should be in the format of DD/MM/YYYY, and it should not be blank.";
+            "Date of birth should be in the format of YYYY-MM-DD, and it should not be blank.";
 
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
 
@@ -52,6 +53,6 @@ public class DateOfBirth {
 
     @Override
     public int hashCode() {
-        return dateOfBirth.hashCode();
+        return Objects.hash(dateOfBirth);
     }
 }

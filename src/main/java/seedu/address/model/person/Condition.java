@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Objects;
+
 /**
  * Represents a Person's condition in the address book.
  * Guarantees: immutable;
@@ -18,6 +20,10 @@ public class Condition {
     @Override
     public String toString() {
         return this.condition;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(condition);
     }
 
     @Override

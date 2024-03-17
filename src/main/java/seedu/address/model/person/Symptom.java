@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Objects;
+
 /**
  * Represents a Person's symptom in the address book.
  * Guarantees: immutable;
@@ -32,5 +34,9 @@ public class Symptom {
 
         Symptom otherSymptom = (Symptom) other;
         return symptom.equals(otherSymptom.symptom);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(symptom);
     }
 }

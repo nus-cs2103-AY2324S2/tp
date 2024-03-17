@@ -17,15 +17,17 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private enum Sex { F, M }
+    private enum Status { HEALTHY, UNWELL, PENDING }
     private final Nric nric;
     private Name name;
     private Phone phone;
     private Email email;
+    private Sex sex;
 
     // Data fields
-    private final Address address;
+    private Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private enum Sex { M, F };
     private Allergies allergies;
     private BloodType bloodType;
     private Country country;
@@ -42,14 +44,20 @@ public class Person {
      * Every field must be present and not null.
      */
     //TODO : Add the missing fields
-    public Person(Nric nric, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth,
+                  int sex, Object ... args) {
+        //Only the fields that are mandatory are included down here
+        requireAllNonNull(nric, name, phone, address, dateOfBirth, sex);
         this.nric = nric;
         this.name = name;
         this.phone = phone;
-        this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex == 0 ? Sex.F : Sex.M;
+    }
+
+    public Nric getNric() {
+        return nric;
     }
 
     public Name getName() {
@@ -68,6 +76,17 @@ public class Person {
         return address;
     }
 
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
+    }
+    public int getSex() {
+        return sex.equals(Sex.F) ? 0 : 1;
+    }
+
+    public DateOfAdmission getDateOfAdmission() {
+        return dateOfAdmission;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -77,7 +96,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      */
     //TODO : change unique field to NRIC
@@ -87,7 +106,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -104,13 +123,14 @@ public class Person {
         if (!(other instanceof Person)) {
             return false;
         }
-
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return nric.equals(otherPerson.nric)
+                && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && dateOfBirth.equals(otherPerson.dateOfBirth)
+                && dateOfAdmission.equals(otherPerson.dateOfAdmission)
+                && sex.equals(otherPerson.sex);
     }
 
     @Override
@@ -125,10 +145,8 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
-                .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
                 .toString();
     }
-
 }

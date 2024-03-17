@@ -1,7 +1,10 @@
 package seedu.address.model.person;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Represents a Person's NRIC in the address book.
@@ -23,12 +26,12 @@ public class Nric {
     /**
      * Constructs a {@code NRIC}.
      *
-     * @param name A valid NRIC.
+     * @param nric A valid NRIC.
      */
-    public Nric(String name) {
-        requireNonNull(name);
-        checkArgument(isValidNric(name), MESSAGE_CONSTRAINTS);
-        this.nric = name;
+    public Nric(String nric) {
+        requireNonNull(nric);
+        checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
+        this.nric = nric;
     }
 
     /**
@@ -61,6 +64,6 @@ public class Nric {
 
     @Override
     public int hashCode() {
-        return nric.hashCode();
+        return Objects.hash(nric);
     }
 }
