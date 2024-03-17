@@ -10,9 +10,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.UniqueBookingList;
 import seedu.address.model.person.Person;
-import seedu.address.model.booking.Booking;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.booking.UniqueBookingList;
+
 
 /**
  * Wraps all data at the address-book level
@@ -124,8 +123,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(booking);
         return bookings.contains(booking);
     }
+
     /**
-     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     * Removes {@code booking} from this {@code AddressBook}.
+     * {@code booking} must exist in the address book.
      */
     public void removeBooking(Booking booking) {
         bookings.remove(booking);
