@@ -91,7 +91,8 @@ public class AddCommandParserTest {
                                    + FAMILY_DESC_BOB
                                    + TAG_DESC_BOB
                                    + TAG_DESC_AMY
-                                   + TAG_DESC_BOB,
+                                   + TAG_DESC_BOB
+                                   + REMARK_DESC_BOB,
                            new AddCommand(expectedPersonMultipleTags));
     }
 

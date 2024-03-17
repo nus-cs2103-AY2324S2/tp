@@ -83,7 +83,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidIncome_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_INCOME, VALID_EMAIL, VALID_ADDRESS,
-                                      VALID_FAMILY, VALID_TAGS);
+                                      VALID_FAMILY, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Income.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -91,7 +91,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullIncome_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_EMAIL, VALID_ADDRESS,
-                                                         VALID_FAMILY, VALID_TAGS);
+                                                         VALID_FAMILY, VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Income.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -134,7 +134,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidFamily_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_INCOME, VALID_EMAIL, VALID_ADDRESS,
-                                      INVALID_FAMILY, VALID_TAGS);
+                                      INVALID_FAMILY, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Family.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -147,7 +147,8 @@ public class JsonAdaptedPersonTest {
                                                          VALID_EMAIL,
                                                          VALID_ADDRESS,
                                                          null,
-                                                         VALID_TAGS);
+                                                         VALID_TAGS,
+                                                         VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Family.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
