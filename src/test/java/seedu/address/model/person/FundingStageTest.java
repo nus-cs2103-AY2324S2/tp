@@ -30,11 +30,19 @@ public class FundingStageTest {
         assertFalse(FundingStage.isValidFundingLevel("AB")); // invalid funding level
         assertFalse(FundingStage.isValidFundingLevel("1")); // numbers
         assertFalse(FundingStage.isValidFundingLevel("D")); // invalid funding level
+        assertFalse(FundingStage.isValidFundingLevel("pss")); // invalid funding level
 
         // valid funding levels
         assertTrue(FundingStage.isValidFundingLevel("A"));
         assertTrue(FundingStage.isValidFundingLevel("B"));
+        assertTrue(FundingStage.isValidFundingLevel("b"));
         assertTrue(FundingStage.isValidFundingLevel("C"));
+        assertTrue(FundingStage.isValidFundingLevel("s"));
+        assertTrue(FundingStage.isValidFundingLevel("S"));
+        assertTrue(FundingStage.isValidFundingLevel("PS"));
+        assertTrue(FundingStage.isValidFundingLevel("pS"));
+        assertTrue(FundingStage.isValidFundingLevel("Ps"));
+        assertTrue(FundingStage.isValidFundingLevel("ps"));
     }
 
     @Test
