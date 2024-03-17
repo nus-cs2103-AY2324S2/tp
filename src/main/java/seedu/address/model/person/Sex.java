@@ -30,6 +30,12 @@ public class Sex {
         return test.equals("Male") || test.equals("Female") ? true : false;
     }
 
+    /**
+     * Assign one of SexOption, Male or Female, depending on the sex input.
+     *
+     * @param sex sex input.
+     * @return one of SexOption
+     */
     public SexOption assignSex(String sex) {
         if (sex.equals("Male")) {
             return SexOption.MALE;

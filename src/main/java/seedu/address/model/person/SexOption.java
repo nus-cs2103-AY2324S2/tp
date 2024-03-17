@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+/**
+ * Represents one of sex, Male or Female.
+ */
 public enum SexOption {
     MALE("Male"),
     FEMALE("Female");
