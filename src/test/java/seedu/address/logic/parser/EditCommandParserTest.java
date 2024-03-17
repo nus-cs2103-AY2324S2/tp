@@ -16,16 +16,16 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LASTNAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_COOK;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_WAITER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYMENTTYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRSTNAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LASTNAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_WAITER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -100,11 +100,11 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, VALID_PHONE_AMY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+        assertParseFailure(parser, VALID_PHONE_AMY + TAG_DESC_COOK + TAG_DESC_WAITER + TAG_EMPTY,
             Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, VALID_PHONE_AMY + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, VALID_PHONE_AMY + TAG_DESC_COOK + TAG_EMPTY + TAG_DESC_WAITER,
             Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, VALID_PHONE_AMY + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, VALID_PHONE_AMY + TAG_EMPTY + TAG_DESC_COOK + TAG_DESC_WAITER,
             Tag.MESSAGE_CONSTRAINTS);
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, VALID_PHONE_AMY + INVALID_FIRSTNAME_DESC + INVALID_EMPLOYMENTTYPE_DESC
@@ -114,12 +114,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Phone targetPhone = new Phone(VALID_PHONE_AMY);
-        String userInput = VALID_PHONE_AMY + PHONE_DESC_AMY + TAG_DESC_HUSBAND
-                + ADDRESS_DESC_AMY + FIRSTNAME_DESC_AMY + TAG_DESC_FRIEND + LASTNAME_DESC_AMY;
+        String userInput = VALID_PHONE_AMY + PHONE_DESC_AMY + TAG_DESC_WAITER
+                + ADDRESS_DESC_AMY + FIRSTNAME_DESC_AMY + TAG_DESC_COOK + LASTNAME_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withFirstName(VALID_FIRSTNAME_AMY)
                 .withLastName(VALID_LASTNAME_AMY).withPhone(VALID_PHONE_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_WAITER, VALID_TAG_COOK).build();
         EditCommand expectedCommand = new EditCommand(targetPhone, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -153,8 +153,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = VALID_PHONE_AMY + TAG_DESC_FRIEND;
-        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = VALID_PHONE_AMY + TAG_DESC_COOK;
+        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_COOK).build();
         expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -183,8 +183,8 @@ public class EditCommandParserTest {
 
         // mulltiple valid fields repeated
         userInput = targetPhone + PHONE_DESC_AMY + ADDRESS_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
+                + TAG_DESC_COOK + PHONE_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_COOK
+                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_WAITER;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_ADDRESS));
