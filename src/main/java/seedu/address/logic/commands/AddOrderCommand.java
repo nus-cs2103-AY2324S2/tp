@@ -70,8 +70,7 @@ public class AddOrderCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the order is added to or removed from
-     * {@code personToEdit}.
+     * the order is added to or removed from {@code personToUpdate}.
      */
     static String generateSuccessMessage(Person personToUpdate) {
         return String.format(MESSAGE_ADD_ORDER_SUCCESS, personToUpdate.getName());
