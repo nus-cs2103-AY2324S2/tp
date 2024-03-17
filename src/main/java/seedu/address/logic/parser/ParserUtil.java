@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
@@ -104,5 +105,28 @@ public class ParserUtil {
             skillSet.add(parseSkill(skillName));
         }
         return skillSet;
+    }
+
+    /**
+     * Parses a {@code String CourseMate} into a {@code CourseMate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code courseMate} is invalid.
+     */
+    public static CourseMate parseCourseMate(String courseMateName) throws ParseException {
+        requireNonNull(courseMateName);
+
+        // TODO: Find coursemate by name or by # indicator
+
+        return new CourseMate(new Name(courseMateName), new Phone("123"), new Email("jane@doe.com"), new HashSet<>());
+    }
+
+    public static Set<CourseMate> parseCourseMates(Collection<String> courseMates) throws ParseException {
+        requireNonNull(courseMates);
+        final Set<CourseMate> courseMateSet = new HashSet<>();
+        for (String courseMateName : courseMates) {
+            courseMateSet.add(parseCourseMate(courseMateName));
+        }
+        return courseMateSet;
     }
 }
