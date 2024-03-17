@@ -8,7 +8,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of an {@code Appointment}.
  */
 public class AppointmentCard extends UiPart<Region> {
 
