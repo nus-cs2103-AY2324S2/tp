@@ -20,36 +20,36 @@ public class InternshipModelManager implements InternshipModel {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final InternshipData internshipData;
-    private final UserPrefs userPrefs;
+    private final InternshipUserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
 
     /**
      * Initializes a ModelManager with the given internshipData and userPrefs.
      */
-    public InternshipModelManager(ReadOnlyInternshipData internshipData, ReadOnlyUserPrefs userPrefs) {
+    public InternshipModelManager(ReadOnlyInternshipData internshipData, ReadOnlyInternshipUserPrefs userPrefs) {
         requireAllNonNull(internshipData, userPrefs);
 
         logger.fine("Initializing with address book: " + internshipData + " and user prefs " + userPrefs);
 
         this.internshipData = new InternshipData(internshipData);
-        this.userPrefs = new UserPrefs(userPrefs);
+        this.userPrefs = new InternshipUserPrefs(userPrefs);
         filteredInternships = new FilteredList<>(this.internshipData.getInternshipList());
     }
 
     public InternshipModelManager() {
-        this(new InternshipData(), new UserPrefs());
+        this(new InternshipData(), new InternshipUserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+    public void setUserPrefs(ReadOnlyInternshipUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
+    public ReadOnlyInternshipUserPrefs getUserPrefs() {
         return userPrefs;
     }
 
@@ -66,13 +66,13 @@ public class InternshipModelManager implements InternshipModel {
 
     @Override
     public Path getInternshipDataFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getInternshipDataFilePath();
     }
 
     @Override
     public void setInternshipDataFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setInternshipDataFilePath(addressBookFilePath);
     }
 
     //=========== InternshipData ================================================================================
