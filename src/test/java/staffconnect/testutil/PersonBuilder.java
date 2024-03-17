@@ -3,7 +3,6 @@ package staffconnect.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import staffconnect.model.meeting.Meeting;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
@@ -31,7 +30,6 @@ public class PersonBuilder {
     private Module module;
     private Set<Tag> tags;
 
-    private Set<Meeting> meetings;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,7 +41,6 @@ public class PersonBuilder {
         venue = new Venue(DEFAULT_VENUE);
         module = new Module(DEFAULT_MODULE);
         tags = new HashSet<>();
-        meetings = new HashSet<>();
     }
 
     /**
@@ -107,10 +104,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-
-        Person validBuild = new Person(name, phone, email, venue, module, tags);
-        validBuild.setMeetings(meetings);
-        return validBuild;
+        return new Person(name, phone, email, venue, module, tags);
     }
 
 }

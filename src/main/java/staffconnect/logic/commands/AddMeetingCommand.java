@@ -69,11 +69,12 @@ public class AddMeetingCommand extends Command {
         }
 
 
-        Person editedPerson = addMeetingToPerson(personToEdit,toAdd);
-        model.setPerson(personToEdit,editedPerson);
+        Person editedPerson = addMeetingToPerson(personToEdit, toAdd);
+        model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
+
     /**
      * Creates and returns a {@code Person} with details of {@code meeting}
      */
@@ -88,7 +89,7 @@ public class AddMeetingCommand extends Command {
         Set<Tag> currentTags = personToEdit.getTags();
         Set<Meeting> currentMeetings = new HashSet<>(personToEdit.getMeetings()); //to reduce coupling with Person
         Person editedPerson = new Person(currentName, currentPhone, currentEmail, currentVenue, currentModule,
-                                      currentTags);
+                                         currentTags);
         currentMeetings.add(meeting);
         editedPerson.setMeetings(currentMeetings);
         return editedPerson;

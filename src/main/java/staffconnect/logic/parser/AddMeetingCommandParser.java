@@ -8,7 +8,6 @@ import static staffconnect.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import java.util.stream.Stream;
 
 import staffconnect.commons.core.index.Index;
-import staffconnect.logic.commands.AddCommand;
 import staffconnect.logic.commands.AddMeetingCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.meeting.Description;
@@ -41,7 +40,6 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_STARTDATE);
-        //skip the preamble || !argMultimap.getPreamble().isEmpty()
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_STARTDATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }

@@ -42,10 +42,6 @@ public class Person {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
-    }
-
     public Phone getPhone() {
         return phone;
     }
@@ -78,6 +74,10 @@ public class Person {
         return Collections.unmodifiableSet(meetings);
     }
 
+    public void setMeetings(Set<Meeting> toAdd) {
+        meetings = toAdd;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -88,25 +88,29 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
+    }
+
+    public Name getName() {
+        return name;
     }
 
     /**
      * Returns true if the meeting to add is already tagged to the current person.
-     *
      */
     public boolean hasDuplicateMeeting(Meeting toAdd) {
         return meetings.contains(toAdd);
-    }
-
-    public void setMeetings(Set<Meeting> toAdd) {
-        meetings = toAdd;
     }
 
     public void addMeetings(Meeting toAdd) {
         meetings.add(toAdd);
     }
 
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, phone, email, venue, module, tags);
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -125,30 +129,24 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && venue.equals(otherPerson.venue)
-                && module.equals(otherPerson.module)
-                && tags.equals(otherPerson.tags);
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, venue, module, tags);
+            && phone.equals(otherPerson.phone)
+            && email.equals(otherPerson.email)
+            && venue.equals(otherPerson.venue)
+            && module.equals(otherPerson.module)
+            && tags.equals(otherPerson.tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("venue", venue)
-                .add("module", module)
-                .add("tags", tags)
-                .add("meetings",meetings)
-                .toString();
+            .add("name", name)
+            .add("phone", phone)
+            .add("email", email)
+            .add("venue", venue)
+            .add("module", module)
+            .add("tags", tags)
+            .add("meetings", meetings)
+            .toString();
     }
 
 }
