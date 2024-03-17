@@ -14,7 +14,7 @@ Designed with Computer Science Teaching Assistants in mind, nerdTrackerPlus stre
 
 
 ### Documentation
-For the detailed documentation of this project, see the **[nerdTrackerPlus Product Website](https://nus-cs2103-ay2324s2.github.io/tp/)**.
+For the detailed documentation of this project, see the **[nerdTrackerPlus Product Website](https://ay2324s2-cs2103t-f11-1.github.io/tp/)**.
 
 ### Acknowledgements
 This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.

@@ -36,6 +36,26 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndexes} into an {@code Index[]} and returns it. Leading and trailing whitespaces will
+     * be trimmed. Used mainly for the mark command.
+     * @throws ParseException if any of the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index[] parseIndexes(String oneBasedIndexes) throws ParseException {
+        String trimmedIndexes = oneBasedIndexes.replaceAll("\\s+", "");
+        Index[] indexes = new Index[2];
+
+        String personIndex = trimmedIndexes.substring(0, 1);
+        String weekNumber = trimmedIndexes.substring(1, 3);
+        if (!StringUtil.isNonZeroUnsignedInteger(personIndex) | !StringUtil.isNonZeroUnsignedInteger(weekNumber)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        indexes[0] = Index.fromOneBased(Integer.parseInt(personIndex));
+        indexes[1] = Index.fromZeroBased(Integer.parseInt(weekNumber));
+
+        return indexes;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

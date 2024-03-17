@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,6 +18,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private static final int NUMBER_OF_WEEKS = 13;
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -24,6 +28,8 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Integer> participationScores;
+
 
     /**
      * Every field must be present and not null.
@@ -35,6 +41,25 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.participationScores = new ArrayList<>();
+
+        for (int i = 0; i < NUMBER_OF_WEEKS; i++) {
+            participationScores.add(0);
+        }
+    }
+
+    /**
+     * The overloaded Person constructor. Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, List<Integer> participationScores) {
+        requireAllNonNull(name, phone, email, address, tags, participationScores);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.participationScores = participationScores;
     }
 
     public Name getName() {
@@ -59,6 +84,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable participation score list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Integer> getParticipationScores() {
+        return Collections.unmodifiableList(participationScores);
     }
 
     /**
