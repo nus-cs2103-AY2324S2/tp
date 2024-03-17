@@ -60,7 +60,7 @@ public class AddMemshipCommandTest {
         AddMemshipCommand addMembershipCommand = new AddMemshipCommand(outOfBoundName, MEMBERSHIP_STUB);
 
         // Assert that the command failed
-        assertCommandFailure(addMembershipCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addMembershipCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
 
     @Test

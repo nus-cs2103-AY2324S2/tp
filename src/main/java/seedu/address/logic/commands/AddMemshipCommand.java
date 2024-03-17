@@ -25,7 +25,7 @@ public class AddMemshipCommand extends Command {
             + "by the name of the person in the listing. "
             + "Existing membership will be overwritten by the input.\n"
             + "Parameters: NAME " + PREFIX_MEMSHIP + "[MEMBERSHIP_TIER]\n"
-            + "Example: " + COMMAND_WORD + " Alice Bob "
+            + "Example: " + COMMAND_WORD + " Alice "
             + PREFIX_MEMSHIP + "T1";
     public static final String MESSAGE_ADD_MEMBERSHIP_SUCCESS = "Added membership to Person: %1$s";
     public static final String MESSAGE_DELETE_MEMBERSHIP_SUCCESS =
@@ -76,7 +76,7 @@ public class AddMemshipCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !mship.isEmpty() ? MESSAGE_ADD_MEMBERSHIP_SUCCESS : MESSAGE_DELETE_MEMBERSHIP_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, personToEdit.getName());
     }
 
     @Override
