@@ -17,10 +17,10 @@ import org.junit.jupiter.api.Test;
 public class FacultyComparatorTest {
     @Test
     public void doesNotEquals() {
-        assertNotEquals(VENUE_COMPARATOR, FACULTY_COMPARATOR);
-        assertNotEquals(VENUE_COMPARATOR, MODULE_COMPARATOR);
-        assertNotEquals(VENUE_COMPARATOR, NAME_COMPARATOR);
-        assertNotEquals(VENUE_COMPARATOR, PHONE_COMPARATOR);
+        assertNotEquals(FACULTY_COMPARATOR, NAME_COMPARATOR);
+        assertNotEquals(FACULTY_COMPARATOR, PHONE_COMPARATOR);
+        assertNotEquals(FACULTY_COMPARATOR, MODULE_COMPARATOR);
+        assertNotEquals(FACULTY_COMPARATOR, VENUE_COMPARATOR);
     }
 
     @Test

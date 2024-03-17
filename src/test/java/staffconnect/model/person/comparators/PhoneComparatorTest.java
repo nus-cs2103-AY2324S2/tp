@@ -17,9 +17,9 @@ import org.junit.jupiter.api.Test;
 public class PhoneComparatorTest {
     @Test
     public void doesNotEquals() {
-        assertNotEquals(PHONE_COMPARATOR, FACULTY_COMPARATOR);
-        assertNotEquals(PHONE_COMPARATOR, MODULE_COMPARATOR);
         assertNotEquals(PHONE_COMPARATOR, NAME_COMPARATOR);
+        assertNotEquals(PHONE_COMPARATOR, MODULE_COMPARATOR);
+        assertNotEquals(PHONE_COMPARATOR, FACULTY_COMPARATOR);
         assertNotEquals(PHONE_COMPARATOR, VENUE_COMPARATOR);
     }
 

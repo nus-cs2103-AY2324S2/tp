@@ -18,9 +18,9 @@ public class NameComparatorTest {
 
     @Test
     public void doesNotEquals() {
-        assertNotEquals(NAME_COMPARATOR, FACULTY_COMPARATOR);
-        assertNotEquals(NAME_COMPARATOR, MODULE_COMPARATOR);
         assertNotEquals(NAME_COMPARATOR, PHONE_COMPARATOR);
+        assertNotEquals(NAME_COMPARATOR, MODULE_COMPARATOR);
+        assertNotEquals(NAME_COMPARATOR, FACULTY_COMPARATOR);
         assertNotEquals(NAME_COMPARATOR, VENUE_COMPARATOR);
     }
 
