@@ -13,6 +13,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Product;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.person.Person;
 
 /**
@@ -118,6 +120,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public Order setOrder(Order target, Product currProduct, Quantity newQuantity) {
+        requireAllNonNull(target, currProduct, newQuantity);
+
+        return addressBook.setOrder(target, currProduct, newQuantity);
     }
 
     @Override

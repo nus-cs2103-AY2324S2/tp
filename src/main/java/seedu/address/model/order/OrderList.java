@@ -9,6 +9,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the list of active orders in the addressbook.
@@ -58,6 +60,21 @@ public class OrderList implements Iterable<Order> {
         internalList.add(toAdd);
         person.addOrder(toAdd);
         orderIdCounter++;
+    }
+
+    /**
+     * Replaces the order {@code target} in the list with {@code editedOrder}.
+     * {@code target} must exist in the list.
+     */
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.set(index, editedOrder);
     }
 
     /**

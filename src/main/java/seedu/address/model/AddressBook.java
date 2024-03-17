@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderList;
+import seedu.address.model.order.Product;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -100,6 +102,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public Order setOrder(Order target, Product currProduct, Quantity newQuantity) {
+        requireNonNull(target);
+        return target.updateOrder(currProduct, newQuantity);
     }
 
     /**
