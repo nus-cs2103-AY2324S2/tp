@@ -1,6 +1,7 @@
 package seedu.address.model.person.fields;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -53,5 +54,4 @@ class AssetsTest {
     void equals_null_false() {
         assertNotEquals(null, new Assets(emptyAssetArray));
     }
-    
 }
