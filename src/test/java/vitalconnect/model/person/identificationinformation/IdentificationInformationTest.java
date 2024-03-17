@@ -29,33 +29,54 @@ public class IdentificationInformationTest {
     @Test
     public void isValidIdentificationInformation() {
         // null name and nric
-        assertThrows(NullPointerException.class, () -> IdentificationInformation.isValidIdentificationInformation(null, null));
-        
+        assertThrows(NullPointerException.class, () ->
+                     IdentificationInformation.isValidIdentificationInformation(null, null));
+
         String validNric = "S1234567D";
         String validName = "John";
 
         // invalid name and valid nric
-        assertFalse(IdentificationInformation.isValidIdentificationInformation("", validNric)); // empty string
-        assertFalse(IdentificationInformation.isValidIdentificationInformation(" ", validNric)); // spaces only
-        assertFalse(IdentificationInformation.isValidIdentificationInformation("^", validNric)); // only non-alphanumeric characters
-        assertFalse(IdentificationInformation.isValidIdentificationInformation("peter*", validNric)); // contains non-alphanumeric characters
-        
+        assertFalse(IdentificationInformation
+                    .isValidIdentificationInformation("", validNric)); // empty string
+        assertFalse(IdentificationInformation
+                    .isValidIdentificationInformation(" ", validNric)); // spaces only
+        assertFalse(IdentificationInformation
+                    .isValidIdentificationInformation("^", validNric)); // only non-alphanumeric characters
+        assertFalse(IdentificationInformation
+                    .isValidIdentificationInformation("peter*", validNric)); // contains non-alphanumeric characters
+
         // valid name and invalid nric
-        assertFalse(IdentificationInformation.isValidIdentificationInformation(validName, "S12345678A")); // improper format
-        assertFalse(IdentificationInformation.isValidIdentificationInformation(validName, "S1234567A")); // contains proper format but fails checksum
-        
+        assertFalse(IdentificationInformation
+                    .isValidIdentificationInformation(validName,
+                                                    "S12345678A")); // improper format
+        assertFalse(IdentificationInformation
+                    .isValidIdentificationInformation(validName,
+                                                    "S1234567A")); // contains proper format but fails checksum
+
         // valid name and valid nric
-        assertTrue(IdentificationInformation.isValidIdentificationInformation("peter jack", "S1234567D")); // empty string
-        assertTrue(IdentificationInformation.isValidIdentificationInformation("12345", "S1234567D")); // spaces only
-        assertTrue(IdentificationInformation.isValidIdentificationInformation("peter the 2nd", "S1234567D")); // only non-alphanumeric characters
-        assertTrue(IdentificationInformation.isValidIdentificationInformation("Capital Tan", "S1234567D")); // contains non-alphanumeric characters
-        assertTrue(IdentificationInformation.isValidIdentificationInformation("David Roger Jackson Ray Jr 2nd", "S1234567D")); // contains proper format but fails checksum
+        assertTrue(IdentificationInformation
+                   .isValidIdentificationInformation("peter jack",
+                                                     "S1234567D")); // empty string
+        assertTrue(IdentificationInformation
+                   .isValidIdentificationInformation("12345",
+                                                     "S1234567D")); // spaces only
+        assertTrue(IdentificationInformation
+                   .isValidIdentificationInformation("peter the 2nd",
+                                                     "S1234567D")); // only non-alphanumeric characters
+        assertTrue(IdentificationInformation
+                   .isValidIdentificationInformation("Capital Tan",
+                                                     "S1234567D")); // contains non-alphanumeric characters
+        assertTrue(IdentificationInformation
+                   .isValidIdentificationInformation("David Roger Jackson Ray Jr 2nd",
+                                                     "S1234567D")); // contains proper format but fails checksum
     }
 
     @Test
     public void equals() {
-        IdentificationInformation info1 = new IdentificationInformation("Valid Name", "S1234567D");
-        IdentificationInformation info2 = new IdentificationInformation(new Name("Valid Name"), new Nric("S1234567D"));
+        IdentificationInformation info1 = new IdentificationInformation("Valid Name",
+                                                                        "S1234567D");
+        IdentificationInformation info2 = new IdentificationInformation(new Name("Valid Name"),
+                                                                        new Nric("S1234567D"));
 
         // same values -> returns true
         assertTrue(info1.equals(info2));
@@ -73,7 +94,9 @@ public class IdentificationInformationTest {
         assertFalse(info2.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(info1.equals(new IdentificationInformation(new Name("Other Valid Name"), new Nric("S1234568B"))));
-        assertFalse(info2.equals(new IdentificationInformation(new Name("Other Valid Name"), new Nric("S1234568B"))));
+        assertFalse(info1.equals(new IdentificationInformation(new Name("Other Valid Name"),
+                                                               new Nric("S1234568B"))));
+        assertFalse(info2.equals(new IdentificationInformation(new Name("Other Valid Name"),
+                                                               new Nric("S1234568B"))));
     }
 }
