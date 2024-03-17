@@ -41,6 +41,7 @@ public class UniqueBookingList implements Iterable<Booking> {
     public void add(Booking toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
+            // TO CHANGE
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);

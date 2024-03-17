@@ -42,5 +42,10 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tags" : [ ]
+  } ],
+  "bookings" : [ {
+    "description" : "First booking",
+    "start" : "2023-12-31T19:00",
+    "end" : "2023-12-31T23:00"
   } ]
 }

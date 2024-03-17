@@ -54,6 +54,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    /**
+     * Replaces the contents of the bookings list with {@code bookings}.
+     * {@code bookings} must not contain duplicate bookings.
+     */
     public void setBookings(List<Booking> bookings) {
         this.bookings.setBookings(bookings);
     }
@@ -166,11 +170,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons) && bookings.equals(otherAddressBook.bookings);
+//        return persons.equals(otherAddressBook.persons) && bookings.equals(otherAddressBook.bookings);
+        return persons.equals(otherAddressBook.persons);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons, bookings);
+        return persons.hashCode();
+        //return Objects.hash(persons, bookings);
     }
 }
