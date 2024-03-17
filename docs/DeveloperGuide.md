@@ -187,7 +187,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Introduction
 
-The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book. 
+The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book.
 
 #### Specifications
 
@@ -285,7 +285,7 @@ The `DeleteImportantDateCommand` class is responsible for deleting an Important 
 
 #### Specifications
 
-* DeleteImportantDateCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients 
+* DeleteImportantDateCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients
 shown on the UI after using the `list` or `find` command and Indexes of the specified Patient's events as defined in
 the `Index` class.
 
