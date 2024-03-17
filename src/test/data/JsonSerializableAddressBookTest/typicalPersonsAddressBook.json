@@ -19,7 +19,8 @@
     "priority": "high",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/0",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "policies" : [ "Health,123", "Travel,456" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",

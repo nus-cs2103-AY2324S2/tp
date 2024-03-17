@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PolicyList;
+import seedu.address.model.policy.Policy;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -109,6 +111,21 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Add policy to person.
+     *
+     * @param target the target
+     * @param policy the policy
+     */
+    public void addPolicy(Person target, Policy policy) {
+        requireAllNonNull(target, policy);
+        PolicyList newPolicyList = target.getPolicyList().getPolicyListClone();
+        newPolicyList.addPolicy(policy);
+        setPerson(target, new Person(target.getName(), target.getPhone(), target.getEmail(), target.getAddress(),
+                target.getBirthday(), target.getPriority(), target.getLastMet(), target.getSchedule(), target.getTags(),
+                newPolicyList));
     }
 
     //=========== Filtered Person List Accessors =============================================================

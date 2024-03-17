@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.policy.Policy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ public class Person {
     private final LastMet lastMet;
     private final Schedule schedule;
     private final Set<Tag> tags = new HashSet<>();
+    private final PolicyList policyList;
 
     /**
      * Every field must be present and not null.
@@ -46,14 +48,15 @@ public class Person {
         this.lastMet = new LastMet(LocalDate.now());
         this.schedule = new Schedule(LocalDateTime.now(), true);
         this.tags.addAll(tags);
+        this.policyList = new PolicyList();
     }
 
     /**
      * Person constructor used for subsequent LastMet, Schedule and Mark Commands.
      */
     public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
-                  Priority priority, LastMet lastmet, Schedule schedule, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, birthday, tags);
+        Priority priority, LastMet lastmet, Schedule schedule, Set<Tag> tags, PolicyList policyList) {
+        requireAllNonNull(name, phone, email, address, birthday, tags, policyList);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -63,6 +66,7 @@ public class Person {
         this.lastMet = checkNullLastMet(lastmet);
         this.schedule = checkNullSchedule(schedule);
         this.tags.addAll(tags);
+        this.policyList = policyList;
     }
 
     public Name getName() {
@@ -95,6 +99,9 @@ public class Person {
 
     public Schedule getSchedule() {
         return schedule;
+    }
+    public PolicyList getPolicyList() {
+        return policyList;
     }
 
     private LastMet checkNullLastMet(LastMet lastmet) {
@@ -135,6 +142,17 @@ public class Person {
     }
 
     /**
+     * Has policy id boolean.
+     *
+     * @param policy the policy
+     * @return the boolean
+     */
+    public boolean hasPolicyID(Policy policy) {
+        return policyList.hasPolicyID(policy);
+    }
+
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -156,7 +174,8 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && birthday.equals(otherPerson.birthday)
                 && priority.equals(otherPerson.priority)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && policyList.equals(otherPerson.policyList);
     }
 
     @Override
@@ -175,6 +194,7 @@ public class Person {
                 .add("birthday", birthday)
                 .add("priority", priority)
                 .add("tags", tags)
+                .add("policies", policyList)
                 .toString();
     }
 

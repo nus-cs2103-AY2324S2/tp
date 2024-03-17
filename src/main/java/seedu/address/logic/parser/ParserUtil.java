@@ -15,10 +15,11 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.Policy;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * The type Parser util.
  */
 public class ParserUtil {
 
@@ -27,6 +28,9 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
+     * @param oneBasedIndex the one based index
+     * @return the index
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -41,6 +45,8 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param name the name
+     * @return the name
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
@@ -56,6 +62,8 @@ public class ParserUtil {
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param phone the phone
+     * @return the phone
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
@@ -71,6 +79,8 @@ public class ParserUtil {
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param address the address
+     * @return the address
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
@@ -86,6 +96,8 @@ public class ParserUtil {
      * Parses a {@code String birthday} into a {@code Birthday}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param birthday the birthday
+     * @return the birthday
      * @throws ParseException if the given {@code birthday} is invalid.
      */
     public static Birthday parseBirthday(String birthday) throws ParseException {
@@ -116,6 +128,8 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param email the email
+     * @return the email
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -131,6 +145,8 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param tag the tag
+     * @return the tag
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
@@ -152,5 +168,27 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String policyName} and {@code String policyId} into a {@code Policy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param policyName the name
+     * @param policyID the id
+     * @return the policy
+     * @throws ParseException if the given {@code policyName} or {@code policyId} is invalid.
+     */
+    public static Policy parsePolicyInfo(String policyName, String policyID) throws ParseException {
+        requireNonNull(policyName, policyID);
+        String trimmedPolicyName = policyName.trim();
+        String trimmedPolicyID = policyID.trim();
+        if (!Policy.isValidName(trimmedPolicyName)) {
+            throw new ParseException(Policy.MESSAGE_CONSTRAINTS_NAME);
+        }
+        if (!Policy.isValidID(trimmedPolicyID)) {
+            throw new ParseException(Policy.MESSAGE_CONSTRAINTS_ID);
+        }
+        return new Policy(trimmedPolicyName, trimmedPolicyID);
     }
 }
