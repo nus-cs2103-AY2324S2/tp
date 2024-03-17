@@ -3,13 +3,16 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.UniqueBookingList;
 import seedu.address.model.person.Person;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.booking.UniqueBookingList;
 
 /**
  * Wraps all data at the address-book level
@@ -52,6 +55,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setBookings(List<Booking> bookings) { this.bookings.setBookings(bookings); }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -59,9 +64,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setBookings(newData.getBookingList());
     }
-
-    //// person-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -90,6 +94,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    public void setBooking(Booking target, Booking editedBooking) {
+        requireNonNull(editedBooking);
+        bookings.setBooking(target, editedBooking);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -115,6 +124,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(booking);
         return bookings.contains(booking);
     }
+    /**
+     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     */
+    public void removeBooking(Booking booking) {
+        bookings.remove(booking);
+    }
 
     //// util methods
 
@@ -122,6 +137,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("bookings", bookings)
                 .toString();
     }
 
@@ -147,11 +163,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons) && bookings.equals(otherAddressBook.bookings);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, bookings);
     }
 }

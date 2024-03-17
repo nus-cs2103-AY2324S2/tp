@@ -1,11 +1,15 @@
 package seedu.address.model.booking;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -42,6 +46,34 @@ public class UniqueBookingList implements Iterable<Booking> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    public void setBooking(Booking target, Booking editedBooking) {
+        requireAllNonNull(target, editedBooking);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        if (!target.equals(editedBooking) && contains(editedBooking)) {
+            throw new DuplicatePersonException();
+        }
+
+        internalList.set(index, editedBooking);
+    }
+
+    public void setBookings(UniqueBookingList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        requireAllNonNull(bookings);
+        if (!bookingsAreUnique(bookings)) {
+            throw new DuplicatePersonException();
+        }
+        internalList.setAll(bookings);
     }
 
     /**
@@ -93,5 +125,16 @@ public class UniqueBookingList implements Iterable<Booking> {
     @Override
     public String toString() {
         return internalList.toString();
+    }
+
+    private boolean bookingsAreUnique(List<Booking> bookings) {
+        for (int i = 0; i < bookings.size() - 1; i++) {
+            for (int j = i + 1; j < bookings.size(); j++) {
+                if ( bookings.get(i).equals(bookings.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
