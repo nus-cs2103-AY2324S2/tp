@@ -1,11 +1,12 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ToggleDisplayCommand.MESSAGE_TOGGLE_ACKNOWLEDGEMENT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 
 public class ToggleDisplayCommandTest {
     private Model model = new ModelManager();
