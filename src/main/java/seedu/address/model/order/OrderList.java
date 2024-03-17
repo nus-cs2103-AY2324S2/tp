@@ -75,7 +75,14 @@ public class OrderList implements Iterable<Order> {
      * @param toDelete The order id of the order that is to be deleted.
      */
     public void deleteOrder(int toDelete) {
+        requireNonNull(toDelete);
+        if (toDelete < 1) {
+            throw new NullPointerException();
+        }
         Order oldOrder = orderList.get(toDelete);
+        if (oldOrder == null) {
+            throw new OrderNotFoundException();
+        }
         Integer oldOrderIndex = internalList.indexOf(oldOrder);
         orderList.remove(toDelete);
         internalList.remove(oldOrderIndex);
@@ -131,7 +138,17 @@ public class OrderList implements Iterable<Order> {
      * @return the order corresponding to the index
      */
     public Order getOrder(int i) {
-        return orderList.get(i);
+        if (i < 1) {
+            throw new NullPointerException();
+        }
+
+        Order order = orderList.get(i);
+
+        if (order == null) {
+            throw new OrderNotFoundException();
+        }
+
+        return order;
     }
 
     /**
@@ -155,6 +172,20 @@ public class OrderList implements Iterable<Order> {
     @Override
     public String toString() {
         return internalList.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof OrderList)) {
+            return false;
+        }
+
+        OrderList otherOrderList = (OrderList) other;
+        return internalList.equals(otherOrderList.internalList);
     }
 
     /**
