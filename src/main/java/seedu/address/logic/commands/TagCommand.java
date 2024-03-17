@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Id;
@@ -68,5 +69,29 @@ public class TagCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, tags));
+    }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof TagCommand)) {
+            return false;
+        }
+
+        TagCommand otherTagCommand = (TagCommand) other;
+        boolean isStudentIDEqual = this.personToEditId.equals(otherTagCommand.personToEditId);
+        boolean isTagListEqual = this.tags.equals(otherTagCommand.tags);
+        return (isStudentIDEqual && isTagListEqual);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("Id", this.personToEditId)
+                .add("Tags", this.tags)
+                .toString();
     }
 }
