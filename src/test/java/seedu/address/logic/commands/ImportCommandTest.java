@@ -73,18 +73,16 @@ public class ImportCommandTest {
     public void execute_dataLoadingException_failure() {
         HashSet<File> curHashSet = new HashSet<>();
         curHashSet.add(new File(ADDRESS_BOOK_PATH));
-        List<JsonAdaptedPerson> list = new ArrayList<>();
-        assertThrows(DataLoadingException.class, () -> new ImportCommandStubDataLoadingException(curHashSet)
-                .retrievePersonsFromFile(list));
+        assertThrows(CommandException.class, () -> new ImportCommandStubDataLoadingException(curHashSet)
+                .execute(model));
     }
 
     @Test
     public void execute_illegalValueException_failure() {
         HashSet<File> curHashSet = new HashSet<>();
         curHashSet.add(new File(ADDRESS_BOOK_PATH));
-        List<JsonAdaptedPerson> list = new ArrayList<>();
-        assertThrows(IllegalValueException.class, () -> new ImportCommandStubIllegalValueException(curHashSet)
-                .retrievePersonsFromFile(list));
+        assertThrows(CommandException.class, () -> new ImportCommandStubIllegalValueException(curHashSet)
+                .execute(model));
     }
 
     @Test
