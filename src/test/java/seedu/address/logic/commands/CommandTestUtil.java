@@ -22,7 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -70,25 +70,27 @@ public class CommandTestUtil {
     public static final String INVALID_EMPLOYMENTTYPE_DESC = " " + PREFIX_EMPLOYMENTTYPE + "ut";
     //'ut' is not an allowed employment type
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_BANKDETAILS_DESC = " " + PREFIX_PHONE
+    public static final String INVALID_BANKDETAILS_DESC = " " + PREFIX_BANKDETAILS
         + "3213-421321"; // '-' not allowed in bank details
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    /*
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withFirstName(VALID_FIRSTNAME_AMY)
+            .withPhone(VALID_PHONE_AMY)
             .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB = new EditPersonDescriptorBuilder().withFirstName(VALID_LASTNAME_BOB)
+            .withPhone(VALID_PHONE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }*/
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
