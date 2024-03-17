@@ -274,7 +274,6 @@ _{Explain here how the data archiving feature will be implemented}_
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
 | Priority | As a …​                          | I want to …​                                    | So that I can…​                                                        |
 |----------|----------------------------------|-------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | New user                         | see usage instructions                          | refer to instructions when I forget how to use the App                 |
@@ -295,34 +294,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Healthcare Worker                | find the person who first spread the disease    | better understand the disease                                          |
 | `*`      | Healthcare Worker                | sort persons by name                            | locate a person easily                                                 |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 **Use Case: UC01 - Create Patient Record**
 
@@ -371,6 +345,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Basic Flow:**
     1. Healthcare worker chooses to find patient information meeting specified criteria.
     2. IABS searches for and displays the relevant patients.
+- **Extensions:**
+  2a. IABS detects an error in the entered data.
+
+  - 2a1. IABS requests for the correct data.
+  - 2a2. Healthcare Worker enters new data. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct. Use case resumes from step 3.
 
 ---
 
@@ -400,23 +380,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - **Actor:** Healthcare worker
 - **Description:** Healthcare worker deletes a patient's record from the ImmuniMate Address Book System.
-- **Preconditions:** Healthcare worker has logged into the system and has selected the patient whose record needs to be deleted.
+- **Preconditions:** Healthcare worker has opened the app and has selected the patient whose record needs to be deleted.
 - **Guarantees:** Patient's record is successfully deleted from the ImmuniMate Address Book System.
-- **Basic Flow:**
+- **MSS:**
     1. Healthcare worker choose to delete a specified patient’s record.
-    2. IABS validates the NRIC.
-    3. IABS deletes the patient's record from the database.
+    2. IABS validates the NRIC and deletes the patient's record from the database.
 - **Extensions:**
 
   2a. IABS cannot find the patient specified.
-
-  2a1. IABS requests for the correct NRIC.
-  2a2. Healthcare worker enters new NRIC.
-  Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action.
-  Use case resumes from step 3.
-
-
----
+  - 2a1. IABS requests for the correct NRIC.
+  - 2a2. Healthcare worker enters new NRIC. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
 
 **Use Case: UC05 - Delete Patient Information**
 
@@ -424,45 +398,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Description:** Healthcare worker deletes specific information from a patient's record in the ImmuniMate Address Book System.
 - **Preconditions:** Healthcare worker has logged into the system and has selected the patient whose information needs to be deleted.
 - **Guarantees:** Specified information is successfully deleted from the patient's record in the ImmuniMate Address Book System.
-- **Basic Flow:**
-    1. Healthcare worker chooses to delete a specified patient’s certain information.
-    2. IABS validates the information to be deleted.
-    3. IABS deletes the specified information from the patient's record in the database.
+- **MSS:**
+    1. Healthcare worker chooses to delete certain fields of a certain patient's profile.
+    2. IABS validates the information to be deleted and deletes the specified information from the patient's record in the database.
 - **Extensions:**
 
   2a. IABS cannot find the patient specified.
-
-  2a1. IABS requests for the correct NRIC.
-  2a2. Healthcare worker enters new NRIC.
-  Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action.
-  Use case resumes from step 3.
+  - 2a1. IABS requests for the correct NRIC.
+  - 2a2. Healthcare worker enters new NRIC. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
 
   2b. IABS cannot find the specified information.
 
-  2b1. IABS alerts healthcare worker that the specified information is not found.
-  2b2. Healthcare worker enters new NRIC.
-  Steps 2b1-2b2 are repeated until the data entered are correct or Healthcare worker cancels the action.
-  Use case resumes from step 3.
+  - 2b1. IABS alerts healthcare worker that the specified information is not found.
+  - 2b2. Healthcare worker enters new field.
+  - Steps 2b1-2b2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
 
   2c. Healthcare worker chooses to delete a mandatory field.
 
-  2a1. IABS alerts healthcare worker that mandatory field cannot be deleted.
-  2a2. Healthcare worker enters new information.
-  Steps 2c1-2c2 are repeated until the data entered are correct or Healthcare worker cancels the action.
-  Use case resumes from step 3.
+  - 2c1. IABS alerts healthcare worker that mandatory field cannot be deleted.
+  - 2c2. Healthcare worker enters new field.
+  - Steps 2c1-2c2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+3.  
 *{More to be added}*
+
+Data Requirements:
+* the app should have high data persistency
+
+Environment Requirements:
+* the app should work on both 32-bit and 64-bit environments
+
+Accessibility:
+* the app should be easily downloaded from websites/app stores, and need no prior setup
+
+Capacity:
+* the app should be able to store 10000 profiles 
+* the app should not exceed 10GB in storage space
+
+Compliance with regulations:
+* personal data collection on the app should adhere to the Personal Data Protection Act (PDPA)
+
+Extensibility:
+* the app should enable new profile fields to be added easily
+* the app should be convenient to expand its capacity when needed
+
+Interoperability:
+* the app should be compatible with Windows, MacOS, Linux platforms
+
+Maintainability:
+* the app should use automated testing
+
+Performance requirements:
+* the app should respond to queries within 1 second
+
+Process requirements:
+* the project should adhere to a schedule to deliver new features fortnightly
+* the project should aim to solve bugs found in one version by the next version
+
+Quality requirements:
+* the app should be usable by doctors/nurses/receptionists with limited guidance
+* the app should be faster to use by typing queries than using the mouse
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+1. **Patient Name**: The name of the patient. Case insensitive alphabetical characters with spaces, capped at 30 characters.
+2. **NRIC**: National Registration Identity Card number, follows Singapore NRIC format.
+3. **Date of Birth (DOB)**: The patient's date of birth, in the format `yyyy-MM-dd`.
+4. **Sex**: The biological sex of the patient, limited to Male/Female.
+5. **Phone Number**: The contact number of the patient, numbers with a plus sign.
+6. **Address**: The home address of the patient, alphanumerical characters with spaces.
+7. **Email**: The email address of the patient, follows a valid format: `<a-zA-Z0-9>@<a-zA-Z0-9>.com`.
+8. **Country of Nationality**: The country name of the patient's nationality, alphabetical characters with spaces.
+9. **Date of Admission (DOA)**: The date when the patient was admitted for the current visit, in the format `yyyy-MM-dd`.
+10. **Blood Type**: The blood type of the patient, accepts A/B/AB/O (+ or -).
+11. **Allergies**: Any allergies the patient may have, alphanumerical characters with spaces.
+12. **Conditions**: Any prior medical conditions of the patient.
+13. **Symptoms**: The latest symptoms experienced by the patient.
+14. **Diagnosis**: The latest diagnosis of the patient's condition.
+15. **Status**: The current infectious status of the patient, can be healthy (green), at risk (yellow), or infected (red).
+16. **Location**: A specific area or zone, which can be a neighbourhood or an institution (school).
+17. **Cluster ID**: Unique identifier for a cluster of related cases.
+18. **Fields**: The fields of the patient's information, such as name, status, contact.
+19. **Infection Source**: The source of infection if known.
+20. **Cluster Members**: Patients who are part of the cluster.
+21. **Cluster Location**: Location associated with the cluster.
+22. **Date of First Infection**: The date when the first infection within the cluster occurred.
+23. **Cluster Status**: The current status of the cluster, such as active, under observation, resolved, etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
