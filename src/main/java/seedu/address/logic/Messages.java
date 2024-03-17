@@ -47,10 +47,10 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Family: ")
                 .append(person.getFamily())
-                .append("; Tags: ")
-                .append("; Remark: ")
-                .append(person.getRemark());
+                .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Remark: ")
+                .append(person.getRemark());
         return builder.toString();
     }
 

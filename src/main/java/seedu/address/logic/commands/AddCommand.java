@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_FAMILY + "FAMILY "
             + PREFIX_TAG + "BUYER/SELLER "
-            + PREFIX_REMARK + "[REMARK]\n"
+            + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

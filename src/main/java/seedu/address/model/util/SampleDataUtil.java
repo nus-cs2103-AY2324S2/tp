@@ -61,7 +61,7 @@ public class SampleDataUtil {
                        new Address("Blk 47 Tampines Street 20, #17-35"),
                        new Family("20"),
                        getTagSet("BUYER"),
-                       new Remark("Likes to drink hard liquor after finishing v1.2")),
+                       new Remark("Likes to eat nasi lemak after finishing v1.2")),
             new Person(new Name("Roy Balakrishnan"),
                        new Phone("92624417"),
                        new Income("1000"),
