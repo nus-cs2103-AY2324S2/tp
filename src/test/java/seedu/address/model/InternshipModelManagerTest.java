@@ -43,7 +43,7 @@ public class InternshipModelManagerTest {
         assertEquals(internshipData, modelManager.getInternshipData());
         assertEquals(userPrefs, modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(Paths.get("data", "addressbook.json"), modelManager.getInternshipDataFilePath());
+        assertEquals(Paths.get("data", "internshipdata.json"), modelManager.getInternshipDataFilePath());
     }
 
     @Test
