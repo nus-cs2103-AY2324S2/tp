@@ -35,4 +35,8 @@ public class EntryList {
     public int size() {
         return entryList.size();
     }
+
+    public void delete(String category) {
+        entryList.remove(this.get(category));
+    }
 }

@@ -37,6 +37,10 @@ public class Person {
         return entryList.get(category);
     }
 
+    public void deleteEntry(String category) {
+        entryList.delete(category);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
