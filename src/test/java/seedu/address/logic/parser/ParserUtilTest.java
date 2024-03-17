@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.parseAppointmentDate;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -197,7 +196,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAppointmentDate_validDate_returnsAppointmentDate() throws ParseException{
+    public void parseAppointmentDate_validDate_returnsAppointmentDate() throws ParseException {
         String date = "2024-09-02";
         AppointmentDate ad = new AppointmentDate(date);
         assertEquals(ad, ParserUtil.parseAppointmentDate(date));
@@ -205,7 +204,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseAppointmentDate_invalidDate_throwsParseException() {
-        String date = "2024-00-00";
+        String date = "2024-00-010";
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentDate(date));
+    }
+
+    @Test
+    public void parseAppointmentDate_invalidApptDate_throwsParseException() {
+        String date = " 2024-00-00";
         assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentDate(date));
     }
 
