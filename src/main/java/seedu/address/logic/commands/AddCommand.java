@@ -61,6 +61,16 @@ public class AddCommand extends Command {
     }
 
     @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
+    @Override
+    public String getMessageUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
