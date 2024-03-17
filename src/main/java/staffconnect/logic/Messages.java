@@ -41,6 +41,8 @@ public class Messages {
                 .append("; Phone: ")
                 .append(person.getPhone())
                 .append("; Email: ")
+                .append(person.getFaculty())
+                .append("; Faculty: ")
                 .append(person.getEmail())
                 .append("; Venue: ")
                 .append(person.getVenue())
@@ -48,6 +50,8 @@ public class Messages {
                 .append(person.getModule())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Availabilities: ");
+        person.getAvailabilities().forEach(builder::append);
         return builder.toString();
     }
     /**

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
@@ -24,14 +25,16 @@ import staffconnect.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_FACULTY = "faculty";
     private static final String INVALID_VENUE = " ";
     private static final String INVALID_MODULE = " ";
-    private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_FACULTY = "Computing";
     private static final String VALID_VENUE = "123 Main Street #0505";
     private static final String VALID_MODULE = "CS2103";
     private static final String VALID_TAG_1 = "friend";
@@ -126,6 +129,29 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseFaculty_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFaculty((String) null));
+    }
+
+    @Test
+    public void parseFaculty_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFaculty(INVALID_FACULTY));
+    }
+
+    @Test
+    public void parseFaculty_validValueWithoutWhitespace_returnsFaculty() throws Exception {
+        Faculty expectedFaculty = new Faculty(VALID_FACULTY);
+        assertEquals(expectedFaculty, ParserUtil.parseFaculty(VALID_FACULTY));
+    }
+
+    @Test
+    public void parseFaculty_validValueWithWhitespace_returnsTrimmedFaculty() throws Exception {
+        String facultyWithWhitespace = WHITESPACE + VALID_FACULTY + WHITESPACE;
+        Faculty expectedFaculty = new Faculty(VALID_FACULTY);
+        assertEquals(expectedFaculty, ParserUtil.parseFaculty(facultyWithWhitespace));
     }
 
     @Test

@@ -9,9 +9,11 @@ import java.util.Set;
 import staffconnect.commons.core.index.Index;
 import staffconnect.commons.util.StringUtil;
 import staffconnect.logic.parser.exceptions.ParseException;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.meeting.Description;
 import staffconnect.model.meeting.MeetDateTime;
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Phone;
@@ -28,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -84,6 +87,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String faculty} into an {@code Faculty}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code faculty} is invalid.
+     */
+    public static Faculty parseFaculty(String faculty) throws ParseException {
+        requireNonNull(faculty);
+        String trimmedFaculty = faculty.trim();
+        if (!Faculty.isValidFaculty(trimmedFaculty)) {
+            throw new ParseException(Faculty.MESSAGE_CONSTRAINTS);
+        }
+        return new Faculty(trimmedFaculty);
+    }
+
+    /**
      * Parses a {@code String venue} into an {@code Venue}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -114,6 +132,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -126,18 +156,6 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**
@@ -168,5 +186,32 @@ public class ParserUtil {
             throw new ParseException(MeetDateTime.MESSAGE_CONSTRAINTS);
         }
         return new MeetDateTime(trimmedDateTime);
+    }
+
+    /**
+     * Parses {@code Collection<String> availabilities} into a {@code Set<Availability>}.
+     */
+    public static Set<Availability> parseAvailabilities(Collection<String> availabilities) throws ParseException {
+        requireNonNull(availabilities);
+        final Set<Availability> availabilitySet = new HashSet<>();
+        for (String value : availabilities) {
+            availabilitySet.add(parseAvailability(value));
+        }
+        return availabilitySet;
+    }
+
+    /**
+     * Parses a {@code String availability} into a {@code Availability}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code availability} is invalid.
+     */
+    public static Availability parseAvailability(String availability) throws ParseException {
+        requireNonNull(availability);
+        String trimmedAvailability = availability.trim();
+        if (!Availability.isValidAvailability(trimmedAvailability)) {
+            throw new ParseException(Availability.MESSAGE_CONSTRAINTS);
+        }
+        return new Availability(trimmedAvailability);
     }
 }

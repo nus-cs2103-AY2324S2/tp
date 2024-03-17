@@ -38,11 +38,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label venue;
     @FXML
+    private Label faculty;
+    @FXML
     private Label module;
     @FXML
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane availabilities;
 
     @FXML
     private VBox meetingsContainer;
@@ -58,12 +62,18 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        faculty.setText(person.getFaculty().toString());
         venue.setText(person.getVenue().value);
         module.setText(person.getModule().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        person.getAvailabilities().stream()
+                .sorted(Comparator.comparing(availability -> availability.value))
+                .forEach(availability -> availabilities.getChildren().add(new Label(availability.value)));
+
         person.getMeetings().stream().sorted(Comparator.comparing(meeting -> meeting.getStartDate().getDateTime()))
             .forEach(meeting -> meetingsContainer.getChildren().add(new MeetingsCard(meeting).getRoot()));
     }

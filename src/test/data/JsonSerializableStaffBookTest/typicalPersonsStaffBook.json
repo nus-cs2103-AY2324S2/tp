@@ -4,50 +4,109 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "venue" : "123, Jurong West Ave 6, #08-111",
     "module": "CS1101S",
-    "tags" : [ "friends" ]
+    "faculty": "Computing",
+    "venue" : "123, Jurong West Ave 6, #08-111",
+    "tags" : [ "friends" ],
+    "availabilities" : [ "MONDAY" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "venue" : "311, Clementi Ave 2, #02-25",
     "module": "CS1231S",
-    "tags" : [ "owesMoney", "friends" ]
+    "faculty": "Computing",
+    "venue" : "311, Clementi Ave 2, #02-25",
+    "tags" : [ "owesMoney", "friends" ],
+    "availabilities" : [ "WEDNESDAY", "TUESDAY" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "venue" : "wall street",
     "module": "CS2030S",
-    "tags" : [ ]
+    "faculty": "Computing",
+    "venue" : "wall street",
+    "tags" : [ ],
+    "availabilities" : [ ]
+  }, {
+    "name" : "Clara Svarog",
+    "phone" : "9681384",
+    "email" : "svarog@example.com",
+    "module": "CS2102",
+    "faculty" : "Computing",
+    "venue" : "belobog avenue",
+    "tags" : [ "classmate" ],
+    "availabilities" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "venue" : "10th street",
     "module": "CS2040S",
-    "tags" : [ "friends" ]
+    "faculty": "Computing",
+    "venue" : "10th street",
+    "tags" : [ "friends" ],
+    "availabilities" : [ "THURSDAY", "FRIDAY" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "venue" : "michegan ave",
     "module": "CS2100",
-    "tags" : [ ]
+    "faculty": "Computing",
+    "venue" : "michegan ave",
+    "tags" : [ ],
+    "availabilities" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "venue" : "little tokyo",
     "module": "CS2101",
-    "tags" : [ ]
+    "faculty": "Computing",
+    "venue" : "little tokyo",
+    "tags" : [ ],
+    "availabilities" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "venue" : "4th street",
     "module": "CS2102",
-    "tags" : [ ]
+    "faculty": "Computing",
+    "venue" : "4th street",
+    "tags" : [ ],
+    "availabilities" : [ ]
+  }, {
+    "name" : "Kafka Apache",
+    "phone" : "9452413",
+    "email" : "apache@example.com",
+    "module": "CS2102",
+    "faculty" : "Business",
+    "venue" : "pteruges avenue",
+    "tags" : [ "classmate" ],
+    "availabilities" : [ "FRIDAY" ]
+  }, {
+    "name" : "Natasha Harrower",
+    "phone" : "8019394",
+    "email" : "harrower@example.com",
+    "module": "CS2102",
+    "faculty" : "Computing",
+    "venue" : "underworld avenue",
+    "tags" : [ "classmate" ],
+    "availabilities" : [ "FRIDAY" ]
+  }, {
+    "name" : "Leonardo DiCaprio",
+    "phone" : "88472234",
+    "email" : "lcaprio@gmail.com",
+    "module": "TS2237",
+    "faculty": "Arts and Social Sciences",
+    "venue" : "LT13",
+    "tags" : [ ],
+    "availabilities" : [ ]
+  }, {
+    "name" : "Michael Jackson",
+    "phone" : "92347123",
+    "email" : "heehee@gmail.com",
+    "module": "MUA1163",
+    "faculty": "Music",
+    "venue" : "YSTCM-SR9",
+    "tags" : [ ],
+    "availabilities" : [ ]
   } ]
 }

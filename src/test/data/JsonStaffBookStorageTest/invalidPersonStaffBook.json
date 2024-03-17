@@ -3,7 +3,8 @@
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
-    "venue": "4th street",
-    "module": "CS1101S"
+    "module": "CS1101S",
+    "faculty": "Computing",
+    "venue": "4th street"
   } ]
 }

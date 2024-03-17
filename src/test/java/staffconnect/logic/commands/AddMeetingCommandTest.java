@@ -39,7 +39,6 @@ public class AddMeetingCommandTest {
     private static final Model TEST_MODEL = new ModelManager(getTypicalStaffBook(), new UserPrefs());
 
 
-
     @Test
     public void execute_allFieldsValid_success() {
         Person validPerson = buildPerson();
@@ -53,9 +52,9 @@ public class AddMeetingCommandTest {
 
     private Person buildPerson() {
         Person pickPerson = TEST_MODEL.getFilteredPersonList().get(0);
-        Person validPerson = new Person(
-            pickPerson.getName(), pickPerson.getPhone(), pickPerson.getEmail(),
-            pickPerson.getVenue(), pickPerson.getModule(), pickPerson.getTags());
+        Person validPerson = new Person(pickPerson.getName(), pickPerson.getPhone(), pickPerson.getEmail(),
+                                        pickPerson.getModule(), pickPerson.getFaculty(), pickPerson.getVenue(),
+                                        pickPerson.getTags(), pickPerson.getAvailabilities());
         validPerson.setMeetings(new HashSet<>(List.of(VALID_MEETING)));
         return validPerson;
     }

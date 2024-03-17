@@ -351,7 +351,6 @@
     -fx-font-size: 11;
 }
 
-
 #meetingPane{
     -fx-border-radius: 20 20 20 20;
     -fx-background-radius: 20 20 20 20;
@@ -367,3 +366,17 @@
     -fx-padding: 10 0 0 0;
     -fx-spacing : 7;
  }
+
+#availabilities {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#availabilities .label {
+    -fx-text-fill: white;
+    -fx-background-color: #B57EDC;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}

@@ -19,6 +19,7 @@ import staffconnect.logic.commands.FilterCommand;
 import staffconnect.logic.commands.FindCommand;
 import staffconnect.logic.commands.HelpCommand;
 import staffconnect.logic.commands.ListCommand;
+import staffconnect.logic.commands.SortCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
 
 /**
@@ -81,6 +82,9 @@ public class StaffConnectParser {
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);

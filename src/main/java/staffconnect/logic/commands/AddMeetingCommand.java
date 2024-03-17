@@ -14,8 +14,10 @@ import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
+import staffconnect.model.availability.Availability;
 import staffconnect.model.meeting.Meeting;
 import staffconnect.model.person.Email;
+import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
@@ -86,10 +88,14 @@ public class AddMeetingCommand extends Command {
         Email currentEmail = personToEdit.getEmail();
         Venue currentVenue = personToEdit.getVenue();
         Module currentModule = personToEdit.getModule();
+        Faculty currentFaculty = personToEdit.getFaculty();
         Set<Tag> currentTags = personToEdit.getTags();
         Set<Meeting> currentMeetings = new HashSet<>(personToEdit.getMeetings()); //to reduce coupling with Person
+        Set<Availability> currentAvailability = personToEdit.getAvailabilities();
         Person editedPerson =
-            new Person(currentName, currentPhone, currentEmail, currentVenue, currentModule, currentTags);
+            new Person(currentName, currentPhone, currentEmail, currentModule, currentFaculty, currentVenue,
+                       currentTags,
+                       currentAvailability);
         currentMeetings.add(meeting);
         editedPerson.setMeetings(currentMeetings);
         return editedPerson;
