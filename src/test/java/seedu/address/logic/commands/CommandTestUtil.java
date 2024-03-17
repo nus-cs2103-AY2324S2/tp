@@ -26,7 +26,10 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditMaintainerDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditStaffDescriptorBuilder;
+import seedu.address.testutil.EditSupplierDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -99,6 +102,13 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditStaffCommand.EditStaffDescriptor DESC_AMY_STAFF;
+    public static final EditStaffCommand.EditStaffDescriptor DESC_BOB_STAFF;
+    public static final EditSupplierCommand.EditSupplierDescriptor DESC_AMY_SUPPLIER;
+    public static final EditSupplierCommand.EditSupplierDescriptor DESC_BOB_SUPPLIER;
+    public static final EditMaintainerCommand.EditMaintainerDescriptor DESC_AMY_MAINTAINER;
+    public static final EditMaintainerCommand.EditMaintainerDescriptor DESC_BOB_MAINTAINER;
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -107,6 +117,30 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY_SUPPLIER = new EditSupplierDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withPrice(VALID_PRICE_AMY).withProduct(VALID_PRODUCT_AMY)
+                .withTags(VALID_TAG_SUPPLIER).build();
+        DESC_BOB_SUPPLIER = new EditSupplierDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withPrice(VALID_PRICE_BOB).withProduct(VALID_PRODUCT_BOB)
+                .withTags(VALID_TAG_SUPPLIER).build();
+        DESC_AMY_STAFF = new EditStaffDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withEmployment(VALID_EMPLOYMENT_AMY).withSalary(VALID_SALARY_AMY)
+                .withTags(VALID_TAG_SUPPLIER).build();
+        DESC_BOB_STAFF = new EditStaffDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withEmployment(VALID_EMPLOYMENT_BOB).withSalary(VALID_SALARY_BOB)
+                .withTags(VALID_TAG_STAFF).build();
+        DESC_AMY_MAINTAINER = new EditMaintainerDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withSkill(VALID_SKILL_AMY).withCommission(VALID_COMMISSION_AMY)
+                .withTags(VALID_TAG_SUPPLIER).build();
+        DESC_BOB_MAINTAINER = new EditMaintainerDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withSkill(VALID_SKILL_BOB).withCommission(VALID_COMMISSION_BOB)
+                .withTags(VALID_TAG_STAFF).build();
     }
 
     /**
