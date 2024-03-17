@@ -10,13 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.employee.Address;
-import seedu.address.model.employee.Email;
-import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.EmployeeId;
-import seedu.address.model.employee.Name;
-import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.*;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Employee}.
@@ -30,6 +26,7 @@ class JsonAdaptedEmployee {
     private final String phone;
     private final String email;
     private final String address;
+    private String tasks;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -39,12 +36,14 @@ class JsonAdaptedEmployee {
     public JsonAdaptedEmployee(@JsonProperty("employeeId") int employeeId, @JsonProperty("name") String name,
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
+                               @JsonProperty("tasks") String tasks,
                                @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.employeeId = employeeId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.tasks = tasks;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -59,6 +58,7 @@ class JsonAdaptedEmployee {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        tasks = source.getTasks().tasks;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -110,8 +110,13 @@ class JsonAdaptedEmployee {
         }
         final Address modelAddress = new Address(address);
 
+        if (!AssignedTasks.isValidTask(tasks)) {
+            throw new IllegalValueException(AssignedTasks.MESSAGE_CONSTRAINTS);
+        }
+        final AssignedTasks modelTasks = new AssignedTasks(tasks);
+
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelEmployeeId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Employee(modelEmployeeId, modelName, modelPhone, modelEmail, modelAddress, modelTasks, modelTags);
     }
 
 }

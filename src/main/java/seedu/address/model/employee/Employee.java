@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -95,7 +97,7 @@ public class Employee {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Employee assignTask(int taskID) {
+    public Employee assignTask(int taskID) throws CommandException {
         tasks = tasks.updateTask(taskID);
         return this;
     }

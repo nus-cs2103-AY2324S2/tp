@@ -7,7 +7,6 @@ public class TaskStatus {
         status = taskStatus;
     }
     public void setTaskDone() {
-
         status = true;
     }
 

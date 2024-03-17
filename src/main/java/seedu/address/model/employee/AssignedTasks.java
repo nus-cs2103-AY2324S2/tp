@@ -1,7 +1,12 @@
 package seedu.address.model.employee;
 
+import seedu.address.logic.commands.AssignTaskCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_TASKID;
+
 
 /**
  * Represents an Employee's AssignedTasks in the address book.
@@ -38,8 +43,17 @@ public class AssignedTasks {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public AssignedTasks updateTask(int taskID) {
-        tasks = tasks + " " + taskID;
+    public AssignedTasks updateTask(int taskID) throws CommandException {
+        String[] taskArray = tasks.split(" ");
+
+        // Check if taskID matches any of the numbers in tasks
+        for (String task : taskArray) {
+            if (Integer.parseInt(task) == taskID) {
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_TASKID, AssignTaskCommand.MESSAGE_USAGE));            }
+        }
+
+        // Add the taskID to tasks
+        tasks += " " + taskID;
         return this;
     }
     @Override

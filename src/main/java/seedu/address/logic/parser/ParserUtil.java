@@ -106,10 +106,12 @@ public class ParserUtil {
     }
 
     public static AssignedTasks parseTasks(String tasks) throws ParseException {
-        if (!AssignedTasks.isValidTask(tasks)) {
+        requireNonNull(tasks);
+        String trimmedTasks = tasks.trim();
+        if (!AssignedTasks.isValidTask(trimmedTasks)) {
             throw new ParseException(AssignedTasks.MESSAGE_CONSTRAINTS);
         }
-        return new AssignedTasks(tasks);
+        return new AssignedTasks(trimmedTasks);
     }
 
     /**
@@ -138,6 +140,4 @@ public class ParserUtil {
         }
         return tagSet;
     }
-
-
 }

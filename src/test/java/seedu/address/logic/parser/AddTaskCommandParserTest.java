@@ -12,6 +12,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskStatus;
 
 
 public class AddTaskCommandParserTest {
@@ -22,7 +23,7 @@ public class AddTaskCommandParserTest {
         Model m2 = new ModelManager();
         Task.setUniversalTaskId(5);
         AddTaskCommand atc = parser.parse("testing              ");
-        AddTaskCommand atc2 = new AddTaskCommand(new Task(new TaskName("testing"), new TaskId(5)));
+        AddTaskCommand atc2 = new AddTaskCommand(new Task(new TaskName("testing"), new TaskId(5), new TaskStatus(false)));
         atc.execute(m1);
         atc2.execute(m2);
         assertTrue(m1.equals(m2));

@@ -12,11 +12,11 @@ public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "assigntask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Assigns a task object identified by TASK_ID to employee identified by EMPLOYEE_ID\n.\n"
+            + ": Assigns a task object identified by TASK_ID to employee identified by EMPLOYEE_ID.\n"
             + "Parameters: taskID, employeeID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assign task: %1$s";
+    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assign task success";
 
     private final int taskID;
     private final int employeeID;
@@ -47,16 +47,13 @@ public class AssignTaskCommand extends Command {
             }
         }
 
-        if (checkEmployeeID) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEEID);
-        }
-
-        if (checkTaskID) {
+        if (!checkTaskID) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASKID);
         }
 
-        return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS));
+        if (!checkEmployeeID) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEEID);
+        }
+        return new CommandResult(MESSAGE_ASSIGN_TASK_SUCCESS);
     }
-
-
 }
