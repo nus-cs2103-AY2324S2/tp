@@ -26,7 +26,7 @@ public class InternshipUserPrefsTest {
 
     @Test
     public void constructor_nonNullInternshipUserPrefsAndNonNullGuiSettings_success() {
-        ReadOnlyInternshipUserPrefs emptyUserPrefs= new InternshipUserPrefs();
+        ReadOnlyInternshipUserPrefs emptyUserPrefs = new InternshipUserPrefs();
         InternshipUserPrefs userPrefs = new InternshipUserPrefs(emptyUserPrefs);
         assertEquals(emptyUserPrefs, userPrefs);
     }
@@ -99,7 +99,7 @@ public class InternshipUserPrefsTest {
     public void setInternshipDataFilePath_nonNullInternshipDataFilePath_success() {
         InternshipUserPrefs userPrefs = new InternshipUserPrefs();
         userPrefs.setInternshipDataFilePath(Paths.get("data", "internshipdata2.json"));
-        assertEquals (Paths.get("data", "internshipdata2.json"),userPrefs.getInternshipDataFilePath());
+        assertEquals(Paths.get("data", "internshipdata2.json"), userPrefs.getInternshipDataFilePath());
     }
     @Test
     public void hashCode_nonNullInternshipDataFilePath_success() {
