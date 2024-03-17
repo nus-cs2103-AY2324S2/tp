@@ -112,6 +112,28 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Filtering persons by attribute: `filter`
+
+Filters persons whose module, faculty or tags match the given filtering criteria.
+
+format: `filter [m/MODULE] [f/FACULTY] [t/TAG]…`
+
+* At least one of the optional fields must be provided.
+* Only module, faculty and tags can be filtered.
+* The filter is case-sensitive for modules. e.g `hsi1000` is an invalid module value
+* The filter only accepts a single module to filter from.
+* The filter only accepts valid values for faculty. e.g `school of business` is an invalid faculty value.
+* The filter only accepts a single faculty to filter from.
+* The filter is case-insensitive for tags. e.g `tUTOR` will match `tutor`
+* The filter accepts single or multiple tags to filter from.
+* Persons matching all fields will be returned (i.e. `AND` search).
+  e.g. `filter m/CS2030S f/Computing` will return `Charlotte Oliveiro`
+
+Examples:
+* `filter m/CS1101S` returns `Alex Yeoh`
+* `filter t/tutor` returns `Bernice Yu`, `Irfan Ibrahim`<br>
+  ![result for 'filter t/tutor'](images/filterTutorTagResult.png)
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -224,13 +246,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                        |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL f/FACULTY v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com f/Computing v/123, Clementi Rd, 1234665 m/CS2103 t/friend t/colleague a/monday` |
-| **Clear**  | `clear`                                                                                                                                                                                                                                 |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                     |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [f/FACULTY] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                     |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                              |
-| **Sort**   | `sort [ATTRIBUTE]`<br> e.g., `sort p/`                                                                                                                                                                                                  |
-| **List**   | `list`                                                                                                                                                                                                                                  |
-| **Help**   | `help`                                                                                                                                                                                                                                  |
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL f/FACULTY v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com f/Computing v/123, Clementi Rd, 1234665 m/CS2103 t/friend t/colleague a/monday`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [f/FACULTY] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Filter** | `filter [m/MODULE] [f/FACULTY] [t/TAG]…`<br> e.g., `filter m/CS2100 t/friends`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Sort** | `sort [ATTRIBUTE]`<br> e.g., `sort p/`
+**List** | `list`
+**Help** | `help`
