@@ -14,51 +14,29 @@ public class FamilyTest {
     }
 
     @Test
-    public void constructor_invalidFamily_throwsNumberFormatException() {
+    public void constructor_invalidFamily_throwsIllegalArgumentException() {
         String invalidFamily = "";
-        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
-    }
+        assertThrows(IllegalArgumentException.class, () -> new Family(invalidFamily));
 
-    @Test
-    public void constructor_invalidFamily_throwsNumberFormatException2() {
-        String invalidFamily = " ";
-        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
-    }
-
-    @Test
-    public void constructor_invalidFamily_throwsNumberFormatException3() {
-        //invalid input containing alphabets
-        String invalidFamily = " family";
-        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
-    }
-
-    @Test
-    public void constructor_invalidFamily_throwsNumberFormatException4() {
-        String invalidFamily = "9011p041"; //alphabet within digits
-        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
-    }
-
-    @Test
-    public void constructor_invalidFamily_throwsNumberFormatException5() {
-        String invalidFamily = "9312 1534"; // spaces within digits
-        assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
+        String invalidFamilyWithSpaces = " ";
+        assertThrows(IllegalArgumentException.class, () -> new Family(invalidFamilyWithSpaces));
     }
 
     @Test
     public void isValidFamily() {
         // null family size
-        assertThrows(NumberFormatException.class, () -> Family.isValidFamily(null));
+        assertThrows(NullPointerException.class, () -> Family.isValidFamily(null));
 
         // invalid family sizes
         assertFalse(Family.isValidFamily("0")); // less than 1
-        assertFalse(Family.isValidFamily("-1"));
-        assertFalse(Family.isValidFamily("-2"));
-        assertFalse(Family.isValidFamily("-12313213"));
+        assertFalse(Family.isValidFamily("-1")); // less than 1
+        assertFalse(Family.isValidFamily("-2")); // less than 1
+        assertFalse(Family.isValidFamily("-12313231231313")); // very negative
 
         // valid family numbers
         assertTrue(Family.isValidFamily("2")); // more than 1
-        assertTrue(Family.isValidFamily("93121"));
-        assertTrue(Family.isValidFamily("1242938")); // long number
+        assertTrue(Family.isValidFamily("93121")); // huge family
+        assertTrue(Family.isValidFamily("12422131313131938")); // very huge family
     }
 
     @Test
