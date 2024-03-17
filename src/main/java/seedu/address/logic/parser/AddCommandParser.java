@@ -59,6 +59,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Family family = ParserUtil.parseFamily(argMultimap.getValue(PREFIX_FAMILY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+        if (tagList.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
         Person person = new Person(name, phone, income, email, address, family, tagList);
 
         return new AddCommand(person);

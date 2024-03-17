@@ -9,10 +9,31 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either 'buyer' or 'seller'";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public final Role tagName;
+
+    /**
+     * Enumeration of Roles that a Person can take on
+     */
+    public enum Role {
+        BUYER("Buyer"),
+        SELLER("Seller");
+
+        private String roleName;
+
+        // Constructor for the enum to set the custom role name
+        Role(String roleName) {
+            this.roleName = roleName;
+        }
+
+        // Overriding the toString method to return the custom role name
+        @Override
+        public String toString() {
+            return this.roleName;
+        }
+    }
 
     /**
      * Constructs a {@code Tag}.
@@ -22,13 +43,18 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.tagName = Role.valueOf(tagName.toUpperCase());
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
+        try {
+            Role.valueOf(test.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -44,7 +70,7 @@ public class Tag {
         }
 
         Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        return tagName.roleName.equals(otherTag.tagName.roleName);
     }
 
     @Override
@@ -56,7 +82,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + tagName.toString() + ']';
     }
 
 }

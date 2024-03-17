@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class Family {
 
     /** Message for constraints on family size. */
-    public static final String MESSAGE_CONSTRAINTS = "Family size should be at least one";
+    public static final String MESSAGE_CONSTRAINTS = "Family size should be at least 1";
 
     /** The family size. */
     private Integer familySize;
