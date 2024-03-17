@@ -28,7 +28,7 @@ public class DonateCommand extends Command {
             + PREFIX_BOOKLIST + "The Book of Answers";
 
     // todo : later need to edit this MESSAGE when the bookTitle recorded to the database.
-    public static final String MESSAGE_DONATE_SUCCESS = "Merit score added 1 to Person: %1$s";
+    public static final String MESSAGE_DONATE_SUCCESS = "Donated book from person: %1$s";
 
     private final Index index;
     private final BookList bookTitle;
@@ -51,6 +51,10 @@ public class DonateCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        if (bookTitle.equals(new BookList(""))) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_BOOK_INPUT_FIELD);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
