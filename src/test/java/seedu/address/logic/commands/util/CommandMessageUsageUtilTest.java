@@ -31,7 +31,7 @@ class CommandMessageUsageUtilTest {
                 .generateMessageUsage("bad", "cat", p1, p2);
         assertEquals("bad: cat\n"
                 + "Parameters: ert (cbs) hic/ban\n"
-                + "Example: bad lmr 741",
+                + "Example: bad lmr hic/741",
                 messageUsage);
     }
 
@@ -54,6 +54,16 @@ class CommandMessageUsageUtilTest {
     @Test
     void generateMessageUsageExample() {
         String example = CommandMessageUsageUtil.generateMessageUsageExample("TEM", p1, p2);
-        assertEquals("TEM lmr 741", example);
+        assertEquals("TEM lmr hic/741", example);
+    }
+
+    @Test
+    void generateMessageUsageExample_withOptionalParameters() {
+        String example = CommandMessageUsageUtil.generateMessageUsageExample(
+                "TEM",
+                p1.asOptional(false),
+                p2.asOptional(true)
+        );
+        assertEquals("TEM hic/741", example);
     }
 }
