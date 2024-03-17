@@ -1,4 +1,5 @@
 /*
+/*
   // ================================
   // General
   // ================================ */
@@ -95,13 +96,15 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #FFFFFF;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+
 }
 
 .list-cell:filled:even {
@@ -118,27 +121,29 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #000000;
 }
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #000000;
 }
 
 .stack-pane {
     -fx-background-color: #EDEDED;
+    -fx-background-radius: 10;
 }
 
 .result-display .label {
@@ -255,8 +260,11 @@
 }
 
 #cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 1.5;
+    -fx-border-color: #b1b3b5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -283,11 +291,11 @@
   // ================================ */
 
 .scroll-bar {
-    -fx-background-color: transparent;
+    -fx-background-color: #FFFFFF;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #EDEDED;
+    -fx-background-color: darkgray;
     -fx-background-insets: 3;
 }
 
@@ -302,10 +310,12 @@
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
     -fx-padding: 1 5 1 5;
+    -fx-pref-width: 12px;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 5 1 5 1;
+    -fx-pref-height: 12px;
 }
 
 /*
