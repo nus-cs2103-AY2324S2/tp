@@ -26,11 +26,8 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
      */
     public RemoveTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        System.out.println("RemoveTagCommandParser: parsing the input");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
-        System.out.println(arePrefixesPresent(argMultimap, PREFIX_TAG)
-            + " " + !argMultimap.getAllValues(PREFIX_TAG).isEmpty());
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE));
@@ -38,8 +35,6 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        System.out.println("RemoveTagCommandParser: returning the RemoveTagCommand object "
-            + index.toString() + " " + tagSet.toString());
         return new RemoveTagCommand(index, tagSet);
     }
 

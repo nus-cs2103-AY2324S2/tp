@@ -11,12 +11,16 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.TagDoesNotExistException;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -171,5 +175,33 @@ public class UniquePersonListTest {
     @Test
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
+    }
+
+    @Test
+    public void removeTagFromPerson_tagExistsInPerson_success() {
+        Tag tagToRemove = new Tag("TagToRemove");
+        Person person = new PersonBuilder().withTags("TagToRemove").build();
+        uniquePersonList.add(person);
+        Set<Tag> tags = new HashSet<>();
+        tags.add(tagToRemove);
+        uniquePersonList.removeTagFromPerson(person, tags);
+        assertFalse(person.getTags().contains(tagToRemove));
+    }
+
+    @Test
+    public void removeTagFromPerson_tagDoesNotExistInPerson_throwsTagDoesNotExistException() {
+        Tag tagToRemove = new Tag("TagToRemove");
+        Set<Tag> tags = new HashSet<>();
+        tags.add(tagToRemove);
+        uniquePersonList.add(ALICE);
+        assertThrows(TagDoesNotExistException.class, () -> uniquePersonList.removeTagFromPerson(ALICE, tags));
+    }
+
+    @Test
+    public void removeTagFromPerson_personDoesNotExist_throwsPersonNotFoundException() {
+        Tag tagToRemove = new Tag("TagToRemove");
+        Set<Tag> tags = new HashSet<>();
+        tags.add(tagToRemove);
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.removeTagFromPerson(ALICE, tags));
     }
 }

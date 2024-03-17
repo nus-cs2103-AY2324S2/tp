@@ -114,7 +114,7 @@ public class UniquePersonList implements Iterable<Person> {
 
         for (Tag tag : tags) {
             requireNonNull(tag);
-            if (target.hasTag(tag)) {
+            if (!target.hasTag(tag)) {
                 throw new TagDoesNotExistException(tag);
             }
             target.removeTag(tag);

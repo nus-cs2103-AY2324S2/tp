@@ -8,10 +8,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.RemoveTagCommand;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * A utility class for Person.
@@ -58,5 +61,9 @@ public class PersonUtil {
             }
         }
         return sb.toString();
+    }
+    public static String getRemoveTagCommand(Index index, String tag) {
+        return RemoveTagCommand.COMMAND_WORD + " " + index.getOneBased()
+            + " " + (String.join(" ", "t/" + tag.toString()));
     }
 }
