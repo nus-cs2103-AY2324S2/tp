@@ -45,15 +45,10 @@ public class ParserUtil {
     public static PersonType parsePersonType(String type) throws ParseException {
         requireNonNull(type);
         String trimmedType = type.trim();
-        if (trimmedType.equals("stu")) {
-            return PersonType.STUDENT;
-        } else if (trimmedType.equals("ta")) {
-            return PersonType.TA;
-        } else if (trimmedType.isEmpty()) {
-            return PersonType.STUDENT;
-        } else {
+        if (!PersonType.isValidPersonType(trimmedType) && !trimmedType.isEmpty()) {
             throw new ParseException(PersonType.MESSAGE_CONSTRAINTS);
         }
+        return PersonType.getPersonType(trimmedType);
     }
 
 
