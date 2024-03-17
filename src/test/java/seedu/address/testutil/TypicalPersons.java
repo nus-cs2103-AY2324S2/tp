@@ -30,15 +30,19 @@ public class TypicalPersons {
     public static final Person CARL = new PatientBuilder().withNric("S2378593A").withName("Carl Sim")
             .withDoB("2005-01-03").withPhone("87436749").build();
 
-    public static final Patient AMY = new PatientBuilder().withNric(VALID_NRIC_AMY).withName(VALID_NAME_AMY)
+    public static final Person AMY = new PatientBuilder().withNric(VALID_NRIC_AMY).withName(VALID_NAME_AMY)
             .withDoB(VALID_DOB_AMY).withPhone(VALID_PHONE_AMY).build();
-    public static final Patient BOB = new PatientBuilder().withNric(VALID_NRIC_BOB).withName(VALID_NAME_BOB)
+    public static final Person BOB = new PatientBuilder().withNric(VALID_NRIC_BOB).withName(VALID_NAME_BOB)
             .withDoB(VALID_DOB_BOB).withPhone(VALID_PHONE_BOB).build();
+
 
     // Doctors
 
     public static final Person JAMES = new DoctorBuilder().withNric("S1234567A").withName("Alice Pauline")
             .withDoB("2000-01-03").withPhone("94351253").build();
+
+    public static final Person JAMES_GOH = new DoctorBuilder().withNric("S1123133A").withName("Alice Pauline")
+            .withDoB("2020-01-04").withPhone("94351243").build();
     public static final Person ERIC = new DoctorBuilder().withNric("S8734985A").withName("Benson Chen")
             .withDoB("2002-01-03").withPhone("88927639").build();
 
