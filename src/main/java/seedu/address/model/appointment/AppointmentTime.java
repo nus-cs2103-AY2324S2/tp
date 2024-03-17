@@ -5,11 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
-<<<<<<< HEAD
  * Represents an Appointment's Date, startTime and endTime in the address book.
-=======
- * Represents an Appointment's time in the address book.
->>>>>>> 57db8e6af9200374dbcc28419da9ac2cf31af32a
  * ASSUMPTION: An Appointment CANNOT SPAN MULTIPLE DAYS!!!
  * Guarantees: none at the moment.
  */
