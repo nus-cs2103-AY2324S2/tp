@@ -35,7 +35,7 @@ public class CsvReadOnlyAddressBookStorage implements ReadOnlyAddressBookStorage
         requireNonNull(filePath);
 
         Optional<AddressBookStorage> csvAddressBook = CsvUtil.readCsvFile(
-                filePath, .class);
+                filePath);
         if (!csvAddressBook.isPresent()) {
             return Optional.empty();
         }
