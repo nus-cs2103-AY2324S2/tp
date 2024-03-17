@@ -31,6 +31,7 @@ public class HelpCommand extends Command {
         commandUsageMap.put(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_USAGE);
         commandUsageMap.put(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_USAGE);
         commandUsageMap.put(COMMAND_WORD, MESSAGE_USAGE);
+        commandUsageMap.put(ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_USAGE);
     }
 
     private final String command;
