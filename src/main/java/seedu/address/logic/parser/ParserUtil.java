@@ -108,10 +108,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String CourseMate} into a {@code CourseMate}.
+     * Parses a {@code String courseMateName} into a {@code CourseMate}.
      * Leading and trailing whitespaces will be trimmed.
+     * {@code courseMateName} can be a name or a '#' notation label.
      *
-     * @throws ParseException if the given {@code courseMate} is invalid.
+     * @throws ParseException if the given {@code courseMateName} is invalid.
      */
     public static CourseMate parseCourseMate(String courseMateName) throws ParseException {
         requireNonNull(courseMateName);
@@ -121,6 +122,9 @@ public class ParserUtil {
         return new CourseMate(new Name(courseMateName), new Phone("123"), new Email("jane@doe.com"), new HashSet<>());
     }
 
+    /**
+     * Parses {@code Collection<String> courseMates} into a {@code Set<CourseMate>}.
+     */
     public static Set<CourseMate> parseCourseMates(Collection<String> courseMates) throws ParseException {
         requireNonNull(courseMates);
         final Set<CourseMate> courseMateSet = new HashSet<>();

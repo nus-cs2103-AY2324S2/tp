@@ -79,7 +79,7 @@ public class MatchMateParser {
             return new HelpCommand();
 
         case CreateGroupCommand.COMMAND_WORD:
-            return new CreateGroupCommand();
+            return new CreateGroupCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
