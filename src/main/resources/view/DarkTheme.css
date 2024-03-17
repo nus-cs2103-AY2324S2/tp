@@ -368,6 +368,13 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+#listTitle {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #B99470;
+    -fx-alignment: center-left;
+}
+
 #resultDisplay .content {
     -fx-background-color: transparent, #F2E6CE, transparent, #F2E6CE;
     -fx-background-radius: 0;
