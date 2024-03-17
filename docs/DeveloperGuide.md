@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `My Bookshelf` and the **Actor** is the `Community Library Manager`, unless specified otherwise)
+(For all use cases below, the **System** is the `MyBookshelf` and the **Actor** is the `Community Library Manager`, unless specified otherwise)
 
 **Use case: Borrower borrows a book from the library**
 
@@ -358,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS.
-* **Librarian**: Community Library Manager, who is also the main target user of My Bookshelf.
+* **Librarian**: Community Library Manager, who is also the main target user of MyBookshelf.
 * **User**: People who uses the community library, including people who donate books to library and people who borrow books from the library.
 * **Personal Information**: Personal Information of a user, e.g. name, phone number, email, address and tags, but not borrowed books and merit score.
 * **Book**: A Book Class containing details relating to book.
