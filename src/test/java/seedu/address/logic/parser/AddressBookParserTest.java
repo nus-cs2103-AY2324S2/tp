@@ -24,8 +24,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Client;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -56,7 +56,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Client client = new PersonBuilder().build();
+        // Changing prefix to "--tags " instead of "t/" breaks this test
+        // PersonBuilder generates an empty Tag Set
+        // "--tags " doesn't work with empty tags
+        // So getEditPersonDecriptor returns no `--tags ` flag with an empty set
+        // this breaks the test as the Tag Set is now `null` instead of EmptySet
+        // but then the editPersonDescription will be different from the PersonBuilder one
+        // hence the build fails
+        // Make the tag Set non-empty, so it will be forced to generate a tag flag
+        // the tag in the command and so it can update it
+        Client client = new PersonBuilder().withTags("Bypass").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(client).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
