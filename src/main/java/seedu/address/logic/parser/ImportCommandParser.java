@@ -14,8 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ImportCommand object
  */
-public class ImportCommandParser {
-
+public class ImportCommandParser implements Parser<ImportCommand> {
+    public static final String IMPORT_INVALID_COMMAND_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE);
     /**
      * Parses a given String of args into an ImportCommand.
      *
@@ -25,7 +25,6 @@ public class ImportCommandParser {
      */
     public ImportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILENAME);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_FILENAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
