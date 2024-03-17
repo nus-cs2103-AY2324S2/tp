@@ -112,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-//      classListPanel = new ClassListPanel(logic.getFilteredClassList());
+        //      classListPanel = new ClassListPanel(logic.getFilteredClassList());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 

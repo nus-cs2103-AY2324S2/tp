@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.UniqueClassList;
