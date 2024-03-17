@@ -87,23 +87,11 @@ public class ModelManagerTest {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
-
-    @Test
-    public void getUpdatePersonList_modifiesLastOperation() {
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        assertEquals(ModelManager.ListOperation.FILTERED, modelManager.lastOperation);
-    }
-
-    @Test
-    public void getCorrectPersonList_usesLastOperation() {
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        modelManager.getCorrectPersonList();
-        assertEquals(ModelManager.ListOperation.FILTERED, modelManager.lastOperation);
-    }
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
+
 
     @Test
     public void equals() {

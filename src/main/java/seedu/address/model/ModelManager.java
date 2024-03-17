@@ -25,14 +25,14 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final ObservableList<Person> defaultPersons; // serves as an unmodified default state for the students
     //made these fields public for now to ease debugging. Will change them to private after
-    public final FilteredList<Person> filteredPersons; // stores the current filtered state of the list
-    public final SortedList<Person> sortedPersons; // stores the current sorted state of the list
+    private final FilteredList<Person> filteredPersons; // stores the current filtered state of the list
+    private final SortedList<Person> sortedPersons; // stores the current sorted state of the list
 
-    public enum ListOperation { // saves the latest state of the list
+    private enum ListOperation { // saves the latest state of the list
         DEFAULT, SORTED, FILTERED
     }
 
-    public ListOperation lastOperation = ListOperation.SORTED;
+    private ListOperation lastOperation;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -48,6 +48,8 @@ public class ModelManager implements Model {
         //initially both lists would be the same as the default
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(this.addressBook.getPersonList());
+
+        lastOperation = ListOperation.DEFAULT;
     }
 
     public ModelManager() {
@@ -133,7 +135,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+        return getCorrectPersonList();
     }
 
     @Override
@@ -149,22 +151,10 @@ public class ModelManager implements Model {
         sortedPersons.setComparator(ascendingComparator);
         lastOperation = ListOperation.SORTED;
     }
-    /*
+
     @Override
     public ObservableList<Person> getCorrectPersonList() {
-        switch (lastOperation) {
-        case SORTED:
-            return sortedPersons;
-        case FILTERED:
-            return filteredPersons;
-        default:
-            // This defaults to the state without any sorting or filtering
-            return defaultPersons;
-        }
-    }
-    */
-    @Override
-    public ObservableList<Person> getCorrectPersonList() {
+        System.out.println(lastOperation);
         if (lastOperation == ListOperation.SORTED) {
             return sortedPersons;
         } else if (lastOperation == ListOperation.FILTERED) {
