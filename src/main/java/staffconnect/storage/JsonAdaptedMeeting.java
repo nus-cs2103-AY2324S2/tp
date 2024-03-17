@@ -1,6 +1,7 @@
 package staffconnect.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import staffconnect.commons.exceptions.IllegalValueException;
@@ -21,7 +22,7 @@ class JsonAdaptedMeeting {
      * Constructs a {@code JsonAdaptedMeeting} with the given {@code Meeting}.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(String description, String date) {
+    public JsonAdaptedMeeting(@JsonProperty("description") String description, @JsonProperty("date") String date) {
         this.description = description;
         this.date = date;
     }
@@ -33,17 +34,16 @@ class JsonAdaptedMeeting {
         description = source.getDescription().toString();
         date = source.getStartDate().toString();
 
-
     }
 
-    @JsonValue
-    public String getDescription() {
-        return description;
-    }
-    @JsonValue
-    public String getDate() {
-        return date;
-    }
+//    @JsonValue
+//    public String getDescription() {
+//        return description;
+//    }
+//    @JsonValue
+//    public String getDate() {
+//        return date;
+//    }
 
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Meeting} object.

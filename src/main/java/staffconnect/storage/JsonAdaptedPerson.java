@@ -126,7 +126,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final List<Meeting> personMeetings = new ArrayList<>();
-        for (JsonAdaptedMeeting meeting  : meetings) {
+        for (JsonAdaptedMeeting meeting: meetings) {
             personMeetings.add(meeting.toModelType());
         }
         final Set<Meeting> modelMeetings = new HashSet<>(personMeetings);
