@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UPCOMING_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACT_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -87,6 +89,14 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different upcoming -> returns false
+        editedAlice = new PersonBuilder(ALICE).withUpcoming(VALID_UPCOMING_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different lastcontact -> returns false
+        editedAlice = new PersonBuilder(ALICE).withLastContact(VALID_LAST_CONTACT_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
