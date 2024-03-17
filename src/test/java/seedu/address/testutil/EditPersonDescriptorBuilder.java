@@ -7,9 +7,11 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.LastContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Upcoming;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,12 +33,14 @@ public class EditPersonDescriptorBuilder {
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPersonDescriptor();
+        this.descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setUpcoming(person.getUpcoming());
+        descriptor.setLastContact(person.getLastcontact());
     }
 
     /**
@@ -72,12 +76,30 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code LastContact} of the {@code EditPersonDescriptor} that we are building.
+     * @param lastcontact the dateTime string provided.
+     * @return the EditPersonDescriptorBuilder object.
+     */
+    public EditPersonDescriptorBuilder withLastContact(String lastcontact) {
+        descriptor.setLastContact(new LastContact(lastcontact));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Upcoming} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withUpcoming(String upcoming) {
+        descriptor.setUpcoming(new Upcoming(upcoming));
         return this;
     }
 

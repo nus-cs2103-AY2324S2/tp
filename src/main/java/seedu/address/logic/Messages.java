@@ -45,6 +45,11 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Upcoming: ")
+                .append(person.getUpcoming());
+        builder.append("; Last contacted: ")
+                .append(person.getLastcontact().getDateTimeString())
+                .append(";");
         return builder.toString();
     }
 
