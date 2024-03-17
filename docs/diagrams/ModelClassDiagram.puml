@@ -21,6 +21,7 @@ Class BankDetails
 Class EmploymentType
 Class Sex
 Class Phone
+Class HoursWorked
 Class Tag
 
 Class I #FFFFFF
@@ -47,12 +48,20 @@ Person *--> BankDetails
 Person *--> EmploymentType
 Person *--> Sex
 Person *--> Address
+Person *--> HoursWorked
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 FirstName -[hidden]right-> LastName
+LastName -[hidden]right-> Phone
+Phone -[hidden]right-> Sex
+Sex -[hidden]right-> EmploymentType
+EmploymentType -[hidden]right-> Address
+Address -[hidden]right-> BankDetails
+BankDetails -[hidden]right-> HoursWorked
+
 
 ModelManager --> "~* filtered" Person
 @enduml
