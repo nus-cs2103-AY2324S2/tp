@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.model.person.fields.Address.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
 import static seedu.address.model.person.fields.Email.PREFIX_EMAIL;
 import static seedu.address.model.person.fields.Name.PREFIX_NAME;
 import static seedu.address.model.person.fields.Phone.PREFIX_PHONE;
@@ -18,6 +19,7 @@ import seedu.address.logic.util.ArgumentTokenizer;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Assets;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
@@ -44,7 +46,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney"
+            + PREFIX_ASSET + "screwdriver";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
@@ -78,7 +81,8 @@ public class AddCommand extends Command {
      */
     public static AddCommand of(String args) throws IllegalArgumentException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ASSET);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -91,8 +95,9 @@ public class AddCommand extends Command {
         Email email = Email.of(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = Address.of(argMultimap.getValue(PREFIX_ADDRESS).get());
         Tags tags = Tags.of(argMultimap.getAllValues(PREFIX_TAG));
+        Assets assets = Assets.of(argMultimap.getAllValues(PREFIX_ASSET));
 
-        Person person = new Person(name, phone, email, address, tags);
+        Person person = new Person(name, phone, email, address, tags, assets);
 
         return new AddCommand(person);
     }
