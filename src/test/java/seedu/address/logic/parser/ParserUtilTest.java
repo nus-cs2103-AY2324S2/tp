@@ -17,29 +17,36 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.illness.Illness;
 import seedu.address.model.person.note.Description;
-import seedu.address.model.person.tag.Tag;
 
 public class ParserUtilTest {
+    private static final String INVALID_NRIC = "G3424GH";
     private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_GENDER = "H";
+    private static final String INVALID_BIRTHDATE = "99-99-9999";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ILLNESS = "#illness";
     private static final String INVALID_DATE = "2024-02-19";
     private static final String INVALID_TIME = "5006";
     private static final String INVALID_DESCRIPTION = "";
 
+    private static final String VALID_NRIC = "S1234567Z";
     private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_GENDER = "M";
+    private static final String VALID_BIRTHDATE = "01-02-1999";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DRUG_ALLERGY = "Penicillin";
+    private static final String VALID_ILLNESS_1 = "Infectious Disease";
+    private static final String VALID_ILLNESS_2 = "Chronic Conditions";
     private static final String VALID_DATE = "19-02-2024";
     private static final String VALID_TIME = "1130";
     private static final String VALID_DESCRIPTION = "General Flu";
@@ -67,6 +74,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseNric_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNric((String) null));
+    }
+
+    @Test
+    public void parseNric_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNric(INVALID_NRIC));
+    }
+
+    @Test
+    public void parseNric_validValueWithoutWhitespace_returnsNric() throws Exception {
+        Nric expectedNric = new Nric(VALID_NRIC);
+        assertEquals(expectedNric, ParserUtil.parseNric(VALID_NRIC));
+    }
+
+    @Test
+    public void parseNric_validValueWithWhitespace_returnsTrimmedNric() throws Exception {
+        String nricWithWhitespace = WHITESPACE + VALID_NRIC + WHITESPACE;
+        Nric expectedNric = new Nric(VALID_NRIC);
+        assertEquals(expectedNric, ParserUtil.parseNric(nricWithWhitespace));
+    }
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
@@ -87,6 +117,53 @@ public class ParserUtilTest {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseGender_null_returnsTrimmedGender() throws Exception {
+        Gender expectedGender = new Gender("Prefer not to say");
+        assertEquals(expectedGender, ParserUtil.parseGender(null));
+    }
+
+    @Test
+    public void parseGender_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGender(INVALID_GENDER));
+    }
+
+    @Test
+    public void parseGender_validValueWithoutWhitespace_returnsGender() throws Exception {
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(VALID_GENDER));
+    }
+
+    @Test
+    public void parseGender_validValueWithWhitespace_returnsTrimmedGender() throws Exception {
+        String genderWithWhitespace = WHITESPACE + VALID_GENDER + WHITESPACE;
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(genderWithWhitespace));
+    }
+
+    @Test
+    public void parseBirthDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseBirthDate((String) null));
+    }
+
+    @Test
+    public void parseBirthDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseBirthDate(INVALID_GENDER));
+    }
+
+    @Test
+    public void parseBirthDate_validValueWithoutWhitespace_returnsBirthDate() throws Exception {
+        BirthDate expectedBirthDate = new BirthDate(VALID_BIRTHDATE);
+        assertEquals(expectedBirthDate, ParserUtil.parseBirthDate(VALID_BIRTHDATE));
+    }
+
+    @Test
+    public void parseBirthDate_validValueWithWhitespace_returnsTrimmedBirthDate() throws Exception {
+        String birthDateWithWhitespace = WHITESPACE + VALID_BIRTHDATE + WHITESPACE;
+        BirthDate expectedBirthDate = new BirthDate(VALID_BIRTHDATE);
+        assertEquals(expectedBirthDate, ParserUtil.parseBirthDate(birthDateWithWhitespace));
     }
 
     @Test
@@ -113,29 +190,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
-
-    @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }
@@ -159,49 +213,51 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseIllness_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIllness(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseIllness_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIllness(INVALID_ILLNESS));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseIllness_validValueWithoutWhitespace_returnsIllness() throws Exception {
+        Illness expectedIllness = new Illness(VALID_ILLNESS_1);
+        assertEquals(expectedIllness, ParserUtil.parseIllness(VALID_ILLNESS_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseIllness_validValueWithWhitespace_returnsTrimmedIllness() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_ILLNESS_1 + WHITESPACE;
+        Illness expectedIllness = new Illness(VALID_ILLNESS_1);
+        assertEquals(expectedIllness, ParserUtil.parseIllness(tagWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseIllnesses_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIllnesses(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseIllnesses_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(
+                ParseException.class, () -> ParserUtil.parseIllnesses(Arrays.asList(VALID_ILLNESS_1, INVALID_ILLNESS)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseIllnesses_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseIllnesses(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseIllnesses_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<Illness> actualIllnessSet = ParserUtil.parseIllnesses(Arrays.asList(VALID_ILLNESS_1, VALID_ILLNESS_2));
+        Set<Illness> expectedIllnessSet = new HashSet<>(
+                Arrays.asList(new Illness(VALID_ILLNESS_1), new Illness(VALID_ILLNESS_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedIllnessSet, actualIllnessSet);
     }
 
     @Nested
