@@ -28,6 +28,8 @@ class StatusTest {
 
         // invalid statuses
         assertFalse(Status.isValidStatus("invalid")); // Not matching any status enum
+        assertFalse(Status.isValidStatus("")); // Not matching any status enum
+        assertFalse(Status.isValidStatus(" ")); // Empty string
 
         // valid statuses
         assertTrue(Status.isValidStatus("pending"));
