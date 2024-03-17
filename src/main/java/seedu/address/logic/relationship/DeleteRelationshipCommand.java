@@ -44,20 +44,16 @@ public class DeleteRelationshipCommand {
         String uuid2 = matchUuid(commandParts[3]);
 
         List<Relationship> relationships = relationshipManager.getRelationships(relationType);
-        if (relationships.isEmpty()) {
-            throw new IllegalArgumentException("No relationship found.");
-        }
 
         // Check if the relationship exists and remove it
         boolean relationshipFound = false;
         for (Relationship relationship : relationships) {
             UUID person1Uuid = relationship.getPerson1();
             UUID person2Uuid = relationship.getPerson2();
-            if ((person1Uuid.equals(UUID.fromString(uuid1)) && person2Uuid.equals(UUID.fromString(uuid2)))
-                    || (person1Uuid.equals(UUID.fromString(uuid2)) && person2Uuid.equals(UUID.fromString(uuid1)))) {
+            if ((person1Uuid.equals(UUID.fromString(uuid1)) && person2Uuid.equals(UUID.fromString(uuid2))) ||
+                    (person1Uuid.equals(UUID.fromString(uuid2)) && person2Uuid.equals(UUID.fromString(uuid1)))) {
                 relationshipManager.deleteRelationship(relationType, relationship);
-                relationshipFound = true;
-                break;
+                return; // Exit early if relationship is found and deleted
             }
         }
 
