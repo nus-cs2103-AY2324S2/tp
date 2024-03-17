@@ -83,7 +83,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public AddressBook getAddressBook() {
         return addressBook;
     }
 

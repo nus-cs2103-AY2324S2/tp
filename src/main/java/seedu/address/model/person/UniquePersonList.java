@@ -3,8 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -104,6 +106,7 @@ public class UniquePersonList implements Iterable<Person> {
         return internalUnmodifiableList;
     }
 
+
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();
@@ -146,5 +149,19 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    public void sortListByTag() {
+        internalList.sort(Comparator.comparing(person ->
+                person.getTags().stream()
+                        .map(tag -> tag.tagName.toLowerCase())
+                        .sorted()
+                        .collect(Collectors.toList())
+                        .toString()
+        ));
+    }
+
+    public void sortListByName() {
+        internalList.sort(Comparator.comparing(person -> person.getName().fullName));
     }
 }

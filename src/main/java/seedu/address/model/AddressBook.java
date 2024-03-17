@@ -108,6 +108,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    public UniquePersonList getPersons() {
+        return this.persons;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
