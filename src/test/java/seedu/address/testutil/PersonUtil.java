@@ -32,6 +32,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_DATEOFBIRTH + person.getDateOfBirth().toString() + " ");
+        System.out.println(sb.toString());
         return sb.toString();
     }
 

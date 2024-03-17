@@ -33,6 +33,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        dateOfBirth = new DateOfBirth(DEFAULT_DATEOFBIRTH);
     }
 
     /**
@@ -43,6 +44,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        dateOfBirth = personToCopy.getDateOfBirth();
     }
 
     /**
