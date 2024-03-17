@@ -89,8 +89,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifiesLastOperation() {
-        modelManager.getFilteredPersonList();
+    public void getUpdatePersonList_modifiesLastOperation() {
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        assertEquals(ModelManager.ListOperation.FILTERED, modelManager.lastOperation);
+    }
+
+    @Test
+    public void getCorrectPersonList_usesLastOperation() {
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.getCorrectPersonList();
         assertEquals(ModelManager.ListOperation.FILTERED, modelManager.lastOperation);
     }
     @Test

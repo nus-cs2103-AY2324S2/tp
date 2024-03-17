@@ -24,8 +24,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final ObservableList<Person> defaultPersons; // serves as an unmodified default state for the students
-    private final FilteredList<Person> filteredPersons; // stores the current filtered state of the list
-    private final SortedList<Person> sortedPersons; // stores the current sorted state of the list
+    //made these fields public for now to ease debugging. Will change them to private after
+    public final FilteredList<Person> filteredPersons; // stores the current filtered state of the list
+    public final SortedList<Person> sortedPersons; // stores the current sorted state of the list
 
     public enum ListOperation { // saves the latest state of the list
         DEFAULT, SORTED, FILTERED
@@ -164,7 +165,6 @@ public class ModelManager implements Model {
     */
     @Override
     public ObservableList<Person> getCorrectPersonList() {
-        System.out.println(lastOperation);
         if (lastOperation == ListOperation.SORTED) {
             return sortedPersons;
         } else if (lastOperation == ListOperation.FILTERED) {
