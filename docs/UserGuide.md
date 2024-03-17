@@ -202,7 +202,7 @@ _Details coming soon ..._
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **Restrictions on the valid user input of `Faculty` values**: For the current version, a valid user for `Faculty` with prefix `f/` can only match exactly the same string as suggested below. Cases can be ignored though.
+2. **Restrictions on the valid user input of `Faculty` values**: For the current version, a valid user input for `Faculty` with prefix `f/` can only match exactly the same string as suggested below. Cases can be ignored though.
    - Arts and Social Sciences
    - Business
    - Computing
@@ -229,7 +229,7 @@ _Details coming soon ..._
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL f/FACULTY v/VENUE m/MODULE [t/TAG]…​ [a/AVAILABILITY]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com f/Computing v/123, Clementi Rd, 1234665 m/CS2103 t/friend t/colleague a/monday` |
 | **Clear**  | `clear`                                                                                                                                                                                                                                 |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                     |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                 |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [f/FACULTY] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                     |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                              |
 | **Sort**   | `sort [ATTRIBUTE]`<br> e.g., `sort p/`                                                                                                                                                                                                  |
 | **List**   | `list`                                                                                                                                                                                                                                  |
