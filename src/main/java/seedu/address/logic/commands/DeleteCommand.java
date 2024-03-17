@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the client identified by the index number or name used in the displayed client list.\n"
-            + "Parameters: INDEX (must be a positive integer) or " + PREFIX_NAME +  "NAME \n"
+            + "Parameters: INDEX (must be a positive integer) or " + PREFIX_NAME + "NAME \n"
             + "Example: " + COMMAND_WORD + " 1 or " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe";
 
 
@@ -34,11 +34,17 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
     private final Name targetName;
 
+    /**
+     * Creates a DeleteCommand to delete the person at the specified {@code Index}
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.targetName = null;
     }
 
+    /**
+     * Creates a DeleteCommand to delete the person with the specified {@code Name}
+     */
     public DeleteCommand(Name targetName) {
         this.targetName = targetName;
         this.targetIndex = null;
