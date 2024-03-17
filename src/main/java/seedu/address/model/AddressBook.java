@@ -3,7 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
@@ -170,13 +169,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-//        return persons.equals(otherAddressBook.persons) && bookings.equals(otherAddressBook.bookings);
         return persons.equals(otherAddressBook.persons);
     }
 
     @Override
     public int hashCode() {
         return persons.hashCode();
-        //return Objects.hash(persons, bookings);
     }
 }
