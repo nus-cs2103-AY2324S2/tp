@@ -25,6 +25,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Contact %1$s deleted successfully!";
 
+    public static final String MESSAGE_DELETE_PERSON_FAIL = "Error: Contact not deleted. %1$s";
+
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -37,7 +39,8 @@ public class DeleteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_DELETE_PERSON_FAIL,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
