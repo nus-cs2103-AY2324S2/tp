@@ -9,13 +9,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindOrderCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.MatchingOrderIndexPredicate;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.MatchingEmailPredicate;
-import seedu.address.model.order.MatchingOrderIndexPredicate;
 import seedu.address.model.person.MatchingPhonePredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -35,8 +36,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         if (args.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE + "\n" +
-                            FindOrderCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE + "\n"
+                            + FindOrderCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap =
@@ -75,11 +76,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                 String parsedAddress = ParserUtil.parseAddress(addresses.get(i)).value;
                 addresses.set(i, parsedAddress);
             }
-            return new FindPersonCommand(new AddressContainsKeywordsPredicate
-                    (addresses));
+            return new FindPersonCommand(new AddressContainsKeywordsPredicate(addresses));
         }
 
-        return new FindOrderCommand(new MatchingOrderIndexPredicate
-                (Integer.parseInt(argMultimap.getValue(PREFIX_ORDER).get())));
+        return new FindOrderCommand(new MatchingOrderIndexPredicate((argMultimap.getAllValues(PREFIX_ORDER))));
     }
 }

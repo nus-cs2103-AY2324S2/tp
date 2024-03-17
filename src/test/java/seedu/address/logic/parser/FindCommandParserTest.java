@@ -11,6 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.ORDER_INDEX_DESC_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.ORDER_INDEX_DESC_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
@@ -19,9 +21,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_INDEX_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_INDEX_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -29,13 +32,14 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindOrderCommand;
 import seedu.address.logic.commands.FindPersonCommand;
+import seedu.address.model.order.MatchingOrderIndexPredicate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MatchingEmailPredicate;
-import seedu.address.model.order.MatchingOrderIndexPredicate;
 import seedu.address.model.person.MatchingPhonePredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -43,8 +47,8 @@ import seedu.address.model.person.Phone;
 
 public class FindCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE + "\n" +
-                    FindOrderCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE + "\n"
+                    + FindOrderCommand.MESSAGE_USAGE);
 
     private FindCommandParser parser = new FindCommandParser();
 
@@ -78,7 +82,7 @@ public class FindCommandParserTest {
     public void parse_oneFieldSpecifiedOnce_success() {
         // name
         String userInput = NAME_DESC_AMY;
-        FindPersonCommand expectedCommand = new FindPersonCommand(
+        FindCommand expectedCommand = new FindPersonCommand(
                 new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -101,17 +105,17 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // order
-        userInput = " " + PREFIX_ORDER + "13";
-        FindOrderCommand expectedOrderCommand = new FindOrderCommand(
-                new MatchingOrderIndexPredicate(13));
-        assertParseSuccess(parser, userInput, expectedOrderCommand);
+        userInput = ORDER_INDEX_DESC_ONE;
+        expectedCommand = new FindOrderCommand(
+                new MatchingOrderIndexPredicate(Arrays.asList(VALID_ORDER_INDEX_ONE)));
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_oneFieldSpecifiedMoreThanOnce_success() {
         // name
         String userInput = NAME_DESC_AMY + NAME_DESC_BOB;
-        FindPersonCommand expectedCommand = new FindPersonCommand(
+        FindCommand expectedCommand = new FindPersonCommand(
                 new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY, VALID_NAME_BOB)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -133,10 +137,10 @@ public class FindCommandParserTest {
                 new AddressContainsKeywordsPredicate(Arrays.asList(VALID_ADDRESS_AMY, VALID_ADDRESS_BOB)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // order TODO
-        /* userInput = " " + PREFIX_ORDER + "13" + " " + PREFIX_ORDER + "14";
-        FindOrderCommand expectedOrderCommand = new FindOrderCommand(
-                new MatchingOrderIndexPredicate(13));
-        assertParseSuccess(parser, userInput, expectedOrderCommand);*/
+        // order
+        userInput = ORDER_INDEX_DESC_ONE + ORDER_INDEX_DESC_TWO;
+        expectedCommand = new FindOrderCommand(
+                new MatchingOrderIndexPredicate(Arrays.asList(VALID_ORDER_INDEX_ONE, VALID_ORDER_INDEX_TWO)));
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

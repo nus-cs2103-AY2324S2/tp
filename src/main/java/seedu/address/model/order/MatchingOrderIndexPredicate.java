@@ -1,25 +1,29 @@
 package seedu.address.model.order;
 
+import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
  * Tests that a {@code Order}'s index matches the input.
  */
 public class MatchingOrderIndexPredicate implements Predicate<Order> {
-    private final int input;
+    private final List<String> inputs;
 
-    public MatchingOrderIndexPredicate(int input) {
-        this.input = input;
+    public MatchingOrderIndexPredicate(List<String> inputs) {
+        this.inputs = inputs;
     }
 
-    public int getInput() {
-        return this.input;
+    public List<String> getInput() {
+        return this.inputs;
     }
 
     @Override
     public boolean test(Order order) {
-        return order.getId() == this.input;
+        return inputs.stream()
+                .anyMatch(input -> StringUtil.containsWordIgnoreCase(Integer.toString(order.getId()), input));
     }
 
     @Override
@@ -34,11 +38,11 @@ public class MatchingOrderIndexPredicate implements Predicate<Order> {
         }
 
         MatchingOrderIndexPredicate otherMatchingOrderIndexPredicate = (MatchingOrderIndexPredicate) other;
-        return this.input == otherMatchingOrderIndexPredicate.input;
+        return inputs.equals(otherMatchingOrderIndexPredicate.inputs);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("input", this.input).toString();
+        return new ToStringBuilder(this).add("inputs", this.inputs).toString();
     }
 }

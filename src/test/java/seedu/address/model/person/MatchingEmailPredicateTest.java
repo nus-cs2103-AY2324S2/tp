@@ -3,10 +3,13 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.PersonBuilder;
 
 public class MatchingEmailPredicateTest {
@@ -39,7 +42,7 @@ public class MatchingEmailPredicateTest {
     }
 
     @Test
-    public void test_MatchingEmail_returnsTrue() {
+    public void test_matchingEmail_returnsTrue() {
         // One number
         MatchingEmailPredicate predicate =
                 new MatchingEmailPredicate(Collections.singletonList("alice@gmail.com"));
@@ -47,8 +50,8 @@ public class MatchingEmailPredicateTest {
     }
 
     @Test
-    public void test_NotMatchingEmail_returnsFalse() {
-        // Zero 
+    public void test_notMatchingEmail_returnsFalse() {
+        // Zero
         MatchingEmailPredicate predicate = new MatchingEmailPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withEmail("alice@gmail.com").build()));
 

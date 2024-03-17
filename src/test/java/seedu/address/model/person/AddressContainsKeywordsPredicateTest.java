@@ -3,10 +3,13 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressContainsKeywordsPredicateTest {
@@ -39,7 +42,7 @@ public class AddressContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_AddressContainsKeywords_returnsTrue() {
+    public void test_addressContainsKeywords_returnsTrue() {
         // One keyword
         AddressContainsKeywordsPredicate predicate =
                 new AddressContainsKeywordsPredicate(Collections.singletonList("street"));
@@ -59,7 +62,7 @@ public class AddressContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_AddressDoesNotContainKeywords_returnsFalse() {
+    public void test_addressDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withAddress("tokyo").build()));

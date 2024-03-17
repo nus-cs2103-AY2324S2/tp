@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+
 import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
@@ -29,9 +31,9 @@ public class FindOrderCommand extends FindCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        //model.updateFilteredOrderList(predicate);
+        model.updateFilteredOrderList(predicate);
         return new CommandResult(
-                Messages.MESSAGE_ORDER_LISTED);
+                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
     }
 
     @Override

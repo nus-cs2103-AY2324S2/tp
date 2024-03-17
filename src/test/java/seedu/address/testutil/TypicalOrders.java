@@ -24,7 +24,7 @@ public class TypicalOrders {
     public static final Order COOKIES_ONLY = new OrderBuilder().withIndex(2)
             .withProductQuantity(VALID_PRODUCT_COOKIE, VALID_QUANTITY_TWO).build();
 
-    public static final Order CUPCAKES_AND_COOKIES = new OrderBuilder().withIndex(1)
+    public static final Order CUPCAKES_AND_COOKIES = new OrderBuilder().withIndex(3)
             .withProductQuantity(VALID_PRODUCT_CUPCAKE, VALID_QUANTITY_ONE)
             .withProductQuantity(VALID_PRODUCT_COOKIE, VALID_QUANTITY_TWO).build();
 
