@@ -64,7 +64,7 @@ public class DeleteCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetPhone)
+                .add("targetPhone", targetPhone.toString())
                 .toString();
     }
 }

@@ -110,7 +110,7 @@ public class EditCommand extends Command {
             }
         }
         if (!exists) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
