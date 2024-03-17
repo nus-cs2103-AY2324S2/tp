@@ -28,25 +28,25 @@ public class FilterCommand extends Command {
             + " module, faculty or tags contain the specified criteria (tags are case-insensitive)"
             + " and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + "[" + PREFIX_FACULTY + "FACULTY]"
-            + " [" + PREFIX_MODULE + "MODULE]"
+            + "[" + PREFIX_MODULE + "MODULE]"
+            + " [" + PREFIX_FACULTY + "FACULTY]"
             + " [" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "BestProf";
 
-    private final PersonHasFacultyPredicate facultyPredicate;
     private final PersonHasModulePredicate modulePredicate;
+    private final PersonHasFacultyPredicate facultyPredicate;
     private final PersonHasTagsPredicate tagsPredicate;
     private final Predicate<Person> personPredicate;
 
     /**
-     * Creates a FilterCommand to filter for the specified {@code Faculty},
-     * {@code Module}, {@code Tags}.
+     * Creates a FilterCommand to filter for the specified {@code Module},
+     * {@code Faculty}, {@code Tags}.
      */
-    public FilterCommand(PersonHasFacultyPredicate facultyPredicate, PersonHasModulePredicate modulePredicate,
+    public FilterCommand(PersonHasModulePredicate modulePredicate, PersonHasFacultyPredicate facultyPredicate,
             PersonHasTagsPredicate tagsPredicate) {
-        this.facultyPredicate = facultyPredicate;
         this.modulePredicate = modulePredicate;
+        this.facultyPredicate = facultyPredicate;
         this.tagsPredicate = tagsPredicate;
         this.personPredicate = setPersonPredicate();
     }
@@ -60,12 +60,12 @@ public class FilterCommand extends Command {
     }
 
     /**
-     * Sets the filtering criteria for a person, given any {@code Faculty},
-     * {@code Module}, {@code Tags}.
+     * Sets the filtering criteria for a person, given any {@code Module},
+     * {@code Faculty}, {@code Tags}.
      * @return the person predicate to filter persons from.
      */
     private Predicate<Person> setPersonPredicate() {
-        return this.facultyPredicate.and(modulePredicate.and(tagsPredicate));
+        return this.modulePredicate.and(facultyPredicate.and(tagsPredicate));
     }
 
     @Override
@@ -80,16 +80,16 @@ public class FilterCommand extends Command {
         }
 
         FilterCommand otherFilterCommand = (FilterCommand) other;
-        return facultyPredicate.toString().equals(otherFilterCommand.facultyPredicate.toString())
-                && modulePredicate.toString().equals(otherFilterCommand.modulePredicate.toString())
+        return modulePredicate.toString().equals(otherFilterCommand.modulePredicate.toString())
+                && facultyPredicate.toString().equals(otherFilterCommand.facultyPredicate.toString())
                 && tagsPredicate.toString().equals(otherFilterCommand.tagsPredicate.toString());
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("facultyPredicate", facultyPredicate)
                 .add("modulePredicate", modulePredicate)
+                .add("facultyPredicate", facultyPredicate)
                 .add("tagsPredicate", tagsPredicate)
                 .toString();
     }

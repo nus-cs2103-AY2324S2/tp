@@ -31,9 +31,9 @@
     "name" : "Clara Svarog",
     "phone" : "9681384",
     "email" : "svarog@example.com",
+    "module": "CS2102",
     "faculty" : "Computing",
     "venue" : "belobog avenue",
-    "module": "CS2102",
     "tags" : [ "classmate" ],
     "availabilities" : [ ]
   }, {
@@ -76,18 +76,18 @@
     "name" : "Kafka Apache",
     "phone" : "9452413",
     "email" : "apache@example.com",
+    "module": "CS2102",
     "faculty" : "Business",
     "venue" : "pteruges avenue",
-    "module": "CS2102",
     "tags" : [ "classmate" ],
     "availabilities" : [ "FRIDAY" ]
   }, {
     "name" : "Natasha Harrower",
     "phone" : "8019394",
     "email" : "harrower@example.com",
+    "module": "CS2102",
     "faculty" : "Computing",
     "venue" : "underworld avenue",
-    "module": "CS2102",
     "tags" : [ "classmate" ],
     "availabilities" : [ "FRIDAY" ]
   } ]

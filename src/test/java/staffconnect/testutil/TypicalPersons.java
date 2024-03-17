@@ -58,12 +58,11 @@ public class TypicalPersons {
             .withEmail("anna@example.com").withVenue("4th street")
             .withFaculty("Computing").withModule("CS2102").build();
     public static final Person KAFKA = new PersonBuilder().withName("Kafka Apache").withPhone("9452413")
-            .withEmail("apache@example.com").withVenue("pteruges avenue")
-            .withFaculty("Business").withModule("CS2102")
-            .withTags("classmate").withAvailabilities("FRIDAY").build();
+            .withEmail("apache@example.com").withModule("CS2102").withFaculty("Business")
+            .withVenue("pteruges avenue").withTags("classmate").withAvailabilities("FRIDAY").build();
     public static final Person NATASHA = new PersonBuilder().withName("Natasha Harrower").withPhone("8019394")
-            .withEmail("harrower@example.com").withVenue("underworld avenue")
-            .withFaculty("Computing").withModule("CS2102")
+            .withEmail("harrower@example.com").withModule("CS2102")
+            .withFaculty("Computing").withVenue("underworld avenue")
             .withTags("classmate").withAvailabilities("FRIDAY").build();
 
     // Manually added

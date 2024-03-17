@@ -29,34 +29,34 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FACULTY, PREFIX_MODULE, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_FACULTY, PREFIX_TAG);
 
-        if (!argMultimap.getValue(PREFIX_FACULTY).isPresent() && !argMultimap.getValue(PREFIX_MODULE).isPresent()
+        if (!argMultimap.getValue(PREFIX_MODULE).isPresent() && !argMultimap.getValue(PREFIX_FACULTY).isPresent()
                 && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_FACULTY, PREFIX_MODULE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_MODULE, PREFIX_FACULTY);
 
-        Faculty faculty = null;
         Module module = null;
+        Faculty faculty = null;
         Set<Tag> tags = null;
 
-        if (argMultimap.getValue(PREFIX_FACULTY).isPresent()) {
-            faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get());
-        }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+        }
+        if (argMultimap.getValue(PREFIX_FACULTY).isPresent()) {
+            faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get());
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         }
 
-        PersonHasFacultyPredicate facultyPredicate = new PersonHasFacultyPredicate(faculty);
         PersonHasModulePredicate modulePredicate = new PersonHasModulePredicate(module);
+        PersonHasFacultyPredicate facultyPredicate = new PersonHasFacultyPredicate(faculty);
         PersonHasTagsPredicate tagsPredicate = new PersonHasTagsPredicate(tags);
 
-        return new FilterCommand(facultyPredicate, modulePredicate, tagsPredicate);
+        return new FilterCommand(modulePredicate, facultyPredicate, tagsPredicate);
     }
 
 }
