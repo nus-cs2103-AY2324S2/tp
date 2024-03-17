@@ -7,6 +7,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
 import seedu.address.model.tag.Tag;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
+import java.util.Set;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
@@ -18,11 +22,18 @@ public class TagCommandParser implements Parser<TagCommand> {
                 PREFIX_TAG);
 
         Id userId;
-        String tag;
+        String tagMessage;
+        try {
+            userId = new Id(argMultimap.getValue(PREFIX_ID).get());
+            tagMessage = argMultimap.getValue(PREFIX_TAG).get();
+        }catch(IllegalArgumentException e) {
+            throw new ParseException("Invalid userID");
+        }
+            Tag tag = new Tag(tagMessage);
+            Set<Tag> tags = new HashSet<Tag>();
+            tags.add(tag);
 
-        userId = new Id(argMultimap.getValue(PREFIX_ID).get());
-        tag = argMultimap.getValue(PREFIX_TAG).get();
 
-        return new TagCommand(userId, tag);
+        return new TagCommand(userId, tags);
     }
 }
