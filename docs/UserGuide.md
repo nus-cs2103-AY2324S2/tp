@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TutorRec is a **desktop app for home tutors to manage student contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorRec can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,11 +14,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `tutorrec.jar` from [here](https://github.com/AY2324S2-CS2103-F09-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for TutorRec.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tutorrec.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -27,7 +27,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/Jun Jie p/98765432 e/jj@example.com a/Clementi Ave 3, block 442, #06-01` : Adds a contact named `John Doe` to the address book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -46,13 +46,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Jun Jie`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/Jun Jie t/` or as `n/Jun Jie`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Raffles`, `t/Raffles t/ALevel` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -83,9 +83,8 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-* `add n/Pauline Poe t/student e/paulinepoe@example.com a/Pauline road, block 442, #02-01 p/11111111 ap/10:00 FRI`
+* `add n/Jun Jie p/98765432 e/jj@example.com a/Clementi Ave 3, block 442, #06-01`
+* `add n/Monica Chng t/IB e/mc@example.com a/Dempsey Hill p/81888818 ap/10:00 FRI`
 
 ### Listing all persons : `list`
 
@@ -107,8 +106,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ap/APPOINTMENT] [t
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/jj@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `jj@example.com` respectively.
+*  `edit 2 n/Monica Chng t/` Edits the name of the 2nd person to be `Monica Chng` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
@@ -124,7 +123,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
+* `find Jun` returns `jun` and `Jun Jie`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -140,7 +139,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find Monica` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
