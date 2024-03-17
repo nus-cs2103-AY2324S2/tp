@@ -11,24 +11,34 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+public class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate module(s).";
+
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("modules") List<JsonAdaptedModule> modules) {
+        if (persons != null) {
+            this.persons.addAll(persons);
+        }
+        if (modules != null) {
+            this.modules.addAll(modules);
+        }
     }
 
     /**
@@ -38,6 +48,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,7 +65,13 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+        for (JsonAdaptedModule jsonAdaptedModule : modules) {
+            ModuleCode module = jsonAdaptedModule.toModelType();
+            if (addressBook.hasModule(module)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
+            }
+            addressBook.addModule(module);
+        }
         return addressBook;
     }
-
 }

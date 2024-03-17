@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a Module's module code.
@@ -33,6 +34,20 @@ public class ModuleCode {
         checkArgument(isValidModuleCode(name), MESSAGE_CONSTRAINTS);
         this.value = name;
         this.tutorialClasses = new ArrayList<TutorialClass>();
+    }
+    /**
+     * Constructs a ModuleCode object with the given name and list of tutorial classes.
+     *
+     * @param name             The name or code of the module.
+     * @param tutorialClasses  The list of tutorial classes associated with the module.
+     * @throws NullPointerException     If the name is null.
+     * @throws IllegalArgumentException If the provided name does not adhere to the constraints.
+     */
+    public ModuleCode(String name, List<TutorialClass> tutorialClasses) {
+        requireAllNonNull(name);
+        checkArgument(isValidModuleCode(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
+        this.tutorialClasses = (tutorialClasses != null) ? new ArrayList<>(tutorialClasses) : new ArrayList<>();
     }
 
     /**

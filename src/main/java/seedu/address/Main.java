@@ -26,7 +26,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // As per https://github.com/openjdk/jfx/blob/master/doc-files/release-notes-16.md
+        // As per https://github.com/ope
+        // njdk/jfx/blob/master/doc-files/release-notes-16.md
         // JavaFX 16 (or later) runtime logs a warning at startup if JavaFX classes are loaded from
         // the classpath instead of a module.
         // Our application does not use Java modules yet. Even if it did, modules are ignored when

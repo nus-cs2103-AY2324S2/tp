@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<ModuleCode> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
     }
 
     public ModelManager() {
@@ -120,12 +122,13 @@ public class ModelManager implements Model {
     @Override
     public void addModule(ModuleCode module) {
         addressBook.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
+
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -141,10 +144,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<ModuleCode> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<ModuleCode> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -160,6 +176,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
             && userPrefs.equals(otherModelManager.userPrefs)
-            && filteredPersons.equals(otherModelManager.filteredPersons);
+            && filteredPersons.equals(otherModelManager.filteredPersons)
+            && filteredModules.equals(otherModelManager.filteredModules);
     }
 }

@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -19,7 +17,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListClassesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.ModuleCode;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -143,9 +140,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void switchToModuleListPanel() {
-        ObservableList<ModuleCode> moduleObservableList = FXCollections
-            .observableList(logic.getAddressBook().getModuleList());
-        moduleListPanel = new ModuleListPanel(moduleObservableList);
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
     }
 

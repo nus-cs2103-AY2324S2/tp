@@ -105,7 +105,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public List<ModuleCode> getModuleList() {
+        public ObservableList<ModuleCode> getModuleList() {
             return null;
         }
 
