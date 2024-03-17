@@ -154,4 +154,27 @@ class DeleteRelationshipCommandTest {
         assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /TestRelationship "
                 + "invalid,invalid"));
     }
+
+    @Test
+    void parseCommand_relationshipNotFound_throwsIllegalArgumentException() {
+        // Create a relationship between two persons
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        String uuid1 = person1.getUuidString();
+        String uuid2 = person2.getUuidString();
+        personMap.put(uuid1, person1);
+        personMap.put(uuid2, person2);
+
+        // No relationship added to RelationshipManager
+
+        // Try to delete a relationship that doesn't exist
+        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /TestRelationship "
+                + person1.getUuid() + "," + person2.getUuid()));
+    }
 }
