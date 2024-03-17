@@ -15,11 +15,19 @@ public class FindTagCommand extends Command {
     public static final String COMMAND_WORD = "findtag";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tags contain the specified"
         + " text (case-insensitive) and displays them in the list.\n"
-        + "Parameters: KEYWORD [TEXT]...”\n";
+        + "Parameters: KEYWORD”\n"
+        + "Example: " + COMMAND_WORD + " friend";
     public static final String MESSAGE_FOUND_PEOPLE = "Found %d people with a tag that has '%s'";
 
     private final String subString;
+
+    /**
+     * Creates a FindTagCommand to find persons with tags that contain {@code str}.
+     * @param str the substring to search for. This instructs the command to find all persons with a tag that contain
+     *            this {@code String}.
+     */
     public FindTagCommand(String str) {
+        requireNonNull(str);
         this.subString = str;
     }
 
@@ -31,7 +39,7 @@ public class FindTagCommand extends Command {
                 || person
                 .getTags()
                 .stream()
-                .anyMatch(tag -> StringUtil.containsIgnoreCase(tag.tagName, subString))
+                .anyMatch(tag -> StringUtil.containsSubstringIgnoreCase(tag.tagName, subString))
         );
         return new CommandResult(String.format(MESSAGE_FOUND_PEOPLE,
                 model.getFilteredPersonList().size(), subString));

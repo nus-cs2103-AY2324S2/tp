@@ -16,12 +16,16 @@ public class FindTagCommandParser implements Parser<FindTagCommand> {
      * @throws ParseException if the user input is empty.
      */
     public FindTagCommand parse(String args) throws ParseException {
+        // The following checks whether the user has entered "findtag" or "findtag " (with a space),
+        // both of which are considered invalid inputs.
         if (args.isEmpty() || args.equals(" ")) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindTagCommand.MESSAGE_USAGE));
         }
 
-        assert args.charAt(0) == ' ';
+        // because of how AddressBookParser parses the user input, args is guaranteed to start with " ".
+        // Hence we need to strip the first character to pass to the constructor.
+        assert args.charAt(0) == ' ' : "args should have started with ' '";
         return new FindTagCommand(args.substring(1));
     }
 }
