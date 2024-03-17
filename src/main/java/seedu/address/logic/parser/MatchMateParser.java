@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateGroupCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -76,6 +77,9 @@ public class MatchMateParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case CreateGroupCommand.COMMAND_WORD:
+            return new CreateGroupCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
