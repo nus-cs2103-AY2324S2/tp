@@ -6,7 +6,7 @@ title: User Guide
 MyBookshelf is a **desktop app for librarians managing contacts and borrowing status of borrowers of books, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MyBookshelf can get your contact and borrowing management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,15 +25,15 @@ MyBookshelf is a **desktop app for librarians managing contacts and borrowing st
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -74,7 +74,7 @@ Format: `help`
 
 ### Adding a borrower: `add`
 
-Adds a borrower to the address book.
+Adds a borrower into the address book using the borrower's personal information.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -94,7 +94,7 @@ Format: `list`
 
 ### Editing a borrower : `edit`
 
-Edits an existing borrowers in the address book.
+Edits an existing borrowers' perrsonal information in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -103,7 +103,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the borrower will be removed i.e adding of tags is not cumulative.
 * You can remove all the borrower’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st borrower to be `91234567` and `johndoe@example.com` respectively.
@@ -129,17 +129,54 @@ Examples:
 
 ### Deleting a borrower : `delete`
 
-Deletes the specified borrrower from the address book.
+Deletes the specified borrower from the address book using index.
 
 Format: `delete INDEX`
 
-* Deletes the borrrower at the specified `INDEX`.
+* Deletes the borrower at the specified `INDEX`.
 * The index refers to the index number shown in the displayed borrower list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd borrrower in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st borrrower in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd borrower in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st borrower in the results of the `find` command.
+
+### Borrow a book by a borrower: `borrow`
+
+Borrow a book from the library by a borrower.
+
+Format: `borrow INDEX BOOKTITLE`
+
+* Borrow the book with `BOOKTITLE` to borrower with index `INDEX`
+* The index refers to the index number shown in the displayed borrower list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `borrow 2 I Love CS2103T CS2101` will record borrower index 2, borrows a book called "I Love CS2103T CS2101".
+* `borrow 4 The Hero with a Thousand Faces` will record borrower index 4, borrows a book called "The Hero with a Thousand Face".
+
+Note:
+* Borrow is only allowed for borrower with **Merit Score > 0**.
+
+### Return a book from a borrower : `return`
+
+Return the book borrowed by a borrower.
+
+Format: `return INDEX`
+
+* Return the book borrowed by borrower with `INDEX`
+* The index refers to the index number shown in the displayed borrower list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Donate a book from a borrower : `donate`
+
+Records a borrower donating a book to the library.
+
+Format: `donate INDEX BOOKTITLE`
+
+* A borrower with `INDEX` has donated book `BOOKTITLE`
+* The index refers to the index number shown in the displayed borrower list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Clearing all entries : `clear`
 
@@ -153,23 +190,13 @@ Exits the program.
 
 Format: `exit`
 
-### Borrow a book by a borrower: `borrow`
+[//]: # (### )
 
-Description
+[//]: # ()
+[//]: # (Description)
 
-Format: ``
-
-### Return a book from a borrower : `return`
-
-Description
-
-Format: ``
-
-### Donate a book from a borrower : `donate`
-
-Description
-
-Format: ``
+[//]: # ()
+[//]: # (Format: ``)
 
 ### Saving the data
 
@@ -214,6 +241,6 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Borrow**
-**Return**
-**Donate**
+**Borrow** | `borrow INDEX BOOKTITLE`<br> e.g., `borrow 1 The Hero with a Thousand Faces`
+**Return** | `return INDEX`<br> e.g., `return 1`
+**Donate**| `borrow INDEX BOOKTITLE`<br> e.g., `donate 1 The Hero with a Thousand Faces`
