@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.task.Task;
 
 /**
@@ -35,12 +36,24 @@ public class TaskList {
     }
 
     /**
+     * Returns a task based on the index of list.
+     *
+     * @param index The index of the task to be returned.
+     */
+    public Task getTask(Index index) {
+        Task task = taskList.get(index.getZeroBased());
+        return task;
+    }
+
+    /**
      * Deletes a task based on the index of list.
      *
      * @param index The index of the task to be deleted in the list.
      */
-    public void deleteTask(int index) {
-        taskList.remove(index - 1);
+    public Task deleteTask(Index index) {
+        Task task = taskList.get(index.getZeroBased());
+        taskList.remove(index.getZeroBased());
+        return task;
     }
 
     public ObservableList<Task> getSerializeTaskList() {
@@ -51,8 +64,8 @@ public class TaskList {
         return taskList.contains(task);
     }
 
-    public boolean isValidTaskIndex(int index) {
-        return taskList.size() > index;
+    public boolean isValidTaskIndex(Index index) {
+        return index.getZeroBased() < taskList.size();
     }
 
 }

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -193,7 +194,7 @@ public class AddCommandTest {
          * @param index The index of the task to be deleted in the list.
          */
         @Override
-        public void deleteTask(int index) {
+        public Task deleteTask(Index index) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -214,7 +215,7 @@ public class AddCommandTest {
          * @param index
          */
         @Override
-        public boolean isValidTaskIndex(int index) {
+        public boolean isValidTaskIndex(Index index) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -141,8 +142,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(int index) {
-        taskList.deleteTask(index);
+    public Task deleteTask(Index index) {
+        return taskList.deleteTask(index);
     }
 
     @Override
@@ -152,7 +153,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isValidTaskIndex(int index) {
+    public boolean isValidTaskIndex(Index index) {
         return taskList.isValidTaskIndex(index);
     }
     /**
