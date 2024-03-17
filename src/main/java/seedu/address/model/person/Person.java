@@ -17,37 +17,48 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     private final Nric nric;
-    private final Set<Tag> tags = new HashSet<>();
     private final Name name;
-    private final Phone phone;
+    private final Set<Tag> tags = new HashSet<>();
+    private Phone phone;
     private Email email;
-    private final Sex sex;
+    private Sex sex;
     // Data fields
-    private final Address address;
+    private Address address;
     private Allergies allergies;
     private BloodType bloodType;
     private Country country;
     private final DateOfBirth dateOfBirth;
     //Medical history
-    private Diagnosis diagnosis;
     private Condition condition;
-    private Symptom symptom;
     private DateOfAdmission dateOfAdmission;
+    private Diagnosis diagnosis;
     private final Status status;
+    private Symptom symptom;
     /**
      * Every field must be present and not null.
      */
-    //TODO : Add the missing fields
-    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status, Object... args) {
+    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status,
+                  Email email, Allergies allergies, BloodType bloodType, Country country, Condition condition,
+                  DateOfAdmission dateOfAdmission, Diagnosis diagnosis, Symptom symptom, Object... args) {
         //Only the fields that are mandatory are included down here
         requireAllNonNull(nric, name, phone, address, dateOfBirth, sex);
         this.nric = nric;
         this.name = name;
         this.phone = phone;
-        this.address = address;
-        this.dateOfBirth = dateOfBirth;
+        this.email = email;
         this.sex = sex;
+
+        this.address = address;
+        this.allergies = allergies;
+        this.bloodType = bloodType;
+        this.country = country;
+        this.dateOfBirth = dateOfBirth;
+
+        this.condition = condition;
+        this.dateOfAdmission = dateOfAdmission;
+        this.diagnosis = diagnosis;
         this.status = status;
+        this.symptom = symptom;
     }
 
     public Nric getNric() {
@@ -66,24 +77,48 @@ public class Person {
         return email;
     }
 
+    public Sex getSex() {
+        return this.sex;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public Allergies getAllergies() {
+        return allergies;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    public Country getCountry() {
+        return country;
     }
 
     public DateOfBirth getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public Sex getSex() {
-        return this.sex;
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public DateOfAdmission getDateOfAdmission() {
+        return dateOfAdmission;
+    }
+
+    public Diagnosis getDiagnosis() {
+        return diagnosis;
     }
 
     public Status getStatus() {
         return this.status;
     }
 
-    public DateOfAdmission getDateOfAdmission() {
-        return dateOfAdmission;
+    public Symptom getSymptom() {
+        return symptom;
     }
 
     /**
@@ -98,7 +133,6 @@ public class Person {
      * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      */
-    //TODO : change unique field to NRIC
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
@@ -122,7 +156,13 @@ public class Person {
             return false;
         }
         Person otherPerson = (Person) other;
-        return nric.equals(otherPerson.nric) && name.equals(otherPerson.name) && phone.equals(otherPerson.phone) && address.equals(otherPerson.address) && dateOfBirth.equals(otherPerson.dateOfBirth) && dateOfAdmission.equals(otherPerson.dateOfAdmission) && sex.equals(otherPerson.sex);
+        return nric.equals(otherPerson.nric)
+                && name.equals(otherPerson.name)
+                && phone.equals(otherPerson.phone)
+                && address.equals(otherPerson.address)
+                && dateOfBirth.equals(otherPerson.dateOfBirth)
+                && dateOfAdmission.equals(otherPerson.dateOfAdmission)
+                && sex.equals(otherPerson.sex);
     }
 
     @Override
@@ -131,11 +171,30 @@ public class Person {
         return Objects.hash(name, phone, email, address, tags);
     }
 
-    //TODO : Add the missing fields
-    //TODO : Add override: one for list view, one for detailed view
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("name", name).add("phone", phone).add("address", address).add("tags", tags).toString();
+        // list view
+        return new ToStringBuilder(this).add("nric", nric).add("name", name).add("status", status).toString();
     }
 
+    public String toDetailedString() {
+        // detailed view
+        return new ToStringBuilder(this)
+                .add("nric", nric)
+                .add("name", name)
+                .add("tags", tags)
+                .add("phone", phone)
+                .add("email", email)
+                .add("sex", sex)
+                .add("address", address)
+                .add("allergies", allergies)
+                .add("blood type", bloodType)
+                .add("country", country)
+                .add("birthday", dateOfBirth)
+                .add("condition", dateOfAdmission)
+                .add("diagnosis", diagnosis)
+                .add("status", status)
+                .add("symptom", symptom)
+                .toString();
+    }
 }

@@ -104,5 +104,4 @@ public class PersonBuilder {
     public Person build() {
         return new Person(nric, name, phone, address, dateOfBirth, sex, email, tags);
     }
-
 }

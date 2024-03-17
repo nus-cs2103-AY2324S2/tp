@@ -11,12 +11,18 @@ import java.util.Objects;
  */
 public class Sex {
     public static final String MESSAGE_CONSTRAINTS = "Sex should be either F or M.";
+
+    /**
+     * Represents sex of a person.
+     */
+    public enum SexType {F, M}
     private final SexType sex;
+
     /**
      * Constructs a Sex instance.
      */
-    public Sex(SexType sex) {
-        this.sex = sex;
+    public Sex(String sex) {
+        this.sex = SexType.valueOf(sex);
     }
 
     @Override
@@ -43,9 +49,4 @@ public class Sex {
     public int hashCode() {
         return sex.hashCode();
     }
-
-    /**
-     * Represents sex of a person.
-     */
-    public enum SexType {F, M}
 }

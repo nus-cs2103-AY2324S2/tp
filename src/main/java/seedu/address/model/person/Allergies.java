@@ -21,6 +21,7 @@ public class Allergies {
     public String toString() {
         return this.allergies;
     }
+
     @Override
     public int hashCode() {
         return allergies.hashCode();

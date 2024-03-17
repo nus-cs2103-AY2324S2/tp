@@ -8,6 +8,11 @@ public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status should only be one of the following: HEALTHY, UNWELL, PENDING.";
+
+    /**
+     * Represents status of a person.
+     */
+    public enum StatusType { HEALTHY, UNWELL, PENDING }
     private final StatusType status;
 
     /**
@@ -15,8 +20,8 @@ public class Status {
      *
      * @param status Status of a person
      */
-    public Status(StatusType status) {
-        this.status = status;
+    public Status(String status) {
+        this.status = StatusType.valueOf(status);
     }
 
     @Override
@@ -44,9 +49,4 @@ public class Status {
     public int hashCode() {
         return status.hashCode();
     }
-
-    /**
-     * Represents status of a person.
-     */
-    public enum StatusType { HEALTHY, UNWELL, PENDING }
 }

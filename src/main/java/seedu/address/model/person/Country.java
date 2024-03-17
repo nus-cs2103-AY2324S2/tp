@@ -9,20 +9,25 @@ import java.util.Objects;
 public class Country {
     private final String country;
     //todo: map input country to a standard country name
+
     public Country(String country) {
         this.country = country;
     }
+
     public String getCountry() {
         return country;
     }
+
     @Override
     public String toString() {
         return this.country;
     }
+
     @Override
     public int hashCode() {
         return country.hashCode();
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

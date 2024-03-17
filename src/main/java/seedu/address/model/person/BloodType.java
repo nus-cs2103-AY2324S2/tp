@@ -22,20 +22,25 @@ public class BloodType {
         this.type = Type.valueOf(type);
         this.rh = Rh.valueOf(rh);
     }
+
     public String getType() {
         return type.toString();
     }
+
     public String getRh() {
         return rh.toString();
     }
+
     @Override
     public String toString() {
         return this.type.toString() + this.rh.toString();
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(type, rh);
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

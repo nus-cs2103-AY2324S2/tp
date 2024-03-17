@@ -21,6 +21,7 @@ public class Condition {
     public String toString() {
         return this.condition;
     }
+
     @Override
     public int hashCode() {
         return condition.hashCode();

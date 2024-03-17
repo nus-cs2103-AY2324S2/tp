@@ -23,6 +23,11 @@ public class Symptom {
     }
 
     @Override
+    public int hashCode() {
+        return symptom.hashCode();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -34,9 +39,5 @@ public class Symptom {
 
         Symptom otherSymptom = (Symptom) other;
         return symptom.equals(otherSymptom.symptom);
-    }
-    @Override
-    public int hashCode() {
-        return symptom.hashCode();
     }
 }
