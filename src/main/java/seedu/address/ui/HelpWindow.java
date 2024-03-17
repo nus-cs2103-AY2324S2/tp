@@ -23,12 +23,12 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "For more detail, refer to the user guide:\n" + USERGUIDE_URL
-            + "\n\nThings to note on:"
+    public static final String USERGUIDE_URL = "https://ay2324s2-cs2103t-w09-3.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "For more details, refer to the user guide:\n" + USERGUIDE_URL
+            + "\n\nThings to note:"
             + "\n  • Items in square brackets are optional."
             + "\n  • Items with '...' after them can be used multiple times including zero times."
-            + "\n  • Close this window by typing 'q' on keyboard.";
+            + "\n  • Press 'q' to close this window.";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -138,8 +138,8 @@ public class HelpWindow extends UiPart<Stage> {
      * Fills the command summary table with all available commands.
      */
     private void fillCommandSummaryTable() {
-        guideItems.add(new UserGuideItem("help", "Call this user guide.\n"
-                + "Can also call by typing F1 on keyboard"));
+        guideItems.add(new UserGuideItem("help", "Open command summary "
+                + "(can also be accessed by pressing F1 key)"));
         guideItems.add(new UserGuideItem("add", "Add a new contact.\n"
                 + "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\n"
                 + "e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/supplier "
@@ -148,16 +148,17 @@ public class HelpWindow extends UiPart<Stage> {
         guideItems.add(new UserGuideItem("edit", "Edit a contact.\n"
                 + "edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…\n"
                 + "e.g., edit 1 p/91234567 e/johndoe@example.com"));
-        guideItems.add(new UserGuideItem("find", "Find contacts with a keyword.\n"
+        guideItems.add(new UserGuideItem("find", "Find contacts whose names contain "
+                + "any of the given keywords.\n"
                 + "find KEYWORD [MORE_KEYWORDS]\n"
                 + "e.g., find John"));
         guideItems.add(new UserGuideItem("filter", "Filter contacts with specified tags.\n"
                 + "filter TAG [MORE_TAGS]\n"
-                + "e.g., filter supplier"));
+                + "e.g., filter supplier seafood"));
         guideItems.add(new UserGuideItem("delete", "Delete a contact.\n"
                 + "delete INDEX\n"
                 + "e.g., delete 1"));
-        guideItems.add(new UserGuideItem("clear", "Clear every recorded contacts.\n"
+        guideItems.add(new UserGuideItem("clear", "Clear all contacts.\n"
                 + "A confirmation message will be shown, type y to proceed with clearing "
                 + "or otherwise to cancel clearing."));
         guideItems.add(new UserGuideItem("exit", "Close the address book."));
