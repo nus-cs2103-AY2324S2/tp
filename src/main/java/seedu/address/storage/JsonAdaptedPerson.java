@@ -14,6 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final String remark;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String birthday;
+    private final String moneyOwed;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +45,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("birthday") String birthday) {
+                             @JsonProperty("birthday") String birthday,
+                             @JsonProperty("moneyOwed") String moneyOwed) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -53,6 +56,7 @@ class JsonAdaptedPerson {
             this.tags.addAll(tags);
         }
         this.birthday = birthday;
+        this.moneyOwed = moneyOwed;
     }
 
     /**
@@ -68,6 +72,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         birthday = source.getBirthday().toString();
+        moneyOwed = source.getMoneyOwed().toString();
     }
 
     /**
@@ -122,8 +127,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Birthday.BIRTHDAY_CONSTRAINTS);
         }
         final Birthday modelBirthday = new Birthday(birthday);
+        if (!MoneyOwed.isValidMoney(moneyOwed)) {
+            throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
+        }
+        final MoneyOwed modelMoneyOwed = new MoneyOwed(Optional.ofNullable(moneyOwed).orElse("0"));
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelBirthday);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
+                modelTags, modelBirthday, modelMoneyOwed);
     }
 
 }
