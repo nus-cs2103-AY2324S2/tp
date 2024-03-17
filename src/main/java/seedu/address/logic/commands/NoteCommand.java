@@ -21,28 +21,31 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Note: %2$s";
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+    + ": Edits the note of the person identified "
+    + "by the index number used in the last person listing. "
+    + "Existing note will be overwritten by the input.\n"
+    + "Parameters: INDEX (must be a positive integer) "
+    + "nt/ [NOTE]\n"
+    + "Example: " + COMMAND_WORD + " 1 "
+    + "nt/ Likes to swim.";
+
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
+    "Note command not implemented yet";
 
     private final Index index;
     private final Note note;
 
+    /**
+     * @param index of the person in the filtered person list to edit the note
+     * @param note of the person to be updated to
+     */
     public NoteCommand(Index index, Note remark) {
         requireAllNonNull(index, remark);
 
         this.index = index;
         this.note = remark;
     }
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the note of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing note will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "nt/ [NOTE]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "nt/ Likes to swim.";
-
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Note command not implemented yet";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

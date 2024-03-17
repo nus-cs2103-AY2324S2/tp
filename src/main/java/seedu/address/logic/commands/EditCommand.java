@@ -108,7 +108,9 @@ public class EditCommand extends Command {
         Set<Appointment> updatedAppointments = editPersonDescriptor
                 .getAppointments().orElse(personToEdit.getAppointments());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNote, updatedTags, updatedAppointments);
+        return new Person(
+            updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNote, updatedTags, updatedAppointments
+            );
     }
 
     @Override
