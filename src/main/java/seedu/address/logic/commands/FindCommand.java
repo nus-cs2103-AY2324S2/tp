@@ -4,18 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.IdContainsQueryIdPredicate;
-import seedu.address.model.person.NameContainsQueryNamePredicate;
 import seedu.address.model.person.Person;
-
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
@@ -23,7 +21,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names or ID contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: "  + "[" + PREFIX_ID + "KEYWORD] "
+            + "Parameters: " + "[" + PREFIX_ID + "KEYWORD] "
             + "[" + PREFIX_NAME + "KEYWORD [MORE_KEYWORDS]...]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_ID + "A034" + " " + PREFIX_NAME + "John Doe";
 

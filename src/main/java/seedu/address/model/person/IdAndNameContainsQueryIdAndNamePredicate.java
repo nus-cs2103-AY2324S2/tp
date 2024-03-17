@@ -1,11 +1,11 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.commons.util.ToStringBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.ToStringBuilder;
 
 /**
  * Tests that a {@code Person}'s {@code id} matches the query ID.
@@ -16,6 +16,12 @@ public class IdAndNameContainsQueryIdAndNamePredicate implements Predicate<Perso
 
     private final String queryName;
 
+    /**
+     * Constructor for the predicate.
+     *
+     * @param queryId Id to be queried.
+     * @param queryName Name to be queried.
+     */
     public IdAndNameContainsQueryIdAndNamePredicate(String queryId, String queryName) {
         this.queryId = queryId;
         this.queryName = queryName;
@@ -23,8 +29,8 @@ public class IdAndNameContainsQueryIdAndNamePredicate implements Predicate<Perso
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.containsIgnoreCase(person.getId().id, queryId) &&
-                StringUtil.containsIgnoreCase(person.getName().fullName, queryName);
+        return StringUtil.containsIgnoreCase(person.getId().id, queryId)
+                && StringUtil.containsIgnoreCase(person.getName().fullName, queryName);
     }
 
     @Override
@@ -38,8 +44,8 @@ public class IdAndNameContainsQueryIdAndNamePredicate implements Predicate<Perso
             return false;
         }
 
-        IdAndNameContainsQueryIdAndNamePredicate otherIdAndNameContainsQueryIdAndNamePredicate
-                = (IdAndNameContainsQueryIdAndNamePredicate) other;
+        IdAndNameContainsQueryIdAndNamePredicate otherIdAndNameContainsQueryIdAndNamePredicate =
+                (IdAndNameContainsQueryIdAndNamePredicate) other;
         return queryName.equals(otherIdAndNameContainsQueryIdAndNamePredicate.queryName);
     }
 
