@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILENAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -19,6 +23,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindAndExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
@@ -106,5 +111,26 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_findAndExport() throws ParseException {
+        String tag = "friends";
+        String name = "John";
+        String address = "123 Main St";
+        String filename = "output.json";
+
+        String input = FindAndExportCommand.COMMAND_WORD + " "
+                + PREFIX_TAG + tag + " "
+                + PREFIX_NAME + name + " "
+                + PREFIX_ADDRESS + address + " "
+                + PREFIX_FILENAME + filename;
+
+        FindAndExportCommand expectedCommand = new FindAndExportCommand(tag, name, address, filename);
+
+        FindAndExportCommand resultCommand = (FindAndExportCommand) parser.parseCommand(input);
+        assertEquals(expectedCommand.getName(), resultCommand.getName());
+        assertEquals(expectedCommand.getAddress(), resultCommand.getAddress());
+        assertEquals(expectedCommand.getFilename(), resultCommand.getFilename());
     }
 }
