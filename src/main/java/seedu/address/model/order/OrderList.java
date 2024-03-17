@@ -1,5 +1,6 @@
 package seedu.address.model.order;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.exceptions.OrderNotFoundException;
 import seedu.address.model.person.Person;
 
 /**
@@ -35,6 +37,14 @@ public class OrderList implements Iterable<Order> {
     public OrderList() {
         orderList = new HashMap<>();
         orderIdCounter = 1;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean contains(Order toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameOrder);
     }
 
     /**
@@ -78,7 +88,13 @@ public class OrderList implements Iterable<Order> {
      */
     public void editOrder(int orderId, Order toEdit) {
         requireAllNonNull(orderId, toEdit);
+        if (orderId < 1) {
+            throw new NullPointerException();
+        }
         Order currOrder = orderList.get(orderId);
+        if (currOrder == null) {
+            throw new OrderNotFoundException();
+        }
         if (!currOrder.isSameOrder(toEdit)) {
             Order oldOrder = orderList.get(orderId);
             int oldOrderIndex = internalList.indexOf(oldOrder);
