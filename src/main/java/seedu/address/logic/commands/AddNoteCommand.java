@@ -99,6 +99,7 @@ public class AddNoteCommand extends Command {
 
         AddNoteCommand e = (AddNoteCommand) other;
         return icPredicate.equals(e.icPredicate)
-                && note.equals(e.note);
+                && note.equals(e.note)
+                && isReplace == e.isReplace;
     }
 }
