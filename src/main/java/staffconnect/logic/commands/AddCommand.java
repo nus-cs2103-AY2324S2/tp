@@ -1,6 +1,7 @@
 package staffconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -30,7 +31,8 @@ public class AddCommand extends Command {
             + PREFIX_FACULTY + "FACULTY "
             + PREFIX_VENUE + "VENUE "
             + PREFIX_MODULE + "MODULE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_AVAILABILITY + "AVAILABILITY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -39,7 +41,9 @@ public class AddCommand extends Command {
             + PREFIX_VENUE + "311, Clementi Ave 2, #02-25 "
             + PREFIX_MODULE + "CS2103 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney"
+            + PREFIX_AVAILABILITY + "mon"
+            + PREFIX_AVAILABILITY + "thur";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the staff book";

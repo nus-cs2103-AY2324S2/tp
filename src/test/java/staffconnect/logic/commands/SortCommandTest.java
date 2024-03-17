@@ -3,6 +3,7 @@ package staffconnect.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static staffconnect.model.person.comparators.FacultyComparator.FACULTY_COMPARATOR;
 import static staffconnect.model.person.comparators.ModuleComparator.MODULE_COMPARATOR;
 import static staffconnect.model.person.comparators.NameComparator.NAME_COMPARATOR;
 import static staffconnect.model.person.comparators.PhoneComparator.PHONE_COMPARATOR;
@@ -40,9 +41,10 @@ public class SortCommandTest {
         assertFalse(nameSortCommand.equals(null));
 
         // different values -> returns false
-        assertFalse(nameSortCommand.equals(new SortCommand(MODULE_COMPARATOR)));
-        assertFalse(nameSortCommand.equals(new SortCommand(VENUE_COMPARATOR)));
         assertFalse(nameSortCommand.equals(new SortCommand(PHONE_COMPARATOR)));
+        assertFalse(nameSortCommand.equals(new SortCommand(MODULE_COMPARATOR)));
+        assertFalse(nameSortCommand.equals(new SortCommand(FACULTY_COMPARATOR)));
+        assertFalse(nameSortCommand.equals(new SortCommand(VENUE_COMPARATOR)));
     }
 
     @Test

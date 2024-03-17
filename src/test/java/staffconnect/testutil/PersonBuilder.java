@@ -3,6 +3,7 @@ package staffconnect.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import staffconnect.model.availability.Availability;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
@@ -20,18 +21,19 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_VENUE = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_FACULTY = "Computing";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_VENUE = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_MODULE = "CS2103T";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private Module module;
     private Faculty faculty;
     private Venue venue;
-    private Module module;
     private Set<Tag> tags;
+    private Set<Availability> availabilities;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,10 +42,11 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        module = new Module(DEFAULT_MODULE);
         faculty = new Faculty(DEFAULT_FACULTY);
         venue = new Venue(DEFAULT_VENUE);
-        module = new Module(DEFAULT_MODULE);
         tags = new HashSet<>();
+        availabilities = new HashSet<>();
     }
 
     /**
@@ -53,10 +56,11 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        module = personToCopy.getModule();
         faculty = personToCopy.getFaculty();
         venue = personToCopy.getVenue();
-        module = personToCopy.getModule();
         tags = new HashSet<>(personToCopy.getTags());
+        availabilities = new HashSet<>(personToCopy.getAvailabilities());
     }
 
     /**
@@ -84,6 +88,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Module} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withModule(String module) {
+        this.module = new Module(module);
+        return this;
+    }
+
+    /**
      * Sets the {@code Faculty} of the {@code Person} that we are building.
      */
     public PersonBuilder withFaculty(String faculty) {
@@ -100,14 +112,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Module} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withModule(String module) {
-        this.module = new Module(module);
-        return this;
-    }
-
-    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
@@ -115,8 +119,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code availabilities} into a {@code Set<Availability>} and set it to the
+     * {@code Person} that we are building.
+     */
+    public PersonBuilder withAvailabilities(String ... availabilities) {
+        this.availabilities = SampleDataUtil.getAvailabilitySet(availabilities);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, faculty, venue, module, tags);
+        return new Person(name, phone, email, module, faculty, venue, tags, availabilities);
     }
 
 }
