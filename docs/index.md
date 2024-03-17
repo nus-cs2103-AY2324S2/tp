@@ -4,7 +4,7 @@ title: StaffConnect
 ---
 
 [![CI Status](https://github.com/AY2324S2-CS2103-F08-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S2-CS2103-F08-3/tp/actions)
-[![codecov](https://codecov.io/gh/Pluiexo/tp/graph/badge.svg?token=2UVL2OKOKL)](https://codecov.io/gh/Pluiexo/tp)
+[![codecov](https://codecov.io/gh/Pluiexo/tp/graph/badge.svg?token=2UVL2OKOKL)](https://codecov.io/gh/AY2324S2-CS2103-F08-3/tp)
 
 ![Ui](images/Ui.png)
 
