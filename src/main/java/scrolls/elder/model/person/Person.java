@@ -99,6 +99,9 @@ public abstract class Person {
     public abstract boolean isVolunteer();
     public abstract Role getRole();
 
+    /**
+     * Returns true if both persons have the same pairing, and false otherwise.
+     */
     public boolean hasSamePairing(Person otherPerson) {
         if (otherPerson == this || (pairedWith == null && otherPerson.pairedWith == null)) {
             return true;

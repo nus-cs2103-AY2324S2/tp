@@ -33,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Role role;
+    private Person pairedWith;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,6 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         role = new Role(DEFAULT_VOLUNTEER_ROLE_STRING);
+        pairedWith = null;
     }
 
     /**
@@ -58,6 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         role = personToCopy.getRole();
+        pairedWith = personToCopy.getPairedWith();
     }
 
     /**
@@ -113,6 +116,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withRole(String roleString) {
         this.role = new Role(roleString);
+        return this;
+    }
+
+    /**
+     * Sets the {@code pairedWith} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPairedWith(Person pairedWith) {
+        this.pairedWith = pairedWith;
         return this;
     }
 
