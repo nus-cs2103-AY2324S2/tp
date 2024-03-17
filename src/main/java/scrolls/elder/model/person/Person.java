@@ -99,6 +99,18 @@ public abstract class Person {
     public abstract boolean isVolunteer();
     public abstract Role getRole();
 
+    public boolean hasSamePairing(Person otherPerson) {
+        if (otherPerson == this || (pairedWith == null && otherPerson.pairedWith == null)) {
+            return true;
+        }
+
+        if ((pairedWith == null) ^ (otherPerson.pairedWith == null)) {
+            return false;
+        }
+
+        return pairedWith.equals(otherPerson.pairedWith);
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -122,7 +134,7 @@ public abstract class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
                 && role.equals(otherPerson.role)
-                && pairedWith.equals(otherPerson.pairedWith);
+                && hasSamePairing(otherPerson);
     }
 
     @Override

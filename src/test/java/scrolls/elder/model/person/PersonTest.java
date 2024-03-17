@@ -89,7 +89,7 @@ public class PersonTest {
         String expected = Volunteer.class.getCanonicalName() + "{name=" + TypicalPersons.ALICE.getName() + ", phone="
                 + TypicalPersons.ALICE.getPhone()
                 + ", email=" + TypicalPersons.ALICE.getEmail() + ", address=" + TypicalPersons.ALICE.getAddress()
-                + ", tags=" + TypicalPersons.ALICE.getTags() + ", role=" + TypicalPersons.ALICE.getRole() + "}";
+                + ", tags=" + TypicalPersons.ALICE.getTags() + ", role=" + TypicalPersons.ALICE.getRole() + ", pairedWith=" + (TypicalPersons.ALICE.getPairedWith() == null ? "None" : TypicalPersons.ALICE.getPairedWith().getName()) + "}";
         Assertions.assertEquals(expected, TypicalPersons.ALICE.toString());
     }
 }

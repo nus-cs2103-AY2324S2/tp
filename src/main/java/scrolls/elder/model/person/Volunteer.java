@@ -41,7 +41,7 @@ public class Volunteer extends Person {
                 && email.equals(otherVolunteer.email)
                 && address.equals(otherVolunteer.address)
                 && tags.equals(otherVolunteer.tags)
-                && pairedWith.equals(otherVolunteer.pairedWith);
+                && hasSamePairing(otherVolunteer);
     }
 
     @Override
