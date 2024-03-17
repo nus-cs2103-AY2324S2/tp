@@ -1,11 +1,15 @@
 package seedu.address.logic.commands;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -97,20 +101,17 @@ public class FindAndExportCommand extends Command {
     }
 
     private void exportData(List<Person> users, String filename) throws IOException {
-        Path path = Paths.get(filename).toAbsolutePath();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+
+        Map<String, List<Person>> data = new HashMap<>();
+        data.put("persons", users);
+
+        Path path = Paths.get(filename);
         if (Files.exists(path) && !Files.isWritable(path)) {
             throw new IOException("File exists but is not writable: " + path);
         }
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            writer.write("Name,Email,Address\n");
-
-            for (Person user : users) {
-                String line = String.format("\"%s\",\"%s\",\"%s\"\n",
-                        user.getName().fullName,
-                        user.getEmail().value,
-                        user.getAddress().value);
-                writer.write(line);
-            }
-        }
+        mapper.writeValue(Files.newOutputStream(path), data);
     }
 }
