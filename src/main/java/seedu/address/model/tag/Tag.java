@@ -26,6 +26,18 @@ public class Tag {
     }
 
     /**
+     * Returns true if both tags have the same name.
+     */
+    public boolean isSameTag(Tag otherTag) {
+        if (otherTag == this) {
+            return true;
+        }
+
+        return otherTag != null
+                && otherTag.tagName.equals(tagName);
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {

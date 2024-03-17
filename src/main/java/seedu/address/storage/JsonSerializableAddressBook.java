@@ -24,7 +24,7 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_TAG = "Tags list contains duplicate tag(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedTag> tagList = new ArrayList<>();
 
 
     /**
@@ -34,7 +34,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("tagList") List<JsonAdaptedTag> tags) {
         this.persons.addAll(persons);
-        this.tags.addAll(tags);
+        this.tagList.addAll(tags);
     }
 
     /**
@@ -44,7 +44,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        tags.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        tagList.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
     /**
@@ -61,7 +61,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
-        for (JsonAdaptedTag jsonAdaptedTag : tags) {
+        for (JsonAdaptedTag jsonAdaptedTag : tagList) {
             Tag tag = jsonAdaptedTag.toModelType();
             if (addressBook.hasTag(tag)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TAG);
