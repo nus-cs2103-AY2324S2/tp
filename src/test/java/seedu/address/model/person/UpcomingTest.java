@@ -119,4 +119,18 @@ public class UpcomingTest {
         Upcoming upcoming2 = new Upcoming("02-01-2022 1200");
         assertNotEquals(upcoming1.hashCode(), upcoming2.hashCode());
     }
+
+    @Test
+    public void toString_hasUpcoming_returnsFormattedDateTime() {
+        Upcoming upcoming = new Upcoming("01-01-2022 1200");
+        String expected = "01-01-2022 1200";
+        assertEquals(expected, upcoming.toString());
+    }
+
+    @Test
+    public void toString_noUpcoming_returnsEmptyString() {
+        Upcoming upcoming = new Upcoming("");
+        String expected = "";
+        assertEquals(expected, upcoming.toString());
+    }
 }
