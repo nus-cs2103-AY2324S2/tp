@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -18,6 +19,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -204,7 +206,6 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
     }
-
 
     @Test
     public void toStringMethod() {

@@ -22,6 +22,28 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_emptyId_throwsParseException() {
+        assertParseFailure(parser, "i/ ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+    @Test
+    public void parse_emptyName_throwsParseException() {
+        assertParseFailure(parser, "n/ ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+    @Test
+    public void parse_emptyIdAndName_throwsParseException() {
+        assertParseFailure(parser, "i/    n/ ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emptyPrefix_throwsParseException() {
+        assertParseFailure(parser, "John Doe A1234567X",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindCommand() {
         // Query by Name - no leading and trailing whitespaces
         FindCommand expectedFindNameCommand =
