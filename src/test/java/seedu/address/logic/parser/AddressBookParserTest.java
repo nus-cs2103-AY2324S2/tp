@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddInterviewerCommand;
-import seedu.address.logic.commands.AddApplicantCommand;
+import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddInterviewerPersonCommand;
+import seedu.address.logic.commands.AddApplicantPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -44,14 +44,14 @@ public class AddressBookParserTest {
 
     public void parseCommand_add_interviewer() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddInterviewerCommand(person));
-        assertEquals(new AddInterviewerCommand(person), command);
+        AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddInterviewerCommand(person));
+        assertEquals(new AddInterviewerPersonCommand(person), command);
 
     public void parseCommand_add_applicant() throws Exception {
         Person person = new PersonBuilder().build();
-        AddApplicantCommand command = (AddApplicantCommand) parser.parseCommand(
+        AddApplicantPersonCommand command = (AddApplicantPersonCommand) parser.parseCommand(
                 PersonUtil.getAddApplicantCommand(person));
-        assertEquals(new AddApplicantCommand(person), command);
+        assertEquals(new AddApplicantPersonCommand(person), command);
 
     }
 

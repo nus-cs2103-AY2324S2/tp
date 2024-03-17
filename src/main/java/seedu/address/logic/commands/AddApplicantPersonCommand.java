@@ -11,12 +11,12 @@ import seedu.address.model.person.Person;
 /**
  * Adds an applicant to the talent tracker.
  */
-public class AddApplicantCommand extends AddCommand {
+public class AddApplicantPersonCommand extends AddPersonCommand {
 
-    public static final String COMMAND_WORD = AddCommand.COMMAND_WORD + "_applicant";
+    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + "_applicant";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to the talent tracker. "
-            + AddCommand.MESSAGE_USAGE;
+            + AddPersonCommand.MESSAGE_USAGE;
 
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
@@ -26,7 +26,7 @@ public class AddApplicantCommand extends AddCommand {
     /**
      * Creates an AddApplicantCommand to add the specified {@code Person}
      */
-    public AddApplicantCommand(Person person) {
+    public AddApplicantPersonCommand(Person person) {
         super(person);
     }
 
@@ -49,12 +49,12 @@ public class AddApplicantCommand extends AddCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddApplicantCommand)) {
+        if (!(other instanceof AddApplicantPersonCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddApplicantCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddPersonCommand otherAddPersonCommand = (AddApplicantPersonCommand) other;
+        return toAdd.equals(otherAddPersonCommand.toAdd);
     }
 
     @Override

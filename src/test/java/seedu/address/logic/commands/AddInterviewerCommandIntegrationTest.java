@@ -33,16 +33,16 @@ public class AddInterviewerCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
-        assertCommandSuccess(new AddInterviewerCommand(validPerson), model,
-                String.format(AddInterviewerCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertCommandSuccess(new AddInterviewerPersonCommand(validPerson), model,
+                String.format(AddInterviewerPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddInterviewerCommand(personInList), model,
-                AddInterviewerCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddInterviewerPersonCommand(personInList), model,
+                AddInterviewerPersonCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }
