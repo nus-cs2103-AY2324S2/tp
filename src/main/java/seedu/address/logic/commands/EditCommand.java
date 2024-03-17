@@ -5,12 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-<<<<<<< HEAD
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-=======
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
->>>>>>> master
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -31,12 +26,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-<<<<<<< HEAD
-import seedu.address.model.tag.Tag;
-=======
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
->>>>>>> master
 
 /**
  * Edits the details of an existing person in the address book.
@@ -107,21 +97,15 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-<<<<<<< HEAD
 
-=======
         StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
->>>>>>> master
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Grade updatedGrade = editPersonDescriptor.getGrade().orElse(personToEdit.getGrade());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
 
-<<<<<<< HEAD
-        return new Person(updatedName, updatedEmail, updatedAddress, updatedTags);
-=======
-        return new Person(updatedName, updatedStudentId, updatedPhone, updatedEmail, updatedGrade, updatedGroups);
->>>>>>> master
+
+        return new Person(updatedName, updatedStudentId, updatedEmail, updatedGrade, updatedGroups);
+
     }
 
     @Override
@@ -154,12 +138,8 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-<<<<<<< HEAD
-
-=======
         private StudentId studentId;
-        private Phone phone;
->>>>>>> master
+
         private Email email;
         private Set<Group> groups;
         private Grade grade;
@@ -172,12 +152,8 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-<<<<<<< HEAD
 
-=======
             setStudentId(toCopy.studentId);
-            setPhone(toCopy.phone);
->>>>>>> master
             setEmail(toCopy.email);
             setGroups(toCopy.groups);
             setGrade(toCopy.grade);
@@ -187,11 +163,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-<<<<<<< HEAD
-            return CollectionUtil.isAnyNonNull(name, email, address, tags);
-=======
-            return CollectionUtil.isAnyNonNull(name, studentId, phone, email, grade, groups);
->>>>>>> master
+
+            return CollectionUtil.isAnyNonNull(name, studentId, email, grade, groups);
         }
 
         public void setName(Name name) {
@@ -260,12 +233,8 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
-<<<<<<< HEAD
 
-=======
                     && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
->>>>>>> master
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(grade, otherEditPersonDescriptor.grade)
                     && Objects.equals(groups, otherEditPersonDescriptor.groups);
@@ -275,12 +244,7 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-<<<<<<< HEAD
-
-=======
                     .add("studentId", studentId)
-                    .add("phone", phone)
->>>>>>> master
                     .add("email", email)
                     .add("grade", grade)
                     .add("groups", groups)

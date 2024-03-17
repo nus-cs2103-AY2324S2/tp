@@ -5,12 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-<<<<<<< HEAD
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-=======
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
->>>>>>> master
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;

@@ -52,13 +52,8 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         studentId.setText(person.getStudentId().id);
         name.setText(person.getName().fullName);
-<<<<<<< HEAD
-
-        address.setText(person.getAddress().value);
-=======
-        phone.setText(person.getPhone().value);
         grade.setText(person.getGrade().value);
->>>>>>> master
+
         email.setText(person.getEmail().value);
         person.getGroups().stream()
                 .sorted(Comparator.comparing(group -> group.groupName))

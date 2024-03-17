@@ -96,8 +96,8 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
 
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC +
-                VALID_GRADE_AMY + VALID_STUDENTID_AMY, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                + VALID_GRADE_AMY + VALID_STUDENTID_AMY, Name.MESSAGE_CONSTRAINTS);
 
     }
 
@@ -185,8 +185,8 @@ public class EditCommandParserTest {
 
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_EMAIL_DESC
-                + INVALID_GRADE_DESC + INVALID_STUDENTID_DESC + INVALID_GRADE_DESC +
-                INVALID_EMAIL_DESC + INVALID_STUDENTID_DESC;
+                + INVALID_GRADE_DESC + INVALID_STUDENTID_DESC + INVALID_GRADE_DESC
+                + INVALID_EMAIL_DESC + INVALID_STUDENTID_DESC;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL, PREFIX_GRADE,

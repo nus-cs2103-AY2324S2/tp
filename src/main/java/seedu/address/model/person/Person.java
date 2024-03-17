@@ -110,7 +110,7 @@ public class Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
 
-        return Objects.hash(name, studentId,  email, grade, groups);
+        return Objects.hash(name, studentId, email, grade, groups);
 
     }
 

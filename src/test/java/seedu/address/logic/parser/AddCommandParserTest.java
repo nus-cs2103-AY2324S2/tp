@@ -99,8 +99,8 @@ public class AddCommandParserTest {
 
                 validExpectedPersonString + EMAIL_DESC_AMY + NAME_DESC_AMY
                         + STUDENTID_DESC_AMY + GRADE_DESC_BOB + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_GRADE, PREFIX_EMAIL
-                        , PREFIX_STUDENTID));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_GRADE, PREFIX_EMAIL,
+                        PREFIX_STUDENTID));
 
 
         // invalid value followed by valid value
