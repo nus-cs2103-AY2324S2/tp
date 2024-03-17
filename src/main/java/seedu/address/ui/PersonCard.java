@@ -41,7 +41,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label membership;
+    @FXML
     private FlowPane tags;
+    @FXML
+    private Label points;
     @FXML
     private Label orders;
 
@@ -56,10 +60,12 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        membership.setText(person.getMembership().value);
         orders.setText(buildOrderString(person.getOrders()));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        points.setText(String.valueOf(person.getPoints().value));
     }
 
     private static String buildOrderString(ArrayList<Order> orders) {

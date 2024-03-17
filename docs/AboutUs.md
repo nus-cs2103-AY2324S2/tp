@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/kab-dot.png" width="200px">
 
-[[github](http://github.com/kab-dot)] 
+[[github](http://github.com/kab-dot)]
 [[portfolio](team/khushibhagwat.md)]
 
 * Role: Documentation, Scheduling
