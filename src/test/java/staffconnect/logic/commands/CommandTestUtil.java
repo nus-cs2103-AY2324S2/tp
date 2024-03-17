@@ -40,6 +40,15 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_MEETING_DESCRIPTION = "Meet for midterms";
+
+    public static final String VALID_DIFF_MEETING_DESCRIPTION = "Meet for finals";
+    public static final String VALID_MEETING_DATE = "12/04/2023 18:00";
+    public static final String VALID_DIFF_MEETING_DATE = "15/04/2024 15:00";
+
+
+
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -59,6 +68,10 @@ public class CommandTestUtil {
     public static final String INVALID_VENUE_DESC = " " + PREFIX_VENUE; // empty string not allowed for venues
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE; // empty string not allowed for modules
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_MEETING_DESCRIPTION = "*!&@#&*@*&@*";
+
+    public static final String INVALID_MEETING_DATE = "12-04-2023 1800";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

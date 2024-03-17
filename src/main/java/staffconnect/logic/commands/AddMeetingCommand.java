@@ -88,8 +88,8 @@ public class AddMeetingCommand extends Command {
         Module currentModule = personToEdit.getModule();
         Set<Tag> currentTags = personToEdit.getTags();
         Set<Meeting> currentMeetings = new HashSet<>(personToEdit.getMeetings()); //to reduce coupling with Person
-        Person editedPerson = new Person(currentName, currentPhone, currentEmail, currentVenue, currentModule,
-                                         currentTags);
+        Person editedPerson =
+            new Person(currentName, currentPhone, currentEmail, currentVenue, currentModule, currentTags);
         currentMeetings.add(meeting);
         editedPerson.setMeetings(currentMeetings);
         return editedPerson;
@@ -112,6 +112,6 @@ public class AddMeetingCommand extends Command {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("toAdd", toAdd).toString();
+        return new ToStringBuilder(this).add("index", index).add("toAdd", toAdd).toString();
     }
 }

@@ -102,9 +102,6 @@ public class Person {
         return meetings.contains(toAdd);
     }
 
-    public void addMeetings(Meeting toAdd) {
-        meetings.add(toAdd);
-    }
 
     @Override
     public int hashCode() {
