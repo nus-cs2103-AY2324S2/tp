@@ -84,10 +84,7 @@ public class AddressBookParser {
 
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
-<<<<<<< HEAD
-=======
 
->>>>>>> 61690cba38c2e1f6781f0c2fad3b3c3d47ad50df
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
