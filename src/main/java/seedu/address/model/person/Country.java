@@ -21,7 +21,7 @@ public class Country {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(country);
+        return country.hashCode();
     }
     @Override
     public boolean equals(Object other) {

@@ -53,6 +53,6 @@ public class DateOfBirth {
 
     @Override
     public int hashCode() {
-        return Objects.hash(dateOfBirth);
+        return dateOfBirth.hashCode();
     }
 }

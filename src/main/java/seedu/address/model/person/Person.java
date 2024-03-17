@@ -16,36 +16,29 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
-    // Identity fields
-    private enum Sex { F, M }
-    private enum Status { HEALTHY, UNWELL, PENDING }
     private final Nric nric;
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Sex sex;
-
-    // Data fields
-    private Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Name name;
+    private final Phone phone;
+    private Email email;
+    private final Sex sex;
+    // Data fields
+    private final Address address;
     private Allergies allergies;
     private BloodType bloodType;
     private Country country;
-    private DateOfBirth dateOfBirth;
-
+    private final DateOfBirth dateOfBirth;
     //Medical history
     private Diagnosis diagnosis;
     private Condition condition;
     private Symptom symptom;
     private DateOfAdmission dateOfAdmission;
-    private Status status;
-
+    private final Status status;
     /**
      * Every field must be present and not null.
      */
     //TODO : Add the missing fields
-    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth,
-                  int sex, Object ... args) {
+    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status, Object... args) {
         //Only the fields that are mandatory are included down here
         requireAllNonNull(nric, name, phone, address, dateOfBirth, sex);
         this.nric = nric;
@@ -53,7 +46,8 @@ public class Person {
         this.phone = phone;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
-        this.sex = sex == 0 ? Sex.F : Sex.M;
+        this.sex = sex;
+        this.status = status;
     }
 
     public Nric getNric() {
@@ -79,8 +73,13 @@ public class Person {
     public DateOfBirth getDateOfBirth() {
         return dateOfBirth;
     }
-    public int getSex() {
-        return sex.equals(Sex.F) ? 0 : 1;
+
+    public Sex getSex() {
+        return this.sex;
+    }
+
+    public Status getStatus() {
+        return this.status;
     }
 
     public DateOfAdmission getDateOfAdmission() {
@@ -105,8 +104,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getNric().equals(getNric());
+        return otherPerson != null && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -124,13 +122,7 @@ public class Person {
             return false;
         }
         Person otherPerson = (Person) other;
-        return nric.equals(otherPerson.nric)
-                && name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && address.equals(otherPerson.address)
-                && dateOfBirth.equals(otherPerson.dateOfBirth)
-                && dateOfAdmission.equals(otherPerson.dateOfAdmission)
-                && sex.equals(otherPerson.sex);
+        return nric.equals(otherPerson.nric) && name.equals(otherPerson.name) && phone.equals(otherPerson.phone) && address.equals(otherPerson.address) && dateOfBirth.equals(otherPerson.dateOfBirth) && dateOfAdmission.equals(otherPerson.dateOfAdmission) && sex.equals(otherPerson.sex);
     }
 
     @Override
@@ -138,15 +130,12 @@ public class Person {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
     }
+
     //TODO : Add the missing fields
     //TODO : Add override: one for list view, one for detailed view
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
+        return new ToStringBuilder(this).add("name", name).add("phone", phone).add("address", address).add("tags", tags).toString();
     }
+
 }

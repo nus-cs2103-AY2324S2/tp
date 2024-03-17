@@ -10,25 +10,15 @@ import java.util.Objects;
  * Guarantees: immutable;
  */
 public class Sex {
-    /**
-     * Represents sex of a person.
-     */
-    public static enum SexType { F, M }
-    private static final String MESSAGE_CONSTRAINTS = "Sex should be either F or M.";
-    private static final String VALIDATION_REGEX = "^[FM]$";
+    public static final String MESSAGE_CONSTRAINTS = "Sex should be either F or M.";
     private final SexType sex;
     /**
      * Constructs a Sex instance.
      */
-    public Sex(String sex) {
-        requireNonNull(sex);
-        checkArgument(isValidSex(sex), MESSAGE_CONSTRAINTS);
-        this.sex = sex == "F" ? SexType.F : SexType.M;
+    public Sex(SexType sex) {
+        this.sex = sex;
     }
 
-    public static boolean isValidSex(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
     @Override
     public String toString() {
         return this.sex.toString();
@@ -51,6 +41,11 @@ public class Sex {
 
     @Override
     public int hashCode() {
-        return Objects.hash(sex);
+        return sex.hashCode();
     }
+
+    /**
+     * Represents sex of a person.
+     */
+    public enum SexType {F, M}
 }

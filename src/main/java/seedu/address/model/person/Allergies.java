@@ -23,7 +23,7 @@ public class Allergies {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(allergies);
+        return allergies.hashCode();
     }
 
     @Override

@@ -37,6 +37,6 @@ public class Symptom {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(symptom);
+        return symptom.hashCode();
     }
 }

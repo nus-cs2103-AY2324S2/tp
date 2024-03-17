@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * Represents a Person's date of admission in the address book.
@@ -35,10 +34,12 @@ public class DateOfAdmission {
     public String toString() {
         return this.dateOfAdmission.toString();
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(dateOfAdmission);
+        return dateOfAdmission.hashCode();
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

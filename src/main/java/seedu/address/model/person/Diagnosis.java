@@ -38,6 +38,6 @@ public class Diagnosis {
 
     @Override
     public int hashCode() {
-        return Objects.hash(diagnosis);
+        return diagnosis.hashCode();
     }
 }

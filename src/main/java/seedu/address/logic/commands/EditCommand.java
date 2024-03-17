@@ -28,7 +28,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -101,12 +104,13 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         //TODO: change personToEdit class to enable update of dob and sex
         DateOfBirth dob = personToEdit.getDateOfBirth();
-        int sex = personToEdit.getSex();
+        Sex sex = personToEdit.getSex();
+        Status status = personToEdit.getStatus();
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(nric, updatedName, updatedPhone, updatedAddress, dob, sex, updatedEmail, updatedTags);
+        return new Person(nric, updatedName, updatedPhone, updatedAddress, dob, sex, status, updatedEmail, updatedTags);
     }
 
     @Override

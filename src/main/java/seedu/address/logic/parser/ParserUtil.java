@@ -15,6 +15,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,11 +25,11 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_CONSTRAINTS_SEX = "Sex must be either F or M.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -37,6 +39,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
     /**
      * Parses a {@code String nric} into a {@code Nric}.
      * Leading and trailing whitespaces will be trimmed.
@@ -118,15 +121,36 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code sex} is invalid.
      */
-    public static int parseSex(String sex) throws ParseException {
+    public static Sex parseSex(String sex) throws ParseException {
         requireNonNull(sex);
         String trimmedSex = sex.trim();
-        if (sex == "F") {
-            return 0;
-        } else if (sex == "M") {
-            return 1;
+        if (sex.equals("F")) {
+            return new Sex(Sex.SexType.F);
+        } else if (sex.equals("M")) {
+            return new Sex(Sex.SexType.M);
         } else {
-            throw new ParseException(MESSAGE_CONSTRAINTS_SEX);
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String sex} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sex} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String formattedStatus = status.trim().toUpperCase();
+        switch (formattedStatus) {
+        case "PENDING":
+            return new Status(Status.StatusType.PENDING);
+        case "HEALTHY":
+            return new Status(Status.StatusType.HEALTHY);
+        case "UNWELL":
+            return new Status(Status.StatusType.UNWELL);
+        default:
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
     }
 

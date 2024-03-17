@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -22,6 +23,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,11 +53,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         DateOfBirth dob = ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DOB).get());
-        int sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
+        Sex sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
+        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         //TODO: add optional fields
-        Person person = new Person(nric, name, phone, address, dob, sex, email, tagList);
+        Person person = new Person(nric, name, phone, address, dob, sex, status, tagList, email);
 
         return new AddCommand(person);
     }

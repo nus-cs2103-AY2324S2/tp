@@ -23,7 +23,7 @@ public class Condition {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(condition);
+        return condition.hashCode();
     }
 
     @Override
