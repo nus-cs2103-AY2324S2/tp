@@ -32,16 +32,28 @@ public class Appointment {
     }
 
 
-    public UUID getID() {
+    public UUID getId() {
         return id;
+    }
+
+    public String getIdString() {
+        return id.toString();
     }
 
     public UUID getPersonId() {
         return personId;
     }
 
+    public String getPersonIdString() {
+        return personId.toString();
+    }
+
     public AppointmentTime getAppointmentTime() {
         return appointmentTime;
+    }
+
+    public String getAppointmentTimeString() {
+        return appointmentTime.toString();
     }
 
     @Override
@@ -56,7 +68,7 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        boolean sameID = id.equals(otherAppointment.getID());
+        boolean sameID = id.equals(otherAppointment.getId());
         boolean samePersonId = personId.equals(otherAppointment.getPersonId());
         boolean sameDate = appointmentTime.equals(otherAppointment.getAppointmentTime());
         return (sameID && samePersonId && sameDate);
