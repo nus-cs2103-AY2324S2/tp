@@ -104,6 +104,11 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    public void pinPerson(Person person) {
+        requireNonNull(person);
+        addressBook.pinPerson(person);
+    }
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
