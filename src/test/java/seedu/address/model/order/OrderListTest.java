@@ -2,6 +2,7 @@ package seedu.address.model.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalOrders.LILIES;
@@ -120,5 +121,20 @@ class OrderListTest {
     @Test
     public void toStringMethod() {
         assertEquals(orderList.asUnmodifiableObservableList().toString(), orderList.toString());
+    }
+
+    @Test
+    public void testEquals() {
+        OrderList orderList = new OrderList();
+        orderList.add(ROSES);
+        assertEquals(orderList, orderList);
+
+        OrderList orderList2 = new OrderList();
+        orderList2.add(ROSES);
+        assertEquals(orderList, orderList2);
+
+        assertNotEquals(orderList, null);
+
+        assertNotEquals(orderList, 1);
     }
 }
