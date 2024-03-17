@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BookList;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MeritScore;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -21,13 +22,15 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_BORROW = "";
+    public static final String DEFAULT_MERIT_SCORE = "0";
+    public static final String DEFAULT_BOOK_LIST = "";
 
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private MeritScore meritScore;
     private BookList bookTitle;
     private Set<Tag> tags;
 
@@ -39,7 +42,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        bookTitle = new BookList(DEFAULT_BORROW);
+        meritScore = new MeritScore(DEFAULT_MERIT_SCORE);
+        bookTitle = new BookList(DEFAULT_BOOK_LIST);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        meritScore = personToCopy.getMeritScore();
         bookTitle = personToCopy.getBookList();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -96,7 +101,23 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Borrow} of the {@code Person} that we are building.
+     * Sets the {@code MeritScore} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeritScore(String meritScore) {
+        this.meritScore = new MeritScore(meritScore);
+        return this;
+    }
+
+    /**
+     * Sets the {@code MeritScore} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeritScore(int meritScore) {
+        this.meritScore = new MeritScore(meritScore);
+        return this;
+    }
+
+    /**
+     * Sets the {@code BookList} of the {@code Person} that we are building.
      */
     public PersonBuilder withBook(String bookTitle) {
         this.bookTitle = new BookList(bookTitle);
@@ -104,7 +125,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, bookTitle, tags);
+        return new Person(name, phone, email, address, meritScore, bookTitle, tags);
     }
 
 }
