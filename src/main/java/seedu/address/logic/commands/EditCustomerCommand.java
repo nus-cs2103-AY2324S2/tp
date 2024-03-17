@@ -32,7 +32,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCustomerCommand extends Command {
+public class EditCustomerCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit";
 

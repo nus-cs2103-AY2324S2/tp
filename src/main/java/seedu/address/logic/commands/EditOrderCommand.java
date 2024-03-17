@@ -39,7 +39,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-public class EditOrderCommand extends Command {
+public class EditOrderCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -54,7 +54,7 @@ public class EditOrderCommand extends Command {
             + PREFIX_PRODUCT_QUANTITY + "2";
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "Both product and quantity must be provided.";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -134,8 +134,8 @@ public class EditOrderCommand extends Command {
         /**
          * Returns true if at least one field is edited.
          */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(product, quantity);
+        public boolean isAllFieldsEdited() {
+            return product != null && quantity != null;
         }
 
         public void setProduct(Product product) {
