@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="EduLink NUS" minWidth="500" minHeight="750" onCloseRequest="#handleExit">
   <icons>
@@ -33,18 +35,38 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="stack-pane">
-          <padding>
-            <Insets top="30" right="10" bottom="10" left="10" />
-          </padding>
-        </StackPane>
+        <HBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="stack-pane"
-                   minHeight="125" prefHeight="125" maxHeight="125">
-          <padding>
-            <Insets top="10" right="10" bottom="20" left="10" />
-          </padding>
-        </StackPane>
+          <StackPane VBox.vgrow="NEVER" fx:id="logoPlaceholder" styleClass="stack-pane" minHeight="200"
+                     maxHeight="200" prefHeight="200">
+            <padding>
+              <Insets top="20" right="10" bottom="20" left="20" />
+            </padding>
+            <StackPane styleClass="logo-container" VBox.vgrow="ALWAYS">
+              <ImageView fitHeight="120" fitWidth="120">
+                <Image url="@/images/eduLinkNus.png"/>
+              </ImageView>
+            </StackPane>
+          </StackPane>
+
+           <VBox HBox.hgrow="ALWAYS" minHeight="200" maxHeight="200" prefHeight="200">
+             <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="stack-pane">
+               <padding>
+                 <Insets top="20" right="20" bottom="10" left="10" />
+               </padding>
+             </StackPane>
+
+             <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="stack-pane"
+                        minHeight="125" prefHeight="125" maxHeight="125">
+               <padding>
+                 <Insets top="10" right="20" bottom="20" left="10" />
+               </padding>
+             </StackPane>
+           </VBox>
+
+        </HBox>
+
+
 
         <VBox fx:id="personList" styleClass="stack-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
