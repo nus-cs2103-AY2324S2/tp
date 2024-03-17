@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
 /**
- * Adds a person to the address book.
+ * Adds a task to a project.
  */
 public class AddTaskCommand extends Command {
 
