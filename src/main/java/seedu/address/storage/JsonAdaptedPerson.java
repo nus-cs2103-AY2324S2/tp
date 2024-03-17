@@ -52,18 +52,18 @@ class JsonAdaptedPerson {
         }
     }
 
-//    @JsonCreator
-//    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-//                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-//                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-//        this.name = name;
-//        this.phone = phone;
-//        this.email = email;
-//        this.address = address;
-//        if (tags != null) {
-//            this.tags.addAll(tags);
-//        }
-//    }
+    /*@JsonCreator
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        if (tags != null) {
+            this.tags.addAll(tags);
+        }
+    }*/
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
@@ -117,9 +117,10 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-//        if (address == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-//        }
+        //if (address == null) {
+        //      throw new IllegalValueException(
+        //      String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        //}
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }

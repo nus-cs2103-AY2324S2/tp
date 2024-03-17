@@ -54,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArrayList<Schedule> scheduleList = ParserUtil
                 .parseSchedules(argMultimap
                         .getAllValues(PREFIX_SCHEDULE)); // schedules cannot be assigned when person is just added
-        if(arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
+        if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
             Person person = new Person(name, phone, email, address, tagList, scheduleList);
             return new AddCommand(person);
