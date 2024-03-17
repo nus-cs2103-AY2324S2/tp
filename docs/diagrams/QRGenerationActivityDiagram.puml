@@ -1,0 +1,12 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:Person calls generateQrCode();
+:Generate vCard string
+from Person's information;
+:Encode vCard information in QR code format;
+:Save QR code in a PNG;
+stop
+@enduml
