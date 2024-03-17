@@ -13,6 +13,7 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -42,6 +43,17 @@ public class ImportCommandTest {
     }
 
     @Test
+    public void execute_hasDuplicatePerson_failure() {
+        HashSet<File> curHashSet = new HashSet<>();
+        curHashSet.add(new File(ADDRESS_BOOK_PATH));
+        ImportCommand importCommand = new ImportCommand(curHashSet);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.addPerson(JAMES);
+        String expectedMessage = String.format(ImportCommand.MESSAGE_DUPLICATE_PERSON, JAMES.getName(), JAMES.getPhone());
+        assertThrows(CommandException.class, expectedMessage, () -> importCommand.execute(expectedModel));
+    }
+
+    @Test
     public void equals() {
         HashSet<File> curHashSet = new HashSet<>();
         curHashSet.add(new File(UNKNOWN_FILE_NAME));
@@ -57,4 +69,5 @@ public class ImportCommandTest {
 
         assertFalse(importCommand.equals(new ImportCommand(otherHashSet)));
     }
+
 }
