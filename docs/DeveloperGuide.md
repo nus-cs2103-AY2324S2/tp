@@ -269,7 +269,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * manage contacts faster than a typical mouse/GUI driven app
 * centralized and organized platform for storing and managing contact information and critical stakeholder details
 
@@ -325,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. SWEE prompts user to input the client's details in the correct format.
     * 1a2. User inputs in the client's details again.
     * 1a3 repeat steps 1a1-1a2 until the input is in the correct format.
-        
+
         Use case resumes at step 2.
 
 **Use case: UC02 - Delete a client**
@@ -365,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to see the list of all current client contacts in SWEE.
-2.  SWEE presents the user with all the current saved contacts in alphabetical order. 
+2.  SWEE presents the user with all the current saved contacts in alphabetical order.
 
     Use case ends.
 
