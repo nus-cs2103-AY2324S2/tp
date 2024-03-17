@@ -110,6 +110,9 @@ class AssignCommandTest {
         AssignCommand assignOneToOneCommand = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
         AssignCommand assignOneToTwoCommand = new AssignCommand(INDEX_FIRST, INDEX_SECOND);
 
+        // same object -> returns true
+        assertEquals(assignOneToOneCommand, assignOneToOneCommand);
+
         // same values -> returns true
         AssignCommand assignCommandCopy = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
         assertEquals(assignOneToOneCommand, assignCommandCopy);
