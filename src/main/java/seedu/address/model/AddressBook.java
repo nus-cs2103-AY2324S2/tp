@@ -100,10 +100,17 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// booking methods
 
+    /**
+     * Adds a booking to the address book.
+     * The booking must not already exist in the address book.
+     */
     public void addBooking(Booking booking) {
         bookings.add(booking);
     }
 
+    /**
+     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     */
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
         return bookings.contains(booking);
