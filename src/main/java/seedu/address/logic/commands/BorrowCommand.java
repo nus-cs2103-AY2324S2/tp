@@ -10,7 +10,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-//import seedu.address.model.person.MeritScore;
 import seedu.address.model.person.BookList;
 import seedu.address.model.person.Person;
 
@@ -29,7 +28,6 @@ public class BorrowCommand extends Command {
             + PREFIX_BOOKLIST + "Likes to swim.";
 
     public static final String MESSAGE_ADD_BORROW_SUCCESS = "Added book to Person: %1$s";
-    public static final String MESSAGE_DELETE_BORROW_SUCCESS = "Removed book from Person: %1$s";
 
     private final Index index;
     private final BookList bookTitle;
@@ -41,7 +39,6 @@ public class BorrowCommand extends Command {
      */
     public BorrowCommand(Index index, BookList bookTitle) {
         requireAllNonNull(index, bookTitle);
-
         this.index = index;
         this.bookTitle = bookTitle;
     }
@@ -52,6 +49,10 @@ public class BorrowCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        if (bookTitle.equals(new BookList(""))) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_BOOK_INPUT_FIELD);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
@@ -71,15 +72,11 @@ public class BorrowCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the bookTitle
-     * is added to or removed from
+     * Formats and returns the borrow success message.
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !bookTitle.value.bookTitle.isEmpty()
-                ? MESSAGE_ADD_BORROW_SUCCESS
-                : MESSAGE_DELETE_BORROW_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(MESSAGE_ADD_BORROW_SUCCESS, personToEdit);
     }
 
     @Override
