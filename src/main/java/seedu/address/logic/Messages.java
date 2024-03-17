@@ -16,6 +16,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_INVALID_ARTICLE_DISPLAYED_INDEX = "The article index provided is invalid";
+    public static final String MESSAGE_ARTICLES_LISTED_OVERVIEW = "%1$d articles listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
@@ -45,6 +47,16 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code person} for display to the user.
+     */
+    public static String format(Article article) {
+        final StringBuilder builder = new StringBuilder();
+        //To be implemented here
+
         return builder.toString();
     }
 
