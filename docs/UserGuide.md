@@ -120,12 +120,12 @@ format: `filter [m/MODULE] [f/FACULTY] [t/TAG]…`
 
 * At least one of the optional fields must be provided.
 * Only module, faculty and tags can be filtered.
-* The filter is case-insensitive for tags. e.g `tUTOR` will match `tutor`
-* The filter accepts single or multiple tags to filter from.
 * The filter is case-sensitive for modules. e.g `hsi1000` is an invalid module value
 * The filter only accepts a single module to filter from.
 * The filter only accepts valid values for faculty. e.g `school of business` is an invalid faculty value.
 * The filter only accepts a single faculty to filter from.
+* The filter is case-insensitive for tags. e.g `tUTOR` will match `tutor`
+* The filter accepts single or multiple tags to filter from.
 * Persons matching all fields will be returned (i.e. `AND` search).
   e.g. `filter m/CS2030S f/Computing` will return `Charlotte Oliveiro`
 
@@ -235,6 +235,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [v/VENUE] [m/MODULE] [t/TAG]…​ [a/AVAILABILITY]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Filter** | `filter [m/MODULE] [f/FACULTY] [t/TAG]…`<br> e.g., `filter m/CS2100 t/friends`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Sort** | `sort [ATTRIBUTE]`<br> e.g., `sort p/`
 **List** | `list`
