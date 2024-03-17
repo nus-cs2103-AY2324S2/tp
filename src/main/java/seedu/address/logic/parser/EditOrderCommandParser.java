@@ -21,23 +21,30 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
     public EditOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ORDER_ID, PREFIX_PRODUCT_NAME, PREFIX_PRODUCT_QUANTITY);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_ORDER_ID, PREFIX_PRODUCT_NAME, PREFIX_PRODUCT_QUANTITY);
 
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ORDER_ID).orElseThrow(() -> new ParseException("")));
+            index = ParserUtil.parseIndex(
+                    argMultimap.getValue(PREFIX_ORDER_ID)
+                            .orElseThrow(() -> new ParseException("")));
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCustomerCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCustomerCommand.MESSAGE_USAGE), pe);
         }
 
-        EditOrderCommand.EditOrderDescriptor editOrderDescriptor = new EditOrderCommand.EditOrderDescriptor();
+        EditOrderCommand.EditOrderDescriptor editOrderDescriptor =
+                new EditOrderCommand.EditOrderDescriptor();
 
         if (argMultimap.getValue(PREFIX_PRODUCT_NAME).isPresent()) {
-            editOrderDescriptor.setProduct(ParserUtil.parseProduct(argMultimap.getValue(PREFIX_PRODUCT_NAME).get()));
+            editOrderDescriptor.setProduct(ParserUtil.parseProduct(
+                    argMultimap.getValue(PREFIX_PRODUCT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PRODUCT_QUANTITY).isPresent()) {
-            editOrderDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_PRODUCT_QUANTITY).get()));
+            editOrderDescriptor.setQuantity(ParserUtil.parseQuantity(
+                    argMultimap.getValue(PREFIX_PRODUCT_QUANTITY).get()));
         }
 
         if (!editOrderDescriptor.isAllFieldsEdited()) {
