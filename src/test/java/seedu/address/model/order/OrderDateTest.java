@@ -41,22 +41,22 @@ class OrderDateTest {
 
     @Test
     public void equals() {
-        OrderDate OrderDate = new OrderDate("11-05-2024 21:51");
+        OrderDate orderDate = new OrderDate("11-05-2024 21:51");
 
         // same values -> returns true
-        assertEquals(OrderDate, new OrderDate("11-05-2024 21:51"));
+        assertEquals(orderDate, new OrderDate("11-05-2024 21:51"));
 
         // same object -> returns true
-        assertEquals(OrderDate, OrderDate);
+        assertEquals(orderDate, orderDate);
 
         // null -> returns false
-        assertNotEquals(null, OrderDate);
+        assertNotEquals(null, orderDate);
 
         // different types -> returns false
-        assertNotEquals(OrderDate, 0.0);
+        assertNotEquals(orderDate, 0.0);
 
         // different values -> returns false
-        assertNotEquals(OrderDate, new OrderDate("11-05-2024 21:52"));
+        assertNotEquals(orderDate, new OrderDate("11-05-2024 21:52"));
     }
 
 }
