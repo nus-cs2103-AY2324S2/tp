@@ -24,14 +24,12 @@ public class TimeParser {
     private static final String MESSAGE_USAGE = "Use dd/MM/yyyy [x]am-[y]pm";
 
     /**
-     * To be very honest I have no idea what args would look like, I'm following the format
-     * of the other Parser subclasses in this package. This portion needs some severe
-     * rewriting in the future - JY
-     *
-     * Checks that the message follows the correct format.
+     * Parses a {@code String appointmentTime} into a {@code AppointmentTime}.
+     * The expected format is dd/MM/yyyy [x]am-[y]pm.
+     * 
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AppointmentTime parse(String args) throws ParseException {
+    public static AppointmentTime parse(String args) throws ParseException {
         if (args.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimeParser.MESSAGE_USAGE));

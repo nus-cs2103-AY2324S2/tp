@@ -60,7 +60,7 @@ public class Person {
         this.tags.addAll(tags);
     }
 
-    public UUID getID() {
+    public UUID getId() {
         return id;
     }
 

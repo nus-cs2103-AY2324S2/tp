@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents an Appointment's email in the address book.
+ * Represents an Appointment's time in the address book.
  * ASSUMPTION: An Appointment CANNOT SPAN MULTIPLE DAYS!!!
  * Guarantees: none at the moment.
  */
