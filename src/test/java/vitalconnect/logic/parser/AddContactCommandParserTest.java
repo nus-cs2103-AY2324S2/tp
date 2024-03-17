@@ -50,6 +50,15 @@ public class AddContactCommandParserTest {
     }
 
     @Test
+    public void parse_allOptionsMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE);
+
+        // missing nric prefix
+        assertParseFailure(parser, NRIC_DESC_BOB,
+            expectedMessage);
+    }
+
+    @Test
     public void parse_invalidValue_failure() {
         // invalid nric
         assertParseFailure(parser, INVALID_NRIC_DESC + VALID_EMAIL_BOB,

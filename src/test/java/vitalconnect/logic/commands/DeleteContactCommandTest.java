@@ -1,6 +1,8 @@
 package vitalconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vitalconnect.testutil.Assert.assertThrows;
 import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
@@ -49,6 +51,23 @@ public class DeleteContactCommandTest {
 
         assertEquals(DeleteContactCommand.MESSAGE_SUCCESS,
             commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void equalsTest() {
+        Nric nric = new Nric("S2519229Z");
+        DeleteContactCommand command = new DeleteContactCommand(nric);
+        // same object, equal
+        assertTrue(command.equals(command));
+
+        // same nric, same command
+        assertTrue(command.equals(new DeleteContactCommand(new Nric("S2519229Z"))));
+
+        // different type, not same command
+        assertFalse(command.equals("abc"));
+
+        // null, not same command
+        assertFalse(command.equals(null));
     }
 
     /**

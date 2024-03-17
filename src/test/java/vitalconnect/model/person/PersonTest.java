@@ -49,6 +49,12 @@ public class PersonTest {
     }
 
     @Test
+    public void copyPerson_success() {
+        Person p = new PersonBuilder().build();
+        assertEquals(p, p.copyPerson());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();

@@ -66,6 +66,14 @@ public class AddContactCommandTest {
             commandResult.getFeedbackToUser());
     }
 
+    @Test
+    public void toStringTest() {
+        Nric nric = new Nric("S2519229Z");
+        ContactInformation ci = new ContactInformation(new Email("email@123.com"), new Phone(""), new Address(""));
+        AddContactCommand command = new AddContactCommand(nric, ci);
+        assertEquals(command.toString(), "addContact" + nric + ci);
+    }
+
     /**
      * A default model stub that have all of the methods failing.
      */

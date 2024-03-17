@@ -1,5 +1,6 @@
 package vitalconnect.model.person.contactinformation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vitalconnect.testutil.Assert.assertThrows;
@@ -10,6 +11,17 @@ public class ContactInformationTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new ContactInformation((String) null, null, null));
+    }
+
+    @Test
+    public void constructor_withParameter_success() {
+        Email email = new Email("abc@email.com");
+        Phone phone = new Phone("12345678");
+        Address address = new Address("address");
+        ContactInformation ci = new ContactInformation(email, phone, address);
+        assertEquals(ci.getEmail(), email);
+        assertEquals(ci.getPhone(), phone);
+        assertEquals(ci.getAddress(), address);
     }
 
     @Test

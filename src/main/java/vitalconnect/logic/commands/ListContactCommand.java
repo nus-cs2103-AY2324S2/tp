@@ -5,11 +5,6 @@ import static vitalconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import vitalconnect.model.Model;
 
-
-
-
-
-
 /**
  * List all the contact information of a person with their name
  */
