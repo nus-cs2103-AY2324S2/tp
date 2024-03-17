@@ -66,7 +66,7 @@ public class ScheduleCommand extends Command {
         Person metPerson = new Person(
                 personToMeet.getName(), personToMeet.getPhone(), personToMeet.getEmail(),
                 personToMeet.getAddress(), personToMeet.getBirthday(),
-                personToMeet.getLastMet(), this.schedule, personToMeet.getTags());
+                personToMeet.getLastMet(), this.schedule, personToMeet.getTags(), personToMeet.getPolicyList());
 
         model.setPerson(personToMeet, metPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

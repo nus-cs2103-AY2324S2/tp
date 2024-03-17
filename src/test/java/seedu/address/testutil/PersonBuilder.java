@@ -9,6 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PolicyList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +30,7 @@ public class PersonBuilder {
     private Address address;
     private Birthday birthday;
     private Set<Tag> tags;
+    private PolicyList policyList;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         tags = new HashSet<>();
+        policyList = new PolicyList();
     }
 
     /**
@@ -52,6 +55,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         birthday = personToCopy.getBirthday();
         tags = new HashSet<>(personToCopy.getTags());
+        policyList = personToCopy.getPolicyList();
     }
 
     /**
@@ -102,8 +106,19 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * With policies person builder.
+     *
+     * @param policies the policies
+     * @return the person builder
+     */
+    public PersonBuilder withPolicies(String... policies) {
+        this.policyList = SampleDataUtil.getPoliciesSet(policies);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, birthday, tags);
+        return new Person(name, phone, email, address, birthday, null, null, tags, policyList);
     }
 
 }
