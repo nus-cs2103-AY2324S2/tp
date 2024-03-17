@@ -82,6 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
+    @Override
     public boolean hasModule(ModuleCode module) {
         requireNonNull(module);
         return modules.contains(module);
@@ -106,6 +107,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a module to the address book.
      * The module must not already exist in the address book. (TODO)
      */
+    @Override
     public void addModule(ModuleCode m) {
         modules.add(m);
     }
@@ -143,6 +145,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
     public List<ModuleCode> getModuleList() {
         return modules;
     }

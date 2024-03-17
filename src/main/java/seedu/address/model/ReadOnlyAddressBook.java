@@ -18,4 +18,6 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     List<ModuleCode> getModuleList();
+    boolean hasModule(ModuleCode moduleCode);
+    void addModule(ModuleCode moduleCode);
 }

@@ -108,5 +108,14 @@ public class AddressBookTest {
         public List<ModuleCode> getModuleList() {
             return null;
         }
+
+        @Override
+        public boolean hasModule(ModuleCode moduleCode) {
+            return false;
+        }
+
+        @Override
+        public void addModule(ModuleCode moduleCode) {
+        }
     }
 }
