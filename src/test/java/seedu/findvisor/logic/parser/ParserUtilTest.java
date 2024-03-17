@@ -28,6 +28,9 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NAME_EXTENDED = "Rachel Lee Walker";
+    private static final String VALID_NAME_WITH_BIG_SPACE_IN_BETWEEN = "Rachel       Walker";
+    private static final String VALID_NAME_WITH_DIFFERING_SPACES = "Rachel  Lee  Walker";
     private static final String VALID_PHONE = "99123456";
     private static final String VALID_PHONE_WITH_SPACE_BETWEEN = "9912           3456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -78,6 +81,18 @@ public class ParserUtilTest {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseName_validValueWithBigSpaceInBetween_returnsTrimmedName() throws Exception {
+        Name expectedName = new Name(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME_WITH_BIG_SPACE_IN_BETWEEN));
+    }
+
+    @Test
+    public void parseName_validValueWithDifferingSpaces_returnsTrimmedName() throws Exception {
+        Name expectedName = new Name(VALID_NAME_EXTENDED);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME_WITH_DIFFERING_SPACES));
     }
 
     @Test
