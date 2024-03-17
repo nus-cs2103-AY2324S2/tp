@@ -10,14 +10,14 @@ class AddAppointmentCommandParserTest {
 
     @Test
     public void parse_missingPrefix_throwsParseException() {
-        AddDoctorCommandParser parser = new AddDoctorCommandParser();
+        AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
         String args = "ad/2024-01-01";
         assertThrows(ParseException.class, () -> parser.parse(args));
     }
 
     @Test
     public void parse_emptyPrefix_throwsParseException() {
-        AddDoctorCommandParser parser = new AddDoctorCommandParser();
+        AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
         String args = "";
         assertThrows(ParseException.class, () -> parser.parse(args));
     }
