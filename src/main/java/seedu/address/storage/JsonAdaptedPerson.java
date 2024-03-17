@@ -92,7 +92,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
 
-        if (sid <= 0) {
+        if (sid < 0) {
             // TODO: Custom type for SID
             throw new IllegalValueException("Please only use positive index.");
         }
@@ -100,9 +100,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        // final int sid = new Integer(toModelType().getSid());
         // TODO: Dummy value for ID
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelTags, sid);
     }
 
 }
