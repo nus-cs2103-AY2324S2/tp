@@ -17,7 +17,7 @@ public class MeritScore {
      */
     public static final String VALIDATION_REGEX = "-?\\d+";
 
-    public final int meritScore;
+    public final String meritScore;
 
     /**
      * Constructs a {@code MeritScore}.
@@ -25,8 +25,17 @@ public class MeritScore {
      * @param meritScore A valid merit score.
      */
     public MeritScore(int meritScore) {
+        this.meritScore = String.valueOf(meritScore);
+    }
+
+    /**
+     * Constructs a {@code MeritScore} from String.
+     *
+     * @param meritScore A valid merit score.
+     */
+    public MeritScore(String meritScore) {
         requireNonNull(meritScore);
-        checkArgument(isValidMeritScore(String.valueOf(meritScore)), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMeritScore(meritScore), MESSAGE_CONSTRAINTS);
         this.meritScore = meritScore;
     }
 
@@ -38,15 +47,29 @@ public class MeritScore {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Increases the merit score by 1.
+     *
+     * @return new incremented MeritScore
+     */
     public MeritScore incrementScore() {
-        return new MeritScore(this.meritScore + 1);
+        int score = Integer.parseInt(meritScore);
+        score++;
+        return new MeritScore(String.valueOf(score));
     }
 
+    /**
+     * Decreases the merit score by 1.
+     *
+     * @return new decremented MeritScore
+     */
     public MeritScore decrementScore() {
-        return new MeritScore(this.meritScore - 1);
+        int score = Integer.parseInt(meritScore);
+        score--;
+        return new MeritScore(String.valueOf(score));
     }
 
-    public int getScore() {
+    public String getScore() {
         return meritScore;
     }
 
@@ -72,8 +95,9 @@ public class MeritScore {
 
     @Override
     public int hashCode() {
-        Integer score = meritScore;
-        return score.hashCode();
+        // Integer score = meritScore;
+        // return score.hashCode();
+        return meritScore.hashCode();
     }
 
 }

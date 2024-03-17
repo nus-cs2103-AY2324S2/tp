@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final MeritScore meritScore;
+    private final String meritScore;
     private final String bookTitle;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -40,9 +40,9 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("count") MeritScore meritScore,
-            @JsonProperty("borrow") String bookTitle,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("meritScore") String meritScore,
+            @JsonProperty("bookTitle") String bookTitle,
+            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
         this.meritScore = meritScore;
         this.bookTitle = bookTitle;
         if (tags != null) {
-            this.tags.addAll(tagged);
+            this.tags.addAll(tags);
         }
     }
 
@@ -62,7 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        meritScore = source.getMeritScore();
+        meritScore = source.getMeritScore().meritScore;
         bookTitle = source.getBook().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -114,6 +114,12 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (meritScore == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    BookList.class.getSimpleName()));
+        }
+        final MeritScore modelMeritScore = new MeritScore(meritScore);
+
         if (bookTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     BookList.class.getSimpleName()));
@@ -121,7 +127,7 @@ class JsonAdaptedPerson {
         final BookList modelBookList = new BookList(bookTitle);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMeritScore, modelBookList, modelTags);
     }
 
 }
