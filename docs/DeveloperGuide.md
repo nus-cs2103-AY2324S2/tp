@@ -418,8 +418,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to filter user with input substring
-2.  Realodex shows the list of all clients with name including the input substring
+1.  User requests to filter user with input substring.
+2.  Realodex shows the list of all clients with name including the input substring.
 
     Use case ends.
 
