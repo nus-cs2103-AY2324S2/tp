@@ -17,24 +17,79 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+
+    private final Id id;
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Major major;
+
+    private final Intake intake;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.id = id;
+        this.major = new Major("");
+        this.intake = new Intake("2023");
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.id = new Id("N1111111N");
+        this.major = new Major("");
+        this.intake = new Intake("2023");
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Id id, Major major, Intake intake, Name name, Phone phone, Email email,
+                  Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags, id, major, intake);
+        this.id = id;
+        this.major = major;
+        this.intake = intake;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+
+
+    public Id getId() {
+        return id;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public Intake getIntake() {
+        return intake;
     }
 
     public Name getName() {
@@ -90,26 +145,29 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return id.equals(otherPerson.id) && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags) && major.equals(otherPerson.major);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(id, name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("major", major)
+                .add("intake", intake)
                 .add("tags", tags)
                 .toString();
     }
