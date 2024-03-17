@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,6 +15,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -77,6 +81,12 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Deletes the given order.
+     * The order must exist in the address book.
+     */
+    void deleteOrder(int id);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -93,4 +103,26 @@ public interface Model {
      * @return An Optional containing the found Person, or an empty Optional if no person with the phone number exists.
      */
     Optional<Person> findPersonByPhoneNumber(String phoneNumber);
+
+    Order findOrderByIndex(int id);
+    /**
+     * Returns an unmodifiable view of the filtered person list.
+     *
+     * @return an unmodifiable view of the filtered person list.
+     */
+    ObservableList<Order> getFilteredOrderList();
+    /**
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     *
+     * @param predicate predicate to update the filtered order list with.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Predicate<Order> predicate);
+
+    /**
+     * Returns the number of orders in the order list.
+     *
+     * @return the number of orders in the order list
+     */
+    int getOrderListSize();
 }

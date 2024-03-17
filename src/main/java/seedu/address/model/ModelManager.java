@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    //need to include a means to pass this here from constructor
+    private final FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
     }
 
     public ModelManager() {
@@ -106,10 +110,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteOrder(int id) {
+        addressBook.removeOrder(id);
+    }
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public int getOrderListSize() {
+        return addressBook.getOrderListSize();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -138,6 +151,23 @@ public class ModelManager implements Model {
             }
         }
         return Optional.empty();
+    }
+
+    //=========== Filtered Order List Accessors =============================================================
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
+    }
+
+    @Override
+    public Order findOrderByIndex(int id) {
+        return addressBook.findOrderByIndex(id);
     }
 
     @Override

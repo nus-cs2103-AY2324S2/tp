@@ -6,14 +6,18 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents a Customer's Order in the Addressbook.
  */
-public class Order {
+public class Order implements Comparable<Order> {
     public static final String MESSAGE_CONSTRAINTS = "Orders need to contain alphanumeric "
             + "product names and numeric quantities";
     private int id;
     private Map<Product, Quantity> productMap;
+
+    private Person customer;
 
     /**
      * Constructs an {@code Order} Object.
@@ -119,6 +123,15 @@ public class Order {
     }
 
     /**
+     * Sets the ProductMap of the order.
+     *
+     * @param productMap ProductMap to set to
+     */
+    public void setProductMap(Map<Product, Quantity> productMap) {
+        this.productMap = productMap;
+    }
+
+    /**
      * Checks if the product map is empty.
      * @return boolean value of whether the product map is empty.
      */
@@ -128,6 +141,43 @@ public class Order {
 
     public void setProducts(Map<Product, Quantity> products) {
         this.productMap = products;
+    /**
+     * Gets the {@code Person} ordering the order
+     *
+     * @return the customer ordering the order
+     */
+    public Person getCustomer() {
+        return this.customer;
+    }
+
+    /**
+     * Compares the other Order Object with this Object based on the OrderID
+     * @param otherOrder the object to be compared.
+     * @return negative integer, zero, or a positive integer as this object is less than,
+     *         equal to, or greater than the specified object.
+     */
+    @Override
+    public int compareTo(Order otherOrder) {
+        if (this.id < otherOrder.id) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
+    /**
+     * Checks if two orders are the same.
+     * @param otherOrder The other order to be checked against.
+     * @return A boolean value of whether the two orders are the same.
+     */
+    public boolean isSameOrder(Order otherOrder) {
+        if (otherOrder == this) {
+            return true;
+        }
+
+        return otherOrder != null
+                && otherOrder.id == this.id
+                && otherOrder.customer == this.customer;
     }
 
     @Override
