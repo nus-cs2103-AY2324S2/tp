@@ -6,17 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddInterviewerCommand;
-import seedu.address.logic.commands.AddApplicantCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -46,12 +36,11 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddInterviewerCommand.COMMAND_WORD:
+        case AddInterviewerPersonCommand.COMMAND_WORD:
             return new AddInterviewerCommandParser().parse(arguments);
 
-        case AddApplicantCommand.COMMAND_WORD:
+        case AddApplicantPersonCommand.COMMAND_WORD:
             return new AddApplicantCommandParser().parse(arguments);
-
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
@@ -70,6 +59,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListInterviewsCommand.COMMAND_WORD:
+            return new ListInterviewsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
