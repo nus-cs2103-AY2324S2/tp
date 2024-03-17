@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -42,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane attendances;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -57,5 +60,11 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getAttendances().stream()
+                .sorted(Comparator.comparing(attendance -> attendance.attendanceDate))
+                .forEach(attendance -> {
+                    String formattedDate = attendance.attendanceDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                    attendances.getChildren().add(new Label(formattedDate));
+                });
     }
 }
