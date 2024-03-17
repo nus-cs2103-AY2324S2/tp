@@ -54,6 +54,9 @@ public class Remark {
         return remarkName;
     }
 
+    /**
+     * Format state as text for representation.
+     */
     public String toStringWithRepresentation() {
         if (remarkName.isBlank()) {
             return "No remark.";
