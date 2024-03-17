@@ -24,6 +24,9 @@ public class Messages {
 
     public static final String MESSAGE_PHONE_NUMBER_NOT_FOUND = "Phone number provided not found";
 
+    public static final String MESSAGE_COEXISTING_CUSTOMER_AND_ORDER =
+            "Customer ID and order ID cannot coexist here.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
