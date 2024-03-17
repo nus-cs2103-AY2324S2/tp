@@ -21,7 +21,7 @@ import seedu.address.model.UserPrefs;
 
 
 public class ImportCommandTest {
-    private static final String UNKNOWN_FILE_NAME = "./src/test/data/1234abcd1234efgh5678.json";
+    private static final String UNKNOWN_FILE_NAME = "./src/test/data/ImportCommandTest/abcdefgh_abcdefgh.json";
     private static final String ADDRESS_BOOK_PATH = "./src/test/data/ImportCommandTest/addressbook.json";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
