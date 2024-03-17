@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status can only be either 'pending', 'completed' or 'cancelled'";
+            "Status can only be either 'pending', 'completed' or 'canceled'";
 
     private final StatusEnum status;
 
@@ -64,7 +64,7 @@ public class Status {
      * Represents the statuses an order can take in the order book.
      */
     public enum StatusEnum {
-        PENDING, COMPLETED, CANCELLED
+        PENDING, COMPLETED, CANCELED
     }
 
 
