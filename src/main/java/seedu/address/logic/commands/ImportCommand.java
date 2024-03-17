@@ -146,11 +146,4 @@ public class ImportCommand extends Command {
         ImportCommand otherImportCommand = (ImportCommand) other;
         return files.equals(otherImportCommand.files);
     }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("files", files)
-                .toString();
-    }
 }
