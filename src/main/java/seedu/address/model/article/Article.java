@@ -24,12 +24,12 @@ public class Article {
     /**
      * Constructs an Article object.
      *
-     * @param title
-     * @param authors
-     * @param publicationDate
-     * @param source
-     * @param category
-     * @param status
+     * @param title the title of the article.
+     * @param authors the authors of the article.
+     * @param publicationDate the date of publication.
+     * @param source the people interviewed.
+     * @param category the subject of the article.
+     * @param status the current status of the article.
      */
     public Article(String title, String[] authors, LocalDateTime publicationDate,
                    String[] source, String category, Status status) {
