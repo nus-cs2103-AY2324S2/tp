@@ -1,5 +1,6 @@
 package seedu.address.model.book;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -35,7 +36,7 @@ class BookTest {
     }
 
     @Test
-    public void equals() {
+    public void equalsTest() {
         Book book = new Book("Valid Book");
 
         // same values -> returns true
@@ -52,5 +53,11 @@ class BookTest {
 
         // different values -> returns false
         assertFalse(book.equals(new Book("Other Valid Book")));
+    }
+
+    @Test
+    public void toStringTest() {
+        Book book = new Book("Valid Book123!!!");
+        assertEquals("Valid Book123!!!", book.toString());
     }
 }
