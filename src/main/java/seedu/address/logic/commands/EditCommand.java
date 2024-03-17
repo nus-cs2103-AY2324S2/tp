@@ -113,7 +113,7 @@ public class EditCommand extends Command {
         ArrayList<Order> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembership, updatedTags,
-                updatedPoints, updatedOrders));
+                updatedPoints, updatedOrders);
     }
 
     @Override

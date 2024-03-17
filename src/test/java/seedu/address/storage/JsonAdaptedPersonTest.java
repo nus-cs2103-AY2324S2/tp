@@ -132,7 +132,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidPoints_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_MEMBERSHIP,
-                        VALID_TAGS, INVALID_POINTS);
+                        VALID_TAGS, INVALID_POINTS, VALID_ORDERS);
         String expectedMessage = Points.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -140,7 +140,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullPoints_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_MEMBERSHIP, VALID_TAGS, null);
+                VALID_MEMBERSHIP, VALID_TAGS, null, VALID_ORDERS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Points.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -150,7 +150,8 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedOrder> invalidOrders = new ArrayList<>(VALID_ORDERS);
         invalidOrders.add(new JsonAdaptedOrder(INVALID_ORDERITEM, VALID_ORDERDATETIME));
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, invalidOrders);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_MEMBERSHIP, VALID_TAGS, VALID_POINTS, invalidOrders);
         String expectedMessage = Order.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -160,7 +161,8 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedOrder> invalidOrders = new ArrayList<>(VALID_ORDERS);
         invalidOrders.add(new JsonAdaptedOrder(VALID_ORDERITEM, INVALID_ORDERDATETIME));
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, invalidOrders);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_MEMBERSHIP, VALID_TAGS, VALID_POINTS, invalidOrders);
         String expectedMessage = Order.MESSAGE_INVALID_DATETIME;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
