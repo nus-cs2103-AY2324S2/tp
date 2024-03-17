@@ -87,6 +87,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable participation score list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Integer> getParticipationScores() {
+        return Collections.unmodifiableList(participationScores);
+    }
+
+    /**
      * Returns true if tag exists on the person.
      */
     public boolean hasTag(Tag tag) {
