@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import staffconnect.model.person.Person;
 
 /**
@@ -43,12 +44,17 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private VBox meetingsContainer;
+
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -56,7 +62,9 @@ public class PersonCard extends UiPart<Region> {
         module.setText(person.getModule().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getMeetings().stream().sorted(Comparator.comparing(meeting -> meeting.getStartDate().getDateTime()))
+            .forEach(meeting -> meetingsContainer.getChildren().add(new MeetingsCard(meeting).getRoot()));
     }
 }

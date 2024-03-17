@@ -27,7 +27,7 @@ public class Person {
     private final Module module;
     private final Set<Tag> tags = new HashSet<>();
 
-    private final Set<Meeting> meetings = new HashSet<>();
+    private Set<Meeting> meetings = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -71,6 +71,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable meeting set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Meeting> getMeetings() {
+        return Collections.unmodifiableSet(meetings);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -91,8 +99,12 @@ public class Person {
         return meetings.contains(toAdd);
     }
 
-    public boolean setMeeting(Meeting toAdd) {
-        return meetings.add(toAdd);
+    public void setMeetings(Set<Meeting> toAdd) {
+        meetings = toAdd;
+    }
+
+    public void addMeetings(Meeting toAdd) {
+        meetings.add(toAdd);
     }
 
 
@@ -135,6 +147,7 @@ public class Person {
                 .add("venue", venue)
                 .add("module", module)
                 .add("tags", tags)
+                .add("meetings",meetings)
                 .toString();
     }
 

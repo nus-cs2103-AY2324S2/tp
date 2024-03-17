@@ -38,6 +38,10 @@ public class MeetDateTime {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public LocalDateTime getDateTime() {
+        return value;
+    }
+
     @Override
     public int hashCode() {
         return value.hashCode();

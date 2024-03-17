@@ -6,6 +6,7 @@ import static staffconnect.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static staffconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import staffconnect.commons.core.index.Index;
 import staffconnect.commons.util.ToStringBuilder;
@@ -13,14 +14,20 @@ import staffconnect.logic.Messages;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
 import staffconnect.model.meeting.Meeting;
+import staffconnect.model.person.Email;
+import staffconnect.model.person.Module;
+import staffconnect.model.person.Name;
 import staffconnect.model.person.Person;
+import staffconnect.model.person.Phone;
+import staffconnect.model.person.Venue;
+import staffconnect.model.tag.Tag;
 
 /**
  * Adds a meeting to the staff book.
  */
 public class AddMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "";
+    public static final String COMMAND_WORD = "meeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the person identified "
         + "by the index number used in the displayed person list. "
@@ -59,9 +66,32 @@ public class AddMeetingCommand extends Command {
         if (personToEdit.hasDuplicateMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
-        personToEdit.setMeeting(toAdd);
+
+
+        Person editedPerson = addMeetingToPerson(personToEdit,toAdd);
+        model.setPerson(personToEdit,editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+    }
+    /**
+     * Creates and returns a {@code Person} with details of {@code meeting}
+     */
+    private static Person addMeetingToPerson(Person personToEdit, Meeting meeting) {
+        assert personToEdit != null;
+
+        Name currentName = personToEdit.getName();
+        Phone currentPhone = personToEdit.getPhone();
+        Email currentEmail = personToEdit.getEmail();
+        Venue currentVenue = personToEdit.getVenue();
+        Module currentModule = personToEdit.getModule();
+        Set<Tag> currentTags = personToEdit.getTags();
+        //Set<Meeting> currentMeetings = personToEdit.getMeetings();
+        Person editedPerson = new Person(currentName, currentPhone, currentEmail, currentVenue, currentModule,
+                                      currentTags);
+        //currentMeetings.add(meeting);
+        editedPerson.addMeetings(meeting);
+        //editedPerson.setMeetings(currentMeetings);
+        return editedPerson;
     }
 
     @Override
