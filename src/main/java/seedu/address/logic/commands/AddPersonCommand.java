@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 /**
  * Adds a person to the talent tracker.
  */
-public abstract class AddCommand extends Command {
+public abstract class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -35,7 +35,7 @@ public abstract class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddPersonCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }

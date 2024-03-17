@@ -17,8 +17,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddInterviewerCommand;
-import seedu.address.logic.commands.AddApplicantCommand;
+import seedu.address.logic.commands.AddInterviewerPersonCommand;
+import seedu.address.logic.commands.AddApplicantPersonCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -173,8 +173,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
-        String addCommand = AddInterviewerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-        String addApplicantCommand = AddApplicantCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+        String addCommand = AddInterviewerPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+        String addApplicantCommand = AddApplicantPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

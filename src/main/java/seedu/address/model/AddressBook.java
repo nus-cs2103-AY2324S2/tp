@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.interview.Interview;
+import seedu.address.model.interview.UniqueInterviewList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,6 +18,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueInterviewList interviews;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        interviews = new UniqueInterviewList();
     }
 
     public AddressBook() {}
@@ -39,6 +44,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
+    // Person Operations
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -94,6 +100,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    // Interview Operations
+
+    public void addInterview(Interview interview) {
+        interviews.add(interview);
+    }
+
+    public boolean hasInterview(Interview interview) {
+        requireNonNull(interview);
+        return interviews.contains(interview);
+    }
+
+    public void removeInterview(Interview key) {
+        interviews.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -106,6 +127,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Interview> getInterviewList() {
+        return interviews.asUnmodifiableObservableList();
     }
 
     @Override

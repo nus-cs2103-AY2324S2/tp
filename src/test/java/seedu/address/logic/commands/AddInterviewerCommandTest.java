@@ -29,7 +29,7 @@ public class AddInterviewerCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddInterviewerCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddInterviewerPersonCommand(null));
     }
 
     @Test
@@ -37,9 +37,9 @@ public class AddInterviewerCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddInterviewerCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddInterviewerPersonCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddInterviewerCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddInterviewerPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -47,10 +47,10 @@ public class AddInterviewerCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddInterviewerCommand addCommand = new AddInterviewerCommand(validPerson);
+        AddInterviewerPersonCommand addCommand = new AddInterviewerPersonCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddInterviewerCommand.MESSAGE_DUPLICATE_PERSON, () ->
+        assertThrows(CommandException.class, AddInterviewerPersonCommand.MESSAGE_DUPLICATE_PERSON, () ->
                 addCommand.execute(modelStub));
     }
 
@@ -58,14 +58,14 @@ public class AddInterviewerCommandTest {
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddInterviewerCommand addAliceCommand = new AddInterviewerCommand(alice);
-        AddCommand addBobCommand = new AddInterviewerCommand(bob);
+        AddInterviewerPersonCommand addAliceCommand = new AddInterviewerPersonCommand(alice);
+        AddPersonCommand addBobCommand = new AddInterviewerPersonCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddInterviewerCommand(alice);
+        AddPersonCommand addAliceCommandCopy = new AddInterviewerPersonCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -80,9 +80,9 @@ public class AddInterviewerCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddInterviewerCommand(ALICE);
-        String expected = AddInterviewerCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        AddPersonCommand addPersonCommand = new AddInterviewerPersonCommand(ALICE);
+        String expected = AddInterviewerPersonCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        assertEquals(expected, addPersonCommand.toString());
     }
 
     /**

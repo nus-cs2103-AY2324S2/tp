@@ -11,12 +11,12 @@ import seedu.address.model.person.Person;
 /**
  * Adds an interviewer to the talent tracker.
  */
-public class AddInterviewerCommand extends AddCommand {
+public class AddInterviewerPersonCommand extends AddPersonCommand {
 
-    public static final String COMMAND_WORD = AddCommand.COMMAND_WORD + "_interviewer";
+    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + "_interviewer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interviewer to the talent tracker. "
-            + AddCommand.MESSAGE_USAGE;
+            + AddPersonCommand.MESSAGE_USAGE;
 
     public static final String MESSAGE_SUCCESS = "New interviewer added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This interviewer already exists in the talent tracker";
@@ -24,7 +24,7 @@ public class AddInterviewerCommand extends AddCommand {
     /**
      * Creates an AddInterviewerCommand to add the specified {@code Person}
      */
-    public AddInterviewerCommand(Person person) {
+    public AddInterviewerPersonCommand(Person person) {
         super(person);
     }
 
@@ -47,12 +47,12 @@ public class AddInterviewerCommand extends AddCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddInterviewerCommand)) {
+        if (!(other instanceof AddInterviewerPersonCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddPersonCommand otherAddPersonCommand = (AddPersonCommand) other;
+        return toAdd.equals(otherAddPersonCommand.toAdd);
     }
 
     @Override

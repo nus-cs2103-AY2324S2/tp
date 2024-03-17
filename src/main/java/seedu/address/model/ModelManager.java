@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Interview> filteredInterviews;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredInterviews = new FilteredList<>(this.addressBook.getInterviewList());
     }
 
     public ModelManager() {
@@ -111,6 +115,24 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasInterview(Interview interview) {
+        requireNonNull(interview);
+        return addressBook.hasInterview(interview);
+    }
+
+    @Override
+    public void addInterview(Interview interview) {
+        addressBook.addInterview(interview);
+        // TODO:
+        // updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void deleteInterview(Interview interview) {
+        addressBook.removeInterview(interview);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +148,13 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Interview List Accessors =============================================================
+
+    @Override
+    public ObservableList<Interview> getFilteredInterviewList() {
+        return filteredInterviews;
     }
 
     @Override
