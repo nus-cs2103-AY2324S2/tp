@@ -24,8 +24,9 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /** Fields to track clear confirmation */
-    private boolean isConfirmClear;
     private boolean isAwaitingClear;
+    private boolean isConfirmClear;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
