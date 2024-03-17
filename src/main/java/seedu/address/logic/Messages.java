@@ -52,9 +52,12 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code interview} for display to the user.
+     */
     public static String formatInterview(Interview interview) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Applicant: ").append(interview.getApplicant().getName())
+        builder.append("Interview: ").append(interview.getApplicant().getName())
                 .append(" Interviewer: ")
                 .append(interview.getInterviewer().getName())
                 .append(" Date: ")

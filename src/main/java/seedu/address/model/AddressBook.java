@@ -102,15 +102,26 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     // Interview Operations
 
+    /**
+     * Adds an interview to the address book.
+     * The interview must not already exist in the address book.
+     */
     public void addInterview(Interview interview) {
         interviews.add(interview);
     }
 
+    /**
+     * Returns true if an interview with the same identity as {@code interview} exists in the address book.
+     */
     public boolean hasInterview(Interview interview) {
         requireNonNull(interview);
         return interviews.contains(interview);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
     public void removeInterview(Interview key) {
         interviews.remove(key);
     }

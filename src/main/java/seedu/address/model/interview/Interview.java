@@ -1,10 +1,13 @@
 package seedu.address.model.interview;
 
-import seedu.address.model.person.Person;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import seedu.address.model.person.Person;
+
+/**
+ * Represents an Interview in the talent tracker.
+ */
 public class Interview {
     private Person applicant;
     private Person interviewer;
@@ -13,7 +16,11 @@ public class Interview {
     private LocalTime endTime;
     private String description;
 
-    public Interview(Person applicant, Person interviewer, LocalDate date, LocalTime startTime, LocalTime endTime, String description) {
+    /**
+     * Represents a Interview in the address book.
+     */
+    public Interview(Person applicant, Person interviewer, LocalDate date, LocalTime startTime,
+                     LocalTime endTime, String description) {
         this.applicant = applicant;
         this.interviewer = interviewer;
         this.date = date;
@@ -42,6 +49,10 @@ public class Interview {
         return endTime;
     }
 
+    /**
+     * Returns true if both interviews of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two interviews.
+     */
     public boolean isSameInterview(Interview otherInterview) {
         boolean applicantMatch = otherInterview.applicant.equals(this.applicant);
         boolean interviewerMatch = otherInterview.interviewer.equals(this.interviewer);

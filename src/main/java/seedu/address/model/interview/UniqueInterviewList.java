@@ -2,19 +2,21 @@ package seedu.address.model.interview;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.interview.exceptions.DuplicateInterviewException;
 import seedu.address.model.interview.exceptions.InterviewNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
 /**
  * A list of interviews that enforces uniqueness between its elements and does not allow nulls.
- * An interview is considered unique by comparing using {@code Interview#isSameInterview(Interview)}. As such, adding and updating of
- * interviews uses Interview#isSameInterview(Interview) for equality so as to ensure that the interview being added or updated is
- * unique in terms of identity in the UniqueInterviewList. However, the removal of an interview uses Interview#equals(Object) so
+ * An interview is considered unique by comparing using {@code Interview#isSameInterview(Interview)}. As such,
+ * adding and updating of interviews uses Interview#isSameInterview(Interview) for equality so as to ensure that
+ * the interview being added or updated is unique in terms of identity in the UniqueInterviewList.
+ * However, the removal of an interview uses Interview#equals(Object) so
  * as to ensure that the interview with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -41,9 +43,9 @@ public class UniqueInterviewList implements Iterable<Interview> {
      */
     public void add(Interview toAdd) {
         requireNonNull(toAdd);
-//        if (contains(toAdd)) {
-//            throw new DuplicateInterviewException();
-//        }
+        //if (contains(toAdd)) {
+        //    throw new DuplicateInterviewException();
+        //}
         internalList.add(toAdd);
     }
 
@@ -52,7 +54,8 @@ public class UniqueInterviewList implements Iterable<Interview> {
      * {@code target} must exist in the list.
      * The interview identity of {@code editedInterview} must not be the same as another existing interview in the list.
      */
-    public void setInterview(Interview target, Interview editedInterview) throws DuplicateInterviewException, InterviewNotFoundException {
+    public void setInterview(Interview target, Interview editedInterview) throws DuplicateInterviewException,
+            InterviewNotFoundException {
         requireAllNonNull(target, editedInterview);
 
         int index = internalList.indexOf(target);

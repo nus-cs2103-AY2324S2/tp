@@ -90,7 +90,7 @@ public interface Model {
 
     boolean hasInterview(Interview interview);
 
-    void deleteInterview (Interview interview);
+    void deleteInterview(Interview interview);
 
     ObservableList<Interview> getFilteredInterviewList();
 }
