@@ -19,9 +19,9 @@ public class FindStarsLessThanCommandParser implements Parser<FindStarsLessThanC
      */
     public FindStarsLessThanCommand parse(String args) throws ParseException {
         requireNonNull(args);
-
         try {
-            int intValue = Integer.parseInt(args);
+            int intValue = Integer.parseInt(args.replaceAll(" ", ""));
+            System.out.println(intValue);
             StarsLessThanPredicate predicate = new StarsLessThanPredicate(intValue);
             return new FindStarsLessThanCommand(predicate);
         } catch (NumberFormatException e) {
