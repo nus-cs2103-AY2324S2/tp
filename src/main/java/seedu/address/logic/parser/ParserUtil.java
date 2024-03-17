@@ -14,6 +14,7 @@ import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IdentityCardNumber;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 
@@ -58,13 +59,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static seedu.address.model.person.Phone parsePhone(String phone) throws ParseException {
+    public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!seedu.address.model.person.Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(seedu.address.model.person.Phone.MESSAGE_CONSTRAINTS);
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new seedu.address.model.person.Phone(trimmedPhone);
+        return new Phone(trimmedPhone);
     }
 
     /**

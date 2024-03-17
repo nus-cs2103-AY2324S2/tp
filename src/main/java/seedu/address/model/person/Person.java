@@ -18,7 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final seedu.address.model.person.Phone phone;
+    private final Phone phone;
     private final Email email;
     private final IdentityCardNumber identityCardNumber;
 
@@ -32,7 +32,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, seedu.address.model.person.Phone phone,
+    public Person(Name name, Phone phone,
                   Email email, IdentityCardNumber identityCardNumber, Age age, Sex sex,
                   Address address, Note note, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, identityCardNumber, age, sex, address, note, tags);
@@ -51,7 +51,7 @@ public class Person {
         return name;
     }
 
-    public seedu.address.model.person.Phone getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 

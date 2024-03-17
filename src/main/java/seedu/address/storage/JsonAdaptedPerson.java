@@ -17,6 +17,7 @@ import seedu.address.model.person.IdentityCardNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 
@@ -100,12 +101,12 @@ class JsonAdaptedPerson {
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    seedu.address.model.person.Phone.class.getSimpleName()));
+                    Phone.class.getSimpleName()));
         }
-        if (!seedu.address.model.person.Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(seedu.address.model.person.Phone.MESSAGE_CONSTRAINTS);
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final seedu.address.model.person.Phone modelPhone = new seedu.address.model.person.Phone(phone);
+        final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
