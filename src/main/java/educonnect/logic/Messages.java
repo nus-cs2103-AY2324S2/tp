@@ -38,14 +38,15 @@ public class Messages {
     public static String format(Student student) {
         final StringBuilder builder = new StringBuilder();
         builder.append(student.getName())
-                .append("; Student ID: ")
+                .append(";\nStudent ID: ")
                 .append(student.getStudentId())
-                .append("; Email: ")
+                .append(";\nEmail: ")
                 .append(student.getEmail())
-                .append("; Telegram Handle: ")
+                .append(";\nTelegram Handle: ")
                 .append(student.getTelegramHandle())
-                .append("; Tags: ");
+                .append(";\nTags: ");
         student.getTags().forEach(builder::append);
+        builder.append(";\n").append(student.getTimetable());
         return builder.toString();
     }
 

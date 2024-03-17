@@ -114,6 +114,6 @@ public class Period implements Comparable<Period> {
 
     @Override
     public String toString() {
-        return "Period " + this.periodName + ": (" + this.timeStart + " to " + this.timeEnd + ")\n";
+        return "Period: (" + this.timeStart + " to " + this.timeEnd + ")\n";
     }
 }
