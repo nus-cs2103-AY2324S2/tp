@@ -22,7 +22,9 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Housekeeper;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -101,7 +103,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        if (personToEdit.isClient()) {
+            return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        } else {
+            return new Housekeeper(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        }
     }
 
     @Override
