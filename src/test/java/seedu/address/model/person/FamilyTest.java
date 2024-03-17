@@ -27,7 +27,8 @@ public class FamilyTest {
 
     @Test
     public void constructor_invalidFamily_throwsNumberFormatException3() {
-        String invalidFamily = " family"; //alphabets
+        //invalid input containing alphabets
+        String invalidFamily = " family";
         assertThrows(NumberFormatException.class, () -> new Family(invalidFamily));
     }
 
