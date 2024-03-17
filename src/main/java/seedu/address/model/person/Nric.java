@@ -18,7 +18,7 @@ public class Nric {
      */
     public static final String VALIDATION_REGEX = "^[ST]\\\\d{7}[A-Z]$";
 
-    public final String Nric;
+    public final String nric;
 
     /**
      * Constructs a {@code NRIC}.
@@ -28,7 +28,7 @@ public class Nric {
     public Nric(String name) {
         requireNonNull(name);
         checkArgument(isValidNric(name), MESSAGE_CONSTRAINTS);
-        this.Nric = name;
+        this.nric = name;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Nric {
 
     @Override
     public String toString() {
-        return this.Nric;
+        return this.nric;
     }
 
     @Override
@@ -56,11 +56,11 @@ public class Nric {
         }
 
         Nric otherNric = (Nric) other;
-        return Nric.equals(otherNric.Nric);
+        return nric.equals(otherNric.nric);
     }
 
     @Override
     public int hashCode() {
-        return Nric.hashCode();
+        return nric.hashCode();
     }
 }

@@ -5,7 +5,7 @@ package seedu.address.model.person;
  * Guarantees: immutable;
  */
 public class Status {
-    private enum status { HEALTHY, AT_RISK, UNHEALTHY };
+    private enum STATUS { HEALTHY, AT_RISK, UNHEALTHY };
     private final String status;
 
     public Status(String status) {
