@@ -27,9 +27,9 @@ public class IdTest {
 
 
         // valid name
-        assertTrue(Name.isValidName("A0265901E")); // Correct Format
-        assertTrue(Name.isValidName("A0145156k")); //Combination of lower and uppercase
-        assertTrue(Name.isValidName("a0265901T")); // combination of lower and upper case
+        assertTrue(Id.isValidId("A0265901E")); // Correct Format
+        assertTrue(Id.isValidId("A0145156k")); //Combination of lower and uppercase
+        assertTrue(Id.isValidId("a0265901T")); // combination of lower and upper case
     }
 
     @Test

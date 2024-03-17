@@ -14,13 +14,13 @@ import static seedu.address.logic.parser.CliSyntax.*;
 public class TagCommandParser implements Parser<TagCommand> {
     public TagCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,PREFIX_USERID,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,PREFIX_ID,
                 PREFIX_TAG);
 
         Id userId;
         String tag;
 
-        userId = new Id(argMultimap.getValue(PREFIX_USERID).get());
+        userId = new Id(argMultimap.getValue(PREFIX_ID).get());
         tag = argMultimap.getValue(PREFIX_TAG).get();
 
         return new TagCommand(userId, tag);
