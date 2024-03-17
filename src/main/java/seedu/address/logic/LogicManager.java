@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -48,11 +49,8 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        String originalCommandText = commandText;
-
         if (this.previouslyClear) {
-            this.previouslyClear = false;
-            if (commandText.equalsIgnoreCase("y")) {
+            if (commandText.trim().equalsIgnoreCase("y")) {
                 model.setConfirmClear(true);
                 // execute clear command, clear successful
             }
@@ -60,13 +58,16 @@ public class LogicManager implements Logic {
             commandText = "clear";
         }
 
-        if (originalCommandText.equalsIgnoreCase("clear")) {
-            this.previouslyClear = true;
-        }
-
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+
+        // check if command was clear and model is awaiting confirmation
+        if (command instanceof ClearCommand && model.isAwaitingClear()) {
+            this.previouslyClear = true;
+        } else {
+            this.previouslyClear = false;
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());

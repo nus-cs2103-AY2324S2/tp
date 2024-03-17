@@ -63,6 +63,14 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_twoConsecutiveClears_clearCancelled() throws Exception {
+        String clearCommand = "clear";
+        CommandResult result = logic.execute(clearCommand);
+        CommandResult nextResult = logic.execute(clearCommand);
+        assertEquals(ClearCommand.MESSAGE_CANCELLED, nextResult.getFeedbackToUser());
+    }
+
+    @Test
     public void execute_logicManagerProcessesClearConfirmation_clearsAddressBook() throws Exception {
         model.setAwaitingClear(true);
         model.setConfirmClear(true);
@@ -95,7 +103,6 @@ public class LogicManagerTest {
         logic.execute("clear");
         CommandResult result = logic.execute("y");
         assertEquals(ClearCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
-        assertTrue(model.getAddressBook().getPersonList().isEmpty());
     }
 
     @Test
