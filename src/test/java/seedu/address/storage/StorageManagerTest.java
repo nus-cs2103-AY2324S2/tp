@@ -7,12 +7,14 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
@@ -89,10 +91,12 @@ public class StorageManagerTest {
 
     @Test
     public void readInitialAddressBook_corruptedDataFile_emptyAddressBook() {
-        // Only testable if allowed to change file permissions.
-        if (!ab.toFile().setReadable(false)) {
-            return;
-        }
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage) {
+            @Override
+            public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
+                throw new DataLoadingException(null);
+            }
+        };
         ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
         assertEquals(new AddressBook(), new AddressBook(retrieved));
     }
