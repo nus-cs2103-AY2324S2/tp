@@ -1,4 +1,5 @@
 [![Java CI](https://github.com/AY2324S2-CS2103T-F12-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S2-CS2103T-F12-1/tp/actions/workflows/gradle.yml/badge.svg)
+[![codecov](https://codecov.io/gh/AY2324S2-CS2103T-F12-1/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2324S2-CS2103T-F12-1/tp)
 
 # NetConnect
 
