@@ -99,4 +99,59 @@ class DeleteRelationshipCommandTest {
         assertThrows(IllegalArgumentException.class, () ->
                 command.parseCommand("deleterelation /TestRelationship invalid,invalid"));
     }
+
+    @Test
+    void parseCommand_validRelationshipCheck_relationshipRemoved() {
+        // Create a relationship between two persons
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        String uuid1 = person1.getUuidString();
+        String uuid2 = person2.getUuidString();
+        personMap.put(uuid1, person1);
+        personMap.put(uuid2, person2);
+
+        Relationship relationship = new RoleBasedRelationship(person1.getUuid(), person2.getUuid());
+
+        // Add the relationship to the RelationshipManager
+        relationshipManager.addRelationship("TestRelationship", relationship);
+
+        // Parse the command to delete the relationship
+        assertDoesNotThrow(() -> command.parseCommand("deleterelation /TestRelationship "
+                + person1.getUuid() + "," + person2.getUuid()));
+
+        // Check if the relationship is removed
+        assertTrue(relationshipManager.getRelationships("TestRelationship").isEmpty());
+    }
+
+    @Test
+    void parseCommand_invalidNoMatchingRelationship_throwsIllegalArgumentException() {
+        // Create a relationship between two persons
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        String uuid1 = person1.getUuidString();
+        String uuid2 = person2.getUuidString();
+        personMap.put(uuid1, person1);
+        personMap.put(uuid2, person2);
+
+        Relationship relationship = new RoleBasedRelationship(person1.getUuid(), person2.getUuid());
+
+        // Add the relationship to the RelationshipManager
+        relationshipManager.addRelationship("TestRelationship", relationship);
+
+        // Try to delete a relationship that doesn't exist
+        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /TestRelationship "
+                + "invalid,invalid"));
+    }
 }
