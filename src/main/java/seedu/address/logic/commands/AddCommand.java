@@ -1,12 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTALCODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -26,14 +21,22 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_HOUSINGTYPE + "HOUSINGTYPE"
+            + PREFIX_STREET + "STREET "
+            + PREFIX_BLOCK + "BLOCK "
+            + PREFIX_LEVEL + "LEVEL "
+            + PREFIX_UNITNUMBER + "UNITNUMBER "
             + PREFIX_POSTALCODE + "POSTAL CODE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_HOUSINGTYPE + "HDB "
+            + PREFIX_STREET + "Clementi Ave 2 "
+            + PREFIX_BLOCK + "Block 311 "
+            + PREFIX_LEVEL + "Level 02"
+            + PREFIX_UNITNUMBER + "Unit 25"
             + PREFIX_POSTALCODE + "578578 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";

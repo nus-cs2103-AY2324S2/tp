@@ -21,6 +21,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.house.House;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -98,10 +99,14 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Street updatedStreet = editPersonDescriptor.getStreet().orElse(personToEdit.getStreet());
+        Level updatedLevel = editPersonDescriptor.getLevel().orElse(personToEdit.getLevel());
+        Block updatedBlock = editPersonDescriptor.getBlock().orElse(personToEdit.getBlock());
+        UnitNumber unitNumber = editPersonDescriptor.getUnitNumber().orElse(personToEdit.getUnitNumber());
+        PostalCode postalCode = editPersonDescriptor.getPostalCode().orElse(personToEdit.getPostalCode());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedHouse,
                 personToEdit.getPostalCode(), updatedTags);
     }
 
@@ -137,7 +142,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private House house;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -151,9 +156,10 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setHouse(toCopy.house);
             setTags(toCopy.tags);
         }
+
 
         /**
          * Returns true if at least one field is edited.
@@ -186,12 +192,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setHouse(House house) {
+            this.house = house;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<House> getHouse() {
+            return Optional.ofNullable(house);
         }
 
         /**
