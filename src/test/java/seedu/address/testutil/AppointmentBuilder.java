@@ -6,13 +6,14 @@ import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 
 /**
  * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
-
+    public static final String DEFAULT_NAME = "Mary Doe";
     public static final String DEFAULT_NRIC = "T0123456I";
     public static final String DEFAULT_DATE = "2001-01-01";
     public static final String DEFAULT_START_TIME = "23:58";
@@ -20,6 +21,7 @@ public class AppointmentBuilder {
     public static final String DEFAULT_APPOINTMENT_TYPE = "Health Check-up";
     public static final String DEFAULT_NOTE = "Only speaks mandarin";
 
+    private Name name;
     private Nric nric;
     private Date date;
     private TimePeriod timePeriod;
@@ -30,6 +32,7 @@ public class AppointmentBuilder {
      * Creates a {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
+        name = new Name(DEFAULT_NAME);
         nric = new Nric(DEFAULT_NRIC);
         date = new Date(DEFAULT_DATE);
         Time startTime = new Time(DEFAULT_START_TIME);
@@ -44,11 +47,20 @@ public class AppointmentBuilder {
      * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment apptToCopy) {
+        name = apptToCopy.getName();
         nric = apptToCopy.getNric();
         date = apptToCopy.getDate();
         timePeriod = apptToCopy.getTimePeriod();
         appointmentType = apptToCopy.getAppointmentType();
         note = apptToCopy.getNote();
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public AppointmentBuilder withName(String name) {
+        this.name = new Name(name);
+        return this;
     }
 
     /**
@@ -104,6 +116,6 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(nric, date, timePeriod, appointmentType, note);
+        return new Appointment(name, nric, date, timePeriod, appointmentType, note);
     }
 }

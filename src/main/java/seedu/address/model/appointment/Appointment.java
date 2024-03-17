@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 
 /**
@@ -16,6 +17,7 @@ public class Appointment {
 
     // Identity fields
     private final Nric nric;
+    private Name name;
 
     // Data fields
     private final Date date;
@@ -26,9 +28,10 @@ public class Appointment {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Nric nric, Date date, TimePeriod timePeriod,
+    public Appointment(Name name, Nric nric, Date date, TimePeriod timePeriod,
                        AppointmentType appointmentType, Note note) {
         requireAllNonNull(nric, date, timePeriod, appointmentType, note);
+        this.name = name;
         this.nric = nric;
         this.date = date;
         this.timePeriod = timePeriod;
@@ -54,6 +57,14 @@ public class Appointment {
 
     public Note getNote() {
         return note;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
     }
 
     /**
@@ -102,6 +113,7 @@ public class Appointment {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("name", name)
                 .add("nric", nric)
                 .add("date", date)
                 .add("timePeriod", timePeriod)

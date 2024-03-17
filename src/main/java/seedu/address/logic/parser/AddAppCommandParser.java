@@ -52,7 +52,8 @@ public class AddAppCommandParser implements Parser<AddAppCommand> {
         AppointmentType appointmentType = ParserUtil.parseAppointmentType(
                 argMultimap.getValue(PREFIX_TAG).get());
 
-        Appointment appToAdd = new Appointment(nric, date, timePeriod, appointmentType, note);
+        //name is null as of current, will set it later in AddAppCommand
+        Appointment appToAdd = new Appointment(null, nric, date, timePeriod, appointmentType, note);
 
         return new AddAppCommand(appToAdd);
     }

@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a date
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String MESSAGE_CONSTRAINTS =
@@ -71,5 +71,10 @@ public class Date {
     @Override
     public int hashCode() {
         return this.value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Date other) {
+        return this.value.compareTo(other.value);
     }
 }

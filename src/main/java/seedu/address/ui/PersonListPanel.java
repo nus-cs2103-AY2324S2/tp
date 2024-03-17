@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,17 +21,17 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListView;
     @FXML
-    private ListView<Person> listView2;
+    private ListView<Appointment> appointmentListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, ObservableList<Appointment> appointmentList) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        listView2.setItems(personList);
-        listView2.setCellFactory(listView -> new PersonListViewCell());
+        appointmentListView.setItems(appointmentList);
+        appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
 
     /**
@@ -46,6 +47,20 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+    class AppointmentListViewCell extends ListCell<Appointment> {
+        @Override
+        protected void updateItem(Appointment appt, boolean empty) {
+            super.updateItem(appt, empty);
+
+            if (empty || appt == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new AppointmentCard(appt, getIndex() + 1).getRoot());
             }
         }
     }

@@ -160,7 +160,7 @@ public class AddAppCommandTest {
 
         @Override
         public Person getPersonWithNric(Nric nric) {
-            throw new AssertionError("This method should not be called.");
+            return null;
         }
 
         @Override
@@ -266,6 +266,15 @@ public class AddAppCommandTest {
         public boolean hasAppointment(Appointment appointment) {
             requireNonNull(appointment);
             return appointmentsAdded.stream().anyMatch(appointment::equals);
+        }
+
+        @Override
+        public Person getPersonWithNric(Nric nric) {
+            requireNonNull(nric);
+            if (person.getNric().equals(nric)) {
+                return person;
+            }
+            return null;
         }
 
         @Override

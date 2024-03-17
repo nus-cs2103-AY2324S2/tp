@@ -68,6 +68,8 @@ public class AddAppCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
+        apptToAdd.setName(model.getPersonWithNric(nric).getName());
+
         model.addAppointment(apptToAdd);
         return new CommandResult(String.format(MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(apptToAdd)));
     }
