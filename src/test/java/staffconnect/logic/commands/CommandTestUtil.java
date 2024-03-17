@@ -2,10 +2,12 @@ package staffconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_MODULE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static staffconnect.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_VENUE;
 import static staffconnect.testutil.Assert.assertThrows;
@@ -18,6 +20,9 @@ import staffconnect.commons.core.index.Index;
 import staffconnect.logic.commands.exceptions.CommandException;
 import staffconnect.model.Model;
 import staffconnect.model.StaffBook;
+import staffconnect.model.meeting.Description;
+import staffconnect.model.meeting.MeetDateTime;
+import staffconnect.model.meeting.Meeting;
 import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
 import staffconnect.testutil.EditPersonDescriptorBuilder;
@@ -47,8 +52,6 @@ public class CommandTestUtil {
     public static final String VALID_DIFF_MEETING_DATE = "15/04/2024 15:00";
 
 
-
-
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -62,6 +65,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String DESC_MIDTERM = " " + PREFIX_DESCRIPTION + VALID_MEETING_DESCRIPTION;
+
+    public static final String MEETDATE_STARTDATE = " " + PREFIX_STARTDATE + VALID_MEETING_DATE;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -69,23 +76,39 @@ public class CommandTestUtil {
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE; // empty string not allowed for modules
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String INVALID_MEETING_DESCRIPTION = "*!&@#&*@*&@*";
+    public static final String INVALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "&@#&*@*&@*"; //special characters
 
-    public static final String INVALID_MEETING_DATE = "12-04-2023 1800";
+    public static final String INVALID_STARTDATE = " " + PREFIX_STARTDATE + "12-04-2023 1800";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final Meeting VALID_MEETING =
+        new Meeting(new Description(VALID_MEETING_DESCRIPTION), new MeetDateTime(VALID_MEETING_DATE));
+    public static final Meeting DIFF_DESCRIPTION_MEETING =
+        new Meeting(new Description(VALID_DIFF_MEETING_DESCRIPTION), new MeetDateTime(VALID_MEETING_DATE));
+    public static final Meeting DIFF_DATE_MEETING =
+        new Meeting(new Description(VALID_MEETING_DESCRIPTION), new MeetDateTime(VALID_DIFF_MEETING_DATE));
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withVenue(VALID_VENUE_AMY)
-                .withModule(VALID_MODULE_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withVenue(VALID_VENUE_AMY)
+            .withModule(VALID_MODULE_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withVenue(VALID_VENUE_BOB)
-                .withModule(VALID_MODULE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withVenue(VALID_VENUE_BOB)
+            .withModule(VALID_MODULE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -94,7 +117,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -102,16 +125,6 @@ public class CommandTestUtil {
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
-    }
-
-    /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-     * that takes a string {@code expectedMessage}.
-     */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -130,6 +143,7 @@ public class CommandTestUtil {
         assertEquals(expectedStaffBook, actualModel.getStaffBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s staff book.

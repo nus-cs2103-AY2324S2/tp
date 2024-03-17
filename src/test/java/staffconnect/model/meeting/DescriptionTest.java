@@ -30,7 +30,7 @@ class DescriptionTest {
 
         // invalid Description
         assertFalse(Description.isValidDescription("")); // empty string
-        assertFalse(Description.isValidDescription(" ")); // spaces only
+        assertFalse(Description.isValidDescription("   ")); // spaces only
         assertFalse(Description.isValidDescription("^")); // only non-alphanumeric characters
         assertFalse(Description.isValidDescription("peter meeting*")); // contains non-alphanumeric characters
 

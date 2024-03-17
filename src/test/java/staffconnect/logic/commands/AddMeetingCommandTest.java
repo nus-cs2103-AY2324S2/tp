@@ -3,8 +3,9 @@ package staffconnect.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_DIFF_MEETING_DATE;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_DIFF_MEETING_DESCRIPTION;
+import static staffconnect.logic.commands.CommandTestUtil.DIFF_DATE_MEETING;
+import static staffconnect.logic.commands.CommandTestUtil.DIFF_DESCRIPTION_MEETING;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING_DATE;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING_DESCRIPTION;
 import static staffconnect.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -37,13 +38,7 @@ public class AddMeetingCommandTest {
 
     private static final Model TEST_MODEL = new ModelManager(getTypicalStaffBook(), new UserPrefs());
 
-    private static final Meeting VALID_MEETING =
-        new Meeting(new Description(VALID_MEETING_DESCRIPTION), new MeetDateTime(VALID_MEETING_DATE));
 
-    private static final Meeting DIFF_DESCRIPTION_MEETING =
-        new Meeting(new Description(VALID_DIFF_MEETING_DESCRIPTION), new MeetDateTime(VALID_MEETING_DATE));
-    private static final Meeting DIFF_DATE_MEETING =
-        new Meeting(new Description(VALID_MEETING_DESCRIPTION), new MeetDateTime(VALID_DIFF_MEETING_DATE));
 
     @Test
     public void execute_allFieldsValid_success() {
