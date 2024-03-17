@@ -16,6 +16,15 @@ public class OrderId {
         this.id = UUID.randomUUID();
     }
 
+    /**
+     * Constructs an {@code OrderId} from a UUID.
+     *
+     * @param id UUID to be used as the OrderId.
+     */
+    public OrderId(String id) {
+        this.id = UUID.fromString(id);
+    }
+
 
     @Override
     public String toString() {
