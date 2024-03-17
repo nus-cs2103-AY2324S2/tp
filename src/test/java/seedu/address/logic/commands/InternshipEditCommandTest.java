@@ -177,7 +177,7 @@ public class InternshipEditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new InternshipClearCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new InternshipEditCommand(INDEX_SECOND_INTERNSHIP, DESC_AMY.build())));
