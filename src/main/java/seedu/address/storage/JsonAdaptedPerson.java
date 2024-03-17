@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.WorkHours;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String bankDetails;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final int workHours;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -46,6 +48,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("employmentType") String employmentType,
                              @JsonProperty("address") String address,
                              @JsonProperty("bankDetails") String bankDetails,
+                             @JsonProperty("workHours") int workHours,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,6 +57,7 @@ class JsonAdaptedPerson {
         this.employmentType = employmentType;
         this.address = address;
         this.bankDetails = bankDetails;
+        this.workHours = workHours;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -70,6 +74,7 @@ class JsonAdaptedPerson {
         employmentType = source.getEmploymentType().value;
         address = source.getAddress().value;
         bankDetails = source.getBankDetails().value;
+        workHours = source.getWorkHours().getHoursWorked();
         tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -144,10 +149,12 @@ class JsonAdaptedPerson {
         }
         final BankDetails modelBankDetails = new BankDetails(bankDetails);
 
+        final WorkHours modelWorkHours = new WorkHours(workHours);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelFirstName, modelLastName, modelPhone, modelSex, modelEmploymentType,
             modelAddress,
-            modelBankDetails, modelTags);
+            modelBankDetails, modelWorkHours, modelTags);
     }
 
 }

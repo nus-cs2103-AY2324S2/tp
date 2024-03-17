@@ -27,13 +27,14 @@ public class Person {
     private final Address address;
     private final BankDetails bankDetails;
     private final Set<Tag> tags = new HashSet<>();
+    private WorkHours hoursWorked;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name firstName, Name lastName, Phone phone, Sex sex,
                   EmploymentType employmentType, Address address,
-                  BankDetails bankDetails, Set<Tag> tags) {
+                  BankDetails bankDetails, WorkHours hoursWorked, Set<Tag> tags) {
         requireAllNonNull(firstName, lastName, phone, address, bankDetails, tags);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,6 +44,7 @@ public class Person {
         this.address = address;
         this.bankDetails = bankDetails;
         this.tags.addAll(tags);
+        this.hoursWorked = hoursWorked;
     }
 
     public Name getName() {
@@ -75,6 +77,14 @@ public class Person {
 
     public BankDetails getBankDetails() {
         return bankDetails;
+    }
+
+    public WorkHours getWorkHours() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(WorkHours hoursWorked) {
+        this.hoursWorked = hoursWorked;
     }
 
     /**
