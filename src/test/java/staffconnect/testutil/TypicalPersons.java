@@ -48,11 +48,11 @@ public class TypicalPersons {
             .withPhone("9482224").withEmail("werner@example.com").withModule("CS2100")
             .withFaculty("Computing").withVenue("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withVenue("little tokyo")
-            .withFaculty("Computing").withModule("CS2101").build();
+            .withEmail("lydia@example.com").withModule("CS2101")
+            .withFaculty("Computing").withVenue("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withVenue("4th street")
-            .withFaculty("Computing").withModule("CS2102").build();
+            .withEmail("anna@example.com").withModule("CS2102")
+            .withFaculty("Computing").withVenue("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

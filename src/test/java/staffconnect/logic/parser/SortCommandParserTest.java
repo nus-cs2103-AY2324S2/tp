@@ -61,8 +61,8 @@ public class SortCommandParserTest {
         assertParseSuccess(parser, "" + PREFIX_NAME, new SortCommand(NAME_COMPARATOR));
         assertParseSuccess(parser, "" + PREFIX_PHONE, new SortCommand(PHONE_COMPARATOR));
         assertParseSuccess(parser, "" + PREFIX_MODULE, new SortCommand(MODULE_COMPARATOR));
-        assertParseSuccess(parser, "" + PREFIX_VENUE, new SortCommand(VENUE_COMPARATOR));
         assertParseSuccess(parser, "" + PREFIX_FACULTY, new SortCommand(FACULTY_COMPARATOR));
+        assertParseSuccess(parser, "" + PREFIX_VENUE, new SortCommand(VENUE_COMPARATOR));
 
     }
 

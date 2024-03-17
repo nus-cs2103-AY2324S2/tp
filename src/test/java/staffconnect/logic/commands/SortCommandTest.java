@@ -41,10 +41,10 @@ public class SortCommandTest {
         assertFalse(nameSortCommand.equals(null));
 
         // different values -> returns false
-        assertFalse(nameSortCommand.equals(new SortCommand(MODULE_COMPARATOR)));
-        assertFalse(nameSortCommand.equals(new SortCommand(VENUE_COMPARATOR)));
         assertFalse(nameSortCommand.equals(new SortCommand(PHONE_COMPARATOR)));
+        assertFalse(nameSortCommand.equals(new SortCommand(MODULE_COMPARATOR)));
         assertFalse(nameSortCommand.equals(new SortCommand(FACULTY_COMPARATOR)));
+        assertFalse(nameSortCommand.equals(new SortCommand(VENUE_COMPARATOR)));
     }
 
     @Test
