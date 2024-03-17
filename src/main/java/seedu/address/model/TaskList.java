@@ -34,12 +34,25 @@ public class TaskList {
         taskList.add(task);
     }
 
+    /**
+     * Deletes a task based on the index of list.
+     *
+     * @param index The index of the task to be deleted in the list.
+     */
+    public void deleteTask(int index) {
+        taskList.remove(index - 1);
+    }
+
     public ObservableList<Task> getSerializeTaskList() {
         return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(taskList));
     }
 
     public boolean hasTask(Task task) {
         return taskList.contains(task);
+    }
+
+    public boolean isValidTaskIndex(int index) {
+        return taskList.size() > index;
     }
 
 }

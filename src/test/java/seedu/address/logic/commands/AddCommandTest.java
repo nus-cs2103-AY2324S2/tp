@@ -188,12 +188,33 @@ public class AddCommandTest {
         }
 
         /**
-         * Returns true if a task has the same description as a {@code task} in the task list.
+         * Deletes a task based on the index of list.
+         *
+         * @param index The index of the task to be deleted in the list.
+         */
+        @Override
+        public void deleteTask(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if a task has the same description as a {@code task} in the task
+         * list.
          *
          * @param task
          */
         @Override
         public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if the {@code index} is within the task list.
+         *
+         * @param index
+         */
+        @Override
+        public boolean isValidTaskIndex(int index) {
             throw new AssertionError("This method should not be called.");
         }
 

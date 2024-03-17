@@ -141,11 +141,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTask(int index) {
+        taskList.deleteTask(index);
+    }
+
+    @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskList.hasTask(task);
     }
 
+    @Override
+    public boolean isValidTaskIndex(int index) {
+        return taskList.isValidTaskIndex(index);
+    }
     /**
      * Replaces task list data with the data in {@code taskList}.
      *

@@ -99,14 +99,25 @@ public interface Model {
 
     /**
      * Adds the given task.
-     * {@code task} must not already exist in the address book.
+     * {@code task} must not already exist in the task list.
      */
     void addTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * {@code index} the index must exist in the task list.
+     */
+    void deleteTask(int index);
 
     /**
      * Returns true if a task has the same description as a {@code task} in the task list.
      */
     boolean hasTask(Task task);
+
+    /**
+     * Returns true if the {@code index} is within the task list.
+     */
+    boolean isValidTaskIndex(int index);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
