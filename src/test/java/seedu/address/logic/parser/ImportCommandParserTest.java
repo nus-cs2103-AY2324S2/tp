@@ -15,7 +15,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ImportCommandParserTest {
     private static final String IMPORT_SUCCESS_STRING = " f/filename";
-    private static final String IMPORT_FAILURE_STRING = "";
+    private static final String IMPORT_FAILURE_STRING_EMPTY = "";
+    private static final String IMPORT_FAILURE_STRING_WHITESPACE = " ";
     private static final String IMPORT_SUCCESS_FILENAME = "./data/filename.json";
     private final ImportCommandParser importParser = new ImportCommandParser();
 
@@ -34,6 +35,8 @@ public class ImportCommandParserTest {
 
     @Test
     public void parse_invalidFilename_failure() {
-        assertParseFailure(importParser, IMPORT_FAILURE_STRING, IMPORT_INVALID_COMMAND_FORMAT);
+        assertParseFailure(importParser, IMPORT_FAILURE_STRING_EMPTY, IMPORT_INVALID_COMMAND_FORMAT);
+
+        assertParseFailure(importParser, IMPORT_FAILURE_STRING_WHITESPACE, IMPORT_INVALID_COMMAND_FORMAT);
     }
 }
