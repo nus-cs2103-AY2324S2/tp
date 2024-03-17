@@ -91,7 +91,7 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-      Phone expectedPhone = new Phone(VALID_PHONE);
+        Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
     }
 
