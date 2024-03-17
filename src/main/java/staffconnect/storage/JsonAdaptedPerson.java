@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import staffconnect.commons.exceptions.IllegalValueException;
+import staffconnect.model.meeting.Meeting;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Module;
 import staffconnect.model.person.Name;
@@ -32,13 +33,16 @@ class JsonAdaptedPerson {
     private final String module;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
+    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("venue") String venue,
-            @JsonProperty("module") String module, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("module") String module, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                            @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +50,10 @@ class JsonAdaptedPerson {
         this.module = module;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+
+        if(meetings != null) {
+            this.meetings.addAll(meetings);
         }
     }
 
@@ -61,6 +69,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        meetings.addAll(source.getMeetings().stream().map(JsonAdaptedMeeting::new).collect(Collectors.toList()));
     }
 
     /**
@@ -115,7 +124,17 @@ class JsonAdaptedPerson {
         final Module modelModule = new Module(module);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelVenue, modelModule, modelTags);
+
+        final List<Meeting> personMeetings = new ArrayList<>();
+        for (JsonAdaptedMeeting meeting  : meetings) {
+            personMeetings.add(meeting.toModelType());
+        }
+        final Set<Meeting> modelMeetings = new HashSet<>(personMeetings);
+
+        Person modelPerson = new Person(modelName, modelPhone, modelEmail, modelVenue, modelModule, modelTags);
+        modelPerson.setMeetings(modelMeetings);
+
+        return modelPerson;
     }
 
 }
