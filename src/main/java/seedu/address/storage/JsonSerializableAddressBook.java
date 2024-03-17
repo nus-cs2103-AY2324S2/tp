@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.InsuraConnectBook;
-import seedu.address.model.ReadOnlyInsuraConnectBook;
+import seedu.address.model.AddressBook;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyInsuraConnectBook source) {
+    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,8 +45,8 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public InsuraConnectBook toModelType() throws IllegalValueException {
-        InsuraConnectBook addressBook = new InsuraConnectBook();
+    public AddressBook toModelType() throws IllegalValueException {
+        AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {

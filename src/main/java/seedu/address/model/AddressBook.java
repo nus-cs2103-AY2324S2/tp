@@ -6,7 +6,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -14,7 +13,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class InsuraConnectBook implements ReadOnlyInsuraConnectBook {
+public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
@@ -29,12 +28,12 @@ public class InsuraConnectBook implements ReadOnlyInsuraConnectBook {
         persons = new UniquePersonList();
     }
 
-    public InsuraConnectBook() {}
+    public AddressBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public InsuraConnectBook(ReadOnlyInsuraConnectBook toBeCopied) {
+    public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -52,7 +51,7 @@ public class InsuraConnectBook implements ReadOnlyInsuraConnectBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyInsuraConnectBook newData) {
+    public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -121,11 +120,11 @@ public class InsuraConnectBook implements ReadOnlyInsuraConnectBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof InsuraConnectBook)) {
+        if (!(other instanceof AddressBook)) {
             return false;
         }
 
-        InsuraConnectBook otherAddressBook = (InsuraConnectBook) other;
+        AddressBook otherAddressBook = (AddressBook) other;
         return persons.equals(otherAddressBook.persons);
     }
 

@@ -26,7 +26,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyInsuraConnectBook;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonInsuraConnectBookStorage;
@@ -153,7 +153,7 @@ public class LogicManagerTest {
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
         JsonInsuraConnectBookStorage addressBookStorage = new JsonInsuraConnectBookStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyInsuraConnectBook addressBook, Path filePath)
+            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
                     throws IOException {
                 throw e;
             }

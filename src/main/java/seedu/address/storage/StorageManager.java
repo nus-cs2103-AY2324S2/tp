@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyInsuraConnectBook;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -54,23 +54,23 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyInsuraConnectBook> readAddressBook() throws DataLoadingException {
+    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(insuraConnectBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyInsuraConnectBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
         return insuraConnectBookStorage.readAddressBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyInsuraConnectBook addressBook) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
         saveAddressBook(addressBook, insuraConnectBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyInsuraConnectBook addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         insuraConnectBookStorage.saveAddressBook(addressBook, filePath);
     }
