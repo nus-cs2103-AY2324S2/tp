@@ -14,4 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_FILENAME = new Prefix("f/");
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 
+    public static final Prefix PREFIX_FILENAME = new Prefix("f/");
+
 }

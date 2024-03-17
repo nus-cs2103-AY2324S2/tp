@@ -6,7 +6,10 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_FILENAME = "@123";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +37,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_FILENAME = "filename";
+    private static final String VALID_FILEPATH = "./data/" + VALID_FILENAME + ".json";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,4 +199,34 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseFiles_nullFilenames_failure() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFiles(null));
+    }
+
+    @Test
+    public void parseFiles_collectionWIthInvalidFiles_failure() {
+        Collection<String> filenames = new ArrayList<>();
+        filenames.add(INVALID_FILENAME);
+        assertThrows(ParseException.class, () -> ParserUtil.parseFiles(filenames));
+    }
+
+    @Test
+    public void parseFiles_duplicateFilename_failure() {
+        Collection<String> filenames = new ArrayList<>();
+        filenames.add(VALID_FILENAME);
+        filenames.add(VALID_FILENAME);
+        assertThrows(ParseException.class, () -> ParserUtil.parseFiles(filenames));
+    }
+
+    @Test
+    public void parseFiles_collectionWithValidFiles_success() throws Exception {
+        Collection<String> filenames = new ArrayList<>();
+        filenames.add(VALID_FILENAME);
+        Set<File> expectedSet = new HashSet<>();
+        expectedSet.add(new File(VALID_FILEPATH));
+        assertEquals(ParserUtil.parseFiles(filenames), expectedSet);
+    }
+
 }
