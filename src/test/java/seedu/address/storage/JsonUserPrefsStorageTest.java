@@ -75,7 +75,7 @@ public class JsonUserPrefsStorageTest {
     private InternshipUserPrefs getTypicalUserPrefs() {
         InternshipUserPrefs userPrefs = new InternshipUserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setInternshipDataFilePath(Paths.get("data//internshipdata.json"));
+        userPrefs.setInternshipDataFilePath(Paths.get("data\\internshipdata.json"));
         return userPrefs;
     }
 
