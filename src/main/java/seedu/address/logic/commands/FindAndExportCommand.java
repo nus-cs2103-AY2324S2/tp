@@ -73,7 +73,7 @@ public class FindAndExportCommand extends Command {
         List<Person> filteredList = model.getFilteredPersonList();
 
         if (filteredList.isEmpty()) {
-            return new CommandResult("No users found.");
+            throw new CommandException("No users found.");
         }
 
         try {
