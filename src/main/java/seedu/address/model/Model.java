@@ -1,13 +1,11 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -87,10 +85,4 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Removes the given tag from the given person.
-     * @param target the person to remove the tag from
-     * @param tags the tags to remove from the person
-     */
-    void removeTagFromPerson(Person target, Set<Tag> tags);
 }
