@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERRED_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
@@ -34,25 +34,16 @@ public class PatientTest {
         // null -> returns false
         assertFalse(ALICE.isSamePatient(null));
 
-        // same name, all other attributes different -> returns true
-        Patient editedAlice = new PatientBuilder(ALICE).withPatientHospitalId(VALID_ID_BOB)
+        // same id, all other attributes different -> returns true
+        Patient editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB)
             .withPreferredName(VALID_PREFERRED_NAME_BOB).withFoodPreference(VALID_FOOD_BOB)
             .withFamilyCondition(VALID_FAMILY_CONDITION_BOB).withHobby(VALID_HOBBY_BOB).withTags(VALID_TAG_DEPRESSION)
             .build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different id, all other attributes same -> returns false
+        editedAlice = new PatientBuilder(ALICE).withPatientHospitalId(VALID_ID_AMY).build();
         assertFalse(ALICE.isSamePatient(editedAlice));
-
-        // name differs in case, all other attributes same -> returns false
-        Patient editedBob = new PatientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePatient(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PatientBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePatient(editedBob));
     }
 
     @Test
@@ -78,7 +69,7 @@ public class PatientTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different patient hospital id -> returns false
-        editedAlice = new PatientBuilder(ALICE).withPatientHospitalId(VALID_ID_BOB).build();
+        editedAlice = new PatientBuilder(ALICE).withPatientHospitalId(VALID_ID_AMY).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different preferred name -> returns false

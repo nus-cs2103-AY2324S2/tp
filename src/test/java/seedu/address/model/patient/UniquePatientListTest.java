@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.AMY;
 import static seedu.address.testutil.TypicalPatients.BOB;
 
 import java.util.Arrays;
@@ -105,8 +106,8 @@ public class UniquePatientListTest {
     @Test
     public void setPatient_editedPatientHasNonUniqueIdentity_throwsDuplicatePatientException() {
         uniquePatientList.add(ALICE);
-        uniquePatientList.add(BOB);
-        assertThrows(DuplicatePatientException.class, () -> uniquePatientList.setPatient(ALICE, BOB));
+        uniquePatientList.add(AMY);
+        assertThrows(DuplicatePatientException.class, () -> uniquePatientList.setPatient(ALICE, AMY));
     }
 
     @Test
