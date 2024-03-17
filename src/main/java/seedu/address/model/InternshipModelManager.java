@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.internship.Internship;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Internship data.
  */
 public class InternshipModelManager implements InternshipModel {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,7 +24,7 @@ public class InternshipModelManager implements InternshipModel {
     private final FilteredList<Internship> filteredInternships;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given internshipData and userPrefs.
      */
     public InternshipModelManager(ReadOnlyInternshipData internshipData, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(internshipData, userPrefs);
@@ -75,7 +75,7 @@ public class InternshipModelManager implements InternshipModel {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== InternshipData ================================================================================
 
     @Override
     public void setInternshipData(ReadOnlyInternshipData internshipData) {
@@ -107,15 +107,14 @@ public class InternshipModelManager implements InternshipModel {
     @Override
     public void setInternship(Internship target, Internship editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         internshipData.setInternship(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Internship List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Internship} backed by the internal list of
+     * {@code versionedInternshipData}
      */
     @Override
     public ObservableList<Internship> getFilteredInternshipList() {
