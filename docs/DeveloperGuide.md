@@ -274,13 +274,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* insurance agents
 * has a need to manage a significant number of contacts
+* needs to differentiate between different types of contacts
+* track the status of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Provides fast access to client contact details, easily manage client relationships, collaborate with industry partners, and stay organised in a fast-paced industry.
 
 
 ### User stories
@@ -434,7 +437,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
   Use case resumes at step 4.
   
+**Use case: Clear AddressBook**
 
+**MSS**
+
+1. User requests to clear the AddressBook
+2. AddressBook shows the empty AddressBook
+
+    use case ends
 
 
 

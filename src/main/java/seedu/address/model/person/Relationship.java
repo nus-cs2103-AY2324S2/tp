@@ -4,31 +4,37 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Relationship in the address book.
- * Guarantees: immutable; value is valid as declared in {@link #isValidRelationship(String)}
+ * Represents a Person's relationship in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRelationship(String)}
  */
 public class Relationship {
-
     public static final String MESSAGE_CONSTRAINTS = "Relationship should only be client or partner";
 
     public final String value;
 
     /**
-     * Constructs a {@code Relationship}.
+     * Constructs a {@code Name}.
      *
-     * @param value A valid relationship value.
+     * @param relationship A valid relationship.
      */
-    public Relationship(String value) {
-        requireNonNull(value);
-        checkArgument(isValidRelationship(value), MESSAGE_CONSTRAINTS);
-        this.value = value;
+    public Relationship(String relationship) {
+        requireNonNull(relationship);
+        checkArgument(isValidRelationship(relationship), MESSAGE_CONSTRAINTS);
+        value = relationship;
     }
 
     /**
-     * Returns true if a given string is a valid relationship value.
+     * Returns true if a given string is a valid relationship.
      */
     public static boolean isValidRelationship(String test) {
         return test.equalsIgnoreCase("client") || test.equalsIgnoreCase("partner");
+    }
+
+
+
+    @Override
+    public String toString() {
+        return value;
     }
 
     @Override
@@ -50,12 +56,4 @@ public class Relationship {
     public int hashCode() {
         return value.hashCode();
     }
-
-    /**
-     * Format state as text for viewing.
-     */
-    public String toString() {
-        return '[' + value + ']';
-    }
-
 }

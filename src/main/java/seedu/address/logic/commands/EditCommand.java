@@ -5,9 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
-
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -28,8 +27,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Policy;
 import seedu.address.model.person.Relationship;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -89,6 +89,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
@@ -103,12 +104,15 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Relationship updatedRelationship = editPersonDescriptor.getRelationship().orElse(personToEdit.getRelationship()); // Add this line
+        Policy updatedPolicy = personToEdit.getPolicy();
+        Relationship updatedRelationship = editPersonDescriptor.getRelationship()
+                .orElse(personToEdit.getRelationship());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRelationship, updatedTags); // Include updatedRelationship
-    }
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRelationship,
+                updatedPolicy, updatedTags);
 
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -143,9 +147,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
-
         private Relationship relationship;
+        private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
 
@@ -158,16 +161,14 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setRelationship(toCopy.relationship);
             setTags(toCopy.tags);
-            setRelationship((toCopy.relationship));
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-
-
             return CollectionUtil.isAnyNonNull(name, phone, email, address, relationship, tags);
         }
 
@@ -175,18 +176,8 @@ public class EditCommand extends Command {
             this.name = name;
         }
 
-        public void setRelationship(Relationship relationship) {
-            this.relationship = relationship;
-        }
-
-        
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public Optional<Relationship> getRelationship() {
-            return Optional.ofNullable(relationship);
         }
 
         public void setPhone(Phone phone) {
@@ -213,6 +204,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setRelationship(Relationship relationship) {
+            this.relationship = relationship;
+        }
+
+        public Optional<Relationship> getRelationship() {
+            return Optional.ofNullable(relationship);
+        }
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -248,7 +246,6 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(relationship, otherEditPersonDescriptor.relationship)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
-
         }
 
         @Override

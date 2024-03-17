@@ -74,6 +74,14 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Relationship} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRelationship(String relationship) {
+        descriptor.setRelationship(new Relationship(relationship));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */

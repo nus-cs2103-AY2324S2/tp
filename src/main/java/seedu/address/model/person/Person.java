@@ -24,18 +24,23 @@ public class Person {
     // Data fields
     private final Address address;
 
+    private final Policy policy;
+
     private final Relationship relationship;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,Relationship relationship, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Relationship relationship,
+                  Policy policy, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, relationship, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.policy = policy;
         this.relationship = relationship;
         this.tags.addAll(tags);
     }
@@ -56,10 +61,13 @@ public class Person {
         return address;
     }
 
+    public Policy getPolicy() {
+        return policy;
+    }
+
     public Relationship getRelationship() {
         return relationship;
     }
-
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -103,13 +111,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && relationship.equals(otherPerson.relationship)
+                && policy.equals(otherPerson.policy)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, relationship, tags);
+        return Objects.hash(name, phone, email, address, policy, relationship, tags);
     }
 
     @Override
@@ -119,8 +128,9 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
                 .add("relationship", relationship)
+                .add("policy", policy)
+                .add("tags", tags)
                 .toString();
     }
 
