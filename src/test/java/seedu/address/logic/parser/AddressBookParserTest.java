@@ -95,7 +95,7 @@ public class AddressBookParserTest {
     public void parseCommand_addNote_withReplaceFlag() throws Exception {
         final Note note = new Note("Some note.");
         AddNoteCommand command = (AddNoteCommand) parser.parseCommand(AddNoteCommand.COMMAND_WORD + " "
-                + PREFIX_IC + "S0123456Q " + PREFIX_NOTE + note.value + " " + PREFIX_FLAG + "-replace");
+                + PREFIX_IC + "S0123456Q " + PREFIX_NOTE + note.value + " " + PREFIX_FLAG);
         assertEquals(new AddNoteCommand(new IdentityCardNumberMatchesPredicate(new IdentityCardNumber("S0123456Q")),
                 note, true), command);
     }
