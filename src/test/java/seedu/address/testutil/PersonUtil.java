@@ -1,11 +1,8 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 import static seedu.address.logic.parser.CliSyntax.*;
 

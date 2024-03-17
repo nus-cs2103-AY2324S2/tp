@@ -85,8 +85,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && dateOfBirth.equals(otherPerson.dateOfBirth);
+                && address.equals(otherPerson.address);
     }
 
     @Override
