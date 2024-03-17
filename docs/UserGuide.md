@@ -133,11 +133,11 @@ Examples:
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating contacts by tags: `findTag`
+### Locating contacts by tags: `find-tag`
 
 Finds contacts whose tags contain all the given keywords.
 
-Format: `findTag KEYWORD [MORE_KEYWORDS]`
+Format: `find-tag KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g `school` will match `School`
 - Only the tags are searched.
