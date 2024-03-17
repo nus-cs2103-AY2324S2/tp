@@ -27,9 +27,8 @@ public class ReturnCommandTest {
         String expectedMessage = String.format(ReturnCommand.MESSAGE_RETURN_BOOK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.deletePerson(JACKER);
-        expectedModel.addPerson(editedPerson);
+        expectedModel.setPerson(JACKER, editedPerson);
 
-        assertCommandSuccess(returnCommand, model, expectedMessage, model);
+        assertCommandSuccess(returnCommand, model, expectedMessage, expectedModel);
     }
 }

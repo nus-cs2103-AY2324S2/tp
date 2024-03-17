@@ -90,7 +90,7 @@ public class MeritScore {
         }
 
         MeritScore otherName = (MeritScore) other;
-        return meritScore == otherName.meritScore;
+        return meritScore.equals(otherName.meritScore);
     }
 
     @Override
