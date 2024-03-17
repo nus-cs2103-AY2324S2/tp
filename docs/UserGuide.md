@@ -76,15 +76,15 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/major [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MAJOR [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@u.nus.edu m/computer science`
-* `add n/Betsy Crowe t/friend e/betsycrowe@u.nus.edu m/life sciences p/84459350 t/exchange student`
+* `add n/John Doe p/98765432 e/johnd@u.nus.edu m/Computer Science`
+* `add n/Betsy Crowe t/friend e/betsycrowe@u.nus.edu m/life sciences p/84459350 t/Exchange Student`
 
 ### Listing all students : `list`
 
