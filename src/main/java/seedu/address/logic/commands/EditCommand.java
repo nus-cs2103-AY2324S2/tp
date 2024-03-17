@@ -78,6 +78,11 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        // Delete old person's QR code.
+        // Has to be done before creation of a new Person object as QR code generation happens on creation of a Person.
+        personToEdit.deleteQrCode();
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {

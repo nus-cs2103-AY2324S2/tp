@@ -97,4 +97,37 @@ public class PersonTest {
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    /**
+     * Generate a QR code using the ALICE instance and verify its existence.
+     */
+    @Test
+    void generateQrCode_validPerson_success() {
+        ALICE.generateQrCode();
+        assertTrue(ALICE.getQrCodePath().toFile().exists());
+    }
+
+    /**
+     * Delete the QR code using the ALICE instance and verify its absence.
+     */
+    @Test
+    void deleteQrCode_qrCodeExists_returnsTrue() {
+        ALICE.generateQrCode();
+        boolean result = ALICE.deleteQrCode();
+
+        assertTrue(result);
+        assertFalse(ALICE.getQrCodePath().toFile().exists());
+    }
+
+    /**
+     * Delete the QR code using the ALICE instance and verify its absence.
+     */
+    @Test
+    void deleteQrCode_qrCodeDoesNotExist_returnsFalse() {
+        ALICE.deleteQrCode(); // To delete the one generated
+
+        boolean result = ALICE.deleteQrCode(); // Try to delete a non-existent QR code
+        assertFalse(result);
+        assertFalse(ALICE.getQrCodePath().toFile().exists());
+    }
 }
