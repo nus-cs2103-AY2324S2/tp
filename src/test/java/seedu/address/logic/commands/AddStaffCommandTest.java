@@ -22,9 +22,11 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 import seedu.address.testutil.StaffBuilder;
 
 public class AddStaffCommandTest {
@@ -163,6 +165,21 @@ public class AddStaffCommandTest {
 
         @Override
         public Person findByName(Name targetName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Maintainer findMaintainerByName(Name targetName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Supplier findSupplierByName(Name targetName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Staff findStaffByName(Name targetName) {
             throw new AssertionError("This method should not be called.");
         }
     }

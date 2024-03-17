@@ -11,8 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -146,6 +149,11 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    /**
+     * Find the person by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Person that matches the name.
+     */
     @Override
     public Person findByName(Name targetName) {
         for (Person person: filteredPersons) {
@@ -157,4 +165,51 @@ public class ModelManager implements Model {
         return null;
     }
 
+    /**
+     * Find the maintainer by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Maintainer that matches the name.
+     */
+    @Override
+    public Maintainer findMaintainerByName(Name targetName) {
+        for (Person person: filteredPersons) {
+            Name name = person.getName();
+            if (name.equals(targetName) && person instanceof Maintainer) {
+                return (Maintainer) person;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Find the staff by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Staff that matches the name.
+     */
+    @Override
+    public Staff findStaffByName(Name targetName) {
+        for (Person person: filteredPersons) {
+            Name name = person.getName();
+            if (name.equals(targetName) && person instanceof Staff) {
+                return (Staff) person;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Find the supplier by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Supplier that matches the name.
+     */
+    @Override
+    public Supplier findSupplierByName(Name targetName) {
+        for (Person person: filteredPersons) {
+            Name name = person.getName();
+            if (name.equals(targetName) && person instanceof Supplier) {
+                return (Supplier) person;
+            }
+        }
+        return null;
+    }
 }
