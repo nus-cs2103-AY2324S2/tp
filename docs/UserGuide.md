@@ -97,15 +97,18 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: `add n/NAME s/STUDENT_ID e/EMAIL h/TELEGRAM_HANDLE [t/TAG]…​`
+Format: `add n/NAME s/STUDENT_ID e/EMAIL h/TELEGRAM_HANDLE [c/TIMETABLE] [t/TAG]…​`
 
 <box type="tip" seamless>
 
 **Tip:** A student can have any number of tags (including 0)
+
+**Tip:** A student can have its timetable field left empty, a default empty timetable will be allocated.
 </box>
 
 Examples:
-* `add n/John Doe s/A1234567X h/@john.doe e/johnd@example.com t/tutorial-1 t/high-ability`
+* `add n/John Doe s/A1234567X h/@john.doe e/johnd@example.com t/tutorial-1 t/high-ability c/mon: 8-10, 10-12 tue: 
+  11-13 thu: 12-15, 15-17`
 * `add n/Anne-Marie Rose Nicholson t/singer t/songwriter e/rockabye@friends.uk h/@AnneMarieofficial s/A7041991U`
 
 ### Listing all students : `list`
@@ -118,7 +121,7 @@ Format: `list`
 
 Edits an existing student in the address book.
 
-Format: `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [c/TIMETABLE] [t/TAG]…​ `
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -126,10 +129,14 @@ Format: `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [t/TAG
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
+* You can reset the timetable to be empty by typing 'c/' without specifying anything after it.
 
 Examples:
 *  `edit 1 s/A0001234A e/johndoe@example.com` Edits the student id and email address of the 1st student to be `A0001234A` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `edit 3 h/@christan c/` Edits the telegram handle and clears the timetable.
+*  `edit 4 c/mon: 8-10, 10-12 tue: 11-13 thu: 12-15, 15-17` Replaces the timetable with this new one according to 
+   the specifications in the command.
 
 ### Locating students by name: `find`
 
@@ -216,10 +223,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME s/STUDENT_ID e/EMAIL h/TELEGRAM_HANDLE [t/TAG]…​` <br> e.g., `add n/James Ho s/A2222444X e/jamesho@example.com h/@hohoho t/struggling t/3rd year`
+**Add**    | `add n/NAME s/STUDENT_ID e/EMAIL h/TELEGRAM_HANDLE [c/TIMETABLE] [t/TAG]…​` <br> e.g., `add n/James Ho s/A2222444X e/jamesho@example.com h/@hohoho t/struggling t/3rd year c/mon: 8-10, 10-12 tue: 11-13 thu: 12-15, 15-17`
 **Clear**  | `clear`
 **Delete** | `delete [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE]`<br> e.g., `delete s/A1654327X`
-**Edit**   | `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `edit INDEX [n/NAME] [s/STUDENT_ID] [e/EMAIL] [h/TELEGRAM_HANDLE] [c/TIMETABLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/mon: 8-10, 10-12 tue: 11-13 thu: 12-15, 15-17`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
