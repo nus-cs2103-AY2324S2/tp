@@ -5,6 +5,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.GuiSettings;
 
 public class InternshipUserPrefsTest {
@@ -23,7 +24,7 @@ public class InternshipUserPrefsTest {
     @Test
     public void constructor_nullInternshipUserPrefsAndNonNullGuiSettings_throwsNullPointerException() {
         InternshipUserPrefs userPrefs = new InternshipUserPrefs();
-        GuiSettings guiSettings= userPrefs.getGuiSettings();
+        GuiSettings guiSettings = userPrefs.getGuiSettings();
         userPrefs = null;
         InternshipUserPrefs finalUserPrefs = userPrefs;
         assertThrows(NullPointerException.class, () -> finalUserPrefs.setGuiSettings(guiSettings));
