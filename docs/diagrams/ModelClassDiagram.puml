@@ -5,20 +5,21 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model as ModelPackage <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaToolkit" as ReadOnlyTaToolkit
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class TaToolkit
 Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
 Class Name
+Class ClassGroup
+Class Email
 Class Phone
-Class Tag
+Class Telegram
+Class Github
 
 Class I #FFFFFF
 }
@@ -26,29 +27,32 @@ Class I #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TaToolkit .up.|> ReadOnlyTaToolkit
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyTaToolkit
+ModelManager -left-> "1" TaToolkit
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+TaToolkit *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
-Person *--> Phone
+Person *--> ClassGroup
 Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> Phone
+Person |o--> Telegram
+Person |o--> Github
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> ClassGroup
+ClassGroup -[hidden]right-> Email
+Email -[hidden]right-> Phone
+Phone -[hidden]right-> Telegram
+Telegram -[hidden]right-> Github
 
 ModelManager --> "~* filtered" Person
 @enduml
