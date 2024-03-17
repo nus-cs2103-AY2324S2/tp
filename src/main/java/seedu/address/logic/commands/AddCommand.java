@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -30,8 +31,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_FAMILY + "FAMILY "
-            + PREFIX_TAG + "BUYER/SELLER"
-            + "\n"
+            + PREFIX_TAG + "BUYER/SELLER "
+            + PREFIX_REMARK + "[REMARK]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -40,13 +41,14 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_FAMILY + "4 "
             + PREFIX_TAG + "buyer "
-            + PREFIX_TAG + "seller";
+            + PREFIX_TAG + "seller "
+            + PREFIX_REMARK + "Has 3 cats.";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the Realodex";
     public static final String MESSAGE_ADD_HELP = "Add Command: Adds a client to the Realodex. You may input client"
-            + " details in any order. Tags are optional to input.\n"
-            + "Format: add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY [t/TAG]...\n";
+            + " details in any order. Remarks are optional to input.\n"
+            + "Format: add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY t/TAG [r/REMARK]\n";
 
     private final Person toAdd;
 
