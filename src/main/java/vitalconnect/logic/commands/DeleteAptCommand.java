@@ -43,7 +43,7 @@ public class DeleteAptCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} object containing the success message upon
-     *         successful deletion of the appointment.
+     *         successful deletion of the appointment and the type of command result.
      * @throws CommandException If the appointment list is empty, the index is out of range,
      *                          or no appointment matches the provided index and patient name.
      */
@@ -69,7 +69,8 @@ public class DeleteAptCommand extends Command {
         model.deleteAppointment(appointmentToDelete);
         return new CommandResult(String.format("Deleted the appointment successfully:\nName: %s\nTime: %s",
                 patientName,
-                appointmentToDelete.getDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu HH:mm"))));
+                appointmentToDelete.getDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu HH:mm"))),
+                false, false, CommandResult.Type.SHOW_APPOINTMENTS);
     }
 
     /**

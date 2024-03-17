@@ -13,6 +13,7 @@ import vitalconnect.logic.commands.CommandResult;
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.logic.parser.ClinicParser;
 import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.Appointment;
 import vitalconnect.model.Model;
 import vitalconnect.model.ReadOnlyClinic;
 import vitalconnect.model.person.Person;
@@ -71,6 +72,10 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
+    }
     @Override
     public Path getClinicFilePath() {
         return model.getClinicFilePath();

@@ -47,7 +47,7 @@ public class CreateAptCommand extends Command {
      *
      * @param model The model of the address book in which the appointment is to be created.
      * @return A {@code CommandResult} object containing the success message upon
-     *         successful creation of the appointment.
+     *         successful creation of the appointment and the type of command result.
      * @throws CommandException If the specified patient does not exist or if the
      *                          date and time string is in an incorrect format.
      */
@@ -65,7 +65,8 @@ public class CreateAptCommand extends Command {
             model.addAppointment(appointment);
 
             return new CommandResult(String.format("Created an appointment successfully!\nName: %s\nTime: %s",
-                    patientName, dateTime.format(DateTimeFormatter.ofPattern("d MMM yyyy HH:mm"))));
+                    patientName, dateTime.format(DateTimeFormatter.ofPattern("d MMM yyyy HH:mm"))),
+                    false, false, CommandResult.Type.SHOW_APPOINTMENTS);
 
         } catch (DateTimeParseException e) {
             throw new CommandException("OOPS! The appointment cannot be created "
