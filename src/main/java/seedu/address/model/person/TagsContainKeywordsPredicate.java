@@ -6,10 +6,10 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
-public class TagsContainsKeywordsPredicate implements Predicate<Person> {
+public class TagsContainKeywordsPredicate implements Predicate<Person> {
     private final List<String> tagKeywords;
 
-    public TagsContainsKeywordsPredicate(List<String> tagKeywords) {
+    public TagsContainKeywordsPredicate(List<String> tagKeywords) {
         this.tagKeywords = tagKeywords;
     }
 
@@ -31,11 +31,11 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TagsContainsKeywordsPredicate)) {
+        if (!(other instanceof TagsContainKeywordsPredicate)) {
             return false;
         }
 
-        TagsContainsKeywordsPredicate otherContainsTagKeywordsPredicate = (TagsContainsKeywordsPredicate) other;
+        TagsContainKeywordsPredicate otherContainsTagKeywordsPredicate = (TagsContainKeywordsPredicate) other;
         return tagKeywords.equals(otherContainsTagKeywordsPredicate.tagKeywords);
     }
 
