@@ -40,6 +40,10 @@ public class TypicalPersons {
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563").withEmail("heinz@example.com").withModule("CS2030S")
             .withFaculty("Computing").withVenue("wall street").build();
+    public static final Person CLARA = new PersonBuilder().withName("Clara Svarog")
+            .withPhone("9681384").withEmail("svarog@example.com").withModule("CS2102")
+            .withFaculty("Computing").withVenue("belobog avenue")
+            .withTags("classmate").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com").withModule("CS2040S")
             .withFaculty("Computing").withVenue("10th street")
@@ -53,6 +57,13 @@ public class TypicalPersons {
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withVenue("4th street")
             .withFaculty("Computing").withModule("CS2102").build();
+    public static final Person KAFKA = new PersonBuilder().withName("Kafka Apache").withPhone("9452413")
+            .withEmail("apache@example.com").withModule("CS2102").withFaculty("Business")
+            .withVenue("pteruges avenue").withTags("classmate").withAvailabilities("FRIDAY").build();
+    public static final Person NATASHA = new PersonBuilder().withName("Natasha Harrower").withPhone("8019394")
+            .withEmail("harrower@example.com").withModule("CS2102")
+            .withFaculty("Computing").withVenue("underworld avenue")
+            .withTags("classmate").withAvailabilities("FRIDAY").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -89,6 +100,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, CLARA, DANIEL, ELLE, FIONA, GEORGE, KAFKA, NATASHA));
     }
 }
