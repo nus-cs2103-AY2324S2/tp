@@ -108,6 +108,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code withNoteDate} of the {@code Person} that we are building.
+     */
     public PersonBuilder withNoteDate() {
         this.noteDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d, yy"));
         return this;
