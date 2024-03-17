@@ -6,7 +6,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "family" : "4",
-    "tags": [ "buyer" ]
+    "tags": [ "buyer" ],
     "remark" : "this is a remark"
   }, {
     "name": "Alice Pauline",

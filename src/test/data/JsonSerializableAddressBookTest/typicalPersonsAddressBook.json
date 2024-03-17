@@ -7,7 +7,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "family" : "4",
-    "tags" : [ "buyer" ]
+    "tags" : [ "buyer" ],
     "remark" : "this is a remark"
   }, {
     "name" : "Benson Meier",
@@ -16,7 +16,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "family" : "4",
-    "tags" : [ "seller", "buyer" ]
+    "tags" : [ "seller", "buyer" ],
     "remark" : ""
   }, {
     "name" : "Carl Kurz",
@@ -25,7 +25,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "family" : "4",
-    "tags" : ["buyer"]
+    "tags" : ["buyer"],
     "remark" : "Carl was supposed to start with a K, but the doctor misspelled when he was born"
   }, {
     "name" : "Daniel Meier",
@@ -34,7 +34,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "family" : "4",
-    "tags" : [ "buyer" ]
+    "tags" : [ "buyer" ],
     "remark" : "White VANS"
   }, {
     "name" : "Elle Meyer",
@@ -43,7 +43,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "family" : "4",
-    "tags" : [ "buyer"]
+    "tags" : [ "buyer"],
     "remark" : ""
   }, {
     "name" : "Fiona Kunz",
@@ -52,7 +52,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "family" : "4",
-    "tags" : ["seller" ]
+    "tags" : ["seller" ],
     "remark" : ""
   }, {
     "name" : "George Best",
@@ -61,7 +61,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "family" : "4",
-    "tags" : ["buyer" ]
+    "tags" : ["buyer" ],
     "remark" : "Fun fact: George's brother's name is \"The\"."
   } ]
 }

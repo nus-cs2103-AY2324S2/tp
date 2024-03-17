@@ -28,30 +28,39 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withFamily("4")
-            .withTags("buyer").build();
+            .withTags("buyer")
+            .withRemark("this is a remark").build();
+
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withIncome("20000")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withFamily("4")
             .withTags("seller", "buyer").build();
+
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563")
             .withIncome("30000")
-            .withEmail("heinz@example.com").withAddress("wall street").withTags("buyer").build();
+            .withEmail("heinz@example.com").withAddress("wall street").withTags("buyer")
+            .withRemark("Carl was supposed to start with a K, but the doctor misspelled when he was born").build();
+
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withIncome("40000")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("buyer").build();
+            .withEmail("cornelia@example.com").withAddress("10th street").withTags("buyer")
+            .withRemark("White VANS").build();
+
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withIncome("50000")
             .withEmail("werner@example.com").withAddress("michegan ave").withTags("buyer").build();
+
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withPhone("9482427")
             .withIncome("60000")
             .withEmail("lydia@example.com").withAddress("little tokyo").withTags("seller").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withIncome("70000")
-            .withEmail("anna@example.com").withAddress("4th street").withTags("buyer").build();
+            .withEmail("anna@example.com").withAddress("4th street").withTags("buyer")
+            .withRemark("Fun fact: George's brother's name is \"The\".").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -72,6 +81,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withFamily("4")
             .withTags(VALID_TAG_BOB)
+            .withRemark("Testing remark")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
