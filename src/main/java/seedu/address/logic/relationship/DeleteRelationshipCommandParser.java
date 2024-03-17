@@ -5,6 +5,9 @@ import java.util.Map;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.relationship.RelationshipManager;
 
+/**
+ * Parses user input into a DeleteRelationshipCommand.
+ */
 public class DeleteRelationshipCommandParser {
     private final Map<String, Person> personMap;
     private final RelationshipManager relationshipManager;
