@@ -26,7 +26,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/darryl-chan.md)]
 
 * Role: Developer
-* Responsibilities: model
+* Responsibilities: Testing
 
 ### Shang Feiyang
 
@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/tanjiajiajun)] [[portfolio](team/jiajun.md)]
 
 * Role: Developer
-* Responsibilities: Documentation + Code Quality
+* Responsibilities: Code Quality
 
 ### Jeremiah Lim Zhi Zhong
 
@@ -65,7 +65,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/marcuslam.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: Documentation
 
 ### Matthew Elmer Ken
 
