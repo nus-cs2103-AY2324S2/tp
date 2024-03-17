@@ -58,7 +58,8 @@ public class EditMaintainerCommandParser implements Parser<EditMaintainerCommand
                 ArgumentTokenizer.tokenize(fieldArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_SKILL, PREFIX_COMMISSION);
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_SKILL, PREFIX_COMMISSION);
 
         EditMaintainerDescriptor editMaintainerDescriptor = editMaintainerDescription(fieldArgMultimap);
 

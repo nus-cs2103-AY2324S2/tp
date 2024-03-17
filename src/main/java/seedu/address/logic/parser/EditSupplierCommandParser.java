@@ -58,7 +58,7 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
                 ArgumentTokenizer.tokenize(fieldArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_PRODUCT, PREFIX_PRICE);
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         EditSupplierDescriptor editSupplierDescriptor = editSupplierDescription(fieldArgMultimap);
 

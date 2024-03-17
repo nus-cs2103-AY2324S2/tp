@@ -53,10 +53,11 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
         }
 
         ArgumentMultimap fieldArgMultimap =
-                ArgumentTokenizer.tokenize(fieldArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                ArgumentTokenizer.tokenize(fieldArgs, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_EMPLOYMENT, PREFIX_SALARY);
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_EMPLOYMENT, PREFIX_SALARY);
 
         EditStaffDescriptor editStaffDescriptor = editStaffDescription(fieldArgMultimap);
 

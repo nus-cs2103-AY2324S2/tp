@@ -55,6 +55,9 @@ public class CommandTestUtil {
     public static final String VALID_EMPLOYMENT_BOB = "part-time";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG = "other";
+    public static final String VALID_TAG_STAFF = "staff";
+    public static final String VALID_TAG_SUPPLIER = "supplier";
+    public static final String VALID_TAG_MAINTAINER = "maintainer";
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
