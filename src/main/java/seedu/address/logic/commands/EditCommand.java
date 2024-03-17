@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]"
+            + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_UPCOMING + "UPCOMING]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -60,7 +60,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -137,8 +137,7 @@ public class EditCommand extends Command {
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will
-     * replace the
-     * corresponding field value of the person.
+     * replace the corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
         private Name name;
