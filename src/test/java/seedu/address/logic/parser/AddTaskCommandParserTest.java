@@ -23,7 +23,8 @@ public class AddTaskCommandParserTest {
         Model m2 = new ModelManager();
         Task.setUniversalTaskId(5);
         AddTaskCommand atc = parser.parse("testing              ");
-        AddTaskCommand atc2 = new AddTaskCommand(new Task(new TaskName("testing"), new TaskId(5), new TaskStatus(false)));
+        AddTaskCommand atc2 = new AddTaskCommand(
+                new Task(new TaskName("testing"), new TaskId(5), new TaskStatus(false)));
         atc.execute(m1);
         atc2.execute(m2);
         assertTrue(m1.equals(m2));

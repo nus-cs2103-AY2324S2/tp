@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -21,7 +22,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
-import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -68,7 +68,7 @@ public class TaskMasterProParser {
             return new MarkCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
-        return new AddCommandParser().parse(arguments);
+            return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

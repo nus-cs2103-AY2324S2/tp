@@ -1,19 +1,18 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.employee.Employee;
-
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskId;
 import seedu.address.model.task.TaskName;
 import seedu.address.model.task.TaskStatus;
 import seedu.address.testutil.EmployeeBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AssignTaskCommandTest {
     @Test
@@ -29,6 +28,6 @@ public class AssignTaskCommandTest {
         AssignTaskCommand atc = new AssignTaskCommand(5, 1);
         atc.execute(model);
 
-        assertEquals("1 3 5", model.getFilteredEmployeeList().get(0).getTasks().tasks);
+        assertEquals("1 3 5", model.getFilteredEmployeeList().get(0).getTasks().getTasks());
     }
 }

@@ -10,9 +10,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.employee.*;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.AssignedTasks;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Employee}.
@@ -58,7 +63,7 @@ class JsonAdaptedEmployee {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tasks = source.getTasks().tasks;
+        tasks = source.getTasks().getTasks();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

@@ -1,7 +1,10 @@
 package seedu.address.model.task;
 
+/**
+ * Represents the status of a task, which can be either completed or in progress.
+ */
 public class TaskStatus {
-    public boolean status;
+    private boolean status;
 
     public TaskStatus(boolean taskStatus) {
         status = taskStatus;
@@ -12,6 +15,10 @@ public class TaskStatus {
 
     public void setTaskNotDone() {
         status = false;
+    }
+
+    public boolean getStatus() {
+        return status;
     }
 
     @Override

@@ -30,6 +30,6 @@ public class AssignTaskCommandParserTest {
         AssignTaskCommand atc = parser.parse("123 1");
         atc.execute(model);
 
-        assertEquals("1 3 123", model.getFilteredEmployeeList().get(0).getTasks().tasks);
+        assertEquals("1 3 123", model.getFilteredEmployeeList().get(0).getTasks().getTasks());
     }
 }

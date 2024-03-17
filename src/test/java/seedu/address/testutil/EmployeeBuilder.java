@@ -3,7 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.employee.*;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.AssignedTasks;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,7 +22,7 @@ public class EmployeeBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static String DEFAULT_TASKS = "1 3";
+    public static final String DEFAULT_TASKS = "1 3";
 
     private Name name;
     private Phone phone;
@@ -89,6 +95,12 @@ public class EmployeeBuilder {
         return this;
     }
 
+    /**
+     * Sets the tasks assigned to the employee using the provided string.
+     *
+     * @param tasks A string containing the tasks to be assigned to the employee.
+     * @return This {@code EmployeeBuilder} instance for method chaining.
+     */
     public EmployeeBuilder withTasks(String tasks) {
         this.tasks = new AssignedTasks(tasks);
         return this;

@@ -40,7 +40,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         taskName = source.getName().taskName;
         taskId = source.getTaskId().taskId;
-        taskStatus = source.getTaskStatus().status;
+        taskStatus = source.getTaskStatus().getStatus();
     }
 
     /**

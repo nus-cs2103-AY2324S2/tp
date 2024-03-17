@@ -6,7 +6,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
-import seedu.address.model.employee.*;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.AssignedTasks;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,6 +73,12 @@ public class EditEmployeeDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the tasks assigned to the employee in the edit descriptor using the provided string.
+     *
+     * @param tasks A string containing the tasks to be assigned to the employee.
+     * @return This {@code EditEmployeeDescriptorBuilder} instance for method chaining.
+     */
     public EditEmployeeDescriptorBuilder withTasks(String tasks) {
         descriptor.setTasks(new AssignedTasks(tasks));
         return this;

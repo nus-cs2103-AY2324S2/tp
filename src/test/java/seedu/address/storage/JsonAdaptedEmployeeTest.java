@@ -42,7 +42,8 @@ public class JsonAdaptedEmployeeTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedEmployee employee =
-                new JsonAdaptedEmployee(1, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TASKS, VALID_TAGS);
+                new JsonAdaptedEmployee(
+                        1, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TASKS, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
@@ -58,7 +59,8 @@ public class JsonAdaptedEmployeeTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedEmployee employee =
-                new JsonAdaptedEmployee(1, VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TASKS, VALID_TAGS);
+                new JsonAdaptedEmployee(
+                        1, VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TASKS, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
@@ -74,7 +76,8 @@ public class JsonAdaptedEmployeeTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedEmployee employee =
-                new JsonAdaptedEmployee(1, VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TASKS, VALID_TAGS);
+                new JsonAdaptedEmployee(
+                        1, VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TASKS, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
@@ -90,7 +93,8 @@ public class JsonAdaptedEmployeeTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedEmployee employee =
-                new JsonAdaptedEmployee(1, VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TASKS, VALID_TAGS);
+                new JsonAdaptedEmployee(
+                        1, VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TASKS, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
@@ -108,8 +112,8 @@ public class JsonAdaptedEmployeeTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedEmployee employee =
-                new JsonAdaptedEmployee(1, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TASKS, invalidTags);
+                new JsonAdaptedEmployee(
+                        1, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TASKS, invalidTags);
         assertThrows(IllegalValueException.class, employee::toModelType);
     }
-
 }

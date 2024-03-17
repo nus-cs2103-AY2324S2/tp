@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.task.Task;
 
-import java.util.List;
-
+/**
+ * Assigns a task to an employee.
+ */
 public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "assigntask";
 
@@ -21,11 +24,22 @@ public class AssignTaskCommand extends Command {
     private final int taskID;
     private final int employeeID;
 
+    /**
+     * Creates an AssignTaskCommand to assign a task to an employee.
+     * @param taskID The ID of the task to be assigned.
+     * @param employeeID The ID of the employee to whom the task is assigned.
+     */
     public AssignTaskCommand(int taskID, int employeeID) {
         this.taskID = taskID;
         this.employeeID = employeeID;
     }
 
+    /**
+     * Executes the AssignTaskCommand to assign a task to an employee.
+     * @param model The model in which the command should be executed.
+     * @return The result of the command execution.
+     * @throws CommandException If there is an error executing the command.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Task> taskList = model.getFilteredTaskList();
