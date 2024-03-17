@@ -144,9 +144,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Points points;
 
-        public EditPersonDescriptor() {
-            tags = new HashSet<>();
-        }
+        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
@@ -165,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address) || !tags.isEmpty();
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, points);
         }
 
         public void setName(Name name) {
@@ -205,7 +203,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : new HashSet<>();
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -214,8 +212,7 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
-            return (!tags.isEmpty()) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();        }
 
         public void setPoints(Points points) {
             this.points = points;

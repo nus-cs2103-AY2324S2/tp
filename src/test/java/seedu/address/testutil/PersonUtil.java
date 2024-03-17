@@ -52,8 +52,11 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
-            tags.forEach(tag -> sb.append(PREFIX_TAG).append(tag.tagName).append(" "));
-        }
+            if (tags.isEmpty()) {
+                sb.append(PREFIX_TAG + " ");
+            } else {
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }        }
         descriptor.getPoints().ifPresent(points -> sb.append(PREFIX_POINTS).append(points.value).append(" "));
         return sb.toString();
     }
