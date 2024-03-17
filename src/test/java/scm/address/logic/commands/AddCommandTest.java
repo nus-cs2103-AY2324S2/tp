@@ -14,12 +14,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import scm.address.logic.Messages;
-import scm.address.logic.commands.exceptions.CommandException;
-import scm.address.model.AddressBook;
-import scm.address.model.ReadOnlyAddressBook;
-import scm.address.model.person.Person;
-import scm.address.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
 import scm.address.commons.core.GuiSettings;
 import scm.address.logic.Messages;

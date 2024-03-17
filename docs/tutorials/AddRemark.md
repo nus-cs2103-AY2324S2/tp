@@ -8,7 +8,7 @@
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the AddressBook application to add optional remarks to people in their contact manager and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -31,7 +31,7 @@ package scm.address.logic.commands;
 import scm.address.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in the contact manager.
  */
 public class RemarkCommand extends Command {
 
@@ -296,7 +296,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <box type="warning" seamless>
 
-You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty contact manager!
 
 </box>
 

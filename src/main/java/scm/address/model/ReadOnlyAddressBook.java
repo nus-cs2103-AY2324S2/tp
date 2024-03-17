@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import scm.address.model.person.Person;
 
 /**
- * Unmodifiable view of an contact manager
+ * Unmodifiable view of a contact manager
  */
 public interface ReadOnlyAddressBook {
 

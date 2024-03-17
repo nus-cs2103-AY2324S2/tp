@@ -2,12 +2,6 @@ package scm.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-<<<<<<< HEAD:src/test/java/scm/address/logic/parser/AddressBookParserTest.java
-import static scm.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static scm.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static scm.address.testutil.Assert.assertThrows;
-import static scm.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-=======
 import static scm.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static scm.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static scm.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -16,7 +10,6 @@ import static scm.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static scm.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static scm.address.testutil.Assert.assertThrows;
 import static scm.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
->>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/scm/address/logic/parser/AddressBookParserTest.java
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,24 +17,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-<<<<<<< HEAD:src/test/java/scm/address/logic/parser/AddressBookParserTest.java
-import scm.address.logic.commands.AddCommand;
-import scm.address.logic.commands.ClearCommand;
-import scm.address.logic.commands.DeleteCommand;
-import scm.address.logic.commands.EditCommand;
-import scm.address.logic.commands.EditCommand.EditPersonDescriptor;
-import scm.address.logic.commands.ExitCommand;
-import scm.address.logic.commands.FindCommand;
-import scm.address.logic.commands.HelpCommand;
-import scm.address.logic.commands.ImportCommand;
-import scm.address.logic.commands.ListCommand;
-import scm.address.logic.parser.exceptions.ParseException;
-import scm.address.model.person.NameContainsKeywordsPredicate;
-import scm.address.model.person.Person;
-import scm.address.testutil.EditPersonDescriptorBuilder;
-import scm.address.testutil.PersonBuilder;
-import scm.address.testutil.PersonUtil;
-=======
 import scm.address.logic.commands.AddCommand;
 import scm.address.logic.commands.ClearCommand;
 import scm.address.logic.commands.DeleteCommand;
@@ -59,7 +34,6 @@ import scm.address.model.person.Person;
 import scm.address.testutil.EditPersonDescriptorBuilder;
 import scm.address.testutil.PersonBuilder;
 import scm.address.testutil.PersonUtil;
->>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/scm/address/logic/parser/AddressBookParserTest.java
 
 public class AddressBookParserTest {
 
