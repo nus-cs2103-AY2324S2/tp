@@ -26,9 +26,7 @@ public class EditCommandParser implements Parser<EditCustomerCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CUSTOMER_ID, PREFIX_ORDER_ID);
 
-        CustomerOrderDifferentiator customerOrderDifferentiator = new CustomerOrderDifferentiator();
-
-        if (customerOrderDifferentiator.isCustomer(args)) {
+        if (ParserUtil.isCustomer(args)) {
             EditCustomerCommandParser editCustomerCommandParser = new EditCustomerCommandParser();
             return editCustomerCommandParser.parse(args);
         } else {
