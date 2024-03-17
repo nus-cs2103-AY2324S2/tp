@@ -84,7 +84,7 @@ public class TypicalPersons {
             .withRemark("Testing remark")
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final String KEYPHRASE_MATCHING_MEIER = "Meier"; // A keyphrase that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
 
