@@ -3,6 +3,10 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "address": "4th street",
+    "orders" : [ {
+      "items" : "Kaya Toast x 1",
+      "orderDateTime" : "2024-01-01T07:00"
+    } ]
   } ]
 }

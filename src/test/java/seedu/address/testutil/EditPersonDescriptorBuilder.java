@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,6 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,6 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         descriptor.setPoints(person.getPoints());
+        descriptor.setOrders(person.getOrders());
     }
 
     /**
@@ -88,6 +93,21 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPoints(String points) {
         descriptor.setPoints(new Points(points));
+        return this;
+    }
+
+    /**
+     * Parses the {@code orders} into a {@code ArrayList<Order>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withOrders(String... orders) {
+        ArrayList<Order> orderList = Arrays.stream(orders)
+                .map(str -> {
+                    String[] parts = str.split("@");
+                    return new Order(parts[0], LocalDateTime.parse(parts[1]));
+                })
+                .collect(Collectors.toCollection(ArrayList::new));
+        descriptor.setOrders(orderList);
         return this;
     }
 

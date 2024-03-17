@@ -8,7 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -54,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ? ParserUtil.parsePoints(argMultimap.getValue(PREFIX_POINTS).get())
                 : new Points("0");
 
-        Person person = new Person(name, phone, email, address, membership, tagList, points);
+        Person person = new Person(name, phone, email, address, membership, tagList, points, new ArrayList<>());
 
         return new AddCommand(person);
     }
@@ -64,12 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        for (Prefix prefix : prefixes) {
-            if (!argumentMultimap.getValue(prefix).isPresent()) {
-                return false;
-            }
-        }
-        return true;
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

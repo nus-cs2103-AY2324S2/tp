@@ -13,5 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEMSHIP = new Prefix("ms/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_POINTS = new Prefix("p/");
+    public static final Prefix PREFIX_ORDER = new Prefix("o/");
 
 }

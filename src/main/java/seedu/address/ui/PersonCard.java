@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.orders.Order;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -44,6 +46,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label points;
+    @FXML
+    private Label orders;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -57,9 +61,19 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         membership.setText(person.getMembership().value);
+        orders.setText(buildOrderString(person.getOrders()));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         points.setText(String.valueOf(person.getPoints().value));
+    }
+
+    private static String buildOrderString(ArrayList<Order> orders) {
+        StringBuilder orderStringBuilder = new StringBuilder("Orders:\n");
+        for (Order order : orders) {
+            orderStringBuilder.append(order.toString());
+            orderStringBuilder.append("\n");
+        }
+        return orderStringBuilder.toString();
     }
 }

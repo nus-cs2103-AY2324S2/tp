@@ -57,12 +57,10 @@ public class AddMemshipCommand extends Command {
 
         Person personToEdit = personOptional.get();
 
-        //Membership newMembership = new Membership(this.mship);
-
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMembership(),
-                personToEdit.getTags(), personToEdit.getPoints());
+                personToEdit.getTags(), personToEdit.getPoints(), personToEdit.getOrders());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

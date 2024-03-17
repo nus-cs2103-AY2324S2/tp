@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +30,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "Orders cannot be edited this way.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -94,7 +97,8 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editPersonDescriptor}. Orders of {@code personToEdit} is copied
+     * over to the returned {@code Person}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
@@ -106,9 +110,10 @@ public class EditCommand extends Command {
         Membership updatedMembership = personToEdit.getMembership(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Points updatedPoints = editPersonDescriptor.getPoints().orElse(personToEdit.getPoints());
+        ArrayList<Order> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembership, updatedTags,
-                updatedPoints);
+                updatedPoints, updatedOrders);
     }
 
     @Override
@@ -146,6 +151,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Points points;
+        private ArrayList<Order> orders;
 
         public EditPersonDescriptor() {}
 
@@ -160,6 +166,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setPoints(toCopy.points);
+            setOrders(toCopy.orders);
         }
 
         /**
@@ -226,6 +233,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(points);
         }
 
+
+        /**
+         * Sets {@code orders} to this object's {@code orders}.
+         * A defensive copy of {@code orders} is used internally.
+         */
+        public void setOrders(ArrayList<Order> orders) {
+            this.orders = (orders != null) ? new ArrayList<>(orders) : null;
+        }
+
+        /**
+         * Returns an order ArrayList
+         * Returns {@code Optional#empty()} if {@code ArrayList} is null.
+         */
+        public Optional<ArrayList<Order>> getOrders() {
+            return (orders != null) ? Optional.of(orders) : Optional.empty();
+        }
 
         @Override
         public boolean equals(Object other) {

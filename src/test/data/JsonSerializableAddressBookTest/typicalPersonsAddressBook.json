@@ -7,7 +7,11 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "membership" : "T1",
     "tags" : [ "friends" ],
-    "points" : "50"
+    "points" : "50",
+    "orders" : [ {
+      "items" : "Cupcake x 3",
+      "orderDateTime" : "2007-12-03T10:15:30"
+    } ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -15,7 +19,14 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "membership" : "T1",
     "tags" : [ "owesMoney", "friends" ],
-    "points" : "70"
+    "points" : "70",
+    "orders" : [ {
+      "items" : "Cookies x 5",
+      "orderDateTime" : "2012-03-21T07:45:01"
+    }, {
+      "items" : "Cupcake x 2",
+      "orderDateTime" : "2014-12-11T13:01:02"
+    } ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -23,7 +34,11 @@
     "address" : "wall street",
     "membership" : "T1",
     "tags" : [ ],
-    "points" : "0"
+    "points" : "0",
+    "orders" : [ {
+      "items" : "Kaya Toast x 1",
+      "orderDateTime" : "2024-01-01T07:00"
+    } ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -31,7 +46,11 @@
     "address" : "10th street",
     "membership" : "T1",
     "tags" : [ "friends" ],
-    "points" : "100"
+    "points" : "100",
+    "orders" : [ {
+      "items" : "Cheese Tart x 6",
+      "orderDateTime" : "2023-06-30T23:23:23"
+    } ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -39,7 +58,17 @@
     "address" : "michegan ave",
     "membership" : "T1",
     "tags" : [ ],
-    "points" : "50"
+    "points" : "50",
+    "orders" : [ {
+      "items" : "Chocolate Waffle x 1",
+      "orderDateTime" : "2023-01-01T13:13:13"
+    }, {
+      "items" : "Peanut Butter Waffle x 1",
+      "orderDateTime" : "2023-01-02T14:14:14"
+    }, {
+      "items" : "Kaya Waffle x 1",
+      "orderDateTime" : "2023-01-03T15:15:15"
+    } ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -47,7 +76,8 @@
     "address" : "little tokyo",
     "membership" : "T1",
     "tags" : [ ],
-    "points" : "20"
+    "points" : "20",
+    "orders" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -55,6 +85,7 @@
     "address" : "4th street",
     "membership" : "T1",
     "tags" : [ ],
-    "points" : "70"
+    "points" : "70",
+    "orders" : [ ]
   } ]
 }

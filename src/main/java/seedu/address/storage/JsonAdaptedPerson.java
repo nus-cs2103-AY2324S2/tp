@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,15 +34,17 @@ class JsonAdaptedPerson {
     private final String membership;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String points;
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("membership") String membership,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("points") String points) {
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("points") String points,
+                             @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
 
         this.name = name;
         this.phone = phone;
@@ -52,6 +55,9 @@ class JsonAdaptedPerson {
             this.tags.addAll(tags);
         }
         this.points = points;
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
     }
 
     /**
@@ -67,6 +73,9 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         points = String.valueOf(source.getPoints().getValue());
+        orders.addAll(source.getOrders().stream()
+                .map(JsonAdaptedOrder::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -78,6 +87,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Order> personOrders = new ArrayList<>();
+        for (JsonAdaptedOrder order : orders) {
+            personOrders.add(order.toModelType());
         }
 
         if (name == null) {
@@ -118,8 +132,6 @@ class JsonAdaptedPerson {
         }
         final Membership modelMembership = new Membership(membership);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-
         if (points == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Points.class.getSimpleName()));
         }
@@ -128,8 +140,10 @@ class JsonAdaptedPerson {
         }
         final Points modelPoints = new Points(points);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMembership, modelTags, modelPoints);
-
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final ArrayList<Order> modelOrders = new ArrayList<>(personOrders);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMembership,
+                modelTags, modelPoints, modelOrders);
     }
 
 }

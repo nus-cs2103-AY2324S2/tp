@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_CUPCAKES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.AddPointsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -30,6 +32,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -102,6 +105,14 @@ public class AddressBookParserTest {
                 + " " + points.value;
         AddPointsCommand command = (AddPointsCommand) parser.parseCommand(input);
         assertEquals(new AddPointsCommand(name, points), command);
+    }
+
+    @Test
+    public void parseCommand_addorder() throws Exception {
+        AddOrderCommand command = (AddOrderCommand) parser.parseCommand("addorder n/Amy Bee o/Cupcakes x 1");
+        NameContainsKeywordsPredicate namePred = new NameContainsKeywordsPredicate(Arrays.asList("Amy", "Bee"));
+        Order order = new Order(VALID_ORDER_CUPCAKES, command.order.orderDateTime);
+        assertEquals(new AddOrderCommand(namePred, order), command);
     }
 
     @Test

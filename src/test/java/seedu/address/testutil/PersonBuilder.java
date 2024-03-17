@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -33,6 +35,7 @@ public class PersonBuilder {
     private Membership membership;
     private Set<Tag> tags;
     private Points points;
+    private ArrayList<Order> orders;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,6 +48,7 @@ public class PersonBuilder {
         membership = new Membership(DEFAULT_MEMBERSHIP);
         tags = new HashSet<>();
         points = new Points(DEFAULT_POINTS);
+        orders = new ArrayList<>();
     }
 
     /**
@@ -58,6 +62,7 @@ public class PersonBuilder {
         membership = personToCopy.getMembership();
         tags = new HashSet<>(personToCopy.getTags());
         points = personToCopy.getPoints();
+        orders = new ArrayList<>(personToCopy.getOrders());
     }
 
     /**
@@ -73,6 +78,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code orders} into a {@code ArrayList<Order>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withOrders(String ... orders) {
+        this.orders = SampleDataUtil.getOrderArrayList(orders);
         return this;
     }
 
@@ -128,7 +141,7 @@ public class PersonBuilder {
      * @return A new {@code Person} instance with attributes specified in the {@code PersonBuilder}.
      */
     public Person build() {
-        return new Person(name, phone, email, address, membership, tags, points);
+        return new Person(name, phone, email, address, membership, tags, points, orders);
 
     }
 }
