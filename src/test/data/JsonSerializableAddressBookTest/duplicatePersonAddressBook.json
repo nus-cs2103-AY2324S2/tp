@@ -4,6 +4,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "country": "SG",
+    "status": "ACCEPTED",
     "comment": "",
     "tags": [ "friends" ]
   }, {
@@ -11,6 +12,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "country": "SG",
-    "comment": ""
+    "comment": "",
+    "status": "REJECTED"
   } ]
 }
