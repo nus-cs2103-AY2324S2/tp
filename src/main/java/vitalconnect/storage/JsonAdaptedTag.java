@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import vitalconnect.commons.exceptions.IllegalValueException;
-import vitalconnect.model.tag.Tag;
+import vitalconnect.model.allergytag.AllergyTag;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link AllergyTag}.
  */
 class JsonAdaptedTag {
 
@@ -22,9 +22,9 @@ class JsonAdaptedTag {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code AllergyTag} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
+    public JsonAdaptedTag(AllergyTag source) {
         tagName = source.tagName;
     }
 
@@ -34,15 +34,15 @@ class JsonAdaptedTag {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted allergytag object into the model's {@code AllergyTag} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted allergytag.
      */
-    public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+    public AllergyTag toModelType() throws IllegalValueException {
+        if (!AllergyTag.isValidTagName(tagName)) {
+            throw new IllegalValueException(AllergyTag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+        return new AllergyTag(tagName);
     }
 
 }

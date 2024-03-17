@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import vitalconnect.model.Clinic;
 import vitalconnect.model.ReadOnlyClinic;
+import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code Clinic} with sample data.
@@ -18,10 +18,8 @@ import vitalconnect.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new IdentificationInformation(new Name("Alex Yeoh"), new Nric("G7654321L")),
-                getTagSet("friends")),
-            new Person(new IdentificationInformation(new Name("Bernice Yu"), new Nric("M7654321J")),
-                getTagSet("colleagues"))
+            new Person(new IdentificationInformation(new Name("Alex Yeoh"), new Nric("G7654321L"))),
+            new Person(new IdentificationInformation(new Name("Bernice Yu"), new Nric("M7654321J")))
         };
     }
 
@@ -34,11 +32,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a allergytag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<AllergyTag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(AllergyTag::new)
                 .collect(Collectors.toSet());
     }
 

@@ -3,9 +3,7 @@ package vitalconnect.logic.parser;
 import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import vitalconnect.logic.commands.AddCommand;
@@ -14,7 +12,6 @@ import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -28,7 +25,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -38,10 +35,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_NRIC);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         IdentificationInformation iInfo = new IdentificationInformation(name, nric);
-        Person person = new Person(iInfo, tagList);
+        Person person = new Person(iInfo);
 
         return new AddCommand(person);
     }

@@ -27,6 +27,7 @@ public class Messages {
     public static final String MESSAGE_PHONE_ALREADY_EXIST = "Phone already exists";
     public static final String MESSAGE_ADDRESS_ALREADY_EXIST = "Address already exists";
     public static final String MESSAGE_NO_PREFIX_PROVIDED = "At least one prefix must be provided";
+    public static final String MESSAGE_ALLERGY_ALREADY_EXIST = "Allergy already exists";
     public static final String MESSAGE_OPTION_NOT_VALID = "Option not valid";
 
     /**
@@ -50,7 +51,7 @@ public class Messages {
                 .append("; NRIC: ")
                 .append(person.getIdentificationInformation().getNric())
                 .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+        person.getMedicalInformation().getAllergyTag().forEach(builder::append);
         return builder.toString();
     }
 

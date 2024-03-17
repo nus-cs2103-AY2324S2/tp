@@ -30,7 +30,7 @@ import vitalconnect.logic.commands.AddCommand;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.tag.Tag;
+import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -128,9 +128,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_NRIC_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Nric.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // invalid allergytag
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_FRIEND, AllergyTag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + INVALID_NRIC_DESC,

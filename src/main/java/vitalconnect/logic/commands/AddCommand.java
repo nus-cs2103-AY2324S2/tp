@@ -3,7 +3,7 @@ package vitalconnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
 
 import vitalconnect.commons.util.ToStringBuilder;
 import vitalconnect.logic.Messages;
@@ -23,10 +23,12 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_NRIC + "NRIC "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ALLERGYTAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_NRIC + "S1234567D ";
+            + PREFIX_NRIC + "S1234567D "
+            + PREFIX_ALLERGYTAG + "diabetes "
+            + PREFIX_ALLERGYTAG + "DiedFromMergeConflict";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the clinic";

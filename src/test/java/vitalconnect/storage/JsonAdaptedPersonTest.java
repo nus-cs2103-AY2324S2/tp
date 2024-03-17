@@ -6,18 +6,24 @@ import static vitalconnect.testutil.Assert.assertThrows;
 import static vitalconnect.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.commons.exceptions.IllegalValueException;
+import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.contactinformation.Email;
 import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.Height;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
+import vitalconnect.model.person.medicalinformation.Weight;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -29,12 +35,19 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_EMAIL = "example@email.com";
     private static final String VALID_PHONE = "12345678";
     private static final String VALID_ADDRESS = "Prince George's Park Residence";
+    private static final String VALID_HEIGHT = "170";
+    private static final String VALID_WEIGHT = "60";
+    private static final String INVALID_HEIGHT = "170cm";
+    private static final String INVALID_WEIGHT = "60kg";
+    private static final List<AllergyTag> INVALID_ALLERGY = List.of(new AllergyTag("pe@nut"));
     private static final ContactInformation VALID_CI = new ContactInformation(new Email(VALID_EMAIL),
         new Phone(VALID_PHONE), new Address(VALID_ADDRESS));
+    private static final MedicalInformation VALID_MI = new MedicalInformation(new Height(VALID_HEIGHT),
+            new Weight(VALID_WEIGHT), new HashSet<>(VALID_ALLERGY));
 
     private static final String VALID_NAME = BENSON.getIdentificationInformation().getName().toString();
     private static final String VALID_NRIC = BENSON.getIdentificationInformation().getNric().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getMedicalInformation().getAllergyTag().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
@@ -47,7 +60,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_NRIC, VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedPerson(INVALID_NAME, VALID_NRIC, VALID_EMAIL, VALID_PHONE, VALID_ADDRESS, VALID_HEIGHT,
+                    VALID_WEIGHT, VALID_ALLERGY);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

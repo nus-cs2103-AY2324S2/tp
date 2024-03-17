@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import vitalconnect.commons.exceptions.IllegalValueException;
+import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.ContactInformation;
@@ -18,7 +19,9 @@ import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.tag.Tag;
+import vitalconnect.model.person.medicalinformation.Height;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
+import vitalconnect.model.person.medicalinformation.Weight;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -32,8 +35,10 @@ class JsonAdaptedPerson {
     private String email;
     private String phone;
     private String address;
+    private String height;
+    private String weight;
 
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedTag> allergyTags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,15 +46,18 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
                              @JsonProperty("email") String email, @JsonProperty("phone") String phone,
-                             @JsonProperty("address") String address,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("address") String address, @JsonProperty("height") String height,
+                             @JsonProperty("weight") String weight,
+                             @JsonProperty("tags") List<JsonAdaptedTag> allergyTags) {
         this.name = name;
         this.nric = nric;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        this.height = height;
+        this.weight = weight;
+        if (allergyTags != null) {
+            this.allergyTags.addAll(allergyTags);
         }
     }
 
@@ -62,7 +70,9 @@ class JsonAdaptedPerson {
         email = source.getContactInformation().getEmail().value;
         phone = source.getContactInformation().getPhone().value;
         address = source.getContactInformation().getAddress().value;
-        tags.addAll(source.getTags().stream()
+        height = source.getMedicalInformation().getHeight().value;
+        weight = source.getMedicalInformation().getWeight().value;
+        allergyTags.addAll(source.getMedicalInformation().getAllergyTag().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -73,9 +83,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<AllergyTag> personAllergyTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : allergyTags) {
+            personAllergyTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -120,8 +130,25 @@ class JsonAdaptedPerson {
 
         final ContactInformation contactInformation = new ContactInformation(modelEmail, modelPhone, modelAddress);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(new IdentificationInformation(modelName, modelNric), contactInformation, modelTags);
-    }
+        if (height == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+        }
+        if (!Height.isValidHeight(height)) {
+            throw new IllegalValueException(Height.MESSAGE_CONSTRAINTS);
+        }
+        final Height modelHeight = new Height(height);
 
+        if (weight == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+        }
+        if (!Weight.isValidWeight(weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        final Weight modelWeight = new Weight(weight);
+        final Set<AllergyTag> modelAllergyTags = new HashSet<>(personAllergyTags);
+        final MedicalInformation medicalInformation = new MedicalInformation(modelHeight,
+                modelWeight, modelAllergyTags);
+
+        return new Person(new IdentificationInformation(modelName, modelNric), contactInformation, medicalInformation);
+    }
 }

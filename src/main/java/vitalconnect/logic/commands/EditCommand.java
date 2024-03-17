@@ -3,15 +3,12 @@ package vitalconnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
 import static vitalconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import vitalconnect.commons.core.index.Index;
 import vitalconnect.commons.util.CollectionUtil;
@@ -23,7 +20,6 @@ import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the clinic.
@@ -37,9 +33,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "[" + PREFIX_NRIC + "NRIC] ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -90,13 +84,13 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getIdentificationInformation().getName());
         Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getIdentificationInformation().getNric());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+
         IdentificationInformation updatedInfo = new IdentificationInformation(updatedName, updatedNric);
 
         if (personToEdit.hasContactInformation()) {
-            return new Person(updatedInfo, personToEdit.getContactInformation(), updatedTags);
+            return new Person(updatedInfo, personToEdit.getContactInformation());
         } else {
-            return new Person(updatedInfo, updatedTags);
+            return new Person(updatedInfo);
         }
     }
 
@@ -131,25 +125,23 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Nric nric;
-        private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code allergyTags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setNric(toCopy.nric);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, nric, tags);
+            return CollectionUtil.isAnyNonNull(name, nric);
         }
 
         public void setName(Name name) {
@@ -168,22 +160,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(nric);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
 
         @Override
         public boolean equals(Object other) {
@@ -198,8 +174,7 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(nric, otherEditPersonDescriptor.nric)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(nric, otherEditPersonDescriptor.nric);
         }
 
         @Override
@@ -207,7 +182,6 @@ public class EditCommand extends Command {
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("nric", nric)
-                    .add("tags", tags)
                     .toString();
         }
     }

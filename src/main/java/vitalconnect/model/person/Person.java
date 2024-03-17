@@ -2,15 +2,12 @@ package vitalconnect.model.person;
 
 import static vitalconnect.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import vitalconnect.commons.util.ToStringBuilder;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.IdentificationInformation;
-import vitalconnect.model.tag.Tag;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
 
 /**
  * Represents a Person in the clinic.
@@ -18,41 +15,47 @@ import vitalconnect.model.tag.Tag;
  */
 public class Person {
     // Information fields
-    private IdentificationInformation identificationInformation;
-    private ContactInformation contactInformation;
-
-    // Data fields`
-    private final Set<Tag> tags = new HashSet<>();
+    private  IdentificationInformation identificationInformation;
+    private  ContactInformation contactInformation;
+    private  MedicalInformation medicalInformation;
 
     /**
-     * Every field must be present and not null.
+     * Only identificationInformation is present.
      */
-    public Person(IdentificationInformation identificationInformation, Set<Tag> tags) {
-        requireAllNonNull(identificationInformation, tags);
+    public Person(IdentificationInformation identificationInformation) {
+        requireAllNonNull(identificationInformation);
         this.identificationInformation = identificationInformation;
-        this.contactInformation = new ContactInformation();
-
-        this.tags.addAll(tags);
+        this.contactInformation = null;
+        this.medicalInformation = null;
     }
 
     /**
-     * Every field must be present and not null.
+     * Only identificationInformation and contactInformation are present.
      */
     public Person(IdentificationInformation identificationInformation,
-                  ContactInformation contactInformation, Set<Tag> tags) {
-        requireAllNonNull(identificationInformation, tags);
+                  ContactInformation contactInformation) {
+        requireAllNonNull(identificationInformation);
         this.identificationInformation = identificationInformation;
         this.contactInformation = contactInformation;
-
-        this.tags.addAll(tags);
+        this.medicalInformation = null;
     }
 
-    public void setContactInformation(ContactInformation contactInformation) {
+    /**
+     * All fields are present.
+     */
+    public Person(IdentificationInformation identificationInformation,
+                  ContactInformation contactInformation, MedicalInformation medicalInformation) {
+        requireAllNonNull(identificationInformation, contactInformation, medicalInformation);
+        this.identificationInformation = identificationInformation;
         this.contactInformation = contactInformation;
+        this.medicalInformation = medicalInformation;
     }
 
     public IdentificationInformation getIdentificationInformation() {
         return this.identificationInformation;
+    }
+    public void setContactInformation(ContactInformation contactInformation) {
+        this.contactInformation = contactInformation;
     }
 
     public ContactInformation getContactInformation() {
@@ -63,13 +66,18 @@ public class Person {
         return this.contactInformation != null;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public void setMedicalInformation(MedicalInformation medicalInformation) {
+        this.medicalInformation = medicalInformation;
     }
+
+    public MedicalInformation getMedicalInformation() {
+        return this.medicalInformation;
+    }
+
+    public boolean hasMedicalInformation() {
+        return this.medicalInformation != null;
+    }
+
 
     /**
      * Returns true if both persons have the same identification info.
@@ -81,14 +89,17 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getIdentificationInformation().getNric().equals(getIdentificationInformation().getNric());
+                && otherPerson
+                .getIdentificationInformation()
+                .getNric()
+                .equals(getIdentificationInformation().getNric());
     }
 
     /**
      * Make a new copy of that person.
      */
     public Person copyPerson() {
-        return new Person(this.identificationInformation, this.contactInformation, this.tags);
+        return new Person(this.identificationInformation, this.contactInformation);
     }
 
     /**
@@ -111,14 +122,12 @@ public class Person {
         // If both have contact information
         if (otherPerson.hasContactInformation() && hasContactInformation()) {
             return getIdentificationInformation().equals(otherPerson.getIdentificationInformation())
-                && getContactInformation().equals(otherPerson.getContactInformation())
-                && tags.equals(otherPerson.tags);
+                    && getContactInformation().equals(otherPerson.getContactInformation());
         }
 
         // If neither has contact information
         if (!otherPerson.hasContactInformation() && !hasContactInformation()) {
-            return getIdentificationInformation().equals(otherPerson.getIdentificationInformation())
-                && tags.equals(otherPerson.tags);
+            return getIdentificationInformation().equals(otherPerson.getIdentificationInformation());
         }
 
         return false;
@@ -127,21 +136,25 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(getIdentificationInformation(), getContactInformation(), tags);
+        return Objects.hash(getIdentificationInformation(), getContactInformation(), getMedicalInformation());
     }
 
     @Override
     public String toString() {
-        if (contactInformation != null) {
+        if (hasContactInformation() && hasMedicalInformation()) {
             return new ToStringBuilder(this)
                     .add("identification", getIdentificationInformation())
                     .add("contact", getContactInformation())
-                    .add("tags", tags)
+                    .add("medicalinfo", getMedicalInformation())
+                    .toString();
+        } else if (hasContactInformation()) {
+            return new ToStringBuilder(this)
+                    .add("identification", getIdentificationInformation())
+                    .add("contact", getContactInformation())
                     .toString();
         } else {
             return new ToStringBuilder(this)
                     .add("identification", getIdentificationInformation())
-                    .add("tags", tags)
                     .toString();
         }
     }

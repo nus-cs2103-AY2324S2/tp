@@ -9,12 +9,14 @@ import java.util.Set;
 import vitalconnect.commons.core.index.Index;
 import vitalconnect.commons.util.StringUtil;
 import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.Email;
 import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.tag.Tag;
+import vitalconnect.model.person.medicalinformation.Height;
+import vitalconnect.model.person.medicalinformation.Weight;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -111,30 +113,44 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+
+
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String allergytag} into a {@code AllergyTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code allergytag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static AllergyTag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!AllergyTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(AllergyTag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new AllergyTag(trimmedTag);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<AllergyTag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<AllergyTag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<AllergyTag> allergyTagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            allergyTagSet.add(parseTag(tagName));
         }
-        return tagSet;
+        return allergyTagSet;
+    }
+
+    public static Height parseHeight(String height) {
+        requireNonNull(height);
+        String trimmedHeight = height.trim();
+        return new Height(trimmedHeight);
+    }
+
+    public static Weight parseWeight(String weight) {
+        requireNonNull(weight);
+        String trimmedWeight = weight.trim();
+        return new Weight(trimmedWeight);
     }
 }

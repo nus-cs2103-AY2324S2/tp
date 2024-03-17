@@ -8,6 +8,7 @@ import vitalconnect.commons.core.GuiSettings;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.MedicalInformation;
 
 /**
  * The API of the Model component.
@@ -94,4 +95,6 @@ public interface Model {
     void deleteAppointment(Appointment appointment);
     Person findPersonByNric(Nric nric);
     void updatePersonContactInformation(Nric nric, ContactInformation contactInformation);
+
+    void updatePersonMedicalInformation(Nric nric, MedicalInformation medicalInformation);
 }

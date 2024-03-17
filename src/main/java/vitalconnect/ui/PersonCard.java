@@ -55,7 +55,7 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getIdentificationInformation().getName().fullName);
         nric.setText(person.getIdentificationInformation().getNric().nric);
         contactInformation.setText(contactInformationText);
-        person.getTags().stream()
+        person.getMedicalInformation().getAllergyTag().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
