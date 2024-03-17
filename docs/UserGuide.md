@@ -96,7 +96,7 @@ Format: `list`
 
 Edits an existing student in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR] [s/STAR] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -108,6 +108,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR] [t/TAG]…​`
 Examples:
 *  `edit 1 p/98765432 e/johndoe@u.nus.edu` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+
+**Note that editing the number of stars of a student replaces the existing value instead of adding onto it like in `star` command.**
 
 ### Awarding a student stars for participation : `star`
 
