@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -26,6 +28,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private List<Integer> participationScores = new ArrayList<>();
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +39,10 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+
+        for (int i = 0; i < 13; i++) {
+            participationScores.add(0);
+        }
     }
 
     /**
@@ -47,6 +54,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        participationScores = personToCopy.getParticipationScores();
     }
 
     /**
@@ -86,6 +94,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code participationScores} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withParticipationScores(List<Integer> participationScores) {
+        this.participationScores = participationScores;
         return this;
     }
 

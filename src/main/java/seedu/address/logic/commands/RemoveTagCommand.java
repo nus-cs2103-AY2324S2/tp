@@ -26,8 +26,6 @@ public class RemoveTagCommand extends Command {
 
     public static final String COMMAND_WORD = "RemoveTag";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Tags: %2$s";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Removes the tag on the person identified by the index number used in the displayed person list.\n"
         + "Parameters: INDEX (must be a positive integer)\n"

@@ -62,8 +62,12 @@ public class PersonUtil {
         }
         return sb.toString();
     }
+
+    /**
+     * Returns the part of command string for the given {@code index}'s and {@code tag}'s details.
+     */
     public static String getRemoveTagCommand(Index index, String tag) {
         return RemoveTagCommand.COMMAND_WORD + " " + index.getOneBased()
-            + " " + (String.join(" ", "t/" + tag.toString()));
+            + " " + (String.join(" ", "t/" + tag));
     }
 }
