@@ -84,7 +84,7 @@ public class EditSupplierCommandParserTest {
         EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withName("Supplier1")
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_SUPPLIER).build();
-                EditSupplierCommand expectedCommand = new EditSupplierCommand(new Name("Supplier1"), descriptor);
+        EditSupplierCommand expectedCommand = new EditSupplierCommand(new Name("Supplier1"), descriptor);
         String userInput = EditSupplierCommand.COMMAND_WORD + " " + PREFIX_NAME
             + "Supplier1" + " " + PREFIX_FIELD + "{ "
             + PersonUtil.getEditSupplierDescriptorDetails(descriptor) + "}";
