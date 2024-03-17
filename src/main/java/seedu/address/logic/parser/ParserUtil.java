@@ -9,11 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.IdentityCardNumber;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,13 +53,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static seedu.address.model.person.Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.person.Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(seedu.address.model.person.Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new seedu.address.model.person.Phone(trimmedPhone);
     }
 
     /**
@@ -109,6 +105,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String sex} into an {@code Sex}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sex} is invalid.
+     */
+    public static Sex parseSex(String sex) throws ParseException {
+        requireNonNull(sex);
+        String trimmedSex = sex.trim();
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Sex(trimmedSex);
+    }
+
+    /**
+     * Parses a {@code String age} into an {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
+    public static Age parseAge(String age) throws ParseException {
+        requireNonNull(age);
+        String trimmedAge = age.trim();
+        if (!Sex.isValidSex(trimmedAge)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Age(trimmedAge);
     }
 
     /**

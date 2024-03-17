@@ -10,7 +10,6 @@ import seedu.address.model.person.IdentityCardNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -30,7 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NOTE = "Hypertensive Crisis with last reading of 203/114";
 
     private Name name;
-    private Phone phone;
+    private seedu.address.model.person.Phone phone;
     private Email email;
     private IdentityCardNumber identityCardNumber;
     private Age age;
@@ -44,7 +43,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        phone = new seedu.address.model.person.Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         identityCardNumber = new IdentityCardNumber(DEFAULT_IDENTITY_CARD_NUMBER);
         age = new Age(DEFAULT_AGE);
@@ -81,7 +80,7 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = new seedu.address.model.person.Phone(phone);
         return this;
     }
 
