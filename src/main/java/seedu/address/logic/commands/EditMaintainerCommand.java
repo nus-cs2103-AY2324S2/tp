@@ -123,13 +123,13 @@ public class EditMaintainerCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditMaintainerCommand)) {
             return false;
         }
 
-        EditMaintainerCommand otherEditCommand = (EditMaintainerCommand) other;
-        return name.equals(otherEditCommand.name)
-                && editMaintainerDescriptor.equals(otherEditCommand.editMaintainerDescriptor);
+        EditMaintainerCommand otherEditMaintainerCommand = (EditMaintainerCommand) other;
+        return name.equals(otherEditMaintainerCommand.name)
+                && editMaintainerDescriptor.equals(otherEditMaintainerCommand.editMaintainerDescriptor);
     }
 
     @Override

@@ -122,7 +122,7 @@ public class EditSupplierCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditSupplierCommand)) {
             return false;
         }
 
