@@ -13,7 +13,7 @@ public class Income {
     public static final String MESSAGE_CONSTRAINTS = "Income should be an integer and should be at least 0";
 
     /** The income value. */
-    private Integer incomeValue = 0;
+    private final String incomeValue;
 
     /**
      * Constructs an {@code Income} instance with the given income value.
@@ -23,7 +23,7 @@ public class Income {
     public Income(String incomeValue) {
         requireNonNull(incomeValue);
         checkArgument(isValidIncome(incomeValue), MESSAGE_CONSTRAINTS);
-        this.incomeValue = Integer.parseInt(incomeValue);
+        this.incomeValue = incomeValue;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Income {
      * @return A string representation with descriptive text.
      */
     public String toStringWithRepresentation() {
-        return "Income is $" + incomeValue.toString();
+        return "Income is $" + incomeValue;
     }
 
     /**
