@@ -24,6 +24,84 @@ public class HelpCommandTest {
     }
 
     @Test
+    public void execute_helpForSpecificCommand_edit_success() {
+        // Set up
+        String specificCommand = "edit";
+        HelpCommand helpCommand = new HelpCommand(specificCommand);
+
+        // Execute
+        CommandResult commandResult = helpCommand.execute(model);
+
+        // Verify
+        assertEquals(EditCommand.MESSAGE_USAGE, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_helpForSpecificCommand_delete_success() {
+        // Set up
+        String specificCommand = "delete";
+        HelpCommand helpCommand = new HelpCommand(specificCommand);
+
+        // Execute
+        CommandResult commandResult = helpCommand.execute(model);
+
+        // Verify
+        assertEquals(DeleteCommand.MESSAGE_USAGE, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_helpForSpecificCommand_clear_success() {
+        // Set up
+        String specificCommand = "clear";
+        HelpCommand helpCommand = new HelpCommand(specificCommand);
+
+        // Execute
+        CommandResult commandResult = helpCommand.execute(model);
+
+        // Verify
+        assertEquals(ClearCommand.MESSAGE_USAGE, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_helpForSpecificCommand_find_success() {
+        // Set up
+        String specificCommand = "find";
+        HelpCommand helpCommand = new HelpCommand(specificCommand);
+
+        // Execute
+        CommandResult commandResult = helpCommand.execute(model);
+
+        // Verify
+        assertEquals(FindCommand.MESSAGE_USAGE, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_helpForSpecificCommand_list_success() {
+        // Set up
+        String specificCommand = "list";
+        HelpCommand helpCommand = new HelpCommand(specificCommand);
+
+        // Execute
+        CommandResult commandResult = helpCommand.execute(model);
+
+        // Verify
+        assertEquals(ListCommand.MESSAGE_USAGE, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_helpForSpecificCommand_exit_success() {
+        // Set up
+        String specificCommand = "exit";
+        HelpCommand helpCommand = new HelpCommand(specificCommand);
+
+        // Execute
+        CommandResult commandResult = helpCommand.execute(model);
+
+        // Verify
+        assertEquals(ExitCommand.MESSAGE_USAGE, commandResult.getFeedbackToUser());
+    }
+
+    @Test
     public void execute_helpForAllCommands_success() {
         // Set up
         String specificCommand = ""; // No specific command
