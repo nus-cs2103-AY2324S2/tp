@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.model.person;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,9 +7,6 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 
 /**
  * Implements a custom deserializer for UniquePersonList,
