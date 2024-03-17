@@ -64,7 +64,7 @@ public class ViewCommandTest {
         // null -> returns false
         assertFalse(viewFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(viewFirstCommand.equals(viewSecondCommand));
     }
 
