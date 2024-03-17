@@ -9,8 +9,8 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.Oliver1;
-import static seedu.address.testutil.TypicalPersons.Oliver2;
+import static seedu.address.testutil.TypicalPersons.OLIVER_1;
+import static seedu.address.testutil.TypicalPersons.OLIVER_2;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -77,7 +77,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(Oliver1, Oliver2), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(OLIVER_1, OLIVER_2), model.getFilteredPersonList());
     }
 
     @Test
@@ -97,7 +97,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(Oliver1), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(OLIVER_1), model.getFilteredPersonList());
     }
 
     @Test

@@ -65,11 +65,11 @@ public class TypicalPersons {
             .withMajor("Computer Science").withIntake("2023").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
-    public static final Person Oliver1 = new PersonBuilder().withName("Oliver Tan").withId("A2327063Y")
+    public static final Person OLIVER_1 = new PersonBuilder().withName("Oliver Tan").withId("A2327063Y")
             .withMajor("Computer Science").withIntake("2024").withPhone("8432131")
             .withEmail("tan@example.com").withAddress("new york ave").build();
 
-    public static final Person Oliver2 = new PersonBuilder().withName("Oliver Pie").withId("A1237863R")
+    public static final Person OLIVER_2 = new PersonBuilder().withName("Oliver Pie").withId("A1237863R")
             .withMajor("Computer Science").withIntake("2022").withPhone("8481245")
             .withEmail("pie@example.com").withAddress("hk ave").build();
 
@@ -101,6 +101,6 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays
-                .asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA, Oliver1, Oliver2));
+                .asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA, OLIVER_1, OLIVER_2));
     }
 }
