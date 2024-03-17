@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Adds a task to the task list.
+ * Deletes a task in the task list.
  */
 public class DeleteTaskCommand extends Command {
 
@@ -21,7 +21,7 @@ public class DeleteTaskCommand extends Command {
     private final Integer taskIndexToDelete;
 
     /**
-     * Creates an AddTaskCommand to add the specified {@code Task}
+     * Creates an DeleteTaskCommand to add the specified {@code index}
      */
     public DeleteTaskCommand(int index) {
         taskIndexToDelete = index;
