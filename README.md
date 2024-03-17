@@ -5,8 +5,8 @@
 ![Ui](docs/images/Ui.png)
 
 ## Description
-HouseKeeping Hub is a desktop app 💻, which aims to transform the management of client relationships within 
-housekeeping companies. Our system prioritises the storage and organisation of client and housekeeper contacts, 
+HouseKeeping Hub is a desktop app 💻, which aims to transform the management of client relationships within
+housekeeping companies. Our system prioritises the storage and organisation of client and housekeeper contacts,
 providing unmatched efficiency and convenience for customer service admin. 👌👌👌
 
 ## Usages
@@ -14,7 +14,7 @@ providing unmatched efficiency and convenience for customer service admin. 👌�
 * A starting point of a Software Engineering course project (as opposed to writing everything from scratch).
 
 ## Documentation
-For comprehensive details about HouseKeeping Hub, please refer to the website 
+For comprehensive details about HouseKeeping Hub, please refer to the website
 [HouseKeeping Hub](https://ay2324s2-cs2103t-w09-1.github.io/tp/).
 
 ## Acknowledgements
