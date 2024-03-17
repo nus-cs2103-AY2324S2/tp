@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -41,6 +42,19 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Placeholder person creation with just name
+     */
+    public Person(Nric nric) {
+        requireNonNull(nric);
+        this.name = new Name("Placeholder");
+        this.nric = nric;
+        this.dob = new DateOfBirth("1988-08-08");
+        this.phone = new Phone("12345678");
+        this.email = new Email("test@test.com");
+        this.address = new Address("Placeholder");
+    }
+
     public Name getName() {
         return name;
     }
@@ -74,7 +88,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -83,7 +97,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**

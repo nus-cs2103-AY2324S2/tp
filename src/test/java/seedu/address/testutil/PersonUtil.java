@@ -34,7 +34,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_NRIC + person.getNric().value + " ");
-        sb.append(PREFIX_DOB + person.getDob().value + " ");
+        sb.append(PREFIX_DOB + person.getDob().toString() + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");

@@ -98,6 +98,27 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Get person with name {@code name}.
+     * {@code name} must exist within list.
+     */
+    public Person getPersonWithNric(Nric nric) {
+        Person equivalentPerson = new Person(nric);
+        for (Person person : internalList) {
+            if (person.isSamePerson(equivalentPerson)) {
+                return person;
+            }
+        }
+        throw new PersonNotFoundException();
+    }
+    /**
+     * Returns true if a person with the same name as {@code person} exists in the address book.
+     */
+    public boolean hasPersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        return contains(new Person(nric));
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
