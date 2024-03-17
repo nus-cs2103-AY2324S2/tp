@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.BROWN;
 
 import java.util.Arrays;
@@ -14,10 +12,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.testutil.AppointmentBuilder;
-import seedu.address.testutil.PatientBuilder;
 
 public class UniqueAppointmentListTest {
 
@@ -76,7 +73,8 @@ public class UniqueAppointmentListTest {
 
     @Test
     public void setAppointment_targetAppointmentNotInList_throwsAppointmentNotFoundException() {
-        assertThrows(AppointmentNotFoundException.class, () -> uniqueAppointmentList.setAppointment(VALID_APPT, VALID_APPT));
+        assertThrows(AppointmentNotFoundException.class, () ->
+                uniqueAppointmentList.setAppointment(VALID_APPT, VALID_APPT));
     }
 
     @Test
@@ -125,7 +123,8 @@ public class UniqueAppointmentListTest {
                 VALID_APPT.getAppointmentDate()
         );
         uniqueAppointmentList.add(editedAppt);
-        assertThrows(DuplicateAppointmentException.class, () -> uniqueAppointmentList.setAppointment(VALID_APPT, editedAppt));
+        assertThrows(DuplicateAppointmentException.class, () ->
+                uniqueAppointmentList.setAppointment(VALID_APPT, editedAppt));
     }
 
     @Test
