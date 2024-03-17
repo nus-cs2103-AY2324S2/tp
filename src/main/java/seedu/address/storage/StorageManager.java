@@ -89,7 +89,7 @@ public class StorageManager implements Storage {
      * @see #getArticleBookFilePath()
      */
     @Override
-    Optional<ReadOnlyArticleBook> readAddressBook(Path filePath) throws DataLoadingException{
+    Optional<ReadOnlyArticleBook> readArticleBook(Path filePath) throws DataLoadingException{
         logger.fine("Attempting to read data from file: " + filePath);
         return articleBookStorage.readArticleBook(filePath);
     };
