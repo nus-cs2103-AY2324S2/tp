@@ -24,35 +24,35 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAvailability("14/2/2024").withEmail("alice@example.com")
+            .withAvailabilities("14/02/2024").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAvailability("20/3/2024, 3/5/2024")
+            .withAvailabilities("20/03/2024", "03/05/2024")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAvailability("Saturdays").build();
+            .withEmail("heinz@example.com").withAvailabilities("12/12/2024").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAvailability("1/6/2024 to 31/6/2024").withTags("friends").build();
+            .withEmail("cornelia@example.com").withAvailabilities("01/06/2024", "31/06/2024").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAvailability("25/5/2024").build();
+            .withEmail("werner@example.com").withAvailabilities("25/05/2024").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAvailability("2/5/2024").build();
+            .withEmail("lydia@example.com").withAvailabilities("02/05/2024").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAvailability("4/6/2024").build();
+            .withEmail("anna@example.com").withAvailabilities("04/06/2024").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAvailability("10/8/2024").build();
+            .withEmail("stefan@example.com").withAvailabilities("10/08/2024").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAvailability("3/3/2024").build();
+            .withEmail("hans@example.com").withAvailabilities("03/03/2024").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAvailability(VALID_AVAILABILITY_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withAvailabilities(VALID_AVAILABILITY_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAvailability(VALID_AVAILABILITY_BOB)
+            .withEmail(VALID_EMAIL_BOB).withAvailabilities(VALID_AVAILABILITY_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

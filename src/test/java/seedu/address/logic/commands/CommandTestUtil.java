@@ -32,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_AVAILABILITY_AMY = "MONDAYS";
-    public static final String VALID_AVAILABILITY_BOB = "TUESDAYS";
+    public static final String VALID_AVAILABILITY_AMY = "01/01/2024";
+    public static final String VALID_AVAILABILITY_BOB = "31/12/2024";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -51,7 +51,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_AVAILABILITY_DESC = " " + PREFIX_AVAIL; // empty string not allowed for addresses
+    public static final String INVALID_AVAILABILITY_DESC = " " + PREFIX_AVAIL + "1/1/24"; // wrong date format
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

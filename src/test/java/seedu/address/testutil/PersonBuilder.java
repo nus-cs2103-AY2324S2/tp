@@ -19,7 +19,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_AVAILABILITY = "Sundays";
+    public static final String DEFAULT_AVAILABILITY = "01/01/2024";
 
     private Name name;
     private Phone phone;
@@ -68,8 +68,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAvailability(String availability) {
-        this.availabilities = SampleDataUtil.getAvailabilitySet(availability);
+    public PersonBuilder withAvailabilities(String... availabilities) {
+        this.availabilities = SampleDataUtil.getAvailabilitySet(availabilities);
         return this;
     }
 

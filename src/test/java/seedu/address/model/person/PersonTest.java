@@ -34,7 +34,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAvailability(VALID_AVAILABILITY_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAvailabilities(VALID_AVAILABILITY_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -82,7 +82,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAvailability(VALID_AVAILABILITY_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withAvailabilities(VALID_AVAILABILITY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
@@ -93,7 +93,7 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", availability=" + ALICE.getAvailabilities() + ", tags="
+                + ", email=" + ALICE.getEmail() + ", availabilities=" + ALICE.getAvailabilities() + ", tags="
                 + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }

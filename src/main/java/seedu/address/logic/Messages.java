@@ -41,7 +41,7 @@ public class Messages {
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
-                .append("; Availability: ")
+                .append("; Availabilities: ")
                 .append(person.getAvailabilities())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);

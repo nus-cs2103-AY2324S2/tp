@@ -56,7 +56,7 @@ public class PersonUtil {
         if (descriptor.getAvailabilities().isPresent()) {
             Set<Availability> availabilities = descriptor.getAvailabilities().get();
             if (availabilities.isEmpty()) {
-                sb.append(PREFIX_AVAIL);
+                sb.append(PREFIX_AVAIL).append(" ");
             } else {
                 availabilities.forEach(s -> sb.append(PREFIX_AVAIL).append(s).append(" "));
             }
