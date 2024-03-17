@@ -14,7 +14,6 @@ import seedu.address.model.person.Comment;
 import seedu.address.model.person.Person;
 
 
-
 /**
  * Changes the comment of an existing person in the address book.
  */
@@ -58,7 +57,8 @@ public class CommentCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), comment, personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getStatus(),
+                comment, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

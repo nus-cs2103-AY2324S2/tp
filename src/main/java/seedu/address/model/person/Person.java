@@ -23,18 +23,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Status status;
     private final Comment comment;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Comment comment, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Status status, Comment comment, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, status, comment, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.status = status;
         this.comment = comment;
         this.tags.addAll(tags);
     }
@@ -48,9 +50,11 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.status = new Status("PRESCREEN");
         this.comment = new Comment("");
         this.tags.addAll(tags);
     }
+
     public Name getName() {
         return name;
     }
@@ -65,6 +69,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public Comment getComment() {
@@ -112,6 +120,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && status.equals(otherPerson.status)
                 && comment.equals(otherPerson.comment)
                 && tags.equals(otherPerson.tags);
     }
@@ -119,7 +128,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, comment, tags);
+        return Objects.hash(name, phone, email, address, status, comment, tags);
     }
 
     @Override
@@ -129,8 +138,9 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
+                .add("status", status)
                 .add("comment", comment)
+                .add("tags", tags)
                 .toString();
     }
 
