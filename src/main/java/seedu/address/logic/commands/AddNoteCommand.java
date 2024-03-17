@@ -35,25 +35,25 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
-    private final IdentityCardNumberMatchesPredicate ic;
+    private final IdentityCardNumberMatchesPredicate icPredicate;
     private final Note note;
     private final boolean isReplace;
 
     /**
-     * @param ic of the person in the filtered person list to edit the note
+     * @param icPredicate of the person in the filtered person list to edit the note
      * @param note of the person to be updated to
      */
-    public AddNoteCommand(IdentityCardNumberMatchesPredicate ic, Note note, boolean isReplace) {
-        requireAllNonNull(ic, note);
+    public AddNoteCommand(IdentityCardNumberMatchesPredicate icPredicate, Note note, boolean isReplace) {
+        requireAllNonNull(icPredicate, note);
 
-        this.ic = ic;
+        this.icPredicate = icPredicate;
         this.note = note;
         this.isReplace = isReplace;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.updateFilteredPersonList(ic);
+        model.updateFilteredPersonList(icPredicate);
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (lastShownList.isEmpty()) {
@@ -104,7 +104,7 @@ public class AddNoteCommand extends Command {
         }
 
         AddNoteCommand e = (AddNoteCommand) other;
-        return ic.equals(e.ic)
+        return icPredicate.equals(e.icPredicate)
                 && note.equals(e.note);
     }
 }
