@@ -5,9 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -155,10 +157,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Cancels {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeAppointment(Appointment key) {
+    public void cancelAppointment(Appointment key) {
         appointments.remove(key);
     }
 
@@ -179,6 +181,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Appointment> getAppointmentList() {
         return appointments.asUnmodifiableObservableList();
+    }
+
+    public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod){
+        return appointments.getMatchingAppointment(nric, date, timePeriod);
     }
 
     @Override

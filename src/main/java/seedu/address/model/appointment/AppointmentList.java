@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
+import seedu.address.model.person.Nric;
 
 
 /**
@@ -111,6 +113,26 @@ public class AppointmentList implements Iterable<Appointment> {
     @Override
     public Iterator<Appointment> iterator() {
         return internalList.iterator();
+    }
+
+    /**
+     * Returns an Appointment that matches from the Appointment list based on {@code Nric, Date, TimePeriod} given.
+     * Throws an {@code AppointmentNotFoundException} if no matching appointment is found.
+     */
+    public Appointment getMatchingAppointment(Nric nricToMatch, Date dateToMatch, TimePeriod timePeriodToMatch) {
+        requireNonNull(nricToMatch);
+        requireNonNull(dateToMatch);
+        requireNonNull(timePeriodToMatch);
+
+        for (Appointment appointment : this) {
+            if (appointment.getNric().equals(nricToMatch) &&
+                    appointment.getDate().equals(dateToMatch) &&
+                    appointment.getTimePeriod().equals(timePeriodToMatch)) {
+                return appointment;
+            }
+        }
+
+        throw new AppointmentNotFoundException();
     }
 
     @Override
