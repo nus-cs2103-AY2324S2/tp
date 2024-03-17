@@ -15,26 +15,32 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    public static int personId ;
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private String uniqueId;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Subject subject;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Subject subject,
+                  String uniqueId) {
+        requireAllNonNull(name, phone, email, address, tags, subject);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.subject = subject;
+        this.uniqueId = uniqueId;
     }
 
     public Name getName() {
@@ -53,6 +59,9 @@ public class Person {
         return address;
     }
 
+    public Subject getSubject() {
+        return subject;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -60,6 +69,8 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    public String getUniqueId() {return uniqueId;}
+    public String setUniqueId(String uniqueId) {return this.uniqueId = uniqueId;}
 
     /**
      * Returns true if both persons have the same name.
@@ -70,8 +81,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getUniqueId().equals(this.uniqueId);
     }
 
     /**
@@ -100,7 +110,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, uniqueId);
     }
 
     @Override
@@ -110,6 +120,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("subject", subject)
                 .add("tags", tags)
                 .toString();
     }
