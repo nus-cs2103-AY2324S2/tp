@@ -2,10 +2,21 @@ package scm.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+<<<<<<< HEAD:src/test/java/scm/address/logic/parser/AddressBookParserTest.java
 import static scm.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static scm.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static scm.address.testutil.Assert.assertThrows;
 import static scm.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+=======
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILENAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+>>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/seedu/address/logic/parser/AddressBookParserTest.java
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +24,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD:src/test/java/scm/address/logic/parser/AddressBookParserTest.java
 import scm.address.logic.commands.AddCommand;
 import scm.address.logic.commands.ClearCommand;
 import scm.address.logic.commands.DeleteCommand;
@@ -29,6 +41,25 @@ import scm.address.model.person.Person;
 import scm.address.testutil.EditPersonDescriptorBuilder;
 import scm.address.testutil.PersonBuilder;
 import scm.address.testutil.PersonUtil;
+=======
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindAndExportCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
+>>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/seedu/address/logic/parser/AddressBookParserTest.java
 
 public class AddressBookParserTest {
 
@@ -106,5 +137,26 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_findAndExport() throws ParseException {
+        String tag = "friends";
+        String name = "John";
+        String address = "123 Main St";
+        String filename = "output.json";
+
+        String input = FindAndExportCommand.COMMAND_WORD + " "
+                + PREFIX_TAG + tag + " "
+                + PREFIX_NAME + name + " "
+                + PREFIX_ADDRESS + address + " "
+                + PREFIX_FILENAME + filename;
+
+        FindAndExportCommand expectedCommand = new FindAndExportCommand(tag, name, address, filename);
+
+        FindAndExportCommand resultCommand = (FindAndExportCommand) parser.parseCommand(input);
+        assertEquals(expectedCommand.getName(), resultCommand.getName());
+        assertEquals(expectedCommand.getAddress(), resultCommand.getAddress());
+        assertEquals(expectedCommand.getFilename(), resultCommand.getFilename());
     }
 }
