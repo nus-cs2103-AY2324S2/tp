@@ -11,6 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -37,6 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setNusNet(person.getNusNet());
         descriptor.setAddress(person.getAddress());
+        descriptor.setAttendance(person.getAttendance());
         descriptor.setTags(person.getTags());
     }
 
@@ -77,6 +79,16 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Parses the {@code attendance} into a {@code Set<WeekNumber>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withAttendance(String... attendance) {
+        Set<WeekNumber> weekNumberSet = Stream.of(attendance).map(WeekNumber::new).collect(Collectors.toSet());
+        descriptor.setAttendance(weekNumberSet);
         return this;
     }
 
