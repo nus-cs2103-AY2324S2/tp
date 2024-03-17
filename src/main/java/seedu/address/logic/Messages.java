@@ -60,8 +60,6 @@ public class Messages {
                 .append(article.getTitle())
                 .append("; Authors: ")
                 .append(article.getAuthors())
-                .append("; Title: ")
-                .append(article.getTitle())
                 .append("; Publication Date: ")
                 .append(article.getPublicationDate())
                 .append("; Source: ")
