@@ -1,0 +1,28 @@
+package seedu.address.testutil;
+
+import seedu.address.model.order.Order;
+
+/**
+ * A utility class containing a list of {@code Order} objects to be used in tests.
+ */
+public class TypicalOrders {
+    public static final Order ROSES = new OrderBuilder()
+            .withOrderId("69c25c8d-9e34-4d9d-8bad-e378f203ae73")
+            .withOrderDate("01-03-2024 23:59")
+            .withDeadline("01-04-2024 23:59")
+            .withAmount("100.00")
+            .withRemark("No remark")
+            .withStatus("CANCELED")
+            .withDiscount("0.00").build();
+    public static final Order LILIES = new OrderBuilder()
+            .withOrderId("69c25c8d-9e34-4d9d-8bad-e378f203ae74")
+            .withOrderDate("23-03-2024 11:59")
+            .withDeadline("05-12-2024 20:57")
+            .withAmount("100.00")
+            .withRemark("Important")
+            .withStatus("PENDING")
+            .withDiscount("0.00").build();
+
+    private TypicalOrders() {
+    } // prevents instantiation
+}
