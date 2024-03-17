@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 public class Note {
+    /**
+     * A note for a person.
+     */
     public final String value;
 
     /**

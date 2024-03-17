@@ -12,20 +12,20 @@ import seedu.address.model.person.Note;
 
 public class NoteCommandParser implements Parser<NoteCommand> {
     public NoteCommand parse(String args) throws ParseException {
-    requireNonNull(args);
-    ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-        PREFIX_NOTE);
+        requireNonNull(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+            PREFIX_NOTE);
 
-    Index index;
-    try {
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
-    } catch (IllegalValueException ive) {
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            NoteCommand.MESSAGE_USAGE), ive);
-    }
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IllegalValueException ive) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                NoteCommand.MESSAGE_USAGE), ive);
+        }
 
-    String note = argMultimap.getValue(PREFIX_NOTE).orElse("");
+        String note = argMultimap.getValue(PREFIX_NOTE).orElse("");
 
-    return new NoteCommand(index, new Note(note));
+        return new NoteCommand(index, new Note(note));
     }
 }
