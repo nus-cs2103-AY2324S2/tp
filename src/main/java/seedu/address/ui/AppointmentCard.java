@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Appointment}.
  */
 public class AppointmentCard extends UiPart<Region> {
 
@@ -41,7 +41,7 @@ public class AppointmentCard extends UiPart<Region> {
     private Label note;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code AppointmentCode} with the given {@code Appointment} and index to display.
      */
     public AppointmentCard(Appointment appt, int displayedIndex) {
         super(FXML);

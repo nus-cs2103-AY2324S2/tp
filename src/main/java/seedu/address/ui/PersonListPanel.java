@@ -51,6 +51,9 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code AppointmentCard}.
+     */
     class AppointmentListViewCell extends ListCell<Appointment> {
         @Override
         protected void updateItem(Appointment appt, boolean empty) {
