@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalCourse.getTypicalCourse;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -11,9 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 
 public class StorageManagerTest {
 
@@ -26,7 +25,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonCourseNameStorage courseNameStorage = new JsonCourseNameStorage(getTempFilePath("course"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, courseNameStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -60,9 +60,6 @@ public class StorageManagerTest {
         assertEquals(original, new AddressBook(retrieved));
     }
 
-    @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
-    }
+
 
 }

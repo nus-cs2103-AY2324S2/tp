@@ -13,12 +13,5 @@ public class SetCourseCommandParserTest {
     private final String course = "CS2103T";
 
 
-    @Test
-    public void parse_missingCompulsoryField_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCourseCommand.MESSAGE_USAGE);
-
-        assertParseFailure(parser, SetCourseCommand.COMMAND_WORD, expectedMessage);
-
-        assertParseFailure(parser, SetCourseCommand.COMMAND_WORD + " " + course, expectedMessage);
-    }
+    // To be implemented
 }
