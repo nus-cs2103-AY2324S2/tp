@@ -7,7 +7,9 @@ import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
 import tutorpro.model.person.Name;
 import tutorpro.model.person.Phone;
-import tutorpro.model.person.Student;
+import tutorpro.model.person.student.Level;
+import tutorpro.model.person.student.Student;
+import tutorpro.model.person.student.Subject;
 import tutorpro.model.tag.Tag;
 import tutorpro.model.util.SampleDataUtil;
 
@@ -21,12 +23,15 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LEVEL = "P6";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Subject> subjects;
+    private Level level;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -37,6 +42,8 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        level = new Level(DEFAULT_LEVEL);
+        subjects = new HashSet<>();
     }
 
     /**
@@ -48,6 +55,8 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
         tags = new HashSet<>(studentToCopy.getTags());
+        level = studentToCopy.getLevel();
+        subjects = studentToCopy.getSubjects();
     }
 
     /**
@@ -63,6 +72,14 @@ public class StudentBuilder {
      */
     public StudentBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code subjects} into a {@code Set<Subject>} and set it to the {@code Student} that we are building.
+     */
+    public StudentBuilder withSubjects(String... subjects) {
+        this.subjects = SampleDataUtil.getSubjectSet(subjects);
         return this;
     }
 
@@ -90,7 +107,15 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Level} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withLevel(String level) {
+        this.level = new Level(level);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, tags);
+        return new Student(name, phone, email, address, tags, level, subjects);
     }
 }
