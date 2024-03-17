@@ -27,8 +27,12 @@ import staffconnect.logic.commands.HelpCommand;
 import staffconnect.logic.commands.ListCommand;
 import staffconnect.logic.commands.SortCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
+import staffconnect.model.person.Faculty;
+import staffconnect.model.person.Module;
 import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
+import staffconnect.model.person.PersonHasFacultyPredicate;
+import staffconnect.model.person.PersonHasModulePredicate;
 import staffconnect.model.person.PersonHasTagsPredicate;
 import staffconnect.model.person.comparators.ModuleComparator;
 import staffconnect.model.person.comparators.NameComparator;
@@ -80,19 +84,44 @@ public class StaffConnectParserTest {
 
     @Test
     public void parseCommand_filter() throws Exception {
+        PersonHasModulePredicate emptyModulePredicate = new PersonHasModulePredicate(null);
+        PersonHasFacultyPredicate emptyFacultyPredicate = new PersonHasFacultyPredicate(null);
+        PersonHasTagsPredicate emptyTagsPredicate = new PersonHasTagsPredicate(null);
+
+        // module
+        Module module = new Module("CS2102");
+        PersonHasModulePredicate modulePredicate = new PersonHasModulePredicate(module);
+        FilterCommand moduleFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " m/" + module);
+        assertEquals(new FilterCommand(modulePredicate, emptyFacultyPredicate, emptyTagsPredicate),
+                moduleFilterCommand);
+
+        // faculty
+        Faculty faculty = new Faculty("Business");
+        PersonHasFacultyPredicate facultyPredicate = new PersonHasFacultyPredicate(faculty);
+        FilterCommand facultyFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " f/" + faculty);
+        assertEquals(new FilterCommand(emptyModulePredicate, facultyPredicate, emptyTagsPredicate),
+                facultyFilterCommand);
+
+
         // single tag
         String tag = "hello";
         Set<Tag> singleTag = new HashSet<Tag>(Arrays.asList(new Tag(tag)));
-        FilterCommand singleTagCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+        PersonHasTagsPredicate singleTagPredicate = new PersonHasTagsPredicate(singleTag);
+        FilterCommand singleTagFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " t/" + tag);
-        assertEquals(new FilterCommand(new PersonHasTagsPredicate(singleTag)), singleTagCommand);
+        assertEquals(new FilterCommand(emptyModulePredicate, emptyFacultyPredicate, singleTagPredicate),
+                singleTagFilterCommand);
 
         // multiple tags
         String tag2 = "hello2";
         Set<Tag> multipleTags = new HashSet<Tag>(Arrays.asList(new Tag(tag), new Tag(tag2)));
-        FilterCommand multipleTagsCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+        PersonHasTagsPredicate multipleTagsPredicate = new PersonHasTagsPredicate(multipleTags);
+        FilterCommand multipleTagsFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " t/" + tag + " t/" + tag2);
-        assertEquals(new FilterCommand(new PersonHasTagsPredicate(multipleTags)), multipleTagsCommand);
+        assertEquals(new FilterCommand(emptyModulePredicate, emptyFacultyPredicate, multipleTagsPredicate),
+                multipleTagsFilterCommand);
     }
 
     @Test
