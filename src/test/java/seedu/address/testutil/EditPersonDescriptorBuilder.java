@@ -66,8 +66,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Country} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withCountry(String address) {
-        descriptor.setCountry(new Country(address));
+    public EditPersonDescriptorBuilder withCountry(String country) {
+        descriptor.setCountry(new Country(country));
         return this;
     }
 

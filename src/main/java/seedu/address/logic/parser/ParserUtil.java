@@ -66,14 +66,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Country}.
+     * Parses a {@code String country} into an {@code Country}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Country parseCountry(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedCountry = address.trim();
+    public static Country parseCountry(String country) throws ParseException {
+        requireNonNull(country);
+        String trimmedCountry = country.trim();
         if (!Country.isValidCountry(trimmedCountry)) {
             throw new ParseException(Country.MESSAGE_CONSTRAINTS);
         }

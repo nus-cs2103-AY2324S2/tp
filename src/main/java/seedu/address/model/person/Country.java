@@ -3,38 +3,48 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Locale;
+
 /**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValid(String)}
+ * Represents a Person's country in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidCountry(String)}
  */
 public class Country {
 
-    public static final String MESSAGE_CONSTRAINTS = "Countries can take any values, and it should not be blank";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS = "Country provided must be a valid ISO-3166-1 alpha-2 code,"
+            + " which can be found from https://www.iso.org/obp/ui/#search/code/";
 
     public final String value;
 
     /**
      * Constructs an {@code Country}.
      *
-     * @param address A valid address.
+     * @param country A valid country code.
      */
-    public Country(String address) {
-        requireNonNull(address);
-        checkArgument(isValidCountry(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Country(String country) {
+        country = country.toUpperCase(); // ensure that input is case-insensitive
+        requireNonNull(country);
+        checkArgument(isValidCountry(country), MESSAGE_CONSTRAINTS);
+        value = country;
     }
 
     /**
-     * Returns true if a given string is a valid country.
+     * Returns true if a given string is a valid country code.
      */
     public static boolean isValidCountry(String test) {
-        return test.matches(VALIDATION_REGEX);
+        for (String countryCode: Locale.getISOCountries()) {
+            if (test.equals(countryCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns country name associated with the country code
+     */
+    public String getDisplayCountry() {
+        return new Locale("", value).getDisplayCountry();
     }
 
     @Override

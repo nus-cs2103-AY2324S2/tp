@@ -27,19 +27,20 @@ public class CountryTest {
         // invalid addresses
         assertFalse(Country.isValidCountry("")); // empty string
         assertFalse(Country.isValidCountry(" ")); // spaces only
+        assertFalse(Country.isValidCountry("USA")); // not an ISO-3166-1 alpha-2 code
 
         // valid addresses
-        assertTrue(Country.isValidCountry("Blk 456, Den Road, #01-355"));
-        assertTrue(Country.isValidCountry("-")); // one character
-        assertTrue(Country.isValidCountry("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Country.isValidCountry("SG"));
+        assertTrue(Country.isValidCountry("JP"));
+        assertTrue(Country.isValidCountry("US"));
     }
 
     @Test
     public void equals() {
-        Country country = new Country("Valid Country");
+        Country country = new Country("SG");
 
         // same values -> returns true
-        assertTrue(country.equals(new Country("Valid Country")));
+        assertTrue(country.equals(new Country("SG")));
 
         // same object -> returns true
         assertTrue(country.equals(country));
@@ -51,6 +52,6 @@ public class CountryTest {
         assertFalse(country.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(country.equals(new Country("Other Valid Country")));
+        assertFalse(country.equals(new Country("US")));
     }
 }
