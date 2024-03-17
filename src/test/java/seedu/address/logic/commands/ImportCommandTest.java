@@ -49,7 +49,8 @@ public class ImportCommandTest {
         ImportCommand importCommand = new ImportCommand(curHashSet);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.addPerson(JAMES);
-        String expectedMessage = String.format(ImportCommand.MESSAGE_DUPLICATE_PERSON, JAMES.getName(), JAMES.getPhone());
+        String expectedMessage = String.format(ImportCommand.MESSAGE_DUPLICATE_PERSON, JAMES.getName(),
+                JAMES.getPhone());
         assertThrows(CommandException.class, expectedMessage, () -> importCommand.execute(expectedModel));
     }
 
