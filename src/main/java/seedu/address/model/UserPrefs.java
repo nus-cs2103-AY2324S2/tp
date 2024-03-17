@@ -52,14 +52,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
-    public Path getClassBookFilePath() { return classBookFilePath; }
+    public Path getClassBookFilePath() {
+        return classBookFilePath;
+    }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
     }
 
-    public void setClassBookFilePath (Path classBookFilePath) {
+    public void setClassBookFilePath(Path classBookFilePath) {
         requireNonNull(classBookFilePath);
         this.classBookFilePath = classBookFilePath;
     }

@@ -8,7 +8,13 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ClassBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyClassBook;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -58,8 +64,8 @@ public class SampleDataUtil {
 
     public static Classes[] getSampleClasses() {
         return new Classes[] {
-                new Classes(new CourseCode("CS2103T")),
-                new Classes(new CourseCode("CS2101"))
+            new Classes(new CourseCode("CS2103T")),
+            new Classes(new CourseCode("CS2101"))
         };
     }
     public static ReadOnlyClassBook getSampleClassBook() {

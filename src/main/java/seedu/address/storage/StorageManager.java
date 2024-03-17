@@ -12,8 +12,6 @@ import seedu.address.model.ReadOnlyClassBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
-import javax.xml.crypto.Data;
-
 /**
  * Manages storage of AddressBook data in local storage.
  */
@@ -95,7 +93,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyClassBook> readClassBook (Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyClassBook> readClassBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
         return classBookStorage.readClassBook(filePath);
     }
@@ -107,7 +105,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveClassBook(ReadOnlyClassBook classBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " +  filePath);
+        logger.fine("Attempting to write to data file: " + filePath);
         classBookStorage.saveClassBook(classBook, filePath);
     }
 }

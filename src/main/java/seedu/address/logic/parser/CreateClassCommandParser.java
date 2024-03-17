@@ -2,16 +2,17 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CreateClassCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Classes;
-
-import java.util.stream.Stream;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
-public class CreateClassCommandParser implements Parser<CreateClassCommand>{
+import java.util.stream.Stream;
+
+/**
+ * Parses user input and creates a new CreateClassCommand.
+ */
+public class CreateClassCommandParser implements Parser<CreateClassCommand> {
 
     @Override
     public CreateClassCommand parse(String userInput) throws ParseException {

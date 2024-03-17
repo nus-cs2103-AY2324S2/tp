@@ -2,14 +2,13 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Classes;
-import seedu.address.model.person.Person;
 
-import java.util.Comparator;
-
+/**
+ * An UI component that displays information of a {@code Classes}.
+ */
 public class ClassCard extends UiPart<Region> {
 
     private static final String FXML = "ClassListCard.fxml";
@@ -38,6 +37,6 @@ public class ClassCard extends UiPart<Region> {
         super(FXML);
         this.classes = classes;
         id.setText(displayedIndex + ". ");
-        courseCode.setText(classes.getCourseCode().courseCode);
+        courseCode.setText(classes.getCourseCode().getCourseCode());
     }
 }

@@ -49,6 +49,9 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code classes} for display to the user.
+     */
     public static String classFormat(Classes classes) {
         final StringBuilder builder = new StringBuilder();
         builder.append(classes.getCourseCode());

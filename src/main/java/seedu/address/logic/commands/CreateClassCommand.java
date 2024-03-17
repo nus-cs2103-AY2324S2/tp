@@ -5,10 +5,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Classes;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Creates a class to the classbook.
+ */
 public class CreateClassCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
