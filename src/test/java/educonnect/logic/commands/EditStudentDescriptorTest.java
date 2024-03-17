@@ -7,9 +7,9 @@ import static educonnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TELEGRAM_HANDLE_BOB;
+import static educonnect.testutil.TypicalTimetableAndValues.VALID_TIMETABLE_1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,50 +23,55 @@ public class EditStudentDescriptorTest {
     public void equals() {
         // same values -> returns true
         EditStudentDescriptor descriptorWithSameValues = new EditStudentDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        assertEquals(DESC_AMY, descriptorWithSameValues);
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertEquals(DESC_AMY, DESC_AMY);
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertNotEquals(null, DESC_AMY);
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertNotEquals(5, DESC_AMY);
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertNotEquals(DESC_AMY, DESC_BOB);
 
         // different name -> returns false
         EditStudentDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
 
         // different phone -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withStudentId(VALID_STUDENT_ID_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
 
         // different email -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
 
         // different address -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
 
         // different tags -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
+
+        // different timetable -> returns false
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTimetable(VALID_TIMETABLE_1).build();
+        assertNotEquals(DESC_AMY, editedAmy);
     }
 
     @Test
     public void toStringMethod() {
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
-        String expected = EditStudentDescriptor.class.getCanonicalName() + "{name="
-                + editStudentDescriptor.getName().orElse(null) + ", student id="
-                + editStudentDescriptor.getStudentId().orElse(null) + ", email="
-                + editStudentDescriptor.getEmail().orElse(null) + ", telegram handle="
-                + editStudentDescriptor.getTelegramHandle().orElse(null) + ", tags="
-                + editStudentDescriptor.getTags().orElse(null) + "}";
+        String expected = EditStudentDescriptor.class.getCanonicalName()
+                          + "{name=" + editStudentDescriptor.getName().orElse(null)
+                          + ", student id=" + editStudentDescriptor.getStudentId().orElse(null)
+                          + ", email=" + editStudentDescriptor.getEmail().orElse(null)
+                          + ", telegram handle=" + editStudentDescriptor.getTelegramHandle().orElse(null)
+                          + ", tags=" + editStudentDescriptor.getTags().orElse(null)
+                          + ", timetable=" + editStudentDescriptor.getTimetable().orElse(null)+ "}";
         assertEquals(expected, editStudentDescriptor.toString());
     }
 }

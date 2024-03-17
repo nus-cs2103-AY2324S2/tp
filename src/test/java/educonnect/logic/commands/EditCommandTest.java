@@ -11,8 +11,9 @@ import static educonnect.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static educonnect.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static educonnect.testutil.TypicalStudents.getTypicalAddressBook;
+import static educonnect.testutil.TypicalTimetableAndValues.VALID_TIMETABLE_1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -56,11 +57,13 @@ public class EditCommandTest {
         Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
-        Student editedStudent = studentInList.withName(VALID_NAME_BOB).withStudentId(VALID_STUDENT_ID_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Student editedStudent = studentInList.withName(VALID_NAME_BOB)
+                .withStudentId(VALID_STUDENT_ID_BOB).withTags(VALID_TAG_HUSBAND)
+                .withTimetable(VALID_TIMETABLE_1).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withStudentId(VALID_STUDENT_ID_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withStudentId(VALID_STUDENT_ID_BOB).withTags(VALID_TAG_HUSBAND)
+                .withTimetable(VALID_TIMETABLE_1).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
@@ -173,22 +176,22 @@ public class EditCommandTest {
         // same values -> returns true
         EditStudentDescriptor copyDescriptor = new EditStudentDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_STUDENT, copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_STUDENT, DESC_AMY)));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_SECOND_STUDENT, DESC_AMY));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_STUDENT, DESC_BOB)));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_STUDENT, DESC_BOB));
     }
 
     @Test

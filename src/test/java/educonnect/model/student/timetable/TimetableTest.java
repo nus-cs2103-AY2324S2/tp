@@ -75,4 +75,26 @@ public class TimetableTest {
         // adding to Friday, period from 1 PM to 2 PM, success -> returns true
         assertTrue(timetable5.addPeriodToDay(5, PERIOD_1));
     }
+
+    @Test
+    public void convertToCommandString() throws OverlapPeriodException {
+        String expectedString1 = "mon: 14-16";
+        String expectedString2 = expectedString1 + "tue: 13-14, 15-17";
+        String expectedString3 = expectedString2 + "fri: 13-14, 14-16";
+
+        Timetable timetable5 = new Timetable(5);
+
+        // one day only
+        timetable5.addPeriodToDay(1, PERIOD_3);
+        assertEquals(expectedString1, timetable5.convertToCommandString());
+
+        // multiple days
+        timetable5.addPeriodToDay(2, PERIOD_1);
+        timetable5.addPeriodToDay(2, PERIOD_2);
+        assertEquals(expectedString2, timetable5.convertToCommandString());
+
+        timetable5.addPeriodToDay(5, PERIOD_1);
+        timetable5.addPeriodToDay(5, PERIOD_3);
+        assertEquals(expectedString3, timetable5.convertToCommandString());
+    }
 }

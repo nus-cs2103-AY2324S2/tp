@@ -97,6 +97,14 @@ public class Timetable {
         return true;
     }
 
+    public String convertToCommandString() {
+        StringBuilder sb = new StringBuilder();
+        for (Day day : days) {
+            sb.append(day.convertToCommandString());
+        }
+
+        return sb.toString();
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -89,6 +89,10 @@ public class Period implements Comparable<Period> {
         return this.timeStart.isBefore(period.timeEnd) && period.timeStart.isBefore(this.timeEnd);
     }
 
+    public String convertToCommandString() {
+        return timeStart.getHour() + "-" + timeEnd.getHour();
+    }
+
     @Override
     public int compareTo(Period period) {
         return this.timeStart.compareTo(period.timeStart);

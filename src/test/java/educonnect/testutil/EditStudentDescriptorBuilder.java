@@ -10,6 +10,7 @@ import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
 /**
@@ -37,6 +38,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setEmail(student.getEmail());
         descriptor.setTelegramHandle(student.getTelegramHandle());
         descriptor.setTags(student.getTags());
+        descriptor.setTimetable(student.getTimetable());
     }
 
     /**
@@ -78,6 +80,14 @@ public class EditStudentDescriptorBuilder {
     public EditStudentDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Timetable} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withTimetable(Timetable timetable) {
+        descriptor.setTimetable(timetable);
         return this;
     }
 

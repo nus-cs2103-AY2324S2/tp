@@ -115,7 +115,7 @@ public class EditCommand extends Command {
         TelegramHandle updatedTelegramHandle = editStudentDescriptor.getTelegramHandle().orElse(
                     studentToEdit.getTelegramHandle());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
-        Timetable timetable = new Timetable(); // ToDo: Placeholder, requires update.
+        Timetable timetable = editStudentDescriptor.getTimetable().orElse(studentToEdit.getTimetable());
 
         return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedTags, timetable);
     }
@@ -154,6 +154,7 @@ public class EditCommand extends Command {
         private Email email;
         private TelegramHandle telegramHandle;
         private Set<Tag> tags;
+        private Timetable timetable;
 
         public EditStudentDescriptor() {}
 
@@ -167,13 +168,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setTelegramHandle(toCopy.telegramHandle);
             setTags(toCopy.tags);
+            setTimetable(toCopy.timetable);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, studentId, email, telegramHandle, tags);
+            return CollectionUtil.isAnyNonNull(name, studentId, email, telegramHandle, tags, timetable);
         }
 
         public void setName(Name name) {
@@ -206,6 +208,14 @@ public class EditCommand extends Command {
 
         public Optional<TelegramHandle> getTelegramHandle() {
             return Optional.ofNullable(telegramHandle);
+        }
+
+        public void setTimetable(Timetable timetable) {
+            this.timetable = timetable;
+        }
+
+        public Optional<Timetable> getTimetable() {
+            return Optional.ofNullable(timetable);
         }
 
         /**
@@ -241,7 +251,8 @@ public class EditCommand extends Command {
                     && Objects.equals(studentId, otherEditStudentDescriptor.studentId)
                     && Objects.equals(email, otherEditStudentDescriptor.email)
                     && Objects.equals(telegramHandle, otherEditStudentDescriptor.telegramHandle)
-                    && Objects.equals(tags, otherEditStudentDescriptor.tags);
+                    && Objects.equals(tags, otherEditStudentDescriptor.tags)
+                    && Objects.equals(timetable, otherEditStudentDescriptor.timetable);
         }
 
         @Override
@@ -252,6 +263,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("telegram handle", telegramHandle)
                     .add("tags", tags)
+                    .add("timetable", timetable == null ? null : timetable.convertToCommandString())
                     .toString();
         }
     }

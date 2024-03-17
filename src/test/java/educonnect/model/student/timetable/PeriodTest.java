@@ -45,6 +45,16 @@ public class PeriodTest {
     }
 
     @Test
+    public void convertToCommandString() {
+        Period period1 = // 1 PM to 3 PM
+                new Period("period1",
+                        LocalTime.of(13, 0, 0),
+                        LocalTime.of(15, 0, 0));
+
+        assertEquals("13-15", period1.convertToCommandString());
+    }
+
+    @Test
     public void compareTo() {
         Period period1 = // 1 AM to 3 AM
                 new Period("period1", LocalTime.of(1, 0, 0), LocalTime.of(3, 0, 0));

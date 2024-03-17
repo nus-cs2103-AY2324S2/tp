@@ -19,6 +19,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIMETABLE_FRIDAY = new Prefix("fri:");
     public static final Prefix PREFIX_TIMETABLE_SATURDAY = new Prefix("sat:");
     public static final Prefix PREFIX_TIMETABLE_SUNDAY = new Prefix("sun:");
-
-
+    public static final Prefix[] PREFIXES_TIMETABLE_DAYS = new Prefix[]{
+            PREFIX_TIMETABLE_MONDAY, PREFIX_TIMETABLE_TUESDAY, PREFIX_TIMETABLE_WEDNESDAY,
+            PREFIX_TIMETABLE_THURSDAY, PREFIX_TIMETABLE_FRIDAY, PREFIX_TIMETABLE_SATURDAY, PREFIX_TIMETABLE_SUNDAY
+    };
 }
