@@ -71,10 +71,10 @@ public class OrderList implements Iterable<Order> {
     /**
      * Replaces the contents of this list with {@code Orders}.
      */
-    public void setOrders(List<Order> Orders) {
-        requireAllNonNull(Orders);
+    public void setOrders(List<Order> orders) {
+        requireAllNonNull(orders);
 
-        internalList.setAll(Orders);
+        internalList.setAll(orders);
     }
 
     /**
