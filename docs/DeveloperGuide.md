@@ -277,19 +277,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                                      | So that I can…​                                                                   |
-| -------- | ---------- | ------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Priority | As a …​     | I want to …​                                      | So that I can…​                                                                  |
+| -------- | ---------- | ------------------------------------------------ |----------------------------------------------------------------------------------|
 | `* * *`  | libarian   | record the phone number of the borrower          | send SMS reminders to notify them that someone else is looking for the book      |
 | `* * *`  | libarian   | record the email address of the borrower         | send an email reminders to notify them that someone else is looking for the book |
-| `* * *`  | libarian   | record the postal address of the borrower        | send a warning letter when breach community guidelines                           |
-| `* * *`  | libarian   | record how many books the borrower has borrowed  | keep track the position of the books                                             |
+| `* * *`  | libarian   | record the postal address of the borrower        | send a warning letter when breaching community guidelines                        |
+| `* * *`  | libarian   | record how many books the borrower has borrowed  | keep track of the position of the books                                          |
 | `* * *`  | libarian   | record the date the borrower borrowed the book   | calculate when they need to return the book                                      |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `MyBookshelf` and the **Actor** is the `librarian`, unless specified otherwise)
+(For all use cases below, the **System** is the `My Bookshelf` and the **Actor** is the `Community Library Manager`, unless specified otherwise)
 
 **Use case: Borrower borrows a book from the library**
 
@@ -346,9 +346,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be easy to use and fast to learn for  users who are new to this application.
 5. Response time should be fast enough that it does not take the user a long time to use it.
 6. Should be easy to recognise and remember necessary commands to minimise need for user to check what command to use.
@@ -357,12 +357,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Librarian**: Main target user of My Bookshelf (community library manager)
-* **Borrower**: People who borrow books from library that we need to keep track of contact details
-* **Book**: Contains details relating to book lent to the Borrower
-* **Borrow**: Borrower takes a book from the community library
-* **Return**: Borrower gives back the book they borrowed to the community library
+* **Mainstream OS**: Windows, Linux, Unix, MacOS.
+* **Librarian**: Community Library Manager, who is also the main target user of My Bookshelf.
+* **User**: People who uses the community library, including people who donate books to library and people who borrow books from the library.
+* **Personal Information**: Personal Information of a user, e.g. name, phone number, email, address and tags, but not borrowed books and merit score.
+* **Book**: A Book Class containing details relating to book.
+* **Borrow**: An action where a user borrows a book from the library.
+* **Return**: An Action where a user returns the book which they borrowed from the library.
+* **Donate**: An action where a person donates a book to the library.
+* **Merit Score**: A measurement of a person's credibility. Everyone starts from 0, donating increases merit score.
 
 --------------------------------------------------------------------------------------------------------------------
 
