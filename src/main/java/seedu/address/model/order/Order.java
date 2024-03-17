@@ -126,6 +126,10 @@ public class Order {
         return productMap.isEmpty();
     }
 
+    public void setProducts(Map<Product, Quantity> products) {
+        this.productMap = products;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

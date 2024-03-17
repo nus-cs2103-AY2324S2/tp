@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Optional;
 
 import seedu.address.logic.Messages;
@@ -21,17 +23,20 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
     public static final String MESSAGE_ADD_ORDER_SUCCESS = "Added order to Person: %1$s";
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Removed order from Person: %1$s";
+    public static final String MESSAGE_ADD_PRODUCTS = "Add products using this command: product pn/[PRODUCT] and pq/[QUANTITY]";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the order of the person identified "
             + "by the phone number of person. "
             + "Existing orders will be overwritten by the input.\n"
             + "Parameters: phone number (must be a positive integer) "
             + "p/ [PHONE_NUMBER]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD
             + "p/ 87438807.";
 
     private final Phone phone;
     private Order order;
+
+    private static Order lastOrder;
 
     /**
      * Constructs an {@code AddOrderCommand} with the given {@code Phone}.
@@ -42,6 +47,7 @@ public class AddOrderCommand extends Command {
 
         this.phone = phone;
         this.order = new Order();
+        lastOrder = this.order;
     }
 
     @Override
@@ -60,11 +66,10 @@ public class AddOrderCommand extends Command {
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags());
 
-        // CHANGE THIS!!!! Need add functionality for users to input products
-        // THIS IS A PLACEHOLDER
-        this.order.addProduct(new Product("cupcake"), new Quantity(2));
-
-        editedPerson.addOrder(this.order);
+        ArrayList<Order> currentOrders = personToEdit.getOrders();
+        currentOrders.add(this.order);
+        editedPerson.setOrders(currentOrders);
+        AddProductCommand.setLastOrder(this.order);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
@@ -78,7 +83,7 @@ public class AddOrderCommand extends Command {
      * @return
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !order.isEmpty() ? MESSAGE_ADD_ORDER_SUCCESS : MESSAGE_DELETE_ORDER_SUCCESS;
+        String message = !order.isEmpty() ? MESSAGE_ADD_ORDER_SUCCESS : MESSAGE_ADD_PRODUCTS;
         return String.format(message, personToEdit);
     }
 

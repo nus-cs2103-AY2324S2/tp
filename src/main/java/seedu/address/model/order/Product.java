@@ -64,4 +64,11 @@ public class Product {
     public void rename(String newName) {
         this.name = newName;
     }
+
+    /**
+     * Returns true if a given string is a valid product name.
+     */
+    public static boolean isValidProduct(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 }

@@ -60,4 +60,11 @@ public class Quantity {
     public void setQuantity(int newQuantity) {
         this.value = newQuantity;
     }
+
+    /**
+     * Returns true if a given string is a valid quantity.
+     */
+    public static boolean isValidQuantity(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 }
