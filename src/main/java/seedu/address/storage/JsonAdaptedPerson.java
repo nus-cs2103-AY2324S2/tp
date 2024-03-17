@@ -122,7 +122,7 @@ class JsonAdaptedPerson {
         if (!Upcoming.isValidUpcoming(upcoming)) {
             throw new IllegalValueException(Upcoming.MESSAGE_CONSTRAINTS);
         }
-        
+
         final Upcoming modelUpcoming = new Upcoming(upcoming);
         if (lastcontact == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
