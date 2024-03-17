@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -161,9 +161,8 @@ public class AddCommandParserTest {
                         + NUSNET_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddPersonCommand(expectedPerson2));
 
-        // only name and nusnet
-        assertAll("Optional fields missing", () ->
-                parser.parse(NAME_DESC_CHAD + NUSNET_DESC_CHAD)); // should not throw an error
+        // only name and nusnet provided
+        assertDoesNotThrow(() -> parser.parse(NAME_DESC_CHAD + NUSNET_DESC_CHAD));
     }
 
     @Test
