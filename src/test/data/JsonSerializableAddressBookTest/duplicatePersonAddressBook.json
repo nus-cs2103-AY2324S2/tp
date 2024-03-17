@@ -1,5 +1,7 @@
 {
+  "globalId": 2,
   "persons": [ {
+    "id" : "0",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
@@ -7,6 +9,7 @@
     "role" : "befriendee",
     "tags": [ "friends" ]
   }, {
+    "id" : "0",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",

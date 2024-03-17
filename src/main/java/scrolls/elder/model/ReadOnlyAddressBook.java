@@ -7,6 +7,10 @@ import scrolls.elder.model.person.Person;
  * Unmodifiable view of an address book
  */
 public interface ReadOnlyAddressBook {
+    /**
+     * Returns the current ID counter.
+     */
+    int getGlobalId();
 
     /**
      * Returns an unmodifiable view of the persons list.

@@ -1,6 +1,8 @@
 {
+  "globalId": 7,
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "id" : "0",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -8,6 +10,7 @@
     "role" : "volunteer",
     "tags" : [ "friends" ]
   }, {
+    "id" : "1",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -15,6 +18,7 @@
     "role" : "volunteer",
     "tags" : [ "owesMoney", "friends" ]
   }, {
+    "id" : "2",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
@@ -22,6 +26,7 @@
     "role" : "volunteer",
     "tags" : [ ]
   }, {
+    "id" : "3",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
@@ -29,6 +34,7 @@
     "role" : "volunteer",
     "tags" : [ "friends" ]
   }, {
+    "id" : "4",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
@@ -36,6 +42,7 @@
     "role" : "befriendee",
     "tags" : [ ]
   }, {
+    "id" : "5",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
@@ -43,6 +50,7 @@
     "role" : "befriendee",
     "tags" : [ ]
   }, {
+    "id" : "6",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
