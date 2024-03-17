@@ -1,14 +1,13 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteInterviewCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.interview.Interview;
-import seedu.address.model.person.Phone;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_NOT_INTEGER;
 
+import seedu.address.logic.commands.DeleteInterviewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+/**
+ * Parses input arguments and creates a new DeleteInterviewCommand object
+ */
 public class DeleteInterviewCommandParser implements Parser<DeleteInterviewCommand> {
 
     /**

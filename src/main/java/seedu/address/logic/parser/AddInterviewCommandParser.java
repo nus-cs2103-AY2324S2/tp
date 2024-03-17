@@ -1,22 +1,23 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWER;
-
-import seedu.address.logic.commands.AddInterviewCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Phone;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
+
+import seedu.address.logic.commands.AddInterviewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Phone;
+
 
 /**
  * Parses input arguments and creates a new AddInterviewCommand object
@@ -30,9 +31,11 @@ public class AddInterviewCommandParser implements Parser<AddInterviewCommand> {
      */
     public AddInterviewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_APPLICANT, PREFIX_INTERVIEWER);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
+                        PREFIX_APPLICANT, PREFIX_INTERVIEWER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_APPLICANT, PREFIX_INTERVIEWER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
+                PREFIX_APPLICANT, PREFIX_INTERVIEWER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInterviewCommand.MESSAGE_USAGE));
         }
