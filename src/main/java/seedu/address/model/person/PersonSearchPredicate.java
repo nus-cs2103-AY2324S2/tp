@@ -9,17 +9,20 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
+public class PersonSearchPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public PersonSearchPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword));
+                       .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword)
+                               || person.getTags()
+                                        .stream()
+                                        .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.get(), keyword)));
     }
 
     @Override
@@ -29,16 +32,17 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof PersonSearchPredicate)) {
             return false;
         }
 
-        NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        PersonSearchPredicate otherPersonSearchPredicate = (PersonSearchPredicate) other;
+        return keywords.equals(otherPersonSearchPredicate.keywords);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("keywords", keywords).toString();
     }
+
 }
