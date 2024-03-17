@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 
 import java.util.stream.Stream;
 
@@ -25,9 +26,9 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
      */
     public AddNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IC, PREFIX_NOTE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IC, PREFIX_NOTE, PREFIX_FLAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_IC, PREFIX_NOTE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_IC, PREFIX_NOTE, PREFIX_FLAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
@@ -36,12 +37,14 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
         try {
             String note = argMultimap.getValue(PREFIX_NOTE).orElse("");
 
-            boolean isReplace;
-            if (note.contains("-replace")) {
-                isReplace = true;
-                note = note.replace("-replace", "").trim();
-            } else {
-                isReplace = false;
+            boolean isReplace = argMultimap.getValue(PREFIX_FLAG).isPresent();
+            if (isReplace) {
+                int startIndex = args.indexOf(PREFIX_NOTE.getPrefix()) + PREFIX_NOTE.getPrefix().length();
+                int endIndex = args.indexOf(PREFIX_FLAG.getPrefix());
+                if (endIndex == -1) {
+                    endIndex = args.length();
+                }
+                note = args.substring(startIndex, endIndex).trim();
             }
             ic = ParserUtil.parseIC(argMultimap.getValue(PREFIX_IC).get());
             return new AddNoteCommand(new IdentityCardNumberMatchesPredicate(ic), new Note(note), isReplace);

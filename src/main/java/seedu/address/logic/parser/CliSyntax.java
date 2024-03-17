@@ -13,4 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_NOTE = new Prefix("n/");
     public static final Prefix PREFIX_IC = new Prefix("i/");
+    public static final Prefix PREFIX_FLAG = new Prefix("-replace");
 }
