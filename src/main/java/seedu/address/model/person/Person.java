@@ -69,6 +69,14 @@ public class Person {
         return relationship;
     }
 
+    public boolean isClient() {
+        return relationship.value.equals("client");
+    }
+
+    public boolean isPartner() {
+        return relationship.value.equals("partner");
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
