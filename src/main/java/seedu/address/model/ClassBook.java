@@ -1,12 +1,12 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
+import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.UniqueClassList;
 
-import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 /**
