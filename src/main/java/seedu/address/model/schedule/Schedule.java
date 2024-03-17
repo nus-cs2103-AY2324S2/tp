@@ -3,10 +3,13 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import com.sun.scenario.animation.shared.SingleLoopClipEnvelope;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,11 +21,22 @@ public class Schedule {
 
     public static final String MESSAGE_CONSTRAINTS = "Schedule names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static int schedId_counter = 0;
+    // !! to EDIT as a metadata for Json storage
 
+    public static final String MESSAGE_CONSTRAINTS_DATETIMEFORMAT =
+            "Dates should be formatted in YYYY-MM-DD HH:mm";
+    public static final DateTimeFormatter CUSTOM_DATETIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static DateTimeFormatter dateTimeString = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");
+    // !! TO EDIT for Json storage
+
+
+
+    private int schedId;
     private final String schedName;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
-    private final ArrayList<Person> participants;
+    private ArrayList<Person> personList;
 
     /**
      * Constructs a {@code Schedule}.
@@ -37,29 +51,12 @@ public class Schedule {
         requireNonNull(schedName);
         checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTiming(startTime, endTime));
-        this.schedName = schedName;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.participants = null;
-    }
+        this.schedId = schedId_counter++;
 
-    /**
-     * Constructs a {@code Schedule}.
-     *
-     * @param schedName A valid schedule name
-     * @param startTime A valid start time
-     * @param endTime A valid end time
-     * @param participants A list of people who are related to schedule
-     */
-    public Schedule(String schedName, LocalDateTime startTime,
-                    LocalDateTime endTime, ArrayList<Person> participants) {
-        requireNonNull(schedName);
-        checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidTiming(startTime, endTime));
         this.schedName = schedName;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.participants = participants;
+
     }
 
     public String getSchedName() {
@@ -75,7 +72,18 @@ public class Schedule {
     }
 
     public ArrayList<Person> getParticipants() {
-        return participants;
+        return personList;
+    }
+
+    public void addParticipants(ArrayList<Person> newParticipants) {
+        for (Person p: newParticipants) {
+            for (Person existingP: personList) {
+                if (p.isSamePerson(existingP)) {
+                    continue;
+                }
+                personList.add(p);
+            }
+        }
     }
 
     /**
@@ -111,12 +119,12 @@ public class Schedule {
         return schedName.equals(otherSched.schedName)
                 && startTime.equals(otherSched.startTime)
                 && endTime.equals(otherSched.endTime)
-                && participants.equals(otherSched.participants);
+                && personList.equals(otherSched.personList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(schedName, startTime, endTime, participants);
+        return Objects.hash(schedName, startTime, endTime, personList);
     }
 
     /**
