@@ -52,7 +52,7 @@ public class MarkCommandTest {
 
     @Test
     public void execute_validIndexAndInvalidWeek_failure() {
-        Index outOfBoundWeek = Index.fromOneBased(participationScoresStub.size() + 1);
+        Index outOfBoundWeek = Index.fromZeroBased(participationScoresStub.size() + 1);
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, outOfBoundWeek);
 
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_WEEK);

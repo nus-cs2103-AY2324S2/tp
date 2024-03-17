@@ -57,7 +57,6 @@ public class MarkCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        System.out.println(weekNumber.getZeroBased());
         if (weekNumber.getZeroBased() > 13) {
             throw new CommandException(Messages.MESSAGE_INVALID_WEEK);
         }
