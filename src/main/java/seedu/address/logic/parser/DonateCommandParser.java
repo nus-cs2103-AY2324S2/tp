@@ -31,9 +31,6 @@ public class DonateCommandParser implements Parser<DonateCommand> {
         }
 
         String bookTitle = argMultimap.getValue(PREFIX_BOOKLIST).orElse("");
-        if (bookTitle.equals("")) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DonateCommand.MESSAGE_USAGE));
-        }
 
         return new DonateCommand(index, new BookList(bookTitle));
     }
