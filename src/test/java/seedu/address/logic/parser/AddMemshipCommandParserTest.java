@@ -1,17 +1,15 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddMemshipCommand;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Membership;
-
+import seedu.address.model.person.Name;
 public class AddMemshipCommandParserTest {
 
     private AddMemshipCommandParser parser = new AddMemshipCommandParser();
@@ -21,32 +19,30 @@ public class AddMemshipCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         // Missing name
         assertParseFailure(parser, " " + PREFIX_MEMSHIP + "T1",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddMemshipCommand.MESSAGE_USAGE));
+                Name.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE);
 
         // Missing membership tier
-        assertParseFailure(parser, PREFIX_NAME + " Alice ",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddMemshipCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Alice ",
+                Membership.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE);
 
         // Missing all fields
         assertParseFailure(parser, "",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddMemshipCommand.MESSAGE_USAGE));
+                Name.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // Invalid name
-        assertParseFailure(parser, " " + PREFIX_NAME + "Alice " + PREFIX_MEMSHIP + "T1",
-                Name.MESSAGE_CONSTRAINTS); // Name.MESSAGE_CONSTRAINTS contains the message for invalid names
-
+        String expectedMessage = Membership.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE;
         // Invalid membership tier
-        assertParseFailure(parser, " " + PREFIX_NAME + " Alice " + PREFIX_MEMSHIP + "X1",
-                Membership.MESSAGE_CONSTRAINTS);
+        String parserArgs2 = " " + "Alice " + PREFIX_MEMSHIP + "X1";
+        assertParseFailure(parser, parserArgs2, expectedMessage);
         // Membership.MESSAGE_CONSTRAINTS contains the message for invalid membership tiers
     }
 
     @Test
     public void parse_invalidName_failure() {
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS; // Assuming this contains the validation message for names
+        String expectedMessage = Name.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE;
+
         // Name contains non-alphanumeric characters
         assertParseFailure(parser, " " + PREFIX_NAME + "1-lice " + PREFIX_MEMSHIP + "T1", expectedMessage);
         // Name is blank
@@ -55,18 +51,19 @@ public class AddMemshipCommandParserTest {
 
     @Test
     public void parse_invalidMembership_failure() {
-        String expectedMessage = Membership.MESSAGE_CONSTRAINTS; // Assuming this contains the validation message for memberships
         // Membership is invalid
-        assertParseFailure(parser, " " + PREFIX_NAME + "Alice " + PREFIX_MEMSHIP + "X1", expectedMessage);
+        String expectedMessage = Membership.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " " + "Alice " + PREFIX_MEMSHIP + "X1", expectedMessage);
     }
 
     @Test
     public void parse_missingFields_failure() {
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddMemshipCommand.MESSAGE_USAGE);
         // Missing name
+        String expectedMessage = Name.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE;
         assertParseFailure(parser, PREFIX_MEMSHIP + "T1", expectedMessage);
         // Missing membership
-        assertParseFailure(parser, PREFIX_NAME + "Alice", expectedMessage);
+        expectedMessage = Membership.MESSAGE_CONSTRAINTS + "\n" + AddMemshipCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, "Alice", expectedMessage);
     }
 
     @Test
@@ -74,7 +71,7 @@ public class AddMemshipCommandParserTest {
         Name expectedName = new Name("Alice");
         String expectedMembership = "T1";
         // Correct command
-        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_MEMSHIP + "T1",
+        assertParseSuccess(parser, " " + "Alice " + PREFIX_MEMSHIP + "T1",
                 new AddMemshipCommand(expectedName, expectedMembership));
     }
 }
