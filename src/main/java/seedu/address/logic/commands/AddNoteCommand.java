@@ -33,8 +33,7 @@ public class AddNoteCommand extends Command {
             + PREFIX_NOTE + "Healthy.";
 
 
-    public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
+    public static final String MESSAGE_MODIFY_NOTE_SUCCESS = "%1$s's note modified successfully!";
     private final IdentityCardNumberMatchesPredicate icPredicate;
     private final Note note;
     private final boolean isReplace;
@@ -84,8 +83,7 @@ public class AddNoteCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !note.value.isEmpty() ? MESSAGE_ADD_NOTE_SUCCESS : MESSAGE_DELETE_NOTE_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(MESSAGE_MODIFY_NOTE_SUCCESS, personToEdit);
     }
 
     @Override
