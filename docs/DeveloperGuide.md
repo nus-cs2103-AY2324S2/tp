@@ -262,31 +262,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of patient information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: As the number of patients a General Practitioner grows, information management might prove complex, especially so for personal data. ImmuniMate offers a way to record comprehensive information about every patient, while ensuring timely updates and avoiding duplications/contradictions. It also seeks to establish links between patient for contact tracing and finding potential infectious clusters.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                    | I want to …​                                      | So that I can…​                                                                                |
-|---------|--------------------------------------------|---------------------------------------------------|------------------------------------------------------------------------------------------------|
-| `* * *` | new user                                   | see usage instructions                            | refer to instructions when I forget how to use the App                                         |
-| `* * *` | user                                       | add a new patient and his/her information         | retrieve them when needed                                                                      |
-| `*`     | user with many persons in the address book | sort patients by name                             | locate a patient easily                                                                        |
-| `* * *` | user                                       | find a patient by name                            | locate details of persons without having to go through the entire list                         |
-| `* *`   | user                                       | find all patients living in a certain area        | identify areas with high concentrations of sick patients as potential infectious clusters      |
-| `* *`   | user                                       | find all patients with a certain health condition | monitor wellbeing of patients if the condition(s) increases their vulnerability in an epidemic |
-| `* * *` | user                                       | read a patient's profile                          | use the information to make important medical decisions on the patient's behalf                |
-| `* * *` | user                                       | update a patient's profile                        | always have access to the patient's latest information                                         |
-| `* * *` | user                                       | delete a patient and his/her profile              | reduce clutter from past patients in the app                                                   |
-| `* * *` | user                                       | delete a field of a patient's profile             | keep each profile lean with only the most updated and relevant information                     |
+| Priority | As a …​                          | I want to …​                                    | So that I can…​                                                        |
+|----------|----------------------------------|-------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | New user                         | see usage instructions                          | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Healthcare Worker                | add a new patient                               |                                                                        |
+| `* * *`  | Healthcare Worker                | delete a patient                                | emove wrong or obselete information of a patient from the database     |
+| `* * *`  | Healthcare Worker                | find a person by NRIC                           | locate details of persons without having to go through the entire list |
+| `* * *`  | Healthcare Worker                | update a person's details                       | keep the details up to date                                            |
+| `* * *`  | Healthcare Worker                | find a patient by matching criteria             | Find a list of patients who I need                                     |
+| `* * *`  | Healthcare Worker                | Delete patient's information                    | remove patient information that is no longer correct                   |
+| `* *`    | Healthcare Worker                | hide private contact details                    | minimize chance of someone else seeing them by accident                |
+| `* *`    | Healthcare Worker                | highlight contradicting information and entries | minimize the mistakes in entries                                       |
+| `* *`    | Healthcare Worker                | be able to resolve duplicate information        | correct wrong inputs                                                   |
+| `* *`    | Healthcare Worker                | see the history of changes made to a patient    | understand the changes made to a patient                               |
+| `* *`    | Healthcare Worker                | be able to tap different contact methods        | make sure important information is sent                                |
+| `* *`    | Healthcare Worker                | see the close contacts of a patient             | see the links between infected patients                                |
+| `* *`    | Healthcare Worker                | status of infection of a patient                | take follow-up actions                                                 |
+| `* *`    | Healthcare Worker                | see clusters of infected patients               | understand which areas are at high risk of infection                   |
+| `*`      | Healthcare Worker                | find the person who first spread the disease    | better understand the disease                                          |
+| `*`      | Healthcare Worker                | sort persons by name                            | locate a person easily                                                 |
 
 ### Use cases
 
@@ -296,40 +302,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - **Actor:** Healthcare Worker
 - **Description:** Healthcare worker creates a new patient record in the ImmuniMate Address Book System.
-- **Preconditions:** Healthcare worker has opened the app.
+- **Preconditions:** Healthcare worker has logged into the system.
 - **Guarantees:** New patient record is successfully created in the ImmuniMate Address Book System.
 - **MSS:**
-    1. Healthcare worker chooses to create a new patient record.
+    1. Healthcare worker choose to create a new patient record.
     2. IABS requests the necessary details for the new patient record (name, NRIC, date of birth, sex, phone number, address, email, country of nationality, date of admission, blood type, allergies).
     3. Healthcare worker enters the patient's details.
-    4. IABS validates the entered data and adds the new patient record to the database.
+    4. IABS validates the entered data.
+    5. IABS adds the new patient record to the database.
 - **Extensions:**
 
   3a. IABS detects a conflict in the entered data (user existing).
 
-  - 3a1. IABS shows the conflicting existing entry, requests for the correct data.
-  - 3a2. Healthcare Worker enters new data. 
-  - Steps 3a1-3a2 are repeated until the data entered are correct, or the user cancels the action. Use case resumes from step 4.
+  3a1. IABS shows the conflicting existing entry
+  3a2. IABS requests for the correct data.
+  3a3. Healthcare Worker enters new data.
+  Steps 3a1-3a3 are repeated until the data entered are correct, or the user cancels the action.
+  Use case resumes from step 4.
 
   3b. IABS detects an error in the entered data.
-  - 3b1. IABS requests for the correct data.
-  - 3b2. Healthcare Worker enters new data. 
-  - Steps 3b1-3b2 are repeated until the data entered are correct. Use case resumes from step 4.
+
+  3b1. IABS requests for the correct data.
+  3b2. Healthcare Worker enters new data.
+  Steps 3b1-3b2 are repeated until the data entered are correct.
+  Use case resumes from step 4.
 
   *a. At any time, Healthcare Worker chooses to cancel creating the patient record.
-  - *a1. IABS requests confirmation to cancel.
-  - *a2. Healthcare Worker confirms the cancellation. 
-  - Use case ends.
 
-**Use Case: UC02 - Find Patient Information**
+  *a1. IABS requests confirmation to cancel.
+  *a2. Healthcare Worker confirms the cancellation.
+  Use case ends.
+
+
+---
+
+### **Use Case: UC02 - Find Patient Information**
 
 - **Actor:** Healthcare Worker
 - **Description:** Healthcare worker searches for specific patient information in the ImmuniMate Address Book System.
-- **Preconditions:** Healthcare worker has opened the app.
+- **Preconditions:** Healthcare worker has logged into the system.
 - **Guarantees:** Relevant patient information is displayed for the healthcare worker to view.
-- **MSS:**
+- **Basic Flow:**
     1. Healthcare worker chooses to find patient information meeting specified criteria.
     2. IABS searches for and displays the relevant patients.
+- **Extensions:**
+  2a. IABS detects an error in the entered data.
+
+  - 2a1. IABS requests for the correct data.
+  - 2a2. Healthcare Worker enters new data. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct. Use case resumes from step 3.
+
+---
 
 **Use Case: UC03 - Update Patient Information**
 
@@ -337,16 +360,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Description:** Healthcare worker updates a patient's information in the ImmuniMate Address Book System.
 - **Preconditions:** Healthcare worker has logged into the system and has selected the patient whose information needs to be updated.
 - **Guarantees:** Patient's information is successfully updated in the ImmuniMate Address Book System.
-- **MSS:**
-    1. Healthcare worker chooses to update certain fields of a certain patient's profile.
-    2. IABS validates the new content and updates the patient's information in the database.
+- **Basic Flow:**
+    1. Healthcare worker chooses to update a certain patient’s certain information.
+    2. IABS validates the new content.
+    3. IABS updates the patient's information in the database.
 - **Extensions:**
 
   2a. IABS detects an error in the entered data.
 
-  - 2a1. IABS requests for the correct data.
-  - 2a2. Healthcare Worker enters new data. 
-  - Steps 2a1-2a2 are repeated until the data entered are correct. Use case resumes from step 3.
+  2a1. IABS requests for the correct data.
+  2a2. Healthcare Worker enters new data.
+  Steps 2a1-2a2 are repeated until the data entered are correct.
+  Use case resumes from step 3.
+
+
+---
 
 **Use Case: UC04 - Delete Patient Record**
 
@@ -360,7 +388,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Extensions:**
 
   2a. IABS cannot find the patient specified.
-
   - 2a1. IABS requests for the correct NRIC.
   - 2a2. Healthcare worker enters new NRIC. 
   - Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
@@ -377,7 +404,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Extensions:**
 
   2a. IABS cannot find the patient specified.
-
   - 2a1. IABS requests for the correct NRIC.
   - 2a2. Healthcare worker enters new NRIC. 
   - Steps 2a1-2a2 are repeated until the data entered are correct or Healthcare worker cancels the action. Use case resumes from step 3.
