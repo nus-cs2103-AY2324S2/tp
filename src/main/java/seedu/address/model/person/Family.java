@@ -53,7 +53,7 @@ public class Family {
      * @return A string representation with descriptive text.
      */
     public String toStringWithRepresentation() {
-        return "Family size is " + familySize.toString();
+        return "Family size is " + familySize;
     }
 
     /**
