@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ID;
 
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
