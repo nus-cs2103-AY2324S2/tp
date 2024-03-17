@@ -36,7 +36,7 @@ If you can type fast, TAPro can get your contact management tasks done faster th
 
    * `addstu nn/e0952224 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Contact Book.
 
-   * `delstu 3` : Deletes the 3rd contact shown in the current list.
+   * `delstu NUSNET_ID` : Deletes the student with the specified NUSNET_ID from the contact book.
 
    * `clear` : Deletes all contacts.
 
@@ -156,19 +156,19 @@ Format: `mark nn/NUSNET_ID wk/WEEK_NUMBER`
 Example:
 * `mark nn/e1234567 wk/3`
 
-### Deleting a student : `delete`
+### Deleting a student: `delstu`
 
-Deletes the specified person from the address book.
+Deletes the specified student from the contact book.
 
-Format: `delete INDEX`
+Format: `delstu NUSNET_ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the student with the specified NUSNET_ID from the contact book. 
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delstu e0957499` deletes the student with the NUSNET_ID of `e0957499` in the contact book.
+
+Pro Tip:
+* If you cannot remember your student's NUSNET_ID, you could use `find Betsy` or `list` followed by `delstu <Betsy's NUSNET_ID>` to find and delete the student.
 
 ### Clearing all entries : `clear`
 
@@ -222,7 +222,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add Student**    | `addstu n/NAME p/PHONE_NUMBER e/EMAIL nn/NUSNET_ID a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com nn/e1234567 a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Student** | `delstu NUSNET_ID`<br> e.g., `delstu e0957499`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`

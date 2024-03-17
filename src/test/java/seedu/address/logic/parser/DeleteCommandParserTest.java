@@ -3,11 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.model.person.NusNet;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,7 +23,8 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeletePersonCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, CommandTestUtil.VALID_NUSNET_AMY, new DeletePersonCommand(
+                new NusNet(CommandTestUtil.VALID_NUSNET_AMY)));
     }
 
     @Test

@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.NusNet;
 
 /**
  * Parses input arguments and creates a new DeletePersonCommand object
@@ -18,11 +18,11 @@ public class DeletePersonCommandParser implements Parser<DeletePersonCommand> {
      */
     public DeletePersonCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeletePersonCommand(index);
+            NusNet nusNet = ParserUtil.parseNusNet(args);
+            return new DeletePersonCommand(nusNet);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE), pe);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE), pe);
         }
     }
 
