@@ -1,12 +1,12 @@
-package seedu.address.logic.parser;
+package scm.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILENAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static scm.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static scm.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static scm.address.logic.parser.CliSyntax.PREFIX_FILENAME;
+import static scm.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.address.logic.commands.FindAndExportCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import scm.address.logic.commands.FindAndExportCommand;
+import scm.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new FindAndExportCommand object.

@@ -1,8 +1,8 @@
-package seedu.address.logic.commands;
+package scm.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static scm.address.testutil.TypicalPersons.ALICE;
+import static scm.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,9 +10,9 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import scm.address.model.Model;
+import scm.address.model.ModelManager;
+import scm.address.model.UserPrefs;
 
 public class FindAndExportCommandTest {
 

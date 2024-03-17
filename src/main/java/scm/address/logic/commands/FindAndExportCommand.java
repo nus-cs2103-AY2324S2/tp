@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package scm.address.logic.commands;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,9 +13,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import scm.address.logic.commands.exceptions.CommandException;
+import scm.address.model.Model;
+import scm.address.model.person.Person;
 
 /**
  * Represents a command to find users based on specified criteria and export their information.

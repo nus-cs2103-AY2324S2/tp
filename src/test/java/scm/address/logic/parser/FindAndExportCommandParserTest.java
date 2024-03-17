@@ -1,11 +1,11 @@
-package seedu.address.logic.parser;
+package scm.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindAndExportCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import scm.address.logic.commands.FindAndExportCommand;
+import scm.address.logic.parser.exceptions.ParseException;
 
 public class FindAndExportCommandParserTest {
 

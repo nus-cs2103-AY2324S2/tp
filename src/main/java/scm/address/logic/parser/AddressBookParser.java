@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-<<<<<<< HEAD:src/main/java/scm/address/logic/parser/AddressBookParser.java
 import scm.address.commons.core.LogsCenter;
 import scm.address.logic.commands.AddCommand;
 import scm.address.logic.commands.ClearCommand;
@@ -16,25 +15,11 @@ import scm.address.logic.commands.DeleteCommand;
 import scm.address.logic.commands.EditCommand;
 import scm.address.logic.commands.ExitCommand;
 import scm.address.logic.commands.FindCommand;
+import scm.address.logic.commands.FindAndExportCommand;
 import scm.address.logic.commands.HelpCommand;
 import scm.address.logic.commands.ImportCommand;
 import scm.address.logic.commands.ListCommand;
 import scm.address.logic.parser.exceptions.ParseException;
-=======
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindAndExportCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ImportCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
->>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/main/java/seedu/address/logic/parser/AddressBookParser.java
 
 /**
  * Parses user input.

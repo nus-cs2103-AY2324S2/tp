@@ -14,26 +14,22 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-<<<<<<< HEAD:src/test/java/scm/address/logic/commands/AddCommandTest.java
 import scm.address.logic.Messages;
 import scm.address.logic.commands.exceptions.CommandException;
 import scm.address.model.AddressBook;
-import scm.address.model.ModelStub;
 import scm.address.model.ReadOnlyAddressBook;
 import scm.address.model.person.Person;
 import scm.address.testutil.PersonBuilder;
-=======
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
->>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/seedu/address/logic/commands/AddCommandTest.java
+import scm.address.commons.core.GuiSettings;
+import scm.address.logic.Messages;
+import scm.address.logic.commands.exceptions.CommandException;
+import scm.address.model.AddressBook;
+import scm.address.model.Model;
+import scm.address.model.ReadOnlyAddressBook;
+import scm.address.model.ReadOnlyUserPrefs;
+import scm.address.model.person.Person;
+import scm.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
 

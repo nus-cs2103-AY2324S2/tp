@@ -8,15 +8,15 @@ import static scm.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static scm.address.testutil.Assert.assertThrows;
 import static scm.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 =======
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILENAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
->>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/seedu/address/logic/parser/AddressBookParserTest.java
+import static scm.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static scm.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static scm.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static scm.address.logic.parser.CliSyntax.PREFIX_FILENAME;
+import static scm.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static scm.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static scm.address.testutil.Assert.assertThrows;
+import static scm.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+>>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/scm/address/logic/parser/AddressBookParserTest.java
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,24 +42,24 @@ import scm.address.testutil.EditPersonDescriptorBuilder;
 import scm.address.testutil.PersonBuilder;
 import scm.address.testutil.PersonUtil;
 =======
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindAndExportCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ImportCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
->>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/seedu/address/logic/parser/AddressBookParserTest.java
+import scm.address.logic.commands.AddCommand;
+import scm.address.logic.commands.ClearCommand;
+import scm.address.logic.commands.DeleteCommand;
+import scm.address.logic.commands.EditCommand;
+import scm.address.logic.commands.EditCommand.EditPersonDescriptor;
+import scm.address.logic.commands.ExitCommand;
+import scm.address.logic.commands.FindAndExportCommand;
+import scm.address.logic.commands.FindCommand;
+import scm.address.logic.commands.HelpCommand;
+import scm.address.logic.commands.ImportCommand;
+import scm.address.logic.commands.ListCommand;
+import scm.address.logic.parser.exceptions.ParseException;
+import scm.address.model.person.NameContainsKeywordsPredicate;
+import scm.address.model.person.Person;
+import scm.address.testutil.EditPersonDescriptorBuilder;
+import scm.address.testutil.PersonBuilder;
+import scm.address.testutil.PersonUtil;
+>>>>>>> 46e92caea1386c7a00984fb11eab870159fb062c:src/test/java/scm/address/logic/parser/AddressBookParserTest.java
 
 public class AddressBookParserTest {
 
