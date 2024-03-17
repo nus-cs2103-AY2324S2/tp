@@ -116,7 +116,7 @@ public class EditCommand extends Command {
      * @param person
      * @return a String of non-null fields
      */
-    private String editedPersonMessageGenerator(Person person) {
+    public String editedPersonMessageGenerator(Person person) {
         StringBuilder sb = new StringBuilder();
         Name name = person.getName();
         Phone phone = person.getPhone();
