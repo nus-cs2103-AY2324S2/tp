@@ -209,7 +209,14 @@ Step 2: The user executes the `addt 1 t/christian t/fallRisk` command to add the
 <b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
 </box>
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the Add Tags operation works:
+<puml src="diagrams/AddTagsSequenceDiagram.puml" alt="AddTagsSequence" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `AddTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 #### Design Considerations
 
