@@ -1,32 +1,36 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Person's allergies in the address book.
+ * Guarantees: immutable;}
+ */
 public class Allergies {
-      private final String allergies;
+    private final String allergies;
 
-        public Allergies(String allergies) {
-            this.allergies = allergies;
+    public Allergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    @Override
+    public String toString() {
+        return this.allergies;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
         }
 
-        public String getAllergies() {
-            return allergies;
+        if (!(other instanceof Allergies)) {
+            return false;
         }
 
-        @Override
-        public String toString() {
-            return this.allergies;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            }
-
-            if (!(other instanceof Allergies)) {
-                return false;
-            }
-
-            Allergies otherAllergies = (Allergies) other;
-            return allergies.equals(otherAllergies.allergies);
-        }
+        Allergies otherAllergies = (Allergies) other;
+        return allergies.equals(otherAllergies.allergies);
+    }
 }

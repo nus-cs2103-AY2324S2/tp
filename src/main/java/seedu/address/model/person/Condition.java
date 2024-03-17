@@ -1,5 +1,9 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Person's condition in the address book.
+ * Guarantees: immutable;
+ */
 public class Condition {
     private final String condition;
 

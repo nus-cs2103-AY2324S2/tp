@@ -3,28 +3,32 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class NRIC {
+/**
+ * Represents a Person's NRIC in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
+ */
+public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
             "NRIC number should contain a prefix of S or T, followed by 7 digits, and end with a letter. "
                     + "There should not be blank.";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^[ST]\\\\d{7}[A-Z]$";
 
-    public final String NRIC;
+    public final String Nric;
 
     /**
      * Constructs a {@code NRIC}.
      *
      * @param name A valid NRIC.
      */
-    public NRIC(String name) {
+    public Nric(String name) {
         requireNonNull(name);
         checkArgument(isValidNric(name), MESSAGE_CONSTRAINTS);
-        this.NRIC = name;
+        this.Nric = name;
     }
 
     /**
@@ -37,7 +41,7 @@ public class NRIC {
 
     @Override
     public String toString() {
-        return this.NRIC;
+        return this.Nric;
     }
 
     @Override
@@ -47,16 +51,16 @@ public class NRIC {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NRIC)) {
+        if (!(other instanceof Nric)) {
             return false;
         }
 
-        NRIC otherNRIC = (NRIC) other;
-        return NRIC.equals(otherNRIC.NRIC);
+        Nric otherNric = (Nric) other;
+        return Nric.equals(otherNric.Nric);
     }
 
     @Override
     public int hashCode() {
-        return NRIC.hashCode();
+        return Nric.hashCode();
     }
 }

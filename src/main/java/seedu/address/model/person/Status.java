@@ -1,5 +1,9 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Person's status in the address book.
+ * Guarantees: immutable;
+ */
 public class Status {
     private enum status { HEALTHY, AT_RISK, UNHEALTHY };
     private final String status;

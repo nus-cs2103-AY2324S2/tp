@@ -1,17 +1,21 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Person's condition in the address book.
+ * Guarantees: immutable;
+ */
 public class Country {
-    private final String COUNTRY;
+    private final String country;
     //todo: map input country to a standard country name
     public Country(String country) {
-        this.COUNTRY = country;
+        this.country = country;
     }
     public String getCountry() {
-        return COUNTRY;
+        return country;
     }
     @Override
     public String toString() {
-        return this.COUNTRY;
+        return this.country;
     }
     @Override
     public boolean equals(Object other) {
@@ -22,6 +26,6 @@ public class Country {
             return false;
         }
         Country otherCountry = (Country) other;
-        return COUNTRY.equals(otherCountry.COUNTRY);
+        return country.equals(otherCountry.country);
     }
 }

@@ -1,5 +1,9 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Person's diagnosis in the address book.
+ * Guarantees: immutable;
+ */
 public class Diagnosis {
     private final String diagnosis;
 

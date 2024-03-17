@@ -2,6 +2,10 @@ package seedu.address.model.person;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a Person's date of admission in the address book.
+ * Guarantees: immutable;
+ */
 public class DateOfAdmission {
     public static final String MESSAGE_CONSTRAINTS =
             "Date of admission should be in the format of DD/MM/YYYY, and it should not be blank.";
