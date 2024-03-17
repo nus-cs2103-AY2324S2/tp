@@ -63,7 +63,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         meritScore = source.getMeritScore().meritScore;
-        bookTitle = source.getBook().value;
+        bookTitle = source.getBookList().value.bookTitle;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -129,5 +129,4 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMeritScore, modelBookList, modelTags);
     }
-
 }

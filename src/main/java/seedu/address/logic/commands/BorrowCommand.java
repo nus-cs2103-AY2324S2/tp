@@ -28,8 +28,8 @@ public class BorrowCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_BOOKLIST + "Likes to swim.";
 
-    public static final String MESSAGE_ADD_BORROW_SUCCESS = "Added borrow to Person: %1$s";
-    public static final String MESSAGE_DELETE_BORROW_SUCCESS = "Removed borrow from Person: %1$s";
+    public static final String MESSAGE_ADD_BORROW_SUCCESS = "Added book to Person: %1$s";
+    public static final String MESSAGE_DELETE_BORROW_SUCCESS = "Removed book from Person: %1$s";
 
     private final Index index;
     private final BookList bookTitle;
@@ -56,7 +56,7 @@ public class BorrowCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        if (!personToEdit.getBook().toString().isEmpty()) {
+        if (!personToEdit.getBookList().getBook().bookTitle.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_FILLED_BOOKLIST_FIELD);
         }
 
@@ -76,7 +76,9 @@ public class BorrowCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !bookTitle.value.isEmpty() ? MESSAGE_ADD_BORROW_SUCCESS : MESSAGE_DELETE_BORROW_SUCCESS;
+        String message = !bookTitle.value.bookTitle.isEmpty()
+                ? MESSAGE_ADD_BORROW_SUCCESS
+                : MESSAGE_DELETE_BORROW_SUCCESS;
         return String.format(message, personToEdit);
     }
 
