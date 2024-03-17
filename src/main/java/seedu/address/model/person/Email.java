@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -43,6 +45,8 @@ public class Email {
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
     }
+
+
 
     /**
      * Returns if a given string is a valid email.

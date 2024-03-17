@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Relationship;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -26,6 +27,9 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
+
+    private final String relationship;
+
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -35,16 +39,19 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("relationship") String relationship, // Add this line
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.relationship = relationship; // Add this line
         if (tags != null) {
             this.tags.addAll(tags);
         }
     }
+
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
@@ -54,10 +61,12 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        relationship = source.getRelationship().value; // Add this line
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
+
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
@@ -103,7 +112,20 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+
+        if (relationship == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Relationship.class.getSimpleName()));
+        }
+        if (!Relationship.isValidRelationship(relationship)) {
+            throw new IllegalValueException(Relationship.MESSAGE_CONSTRAINTS);
+        }
+        final Relationship modelRelationship = new Relationship(relationship);
+
+        // Return the new Person object with the relationship included
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRelationship, modelTags);
+
+//        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }
