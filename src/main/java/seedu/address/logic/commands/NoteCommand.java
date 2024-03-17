@@ -22,16 +22,16 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-    + ": Edits the note of the person identified "
-    + "by the index number used in the last person listing. "
-    + "Existing note will be overwritten by the input.\n"
-    + "Parameters: INDEX (must be a positive integer) "
-    + "nt/ [NOTE]\n"
-    + "Example: " + COMMAND_WORD + " 1 "
-    + "nt/ Likes to swim.";
+        + ": Edits the note of the person identified "
+        + "by the index number used in the last person listing. "
+        + "Existing note will be overwritten by the input.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "nt/ [NOTE]\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + "nt/ Likes to swim.";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-    "Note command not implemented yet";
+        "Note command not implemented yet";
 
     private final Index index;
     private final Note note;
