@@ -17,7 +17,7 @@ public class AppointmentTest {
         Appointment appointment = new Appointment(ALICE.getId(), appointmentTime);
 
         // same UUID
-        assertTrue(appointment.getID() instanceof UUID);
+        assertTrue(appointment.getId() instanceof UUID);
 
         // same person
         assertTrue(appointment.getPersonId().compareTo(ALICE.getId()) == 0);

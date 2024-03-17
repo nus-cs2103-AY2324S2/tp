@@ -25,9 +25,9 @@ public class AddAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "addappt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an appointment to the address book.\n"
+            + ": Adds an appointment to the address book. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DATE + "DATE "
+            + PREFIX_DATE + "DATE\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
             + PREFIX_DATE + "17/01/2024 9am-2pm";

@@ -36,14 +36,15 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, AddAppointmentCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX 
+                + AddAppointmentCommand.MESSAGE_USAGE);
         }
 
 
         AppointmentTime appointmentTime;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE)) {
-            throw new ParseException(String.format("INVALID DATE", AddAppointmentCommand.MESSAGE_USAGE));
+            throw new ParseException("Invalid Date\n" + AddAppointmentCommand.MESSAGE_USAGE);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE);
@@ -51,7 +52,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         try {
             appointmentTime = TimeParser.parse(argMultimap.getValue(PREFIX_DATE).get());
         } catch (ParseException pe) {
-            throw new ParseException("INVALID DATE");
+            throw new ParseException("Invalid Date\n" + AddAppointmentCommand.MESSAGE_USAGE);
         }
 
         return new AddAppointmentCommand(index, appointmentTime);
