@@ -80,18 +80,18 @@ public class PersonCard extends UiPart<Region> {
      */
     private String getStyleClassForTag(String tagName) {
         switch(tagName) {
-            case "friends":
-                return "friends";
-            case "colleagues":
-                return "colleagues";
-            case "neighbours":
-                return "neighbours";
-            case "family":
-                return "family";
-            case "classmates":
-                return "classmates";
-            default:
-                return "";
+        case "friends":
+            return "friends";
+        case "colleagues":
+            return "colleagues";
+        case "neighbours":
+            return "neighbours";
+        case "family":
+            return "family";
+        case "classmates":
+            return "classmates";
+        default:
+            return "";
         }
     }
 }
