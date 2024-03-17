@@ -27,7 +27,7 @@ public class OrderDate {
         this.orderDate = DateTimeUtil.parseDateTime(orderDate);
     }
 
-    private boolean isValidOrderDate(String orderDate) {
+    public static boolean isValidOrderDate(String orderDate) {
         return DateTimeUtil.isValidDate(orderDate);
     }
 

@@ -58,11 +58,6 @@ class OrderTest {
                 .build();
         assertNotEquals(ROSES, editedRoses);
 
-        // different discount -> returns false
-        editedRoses = new OrderBuilder(ROSES)
-                .withDiscount("10")
-                .build();
-        assertNotEquals(ROSES, editedRoses);
 
         // different orderId -> returns false
         editedRoses = new OrderBuilder(ROSES)
@@ -81,7 +76,6 @@ class OrderTest {
                 + ", amount=" + ROSES.getAmount()
                 + ", remark=" + ROSES.getRemark()
                 + ", status=" + ROSES.getStatus()
-                + ", discount=" + ROSES.getDiscount()
                 + "}";
         assertEquals(expected, ROSES.toString());
     }

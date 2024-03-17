@@ -35,7 +35,7 @@ public class Remark {
      * @param test the remark to be tested.
      * @return true if the remark is valid.
      */
-    public boolean isValidRemark(String test) {
+    public static boolean isValidRemark(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

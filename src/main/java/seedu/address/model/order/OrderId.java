@@ -37,13 +37,18 @@ public class OrderId {
             return true;
         }
 
-        if (!(other instanceof OrderId)) {
-            return false;
+        if (other instanceof String) {
+            return id.toString().equals(other);
         }
 
-        OrderId otherOrderId = (OrderId) other;
-        return id.equals(otherOrderId.id);
+        if (other instanceof OrderId) {
+            OrderId otherOrderId = (OrderId) other;
+            return id.equals(otherOrderId.id);
+        }
+
+        return false;
     }
+
 
     @Override
     public int hashCode() {

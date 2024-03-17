@@ -13,7 +13,7 @@ public class TypicalOrders {
             .withAmount("10")
             .withRemark("No remark")
             .withStatus("CANCELED")
-            .withDiscount("0").build();
+            .build();
     public static final Order LILIES = new OrderBuilder()
             .withOrderId("69c25c8d-9e34-4d9d-8bad-e378f203ae74")
             .withOrderDate("23-03-2024 11:59")
@@ -21,7 +21,7 @@ public class TypicalOrders {
             .withAmount("10")
             .withRemark("Important")
             .withStatus("PENDING")
-            .withDiscount("0").build();
+            .build();
 
     private TypicalOrders() {
     } // prevents instantiation

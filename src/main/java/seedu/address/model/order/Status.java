@@ -32,7 +32,9 @@ public class Status {
      * Returns true if a given string is a valid status.
      */
     public static boolean isValidStatus(String test) {
-        return Arrays.stream(StatusEnum.values())
+        return !test.isBlank()
+                && !test.isEmpty()
+                && Arrays.stream(StatusEnum.values())
                 .anyMatch(status -> status.name().equalsIgnoreCase(test));
     }
 

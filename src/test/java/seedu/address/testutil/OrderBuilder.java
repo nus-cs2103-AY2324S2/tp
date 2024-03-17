@@ -3,7 +3,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
-import seedu.address.model.order.Discount;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderId;
@@ -22,7 +21,6 @@ public class OrderBuilder {
     public static final String DEFAULT_AMOUNT = "100";
     public static final String DEFAULT_REMARK = "No remark";
     public static final String DEFAULT_STATUS = "PENDING";
-    public static final String DEFAULT_DISCOUNT = "0";
 
     private OrderId orderId;
     private OrderDate orderDate;
@@ -30,7 +28,6 @@ public class OrderBuilder {
     private Amount amount;
     private Remark remark;
     private Status status;
-    private Discount discount;
 
 
     /**
@@ -43,7 +40,6 @@ public class OrderBuilder {
         amount = new Amount(DEFAULT_AMOUNT);
         remark = new Remark(DEFAULT_REMARK);
         status = new Status(DEFAULT_STATUS);
-        discount = new Discount(DEFAULT_DISCOUNT);
     }
 
     /**
@@ -56,7 +52,6 @@ public class OrderBuilder {
         amount = orderToCopy.getAmount();
         remark = orderToCopy.getRemark();
         status = orderToCopy.getStatus();
-        discount = orderToCopy.getDiscount();
     }
 
     /**
@@ -107,16 +102,9 @@ public class OrderBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Discount} of the {@code Order} that we are building.
-     */
-    public OrderBuilder withDiscount(String discount) {
-        this.discount = new Discount(discount);
-        return this;
-    }
 
     public Order build() {
-        return new Order(orderId, orderDate, deadline, amount, remark, status, discount);
+        return new Order(orderId, orderDate, deadline, amount, remark, status);
     }
 
 }

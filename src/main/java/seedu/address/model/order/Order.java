@@ -14,21 +14,19 @@ public class Order {
     private final Amount amount;
     private final Remark remark;
     private final Status status;
-    private final Discount discount;
 
     /**
      * Every field must be present and not null.
      */
     public Order(OrderId orderId, OrderDate orderDate, Deadline deadline,
-                 Amount amount, Remark remark, Status status,
-                 Discount discount) {
+                 Amount amount, Remark remark, Status status
+    ) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.deadline = deadline;
         this.amount = amount;
         this.remark = remark;
         this.status = status;
-        this.discount = discount;
     }
 
     public OrderId getOrderId() {
@@ -55,9 +53,6 @@ public class Order {
         return status;
     }
 
-    public Discount getDiscount() {
-        return discount;
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -75,14 +70,14 @@ public class Order {
                 && otherOrder.getDeadline().equals(getDeadline())
                 && otherOrder.getAmount().equals(getAmount())
                 && otherOrder.getRemark().equals(getRemark())
-                && otherOrder.getStatus().equals(getStatus())
-                && otherOrder.getDiscount().equals(getDiscount());
+                && otherOrder.getStatus().equals(getStatus());
+
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, orderDate, deadline, amount, remark, status, discount);
+        return Objects.hash(orderId, orderDate, deadline, amount, remark, status);
     }
 
     @Override
@@ -94,7 +89,6 @@ public class Order {
                 .add("amount", amount)
                 .add("remark", remark)
                 .add("status", status)
-                .add("discount", discount)
                 .toString();
     }
 }
