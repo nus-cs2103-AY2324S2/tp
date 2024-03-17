@@ -7,50 +7,60 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ImmuniMate" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+<fx:root minHeight="600" minWidth="700" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/address_book_32.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css"/>
+                <URL value="@Extensions.css"/>
+            </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" style="-fx-background-color: #2FAD66;" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="Help" style="-fx-font-family: Arial; -fx-font-size: 14px;">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" style="-fx-font-family: Arial; -fx-font-size: 14px;" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="ImmuniMate" style="-fx-font-family: Arial; -fx-font-size: 14px; -fx-font-weight: bold;" />
-        </MenuBar>
+            <VBox>
+                <MenuBar fx:id="menuBar" style="-fx-background-color: #2FAD66;" VBox.vgrow="NEVER">
+                  <Menu mnemonicParsing="false" text="Help" style="-fx-font-family: Arial; -fx-font-size: 14px;">
+                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" style="-fx-font-family: Arial; -fx-font-size: 14px;" />
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="ImmuniMate" style="-fx-font-family: Arial; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                </MenuBar>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5"/>
+                    </padding>
+                </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
+                <VBox minWidth="700" prefWidth="700" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <children>
+                        <HBox prefHeight="400.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                            <children>
+                                <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="NEVER">
+                                    <padding>
+                                        <Insets bottom="10" left="10" right="10" top="10"/>
+                                    </padding>
+                                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                </VBox>
+                                <StackPane fx:id="resultPanelPlaceholder" minWidth="340" prefWidth="340"
+                                           styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                                    <padding>
+                                        <Insets bottom="10" left="10" right="10" top="10"/>
+                                    </padding>
+                                </StackPane>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
 
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
-    </Scene>
-  </scene>
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
+            </VBox>
+        </Scene>
+    </scene>
 </fx:root>
