@@ -14,10 +14,10 @@ import java.util.regex.Pattern;
  */
 public class Upcoming implements Comparable<Upcoming> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Invalid input. Please follow the format: DD-MM-YYYY HH:mm";
-    private static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid input. Please follow the format: DD-MM-YYYY HHmm";
+    private static final String DATETIME_FORMAT = "dd-MM-yyyy HHmm";
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
-    private static final String DATETIME_REGEX = "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}$";
+    private static final String DATETIME_REGEX = "^\\d{2}-\\d{2}-\\d{4} \\d{2}\\d{2}$";
     private static final Pattern DATETIME_PATTERN = Pattern.compile(DATETIME_REGEX);
 
     private boolean hasUpcoming;

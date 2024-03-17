@@ -6,7 +6,7 @@
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
       "tags": ["friends"],
-      "upcoming": "23-12-2024 11:23",
+      "upcoming": "23-12-2024 1123",
       "lastcontact": "05-09-2024 0603"
     },
     {
@@ -14,7 +14,7 @@
       "phone": "94351253",
       "email": "pauline@example.com",
       "address": "4th street",
-      "upcoming": "23-12-2024 11:23",
+      "upcoming": "23-12-2024 1123",
       "lastcontact": "05-09-2024 0603"
     }
   ]
