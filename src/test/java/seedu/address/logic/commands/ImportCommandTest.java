@@ -9,15 +9,20 @@ import static seedu.address.testutil.TypicalPersons.JAMES;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.JsonAdaptedPerson;
 
 
 public class ImportCommandTest {
@@ -53,6 +58,16 @@ public class ImportCommandTest {
                 JAMES.getPhone());
         assertThrows(CommandException.class, expectedMessage, () -> importCommand.execute(expectedModel));
     }
+
+    @Test
+    public void retrievePersonsFromFile_fileNotExist_failure() {
+        List<JsonAdaptedPerson> list = new ArrayList<>();
+        HashSet<File> curHashSet = new HashSet<>();
+        curHashSet.add(new File(UNKNOWN_FILE_NAME));
+        ImportCommand importCommand = new ImportCommand(curHashSet);
+        assertThrows(IllegalValueException.class, () -> importCommand.retrievePersonsFromFile(list));
+    }
+
 
     @Test
     public void equals() {
