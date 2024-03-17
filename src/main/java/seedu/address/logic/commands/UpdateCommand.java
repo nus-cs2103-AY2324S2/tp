@@ -43,7 +43,7 @@ public class UpdateCommand extends Command {
             + "by their full name used in the displayed person list. "
             + "The full name provided is not required to be case sensitive."
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: NAME "
+            + "Parameters: u/TARGET_NAME "
             + "[" + PREFIX_NAME + "NEW_NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -60,6 +60,7 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Name name;
+    private final Name lowerCaseName;
     private final UpdatePersonDescriptor updatePersonDescriptor;
 
     /**
@@ -71,16 +72,17 @@ public class UpdateCommand extends Command {
         requireNonNull(updatePersonDescriptor);
 
         this.name = name;
+        this.lowerCaseName = new Name(name.fullName.toLowerCase());
         this.updatePersonDescriptor = new UpdatePersonDescriptor(updatePersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getAddressBook().getPersonList();
 
         List<Person> sameNamePeople = lastShownList.stream()
-                .filter(person -> person.getLowerCaseName().equals(name))
+                .filter(person -> person.getLowerCaseName().equals(lowerCaseName))
                 .collect(Collectors.toList());
 
         if (sameNamePeople.size() != 1) {
@@ -111,7 +113,8 @@ public class UpdateCommand extends Command {
         Phone updatedPhone = updatePersonDescriptor.getPhone().orElse(personToUpdate.getPhone());
         Email updatedEmail = updatePersonDescriptor.getEmail().orElse(personToUpdate.getEmail());
         Address updatedAddress = updatePersonDescriptor.getAddress().orElse(personToUpdate.getAddress());
-        Description updatedDescription = updatePersonDescriptor.getDescription().orElse(personToUpdate.getDescription());
+        Description updatedDescription = updatePersonDescriptor.getDescription().orElse(personToUpdate
+                .getDescription());
         NextOfKin updatedNextOfKin = updatePersonDescriptor.getNextOfKin().orElse(personToUpdate.getNextOfKin());
         Set<Tag> updatedTags = updatePersonDescriptor.getTags().orElse(personToUpdate.getTags());
 

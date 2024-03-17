@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ public class CommandTestUtil {
     public static final String NOK_DESC_BOB = " " + PREFIX_NOK + VALID_NOK_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
+    public static final String UPDATE_DESC_AMY = " " + PREFIX_UPDATE + VALID_DESCRIPTION_AMY;
+    public static final String UPDATE_DESC_BOB = " " + PREFIX_UPDATE + VALID_DESCRIPTION_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -66,6 +69,7 @@ public class CommandTestUtil {
     // empty string not allowed for descriptions
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
     public static final String INVALID_NOK_DESC = " " + PREFIX_NOK; // empty string not allowed for next of kin
+    public static final String INVALID_UPDATE_DESC = " " + PREFIX_UPDATE + "James&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -144,7 +148,8 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showPersonAtName(Model model, Name targetName) {
-        model.updateFilteredPersonList(person -> person.getLowerCaseName().equals(targetName));
+        model.updateFilteredPersonList(person -> person.getLowerCaseName()
+                .equals(new Name(targetName.fullName.toLowerCase())));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

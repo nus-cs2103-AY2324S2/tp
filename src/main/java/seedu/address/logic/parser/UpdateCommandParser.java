@@ -2,7 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -27,13 +34,14 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
      */
     public UpdateCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_NOK, PREFIX_UPDATE, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UPDATE, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_NOK, PREFIX_TAG);
 
         Name name;
 
         try {
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_UPDATE).get());
+            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_UPDATE)
+                    .orElseThrow(() -> new ParseException(UpdateCommand.MESSAGE_USAGE)));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE), pe);
         }

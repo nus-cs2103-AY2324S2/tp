@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.UpdateCommand.UpdatePersonDescriptor;
 import seedu.address.testutil.UpdatePersonDescriptorBuilder;
 
 public class UpdatePersonDescriptorTest {
@@ -20,7 +21,7 @@ public class UpdatePersonDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        UpdateCommand.UpdatePersonDescriptor descriptorWithSameValues = new UpdateCommand.UpdatePersonDescriptor(DESC_AMY);
+        UpdatePersonDescriptor descriptorWithSameValues = new UpdateCommand.UpdatePersonDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
