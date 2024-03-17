@@ -1,17 +1,22 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.Amount;
+import seedu.address.model.order.Deadline;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.OrderId;
+import seedu.address.model.order.Remark;
+import seedu.address.model.order.Status;
 
 /**
  * Parses input arguments and creates a new AddOrderCommand object.
@@ -25,30 +30,23 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     public AddOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_DETAILS, PREFIX_BY);
+                PREFIX_DETAILS, PREFIX_BY, PREFIX_PRICE);
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddOrderCommand.MESSAGE_USAGE), ive);
-        }
+        OrderId orderId = new OrderId();
+        OrderDate orderDate = new OrderDate(getCurrentTime());
+        Deadline deadline = new Deadline(argMultimap.getValue(PREFIX_BY).toString());
+        Remark remark = new Remark(argMultimap.getValue(PREFIX_DETAILS).orElse(""));
+        Amount amount = new Amount(argMultimap.getValue(PREFIX_PRICE).orElse("0"));
+        Status status = new Status("Processing");
 
-        String details = argMultimap.getValue(PREFIX_DETAILS).orElse("");
-        Date deadline;
-        try {
-            deadline = stringToDate(argMultimap.getValue(PREFIX_BY).toString());
-        } catch (java.text.ParseException error) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddOrderCommand.MESSAGE_USAGE), error);
-        }
-        return new AddOrderCommand(index, details, deadline);
+        Order order = new Order(orderId, orderDate, deadline, amount, remark, status);
+        return new AddOrderCommand(order);
     }
 
-    private Date stringToDate(String dateString) throws java.text.ParseException {
-        String format = "yyyy-MM-dd";
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-        return dateFormat.parse(dateString);
+    private String getCurrentTime() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return now.format(formatter);
     }
+
 }

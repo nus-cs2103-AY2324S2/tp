@@ -1,38 +1,34 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.orders.AddOrderCommand.MESSAGE_SUCCESS;
 
 import java.nio.file.Path;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.OrderBuilder;
 public class AddOrderCommandTest {
 
     @Test
     public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
-        Person validPerson = new PersonBuilder().build();
-        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded(validPerson);
-        Index index = Index.fromOneBased(1);
-        String details = "Some order details";
-        Date deadline = new SimpleDateFormat("dd-MM-yyyy").parse("23-07-2024");
-        AddOrderCommand addOrderCommand = new AddOrderCommand(index, details, deadline);
-        assertThrows(CommandException.class, "Index: 1, Details: "
-                + "Some order details, Deadline: 2024-07-23 00:00:00", (
-                ) -> addOrderCommand.execute(modelStub));
+        OrderBuilder builder = new OrderBuilder();
+        Order order = builder.build();
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded(order);
+        CommandResult commandResult = new AddOrderCommand(order).execute(modelStub);
+        assertEquals(String.format(MESSAGE_SUCCESS, Messages.format(order)),
+                commandResult.getFeedbackToUser());
     }
 
     /**
@@ -108,23 +104,27 @@ public class AddOrderCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void addOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A Model stub that always accepts the order being added.
      */
     private class ModelStubAcceptingOrderAdded extends AddOrderCommandTest.ModelStub {
-        private final Person person;
+        private final Order order;
 
-        ModelStubAcceptingOrderAdded(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubAcceptingOrderAdded(Order order) {
+            requireNonNull(order);
+            this.order = order;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public void addOrder(Order order) {
+            requireNonNull(order);
         }
     }
 }

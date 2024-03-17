@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -109,6 +111,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+    //=========== Order ================================================================================
+    @Override
+    public void addOrder(Order order) throws CommandException {
+        throw new CommandException("NOT IMPLEMENTED");
     }
 
     //=========== Filtered Person List Accessors =============================================================

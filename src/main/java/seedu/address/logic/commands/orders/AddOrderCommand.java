@@ -2,13 +2,12 @@ package seedu.address.logic.commands.orders;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
-
-import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.order.Order;
 
 /**
  * Adds an order to an assigned person.
@@ -27,27 +26,23 @@ public class AddOrderCommand extends Command {
             + "DETAILS (in formation related to order), "
             + "DEADLINE (the date the order is due"
             + "r/ [ORDER]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + "d/1xRoses + by/23-07-2024";
+            + "Example: " + COMMAND_WORD + "d/1xRoses c/40 by/23-07-2024 00:00";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Details: %2$s, Deadline: %3$tF %3$tT";
-
-    private final Index index;
-    private final String details;
-    private final Date deadline;
+    public static final String MESSAGE_SUCCESS = "New Order added!";
+    private final Order order;
 
     /**
      * Creates an AddOrderCommand to add the specified {@code Order}
      */
-    public AddOrderCommand(Index index, String details, Date deadline) {
-        requireAllNonNull(index, details, deadline);
-
-        this.index = index;
-        this.details = details;
-        this.deadline = deadline;
+    public AddOrderCommand(Order order) {
+        requireAllNonNull(order);
+        this.order = order;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(
-                String.format(MESSAGE_ARGUMENTS, index.getOneBased(), details, deadline));
+        requireAllNonNull(model);
+
+        model.addOrder(this.order);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(this.order)));
     }
 }
