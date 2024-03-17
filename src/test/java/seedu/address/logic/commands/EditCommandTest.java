@@ -144,7 +144,7 @@ public class EditCommandTest {
                 .build();
         EditCommand editCommand = new EditCommand(phoneNumberNotInBook, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
 
     /**
@@ -161,7 +161,7 @@ public class EditCommandTest {
                         .withLastName(VALID_LASTNAME_BOB)
                         .build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
 
     @Test

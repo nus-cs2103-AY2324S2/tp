@@ -63,14 +63,14 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param phoneNumber                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Phone number, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(number);
+    public EditCommand(Phone phoneNumber, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(phoneNumber);
         requireNonNull(editPersonDescriptor);
 
-        this.number = number;
+        this.number = phoneNumber;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -110,7 +110,7 @@ public class EditCommand extends Command {
             }
         }
         if (!exists) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
