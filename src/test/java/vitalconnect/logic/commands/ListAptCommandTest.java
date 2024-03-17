@@ -42,9 +42,7 @@ public class ListAptCommandTest {
         CommandResult commandResult = listAptCommand.execute(modelStub);
 
         // Expected result should contain the appointments added above
-        String expectedMessage = ListAptCommand.MESSAGE_SUCCESS + ":\n"
-                + "1. " + modelStub.appointments.get(0).toString() + "\n"
-                + "2. " + modelStub.appointments.get(1).toString();
+        String expectedMessage = ListAptCommand.MESSAGE_SUCCESS;
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
     }
 
