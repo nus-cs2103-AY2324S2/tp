@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 
 /**
- * Parses input arguments and creates a new {@code MembershipCommand} object
+ * Parses input arguments and creates a new {@code Membership Command} object
  */
 public class AddMemshipCommandParser implements Parser<AddMemshipCommand> {
     /**

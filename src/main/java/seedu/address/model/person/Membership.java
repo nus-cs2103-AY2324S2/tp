@@ -11,6 +11,7 @@ public class Membership {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Membership tier should be one of the following: T1, T2, T3";
+
     // This regex matches only 'T1', 'T2', or 'T3'.
     public static final String VALIDATION_REGEX = "T[123]";
 
