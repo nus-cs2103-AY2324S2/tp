@@ -39,13 +39,11 @@ public class DobTest {
         assertFalse(Dob.isValidDob("17/2024")); // missing month
 
         // future date
-        // Get today's date
         LocalDate today = LocalDate.now();
-        // Get tomorrow's date
         LocalDate tomorrow = today.plusDays(1);
-        // Define the date format
+        // Define date format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        // Format tomorrow's date
+        // Format date
         String tomorrowFormatted = tomorrow.format(formatter);
         assertFalse(Dob.isValidDob(tomorrowFormatted));
 
