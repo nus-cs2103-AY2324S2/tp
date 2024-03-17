@@ -33,9 +33,9 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_COMMENT, PREFIX_TAG);
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+        String trimmedPreamble = argMultimap.getPreamble().trim();
+        if (trimmedArgs.isEmpty() || !trimmedPreamble.equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
@@ -60,10 +60,6 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         parseTagsForSearch(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(searchPersonDescriptor::setTags);
 
-        if (!searchPersonDescriptor.isAnyFieldSpecified()) {
-            throw new ParseException(SearchCommand.MESSAGE_NO_FIELD_PROVIDED);
-        }
-
         return new SearchCommand(searchPersonDescriptor);
     }
 
@@ -80,18 +76,5 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
-    }
-
-    private boolean isEmpty(ArgumentMultimap argMultimap) {
-        return Arrays.stream(
-                new Prefix[]{PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_COMMENT, PREFIX_TAG}
-        ).allMatch(prefix -> argMultimap.getValue(prefix).isEmpty());
-
-//                argMultimap.getAllValues(PREFIX_NAME).isEmpty()
-//                && argMultimap.getAllValues(PREFIX_PHONE).isEmpty()
-//                && argMultimap.getAllValues(PREFIX_EMAIL).isEmpty()
-//                && argMultimap.getAllValues(PREFIX_ADDRESS).isEmpty()
-//                && argMultimap.getAllValues(PREFIX_COMMENT).isEmpty()
-//                && argMultimap.getAllValues(PREFIX_TAG).isEmpty();
     }
 }

@@ -50,16 +50,23 @@ public class ContainsKeywordsPredicate<T> implements Predicate<Person> {
             if (tags.isEmpty()) {
                 return true;
             }
-            boolean isContainTag = false;
-            for (Tag tag : tags.get()) {
-                if (person.getTags().contains(tag)) {
+            return isPersonTagsContainsTag(person, tags);
+        }
+        throw new IllegalStateException("Unexpected value: " + prefix);
+    }
+
+    private boolean isPersonTagsContainsTag(Person person, Optional<Set<Tag>> tags) {
+        assert tags.isPresent();
+        boolean isContainTag = false;
+        for (Tag tag : tags.get()) {
+            for (Tag personTag : person.getTags()) {
+                if (personTag.tagName.contains(tag.tagName)) {
                     isContainTag = true;
                     break;
                 }
             }
-            return isContainTag;
         }
-        throw new IllegalStateException("Unexpected value: " + prefix);
+        return isContainTag;
     }
 
     @Override

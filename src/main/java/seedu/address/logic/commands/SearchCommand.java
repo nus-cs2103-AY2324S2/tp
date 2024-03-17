@@ -70,7 +70,7 @@ public class SearchCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to search the person with. Each non-empty field value will search the
      * corresponding field value of the person.
      */
     public static class SearchPersonDescriptor {
