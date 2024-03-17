@@ -97,6 +97,11 @@ public class Timetable {
         return true;
     }
 
+    /**
+     * Converts {@code Timetable} object back into its command {@code String}.
+     *
+     * @return {@code String} command, e.g. "mon: 13-15, 16-18 tue: 12-18 thu: 11-13, 19-21"
+     */
     public String convertToCommandString() {
         StringBuilder sb = new StringBuilder();
         for (Day day : days) {
@@ -110,7 +115,7 @@ public class Timetable {
         StringBuilder sb = new StringBuilder();
         sb.append("Timetable\n");
         for (Day eachDay : this.days) {
-            sb.append(eachDay.toString()).append("\n");
+            sb.append(eachDay).append("\n");
         }
         return sb.toString();
     }

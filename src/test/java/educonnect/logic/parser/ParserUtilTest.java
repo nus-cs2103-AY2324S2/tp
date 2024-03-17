@@ -288,14 +288,14 @@ public class ParserUtilTest {
 
         String expectedTimetable = "Timetable\n"
                                    + "For MONDAY, schedule is:\n"
-                                   + "Period period: (13:00 to 15:00)\n"
-                                   + "Period period: (16:00 to 18:00)\n\n"
+                                   + "Period: (13:00 to 15:00)\n"
+                                   + "Period: (16:00 to 18:00)\n\n"
                                    + "For TUESDAY, schedule is:\n\n"
                                    + "For WEDNESDAY, schedule is:\n\n"
                                    + "For THURSDAY, schedule is:\n\n"
                                    + "For FRIDAY, schedule is:\n"
-                                   + "Period period: (13:00 to 15:00)\n"
-                                   + "Period period: (16:00 to 18:00)\n\n";
+                                   + "Period: (13:00 to 15:00)\n"
+                                   + "Period: (16:00 to 18:00)\n\n";
 
         if (Timetable.is7Days()) {
             expectedTimetable += "For SATURDAY, schedule is:\n\n"

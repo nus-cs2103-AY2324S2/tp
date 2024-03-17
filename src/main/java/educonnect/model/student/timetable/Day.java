@@ -1,7 +1,7 @@
 package educonnect.model.student.timetable;
 
-import static java.util.Objects.requireNonNull;
 import static educonnect.logic.parser.CliSyntax.PREFIXES_TIMETABLE_DAYS;
+import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -57,6 +57,13 @@ public class Day {
     }
 
     /**
+     * Checks if the {@code Day} contains any {@code Period}.
+     */
+    public boolean hasPeriods() {
+        return !this.periods.isEmpty();
+    }
+
+    /**
      * Adds a {@code Period} into this {@code Day}. The period cannot overlap with another period.
      * Automatically sorts all periods after each addition.
      *
@@ -83,6 +90,11 @@ public class Day {
         return this.periods.stream().sorted().collect(Collectors.toList()).equals(this.periods);
     }
 
+    /**
+     * Converts {@code Day} object back into its command {@code String}.
+     *
+     * @return {@code String} command, e.g. "mon: 13-15, 16-18"
+     */
     public String convertToCommandString() {
         if (periods.isEmpty()) {
             return ""; // returns empty string as no command specified will result in a day with no periods
@@ -90,7 +102,7 @@ public class Day {
 
         StringBuilder sb = new StringBuilder();
         int index = dayOfWeek.getValue() - 1;
-        sb.append(PREFIXES_TIMETABLE_DAYS[index]).append(" ");  // appends the correct prefix
+        sb.append(PREFIXES_TIMETABLE_DAYS[index]).append(" "); // appends the correct prefix
 
         for (Period period : periods) {
             if (sb.length() != 5) { // 5 because no matter which prefix, with space, the length is always 5

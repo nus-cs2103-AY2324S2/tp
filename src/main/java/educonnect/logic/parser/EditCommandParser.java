@@ -1,11 +1,21 @@
 package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static educonnect.logic.parser.CliSyntax.*;
+import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_FRIDAY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_MONDAY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_SATURDAY;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_SUNDAY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_THURSDAY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_TUESDAY;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_WEDNESDAY;
 import static java.util.Objects.requireNonNull;
 
-import educonnect.model.student.timetable.Timetable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,6 +25,7 @@ import java.util.Set;
 import educonnect.commons.core.index.Index;
 import educonnect.logic.commands.EditCommand;
 import educonnect.logic.parser.exceptions.ParseException;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
 /**
