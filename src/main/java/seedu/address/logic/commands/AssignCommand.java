@@ -1,10 +1,18 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Assigns an existing task to an existing person in the address book.
@@ -24,7 +32,7 @@ public class AssignCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "to/ 2";
 
-    public static final String MESSAGE_ARGUMENTS = "Task index: %1$d, Person index: %2$s";
+    public static final String MESSAGE_SUCCESS = "%1$s has been assigned to %2$s.";
 
     private final Index taskIndex;
     private final Index personIndex;
@@ -42,8 +50,29 @@ public class AssignCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(
-                String.format(MESSAGE_ARGUMENTS, taskIndex.getOneBased(), personIndex.getOneBased()));
+        List<Task> lastShownTaskList = model.getTaskList().getSerializeTaskList();
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+
+        if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        if (personIndex.getZeroBased() >= lastShownPersonList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = lastShownPersonList.get(personIndex.getZeroBased());
+        Task taskToAssign = lastShownTaskList.get(taskIndex.getZeroBased());
+        Set<Task> editedTasks = new HashSet<>(personToEdit.getTasks());
+        editedTasks.add(taskToAssign);
+        Person editedPerson = new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), editedTasks);
+
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskToAssign, editedPerson));
     }
 
     @Override
