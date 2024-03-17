@@ -56,7 +56,8 @@ public class PersonUtil {
                 sb.append(PREFIX_TAG + " ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }        }
+            }
+        }
         descriptor.getPoints().ifPresent(points -> sb.append(PREFIX_POINTS).append(points.value).append(" "));
         return sb.toString();
     }
