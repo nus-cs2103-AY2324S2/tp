@@ -26,8 +26,8 @@ public class AddNoteCommand extends Command {
             + "Existing remark will be appended by default. To replace the original note, add -replace at "
             + "the end of your command. E.g. addnote i/S0123456Q n/Diabetes -replace\n"
             + "Parameters: "
-            + "[" + PREFIX_IC + "IC] "
-            + "[" + PREFIX_NOTE + "NOTE] \n"
+            + PREFIX_IC + "IC "
+            + PREFIX_NOTE + "NOTE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_IC + " S0123456Q "
             + PREFIX_NOTE + "Healthy.";

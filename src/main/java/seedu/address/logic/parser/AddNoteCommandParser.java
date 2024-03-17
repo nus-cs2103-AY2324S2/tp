@@ -41,9 +41,6 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
             if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
                 int startIndex = args.indexOf(PREFIX_NOTE.getPrefix()) + PREFIX_NOTE.getPrefix().length();
                 int endIndex = args.indexOf(PREFIX_FLAG.getPrefix());
-                if (endIndex == -1) {
-                    endIndex = args.length();
-                }
                 note = args.substring(startIndex, endIndex).trim();
                 isReplace = true;
             } else {
