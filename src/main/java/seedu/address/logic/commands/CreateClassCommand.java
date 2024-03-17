@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Classes;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Creates a class to the classbook.
