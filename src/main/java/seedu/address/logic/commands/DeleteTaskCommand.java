@@ -22,7 +22,6 @@ public class DeleteTaskCommand extends Command {
     public static final String MESSAGE_INDEX_TOO_LARGE = "The index is not valid, use \"list task\" to "
             + "display all tasks.";
 
-            
     public static final String MESSAGE_INDEX_BELOW_ONE = "The index must be greater than 0.";
 
     private final Index taskIndexToDelete;
@@ -47,7 +46,7 @@ public class DeleteTaskCommand extends Command {
 
         if (!model.isValidTaskIndex(taskIndexToDelete)) {
             throw new CommandException(MESSAGE_INDEX_TOO_LARGE);
-        }        
+        }
 
         Task deletedTask = model.deleteTask(taskIndexToDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, deletedTask.getDescription()));
