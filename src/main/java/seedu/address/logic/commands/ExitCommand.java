@@ -9,7 +9,9 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Realodex as requested ...";
+    public static final String MESSAGE_EXIT_HELP = "Exit Command: Exits Realodex.\n"
+            + "Format: exit\n";
 
     @Override
     public CommandResult execute(Model model) {

@@ -6,13 +6,14 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "family" : "4",
-    "tags": [ "friends" ]
+    "tags": [ "buyer" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "income" : "20000",
     "email": "pauline@example.com",
     "family" : "4",
-    "address": "4th street"
+    "address": "4th street",
+    "tags": [ "buyer" ]
   } ]
 }
