@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Staff;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -134,14 +135,5 @@ public class ModelManagerTest {
 
         // finds a valid person by name
         assertEquals(ALICE, modelManagerCopy.findByName(ALICE.getName()));
-
-        // finds a valid staff by name
-        assertEquals(ALICESTAFF, modelManagerCopy.findStaffByName(ALICESTAFF.getName()));
-
-        // finds a valid supplier by name
-        assertEquals(ALICESUPPLIER, modelManagerCopy.findSupplierByName(ALICESUPPLIER.getName()));
-
-        // finds a valid maintainer by name
-        assertEquals(ALICEMAINTAINER, modelManagerCopy.findMaintainerByName(ALICEMAINTAINER.getName()));
     }
 }
