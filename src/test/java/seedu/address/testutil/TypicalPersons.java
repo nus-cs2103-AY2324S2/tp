@@ -14,8 +14,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_WAITER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,7 +116,7 @@ public class TypicalPersons {
         .withEmploymentType(VALID_EMPLOYMENTTYPE_AMY)
         .withAddress(VALID_ADDRESS_AMY)
         .withBankDetails(VALID_BANKDETAILS_AMY)
-        .withTags(VALID_TAG_FRIEND).build();
+        .withTags(VALID_TAG_COOK).build();
     public static final Person BOB = new PersonBuilder()
         .withFirstName(VALID_FIRSTNAME_BOB)
         .withLastName(VALID_LASTNAME_BOB)
@@ -125,7 +125,7 @@ public class TypicalPersons {
         .withEmploymentType(VALID_EMPLOYMENTTYPE_BOB)
         .withAddress(VALID_ADDRESS_BOB)
         .withBankDetails(VALID_BANKDETAILS_BOB)
-        .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+        .withTags(VALID_TAG_WAITER, VALID_TAG_COOK)
         .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

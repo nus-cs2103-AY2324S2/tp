@@ -43,8 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_BANKDETAILS_AMY = "8374219837";
     public static final String VALID_BANKDETAILS_BOB = "3214213212";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_WAITER = "waiter";
+    public static final String VALID_TAG_COOK = "cook";
 
     public static final String FIRSTNAME_DESC_AMY = " " + PREFIX_FIRSTNAME + VALID_FIRSTNAME_AMY;
     public static final String LASTNAME_DESC_AMY = " " + PREFIX_LASTNAME + VALID_LASTNAME_AMY;
@@ -61,8 +61,8 @@ public class CommandTestUtil {
     public static final String BANKDETAILS_DESC_AMY = " " + PREFIX_BANKDETAILS + VALID_BANKDETAILS_AMY;
     public static final String BANKDETAILS_DESC_BOB = " " + PREFIX_BANKDETAILS + VALID_BANKDETAILS_BOB;
 
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_COOK = " " + PREFIX_TAG + VALID_TAG_COOK;
+    public static final String TAG_DESC_WAITER = " " + PREFIX_TAG + VALID_TAG_WAITER;
 
     public static final String INVALID_FIRSTNAME_DESC = " " + PREFIX_FIRSTNAME + "James&"; // '&' not allowed in
     public static final String INVALID_LASTNAME_DESC = " " + PREFIX_LASTNAME + "Char.les"; // '&' not allowed in
@@ -86,10 +86,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withFirstName(VALID_FIRSTNAME_AMY)
             .withPhone(VALID_PHONE_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_COOK).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withFirstName(VALID_LASTNAME_BOB)
             .withPhone(VALID_PHONE_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_WAITER, VALID_TAG_COOK).build();
     }
 
     /**
