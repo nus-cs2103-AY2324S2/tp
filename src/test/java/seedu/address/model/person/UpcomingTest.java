@@ -107,6 +107,27 @@ public class UpcomingTest {
     }
 
     @Test
+    public void equals_differentUpcomingStatus_returnsFalse() {
+        Upcoming upcoming1 = new Upcoming("");
+        Upcoming upcoming2 = new Upcoming("01-04-2023 1500");
+        assertFalse(upcoming1.equals(upcoming2));
+    }
+
+    @Test
+    public void equals_oneUpcomingEmpty_returnsFalse() {
+        Upcoming upcoming1 = new Upcoming("");
+        Upcoming upcoming2 = new Upcoming("01-04-2023 1500");
+        assertFalse(upcoming1.equals(upcoming2));
+    }
+
+    @Test
+    public void equals_bothUpcomingEmpty_returnsTrue() {
+        Upcoming upcoming1 = new Upcoming("");
+        Upcoming upcoming2 = new Upcoming("");
+        assertTrue(upcoming1.equals(upcoming2));
+    }
+
+    @Test
     public void hashCode_sameDateTime_returnsSameHashCode() {
         Upcoming upcoming1 = new Upcoming("01-01-2022 1200");
         Upcoming upcoming2 = new Upcoming("01-01-2022 1200");
@@ -133,4 +154,6 @@ public class UpcomingTest {
         String expected = "";
         assertEquals(expected, upcoming.toString());
     }
+
+
 }
