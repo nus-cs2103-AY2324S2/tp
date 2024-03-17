@@ -18,8 +18,8 @@ import vitalconnect.model.tag.Tag;
  */
 public class Person {
     // Information fields
-    private final IdentificationInformation identificationInformation;
-    private final ContactInformation contactInformation;
+    private IdentificationInformation identificationInformation;
+    private ContactInformation contactInformation;
 
     // Data fields`
     private final Set<Tag> tags = new HashSet<>();
@@ -30,7 +30,7 @@ public class Person {
     public Person(IdentificationInformation identificationInformation, Set<Tag> tags) {
         requireAllNonNull(identificationInformation, tags);
         this.identificationInformation = identificationInformation;
-        this.contactInformation = null;
+        this.contactInformation = new ContactInformation();
 
         this.tags.addAll(tags);
     }
@@ -40,11 +40,15 @@ public class Person {
      */
     public Person(IdentificationInformation identificationInformation,
                   ContactInformation contactInformation, Set<Tag> tags) {
-        requireAllNonNull(identificationInformation, contactInformation, tags);
+        requireAllNonNull(identificationInformation, tags);
         this.identificationInformation = identificationInformation;
         this.contactInformation = contactInformation;
 
         this.tags.addAll(tags);
+    }
+
+    public void setContactInformation(ContactInformation contactInformation) {
+        this.contactInformation = contactInformation;
     }
 
     public IdentificationInformation getIdentificationInformation() {
@@ -78,6 +82,13 @@ public class Person {
 
         return otherPerson != null
             && otherPerson.getIdentificationInformation().getNric().equals(getIdentificationInformation().getNric());
+    }
+
+    /**
+     * Make a new copy of that person.
+     */
+    public Person copyPerson() {
+        return new Person(this.identificationInformation, this.contactInformation, this.tags);
     }
 
     /**

@@ -1,85 +1,78 @@
 package vitalconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static vitalconnect.testutil.Assert.assertThrows;
+import static vitalconnect.testutil.TypicalPersons.getTypicalClinic;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.logic.Messages;
+import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.model.Appointment;
+import vitalconnect.model.Clinic;
 import vitalconnect.model.Model;
+import vitalconnect.model.ModelManager;
 import vitalconnect.model.ReadOnlyClinic;
 import vitalconnect.model.ReadOnlyUserPrefs;
+import vitalconnect.model.UserPrefs;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.testutil.PersonBuilder;
 
 
-public class ListAptCommandTest {
+public class DeleteContactCommandTest {
+    private Model model = new ModelManager(getTypicalClinic(), new UserPrefs());
+
     @Test
-    public void execute_noAppointmentsInList_showsNoAppointmentsMessage() {
-        ModelStubEmpty modelStub = new ModelStubEmpty();
-        ListAptCommand listAptCommand = new ListAptCommand();
-
-        CommandResult commandResult = listAptCommand.execute(modelStub);
-
-        assertEquals("No appointment is in the list.", commandResult.getFeedbackToUser());
+    public void constructor_nullContactInformation_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteContactCommand(null));
     }
 
     @Test
-    public void execute_appointmentsInList_showsAppointments() {
-        ModelStubWithAppointments modelStub = new ModelStubWithAppointments();
-        modelStub.addAppointment(new Appointment("John Doe", LocalDateTime.now()));
-        modelStub.addAppointment(new Appointment("Jane Doe", LocalDateTime.now().plusDays(1)));
-        ListAptCommand listAptCommand = new ListAptCommand();
+    public void execute_personNotFind_failure() {
+        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NOT_FOUND, () ->
+          new DeleteContactCommand(new Nric("S2519229Z")).execute(model));
+    }
 
-        CommandResult commandResult = listAptCommand.execute(modelStub);
+    @Test
+    public void execute_deleteContactInformation_success() throws CommandException {
+        ModelStubHasOnePersonWithNoneEmptyCI modelStub = new ModelStubHasOnePersonWithNoneEmptyCI();
+        Person validPerson = modelStub.findPersonByNric(new Nric("S2519229Z"));
+        CommandResult commandResult = new DeleteContactCommand(validPerson.getIdentificationInformation().getNric())
+            .execute(modelStub);
 
-        // Expected result should contain the appointments added above
-        String expectedMessage = ListAptCommand.MESSAGE_SUCCESS + ":\n"
-                + "1. " + modelStub.appointments.get(0).toString() + "\n"
-                + "2. " + modelStub.appointments.get(1).toString();
-        assertEquals(expectedMessage, commandResult.getFeedbackToUser());
+        assertEquals(DeleteContactCommand.MESSAGE_SUCCESS,
+            commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void equalsTest() {
+        Nric nric = new Nric("S2519229Z");
+        DeleteContactCommand command = new DeleteContactCommand(nric);
+        // same object, equal
+        assertTrue(command.equals(command));
+
+        // same nric, same command
+        assertTrue(command.equals(new DeleteContactCommand(new Nric("S2519229Z"))));
+
+        // different type, not same command
+        assertFalse(command.equals("abc"));
+
+        // null, not same command
+        assertFalse(command.equals(null));
     }
 
     /**
-     * A Model stub that has no appointments.
+     * A default model stub that have all of the methods failing.
      */
-    private class ModelStubEmpty extends ModelStub {
-        @Override
-        public ObservableList<Appointment> getFilteredAppointmentList() {
-            return FXCollections.observableArrayList();
-        }
-
-    }
-
-    /**
-     * A Model stub that contains and allows manipulation of appointments.
-     */
-    private class ModelStubWithAppointments extends ModelStub {
-        final List<Appointment> appointments = new ArrayList<>();
-
-        @Override
-        public void addAppointment(Appointment appointment) {
-            appointments.add(appointment);
-        }
-
-        @Override
-        public ObservableList<Appointment> getFilteredAppointmentList() {
-            return FXCollections.observableArrayList(appointments);
-        }
-
-    }
-
-
-
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -174,15 +167,39 @@ public class ListAptCommandTest {
 
         @Override
         public Person findPersonByNric(Nric nric) {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updatePersonContactInformation(Nric nric, ContactInformation contactInformation) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
     }
 
+    /**
+     * A Model stub that always accept the person being added.
+     */
+    private class ModelStubHasOnePersonWithNoneEmptyCI extends ModelStub {
+        final Person person = new PersonBuilder().withEmail("abc@email.com").build();
 
+        @Override
+        public Person findPersonByNric(Nric nric) {
+            return this.person;
+        }
+
+        @Override
+        public ReadOnlyClinic getClinic() {
+            return new Clinic();
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        }
+
+        @Override
+        public void updatePersonContactInformation(Nric nric, ContactInformation contactInformation) {
+            this.person.setContactInformation(contactInformation);
+        }
+    }
 }

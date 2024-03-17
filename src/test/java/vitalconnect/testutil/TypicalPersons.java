@@ -1,9 +1,12 @@
 package vitalconnect.testutil;
 
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -20,6 +23,7 @@ import vitalconnect.model.person.Person;
 public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withNric("S1234567D")
+        .withEmail("email@e.com")
         .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withNric("S1234568B")
@@ -46,6 +50,13 @@ public class TypicalPersons {
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .build();
+
+    public static final Person BOB_CONTACT = new PersonBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB)
+        .withEmail(VALID_EMAIL_BOB)
+        .withPhone(VALID_PHONE_BOB)
+        .withAddress(VALID_ADDRESS_BOB)
+        .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+        .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

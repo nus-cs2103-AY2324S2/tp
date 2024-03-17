@@ -17,6 +17,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import vitalconnect.commons.core.GuiSettings;
+import vitalconnect.model.person.contactinformation.Address;
+import vitalconnect.model.person.contactinformation.ContactInformation;
+import vitalconnect.model.person.contactinformation.Email;
+import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.NameContainsKeywordsPredicate;
 import vitalconnect.testutil.ClinicBuilder;
 
@@ -147,6 +151,16 @@ public class ModelManagerTest {
 
         assertTrue(modelManager.doesPersonExist(ALICE.getIdentificationInformation().getName().fullName));
         assertFalse(modelManager.doesPersonExist("Non Existing Person"));
+    }
+
+    @Test
+    public void updatePersonContactInformation_success() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.addPerson(ALICE); // Assuming ALICE is a predefined Person object
+        ContactInformation ci = new ContactInformation(new Email("email@email.com"), new Phone(""), new Address(""));
+        modelManager.updatePersonContactInformation(ALICE.getIdentificationInformation().getNric(), ci);
+        assertEquals(ci, modelManager
+            .findPersonByNric(ALICE.getIdentificationInformation().getNric()).getContactInformation());
     }
 
 

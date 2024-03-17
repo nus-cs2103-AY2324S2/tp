@@ -1,5 +1,6 @@
 package vitalconnect.model.person.contactinformation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vitalconnect.testutil.Assert.assertThrows;
@@ -14,8 +15,13 @@ public class AddressTest {
     }
 
     @Test
+    public void constructor_noParameter_success() {
+        assertEquals(new Address().value, "");
+    }
+
+    @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
+        String invalidAddress = "/";
         assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
     }
 
@@ -25,8 +31,8 @@ public class AddressTest {
         assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
 
         // invalid addresses
-        assertFalse(Address.isValidAddress("")); // empty string
-        assertFalse(Address.isValidAddress(" ")); // spaces only
+        assertFalse(Address.isValidAddress("/"));
+        assertFalse(Address.isValidAddress(" /"));
 
         // valid addresses
         assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
