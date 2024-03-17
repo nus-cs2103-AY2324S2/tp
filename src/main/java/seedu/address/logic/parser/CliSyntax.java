@@ -15,5 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SCHEDULE = new Prefix("d/");
     public static final Prefix PREFIX_BIRTHDAY = new Prefix("d/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_POLICYNAME = new Prefix("n/");
+    public static final Prefix PREFIX_POLICYID = new Prefix("i/");
 
 }

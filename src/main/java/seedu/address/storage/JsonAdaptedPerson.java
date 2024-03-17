@@ -19,6 +19,7 @@ import seedu.address.model.person.LastMet;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PolicyList;
 import seedu.address.model.person.Schedule;
 import seedu.address.model.tag.Tag;
 
@@ -37,6 +38,7 @@ class JsonAdaptedPerson {
     private final String lastmet;
     private final String schedule;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,8 +47,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("birthday") String birthday, @JsonProperty("lastmet") String lastmet,
-                             @JsonProperty("schedule") String schedule,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("schedule") String schedule, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("policies") List<JsonAdaptedPolicy> policies) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +58,9 @@ class JsonAdaptedPerson {
         this.schedule = schedule;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (policies != null) {
+            this.policies.addAll(policies);
         }
     }
 
@@ -73,6 +78,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        policies.addAll(source.getPolicyList().toStream()
+                .map(JsonAdaptedPolicy::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -82,8 +90,14 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final PolicyList personPolicies = new PolicyList();
+
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        for (JsonAdaptedPolicy policy : policies) {
+            personPolicies.addPolicy(policy.toModelType());
         }
 
         if (name == null) {
@@ -137,7 +151,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
-                modelLastMet, modelSchedule, modelTags);
+                modelLastMet, modelSchedule, modelTags, personPolicies);
     }
 
 }
