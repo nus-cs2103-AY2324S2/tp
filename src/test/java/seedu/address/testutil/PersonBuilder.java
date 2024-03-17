@@ -117,6 +117,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds and returns a {@code Person} with the current attributes set in the {@code PersonBuilder}.
+     *
+     * This method provides a way to construct a new {@code Person} instance using the builder pattern. Attributes set
+     * in the builder are used to instantiate the {@code Person}. This includes the person's name, phone number, email,
+     * address, membership status, set of tags, and points. If an attribute has not been explicitly set in the builder,
+     * the default value for that attribute is used.
+     *
+     * @return A new {@code Person} instance with attributes specified in the {@code PersonBuilder}.
+     */
     public Person build() {
         return new Person(name, phone, email, address, membership, tags, points);
 
