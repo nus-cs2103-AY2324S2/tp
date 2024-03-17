@@ -33,6 +33,13 @@ public class TaskList {
     }
 
     /**
+     * Returns true if the list contains an equivalent task as the given argument.
+     */
+    public boolean contains(Task toCheck) {
+        return internalList.stream().anyMatch(toCheck::isSameTask);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {

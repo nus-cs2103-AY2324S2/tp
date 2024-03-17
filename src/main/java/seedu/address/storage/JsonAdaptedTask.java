@@ -15,6 +15,7 @@ import seedu.address.model.task.TaskStatus;
  * Jackson-friendly version of {@link Task}.
  */
 public class JsonAdaptedTask {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String taskName;
     private final int taskId;

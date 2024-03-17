@@ -9,7 +9,7 @@ TaskMasterPro is a desktop application designed to aid managers with managing em
 * Add or remove
   * Employees
   * Tasks
-* Assign tasks to employees
+* Assign or Unassign tasks to employees
 * List all information
 * Mark tasks as completed or not completed
 * Save and Load
@@ -62,4 +62,4 @@ Down the .jar file from releases <!-- TODO --> and run the command <br>
 
 
 # Credits
-This project is based on the TaskMasterPro-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

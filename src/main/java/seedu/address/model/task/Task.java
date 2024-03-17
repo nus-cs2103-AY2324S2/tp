@@ -57,6 +57,19 @@ public class Task {
         taskStatus.setTaskNotDone();
     }
 
+    /**
+     * Returns true if both tasks have the same name.
+     * This defines a weaker notion of equality between two employees.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getName().equals(getName());
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

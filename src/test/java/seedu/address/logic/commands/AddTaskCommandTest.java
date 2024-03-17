@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,12 +19,14 @@ public class AddTaskCommandTest {
         Model model = new ModelManager();
 
         AddTaskCommand atc = new AddTaskCommand(validTask);
+        AddTaskCommand atc2 = new AddTaskCommand(validTask);
         try {
             atc.execute(model);
         } catch (CommandException e) {
             return;
         }
-        assertTrue(model.getFilteredTaskList().get(0).getTaskId().taskId == 123);
-        assertTrue(model.getFilteredTaskList().get(0).getName().taskName.equals("Test"));
+        assertEquals(123, model.getFilteredTaskList().get(0).getTaskId().taskId);
+        assertEquals("Test", model.getFilteredTaskList().get(0).getName().taskName);
+        assertEquals(atc.toString(), atc2.toString());
     }
 }

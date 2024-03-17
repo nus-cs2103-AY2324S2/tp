@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,26 +14,30 @@ import seedu.address.model.task.TaskName;
 import seedu.address.model.task.TaskStatus;
 
 
+
 public class DeleteTaskCommandTest {
     @Test
     public void test() {
         Task validTask = new Task(new TaskName("Test"), new TaskId(123), new TaskStatus(false));
         Model model = new ModelManager();
         model.addTask(validTask);
-        assertTrue(model.getFilteredTaskList().size() == 1);
+        assertEquals(1, model.getFilteredTaskList().size());
         DeleteTaskCommand dtc = new DeleteTaskCommand(1);
+
+        assertEquals(dtc.toString(), "seedu.address.logic.commands.DeleteTaskCommand{targetIndex=1}");
+
         try {
             dtc.execute(model);
         } catch (CommandException e) {
             return;
         }
-        assertTrue(model.getFilteredTaskList().size() == 1);
+        assertEquals(1, model.getFilteredTaskList().size());
         dtc = new DeleteTaskCommand(123);
         try {
             dtc.execute(model);
         } catch (CommandException e) {
             return;
         }
-        assertFalse(model.getFilteredTaskList().size() == 1);
+        assertNotEquals(1, model.getFilteredTaskList().size());
     }
 }

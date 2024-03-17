@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -28,5 +29,16 @@ public class AddTaskCommandParserTest {
         atc.execute(m1);
         atc2.execute(m2);
         assertTrue(m1.equals(m2));
+    }
+
+    @Test
+    public void test2() {
+        try {
+            AddTaskCommand atc = parser.parse("");
+        } catch (ParseException e) {
+            assertEquals(e.getMessage(), "Invalid command format! \n"
+                    + "task: Adds a task to the address book. Parameters: DESCRIPTION \n"
+                    + "Example: task meeting");
+        }
     }
 }
