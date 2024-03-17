@@ -12,5 +12,8 @@ public class CliSyntax {
     // TODO: Change and remove this
     public static final Prefix PREFIX_ADDRESS = new Prefix("t/");
     public static final Prefix PREFIX_ALIAS = new Prefix("a/");
+    public static final Prefix PREFIX_STUDENTID = new Prefix("sid/");
+    public static final Prefix PREFIX_DATETIME = new Prefix("d/");
+    public static final Prefix PREFIX_ATTEND = new Prefix("at/");
 
 }

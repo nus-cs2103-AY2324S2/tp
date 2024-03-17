@@ -129,4 +129,15 @@ public class Appointment implements Comparable<Appointment> {
     public int compareTo(Appointment other) {
         return this.appointmentId - other.appointmentId;
     }
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public LocalDateTime getAppointmentDateTime() {
+        return appointmentDateTime;
+    }
+
+    public int getAppointmentId() {
+        return appointmentId;
+    }
 }

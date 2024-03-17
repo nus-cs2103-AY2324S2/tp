@@ -111,6 +111,18 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== AppointmentBook ================================================================================
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+//        return appointmentBook.hasPerson(appointment);
+        return false;
+    }
+    @Override
+    public void addAppointment(Appointment appointment) {
+//        appoinmentBook.addAppointment(appointment);
+//        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**

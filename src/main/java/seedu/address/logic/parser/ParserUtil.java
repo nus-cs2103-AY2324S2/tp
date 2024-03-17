@@ -2,13 +2,18 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -120,5 +125,59 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String studentId} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code studentId} is invalid.
+     */
+    public static int parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedStudentId = studentId.trim();
+        int sid = Integer.parseInt(trimmedStudentId);
+        if (!(sid > 0)) {
+            System.out.println("exception 1");
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return sid;
+    }
+
+    /**
+     * Parses a {@code String dateTime} into an {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dt;
+        try {
+            dt = LocalDateTime.parse(trimmedDateTime, format);
+        } catch (Exception e) {
+            System.out.println("exception 2");
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return dt;
+    }
+
+    /**
+     * Parses a {@code String studentId} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code studentId} is invalid.
+     */
+    public static boolean parseAttend(String attend) throws ParseException {
+        requireNonNull(attend);
+        String trimmedAttend = attend.trim();
+        boolean att = Boolean.parseBoolean(trimmedAttend);
+//        if (!att) {
+//            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+//        }
+        return att;
     }
 }
