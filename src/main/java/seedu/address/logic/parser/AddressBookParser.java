@@ -62,7 +62,7 @@ public class AddressBookParser {
             return new AddTaskCommandParser().parse(arguments);
 
         case DeleteTaskCommand.COMMAND_WORD:
-            return new DeleteTaskCommandParser().parse(arguments);            
+            return new DeleteTaskCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
