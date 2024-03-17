@@ -1,13 +1,11 @@
 package seedu.address.logic;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Doctor;
 import seedu.address.testutil.AppointmentBuilder;
-import seedu.address.testutil.DoctorBuilder;
 
 class MessagesTest {
 
