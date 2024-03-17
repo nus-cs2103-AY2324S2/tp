@@ -5,11 +5,11 @@ package seedu.address.model.person;
  * Guarantees: immutable;
  */
 public class Status {
-    private enum STATUS { HEALTHY, AT_RISK, UNHEALTHY };
+    private enum HealthStatus { GREEN, YELLOW, RED };
     private final String status;
 
     public Status(String status) {
-        this.status = status.valueOf(status);
+        this.status = status;
     }
 
     public String getStatus() {
@@ -18,7 +18,7 @@ public class Status {
 
     @Override
     public String toString() {
-        return this.status.valueOf(status);
+        return this.status;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class Status {
             return true;
         }
 
-        if (!(other instanceof Status)) {
+        if (!(other instanceof HealthStatus)) {
             return false;
         }
 

@@ -17,21 +17,34 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Nric nric;
+    private Name name;
+    private Phone phone;
+    private Email email;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private enum Sex { M, F };
+    private Allergies allergies;
+    private BloodType bloodType;
+    private Country country;
+    private DateOfBirth dateOfBirth;
+
+    //Medical history
+    private Diagnosis diagnosis;
+    private Condition condition;
+    private Symptom symptom;
+    private DateOfAdmission dateOfAdmission;
+    private Status status;
 
     /**
      * Every field must be present and not null.
      */
     //TODO : Add the missing fields
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Nric nric, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.nric = nric;
         this.name = name;
         this.phone = phone;
         this.email = email;
