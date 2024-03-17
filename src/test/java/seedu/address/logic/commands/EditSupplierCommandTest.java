@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_SUPPLIER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_SUPPLIER;
 import static seedu.address.testutil.TypicalPersons.ALICESUPPLIER;
 import static seedu.address.testutil.TypicalPersons.BENSONSUPPLIER;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
@@ -45,7 +46,8 @@ public class EditSupplierCommandTest {
     public void toStringMethod() {
         Name name = ALICESUPPLIER.getName();
         EditSupplierDescriptor editSupplierDescriptor = new EditSupplierDescriptor();
-        EditSupplierCommand editSupplierCommand = new EditSupplierCommand(ALICESUPPLIER.getName(), editSupplierDescriptor);
+        EditSupplierCommand editSupplierCommand =
+                new EditSupplierCommand(ALICESUPPLIER.getName(), editSupplierDescriptor);
         String expected = EditSupplierCommand.class.getCanonicalName() + "{name=" + name + ", editSupplierDescriptor="
                 + editSupplierDescriptor + "}";
         assertEquals(expected, editSupplierCommand.toString());

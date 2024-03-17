@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_STAFF;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_STAFF;
 import static seedu.address.testutil.TypicalPersons.ALICESTAFF;
 import static seedu.address.testutil.TypicalPersons.BENSONSTAFF;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditStaffCommand.EditStaffDescriptor;
