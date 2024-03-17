@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.JAMES;
@@ -14,6 +13,7 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -38,7 +38,7 @@ public class ImportCommandTest {
         ImportCommand importCommand = new ImportCommand(curHashSet);
 
         String expectedMessage = String.format(ImportCommand.MESSAGE_FILE_NOT_FOUND, UNKNOWN_FILE_NAME);
-        assertCommandFailure(importCommand, model, expectedMessage);
+        assertThrows(CommandException.class, expectedMessage, () -> importCommand.execute(model));
     }
 
     @Test
