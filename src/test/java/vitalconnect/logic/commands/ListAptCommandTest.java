@@ -18,7 +18,8 @@ import vitalconnect.model.Model;
 import vitalconnect.model.ReadOnlyClinic;
 import vitalconnect.model.ReadOnlyUserPrefs;
 import vitalconnect.model.person.Person;
-
+import vitalconnect.model.person.contactinformation.ContactInformation;
+import vitalconnect.model.person.identificationinformation.Nric;
 
 
 public class ListAptCommandTest {
@@ -168,6 +169,16 @@ public class ListAptCommandTest {
         @Override
         public void deleteAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public Person findPersonByNric(Nric nric) {
+            return null;
+        }
+
+        @Override
+        public void updatePersonContactInformation(Nric nric, ContactInformation contactInformation) {
 
         }
 

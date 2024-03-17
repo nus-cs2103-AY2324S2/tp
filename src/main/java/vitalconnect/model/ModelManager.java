@@ -14,6 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import vitalconnect.commons.core.GuiSettings;
 import vitalconnect.commons.core.LogsCenter;
 import vitalconnect.model.person.Person;
+import vitalconnect.model.person.contactinformation.ContactInformation;
+import vitalconnect.model.person.identificationinformation.Nric;
 
 
 /**
@@ -136,6 +138,24 @@ public class ModelManager implements Model {
         requireNonNull(name);
         return filteredPersons.stream()
                 .anyMatch(person -> person.getIdentificationInformation().getName().fullName.equalsIgnoreCase(name));
+    }
+
+    @Override
+    public Person findPersonByNric(Nric nric) {
+        requireNonNull(nric);
+        return clinic.findPersonByNric(nric);
+    }
+
+    /**
+     * Updates the contact information of the person in the clinic.
+     * @param nric Nric of the person to be updated
+     * @param contactInformation New contact information of the person
+     */
+    public void updatePersonContactInformation(Nric nric, ContactInformation contactInformation) {
+        Person person = clinic.findPersonByNric(nric);
+        Person personToUpdate = person.copyPerson();
+        personToUpdate.setContactInformation(contactInformation);
+        setPerson(person, personToUpdate);
     }
 
 

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import vitalconnect.commons.util.ToStringBuilder;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.UniquePersonList;
+import vitalconnect.model.person.identificationinformation.Nric;
 
 /**
  * Wraps all data at the clinic level
@@ -126,5 +127,18 @@ public class Clinic implements ReadOnlyClinic {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    /**
+     * Returns true if a person with the same name as {@code name} exists in the clinic.
+     */
+    public Person findPersonByNric(Nric nric) {
+        requireNonNull(nric);
+        for (Person p : persons) {
+            if (p.getIdentificationInformation().getNric().nric.equalsIgnoreCase(nric.toString())) {
+                return p;
+            }
+        }
+        return null;
     }
 }

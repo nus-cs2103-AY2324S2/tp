@@ -26,11 +26,19 @@ public class Phone {
         value = phone;
     }
 
+    public Phone() {
+        value = "";
+    }
+
+    public boolean isEmpty() {
+        return value.equals("");
+    }
+
     /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.equals("");
     }
 
     @Override
