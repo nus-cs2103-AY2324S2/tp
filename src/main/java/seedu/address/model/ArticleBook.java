@@ -71,7 +71,8 @@ public class ArticleBook implements ReadOnlyArticleBook {
     /**
      * Replaces the given article {@code target} in the list with {@code editedArticle}.
      * {@code target} must exist in the article book.
-     * The article identity of {@code editedArticle} must not be the same as another existing Article in the Article book.
+     * The article identity of {@code editedArticle} must not be the same as
+     * another existing Article in the Article book.
      */
     public void setArticle(Article target, Article editedArticle) {
         requireNonNull(editedArticle);

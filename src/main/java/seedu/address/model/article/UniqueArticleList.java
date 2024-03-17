@@ -8,10 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of articles that are unique
@@ -37,7 +33,7 @@ public class UniqueArticleList implements Iterable<Article> {
     public void add(Article toAdd) {
         requireNonNull(toAdd);
 
-         /*
+        /*
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }

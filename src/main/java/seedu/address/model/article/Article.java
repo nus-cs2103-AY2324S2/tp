@@ -11,7 +11,14 @@ public class Article {
     private final LocalDateTime publicationDate;
     private final String[] source;
     private final String category;
-    private enum Status {DRAFT, PUBLISHED, ARCHIVED}
+
+    /**
+     * Enumeration of Status of an article.
+     */
+    private enum Status {
+        DRAFT, PUBLISHED, ARCHIVED
+    }
+
     private final Status status;
 
     /**
