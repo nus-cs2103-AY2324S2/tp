@@ -24,30 +24,30 @@
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
-    "email" : "cornelia@example.com",
+    "email" : "corelia@example.com",
     "year": "1",
-    "major": "Computer Science",
+    "major": "Computer Engineering",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "year": "1",
-    "major": "Computer Science",
+    "year": "2",
+    "major": "Computer Engineering",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "year": "1",
-    "major": "Computer Science",
+    "year": "2",
+    "major": "Business Analytics",
     "tags" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "year": "1",
-    "major": "Computer Science",
+    "year": "2",
+    "major": "Business Analytics",
     "tags" : [ ]
   } ]
 }
