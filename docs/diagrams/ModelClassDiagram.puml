@@ -52,7 +52,7 @@ Person *--> HoursWorked
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+UniquePersonList -[hidden]left-> I
 
 FirstName -[hidden]right-> LastName
 LastName -[hidden]right-> Phone
