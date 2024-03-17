@@ -46,4 +46,9 @@ public class Client extends Person {
                 && this.getAddress().equals(otherPerson.getAddress())
                 && this.getTags().equals(otherPerson.getTags());
     }
+
+    @Override
+    public boolean isClient() {
+        return true;
+    }
 }

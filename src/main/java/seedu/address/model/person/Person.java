@@ -91,4 +91,8 @@ public abstract class Person {
                 .toString();
     }
 
+    /**
+     * Returns true if it is a Client, false if it is a Housekeeper.
+     */
+    public abstract boolean isClient();
 }
