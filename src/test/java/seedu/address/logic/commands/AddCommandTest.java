@@ -262,6 +262,7 @@ import seedu.address.testutil.PersonBuilder;
 public class AddCommandTest {
 
     private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
+    private static final Person ALICE = new PersonBuilder().withName("Alice").build();
 
     private CommandHistory commandHistory = new CommandHistory();
 
@@ -329,7 +330,7 @@ public class AddCommandTest {
     public void execute_nullModel_throwsNullPointerException() {
         Person validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
-        assertThrows(NullPointerException.class, () -> addCommand.execute(null));
+        assertThrows(NullPointerException.class, () -> addCommand.execute(null, commandHistory));
     }
 
 
