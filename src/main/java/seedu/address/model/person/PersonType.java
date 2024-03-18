@@ -5,7 +5,7 @@ package seedu.address.model.person;
  * Guarantees: is valid as declared in {@link #isValidPersonType(String)}
  */
 public enum PersonType {
-    STUDENT,
+    STU,
     TA;
 
     public static final String MESSAGE_CONSTRAINTS = "Person type should only be 'stu' or 'ta'";
@@ -16,11 +16,11 @@ public enum PersonType {
     public static PersonType getPersonType(String type) {
         switch (type) {
         case "stu":
-            return PersonType.STUDENT;
+            return PersonType.STU;
         case "ta":
             return PersonType.TA;
         default:
-            return PersonType.STUDENT;
+            return PersonType.STU;
         }
     }
 
