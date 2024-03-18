@@ -5,7 +5,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Maintainer;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 
 /**
  * The API of the Model component.
@@ -84,4 +88,32 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Find the person by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Person that matches the name.
+     */
+    Person findByName(Name targetName);
+
+    /**
+     * Find the maintainer by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Maintainer that matches the name.
+     */
+    Maintainer findMaintainerByName(Name targetName);
+
+    /**
+     * Find the staff by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Staff that matches the name.
+     */
+    Staff findStaffByName(Name targetName);
+
+    /**
+     * Find the supplier by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Supplier that matches the name.
+     */
+    Supplier findSupplierByName(Name targetName);
 }

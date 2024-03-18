@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.logic.Messages;
+import seedu.address.logic.messages.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -74,5 +74,24 @@ public class ArgumentMultimap {
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
+    }
+
+    /**
+     * Returns a string implementation of Argument Multi Map
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ArgumentMultimap{");
+
+        for (Map.Entry<Prefix, List<String>> entry : argMultimap.entrySet()) {
+            sb.append(entry.getKey()).append("=").append(entry.getValue()).append(", ");
+        }
+
+        if (!argMultimap.isEmpty()) {
+            sb.setLength(sb.length() - 2);
+        }
+        sb.append("}");
+        return sb.toString();
     }
 }
