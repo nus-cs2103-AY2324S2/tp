@@ -51,11 +51,11 @@ class TagCommandTest {
         TagCommand command = new TagCommand(index, TAGS);
         Person actualPerson = model.getFilteredPersonList().get(index.getZeroBased());
 
-        Person editedPerson = new PersonBuilder(actualPerson).withTags().build();
+        Person editedPerson = new PersonBuilder(actualPerson).build();
         String expectedMessage = String.format(
                 TagCommand.MESSAGE_TAG_CONTACT_SUCCESS,
                 Messages.format(editedPerson),
-                "friends, owes money");
+                "friends, owesmoney");
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(actualPerson, editedPerson);
