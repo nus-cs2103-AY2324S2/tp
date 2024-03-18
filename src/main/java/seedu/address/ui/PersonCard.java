@@ -63,9 +63,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-         ic.setText(person.getIc().ic);
-         ward.setText(person.getWard().ward);
-         admissionDate.setText(person.getAdmissionDate().admissionDate);
-         dob.setText(person.getDob().dob);
+         ic.setText(person.getIc().value);
+         ward.setText(person.getWard().value);
+         admissionDate.setText(person.getAdmissionDate().value);
+         dob.setText(person.getDob().value);
     }
 }
