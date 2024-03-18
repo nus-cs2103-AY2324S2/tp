@@ -36,11 +36,15 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label patientHospitalId;
     @FXML
-    private Label address;
+    private Label preferredName;
     @FXML
-    private Label email;
+    private Label foodPreference;
+    @FXML
+    private Label familyCondition;
+    @FXML
+    private Label hobby;
     @FXML
     private FlowPane tags;
     @FXML
@@ -53,10 +57,12 @@ public class PatientCard extends UiPart<Region> {
         super(FXML);
         this.patient = patient;
         id.setText(displayedIndex + ". ");
+        patientHospitalId.setText(patient.getPatientHospitalId().patientHospitalId);
         name.setText(patient.getName().fullName);
-        phone.setText(patient.getPhone().value);
-        address.setText(patient.getAddress().value);
-        email.setText(patient.getEmail().value);
+        preferredName.setText(patient.getPreferredName().preferredName);
+        foodPreference.setText(patient.getFoodPreference().foodPreference);
+        familyCondition.setText(patient.getFamilyCondition().familyCondition);
+        hobby.setText(patient.getHobby().hobby);
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

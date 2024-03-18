@@ -85,9 +85,11 @@ public class DeleteImportantDateCommand extends Command {
         logger.log(Level.INFO, "old set: " + currImportantDatesSet);
         logger.log(Level.INFO, "new set: " + newImportantDatesSet);
 
-        editPatientDescriptor.setAddress(patientToDeleteImportantDate.getAddress());
-        editPatientDescriptor.setEmail(patientToDeleteImportantDate.getEmail());
-        editPatientDescriptor.setPhone(patientToDeleteImportantDate.getPhone());
+        editPatientDescriptor.setPatientHospitalId(patientToDeleteImportantDate.getPatientHospitalId());
+        editPatientDescriptor.setPreferredName(patientToDeleteImportantDate.getPreferredName());
+        editPatientDescriptor.setFoodPreference(patientToDeleteImportantDate.getFoodPreference());
+        editPatientDescriptor.setFamilyCondition(patientToDeleteImportantDate.getFamilyCondition());
+        editPatientDescriptor.setHobby(patientToDeleteImportantDate.getHobby());
         editPatientDescriptor.setName(patientToDeleteImportantDate.getName());
         editPatientDescriptor.setTags(patientToDeleteImportantDate.getTags());
         editPatientDescriptor.setImportantDate(newImportantDatesSet);
