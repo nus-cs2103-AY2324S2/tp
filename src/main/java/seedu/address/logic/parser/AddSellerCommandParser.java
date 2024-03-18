@@ -34,7 +34,7 @@ import seedu.address.model.person.Seller;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddSellerCommand object
  */
 public class AddSellerCommandParser implements Parser<AddSellerCommand> {
 
@@ -82,18 +82,18 @@ public class AddSellerCommandParser implements Parser<AddSellerCommand> {
             Block block = ParserUtil.parseBlock(argMultimap.getValue(PREFIX_BLOCK).get());
             Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
             House house = new NonLanded(block, level, postalCode, street, unitNumber);
-            Person person = new Seller(name, phone, email, housingtype, house, street, postalCode, unitNumber, tagList);
+            Person person = new Seller(name, phone, email, housingtype, house, tagList);
             return new AddSellerCommand(person);
         } else if (hasLevel) {
             Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
             House house = new NonLanded(level, postalCode, street, unitNumber);
-            Person person = new Seller(name, phone, email, housingtype, house, street, postalCode, unitNumber, tagList);
+            Person person = new Seller(name, phone, email, housingtype, house, tagList);
             return new AddSellerCommand(person);
         }
 
         House house = new Landed(unitNumber, postalCode, street);
 
-        Person person = new Seller(name, phone, email, housingtype, house, street, postalCode, unitNumber, tagList);
+        Person person = new Seller(name, phone, email, housingtype, house, tagList);
 
         return new AddSellerCommand(person);
     }

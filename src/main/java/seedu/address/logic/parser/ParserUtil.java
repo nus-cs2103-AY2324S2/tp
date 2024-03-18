@@ -130,14 +130,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String street} into a {@code Street}.
+     * Parses a {@code String housetype} into a {@code String housetype}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code street} is invalid.
+     * @throws ParseException if the given {@code String housetype} is invalid.
      */
-    public static String parseHousing(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
+    public static String parseHousing(String housetype) throws ParseException {
+        requireNonNull(housetype);
+        String trimmedName = housetype.trim();
         if (!House.isValidName(trimmedName.toLowerCase())) {
             throw new ParseException(House.MESSAGE_CONSTRAINTS);
         }

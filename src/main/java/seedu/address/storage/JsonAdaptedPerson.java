@@ -28,7 +28,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String housingtype;
+    private final String housingType;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -41,7 +41,7 @@ class JsonAdaptedPerson {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.housingtype = housingtype;
+        this.housingType = housingtype;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        housingtype = source.getHousingType();
+        housingType = source.getHousingType();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -95,15 +95,15 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (housingtype == null) {
+        if (housingType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!House.isValidName(housingtype)) {
+        if (!House.isValidName(housingType)) {
             throw new IllegalValueException(House.MESSAGE_CONSTRAINTS);
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, housingtype, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, housingType, modelTags);
     }
 
 }

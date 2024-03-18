@@ -22,7 +22,7 @@ public class Person {
     private final Email email;
 
     // critically, this refers to what type the buyer WANTS, and what type the seller HAS
-    private final String housingtype;
+    private final String housingType;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -33,7 +33,7 @@ public class Person {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.housingtype = house;
+        this.housingType = house;
         this.tags.addAll(tags);
     }
 
@@ -50,7 +50,7 @@ public class Person {
     }
 
     public String getHousingType() {
-        return housingtype;
+        return housingType;
     }
 
 
@@ -94,14 +94,14 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && housingtype.equals(otherPerson.housingtype)
+                && housingType.equals(otherPerson.housingType)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, housingtype, tags);
+        return Objects.hash(name, phone, email, housingType, tags);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", housingtype)
+                .add("address", housingType)
                 .add("tags", tags)
                 .toString();
     }
