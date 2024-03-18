@@ -50,7 +50,7 @@ public class DeleteTaskCommand extends Command {
         if (!taskProject.hasTask(toDelete)) {
             throw new CommandException(String.format(MESSAGE_TASK_NOT_FOUND, Messages.format(toDelete), Messages.format(taskProject)));
         }
-        Person combineTask = model.findPerson(taskProject.getName())
+        Person combineTask = model.findPerson(taskProject.getName());
         combineTask.removeTask(toDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toDelete), Messages.format(taskProject)));
     }
