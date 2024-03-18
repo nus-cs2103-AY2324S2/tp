@@ -37,14 +37,14 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withType("stu").withName("Carl Kurz").withId("A2222222D")
             .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withType("stu").withName("Daniel Meier").withId("B3334444E")
-            .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street")
+    public static final Person DANIEL = new PersonBuilder().withType("stu").withName("Daniel Meier")
+            .withId("B3334444E").withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street")
             .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withType("stu").withName("Elle Meyer")
             .withId("B3334444F").withPhone("9482224").withEmail("werner@example.com")
             .withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withType("stu").withName("Fiona Kunz")
-            .withId("B56780123F").withPhone("9482427").withEmail("lydia@example.com")
+            .withId("B5678012F").withPhone("9482427").withEmail("lydia@example.com")
             .withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withType("stu").withName("George Best")
             .withId("A0000000X").withPhone("9482442")
@@ -52,7 +52,7 @@ public class TypicalPersons {
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withType("stu").withName("Hoon Meier")
-            .withId("A01234567W").withPhone("8482424").withEmail("stefan@example.com")
+            .withId("A0123456W").withPhone("8482424").withEmail("stefan@example.com")
             .withAddress("little india").build();
     public static final Person IDA = new PersonBuilder().withType("stu").withName("Ida Mueller")
             .withId("P9876543N").withPhone("8482131").withEmail("hans@example.com")

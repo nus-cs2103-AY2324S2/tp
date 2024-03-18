@@ -9,10 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Id {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-            "ID should start and end with a letter, with 7 digits in between.";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z][0-9]{7}[a-zA-Z]$\n";
+            "ID should start and end with a letter, with 7 digits in between";
+    public static final String VALIDATION_REGEX = "[a-zA-Z][0-9]{7}[a-zA-Z]";
     public final String value;
 
     /**
@@ -49,8 +48,8 @@ public class Id {
             return false;
         }
 
-        Id otherPhone = (Id) other;
-        return value.equals(otherPhone.value);
+        Id otherId = (Id) other;
+        return value.equals(otherId.value);
     }
 
     @Override

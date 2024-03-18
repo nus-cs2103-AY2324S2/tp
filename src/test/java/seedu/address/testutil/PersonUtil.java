@@ -50,7 +50,6 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getType().ifPresent(type -> sb.append(" ").append(type).append(" "));
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" ").append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(id -> sb.append(PREFIX_ID).append(" ").append(id.value).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(" ").append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(" ").append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(" ")
