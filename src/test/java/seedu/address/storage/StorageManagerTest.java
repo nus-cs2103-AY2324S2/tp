@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.ModuleCode;
 
 public class StorageManagerTest {
 
@@ -83,6 +84,24 @@ public class StorageManagerTest {
 
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertTrue(retrieved.getModuleList().isEmpty());
+    }
+
+    @Test
+    public void readAddressBook_addsModulesToListIfNotPresent() throws Exception {
+        AddressBook addressBook = new AddressBook();
+        // Add some modules to the address book
+        addressBook.addModule(new ModuleCode("CS1010"));
+        addressBook.addModule(new ModuleCode("MA1505"));
+
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        StorageManager storageManager = new StorageManager(addressBookStorage,
+            new JsonUserPrefsStorage(getTempFilePath("prefs")));
+        storageManager.saveAddressBook(addressBook);
+
+        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        // Check if modules are added correctly
+        assertTrue(retrieved.hasModule(new ModuleCode("CS1010")));
+        assertTrue(retrieved.hasModule(new ModuleCode("MA1505")));
     }
 
 }
