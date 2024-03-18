@@ -56,6 +56,19 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Keywords without spacing
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("alicebob"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Keywords with substrings
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("ice"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Keywords match tags
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "friend", "Street"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+                .withEmail("alice@email.com").withAddress("Main Street").withTags("friend").build()));
     }
 
     @Test
