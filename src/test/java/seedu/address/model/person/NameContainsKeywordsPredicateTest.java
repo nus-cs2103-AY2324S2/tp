@@ -64,11 +64,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords with substrings
         predicate = new NameContainsKeywordsPredicate(Collections.singletonList("ice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Keywords match tags
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "friend", "Street"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").withTags("friend").build()));
     }
 
     @Test

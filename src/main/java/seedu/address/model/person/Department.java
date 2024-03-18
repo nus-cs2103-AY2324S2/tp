@@ -23,7 +23,7 @@ public class Department {
     public Department(String department) {
         requireNonNull(department);
         checkArgument(isValidDepartment(department), MESSAGE_CONSTRAINTS);
-        this.department = department;
+        this.department = department.toUpperCase();
     }
 
     /**
@@ -57,7 +57,7 @@ public class Department {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '{' + department + '}';
+        return '{' + department.toUpperCase() + '}';
     }
 
 }
