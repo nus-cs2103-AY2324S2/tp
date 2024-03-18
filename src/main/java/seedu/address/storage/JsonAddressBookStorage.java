@@ -12,8 +12,8 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.appointment.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyAppointmentList;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.appointment.ReadOnlyAppointmentList;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -29,12 +29,12 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     /**
      * Creates a {@code JsonAddressBookStorage} with the given file paths.
      * @param personsFilePath the file path for the person data. Cannot be null.
-     * @param AppointmentFilePath the file path for the appointment list data. Can be null.
+     * @param appointmentFilePath the file path for the appointment list data. Can be null.
      */
 
-    public JsonAddressBookStorage(Path personsFilePath, Path AppointmentFilePath) {
+    public JsonAddressBookStorage(Path personsFilePath, Path appointmentFilePath) {
         this.personsFilePath = personsFilePath;
-        this.appointmentFilePath = AppointmentFilePath;
+        this.appointmentFilePath = appointmentFilePath;
     }
 
     public JsonAddressBookStorage(Path personsFilePath) {

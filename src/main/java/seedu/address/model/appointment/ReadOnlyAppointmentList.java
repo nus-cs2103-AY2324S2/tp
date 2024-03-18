@@ -1,8 +1,7 @@
-package seedu.address.model;
+package seedu.address.model.appointment;
 
 import java.util.List;
 
-import seedu.address.model.appointment.Appointment;
 
 /**
  * Unmodifiable view of an appointment list
