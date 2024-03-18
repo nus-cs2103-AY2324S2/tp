@@ -71,14 +71,17 @@ public class OrderListTest {
 
     @Test
     public void editOrder_editedOrderHasSameCustomer_success() {
+        // For some reason cannot use Typical Order, need to find fix.
         OrderList testOrderList = new OrderList();
-        testOrderList.addOrder(CUPCAKES_ONLY, ALICE);
-        Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_AND_COOKIES).withIndex(1).withPerson(ALICE)
-                .build();
-        testOrderList.editOrder(1, editedCupcakesAlice);
+        Order testOrder = new OrderBuilder().withIndex(1).withPerson(ALICE).withProductQuantity("cupcake", "2").build();
+        testOrderList.addOrder(testOrder, ALICE);
+        Order testOrder2 = new OrderBuilder().withProductQuantity("cookies", "1").build();
+        //Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_AND_COOKIES).withIndex(1).withPerson(ALICE).build();
+        testOrderList.editOrder(1, testOrder2);
         OrderList expectedOrderList = new OrderList();
-        expectedOrderList.addOrder(CUPCAKES_AND_COOKIES, ALICE);
-        assertEquals(expectedOrderList.getOrder(1).getCustomer(), testOrderList.getOrder(1).getCustomer());
+        Order testOrder3 = new OrderBuilder().withIndex(1).withProductQuantity("cookies", "1").build();
+        expectedOrderList.addOrder(testOrder3, ALICE);
+        assertEquals(expectedOrderList.getOrder(1), testOrderList.getOrder(1));
     }
 
     @Test
