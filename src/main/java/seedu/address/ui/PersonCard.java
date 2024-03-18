@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,6 +18,7 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final Map<Integer, String> tagMap = new HashMap<>();
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -72,26 +75,23 @@ public class PersonCard extends UiPart<Region> {
                 });
     }
 
+    // set a custom tag list to follow style class
+    static {
+        tagMap.put(0, "tag1");
+        tagMap.put(1, "tag2");
+        tagMap.put(2, "tag3");
+        tagMap.put(3, "tag4");
+        tagMap.put(4, "tag5");
+    }
+
     /**
      * Retrieves and returns the tag name for custom tag colour.
      *
      * @param tagName The name of the tag assigned to the Person.
-     * @return String representation of the tag name.
+     * @return String representation of the hashed tag.
      */
     private String getStyleClassForTag(String tagName) {
-        switch(tagName) {
-        case "friends":
-            return "friends";
-        case "colleagues":
-            return "colleagues";
-        case "neighbours":
-            return "neighbours";
-        case "family":
-            return "family";
-        case "classmates":
-            return "classmates";
-        default:
-            return "";
-        }
+        int hash = Math.abs(tagName.hashCode()) % 5;
+        return tagMap.get(hash);
     }
 }

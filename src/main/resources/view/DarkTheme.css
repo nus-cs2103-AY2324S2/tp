@@ -353,7 +353,7 @@
     -fx-vgap: 3;
 }
 
-.friends { /*green*/
+.tag1 { /*green*/
     -fx-text-fill: #52723E;
     -fx-background-color: #E7F4DF;
     -fx-padding: 3 10 3 10;
@@ -362,7 +362,7 @@
     -fx-font-size: 11;
 }
 
-.colleagues { /*purple*/
+.tag2 { /*purple*/
     -fx-text-fill: #553B7E;
     -fx-background-color: #EFE9FA;
     -fx-padding: 3 10 3 10;
@@ -371,7 +371,7 @@
     -fx-font-size: 11;
 }
 
-.neighbours { /*yellow*/
+.tag3 { /*yellow*/
     -fx-text-fill: #7A6D44;
     -fx-background-color: #FFF4E4;
     -fx-padding: 3 10 3 10;
@@ -380,7 +380,7 @@
     -fx-font-size: 11;
 }
 
-.family { /*red*/
+.tag4 { /*red*/
     -fx-text-fill: #5A2121;
     -fx-background-color: #FFEAEA;
     -fx-padding: 3 10 3 10;
@@ -389,7 +389,7 @@
     -fx-font-size: 11;
 }
 
-.classmates { /*blue*/
+.tag5 { /*blue*/
     -fx-text-fill: #1A5F68;
     -fx-background-color: #D8EEF1;
     -fx-padding: 3 10 3 10;
