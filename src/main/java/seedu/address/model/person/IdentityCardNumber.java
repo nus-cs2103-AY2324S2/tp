@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -26,7 +28,7 @@ public class IdentityCardNumber {
     public IdentityCardNumber(String identityCardNumber) {
         requireNonNull(identityCardNumber);
         checkArgument(isValidIdentityCardNumber(identityCardNumber), MESSAGE_CONSTRAINTS);
-        value = identityCardNumber;
+        value = identityCardNumber.toUpperCase();
     }
 
     /**
