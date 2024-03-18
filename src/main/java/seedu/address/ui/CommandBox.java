@@ -27,10 +27,11 @@ public class CommandBox extends UiPart<Region> {
      */
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
-        StateStorage stateStorage = new StateStorage();
-        String lastCommand = stateStorage.loadState();
         this.commandExecutor = commandExecutor;
+
+        String lastCommand = StateStorage.loadState();
         commandTextField.setText(lastCommand);
+
         commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             setStyleToDefault();
             StateStorage.writeState(newValue);
