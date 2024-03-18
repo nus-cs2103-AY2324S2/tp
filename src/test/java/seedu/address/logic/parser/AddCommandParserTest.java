@@ -100,8 +100,8 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + MAJOR_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_MAJOR, PREFIX_EMAIL, PREFIX_YEAR,
-                        PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_MAJOR, PREFIX_EMAIL,
+                        PREFIX_YEAR, PREFIX_PHONE));
 
         // invalid value followed by valid value
 
