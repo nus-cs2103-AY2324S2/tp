@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.KeywordPredicate;
 
 /**
  * Stores mapping of prefixes to their respective arguments.

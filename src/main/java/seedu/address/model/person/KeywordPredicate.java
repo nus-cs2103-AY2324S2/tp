@@ -1,12 +1,21 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.Prefix;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.function.Predicate;
 
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.Prefix;
 
 /**
  * Tests that a {@code Person}'s {@code Details} matches any of the keywords given.
