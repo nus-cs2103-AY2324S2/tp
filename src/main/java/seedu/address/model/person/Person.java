@@ -47,7 +47,7 @@ public class Person {
                 taskList.remove(i);
                 break;
             }
-            i+=1
+            i+=1;
         }
     }
 
