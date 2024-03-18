@@ -34,7 +34,6 @@
          <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
          <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
        </VBox>
-       <ImageView fx:id="displayPicture" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
       </children>
    </AnchorPane>
   -->
@@ -73,4 +72,5 @@
          <RowConstraints />
       </rowConstraints>
   </GridPane>
+    <ImageView fx:id="displayPicture" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
 </HBox>

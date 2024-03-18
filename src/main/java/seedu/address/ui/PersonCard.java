@@ -9,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Circle;
 
 import seedu.address.model.person.ImagePath;
 import seedu.address.model.person.Person;
@@ -55,6 +56,8 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        final Circle clip = new Circle(45, 45, 39);
+        displayPicture.setClip(clip);
         displayPicture.setImage(new Image(this.getClass()
                .getResourceAsStream(person.getImage().getFilePath().toString())));
         phone.setText(person.getPhone() == null ? "" : person.getPhone().value);
