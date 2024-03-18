@@ -69,6 +69,7 @@ public class RemoveTagCommand extends Command {
             personToRemove.getEmail(), personToRemove.getAddress(), newSet);
         model.setPerson(personToRemove, removedTagPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS,
             tags.toString(), removedTagPerson.getName()));
     }
