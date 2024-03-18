@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -24,10 +26,15 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.QueryPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.PatientNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.AppointmentUtil;
+import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -41,6 +48,21 @@ public class AddressBookParserTest {
         Patient person = new PatientBuilder().build();
         AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PersonUtil.getAddPatientCommand(person));
         assertEquals(new AddPatientCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_adddoctor() throws Exception {
+        Doctor person = new DoctorBuilder().build();
+        AddDoctorCommand command = (AddDoctorCommand) parser.parseCommand(PersonUtil.getAddDoctorCommand(person));
+        assertEquals(new AddDoctorCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addappointment() throws Exception {
+        Appointment appt = new AppointmentBuilder().build();
+        AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(
+                AppointmentUtil.getAddAppointmentCommand(appt));
+        assertEquals(new AddAppointmentCommand(appt), command);
     }
 
     @Test

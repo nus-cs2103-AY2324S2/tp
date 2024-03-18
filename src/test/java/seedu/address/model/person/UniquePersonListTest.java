@@ -178,6 +178,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -361,6 +362,42 @@ public class UniquePersonListTest {
     public void getPersonByNric_uniquePersonListDoesNotHavePerson_throwsPersonNotFoundException() {
         uniquePersonList.add(ALICE);
         assertThrows(PersonNotFoundException.class, () -> uniquePersonList.getPersonByNric(new Nric("S1111111S")));
+    }
+
+    @Test
+    public void containsNric_validNric_returnsTrue() {
+        uniquePersonList.add(ALICE);
+        assertTrue(uniquePersonList.containsNric(ALICE.getNric().nric));
+    }
+
+    @Test
+    public void containsNric_invalidNric_returnsFalse() {
+        uniquePersonList.add(ALICE);
+        assertFalse(uniquePersonList.containsNric(BOB.getNric().nric));
+    }
+
+    @Test
+    public void iterator_returnsIteratorNotNull() {
+        assertNotNull(uniquePersonList.iterator());
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        assertTrue(uniquePersonList.equals(uniquePersonList));
+    }
+
+    @Test
+    public void equals_differentClass_returnsFalse() {
+        assertFalse(uniquePersonList.equals("hi"));
+    }
+
+    @Test
+    public void hashcode_validInput_returnsValidHash() {
+        int hash1 = uniquePersonList.hashCode();
+        int hash2 = uniquePersonList.hashCode();
+        assertNotNull(hash1);
+        assertNotNull(hash2);
+        assertEquals(hash1, hash2);
     }
 
 }

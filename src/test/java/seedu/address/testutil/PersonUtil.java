@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
+import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
@@ -25,6 +26,10 @@ public class PersonUtil {
      */
     public static String getAddPatientCommand(Person person) {
         return AddPatientCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    }
+
+    public static String getAddDoctorCommand(Person person) {
+        return AddDoctorCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**

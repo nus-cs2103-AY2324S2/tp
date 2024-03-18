@@ -11,7 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Type;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -105,6 +108,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        addressBook.deleteAppointment(appointment);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        addressBook.addAppointment(appointment);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -120,6 +139,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointmentList() {
+        return addressBook.getAppointmentList();
     }
 
     @Override
@@ -143,6 +167,25 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    /**
+     * Checks if an appointment is valid by comparing if doctor and patient involved exist.
+     * @param appointment appointment to check validity of
+     * @return boolean indicating if appointment is valid
+     */
+    public boolean isValidAppointment(Appointment appointment) {
+        Nric doctorNric = appointment.getDoctoNric();
+        Nric patientNric = appointment.getPatientNric();
+
+        Person doctor = addressBook.getPersonByNric(doctorNric);
+        Person patient = addressBook.getPersonByNric(patientNric);
+
+        if (doctor.getType() == Type.DOCTOR && patient.getType() == Type.PATIENT) {
+            return true;
+        }
+
+        return false;
     }
 
 }
