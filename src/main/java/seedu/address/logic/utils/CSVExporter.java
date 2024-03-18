@@ -46,9 +46,8 @@ public class CSVExporter {
     }
 
     private String[] convertPersonToStringArray(Person person) {
-        String[] personStringArray = new String[6]; // Assuming there are 6 fields in Person
+        String[] personStringArray = new String[6]; // To be checked
 
-        // Convert each field of the Person object to a string
         personStringArray[0] = person.getName().toString();
         personStringArray[1] = person.getPhone().toString();
         personStringArray[2] = person.getEmail().toString();
