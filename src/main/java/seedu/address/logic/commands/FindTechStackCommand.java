@@ -55,4 +55,5 @@ public class FindTechStackCommand extends Command {
                 .add("predicate", predicate)
                 .toString();
     }
+
 }
