@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -9,12 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ModuleCode {
     private final String code;
 
-    public static final String MESSAGE_CONSTRAINTS = "Module codes should follow the module format, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Module code %s should follow the module format, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[a-zA-Z]{2,3}[0-9]{4}[a-zA-Z]?";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]{2,4}[0-9]{4}[a-zA-Z0-9]{0,5}";
 
     public ModuleCode(String code) {
-        checkArgument(isValidCode(code), MESSAGE_CONSTRAINTS);
+        requireNonNull(code);
+        checkArgument(isValidCode(code), String.format(MESSAGE_CONSTRAINTS, code));
         this.code = code;
     }
 
