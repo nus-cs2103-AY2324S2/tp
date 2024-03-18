@@ -124,6 +124,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Person viewPerson(Person target) {
+            return null;
+        }
+
+        @Override
         public void addPersonKeepFilter(Person person) {
             throw new AssertionError("This method should not be called.");
         }

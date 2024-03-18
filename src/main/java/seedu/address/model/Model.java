@@ -70,6 +70,13 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Retrieves the details of the specified person.
+     * @param person The person to retrieve details for.
+     * @return The details of the specified person.
+     */
+    Person viewPerson(Person person);
+
+    /**
      * Adds the given person without updating the filteredList.
      * {@code person} must not already exist in the address book.
      */
