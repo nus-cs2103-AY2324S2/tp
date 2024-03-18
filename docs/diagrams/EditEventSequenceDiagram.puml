@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditEventCommandParser" as EditEventCommandParser LOGIC_COLOR
+participant "e:EditEventCommand" as EditEventCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edite 1 e/1 n/event d/20-12-2000")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edite 1 e/1 n/event d/20-12-2000")
+activate AddressBookParser
+
+create EditEventCommandParser
+AddressBookParser -> EditEventCommandParser
+activate EditEventCommandParser
+
+EditEventCommandParser --> AddressBookParser
+deactivate EditEventCommandParser
+
+AddressBookParser -> EditEventCommandParser : parse("1 e/1 n/event d/20-12-2000")
+activate EditEventCommandParser
+
+Create EditEventCommand
+EditEventCommandParser -> EditEventCommand
+activate EditEventCommand
+
+EditEventCommand --> EditEventCommandParser : e
+deactivate EditEventCommand
+
+EditEventCommandParser --> AddressBookParser : e
+deactivate EditEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.'
+EditEventCommandParser -[hidden]-> AddressBookParser
+destroy EditEventCommandParser
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager -> EditEventCommand : execute(m)
+activate EditEventCommand
+
+EditEventCommand -> Model : setPatient(args)
+activate Model
+
+Model --> EditEventCommand
+deactivate Model
+
+EditEventCommand -> Model : updateFilteredPatientList(args)
+activate Model
+
+Model --> EditEventCommand
+deactivate Model
+
+create CommandResult
+EditEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditEventCommand
+deactivate CommandResult
+
+EditEventCommand --> LogicManager : r
+deactivate EditEventCommand
+
+EditEventCommand -[hidden]-> AddressBookParser
+destroy EditEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
