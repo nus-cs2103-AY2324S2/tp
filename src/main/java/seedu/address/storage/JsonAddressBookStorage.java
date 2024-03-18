@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.appointment.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentList;
 
 /**

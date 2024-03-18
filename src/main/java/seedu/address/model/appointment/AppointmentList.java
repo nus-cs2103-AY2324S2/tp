@@ -1,10 +1,11 @@
-package seedu.address.model;
+package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.ReadOnlyAppointmentList;
 import seedu.address.model.appointment.Appointment;
 
 
