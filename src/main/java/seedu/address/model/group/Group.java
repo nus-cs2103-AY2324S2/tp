@@ -45,17 +45,25 @@ public class Group extends UniqueCourseMateList {
      * This defines a weaker notion of equality between two groups.
      */
     public boolean isSameGroup(Group otherGroup) {
-        //    TODO: implement
-        return false;
+        return otherGroup.name == name;
     }
 
     /**
-     * Returns true if both groups have the same ??? todo
+     * Returns true if both groups have the same name and their members satisfy equality as well.
      * This defines a stronger notion of equality between two groups.
      */
     @Override
     public boolean equals(Object other) {
-        //    TODO: implement
-        return false;
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Group)) {
+            return false;
+        }
+
+        Group otherGroup = (Group) other;
+
+        return (name == otherGroup.name) && super.equals(other);
     }
 }
