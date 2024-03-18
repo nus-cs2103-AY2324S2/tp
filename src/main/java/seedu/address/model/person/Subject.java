@@ -3,11 +3,19 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's subject in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidSubject(String)}
+ */
 public class Subject {
-    public static String MESSAGE_CONSTANTS = "Subject should be string of at least of length of 1";
+    public static final String MESSAGE_CONSTANTS = "Subject should be string of at least of length of 1";
 
-    public String value;
-
+    public final String value;
+    /**
+     * Constructs a {@code Subject}.
+     *
+     * @param value A valid subject.
+     */
     public Subject(String value) {
         requireNonNull(value);
         checkArgument(isValidSubject(value), MESSAGE_CONSTANTS);

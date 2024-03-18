@@ -116,6 +116,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException("Missing Unique Id");
         }
         final Id modelId = new Id(uniqueId);
+
         final Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(personTags);

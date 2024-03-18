@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.IsSameIdPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -13,8 +14,14 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Keyword matching is case insensitive.
  */
 public class ViewCommand extends Command {
+    /*
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": shows the summary stats"
+            + "Example: " + COMMAND_WORD;
+
+    public static final String MESSAGE_SUCCESS = "Viewing the stats of students";*/
 
     public static final String COMMAND_WORD = "view";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the specific student using their ID or name\n"
             + "Parameters: NAME or ID\n"
@@ -22,6 +29,11 @@ public class ViewCommand extends Command {
 
     private final NameContainsKeywordsPredicate namePredicate;
     private final IsSameIdPredicate idPredicate;
+    
+    public ViewCommand() {
+        this.namePredicate = null;
+        this.idPredicate = null;
+    }
 
     public ViewCommand(NameContainsKeywordsPredicate predicate) {
         this.namePredicate = predicate;
@@ -45,7 +57,7 @@ public class ViewCommand extends Command {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
         } else {
-            return null;
+            return new CommandResult(MESSAGE_SUCCESS, false, false, true);
         }
     }
 
@@ -69,5 +81,11 @@ public class ViewCommand extends Command {
         return new ToStringBuilder(this)
                 .add("namePredicate", namePredicate)
                 .toString();
+
+    
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        
     }
 }
