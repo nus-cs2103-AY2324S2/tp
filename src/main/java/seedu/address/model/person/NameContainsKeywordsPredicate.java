@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
@@ -19,20 +20,43 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+//        Predicate<String> personName = keyword ->
+//                StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword);
+//        Predicate<String> personNumber = keyword ->
+//                StringUtil.containsWordIgnoreCase(person.getPhone().toString(), keyword);
+//        Predicate<String> personAddress = keyword ->
+//                StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword);
+//        Predicate<String> personEmail = keyword ->
+//                StringUtil.containsWordIgnoreCase(person.getEmail().toString(), keyword);
+//        Predicate<String> personTag = keyword -> StringUtil.containsWordIgnoreCase(person.getTags().stream()
+//                .map(tag -> tag.tagName).collect(Collectors.joining()), keyword);
+
+//        Predicate<String> personName = keyword ->
+//                keyword.regionMatches(true, 0, person.getName().toString(),
+//                        0, keyword.length());
+//        Predicate<String> personNumber = keyword ->
+//                keyword.regionMatches(true, 0, person.getPhone().toString(),
+//                        0, keyword.length());
+//        Predicate<String> personAddress = keyword ->
+//                keyword.regionMatches(true, 0, person.getAddress().toString(),
+//                        0, keyword.length());
+//        Predicate<String> personEmail = keyword ->
+//                keyword.regionMatches(true, 0, person.getEmail().toString(),
+//                        0, keyword.length());
+//        Predicate<String> personTag = keyword -> keyword.regionMatches(true, 0, person.getTags().stream()
+//                .map(tag -> tag.tagName).collect(Collectors.joining()), 0, keyword.length());
+
         Predicate<String> personName = keyword ->
-                keyword.regionMatches(true, 0, person.getName().toString(),
-                        0, keyword.length());
+                person.getName().toString().toLowerCase().contains(keyword.toLowerCase());
         Predicate<String> personNumber = keyword ->
-                keyword.regionMatches(true, 0, person.getPhone().toString(),
-                        0, keyword.length());
+                person.getPhone().toString().toLowerCase().contains(keyword.toLowerCase());
         Predicate<String> personAddress = keyword ->
-                keyword.regionMatches(true, 0, person.getAddress().toString(),
-                        0, keyword.length());
+                person.getAddress().toString().toLowerCase().contains(keyword.toLowerCase());
         Predicate<String> personEmail = keyword ->
-                keyword.regionMatches(true, 0, person.getEmail().toString(),
-                        0, keyword.length());
-        Predicate<String> personTag = keyword -> keyword.regionMatches(true, 0, person.getTags().stream()
-                .map(tag -> tag.tagName).collect(Collectors.joining()), 0, keyword.length());
+                person.getEmail().toString().toLowerCase().contains(keyword.toLowerCase());
+        Predicate<String> personTag = keyword -> person.getTags().stream()
+                .map(tag -> tag.tagName).collect(Collectors.joining()).toLowerCase().contains(keyword.toLowerCase());
+
         Predicate<String> combinedCondition = personName.or(personNumber)
                 .or(personAddress).or(personEmail).or(personTag);
         return keywords.stream()
