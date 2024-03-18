@@ -11,7 +11,7 @@ public class HelpCommandTest {
     private Model model = new ModelManager();
 
     @Test
-    public void execute_helpForSpecificCommand_success() {
+    public void execute_helpForSpecificCommand_add() {
         // Set up
         String specificCommand = "add"; // Example specific command "add"
         HelpCommand helpCommand = new HelpCommand(specificCommand);
@@ -24,7 +24,7 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void execute_helpForSpecificCommand_edit_success() {
+    public void execute_helpForEditCommand_success() {
         // Set up
         String specificCommand = "edit";
         HelpCommand helpCommand = new HelpCommand(specificCommand);
@@ -37,7 +37,7 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void execute_helpForSpecificCommand_delete_success() {
+    public void execute_helpForDeleteCommand_success() {
         // Set up
         String specificCommand = "delete";
         HelpCommand helpCommand = new HelpCommand(specificCommand);
@@ -50,7 +50,7 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void execute_helpForSpecificCommand_clear_success() {
+    public void execute_helpForClearCommand_success() {
         // Set up
         String specificCommand = "clear";
         HelpCommand helpCommand = new HelpCommand(specificCommand);
@@ -63,7 +63,7 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void execute_helpForSpecificCommand_find_success() {
+    public void execute_helpForFindCommand_success() {
         // Set up
         String specificCommand = "find";
         HelpCommand helpCommand = new HelpCommand(specificCommand);
@@ -76,7 +76,7 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void execute_helpForSpecificCommand_list_success() {
+    public void execute_helpForListCommand_success() {
         // Set up
         String specificCommand = "list";
         HelpCommand helpCommand = new HelpCommand(specificCommand);
@@ -89,7 +89,7 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void execute_helpForSpecificCommand_exit_success() {
+    public void execute_helpForExitCommand_success() {
         // Set up
         String specificCommand = "exit";
         HelpCommand helpCommand = new HelpCommand(specificCommand);
