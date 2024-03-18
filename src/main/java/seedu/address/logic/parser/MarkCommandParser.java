@@ -17,8 +17,8 @@ import java.util.stream.Stream;
  */
 public class MarkCommandParser implements Parser<MarkCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
-     * and returns a {@code RemarkCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code MarkCommand}
+     * and returns a {@code MarkCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public MarkCommand parse(String args) throws ParseException {
@@ -32,44 +32,17 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), ive);
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TAG, PREFIX_TAGSTATUS)) {
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_TAG, PREFIX_TAGSTATUS)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG, PREFIX_TAGSTATUS);
         String tagName = argMultimap.getValue(PREFIX_TAG).get();
         String status = argMultimap.getValue(PREFIX_TAGSTATUS).get();
-        TagStatus tagStatus;
 
-        // the strings for status can be better abstracted out
-        switch (status) {
-        case "cg":
-            tagStatus = TagStatus.COMPLETE_GOOD;
-            break;
-        case "cb":
-            tagStatus = TagStatus.COMPLETE_BAD;
-            break;
-        case "ig":
-            tagStatus = TagStatus.INCOMPLETE_GOOD;
-            break;
-        case "ib":
-            tagStatus = TagStatus.INCOMPLETE_BAD;
-            break;
-        default:
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
-        }
+        TagStatus tagStatus = TagStatus.getTagStatus(status);
 
         return new MarkCommand(index, tagName, tagStatus);
     }
 
-
-    // duplicate method for AddCommandParser::arePrefixesPresent
-    // should abstract it out to be placed in a util class afterwards
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 }

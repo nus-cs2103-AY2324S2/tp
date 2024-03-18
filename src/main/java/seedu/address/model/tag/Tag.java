@@ -1,7 +1,11 @@
 package seedu.address.model.tag;
 
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Represents a Tag in the address book.
@@ -62,16 +66,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ':' + tagStatus + ']';
-    }
-
-    /**
-     * Updates the status of the tag, representing an assignment or an attendance record
-     *
-     * @param status new status of the tag
-     */
-    public void updateTagStatus(TagStatus status) {
-        this.tagStatus = status;
+        return "[ " + tagName + " : " + tagStatus + " ]";
     }
 
 }

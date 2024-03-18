@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.EditCommand.MESSAGE_DUPLICATE_PERSON;
-import static seedu.address.logic.commands.EditCommand.MESSAGE_EDIT_PERSON_SUCCESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGSTATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.logic.Messages;
@@ -24,18 +24,18 @@ import java.util.Set;
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
-
     // to be updated
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the status of the specified tag "
+            + "with the specified status.\n"
+            + "If the tag specified does not exist, a new tag with the tag name"
+            + " and tag status would be created.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            //+  PREFIX_REMARK + "[REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
-            //+ PREFIX_REMARK + "Likes to swim.";
+            +  PREFIX_TAG + " [TAG] " + PREFIX_TAGSTATUS + " [TAGSTATUS]\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + " assignment1 "
+            + PREFIX_TAGSTATUS + " cg";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Tag: %2$s";
-
+    public static final String MESSAGE_MARK_PERSON_SUCCESS = "Updated Person: %1$s";
+    
     private final Index index;
     private final String tagName;
     private final TagStatus tagStatus;
@@ -46,35 +46,40 @@ public class MarkCommand extends Command {
         this.tagName = tagName;
         this.tagStatus = tagStatus;
     }
+    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        // check whether index specified is within valid range
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-
-        // get the tags of the personToEdit
         Set<Tag> currTags = new HashSet<>(personToEdit.getTags());
 
-        // try adding the new tag into the tag list first, replace it later
-        Tag newTag = new Tag(tagName, tagStatus);
-        if (currTags.contains(newTag)) {
-            currTags.remove(newTag);
-        };
-        currTags.add(new Tag(tagName, tagStatus));
-        Person editedPerson = createEditedPerson(personToEdit, currTags);
+        // create a new person with the new tag, necessary as the person fields are currently final
+        Person editedPerson = createEditedPerson(personToEdit, updateTagsWithNewTag(currTags));
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
+        // update the person list and make GUI show all existing person
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+
+        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    private Set<Tag> updateTagsWithNewTag(Set<Tag> currTags) {
+        // Instead of retrieving the Tag sharing the same name and update it,
+        // remove the potentially existing Tag of the same name from the hashset
+        // and then add in a new Tag with the same tagName but updated tagStatus.
+        // This is to avoid having linearly check through the hashset to retrieve
+        // the existing Tag
+        Tag newTag = new Tag(tagName, tagStatus);
+        currTags.remove(newTag);
+        currTags.add(new Tag(tagName, tagStatus));
+        return currTags;
     }
 
     @Override
@@ -93,16 +98,15 @@ public class MarkCommand extends Command {
         MarkCommand e = (MarkCommand) other;
         return index.equals(e.index)
                 && tagName.equals(e.tagName)
-                && tagStatus.equals(tagStatus);
+                && tagStatus.equals(e.tagStatus);
     }
 
-    // temporarily duplicate this
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, Set<Tag> newTags) {
         assert personToEdit != null;
-        return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(), newTags);
+        return new Person(personToEdit.getType(), personToEdit.getName(), personToEdit.getPhone(),
+                personToEdit.getEmail(), personToEdit.getAddress(), newTags);
     }
 }
