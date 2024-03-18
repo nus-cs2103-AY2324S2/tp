@@ -69,6 +69,25 @@ public class UniqueId {
     }
 
     /**
+     * Checks if a given UniqueId is valid, given String.
+     * 
+     * @param String The UniqueId to check.
+     * @return True if the UniqueId is not null and its value is greater than or
+     *         equal to the last used index.
+     */
+    public boolean isValidUid(String uid) {
+        if (uid == null || uid.isEmpty()) {
+            return false;
+        }
+        try {
+            Integer newUid = Integer.parseInt(uid);
+            return checkIfValid(newUid, lastUsedIndex);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
      * Sets the ID to a given value.
      * 
      * @param uid The new ID value as a string.

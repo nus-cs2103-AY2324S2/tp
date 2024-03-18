@@ -45,7 +45,7 @@ class JsonAdaptedEmployee {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("team") String team, @JsonProperty("role") String role,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("uid") Integer uid) {
+            @JsonProperty("uid") String uid) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,7 +55,7 @@ class JsonAdaptedEmployee {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.uid = uid;
+        this.uid = Integer.parseInt(uid);
     }
 
     /**
@@ -141,7 +141,7 @@ class JsonAdaptedEmployee {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName()));
         }
 
-        if (UniqueId.checkIfValid(uid)) {
+        if (uid <= 0) {
             throw new IllegalValueException(
                     String.format(INVALID_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName()));
         }
