@@ -69,8 +69,8 @@ public class AddPolicyCommand extends Command {
 
         Person policyAddedPerson = new Person(personToAddPolicy.getName(), personToAddPolicy.getPhone(),
                 personToAddPolicy.getEmail(), personToAddPolicy.getAddress(), personToAddPolicy.getBirthday(),
-                personToAddPolicy.getLastMet(), personToAddPolicy.getSchedule(), personToAddPolicy.getTags(),
-                updatedPolicyList);
+                personToAddPolicy.getPriority(), personToAddPolicy.getLastMet(), personToAddPolicy.getSchedule(),
+                personToAddPolicy.getTags(), updatedPolicyList);
 
         model.setPerson(personToAddPolicy, policyAddedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

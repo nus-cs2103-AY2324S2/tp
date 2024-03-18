@@ -39,6 +39,7 @@
                 <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true"/>
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
                 <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" wrapText="true" />
+                <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" wrapText="true" />
             </VBox>
             <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <padding>

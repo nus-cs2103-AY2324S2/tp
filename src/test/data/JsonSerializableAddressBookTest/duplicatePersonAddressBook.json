@@ -5,6 +5,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "birthday": "1980-01-01",
+    "priority": "vip",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/1",
     "tags": [ "friends" ]
@@ -15,6 +16,7 @@
     "address": "4th street",
     "lastmet": "2023-01-02",
     "schedule": "2023-02-02 12:14/1",
-    "birthday": "1980-01-01"
+    "birthday": "1980-01-01",
+    "priority": "vip"
   } ]
 }

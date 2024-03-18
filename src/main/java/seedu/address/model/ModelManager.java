@@ -129,7 +129,7 @@ public class ModelManager implements Model {
         PolicyList newPolicyList = target.getPolicyList().getPolicyListClone();
         newPolicyList.addPolicy(policy);
         setPerson(target, new Person(target.getName(), target.getPhone(), target.getEmail(), target.getAddress(),
-                target.getBirthday(), target.getLastMet(), target.getSchedule(), target.getTags(),
+                target.getBirthday(), target.getPriority(), target.getLastMet(), target.getSchedule(), target.getTags(),
                 newPolicyList));
     }
 
