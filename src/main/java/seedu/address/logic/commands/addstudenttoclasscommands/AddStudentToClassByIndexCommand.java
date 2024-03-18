@@ -3,6 +3,7 @@ package seedu.address.logic.commands.addstudenttoclasscommands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.PersonMessages;
@@ -35,6 +36,7 @@ public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
         requireNonNull(model);
         ModuleTutorialPair moduleAndTutorialClass = getModuleAndTutorialClass(model);
         TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
+        ModuleCode module = moduleAndTutorialClass.getModule();
         Person personToAdd;
         try {
             personToAdd = model.getFilteredPersonList().get(targetIndex.getZeroBased());
@@ -42,12 +44,15 @@ public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
             throw new CommandException(
                     String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, targetIndex.getOneBased()));
         }
+
         if (tutorialClass.hasStudent(personToAdd)) {
             throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, personToAdd,
                     tutorialClass));
         } else {
             tutorialClass.addStudent(personToAdd);
-            return new CommandResult(String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS, personToAdd));
+            return new CommandResult(
+                    String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
+                     Messages.format(personToAdd), module, tutorialClass));
         }
     }
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.PersonMessages;
@@ -43,6 +44,7 @@ public class AddStudentToClassByEmailCommand extends AddStudentToClassCommand {
         TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
         ModuleCode module = moduleAndTutorialClass.getModule();
         Person personToAdd;
+
         personToAdd = model.searchPersonByPredicate(predicate);
         if (personToAdd == null) {
             throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
@@ -54,7 +56,8 @@ public class AddStudentToClassByEmailCommand extends AddStudentToClassCommand {
         } else {
             tutorialClass.addStudent(personToAdd);
             return new CommandResult(
-                    String.format(TutorialClassMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS, personToAdd, module,
+                    String.format(TutorialClassMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
+                            Messages.format(personToAdd), module,
                             tutorialClass));
         }
     }

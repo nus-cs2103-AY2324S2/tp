@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByEmailCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIdCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIndexCommand;
@@ -28,8 +27,7 @@ public class AddStudentToClassCommandParser implements Parser<AddStudentToClassC
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * AddStudentToClass
-     * and returns an AddStudentToClassCommand object for execution.
+     * AddStudentToClass and returns an AddStudentToClassCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddStudentToClassCommand parse(String args) throws ParseException {
@@ -38,7 +36,7 @@ public class AddStudentToClassCommandParser implements Parser<AddStudentToClassC
         boolean isIndexPresent = argMultimap.getValue(PREFIX_INDEX).isPresent();
         boolean isEmailPresent = argMultimap.getValue(PREFIX_EMAIL).isPresent();
         boolean isStudentIdPresent = argMultimap.getValue(PREFIX_STUDENTID).isPresent();
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS) && !isIndexPresent
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS) || !isIndexPresent
                 && !isEmailPresent && !isStudentIdPresent
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -60,7 +58,7 @@ public class AddStudentToClassCommandParser implements Parser<AddStudentToClassC
             return new AddStudentToClassByEmailCommand(email, moduleCode, tutorialClass);
         } else {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentToClassCommand.MESSAGE_USAGE));
         }
 
     }

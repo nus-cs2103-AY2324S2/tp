@@ -29,7 +29,6 @@ public class TutorialClass {
     /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no
      * students.
-     *
      * @param name of tutorial to be added
      */
     public TutorialClass(String name) {
@@ -42,7 +41,6 @@ public class TutorialClass {
     /**
      * A constructor for TutorialClass. Creates a tutorial with the list of students
      * specified.
-     *
      * @param name     of tutorial to be added
      * @param students to be in the added tutorial
      */
@@ -65,6 +63,7 @@ public class TutorialClass {
      */
     public void addStudent(Person student) {
         students.add(student);
+
     }
 
     /**

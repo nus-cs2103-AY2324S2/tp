@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.PersonMessages;
@@ -39,6 +40,7 @@ public class AddStudentToClassByIdCommand extends AddStudentToClassCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ModuleTutorialPair moduleAndTutorialClass = getModuleAndTutorialClass(model);
+        ModuleCode module = moduleAndTutorialClass.getModule();
         TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
         Person personToAdd;
         personToAdd = model.searchPersonByPredicate(predicate);
@@ -50,7 +52,8 @@ public class AddStudentToClassByIdCommand extends AddStudentToClassCommand {
                     tutorialClass));
         } else {
             tutorialClass.addStudent(personToAdd);
-            return new CommandResult(String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS, personToAdd));
+            return new CommandResult(String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
+                    Messages.format(personToAdd), module, tutorialClass));
         }
     }
 

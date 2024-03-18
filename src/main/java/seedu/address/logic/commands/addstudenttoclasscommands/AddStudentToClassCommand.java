@@ -2,6 +2,7 @@ package seedu.address.logic.commands.addstudenttoclasscommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
@@ -22,9 +23,9 @@ public abstract class AddStudentToClassCommand extends Command {
     public static final String COMMAND_WORD = "/add_student_to_class";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to an existing class\n"
-            + "Parameters:" + PREFIX_MODULECODE + "MODULE_CODE (must be a String) "
-            + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS (must be a String)"
-            + "Example: " + COMMAND_WORD + PREFIX_MODULECODE + " CS2103T "
+            + "Parameters:" + "IDENTIFIER " + PREFIX_MODULECODE + "MODULE_CODE (must be a String) "
+            + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS (must be a String)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_EMAIL + "test@gmail.com " + PREFIX_MODULECODE + " CS2103T "
             + PREFIX_TUTORIALCLASS + "T09";
 
     private final ModuleCode module;
