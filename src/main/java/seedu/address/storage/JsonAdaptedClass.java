@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Classes;
 import seedu.address.model.person.CourseCode;
+import seedu.address.model.person.Email;
 
 /**
  * Jackson-friendly version of {@link Classes}.
  */
 public class JsonAdaptedClass {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Class field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "CourseCode field is missing!";
 
     private final String courseCode;
 
@@ -37,8 +38,13 @@ public class JsonAdaptedClass {
      * @throws IllegalValueException if there were any data constraints violated in the adapted class.
      */
     public Classes toModelType() throws IllegalValueException {
-        if (courseCode == null || !CourseCode.isValidClass(courseCode)) {
+        if (!CourseCode.isValidClass(courseCode)) {
             throw new IllegalValueException(CourseCode.MESSAGE_CONSTRAINTS);
+        }
+
+        if (courseCode == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CourseCode.class.getSimpleName()));
         }
 
         final CourseCode modelCourseCode = new CourseCode(courseCode);

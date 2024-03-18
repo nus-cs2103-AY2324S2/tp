@@ -58,6 +58,9 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final Classes TYPICAL_CLASS_1 = new ClassBuilder().withCC("CS2103T").build();
+    public static final Classes TYPICAL_CLASS_2 = new ClassBuilder().withCC("CS2103").build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation

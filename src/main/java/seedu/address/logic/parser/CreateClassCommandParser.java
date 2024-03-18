@@ -22,7 +22,7 @@ public class CreateClassCommandParser implements Parser<CreateClassCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CLASS)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateClassCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);

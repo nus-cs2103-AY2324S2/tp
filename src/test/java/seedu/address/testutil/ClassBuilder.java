@@ -1,0 +1,27 @@
+package seedu.address.testutil;
+
+import seedu.address.model.person.Classes;
+import seedu.address.model.person.CourseCode;
+
+public class ClassBuilder {
+
+    public static final String DEFAULT_CC = "cs1101s";
+
+    private CourseCode cc;
+
+    public ClassBuilder() {
+        cc = new CourseCode(DEFAULT_CC);
+    }
+    public ClassBuilder(Classes classes) {
+        cc = classes.getCourseCode();
+    }
+
+    public ClassBuilder withCC(String cc) {
+        this.cc = new CourseCode(cc);
+        return this;
+    }
+
+    public Classes build() {
+        return new Classes(cc);
+    }
+}

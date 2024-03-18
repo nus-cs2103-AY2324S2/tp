@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -43,5 +44,24 @@ public class CreateClassCommand extends Command {
 
         model.createClass(toCreate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.classFormat(toCreate)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof CreateClassCommand)) {
+            return false;
+        }
+
+        CreateClassCommand otherCreateClassCommand = (CreateClassCommand) other;
+        return toCreate.equals(otherCreateClassCommand.toCreate);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).add("toCreate", toCreate).toString();
     }
 }
