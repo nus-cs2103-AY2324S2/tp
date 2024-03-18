@@ -78,7 +78,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given startup {@code target} in the list with {@code editedStartup}.
      * {@code target} must exist in the address book.
-     * The startup identity of {@code editedStartup} must not be the same as another existing startup in the address book.
+     * The startup identity of {@code editedStartup} must not be the same as another existing startup
+     * in the address book.
      */
     public void setStartup(Startup target, Startup editedStartup) {
         requireNonNull(editedStartup);

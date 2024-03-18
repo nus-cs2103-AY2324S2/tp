@@ -13,10 +13,10 @@ import seedu.address.model.startup.exceptions.StartupNotFoundException;
 
 /**
  * A list of startups that enforces uniqueness between its elements and does not allow nulls.
- * A startup is considered unique by comparing using {@code Startup#isSameStartup(Startup)}. As such, adding and updating of
- * startups uses Startup#isSameStartup(Startup) for equality so as to ensure that the startup being added or updated is
- * unique in terms of identity in the UniqueStartupList. However, the removal of a startup uses Startup#equals(Object) so
- * as to ensure that the startup with exactly the same fields will be removed.
+ * A startup is considered unique by comparing using {@code Startup#isSameStartup(Startup)}. As such, adding and
+ * updating of startups uses Startup#isSameStartup(Startup) for equality so as to ensure that the startup being added
+ * or updated is unique in terms of identity in the UniqueStartupList. However, the removal of a startup uses
+ * Startup#equals(Object) so as to ensure that the startup with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

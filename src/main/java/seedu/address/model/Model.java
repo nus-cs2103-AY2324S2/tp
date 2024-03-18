@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given startup {@code target} with {@code editedStartup}.
      * {@code target} must exist in the address book.
-     * The startup identity of {@code editedStartup} must not be the same as another existing startup in the address book.
+     * The startup identity of {@code editedStartup} must not be the same as another existing startup
+     * in the address book.
      */
     void setStartup(Startup target, Startup editedStartup);
 
