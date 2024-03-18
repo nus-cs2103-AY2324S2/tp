@@ -10,6 +10,8 @@ import staffconnect.commons.core.index.Index;
 import staffconnect.commons.util.StringUtil;
 import staffconnect.logic.parser.exceptions.ParseException;
 import staffconnect.model.availability.Availability;
+import staffconnect.model.meeting.Description;
+import staffconnect.model.meeting.MeetDateTime;
 import staffconnect.model.person.Email;
 import staffconnect.model.person.Faculty;
 import staffconnect.model.person.Module;
@@ -28,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -129,6 +132,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -144,15 +159,45 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code MeetDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static MeetDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!MeetDateTime.isValidMeetDateTime(trimmedDateTime)) {
+            throw new ParseException(MeetDateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetDateTime(trimmedDateTime);
+    }
+
+    /**
+     * Parses {@code Collection<String> availabilities} into a {@code Set<Availability>}.
+     */
+    public static Set<Availability> parseAvailabilities(Collection<String> availabilities) throws ParseException {
+        requireNonNull(availabilities);
+        final Set<Availability> availabilitySet = new HashSet<>();
+        for (String value : availabilities) {
+            availabilitySet.add(parseAvailability(value));
+        }
+        return availabilitySet;
     }
 
     /**
@@ -168,17 +213,5 @@ public class ParserUtil {
             throw new ParseException(Availability.MESSAGE_CONSTRAINTS);
         }
         return new Availability(trimmedAvailability);
-    }
-
-    /**
-     * Parses {@code Collection<String> availabilities} into a {@code Set<Availability>}.
-     */
-    public static Set<Availability> parseAvailabilities(Collection<String> availabilities) throws ParseException {
-        requireNonNull(availabilities);
-        final Set<Availability> availabilitySet = new HashSet<>();
-        for (String value : availabilities) {
-            availabilitySet.add(parseAvailability(value));
-        }
-        return availabilitySet;
     }
 }

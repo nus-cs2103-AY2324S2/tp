@@ -9,6 +9,7 @@ import java.util.Set;
 
 import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.model.availability.Availability;
+import staffconnect.model.meeting.Meeting;
 import staffconnect.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ public class Person {
     private final Venue venue;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Availability> availabilities = new HashSet<>();
+    private final Set<Meeting> meetings = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -44,11 +46,9 @@ public class Person {
         this.tags.addAll(tags);
         this.availabilities.addAll(availabilities);
     }
-
     public Name getName() {
         return name;
     }
-
     public Phone getPhone() {
         return phone;
     }
@@ -78,11 +78,25 @@ public class Person {
     }
 
     /**
+     * Returns an immutable meeting set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Meeting> getMeetings() {
+        return Collections.unmodifiableSet(meetings);
+    }
+
+
+    /*
      * Returns an immutable availability set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Availability> getAvailabilities() {
         return Collections.unmodifiableSet(availabilities);
+    }
+
+    public void setMeetings(Set<Meeting> toAdd) {
+        meetings.clear(); //Remove all existing entries and assume the new set
+        meetings.addAll(toAdd);
     }
 
     /**
@@ -96,6 +110,13 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if the meeting to add is already tagged to the current person.
+     */
+    public boolean hasDuplicateMeeting(Meeting toAdd) {
+        return meetings.contains(toAdd);
     }
 
     /**
@@ -141,6 +162,7 @@ public class Person {
                 .add("venue", venue)
                 .add("tags", tags)
                 .add("availabilities", availabilities)
+                .add("meetings", meetings)
                 .toString();
     }
 
