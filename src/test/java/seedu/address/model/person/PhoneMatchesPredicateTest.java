@@ -3,8 +3,7 @@ package seedu.address.model.person;
 import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PhoneMatchesPredicateTest {
     @Test
@@ -18,7 +17,8 @@ public class PhoneMatchesPredicateTest {
         assertTrue(partialPrefixMatch.test(person));
     }
 
-    @Test void test_noMatchingPhone_returnsFalse() {
+    @Test
+    public void test_noMatchingPhone_returnsFalse() {
         Person person = new PersonBuilder().withPhone("91237654").build();
 
         PhoneMatchesPredicate noMatch = new PhoneMatchesPredicate("98761234");
@@ -26,5 +26,13 @@ public class PhoneMatchesPredicateTest {
 
         PhoneMatchesPredicate partialMiddleMatch = new PhoneMatchesPredicate("123");
         assertFalse(partialMiddleMatch.test(person));
+    }
+
+    @Test
+    public void test_toString() {
+        String numToMatch = "91234567";
+        PhoneMatchesPredicate p = new PhoneMatchesPredicate(numToMatch);
+        String expected = PhoneMatchesPredicate.class.getCanonicalName() + "{phoneNumToMatch=" + numToMatch + "}";
+        assertEquals(p.toString(), expected);
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.FindCommand;
 
 import java.util.function.Predicate;
@@ -38,4 +39,10 @@ public class EmailMatchesPredicate implements Predicate<Person> {
         return keyword.equals(e.keyword);
     }
 
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("emailKeyword", keyword)
+                .toString();
+    }
 }

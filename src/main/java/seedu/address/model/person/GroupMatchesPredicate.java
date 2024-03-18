@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.group.Group;
 
@@ -59,5 +60,12 @@ public class GroupMatchesPredicate implements Predicate<Person> {
 
         GroupMatchesPredicate e = (GroupMatchesPredicate) other;
         return keywords.equals(e.keywords);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("groupKeywords", keywords)
+                .toString();
     }
 }

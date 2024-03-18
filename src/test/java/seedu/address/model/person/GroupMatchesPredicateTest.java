@@ -5,6 +5,7 @@ import seedu.address.testutil.PersonBuilder;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GroupMatchesPredicateTest {
@@ -27,5 +28,13 @@ public class GroupMatchesPredicateTest {
         GroupMatchesPredicate predicateWithManyKeywords = new GroupMatchesPredicate(List.of("CS2101", "CS2103T"));
         Person personWithManyGroups = new PersonBuilder().withGroups("CS2100", "CS2101", "CS2103T").build();
         assertTrue(predicateWithManyKeywords.test(personWithManyGroups));
+    }
+
+    @Test
+    public void test_toString() {
+        List<String> keywords = List.of("CS2101", "CS2103T");
+        GroupMatchesPredicate g = new GroupMatchesPredicate(keywords);
+        String expected = GroupMatchesPredicate.class.getCanonicalName() + "{groupKeywords=" + keywords +"}";
+        assertEquals(g.toString(), expected);
     }
 }

@@ -155,11 +155,78 @@ public class FindCommandTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void test_toStringMethod_withNameChange() {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
         FindCommand findCommand = new FindCommandBuilder().withNamePred(predicate).build();
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        String expected = FindCommand.class.getCanonicalName()
+                + "{"
+                + "namePredicate=" + predicate + ", "
+                + "phonePredicate=" + FindCommandBuilder.DEFAULT_PHONE_PRED + ", "
+                + "emailPredicate=" + FindCommandBuilder.DEFAULT_EMAIL_PRED + ", "
+                + "tagPredicate=" + FindCommandBuilder.DEFAULT_TAG_PRED + ", "
+                + "groupPredicate=" + FindCommandBuilder.DEFAULT_GROUPS_PRED
+                + "}";
         assertEquals(expected, findCommand.toString());
+    }
+
+    @Test
+    public void test_toStringMethod_withPhoneChange() {
+        PhoneMatchesPredicate phoneMatchesPredicate = new PhoneMatchesPredicate("123");
+        FindCommand findPhoneCommand = new FindCommandBuilder().withPhone(phoneMatchesPredicate).build();
+        String expectedPhoneChange = FindCommand.class.getCanonicalName()
+                + "{"
+                + "namePredicate=" + FindCommandBuilder.DEFAULT_NAME_PRED + ", "
+                + "phonePredicate=" + phoneMatchesPredicate + ", "
+                + "emailPredicate=" + FindCommandBuilder.DEFAULT_EMAIL_PRED + ", "
+                + "tagPredicate=" + FindCommandBuilder.DEFAULT_TAG_PRED + ", "
+                + "groupPredicate=" + FindCommandBuilder.DEFAULT_GROUPS_PRED
+                + "}";
+        assertEquals(findPhoneCommand.toString(), expectedPhoneChange);
+    }
+
+    @Test
+    public void test_toStringMethod_withEmailChange() {
+        EmailMatchesPredicate emailMatchesPredicate = new EmailMatchesPredicate("bobby");
+        FindCommand findPhoneCommand = new FindCommandBuilder().withEmail(emailMatchesPredicate).build();
+        String expectedPhoneChange = FindCommand.class.getCanonicalName()
+                + "{"
+                + "namePredicate=" + FindCommandBuilder.DEFAULT_NAME_PRED + ", "
+                + "phonePredicate=" + FindCommandBuilder.DEFAULT_PHONE_PRED + ", "
+                + "emailPredicate=" + emailMatchesPredicate + ", "
+                + "tagPredicate=" + FindCommandBuilder.DEFAULT_TAG_PRED + ", "
+                + "groupPredicate=" + FindCommandBuilder.DEFAULT_GROUPS_PRED
+                + "}";
+        assertEquals(findPhoneCommand.toString(), expectedPhoneChange);
+    }
+
+    @Test
+    public void test_toStringMethod_withTagChange() {
+        TagMatchesPredicate tagMatchesPredicate = new TagMatchesPredicate("TA");
+        FindCommand findPhoneCommand = new FindCommandBuilder().withTag(tagMatchesPredicate).build();
+        String expectedPhoneChange = FindCommand.class.getCanonicalName()
+                + "{"
+                + "namePredicate=" + FindCommandBuilder.DEFAULT_NAME_PRED + ", "
+                + "phonePredicate=" + FindCommandBuilder.DEFAULT_PHONE_PRED + ", "
+                + "emailPredicate=" + FindCommandBuilder.DEFAULT_EMAIL_PRED + ", "
+                + "tagPredicate=" + tagMatchesPredicate + ", "
+                + "groupPredicate=" + FindCommandBuilder.DEFAULT_GROUPS_PRED
+                + "}";
+        assertEquals(findPhoneCommand.toString(), expectedPhoneChange);
+    }
+
+    @Test
+    public void test_toStringMethod_withGroupChange() {
+        GroupMatchesPredicate groupMatchesPredicate = new GroupMatchesPredicate(List.of("CS2103T"));
+        FindCommand findPhoneCommand = new FindCommandBuilder().withGroups(groupMatchesPredicate).build();
+        String expectedPhoneChange = FindCommand.class.getCanonicalName()
+                + "{"
+                + "namePredicate=" + FindCommandBuilder.DEFAULT_NAME_PRED + ", "
+                + "phonePredicate=" + FindCommandBuilder.DEFAULT_PHONE_PRED + ", "
+                + "emailPredicate=" + FindCommandBuilder.DEFAULT_EMAIL_PRED + ", "
+                + "tagPredicate=" + FindCommandBuilder.DEFAULT_TAG_PRED + ", "
+                + "groupPredicate=" + groupMatchesPredicate
+                + "}";
+        assertEquals(findPhoneCommand.toString(), expectedPhoneChange);
     }
 
     /**

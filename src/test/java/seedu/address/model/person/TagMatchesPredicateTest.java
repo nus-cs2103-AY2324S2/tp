@@ -3,8 +3,7 @@ package seedu.address.model.person;
 import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TagMatchesPredicateTest {
     @Test
@@ -24,5 +23,13 @@ public class TagMatchesPredicateTest {
 
         TagMatchesPredicate gibberishPredicate = new TagMatchesPredicate("GARBAGE_VALUE");
         assertFalse(gibberishPredicate.test(person));
+    }
+
+    @Test
+    public void test_toString() {
+        String keyword = Tag.TagType.TA.name();
+        TagMatchesPredicate tagMatchesPredicate = new TagMatchesPredicate(keyword);
+        String expected = TagMatchesPredicate.class.getCanonicalName() + "{tagKeyword=" + keyword + "}";
+        assertEquals(tagMatchesPredicate.toString(), expected);
     }
 }

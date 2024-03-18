@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.FindCommand;
 
 import java.util.function.Predicate;
@@ -43,5 +44,12 @@ public class PhoneMatchesPredicate implements Predicate<Person> {
 
         PhoneMatchesPredicate predicate = (PhoneMatchesPredicate) other;
         return numToMatch.equals(predicate.numToMatch);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("phoneNumToMatch", numToMatch)
+                .toString();
     }
 }

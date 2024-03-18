@@ -3,8 +3,7 @@ package seedu.address.model.person;
 import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EmailMatchesPredicateTest {
     @Test
@@ -32,5 +31,13 @@ public class EmailMatchesPredicateTest {
 
         EmailMatchesPredicate spacesInBetween = new EmailMatchesPredicate("bobby apples ");
         assertFalse(spacesInBetween.test(person));
+    }
+
+    @Test
+    public void test_toString() {
+        String keyword = "bobby";
+        EmailMatchesPredicate e = new EmailMatchesPredicate(keyword);
+        String expected = EmailMatchesPredicate.class.getCanonicalName() + "{emailKeyword=" + keyword + "}";
+        assertEquals(e.toString(), expected);
     }
 }

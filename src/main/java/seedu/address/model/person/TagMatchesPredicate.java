@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.FindCommand;
 
 
@@ -24,5 +25,12 @@ public class TagMatchesPredicate implements Predicate<Person> {
         } else {
             return person.getTag().equals(new Tag(keyword));
         }
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("tagKeyword", keyword)
+                .toString();
     }
 }
