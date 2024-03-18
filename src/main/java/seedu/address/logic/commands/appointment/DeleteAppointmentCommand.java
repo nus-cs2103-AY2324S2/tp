@@ -29,6 +29,9 @@ public class DeleteAppointmentCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteAppointment Command.
+     */
     public DeleteAppointmentCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
