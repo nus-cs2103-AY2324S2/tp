@@ -21,11 +21,13 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindTagCommand;
+import seedu.address.logic.commands.FindTechStackCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TechStackContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -83,6 +85,14 @@ public class AddressBookParserTest {
         FindTagCommand command = (FindTagCommand) parser.parseCommand(
                 FindTagCommand.COMMAND_WORD + " " + String.join(" ", tagKeywords));
         assertEquals(new FindTagCommand(tagKeywords), command);
+    }
+
+    @Test
+    public void parseCommand_findTechStack() throws Exception {
+        List<String> techKeywords = Arrays.asList("foo", "bar", "baz");
+        FindTechStackCommand command = (FindTechStackCommand) parser.parseCommand(
+                FindTechStackCommand.COMMAND_WORD + " " + String.join(" ", techKeywords));
+        assertEquals(new FindTechStackCommand(new TechStackContainsKeywordsPredicate(techKeywords)), command);
     }
 
     @Test
