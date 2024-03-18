@@ -20,18 +20,18 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-
     // Data fields
     private final Address address;
 
     private final Set<Tag> tags = new HashSet<>();
     private ImagePath image;
+    private Rating rating;
 
     /**
-     * Every field must be present and not null.
+     * Name must not be null
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -64,6 +64,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void setRating(int rating) {
+        this.rating.setRating(rating);
     }
 
     /**

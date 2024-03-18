@@ -33,6 +33,7 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.startsWith("> ")) {
                 commandTextField.setText("> " + newValue.replaceAll("^> ?", ""));
+                commandTextField.positionCaret(commandTextField.getText().length()); // Move the caret to the end
             }
             setStyleToDefault();
         });
@@ -43,18 +44,26 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        String commandText = commandTextField.getText().substring(2);
-        if (commandText.trim().isEmpty()) {
-            return;
-        }
-
         try {
-            commandExecutor.execute(commandText);
-            commandTextField.setText("> ");
+            // Extract the actual command text entered by the user.
+            String commandText = commandTextField.getText().substring(2).trim();
+
+            if (!commandText.isEmpty()) {
+                commandExecutor.execute(commandText);
+
+                // Clear the command input only if the command is successful.
+                commandTextField.setText("> ");
+            }
         } catch (CommandException | ParseException e) {
+            // If there's an error, indicate command failure without clearing the text
             setStyleToIndicateCommandFailure();
+            commandTextField.positionCaret(commandTextField.getText().length());
+        } finally {
+            commandTextField.positionCaret(commandTextField.getText().length());
         }
     }
+
+
 
     /**
      * Sets the command box style to use the default style.
@@ -69,12 +78,15 @@ public class CommandBox extends UiPart<Region> {
     private void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
 
-        if (styleClass.contains(ERROR_STYLE_CLASS)) {
-            return;
+        // Just add the error style class, do not clear the text
+        if (!styleClass.contains(ERROR_STYLE_CLASS)) {
+            styleClass.add(ERROR_STYLE_CLASS);
         }
 
-        styleClass.add(ERROR_STYLE_CLASS);
+        // Keep the caret at the end of the text
+        commandTextField.positionCaret(commandTextField.getText().length());
     }
+
 
     /**
      * Represents a function that can execute commands.
