@@ -50,16 +50,18 @@ Avengers Assemble (AA) is a **desktop app for managing contacts, optimized for u
 
 * Some commands require you to include parameters. These parameters are identified by prefixes.
 
-* Here are a list of valid prefixes and what they each refer to.
+* Here are a list of valid prefixes and what they each refer to. 
+* Prefixes encased with '[ ]' are optional.
+* Prefixes with '…' after them can be used multiple times.
 
-| Prefix | What it refers to         |
-|--------|---------------------------|
-|n/      | Name of the person        |
-|p/      | Phone number of person    |
-|e/      | Email of person           |
-|a/      | Address of person         |
-|t/      | Tags of person            |
-|m/      | Matriculation ID of person|
+| Prefix  | What it refers to          | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|---------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/      | Name of the person         | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| p/      | Phone number of person     | Should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| e/      | Email of person            | Should be of the format local-part@domain and adhere to the following constraints: The local part should only contain alphanumeric characters and these characters excluding the parentheses: (+ _ . -) It may not start or end with the special characters. The domain name is made up of domain labels followed by periods. The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters, and consist of alphanumeric characters separated only by hyphens, if any. |         
+| a/      | Address of person          | Can take any values, but should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| [m/]    | Matriculation ID of person | The first letter must be an uppercase 'A', followed by 7 numbers, and ending with an uppercase letter.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| [t/]... | Tags of person             | Should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -87,16 +89,6 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-
-### Parameters:
-
-* n/NAME
-* p/PHONE_NUMBER
-* e/EMAIL
-* a/ADDRESS
-* t/TAG (Optional)
-* m/MATRICULATION_NUMBER (Optional)
 
 ### Adding a person: `add`
 
@@ -259,15 +251,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format, Examples
-|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                            |
-| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                    |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                   |
-| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                        |
-| **Copy**   | `copy`                                                                                                                                                                             |
-| **List**   | `list`                                                                                                                                                                             |
-| **Help**   | `help`                                                                                                                                                                             |
-| **Export to CSV** | `export`                                                                                                                                                                           |
-| **Import** | `import FILEPATH`                                                                                                                                                                  |
+| Action | Format, Examples                                                                                                                                                                                      
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
+| **Clear**  | `clear`                                                                                                                                                                                               |
+| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                       |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                                     |
+| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                                           |
+| **Copy**   | `copy`                                                                                                                                                                                                |
+| **List**   | `list`                                                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                                                |
+| **Export to CSV** | `export to csv`                                                                                                                                                                                       |
+| **Import** | `import FILEPATH`                                                                                                                                                                                     |
+
