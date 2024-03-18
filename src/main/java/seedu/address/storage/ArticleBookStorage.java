@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyArticleBook;
 
 public interface ArticleBookStorage {
     /**
@@ -24,7 +25,7 @@ public interface ArticleBookStorage {
     /**
      * @see #getArticleBookFilePath()
      */
-    Optional<ReadOnlyArticleBook> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyArticleBook> readArticleBook(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyArticleBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -78,21 +79,21 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    Path getArticleBookFilePath() {
+    public Path getArticleBookFilePath() {
+        return articleBookStorage.getArticleBookFilePath();
+    }
+    public Optional<ReadOnlyArticleBook> readArticleBook() throws DataLoadingException {
         return readArticleBook(articleBookStorage.getArticleBookFilePath());
-    };
-    Optional<ReadOnlyArticleBook> readArticleBook() throws DataLoadingException {
-        return readArticleBook(articleBookStorage.getArticleBookFilePath());
-    };
+    }
 
     /**
      * @see #getArticleBookFilePath()
      */
     @Override
-    Optional<ReadOnlyArticleBook> readArticleBook(Path filePath) throws DataLoadingException{
+    public Optional<ReadOnlyArticleBook> readArticleBook(Path filePath) throws DataLoadingException{
         logger.fine("Attempting to read data from file: " + filePath);
         return articleBookStorage.readArticleBook(filePath);
-    };
+    }
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
@@ -100,18 +101,18 @@ public class StorageManager implements Storage {
      * @throws IOException if there was any problem writing to the file.
      */
     @Override
-    void saveArticleBook(ReadOnlyArticleBook articleBook) throws IOException {
-        saveAddressBook(articleBook, articleBookStorage.getArticleBookFilePath());
-    };
+    public void saveArticleBook(ReadOnlyArticleBook articleBook) throws IOException {
+        saveArticleBook(articleBook, articleBookStorage.getArticleBookFilePath());
+    }
 
     /**
      * @see #saveArticleBook(ReadOnlyArticleBook)
      */
     @Override
-    void saveArticleBook(ReadOnlyArticleBook articleBook, Path filePath) throws IOException {
+    public void saveArticleBook(ReadOnlyArticleBook articleBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         articleBookStorage.saveArticleBook(articleBook, filePath);
-    };
+    }
 
 
 }
