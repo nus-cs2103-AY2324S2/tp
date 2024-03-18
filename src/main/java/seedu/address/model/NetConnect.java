@@ -6,8 +6,10 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.utils.CSVExporter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.logic.utils.CSVExporter;
 
 /**
  * Wraps all data at the address-book level
@@ -99,7 +101,8 @@ public class NetConnect implements ReadOnlyNetConnect {
     }
 
     public void exportCSV(String filename){
-
+        CSVExporter exporter =  new CSVExporter(persons, filename);
+        exporter.execute();
     }
 
     //// util methods
