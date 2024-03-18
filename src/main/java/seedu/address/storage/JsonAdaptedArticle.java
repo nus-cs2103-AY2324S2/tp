@@ -1,15 +1,15 @@
 package seedu.address.storage;
 
-import java.io.ObjectInputFilter;
 import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.article.Article;
 
+/**
+ * Jackson-friendly version of {@link Article}.
+ */
 public class JsonAdaptedArticle {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
@@ -41,7 +41,10 @@ public class JsonAdaptedArticle {
         this.category = category;
         this.status = status;
     }
-
+    /**
+     * Construct a {@code JsonAdaptedArticle} with neccessary details
+     * @param sourceArticle
+     */
     public JsonAdaptedArticle(Article sourceArticle) {
         title = sourceArticle.getTitle();
         authors = sourceArticle.getAuthors();
@@ -51,6 +54,11 @@ public class JsonAdaptedArticle {
         status = sourceArticle.getStatus();
     }
 
+    /**
+     * Convert this object into Model's object
+     * @return Model's object
+     * @throws IllegalValueException if data constraints are violated
+     */
     public Article toModelType() throws IllegalValueException {
         if (title == null) {
             throw new IllegalValueException("The title is missing");

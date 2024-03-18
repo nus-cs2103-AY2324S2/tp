@@ -8,13 +8,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.ArticleBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyArticleBook;
 import seedu.address.model.article.Article;
-import seedu.address.model.person.Person;
 
+/**
+ * An immutable ArticleBook that cans be serialized into Json format
+ */
 public class JsonSerializableArticleBook {
     public static final String MESSAGE_DUPLICATE_ARTICLE = "Articles list contains duplicate article(s).";
 
@@ -33,7 +33,7 @@ public class JsonSerializableArticleBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-     public JsonSerializableArticleBook(ReadOnlyArticleBook source) {
+    public JsonSerializableArticleBook(ReadOnlyArticleBook source) {
         articles.addAll(source.getArticleList().stream().map(JsonAdaptedArticle::new).collect(Collectors.toList()));
     }
 

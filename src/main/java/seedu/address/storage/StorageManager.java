@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
-    private  ArticleBookStorage articleBookStorage;
+    private ArticleBookStorage articleBookStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -90,7 +90,7 @@ public class StorageManager implements Storage {
      * @see #getArticleBookFilePath()
      */
     @Override
-    public Optional<ReadOnlyArticleBook> readArticleBook(Path filePath) throws DataLoadingException{
+    public Optional<ReadOnlyArticleBook> readArticleBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
         return articleBookStorage.readArticleBook(filePath);
     }

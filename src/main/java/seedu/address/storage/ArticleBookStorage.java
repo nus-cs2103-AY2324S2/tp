@@ -8,6 +8,9 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyArticleBook;
 
+/**
+ * Represents a storage for {@link seedu.address.model.ArticleBook}.
+ */
 public interface ArticleBookStorage {
     /**
      * Returns the file path of the data file.
@@ -32,7 +35,7 @@ public interface ArticleBookStorage {
      * @param articleBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-   void saveArticleBook(ReadOnlyArticleBook articleBook) throws IOException;
+    void saveArticleBook(ReadOnlyArticleBook articleBook) throws IOException;
 
     /**
      * @see #saveArticleBook(ReadOnlyArticleBook)

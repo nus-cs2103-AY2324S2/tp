@@ -14,7 +14,10 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyArticleBook;
 
-public class JsonArticleBookStorage implements  ArticleBookStorage{
+/**
+ * A class to access ArticleBook data stored as a json file
+ */
+public class JsonArticleBookStorage implements ArticleBookStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
