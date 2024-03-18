@@ -6,7 +6,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-
+/**
+ * Export the address book data as a CSV file.
+ */
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";

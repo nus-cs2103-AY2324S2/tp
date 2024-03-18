@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
+/**
+ * A utility class for exporting data from an address book to a CSV file.
+ * It provides methods to create a CSV file containing the data of persons in the address book.
+ */
 public class CSVExporter {
 
     private final String filename;
@@ -32,6 +36,12 @@ public class CSVExporter {
         }
     }
 
+    /**
+     * Creates a list of string arrays representing the data to be exported to a CSV file.
+     * Each string array represents a row in the CSV file, with the first array containing field names.
+     *
+     * @return A list of string arrays representing the data to be exported.
+     */
     private List<String[]> createDataList() {
         List<String[]> dataList = new ArrayList<>();
         String[] fieldNames = {"Name","Phone","Email","Address","Remark","Tags"};
@@ -45,6 +55,12 @@ public class CSVExporter {
         return dataList;
     }
 
+    /**
+     * Converts a Person object to a string array representing its data.
+     *
+     * @param person The Person object to be converted.
+     * @return A string array representing the data of the Person object.
+     */
     private String[] convertPersonToStringArray(Person person) {
         String[] personStringArray = new String[6]; // To be checked
 
@@ -57,5 +73,4 @@ public class CSVExporter {
 
         return personStringArray;
     }
-
 }

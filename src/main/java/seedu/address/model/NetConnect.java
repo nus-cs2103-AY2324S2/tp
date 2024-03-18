@@ -99,6 +99,13 @@ public class NetConnect implements ReadOnlyNetConnect {
         persons.remove(key);
     }
 
+
+    /**
+     * Exports the data from the address book as a CSV file with the specified filename.
+     * Returns {@code true} if the export operation is successful, {@code false} otherwise.
+     *
+     * @return {@code true} if the export operation is successful, {@code false} otherwise.
+     */
     public boolean exportCSV(String filename){
         CSVExporter exporter =  new CSVExporter(persons, filename);
         exporter.execute();
