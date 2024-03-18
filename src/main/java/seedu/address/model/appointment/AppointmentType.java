@@ -10,7 +10,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class AppointmentType {
 
     public static final String MESSAGE_CONSTRAINTS = "Appointment type should not be empty";
-    //public static final String VALIDATION_REGEX = ".+";
     public static final String VALIDATION_REGEX = "^.+$";
 
     public final String typeName;
