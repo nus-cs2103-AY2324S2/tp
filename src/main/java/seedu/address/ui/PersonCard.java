@@ -4,9 +4,9 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.MailApp;
 import seedu.address.model.person.Person;
 
 /**
@@ -70,8 +70,7 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         email.setOnMouseClicked(event -> {
-            MailApp mailApp = new MailApp();
-            mailApp.setPerson(person);
+            MailApp mailApp = new MailApp(person);
             mailApp.handleEmailClicked();
         });
     }

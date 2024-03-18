@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.logic.commands;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -13,8 +13,17 @@ public class MailApp {
 
     private Person person; // The person associated with this MailApp
 
-    @FXML
-    private Label emailLabel; // JavaFX Label for displaying the email address
+    /**
+     * Initializes a new instance of the MailApp class with the provided person object.
+     * The person object contains the contact information, including the email address,
+     * to whom the email will be sent.
+     *
+     * @param person The Person object representing the contact information of the recipient.
+     */
+    public MailApp(Person person) {
+        this.person = person;
+    }
+
 
     /**
      * Handles the event when the email label is clicked. If the associated person
@@ -26,15 +35,6 @@ public class MailApp {
         if (person != null && person.getEmail() != null) {
             openDefaultMailApp(person.getEmail().toString());
         }
-    }
-
-    /**
-     * Sets the person associated with this MailApp.
-     *
-     * @param person The person object to associate with this MailApp
-     */
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     /**
