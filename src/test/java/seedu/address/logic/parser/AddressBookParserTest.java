@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -15,36 +14,13 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddMaintainerCommand;
-import seedu.address.logic.commands.AddStaffCommand;
-import seedu.address.logic.commands.AddSupplierCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.EditMaintainerCommand;
 import seedu.address.logic.commands.EditMaintainerCommand.EditMaintainerDescriptor;
-import seedu.address.logic.commands.EditStaffCommand;
 import seedu.address.logic.commands.EditStaffCommand.EditStaffDescriptor;
-import seedu.address.logic.commands.EditSupplierCommand;
 import seedu.address.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.HelpDeleteCommand;
-import seedu.address.logic.commands.HelpEditCommand;
-import seedu.address.logic.commands.HelpPoochMaintenanceCommand;
-import seedu.address.logic.commands.HelpPoochStaffCommand;
-import seedu.address.logic.commands.HelpPoochSupplierCommand;
-import seedu.address.logic.commands.HelpSearchCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Maintainer;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Staff;
-import seedu.address.model.person.Supplier;
+import seedu.address.model.person.*;
 import seedu.address.testutil.EditMaintainerDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
@@ -212,6 +188,15 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD) instanceof HelpPoochStaffCommand);
         assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD + " 3")
                 instanceof HelpPoochStaffCommand);
+    }
+
+    @Test
+    public void parseCommand_search() throws Exception {
+        String keyword = " ; name : Poochie";
+        ArgumentMultimap token = ArgumentTokenizer.tokenize(keyword, PREFIX_NAME);
+        SearchCommand command = (SearchCommand) parser.parseCommand(
+                SearchCommand.COMMAND_WORD + keyword);
+        assertEquals(new SearchCommand(new KeywordPredicate(token)), command);
     }
 
 

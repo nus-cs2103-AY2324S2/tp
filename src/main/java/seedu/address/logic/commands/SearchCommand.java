@@ -51,8 +51,8 @@ public class SearchCommand extends Command {
             return false;
         }
 
-        SearchCommand otherSearchNameCommand = (SearchCommand) other;
-        return predicate.equals(otherSearchNameCommand.predicate);
+        SearchCommand otherSearchCommand = (SearchCommand) other;
+        return predicate.equals(otherSearchCommand.predicate);
     }
 
     @Override
