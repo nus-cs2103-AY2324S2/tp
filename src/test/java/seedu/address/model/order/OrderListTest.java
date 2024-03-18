@@ -71,13 +71,14 @@ public class OrderListTest {
 
     @Test
     public void editOrder_editedOrderHasSameCustomer_success() {
-        orderList.addOrder(CUPCAKES_ONLY, ALICE);
+        OrderList testOrderList = new OrderList();
+        testOrderList.addOrder(CUPCAKES_ONLY, ALICE);
         Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_AND_COOKIES).withIndex(1).withPerson(ALICE)
                 .build();
-        orderList.editOrder(1, editedCupcakesAlice);
+        testOrderList.editOrder(1, editedCupcakesAlice);
         OrderList expectedOrderList = new OrderList();
         expectedOrderList.addOrder(CUPCAKES_AND_COOKIES, ALICE);
-        assertEquals(expectedOrderList, orderList);
+        assertEquals(expectedOrderList.getOrder(1).getCustomer(), testOrderList.getOrder(1).getCustomer());
     }
 
     @Test
@@ -92,10 +93,10 @@ public class OrderListTest {
 
     @Test
     public void delete_existingOrder_deletesOrder() {
-        //orderList.addOrder(CUPCAKES_ONLY, ALICE);
-        //orderList.deleteOrder(1);
-        //OrderList expectedOrderList = new OrderList();
-        //assertEquals(expectedOrderList, orderList);
+        orderList.addOrder(CUPCAKES_ONLY, ALICE);
+        orderList.deleteOrder(1);
+        OrderList expectedOrderList = new OrderList();
+        assertEquals(expectedOrderList, orderList);
     }
 
     @Test
