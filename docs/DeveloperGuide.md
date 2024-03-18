@@ -176,11 +176,11 @@ The commands are implemented in the `EditCommand` class which extend the `Comman
 
 The diagram below describes this behaviour concisely. It shows how a user’s command is processed and what message is ultimately shown if they decide to edit a person.
 
-<puml src="diagrams/EditCommandActivityDiagram.puml">
+<puml src="diagrams/EditCommandActivityDiagram.puml" />
 
 The sequence diagram below also shows the interaction between the various components during the execution of the `EditCommand`.
 
-<puml src="diagrams/EditCommandSequenceDiagram.png">
+<puml src="diagrams/EditCommandSequenceDiagram.puml" />
 
 <div style="page-break-after: always;"></div>
 
