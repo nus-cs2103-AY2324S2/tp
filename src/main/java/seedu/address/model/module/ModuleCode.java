@@ -129,7 +129,7 @@ public class ModuleCode {
         if (tutorialClasses.size() == 0) {
             return String.format("Tutorials in %s: None!", value);
         } else {
-            StringBuilder tutorialsString = new StringBuilder(String.format("Tutorials in %s: ", value));
+            StringBuilder tutorialsString = new StringBuilder(String.format("Tutorials in %s:", value));
             for (TutorialClass tutorialClass : tutorialClasses) {
                 tutorialsString.append(" ");
                 tutorialsString.append(tutorialClass.toString());
