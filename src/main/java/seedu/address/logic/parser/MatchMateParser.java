@@ -2,7 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,6 +52,10 @@ public class MatchMateParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
+        if (!isValidArgument(arguments)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
@@ -83,4 +93,39 @@ public class MatchMateParser {
         }
     }
 
+    /**
+     * Checks for prefixes if they are valid with the currently supported prefix codes. The argument is valid
+     * if every prefix occurence in {@code argsString} is lead and trailed by a whitespace.
+     *
+     * @param argsString      Arguments string of the form: {@code preamble <prefix> value <prefix> value ...}
+     * @return                Boolean object that indicates whether {@code argsString} is valid.
+     */
+    private boolean isValidArgument(String argsString) {
+        // Iterate through the list of valid prefixes
+        List<Prefix> listOfPrefixes = new ArrayList<>(
+                List.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SKILL));
+        for (Prefix prefix : listOfPrefixes) {
+            // Find all occurrences of the prefix in the String
+            int start = 0;
+            while (start >= 0) {
+                start = argsString.indexOf(" " + prefix, start);
+
+                // No more occurrences are found
+                if (start == -1) {
+                    break;
+                }
+
+                // Check if there is a whitespace after the prefix
+                int checkIndex = start + (prefix.toString()).length() + 1;
+                if (checkIndex < argsString.length() && argsString.charAt(checkIndex) != ' ') {
+                    return false;
+                }
+
+                // Find occurrences after the current index
+                start += 1;
+            }
+        }
+
+        return true;
+    }
 }

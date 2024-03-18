@@ -29,10 +29,15 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SKILL);
+                ArgumentTokenizer.tokenize(args, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SKILL);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+        try {
+            argMultimap = setPreambleAsName(args, argMultimap);
+        } catch (ParseException e) {
+            throw e;
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -55,4 +60,20 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Isolates the preamble of the {@code argsString} and set is as the name argument of the command.
+     *
+     * @param argsString   Arguments string of the form: {@code preamble <prefix> value <prefix> value ...}
+     * @param argMultimap  ArgumentMultimap object that maps prefixes to their arguments
+     * @return             ArgumentMultimap object that maps the name prefix to the name argument
+     */
+    private static ArgumentMultimap setPreambleAsName(String argsString, ArgumentMultimap argMultimap)
+            throws ParseException {
+        String name = (argsString.split("-", 2))[0];
+        if (name.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+        argMultimap.put(PREFIX_NAME, name);
+        return argMultimap;
+    }
 }
