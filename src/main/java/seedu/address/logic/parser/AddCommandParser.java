@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -32,17 +33,35 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        // Parse phone only if the prefix is present
+        Phone phone = argMultimap.getValue(PREFIX_PHONE).isPresent()
+                ? ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get())
+                : null;
+
+        // Parse email only if the prefix is present
+        Email email = argMultimap.getValue(PREFIX_EMAIL).isPresent()
+                ? ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get())
+                : null;
+
+        // Parse address only if the prefix is present
+        Address address = argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+                ? ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
+                : null;
+
+        // Parse tags only if the prefix is present
+        Set<Tag> tagList = argMultimap.getValue(PREFIX_TAG).isPresent()
+                ? ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
+                : Collections.emptySet();
+
 
         Person person = new Person(name, phone, email, address, tagList);
 

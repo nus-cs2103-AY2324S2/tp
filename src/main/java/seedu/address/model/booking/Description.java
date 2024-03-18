@@ -1,7 +1,6 @@
 package seedu.address.model.booking;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Booking's description in the address book.
@@ -10,13 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Booking names should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    /*
-     * The first character of the booking name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+            "Booking description cannot be blank.";
 
     public final String description;
 
@@ -27,15 +20,16 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
-        checkArgument(isValidName(description), MESSAGE_CONSTRAINTS);
         this.description = description;
     }
 
     /**
      * Returns true if a given string is a valid name.
+     *
+     * Must not be empty or made of spaces.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return !test.isEmpty();
     }
 
     @Override

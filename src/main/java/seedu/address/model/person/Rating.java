@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Person's rating in the address book.
+ */
 public class Rating {
     private int rating; // Rating out of 5 stars
 
