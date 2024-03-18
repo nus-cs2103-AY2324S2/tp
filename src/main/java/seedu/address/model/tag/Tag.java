@@ -22,6 +22,10 @@ public class Tag {
      */
     public Tag(String tagName, TagStatus tagStatus) {
         requireNonNull(tagName);
+        // require the tagStatus not to be null for now
+        // in the future, a null tagStatus input should be set to INCOMPLETE_GOOD
+        // by default
+        requireNonNull(tagStatus);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
         this.tagStatus = tagStatus;
