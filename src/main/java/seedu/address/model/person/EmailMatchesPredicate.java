@@ -10,8 +10,8 @@ import java.util.function.Predicate;
 public class EmailMatchesPredicate implements Predicate<Person> {
     private final String keyword;
 
-    public EmailMatchesPredicate(String s) {
-        keyword = s;
+    public EmailMatchesPredicate(String keyword) {
+        this.keyword = keyword;
     }
 
     @Override

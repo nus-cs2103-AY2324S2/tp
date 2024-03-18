@@ -30,14 +30,14 @@ public class FindCommand extends Command {
     private final EmailMatchesPredicate emailPredicate;
     private final GroupMatchesPredicate groupPredicate;
     private final PhoneMatchesPredicate phonePredicate;
-    private final TagMatchesPredicate tagMatchesPredicate;
+    private final TagMatchesPredicate tagPredicate;
 
     public FindCommand(NameContainsKeywordsPredicate predicate, EmailMatchesPredicate e, GroupMatchesPredicate g, PhoneMatchesPredicate p, TagMatchesPredicate t) {
         namePredicate = predicate;
         emailPredicate = e;
         groupPredicate = g;
         phonePredicate = p;
-        tagMatchesPredicate = t;
+        tagPredicate = t;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class FindCommand extends Command {
                 .and(emailPredicate)
                 .and(groupPredicate)
                 .and(phonePredicate)
-                .and(tagMatchesPredicate));
+                .and(tagPredicate));
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -64,13 +64,21 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return namePredicate.equals(otherFindCommand.namePredicate);
+        return namePredicate.equals(otherFindCommand.namePredicate)
+                && emailPredicate.equals(otherFindCommand.emailPredicate)
+                && groupPredicate.equals(otherFindCommand.groupPredicate)
+                && phonePredicate.equals(otherFindCommand.phonePredicate)
+                && tagPredicate.equals(otherFindCommand.tagPredicate);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", namePredicate)
+                .add("namePredicate", namePredicate)
+                .add("phonePredicate", phonePredicate)
+                .add("emailPredicate", emailPredicate)
+                .add("tagPredicate", tagPredicate)
+                .add("groupPredicate", groupPredicate)
                 .toString();
     }
 }

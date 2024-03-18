@@ -10,14 +10,14 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.PhoneMatchesPredicate;
+import seedu.address.model.person.*;
 import seedu.address.testutil.FindCommandBuilder;
 
 /**
@@ -28,10 +28,9 @@ public class FindCommandTest {
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void equals() {
+    public void test_equals_withNameVariations() {
         // Check that the Builder is first functioning as normal
         assertEquals(new FindCommandBuilder().build(), new FindCommandBuilder().build());
-
         /* -----------------------------------NAME PRED VARIES------------------------------------------*/
         NameContainsKeywordsPredicate firstNamePredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("first"));
@@ -56,7 +55,10 @@ public class FindCommandTest {
 
         // different names -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
 
+    @Test
+    public void test_equals_withPhoneVariations() {
         /* vv --------------------------- PHONE PRED VARIES ------------------------------------ */
         PhoneMatchesPredicate firstPhonePredicate =
                 new PhoneMatchesPredicate("123");
@@ -75,15 +77,68 @@ public class FindCommandTest {
 
         // Different phones returns false
         assertNotEquals(findPhoneFirstCommand, findPhoneSecondCommand);
+    }
 
+    @Test
+    public void test_equals_withEmailVariations() {
         /* vv --------------------------- EMAIL PRED VARIES ------------------------------ */
+        EmailMatchesPredicate firstEmailPredicate =
+                new EmailMatchesPredicate("arona@arhive.com");
+        EmailMatchesPredicate secondEmailPredicate =
+                new EmailMatchesPredicate("shiroko@blue.com");
+
+        FindCommand findEmailFirstCommand = new FindCommandBuilder().withEmail(firstEmailPredicate).build();
+        FindCommand firstEmailCopy = new FindCommandBuilder().withEmail(firstEmailPredicate).build();
+        FindCommand findEmailSecondCommand = new FindCommandBuilder().withEmail(secondEmailPredicate).build();
+
+        // Same values returns true
+        assertEquals(findEmailFirstCommand, firstEmailCopy);
+
+        // Different values returns false
+        assertNotEquals(findEmailFirstCommand, findEmailSecondCommand);
+    }
+
+    @Test
+    public void test_equals_withTagVariations() {
+        /* vv --------------------------- TAG PRED VARIES ----------------------------------- */
+        TagMatchesPredicate tagFirstPredicate = new TagMatchesPredicate(Tag.TagType.Student.name());
+        TagMatchesPredicate tagSecondPredicate = new TagMatchesPredicate(Tag.TagType.TA.name());
+
+        // Same values returns true
+        FindCommand firstFindTagCommand = new FindCommandBuilder().withTag(tagFirstPredicate).build();
+        FindCommand tagCommandCopy = new FindCommandBuilder().withTag(tagFirstPredicate).build();
+        FindCommand secondFindTagCommand = new FindCommandBuilder().withTag(tagSecondPredicate).build();
+
+        assertEquals(firstFindTagCommand, tagCommandCopy);
+
+        assertNotEquals(firstFindTagCommand, secondFindTagCommand);
+    }
+
+    @Test
+    public void test_equals_withGroupVariations() {
+        GroupMatchesPredicate singleGroupPredicate1 = new GroupMatchesPredicate(List.of("CS2103T"));
+        GroupMatchesPredicate singleGroupPredicate2 = new GroupMatchesPredicate(List.of("CS2101"));
+        GroupMatchesPredicate multiGroupPredicate1 = new GroupMatchesPredicate(List.of("CS2101", "CS2103T"));
+        GroupMatchesPredicate multiGroupPredicate2 = new GroupMatchesPredicate(List.of("CS2101", "CS2109S"));
+
+        FindCommand singleGroupCommand1 = new FindCommandBuilder().withGroups(singleGroupPredicate1).build();
+        FindCommand singleGroupCommand2 = new FindCommandBuilder().withGroups(singleGroupPredicate2).build();
+        assertNotEquals(singleGroupCommand1, singleGroupCommand2);
+
+        FindCommand multiGroupCommand1 = new FindCommandBuilder().withGroups(multiGroupPredicate1).build();
+        FindCommand multiGroupCommand2 = new FindCommandBuilder().withGroups(multiGroupPredicate2).build();
+        assertNotEquals(multiGroupCommand1, multiGroupCommand2);
+        assertNotEquals(singleGroupCommand1, multiGroupCommand1);
+
+        FindCommand multiGroupCopy = new FindCommandBuilder().withGroups(multiGroupPredicate1).build();
+        assertEquals(multiGroupCommand1, multiGroupCopy);
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate, , , , );
+        FindCommand command = new FindCommandBuilder().withNamePred(predicate).build();
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -93,7 +148,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate, , , , );
+        FindCommand command = new FindCommandBuilder().withNamePred(predicate).build();
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
@@ -102,7 +157,7 @@ public class FindCommandTest {
     @Test
     public void toStringMethod() {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindCommand findCommand = new FindCommand(predicate, , , , );
+        FindCommand findCommand = new FindCommandBuilder().withNamePred(predicate).build();
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
     }

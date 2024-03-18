@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.group.Group;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class GroupMatchesPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         // Empty set of keywords means we accept any person regardless of their group
-        if (keywords.isEmpty()) {
+        if (keywords.isEmpty() || keywords.contains(FindCommand.NOT_REQUIRED_VALUE)) {
             return true;
         }
 

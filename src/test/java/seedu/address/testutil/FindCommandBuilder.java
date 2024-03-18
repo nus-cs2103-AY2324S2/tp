@@ -5,12 +5,21 @@ import seedu.address.model.person.*;
 
 import java.util.List;
 
+/**
+ * A class that aids in creating {@code FindCommand} instances for testing
+ * The default {@code FindCommand} created results in no filtering
+ */
 public class FindCommandBuilder {
-    public static final NameContainsKeywordsPredicate DEFAULT_NAME_PRED = new NameContainsKeywordsPredicate(List.of());
-    public static final EmailMatchesPredicate DEFAULT_EMAIL_PRED = new EmailMatchesPredicate("");
-    public static final GroupMatchesPredicate DEFAULT_GROUPS_PRED = new GroupMatchesPredicate(List.of());
-    public static final PhoneMatchesPredicate DEFAULT_PHONE_PRED = new PhoneMatchesPredicate("");
-    public static final TagMatchesPredicate DEFAULT_TAG_PRED = new TagMatchesPredicate("TA");
+    public static final NameContainsKeywordsPredicate DEFAULT_NAME_PRED =
+            new NameContainsKeywordsPredicate(List.of(FindCommand.NOT_REQUIRED_VALUE));
+    public static final EmailMatchesPredicate DEFAULT_EMAIL_PRED =
+            new EmailMatchesPredicate(FindCommand.NOT_REQUIRED_VALUE);
+    public static final GroupMatchesPredicate DEFAULT_GROUPS_PRED =
+            new GroupMatchesPredicate(List.of(FindCommand.NOT_REQUIRED_VALUE));
+    public static final PhoneMatchesPredicate DEFAULT_PHONE_PRED =
+            new PhoneMatchesPredicate(FindCommand.NOT_REQUIRED_VALUE);
+    public static final TagMatchesPredicate DEFAULT_TAG_PRED =
+            new TagMatchesPredicate(FindCommand.NOT_REQUIRED_VALUE);
 
     private NameContainsKeywordsPredicate n;
     private EmailMatchesPredicate e;
