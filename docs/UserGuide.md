@@ -109,6 +109,19 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
+### Adding a note to clients : `note`
+
+Format: `note INDEX note/NOTE`
+
+* Edits the note of the client specified by `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Existing note will be updated to the input note.
+
+> While this can also be done using the `edit` command, this `note` command serves as a faster way for users to directly modify a note.
+
+Examples:
+*  `note 1 note/History of asthma` Edits the note of the 1st client to `History of asthma`.
+*  `edit 2 note/Previously sprained both ankles` Edits the note of the 2nd client to `Previously sprained both ankles`.
+
 ### Locating clients by name: `find`
 
 Finds clients whose names contain any of the given keywords.
