@@ -26,8 +26,7 @@ public class CSVExporter {
                 writer.write(String.join(",", row) + System.lineSeparator());
             }
         } catch (IOException e) {
-            //System.err.println("Error writing CSV: " + e.getMessage());
-            // to do: handle error
+            isSuccessful = false;
         } finally {
             isSuccessful = true;
         }

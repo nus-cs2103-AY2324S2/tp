@@ -15,7 +15,8 @@ public class ExportCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Success! Your contact has been exported as ((filename.csv)) ";
 
-    
+    public static final String MESSAGE_FAILURE= "Failed to export contacts."; //to do better fail message
+
     private final String filename;
 
     /**
@@ -32,7 +33,11 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.exportCSV(filename);
+        boolean isSuccessful = model.exportCSV(filename);
+
+        if (!isSuccessful) {
+            throw new CommandException(MESSAGE_FAILURE);
+        }
         return new CommandResult(MESSAGE_SUCCESS + filename);
 
     }

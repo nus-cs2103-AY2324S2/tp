@@ -95,5 +95,5 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void exportCSV(String filename);
+    boolean exportCSV(String filename);
 }

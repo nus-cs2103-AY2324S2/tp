@@ -114,9 +114,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void exportCSV(String filename) {
+    public boolean exportCSV(String filename) {
         requireNonNull(filename);
-        netConnect.exportCSV(filename);
+        return netConnect.exportCSV(filename);
     }
 
     // =========== Filtered Person List Accessors
