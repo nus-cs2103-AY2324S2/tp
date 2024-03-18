@@ -71,10 +71,10 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        dob = source.getDob().dob;
-        ic = source.getIc().ic;
-        admissionDate = source.getAdmissionDate().admissionDate;
-        ward = source.getWard().ward;
+        dob = source.getDob().value;
+        ic = source.getIc().value;
+        admissionDate = source.getAdmissionDate().value;
+        ward = source.getWard().value;
     }
 
     /**
