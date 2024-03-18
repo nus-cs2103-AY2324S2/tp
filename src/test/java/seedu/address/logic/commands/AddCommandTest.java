@@ -167,7 +167,6 @@ public class AddCommandTest {
         public String getNextUniqueId() {
             throw new AssertionError("This method should not be called.");
         }
-        
     }
 
     /**
