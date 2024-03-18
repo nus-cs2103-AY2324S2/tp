@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Sorts contacts in address book accordingly to [Keyword]
+ * [Keyword] : tag/name
+ */
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
@@ -19,7 +22,7 @@ public class SortCommand extends Command {
     /**
      * Get the keyword to know which field to sort by
      *
-     * @param input: keyword
+     * @param input keyword
      * @throws ParseException
      */
     public SortCommand(String input) throws ParseException {

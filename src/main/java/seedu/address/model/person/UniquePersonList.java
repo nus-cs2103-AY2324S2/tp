@@ -151,6 +151,9 @@ public class UniquePersonList implements Iterable<Person> {
         return true;
     }
 
+    /**
+     * Sorts List by the tag they are assigned to
+     */
     public void sortListByTag() {
         internalList.sort(Comparator.comparing(person ->
                 person.getTags().stream()
@@ -161,6 +164,9 @@ public class UniquePersonList implements Iterable<Person> {
         ));
     }
 
+    /**
+     * Sorts List by name
+     */
     public void sortListByName() {
         internalList.sort(Comparator.comparing(person -> person.getName().fullName));
     }
