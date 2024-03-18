@@ -40,6 +40,17 @@ public class Person {
         taskList.add(task);
     }
 
+    public void removeTask(Task task){
+        int i = 0;
+        for (Task t : taskList){
+            if (t.equals(task)){
+                taskList.remove(i);
+                break;
+            }
+            i+=1
+        }
+    }
+
     public Name getName() {
         return name;
     }
