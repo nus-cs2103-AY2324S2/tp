@@ -12,7 +12,6 @@ import seedu.address.model.person.Nric;
  * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
-
     public static final String DEFAULT_NRIC = "T0123456I";
     public static final String DEFAULT_DATE = "2001-01-01";
     public static final String DEFAULT_START_TIME = "23:58";

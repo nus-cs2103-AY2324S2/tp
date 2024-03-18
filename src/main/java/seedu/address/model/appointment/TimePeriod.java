@@ -8,7 +8,7 @@ import java.util.Objects;
  * Represents a time period with start and end times
  * Guarantees: immutable; is valid as declared in {@link #isValidTimePeriod(Time, Time)}
  */
-public class TimePeriod {
+public class TimePeriod implements Comparable<TimePeriod> {
 
     public static final String MESSAGE_CONSTRAINTS = "End time of time period "
             + "should be after start time";
@@ -82,6 +82,11 @@ public class TimePeriod {
     @Override
     public int hashCode() {
         return Objects.hash(startTime, endTime);
+    }
+
+    @Override
+    public int compareTo(TimePeriod other) {
+        return startTime.compareTo(other.startTime);
     }
 
 }

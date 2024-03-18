@@ -29,7 +29,8 @@ public class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("nric") String nric, @JsonProperty("date") String date,
+    public JsonAdaptedAppointment(@JsonProperty("nric") String nric,
+                             @JsonProperty("date") String date,
                              @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
                              @JsonProperty("appointmentType") String appointmentType,
                                   @JsonProperty("note") String note) {
