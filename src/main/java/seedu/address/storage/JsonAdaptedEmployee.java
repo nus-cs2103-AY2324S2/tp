@@ -35,7 +35,7 @@ class JsonAdaptedEmployee {
     private final String team;
     private final String role;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    private final UniqueId uid;
+    private final Integer uid;
 
     /**
      * Constructs a {@code JsonAdaptedEmployee} with the given employee details.
@@ -45,7 +45,7 @@ class JsonAdaptedEmployee {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("team") String team, @JsonProperty("role") String role,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("uid") UniqueId uid) {
+            @JsonProperty("uid") Integer uid) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -68,7 +68,7 @@ class JsonAdaptedEmployee {
         address = source.getAddress().value;
         team = source.getTeam().teamName;
         role = source.getRole().value;
-        uid = source.getUid();
+        uid = source.getUid().getUidValue();
 
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -141,13 +141,15 @@ class JsonAdaptedEmployee {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName()));
         }
 
-        if (uid.isValidUid(uid) == false) {
+        if (UniqueId.checkIfValid(uid)) {
             throw new IllegalValueException(
                     String.format(INVALID_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName()));
         }
 
+        final UniqueId modelUid = new UniqueId(uid);
+
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTeam, modelRole, modelTags, uid);
+        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTeam, modelRole, modelTags, modelUid);
     }
 
 }
