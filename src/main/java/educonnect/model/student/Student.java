@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import educonnect.commons.util.ToStringBuilder;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
 /**
@@ -24,17 +25,20 @@ public class Student {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
+    private final Timetable timetable;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Set<Tag> tags) {
-        requireAllNonNull(name, studentId, email, telegramHandle, tags);
+    public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Set<Tag> tags,
+                   Timetable timetable) {
+        requireAllNonNull(name, studentId, email, telegramHandle, tags, timetable);
         this.name = name;
         this.studentId = studentId;
         this.email = email;
         this.telegramHandle = telegramHandle;
         this.tags.addAll(tags);
+        this.timetable = timetable;
     }
 
     public Name getName() {
@@ -59,6 +63,10 @@ public class Student {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Timetable getTimetable() {
+        return timetable;
     }
 
     /**

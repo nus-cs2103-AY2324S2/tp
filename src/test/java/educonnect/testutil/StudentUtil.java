@@ -5,6 +5,7 @@ import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE;
 
 import java.util.Set;
 
@@ -30,13 +31,14 @@ public class StudentUtil {
      */
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_STUDENT_ID + student.getStudentId().value + " ");
-        sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
-        sb.append(PREFIX_TELEGRAM_HANDLE + student.getTelegramHandle().value + " ");
+        sb.append(PREFIX_NAME).append(student.getName().fullName).append(" ");
+        sb.append(PREFIX_STUDENT_ID).append(student.getStudentId().value).append(" ");
+        sb.append(PREFIX_EMAIL).append(student.getEmail().value).append(" ");
+        sb.append(PREFIX_TELEGRAM_HANDLE).append(student.getTelegramHandle().value).append(" ");
         student.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+            s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+        sb.append(PREFIX_TIMETABLE).append(student.getTimetable().convertToCommandString());
+
         return sb.toString();
     }
 
@@ -48,16 +50,19 @@ public class StudentUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getStudentId().ifPresent(phone -> sb.append(PREFIX_STUDENT_ID).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getTelegramHandle().ifPresent(address -> sb.append(PREFIX_TELEGRAM_HANDLE)
-            .append(address.value).append(" "));
+        descriptor.getTelegramHandle().ifPresent(
+                address -> sb.append(PREFIX_TELEGRAM_HANDLE).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        descriptor.getTimetable().ifPresent(
+                timetable -> sb.append(PREFIX_TIMETABLE).append(timetable.convertToCommandString()));
+
         return sb.toString();
     }
 }

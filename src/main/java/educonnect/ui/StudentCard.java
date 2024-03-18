@@ -40,6 +40,8 @@ public class StudentCard extends UiPart<Region> {
     private Label telegram;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label timetable;
 
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
@@ -54,5 +56,6 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        timetable.setText(student.getTimetable().toString());
     }
 }

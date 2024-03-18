@@ -4,11 +4,81 @@
     "studentId": "A1234567P",
     "email": "alice@example.com",
     "telegramHandle": "@alicepaul",
-    "tags": [ "friends" ]
+    "tags": [ "friends" ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   }, {
     "name": "Aliced Pauline",
     "studentId": "A1234567P",
     "email": "pauline@example.com",
-    "telegramHandle": "@paulice"
+    "telegramHandle": "@paulice",
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   } ]
 }

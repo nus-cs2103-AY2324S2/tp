@@ -15,6 +15,7 @@ import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
 /**
@@ -29,14 +30,18 @@ class JsonAdaptedStudent {
     private final String email;
     private final String telegramHandle;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final Timetable timetable;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
-            @JsonProperty("email") String email, @JsonProperty("telegramHandle") String telegramHandle,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name,
+                              @JsonProperty("studentId") String studentId,
+                              @JsonProperty("email") String email,
+                              @JsonProperty("telegramHandle") String telegramHandle,
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                              @JsonProperty("timetable") Timetable timetable) {
         this.name = name;
         this.studentId = studentId;
         this.email = email;
@@ -44,6 +49,7 @@ class JsonAdaptedStudent {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.timetable = timetable;
     }
 
     /**
@@ -57,6 +63,7 @@ class JsonAdaptedStudent {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        timetable = source.getTimetable();
     }
 
     /**
@@ -106,7 +113,13 @@ class JsonAdaptedStudent {
         final TelegramHandle modeltelegramHandle = new TelegramHandle(telegramHandle);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelstudentId, modelEmail, modeltelegramHandle, modelTags);
+
+        if (timetable == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Timetable.class.getSimpleName()));
+        }
+
+        return new Student(modelName, modelstudentId, modelEmail, modeltelegramHandle, modelTags, timetable);
     }
 
 }

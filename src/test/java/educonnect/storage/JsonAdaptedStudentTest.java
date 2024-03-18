@@ -16,6 +16,8 @@ import educonnect.model.student.Email;
 import educonnect.model.student.Name;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Timetable;
+import educonnect.testutil.TypicalTimetableAndValues;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
@@ -31,6 +33,7 @@ public class JsonAdaptedStudentTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final Timetable VALID_DEFAULT_EMPTY_TIMETABLE = TypicalTimetableAndValues.DEFAULT_EMPTY_TIMETABLE;
 
     @Test
     public void toModelType_validStudentDetails_returnsStudent() throws Exception {
@@ -41,7 +44,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(INVALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_TAGS);
+                new JsonAdaptedStudent(INVALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, VALID_TELEGRAM_HANDLE,
+                        VALID_TAGS, VALID_DEFAULT_EMPTY_TIMETABLE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -49,7 +53,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(
-            null, VALID_STUDENT_ID, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_TAGS);
+            null, VALID_STUDENT_ID, VALID_EMAIL, VALID_TELEGRAM_HANDLE,
+                VALID_TAGS, VALID_DEFAULT_EMPTY_TIMETABLE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -57,7 +62,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidStudentId_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, INVALID_STUDENT_ID, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_TAGS);
+                new JsonAdaptedStudent(VALID_NAME, INVALID_STUDENT_ID, VALID_EMAIL,
+                        VALID_TELEGRAM_HANDLE, VALID_TAGS, VALID_DEFAULT_EMPTY_TIMETABLE);
         String expectedMessage = StudentId.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -65,7 +71,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullStudentId_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(
-            VALID_NAME, null, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_TAGS);
+            VALID_NAME, null, VALID_EMAIL, VALID_TELEGRAM_HANDLE,
+                VALID_TAGS, VALID_DEFAULT_EMPTY_TIMETABLE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -74,7 +81,8 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(
-                    VALID_NAME, VALID_STUDENT_ID, INVALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_TAGS);
+                    VALID_NAME, VALID_STUDENT_ID, INVALID_EMAIL, VALID_TELEGRAM_HANDLE,
+                        VALID_TAGS, VALID_DEFAULT_EMPTY_TIMETABLE);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -82,7 +90,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(
-            VALID_NAME, VALID_STUDENT_ID, null, VALID_TELEGRAM_HANDLE, VALID_TAGS);
+            VALID_NAME, VALID_STUDENT_ID, null, VALID_TELEGRAM_HANDLE, VALID_TAGS, VALID_DEFAULT_EMPTY_TIMETABLE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -91,7 +99,8 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidTelegramHandle_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(
-                    VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, INVALID_TELEGRAM_HANDLE, VALID_TAGS);
+                    VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, INVALID_TELEGRAM_HANDLE,
+                        VALID_TAGS, VALID_DEFAULT_EMPTY_TIMETABLE);
         String expectedMessage = TelegramHandle.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -99,7 +108,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullTelegramHandle_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(
-            VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, null, VALID_TAGS);
+            VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, null,
+                VALID_TAGS, VALID_DEFAULT_EMPTY_TIMETABLE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TelegramHandle.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -109,8 +119,17 @@ public class JsonAdaptedStudentTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, VALID_TELEGRAM_HANDLE, invalidTags);
+                new JsonAdaptedStudent(VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL,
+                        VALID_TELEGRAM_HANDLE, invalidTags, VALID_DEFAULT_EMPTY_TIMETABLE);
         assertThrows(IllegalValueException.class, student::toModelType);
     }
 
+    @Test
+    public void toModelType_nullTimetable_throwsIllegalValueException() {
+        JsonAdaptedStudent student = new JsonAdaptedStudent(
+                VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_TAGS, null);
+
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Timetable.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    }
 }

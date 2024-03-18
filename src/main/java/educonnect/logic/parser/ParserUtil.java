@@ -1,9 +1,12 @@
 package educonnect.logic.parser;
 
+import static educonnect.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import educonnect.commons.core.index.Index;
@@ -13,6 +16,10 @@ import educonnect.model.student.Email;
 import educonnect.model.student.Name;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
+import educonnect.model.student.timetable.Period;
+import educonnect.model.student.timetable.Timetable;
+import educonnect.model.student.timetable.exceptions.NumberOfDaysException;
+import educonnect.model.student.timetable.exceptions.OverlapPeriodException;
 import educonnect.model.tag.Tag;
 
 /**
@@ -99,7 +106,7 @@ public class ParserUtil {
     }
 
     /**
-     * Capitalises the 'A' at the start of the Student Id
+     * Capitalises the 'A' at the start of the Student ID
      * @param trimmedId
      * @return Capitalised String of Student ID
      */
@@ -166,5 +173,60 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code ArrayList<String> allDays} into a {@code Timetable}.
+     * Defaults to empty Timetable if no arguments (empty {@code allDays}).
+     */
+    public static Timetable parseTimetable(ArrayList<String> allDays) throws ParseException {
+        requireNonNull(allDays);
+        Timetable timetable = new Timetable();
+        for (int i = 1; i < allDays.size(); i++) {
+            parseDay(i, timetable, parsePeriods(allDays.get(i - 1)));
+        }
+        return timetable;
+    }
+
+    /**
+     * Parses {@code Optional<ArrayList<String>> periods} into a {@code Day}. Helper method.
+     */
+    public static boolean parseDay(int dayNumber, Timetable timetable, Optional<ArrayList<Period>> allPeriods)
+            throws NumberOfDaysException, OverlapPeriodException {
+        requireAllNonNull(dayNumber, timetable, allPeriods);
+        if (allPeriods.isPresent()) {
+            for (Period period : allPeriods.get()) {
+                timetable.addPeriodToDay(dayNumber, period);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Parses {@code String allPeriods} into a {@code Optional<ArrayList<String>> periods}. Helper method.
+     */
+    public static Optional<ArrayList<Period>> parsePeriods(String allPeriodsString) throws ParseException {
+        requireNonNull(allPeriodsString);
+        if (allPeriodsString.isBlank()) { // no period in this day
+            return Optional.empty();
+        }
+        ArrayList<Period> periodsForDay = new ArrayList<>();
+        String[] allPeriods = allPeriodsString.split(",");
+
+        for (String eachPeriod : allPeriods) {
+            periodsForDay.add(parsePeriod(eachPeriod));
+        }
+        return Optional.of(periodsForDay);
+    }
+
+    /**
+     * Parses {@code String period} into a {@code Period}. Helper method.
+     */
+    public static Period parsePeriod(String eachPeriod) throws ParseException {
+        String trimmedPeriod = eachPeriod.trim();
+        if (!Period.isValidPeriod(trimmedPeriod)) {
+            throw new ParseException(Period.PERIOD_CONSTRAINTS);
+        }
+        return new Period("period", trimmedPeriod);
     }
 }

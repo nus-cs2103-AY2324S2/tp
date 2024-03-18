@@ -3,6 +3,41 @@
     "name": "Hans Muster",
     "studentId": "A9482424M",
     "email": "invalid@email!3e",
-    "telegramHandle": "@hans"
+    "telegramHandle": "@hans",
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   } ]
 }

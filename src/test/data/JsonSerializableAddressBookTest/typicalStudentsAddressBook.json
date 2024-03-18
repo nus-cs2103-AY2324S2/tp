@@ -5,42 +5,239 @@
     "studentId" : "A0077493U",
     "email" : "alice@example.com",
     "telegramHandle" : "@Paulice",
-    "tags" : [ "tutorial-1" ]
+    "tags" : [ "tutorial-1" ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   }, {
     "name" : "Benson Meier",
     "studentId" : "A1235678J",
     "email" : "johnd@example.com",
     "telegramHandle" : "@benmeier",
-    "tags" : [ "tutorial-2", "strong-student" ]
+    "tags" : [ "tutorial-2", "strong-student" ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   }, {
     "name" : "Carl Kurz",
     "studentId" : "A9876543N",
     "email" : "heinz@example.com",
     "telegramHandle" : "@wallstreet",
-    "tags" : [ ]
+    "tags" : [ ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   }, {
     "name" : "Daniel Meier",
     "studentId" : "A1357924D",
     "email" : "cornelia@example.com",
     "telegramHandle" : "@danelia",
-    "tags" : [ "tutorial-3" ]
+    "tags" : [ "tutorial-3" ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   }, {
     "name" : "Elle Meyer",
     "studentId" : "A9482224Y",
     "email" : "werner@example.com",
     "telegramHandle" : "@michegan",
-    "tags" : [ ]
+    "tags" : [ ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   }, {
     "name" : "Fiona Kunz",
     "studentId" : "A9482427K",
     "email" : "lydia@example.com",
     "telegramHandle" : "@littletokyo",
-    "tags" : [ ]
+    "tags" : [ ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   }, {
     "name" : "George Best",
     "studentId" : "A6482442L",
     "email" : "anna@example.com",
     "telegramHandle" : "@georgie",
-    "tags" : [ ]
+    "tags" : [ ],
+    "timetable" : {
+      "days" : [ {
+        "dayOfWeek" : "MONDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "TUESDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "WEDNESDAY",
+        "periods" : [ {
+          "periodName" : "period",
+          "timeStart" : "13:00:00",
+          "timeEnd" : "15:00:00"
+        }, {
+          "periodName" : "period",
+          "timeStart" : "16:00:00",
+          "timeEnd" : "18:00:00"
+        } ]
+      }, {
+        "dayOfWeek" : "THURSDAY",
+        "periods" : [ ]
+      }, {
+        "dayOfWeek" : "FRIDAY",
+        "periods" : [ ]
+      } ],
+      "numOfDays" : 5
+    }
   } ]
 }
