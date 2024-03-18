@@ -1,12 +1,12 @@
 package seedu.address.model.meeting;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
-
-import java.util.ArrayList;
 import java.util.function.Predicate;
 
+import seedu.address.model.person.Person;
+
+/**
+ * Tests that a {@code Meeting} belongs to the specified client.
+ */
 public class MeetingBelongingToClientPredicate implements Predicate<Meeting> {
     private final Person client;
 

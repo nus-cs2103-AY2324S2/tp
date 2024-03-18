@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -10,9 +12,11 @@ import seedu.address.model.Model;
 import seedu.address.model.meeting.MeetingBelongingToClientPredicate;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-
+/**
+ * Represents a command to view a client in the address book.
+ * This command selects a client based on the specified index
+ * and updates the view to show the client's details and his/her associated meetings.
+ */
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
@@ -20,16 +24,22 @@ public class ViewCommand extends Command {
             + "Parameters: \n"
             + "index - Index shown in the corresponding contact list\n"
             + "Example: " + COMMAND_WORD + " 2";
-
-    private final Index clientIndex;
-
     public static final String MESSAGE_SUCCESS = "You are now viewing Client with index: ";
+    private final Index clientIndex;
 
 
     public ViewCommand(Index clientIndex) {
         this.clientIndex = clientIndex;
     }
 
+    /**
+     * Executes the view command and updates the current view to show the details of the selected client
+     * and their associated meetings.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return the command result of the execution, indicating success.
+     * @throws CommandException if the provided index is invalid.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -46,6 +56,13 @@ public class ViewCommand extends Command {
 
         return new CommandResult(MESSAGE_SUCCESS + this.clientIndex.getOneBased());
     }
+
+    /**
+     * Compares this ViewCommand with another object to check for equality.
+     *
+     * @param other the other object to compare with.
+     * @return true if both commands are equal, otherwise false.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
