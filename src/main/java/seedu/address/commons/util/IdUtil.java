@@ -45,7 +45,7 @@ public class IdUtil {
                 return Entities.APPOINTMENT;
             } else if (c == 'p') {
                 return Entities.PATIENT;
-            } else if (c == 'D') {
+            } else if (c == 'd') {
                 return Entities.DOCTOR;
             }
             throw new IllegalArgumentException("Invalid character input - no corresponding entity");
@@ -65,6 +65,7 @@ public class IdUtil {
         HashSet<String> idSet = allIds.get(entity);
         if (idSet == null) {
             idSet = new HashSet<>();
+            allIds.put(entity, idSet);
         }
         Random random = new Random();
         String initId = String.valueOf(random.nextInt(90000000) + 10000000);
@@ -85,6 +86,17 @@ public class IdUtil {
         Entities entity = Entities.getEntityFromChar(id.substring(0, 1).charAt(0));
         HashSet<String> idSet = allIds.get(entity);
         idSet.remove(id.substring(1, id.length()));
+    }
+
+    /**
+     * Returns allIds as an unmodifiable map
+     * @return unmodifiable map containing ids
+     */
+    public static boolean hasId(String id) {
+        requireNonNull(id);
+        Entities entity = Entities.getEntityFromChar(id.substring(0, 1).charAt(0));
+        HashSet<String> idSet = allIds.get(entity);
+        return idSet.contains(id.substring(1, id.length()));
     }
 
     /**

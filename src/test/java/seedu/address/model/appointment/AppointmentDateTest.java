@@ -5,15 +5,12 @@ import org.junit.jupiter.api.Test;
 class AppointmentDateTest {
 
     @Test
-    void isValidDate() {
+    public void isValidDate_validDate_returnsTrue() {
+        //TODO: Implement
     }
 
     @Test
     void testToString() {
-    }
-
-    @Test
-    void testEquals() {
     }
 
     @Test

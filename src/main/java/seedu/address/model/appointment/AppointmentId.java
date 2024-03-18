@@ -58,13 +58,7 @@ public class AppointmentId {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(obj instanceof AppointmentId)) {
-            return false;
-        }
-
-        AppointmentId ai = (AppointmentId) obj;
-        return appointmentId.equals(ai.appointmentId);
+        return false;
     }
 
     /**
