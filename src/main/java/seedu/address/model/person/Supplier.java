@@ -22,7 +22,7 @@ public class Supplier extends Person {
      */
     public Supplier(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                     Product product, Price price) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email, address, new Note(""), tags);
         requireAllNonNull(product, price);
         this.product = product;
         this.price = price;

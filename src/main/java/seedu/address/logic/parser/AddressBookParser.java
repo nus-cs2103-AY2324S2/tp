@@ -29,11 +29,8 @@ import seedu.address.logic.commands.HelpPoochStaffCommand;
 import seedu.address.logic.commands.HelpPoochSupplierCommand;
 import seedu.address.logic.commands.HelpSearchCommand;
 import seedu.address.logic.commands.ListCommand;
-<<<<<<< HEAD
 import seedu.address.logic.commands.SearchCommand;
-=======
 import seedu.address.logic.commands.NoteCommand;
->>>>>>> Update-Ug-HelpCommand
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

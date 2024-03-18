@@ -16,6 +16,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Employment;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Price;
@@ -43,6 +44,7 @@ class JsonAdaptedPerson {
     private String price;
     private String skill;
     private String commission;
+    private String note;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -51,6 +53,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("note") String note,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("salary") String salary,
                              @JsonProperty("employment") String employment,
@@ -67,6 +70,7 @@ class JsonAdaptedPerson {
         this.product = product;
         this.price = price;
         this.skill = skill;
+        this.note = note;
         this.commission = commission;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -81,6 +85,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        note = source.getNote().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -169,7 +174,15 @@ class JsonAdaptedPerson {
                     modelSkill, modelCommission);
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
+        }
+        if (!Note.isValidNote(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        }
+        final Note modelNote = new Note(note);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
     }
 
 }
