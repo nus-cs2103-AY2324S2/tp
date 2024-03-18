@@ -63,6 +63,8 @@ public class PersonUtil {
         }
         descriptor.getUpcoming()
                 .ifPresent(upcoming -> sb.append(PREFIX_UPCOMING).append(upcoming.toString()).append(" "));
+        descriptor.getLastcontact().ifPresent(lastContact -> sb.append(PREFIX_LASTCONTACT).append(" ")
+                .append(lastContact.getDateTimeString()));
         return sb.toString();
     }
 }
