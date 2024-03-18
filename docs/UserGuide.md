@@ -22,7 +22,7 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`/help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/h ; employment : part-time`  : Adds a staff contact named `Poochie` to the Pooch Planner.
@@ -57,23 +57,23 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
+### Viewing help : `/help`
 
 Shows a message of how to write commands for all commands or a specfic command.
 
 ### Get help for all commands
-Format: `help`
+Format: `/help`
 
 ### Get help for a specific command
-Format: `help-[command type]`
+Format: `/help-[command type]`
 
 Examples:
-* `help-poochstaff`
-* `help-poochsupplier`
-* `help-poochmaintenance`
-* `help-edit`
-* `help-delete`
-* `help-search`
+* `/help-poochstaff`
+* `/help-poochsupplier`
+* `/help-poochmaintenance`
+* `/help-edit`
+* `/help-delete`
+* `/help-search`
 
 
 ### Adding a contact: `Add`
@@ -223,11 +223,11 @@ Action | Format, Examples
 **Edit** | `/edit ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
 **Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
 **List** | `/list`
-**Help** | `help`
-**Help PoochStaff** | `help-poochstaff`
-**Help PoochSupplier** | `help-poochsupplier`
-**Help PoochMaintenance** | `help-poochmaintenance`
-**Help Delete** | `help-delete`
-**Help Edit** | `help-edit`
-**Help Search** | `help-search`
+**Help** | `/help`
+**Help PoochStaff** | `/help-poochstaff`
+**Help PoochSupplier** | `/help-poochsupplier`
+**Help PoochMaintenance** | `/help-poochmaintenance`
+**Help Delete** | `/help-delete`
+**Help Edit** | `/help-edit`
+**Help Search** | `/help-search`
 `

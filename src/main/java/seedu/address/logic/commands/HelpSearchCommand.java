@@ -7,7 +7,7 @@ import seedu.address.model.Model;
  */
 public class HelpSearchCommand extends Command {
 
-    public static final String COMMAND_WORD = "help-search";
+    public static final String COMMAND_WORD = "/help-search";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions for search command.\n"
             + "Example: " + COMMAND_WORD;
