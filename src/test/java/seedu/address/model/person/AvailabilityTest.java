@@ -29,7 +29,7 @@ public class AvailabilityTest {
         assertFalse(Availability.isValidAvailability("^")); // only non-alphanumeric characters
         assertFalse(Availability.isValidAvailability("peter*")); // contains non-alphanumeric characters
         assertFalse(Availability.isValidAvailability("Available")); // alphabets only
-        
+
         // valid availability
         assertTrue(Availability.isValidAvailability("01/01/2024")); // date format
     }
