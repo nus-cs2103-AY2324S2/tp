@@ -26,7 +26,7 @@ public class IdentityCardNumber {
     public IdentityCardNumber(String identityCardNumber) {
         requireNonNull(identityCardNumber);
         checkArgument(isValidIdentityCardNumber(identityCardNumber), MESSAGE_CONSTRAINTS);
-        value = identityCardNumber;
+        value = identityCardNumber.toUpperCase();
     }
 
     /**
