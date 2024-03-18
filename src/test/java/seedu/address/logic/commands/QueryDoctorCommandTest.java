@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.DON;
 import static seedu.address.testutil.TypicalPersons.JAMES;
-import static seedu.address.testutil.TypicalPersons.ERIC;
-import static seedu.address.testutil.TypicalPersons.BROWN;
 import static seedu.address.testutil.TypicalPersons.JAMES_GOH;
+import static seedu.address.testutil.TypicalPersons.RON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -68,11 +68,11 @@ public class QueryDoctorCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        DoctorNameContainsKeywordsPredicate predicate = preparePredicate("James Eric");
+        DoctorNameContainsKeywordsPredicate predicate = preparePredicate("Don Ron");
         QueryDoctorCommand command = new QueryDoctorCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(JAMES, ERIC), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(DON, RON), model.getFilteredPersonList());
     }
 
     @Test

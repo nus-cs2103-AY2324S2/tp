@@ -19,30 +19,30 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PatientNameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindCommandTest {
+public class QueryPatientCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PatientNameContainsKeywordsPredicate firstPredicate =
+                new PatientNameContainsKeywordsPredicate((Collections.singletonList("first")));
+        PatientNameContainsKeywordsPredicate secondPredicate =
+                new PatientNameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        QueryPatientCommand findFirstCommand = new QueryPatientCommand(firstPredicate);
+        QueryPatientCommand findSecondCommand = new QueryPatientCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        QueryPatientCommand findFirstCommandCopy = new QueryPatientCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -58,8 +58,8 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        PatientNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        QueryPatientCommand command = new QueryPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -68,8 +68,8 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Alice Benson");
-        FindCommand command = new FindCommand(predicate);
+        PatientNameContainsKeywordsPredicate predicate = preparePredicate("Alice Benson");
+        QueryPatientCommand command = new QueryPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
@@ -78,8 +78,8 @@ public class FindCommandTest {
     @Test
     public void execute_singleKeyword_multiplePatientsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Carl");
-        FindCommand command = new FindCommand(predicate);
+        PatientNameContainsKeywordsPredicate predicate = preparePredicate("Carl");
+        QueryPatientCommand command = new QueryPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, CARL_GOH), model.getFilteredPersonList());
@@ -88,8 +88,8 @@ public class FindCommandTest {
     @Test
     public void execute_noMatch_noPatientFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Zorro");
-        FindCommand command = new FindCommand(predicate);
+        PatientNameContainsKeywordsPredicate predicate = preparePredicate("Zorro");
+        QueryPatientCommand command = new QueryPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertTrue(model.getFilteredPersonList().isEmpty());
@@ -97,16 +97,17 @@ public class FindCommandTest {
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindCommand findCommand = new FindCommand(predicate);
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        PatientNameContainsKeywordsPredicate predicate =
+                new PatientNameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        QueryPatientCommand findCommand = new QueryPatientCommand(predicate);
+        String expected = QueryPatientCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
     }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PatientNameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PatientNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

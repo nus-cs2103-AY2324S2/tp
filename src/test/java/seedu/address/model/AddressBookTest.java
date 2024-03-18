@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PatientBuilder;
 
 public class AddressBookTest {
@@ -100,6 +101,28 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+    }
+
+    @Test
+    public void getPersonByNric_bookHasPerson_returnsPerson() {
+        addressBook.addPerson(ALICE);
+        assertEquals(ALICE, addressBook.getPersonByNric(ALICE.getNric().toString()));
+    }
+
+    @Test
+    public void getPersonByNric_bookDoesNotHavePerson_throwsPersonNotFoundException() {
+        addressBook.addPerson(ALICE);
+        assertThrows(PersonNotFoundException.class, () -> addressBook.getPersonByNric("T1234567G"));
+    }
+
+    @Test
+    public void getPersonByNric_nricInputIsNull_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.getPersonByNric(null));
+    }
+
+    @Test
+    public void getPersonByNric_addressbookIsEmpty_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> addressBook.getPersonByNric(ALICE.getNric().toString()));
     }
 
 }

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -23,10 +24,13 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.QueryDoctorCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.QueryPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.PatientNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
@@ -40,8 +44,15 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addDoctor() throws Exception {
         Doctor person = new DoctorBuilder().build();
-        AddDoctorCommand command = (AddDoctorCommand) parser.parseCommand(PersonUtil.getAddPatientCommand(person));
+        AddDoctorCommand command = (AddDoctorCommand) parser.parseCommand(PersonUtil.getAddDoctorCommand(person));
         assertEquals(new AddDoctorCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addpatient() throws Exception {
+        Patient person = new PatientBuilder().build();
+        AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PersonUtil.getAddPatientCommand(person));
+        assertEquals(new AddPatientCommand(person), command);
     }
 
     @Test
@@ -89,6 +100,14 @@ public class AddressBookParserTest {
         assertEquals(new QueryDoctorCommand(new DoctorNameContainsKeywordsPredicate(keywords)), command);
     }
 
+    @Test
+    public void parseCommand_querypatient() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        QueryPatientCommand command = (QueryPatientCommand) parser.parseCommand(
+                QueryPatientCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new QueryPatientCommand(new PatientNameContainsKeywordsPredicate(keywords)), command);
+    }
 
     @Test
     public void parseCommand_help() throws Exception {
@@ -110,6 +129,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

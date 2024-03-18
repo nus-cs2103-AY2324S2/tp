@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,30 +23,32 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PatientBuilder().withNric("S1234567A").withName("Alice Pauline")
             .withDoB("2000-01-03").withPhone("94351253").build();
+
     public static final Person BENSON = new PatientBuilder().withNric("S8734985A").withName("Benson Chen")
             .withDoB("2002-01-03").withPhone("88927639").build();
 
     public static final Person CARL = new PatientBuilder().withNric("S2378593A").withName("Carl Sim")
             .withDoB("2005-01-03").withPhone("87436749").build();
-
     public static final Person AMY = new PatientBuilder().withNric(VALID_NRIC_AMY).withName(VALID_NAME_AMY)
             .withDoB(VALID_DOB_AMY).withPhone(VALID_PHONE_AMY).build();
     public static final Person BOB = new PatientBuilder().withNric(VALID_NRIC_BOB).withName(VALID_NAME_BOB)
             .withDoB(VALID_DOB_BOB).withPhone(VALID_PHONE_BOB).build();
+    public static final Person CARL_GOH = new PatientBuilder().withNric("S1234343B").withName("Carl Goh")
+            .withDoB("2001-02-24").withPhone("98173241").build();
 
 
     // Doctors
 
-    public static final Person JAMES = new DoctorBuilder().withNric("S1234567A").withName("Alice Pauline")
-            .withDoB("2000-01-03").withPhone("94351253").build();
-
-    public static final Person JAMES_GOH = new DoctorBuilder().withNric("S1123133A").withName("Alice Pauline")
-            .withDoB("2020-01-04").withPhone("94351243").build();
-    public static final Person ERIC = new DoctorBuilder().withNric("S8734985A").withName("Benson Chen")
-            .withDoB("2002-01-03").withPhone("88927639").build();
-
-    public static final Person BROWN = new DoctorBuilder().withNric("S2378593A").withName("Carl Sim")
+    public static final Person JAMES = new DoctorBuilder().withNric("S1234367A").withName("James Tan")
+            .withDoB("2020-01-03").withPhone("94351223").build();
+    public static final Person JAMES_GOH = new DoctorBuilder().withNric("S1124133A").withName("James Goh")
+            .withDoB("2010-01-04").withPhone("94353243").build();
+    public static final Person DON = new DoctorBuilder().withNric("T0232948D").withName("Don Cher")
+            .withDoB("2002-01-04").withPhone("98765433").build();
+    public static final Person BROWN = new DoctorBuilder().withNric("S2378593A").withName("Brown Lee")
             .withDoB("2005-01-03").withPhone("87436749").build();
+    public static final Person RON = new DoctorBuilder().withNric("S2378193A").withName("Ron Tan")
+            .withDoB("2005-01-02").withPhone("87432349").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -65,6 +66,16 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL));
+        return new ArrayList<>(Arrays.asList(
+                ALICE,
+                BENSON,
+                BOB,
+                CARL,
+                CARL_GOH,
+                DON,
+                JAMES,
+                JAMES_GOH,
+                RON
+        ));
     }
 }
