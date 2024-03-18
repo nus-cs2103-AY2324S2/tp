@@ -43,7 +43,7 @@ public class EditCommandParserTest {
         // no field specified
         String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + " "
             + " " + PREFIX_FIELD + "{" + " }";
-        assertParseFailure(parser, userInput, MESSAGE_INVALID_COMMAND_FORMAT);
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class EditCommandParserTest {
         String userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + " "
             + " " + PREFIX_FIELD + "{" + PHONE_DESC_AMY
             + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + " }";
-        assertParseFailure(parser, userInput, MESSAGE_INVALID_COMMAND_FORMAT);
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class EditCommandParserTest {
         userInput = EditCommand.COMMAND_WORD + " " + PREFIX_NAME + "Person1"
             + " " + PREFIX_FIELD + "{" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
             + VALID_ADDRESS_AMY + VALID_PHONE_AMY + " }";
-        assertParseFailure(parser, userInput, MESSAGE_INVALID_COMMAND_FORMAT);
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
 
     @Test
