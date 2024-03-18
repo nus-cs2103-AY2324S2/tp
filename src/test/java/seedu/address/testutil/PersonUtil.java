@@ -6,10 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -32,13 +35,21 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+
+        // Handle Optional<Email>
+        Optional<Email> optionalEmail = person.getEmail();
+        sb.append(PREFIX_EMAIL + (optionalEmail.isPresent() ? optionalEmail.get().value : "") + " ");
+
+        // Handle Optional<Address>
+        Optional<Address> optionalAddress = person.getAddress();
+        sb.append(PREFIX_ADDRESS + (optionalAddress.isPresent() ? optionalAddress.get().value : "") + " ");
+
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
+
 
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
