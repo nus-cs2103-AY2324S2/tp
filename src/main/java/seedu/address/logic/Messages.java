@@ -47,5 +47,17 @@ public class Messages {
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
+    public static String format(Meeting meeting) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Date: ")
+                .append(meeting.getDate())
+                .append("; Time: ")
+                .append(meeting.getTime())
+                .append("; Location: ")
+                .append(meeting.getLocation())
+                .append("; Description: ")
+                .append(meeting.getDescription());
+        return builder.toString();
+    }
 
 }
