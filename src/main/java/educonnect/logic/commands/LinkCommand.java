@@ -6,6 +6,7 @@ import educonnect.logic.Messages;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.Model;
 import educonnect.model.student.*;
+import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
 import java.util.*;
@@ -172,7 +173,8 @@ public class LinkCommand extends Command{
         TelegramHandle updatedTelegramHandle = studentToEdit.getTelegramHandle();
         Link updatedLink = link.getLinks().orElse(studentToEdit.getLink());
         Set<Tag> updatedTags = studentToEdit.getTags();
+        Timetable t = studentToEdit.getTimetable();
 
-        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedLink, updatedTags);
+        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedLink, updatedTags, t);
     }
 }
