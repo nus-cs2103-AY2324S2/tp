@@ -32,6 +32,16 @@ public class Note {
         return true;
     }
 
+    /**
+     * Appends text to the current note.
+     *
+     * @param text The text to append.
+     */
+    public Note append(String text) {
+        requireNonNull(text);
+        return new Note(value + text);
+    }
+
     @Override
     public String toString() {
         return value;
