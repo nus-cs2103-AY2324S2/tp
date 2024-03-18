@@ -114,6 +114,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the person as designated by the PersonBuilder.
+     * @returns A person based on the fields of the PersonBuilder.
+     */
     public Person build() {
 
         return new Person(name, firstParentPhone, secondParentPhone, email, address, studentId, tags);
