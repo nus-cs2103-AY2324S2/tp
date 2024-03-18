@@ -3,17 +3,14 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.TagCommand.MESSAGE_ADD_TAG_SUCCESS;
 import static seedu.address.logic.commands.TagCommand.MESSAGE_DUPLICATE;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +18,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Id;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -86,7 +82,7 @@ public class TagCommandTest {
         tagList.add(new Tag("friends"));
         Id invalidId = new Id("A0265901E");
         TagCommand tagCommand = new TagCommand(invalidId, tagList);
-        String expectedMessage = String.format(MESSAGE_ADD_TAG_SUCCESS, tagList) + " \n"+ MESSAGE_DUPLICATE;
+        String expectedMessage = String.format(MESSAGE_ADD_TAG_SUCCESS, tagList) + " \n" + MESSAGE_DUPLICATE;
 
         assertCommandSuccess(tagCommand, model, expectedMessage, model);
     }
@@ -97,24 +93,24 @@ public class TagCommandTest {
         tagList.add(new Tag("topstudent"));
         Id invalidId = new Id("A0265901E");
         TagCommand tagCommand = new TagCommand(invalidId, tagList);
-        String expectedMessage = String.format(MESSAGE_ADD_TAG_SUCCESS, tagList) + " \n"+ MESSAGE_DUPLICATE;
+        String expectedMessage = String.format(MESSAGE_ADD_TAG_SUCCESS, tagList) + " \n" + MESSAGE_DUPLICATE;
 
         assertCommandSuccess(tagCommand, model, expectedMessage, model);
     }
 
     @Test
-    public void execute_validId_validTag_success() {
+    public void execute_validIdValidTag_success() {
         HashSet<Tag> tagList = new HashSet<Tag>();
         tagList.add(new Tag("TopStudent"));
         Id invalidId = new Id("A0251893P");
         TagCommand tagCommand = new TagCommand(invalidId, tagList);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        Person resultPerson =  new PersonBuilder().withName("Alice Pauline").withId("A0251893P")
+        Person resultPerson = new PersonBuilder().withName("Alice Pauline").withId("A0251893P")
                 .withMajor("Computer Science").withIntake("2023")
                 .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
                 .withPhone("94351253")
-                .withTags("friends","TopStudent").build();
+                .withTags("friends", "TopStudent").build();
         expectedModel.setPerson(ALICE, resultPerson);
         assertCommandSuccess(tagCommand, model, String.format(MESSAGE_ADD_TAG_SUCCESS, tagList), expectedModel);
     }
@@ -125,7 +121,7 @@ public class TagCommandTest {
         Id invalidId = new Id("A0912124E");
         TagCommand tagCommand = new TagCommand(invalidId, tagList);
 
-        String expected = TagCommand.class.getCanonicalName() + "{Id="+"A0912124E, "+"Tags="+tagList+"}";
+        String expected = TagCommand.class.getCanonicalName() + "{Id=" + "A0912124E, " + "Tags=" + tagList + "}";
         assertEquals(expected, tagCommand.toString());
     }
 }

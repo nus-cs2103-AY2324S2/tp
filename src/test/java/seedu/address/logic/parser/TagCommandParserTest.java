@@ -1,26 +1,21 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.TagCommand;
-import seedu.address.model.person.Id;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.tag.Tag;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.model.person.Id;
+import seedu.address.model.tag.Tag;
 
 public class TagCommandParserTest {
 
     private TagCommandParser parser = new TagCommandParser();
 
-    //need to check if not start with empty char.
     @Test
     public void parse_validArgSingleTag_returnsTagCommand() {
         Set<Tag> expectedTags = new HashSet<>();
