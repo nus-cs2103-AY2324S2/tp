@@ -20,10 +20,14 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        Predicate<String> personName = keyword -> StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword);
-        Predicate<String> personNumber = keyword -> StringUtil.containsWordIgnoreCase(person.getPhone().toString(), keyword);
-        Predicate<String> personAddress = keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword);
-        Predicate<String> personEmail = keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().toString(), keyword);
+        Predicate<String> personName = keyword ->
+                StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword);
+        Predicate<String> personNumber = keyword ->
+                StringUtil.containsWordIgnoreCase(person.getPhone().toString(), keyword);
+        Predicate<String> personAddress = keyword ->
+                StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword);
+        Predicate<String> personEmail = keyword ->
+                StringUtil.containsWordIgnoreCase(person.getEmail().toString(), keyword);
         Predicate<String> personTag = keyword -> StringUtil.containsWordIgnoreCase(person.getTags().stream()
                 .map(tag -> tag.tagName).collect(Collectors.joining()), keyword);
         //System.out.println(person.getName());
@@ -33,7 +37,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         //}
         //System.out.println();
         //System.out.println(person.getTags().stream().map(tag -> tag.tagName));
-        Predicate<String> combinedCondition = personName.or(personNumber).or(personAddress).or(personEmail).or(personTag);
+        Predicate<String> combinedCondition = personName.or(personNumber)
+                .or(personAddress).or(personEmail).or(personTag);
         return keywords.stream()
                 .anyMatch(combinedCondition);
     }
