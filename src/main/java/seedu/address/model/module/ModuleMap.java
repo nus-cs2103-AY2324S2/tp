@@ -2,7 +2,9 @@ package seedu.address.model.module;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
@@ -11,7 +13,7 @@ import seedu.address.commons.util.JsonUtil;
 /**
  * Wrapper for a hashmap that stores all Module objects
  */
-public class ModuleMap {
+public class ModuleMap implements ReadOnlyModuleMap {
     public static final Path DEFAULT_MODULE_DATA_FILE = Paths.get("src/main/resources/module_data.json");
     private HashMap<String, Module> moduleMap;
 
@@ -28,5 +30,10 @@ public class ModuleMap {
         for (Module module : moduleArray) {
             this.moduleMap.put(module.getModuleCode().getCode(), module);
         }
+    }
+
+    @Override
+    public Map<String, Module> getModuleMap() {
+        return Collections.unmodifiableMap(moduleMap);
     }
 }
