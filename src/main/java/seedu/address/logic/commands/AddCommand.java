@@ -11,6 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
@@ -51,7 +52,8 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        toAdd.setUniqueId(model.getNextUniqueId());
+        Id newId = new Id(model.getNextUniqueId());
+        toAdd.setUniqueId(newId);
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
