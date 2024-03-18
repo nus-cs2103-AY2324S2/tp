@@ -17,7 +17,9 @@ public class Role {
      * This enum defines three role types: STUDENT, TA (Teaching Assistant), and PROFESSOR.
      */
     public enum RoleType {
-        STUDENT, TA, PROFESSOR
+        STUDENT,
+        TA,
+        PROFESSOR
     }
 
     public final RoleType role;
@@ -45,6 +47,9 @@ public class Role {
         }
     }
 
+    public RoleType getRoleType() {
+        return role;
+    }
 
     @Override
     public String toString() {
