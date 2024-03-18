@@ -18,9 +18,9 @@ public class BloodType {
      * @param type A valid blood type.
      * @param rh A valid Rh factor.
      */
-    public BloodType(String type, String rh) {
-        this.type = Type.valueOf(type);
-        this.rh = Rh.valueOf(rh);
+    public BloodType(Type type, Rh rh) {
+        this.type = type;
+        this.rh = rh;
     }
 
     public String getType() {

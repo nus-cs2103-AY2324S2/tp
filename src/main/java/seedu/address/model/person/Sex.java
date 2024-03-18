@@ -21,8 +21,8 @@ public class Sex {
     /**
      * Constructs a Sex instance.
      */
-    public Sex(String sex) {
-        this.sex = SexType.valueOf(sex);
+    public Sex(SexType sex) {
+        this.sex = sex;
     }
 
     @Override

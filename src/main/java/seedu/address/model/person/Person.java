@@ -37,28 +37,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status,
-                  Email email, Allergies allergies, BloodType bloodType, Country country, Condition condition,
-                  DateOfAdmission dateOfAdmission, Diagnosis diagnosis, Symptom symptom, Object... args) {
+    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status, Object... args) {
         //Only the fields that are mandatory are included down here
         requireAllNonNull(nric, name, phone, address, dateOfBirth, sex);
         this.nric = nric;
         this.name = name;
         this.phone = phone;
-        this.email = email;
-        this.sex = sex;
-
         this.address = address;
-        this.allergies = allergies;
-        this.bloodType = bloodType;
-        this.country = country;
         this.dateOfBirth = dateOfBirth;
-
-        this.condition = condition;
-        this.dateOfAdmission = dateOfAdmission;
-        this.diagnosis = diagnosis;
+        this.sex = sex;
         this.status = status;
-        this.symptom = symptom;
     }
 
     /**

@@ -116,7 +116,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String sex} into an {@code int}.
+     * Parses a {@code String sex} into an {@code Sex sex}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code sex} is invalid.
@@ -134,12 +134,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String sex} into an {@code int}.
+     * Parses a {@code String status} into an {@code Status status}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code sex} is invalid.
      */
     public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String formattedStatus = status.trim().toUpperCase();
+        switch (formattedStatus) {
+        case "PENDING":
+            return new Status(Status.StatusType.PENDING);
+        case "HEALTHY":
+            return new Status(Status.StatusType.HEALTHY);
+        case "UNWELL":
+            return new Status(Status.StatusType.UNWELL);
+        default:
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String status} into an {@code Status status}.
+     * Leading and trailing whitespaces will be trimmed.
+     * TODO // Implement parseBloodType
+     * @throws ParseException if the given {@code sex} is invalid.
+     */
+    public static Status parseBloodType(String status) throws ParseException {
         requireNonNull(status);
         String formattedStatus = status.trim().toUpperCase();
         switch (formattedStatus) {

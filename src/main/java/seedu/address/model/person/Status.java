@@ -20,8 +20,8 @@ public class Status {
      *
      * @param status Status of a person
      */
-    public Status(String status) {
-        this.status = StatusType.valueOf(status);
+    public Status(StatusType status) {
+        this.status = status;
     }
 
     @Override
