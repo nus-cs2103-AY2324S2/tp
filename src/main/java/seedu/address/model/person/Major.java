@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Major {
 
-    public static final String MESSAGE_CONSTRAINTS = "Major should only consist of Computing majors, " +
-            "and it should mot be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Major should only consist of Computing majors, "
+            + "and it should mot be blank";
 
     /*
      * The first character of the address must not be a whitespace,

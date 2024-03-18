@@ -125,6 +125,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_MAJOR_DESC + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MAJOR));
 
+
         // valid value followed by invalid value
 
         // invalid name
@@ -146,6 +147,7 @@ public class AddCommandParserTest {
         // invalid major
         assertParseFailure(parser, validExpectedPersonString + INVALID_MAJOR_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MAJOR));
+
     }
 
     @Test
@@ -206,6 +208,7 @@ public class AddCommandParserTest {
         // invalid major
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_MAJOR_DESC
                 + YEAR_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Major.MESSAGE_CONSTRAINTS);
+
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MAJOR_DESC_BOB
