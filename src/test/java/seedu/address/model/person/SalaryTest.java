@@ -32,7 +32,9 @@ public class SalaryTest {
         assertFalse(Salary.isValidSalary(""));
         assertFalse(Salary.isValidSalary(" "));
         assertFalse(Salary.isValidSalary("-1"));
-        assertFalse(Salary.isValidSalary("-1-4000"));
+        assertFalse(Salary.isValidSalary("-1000"));
+        assertFalse(Salary.isValidSalary("-1-1221"));
+        assertFalse(Salary.isValidSalary("-1--1212121"));
         assertFalse(Salary.isValidSalary("dsadas"));
         assertFalse(Salary.isValidSalary("5000-4000-3000"));
         assertFalse(Salary.isValidSalary("100-dfadfdsfsdfds"));
