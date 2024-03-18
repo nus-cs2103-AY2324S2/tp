@@ -137,7 +137,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, studentId, email, telegramHandle, tags, link, timetable);
+        return new Student(name, studentId, email, telegramHandle, link, tags, timetable);
     }
     public Student buildNoLink() {
         return new Student(name, studentId, email, telegramHandle, tags, timetable);}

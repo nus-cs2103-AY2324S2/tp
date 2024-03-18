@@ -44,8 +44,8 @@ class JsonAdaptedStudent {
                               @JsonProperty("studentId") String studentId,
                               @JsonProperty("email") String email,
                               @JsonProperty("telegramHandle") String telegramHandle,
-                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("link") String link,
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("timetable") Timetable timetable) {
         this.name = name;
         this.studentId = studentId;

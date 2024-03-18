@@ -105,6 +105,8 @@ public class TypicalStudents {
     public static final Student BOB = new StudentBuilder()
             .withName(VALID_NAME_BOB)
             .withStudentId(VALID_STUDENT_ID_BOB)
+            .withEmail(VALID_EMAIL_BOB)
+            .withTelegramHandle(VALID_TELEGRAM_HANDLE_BOB)
             .withLink("https://en.wikipedia.org/wiki/LeBron_James")
             .withTags(VALID_TAG_FRIEND).build();
 
