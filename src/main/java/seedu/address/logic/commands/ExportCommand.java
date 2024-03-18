@@ -43,7 +43,7 @@ public class ExportCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE_EMPTY_LIST);
         }
 
-        boolean isSuccessful = model.exportCSV(filename);
+        boolean isSuccessful = model.exportCsv(filename);
 
         if (!isSuccessful) {
             throw new CommandException(MESSAGE_FAILURE_FILE_WRITE);
