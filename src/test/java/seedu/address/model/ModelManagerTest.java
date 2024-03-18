@@ -128,5 +128,8 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+
+        // finds a valid person by name
+        assertEquals(ALICE, modelManagerCopy.findByName(ALICE.getName()));
     }
 }

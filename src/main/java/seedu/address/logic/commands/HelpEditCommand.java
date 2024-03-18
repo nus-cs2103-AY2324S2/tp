@@ -7,7 +7,7 @@ import seedu.address.model.Model;
  */
 public class HelpEditCommand extends Command {
 
-    public static final String COMMAND_WORD = "help-edit";
+    public static final String COMMAND_WORD = "/help-edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions for edit command.\n"
             + "Example: " + COMMAND_WORD;
