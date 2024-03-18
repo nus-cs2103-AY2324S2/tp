@@ -137,7 +137,7 @@ public class AddressBookParserTest {
         LastContactCommand command = (LastContactCommand) parser.parseCommand(
                 LastContactCommand.COMMAND_WORD + " "
                         + PREFIX_NAME + name + " "
-                        + PREFIX_LASTCONTACT + lastContact.getDateTimeString());
+                        + PREFIX_LASTCONTACT + lastContact);
         assertEquals(new LastContactCommand(name, lastContact), command);
     }
 

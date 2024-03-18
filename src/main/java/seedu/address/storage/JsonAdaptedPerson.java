@@ -65,7 +65,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         upcoming = source.getUpcoming().toString();
-        lastcontact = source.getLastcontact().getDateTimeString();
+        lastcontact = source.getLastcontact().toString();
     }
 
     /**

@@ -39,7 +39,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " "));
         sb.append(PREFIX_UPCOMING + person.getUpcoming().toString() + " ");
-        sb.append(PREFIX_LASTCONTACT + person.getLastcontact().getDateTimeString() + " ");
+        sb.append(PREFIX_LASTCONTACT + person.getLastcontact().toString() + " ");
         return sb.toString();
     }
 
@@ -62,7 +62,10 @@ public class PersonUtil {
             }
         }
         descriptor.getUpcoming()
-                .ifPresent(upcoming -> sb.append(PREFIX_UPCOMING).append(upcoming.toString()).append(" "));
+                .ifPresent(upcoming -> sb.append(PREFIX_UPCOMING).append(upcoming).append(" "));
+        descriptor.getLastcontact()
+                .ifPresent(lastContact -> sb.append(PREFIX_LASTCONTACT)
+                        .append(lastContact).append(" "));
         return sb.toString();
     }
 }
