@@ -103,11 +103,9 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public Person getPersonWithNric(Nric nric) {
         Person equivalentPerson = new Person(nric);
-
         for (Person person : internalList) {
             if (person.isSamePerson(equivalentPerson)) {
                 return person;
-
             }
         }
         throw new PersonNotFoundException();

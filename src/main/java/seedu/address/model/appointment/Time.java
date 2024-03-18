@@ -1,6 +1,5 @@
 package seedu.address.model.appointment;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -73,4 +72,5 @@ public class Time implements Comparable<Time> {
     public int hashCode() {
         return value.hashCode();
     }
+  
 }
