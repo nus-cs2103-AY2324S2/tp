@@ -62,7 +62,7 @@ public class AddImportantDateCommandTest {
 
         Patient editedPatient = model.getFilteredPatientList().get(validIndex.getZeroBased());
         String expected = String.format(AddImportantDateCommand.MESSAGE_SUCCESS, validDate.name,
-                editedPatient.getName(), validIndex, validDate.importantDate);
+                editedPatient.getName(), validIndex.getOneBased(), validDate.importantDate);
         assertEquals(expected, result.getFeedbackToUser());
 
         Set<ImportantDate> expectedImportantDates = new HashSet<>(editedPatient.getImportantDates());
