@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,19 +23,21 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Employment;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Salary;
+import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing staff in the address book.
  */
-public class EditCommand extends Command {
+public class EditStaffCommand extends Command {
 
-    public static final String COMMAND_WORD = "/edit";
+    public static final String COMMAND_WORD = "/edit-staff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the staff identified "
             + "by the name used in the displayed person list.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
@@ -41,6 +45,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_SALARY + "SALARY] "
+            + "[" + PREFIX_EMPLOYMENT + "EMPLOYMENT] "
             + "Example: " + COMMAND_WORD
             + PREFIX_NAME + "John Doe Others "
             + PREFIX_FIELD + "{ "
@@ -48,60 +54,64 @@ public class EditCommand extends Command {
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person's name already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This staff's name already exists in the address book.";
 
     private final Name name;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStaffDescriptor editStaffDescriptor;
 
     /**
-     * @param name of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param name of the staff in the filtered person list to edit
+     * @param editStaffDescriptor details to edit the staff with
      */
-    public EditCommand(Name name, EditPersonDescriptor editPersonDescriptor) {
+    public EditStaffCommand(Name name, EditStaffDescriptor editStaffDescriptor) {
         requireNonNull(name);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStaffDescriptor);
 
         this.name = name;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStaffDescriptor = new EditStaffDescriptor(editStaffDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person personToEdit = model.findByName(name);
+        Staff staffToEdit = model.findStaffByName(name);
 
-        if (personToEdit == null) {
+        if (staffToEdit == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
         }
 
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Staff editedStaff = createEditedStaff(staffToEdit, editStaffDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!staffToEdit.isSamePerson(editedStaff) && model.hasPerson(editedStaff)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(staffToEdit, editedStaff);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, Messages.format(editedStaff)));
     }
 
+
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Staff} with the details of {@code staffToEdit}
+     * edited with {@code editStaffDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Staff createEditedStaff(Staff staffToEdit, EditStaffDescriptor editStaffDescriptor) {
+        assert staffToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editStaffDescriptor.getName().orElse(staffToEdit.getName());
+        Phone updatedPhone = editStaffDescriptor.getPhone().orElse(staffToEdit.getPhone());
+        Email updatedEmail = editStaffDescriptor.getEmail().orElse(staffToEdit.getEmail());
+        Address updatedAddress = editStaffDescriptor.getAddress().orElse(staffToEdit.getAddress());
+        Set<Tag> updatedTags = editStaffDescriptor.getTags().orElse(staffToEdit.getTags());
+        Salary updatedSalary = editStaffDescriptor.getSalary().orElse(staffToEdit.getSalary());
+        Employment updatedEmployment = editStaffDescriptor.getEmployment().orElse(staffToEdit.getEmployment());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Staff(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedSalary, updatedEmployment);
     }
 
     @Override
@@ -111,53 +121,58 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditStaffCommand)) {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
+        EditStaffCommand otherEditCommand = (EditStaffCommand) other;
         return name.equals(otherEditCommand.name)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editStaffDescriptor.equals(otherEditCommand.editStaffDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editStaffDescriptor", editStaffDescriptor)
                 .toString();
     }
 
+
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the staff with. Each non-empty field value will replace the
+     * corresponding field value of the staff.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStaffDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Salary salary;
+        private Employment employment;
 
-        public EditPersonDescriptor() {}
+        public EditStaffDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStaffDescriptor(EditStaffDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setSalary(toCopy.salary);
+            setEmployment(toCopy.employment);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, salary, employment);
         }
 
         public void setName(Name name) {
@@ -192,6 +207,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setSalary(Salary salary) {
+            this.salary = salary;
+        }
+
+        public Optional<Salary> getSalary() {
+            return Optional.ofNullable(salary);
+        }
+
+        public void setEmployment(Employment employment) {
+            this.employment = employment;
+        }
+
+        public Optional<Employment> getEmployment() {
+            return Optional.ofNullable(employment);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -209,6 +240,7 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -216,21 +248,20 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStaffDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
+            EditStaffDescriptor otherEditStaffDescriptor = (EditStaffDescriptor) other;
 
-            // Compare each field individually
-            boolean phoneEquals = Objects.equals(phone, otherEditPersonDescriptor.phone);
-            boolean emailEquals = Objects.equals(email, otherEditPersonDescriptor.email);
-            boolean addressEquals = Objects.equals(address, otherEditPersonDescriptor.address);
-            boolean tagsEquals = Objects.equals(tags, otherEditPersonDescriptor.tags);
-
-            return phoneEquals && emailEquals && addressEquals && tagsEquals;
+            // return true;
+            return Objects.equals(phone, otherEditStaffDescriptor.phone)
+                    && Objects.equals(email, otherEditStaffDescriptor.email)
+                    && Objects.equals(address, otherEditStaffDescriptor.address)
+                    && Objects.equals(tags, otherEditStaffDescriptor.tags)
+                    && Objects.equals(salary, otherEditStaffDescriptor.salary)
+                    && Objects.equals(employment, otherEditStaffDescriptor.employment);
         }
-
 
         @Override
         public String toString() {
@@ -239,6 +270,8 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("salary", salary)
+                    .add("employment", employment)
                     .toString();
         }
     }

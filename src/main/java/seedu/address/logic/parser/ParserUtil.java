@@ -162,7 +162,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String price} into an {@code Skill}.
+     * Parses a {@code String skill} into an {@code Skill}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code skill} is invalid.
@@ -177,7 +177,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String price} into an {@code Commission}.
+     * Parses a {@code String commission} into an {@code Commission}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code commission} is invalid.
@@ -216,5 +216,15 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String args} into an {@code String args}.
+     * Leading and trailing whitespaces and curly brackets will be trimmed.
+     */
+    public static String parseField(String args) throws ParseException {
+        requireNonNull(args);
+        String trimmedFields = args.replaceAll("[{}]", "").trim();
+        return " ; " + trimmedFields;
     }
 }

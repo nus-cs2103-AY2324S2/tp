@@ -211,12 +211,6 @@ public class AddStaffCommandParserTest {
                         + SALARY_DESC_BOB + INVALID_EMPLOYMENT_DESC,
                 Employment.MESSAGE_CONSTRAINTS);
 
-        /*
-         invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-        Tag.MESSAGE_CONSTRAINTS);
-         */
-
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                         + INVALID_SALARY_DESC + INVALID_EMPLOYMENT_DESC,
