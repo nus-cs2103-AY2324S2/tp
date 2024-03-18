@@ -1,7 +1,9 @@
 package seedu.address;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -24,7 +26,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonModuleMapStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ModuleMapStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -58,7 +62,10 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
+        Path moduleDataPath = Paths.get("src/main/resources/module_data.json");
+        ModuleMapStorage moduleMapStorage = new JsonModuleMapStorage(moduleDataPath);
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, moduleMapStorage);
 
         model = initModelManager(storage, userPrefs);
 
