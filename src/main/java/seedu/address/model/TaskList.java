@@ -12,17 +12,20 @@ import seedu.address.model.task.Task;
  */
 public class TaskList {
     private ArrayList<Task> taskList;
+    private ObservableList<Task> observableList;
 
     /**
      * Constructor of the class.
      */
     public TaskList() {
         taskList = new ArrayList<>();
+        observableList = FXCollections.observableArrayList(taskList);
     }
 
     @SuppressWarnings("unchecked")
     public void setTaskList(TaskList tasks) {
         taskList.addAll((Collection<? extends Task>) tasks);
+        observableList.addAll((Collection<? extends Task>) tasks);
     }
 
     /**
@@ -32,10 +35,11 @@ public class TaskList {
      */
     public void addTask(Task task) {
         taskList.add(task);
+        observableList.add(task);
     }
 
     public ObservableList<Task> getSerializeTaskList() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(taskList));
+        return observableList;
     }
 
     public boolean hasTask(Task task) {

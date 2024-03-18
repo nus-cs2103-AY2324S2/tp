@@ -178,16 +178,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        //filteredTasks = new FilteredList<>(taskList.getSerializeTaskList());
         filteredTasks.setPredicate(predicate);
-
-        for (Task t : filteredTasks) {
-            System.out.println(t.getDescription());
-        }
-
-        for (Task t : taskList.getSerializeTaskList()) {
-            System.out.println(t.getDescription());
-        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
