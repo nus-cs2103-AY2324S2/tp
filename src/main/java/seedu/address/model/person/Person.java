@@ -100,5 +100,14 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name).toString();
     }
+    
+    boolean hasTask(Task task) {
+        for(Task t : taskList) {
+            if(t.equals(task)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
