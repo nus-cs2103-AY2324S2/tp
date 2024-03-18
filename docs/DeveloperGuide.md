@@ -187,7 +187,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Introduction
 
-The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book. 
+The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book.
 
 #### Specifications
 
@@ -209,7 +209,14 @@ Step 2: The user executes the `addt 1 t/christian t/fallRisk` command to add the
 <b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
 </box>
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the Add Tags operation works:
+<puml src="diagrams/AddTagsSequenceDiagram.puml" alt="AddTagsSequence" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `AddTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 #### Design Considerations
 
@@ -278,7 +285,7 @@ The `DeleteImportantDateCommand` class is responsible for deleting an Important 
 
 #### Specifications
 
-* DeleteImportantDateCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients 
+* DeleteImportantDateCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients
 shown on the UI after using the `list` or `find` command and Indexes of the specified Patient's events as defined in
 the `Index` class.
 
