@@ -28,7 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "92345612";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -56,6 +56,12 @@ public class ParserUtilTest {
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
     }
 
+    @Test
+    public void parseName_validWithInnerWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = "  Bob   Choo  ";
+        Name expectedName = new Name("Bob Choo");
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
     @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
@@ -125,6 +131,11 @@ public class ParserUtilTest {
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
+    @Test
+    public void parseEmail_validValue_returnsLowerCaseMeail() throws Exception {
+        Email expectedEmail = new Email("test@gmail.com");
+        assertEquals(expectedEmail, ParserUtil.parseEmail(expectedEmail.value.toUpperCase()));
+    }
     @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
