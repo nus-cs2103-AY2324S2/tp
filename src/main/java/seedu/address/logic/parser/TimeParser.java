@@ -37,7 +37,7 @@ public class TimeParser {
 
         Matcher matcher = TimeParser.APPOINTMENT_TIME.matcher(args);
         if (!matcher.matches()) {
-            throw new ParseException("Filler");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimeParser.MESSAGE_USAGE));
         }
         return new AppointmentTime(args);
     }

@@ -55,6 +55,9 @@ public class Appointment {
     public String getAppointmentTimeString() {
         return appointmentTime.toString();
     }
+    public String getAppointmentTimeStringForJson() {
+        return appointmentTime.getFormattedDateTime();
+    }
 
     @Override
     public boolean equals(Object other) {
