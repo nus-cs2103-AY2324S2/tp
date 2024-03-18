@@ -19,8 +19,8 @@ import seedu.address.model.group.Group;
 public class CreateGroupCommand extends Command {
     public static final String COMMAND_WORD = "create-group";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a group containing any number of CourseMates "
-            + "CourseMates can be specified either by name or by the '#' notation"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a group containing any number of CourseMates, "
+            + "CourseMates can be specified either by name or by the '#' notation. "
             + "Parameters: NAME (cannot be empty and must be unique) "
             + "[" + PREFIX_COURSEMATE + "[COURSEMATE]\n" + "]"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
@@ -32,7 +32,7 @@ public class CreateGroupCommand extends Command {
     private final Group toAdd;
 
     /**
-     * Basic constructor for CreteGroupCommand. Creates a group with specified details.
+     * Basic constructor for CreateGroupCommand. Creates a group with specified details.
      * @param name name of the group
      * @param courseMateSet set containing the courseMates in the group
      */

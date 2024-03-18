@@ -16,7 +16,7 @@ import seedu.address.model.coursemate.Name;
 public class CreateGroupCommandParser implements Parser<CreateGroupCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the CreateGroupCommand
-     * and returns a CreateGroupCommandParser object to execute.
+     * and returns a CreateGroupCommand object to execute.
      * @throws ParseException if the user input does not conform the expected format or the group name is used
      */
     public CreateGroupCommand parse(String args) throws ParseException {
