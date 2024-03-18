@@ -44,6 +44,20 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Create a {@code Person} object with a specified id.
+     */
+    public Person(Id id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.remark = remark;
+        this.tags.addAll(tags);
+    }
+
     public Id getId() {
         return id;
     }

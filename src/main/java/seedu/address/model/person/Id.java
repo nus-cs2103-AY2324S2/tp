@@ -1,13 +1,17 @@
 package seedu.address.model.person;
 
 /**
- * Represents a Person's unique id in the address book.
+ * Represents a Person's unique id in the address book, smallest id is 1.
  * Guarantees: immutable; is always valid; each instance has
  * a unique value; only at most one instance for each unique value.
  */
 public class Id {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Ids should only be any integer value larger than 0";
+
     private static int nextId = 1;
+
     public final int value;
 
     /**
@@ -15,6 +19,16 @@ public class Id {
      */
     private Id() {
         value = nextId++;
+    }
+
+    /**
+     * Constructs an {@code Id} with the given id, and sets the next available id.
+     */
+    public Id(int id) {
+        value = id;
+        if (id >= nextId) {
+            nextId = id + 1;
+        }
     }
 
     /**
