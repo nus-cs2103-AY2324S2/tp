@@ -38,6 +38,7 @@ public class EditEmployeeDescriptorBuilder {
         descriptor.setPhone(employee.getPhone());
         descriptor.setEmail(employee.getEmail());
         descriptor.setAddress(employee.getAddress());
+        descriptor.setTasks(employee.getTasks());
         descriptor.setTags(employee.getTags());
     }
 
