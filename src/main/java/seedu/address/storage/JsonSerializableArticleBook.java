@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ArticleBook;
@@ -15,6 +16,7 @@ import seedu.address.model.article.Article;
 /**
  * An immutable ArticleBook that cans be serialized into Json format
  */
+@JsonRootName(value = "articlebook")
 public class JsonSerializableArticleBook {
     public static final String MESSAGE_DUPLICATE_ARTICLE = "Articles list contains duplicate article(s).";
 
