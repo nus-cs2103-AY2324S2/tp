@@ -11,6 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByEmailCommand;
 import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByIdCommand;
 import seedu.address.logic.commands.deletestudentcommands.DeleteStudentCommand;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -71,7 +72,7 @@ public class DeleteStudentCommandIntegrationTest {
 
         // Attempt to delete the student
         assertCommandFailure(new DeleteStudentByIdCommand(invalidId), expectedModel,
-                String.format(DeleteStudentByIdCommand.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, "A0123456X"));
+                String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, "A0123456X"));
     }
 
 }

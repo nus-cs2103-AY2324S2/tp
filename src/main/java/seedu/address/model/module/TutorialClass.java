@@ -9,12 +9,13 @@ import seedu.address.model.person.Person;
 
 /**
  * Represents a Module's tutorial class code.
- * Guarantees: immutable; is valid as declared in {@link #isValidTutorialClass(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidTutorialClass(String)}
  */
 public class TutorialClass {
 
-    public static final String MESSAGE_CONSTRAINTS =
-        "Please enter a valid NUS tutorial class code eg. T01, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Please enter a valid NUS tutorial class code "
+            + "eg. T01, and it should not be blank";
 
     /**
      * This regex validates the tutorial class code that user enters.
@@ -26,7 +27,8 @@ public class TutorialClass {
     private final ArrayList<Person> students;
 
     /**
-     * A constructor for TutorialClass. Creates an empty tutorial class with no students.
+     * A constructor for TutorialClass. Creates an empty tutorial class with no
+     * students.
      *
      * @param name of tutorial to be added
      */
@@ -38,9 +40,10 @@ public class TutorialClass {
     }
 
     /**
-     * A constructor for TutorialClass. Creates a tutorial with the list of students specified.
+     * A constructor for TutorialClass. Creates a tutorial with the list of students
+     * specified.
      *
-     * @param name of tutorial to be added
+     * @param name     of tutorial to be added
      * @param students to be in the added tutorial
      */
     public TutorialClass(String name, ArrayList<Person> students) {
@@ -55,6 +58,22 @@ public class TutorialClass {
      */
     public static boolean isValidTutorialClass(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Adds a student to the tutorial class.
+     */
+    public void addStudent(Person student) {
+        students.add(student);
+    }
+
+    /**
+     * Checks if the student is in the tutorial class.
+     * @param student
+     * @return true if the student is in the tutorial class
+     */
+    public boolean hasStudent(Person student) {
+        return students.contains(student);
     }
 
     @Override
