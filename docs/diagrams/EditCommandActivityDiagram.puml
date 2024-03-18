@@ -1,0 +1,34 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User enters command to update a Person;
+
+if () then ([command is invalid])
+    :Show error message\nfor invalid command;
+else ([else])
+    if () then ([index is invalid])
+        :Show error message\nfor invalid index;
+    else ([else])
+        if () then ([no field is entered])
+            :Show error message\nindicating no fields\nenteredfor editing;
+        else ([else])
+            if () then ([any field is invalid])
+                :Show error message\nindicating invalid field;
+                else ([else])
+                    if () then ([updated person is same as original])
+                        :Show error message indicating\nupdated person is the same as\nthe original person;
+                    else ([else])
+                        :Edit the details of the\npersonin the person list;
+                        :Update the person list\nin the GUI,retaining\nthe same filter;
+                        :Show success message\nwith person's information;
+                    endif;
+            endif;
+        endif
+    endif
+endif
+
+stop
+@enduml
