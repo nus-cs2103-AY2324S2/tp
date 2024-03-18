@@ -11,17 +11,17 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Salary should in this format of ${amount}/h";
     public static final String VALIDATION_REGEX = "^\\$\\d+/.+$";
-    public final String price;
+    public final String value;
 
     /**
      * Constructs an {@code Product}.
      *
-     * @param price A valid price.
+     * @param value A valid price.
      */
-    public Price(String price) {
-        requireNonNull(price);
-        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = price;
+    public Price(String value) {
+        requireNonNull(value);
+        checkArgument(isValidPrice(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -33,7 +33,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return price;
+        return value;
     }
 
     @Override
@@ -48,11 +48,11 @@ public class Price {
         }
 
         Price otherPrice = (Price) other;
-        return price.equals(otherPrice.price);
+        return value.equals(otherPrice.value);
     }
 
     @Override
     public int hashCode() {
-        return price.hashCode();
+        return value.hashCode();
     }
 }

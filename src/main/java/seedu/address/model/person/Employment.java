@@ -12,17 +12,17 @@ public class Employment {
             "Employment should be either full-time or part-time";
     public static final String VALIDATION_REGEX1 = "part-time";
     public static final String VALIDATION_REGEX2 = "full-time";
-    public final String employment;
+    public final String value;
 
     /**
      * Constructs an {@code Employment}.
      *
-     * @param employment A valid employment either part-time or full-time.
+     * @param value A valid employment either part-time or full-time.
      */
-    public Employment(String employment) {
-        requireNonNull(employment);
-        checkArgument(isValidEmployment(employment), MESSAGE_CONSTRAINTS);
-        this.employment = employment;
+    public Employment(String value) {
+        requireNonNull(value);
+        checkArgument(isValidEmployment(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Employment {
 
     @Override
     public String toString() {
-        return employment;
+        return value;
     }
 
     @Override
@@ -49,11 +49,11 @@ public class Employment {
         }
 
         Employment otherEmployment = (Employment) other;
-        return employment.equals(otherEmployment.employment);
+        return value.equals(otherEmployment.value);
     }
 
     @Override
     public int hashCode() {
-        return employment.hashCode();
+        return value.hashCode();
     }
 }

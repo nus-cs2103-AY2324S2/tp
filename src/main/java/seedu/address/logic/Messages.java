@@ -5,7 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 
 /**
  * Container for user visible messages.
@@ -49,4 +52,66 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code staff} for display to the user.
+     */
+    public static String format(Staff person) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(person.getName())
+                .append("; Phone: ")
+                .append(person.getPhone())
+                .append("; Email: ")
+                .append(person.getEmail())
+                .append("; Address: ")
+                .append(person.getAddress())
+                .append("; Tags: ");
+        person.getTags().forEach(builder::append);
+        builder.append("; Salary: ")
+                .append(person.getSalary())
+                .append("; Employment: ")
+                .append(person.getEmployment());
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code maintenance} for display to the user.
+     */
+    public static String format(Maintainer person) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(person.getName())
+                .append("; Phone: ")
+                .append(person.getPhone())
+                .append("; Email: ")
+                .append(person.getEmail())
+                .append("; Address: ")
+                .append(person.getAddress())
+                .append("; Tags: ");
+        person.getTags().forEach(builder::append);
+        builder.append("; Skill: ")
+                .append(person.getSkill())
+                .append("; Commission: ")
+                .append(person.getCommission());
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code supplier} for display to the user.
+     */
+    public static String format(Supplier person) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(person.getName())
+                .append("; Phone: ")
+                .append(person.getPhone())
+                .append("; Email: ")
+                .append(person.getEmail())
+                .append("; Address: ")
+                .append(person.getAddress())
+                .append("; Tags: ");
+        person.getTags().forEach(builder::append);
+        builder.append("; Product: ")
+                .append(person.getProduct())
+                .append("; Price: ")
+                .append(person.getPrice());
+        return builder.toString();
+    }
 }
