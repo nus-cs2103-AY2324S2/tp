@@ -1,16 +1,9 @@
 package seedu.address.testutil;
 
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
-
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+
+import seedu.address.model.appointment.Appointment;
+
 
 /**
  * A utility class to help with building Person objects.
@@ -23,14 +16,14 @@ public class AppointmentBuilder {
 
     public static final String DEFAULT_APPOINTMENT_DESCRIPTION = "Appointment Description";
 
-    private static final boolean DEFAULT_HAS_ATTENDED = false;
+    public static final boolean DEFAULT_HAS_ATTENDED = false;
 
-    public int appointmentId;
-    public LocalDateTime appointmentDateTime;
-    public int studentId;
+    private int appointmentId;
+    private LocalDateTime appointmentDateTime;
+    private int studentId;
 
     //TODO: replace with caseLog
-    public String appointmentDescription;
+    private String appointmentDescription;
 
     private boolean hasAttended;
 
