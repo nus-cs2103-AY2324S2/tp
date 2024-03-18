@@ -106,6 +106,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
     void updateFilteredModuleList(Predicate<ModuleCode> predicate);
+    /**
+     * Search for person by a given {@code predicate}.
+     */
+    Person searchPersonByPredicate(Predicate<Person> predicate);
 }

@@ -182,6 +182,10 @@ public class AddCommandTest {
         public void updateFilteredModuleList(Predicate<ModuleCode> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        public Person searchPersonByPredicate(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

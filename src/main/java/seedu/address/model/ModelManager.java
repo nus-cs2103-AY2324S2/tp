@@ -160,7 +160,17 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
-
+    /**
+     * Searches for a person in the list of filtered persons based on the given predicate.
+     *
+     * @param predicate The predicate used to filter persons.
+     * @return The first person that matches the predicate, or {@code null} if no person matches.
+     * @throws NullPointerException if the predicate is {@code null}.
+     */
+    public Person searchPersonByPredicate(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return filteredPersons.stream().filter(predicate).findFirst().orElse(null);
+    }
 
     @Override
     public boolean equals(Object other) {
