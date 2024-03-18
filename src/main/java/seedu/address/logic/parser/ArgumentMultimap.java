@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -73,6 +74,16 @@ public class ArgumentMultimap {
 
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
+        }
+    }
+
+    public void verifyAtLeastOnePrefixExists(Prefix... prefixes) throws ParseException {
+        Prefix[] identifiedPrefixes = Stream.of(prefixes)
+                .filter(argMultimap::containsKey)
+                .toArray(Prefix[]::new);
+
+        if (identifiedPrefixes.length == 0) {
+            throw new ParseException(Messages.MESSAGE_AT_LEAST_ONE_FIELD_REQUIRED + FindCommand.MESSAGE_USAGE);
         }
     }
 }

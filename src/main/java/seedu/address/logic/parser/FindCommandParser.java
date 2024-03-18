@@ -33,7 +33,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG, PREFIX_GROUP);
 
         argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
-
+        argumentMultimap.verifyAtLeastOnePrefixExists(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG, PREFIX_GROUP);
         // Problems: Can't create Objects unless proper regex used.
         // Solution: Don't create objects
         String nameToMatch = argumentMultimap.getValue(PREFIX_NAME).orElse(NOT_REQUIRED_VALUE);
