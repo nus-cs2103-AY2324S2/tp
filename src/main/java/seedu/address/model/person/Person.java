@@ -61,6 +61,10 @@ public class Person {
         this.symptom = symptom;
     }
 
+    /**
+     * Returns NRIC of patient.
+     * @return
+     */
     public Nric getNric() {
         return nric;
     }
