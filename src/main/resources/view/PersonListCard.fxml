@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -26,17 +27,19 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="studentId" styleClass="cell_big_label" text="\$studentId"/>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first"/>
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+      <HBox alignment="CENTER_LEFT" spacing="5">
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      </HBox>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label fx:id="major" styleClass="cell_small_label" text="\$major" />
         <Label fx:id="intake" styleClass="cell_small_label" text="\$intake" />
       </HBox>
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
