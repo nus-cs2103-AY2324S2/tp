@@ -34,8 +34,8 @@ public class Faculty {
         LAW("Faculty of Law", "Law"),
         MEDICINE("Yong Loo Lin School of Medicine", "Medicine", "School of Medicine"),
         MUSIC("Yong Siew Toh Conservatory of Music", "Music", "YST Conservatory of Music"),
-        PUBLIC_HEALTH("Public Health", "Saw Swee Hock School of Public Health"),
-        PUBLIC_POLICY("Public Policy", "Lee Kuan Yew School of Public Policy"),
+        PUBLIC_HEALTH("Saw Swee Hock School of Public Health", "Public Health"),
+        PUBLIC_POLICY("Public Policy", "Lee Kuan Yew School of Public Policy", "LKY School of Public Policy"),
         SCIENCE("Faculty of Science", "Science", "FoS"),
         UNIVERSITY_SCHOLARS_PROGRAMME("University Scholars Programme", "USP"),
         YALE_NUS_COLLEGE("Yale-NUS College", "Yale-NUS");
