@@ -96,6 +96,7 @@ public class StringUtil {
      * @return Trimmed input
      */
     public static String trimWhitespace(String input) {
+        requireNonNull(input);
         // Remove leading and trailing whitespace
         input = input.trim();
         // Replace multiple whitespaces with a single space
