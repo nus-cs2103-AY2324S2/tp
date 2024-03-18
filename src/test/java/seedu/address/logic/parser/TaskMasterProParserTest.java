@@ -49,8 +49,8 @@ public class TaskMasterProParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_EMPLOYEE), command);
+                DeleteCommand.COMMAND_WORD + " " + '1');
+        assertEquals(new DeleteCommand(1), command);
     }
 
     @Test

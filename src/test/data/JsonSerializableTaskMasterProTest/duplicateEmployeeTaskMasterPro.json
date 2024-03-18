@@ -1,11 +1,13 @@
 {
   "employees": [ {
+    "employeeId": 1,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tags": [ "friends" ]
   }, {
+    "employeeId": 2,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",

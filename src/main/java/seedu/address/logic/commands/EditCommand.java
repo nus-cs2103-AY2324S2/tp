@@ -22,6 +22,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Address;
+import seedu.address.model.employee.AssignedTasks;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
@@ -73,7 +74,7 @@ public class EditCommand extends Command {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEEID);
         }
 
         Employee employeeToEdit = lastShownList.get(index.getZeroBased());
@@ -100,9 +101,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
+        AssignedTasks updatedTask = editEmployeeDescriptor.getTasks().orElse(employeeToEdit.getTasks());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Employee(employeeToEdit.getEmployeeId(), updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTask, updatedTags);
     }
 
     @Override
@@ -138,6 +141,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private AssignedTasks tasks;
         private Set<Tag> tags;
 
         public EditEmployeeDescriptor() {}
@@ -151,6 +155,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setTasks(toCopy.tasks);
             setTags(toCopy.tags);
         }
 
@@ -158,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tasks, tags);
         }
 
         public void setName(Name name) {
@@ -191,6 +196,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setTasks(AssignedTasks tasks) {
+            this.tasks = tasks;
+        }
+
+        public Optional<AssignedTasks> getTasks() {
+            return Optional.ofNullable(tasks);
         }
 
         /**
@@ -226,6 +239,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditEmployeeDescriptor.phone)
                     && Objects.equals(email, otherEditEmployeeDescriptor.email)
                     && Objects.equals(address, otherEditEmployeeDescriptor.address)
+                    && Objects.equals(tasks, otherEditEmployeeDescriptor.tasks)
                     && Objects.equals(tags, otherEditEmployeeDescriptor.tags);
         }
 
@@ -236,8 +250,11 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("tasks", tasks)
                     .add("tags", tags)
                     .toString();
         }
+
+
     }
 }

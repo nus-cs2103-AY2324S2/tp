@@ -25,6 +25,7 @@ class JsonSerializableTaskMasterPro {
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
+    private final int employeeId;
     private final int taskId;
 
     /**
@@ -33,6 +34,7 @@ class JsonSerializableTaskMasterPro {
     @JsonCreator
     public JsonSerializableTaskMasterPro(@JsonProperty("employees") List<JsonAdaptedEmployee> employees) {
         this.employees.addAll(employees);
+        employeeId = Employee.getUniversalId();
         taskId = Task.getUniversalId();
     }
 
@@ -43,6 +45,7 @@ class JsonSerializableTaskMasterPro {
      */
     public JsonSerializableTaskMasterPro(ReadOnlyTaskMasterPro source) {
         employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
+        employeeId = Employee.getUniversalId();
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
         taskId = Task.getUniversalId();
     }
@@ -61,6 +64,8 @@ class JsonSerializableTaskMasterPro {
             }
             taskMasterPro.addEmployee(employee);
         }
+
+        Employee.setUniversalEmployeeId(employeeId);
 
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();

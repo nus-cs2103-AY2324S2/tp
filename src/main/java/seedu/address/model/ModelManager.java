@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyTaskMasterPro taskMasterPro, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(taskMasterPro, userPrefs);
 
-        logger.fine("Initializing with address book: " + taskMasterPro + " and user prefs " + userPrefs);
+        logger.fine("Initializing with task master pro: " + taskMasterPro + " and user prefs " + userPrefs);
 
         this.taskMasterPro = new TaskMasterPro(taskMasterPro);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -109,6 +109,8 @@ public class ModelManager implements Model {
         taskMasterPro.addEmployee(employee);
         updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
+
+
 
     @Override
     public void setEmployee(Employee target, Employee editedEmployee) {

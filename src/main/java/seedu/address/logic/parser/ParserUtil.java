@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Address;
+import seedu.address.model.employee.AssignedTasks;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
@@ -106,6 +107,22 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a string representing assigned tasks and returns an AssignedTasks object.
+     *
+     * @param tasks The string representing assigned tasks.
+     * @return An AssignedTasks object representing the parsed tasks.
+     * @throws ParseException If the given {@code tasks} is invalid.
+     */
+    public static AssignedTasks parseTasks(String tasks) throws ParseException {
+        requireNonNull(tasks);
+        String trimmedTasks = tasks.trim();
+        if (!AssignedTasks.isValidTask(trimmedTasks)) {
+            throw new ParseException(AssignedTasks.MESSAGE_CONSTRAINTS);
+        }
+        return new AssignedTasks(trimmedTasks);
     }
 
     /**
