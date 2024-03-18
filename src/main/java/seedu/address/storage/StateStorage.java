@@ -43,6 +43,17 @@ public class StateStorage {
     }
 
     /**
+     * Clears all the text in the state storage file.
+     */
+    public static void clearState() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("");
+        } catch (IOException e) {
+            System.out.println("Error clearing state text: " + e.getMessage());
+        }
+    }
+
+    /**
      * Saves the command to the state storage by writing to the file.
      *
      * @param input Updated command input (at every change) to be written to the storage file.
