@@ -1,20 +1,23 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddSchedCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.schedule.Schedule;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddSchedCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.schedule.Schedule;
 
+/**
+ * Parses input arguments and creates a new AddSchedCommandParser object
+ */
 public class AddSchedCommandParser implements Parser<AddSchedCommand> {
 
     /**
@@ -35,8 +38,9 @@ public class AddSchedCommandParser implements Parser<AddSchedCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSchedCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!AddCommandParser.arePrefixesPresent(argMultimap, PREFIX_SCHEDULE, PREFIX_START, PREFIX_END))
+        if (!AddCommandParser.arePrefixesPresent(argMultimap, PREFIX_SCHEDULE, PREFIX_START, PREFIX_END)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSchedCommand.MESSAGE_USAGE));
+        }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SCHEDULE, PREFIX_START, PREFIX_END);
         String schedName = argMultimap.getValue(PREFIX_SCHEDULE).get();

@@ -19,7 +19,7 @@ public class Schedule {
 
     public static final String MESSAGE_CONSTRAINTS = "Schedule names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static int schedId_counter = 0;
+    public static int SCHED_ID_COUNTER = 0;
     // !! to EDIT as a metadata for Json storage
 
     public static final DateTimeFormatter CUSTOM_DATETIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -45,7 +45,7 @@ public class Schedule {
         requireNonNull(schedName);
         checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTiming(startTime, endTime));
-        this.schedId = schedId_counter++;
+        this.schedId = SCHED_ID_COUNTER++;
 
         this.schedName = schedName;
         this.startTime = startTime;

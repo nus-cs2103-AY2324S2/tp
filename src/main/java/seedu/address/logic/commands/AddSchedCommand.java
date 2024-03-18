@@ -1,22 +1,24 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.tag.Tag;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Adds a schedule to the address book.
+ */
 public class AddSchedCommand extends Command {
 
     public static final String COMMAND_WORD = "addSched";
