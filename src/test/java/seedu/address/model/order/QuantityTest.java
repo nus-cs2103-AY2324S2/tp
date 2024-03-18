@@ -22,8 +22,8 @@ public class QuantityTest {
     }
 
     @Test
-    public void isValidPhone() {
-        // null phone number
+    public void isValidQuantity() {
+        // null quantity number
         assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity(null));
 
         // invalid phone numbers
@@ -31,15 +31,15 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity(" ")); // spaces only
         assertFalse(Quantity.isValidQuantity("quantity")); // non-numeric
         assertFalse(Quantity.isValidQuantity("93be23")); // alphabets within digits
-        assertFalse(Phone.isValidPhone("12 15")); // spaces within digits
-        assertFalse(Phone.isValidPhone("12.15")); // dots within digits
-        assertFalse(Phone.isValidPhone("-8392")); // negative numbers
+        assertFalse(Quantity.isValidQuantity("12 15")); // spaces within digits
+        assertFalse(Quantity.isValidQuantity("12.15")); // dots within digits
+        assertFalse(Quantity.isValidQuantity("-8392")); // negative numbers
 
         // valid quantity numbers
-        assertTrue(Phone.isValidPhone("0"));
-        assertTrue(Phone.isValidPhone("93"));
-        assertTrue(Phone.isValidPhone("0093")); // beginning zeros
-        assertTrue(Phone.isValidPhone("124293842033123")); // long numbers
+        assertTrue(Quantity.isValidQuantity("0"));
+        assertTrue(Quantity.isValidQuantity("93"));
+        assertTrue(Quantity.isValidQuantity("0093")); // beginning zeros
+        assertTrue(Quantity.isValidQuantity("124293842033123")); // long numbers
     }
 
     @Test
@@ -55,10 +55,10 @@ public class QuantityTest {
         // null -> returns false
         assertFalse(quantity.equals(null));
 
-        // different types -> returns false
+        // different values -> returns false
         assertFalse(quantity.equals(5.0f));
 
-        // different values -> returns false
-        assertFalse(quantity.equals(new Phone("11")));
+        // different types -> returns false
+        assertFalse(quantity.equals(new Product("Cupcake")));
     }
 }
