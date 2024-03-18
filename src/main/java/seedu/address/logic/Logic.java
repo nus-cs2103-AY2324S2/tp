@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.UUID;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -36,6 +37,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of appointments */
     ObservableList<Appointment> getFilteredAppointmentList();
+
+    /** Returns a {@code Person} by its UUID. */
+    Person getPersonById(UUID personId);
+
+    /** Returns an {@code Appointment} by its UUID. */
+    Appointment getAppointmentById(UUID appointmentId);
 
     /**
      * Returns the user prefs' address book file path.

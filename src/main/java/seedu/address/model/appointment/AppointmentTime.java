@@ -86,6 +86,9 @@ public class AppointmentTime {
         return (sameDate && sameStart && sameEnd);
     }
 
+    /**
+     * The string displayed on the UI.
+     */
     @Override
     public String toString() {
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("h:mma");

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,6 +24,13 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
+    /**
+     * AppointmentView is used here since the list of filtered appointments is used
+     * directly in the GUI to display a list of appointments. However, it has the
+     * added requirement of also displaying some elements of its associated
+     * {@code Person}.
+     */
     private final FilteredList<Appointment> filteredAppointments;
 
     /**
@@ -43,7 +51,8 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -78,7 +87,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook
+    // ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -95,45 +105,54 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
+
     @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return addressBook.hasAppointment(appointment);
     }
+
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
+
     @Override
     public void deleteAppointment(Appointment target) {
         addressBook.removeAppointment(target);
     }
+
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
     }
+
     @Override
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         addressBook.setAppointment(target, editedAppointment);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -147,10 +166,12 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Filtered Appointment List Accessors =========================================================
+    // =========== Filtered Appointment List Accessors
+    // =========================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -180,6 +201,11 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredAppointments.equals(otherModelManager.filteredAppointments);
+    }
+
+    @Override
+    public Person getPersonById(UUID personId) {
+        return addressBook.getPersonById(personId);
     }
 
 }

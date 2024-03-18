@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 
 /**
@@ -15,6 +16,8 @@ public class AppointmentCard extends UiPart<Region> {
     private static final String FXML = "appointmentView/AppointmentListCard.fxml";
 
     public final Appointment appointment;
+
+    public final Person person;
 
     @FXML
     private HBox appointmentCardPane;
@@ -29,13 +32,14 @@ public class AppointmentCard extends UiPart<Region> {
      * Creates a {@code PersonCode} with the given {@code Person} and index to
      * display.
      */
-    public AppointmentCard(Appointment appointment, int displayedIndex) {
+    public AppointmentCard(Appointment appointment, Person person, int displayedIndex) {
         super(FXML);
         this.appointment = appointment;
+        this.person = person;
+
+        // Display
         appointmentDisplayedIndex.setText(displayedIndex + ". ");
-        // TODO: CHANGE TO PERSON NAME; blocked by:
-        // https://github.com/AY2324S2-CS2103T-T10-2/tp/issues/58
-        nameOfAppointmentHolder.setText(appointment.getPersonIdString());
+        nameOfAppointmentHolder.setText(person.getName().fullName);
         appointmentTime.setText(appointment.getAppointmentTimeString());
     }
 }
