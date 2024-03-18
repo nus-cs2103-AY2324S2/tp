@@ -21,9 +21,9 @@ public class LinkCommand extends Command{
             + "Parameters: " + PREFIX_EMAIL + "EMAIL or "
             + PREFIX_TELEGRAM_HANDLE + "TELEGRAM_HANDLE or "
             + PREFIX_STUDENT_ID + "STUDENT_ID\n"
-            + "Example 1: " + COMMAND_WORD + " " + PREFIX_EMAIL + "example@email.com " + "l/https://github.com/example/tp\n"
-            + "Example 2: " + COMMAND_WORD + " " + PREFIX_STUDENT_ID + "A1234567X " + "l/https://github.com/example/tp\n"
-            + "Example 3: " + COMMAND_WORD + " " + PREFIX_TELEGRAM_HANDLE + "@john.doe " + "l/https://github.com/example/tp\n";
+            + "Example 1: " + COMMAND_WORD + " " + PREFIX_EMAIL + "example@email.com " + "l/https://www.google.com/\n"
+            + "Example 2: " + COMMAND_WORD + " " + PREFIX_STUDENT_ID + "A1234567X " + "l/https://www.google.com/\n"
+            + "Example 3: " + COMMAND_WORD + " " + PREFIX_TELEGRAM_HANDLE + "@john.doe " + "l/https://www.google.com/\n";
     public static final String MESSAGE_LINK_STUDENT_SUCCESS = "Linked Student to a weblink: %1$s";
     public static final String MULTIPLE_UNIQUE_IDENTIFIER_MESSAGE =
             "Multiple unique identifier prefixes used, only use one unique identifier prefix.\n" + MESSAGE_USAGE;
@@ -36,6 +36,21 @@ public class LinkCommand extends Command{
     private final LinkStudentDescriptor linkStudentDescriptor;
     public LinkCommand(LinkStudentDescriptor linkStudentDescriptor) {
         this.linkStudentDescriptor = linkStudentDescriptor;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof LinkCommand)) {
+            return false;
+        }
+
+        LinkCommand otherEditCommand = (LinkCommand) other;
+        return linkStudentDescriptor.equals(otherEditCommand.linkStudentDescriptor);
     }
 
     @Override
@@ -148,7 +163,7 @@ public class LinkCommand extends Command{
         }
     }
 
-    private static Student createEditedStudent(Student studentToEdit, LinkStudentDescriptor link) {
+    public static Student createEditedStudent(Student studentToEdit, LinkStudentDescriptor link) {
         assert studentToEdit != null;
 
         Name updatedName = studentToEdit.getName();
