@@ -5,8 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 /**
  * Represents Important Dates for a Patient
@@ -15,6 +19,8 @@ public class ImportantDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format: DD-MM-YYYY, HH:mm - HH:mm, OR if there is no time period,"
             + "in the format: DD-MM-YYYY";
+    public static final String DATE_PATTERN = "dd-MM-yyyy";
+    public static final String TIME_PATTERN = "HH:mm";
 
 
 
@@ -59,39 +65,36 @@ public class ImportantDate {
     public static boolean isValidImportantDate(String test) {
         String[] args = test.split(",");
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            formatter.parse(args[0].strip());
-        } catch (ParseException e) {
+            LocalDate.parse(args[0].trim(), DateTimeFormatter.ofPattern(DATE_PATTERN));
+        } catch (DateTimeParseException e) {
             return false;
         }
 
         if (args.length > 1) {
-            return isValidTime(args[1]);
-        } else {
-            return true;
+            return isValidDateTimeStr(args[1]);
         }
+
+        return true;
     }
 
 
     /**
      * Returns true if the given string is a valid time String
      *
-     * @param test the given string
-     * @return true if the {@param test} is valid,
-     *         false is the {@param test} is not valid
+     * @param timeStr the given string
+     * @return true if the {@param timeStr} is valid,
+     *         false is the {@param timeStr} is not valid
      */
-    public static boolean isValidTime(String test) {
-        String[] timeArgs = test.split("-");
-
+    public static boolean isValidDateTimeStr(String timeStr) {
+        String[] args = timeStr.split("-");
         try {
-            LocalTime.parse(timeArgs[0].strip());
-            LocalTime.parse(timeArgs[1].strip());
+            LocalTime.parse(args[0].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // start time
+            LocalTime.parse(args[1].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // end time
+            return true;
         } catch (DateTimeParseException e) {
             return false;
         }
-
-        return true;
     }
 
 
