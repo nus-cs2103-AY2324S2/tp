@@ -28,7 +28,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.InternshipUiManager;
+import seedu.address.ui.UiManager;
 import seedu.address.ui.Ui;
 
 /**
@@ -64,7 +64,7 @@ public class MainApp extends Application {
 
         logic = new InternshipLogicManager(model, storage);
 
-        ui = new InternshipUiManager(logic);
+        ui = new UiManager(logic);
     }
 
     /**
