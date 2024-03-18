@@ -94,10 +94,12 @@ public class DeleteTagsCommand extends Command {
     }
 
     /**
-     * Deletes Tags from a Tag set.
+     * Deletes specified tags from a patient's tag set.
      *
-     * @param tagSet Tag Set to delete tag from.
-     * @param toDeleteTags Tags to be deleted.
+     * @param patient       The patient whose tags are being modified.
+     * @param tagSet        The current set of tags for the patient.
+     * @param toDeleteTags  The Tags to be deleted.
+     * @return A Pair containing the updated tag set and a string describing the outcome of the deletion.
      * @throws CommandException if tag does not exist.
      */
     public Pair<Set<Tag>,String> deleteTagsFromPatient(Patient patient, Set<Tag> tagSet,
@@ -109,7 +111,7 @@ public class DeleteTagsCommand extends Command {
             throw new CommandException(e.getMessage());
         }
     }
-
+    
     public Pair<Set<Tag>,String> deleteTags(Patient patient, Set<Tag> tagSet,
                                             Set<Tag> toDeleteTags) throws CommandException {
         requireAllNonNull(tagSet, toDeleteTags);

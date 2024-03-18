@@ -64,7 +64,6 @@ public class AddTagsCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
