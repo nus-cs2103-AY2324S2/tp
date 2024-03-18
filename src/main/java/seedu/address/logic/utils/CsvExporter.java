@@ -79,7 +79,7 @@ public class CsvExporter {
         personStringArray[0] = person.getName().toString();
         personStringArray[1] = person.getPhone().toString();
         personStringArray[2] = person.getEmail().toString();
-        personStringArray[3] = "\"" + person.getAddress().toString() + "\"" ;
+        personStringArray[3] = "\"" + person.getAddress().toString() + "\"";
         personStringArray[4] = (person.getRemark() != null) ? person.getRemark().toString() : "";
         personStringArray[5] = "\"" + person.getTagsAsString() + "\"";
 
