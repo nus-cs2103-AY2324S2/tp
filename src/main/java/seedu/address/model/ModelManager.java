@@ -160,7 +160,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
 //        appoinmentBook.addAppointment(appointment);
-//        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     /**
@@ -170,5 +170,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 }
