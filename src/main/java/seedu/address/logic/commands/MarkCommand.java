@@ -35,7 +35,6 @@ public class MarkCommand extends Command {
             + PREFIX_TAGSTATUS + " cg";
 
     public static final String MESSAGE_MARK_PERSON_SUCCESS = "Updated Person: %1$s";
-    
     private final Index index;
     private final String tagName;
     private final TagStatus tagStatus;
@@ -46,7 +45,6 @@ public class MarkCommand extends Command {
         this.tagName = tagName;
         this.tagStatus = tagStatus;
     }
-    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
