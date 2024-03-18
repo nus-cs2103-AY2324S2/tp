@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage, ArticleBookStorage {
+public interface Storage extends AddressBookStorage, ArticleBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
@@ -33,11 +33,13 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, ArticleBo
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     // ================ ArticleBook methods ==============================
-
     @Override
     Path getArticleBookFilePath();
 
     @Override
     Optional<ReadOnlyArticleBook> readArticleBook() throws DataLoadingException;
+
+    @Override
+    void saveArticleBook(ReadOnlyArticleBook articleBook) throws IOException;
 
 }
