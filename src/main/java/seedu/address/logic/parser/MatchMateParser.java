@@ -93,14 +93,22 @@ public class MatchMateParser {
         }
     }
 
-    private boolean isValidArgument(String arguments) {
+    /**
+     * Checks for prefixes if they are valid with the currently supported prefix codes. The argument is valid
+     * if every prefix occurence in {@code argsString} is lead and trailed by a whitespace.
+     *
+     * @param argsString      Arguments string of the form: {@code preamble <prefix> value <prefix> value ...}
+     * @return                Boolean object that indicates whether {@code argsString} is valid.
+     */
+    private boolean isValidArgument(String argsString) {
         // Iterate through the list of valid prefixes
-        List<Prefix> listOfPrefixes = new ArrayList<>(List.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SKILL));
+        List<Prefix> listOfPrefixes = new ArrayList<>(
+                List.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SKILL));
         for (Prefix prefix : listOfPrefixes) {
             // Find all occurrences of the prefix in the String
             int start = 0;
             while (start >= 0) {
-                start = arguments.indexOf(" " + prefix, start);
+                start = argsString.indexOf(" " + prefix, start);
 
                 // No more occurrences are found
                 if (start == -1) {
@@ -109,7 +117,7 @@ public class MatchMateParser {
 
                 // Check if there is a whitespace after the prefix
                 int checkIndex = start + (prefix.toString()).length() + 1;
-                if (checkIndex < arguments.length() && arguments.charAt(checkIndex) != ' ') {
+                if (checkIndex < argsString.length() && argsString.charAt(checkIndex) != ' ') {
                     return false;
                 }
 
