@@ -27,7 +27,8 @@ public class ExportCommandParserTest {
     @Test
     public void parse_invalidFilename_throwsParseException() {
         String invalidFilename = "invalid";
-        String expectedErrorMessage = "Error: Invalid filename. Please provide a valid filename with the .csv extension.";
+        String expectedErrorMessage =
+                "Error: Invalid filename. Please provide a valid filename with the .csv extension.";
         assertParseFailure(parser, invalidFilename, expectedErrorMessage);
     }
 

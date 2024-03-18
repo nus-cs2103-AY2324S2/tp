@@ -1,15 +1,19 @@
 package seedu.address.logic.utils;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.testutil.TypicalPersons;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.testutil.TypicalPersons;
+
 
 public class CsvExporterTest {
 
@@ -49,8 +53,8 @@ public class CsvExporterTest {
     @Test
     public void convertPersonToStringArray() {
         Person person = TypicalPersons.ALICE;
-        String[] expectedArray = {"Alice Pauline", "94351253", "alice@example.com", "\"123, Jurong West Ave 6, #08-111\"",
-                "", "\"friends\""};
+        String[] expectedArray = {"Alice Pauline", "94351253", "alice@example.com",
+            "\"123, Jurong West Ave 6, #08-111\"", "", "\"friends\""};
         assertArrayEquals(expectedArray, csvExporter.convertPersonToStringArray(person));
     }
 }
