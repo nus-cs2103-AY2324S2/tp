@@ -11,17 +11,17 @@ public class Commission {
     public static final String MESSAGE_CONSTRAINTS =
             "Commision should in this format of ${amount}/hr";
     public static final String VALIDATION_REGEX = "^\\$\\d+/hr$";
-    public final String commission;
+    public final String value;
 
     /**
      * Constructs an {@code Commission}.
      *
-     * @param commission A valid commission.
+     * @param value A valid commission.
      */
-    public Commission(String commission) {
-        requireNonNull(commission);
-        checkArgument(isValidCommission(commission), MESSAGE_CONSTRAINTS);
-        this.commission = commission;
+    public Commission(String value) {
+        requireNonNull(value);
+        checkArgument(isValidCommission(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -33,7 +33,7 @@ public class Commission {
 
     @Override
     public String toString() {
-        return commission;
+        return value;
     }
 
     @Override
@@ -48,11 +48,11 @@ public class Commission {
         }
 
         Commission otherCommission = (Commission) other;
-        return commission.equals(otherCommission.commission);
+        return value.equals(otherCommission.value);
     }
 
     @Override
     public int hashCode() {
-        return commission.hashCode();
+        return value.hashCode();
     }
 }

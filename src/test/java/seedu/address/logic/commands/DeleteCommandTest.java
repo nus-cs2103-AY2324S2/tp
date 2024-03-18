@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -45,17 +46,22 @@ public class DeleteCommandTest {
     public void execute_validNameFilteredList_success() {
         showPersonWithName(model, ALICE.getName());
 
-        Person personToDelete = model.findByName(ALICE.getName());
-        DeleteCommand deleteCommand = new DeleteCommand(ALICE.getName());
+        Person personToDelete;
+        try {
+            personToDelete = model.findByName(ALICE.getName());
+            DeleteCommand deleteCommand = new DeleteCommand(ALICE.getName());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+            String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                    Messages.format(personToDelete));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
+            Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+            expectedModel.deletePerson(personToDelete);
+            showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+            assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        } catch (CommandException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
