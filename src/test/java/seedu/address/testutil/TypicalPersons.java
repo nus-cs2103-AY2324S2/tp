@@ -54,10 +54,10 @@ public class TypicalPersons {
             .build();
 
     public static final Person HEAD = new PersonBuilder().withName("head").withPhone("12345678")
-            .withEmail("head@cube.com").withTags(VALID_TAG_FRIEND).build();
+            .withEmail("head@cube.com").build();
 
     public static final Person CUBE = new PersonBuilder().withName("cube").withPhone("87654321")
-            .withEmail("cube@head.com").withTags(VALID_TAG_FRIEND).build();
+            .withEmail("cube@head.com").build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
