@@ -80,6 +80,7 @@ public class ParserUtil {
         }
         return new Address(trimmedAddress);
     }
+
     /**
      * Parses a {@code String availability} into an {@code Availability}.
      * Leading and trailing whitespaces will be trimmed.
@@ -87,12 +88,23 @@ public class ParserUtil {
      * @throws ParseException if the given {@code Availability} is invalid.
      */
     public static Availability parseAvailability(String availability) throws ParseException {
-        requireNonNull(availability);
         String trimmedAvailability = availability.trim();
         if (!Availability.isValidAvailability(trimmedAvailability)) {
             throw new ParseException(Availability.MESSAGE_CONSTRAINTS);
         }
         return new Availability(trimmedAvailability);
+    }
+
+    /**
+     * Parses {@code Collection<String> availabilities} into a {@code Set<Availability>}.
+     */
+    public static Set<Availability> parseAvailabilities(Collection<String> availabilities) throws ParseException {
+        requireNonNull(availabilities);
+        final Set<Availability> availabilitiesSet = new HashSet<>();
+        for (String availability : availabilities) {
+            availabilitiesSet.add(parseAvailability(availability));
+        }
+        return availabilitiesSet;
     }
 
     /**
