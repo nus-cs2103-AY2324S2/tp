@@ -82,10 +82,6 @@ public class PersonTest {
         // different nric -> returns false
         editedAlice = new PersonBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
@@ -94,7 +90,7 @@ public class PersonTest {
                 + "{identification=[name=" + ALICE.getIdentificationInformation().getName()
                 + ", nric=" + ALICE.getIdentificationInformation().getNric()
                 + "], contact=" + ALICE.getContactInformation()
-                + ", tags=" + ALICE.getMedicalInformation().getAllergyTag() + "}";
+                + ", medicalinfo=" + ALICE.getMedicalInformation().toString() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

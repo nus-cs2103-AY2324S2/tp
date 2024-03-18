@@ -23,8 +23,7 @@ import vitalconnect.model.person.Person;
 public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withNric("S1234567D")
-        .withEmail("email@e.com")
-        .withTags("friends").build();
+        .withEmail("email@e.com").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withNric("S1234568B")
         .withTags("owesMoney", "friends").build();
@@ -45,17 +44,13 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withNric("S1234560G").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .build();
+    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY).build();
+    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB).build();
 
     public static final Person BOB_CONTACT = new PersonBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB)
         .withEmail(VALID_EMAIL_BOB)
         .withPhone(VALID_PHONE_BOB)
         .withAddress(VALID_ADDRESS_BOB)
-        .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
         .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

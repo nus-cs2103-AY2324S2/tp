@@ -2,12 +2,7 @@ package vitalconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_PHONE;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
+import static vitalconnect.logic.parser.CliSyntax.*;
 import static vitalconnect.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -46,6 +41,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_ALLERGYTAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_ALLERGYTAG + VALID_TAG_HUSBAND;
+    public static final String HEIGH_DESC_AMY = " " + PREFIX_HEIGHT + "170";
+    public static final String WEIGHT_DESC_AMY = " " + PREFIX_WEIGHT + "60";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "911a"; // check Nric.java for validity

@@ -131,7 +131,7 @@ class JsonAdaptedPerson {
         final ContactInformation contactInformation = new ContactInformation(modelEmail, modelPhone, modelAddress);
 
         if (height == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Height.class.getSimpleName()));
         }
         if (!Height.isValidHeight(height)) {
             throw new IllegalValueException(Height.MESSAGE_CONSTRAINTS);
@@ -139,7 +139,7 @@ class JsonAdaptedPerson {
         final Height modelHeight = new Height(height);
 
         if (weight == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
         }
         if (!Weight.isValidWeight(weight)) {
             throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);

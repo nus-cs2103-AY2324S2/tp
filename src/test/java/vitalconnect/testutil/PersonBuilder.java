@@ -27,8 +27,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "";
     public static final String DEFAULT_PHONE = "";
     public static final String DEFAULT_ADDRESS = "";
-    public static final String DEFAULT_HEIGHT = "170";
-    public static final String DEFAULT_WEIGHT = "60";
+    public static final String DEFAULT_HEIGHT = "";
+    public static final String DEFAULT_WEIGHT = "";
 
     private Name name;
     private Nric nric;
@@ -62,7 +62,8 @@ public class PersonBuilder {
         email = personToCopy.getContactInformation().getEmail();
         phone = personToCopy.getContactInformation().getPhone();
         address = personToCopy.getContactInformation().getAddress();
-
+        height = personToCopy.getMedicalInformation().getHeight();
+        weight = personToCopy.getMedicalInformation().getWeight();
         allergyTags = new HashSet<>(personToCopy.getMedicalInformation().getAllergyTag());
     }
 

@@ -16,10 +16,9 @@ public class Weight {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[0-9]*\\.?[0-9]+\n";
+    public static final String VALIDATION_REGEX = "[0-9]*\\.?[0-9]+";
 
     public final String value;
-    public final float floatWeight;
     /**
      * Constructs a {@code Height}.
      *
@@ -29,14 +28,16 @@ public class Weight {
         requireNonNull(weight);
         checkArgument(isValidWeight(weight), MESSAGE_CONSTRAINTS);
         this.value = weight;
-        this.floatWeight = Float.parseFloat(weight);
     }
 
     /**
      * Returns true if a given string is a valid weight.
      */
     public static boolean isValidWeight(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.isEmpty()) {
+            return true;
+        }
+        return test.matches(VALIDATION_REGEX) && Float.parseFloat(test) > 0;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_WEIGHT = "60";
     private static final String INVALID_HEIGHT = "170cm";
     private static final String INVALID_WEIGHT = "60kg";
-    private static final List<JsonAdaptedTag> INVALID_ALLERGY = List.of(new AllergyTag("pe@nut")).stream()
+    private static final List<JsonAdaptedTag> INVALID_ALLERGY = List.of("pe@nut").stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
     private static final ContactInformation VALID_CI = new ContactInformation(new Email(VALID_EMAIL),
         new Phone(VALID_PHONE), new Address(VALID_ADDRESS));

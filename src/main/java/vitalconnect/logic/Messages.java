@@ -49,9 +49,7 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getIdentificationInformation().getName())
                 .append("; NRIC: ")
-                .append(person.getIdentificationInformation().getNric())
-                .append("; Tags: ");
-        person.getMedicalInformation().getAllergyTag().forEach(builder::append);
+                .append(person.getIdentificationInformation().getNric());
         return builder.toString();
     }
 

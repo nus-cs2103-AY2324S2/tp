@@ -125,6 +125,12 @@ public class Person {
                     && getContactInformation().equals(otherPerson.getContactInformation());
         }
 
+        // If both have medical information
+        if (otherPerson.hasMedicalInformation() && hasMedicalInformation()) {
+            return getIdentificationInformation().equals(otherPerson.getIdentificationInformation())
+                    && getMedicalInformation().equals(otherPerson.getMedicalInformation());
+        }
+
         // If neither has contact information
         if (!otherPerson.hasContactInformation() && !hasContactInformation()) {
             return getIdentificationInformation().equals(otherPerson.getIdentificationInformation());
