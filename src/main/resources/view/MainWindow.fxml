@@ -12,7 +12,7 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.layout.HBox?>
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="EduConnect" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onCloseRequest="#handleExit" title="EduConnect" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -32,12 +32,12 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        <StackPane prefHeight="50" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER" HBox.hgrow="NEVER">
+        <StackPane prefHeight="50" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-        <HBox prefHeight="500" >
+        <HBox prefHeight="500" VBox.vgrow="ALWAYS">
           <StackPane fx:id="resultDisplayPlaceholder" prefWidth="100"  styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <padding>
               <Insets bottom="5" left="10" right="10" top="5" />
@@ -50,7 +50,6 @@
           <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
         </HBox>
-
         <StackPane prefHeight="50" fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
       </VBox>
     </Scene>
