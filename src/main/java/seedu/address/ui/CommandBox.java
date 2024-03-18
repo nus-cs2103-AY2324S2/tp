@@ -16,7 +16,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.StateStorage;
 
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -39,6 +38,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
 
         try {
+            StateStorage stateStorage = new StateStorage();
             String lastCommand = StateStorage.loadState();
             commandTextField.setText(lastCommand);
         } catch (DataLoadingException e) {
