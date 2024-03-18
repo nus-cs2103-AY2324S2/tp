@@ -10,6 +10,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Interviewer extends Person {
 
+    private final Type type = Type.INTERVIEWER;
+
     /**
      * Every field must be present and not null.
      */
@@ -18,7 +20,12 @@ public class Interviewer extends Person {
     }
 
     @Override
+    public String getPersonType() {
+        return type.toString();
+    }
+
+    @Override
     public String toString() {
-        return "Interviewer: " + super.toString();
+        return super.toString();
     }
 }
