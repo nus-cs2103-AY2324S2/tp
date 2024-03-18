@@ -8,7 +8,7 @@ import java.util.UUID;
  */
 public class OrderId {
 
-    public final UUID id;
+    private final UUID id;
 
     /**
      * Constructs an {@code OrderId}.

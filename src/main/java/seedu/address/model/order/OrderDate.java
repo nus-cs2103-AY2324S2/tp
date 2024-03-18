@@ -14,7 +14,7 @@ public class OrderDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Order date should be in the format of DD-MM-YYYY HH:MM, e.g. 01-01-2024 23:59";
 
-    public final LocalDateTime orderDate;
+    private final LocalDateTime orderDate;
 
     /**
      * Constructs a {@code OrderDate}.
