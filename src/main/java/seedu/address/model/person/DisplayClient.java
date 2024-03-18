@@ -23,4 +23,22 @@ public class DisplayClient {
     public boolean hasDisplayClient() {
         return this.person != null;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DisplayClient)) {
+            return false;
+        }
+
+        DisplayClient otherDisplayClient = (DisplayClient) other;
+        if (person == null) {
+            return otherDisplayClient.getDisplayClient() == null;
+        }
+        return person.equals(otherDisplayClient.getDisplayClient());
+    }
 }
