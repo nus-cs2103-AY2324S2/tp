@@ -20,24 +20,24 @@ public class Person {
     private final Name name;
     private final Set<Tag> tags = new HashSet<>();
     private Phone phone;
-    private Email email;
+    private Email email = null;
     private Sex sex;
     // Data fields
     private Address address;
-    private Allergies allergies;
-    private BloodType bloodType;
-    private Country country;
+    private Allergies allergies = null;
+    private BloodType bloodType = null;
+    private Country country = null;
     private final DateOfBirth dateOfBirth;
     //Medical history
-    private Condition condition;
-    private DateOfAdmission dateOfAdmission;
-    private Diagnosis diagnosis;
+    private Condition condition = null;
+    private DateOfAdmission dateOfAdmission = null;
+    private Diagnosis diagnosis = null;
     private final Status status;
-    private Symptom symptom;
+    private Symptom symptom = null;
     /**
      * Every field must be present and not null.
      */
-    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status, Object... args) {
+    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status) {
         //Only the fields that are mandatory are included down here
         requireAllNonNull(nric, name, phone, address, dateOfBirth, sex);
         this.nric = nric;
@@ -49,6 +49,7 @@ public class Person {
         this.status = status;
     }
 
+    // TODO @laney0808 Create Optional Setters
     /**
      * Returns NRIC of patient.
      * @return

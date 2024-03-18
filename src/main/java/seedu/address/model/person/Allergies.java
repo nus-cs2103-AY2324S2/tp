@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Represents a Person's allergies in the address book.
- * Guarantees: immutable;}
+ * Guarantees: immutable;
  */
 public class Allergies {
     private final String allergies;

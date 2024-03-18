@@ -1,39 +1,31 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.Status;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
-    //TODO: add final, resolve the "may have not been initialized" error
-    private String nric;
     private final String name;
     private final String phone;
-    private String dateOfBirth;
-    private String sex;
-    private final String email;
+    //TODO: add final, resolve the "may have not been initialized" error
+    private final String nric;
+    private final String sex;
+    private final String status;
     private final String address;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String dateOfBirth;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,59 +34,37 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
                              @JsonProperty("phone") String phone, @JsonProperty("dateOfBirth") String dob,
                              @JsonProperty("sex") String sex, @JsonProperty("address") String address,
-                             @JsonProperty("email") String email, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("status") String status) {
         this.nric = nric;
         this.name = name;
         this.phone = phone;
+        this.address = address;
         this.dateOfBirth = dob;
         this.sex = sex;
-        this.email = email;
-        this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        this.status = status;
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Person} into this class for Json use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        this.nric = source.getNric().toString();
+        this.name = source.getName().toString();
+        this.phone = source.getPhone().toString();
+        this.address = source.getAddress().toString();
+        this.dateOfBirth = source.getDateOfBirth().toString();
+        this.sex = source.getEmail().toString();
+        this.status = source.getStatus().toString();
+
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Json-friendly adapted person object into the model's {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
-        }
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
+        // NRIC Check
         if (nric == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
         }
@@ -102,32 +72,23 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
         final Nric modelNric = new Nric(nric);
-
-        if (dateOfBirth == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DateOfBirth.class.getSimpleName()));
+        // Name Check
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelName = new Name(name);
+        // Phone Check
+        if (phone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
-
-        if (sex == null || sex.isBlank()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, sex.toString()));
-        }
-        if (!(sex.equals("F") || sex.equals("M"))) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final int modelSex = sex == "F" ? 0 : 1;
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
+        final Phone modelPhone = new Phone(phone);
+        // Address Check
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -135,10 +96,46 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelNric, modelName, modelPhone, modelAddress, modelDateOfBirth, modelSex,
-                modelEmail, modelTags);
+        // Date of Birth Check
+        if (dateOfBirth == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
+        }
+        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
+        // Sex Check
+        if (sex == null || sex.isBlank()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
+        }
+        Sex modelSex;
+        if (sex.equals("F")) {
+            modelSex = new Sex(Sex.SexType.F);
+        } else if (sex.equals("M")) {
+            modelSex = new Sex(Sex.SexType.M);
+        } else {
+            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        // Status Check
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        Status modelStatus;
+        switch (status) {
+        case "PENDING":
+            modelStatus = new Status(Status.StatusType.PENDING);
+            break;
+        case "HEALTHY":
+            modelStatus = new Status(Status.StatusType.HEALTHY);
+            break;
+        case "UNWELL":
+            modelStatus = new Status(Status.StatusType.UNWELL);
+            break;
+        default:
+            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        return new Person(modelNric, modelName, modelPhone, modelAddress, modelDateOfBirth, modelSex, modelStatus);
     }
 
 }

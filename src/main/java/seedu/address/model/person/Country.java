@@ -8,14 +8,10 @@ import java.util.Objects;
  */
 public class Country {
     private final String country;
-    //todo: map input country to a standard country name
+    //Todo: map input country to a standard country name
 
     public Country(String country) {
         this.country = country;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     @Override

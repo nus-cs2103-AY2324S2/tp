@@ -12,7 +12,7 @@ public class DateOfAdmission {
 
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
 
-    public final LocalDate dateOfAdmission;
+    private final LocalDate dateOfAdmission;
 
     /**
      * Constructs a {@code DateOfAdmission}.

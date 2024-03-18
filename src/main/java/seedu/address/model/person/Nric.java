@@ -21,7 +21,7 @@ public class Nric {
      */
     public static final String VALIDATION_REGEX = "^[ST]\\\\d{7}[A-Z]$";
 
-    public final String nric;
+    private final String nric;
 
     /**
      * Constructs a {@code NRIC}.
