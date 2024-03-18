@@ -7,7 +7,7 @@ import seedu.address.model.Model;
  */
 public class HelpDeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "help-delete";
+    public static final String COMMAND_WORD = "/help-delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions for delete command.\n"
             + "Example: " + COMMAND_WORD;
