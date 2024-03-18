@@ -283,6 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a patient's medical record     | record new patients I work with                          |
 | `* * *`  | user                                       | edit a patient's medical record     | amend necessary details of a medical record when needed |
 | `* * *`  | user                                       | delete a patient's medical record     | remove patient's medical record that I no longer need |
+| `* * *`  | user                                       | find a patient's medical record     | find existing patient records based on keyword(s)|
 | `* * *`  | user                                       | list all patients' appointment notes | view all existing appointment notes         |
 | `* * *`  | user                                       | add a patient's appointment note      | record keep the details of each appointment              |
 | `* * *`  | user                                       | edit a patient's appointment note    | update the details of an appointment        |
