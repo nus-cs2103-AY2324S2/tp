@@ -63,17 +63,25 @@ public class AssignCommand extends Command {
 
         Person personToEdit = lastShownPersonList.get(personIndex.getZeroBased());
         Task taskToAssign = lastShownTaskList.get(taskIndex.getZeroBased());
-        Set<Task> editedTasks = new HashSet<>(personToEdit.getTasks());
-        editedTasks.add(taskToAssign);
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), editedTasks);
+        Person editedPerson = createEditedPerson(personToEdit, taskToAssign);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatTask(taskToAssign),
                 Messages.format(editedPerson)));
+    }
+
+    /**
+     * Creates and returns a {@code Person} with {@code taskToAssign}
+     * assigned to {@code personToEdit}.
+     */
+    private static Person createEditedPerson(Person personToEdit, Task taskToAssign) {
+        Set<Task> editedTasks = new HashSet<>(personToEdit.getTasks());
+        editedTasks.add(taskToAssign);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), editedTasks);
     }
 
     @Override
