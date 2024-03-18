@@ -164,6 +164,11 @@ public class AddAppCommandTest {
         }
 
         @Override
+        public void deletePersonWithNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }

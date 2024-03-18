@@ -34,26 +34,17 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        String msg = "";
 
-        boolean found = false;
-        Person personToDelete = null;
-
-        for (Person person : lastShownList) {
-            if (person.getNric().equals(targetNric)) {
-                found = true;
-                personToDelete = person;
-                break;
-            }
-        }
-
-        if (!found) {
+        if (model.hasPersonWithNric(targetNric)) {
+            msg = String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                    Messages.format(model.getPersonWithNric(targetNric)));
+            model.deletePersonWithNric(targetNric);
+        } else {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);
         }
 
-        model.deletePerson(personToDelete);
-
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new CommandResult(msg);
     }
 
     @Override

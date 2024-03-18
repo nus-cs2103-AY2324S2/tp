@@ -119,6 +119,15 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Deletes if a person with the same nric as {@code nric} exists in the address book.
+     */
+    public void deletePersonWithNric(Nric nric) {
+        requireNonNull(nric);
+        Person key = getPersonWithNric(nric);
+        internalList.remove(key);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
