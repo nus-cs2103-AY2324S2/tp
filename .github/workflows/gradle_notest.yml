@@ -1,0 +1,40 @@
+name: Java CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Set up repository
+        uses: actions/checkout@v2 # Note: Changed to @v2 for better practices
+
+      - name: Merge to master
+        run: git checkout --progress --force ${{ github.sha }}
+
+      - name: Run repository-wide tests
+        if: runner.os == 'Linux'
+        working-directory: ${{ github.workspace }}/.github
+        run: ./run-checks.sh
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Setup JDK 11
+        uses: actions/setup-java@v2 # Note: Updated to @v2 for better practices
+        with:
+          distribution: 'temurin' # Use Temurin distribution
+          java-version: '11'
+
+      - name: Build with Gradle without running tests
+        run: ./gradlew build -x test # Changed to build without tests
+
+      - name: Upload coverage reports to Codecov
+        if: runner.os == 'Linux'
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
