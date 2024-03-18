@@ -22,12 +22,12 @@ import educonnect.logic.Messages;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.Model;
 import educonnect.model.student.Email;
+import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Timetable;
-import educonnect.model.student.Link;
 import educonnect.model.tag.Tag;
 
 /**
@@ -120,7 +120,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         Timetable timetable = editStudentDescriptor.getTimetable().orElse(studentToEdit.getTimetable());
 
-        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedLink, updatedTags, timetable);
+        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedLink,
+                updatedTags, timetable);
     }
 
     @Override
@@ -180,7 +181,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, studentId, email, telegramHandle,link, tags, timetable);
+            return CollectionUtil.isAnyNonNull(name, studentId, email, telegramHandle, link, tags, timetable);
         }
 
         public void setName(Name name) {

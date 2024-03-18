@@ -11,13 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import educonnect.commons.exceptions.IllegalValueException;
 import educonnect.model.student.Email;
+import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
-import educonnect.model.student.Link;
 import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Timetable;
-
 import educonnect.model.tag.Tag;
 
 /**
@@ -132,11 +131,8 @@ class JsonAdaptedStudent {
                     Timetable.class.getSimpleName()));
         }
 
-        if (link==null) {
-            return new Student(modelName, modelstudentId, modelEmail, modeltelegramHandle, modelTags, timetable);
-        } else {
-            return new Student(modelName, modelstudentId, modelEmail, modeltelegramHandle, modelLink, modelTags, timetable);
-        }
+        return new Student(modelName, modelstudentId, modelEmail, modeltelegramHandle, modelLink, modelTags,
+                timetable);
     }
 
 }

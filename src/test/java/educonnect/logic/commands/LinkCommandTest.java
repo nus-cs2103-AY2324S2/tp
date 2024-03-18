@@ -1,5 +1,14 @@
 package educonnect.logic.commands;
 
+import static educonnect.logic.commands.CommandTestUtil.assertCommandFailure;
+import static educonnect.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static educonnect.logic.commands.LinkCommand.createEditedStudent;
+import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static educonnect.testutil.TypicalStudents.JOHHNY;
+import static educonnect.testutil.TypicalStudents.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
 import educonnect.logic.Messages;
 import educonnect.logic.parser.LinkCommandParser;
 import educonnect.model.Model;
@@ -9,14 +18,7 @@ import educonnect.model.student.Email;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
-import org.junit.jupiter.api.Test;
 
-import static educonnect.logic.commands.CommandTestUtil.assertCommandFailure;
-import static educonnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static educonnect.logic.commands.LinkCommand.createEditedStudent;
-import static educonnect.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static educonnect.testutil.TypicalStudents.JOHHNY;
-import static educonnect.testutil.TypicalStudents.getTypicalAddressBook;
 public class LinkCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private LinkCommandParser parser = new LinkCommandParser();

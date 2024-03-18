@@ -22,7 +22,6 @@ public class Student {
     private final StudentId studentId;
     private final TelegramHandle telegramHandle;
     private final Email email;
-
     private final Link link;
 
     // Data fields
@@ -30,7 +29,8 @@ public class Student {
     private final Timetable timetable;
 
     /**
-     * Every field must be present and not null.
+     * Constructs an {@code Student}.
+     * Every field must be present and not null. Links are not included.
      */
     public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Set<Tag> tags,
                    Timetable timetable) {
@@ -44,7 +44,12 @@ public class Student {
         this.timetable = timetable;
     }
 
-    public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Link link, Set<Tag> tags, Timetable timetable) {
+    /**
+     * Constructs an {@code Student}.
+     * Every field must be present and not null.
+     */
+    public Student(Name name, StudentId studentId, Email email, TelegramHandle telegramHandle, Link link,
+                   Set<Tag> tags, Timetable timetable) {
         requireAllNonNull(name, studentId, email, telegramHandle, tags);
         this.name = name;
         this.studentId = studentId;
@@ -71,7 +76,8 @@ public class Student {
         return telegramHandle;
     }
 
-    public Link getLink() { return link; }
+    public Link getLink() {
+        return link; }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

@@ -1,12 +1,12 @@
 package educonnect.testutil;
 
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE;
-import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 
 import java.util.Set;
 

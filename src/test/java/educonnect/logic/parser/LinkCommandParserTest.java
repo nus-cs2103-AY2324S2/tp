@@ -1,25 +1,30 @@
 package educonnect.logic.parser;
 
-import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static educonnect.logic.commands.CommandTestUtil.*;
-import static educonnect.logic.parser.CliSyntax.*;
+import static educonnect.logic.commands.CommandTestUtil.INVALID_LINK;
+import static educonnect.logic.commands.CommandTestUtil.VALID_EMAIL_JOHN;
+import static educonnect.logic.commands.CommandTestUtil.VALID_LINK_JOHN;
+import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_JOHN;
+import static educonnect.logic.commands.CommandTestUtil.VALID_TELEGRAM_HANDLE_JOHN;
+import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 
+import org.junit.jupiter.api.Test;
 
-import educonnect.logic.Messages;
+import educonnect.logic.commands.LinkCommand;
 import educonnect.model.student.Email;
 import educonnect.model.student.Link;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
-import org.junit.jupiter.api.Test;
 
-import educonnect.logic.commands.LinkCommand;
 
 public class LinkCommandParserTest {
 
     private LinkCommandParser parser = new LinkCommandParser();
 
     @Test
-    public void parse_validArgsId_returnsLinkedCommand_success() {
+    public void parse_validArgsId_success() {
         LinkCommand.LinkStudentDescriptor linkStudentDescriptor = new LinkCommand.LinkStudentDescriptor();
         linkStudentDescriptor.setStudentId(new StudentId(VALID_STUDENT_ID_JOHN));
         linkStudentDescriptor.setLink(new Link(VALID_LINK_JOHN));
@@ -28,7 +33,7 @@ public class LinkCommandParserTest {
                 + PREFIX_LINK + VALID_LINK_JOHN, new LinkCommand(linkStudentDescriptor));
     }
     @Test
-    public void parse_validArgsEmail_returnsLinkedCommand_success() {
+    public void parse_validArgsEmail_success() {
         LinkCommand.LinkStudentDescriptor linkStudentDescriptor = new LinkCommand.LinkStudentDescriptor();
         linkStudentDescriptor.setEmail(new Email(VALID_EMAIL_JOHN));
         linkStudentDescriptor.setLink(new Link(VALID_LINK_JOHN));
@@ -38,7 +43,7 @@ public class LinkCommandParserTest {
     }
 
     @Test
-    public void parse_validArgsTele_returnsLinkedCommand_success() {
+    public void parse_validArgsTelegram_success() {
         LinkCommand.LinkStudentDescriptor linkStudentDescriptor = new LinkCommand.LinkStudentDescriptor();
         linkStudentDescriptor.setTelegramHandle(new TelegramHandle(VALID_TELEGRAM_HANDLE_JOHN));
         linkStudentDescriptor.setLink(new Link(VALID_LINK_JOHN));

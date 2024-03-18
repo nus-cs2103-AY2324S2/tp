@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import educonnect.model.student.Email;
+import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
 import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Timetable;
-import educonnect.model.student.*;
 import educonnect.model.tag.Tag;
 import educonnect.model.util.SampleDataUtil;
 
@@ -23,7 +23,6 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_TELEGRAM_HANDLE = "@Beeam";
     public static final Timetable DEFAULT_TIMETABLE = TypicalTimetableAndValues.DEFAULT_EMPTY_TIMETABLE;
-
     public static final String DEFAULT_LINK = "https://www.google.com/";
     public static final String ALTERNATE_NAME = "Bob Builder";
     public static final String ALTERNATE_STUDENT_ID = "A9876543U";
@@ -140,6 +139,6 @@ public class StudentBuilder {
         return new Student(name, studentId, email, telegramHandle, link, tags, timetable);
     }
     public Student buildNoLink() {
-        return new Student(name, studentId, email, telegramHandle, tags, timetable);}
+        return new Student(name, studentId, email, telegramHandle, tags, timetable); }
 
 }

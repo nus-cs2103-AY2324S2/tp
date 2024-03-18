@@ -1,30 +1,46 @@
 package educonnect.logic.commands;
 
+import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+
 import educonnect.commons.util.CollectionUtil;
 import educonnect.commons.util.ToStringBuilder;
 import educonnect.logic.Messages;
 import educonnect.logic.commands.exceptions.CommandException;
 import educonnect.model.Model;
-import educonnect.model.student.*;
+import educonnect.model.student.Email;
+import educonnect.model.student.Link;
+import educonnect.model.student.Name;
+import educonnect.model.student.Student;
+import educonnect.model.student.StudentId;
+import educonnect.model.student.TelegramHandle;
 import educonnect.model.student.timetable.Timetable;
 import educonnect.model.tag.Tag;
 
-import java.util.*;
 
-import static educonnect.logic.parser.CliSyntax.*;
-import static java.util.Objects.requireNonNull;
 
-public class LinkCommand extends Command{
+/**
+ * Links a website to a student identified using their unique student ID, email, or telegram handle.
+ */
+public class LinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a weblink to the student's page identified only by the unique identifier used in the displayed student list.\n"
+            + ": Adds a weblink to the student's page identified only by the unique identifier "
+            + "used in the displayed student list.\n"
             + "Parameters: " + PREFIX_EMAIL + "EMAIL or "
             + PREFIX_TELEGRAM_HANDLE + "TELEGRAM_HANDLE or "
             + PREFIX_STUDENT_ID + "STUDENT_ID\n"
             + "Example 1: " + COMMAND_WORD + " " + PREFIX_EMAIL + "example@email.com " + "l/https://www.google.com/\n"
             + "Example 2: " + COMMAND_WORD + " " + PREFIX_STUDENT_ID + "A1234567X " + "l/https://www.google.com/\n"
-            + "Example 3: " + COMMAND_WORD + " " + PREFIX_TELEGRAM_HANDLE + "@john.doe " + "l/https://www.google.com/\n";
+            + "Example 3: " + COMMAND_WORD + " " + PREFIX_TELEGRAM_HANDLE + "@john.doe "
+            + "l/https://www.google.com/\n";
     public static final String MESSAGE_LINK_STUDENT_SUCCESS = "Linked Student to a weblink: %1$s";
     public static final String MULTIPLE_UNIQUE_IDENTIFIER_MESSAGE =
             "Multiple unique identifier prefixes used, only use one unique identifier prefix.\n" + MESSAGE_USAGE;
@@ -83,6 +99,10 @@ public class LinkCommand extends Command{
             return new CommandResult(String.format(MESSAGE_LINK_STUDENT_SUCCESS, Messages.format(newStudent)));
         }).orElseThrow(() -> new CommandException(Messages.MESSAGE_NO_STUDENT_FOUND));
     }
+
+    /**
+     * Stores the details to link the student with. The original
+     */
     public static class LinkStudentDescriptor {
         private Name name;
         private StudentId studentId;
@@ -126,7 +146,8 @@ public class LinkCommand extends Command{
             return Optional.ofNullable(telegramHandle);
         }
 
-        public void setLink(Link link) { this.link = link; }
+        public void setLink(Link link) {
+            this.link = link; }
 
         public Optional<Link> getLinks() {
             return Optional.ofNullable(link);
@@ -163,7 +184,15 @@ public class LinkCommand extends Command{
                     .toString();
         }
     }
-
+    /**
+     * Creates a new {@code Student} object with edited information based on the given {@code studentToEdit}
+     * and {@code link}. All the information of the edited student stays the same except for the link.
+     *
+     * @param studentToEdit The original {@code Student} object to be edited. Must not be null.
+     * @param link          The {@code LinkStudentDescriptor} containing updated link information.
+     * @return A new {@code Student} object with edited information.
+     * @throws IllegalArgumentException if {@code studentToEdit} is null.
+     */
     public static Student createEditedStudent(Student studentToEdit, LinkStudentDescriptor link) {
         assert studentToEdit != null;
 
@@ -175,6 +204,7 @@ public class LinkCommand extends Command{
         Set<Tag> updatedTags = studentToEdit.getTags();
         Timetable t = studentToEdit.getTimetable();
 
-        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedLink, updatedTags, t);
+        return new Student(updatedName, updatedStudentId, updatedEmail, updatedTelegramHandle, updatedLink,
+                updatedTags, t);
     }
 }

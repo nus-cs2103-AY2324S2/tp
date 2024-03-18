@@ -7,7 +7,6 @@ import static educonnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static educonnect.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static educonnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TELEGRAM_HANDLE_AMY;
 import static educonnect.logic.commands.CommandTestUtil.VALID_TELEGRAM_HANDLE_BOB;
 import static educonnect.testutil.TypicalTimetableAndValues.VALID_TIMETABLE_1;

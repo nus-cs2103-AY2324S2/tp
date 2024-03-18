@@ -1,19 +1,20 @@
 package educonnect.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import educonnect.model.student.Student;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.event.ActionEvent;
+
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -51,17 +52,6 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Hyperlink hyperlink;
 
-    @FXML
-    void openLink(ActionEvent action) throws URISyntaxException, IOException {
-        String url = student.getLink().toString();
-        if (url != null || !url.isEmpty()) {
-
-            Desktop.getDesktop().browse(new URI(url));
-
-        } else {
-            System.out.println("No Link has been added yet");
-        }
-    }
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
      */
@@ -82,5 +72,17 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         timetable.setText(student.getTimetable().toString());
+    }
+
+    @FXML
+    void openLink(ActionEvent action) throws URISyntaxException, IOException {
+        String url = student.getLink().toString();
+        if (url != null || !url.isEmpty()) {
+
+            Desktop.getDesktop().browse(new URI(url));
+
+        } else {
+            System.out.println("No Link has been added yet");
+        }
     }
 }
