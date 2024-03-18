@@ -292,6 +292,7 @@ public class AddCommandTest {
                 addCommand.execute(modelStub, commandHistory));
     }
 
+
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
@@ -315,6 +316,22 @@ public class AddCommandTest {
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
+
+
+    @Test
+    public void toStringMethod() {
+        AddCommand addCommand = new AddCommand(ALICE);
+        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        assertEquals(expected, addCommand.toString());
+    }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        assertThrows(NullPointerException.class, () -> addCommand.execute(null));
+    }
+
 
     /**
      * A default model stub that have all of the methods failing.
