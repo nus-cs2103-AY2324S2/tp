@@ -26,9 +26,11 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          ArticleBookStorage articleBookStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.articleBookStorage = articleBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -96,7 +98,7 @@ public class StorageManager implements Storage {
     }
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyArticleBook} to the storage.
      * @param articleBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

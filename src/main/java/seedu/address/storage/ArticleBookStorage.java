@@ -18,7 +18,7 @@ public interface ArticleBookStorage {
     Path getArticleBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyArticleBook}.
+     * Returns ArticleBook data as a {@link ReadOnlyArticleBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
