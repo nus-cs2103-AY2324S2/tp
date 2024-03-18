@@ -54,6 +54,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DATEOFBIRTH; // empty string not allowed for
     // date of birth
+    public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "Others";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
