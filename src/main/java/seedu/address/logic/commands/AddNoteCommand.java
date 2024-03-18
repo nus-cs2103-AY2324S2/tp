@@ -96,4 +96,15 @@ public class AddNoteCommand extends Command {
             .add("note", note)
             .toString();
     }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
+    @Override
+    public String getMessageUsage() {
+        return MESSAGE_USAGE;
+    }
+
 }

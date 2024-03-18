@@ -117,4 +117,17 @@ public class DeleteCommandTest {
 
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
+
+
+    @Test
+    public void getCommandWord() {
+        Command command = new DeleteCommand(INDEX_FIRST_PERSON);
+        assertEquals(DeleteCommand.COMMAND_WORD, command.getCommandWord());
+    }
+
+    @Test
+    public void getMessageUsage() {
+        Command command = new DeleteCommand(INDEX_FIRST_PERSON);
+        assertEquals(DeleteCommand.MESSAGE_USAGE, command.getMessageUsage());
+    }
 }

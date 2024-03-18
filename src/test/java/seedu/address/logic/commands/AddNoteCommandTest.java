@@ -71,8 +71,10 @@ public class AddNoteCommandTest {
             assertEquals(VALID_NOTE_FLU, noteCaptor.get(noteCaptor.size() - 1));
 
             assertEquals(
-                new CommandResult(String.format(AddNoteCommand.MESSAGE_SUCCESS, VALID_NOTE_FLU.getDescription()), false,
-                    false), result);
+                    new CommandResult(String.format(AddNoteCommand.MESSAGE_SUCCESS, VALID_NOTE_FLU.getDescription()),
+                            false,
+                            false),
+                    result);
         }
     }
 
@@ -114,11 +116,22 @@ public class AddNoteCommandTest {
     @Test
     public void toString_success() {
         AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
-        String expected =
-            "seedu.address.logic.commands.AddNoteCommand{personIndex=seedu.address.commons.core.index"
+        String expected = "seedu.address.logic.commands.AddNoteCommand{personIndex=seedu.address.commons.core.index"
                 + ".Index{zeroBasedIndex=0}, note=seedu.address.model.person.note.Note{dateTime=2024-02-19T21:30, "
                 + "description=General Flu}}";
 
         assertEquals(expected, addNoteCommand.toString());
+    }
+
+    @Test
+    public void getCommandWord() {
+        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
+        assertEquals(AddNoteCommand.COMMAND_WORD, addNoteCommand.getCommandWord());
+    }
+
+    @Test
+    public void getMessageUsage() {
+        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), VALID_NOTE_FLU);
+        assertEquals(AddNoteCommand.MESSAGE_USAGE, addNoteCommand.getMessageUsage());
     }
 }
