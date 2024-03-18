@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddOrderCommandParser" as AddOrderCommandParser LOGIC_COLOR
+participant "o:Order" as Order LOGIC_COLOR
+participant "a:AddOrderCommand" as AddOrderCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "alice:Person" as Person LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"addorder \nn/Alice \no/Cookies")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(\n"addorder \nn/Alice \no/Cookies")
+activate AddressBookParser
+
+create AddOrderCommandParser
+AddressBookParser -> AddOrderCommandParser
+activate AddOrderCommandParser
+
+AddOrderCommandParser --> AddressBookParser
+deactivate AddOrderCommandParser
+
+AddressBookParser -> AddOrderCommandParser : parse(\n"n/Alice \no/Cookies")
+activate AddOrderCommandParser
+
+create Order
+AddOrderCommandParser -> Order
+activate Order
+
+Order --> AddOrderCommandParser : o
+deactivate Order
+
+create AddOrderCommand
+AddOrderCommandParser -> AddOrderCommand : AddOrderCommand(name, o)
+activate AddOrderCommand
+
+AddOrderCommand --> AddOrderCommandParser : a
+deactivate AddOrderCommand
+
+AddOrderCommandParser --> AddressBookParser : a
+deactivate AddOrderCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddOrderCommandParser -[hidden]-> AddressBookParser
+destroy AddOrderCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddOrderCommand : execute(m)
+activate AddOrderCommand
+
+AddOrderCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> AddOrderCommand : fpl
+deactivate Model
+
+alt "Alice" matches name in fpl
+    AddOrderCommand -> Person : addOrder(o)
+activate Person
+
+Person --> AddOrderCommand
+deactivate Person
+
+create CommandResult
+AddOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddOrderCommand
+deactivate CommandResult
+
+AddOrderCommand --> LogicManager : r
+
+[<--LogicManager
+deactivate LogicManager
+
+else
+    [<-- AddOrderCommand : commandException
+    deactivate AddOrderCommand
+end
+@enduml
