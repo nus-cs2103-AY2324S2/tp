@@ -116,7 +116,7 @@ public class ParserUtil {
     public static Subject parseSubject(String subject) throws ParseException {
         requireNonNull(subject);
         String trimmedSubject = subject.trim();
-        if(!Subject.isValidSubject(trimmedSubject)) {
+        if (!Subject.isValidSubject(trimmedSubject)) {
             throw new ParseException(Subject.MESSAGE_CONSTANTS);
         }
         return new Subject(trimmedSubject);

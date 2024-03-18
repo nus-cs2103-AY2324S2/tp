@@ -40,7 +40,7 @@ public class ViewCommand extends Command {
             model.updateFilteredPersonList(namePredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
-        } else if (idPredicate != null){
+        } else if (idPredicate != null) {
             model.updateFilteredPersonList(idPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

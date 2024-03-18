@@ -12,7 +12,7 @@ public class Id {
     public static boolean isValidId(String test) {
         try {
             Integer.parseInt(test);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
         }
         return true;
