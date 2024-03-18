@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT_QUANTITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
@@ -29,10 +29,10 @@ public class EditOrderCommand extends EditCommand {
             + ": Edits the details of the order identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: [" + PREFIX_ORDER_ID + "INDEX (must be a positive integer)] "
+            + "Parameters: [" + PREFIX_ORDER + "INDEX (must be a positive integer)] "
             + "[" + PREFIX_PRODUCT_NAME + "PRODUCT_NAME] "
             + "[" + PREFIX_PRODUCT_QUANTITY + "PRODUCT_QUANTITY] "
-            + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER_ID + "1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + "1 "
             + PREFIX_PRODUCT_NAME + "cupcake "
             + PREFIX_PRODUCT_QUANTITY + "2";
 
