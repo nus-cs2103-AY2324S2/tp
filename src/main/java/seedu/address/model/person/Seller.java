@@ -38,3 +38,4 @@ public class Seller extends Person {
         this.unitNumber = unitNumber;
     }
 }
+
