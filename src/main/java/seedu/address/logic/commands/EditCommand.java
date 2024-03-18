@@ -264,6 +264,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("birthday", birthday)
                     .add("tags", tags)
                     .toString();
         }

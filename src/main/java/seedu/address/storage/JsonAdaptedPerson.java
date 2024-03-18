@@ -126,7 +126,7 @@ class JsonAdaptedPerson {
         if (!Birthday.isValidBirthday(birthday)) {
             throw new IllegalValueException(Birthday.BIRTHDAY_CONSTRAINTS);
         }
-        final Birthday modelBirthday = new Birthday(birthday);
+        final Birthday modelBirthday = new Birthday(Optional.ofNullable(birthday).orElse(""));
         if (!MoneyOwed.isValidMoney(moneyOwed)) {
             throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
         }
