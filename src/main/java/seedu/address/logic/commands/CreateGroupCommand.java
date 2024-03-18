@@ -27,6 +27,8 @@ public class CreateGroupCommand extends Command {
             + PREFIX_COURSEMATE + "#1 "
             + PREFIX_COURSEMATE + "John Doe.";
 
+    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the group list";
+
     private final Group toAdd;
 
     /**
@@ -42,7 +44,7 @@ public class CreateGroupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (model.hasGroup(toAdd)) {
-            throw new CommandException(Messages.MESSAGE_GROUP_ALREADY_IN_LIST);
+            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }
 
         model.addGroup(toAdd);
