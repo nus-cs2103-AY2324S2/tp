@@ -21,7 +21,7 @@ public class AppointmentTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Appointment(null, null, null, null, null, null));
+        assertThrows(NullPointerException.class, () -> new Appointment(null, null, null, null, null));
     }
 
     @Test
@@ -100,8 +100,7 @@ public class AppointmentTest {
     @Test
     public void toStringMethod() {
         String expected = Appointment.class.getCanonicalName()
-                + "{name=" + ALICE_APPT_1.getName()
-                + ", nric=" + ALICE_APPT_1.getNric()
+                +"{nric=" + ALICE_APPT_1.getNric()
                 + ", date=" + ALICE_APPT_1.getDate()
                 + ", timePeriod=" + ALICE_APPT_1.getTimePeriod()
                 + ", appointmentType=" + ALICE_APPT_1.getAppointmentType()

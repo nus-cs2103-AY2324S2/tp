@@ -26,8 +26,6 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
-    @FXML
     private Label nric;
     @FXML
     private Label id;
@@ -47,7 +45,7 @@ public class AppointmentCard extends UiPart<Region> {
         super(FXML);
         this.appt = appt;
         id.setText(displayedIndex + ". ");
-        name.setText(appt.getName().toString() + " - ");
+        nric.setText(appt.getNric().toString() + " - ");
         date.setText(appt.getDate().value.toString());
         timePeriod.setText(appt.getTimePeriod().getStartTime() + " - " + appt.getTimePeriod().getEndTime());
         appointmentType.setText(appt.getAppointmentType().toString());

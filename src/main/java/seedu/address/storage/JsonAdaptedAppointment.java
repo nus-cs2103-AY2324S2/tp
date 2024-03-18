@@ -20,7 +20,6 @@ public class JsonAdaptedAppointment {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
-    private final String name;
     private final String nric;
     private final String date;
     private final String startTime;
@@ -31,12 +30,11 @@ public class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
+    public JsonAdaptedAppointment(@JsonProperty("nric") String nric,
                              @JsonProperty("date") String date,
                              @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
                              @JsonProperty("appointmentType") String appointmentType,
                                   @JsonProperty("note") String note) {
-        this.name = name;
         this.nric = nric;
         this.date = date;
         this.startTime = startTime;
@@ -49,7 +47,6 @@ public class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        name = source.getName().toString();
         nric = source.getNric().value;
         date = source.getDate().toString();
         startTime = source.getTimePeriod().getStartTime().toString();
@@ -64,14 +61,6 @@ public class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Appointment toModelType() throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
         if (nric == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
         }
@@ -127,7 +116,7 @@ public class JsonAdaptedAppointment {
         }
         final Note modelNote = new Note(note);
 
-        return new Appointment(modelName, modelNric, modelDate, modelTimePeriod,
+        return new Appointment(modelNric, modelDate, modelTimePeriod,
                 modelAppointmentType, modelNote);
     }
 
