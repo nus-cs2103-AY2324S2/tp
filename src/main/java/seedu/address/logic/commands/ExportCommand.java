@@ -22,7 +22,7 @@ public class ExportCommand extends Command {
             + "If no filename is provided, the default filename 'contacts.csv' will be used.\n"
             + "Example: export my_contacts.csv";
 
-    private final String filename;
+    public final String filename;
 
     /**
      * Creates an ExportCommand to export contact as CV file
@@ -48,6 +48,7 @@ public class ExportCommand extends Command {
         if (!isSuccessful) {
             throw new CommandException(MESSAGE_FAILURE_FILE_WRITE);
         }
+
         return new CommandResult(MESSAGE_SUCCESS + filename);
 
     }

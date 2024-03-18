@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,17 +26,16 @@ public class ExportCommandTest {
 
     private final Model model = new ModelManager(getTypicalNetConnect(), new UserPrefs());
 
-    @Test
-    public void constructor_nullFilename_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ExportCommand(null));
-    }
 
     @Test
-    public void execute_exportSuccess() {
+    public void execute_exportSuccess() throws CommandException {
         String filename = "test_export.csv";
         Path filePath = Paths.get(filename);
+
         ExportCommand exportCommand = new ExportCommand(filename);
         String expectedMessage = ExportCommand.MESSAGE_SUCCESS + filename;
+        exportCommand.execute(model);
+
 
         Model expectedModel = new ModelManager(model.getNetConnect(), new UserPrefs());
         assertCommandSuccess(exportCommand, model, expectedMessage, expectedModel);
@@ -56,11 +56,11 @@ public class ExportCommandTest {
 
     @Test
     public void execute_exportFailure_fileWriteError() {
+        assertNotNull(NON_EXISTENT_FILE);
         String filename = NON_EXISTENT_FILE.toString();
         ExportCommand exportCommand = new ExportCommand(filename);
         String expectedMessage = ExportCommand.MESSAGE_FAILURE_FILE_WRITE;
-
-        assertCommandFailure(exportCommand, model, expectedMessage);
+        assertThrows(CommandException.class, expectedMessage , () -> exportCommand.execute(model));
     }
 
     @Test

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -39,13 +38,13 @@ public class ExportCommandParserTest {
 
     @Test
     public void parse_emptyArgs_throwsParseException() {
-        String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE);
+        String expectedErrorMessage = String.format(ExportCommandParser.MESSAGE_INVALID_FILENAME);
         assertParseFailure(parser, "   ", expectedErrorMessage);
     }
 
     @Test
     public void parse_blankArgs_throwsParseException() {
-        String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, "    ", expectedErrorMessage);
+        ExportCommand expectedExportCommand = new ExportCommand();
+        assertParseSuccess(parser, "", expectedExportCommand);
     }
 }

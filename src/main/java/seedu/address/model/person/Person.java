@@ -72,7 +72,7 @@ public class Person {
     public String getTagsAsString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Tag tag : tags) {
-            stringBuilder.append(tag.toString()).append(", ");
+            stringBuilder.append(tag.getTagName()).append(", ");
         }
         // Remove the last comma and space if there are any tags
         if (stringBuilder.length() > 0) {
