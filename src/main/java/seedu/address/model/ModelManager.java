@@ -20,6 +20,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
@@ -32,6 +33,8 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.versionedAddressBook = new VersionedAddressBook();
+        commitInitialAddressBook();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
@@ -78,8 +81,8 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setAddressBook(ReadOnlyAddressBook newData) {
+        this.addressBook.resetData(newData);
     }
 
     @Override
@@ -144,5 +147,30 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
+    //=========== VersionedAddressBook Methods =============================================================
+
+    public void commitInitialAddressBook() {
+        versionedAddressBook.commitInitial(addressBook);
+    }
+
+
+    @Override
+    public void commitAddressBook() {
+        versionedAddressBook.commit(addressBook);
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return versionedAddressBook.canUndo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        AddressBook undoneState = versionedAddressBook.undo();
+        setAddressBook(undoneState);
+    }
+
+
 
 }
