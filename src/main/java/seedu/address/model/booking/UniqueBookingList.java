@@ -8,8 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -43,6 +41,7 @@ public class UniqueBookingList implements Iterable<Booking> {
     public void add(Booking toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
+            // TO CHANGE
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
@@ -130,7 +129,7 @@ public class UniqueBookingList implements Iterable<Booking> {
     private boolean bookingsAreUnique(List<Booking> bookings) {
         for (int i = 0; i < bookings.size() - 1; i++) {
             for (int j = i + 1; j < bookings.size(); j++) {
-                if ( bookings.get(i).equals(bookings.get(j))) {
+                if (bookings.get(i).equals(bookings.get(j))) {
                     return false;
                 }
             }

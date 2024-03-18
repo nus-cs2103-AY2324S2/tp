@@ -11,9 +11,9 @@ import java.time.format.DateTimeParseException;
  */
 public class StartTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Start times must be in the format of YYYY-MM-DDTHH:MM "
+    public static final String MESSAGE_CONSTRAINTS = "Start times must be in the format of YYYY-MM-DD HH:MM "
             + "(ISO_LOCAL_DATE_TIME).";
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d HH:mm");
 
     public final String startTimeString;
     public final LocalDateTime startTime;

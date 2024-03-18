@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Booking> PREDICATE_SHOW_ALL_BOOKINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -91,4 +92,10 @@ public interface Model {
      */
     void addBooking(Booking booking);
 
+    /**
+     * Returns True if booking exists, else False
+     */
+    boolean hasBooking(Booking booking);
+
+    ObservableList<Booking> getFilteredBookingList();
 }
