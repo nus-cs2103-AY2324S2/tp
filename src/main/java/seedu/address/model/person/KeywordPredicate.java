@@ -22,7 +22,7 @@ public class KeywordPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         boolean predicate = true;
 
-        predicate &= contains(person.getName().fullName.toLowerCase(), PREFIX_NAME);
+        predicate &= contains(person.getName().toString(), PREFIX_NAME);
         predicate &= contains(person.getPhone().toString(), PREFIX_PHONE);
         predicate &= contains(person.getEmail().toString(), PREFIX_EMAIL);
         predicate &= contains(person.getAddress().toString(), PREFIX_ADDRESS);
@@ -50,7 +50,7 @@ public class KeywordPredicate implements Predicate<Person> {
 
     boolean contains(String identifier, Prefix keyword) {
         if (keywords.getValue(keyword).isPresent()) {
-            return identifier.contains(keywords.getValue(keyword).get());
+            return identifier.toLowerCase().contains(keywords.getValue(keyword).get().toLowerCase());
         }
 
         return true;
@@ -73,6 +73,6 @@ public class KeywordPredicate implements Predicate<Person> {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this).add("keyword", keywords).toString();
     }
 }
