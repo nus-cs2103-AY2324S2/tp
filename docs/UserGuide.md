@@ -72,46 +72,61 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student to contact book: `add`
 
-Adds a person to the address book.
+Adds a student to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MAJOR [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@u.nus.edu m/Computer Science`
+* `add n/Betsy Crowe t/friend e/betsycrowe@u.nus.edu m/life sciences p/84459350 t/Exchange Student`
 
-### Listing all persons : `list`
+### Listing all students : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all students in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student's information : `edit`
 
-Edits an existing person in the address book.
+Edits an existing student in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR] [s/STAR] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/98765432 e/johndoe@u.nus.edu` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+**Note that editing the number of stars of a student replaces the existing value instead of adding onto it like in `star` command.**
 
-Finds persons whose names contain any of the given keywords.
+### Awarding a student stars for participation : `star`
+
+Awards a student stars for good participation in class.
+
+Format: `star INDEX [s/STAR]`
+
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* The `STAR` is given as an unsigned integer, meaning it **has to be a whole number** starting from 0, 1, 2, …​
+* The `STAR` will add onto existing number of stars the student already has.
+
+Examples:
+*  `star 1 s/5` Adds 5 stars to the first student in the contact book.
+
+### Locating students by name: `find`
+
+Finds students whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -119,7 +134,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -127,19 +142,32 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student's particulars : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified student from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed students list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### Locating a person by tag: `findtag`
+
+Finds all persons whose tags contain the specified text (case-insensitive) and displays them in the list.
+
+Format: `findtag TAG`
+
+* The search is case-insensitive. e.g `friend` will match `FRIEND`
+* Tags are matched as long as it contains the specified text. e.g. `friend` will match `myFriend`
+
+Examples:
+* `findtag friend` returns all persons with the tag `friend`.
+* `findtag e` returns all persons that have the tag `friend` and `colleague`.
 
 ### Clearing all entries : `clear`
 
@@ -193,6 +221,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Star** | `star INDEX [s/STAR]` <br> e.g., `star 1 s/5`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**FindTag** | `findtag TAG`<br> e.g., `find Friend`
 **List** | `list`
 **Help** | `help`
