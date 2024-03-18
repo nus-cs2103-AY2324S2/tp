@@ -103,7 +103,6 @@ public class MarkCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, Set<Tag> newTags) {
         assert personToEdit != null;
-        return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), newTags);
+        return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(), newTags);
     }
 }
