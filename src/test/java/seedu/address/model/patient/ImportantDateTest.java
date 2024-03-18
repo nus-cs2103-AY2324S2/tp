@@ -28,7 +28,9 @@ public class ImportantDateTest {
         assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit",
                 validDate + ", HH:mm - HH:mm"));
         assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit",
-                validDate + ", 99:88 - 99:99"));
+                validDate + "21-02-2022, 99:88 - 99:99"));
+        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit",
+                validDate + "21-02-2022, 0000 - 2359"));
     }
 
     @Test
@@ -42,7 +44,11 @@ public class ImportantDateTest {
         assertFalse(ImportantDate.isValidImportantDate("01-01-2022, 12:12 - 99:99"));
         assertFalse(ImportantDate.isValidImportantDate("01-01-2022, 12:12 to 12:12"));
 
+        assertTrue(ImportantDate.isValidImportantDate("01-01-2022       "));
+        assertTrue(ImportantDate.isValidImportantDate("       01-01-2022"));
         assertTrue(ImportantDate.isValidImportantDate("01-01-2022"));
+        assertTrue(ImportantDate.isValidImportantDate("21-02-2022, 01:00 - 19:00"));
+        assertTrue(ImportantDate.isValidImportantDate("21-02-2022, 00:00 - 23:59"));
         assertTrue(ImportantDate.isValidImportantDate("01-01-2022, 12:12 - 12:12        "));
         assertTrue(ImportantDate.isValidImportantDate("          01-01-2022, 12:12 - 12:12"));
     }
