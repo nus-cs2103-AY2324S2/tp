@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.TagCommand.MESSAGE_ADD_TAG_SUCCESS;
+import static seedu.address.logic.commands.TagCommand.MESSAGE_DUPLICATE;
+import static seedu.address.testutil.TypicalPersons.*;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +24,7 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -36,11 +37,12 @@ public class TagCommandTest {
         Id firstStudentId = new Id("A1029384A");
         HashSet<Tag> firstTagList = new HashSet<Tag>();
         firstTagList.add(new Tag("TopStudent"));
-        firstTagList.add(new Tag("Potential TA"));
+        firstTagList.add(new Tag("PotentialTA"));
 
         Id secondStudentId = new Id("A1029384A");
         HashSet<Tag> secondTagList = new HashSet<Tag>();
-        secondTagList.add(new Tag("Potential TA"));
+        secondTagList.add(new Tag("TopStudent"));
+        secondTagList.add(new Tag("PotentialTA"));
 
         Id thirdStudentId = new Id("A2129334F");
         HashSet<Tag> thirdTagList = new HashSet<Tag>();
@@ -79,56 +81,51 @@ public class TagCommandTest {
 
     //workingon, make good use of the util provided instead of adding by your own.
     @Test
-    public void execute_duplicateTag_success() {
+    public void execute_totallyDuplicateTag_success() {
         HashSet<Tag> tagList = new HashSet<Tag>();
-        tagList.add(new Tag("TopStudent"));
-        Id invalidId = new Id("A9124E");
+        tagList.add(new Tag("friends"));
+        Id invalidId = new Id("A0265901E");
         TagCommand tagCommand = new TagCommand(invalidId, tagList);
+        String expectedMessage = String.format(MESSAGE_ADD_TAG_SUCCESS, tagList) + " \n"+ MESSAGE_DUPLICATE;
 
-        assertCommandFailure(tagCommand, model, TagCommand.MESSAGE_PERSON_NOTFOUND);
+        assertCommandSuccess(tagCommand, model, expectedMessage, model);
+    }
+    @Test
+    public void execute_partiallyDuplicateTag_success() {
+        HashSet<Tag> tagList = new HashSet<Tag>();
+        tagList.add(new Tag("friends"));
+        tagList.add(new Tag("topstudent"));
+        Id invalidId = new Id("A0265901E");
+        TagCommand tagCommand = new TagCommand(invalidId, tagList);
+        String expectedMessage = String.format(MESSAGE_ADD_TAG_SUCCESS, tagList) + " \n"+ MESSAGE_DUPLICATE;
+
+        assertCommandSuccess(tagCommand, model, expectedMessage, model);
     }
 
-//    //workingon
-//    @Test
-//    public void execute_validId_validTag_success() {
-//        HashSet<Tag> tagList = new HashSet<Tag>();
-//        tagList.add(new Tag("TopStudent"));
-//        Id invalidId = new Id("A0156724L");
-//        TagCommand tagCommand = new TagCommand(invalidId, tagList);
-//
-//        Person personToTag = null;
-//        for (Person person:model.getAddressBook().getPersonList()){
-//            if (person.getId().equals(new Id("A0156724L"))){
-//                personToTag = person;
-//            }
-//        }
-//        Model expectedModel = new Mo
-//
-//
-//    }
-//
-//    @Test
-//    public void execute_multipleKeywords_multiplePersonsFound() {
-//        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-//        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-//        FindCommand command = new FindCommand(predicate);
-//        expectedModel.updateFilteredPersonList(predicate);
-//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-//        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
-//    }
-//
-//    @Test
-//    public void toStringMethod() {
-//        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-//        FindCommand findCommand = new FindCommand(predicate);
-//        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-//        assertEquals(expected, findCommand.toString());
-//    }
-//
-//    /**
-//     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-//     */
-//    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-//        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-//    }
+    @Test
+    public void execute_validId_validTag_success() {
+        HashSet<Tag> tagList = new HashSet<Tag>();
+        tagList.add(new Tag("TopStudent"));
+        Id invalidId = new Id("A0251893P");
+        TagCommand tagCommand = new TagCommand(invalidId, tagList);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Person resultPerson =  new PersonBuilder().withName("Alice Pauline").withId("A0251893P")
+                .withMajor("Computer Science").withIntake("2023")
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPhone("94351253")
+                .withTags("friends","TopStudent").build();
+        expectedModel.setPerson(ALICE, resultPerson);
+        assertCommandSuccess(tagCommand, model, String.format(MESSAGE_ADD_TAG_SUCCESS, tagList), expectedModel);
+    }
+    @Test
+    public void toStringMethod() {
+        HashSet<Tag> tagList = new HashSet<Tag>();
+        tagList.add(new Tag("TopStudent"));
+        Id invalidId = new Id("A0912124E");
+        TagCommand tagCommand = new TagCommand(invalidId, tagList);
+
+        String expected = TagCommand.class.getCanonicalName() + "{Id="+"A0912124E, "+"Tags="+tagList+"}";
+        assertEquals(expected, tagCommand.toString());
+    }
 }

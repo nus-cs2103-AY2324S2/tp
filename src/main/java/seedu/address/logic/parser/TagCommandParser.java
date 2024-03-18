@@ -43,6 +43,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         try {
             String userIdString =argMultimap.getValue(PREFIX_ID).get();
             userId = new Id(userIdString);
+            // should think about illegal tag content, eg space, there is a test in tag class
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         }catch(IllegalArgumentException e) {
             throw new ParseException("Invalid userID");
