@@ -180,13 +180,13 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Adding Important Dates to a Patient : `adde`
+### Adding an Event to a Patient : `adde`
 
-Adds an Important Date to a patient in the address book.
+Adds an Event to a patient in the address book.
 
 Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
 
-* Adds an Important Date with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
+* Adds an Event with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
 * The format of the Date must be: DD-MM-YYYY
 * If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm
 * The index **must be a positive integer** 1, 2, 3, ...
@@ -196,13 +196,13 @@ Examples:
 * `adde 1 n/Birthday d/20-01-2022`
 * `adde 2 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 
-### Deleting an Important Date from a Patient : `deletee`
+### Deleting an Event from a Patient : `deletee`
 
-Deletes an Important Date from a patient in the address book.
+Deletes an Event from a patient in the address book.
 
 Format `deletee PATIENT_INDEX [e/EVENT_INDEX]`
 
-* Deletes an Important Date from a specified Patient using `PATIENT_INDEX` and `EVENT_INDEX`.
+* Deletes an Event from a specified Patient using `PATIENT_INDEX` and `EVENT_INDEX`.
 * `PATIENT_INDEX` is the index of the patient shown in the UI after using `list` or `find` command.
 * `EVENT_INDEX` is the index of the event that is saved under a Patient's data.
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
@@ -213,6 +213,27 @@ Patients/Events)
 Examples:
 * `deletee 1 e/1`
 * `deletee 3 e/4`
+
+### Editing an Event for a Patient: `edite`
+
+Edits an Event for a Patient in the address book.
+
+Format `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
+
+* Edits an Event for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT_ON_THAT_DATE` and
+  `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`.
+* `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT_ON_THAT_DATE` and `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` 
+  are compulsory parameters. 
+* Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
+* The format of `DATE_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY.
+* The format of `DATETIME_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY, HH:mm - HH:mm.
+* Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
+* Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
+  Patients/Events).
+
+Examples:
+* `edite 1 e/1 n/Papa Birthday d/20-01-2023`
+* `edite 2 e/1 n/Mama Birthday d/21-02-2024`
 
 ### Clearing all entries : `clear`
 
@@ -266,5 +287,8 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE] [c/FAMILY_CONDITION] [h/HOBBY] [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **AddTags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 2 t/critical`
+**AddEvent** | `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
+**DeleteEvent** | `deletee PATIENT_INDEX [e/EVENT_INDEX]` <br> e.g. `deletee 1 e/1`
+**EditEvent** | `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
 **List**   | `list`
 **Help**   | `help`
