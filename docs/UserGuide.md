@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FitBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FitBook can get your contact management tasks done faster than traditional GUI apps.
+FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a fitness trainer that prefers typing over mouse interactions, FitBook is the perfect application for you to manage your clients!
 
 * Table of Contents
 {:toc}
