@@ -13,7 +13,7 @@ import seedu.address.model.patient.Patient;
 /**
  * A utility class for Patient.
  */
-public class PersonUtil {
+public class PatientUtil {
 
     /**
      * Returns an add command string for adding the {@code patient}.
