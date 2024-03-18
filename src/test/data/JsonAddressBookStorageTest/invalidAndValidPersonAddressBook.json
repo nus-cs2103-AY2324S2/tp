@@ -5,11 +5,13 @@
     "email": "hans@example.com",
     "year": "1",
     "major": "Computer Science"
+    "telegram": "validperson",
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "year": "1",
     "major": "Computer Science"
+    "telegram": "invalidperson",
   } ]
 }

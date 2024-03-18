@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -27,6 +28,7 @@ import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
@@ -46,6 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_YEAR + "YEAR] "
             + "[" + PREFIX_MAJOR + "MAJOR] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -103,9 +106,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
         Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
+        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedMajor, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedTelegram,
+                updatedMajor, updatedTags);
     }
 
     @Override
@@ -142,6 +147,7 @@ public class EditCommand extends Command {
         private Email email;
         private Year year;
         private Major major;
+        private Telegram telegram;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -156,6 +162,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setYear(toCopy.year);
             setMajor(toCopy.major);
+            setTelegram(toCopy.telegram);
             setTags(toCopy.tags);
         }
 
@@ -163,7 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, year, major, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, year, major, telegram, tags);
         }
 
         public void setName(Name name) {
@@ -196,6 +203,12 @@ public class EditCommand extends Command {
 
         public Optional<Year> getYear() {
             return Optional.ofNullable(year);
+        }
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
+        }
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
         }
 
         public void setMajor(Major major) {
@@ -250,6 +263,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("year", year)
                     .add("major", major)
+                    .add("telegram", telegram)
                     .add("tags", tags)
                     .toString();
         }

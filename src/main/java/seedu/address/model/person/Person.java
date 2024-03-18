@@ -21,6 +21,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Year year;
+    private final Telegram telegram;
 
     // Data fields
     private final Major major;
@@ -29,13 +30,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Year year, Major major, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, major, tags);
+
+    public Person(Name name, Phone phone, Email email, Year year, Telegram telegram, Major major, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.year = year;
         this.major = major;
+        this.telegram = telegram;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +60,9 @@ public class Person {
     }
     public Year getYear() {
         return year;
+    }
+    public Telegram getTelegram() {
+        return telegram;
     }
 
     /**
@@ -116,6 +123,7 @@ public class Person {
                 .add("email", email)
                 .add("year", year)
                 .add("major", major)
+                .add("telegram", telegram)
                 .add("tags", tags)
                 .toString();
     }

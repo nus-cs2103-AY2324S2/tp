@@ -5,6 +5,7 @@
     "email": "alice@example.com",
     "year": "1",
     "major": "Computer Science",
+    "telegram": "alicepauline",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -12,5 +13,6 @@
     "email": "pauline@example.com",
     "year": "1",
     "major": "Computer Science"
+    "telegram": "alicepauline",
   } ]
 }
