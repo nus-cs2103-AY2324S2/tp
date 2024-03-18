@@ -307,40 +307,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorHelperBot` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Select a class when the program is first opened (UC-01)**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User enters the program
+2.  TutorHelperBot shows a list of classes
+3.  User selects a class
+4.  TuthorHelperBot shows the list of students in the selected class
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
+  * 2a1. TutorHelperBot shows a message that the list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The user enters an invalid class.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorHelperBot shows an error message about selecting an invalid class.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+
+
+**Use case: Create new class (UC-02)**
+
+**MSS**
+
+1.  User requests to create new class with all the details
+2.  TutorHelperBot shows the created class
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Enter an invalid command.
+  * 1a1. TutorHelperBot shows an error message.
+
+  Use case ends.
+  
+
+**Use case: Select a student's profile (UC-03)**
+
+**MSS**
+
+1.  User requests to view a student's profile
+2.  TutorHelperBot shows the details of the selected student
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Enter an invalid command.
+  * 1a1. TutorHelperBot shows an error message.
+  
+* 1b. Enter an invalid student 
+  * 1a1. TutorHelperBot shows an error message that stated student is not existed.
+
+  Use case ends.
+  
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Each class should accept up to 30 students without issue
+5.  No student should exist in more than 2 classes  
 
-*{More to be added}*
 
 ### Glossary
 
