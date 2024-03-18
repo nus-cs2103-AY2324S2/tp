@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -22,12 +23,13 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.matric.Matric;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Matric;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,6 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_MATRIC_NUMBER + "MATRICULATION NUMBER] "
+            + "[" + PREFIX_STUDIO + "STUDIO] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -104,8 +107,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Matric matric = editPersonDescriptor.getMatric().orElse(personToEdit.getMatric());
+        Studio updatedStudio = editPersonDescriptor.getStudio().orElse(personToEdit.getStudio());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, matric);
+        return new Person(updatedName, updatedPhone, updatedEmail,
+                          updatedAddress, updatedTags, matric, updatedStudio);
     }
 
     @Override
@@ -144,6 +149,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
 
         private Matric matric;
+        private Studio studio;
 
         public EditPersonDescriptor() {}
 
@@ -158,13 +164,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setMatric(toCopy.matric);
+            setStudio(toCopy.studio);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, matric);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, matric, studio);
         }
 
         public void setName(Name name) {
@@ -224,6 +231,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(matric);
         }
 
+        public void setStudio(Studio studio) {
+            this.studio = studio;
+        }
+
+        public Optional<Studio> getStudio() {
+            return Optional.ofNullable(studio);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -241,7 +256,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(matric, otherEditPersonDescriptor.matric);
+                    && Objects.equals(matric, otherEditPersonDescriptor.matric)
+                    && Objects.equals(studio, otherEditPersonDescriptor.studio);
         }
 
         @Override
@@ -253,6 +269,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("matriculation number", matric)
+                    .add("studio", studio)
                     .toString();
         }
 
