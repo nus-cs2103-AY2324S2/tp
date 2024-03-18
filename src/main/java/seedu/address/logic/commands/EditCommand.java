@@ -42,7 +42,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -98,6 +97,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        String updatedHouse = editPersonDescriptor.getHousingType().orElse(personToEdit.getHousingType());
         /*
         Street updatedStreet = editPersonDescriptor.getStreet().orElse(personToEdit.getStreet());
         Level updatedLevel = editPersonDescriptor.getLevel().orElse(personToEdit.getLevel());
@@ -108,7 +108,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedHouse,
-                personToEdit.getPostalCode(), updatedTags);
+                updatedTags);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private House house;
+        private String housingtype;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setHouse(toCopy.house);
+            setHousingType(toCopy.housingtype);
             setTags(toCopy.tags);
         }
 
@@ -166,7 +166,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, housingtype, tags);
         }
 
         public void setName(Name name) {
@@ -193,12 +193,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setHouse(House house) {
-            this.house = house;
+        public void setHousingType(String housingtype) {
+            this.housingtype = housingtype;
         }
 
-        public Optional<House> getHouse() {
-            return Optional.ofNullable(house);
+        public Optional<String> getHousingType() {
+            return Optional.ofNullable(housingtype);
         }
 
         /**
@@ -233,7 +233,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(housingtype, otherEditPersonDescriptor.housingtype)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -243,7 +243,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("address", address)
+                    .add("housingtype", housingtype)
                     .add("tags", tags)
                     .toString();
         }
