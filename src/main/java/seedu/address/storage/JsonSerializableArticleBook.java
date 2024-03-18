@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyArticleBook;
 import seedu.address.model.article.Article;
 
 /**
- * An immutable ArticleBook that cans be serialized into Json format
+ * An immutable ArticleBook that can be serialized into Json format
  */
 @JsonRootName(value = "articlebook")
 public class JsonSerializableArticleBook {

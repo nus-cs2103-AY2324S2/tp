@@ -12,9 +12,6 @@ import seedu.address.model.article.Article;
  * Jackson-friendly version of {@link Article}.
  */
 public class JsonAdaptedArticle {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
     private final String title;
     private final String[] authors;
     private final LocalDateTime publicationDate;
@@ -66,7 +63,7 @@ public class JsonAdaptedArticle {
         if (title == null) {
             throw new IllegalValueException("The title is missing");
         }
-        if (authors == null) {
+        if (authors == null || authors.length == 0) {
             throw new IllegalValueException("The author[s] is/are invalid");
         }
         if (publicationDate == null) {

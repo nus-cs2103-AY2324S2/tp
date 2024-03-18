@@ -18,7 +18,7 @@ import seedu.address.model.ReadOnlyArticleBook;
  * A class to access ArticleBook data stored as a json file
  */
 public class JsonArticleBookStorage implements ArticleBookStorage {
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonArticleBookStorage.class);
 
     private Path filePath;
 
