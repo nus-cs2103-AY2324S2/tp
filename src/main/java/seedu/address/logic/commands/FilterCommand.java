@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
 
-import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -15,7 +14,7 @@ import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Role;
 import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+
 /**
  * Adds a person to the address book.
  */
@@ -25,8 +24,7 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters applications by tags. "
             + "Parameters: "
-            + PREFIX_ROLE + " roles " +
-            PREFIX_STAGE + " stages ";
+            + PREFIX_ROLE + " roles " + PREFIX_STAGE + " stages ";
 
     public static final String MESSAGE_SUCCESS = "Persons Filtered: ";
     private final Role filteredRole;
@@ -82,7 +80,7 @@ public class FilterCommand extends Command {
                 stageMatches = true;
             }
 
-            return  roleMatches && stageMatches;
+            return roleMatches && stageMatches;
         };
         model.updateFilteredPersonList(matchesCriteria);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
