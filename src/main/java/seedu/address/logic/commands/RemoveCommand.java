@@ -12,6 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
+/**
+ * Removes a contact identified based on matching name and further confirmation of removal with index.
+ */
 public class RemoveCommand extends Command{
 
     public static final String COMMAND_WORD = "remove";
