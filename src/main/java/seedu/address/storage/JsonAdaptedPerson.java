@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         roomNumber = source.getRoomNumber().value;
         telegram = source.getTelegram().value;
-        birthday = source.getBirthday().value;
+        birthday = String.valueOf(source.getBirthday().value);
     }
 
     /**
