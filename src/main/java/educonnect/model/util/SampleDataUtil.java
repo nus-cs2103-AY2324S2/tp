@@ -116,7 +116,7 @@ public class SampleDataUtil {
                             new Period("period2", "14-17"))));
             timetable2.addPeriodsToDay(3, new ArrayList<>(
                     List.of(new Period("period1", "12-14"),
-                            new Period("period2", "114-16"),
+                            new Period("period2", "14-16"),
                             new Period("period3", "16-18"))));
             timetable3.addPeriodsToDay(1, new ArrayList<>(
                     List.of(new Period("period1", "13-15"),
