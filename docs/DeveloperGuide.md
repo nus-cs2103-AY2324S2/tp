@@ -283,7 +283,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * conveniently manage client details and schedules faster than a typical mouse/GUI driven app
 * Convenient tracking of when agent last checked up on clients (eg. reminders)
