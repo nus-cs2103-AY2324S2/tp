@@ -28,12 +28,28 @@ import seedu.address.model.tag.Tag;
 
 public class DeleteTagsCommandTest {
 
+    private final Set<Tag> validTagSet = Set.of(new Tag("test"));
     private Model model;
     private final UserPrefs userPrefs = new UserPrefs();
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), userPrefs);
+    }
+
+    @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteTagsCommand(null, validTagSet));
+    }
+
+    @Test
+    public void constructor_nullTagSet_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteTagsCommand(INDEX_FIRST_PATIENT, null));
+    }
+
+    @Test
+    public void constructor_nullIndexAndNullTagSet_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteTagsCommand(null, null));
     }
 
     @Test
