@@ -1,5 +1,7 @@
 package seedu.address.model.appointment;
 
+import seedu.address.model.AddressBook;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -54,6 +56,20 @@ public class AppointmentList implements ReadOnlyAppointmentList {
         return appointments.stream().anyMatch(appointment::equals);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AppointmentList)) {
+            return false;
+        }
+
+        AppointmentList otherAppointmentList = (AppointmentList) other;
+        return appointments.equals(otherAppointmentList.appointments);
+    }
     /**
      * Adds an appointment to the appointment list.
      */
