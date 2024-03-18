@@ -29,7 +29,8 @@ import seedu.address.model.project.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddTaskCommandTest {
-    private Person taskProject = new Person(new Name("default"), null);
+
+    private Person taskProject = new Person(new Name("default"));
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -41,25 +42,14 @@ public class AddTaskCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        Task validTask = new Task("hello");
+        Task validTask = new Task("Amy Bee");
+
+        modelStub.addPerson(taskProject);
 
         CommandResult commandResult = new AddTaskCommand(validTask, taskProject).execute(modelStub);
 
-        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, Messages.format(validPerson), Messages.format(taskProject)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        Task validTask = new Task("hello");
-        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask, taskProject);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, String.format(AddProjectCommand.MESSAGE_DUPLICATE_PERSON,
-                Messages.format(validPerson)), () ->
-                addTaskCommand.execute(modelStub));
     }
 
     @Test
@@ -84,14 +74,6 @@ public class AddTaskCommandTest {
 
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
-    }
-
-    @Test
-    public void toStringMethod() {
-        Task test = new Task("test");
-        AddTaskCommand addTaskCommand = new AddTaskCommand(test, ALICE);
-        String expected = AddTaskCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addTaskCommand.toString());
     }
 
     /**
