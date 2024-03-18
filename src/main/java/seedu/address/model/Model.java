@@ -89,4 +89,9 @@ public interface Model {
      * Returns the total number of persons in the address book.
      */
     int getTotalPersons();
+
+    /*
+     * Returns the next unique ID for a person.
+     */
+    String getNextUniqueId();
 }
