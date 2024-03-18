@@ -112,8 +112,8 @@ public class EditAppointmentCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the Appointment with.
+     * The appointmentTime must be replaced with a new date/time.
      */
     public static class EditAppointmentDescriptor {
         private AppointmentTime appointmentTime;
