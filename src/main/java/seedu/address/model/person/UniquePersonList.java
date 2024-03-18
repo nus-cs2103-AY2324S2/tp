@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
+
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
@@ -35,6 +36,16 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Check if list contains person with the nric in question.
+     * @param nricToCheck String nric in questions
+     * @return boolean indicating if person is in list
+     */
+    public boolean containsNric(String nricToCheck) {
+        requireNonNull(nricToCheck);
+        return internalList.stream().anyMatch(x -> x.getNric().equals(new Nric(nricToCheck)));
     }
 
     /**

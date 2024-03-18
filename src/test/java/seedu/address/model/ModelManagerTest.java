@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.BROWN;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,8 +16,15 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDate;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class ModelManagerTest {
 
@@ -128,5 +136,50 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    public void hasAppointment_validAppointment_returnsTrue() {
+        Appointment a = new AppointmentBuilder().build();
+        modelManager.addAppointment(a);
+        assertTrue(modelManager.hasAppointment(a));
+    }
+
+    @Test
+    public void deleteAppointment_validAppointment_deletesAppointment() {
+        Appointment a = new AppointmentBuilder().build();
+        modelManager.addAppointment(a);
+        modelManager.deleteAppointment(a);
+        assertFalse(modelManager.hasAppointment(a));
+    }
+
+    @Test
+    public void setPerson_validPerson_setsPerson() {
+        Person p0 = BENSON;
+        Person p1 = ALICE;
+        modelManager.addPerson(p0);
+        modelManager.setPerson(p0, p1);
+        assertTrue(modelManager.hasPerson(p1));
+        assertFalse(modelManager.hasPerson(p0));
+    }
+
+    @Test
+    public void isValidAppointment_validAppointment_returnsTrue() {
+        Doctor d = (Doctor) TypicalPersons.BROWN;
+        Patient p = (Patient) ALICE;
+        modelManager.addPerson(d);
+        modelManager.addPerson(p);
+        Appointment a = new AppointmentBuilder().withDoctor(d).withPatient(p).build();
+        assertTrue(modelManager.isValidAppointment(a));
+    }
+
+    @Test
+    public void isValidAppointment_invalidAppointment_returnsFalse() {
+        Doctor d = (Doctor) TypicalPersons.BROWN;
+        Patient p = (Patient) ALICE;
+        modelManager.addPerson(d);
+        modelManager.addPerson(p);
+        Appointment a = new Appointment(ALICE.getNric(), BROWN.getNric(), new AppointmentDate("2024-08-30"));
+        assertFalse(modelManager.isValidAppointment(a));
     }
 }

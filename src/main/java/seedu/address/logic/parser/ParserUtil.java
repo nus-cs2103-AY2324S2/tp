@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DoB;
 import seedu.address.model.person.Email;
@@ -176,5 +177,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses AppointmentDate from string to return an AppointmentDate object
+     * @param apptDate String to parse
+     * @return instance of AppointmentDate
+     * @throws ParseException if string is invalid date
+     */
+    public static AppointmentDate parseAppointmentDate(String apptDate) throws ParseException {
+        requireNonNull(apptDate);
+        String trimmedDate = apptDate.trim();
+        if (!AppointmentDate.isValidDate(trimmedDate)) {
+            throw new ParseException(AppointmentDate.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentDate(trimmedDate);
     }
 }
