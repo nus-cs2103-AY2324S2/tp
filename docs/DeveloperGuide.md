@@ -281,12 +281,13 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                | I want to …​                         | So that I can…​                            |
-| -------- | ---------------------- | ------------------------------------ | ------------------------------------------ |
+| -------- |------------------------|--------------------------------------|--------------------------------------------|
 | `* * *`  | As a financial advisor | add new clients profiles to my list  | keep track of the clients under me         |
 | `* * *`  | As a financial advisor | edit the profiles of my clients      | keep their information up to date          |
 | `* * *`  | As a financial advisor | delete the clients under me          | remove clients that are no longer under me |
 | `* * *`  | As a financial advisor | view all my client profiles          | track all my clients in one place          |
 | `* * *`  | As a financial advisor | add client meetings                  | keep track of my schedule                  |
+| `* * *`  | As a financial advisor | update client meetings               | revise my schedule and alter for reasons   |
 | `* * *`  | As a financial advisor | view upcoming meetings               | so I can prepare for them accordingly      |
 | `* *`    | As a financial advisor | search my meetings by date or agenda | locate meetings with specific filters      |
 | `* *`    | As a financial advisor | filter my meetings by date           | so I can know the meetings of that day     |
@@ -367,6 +368,13 @@ _{More to be added}_
 1. Financial advisor requests to view all upcoming meetings.
 2. MeetingScheduler retrieves and displays all upcoming meetings scheduled for the advisor.
    - Use case ends.
+
+**Use Case: Update existing Meetings**
+**MSS:**
+1. Financial advisor requests to update a specific meeting's details.
+2. MeetingScheduler retrieves and updates meeting's details.
+3. MeetingScheduler displays updated meeting to the advisor.
+    - Use case ends.
 
 **Use Case: Search Meetings by Date or Agenda**
 **MSS:**
