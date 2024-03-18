@@ -388,7 +388,7 @@ Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add 
 which falls on the 20th January.
 * Upon successful validation, it creates an `AddEventsCommand` instance.
 
-Step 3: The use executes the `deletee 1 e/1` to delete the Event as he realised he keyed in the wrong
+Step 3: The use executes `deletee 1 e/1` to delete the Event as he realised he keyed in the wrong
 date.
 * Upon successful validation,  an `DeleteEventCommand` instance is created.
 
