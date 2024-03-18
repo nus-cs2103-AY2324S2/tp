@@ -16,8 +16,9 @@ public class ImportantDateTest {
 
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit",
-                "something"));
+        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit", "something"));
+        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit", "1-1-2022"));
+        assertThrows(IllegalArgumentException.class, () -> new ImportantDate("Family Visit", "01-01-22"));
     }
 
     @Test
