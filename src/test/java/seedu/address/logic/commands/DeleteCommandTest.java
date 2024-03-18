@@ -156,7 +156,7 @@ public class DeleteCommandTest {
         assertFalse(deleteUdhayaCommand.equals(deleteAddressCommand));
 
         //delete Udhaya should not delete someone with name Udhaya Shanugam
-        assertFalse(deleteUdhayaCommand.equals(deleteUdhayaShanugamCommand));
+        assertFalse(deleteUdhayaCommand.equals(deleteUdhayaShanmugamCommand));
     }
 
     @Test
