@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
 
 /**
  * Test for reading csv files
@@ -16,8 +23,9 @@ public class CsvUtilTest {
     @Test
     public void readCsvFile_noExceptionThrown() throws IOException {
         Path path = Path.of(filePath);
-        CsvUtil.readCsvFile(path);
-        
+        AddressBookStorage actualAddressBookStorage = CsvUtil.readCsvFile(path);
+        ReadOnlyAddressBook newAddressBookStorage = SampleDataUtil.getSampleAddressBook();
+
     }
 
 }
