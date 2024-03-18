@@ -8,7 +8,9 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.AppointmentList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
@@ -78,14 +80,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAppointmentList(List<Appointment> appointments) throws IOException {
-        saveAppointmentList(appointments, addressBookStorage.getAddressBookFilePath());
+    public void saveAppointmentList(ReadOnlyAppointmentList appointmentList) throws IOException {
+        saveAppointmentList(appointmentList, addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveAppointmentList(List<Appointment> appointments, Path filePath) throws IOException {
+    public void saveAppointmentList(ReadOnlyAppointmentList appointmentList, Path filePath) throws IOException {
         logger.fine("Attempting to write appointments to data file: " + filePath);
-        addressBookStorage.saveAppointmentList(appointments, filePath);
+        addressBookStorage.saveAppointmentList(appointmentList, filePath);
     }
 
 }

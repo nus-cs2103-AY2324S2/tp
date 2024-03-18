@@ -135,8 +135,8 @@ public class ModelManager implements Model {
      * TODO: Implement this method
      */
     @Override
-    public List<Appointment> getAppointmentList() {
-        return List.<Appointment>of();
+    public ReadOnlyAppointmentList getAppointmentList() {
+        return new AppointmentList();
     }
 
     @Override

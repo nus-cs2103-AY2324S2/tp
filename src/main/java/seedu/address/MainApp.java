@@ -57,7 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath(),
+                userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         // TODO: Probably can inject the tracking of ID here
