@@ -98,6 +98,10 @@ public class NetConnect implements ReadOnlyNetConnect {
         persons.remove(key);
     }
 
+    public void exportCSV(String filename){
+
+    }
+
     //// util methods
 
     @Override
