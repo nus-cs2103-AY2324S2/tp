@@ -190,7 +190,9 @@ public class EditCommand extends Command {
         }
 
         public Optional<Set<Availability>> getAvailabilities() {
-            return (availabilities != null) ? Optional.of(Collections.unmodifiableSet(availabilities)) : Optional.empty();
+            return (availabilities != null)
+                ? Optional.of(Collections.unmodifiableSet(availabilities))
+                : Optional.empty();
         }
 
         /**

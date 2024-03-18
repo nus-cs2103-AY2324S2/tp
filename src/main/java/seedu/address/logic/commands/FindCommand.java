@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
@@ -23,7 +24,8 @@ public class FindCommand extends Command {
             + "Parameters: <Prefix/> KEYWORD [MORE_KEYWORDS]...\n"
             + "Example(find by name): " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie\n"
             + "Example(find by availability): " + COMMAND_WORD + " " + PREFIX_AVAIL + " 01/01/2024 12/12/2024\n"
-            + "Example(find by name and availability): " + COMMAND_WORD + " " + PREFIX_NAME + " alice " + PREFIX_AVAIL + " 01/01/2024 12/12/2024";
+            + "Example(find by name and availability): " + COMMAND_WORD + " "
+            + PREFIX_NAME + " alice " + PREFIX_AVAIL + " 01/01/2024 12/12/2024";
 
     private final Predicate<Person> predicate;
 

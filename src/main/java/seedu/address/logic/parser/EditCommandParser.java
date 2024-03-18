@@ -56,8 +56,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        
-        parseAvailabilitiesForEdit(argMultimap.getAllValues(PREFIX_AVAIL)).ifPresent(editPersonDescriptor::setAvailabilities);
+        parseAvailabilitiesForEdit(argMultimap.getAllValues(PREFIX_AVAIL))
+            .ifPresent(editPersonDescriptor::setAvailabilities);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -82,7 +82,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
-    private Optional<Set<Availability>> parseAvailabilitiesForEdit(Collection<String> availabilities) throws ParseException {
+    private Optional<Set<Availability>> parseAvailabilitiesForEdit(Collection<String> availabilities)
+            throws ParseException {
         assert availabilities != null;
 
         if (availabilities.isEmpty()) {

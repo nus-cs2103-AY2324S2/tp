@@ -1,13 +1,17 @@
 package seedu.address.model.person;
 
+import static seedu.address.logic.parser.ParserUtil.parseAvailabilities;
+
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import static seedu.address.logic.parser.ParserUtil.parseAvailabilities;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Tests that a {@code Person}'s {@code Availability} matches any of the keywords given.
+ */
 public class AvailableAtDatePredicate implements Predicate<Person> {
     private final Set<Availability> keywords;
 
@@ -41,5 +45,4 @@ public class AvailableAtDatePredicate implements Predicate<Person> {
     public String toString() {
         return new ToStringBuilder(this).add("keywords", keywords).toString();
     }
-    
 }

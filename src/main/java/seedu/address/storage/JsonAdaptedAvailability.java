@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Availability;
 
+/**
+ * Jackson-friendly version of {@link Availability}.
+ */
 public class JsonAdaptedAvailability {
     private final String availability;
 

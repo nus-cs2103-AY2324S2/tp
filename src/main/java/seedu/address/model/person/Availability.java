@@ -21,7 +21,7 @@ public class Availability {
     public static final String VALIDATION_REGEX = "dd/MM/yyyy";
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(VALIDATION_REGEX);
 
-    public LocalDate date;
+    private LocalDate date;
 
     /**
      * Constructs an {@code Address}.

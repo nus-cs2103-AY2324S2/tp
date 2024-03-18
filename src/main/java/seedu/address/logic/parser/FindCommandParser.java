@@ -13,9 +13,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.AvailableAtDatePredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -35,18 +35,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-        // String nameString = argMultimap.getValue(PREFIX_NAME).orElse("").trim();
-        // String availabilityString = argMultimap.getValue(PREFIX_AVAIL).orElse("").trim();
-        
-        // if (nameString.isEmpty() && availabilityString.isEmpty()) {
-        //     throw new ParseException(
-        //             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        // }
-
-        // String[] nameKeywords = nameString.split("\\s+");
-        // String[] availabilityKeywords = availabilityString.split("\\s+");
-
         return new FindCommand(predicateBuilder(argMultimap, PREFIX_NAME, PREFIX_AVAIL));
     }
 
@@ -68,7 +56,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                     if (predicate == null) {
                         predicate = new NameContainsKeywordsPredicate(Arrays.asList(keywords.split("\\s+")));
                     } else {
-                        predicate = predicate.or(new NameContainsKeywordsPredicate(Arrays.asList(keywords.split("\\s+"))));
+                        predicate = predicate.or(
+                            new NameContainsKeywordsPredicate(Arrays.asList(keywords.split("\\s+"))));
                     }
                     break;
                 case "a/":
@@ -78,11 +67,14 @@ public class FindCommandParser implements Parser<FindCommand> {
                         predicate = predicate.or(new AvailableAtDatePredicate(Arrays.asList(keywords.split("\\s+"))));
                     }
                     break;
+                default:
+                    throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
                 }
             }
         };
 
-        if (predicate == null)  {
+        if (predicate == null) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

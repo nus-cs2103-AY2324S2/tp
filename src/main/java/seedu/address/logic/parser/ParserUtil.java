@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -96,6 +95,9 @@ public class ParserUtil {
         return new Availability(trimmedAvailability);
     }
 
+    /**
+     * Parses {@code Collection<String> availabilities} into a {@code Set<Availability>}.
+     */
     public static Set<Availability> parseAvailabilities(Collection<String> availabilities) throws ParseException {
         requireNonNull(availabilities);
         final Set<Availability> availabilitiesSet = new HashSet<>();
