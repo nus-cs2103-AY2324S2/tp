@@ -42,4 +42,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/shamesjen)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Search Features
+* Responsibilities: Search Features, filter

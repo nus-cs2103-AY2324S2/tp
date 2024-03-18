@@ -29,14 +29,16 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<Integer> participationScores = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("participationScores") List<Integer> participationScores) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +46,10 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        if (participationScores != null) {
+            this.participationScores.addAll(participationScores);
+        }
+        System.out.println(this.participationScores);
     }
 
     /**
@@ -57,6 +63,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        participationScores.addAll(source.getParticipationScores());
     }
 
     /**
@@ -103,7 +110,10 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final List<Integer> modelParticipationScores = new ArrayList<>(participationScores);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelParticipationScores);
     }
 
 }
