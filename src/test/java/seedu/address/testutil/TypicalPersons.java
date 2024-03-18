@@ -111,12 +111,7 @@ public class TypicalPersons {
             .withName("Hoon Meier")
             .withPhone("8482424")
             .withEmail("stefan@example.com")
-            .withIllnesses("Nutritional Deficiency")
-            .withNotes(new Note[] {
-              new Note(LocalDateTime.of(2023, 2, 20, 15, 30), new Description("Covid-19")),
-              new Note(LocalDateTime.of(2023, 4, 4, 10, 30), new Description("H1N1")),
-              new Note(LocalDateTime.of(2023, 5, 19, 17, 0), new Description("Arthritis")),
-            }).build();
+            .withIllnesses("Nutritional Deficiency").build();
     public static final Person IDA = new PersonBuilder()
             .withNric("G1234567A")
             .withName("Ida Mueller")

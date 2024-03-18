@@ -23,6 +23,7 @@ public class ListNoteCommand extends Command {
     public static final String COMMAND_WORD = "list-an";
 
     public static final String MESSAGE_SUCCESS = "Listed all notes";
+    public static final String MESSAGE_LIST_NOTE_SUCCESS = "Patient %1$s appointments listed!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all appointment notes of the patient identified "
             + "by the index number used in the displayed patient list. "
@@ -70,7 +71,7 @@ public class ListNoteCommand extends Command {
 
         model.updateFilteredNoteList(showSelectedPersonNotesPredicate);
 
-        return new CommandResult(String.format(Messages.MESSAGE_LIST_NOTE_SUCCESS, selectedPerson.getName()));
+        return new CommandResult(String.format(MESSAGE_LIST_NOTE_SUCCESS, selectedPerson.getName()));
     }
 
     @Override
