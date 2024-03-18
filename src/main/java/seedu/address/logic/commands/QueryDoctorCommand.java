@@ -5,25 +5,25 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.PatientNameContainsKeywordsPredicate;
+import seedu.address.model.person.DoctorNameContainsKeywordsPredicate;
 
 /**
- * Queries and returns all patients whose name matches the input string.
+ * Queries and returns all doctors whose name matches the input string.
  * Keyword matching is case insensitive.
  * Query more than one name at a time is supported
  */
-public class QueryPatientCommand extends Command {
+public class QueryDoctorCommand extends Command {
 
-    public static final String COMMAND_WORD = "querypatient";
+    public static final String COMMAND_WORD = "querydoctor";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all doctors whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final PatientNameContainsKeywordsPredicate predicate;
+    private final DoctorNameContainsKeywordsPredicate predicate;
 
-    public QueryPatientCommand(PatientNameContainsKeywordsPredicate predicate) {
+    public QueryDoctorCommand(DoctorNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -42,12 +42,12 @@ public class QueryPatientCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof QueryPatientCommand)) {
+        if (!(other instanceof QueryDoctorCommand)) {
             return false;
         }
 
-        QueryPatientCommand otherQueryPatientCommand = (QueryPatientCommand) other;
-        return predicate.equals(otherQueryPatientCommand.predicate);
+        QueryDoctorCommand otherQueryDoctorCommand = (QueryDoctorCommand) other;
+        return predicate.equals(otherQueryDoctorCommand.predicate);
     }
 
     @Override
@@ -56,5 +56,4 @@ public class QueryPatientCommand extends Command {
                 .add("predicate", predicate)
                 .toString();
     }
-
 }

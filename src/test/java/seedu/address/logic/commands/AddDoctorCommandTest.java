@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.JAMES;
+import static seedu.address.testutil.TypicalPersons.DAMES;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -82,8 +82,8 @@ public class AddDoctorCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddDoctorCommand addDoctorCommand = new AddDoctorCommand((Doctor) JAMES);
-        String expected = AddDoctorCommand.class.getCanonicalName() + "{toAdd=" + JAMES + "}";
+        AddDoctorCommand addDoctorCommand = new AddDoctorCommand((Doctor) DAMES);
+        String expected = AddDoctorCommand.class.getCanonicalName() + "{toAdd=" + DAMES + "}";
         assertEquals(expected, addDoctorCommand.toString());
     }
 
