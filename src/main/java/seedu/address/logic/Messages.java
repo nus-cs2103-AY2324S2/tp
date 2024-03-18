@@ -43,6 +43,8 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Year: ")
                 .append(person.getYear())
+                .append("; Telegram: ")
+                .append(person.getTelegram())
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Tags: ");
