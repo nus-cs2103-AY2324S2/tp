@@ -24,6 +24,9 @@ public class Person {
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Type field
+    private Type type = Type.PERSON;
+
     /**
      * Every field must be present and not null.
      */
@@ -58,6 +61,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public String getPersonType() {
+        return type.toString();
     }
 
     /**

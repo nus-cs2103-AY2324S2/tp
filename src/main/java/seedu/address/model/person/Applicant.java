@@ -10,6 +10,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Applicant extends Person {
 
+    private final Type type = Type.APPLICANT;
+
     /**
      * Every field must be present and not null.
      */
@@ -17,10 +19,19 @@ public class Applicant extends Person {
         super(name, phone, email, remark, tags);
     }
 
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        return super.isSamePerson(otherPerson);
+    }
+
+    @Override
+    public String getPersonType() {
+        return type.toString();
+    }
 
     @Override
     public String toString() {
-        return "Applicant: " + super.toString();
+        return super.toString();
     }
 
 }
