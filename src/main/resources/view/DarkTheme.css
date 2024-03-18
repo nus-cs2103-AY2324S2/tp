@@ -10,6 +10,11 @@
     -fx-opacity: 0.9;
 }
 
+.relationship-label {
+    -fx-text-fill: #8a2be2; /* Replace with the color you want */
+    -fx-font-weight: bold; /* Optional: if you want bold text */
+}
+
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -131,6 +136,17 @@
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
+
+        .relationship-label {
+            -fx-text-fill: #2a9d8f; /* Choose your color */
+            -fx-font-style: italic;
+            -fx-font-size: 12px;
+            -fx-background-color: #e9c46a; /* Background color if needed */
+            -fx-background-radius: 5;
+            -fx-padding: 3;
+        }
+
+
 
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);

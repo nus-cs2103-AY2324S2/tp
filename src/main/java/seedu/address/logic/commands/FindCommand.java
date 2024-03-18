@@ -6,6 +6,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+
+import java.util.function.Predicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -15,14 +18,22 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+//    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+//            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+//            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+//            + "Example: " + COMMAND_WORD + " alice bob charlie";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names, relationships, or tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " alice bob";
 
-    private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+//    private final NameContainsKeywordsPredicate predicate;
+
+    private final Predicate<Person> predicate;
+
+    public FindCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
@@ -47,6 +58,10 @@ public class FindCommand extends Command {
 
         FindCommand otherFindCommand = (FindCommand) other;
         return predicate.equals(otherFindCommand.predicate);
+    }
+
+    public Predicate<Person> getPredicate() {
+        return predicate;
     }
 
     @Override

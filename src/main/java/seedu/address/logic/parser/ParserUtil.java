@@ -13,8 +13,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Relationship;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -97,7 +98,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String relationship} into an {@code Relationship}.
+     * Parses a {@code String relationship} into a {@code Relationship}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code relationship} is invalid.
@@ -110,6 +111,7 @@ public class ParserUtil {
         }
         return new Relationship(trimmedRelationship);
     }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
