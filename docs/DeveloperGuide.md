@@ -158,6 +158,32 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit a `Person`
+
+Edits the details of an existing `Person` identified by their `INDEX`in the displayed person list.
+The commands are implemented in the `EditCommand` class which extend the `Command` class.
+
+* Step 1. The `EditCommand` object's `execute()` method is called.
+* Step 2. The `INDEX` is checked to be within the valid range of the displayed person list. If the `INDEX` given is invalid (i.e., out of range), a `CommandException` is thrown.
+* Step 3. The `Person` at the given `INDEX` is referenced and removed from person list.
+* Step 4. The field(s) to be edited are checked.
+  * If there are no fields to be edited, a `CommandException` is thrown.
+  * If any of the edited fields are invalid, a `CommandException` is thrown.
+  * If the edited person is the same as the original person, a `CommandException` is thrown`.
+  * If any of `Email`, `Phone`, `Telegram`, `Github` fields are duplicates with any existing person in person list, a `CommandException` is thrown.
+* Step 5. The model object's `addPerson()` method is called. The input parameter is the `editedPerson` with the edited details.
+* Step 5. The `Person` field(s) are edited.
+
+The diagram below describes this behaviour concisely. It shows how a user’s command is processed and what message is ultimately shown if they decide to edit a person.
+
+<puml src="diagrams/EditCommandActivityDiagram.puml">
+
+The sequence diagram below also shows the interaction between the various components during the execution of the `EditCommand`.
+
+<puml src="diagrams/EditCommandSequenceDiagram.png">
+
+<div style="page-break-after: always;"></div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

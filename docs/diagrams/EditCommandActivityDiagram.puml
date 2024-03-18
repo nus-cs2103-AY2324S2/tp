@@ -18,12 +18,16 @@ else ([else])
             if () then ([any field is invalid])
                 :Show error message\nindicating invalid field;
                 else ([else])
-                    if () then ([updated person is same as original])
+                    if () then ([updated person issame as original])
                         :Show error message indicating\nupdated person is the same as\nthe original person;
                     else ([else])
-                        :Edit the details of the\npersonin the person list;
-                        :Update the person list\nin the GUI,retaining\nthe same filter;
-                        :Show success message\nwith person's information;
+                        if () then ([edited person contains duplicate\nfields with another person])
+                            :Show error message indicating\n duplicated field.;
+                        else ([else])
+                            :Edit the details of the\npersonin the person list;
+                            :Update the person list\nin the GUI, retaining\nthe same filter;
+                            :Show success message\nwith person's information;
+                        endif;
                     endif;
             endif;
         endif
