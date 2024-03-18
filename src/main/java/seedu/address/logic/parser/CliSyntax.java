@@ -15,6 +15,11 @@ public class CliSyntax {
 
     public static final String[] ALLOWED_PREAMBLES = new String[] {"client", "housekeeper"};
 
+    /**
+     * Checks if a given command uses a preamble that is allowed. (we define preamble as TYPE)
+     * @param preamble
+     * @return true if the preamble is allowed and no if it is not.
+     */
     public static boolean preambleIsAllowed(String preamble) {
         for (String s : ALLOWED_PREAMBLES) {
             if (s.equals(preamble)) {
