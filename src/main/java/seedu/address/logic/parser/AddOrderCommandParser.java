@@ -43,7 +43,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         return new AddOrderCommand(order);
     }
 
-    private String getCurrentTime() {
+    public static String getCurrentTime() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return now.format(formatter);
