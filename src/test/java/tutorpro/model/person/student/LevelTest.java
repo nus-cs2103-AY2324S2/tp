@@ -60,4 +60,24 @@ public class LevelTest {
         // different values -> returns false
         assertFalse(level.equals(new Level("J1")));
     }
+
+    @Test
+    public void testToString() {
+        Level level = new Level("P6");
+
+        // same values -> returns true
+        assertTrue(level.toString().equals(new Level("P6").toString()));
+
+        // same object -> returns true
+        assertTrue(level.toString().equals(level.toString()));
+
+        // null -> returns false
+        assertFalse(level.toString().equals(null));
+
+        // different types -> returns false
+        assertFalse(level.toString().equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(level.toString().equals(new Level("J1").toString()));
+    }
 }

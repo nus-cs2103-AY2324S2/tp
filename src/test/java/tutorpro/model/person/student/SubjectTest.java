@@ -53,4 +53,24 @@ public class SubjectTest {
         // different values -> returns false
         assertFalse(subject.equals(new Subject("Other Valid Subject")));
     }
+
+    @Test
+    public void testToString() {
+        Subject subject = new Subject("Valid Subject");
+
+        // same values -> returns true
+        assertTrue(subject.toString().equals(new Subject("Valid Subject").toString()));
+
+        // same object -> returns true
+        assertTrue(subject.toString().equals(subject.toString()));
+
+        // null -> returns false
+        assertFalse(subject.toString().equals(null));
+
+        // different types -> returns false
+        assertFalse(subject.toString().equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(subject.toString().equals(new Subject("Other Valid Subject").toString()));
+    }
 }

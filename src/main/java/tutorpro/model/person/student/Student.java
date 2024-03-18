@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.scene.layout.Region;
 import tutorpro.commons.util.CollectionUtil;
 import tutorpro.model.person.Address;
 import tutorpro.model.person.Email;
@@ -11,6 +12,8 @@ import tutorpro.model.person.Name;
 import tutorpro.model.person.Person;
 import tutorpro.model.person.Phone;
 import tutorpro.model.tag.Tag;
+import tutorpro.ui.StudentCard;
+import tutorpro.ui.UiPart;
 
 /**
  * Represents a Student in TutorPro.
@@ -58,5 +61,14 @@ public class Student extends Person {
         }
         Student otherStudent = (Student) other;
         return level.equals(otherStudent.level) && subjects.equals(otherStudent.subjects);
+    }
+
+    /**
+     * Returns a UI representation of the person.
+     * @param displayIndex The index to be displayed on the card.
+     */
+    @Override
+    public UiPart<Region> getCard(int displayIndex) {
+        return new StudentCard(this, displayIndex);
     }
 }

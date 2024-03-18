@@ -38,6 +38,11 @@ public class Subject {
         return value.equals(otherLevel.value);
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
+
     /**
      * Returns true if the given String is a valid Level.
      */
