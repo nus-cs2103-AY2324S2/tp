@@ -130,6 +130,10 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        // missing name
+        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB,
+                Name.MESSAGE_CONSTRAINTS);
+
         // invalid name
         assertParseFailure(parser, INVALID_NAME_AMPERSAND + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + SKILL_DESC_JAVA + SKILL_DESC_REACT, Name.MESSAGE_CONSTRAINTS);

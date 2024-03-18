@@ -91,6 +91,12 @@ public class MatchMateParserTest {
     }
 
     @Test
+    public void parseCommand_noSpaceAfterPrefix_throwsParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+                -> parser.parseCommand("add Amy Bee -p11111111 -e amy@example.com"));
+    }
+
+    @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
