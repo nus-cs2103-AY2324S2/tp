@@ -23,7 +23,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * @see Person#isSamePerson(Person)
  */
 public class UniquePersonList implements Iterable<Person> {
-
+    private static int totalPersons = 0;
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -46,6 +46,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+        incrementTotalPersons();
     }
 
     /**
@@ -77,6 +78,19 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+        decrementTotalPersons();
+    }
+
+    private void incrementTotalPersons() {
+        totalPersons++;
+    }
+
+    private void decrementTotalPersons() {
+        totalPersons--;
+    }
+
+    public int getTotalPersons() {
+        return totalPersons;
     }
 
     public void setPersons(UniquePersonList replacement) {
