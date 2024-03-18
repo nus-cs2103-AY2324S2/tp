@@ -73,10 +73,9 @@
 
         </HBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="recentCommandsPlaceholder" styleClass="stack-pane">
+        <StackPane VBox.vgrow="NEVER" fx:id="recentCommandsPlaceholder">
 
         </StackPane>
-
 
         <VBox fx:id="personList" styleClass="stack-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>

@@ -337,7 +337,7 @@
 
 .menu .left-container {
     -fx-background-color: black;
-}s
+}
 
 /*
   // ================================
@@ -395,4 +395,13 @@
 
 #resultDisplay .content {
     -fx-background-color: #FEFEFE;
+}
+
+/*
+  // ================================
+  // Recent Command
+  // ================================ */
+
+#recentCommandsPlaceholder {
+    -fx-content-display: none;
 }
