@@ -70,6 +70,8 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -78,6 +80,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Adding a patient: `add`
 
@@ -98,12 +101,15 @@ Examples:
 * `add /id 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 * `add /id 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter, quarrels regularly with daughter h/ Watching Drama`
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Listing all patients : `list`
 
 Shows a list of all patients in the address book.
 
 Format: `list`
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing a patient : `edit`
 
@@ -123,6 +129,8 @@ Examples:
 *  `edit 1 p/Alex f/Fried rice` Edits the preferred name and food preference of the 1st patient to be `Alex` and `Fried rice` respectively.
 *  `edit 2 f/Children moved away t/` Edits the family condition of the 2nd patient to be `Children moved away` and clears all existing tags.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Locating patients by name: `find`
 
 Finds patients whose names contain any of the given keywords.
@@ -141,6 +149,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from the address book.
@@ -155,6 +165,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Adding Tags to a Patient : `addt`
 
 Adds one or more tags to a patient in the address book.
@@ -162,12 +174,13 @@ Adds one or more tags to a patient in the address book.
 Format: `addt INDEX [t/TAG]+`
 
 * Adds one or more tags (**single word**) to a patient identified by the index number used in the last patient listing.
-* The index **must be a positive integer** 1, 2, 3, …​
 * At least one tag must be provided.
-* Tags should be alphanumeric and should not include special characters like `-`.
+* Tags should be alphanumeric and cannot be blank.
+* Tags are **case-sensitive**.
+* The index **must be a positive integer** 1, 2, 3, …​
 * When adding tags, if a tag is repeated in the command, it will be added as a single tag.
   E.g. `t/friend t/friend` will be added as a single `friend` tag.
-* If the patient already has a tag provided in the command, new tag will override the existing tag. This is counted as a successful addition of that tag.
+* If the patient already has a tag that matches one provided in the command, the new tag will replace the existing one. This is counted as a successful addition of that tag.
 
 <box type="info" seamless>
     <b>Note:</b> The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
@@ -175,8 +188,29 @@ Format: `addt INDEX [t/TAG]+`
 
 
 Examples:
-* `addt 1 t/friend t/fallRisk`
-* `addt 2 t/critical`
+* `addt 1 t/critical`
+* `addt 2 t/friend t/fallRisk`
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Deleting Tags from a Patient : `deletet`
+
+Deletes one or more tags from a patient in the address book.
+
+Format: `deletet INDEX [t/TAG]+`
+
+* Deletes one or more tags from a patient identified by the index number used in the last patient listing.
+* At least one tag must be provided.
+* Tags should be alphanumeric and cannot be blank.
+* Tags are **case-sensitive**.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Tags should match exactly with the existing tags of the patient.
+* When deleting tags, if a tag is repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
+* If the patient does not have a tag provided in the command, it will be logged and shown to the user as an unsuccessful deletion of that tag.
+
+Examples:
+* `deletet 1 t/critical`
+* `deletet 2 t/friend t/fallRisk`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,6 +230,8 @@ Examples:
 * `adde 1 n/Birthday d/20-01-2022`
 * `adde 2 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Deleting an Event from a Patient : `deletee`
 
 Deletes an Event from a patient in the address book.
@@ -214,6 +250,7 @@ Examples:
 * `deletee 1 e/1`
 * `deletee 3 e/4`
 
+--------------------------------------------------------------------------------------------------------------------
 ### Editing an Event for a Patient: `edite`
 
 Edits an Event for a Patient in the address book.
@@ -241,15 +278,21 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing the data file
 
@@ -286,7 +329,8 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE] [c/FAMILY_CONDITION] [h/HOBBY] [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
-**AddTags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 2 t/critical`
+**Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
+**Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
 **AddEvent** | `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
 **DeleteEvent** | `deletee PATIENT_INDEX [e/EVENT_INDEX]` <br> e.g. `deletee 1 e/1`
 **EditEvent** | `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`

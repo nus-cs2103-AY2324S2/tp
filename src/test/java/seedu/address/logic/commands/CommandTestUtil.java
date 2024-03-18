@@ -47,6 +47,8 @@ public class CommandTestUtil {
     public static final String VALID_HOBBY_BOB = "Interested in calligraphy";
     public static final String VALID_TAG_DIABETES = "diabetes";
     public static final String VALID_TAG_DEPRESSION = "depression";
+    public static final String VALID_TAG_DIABETES_OUTPUT = "[diabetes]";
+    public static final String VALID_TAG_DEPRESSION_OUTPUT = "[depression]";
     public static final String ID_DESC_AMY = " " + PREFIX_PID + VALID_ID_AMY;
     public static final String ID_DESC_BOB = " " + PREFIX_PID + VALID_ID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
