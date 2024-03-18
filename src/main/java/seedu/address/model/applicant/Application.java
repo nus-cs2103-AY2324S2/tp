@@ -1,4 +1,4 @@
-package seedu.address.model.application;
+package seedu.address.model.applicant;
 
 /**
  * A class that represents a particular

@@ -1,25 +1,18 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
 
+import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Filter;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Note;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.applicant.Role;
+import seedu.address.model.applicant.Stage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,17 +27,24 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_STAGE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE) && (!arePrefixesPresent(argMultimap, PREFIX_STAGE)
+                || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STAGE);
+        Optional<Stage> filteredStage = Optional.empty();
+        Optional<Role> filteredRole = Optional.empty();
+        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE)) {
+            filteredStage = Optional.ofNullable((ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get())));
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_STAGE)) {
+            filteredRole = Optional.ofNullable((ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get())));
+        }
 
-        return new FilterCommand(tagList);
+        return new FilterCommand(filteredRole, filteredStage);
     }
 
     /**
