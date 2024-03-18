@@ -63,7 +63,6 @@ the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable)
 - Note that the tag is to indicate if a client is a
 Buyer, Seller or both, so tags only accept "buyer" or "seller" as the input (case-insensitive).
 
-
 Examples:
 * `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer r/Owes $1000.`
 * `add n/Betsy Crowe a/Newgate Prison i/$0 f/1 p/94859694 e/betsyc@rocketmail.com t/Seller`
