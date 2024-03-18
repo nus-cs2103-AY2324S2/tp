@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -43,6 +44,34 @@ public class ListOrderCommandTest {
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
                 listOrderCommand.execute(model));
     }
+
+    @Test
+    public void equals() {
+        Index firstIndex = Index.fromOneBased(1);
+        Index secondIndex = Index.fromOneBased(2);
+
+        ListOrderCommand firstCommand = new ListOrderCommand(firstIndex);
+        ListOrderCommand secondCommand = new ListOrderCommand(secondIndex);
+
+        // same object -> returns true
+        assertTrue(firstCommand.equals(firstCommand));
+
+        // same values -> returns true
+        ListOrderCommand firstCommandCopy = new ListOrderCommand(firstIndex);
+        assertTrue(firstCommand.equals(firstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(firstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(firstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(firstCommand.equals(secondCommand));
+    }
+
+
+
 }
 
 
