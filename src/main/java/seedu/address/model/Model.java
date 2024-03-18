@@ -82,6 +82,13 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Adds the given order {@code newOrder} to the given person {@code person} into the orderlist.
+     * @param newOrder Order object to be added to the orderlist.
+     * @param person Person object to be attached to the order, which will be added to the orderlist.
+     */
+    void addOrder(Order newOrder, Person person);
+
+    /**
      * Deletes the given order.
      * The order must exist in the address book.
      */
