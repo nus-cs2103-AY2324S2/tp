@@ -3,7 +3,22 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<StackPane styleClass="pane-with-border" prefHeight="60" xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1">
+    <HBox alignment="CENTER_LEFT" spacing="5">
+        <ImageView fitWidth="25" fitHeight="25">
+            <Image url="@/images/search_icon.png"/>
+        </ImageView>
+        <TextField fx:id="commandTextField" prefHeight="45" HBox.hgrow="ALWAYS" onAction="#handleCommandEntered"
+                   promptText="Input command here..." />
+    </HBox>
+    <padding>
+        <Insets bottom="5" left="10" right="10" top="5" />
+    </padding>
 </StackPane>
+
 
