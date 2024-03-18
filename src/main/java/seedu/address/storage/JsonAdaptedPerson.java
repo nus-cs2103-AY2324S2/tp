@@ -108,13 +108,13 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        if(!Subject.isValidSubject(subject)) {
+        if (!Subject.isValidSubject(subject)) {
             throw new IllegalValueException(Subject.MESSAGE_CONSTANTS);
         }
-        if(uniqueId == null) {
+        if (uniqueId == null) {
             throw new IllegalValueException("Missing Unique Id");
         }
-        final  Subject modelSubject = new Subject(subject);
+        final Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSubject, uniqueId);
