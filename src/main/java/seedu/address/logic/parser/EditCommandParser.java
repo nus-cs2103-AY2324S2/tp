@@ -43,24 +43,33 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         String category = "";
         String description;
-        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
-            category = argMultimap.getValue(PREFIX_CATEGORY).get();
+        Optional<String> categoryOptional = argMultimap.getValue(PREFIX_CATEGORY);
+        Optional<String> descriptionOptional = argMultimap.getValue(PREFIX_DESCRIPTION);
+        if (categoryOptional.isPresent()) {
+            category = categoryOptional.get();
+            if (descriptionOptional.isEmpty()) {
+                throw new ParseException(EditCommand.MESSAGE_EMPTY_DESCRIPTION);
+            }
             editPersonDescriptor.set(category, ParserUtil.parse(category, category));
             editPersonDescriptor.setCategory(category);
         }
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        if (descriptionOptional.isPresent()) {
+            description = descriptionOptional.get();
             editPersonDescriptor.set(category, ParserUtil.parse(category, description));
             editPersonDescriptor.setDescription(description);
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        // Checks if both category and description are provided.
-        boolean isCategorySpecified = editPersonDescriptor.getCategory() == null
+        // Checks if either category, description or tags are provided.
+        boolean isCategoryNotSpecified = editPersonDescriptor.getCategory() == null
                 || editPersonDescriptor.getCategory().isEmpty();
-        boolean isDescriptionSpecified = editPersonDescriptor.getDescription() == null
+        boolean isDescriptionNotSpecified = editPersonDescriptor.getDescription() == null
                 || editPersonDescriptor.getDescription().isEmpty();
-        if (isCategorySpecified && isDescriptionSpecified && !editPersonDescriptor.isAnyTagEdited()) {
+        if (isCategoryNotSpecified && isDescriptionNotSpecified && !editPersonDescriptor.isAnyTagEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+        //check if t/ is specified
+        if (editPersonDescriptor.getTags().isPresent() && editPersonDescriptor.getTagSize() == 0) {
+            throw new ParseException(EditCommand.MESSAGE_TAG_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor);
@@ -73,7 +82,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
-
         if (tags.isEmpty()) {
             return Optional.empty();
         }
