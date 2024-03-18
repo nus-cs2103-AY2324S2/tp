@@ -8,14 +8,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}
  */
 public class Telegram {
-
-    public static final String MESSAGE_CONSTRAINTS = "Telegram can take any values, and it should not be blank";
-
-    /*
-     * The first character of the telegram must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+    /**
+     * Message that displays if telegram username input is invalid.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS = "Telegram usernames can only contain " +
+            "case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, " +
+            "and it should not be blank.";
+
+    /**
+     * Regex for telegram username validation.
+     * Case-insensitive letters A-Z, digits 0-9, underscores, length between 5 and 32 characters
+     */
+    public static final String VALIDATION_REGEX = "^[A-Za-z0-9_]{5,32}$";
 
     public final String value;
 
