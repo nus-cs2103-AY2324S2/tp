@@ -20,6 +20,7 @@ import seedu.address.model.person.Person;
 class JsonSerializableNetConnect {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ID = "Persons list contains duplicate id(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -52,6 +53,9 @@ class JsonSerializableNetConnect {
             Person person = jsonAdaptedPerson.toModelType();
             if (netConnect.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            if (netConnect.hasId(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ID);
             }
             netConnect.addPerson(person);
         }

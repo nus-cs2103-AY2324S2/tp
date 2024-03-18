@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -76,6 +77,30 @@ public class NetConnectTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(netConnect.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void hasId_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> netConnect.hasId(null));
+    }
+
+    @Test
+    public void hasId_idNotInNetConnect_returnsFalse() {
+        assertFalse(netConnect.hasId(ALICE));
+    }
+
+    @Test
+    public void hasId_personInNetConnect_returnsTrue() {
+        netConnect.addPerson(ALICE);
+        assertTrue(netConnect.hasId(ALICE));
+    }
+
+    @Test
+    public void hasId_personWithSameIdentityFieldsInNetConnect_returnsTrue() {
+        netConnect.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(netConnect.hasId(editedAlice));
     }
 
     @Test

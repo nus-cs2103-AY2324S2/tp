@@ -19,6 +19,7 @@ public class JsonSerializableNetConnectTest {
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsNetConnect.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonNetConnect.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonNetConnect.json");
+    private static final Path DUPLICATE_ID_FILE = TEST_DATA_FOLDER.resolve("duplicateIdNetConnect.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -44,4 +45,11 @@ public class JsonSerializableNetConnectTest {
                 dataFromFile::toModelType);
     }
 
+    @Test
+    public void toModelType_duplicateIds_throwsIllegalValueException() throws Exception {
+        JsonSerializableNetConnect dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ID_FILE,
+                JsonSerializableNetConnect.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableNetConnect.MESSAGE_DUPLICATE_ID,
+                dataFromFile::toModelType);
+    }
 }
