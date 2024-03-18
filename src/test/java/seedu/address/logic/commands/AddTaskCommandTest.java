@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,20 +15,22 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Task;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddProjectCommandTest {
+public class AddTaskCommandTest {
+
+    private Person taskProject = new Person(new Name("default"));
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddProjectCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, taskProject));
     }
 
     @Test
@@ -38,36 +38,28 @@ public class AddProjectCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddProjectCommand(validPerson).execute(modelStub);
+        Task validTask = new Task("Amy Bee");
 
-        assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
+        modelStub.addPerson(taskProject);
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddProjectCommand addProjectCommand = new AddProjectCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        CommandResult commandResult = new AddTaskCommand(validTask, taskProject).execute(modelStub);
 
-        assertThrows(CommandException.class, String.format(AddProjectCommand.MESSAGE_DUPLICATE_PERSON,
-                Messages.format(validPerson)), () ->
-                addProjectCommand.execute(modelStub));
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, Messages.format(validPerson),
+                        Messages.format(taskProject)), commandResult.getFeedbackToUser());
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddProjectCommand addAliceCommand = new AddProjectCommand(alice);
-        AddProjectCommand addBobCommand = new AddProjectCommand(bob);
+        Task alice = new Task("Alice");
+        Task bob = new Task("Bob");
+        AddTaskCommand addAliceCommand = new AddTaskCommand(alice, taskProject);
+        AddTaskCommand addBobCommand = new AddTaskCommand(bob, taskProject);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddProjectCommand addAliceCommandCopy = new AddProjectCommand(alice);
+        AddTaskCommand addAliceCommandCopy = new AddTaskCommand(alice, taskProject);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -78,13 +70,6 @@ public class AddProjectCommandTest {
 
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
-    }
-
-    @Test
-    public void toStringMethod() {
-        AddProjectCommand addProjectCommand = new AddProjectCommand(ALICE);
-        String expected = AddProjectCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addProjectCommand.toString());
     }
 
     /**
