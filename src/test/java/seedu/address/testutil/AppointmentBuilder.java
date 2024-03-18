@@ -30,7 +30,7 @@ public class AppointmentBuilder {
      * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        id = appointmentToCopy.getID();
+        id = appointmentToCopy.getId();
         personId = appointmentToCopy.getPersonId();
         appointmentTime = appointmentToCopy.getAppointmentTime();
 

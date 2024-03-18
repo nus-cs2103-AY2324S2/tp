@@ -15,8 +15,10 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment index is invalid";
+
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid\n";
+    public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment index is invalid\n";
+
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
@@ -37,7 +39,7 @@ public class Messages {
     /**
      * Formats the {@code person} for display to the user.
      */
-    public static String format(Person person) {
+    public static String formatPerson(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
                 .append("; Phone: ")
@@ -52,17 +54,14 @@ public class Messages {
     }
 
     /**
-     * Formates the {@code appointment} for display to the user.
+     * Formats the {@code appointment} for display to the user.
+     * Displays person name corresponding to appointment, and appointment details.
      */
-    public static String format(Appointment appointment) {
+    public static String formatAppointment(Appointment appointment) {
         final StringBuilder builder = new StringBuilder();
         builder.append(appointment.getPersonId())
-                .append("; Date: ")
-                .append(appointment.getAppointmentTime().getAppointmentDate())
-                .append("; Start Time: ")
-                .append(appointment.getAppointmentTime().getStartTime())
-                .append("; End Time: ")
-                .append(appointment.getAppointmentTime().getEndTime());
+                .append("; Time: ")
+                .append(appointment.getAppointmentTime());
         return builder.toString();
     }
 
