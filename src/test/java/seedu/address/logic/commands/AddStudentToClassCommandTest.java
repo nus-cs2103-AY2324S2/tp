@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STUDENT_ID;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
@@ -10,27 +12,24 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByEmailCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIdCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIndexCommand;
-import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByIndexCommand;
-import seedu.address.logic.commands.deletestudentcommands.DeleteStudentCommand;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 
 /**
@@ -41,35 +40,27 @@ public class AddStudentToClassCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStudentCommand deleteCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    @BeforeEach
+    public void setUp() {
+        ModuleCode newModule = new ModuleCode(VALID_MODULE_AMY);
+        model.addModule(newModule);
+        TutorialClass newTutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
+        newModule.addTutorialClass(newTutorialClass);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_invalidStudent_fail() {
+        AddStudentToClassByEmailCommand addStudentToClassByEmailCommand = new AddStudentToClassByEmailCommand(
+                new Email(INVALID_EMAIL), new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
+        AddStudentToClassByIdCommand addStudentToClassByIdCommand = new AddStudentToClassByIdCommand(
+                new StudentId(INVALID_STUDENT_ID), new ModuleCode(VALID_MODULE_AMY),
+                new TutorialClass(VALID_TUTORIAL_AMY));
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStudentCommand deleteCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
+        assertCommandFailure(addStudentToClassByEmailCommand, model,
+                String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, INVALID_EMAIL));
+        assertCommandFailure(addStudentToClassByIdCommand, model,
+                String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, INVALID_STUDENT_ID));
 
-        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -125,14 +116,5 @@ public class AddStudentToClassCommandTest {
         // different person -> returns false
         assertFalse(addStudentToClassByIdFirstCommand.equals(addStudentToClassByIdSecondCommand));
 
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
-
-        assertTrue(model.getFilteredPersonList().isEmpty());
     }
 }
