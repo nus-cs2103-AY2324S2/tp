@@ -18,12 +18,14 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_ORDER_DISPLAYED_INDEX = "The order index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_ORDERS_LISTED_OVERVIEW = "%1$d orders listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
     public static final String MESSAGE_INVALID_PHONE_NUMBER = "Phone number provided not found";
 
     public static final String MESSAGE_PHONE_NUMBER_NOT_FOUND = "Phone number provided not found";
+    public static final String MESSAGE_ONLY_ONE_FIELD = "Only one field can be provided";
 
     public static final String MESSAGE_COEXISTING_CUSTOMER_AND_ORDER =
             "Customer ID and order ID cannot coexist here.";
