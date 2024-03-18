@@ -13,7 +13,7 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
-    public final TagStatus tagStatus;
+    public TagStatus tagStatus;
 
     /**
      * Constructs a {@code Tag}.
@@ -59,6 +59,15 @@ public class Tag {
      */
     public String toString() {
         return '[' + tagName + ':' + tagStatus + ']';
+    }
+
+    /**
+     * Updates the status of the tag, representing an assignment or an attendance record
+     *
+     * @param status new status of the tag
+     */
+    public void updateTagStatus(TagStatus status) {
+        this.tagStatus = status;
     }
 
 }
