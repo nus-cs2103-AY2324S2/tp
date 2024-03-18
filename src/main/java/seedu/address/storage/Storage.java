@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.ReadOnlyModuleMap;
+import seedu.address.model.module.ModuleMap;
 
 /**
  * API of the Storage component
@@ -34,6 +34,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, ModuleMap
     Path getModuleFilePath();
 
     @Override
-    Optional<ReadOnlyModuleMap> readModuleMap() throws DataLoadingException;
+    ModuleMap readModuleMap();
 
 }

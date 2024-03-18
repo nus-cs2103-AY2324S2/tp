@@ -28,14 +28,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
     }
 
-    private final ModuleMap moduleMap;
+
+    public AddressBook() { }
 
 
     /**
      * Creates an AddressBook using the Students in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied, ModuleMap moduleMap) {
-        this.moduleMap = moduleMap;
+    public AddressBook(ReadOnlyAddressBook toBeCopied) {
         resetData(toBeCopied);
     }
 

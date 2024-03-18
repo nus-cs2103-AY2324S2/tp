@@ -1,20 +1,26 @@
 package seedu.address.storage;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Optional;
+import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.module.ReadOnlyModuleMap;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleMap;
 
 public class JsonModuleMapStorage implements ModuleMapStorage {
 
-    private final Path filePath;
+    private static final Logger logger = LogsCenter.getLogger(JsonModuleMapStorage.class);
 
-    public JsonModuleMapStorage(Path moduleMapFilePath) throws IOException {
-        this.filePath = moduleMapFilePath;
-    }
+    private final Path filePath = Paths.get("src/main/resources/module_data.json");
+
+    public JsonModuleMapStorage() {}
 
     @Override
     public Path getModuleFilePath() {
@@ -22,7 +28,29 @@ public class JsonModuleMapStorage implements ModuleMapStorage {
     }
 
     @Override
-    public Optional<ReadOnlyModuleMap> readModuleMap() throws DataLoadingException {
-        return Optional.empty();
+    public ModuleMap readModuleMap() {
+        requireNonNull(filePath);
+
+        ModuleMap moduleMap = new ModuleMap();
+
+        Optional<JsonAdaptedModule[]> jsonModuleMap = Optional.empty();
+
+        try {
+            jsonModuleMap = JsonUtil.readJsonArrayFile(filePath, JsonAdaptedModule[].class);
+        } catch (DataLoadingException e) {
+            logger.severe("Error reading from module file: " + filePath);
+            throw new Error("Error reading from module file: " + filePath, e);
+        }
+
+        JsonAdaptedModule[] jsonModules = jsonModuleMap.orElse(new JsonAdaptedModule[0]);
+        for (JsonAdaptedModule jsonModule : jsonModules) {
+            try {
+                Module module = jsonModule.toModelType();
+                moduleMap.addModule(module);
+            } catch (IllegalValueException ive) {
+                throw new Error("Error reading from module file: " + filePath, ive);
+            }
+        }
+        return moduleMap;
     }
 }

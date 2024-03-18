@@ -10,7 +10,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.ReadOnlyModuleMap;
+import seedu.address.model.module.ModuleMap;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -79,7 +79,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyModuleMap> readModuleMap() throws DataLoadingException {
+    public ModuleMap readModuleMap() {
         logger.fine("Attempting to read data from file: " + moduleMapStorage.getModuleFilePath());
         return moduleMapStorage.readModuleMap();
     }
