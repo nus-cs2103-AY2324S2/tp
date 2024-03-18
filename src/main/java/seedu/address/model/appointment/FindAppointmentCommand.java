@@ -17,10 +17,9 @@ public class FindAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "findappt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all appointments whose appointment time or associated person's names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie d/12/03/2024 9am-10pm";
+            + ": Finds all appointments whose associated person's name contain any of "
+            + "the specified keywords and displays them as a list with index numbers.\n"
+            + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final Function<Model, AppointmentContainsKeywordsPredicate> predicateFunction;
 
