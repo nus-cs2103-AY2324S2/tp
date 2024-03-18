@@ -46,6 +46,15 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
+        // Written by Jin Han, can delete if not used
+        // System.out.println("Edited person:");
+        // System.out.println(editedPerson);
+        // System.out.println("EditCommand:");
+        // System.out.println(editCommand);
+        // System.out.println("Expected Model");
+        // System.out.println(expectedModel);
+        // System.out.println("model");
+        // System.out.println(model);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -66,6 +75,20 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
+
+        // Written by Jin Han, can delete if want
+        // System.out.println("expected message:");
+        // System.out.println(expectedMessage);
+        // System.out.println("Edited person:");
+        // System.out.println(editedPerson);
+        // System.out.println("EditCommand:");
+        // System.out.println(editCommand);
+        // System.out.println("edit person descriptor:");
+        // System.out.println(descriptor);
+        // System.out.println("Expected Model");
+        // System.out.println(expectedModel);
+        // System.out.println("model");
+        // System.out.println(model);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
