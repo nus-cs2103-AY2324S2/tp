@@ -28,7 +28,7 @@
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Gill Sans";
-    -fx-font-style: bold;
+    -fx-font-weight: bold;
 }
 
 .tab-pane {
