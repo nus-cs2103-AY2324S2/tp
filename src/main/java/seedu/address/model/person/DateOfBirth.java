@@ -9,7 +9,6 @@ import seedu.address.commons.core.date.Date;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateOfBirth(String)}
  */
 public class DateOfBirth extends Date {
-
     public static final String MESSAGE_CONSTRAINTS =
             "Date of birth must be before today's date";
 

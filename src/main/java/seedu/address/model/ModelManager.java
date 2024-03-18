@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
@@ -25,7 +27,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointments;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -141,8 +142,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteAppointment(Appointment target) {
-        // addressBook.removeAppointment(target);
+    public void cancelAppointment(Appointment appointment) {
+        addressBook.cancelAppointment(appointment);
     }
 
     @Override
@@ -155,6 +156,10 @@ public class ModelManager implements Model {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         addressBook.setAppointment(target, editedAppointment);
+    }
+
+    public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
+        return addressBook.getMatchingAppointment(nric, date, timePeriod);
     }
 
     //=========== Filtered Person List Accessors =============================================================

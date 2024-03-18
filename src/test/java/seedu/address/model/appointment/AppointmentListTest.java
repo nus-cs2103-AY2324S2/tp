@@ -14,8 +14,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
+import seedu.address.model.person.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentListTest {
@@ -174,7 +176,34 @@ public class AppointmentListTest {
     }
 
     @Test
+    public void getMatchingAppointment_validInput_appointmentFound() {
+        appointmentList.add(ALICE_APPT);
+        Nric nricToMatch = ALICE_APPT.getNric();
+        Date dateToMatch = ALICE_APPT.getDate();
+        TimePeriod timePeriodToMatch = ALICE_APPT.getTimePeriod();
+
+        assertEquals(ALICE_APPT, appointmentList.getMatchingAppointment(nricToMatch, dateToMatch, timePeriodToMatch));
+    }
+
+    @Test
+    public void getMatchingAppointment_invalidInput_appointmentFound() {
+        appointmentList.add(ALICE_APPT);
+        Nric nricToMatch = ALICE_APPT_1.getNric();
+        Date dateToMatch = ALICE_APPT_1.getDate();
+        TimePeriod timePeriodToMatch = ALICE_APPT_1.getTimePeriod();
+
+        assertThrows(AppointmentNotFoundException.class, () ->
+                appointmentList.getMatchingAppointment(nricToMatch, dateToMatch, timePeriodToMatch));
+    }
+
+    @Test
+    public void getMatchingAppointment_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> appointmentList.getMatchingAppointment(null, null, null));
+    }
+
+    @Test
     public void toStringMethod() {
         assertEquals(appointmentList.asUnmodifiableObservableList().toString(), appointmentList.toString());
     }
 }
+

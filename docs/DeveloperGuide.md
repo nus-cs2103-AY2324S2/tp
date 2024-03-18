@@ -325,6 +325,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CLInic` and the **Actor** is the `user`, unless specified otherwise)
 
+<<<<<<< HEAD
+=======
 // EXAMPLE //
 **Use case: Delete a person**
 
@@ -350,6 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 // EXAMPLE //
 
+>>>>>>> 0a90af1b165ada3a5c65ff7fea168eb06387077b
 **Use case (UC1) : Add new patient information to the database**
 
 **MSS**
@@ -523,7 +526,7 @@ Given below are instructions to test the app manually.
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</box>
+</box> 
 
 ### Launch and shutdown
 

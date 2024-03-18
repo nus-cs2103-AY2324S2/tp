@@ -55,7 +55,8 @@ public class TypicalAppointments {
             .withAppointmentType(VALID_APPOINTMENT_TYPE_BOB)
             .withNote(VALID_APPOINTMENT_NOTE_BOB).build();
 
-    private TypicalAppointments() {} // prevents instantiation
+    private TypicalAppointments() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical

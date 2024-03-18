@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
@@ -16,7 +18,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
-
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -110,10 +111,10 @@ public interface Model {
     boolean hasAppointment(Appointment appointment);
 
     /**
-     * Deletes the given appointment.
+     * Cancels the given appointment.
      * The appointment must exist in the address book.
      */
-    void deleteAppointment(Appointment appointment);
+    void cancelAppointment(Appointment appointment);
 
     /**
      * Adds the given appointment.
@@ -137,4 +138,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /** Returns an Appointment that matches based on Nric, Date and TimePeriod given **/
+    Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod);
 }
