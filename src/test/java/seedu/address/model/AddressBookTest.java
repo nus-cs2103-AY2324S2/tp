@@ -33,6 +33,13 @@ public class AddressBookTest {
     }
 
     @Test
+    public void addressbook_copyConstuctor_copiesNotes() {
+        AddressBook original = getTypicalAddressBook();
+        AddressBook copied = new AddressBook(original);
+        assertEquals(original.getNoteList(), copied.getNoteList());
+    }
+
+    @Test
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
     }
@@ -55,6 +62,13 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withValidReadOnlyAddressBook_updatesNotes() {
+        AddressBook newData = getTypicalAddressBook();
+        addressBook.resetData(newData);
+        assertEquals(newData.getNoteList(), addressBook.getNoteList());
     }
 
     @Test
@@ -85,6 +99,14 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void deletePerson_deleteAssociatedNotes() {
+        AddressBook newData = getTypicalAddressBook();
+        ObservableList<Note> notesToDelete = ALICE.getNotes();
+        newData.removePerson(ALICE);
+        assertFalse(newData.getNoteList().contains(notesToDelete));
     }
 
     @Test
