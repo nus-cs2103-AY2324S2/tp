@@ -92,6 +92,13 @@ public class AddressBookTest {
     }
 
     @Test
+    public void getPersonWithNric_personWithNricInAddressBook_returnsPerson() {
+        addressBook.addPerson(ALICE);
+        Nric aliceNric = ALICE.getNric();
+        assertEquals(ALICE, addressBook.getPersonWithNric(aliceNric));
+    }
+
+    @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }

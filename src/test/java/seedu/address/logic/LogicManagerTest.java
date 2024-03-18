@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.MISSING_NRIC;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -63,7 +64,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete " + Nric.MISSING_NRIC;
+        String deleteCommand = "delete " + new Nric(MISSING_NRIC);
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);
     }
 
