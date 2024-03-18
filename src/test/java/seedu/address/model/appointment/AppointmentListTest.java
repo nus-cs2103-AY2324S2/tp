@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_1;
 import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,6 +19,7 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentListTest {
@@ -199,6 +201,38 @@ public class AppointmentListTest {
     @Test
     public void getMatchingAppointment_nullInput_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> appointmentList.getMatchingAppointment(null, null, null));
+    }
+
+    @Test
+    public void deleteAppointmentsWithNric_validNric_appointmentsRemoved() {
+        appointmentList.add(ALICE_APPT);
+        appointmentList.add(BOB_APPT);
+
+        appointmentList.deleteAppointmentsWithNric(ALICE_APPT.getNric());
+
+        AppointmentList expectedAppointmentList = new AppointmentList();
+        expectedAppointmentList.add(BOB_APPT);
+
+        assertEquals(expectedAppointmentList, appointmentList);
+    }
+
+    @Test
+    public void deleteAppointmentsWithNric_nricNotInList_noChange() {
+        appointmentList.add(ALICE_APPT);
+        appointmentList.add(BOB_APPT);
+
+        appointmentList.deleteAppointmentsWithNric(ALICE_APPT.getNric());
+        appointmentList.deleteAppointmentsWithNric(ALICE_APPT.getNric()); //to show use of nric that's not there
+
+        AppointmentList expectedAppointmentList = new AppointmentList();
+        expectedAppointmentList.add(BOB_APPT);
+
+        assertEquals(expectedAppointmentList, appointmentList);
+    }
+
+    @Test
+    public void deleteAppointmentsWithNric_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> appointmentList.deleteAppointmentsWithNric(null));
     }
 
     @Test

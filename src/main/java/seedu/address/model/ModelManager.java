@@ -158,8 +158,15 @@ public class ModelManager implements Model {
         addressBook.setAppointment(target, editedAppointment);
     }
 
+    @Override
     public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
         return addressBook.getMatchingAppointment(nric, date, timePeriod);
+    }
+
+    @Override
+    public void deleteAppointmentsWithNric(Nric targetNric) {
+        requireNonNull(targetNric);
+        addressBook.deleteAppointmentsWithNric(targetNric);
     }
 
     //=========== Filtered Person List Accessors =============================================================

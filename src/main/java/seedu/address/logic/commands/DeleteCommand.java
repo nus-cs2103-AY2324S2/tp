@@ -36,6 +36,7 @@ public class DeleteCommand extends Command {
         if (model.hasPersonWithNric(targetNric)) {
             msg = String.format(MESSAGE_DELETE_PERSON_SUCCESS,
                     Messages.format(model.getPersonWithNric(targetNric)));
+            model.deleteAppointmentsWithNric(targetNric);
             model.deletePersonWithNric(targetNric);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);

@@ -195,6 +195,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return appointments.getMatchingAppointment(nric, date, timePeriod);
     }
 
+    public void deleteAppointmentsWithNric(Nric targetNric) {
+        appointments.deleteAppointmentsWithNric(targetNric);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
