@@ -57,6 +57,15 @@ public class TypicalPersons {
             .withBook("How To Grow Taller")
             .withMeritScore(-1).build();
 
+    // Manually added
+    public static final Person KEPLER = new PersonBuilder().withName("Kepler")
+            .withAddress("54, Stuttgart, #12-23")
+            .withEmail("kepler@hotmail.com")
+            .withPhone("89402749")
+            .withTags("teachers")
+            .withBook("How To Become a Better Reader?")
+            .withMeritScore(1).build();
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
@@ -80,6 +89,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JACKER));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JACKER, KEPLER));
     }
 }
