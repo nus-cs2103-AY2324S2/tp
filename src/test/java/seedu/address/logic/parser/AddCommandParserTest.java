@@ -193,7 +193,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
                 TYPE_DESC_BOB + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
                 Name.MESSAGE_CONSTRAINTS);
-        
+
         // invalid person type
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TYPE_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, MESSAGE_INVALID_PERSON_TYPE);
