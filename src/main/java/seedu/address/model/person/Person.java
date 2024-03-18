@@ -2,9 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.project.Task;
 
 /**
  * Represents a Person in the address book.
@@ -15,12 +18,26 @@ public class Person {
     // Identity fields
     private final Name name;
 
+    private final List<Task> taskList;
+
     /**
      * Every field must be present and not null.
      */
+    public Person(Name name, List<Task> taskList) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.taskList = taskList;
+    }
+
     public Person(Name name) {
         requireAllNonNull(name);
         this.name = name;
+        List<Task> taskList = new ArrayList<>();
+        this.taskList = taskList;
+    }
+
+    public void addTask(Task task) {
+        taskList.add(task);
     }
 
     public Name getName() {
@@ -30,7 +47,7 @@ public class Person {
 
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherProject) {

@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Task;
 
 /**
  * Adds a task to a project.
@@ -20,21 +21,21 @@ public class AddTaskCommand extends Command {
             + "Parameters: "
             + "PROJECT_NAME, TASK_NAME";
 
-    public static final String MESSAGE_SUCCESS = "%1$s has been added to the project %1$s.";
+    public static final String MESSAGE_SUCCESS = "%1$s has been added to the project %2$s.";
 
-    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %1$s not found: Please make sure the project exists.";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project %2$s not found: Please make sure the project exists.";
     public static final String MESSAGE_DUPLICATE_TASK = "Task %1$s already exists in project %1$s";
 
-    private final Person toAdd;
-    private final Project taskProject;
+    private final Task toAdd;
+    private final Person taskProject;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddTaskCommand(Person person, Project taskProject) {
-        requireNonNull(person);
-        requireNonNull(person);
-        toAdd = person;
+    public AddTaskCommand(Task task, Person taskProject) {
+        requireNonNull(task);
+        requireNonNull(taskProject);
+        this.toAdd = task;
         this.taskProject = taskProject;
     }
 
@@ -42,19 +43,12 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_TASK, Messages.format(toAdd)));
+        if (!model.hasPerson(taskProject)) {
+            throw new CommandException(String.format(MESSAGE_PROJECT_NOT_FOUND, Messages.format(toAdd), Messages.format(taskProject)));
         }
 
-        /*
-            if (!model.hasProject(taskProject)) {
-                throw new CommandException(String.format(MESSAGE_PROJECT_NOT_FOUND, Messages.format(taskProject)));
-            }
-        */
-
-
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        taskProject.addTask(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd), Messages.format(taskProject)));
     }
 
     @Override

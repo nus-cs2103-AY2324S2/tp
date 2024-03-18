@@ -60,4 +60,8 @@ public class Task {
         this.priorityNumber = priorityNumber;
     }
 
+    public Name getName() {
+        return taskName;
+    }
+
 }

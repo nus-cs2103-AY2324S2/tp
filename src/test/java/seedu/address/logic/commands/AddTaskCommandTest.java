@@ -22,12 +22,14 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddTaskCommandTest {
-    private Project taskProject = new Project("projectName to be set later ");
+    private Person taskProject = new Person(new Name("default"), null);
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -39,7 +41,9 @@ public class AddTaskCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddTaskCommand(validPerson, taskProject).execute(modelStub);
+        Task validTask = new Task("hello");
+
+        CommandResult commandResult = new AddTaskCommand(validTask, taskProject).execute(modelStub);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
@@ -49,7 +53,8 @@ public class AddTaskCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddTaskCommand addTaskCommand = new AddTaskCommand(validPerson, taskProject);
+        Task validTask = new Task("hello");
+        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask, taskProject);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, String.format(AddProjectCommand.MESSAGE_DUPLICATE_PERSON,
@@ -59,8 +64,8 @@ public class AddTaskCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Task alice = new Task("Alice");
+        Task bob = new Task("Bob");
         AddTaskCommand addAliceCommand = new AddTaskCommand(alice, taskProject);
         AddTaskCommand addBobCommand = new AddTaskCommand(bob, taskProject);
 
@@ -68,7 +73,7 @@ public class AddTaskCommandTest {
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddProjectCommand addAliceCommandCopy = new AddProjectCommand(alice);
+        AddTaskCommand addAliceCommandCopy = new AddTaskCommand(alice, taskProject);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -83,7 +88,8 @@ public class AddTaskCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddTaskCommand addTaskCommand = new AddTaskCommand(ALICE, taskProject);
+        Task test = new Task("test");
+        AddTaskCommand addTaskCommand = new AddTaskCommand(test, ALICE);
         String expected = AddTaskCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addTaskCommand.toString());
     }
@@ -126,6 +132,10 @@ public class AddTaskCommandTest {
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person findPerson(Name name) { throw new AssertionError("This method should not be called.");
+    }
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {

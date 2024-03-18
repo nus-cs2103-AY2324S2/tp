@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTaskCommand;
@@ -23,14 +25,17 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
-        Project taskProject = new Project("projectName to be set later ");
-        String taskName = args;
+        String taskName = args.split(" to")[0];
+        String projectName = args.split("to ")[1];
+        Task task = new Task(taskName);
         if (taskName.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
-        Name name = ParserUtil.parseName(taskName);
-        Person person = new Person(name);
-        return new AddTaskCommand(person, taskProject);
+        Name name = ParserUtil.parseName(projectName);
+        List<Task> taskList = new ArrayList<>();
+        taskList.add(task);
+        Person person = new Person(name, taskList);
+        return new AddTaskCommand(task, person);
     }
 
     /**
