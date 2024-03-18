@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIds.ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.exceptions.IdNotFoundException;
 import seedu.address.testutil.NetConnectBuilder;
 
 public class ModelManagerTest {
@@ -87,6 +89,38 @@ public class ModelManagerTest {
     public void hasPerson_personInNetConnect_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasId_nullId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasId(null));
+    }
+
+    @Test
+    public void hasId_idNotInNetConnect_returnsFalse() {
+        assertFalse(modelManager.hasId(ID_FIRST_PERSON));
+    }
+
+    @Test
+    public void hasId_idInNetConnect_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasId(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_nullId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.getPersonById(null));
+    }
+
+    @Test
+    public void getPersonById_idNotInNetConnect_throwsIdNotFoundException() {
+        assertThrows(IdNotFoundException.class, () -> modelManager.getPersonById(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_idInNetConnect_returnsPerson() {
+        modelManager.addPerson(ALICE);
+        assertEquals(ALICE, modelManager.getPersonById(ALICE.getId()));
     }
 
     @Test

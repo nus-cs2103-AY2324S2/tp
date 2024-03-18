@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -21,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.IdNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class NetConnectTest {
@@ -80,27 +80,35 @@ public class NetConnectTest {
     }
 
     @Test
-    public void hasId_nullPerson_throwsNullPointerException() {
+    public void hasId_nullId_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> netConnect.hasId(null));
     }
 
     @Test
     public void hasId_idNotInNetConnect_returnsFalse() {
-        assertFalse(netConnect.hasId(ALICE));
+        assertFalse(netConnect.hasId(ALICE.getId()));
     }
 
     @Test
-    public void hasId_personInNetConnect_returnsTrue() {
+    public void hasId_idInNetConnect_returnsTrue() {
         netConnect.addPerson(ALICE);
-        assertTrue(netConnect.hasId(ALICE));
+        assertTrue(netConnect.hasId(ALICE.getId()));
     }
 
     @Test
-    public void hasId_personWithSameIdentityFieldsInNetConnect_returnsTrue() {
+    public void getPersonById_nullId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> netConnect.getPersonById(null));
+    }
+
+    @Test
+    public void getPersonById_idNotInNetConnect_throwsIdNotFoundException() {
+        assertThrows(IdNotFoundException.class, () -> netConnect.getPersonById(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_idInNetConnect_returnsPerson() {
         netConnect.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(netConnect.hasId(editedAlice));
+        assertEquals(ALICE, netConnect.getPersonById(ALICE.getId()));
     }
 
     @Test
@@ -130,5 +138,4 @@ public class NetConnectTest {
             return persons;
         }
     }
-
 }

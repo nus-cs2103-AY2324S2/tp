@@ -4,8 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's unique id in the address book, smallest id is 1.
- * Guarantees: immutable; is always valid; each instance has
- * a unique value; only at most one instance for each unique value.
+ * Guarantees: immutable; is valid as declared in {@link #isValidId(int)}
  */
 public class Id {
 
@@ -16,29 +15,46 @@ public class Id {
     public final int value;
 
     /**
-     * Constructs an {@code Id} containing the next available number.
+     * Constructs an {@code Id} containing the next available id.
      */
     private Id() {
         value = nextId++;
     }
 
     /**
-     * Constructs an {@code Id} with the given id, and sets the next available id.
+     * Constructs an {@code Id} with the given id.
      */
-    public Id(int id) {
-        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
+    private Id(int id) {
         value = id;
-        if (id >= nextId) {
-            nextId = id + 1;
-        }
     }
 
     /**
-     * Factory method to generate an {@code Id} with the next available number.
-     * @return A new {@code Id} instance containing the next available number.
+     * Factory method to generate an {@code Id} with the next available id.
+     * @return A new {@code Id} instance containing the next available id.
      */
-    public static Id generateId() {
+    public static Id generateNextId() {
         return new Id();
+    }
+
+    /**
+     * Factory method to generate an {@code Id} with the given id, and updates the next available id.
+     * @return A new {@code Id} instance containing the given id.
+     */
+    public static Id generateId(int id) {
+        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
+        if (id >= nextId) {
+            nextId = id + 1;
+        }
+        return new Id(id);
+    }
+
+    /**
+     * Factory method to generate an {@code Id} with the given id. Does not affect the next available id.
+     * @return A new {@code Id} instance containing the given id.
+     */
+    public static Id generateTempId(int id) {
+        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
+        return new Id(id);
     }
 
     /**
@@ -72,4 +88,6 @@ public class Id {
     public int hashCode() {
         return value;
     }
+
+
 }

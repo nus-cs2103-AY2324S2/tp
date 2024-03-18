@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -17,6 +16,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.IdNotFoundException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -54,22 +54,30 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void hasId_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.hasId(ALICE));
+    public void hasId_idNotInList_returnsFalse() {
+        assertFalse(uniquePersonList.hasId(ALICE.getId()));
     }
 
     @Test
-    public void hasId_personInList_returnsTrue() {
+    public void hasId_idInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.hasId(ALICE));
+        assertTrue(uniquePersonList.hasId(ALICE.getId()));
     }
 
     @Test
-    public void hasId_sameIdDifferentFields_returnsTrue() {
+    public void getPersonById_nullId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.getPersonById(null));
+    }
+
+    @Test
+    public void getPersonById_idNotInList_throwsIdNotFoundException() {
+        assertThrows(IdNotFoundException.class, () -> uniquePersonList.getPersonById(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_idInList_returnsPerson() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(uniquePersonList.hasId(editedAlice));
+        assertEquals(ALICE, uniquePersonList.getPersonById(ALICE.getId()));
     }
 
     @Test

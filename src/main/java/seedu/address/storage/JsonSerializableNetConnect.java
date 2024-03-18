@@ -54,7 +54,7 @@ class JsonSerializableNetConnect {
             if (netConnect.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            if (netConnect.hasId(person)) {
+            if (netConnect.hasId(person.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ID);
             }
             netConnect.addPerson(person);

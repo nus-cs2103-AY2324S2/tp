@@ -11,9 +11,10 @@ import org.junit.jupiter.api.Test;
 public class IdTest {
 
     @Test
-    public void constructor_invalidId_throwsIllegalArgumentException() {
+    public void factoryMethods() {
         int invalidId = 0;
-        assertThrows(IllegalArgumentException.class, () -> new Id(invalidId));
+        assertThrows(IllegalArgumentException.class, () -> Id.generateId(invalidId));
+        assertThrows(IllegalArgumentException.class, () -> Id.generateTempId(invalidId));
     }
 
     @Test
@@ -22,17 +23,17 @@ public class IdTest {
         assertFalse(Id.isValidId(0)); // zero
         assertFalse(Id.isValidId(-10)); // negative integer
 
-        // valid name
+        // valid id
         assertTrue(Id.isValidId(1));
         assertTrue(Id.isValidId(Integer.MAX_VALUE));
     }
 
     @Test
     public void equals() {
-        Id id = new Id(1);
+        Id id = Id.generateId(1);
 
         // same values -> returns true
-        assertEquals(id, new Id(1));
+        assertEquals(id, Id.generateId(1));
 
         // same object -> returns true
         assertEquals(id, id);
@@ -44,6 +45,6 @@ public class IdTest {
         assertFalse(id.equals("hi"));
 
         // different values -> returns false
-        assertNotEquals(id, new Id(2));
+        assertNotEquals(id, Id.generateId(2));
     }
 }
