@@ -177,17 +177,60 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Introduction
 
+The `AddCommand` class is responsible for adding new patient's information in the address book.
+
 #### Specifications
+
+* AddCommand, as defined by the `AddCommand` class, contain parameters which consists of: 
+  *  `patientHospitalId` integer, 
+  * `name`, `preferredName` String with only alphabets character,
+  *  `foodPreference`, `familyCondition`, `hobby` and `tag` which are alphanumeric.
+* `tag` field is optional in the AddCommand and can be added later on using the `AddTagsCommand`.
+* If any of the fields are repeated during the adding of patient or missing fields, error message will be thrown.
 
 #### Example Usage Scenario
 
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `add /id 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter h/ Watch Drama`
+command to add a new Patient whose patient hospital ID is `12347`,
+with the name `Mary Jane` and preferred name `Mary`, likes to eat `Korean` food and current family condition is 
+`Lives with only daughter` and likes to `Watch drama`.
+
+Step 3: The `AddCommandParser` will be called to validate the input, ensuring that the fields are valid with correct 
+data types and no duplicates of fields.
+* Upon successful validation, it creates a `Patient` instance.
+
+Step 4: The newly added Patient will be added to the end of list, shown in the UI. 
+
+#### Design Considerations
+
+#### Aspect of Handling Duplicated Fields 
+* **Alternative 1 (current choice)**: Returns error message, prompt user to enter the correct format.
+    * Pros: Ensure the consistency of entries of the input command.
+    * Cons: User has to retype the `AddCommand` once again instead of the specific field.
+<br></br>
+*  **Alternative 2**: Add patient's information to the list, for duplicated fields, take the first one.
+    * Pros: User does not have to retype the command.
+    * Cons: Introduce ambiguity, the first repeated field may not be what user wish to enter.
+
+#### Aspect of Handling Existing Patient
+* **Alternative 1 (current choice)**: Returns error message upon user adds a new patient with existing `patientHospitalId`
+    * Pros: Ensures that no same patient will be added to PatientSync.
+    * Cons: User has to enter patient's hospital ID in care to ensure no duplications.
+<br></br>
+* **Alternative 2**: Check duplicated patient by patient's `name`.
+    * Pros: Easier to view as patient's `name` will be easier to be remembered.
+    * Cons: Patients may have the same name.
 --------------------------------------------------------------------------------------------------------------------
 
 ### 3.2 Adding Tags to a Patient
 
 #### Introduction
 
-The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book. 
+The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book.
 
 #### Specifications
 
@@ -209,7 +252,14 @@ Step 2: The user executes the `addt 1 t/christian t/fallRisk` command to add the
 <b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
 </box>
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the Add Tags operation works:
+<puml src="diagrams/AddTagsSequenceDiagram.puml" alt="AddTagsSequence" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `AddTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 #### Design Considerations
 
@@ -249,11 +299,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Introduction
 
-The `AddImportantDate` class is responsible for adding an Important Date to a patient in the address book. I
+The `AddEvent` class is responsible for adding an Important Date to a patient in the address book. I
 
 #### Specifications
 
-* ImportantDates, as defined by the `ImportantDate` class, contain both the Name of the Event that falls on that date, as well as the Date of the Event and optionally, the Time Period for which the Event is happening.
+* Events, as defined by the `Event` class, contain both the Name of the Event that falls on that date, as well as the Date of the Event and optionally, the Time Period for which the Event is happening.
 
 * The addition of Important Dates is cumulative, and new Important Dates will be added to the existing set of Important Dates for the patient, preserving the previously assigned Important Dates.
 
@@ -266,19 +316,63 @@ Given below is an example usage scenario and how the group creation mechanism be
 Step 1: The user accesses the PatientSync application.
 
 Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday, which falls on the 20th January.
-* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+* Upon successful validation, it creates an `AddEventsCommand` instance.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.4 Deleting Important Date from a Patient
+### 3.4 Editing a Patient
 
 #### Introduction
 
-The `DeleteImportantDateCommand` class is responsible for deleting an Important Date from a patient in the address book.
+The `EditCommand` class is responsible for editing current patient's information in the address book.
 
 #### Specifications
 
-* DeleteImportantDateCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients 
+* EditCommand, as defined by the `EditCommand` class, contain parameters which consists of:
+    *  `INDEX` integer,
+    *  `patientHospitalId` integer,
+    * `name`, `preferredName` String with only alphabets character,
+    *  `foodPreference`, `familyCondition`, `hobby` and `tag` which are alphanumeric.
+* All fields are optional in the EditCommand except for `INDEX`
+* If any of the fields are repeated during the adding of patient or missing fields, error message will be thrown.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `edit 2 f/Aglio-olio t/depression` command to edit an existing Patient whose index in 
+the PatientSync is `2`, with changes on preferred food to be `Aglio-olio` and added a tag `depression`.
+
+Step 3: The `EditCommandParser` will be called to validate the input, ensuring that the fields are valid with correct
+data types and no duplicates of fields.
+* Upon successful validation, it will update the `Patient` instance.
+
+Step 4: The Patient with specified index will be updated in the list, shown in the UI.
+
+#### Design Considerations
+
+#### Aspect of Using Identifier
+* **Alternative 1 (current choice)**: Uses `INDEX` index of the Patient in the PatientSync.
+    * Pros: Ease of use, as user can refer to the index in the PatientSync directly.
+    * Cons: Referring and scrolling the PatientSync may take time to find the patient's index.
+      <br></br>
+*  **Alternative 2**: Uses `patientHospitalId` of a Patient.
+    * Pros: Able to uniquely identified each patient.
+      * Cons: Higher chance in typing the wrong `patientHospitalId`.
+  
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.5 Deleting Important Date from a Patient
+
+#### Introduction
+
+The `DeleteEventCommand` class is responsible for deleting an Important Date from a patient in the address book. I
+
+#### Specifications
+
+* DeleteEventCommand takes in two parameters: `PATIENT_INDEX` and `EVENT_INDEX` which are Indexes of patients
 shown on the UI after using the `list` or `find` command and Indexes of the specified Patient's events as defined in
 the `Index` class.
 
@@ -292,11 +386,11 @@ Step 1: The user accesses the PatientSync application.
 
 Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday,
 which falls on the 20th January.
-* Upon successful validation, it creates an `AddImportantDatesCommand` instance.
+* Upon successful validation, it creates an `AddEventsCommand` instance.
 
 Step 3: The use executes the `deletee 1 e/1 command` to delete the Important Date as he realised he keyed in the wrong
 date.
-* Upon successful validation,  an `DeleteImportantDateCommand` instance is created.
+* Upon successful validation,  an `DeleteEventCommand` instance is created.
 
 #### Design Considerations
 
@@ -312,7 +406,7 @@ date.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.5 Editing an Important Date for a Patient
+### 3.6 Editing an Important Date for a Patient
 
 #### Introduction
 
@@ -352,7 +446,8 @@ Step 3: The user executes the `edite 1 e/1 n/New Birthday d/20-01-2023` to edit 
     * Cons: Inconsistent with `adde` and `deletee` commands.
 
 --------------------------------------------------------------------------------------------------------------------
-### 3.6 Deleting a Patient
+
+### 3.7 Deleting a Patient
 
 #### Introduction
 

@@ -3,25 +3,27 @@ package seedu.address.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
  * Represents Important Dates for a Patient
  */
-public class ImportantDate {
+public class Event {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format: DD-MM-YYYY, HH:mm - HH:mm, OR if there is no time period,"
             + "in the format: DD-MM-YYYY";
+    public static final String DATE_PATTERN = "dd-MM-yyyy";
+    public static final String TIME_PATTERN = "HH:mm";
 
 
 
     /** The name of the Important Date */
     public final String name;
     /** The Date of the Important Date */
-    public final String importantDate;
+    public final String date;
     /** The Start Time of the Important Date, null if there is no specific start time */
     public final String startTime;
     /** The End Time of the Important Date, null if there is no specific end time */
@@ -31,20 +33,20 @@ public class ImportantDate {
 
 
     /**
-     * Constructs a {@Code ImportantDate}
+     * Constructs a {@Code Event}
      *
-     * @param importantDate
+     * @param event
      */
-    public ImportantDate(String name, String importantDate) {
+    public Event(String name, String event) {
         requireNonNull(name);
         this.name = name;
 
-        importantDate = importantDate.strip();
-        requireNonNull(importantDate);
-        checkArgument(isValidImportantDate(importantDate), MESSAGE_CONSTRAINTS);
+        event = event.strip();
+        requireNonNull(event);
+        checkArgument(isValidEvent(event), MESSAGE_CONSTRAINTS);
 
-        String[] args = extractDateTimeArgs(importantDate);
-        this.importantDate = args[0];
+        String[] args = extractDateTimeArgs(event);
+        this.date = args[0];
         this.startTime = args[1];
         this.endTime = args[2];
     }
@@ -56,42 +58,39 @@ public class ImportantDate {
      * @return true if the {@param test} is valid,
      *         false is the {@param test} is not valid
      */
-    public static boolean isValidImportantDate(String test) {
+    public static boolean isValidEvent(String test) {
         String[] args = test.split(",");
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            formatter.parse(args[0].strip());
-        } catch (ParseException e) {
+            LocalDate.parse(args[0].trim(), DateTimeFormatter.ofPattern(DATE_PATTERN));
+        } catch (DateTimeParseException e) {
             return false;
         }
 
         if (args.length > 1) {
-            return isValidTime(args[1]);
-        } else {
-            return true;
+            return isValidDateTimeStr(args[1]);
         }
+
+        return true;
     }
 
 
     /**
      * Returns true if the given string is a valid time String
      *
-     * @param test the given string
-     * @return true if the {@param test} is valid,
-     *         false is the {@param test} is not valid
+     * @param timeStr the given string
+     * @return true if the {@param timeStr} is valid,
+     *         false is the {@param timeStr} is not valid
      */
-    public static boolean isValidTime(String test) {
-        String[] timeArgs = test.split("-");
-
+    public static boolean isValidDateTimeStr(String timeStr) {
+        String[] args = timeStr.split("-");
         try {
-            LocalTime.parse(timeArgs[0].strip());
-            LocalTime.parse(timeArgs[1].strip());
+            LocalTime.parse(args[0].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // start time
+            LocalTime.parse(args[1].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // end time
+            return true;
         } catch (DateTimeParseException e) {
             return false;
         }
-
-        return true;
     }
 
 
@@ -123,10 +122,10 @@ public class ImportantDate {
     public String toString() {
         // If there is a start time, there must be a end time
         if (this.startTime != null) {
-            return String.format("%s (%s, from %s to %s)", this.name, this.importantDate, this.startTime, this.endTime);
+            return String.format("%s (%s, from %s to %s)", this.name, this.date, this.startTime, this.endTime);
         }
 
-        return String.format("%s (%s)", this.name, this.importantDate);
+        return String.format("%s (%s)", this.name, this.date);
     }
 
     @Override
@@ -135,24 +134,24 @@ public class ImportantDate {
             return true;
         }
 
-        if (!(other instanceof ImportantDate)) {
+        if (!(other instanceof Event)) {
             return false;
         }
 
-        ImportantDate otherImportantDate = (ImportantDate) other;
+        Event otherEvent = (Event) other;
         if (this.startTime == null) {
-            return this.name.equals(otherImportantDate.name)
-                    && this.importantDate.equals(otherImportantDate.importantDate);
+            return this.name.equals(otherEvent.name)
+                    && this.date.equals(otherEvent.date);
         }
 
-        return this.name.equals(otherImportantDate.name)
-                && this.importantDate.equals(otherImportantDate.importantDate)
-                && this.startTime.equals(otherImportantDate.startTime)
-                && this.endTime.equals(otherImportantDate.endTime);
+        return this.name.equals(otherEvent.name)
+                && this.date.equals(otherEvent.date)
+                && this.startTime.equals(otherEvent.startTime)
+                && this.endTime.equals(otherEvent.endTime);
     }
 
     @Override
     public int hashCode() {
-        return importantDate.hashCode();
+        return date.hashCode();
     }
 }

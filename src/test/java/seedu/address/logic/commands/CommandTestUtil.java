@@ -2,11 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD_PREFERENCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -28,44 +30,63 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_ID_AMY = "12345";
+    public static final String VALID_ID_BOB = "12234";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_TAG_FRIENDS = "friends";
-    public static final String VALID_TAG_NICE = "nice";
-    public static final String VALID_IMPORTANT_DATE_NAME = "Birthday";
-    public static final String VALID_IMPORTANT_DATE = "20-02-2022";
-    public static final String VALID_IMPORTANT_DATETIME = "20-02-2022, 12:12 - 15:15";
-
+    public static final String VALID_EVENT_NAME = "Birthday";
+    public static final String VALID_EVENT_DATE = "20-02-2022";
+    public static final String VALID_EVENT_DATETIME = "20-02-2022, 12:12 - 15:15";
+    public static final String VALID_PREFERRED_NAME_AMY = "Amy";
+    public static final String VALID_PREFERRED_NAME_BOB = "Bob";
+    public static final String VALID_FOOD_AMY = "Dim sum";
+    public static final String VALID_FOOD_BOB = "Chicken rice";
+    public static final String VALID_FAMILY_CONDITION_AMY = "2 sons migrated to Korea";
+    public static final String VALID_FAMILY_CONDITION_BOB = "Always quarrels with daughter";
+    public static final String VALID_HOBBY_AMY = "Watch Hong Kong Drama";
+    public static final String VALID_HOBBY_BOB = "Interested in calligraphy";
+    public static final String VALID_TAG_DIABETES = "diabetes";
+    public static final String VALID_TAG_DEPRESSION = "depression";
+    public static final String ID_DESC_AMY = " " + PREFIX_PID + VALID_ID_AMY;
+    public static final String ID_DESC_BOB = " " + PREFIX_PID + VALID_ID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String IMPORTANT_DATE_DESC_DATE = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME + " "
-            + PREFIX_DATETIME + VALID_IMPORTANT_DATE;
-    public static final String IMPORTANT_DATE_DESC_DATETIME = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME + " "
-            + PREFIX_DATETIME + VALID_IMPORTANT_DATETIME;
+    public static final String EVENT_DESC_DATE = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
+            + PREFIX_DATETIME + VALID_EVENT_DATE;
+    public static final String EVENT_DESC_DATETIME = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
+            + PREFIX_DATETIME + VALID_EVENT_DATETIME;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_IMPORTANT_DATE_DESC = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME
+    public static final String INVALID_EVENT_DESC = " " + PREFIX_NAME + VALID_EVENT_NAME
             + PREFIX_DATETIME + "Invalid";
+    public static final String PREFERRED_NAME_DESC_AMY = " " + PREFIX_PREFERRED_NAME + VALID_PREFERRED_NAME_AMY;
+    public static final String PREFERRED_NAME_DESC_BOB = " " + PREFIX_PREFERRED_NAME + VALID_PREFERRED_NAME_BOB;
+    public static final String FOOD_DESC_BOB = " " + PREFIX_FOOD_PREFERENCE + VALID_FOOD_BOB;
+    public static final String FOOD_DESC_AMY = " " + PREFIX_FOOD_PREFERENCE + VALID_FOOD_AMY;
+    public static final String FAMILY_DESC_AMY = " " + PREFIX_FAMILY_CONDITION + VALID_FAMILY_CONDITION_AMY;
+    public static final String FAMILY_DESC_BOB = " " + PREFIX_FAMILY_CONDITION + VALID_FAMILY_CONDITION_BOB;
+    public static final String HOBBY_DESC_AMY = " " + PREFIX_HOBBY + VALID_HOBBY_AMY;
+    public static final String HOBBY_DESC_BOB = " " + PREFIX_HOBBY + VALID_HOBBY_BOB;
+    public static final String TAG_DESC_DIABETES = " " + PREFIX_TAG + VALID_TAG_DIABETES;
+    public static final String TAG_DESC_DEPRESSION = " " + PREFIX_TAG + VALID_TAG_DEPRESSION;
+    public static final String IMPORTANT_DATE_DESC_DATE = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
+        + PREFIX_DATETIME + VALID_EVENT_DATE;
+    public static final String IMPORTANT_DATE_DESC_DATETIME = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
+        + PREFIX_DATETIME + VALID_EVENT_DATETIME;
+
+    public static final String INVALID_ID_DESC = " " + PREFIX_PID + "10 a"; // only digits are allowed in ID
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James& Lee Kuang"; // '&' not allowed in names
+    // '&' not allowed in preferred name
+    public static final String INVALID_PREFERRED_NAME_DESC = " " + PREFIX_PREFERRED_NAME + "James&";
+    // empty string not allowed for food description
+    public static final String INVALID_FOOD_DESC = " " + PREFIX_FOOD_PREFERENCE;
+    // empty string not allowed for family condition
+    public static final String INVALID_FAMILY_DESC = " " + PREFIX_FAMILY_CONDITION;
+    // empty string not allowed for hobby
+    public static final String INVALID_HOBBY_DESC = " " + PREFIX_HOBBY;
+    // '*' and spacing not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hearing loss*";
+    public static final String INVALID_IMPORTANT_DATE_DESC = " " + PREFIX_NAME + VALID_EVENT_NAME
+        + PREFIX_DATETIME + "Invalid";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -75,11 +96,13 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withPreferredName(VALID_PREFERRED_NAME_AMY).withFoodPreference(VALID_FOOD_AMY)
+                .withFamilyCondition(VALID_FAMILY_CONDITION_AMY).withHobby(VALID_HOBBY_AMY)
+                .withTags(VALID_TAG_DIABETES).build();
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPreferredName(VALID_PREFERRED_NAME_BOB).withFoodPreference(VALID_FOOD_BOB)
+                .withFamilyCondition(VALID_FAMILY_CONDITION_BOB).withHobby(VALID_HOBBY_BOB)
+                .withTags(VALID_TAG_DEPRESSION, VALID_TAG_DIABETES).build();
     }
 
     /**

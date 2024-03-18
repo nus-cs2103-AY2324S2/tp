@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddTagsCommandParser" as AddTagsCommandParser LOGIC_COLOR
+participant "a:AddTagsCommand" as AddTagsCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(addt 1 t/christian ...)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(addt 1 t/christian ...)
+activate AddressBookParser
+
+create AddTagsCommandParser
+AddressBookParser -> AddTagsCommandParser
+activate AddTagsCommandParser
+
+AddTagsCommandParser --> AddressBookParser
+deactivate AddTagsCommandParser
+
+AddressBookParser -> AddTagsCommandParser : parse(addt 1 t/christian ...)
+activate AddTagsCommandParser
+
+Create AddTagsCommand
+AddTagsCommandParser -> AddTagsCommand
+activate AddTagsCommand
+
+AddTagsCommand --> AddTagsCommandParser : a
+deactivate AddTagsCommand
+
+AddTagsCommandParser --> AddressBookParser : a
+deactivate AddTagsCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.'
+AddTagsCommandParser -[hidden]-> AddressBookParser
+destroy AddTagsCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddTagsCommand : execute()
+activate AddTagsCommand
+
+AddTagsCommand -> Model : setPatient(args)
+activate Model
+
+Model --> AddTagsCommand
+deactivate Model
+
+create CommandResult
+AddTagsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddTagsCommand
+deactivate CommandResult
+
+AddTagsCommand --> LogicManager : result
+deactivate AddTagsCommand
+
+AddTagsCommand -[hidden]-> AddressBookParser
+destroy AddTagsCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

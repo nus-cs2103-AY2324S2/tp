@@ -5,14 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATETIME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATETIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERRED_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,41 +46,51 @@ public class EditPatientDescriptorTest {
                 new EditPatientDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different phone -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        // different id -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withPatientHospitalId(VALID_ID_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        // different preferred name -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withPreferredName(VALID_PREFERRED_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        // different food preference -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFoodPreference(VALID_FOOD_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different family condition -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFamilyCondition(VALID_FAMILY_CONDITION_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different hobby -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withHobby(VALID_HOBBY_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_DEPRESSION).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withImportantDate(VALID_IMPORTANT_DATE_NAME,
-                VALID_IMPORTANT_DATE).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEvent(VALID_EVENT_NAME,
+                VALID_EVENT_DATE).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withImportantDate(VALID_IMPORTANT_DATE_NAME,
-                VALID_IMPORTANT_DATETIME).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEvent(VALID_EVENT_NAME,
+                VALID_EVENT_DATETIME).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
     @Test
     public void toStringMethod() {
         EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
-        String expected = EditPatientDescriptor.class.getCanonicalName() + "{name="
-                + editPatientDescriptor.getName().orElse(null) + ", phone="
-                + editPatientDescriptor.getPhone().orElse(null) + ", email="
-                + editPatientDescriptor.getEmail().orElse(null) + ", address="
-                + editPatientDescriptor.getAddress().orElse(null) + ", tags="
-                + editPatientDescriptor.getTags().orElse(null) + ", importantDate="
-                + editPatientDescriptor.getImportantDates().orElse(null) + "}";
+        String expected = EditPatientDescriptor.class.getCanonicalName() + "{patientHospitalId="
+                + editPatientDescriptor.getPatientHospitalId().orElse(null) + ", name="
+                + editPatientDescriptor.getName().orElse(null) + ", preferredName="
+                + editPatientDescriptor.getPreferredName().orElse(null) + ", foodPreference="
+                + editPatientDescriptor.getFoodPreference().orElse(null) + ", familyCondition="
+                + editPatientDescriptor.getFamilyCondition().orElse(null) + ", hobby="
+                + editPatientDescriptor.getHobby().orElse(null) + ", tags="
+                + editPatientDescriptor.getTags().orElse(null) + ", events="
+                + editPatientDescriptor.getEvents().orElse(null) + "}";
         assertEquals(expected, editPatientDescriptor.toString());
     }
 }
