@@ -59,24 +59,30 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private Predicate<Person> predicateBuilder(ArgumentMultimap argMultimap, Prefix... prefixes) throws ParseException {
-        Predicate<Person> predicate = person -> false;
-        boolean isKeywordPresent = false;
+        Predicate<Person> predicate = null;
         for (Prefix prefix : prefixes) {
             String keywords = argMultimap.getValue(prefix).orElse("").trim();
             if (!keywords.isEmpty()) {
-                isKeywordPresent = true;
                 switch (prefix.toString()) {
                 case "n/":
-                    predicate = predicate.or(new NameContainsKeywordsPredicate(Arrays.asList(keywords.split("\\s+"))));
+                    if (predicate == null) {
+                        predicate = new NameContainsKeywordsPredicate(Arrays.asList(keywords.split("\\s+")));
+                    } else {
+                        predicate = predicate.or(new NameContainsKeywordsPredicate(Arrays.asList(keywords.split("\\s+"))));
+                    }
                     break;
                 case "a/":
-                    predicate = predicate.or(new AvailableAtDatePredicate(Arrays.asList(keywords.split("\\s+"))));
+                    if (predicate == null) {
+                        predicate = new AvailableAtDatePredicate(Arrays.asList(keywords.split("\\s+")));
+                    } else {
+                        predicate = predicate.or(new AvailableAtDatePredicate(Arrays.asList(keywords.split("\\s+"))));
+                    }
                     break;
                 }
             }
         };
 
-        if (!isKeywordPresent) {
+        if (predicate == null)  {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
