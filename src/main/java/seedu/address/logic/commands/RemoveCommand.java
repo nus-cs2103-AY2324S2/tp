@@ -75,7 +75,7 @@ public class RemoveCommand extends Command{
             model.deletePerson(personToRemove);
             return new CommandResult(String.format(MESSAGE_REMOVE_PERSON_SUCCESS, Messages.format(personToRemove)));
         } else {
-            // Should not reach here 
+            // Should not reach here
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
