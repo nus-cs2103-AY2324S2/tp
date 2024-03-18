@@ -41,7 +41,8 @@ public class EditCommandTest {
         EditStartupDescriptor descriptor = new EditStartupDescriptorBuilder(editedStartup).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STARTUP, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup));
+        String expectedMessage = String.format(
+                EditCommand.MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setStartup(model.getFilteredStartupList().get(0), editedStartup);
@@ -62,7 +63,8 @@ public class EditCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastStartup, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup));
+        String expectedMessage = String.format(
+                EditCommand.MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setStartup(lastStartup, editedStartup);
@@ -75,7 +77,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STARTUP, new EditStartupDescriptor());
         Startup editedStartup = model.getFilteredStartupList().get(INDEX_FIRST_STARTUP.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup));
+        String expectedMessage = String.format(
+                EditCommand.MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -91,7 +94,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STARTUP,
                 new EditStartupDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup));
+        String expectedMessage = String.format(
+                EditCommand.MESSAGE_EDIT_STARTUP_SUCCESS, Messages.format(editedStartup));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setStartup(model.getFilteredStartupList().get(0), editedStartup);
