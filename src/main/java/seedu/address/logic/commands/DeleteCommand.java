@@ -1,14 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.delete.DeleteCommandExecutor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,9 +22,10 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the client identified by the index number used in the displayed client list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the client identified by the index number or full name used in the displayed client list.\n"
+            + "Parameters: INDEX (must be a positive integer) or " + PREFIX_NAME + "NAME \n"
+            + "Example: " + COMMAND_WORD + " 1 or " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe";
+
 
     public static final String MESSAGE_DELETE_HELP = "Delete Command: (Coming soon)\n"
             + "Format: (Coming soon)\n";
@@ -29,21 +33,36 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Client: %1$s";
 
     private final Index targetIndex;
+    private final Name targetName;
 
+    /**
+     * Creates a DeleteCommand to delete the person at the specified {@code Index}
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.targetName = null;
+    }
+
+    /**
+     * Creates a DeleteCommand to delete the person with the specified {@code Name}
+     */
+    public DeleteCommand(Name targetName) {
+        this.targetName = targetName;
+        this.targetIndex = null;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        Person personToDelete;
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (targetIndex != null) {
+            personToDelete = DeleteCommandExecutor.deleteByIndex(lastShownList, targetIndex);
+        } else {
+            personToDelete = DeleteCommandExecutor.deleteByName(lastShownList, targetName);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
@@ -60,7 +79,11 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        if (targetIndex != null) {
+            return targetIndex.equals(otherDeleteCommand.targetIndex);
+        } else {
+            return targetName.equals(otherDeleteCommand.targetName);
+        }
     }
 
     @Override

@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -42,11 +43,33 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validNameUnfilteredList_success() {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName());
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidNameUnfilteredList_throwsCommandException() {
+        Person personToDelete = new PersonBuilder().withName("b").build();
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName());
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
     }
 
     @Test
@@ -80,7 +103,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void equals() {
+    public void equalsIndex() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
@@ -99,6 +122,41 @@ public class DeleteCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+    }
+
+    @Test
+    public void equalsName() {
+        DeleteCommand deleteUdhayaCommand = new DeleteCommand(
+                new PersonBuilder().withName("Udhaya").build().getName());
+        DeleteCommand deleteNotUdhayaCommand = new DeleteCommand(
+                new PersonBuilder().withName("not Udhaya").build().getName());
+        DeleteCommand deleteUdhayaShanugamCommand = new DeleteCommand(
+                new PersonBuilder().withName("Udhaya Shanmugam").build().getName());
+        DeleteCommand deleteAddressCommand = new DeleteCommand(
+                new PersonBuilder().withAddress("Udhaya").build().getName());
+
+        // same object -> returns true
+        assertTrue(deleteUdhayaCommand.equals(deleteUdhayaCommand));
+
+        // same values -> returns true
+        DeleteCommand deleteUdhayaCommandCopy = new DeleteCommand(
+                new PersonBuilder().withName("Udhaya").build().getName());
+        assertTrue(deleteUdhayaCommand.equals(deleteUdhayaCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteUdhayaCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteUdhayaCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(deleteUdhayaCommand.equals(deleteNotUdhayaCommand));
+
+        // delete udhaya should not delete someone with address udhaya
+        assertFalse(deleteUdhayaCommand.equals(deleteAddressCommand));
+
+        //delete Udhaya should not delete someone with name Udhaya Shanugam
+        assertFalse(deleteUdhayaCommand.equals(deleteUdhayaShanugamCommand));
     }
 
     @Test
