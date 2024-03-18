@@ -1,17 +1,22 @@
+/*
+  // ================================
+  // General
+  // ================================ */
+
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #EDEDED;
+    background-color: #EDEDED; /* Used in the default.html file */
 }
 
 .label {
-    -fx-font-size: 11pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
-    -fx-font-size: 11pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
@@ -25,7 +30,7 @@
 }
 
 .text-field {
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI Semibold";
 }
 
@@ -133,28 +138,19 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #EDEDED;
 }
 
-.pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+.result-display .label {
+    -fx-text-fill: #000000 !important;
+}
+
+.results-container .text-area{
+    -fx-background-color: transparent;
 }
 
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
-}
-
-.result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
 }
 
 .status-bar .label {
@@ -182,29 +178,6 @@
 
 .grid-pane .stack-pane {
     -fx-background-color: derive(#1d1d1d, 30%);
-}
-
-.context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
-
-.context-menu .label {
-    -fx-text-fill: white;
-}
-
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
 }
 
 /*
@@ -281,60 +254,13 @@
     -fx-text-fill: white;
 }
 
-.scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
-    -fx-background-insets: 3;
-}
-
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
-}
-
-.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-}
-
-.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
-}
-
-.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
-}
-
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
-#commandTypeLabel {
-    -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
-}
-
-#commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
-    -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
 #filterField, #personListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
-}
-
-#resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
 }
 
 #tags {
@@ -349,4 +275,133 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+/*
+  // ================================
+  // Scroll Bar
+  // ================================ */
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #EDEDED;
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 5 1 5;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 5 1 5 1;
+}
+
+/*
+  // ================================
+  // Menu
+  // ================================ */
+
+.context-menu {
+    -fx-background-color:#A6A6A6;
+}
+
+.context-menu .label {
+    -fx-text-fill: white;
+}
+
+.menu-bar {
+    -fx-background-color: #FEFEFE;
+    -fx-padding: 5px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);
+}
+
+.menu-bar .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: black;
+}
+
+/*
+  // ================================
+  // Logo
+  // ================================ */
+
+.logo-container {
+    -fx-background-color: #FEFEFE;
+    -fx-padding: 10px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);
+}
+
+/*
+  // ================================
+  // Command
+  // ================================ */
+
+.command-container {
+    -fx-background-color: #FEFEFE;
+    -fx-padding: 10px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);
+}
+
+#commandTypeLabel {
+    -fx-font-size: 10pt;
+    -fx-text-fill: #F70D1A;
+}
+
+#commandTextField {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 10pt;
+    -fx-text-fill: #000000;
+}
+
+/*
+  // ================================
+  // Command Result
+  // ================================ */
+
+.results-container {
+    -fx-background-color: #FEFEFE;
+    -fx-background-radius: 15px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 1);
+}
+
+.result-display {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 10pt;
+    -fx-text-fill: #000000;
+}
+
+#resultDisplay .content {
+    -fx-background-color: #FEFEFE;
+}
+
+/*
+  // ================================
+  // Recent Command
+  // ================================ */
+
+#recentCommandsPlaceholder {
+    -fx-content-display: none;
 }
