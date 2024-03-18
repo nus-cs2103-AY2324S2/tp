@@ -26,7 +26,7 @@ You can reach us at the email `E0957568@u.nus.edu`
 
 <img src="images/andrewong2066.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/andrewong2066)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
@@ -41,22 +41,13 @@ You can reach us at the email `E0957568@u.nus.edu`
 * Role: Developer
 * Responsibilities: 
 
-### Jean Doe
+### Tania Tan Shu Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/taniatsq.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/taniatsq)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
