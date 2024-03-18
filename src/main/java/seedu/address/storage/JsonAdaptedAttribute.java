@@ -13,8 +13,8 @@ import seedu.address.model.person.attribute.StringAttribute;
  */
 class JsonAdaptedAttribute {
 
-    private final String name;
     public final String value;
+    private final String name;
 
     /**
      * Constructs a {@code JsonAdaptedAttribute} with the given attribute details.
