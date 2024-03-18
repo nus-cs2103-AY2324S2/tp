@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.exceptions.OrderNotFoundException;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
@@ -65,12 +66,28 @@ public class Person {
         this.orders.add(order);
     }
 
-    public void deleteOrder(int index) {
-        this.orders.remove(index);
+    public void deleteOrder(int orderId) {
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i).getId() == orderId) {
+                this.orders.remove(i);
+                return;
+            }
+        }
+        throw new OrderNotFoundException();
     }
 
     public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
+    }
+
+    public void editOrder(int orderId, Order toEdit) {
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i).getId() == orderId) {
+                this.orders.set(i, toEdit);
+                return;
+            }
+        }
+        throw new OrderNotFoundException();
     }
 
     /**

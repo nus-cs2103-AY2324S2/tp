@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.exceptions.OrderNotFoundException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the list of active orders in the addressbook.
@@ -61,8 +62,8 @@ public class OrderList implements Iterable<Order> {
      * @param person The person that the order is tagged to.
      */
     public void addOrder(Order toAdd, Person person) {
-        requireAllNonNull(toAdd);
-
+        requireAllNonNull(toAdd, person);
+        toAdd.setCustomer(person);
         orderList.put(toAdd.getId(), toAdd);
         internalList.add(toAdd);
         person.addOrder(toAdd);
@@ -82,8 +83,13 @@ public class OrderList implements Iterable<Order> {
         if (oldOrder == null) {
             throw new OrderNotFoundException();
         }
+        Person respectiveCustomer = oldOrder.getCustomer();
+        //if (respectiveCustomer == null) {
+        //    throw new PersonNotFoundException();
+        //}
         orderList.remove(toDelete);
         internalList.remove(oldOrder);
+        respectiveCustomer.deleteOrder(oldOrder.getId());
     }
 
     /**
@@ -96,13 +102,15 @@ public class OrderList implements Iterable<Order> {
         if (orderId < 1) {
             throw new NullPointerException();
         }
-        Order currOrder = orderList.get(orderId);
-        if (currOrder == null) {
+        Order oldOrder = orderList.get(orderId);
+        if (oldOrder == null) {
             throw new OrderNotFoundException();
         }
-        int oldOrderIndex = internalList.indexOf(currOrder);
+        Person respectiveCustomer = oldOrder.getCustomer();
+        int oldOrderIndex = internalList.indexOf(oldOrder);
         internalList.set(oldOrderIndex, toEdit);
         orderList.put(orderId, toEdit);
+        respectiveCustomer.editOrder(oldOrder.getId(), toEdit);
     }
 
     /**
