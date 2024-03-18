@@ -138,6 +138,9 @@ public class PersonBuilder {
             person = new Befriendee(name, phone, email, address, tags);
         }
         person.setId(id);
+        if (pairedWith != null) {
+            person.setPairedWith(pairedWith);
+        }
         return person;
     }
 
