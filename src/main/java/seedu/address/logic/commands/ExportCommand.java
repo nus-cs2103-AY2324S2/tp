@@ -9,6 +9,8 @@ import seedu.address.model.Model;
 
 public class ExportCommand extends Command {
 
+    public static final String COMMAND_WORD = "export";
+
     public static final String MESSAGE_SUCCESS = "Success! Your contact has been exported as ((filename.csv)) ";
 
     public static final String MESSAGE_FAILURE_EMPTY_LIST = "Failed to export contacts. The contact list is empty.";
