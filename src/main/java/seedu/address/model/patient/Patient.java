@@ -17,63 +17,82 @@ import seedu.address.model.tag.Tag;
 public class Patient {
 
     // Identity fields
+    private final PatientHospitalId patientHospitalId;
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final PreferredName preferredName;
 
     // Data fields
-    private final Address address;
+    private final FoodPreference foodPreference;
+    private final FamilyCondition familyCondition;
+    private final Hobby hobby;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Event> events = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
+                   FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
+                   Set<Tag> tags) {
+        requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        this.patientHospitalId = patientHospitalId;
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.preferredName = preferredName;
+        this.foodPreference = foodPreference;
+        this.familyCondition = familyCondition;
+        this.hobby = hobby;
         this.tags.addAll(tags);
     }
 
     /**
-     * Constructs a Patient with {@param name}, {@param phone}, {@param email}, {@param address},
-     * {@param tags}, {@param events}
+     * Constructs a Patient with {@param patientHospitalId},{@param name}, {@param preferredName},
+     * {@param foodPreference}, {@param familyCondition}, {@param hobby},{@param tags}, {@param events}
      *
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param tags
+     * @param patientHospitalId patient's hospital ID
+     * @param name patient's full name
+     * @param preferredName patient's preferred name
+     * @param foodPreference patient's preferred food
+     * @param familyCondition patient's family condition
+     * @param hobby patient's hobby
+     * @param tags tag for patient
      * @param events
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                   Set<Event> events) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
+                   FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
+                   Set<Tag> tags, Set<Event> events) {
+        requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        this.patientHospitalId = patientHospitalId;
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.preferredName = preferredName;
+        this.foodPreference = foodPreference;
+        this.familyCondition = familyCondition;
+        this.hobby = hobby;
         this.tags.addAll(tags);
         this.events.addAll(events);
+    }
+
+    public PatientHospitalId getPatientHospitalId() {
+        return patientHospitalId;
     }
 
     public Name getName() {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public PreferredName getPreferredName() {
+        return preferredName;
     }
 
-    public Email getEmail() {
-        return email;
+    public FamilyCondition getFamilyCondition() {
+        return familyCondition;
     }
 
-    public Address getAddress() {
-        return address;
+    public FoodPreference getFoodPreference() {
+        return foodPreference;
+    }
+
+    public Hobby getHobby() {
+        return hobby;
     }
 
     /**
@@ -93,7 +112,7 @@ public class Patient {
     }
 
     /**
-     * Returns true if both patients have the same name.
+     * Returns true if both patients have the same patientHospitalId.
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {
@@ -102,7 +121,7 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getName().equals(getName());
+                && otherPatient.getPatientHospitalId().equals(getPatientHospitalId());
     }
 
     /**
@@ -121,10 +140,12 @@ public class Patient {
         }
 
         Patient otherPatient = (Patient) other;
-        return name.equals(otherPatient.name)
-                && phone.equals(otherPatient.phone)
-                && email.equals(otherPatient.email)
-                && address.equals(otherPatient.address)
+        return patientHospitalId.equals(otherPatient.patientHospitalId)
+                && name.equals(otherPatient.name)
+                && preferredName.equals(otherPatient.preferredName)
+                && foodPreference.equals(otherPatient.foodPreference)
+                && familyCondition.equals(otherPatient.familyCondition)
+                && hobby.equals(otherPatient.hobby)
                 && tags.equals(otherPatient.tags)
                 && events.equals(otherPatient.events);
     }
@@ -132,19 +153,22 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, events);
+        return Objects.hash(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
+            events);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .add("events", this.events)
-                .toString();
+            .add("patientHospitalId", patientHospitalId)
+            .add("name", name)
+            .add("preferredName", preferredName)
+            .add("foodPreference", foodPreference)
+            .add("familyCondition", familyCondition)
+            .add("hobby", hobby)
+            .add("tags", tags)
+            .add("events", this.events)
+            .toString();
     }
 
 }

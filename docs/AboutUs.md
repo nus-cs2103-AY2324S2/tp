@@ -55,9 +55,9 @@ integrating various parts of the software to create a whole.
 
 <img src="images/choowengyan.png" width="200px">
 
-[[github](http://github.com/choowengyan)]
+[[github](http://github.com/choowengyan)] 
 [[portfolio](https://ay2324s2-cs2103-f09-2.github.io/tp/)]
 
 * Role: Scheduling and tracking
-* Responsibilities: Ensure that team's task is scheduled properly based on each iteration and milestone,
+* Responsibilities: Ensure that team's task is scheduled properly based on each iteration and milestone, 
 optimizing project timeline, updating task status and providing accurate information.
