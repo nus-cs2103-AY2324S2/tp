@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -63,6 +64,25 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
+    public void readAddressBook_withModulesWithoutModuleList_addsModulesToList() throws Exception {
+        AddressBook addressBook = getTypicalAddressBook();
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        StorageManager storageManager = new StorageManager(addressBookStorage,
+            new JsonUserPrefsStorage(getTempFilePath("prefs")));
+        storageManager.saveAddressBook(addressBook);
+
+        // Modify the storage file to remove module list
+        addressBookStorage.saveAddressBook(new AddressBook(), addressBookStorage.getAddressBookFilePath());
+
+        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        assertTrue(retrieved.getModuleList().isEmpty());
     }
 
 }

@@ -96,13 +96,6 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
-
-    @Override
-    public boolean hasModule(ModuleCode module) {
-        requireNonNull(module);
-        return addressBook.hasModule(module);
-    }
-
     @Override
     public ModuleCode findModuleFromList(ModuleCode module) {
         requireNonNull(module);

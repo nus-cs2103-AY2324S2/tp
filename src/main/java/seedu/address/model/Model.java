@@ -57,12 +57,6 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
-
-    /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
-     */
-    boolean hasModule(ModuleCode module);
-
     /**
      * Finds the module object from the list if it exists. Else, returns null.
      *
