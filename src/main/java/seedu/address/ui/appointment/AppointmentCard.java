@@ -39,7 +39,7 @@ public class AppointmentCard extends UiPart<Region> {
 
         // Display
         appointmentDisplayedIndex.setText(displayedIndex + ". ");
-        nameOfAppointmentHolder.setText(person.getName().fullName);
+        nameOfAppointmentHolder.setText("Patient: " + person.getName().fullName);
         appointmentTime.setText(appointment.getAppointmentTimeString());
     }
 }

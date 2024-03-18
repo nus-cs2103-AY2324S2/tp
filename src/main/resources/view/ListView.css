@@ -1,0 +1,16 @@
+
+.list-view .list-cell {
+    -fx-border-width: 0;      
+    -fx-padding: 5px;
+}
+
+.list-view .list-cell:filled:selected, 
+.list-view .list-cell:filled:selected:focused {
+    -fx-background-color: #b38486; /* Change selection color */
+    -fx-background-insets: 0;   /* Apply color to the entire cell area */
+}
+
+.list-header {
+    -fx-font-size: 20px;        /* Increase header font size */
+    -fx-text-fill: white;       /* Change text color to white */
+}
