@@ -20,7 +20,7 @@ public class JsonAdaptedArticle {
     private final Article.Status status;
 
     /**
-     * Construct a {@code JsonAdaptedArticle} with the given {@code name}.
+     * Construct a {@code JsonAdaptedArticle} with the given article details.
      *
      * @param title
      * @param authors
@@ -69,7 +69,7 @@ public class JsonAdaptedArticle {
         if (publicationDate == null) {
             throw new IllegalValueException("The publication date is invalid");
         }
-        if (source == null) {
+        if (source == null || source.length == 0) {
             throw new IllegalValueException("The source is invalid");
         }
         if (category == null) {
