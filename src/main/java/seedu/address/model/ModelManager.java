@@ -127,7 +127,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
-       return filteredMeetings;
+        return filteredMeetings;
     }
 
     @Override
