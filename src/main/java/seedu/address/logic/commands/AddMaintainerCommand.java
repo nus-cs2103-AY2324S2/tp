@@ -19,7 +19,7 @@ import seedu.address.model.person.Maintainer;
  */
 public class AddMaintainerCommand extends Command {
 
-    public static final String COMMAND_WORD = "/pooch-maintenance";
+    public static final String COMMAND_WORD = "/pooch-maintainer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a maintainer to the address book. "
             + "Parameters: "

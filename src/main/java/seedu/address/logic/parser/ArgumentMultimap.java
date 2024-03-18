@@ -76,6 +76,21 @@ public class ArgumentMultimap {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ArgumentMultimap)) {
+            return false;
+        }
+
+        ArgumentMultimap otherArgumentMultimap = (ArgumentMultimap) other;
+        return argMultimap.equals(otherArgumentMultimap.argMultimap);
+    }
+
     /**
      * Returns a string implementation of Argument Multi Map
      */

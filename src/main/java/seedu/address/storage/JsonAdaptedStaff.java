@@ -9,8 +9,7 @@ import seedu.address.model.person.Staff;
 class JsonAdaptedStaff extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-    private final String salary;
-    private final String employment;
+
 
 
     /**
@@ -19,7 +18,9 @@ class JsonAdaptedStaff extends JsonAdaptedPerson {
     public JsonAdaptedStaff(Person source) {
         super(source);
         Staff staff = (Staff) source;
-        salary = staff.getSalary().value;
-        employment = staff.getEmployment().employment;
+
+        setSalary(staff.getSalary().value);
+        setEmployment(staff.getEmployment().value);
+
     }
 }

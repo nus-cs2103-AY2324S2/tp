@@ -15,17 +15,17 @@ public class Skill {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public final String skill;
+    public final String value;
 
     /**
      * Constructs an {@code Skill}.
      *
-     * @param skill A valid skill.
+     * @param value A valid skill.
      */
-    public Skill(String skill) {
-        requireNonNull(skill);
-        checkArgument(isValidSkill(skill), MESSAGE_CONSTRAINTS);
-        this.skill = skill;
+    public Skill(String value) {
+        requireNonNull(value);
+        checkArgument(isValidSkill(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -37,7 +37,7 @@ public class Skill {
 
     @Override
     public String toString() {
-        return skill;
+        return value;
     }
 
     @Override
@@ -52,11 +52,11 @@ public class Skill {
         }
 
         Skill otherSkill = (Skill) other;
-        return skill.equals(otherSkill.skill);
+        return value.equals(otherSkill.value);
     }
 
     @Override
     public int hashCode() {
-        return skill.hashCode();
+        return value.hashCode();
     }
 }
