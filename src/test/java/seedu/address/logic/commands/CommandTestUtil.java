@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
@@ -54,10 +54,10 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PREFERRED_NAME_DESC_AMY = " " + PREFIX_PREFERRED_NAME + VALID_PREFERRED_NAME_AMY;
     public static final String PREFERRED_NAME_DESC_BOB = " " + PREFIX_PREFERRED_NAME + VALID_PREFERRED_NAME_BOB;
-    public static final String FOOD_DESC_BOB = " " + PREFIX_FOOD + VALID_FOOD_BOB;
-    public static final String FOOD_DESC_AMY = " " + PREFIX_FOOD + VALID_FOOD_AMY;
-    public static final String FAMILY_DESC_AMY = " " + PREFIX_FAMILY + VALID_FAMILY_CONDITION_AMY;
-    public static final String FAMILY_DESC_BOB = " " + PREFIX_FAMILY + VALID_FAMILY_CONDITION_BOB;
+    public static final String FOOD_DESC_BOB = " " + PREFIX_FOOD_PREFERENCE + VALID_FOOD_BOB;
+    public static final String FOOD_DESC_AMY = " " + PREFIX_FOOD_PREFERENCE + VALID_FOOD_AMY;
+    public static final String FAMILY_DESC_AMY = " " + PREFIX_FAMILY_CONDITION + VALID_FAMILY_CONDITION_AMY;
+    public static final String FAMILY_DESC_BOB = " " + PREFIX_FAMILY_CONDITION + VALID_FAMILY_CONDITION_BOB;
     public static final String HOBBY_DESC_AMY = " " + PREFIX_HOBBY + VALID_HOBBY_AMY;
     public static final String HOBBY_DESC_BOB = " " + PREFIX_HOBBY + VALID_HOBBY_BOB;
     public static final String TAG_DESC_DIABETES = " " + PREFIX_TAG + VALID_TAG_DIABETES;
@@ -71,10 +71,12 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James& Lee Kuang"; // '&' not allowed in names
     // '&' not allowed in preferred name
     public static final String INVALID_PREFERRED_NAME_DESC = " " + PREFIX_PREFERRED_NAME + "James&";
-    public static final String INVALID_FOOD_DESC = " " + PREFIX_FOOD; // empty string not allowed for food description
+    // empty string not allowed for food description
+    public static final String INVALID_FOOD_DESC = " " + PREFIX_FOOD_PREFERENCE;
     // empty string not allowed for family condition
-    public static final String INVALID_FAMILY_DESC = " " + PREFIX_FAMILY;
-    public static final String INVALID_HOBBY_DESC = " " + PREFIX_HOBBY; // empty string not allowed for hobby
+    public static final String INVALID_FAMILY_DESC = " " + PREFIX_FAMILY_CONDITION;
+    // empty string not allowed for hobby
+    public static final String INVALID_HOBBY_DESC = " " + PREFIX_HOBBY;
     // '*' and spacing not allowed in tags
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hearing loss*";
     public static final String INVALID_IMPORTANT_DATE_DESC = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME

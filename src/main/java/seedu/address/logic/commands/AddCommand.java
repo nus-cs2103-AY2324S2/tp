@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
@@ -26,16 +26,16 @@ public class AddCommand extends Command {
             + PREFIX_PID + "PATIENT_HOSPITAL_ID"
             + PREFIX_NAME + "NAME "
             + PREFIX_PREFERRED_NAME + "PREFERRED_NAME"
-            + PREFIX_FOOD + "FOOD_PREFERENCE "
-            + PREFIX_FAMILY + "FAMILY_CONDITION "
+            + PREFIX_FOOD_PREFERENCE + "FOOD_PREFERENCE "
+            + PREFIX_FAMILY_CONDITION + "FAMILY_CONDITION "
             + PREFIX_HOBBY + "HOBBY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PID + "12345"
             + PREFIX_NAME + "Alex Yeoh Jia Jun "
             + PREFIX_PREFERRED_NAME + "Alex "
-            + PREFIX_FOOD + "Curry Chicken "
-            + PREFIX_FAMILY + "Stable, Has 2 sons visit him regularly "
+            + PREFIX_FOOD_PREFERENCE + "Curry Chicken "
+            + PREFIX_FAMILY_CONDITION + "Stable, Has 2 sons visit him regularly "
             + PREFIX_HOBBY + "Singing karaoke "
             + PREFIX_TAG + "Diabetes ";
 

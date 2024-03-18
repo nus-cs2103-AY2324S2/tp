@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
@@ -35,8 +35,8 @@ public class PatientUtil {
         sb.append(PREFIX_PID + patient.getPatientHospitalId().patientHospitalId + " ");
         sb.append(PREFIX_NAME + patient.getName().fullName + " ");
         sb.append(PREFIX_PREFERRED_NAME + patient.getPreferredName().preferredName + " ");
-        sb.append(PREFIX_FOOD + patient.getFoodPreference().foodPreference + " ");
-        sb.append(PREFIX_FAMILY + patient.getFamilyCondition().familyCondition + " ");
+        sb.append(PREFIX_FOOD_PREFERENCE + patient.getFoodPreference().foodPreference + " ");
+        sb.append(PREFIX_FAMILY_CONDITION + patient.getFamilyCondition().familyCondition + " ");
         sb.append(PREFIX_HOBBY + patient.getHobby().hobby + " ");
         patient.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -54,9 +54,9 @@ public class PatientUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPreferredName().ifPresent(preferredName -> sb.append(PREFIX_PREFERRED_NAME)
             .append(preferredName.preferredName).append(" "));
-        descriptor.getFoodPreference().ifPresent(foodPreference -> sb.append(PREFIX_FOOD)
+        descriptor.getFoodPreference().ifPresent(foodPreference -> sb.append(PREFIX_FOOD_PREFERENCE)
             .append(foodPreference.foodPreference).append(" "));
-        descriptor.getFamilyCondition().ifPresent(familyCondition -> sb.append(PREFIX_FAMILY)
+        descriptor.getFamilyCondition().ifPresent(familyCondition -> sb.append(PREFIX_FAMILY_CONDITION)
             .append(familyCondition.familyCondition).append(" "));
         descriptor.getHobby().ifPresent(hobby -> sb.append(PREFIX_HOBBY).append(hobby.hobby).append(" "));
         if (descriptor.getTags().isPresent()) {

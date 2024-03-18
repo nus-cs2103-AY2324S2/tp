@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
@@ -43,13 +43,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PID + "PATIENT HOSPITAL ID] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PREFERRED_NAME + "PREFERRED NAME] "
-            + "[" + PREFIX_FOOD + "FOOD PREFERENCE] "
-            + "[" + PREFIX_FAMILY + "FAMILY CONDITION] "
+            + "[" + PREFIX_FOOD_PREFERENCE + "FOOD PREFERENCE] "
+            + "[" + PREFIX_FAMILY_CONDITION + "FAMILY CONDITION] "
             + "[" + PREFIX_HOBBY + "HOBBY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_FOOD + "Laksa "
-            + PREFIX_FAMILY + "Sister moved to Indonesia";
+            + PREFIX_FOOD_PREFERENCE + "Laksa "
+            + PREFIX_FAMILY_CONDITION + "Sister moved to Indonesia";
 
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
