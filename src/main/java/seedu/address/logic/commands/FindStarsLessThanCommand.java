@@ -12,13 +12,15 @@ import seedu.address.model.person.StarsLessThanPredicate;
  * Comparator is strictly less than.
  */
 public class FindStarsLessThanCommand extends Command {
-    public static final String COMMAND_WORD = "findStarsLessThan";
+    public static final String COMMAND_WORD = "findStarsLT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose number of stars is less than "
             + "the specified number and displays them as a list with index numbers.\n"
             + "Parameters: UPPER_BOUND\n"
             + "Example: " + COMMAND_WORD + "1";
 
+    public static final String MESSAGE_VALID_UPPER_BOUND = "Please input a single positive upper bound, "
+            + "as the number of stars are non-negative.";
     private final StarsLessThanPredicate predicate;
 
     public FindStarsLessThanCommand(StarsLessThanPredicate predicate) {

@@ -20,11 +20,14 @@ public class FindStarsLessThanCommandParser implements Parser<FindStarsLessThanC
     public FindStarsLessThanCommand parse(String args) throws ParseException {
         requireNonNull(args);
         try {
-            int intValue = Integer.parseInt(args.replaceAll(" ", ""));
-            System.out.println(intValue);
+            String[] splitArgs = args.split(" ");
+            int intValue = Integer.parseInt(splitArgs[1]);
+            if (intValue < 1 || splitArgs.length > 2) {
+                throw new ParseException(FindStarsLessThanCommand.MESSAGE_VALID_UPPER_BOUND);
+            }
             StarsLessThanPredicate predicate = new StarsLessThanPredicate(intValue);
             return new FindStarsLessThanCommand(predicate);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindStarsLessThanCommand.MESSAGE_USAGE), e);
         }

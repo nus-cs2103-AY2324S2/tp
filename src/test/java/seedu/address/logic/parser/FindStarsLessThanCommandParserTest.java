@@ -23,7 +23,7 @@ public class FindStarsLessThanCommandParserTest {
         // valid integer
         FindStarsLessThanCommand expectedFindCommand =
                 new FindStarsLessThanCommand(new StarsLessThanPredicate(2));
-        assertParseSuccess(parser, "2", expectedFindCommand);
+        assertParseSuccess(parser, " 2", expectedFindCommand);
 
         // valid integer with whitespaces
         assertParseSuccess(parser, " 2 ", expectedFindCommand);
