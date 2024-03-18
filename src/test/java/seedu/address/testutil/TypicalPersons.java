@@ -27,6 +27,8 @@ public class TypicalPersons {
     public static final Person BENSON = new PatientBuilder().withNric("S8734985A").withName("Benson Chen")
             .withDoB("2002-01-03").withPhone("88927639").build();
 
+    //Patients
+
     public static final Person CARL = new PatientBuilder().withNric("S2378593A").withName("Carl Sim")
             .withDoB("2005-01-03").withPhone("87436749").build();
     public static final Person AMY = new PatientBuilder().withNric(VALID_NRIC_AMY).withName(VALID_NAME_AMY)
@@ -35,7 +37,6 @@ public class TypicalPersons {
             .withDoB(VALID_DOB_BOB).withPhone(VALID_PHONE_BOB).build();
     public static final Person CARL_GOH = new PatientBuilder().withNric("S1234343B").withName("Carl Goh")
             .withDoB("2001-02-24").withPhone("98173241").build();
-
 
     // Doctors
 
