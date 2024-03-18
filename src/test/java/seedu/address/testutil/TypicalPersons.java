@@ -54,7 +54,12 @@ public class TypicalPersons {
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-        .withEmail("stefan@example.com").withAddress("little india").build();
+        .withEmail("stefan@example.com").withAddress("little india")
+        .withNotes(new Note[] {
+            new Note(LocalDateTime.of(2023, 2, 20, 15, 30), new Description("Covid-19")),
+            new Note(LocalDateTime.of(2023, 4, 4, 10, 30), new Description("H1N1")),
+            new Note(LocalDateTime.of(2023, 5, 19, 17, 0), new Description("Arthritis")),
+            }).build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
         .withEmail("hans@example.com").withAddress("chicago ave").build();
 
@@ -78,6 +83,7 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        ab.updateNoteList();
         return ab;
     }
 
