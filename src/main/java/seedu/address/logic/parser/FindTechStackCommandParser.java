@@ -11,7 +11,8 @@ import seedu.address.model.person.TechStackContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindTechStackCommand object
  */
-public class FindTechStackCommandParser {
+public class FindTechStackCommandParser  implements Parser<FindTechStackCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindTechStackCommand
      * and returns a FindTechStackCommand object for execution.
