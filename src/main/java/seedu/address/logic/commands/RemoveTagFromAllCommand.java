@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Removes a tag associated to a person identified using it's displayed index from the address book.
+ * Removes all instance of specific tags associated to any person in the address book.
  */
 public class RemoveTagFromAllCommand extends Command {
 
@@ -32,8 +32,8 @@ public class RemoveTagFromAllCommand extends Command {
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "friends";
 
-    public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Tags removed from the following persons:\n%s";
-    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "No persons have this tag";
+    public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Tag(s) removed from the following persons:\n%s";
+    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "No persons have any of the tag(s)";
 
     private final Set<Tag> tags;
     private ArrayList<Pair<Person, List<Tag>>> removedTagList = new ArrayList<Pair<Person, List<Tag>>>();
@@ -75,8 +75,6 @@ public class RemoveTagFromAllCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS,
             formatRemovedTags(removedTagList)));
-
-
     }
 
     @Override
@@ -101,6 +99,9 @@ public class RemoveTagFromAllCommand extends Command {
                 .toString();
     }
 
+    /**
+     * Formats the removed tags into a string.
+     */
     private String formatRemovedTags(List<Pair<Person, List<Tag>>> removedTagList) {
         StringBuilder sb = new StringBuilder();
         for (Pair<Person, List<Tag>> pair : removedTagList) {

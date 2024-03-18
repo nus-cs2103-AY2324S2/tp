@@ -27,8 +27,6 @@ public class RemoveTagFromAllCommandParser implements Parser<RemoveTagFromAllCom
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
-        System.out.println(argMultimap.getPreamble());
-        System.out.println(argMultimap.getAllValues(PREFIX_TAG));
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
