@@ -291,17 +291,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | user                                       | add a new student to my class             | keep track of my students' profiles                                                                        |
-| `* * *`  | new user who enters the program for the first time                                       | select the class that I want       | view all the students in that selected class                 |
-| `* * *`  | user                                       | remove a student from the class              | keep an updated record of students in the class                                   |
-| `* * *`  | new user                                       | create new class        | separate students into their respective classes |
-| `* *`    | user                                       | write descriptions for each student | take note of certain students based on the description                |
-| `***`      | user | create an attendance sheet for my students         | record a student's attendance                                                 |
-| `*`      | user | edit the attendance sheet of students         | conveniently make changes to attendance when necessary                                                 |
-| `***`      | user | record attendance status for my students (PRESENT, ABSENT, VALID REASON)        | acknowledge their attendance                                                 |
-| `***`      | user | delete an attendance sheet         | remove any unnecessary attendance sheet                                                  |
-| `*`      | organised user | browse my contacts in the default alphabetical setting         | easily scroll to find a particular contact                                                 |
-| `*`      | forgetful user | schedule reminders for important events or follow-ups associated with a specific contact         | don't miss important dates or tasks                                                 |
+| `* * *`  | new user who enters the program for the first time | select the class that I want | view all the students in that selected class |
+| `* * *`  | new user| create new class | separate students into their respective classes |
+| `* * *`  | user| delete class | remove classes that is not needed anymore |
+| `* * *`  | user | add a new student to my class | keep track of my students' profiles |
+| `* * *`  | user | remove a student from the class | keep an updated record of students in the class |
+| `* *`    | user | write descriptions for each student | take note of certain students based on the description |
+| `* * *`  | user | create an attendance sheet for my students | record a student's attendance |
+| `* *`    | user | edit the attendance sheet of students | conveniently make changes to attendance when necessary |
+| `* * *`  | user | record attendance status for my students (PRESENT, ABSENT, VALID REASON) | acknowledge their attendance |
+| `* * *`  | user | delete an attendance sheet | remove any unnecessary attendance sheet |
+| `*`      | organised user | browse my contacts in the default alphabetical setting | easily scroll to find a particular contact |
+| `* *`    | forgetful user | schedule reminders for important events or follow-ups associated with a specific contact | don't miss important dates or tasks |
 
 
 ### Use cases
