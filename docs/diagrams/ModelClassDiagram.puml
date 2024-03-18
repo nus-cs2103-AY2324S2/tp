@@ -14,10 +14,19 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
+Class Staff
+Class Supplier
+Class Maintainer
 Class Name
 Class Phone
+Class Email
+Class Address
+Class Salary
+Class Employment
+Class Price
+Class Product
+Class Skill
+Class Commission
 Class Tag
 
 Class I #FFFFFF
@@ -42,6 +51,19 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+
+Person <|-- Staff
+Person <|-- Supplier
+Person <|-- Maintainer
+
+Staff *--> Salary
+Staff *--> Employment
+
+Supplier *--> Price
+Supplier *--> Product
+
+Maintainer *--> Skill
+Maintainer *--> Commission
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
