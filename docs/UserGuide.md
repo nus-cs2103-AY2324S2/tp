@@ -27,11 +27,11 @@ The Hackathon Participant Management Application is designed to help organizers 
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johndoe@gmail.com c/participant` : Adds a contact named `John Doe` to the Address Book.
 
    * `Remove 3` : Deletes the 3rd contact shown in the current list.
      
-   * `Update John Doe number 98765432` : Updates the contact information of the person named "John Doe"
+   * `Update n/John Doe t/number p/98765432` : Updates the contact information of the person named "John Doe"
   
    * `Comment John Doe`
 
