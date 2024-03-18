@@ -148,6 +148,20 @@ Examples:
 - image to be replaced
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Locating contacts by tech stack: `find-ts`
+
+Finds contacts whose tech stack contain all the given keywords.
+
+Format: `find-ts KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g `school` will match `School`
+- Only the tech stack are searched.
+- Only full words will be matched e.g. `school` will not match `schools`
+- contacts matching all keywords will be returned (i.e. `AND` search).
+
+Examples:
+- image to be inserted
+
 ### Deleting a contact : `delete`
 
 Deletes the specified contact from the address book.

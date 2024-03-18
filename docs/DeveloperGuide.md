@@ -490,6 +490,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. CodeConnect shows an empty list.
       Use case ends.
 
+**Use case: UC07 - Search a contact by tech stack**
+
+**MSS**
+
+1. User requests to look up contacts with specific tech stack.
+2. CodeConnect checks each contact’s tech stack in the list.
+3. CodeConnect shows a list of contacts that match the criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No tech stack is given.
+    * 1a1. CodeConnect shows an error message.
+      Use case ends.
+
+* 1b. There are no contacts in the list that match the criteria.
+    * 1b1. CodeConnect shows an empty list.
+      Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
