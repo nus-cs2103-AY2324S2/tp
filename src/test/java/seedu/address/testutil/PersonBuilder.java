@@ -1,18 +1,14 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
-
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.Status;
 /**
  * A utility class to help with building Person objects.
  */
@@ -22,18 +18,17 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_DOB = "1998-07-03";
-    public static final String DEFAULT_SEX = "F";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_SEX = "M";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_STATUS = "HEALTHY";
 
     private Nric nric;
     private Name name;
     private Phone phone;
-    private DateOfBirth dateOfBirth;
-    private int sex;
-    private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private DateOfBirth dateOfBirth;
+    private Sex sex;
+    private Status status;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,10 +37,10 @@ public class PersonBuilder {
         nric = new Nric(DEFAULT_NRIC);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        dateOfBirth = new DateOfBirth(DEFAULT_DOB);
-        email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        dateOfBirth = new DateOfBirth(DEFAULT_DOB);
+        sex = new Sex(DEFAULT_SEX);
+        status = new Status(DEFAULT_STATUS);
     }
 
     /**
@@ -55,12 +50,19 @@ public class PersonBuilder {
         //TODO: Add the missing fields
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        dateOfBirth = personToCopy.getDateOfBirth();
+        sex = personToCopy.getSex();
+        status = personToCopy.getStatus();
     }
 
-    //TODO: with NRIC
+    /**
+     * Sets the {@code Nric} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNric(String nric) {
+        this.nric = new Nric(nric);
+        return this;
+    }
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
@@ -69,13 +71,6 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
 
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
@@ -94,14 +89,22 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Sex} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withSex(String sex) {
+        this.sex = new Sex(sex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStatus(String status) {
+        this.status = new Status(status);
         return this;
     }
 
     public Person build() {
-        return new Person(nric, name, phone, address, dateOfBirth, sex, email, tags);
+        return new Person(nric, name, phone, address, dateOfBirth, sex, status);
     }
 }

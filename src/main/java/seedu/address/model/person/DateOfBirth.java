@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * Represents a Person's date of admission in the address book.

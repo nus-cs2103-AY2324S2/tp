@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Person's status in the address book.
  * Guarantees: immutable;
@@ -20,10 +23,25 @@ public class Status {
      *
      * @param status Status of a person
      */
-    public Status(StatusType status) {
-        this.status = status;
+    public Status(String status) {
+        requireNonNull(status);
+        checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
+        this.status = StatusType.valueOf(status);
     }
 
+    /**
+     * Checks if a String matches the Enum
+     * @param testString String of input
+     * @return Boolean
+     */
+    public static boolean isValidStatus(String testString) {
+        try {
+            StatusType statusType = StatusType.valueOf(testString);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
     @Override
     public String toString() {
         // TODO Implement Custom toString format

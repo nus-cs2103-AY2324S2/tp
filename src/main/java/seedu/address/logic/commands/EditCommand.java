@@ -105,12 +105,12 @@ public class EditCommand extends Command {
         //TODO: change personToEdit class to enable update of dob and sex
         DateOfBirth dob = personToEdit.getDateOfBirth();
         Sex sex = personToEdit.getSex();
-        Status status = personToEdit.getStatus();
+        Status status = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(nric, updatedName, updatedPhone, updatedAddress, dob, sex, status, updatedEmail, updatedTags);
+        return new Person(nric, updatedName, updatedPhone, updatedAddress, dob, sex, status);
     }
 
     @Override
@@ -147,6 +147,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Status status;
 
         public EditPersonDescriptor() {}
 
@@ -199,6 +200,13 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
         }
 
         /**

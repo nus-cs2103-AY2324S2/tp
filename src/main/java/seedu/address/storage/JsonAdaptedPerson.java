@@ -106,35 +106,21 @@ class JsonAdaptedPerson {
         }
         final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
         // Sex Check
-        if (sex == null || sex.isBlank()) {
+        if (sex == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
         }
-        Sex modelSex;
-        if (sex.equals("F")) {
-            modelSex = new Sex(Sex.SexType.F);
-        } else if (sex.equals("M")) {
-            modelSex = new Sex(Sex.SexType.M);
-        } else {
+        if (!Sex.isValidSex(sex)) {
             throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
         }
+        final Sex modelSex = new Sex(sex);
         // Status Check
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
-        Status modelStatus;
-        switch (status) {
-        case "PENDING":
-            modelStatus = new Status(Status.StatusType.PENDING);
-            break;
-        case "HEALTHY":
-            modelStatus = new Status(Status.StatusType.HEALTHY);
-            break;
-        case "UNWELL":
-            modelStatus = new Status(Status.StatusType.UNWELL);
-            break;
-        default:
+        if (!Status.isValidStatus(status)) {
             throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
         }
+        final Status modelStatus = new Status(status);
         return new Person(modelNric, modelName, modelPhone, modelAddress, modelDateOfBirth, modelSex, modelStatus);
     }
 

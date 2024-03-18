@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.Objects;
-
 /**
  * Represents a Person's symptom in the address book.
  * Guarantees: immutable;

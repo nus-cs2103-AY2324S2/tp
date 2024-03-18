@@ -1,12 +1,18 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Objects;
+
 
 /**
  * Represents a Person's blood type in the address book.
  * Guarantees: immutable;
  */
 public class BloodType {
+    public static final String MESSAGE_CONSTRAINTS =
+            "BloodType should be A, B, AB, O. Rh should be either POSITIVE or NEGATIVE";
     private enum Type { A, B, AB, O };
     private enum Rh { POSITIVE, NEGATIVE };
     private final Type type;
@@ -18,11 +24,28 @@ public class BloodType {
      * @param type A valid blood type.
      * @param rh A valid Rh factor.
      */
-    public BloodType(Type type, Rh rh) {
-        this.type = type;
-        this.rh = rh;
+    public BloodType(String type, String rh) {
+        requireNonNull(type, rh);
+        checkArgument(isValidBloodType(type, rh), MESSAGE_CONSTRAINTS);
+        this.type = Type.valueOf(type);
+        this.rh = Rh.valueOf(rh);
     }
 
+    /**
+     * A method for testing if two strings form a valid BloodType
+     * @param testType String for storing testing type
+     * @param testRh String for storing testing rh
+     * @return Boolean whether test passes or fails
+     */
+    public static boolean isValidBloodType(String testType, String testRh) {
+        try {
+            Type type = Type.valueOf(testType);
+            Rh rh = Rh.valueOf(testRh);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
     public String getType() {
         return type.toString();
     }

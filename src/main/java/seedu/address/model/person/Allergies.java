@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.Objects;
 
 /**
  * Represents a Person's allergies in the address book.

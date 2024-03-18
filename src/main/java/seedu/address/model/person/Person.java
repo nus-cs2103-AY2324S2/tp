@@ -170,6 +170,9 @@ public class Person {
         return new ToStringBuilder(this).add("nric", nric).add("name", name).add("status", status).toString();
     }
 
+    /**
+     * @return Detailed String of Person
+     */
     public String toDetailedString() {
         // detailed view
         return new ToStringBuilder(this)

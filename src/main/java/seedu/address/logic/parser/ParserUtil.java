@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -124,13 +125,10 @@ public class ParserUtil {
     public static Sex parseSex(String sex) throws ParseException {
         requireNonNull(sex);
         String trimmedSex = sex.trim();
-        if (sex.equals("F")) {
-            return new Sex(Sex.SexType.F);
-        } else if (sex.equals("M")) {
-            return new Sex(Sex.SexType.M);
-        } else {
-            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
+        return new Sex(sex);
     }
 
     /**
@@ -141,17 +139,11 @@ public class ParserUtil {
      */
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
-        String formattedStatus = status.trim().toUpperCase();
-        switch (formattedStatus) {
-        case "PENDING":
-            return new Status(Status.StatusType.PENDING);
-        case "HEALTHY":
-            return new Status(Status.StatusType.HEALTHY);
-        case "UNWELL":
-            return new Status(Status.StatusType.UNWELL);
-        default:
+        String trimmedStatus = status.trim().toUpperCase();
+        if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
+        return new Status(status);
     }
 
     /**
@@ -160,19 +152,10 @@ public class ParserUtil {
      * TODO // Implement parseBloodType
      * @throws ParseException if the given {@code sex} is invalid.
      */
-    public static Status parseBloodType(String status) throws ParseException {
-        requireNonNull(status);
-        String formattedStatus = status.trim().toUpperCase();
-        switch (formattedStatus) {
-        case "PENDING":
-            return new Status(Status.StatusType.PENDING);
-        case "HEALTHY":
-            return new Status(Status.StatusType.HEALTHY);
-        case "UNWELL":
-            return new Status(Status.StatusType.UNWELL);
-        default:
-            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
-        }
+    public static BloodType parseBloodType(String bloodType) throws ParseException {
+        requireNonNull(bloodType);
+        String formattedStatus = bloodType.trim();
+        return new BloodType("A", "POSITIVE");
     }
 
     /**

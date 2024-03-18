@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.Objects;
 
 /**
  * Represents a Person's diagnosis in the address book.

@@ -4,7 +4,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Objects;
 
 /**
  * Represents a Person's NRIC in the address book.
