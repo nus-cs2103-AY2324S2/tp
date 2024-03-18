@@ -143,9 +143,13 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all client information from the address book.
 
-Format: `clear`
+**NOTE: This command irreversibly clears all client information in FitBook. It should be used with caution.**
+
+If you are sure of your decision to clear all client information, use the `/confirm` prefix with this command to execute it.
+
+Format: `clear /confirm`
 
 ### Exiting the program : `exit`
 
