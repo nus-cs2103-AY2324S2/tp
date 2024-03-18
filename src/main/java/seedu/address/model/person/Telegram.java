@@ -11,9 +11,9 @@ public class Telegram {
     /**
      * Message that displays if telegram username input is invalid.
      */
-    public static final String MESSAGE_CONSTRAINTS = "Telegram usernames can only contain " +
-            "case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, " +
-            "and it should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Telegram usernames can only contain "
+            + "case-insensitive letters A-Z, digits 0-9, and underscores, with a length between 5 and 32 characters, "
+            + "and it should not be blank.";
 
     /**
      * Regex for telegram username validation.
