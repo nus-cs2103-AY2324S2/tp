@@ -38,6 +38,7 @@ public class OrderListTest {
         orderList.addOrder(CUPCAKES_ONLY, ALICE);
         Order editedCupcakesAlice = new OrderBuilder(CUPCAKES_ONLY).withIndex(1).withPerson(ALICE)
                 .build();
+        assertTrue(orderList.contains(editedCupcakesAlice));
     }
 
     @Test
