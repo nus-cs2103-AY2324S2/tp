@@ -10,8 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "ID should only contain alphanumeric characters starting with Alphabet followed by 7 digits and ending with an alphabet" +
-                    " e.g A0265801R, and it should not be blank";
+            "ID should only contain alphanumeric characters starting with Alphabet followed"
+                    + " by 7 digits and ending with an alphabet"
+                    + " e.g A0265801R, and it should not be blank";
     public static final String VALIDATION_REGEX = "^[a-zA-Z]\\d{7}[a-zA-Z]$";
 
     public final String id;
