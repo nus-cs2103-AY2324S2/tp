@@ -46,8 +46,8 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Matriculation Number: ")
                 .append(person.getMatric())
-                .append("; Studio: ")
-                .append(person.getStudio())
+                .append("; Reflection: ")
+                .append(person.getReflection())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
