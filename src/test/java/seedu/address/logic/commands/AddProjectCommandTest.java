@@ -127,7 +127,8 @@ public class AddProjectCommandTest {
         }
 
         @Override
-        public Person findPerson(Name name) { throw new AssertionError("This method should not be called.");
+        public Person findPerson(Name name) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

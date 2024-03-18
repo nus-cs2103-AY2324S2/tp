@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,14 +15,12 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.Project;
 import seedu.address.model.project.Task;
 import seedu.address.testutil.PersonBuilder;
 
@@ -48,8 +44,8 @@ public class AddTaskCommandTest {
 
         CommandResult commandResult = new AddTaskCommand(validTask, taskProject).execute(modelStub);
 
-        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, Messages.format(validPerson), Messages.format(taskProject)),
-                commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, Messages.format(validPerson),
+                        Messages.format(taskProject)), commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -116,8 +112,9 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public Person findPerson(Name name) { throw new AssertionError("This method should not be called.");
-    }
+        public Person findPerson(Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
