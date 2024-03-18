@@ -94,6 +94,7 @@ public class Meeting {
         return new ToStringBuilder(this)
                 .add("description", description)
                 .add("dateTime", dateTime)
+                .add("client", getClientName())
                 .toString();
     }
 
