@@ -1,13 +1,18 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.SearchCommand.SearchPersonDescriptor;
-import seedu.address.logic.commands.SearchCommand.SearchPersonDescriptor;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import seedu.address.logic.commands.SearchCommand.SearchPersonDescriptor;
+import seedu.address.model.person.Comment;
+import seedu.address.model.person.Country;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building SearchPersonDescriptor objects.

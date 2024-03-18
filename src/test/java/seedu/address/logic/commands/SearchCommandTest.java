@@ -5,7 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -67,13 +72,13 @@ public class SearchCommandTest {
 
     @Test
     public void execute_matchSubstring() {
-        Person ALEX = new PersonBuilder().withName("Alex Meyer").withPhone("659482224")
+        Person alex = new PersonBuilder().withName("Alex Meyer").withPhone("659482224")
                 .withEmail("alex@example.com").withCountry("US").withComment("Good job").build();
-        Person BELLE = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
+        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
                 .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
                 .build();
-        expectedModel.addPerson(ALEX);
-        expectedModel.addPerson(BELLE);
+        expectedModel.addPerson(alex);
+        expectedModel.addPerson(belle);
         model = expectedModel;
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         SearchPersonDescriptor descriptor = new SearchPersonDescriptorBuilder().withName("Meier").build();
@@ -94,15 +99,15 @@ public class SearchCommandTest {
         command = new SearchCommand(descriptor);
         expectedModel.updateFilteredPersonList(descriptor.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALEX, BELLE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(alex, belle), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_matchExact() {
-        Person BELLE = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
+        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
                 .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
                 .build();
-        expectedModel.addPerson(BELLE);
+        expectedModel.addPerson(belle);
         model = expectedModel;
 
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
@@ -136,10 +141,10 @@ public class SearchCommandTest {
 
     @Test
     public void execute_multipleFields() {
-        Person BELLE = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
+        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
                 .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
                 .build();
-        expectedModel.addPerson(BELLE);
+        expectedModel.addPerson(belle);
         model = expectedModel;
 
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
@@ -148,7 +153,7 @@ public class SearchCommandTest {
         SearchCommand command = new SearchCommand(descriptor);
         expectedModel.updateFilteredPersonList(descriptor.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.singletonList(BELLE), model.getFilteredPersonList());
+        assertEquals(Collections.singletonList(belle), model.getFilteredPersonList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         descriptor = new SearchPersonDescriptorBuilder().withName("Belle").withEmail("werner@example.com").build();
@@ -161,8 +166,8 @@ public class SearchCommandTest {
     @Test
     public void toStringMethod() {
         SearchPersonDescriptor descriptor = new SearchPersonDescriptorBuilder().withName("keyword").build();
-        SearchCommand SearchCommand = new SearchCommand(descriptor);
+        SearchCommand searchCommand = new SearchCommand(descriptor);
         String expected = SearchCommand.class.getCanonicalName() + "{searchPersonDescriptor=" + descriptor + "}";
-        assertEquals(expected, SearchCommand.toString());
+        assertEquals(expected, searchCommand.toString());
     }
 }

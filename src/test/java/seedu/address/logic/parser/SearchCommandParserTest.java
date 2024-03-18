@@ -1,7 +1,32 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.getErrorMessageForDuplicatePrefixes;
+import static seedu.address.logic.commands.CommandTestUtil.COMMENT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.COUNTRY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.COUNTRY_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COUNTRY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -11,7 +36,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.commands.SearchCommand.SearchPersonDescriptor;
 import seedu.address.model.person.Country;
@@ -43,7 +67,7 @@ public class SearchCommandParserTest {
 
         // duplicate tags
         assertParseFailure(parser, TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TAG));
+                getErrorMessageForDuplicatePrefixes(PREFIX_TAG));
     }
 
     @Test
@@ -59,7 +83,7 @@ public class SearchCommandParserTest {
 
         // duplicate prefixes are captured before invalid values
         assertParseFailure(parser, TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TAG));
+                getErrorMessageForDuplicatePrefixes(PREFIX_TAG));
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_COUNTRY_AMY + VALID_PHONE_AMY,
