@@ -192,4 +192,16 @@ public class EditCommandTest {
         assertEquals(expected, editCommand.toString());
     }
 
+    @Test
+    public void getCommandWord() {
+        Command command = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        assertEquals(EditCommand.COMMAND_WORD, command.getCommandWord());
+    }
+
+    @Test
+    public void getMessageUsage() {
+        Command command = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        assertEquals(EditCommand.MESSAGE_USAGE, command.getMessageUsage());
+    }
+
 }

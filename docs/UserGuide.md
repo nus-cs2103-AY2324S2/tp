@@ -14,6 +14,7 @@ title: User Guide
   - [Editing a patient medical record](#editing-a-patient-medical-record--edit)
   - [Deleting a patient medical record](#deleting-a-patient-medical-record--delete)
   - [Listing all appointment notes](#listing-all-appointment-notes-list-an)
+  - [Locating patient(s) medical record](#locating-a-patient-medical-record--find)
   - [Adding an appointment note](#adding-an-appointment-note-add-an)
   - [Editing an appointment note](#editing-an-appointment-note-edit-an)
   - [Deleting an appointment note](#deleting-an-appointment-note--delete-an)
@@ -189,8 +190,18 @@ Format: `delete PATIENT_INDEX`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+### Locating a patient medical record : `find`
+
+Finds patient whose details contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g hans will match Hans
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+* All the patient's fields are searched.
+
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient medical record in the patient list.
+* `find John` returns `john` and `John Doe`
 
 ### Listing all appointment notes: `list-an`
 
