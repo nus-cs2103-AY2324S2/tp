@@ -26,6 +26,9 @@ public class CommandHelperWindow extends AnchorPane {
 
     private AddCommandHelper addCommandHelper;
 
+    /**
+     * Starts the CommandHelper Window
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
