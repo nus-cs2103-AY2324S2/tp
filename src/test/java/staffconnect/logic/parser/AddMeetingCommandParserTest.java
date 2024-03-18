@@ -7,6 +7,9 @@ import static staffconnect.logic.commands.CommandTestUtil.DESCRIPTION_MIDTERM;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_DESCRIPTION;
 import static staffconnect.logic.commands.CommandTestUtil.INVALID_STARTDATE;
 import static staffconnect.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_DATE_APRIL;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FINALS;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MIDTERMS;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static staffconnect.logic.parser.CliSyntax.PREFIX_STARTDATE;
@@ -44,6 +47,20 @@ public class AddMeetingCommandParserTest {
 
         //missing date
         assertParseFailure(parser, "1" + DESCRIPTION_MIDTERM, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_missingPrefix_failure() {
+
+        //Missing description prefix, valid date and preamble
+        assertParseFailure(parser, "1" + VALID_DESCRIPTION_MIDTERMS + DATE_STARTDATE, MESSAGE_INVALID_FORMAT);
+
+        //Missing date prefix, valid description and preamble
+        assertParseFailure(parser, "1" + DESCRIPTION_MIDTERM + VALID_DATE_APRIL, MESSAGE_INVALID_FORMAT);
+
+        //Missing prefix on both description and date
+        assertParseFailure(parser, "1" + VALID_DESCRIPTION_FINALS + VALID_DATE_APRIL, MESSAGE_INVALID_FORMAT);
+
     }
 
     @Test
