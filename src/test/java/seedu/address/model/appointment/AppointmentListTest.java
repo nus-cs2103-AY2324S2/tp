@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_1;
 import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,7 +18,6 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.Nric;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentListTest {
