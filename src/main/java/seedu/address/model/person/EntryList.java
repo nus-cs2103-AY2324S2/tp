@@ -24,7 +24,7 @@ public class EntryList {
     public Entry get(String category) {
         Entry result = null;
         for (Entry entry : entryList) {
-            if (entry.getCategory().equals(category)) {
+            if (entry.getCategory().equalsIgnoreCase(category)) {
                 result = entry;
                 return result;
             }
