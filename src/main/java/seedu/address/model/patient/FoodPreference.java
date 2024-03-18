@@ -26,14 +26,14 @@ public class FoodPreference {
      */
     public FoodPreference(String food) {
         requireNonNull(food);
-        checkArgument(isValidFood(food), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidFoodPreference(food), MESSAGE_CONSTRAINTS);
         foodPreference = food;
     }
 
     /**
      * Returns true if a given string is a valid food details.
      */
-    public static boolean isValidFood(String test) {
+    public static boolean isValidFoodPreference(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

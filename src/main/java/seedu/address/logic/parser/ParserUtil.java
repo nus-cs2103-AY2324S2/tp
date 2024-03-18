@@ -94,7 +94,7 @@ public class ParserUtil {
     public static FoodPreference parseFoodPreference(String food) throws ParseException {
         requireNonNull(food);
         String trimmedFood = food.trim();
-        if (!FoodPreference.isValidFood(trimmedFood)) {
+        if (!FoodPreference.isValidFoodPreference(trimmedFood)) {
             throw new ParseException(FoodPreference.MESSAGE_CONSTRAINTS);
         }
         return new FoodPreference(trimmedFood);

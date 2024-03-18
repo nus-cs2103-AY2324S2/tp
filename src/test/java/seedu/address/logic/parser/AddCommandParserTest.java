@@ -37,7 +37,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPatients.AMY;
@@ -92,7 +92,7 @@ public class AddCommandParserTest {
 
         // multiple preferred names
         assertParseFailure(parser, PREFERRED_NAME_DESC_AMY + validExpectedPatientString,
-            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRENAME));
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PREFERRED_NAME));
 
         // multiple food preference
         assertParseFailure(parser, FOOD_DESC_AMY + validExpectedPatientString,
@@ -110,7 +110,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, validExpectedPatientString + ID_DESC_AMY + NAME_DESC_AMY
                 + PREFERRED_NAME_DESC_AMY + FOOD_DESC_AMY + FAMILY_DESC_AMY + HOBBY_DESC_AMY
                 + validExpectedPatientString, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID, PREFIX_NAME,
-            PREFIX_PRENAME, PREFIX_FOOD, PREFIX_FAMILY, PREFIX_HOBBY));
+            PREFIX_PREFERRED_NAME, PREFIX_FOOD, PREFIX_FAMILY, PREFIX_HOBBY));
 
         // invalid value followed by valid value
 
@@ -124,7 +124,7 @@ public class AddCommandParserTest {
 
         // invalid preferred name
         assertParseFailure(parser, INVALID_PREFERRED_NAME_DESC + validExpectedPatientString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRENAME));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PREFERRED_NAME));
 
         // invalid food preference
         assertParseFailure(parser, INVALID_FOOD_DESC + validExpectedPatientString,
@@ -150,7 +150,7 @@ public class AddCommandParserTest {
 
         // invalid preferred name
         assertParseFailure(parser, validExpectedPatientString + INVALID_PREFERRED_NAME_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRENAME));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PREFERRED_NAME));
 
         // invalid food preference
         assertParseFailure(parser, validExpectedPatientString + INVALID_FOOD_DESC,

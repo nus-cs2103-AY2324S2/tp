@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -52,8 +52,8 @@ public class CommandTestUtil {
     public static final String ID_DESC_BOB = " " + PREFIX_PID + VALID_ID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PREFERRED_NAME_DESC_AMY = " " + PREFIX_PRENAME + VALID_PREFERRED_NAME_AMY;
-    public static final String PREFERRED_NAME_DESC_BOB = " " + PREFIX_PRENAME + VALID_PREFERRED_NAME_BOB;
+    public static final String PREFERRED_NAME_DESC_AMY = " " + PREFIX_PREFERRED_NAME + VALID_PREFERRED_NAME_AMY;
+    public static final String PREFERRED_NAME_DESC_BOB = " " + PREFIX_PREFERRED_NAME + VALID_PREFERRED_NAME_BOB;
     public static final String FOOD_DESC_BOB = " " + PREFIX_FOOD + VALID_FOOD_BOB;
     public static final String FOOD_DESC_AMY = " " + PREFIX_FOOD + VALID_FOOD_AMY;
     public static final String FAMILY_DESC_AMY = " " + PREFIX_FAMILY + VALID_FAMILY_CONDITION_AMY;
@@ -70,7 +70,7 @@ public class CommandTestUtil {
     public static final String INVALID_ID_DESC = " " + PREFIX_PID + "10 a"; // only digits are allowed in ID
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James& Lee Kuang"; // '&' not allowed in names
     // '&' not allowed in preferred name
-    public static final String INVALID_PREFERRED_NAME_DESC = " " + PREFIX_PRENAME + "James&";
+    public static final String INVALID_PREFERRED_NAME_DESC = " " + PREFIX_PREFERRED_NAME + "James&";
     public static final String INVALID_FOOD_DESC = " " + PREFIX_FOOD; // empty string not allowed for food description
     // empty string not allowed for family condition
     public static final String INVALID_FAMILY_DESC = " " + PREFIX_FAMILY;

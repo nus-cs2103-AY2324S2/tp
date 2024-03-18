@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -34,7 +34,7 @@ public class PatientUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_PID + patient.getPatientHospitalId().patientHospitalId + " ");
         sb.append(PREFIX_NAME + patient.getName().fullName + " ");
-        sb.append(PREFIX_PRENAME + patient.getPreferredName().preferredName + " ");
+        sb.append(PREFIX_PREFERRED_NAME + patient.getPreferredName().preferredName + " ");
         sb.append(PREFIX_FOOD + patient.getFoodPreference().foodPreference + " ");
         sb.append(PREFIX_FAMILY + patient.getFamilyCondition().familyCondition + " ");
         sb.append(PREFIX_HOBBY + patient.getHobby().hobby + " ");
@@ -52,7 +52,7 @@ public class PatientUtil {
         descriptor.getPatientHospitalId().ifPresent(patientHospitalId -> sb.append(PREFIX_PID)
             .append(patientHospitalId.patientHospitalId).append(" "));
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPreferredName().ifPresent(preferredName -> sb.append(PREFIX_PRENAME)
+        descriptor.getPreferredName().ifPresent(preferredName -> sb.append(PREFIX_PREFERRED_NAME)
             .append(preferredName.preferredName).append(" "));
         descriptor.getFoodPreference().ifPresent(foodPreference -> sb.append(PREFIX_FOOD)
             .append(foodPreference.foodPreference).append(" "));

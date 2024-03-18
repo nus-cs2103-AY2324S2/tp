@@ -126,7 +126,7 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 FoodPreference.class.getSimpleName()));
         }
-        if (!FoodPreference.isValidFood(foodPreference)) {
+        if (!FoodPreference.isValidFoodPreference(foodPreference)) {
             throw new IllegalValueException(FoodPreference.MESSAGE_CONSTRAINTS);
         }
         final FoodPreference modelFoodPreference = new FoodPreference(foodPreference);

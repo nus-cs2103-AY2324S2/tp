@@ -22,15 +22,15 @@ public class FoodPreferenceTest {
     @Test
     public void isValidFoodPreference() {
         // null food preference
-        assertThrows(NullPointerException.class, () -> FoodPreference.isValidFood(null));
+        assertThrows(NullPointerException.class, () -> FoodPreference.isValidFoodPreference(null));
 
         // invalid food preference
-        assertFalse(FoodPreference.isValidFood("")); // empty string
-        assertFalse(FoodPreference.isValidFood(" ")); // spaces onl
+        assertFalse(FoodPreference.isValidFoodPreference("")); // empty string
+        assertFalse(FoodPreference.isValidFoodPreference(" ")); // spaces onl
 
         // valid food preference
-        assertTrue(FoodPreference.isValidFood("chicken rice")); // with spaces
-        assertTrue(FoodPreference.isValidFood("pasta")); // without spaces
+        assertTrue(FoodPreference.isValidFoodPreference("chicken rice")); // with spaces
+        assertTrue(FoodPreference.isValidFoodPreference("pasta")); // without spaces
     }
 
     @Test

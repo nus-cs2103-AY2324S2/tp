@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRENAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_PID + "PATIENT HOSPITAL ID] "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRENAME + "PREFERRED NAME] "
+            + "[" + PREFIX_PREFERRED_NAME + "PREFERRED NAME] "
             + "[" + PREFIX_FOOD + "FOOD PREFERENCE] "
             + "[" + PREFIX_FAMILY + "FAMILY CONDITION] "
             + "[" + PREFIX_HOBBY + "HOBBY] "
