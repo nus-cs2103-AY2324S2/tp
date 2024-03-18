@@ -10,7 +10,7 @@ import seedu.address.model.course.Course;
  */
 public class CourseName implements ReadOnlyCourseName {
 
-    private Course course;
+    private Course course = new Course("");
 
 
     public CourseName() {}
