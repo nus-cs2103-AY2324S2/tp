@@ -61,6 +61,10 @@ public class BorrowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_FILLED_BOOKLIST_FIELD);
         }
 
+//        if (personToEdit.getMeritScore().getMeritScoreInt() <= 0) {
+//            throw new CommandException(Messages.MESSAGE_MERIT_SCORE_TOO_LOW);
+//        }
+
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(),
                 bookTitle, personToEdit.getTags());

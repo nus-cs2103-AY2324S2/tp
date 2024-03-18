@@ -48,6 +48,30 @@ public class MeritScore {
     }
 
     /**
+     * Instead of Stirng, convert merit score into int and return it. This function also checks whether merit score is able to parse as int.
+     * @return int version of merit score
+     */
+    public int getMeritScoreInt() {
+        // Check if meritScore is null or empty
+        if (meritScore == null || meritScore.isEmpty()) {
+            throw new IllegalArgumentException("meritScore is null or empty");
+        }
+
+        // Check if meritScore consists only of digits
+        if (!meritScore.matches("\\d+")) {
+            throw new IllegalArgumentException("meritScore contains non-numeric characters");
+        }
+
+        try {
+            // Parse meritScore as an integer
+            return Integer.parseInt(meritScore);
+        } catch (NumberFormatException e) {
+            // Handle the case where meritScore cannot be parsed as an integer
+            throw new IllegalArgumentException("meritScore cannot be parsed as an integer: " + meritScore);
+        }
+    }
+
+    /**
      * Increases the merit score by 1.
      *
      * @return new incremented MeritScore
