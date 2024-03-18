@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.UUID;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -54,6 +55,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    // Person methods
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -88,6 +91,13 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Accesses a {@code Person} by their id in the address book.
+     */
+    Person getPersonById(UUID personId);
+
+    // Appointment methods
+
+    /**
      * Returns true if an appointment with the same identity as {@code appointment} exists in the address book.
      */
     boolean hasAppointment(Appointment appointment);
@@ -112,7 +122,7 @@ public interface Model {
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
 
-    /** Returns an unmodifiable view of the filtered appointment list */
+    /** Returns an unmodifiable view of the filtered appointment list. */
     ObservableList<Appointment> getFilteredAppointmentList();
 
     /**

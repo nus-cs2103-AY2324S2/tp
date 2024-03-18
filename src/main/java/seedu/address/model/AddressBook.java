@@ -3,7 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Objects;
+import java.util.UUID;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
@@ -20,6 +23,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueAppointmentList appointments;
+    private final Map<UUID, Person> personMap;
+    private final Map<UUID, Appointment> appointmentMap;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,6 +36,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         appointments = new UniqueAppointmentList();
+        personMap = new HashMap<>();
+        appointmentMap = new HashMap<>();
     }
 
     public AddressBook() {}
@@ -51,6 +58,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+        this.personMap.clear();
+        for(Person person : persons) {
+            this.personMap.put(person.getId(), person);
+        }
     }
 
     /**
@@ -66,15 +77,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
         setAppointments(newData.getAppointmentList());
     }
 
-    //// person-level operations
+    //// Person methods
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * TODO: Could be O(1) if we use the personMap hashmap to check.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -87,6 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        personMap.put(p.getId(), p);
     }
 
     /**
@@ -96,19 +108,31 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
+        personMap.remove(target.getId());
+        personMap.put(editedPerson.getId(), editedPerson);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes a {@code Person} from this {@code AddressBook}.
+     * {@code Person} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removePerson(Person person) {
+        persons.remove(person);
+        personMap.remove(person.getId());
     }
 
-    //// appointment methods
+    /**
+     * Gets a {@code Person} object from its given id.
+     * @param personId
+     * {@code personId} must exist in the address book.
+     * @return {@code Person}
+     */
+    public Person getPersonById(UUID personId) {
+        return personMap.get(personId);
+    }
+
+    //// Appointment methods
     /**
      * Returns true if the internal list of appointments contains the specified appointment.
      *
@@ -147,6 +171,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
+    }
+
+    /**
+     * Gets a {@code Appointment} object from its given id.
+     * @param appointmentId
+     * {@code appointmentId} must exist in the address book.
+     * @return {@code Appointment}
+     */
+    public Appointment getAppointmentById(UUID appointmentId) {
+        return appointmentMap.get(appointmentId);
     }
 
     //// util methods
