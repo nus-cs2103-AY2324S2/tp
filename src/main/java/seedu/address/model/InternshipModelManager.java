@@ -29,7 +29,7 @@ public class InternshipModelManager implements InternshipModel {
     public InternshipModelManager(ReadOnlyInternshipData internshipData, ReadOnlyInternshipUserPrefs userPrefs) {
         requireAllNonNull(internshipData, userPrefs);
 
-        logger.fine("Initializing with address book: " + internshipData + " and user prefs " + userPrefs);
+        logger.fine("Initializing with internship data: " + internshipData + " and user prefs " + userPrefs);
 
         this.internshipData = new InternshipData(internshipData);
         this.userPrefs = new InternshipUserPrefs(userPrefs);

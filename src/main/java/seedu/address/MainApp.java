@@ -57,8 +57,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         InternshipUserPrefs userPrefs = initPrefs(userPrefsStorage);
-        InternshipDataStorage addressBookStorage = new JsonInternshipDataStorage(userPrefs.getInternshipDataFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        InternshipDataStorage internshipDataStorage =
+                new JsonInternshipDataStorage(userPrefs.getInternshipDataFilePath());
+        storage = new StorageManager(internshipDataStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -68,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s internship data and {@code userPrefs}. <br>
+     * The data from the sample internship data will be used instead if {@code storage}'s internship data is not found,
+     * or an empty internship data will be used instead if errors occur when reading {@code storage}'s internship data.
      */
     private InternshipModel initModelManager(Storage storage, ReadOnlyInternshipUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getInternshipDataFilePath());
