@@ -12,6 +12,9 @@ public class VersionedAddressBook extends AddressBook {
     private final List<ReadOnlyAddressBook> addressBookStateList;
     private int currentStatePointer;
 
+    /**
+     * {@code AddressBook} that keeps track of its own history.
+     */
     public VersionedAddressBook(ReadOnlyAddressBook initialState) {
         super(initialState);
 

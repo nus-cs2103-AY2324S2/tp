@@ -77,7 +77,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
-//      indicateModified();
+        //indicateModified();
     }
 
     /**
@@ -129,13 +129,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         AddressBook otherAddressBook = (AddressBook) other;
         return persons.equals(otherAddressBook.persons);
     }
-
-    /**
-     * Notifies listeners that the address book has been modified.
-     */
-//    protected void indicateModified() {
-//        invalidationListenerManager.callListeners(this);
-//    }
 
     @Override
     public int hashCode() {
