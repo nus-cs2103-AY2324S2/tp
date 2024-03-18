@@ -61,6 +61,7 @@ public class ParserUtil {
         return indices;
     }
 
+    /**
      * Parses a {@code String Nric} into a {@code Nric}.
      * Leading and trailing whitespaces will be trimmed.
      *
