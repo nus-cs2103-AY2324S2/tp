@@ -29,7 +29,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Year year;
-    private Major major; 
+    private Major major;
     private Telegram telegram;
     private Set<Tag> tags;
 

@@ -42,7 +42,7 @@ public class SampleDataUtil {
                 new Major("Computer Engineering"),
                 getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Year("5"),  new Telegram("roy5"),
+                new Year("5"), new Telegram("roy5"),
                 new Major("Computer Engineering"),
                 getTagSet("colleagues"))
         };

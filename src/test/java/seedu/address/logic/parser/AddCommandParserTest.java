@@ -101,7 +101,7 @@ public class AddCommandParserTest {
         // multiple majors
         assertParseFailure(parser, MAJOR_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MAJOR));
-      
+
         // multiple telegrams
         assertParseFailure(parser, TELEGRAM_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TELEGRAM));
@@ -237,7 +237,7 @@ public class AddCommandParserTest {
         // invalid major
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_MAJOR_DESC
                 + YEAR_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Major.MESSAGE_CONSTRAINTS);
-                           
+
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MAJOR_DESC_BOB
                 + YEAR_DESC_BOB + TELEGRAM_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);

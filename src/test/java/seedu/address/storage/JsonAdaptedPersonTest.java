@@ -101,7 +101,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidTelegram_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR,
-                INVALID_TELEGRAM, VALID_ADDRESS, VALID_TAGS);
+                INVALID_TELEGRAM, VALID_MAJOR, VALID_TAGS);
         String expectedMessage = Telegram.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -109,7 +109,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullTelegram_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR,
-                null, VALID_ADDRESS, VALID_TAGS);
+                null, VALID_MAJOR, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -117,7 +117,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidMajor_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, VALID_TELEGRAM, INVALID_MAJOR, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, VALID_TELEGRAM,
+                        INVALID_MAJOR, VALID_TAGS);
         String expectedMessage = Major.MESSAGE_CONSTRAINTS;
 
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -136,7 +137,6 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullYear_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
                 VALID_TELEGRAM, VALID_MAJOR, VALID_TAGS);
-      
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Year.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
