@@ -11,11 +11,16 @@ import seedu.address.model.person.Person;
 
 public class MailApp {
 
-    private Person person;
+    private Person person; // The person associated with this MailApp
 
     @FXML
-    private Label emailLabel;
+    private Label emailLabel; // JavaFX Label for displaying the email address
 
+    /**
+     * Handles the event when the email label is clicked. If the associated person
+     * has a valid email address, opens the default mail application with a new
+     * email composition window addressed to the person's email address.
+     */
     @FXML
     public void handleEmailClicked() {
         if (person != null && person.getEmail() != null) {
@@ -26,12 +31,18 @@ public class MailApp {
     /**
      * Sets the person associated with this MailApp.
      *
-     * @param person The person to set
+     * @param person The person object to associate with this MailApp
      */
     public void setPerson(Person person) {
         this.person = person;
     }
 
+    /**
+     * Opens the default mail application with a new email composition window
+     * addressed to the specified recipient's email address.
+     *
+     * @param recipientEmail The email address of the recipient
+     */
     private void openDefaultMailApp(String recipientEmail) {
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.MAIL)) {
             try {

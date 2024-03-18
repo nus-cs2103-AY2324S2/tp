@@ -40,7 +40,7 @@
                 <Label fx:id="emailLabel" styleClass="cell_small_label" text="\$email_label" />
                 <Label fx:id="email" text="\$email" />
             </HBox>
-
+      
     </VBox>
   </GridPane>
 </HBox>
