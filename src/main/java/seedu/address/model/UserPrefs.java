@@ -47,16 +47,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    // ================ AddressBook methods ==============================
+
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
-    }
-    public Path getArticleBookFilePath() {
-        return articleBookFilePath;
     }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    // ================ ArticleBook methods ==============================
+
+    public Path getArticleBookFilePath() {
+        return articleBookFilePath;
     }
 
     @Override

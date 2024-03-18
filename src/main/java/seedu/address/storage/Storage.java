@@ -21,6 +21,8 @@ public interface Storage extends AddressBookStorage, ArticleBookStorage, UserPre
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
+    // ================ AddressBook methods ==============================
+
     @Override
     Path getAddressBookFilePath();
 
@@ -29,6 +31,8 @@ public interface Storage extends AddressBookStorage, ArticleBookStorage, UserPre
 
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+
+    // ================ ArticleBook methods ==============================
     @Override
     Path getArticleBookFilePath();
 
@@ -37,7 +41,5 @@ public interface Storage extends AddressBookStorage, ArticleBookStorage, UserPre
 
     @Override
     void saveArticleBook(ReadOnlyArticleBook articleBook) throws IOException;
-
-
 
 }

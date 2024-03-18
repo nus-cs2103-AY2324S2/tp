@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.article.Article;
 import seedu.address.model.person.Person;
 
 /**
@@ -16,6 +17,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_INVALID_ARTICLE_DISPLAYED_INDEX = "The article index provided is invalid";
+    public static final String MESSAGE_ARTICLES_LISTED_OVERVIEW = "%1$d articles listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
@@ -45,6 +48,26 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code article} for display to the user.
+     */
+    public static String format(Article article) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("; Title: ")
+                .append(article.getTitle())
+                .append("; Authors: ")
+                .append(article.getAuthors())
+                .append("; Publication Date: ")
+                .append(article.getPublicationDate())
+                .append("; Source: ")
+                .append(article.getSource())
+                .append("; Category: ")
+                .append(article.getCategory())
+                .append("; Status: ")
+                .append(article.getStatus());
         return builder.toString();
     }
 

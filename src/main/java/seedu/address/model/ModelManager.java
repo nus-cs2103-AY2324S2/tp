@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.article.Article;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,24 +21,28 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final ArticleBook articleBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Article> filteredArticles;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyArticleBook articleBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.articleBook = new ArticleBook(articleBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredArticles = new FilteredList<>(this.articleBook.getArticleList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new ArticleBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -128,6 +133,59 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== ArticleBook ================================================================================
+
+    @Override
+    public void setArticleBook(ReadOnlyArticleBook addressBook) {
+        this.articleBook.resetData(articleBook);
+    }
+
+    @Override
+    public ReadOnlyArticleBook getArticleBook() {
+        return articleBook;
+    }
+
+    @Override
+    public boolean hasArticle(Article person) {
+        requireNonNull(person);
+        return articleBook.hasArticle(person);
+    }
+
+    @Override
+    public void deleteArticle(Article target) {
+        articleBook.removeArticle(target);
+    }
+
+    @Override
+    public void addArticle(Article person) {
+        articleBook.addArticle(person);
+        updateFilteredArticleList(PREDICATE_SHOW_ALL_ARTICLES);
+    }
+
+    @Override
+    public void setArticle(Article target, Article editedArticle) {
+        requireAllNonNull(target, editedArticle);
+
+        articleBook.setArticle(target, editedArticle);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Article} backed by the internal list of
+     * {@code versionedArticleBook}
+     */
+    @Override
+    public ObservableList<Article> getFilteredArticleList() {
+        return filteredArticles;
+    }
+
+    @Override
+    public void updateFilteredArticleList(Predicate<Article> predicate) {
+        requireNonNull(predicate);
+        filteredArticles.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -141,8 +199,10 @@ public class ModelManager implements Model {
 
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
+                && articleBook.equals(otherModelManager.articleBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredArticles.equals(otherModelManager.filteredArticles);
     }
 
 }

@@ -19,9 +19,8 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
-
     private ArticleBookStorage articleBookStorage;
+    private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}
@@ -30,6 +29,7 @@ public class StorageManager implements Storage {
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
                           ArticleBookStorage articleBookStorage) {
         this.addressBookStorage = addressBookStorage;
+        this.articleBookStorage = articleBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.articleBookStorage = articleBookStorage;
     }
