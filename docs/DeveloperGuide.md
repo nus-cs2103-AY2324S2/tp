@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/netconnect-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/netconnect-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -67,13 +67,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/netconnect-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/netconnect-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/netconnect-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,7 +84,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/se-edu/netconnect-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -101,7 +101,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an `NetConnectParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
@@ -112,25 +112,25 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `NetConnectParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `NetConnectParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/netconnect-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the netconnect data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `NetConnect`, which `Person` references. This allows `NetConnect` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -139,18 +139,18 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/netconnect-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both netconnect data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from both `NetConnectStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.netconnect.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -162,42 +162,42 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedNetConnect`. It extends `NetConnect` with an undo/redo history, stored internally as an `netConnectStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedNetConnect#commit()` — Saves the current netconnect state in its history.
+* `VersionedNetConnect#undo()` — Restores the previous netconnect state from its history.
+* `VersionedNetConnect#redo()` — Restores a previously undone netconnect state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitNetConnect()`, `Model#undoNetConnect()` and `Model#redoNetConnect()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedNetConnect` will be initialized with the initial netconnect state, and the `currentStatePointer` pointing to that single netconnect state.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the netconnect. The `delete` command calls `Model#commitNetConnect()`, causing the modified state of the netconnect after the `delete 5` command executes to be saved in the `netConnectStateList`, and the `currentStatePointer` is shifted to the newly inserted netconnect state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitNetConnect()`, causing another modified netconnect state to be saved into the `netConnectStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commitNetConnect()`, so the netconnect state will not be saved into the `netConnectStateList`.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoNetConnect()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous netconnect state, and restores the netconnect to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial NetConnect state, then there are no previous NetConnect states to restore. The `undo` command uses `Model#canUndoNetConnect()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </box>
@@ -216,19 +216,19 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 <puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoNetConnect()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the netconnect to that state.
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `netConnectStateList.size() - 1`, pointing to the latest netconnect state, then there are no undone NetConnect states to restore. The `redo` command uses `Model#canRedoNetConnect()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the netconnect, such as `list`, will usually not call `Model#commitNetConnect()`, `Model#undoNetConnect()` or `Model#redoNetConnect()`. Thus, the `netConnectStateList` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitNetConnect()`. Since the `currentStatePointer` is not pointing at the end of the `netConnectStateList`, all netconnect states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
@@ -240,7 +240,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire netconnect.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -292,53 +292,224 @@ easily, and to keep track of past interactions.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                               | So that I can…​                                                      |
+|----------|------------------|--------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | occasional user  | add a new person                           |                                                                      |
+| `* * *`  | occasional user  | delete a person                            | remove entries that I no longer need                                 |
+| `* * *`  | occasional user  | find a person by name                      | quickly access their contact details                                 |
+| `* * *`  | occasional user  | find a person by contact number            | see who contacted me                                                 |
+| `* * *`  | occasional user  | tag members with custom tag                | see distinctions and manage using tags                               |
+| `* *`    | occasional user  | go back to the state from where i left off | avoid going back to the same page/state when I close the application |
+| `* *`    | occasional user  | edit person information                    | refer to accurate personal information in the future                 |
+| `* *`    | experienced user | export contact lists to a CSV file         | create backups or use the data in other applications                 |
+| `* *`    | new user         | see usage instructions                     | refer to instructions when I forget how to use the App               |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NetConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - List All Persons**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list all persons.
+2. NetConnect shows the list of all persons.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of all persons is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC02 - Find a List of Persons by Name**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+
+1. User requests for the list of persons matching a name.
+2. NetConnect shows a list of persons with matching name.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There are no persons with a matching name.
+
+  Use case ends.
+
+**Use case: UC03 - Find a Specific Person by Contact Number**
+
+**MSS**
+
+1. User requests for the person with the matching contact number.
+2. NetConnect shows the person with matching contact number.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There is no person with a matching number.
+
+  Use case ends.
+
+**Use case: UC04 - Add a New Person**
+
+**MSS**
+
+1.  User requests to add a new person with given information.
+2.  NetConnect adds a new person to the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Some given arguments are invalid.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Delete a Person by UID**
+
+**MSS**
+
+1. User requests to delete a specific person by UID.
+2. NetConnect deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the provided UID.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC06 - Delete a Person by Name**
+
+**MSS**
+
+1. User requests to delete a specific person by name.
+2. NetConnect deletes the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no persons with the provided name.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+* 1b. There are more than one person with the provided name.
+
+    * 1b1. NetConnect !!list the persons with matching name (UC2)!!.
+    * 1b2. User selects an UID from the list.
+
+1. User requests for the list of persons matching a name.
+2. NetConnect shows a list of persons with matching name.
+
+**Use case: UC07 - Tag a Person by UID with Custom Tag**
+
+**MSS**
+
+1. User requests to tag a specific person by UID with a custom tag.
+2. NetConnect tags the person with given custom tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the provided UID.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC08 - Tag a Person by Name with Custom Tag**
+
+**MSS**
+
+1. User requests to tag a specific person by name with a custom tag.
+2. NetConnect tags the person with given custom tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no persons with the provided name.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+* 1b. There are more than one person with the provided name.
+
+    * 1b1. NetConnect !!list the persons with matching name (UC2)!!.
+    * 1b2. User selects an UID from the list.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC09 - Edit Person Information by UID**
+
+**MSS**
+
+1. User requests to edit the information of a specific person by UID.
+2. NetConnect edit the person information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the provided UID.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+* 1b. Some given arguments are invalid.
+
+    * 1b1. NetConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC10 - Export Contact List to CSV File**
+
+**MSS**
+
+1. User requests to export contact list to CSV file with a given filename.
+2. NetConnect creates a CSV file with the contact list data.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given filename is invalid.
+
+    * 1a1. NetConnect shows an error message.
+
+      Use case ends.
+
+* 1b. The contact list is empty.
+
+    * 1b1. NetConnect shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 500 _persons_ without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. All user operations (excluding export to CSV) should complete within 200 milliseconds.
+5. The codebase should follow a [given set of coding style](https://se-education.org/guides/conventions/java/intermediate.html) and should be well documented.
+6. Should provide friendlier syntax and command _aliases_ for advanced users to complete tasks quicker.
+7. Should display clear error messages for invalid inputs and failed operations, stating the correct command format or inputs required.
 
 ### Glossary
 
@@ -347,6 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **State**: The page that displays the results from the last command given.
 * **UID**: A unique numerical identifier for any person added in NetConnect.
 * **CSV file**: A plain text file format that uses commas to separate values, and newlines to separate records.
+* **Alias**: A shortcut name/format for commands.
 
 --------------------------------------------------------------------------------------------------------------------
 

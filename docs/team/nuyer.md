@@ -5,7 +5,7 @@
 
 ### Project: NetConnect
 
-NetConnect - 
+NetConnect -
 
 Given below are my contributions to the project.
 
