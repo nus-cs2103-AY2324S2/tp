@@ -45,6 +45,9 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Interview Date and Time: ")
                 .append(person.getDateTime())
+                .append("; Salary: ")
+                .append(person.getSalary())
+                .append("$")
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

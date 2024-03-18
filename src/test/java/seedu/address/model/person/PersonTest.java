@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEWTIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -35,7 +38,9 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withDateTime(VALID_INTERVIEWTIME_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withDateTime(VALID_INTERVIEWTIME_BOB)
+                .withSalary(VALID_SALARY_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -89,6 +94,9 @@ public class PersonTest {
 
         // different interview time -> returns true
         editedAlice = new PersonBuilder(ALICE).withDateTime(VALID_INTERVIEWTIME_BOB).build();
+
+        // different salary -> return true
+        editedAlice = new PersonBuilder(ALICE).withSalary(VALID_SALARY_BOB).build();
         assertTrue(ALICE.equals(editedAlice));
 
         // different tags -> returns false
@@ -97,10 +105,29 @@ public class PersonTest {
     }
 
     @Test
+    public void hashCodeTest() {
+        Person person1 = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        Person person2 = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertEquals(person1.hashCode(), person2.hashCode());
+
+        person2 = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSalary(VALID_SALARY_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+
+        assertNotEquals(person1.hashCode(), person2.hashCode());
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", interview-time="
-                + ALICE.getDateTime() + ", tags=" + ALICE.getTags() + "}";
+                + ALICE.getDateTime()
+                + ", salary="
+                + ALICE.getSalary() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
