@@ -62,7 +62,7 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Company company : getTypicalPersons()) {
-            ab.addPerson(company);
+            ab.addCompany(company);
         }
         return ab;
     }

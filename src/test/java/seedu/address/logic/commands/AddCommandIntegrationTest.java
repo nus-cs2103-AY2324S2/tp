@@ -31,7 +31,7 @@ public class AddCommandIntegrationTest {
         Company validCompany = new CompanyBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validCompany);
+        expectedModel.addCompany(validCompany);
 
         assertCommandSuccess(new AddCommand(validCompany), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCompany)),

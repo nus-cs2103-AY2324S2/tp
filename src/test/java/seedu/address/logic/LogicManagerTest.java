@@ -168,7 +168,7 @@ public class LogicManagerTest {
                 + EMAIL_DESC_AMY;
         Company expectedCompany = new CompanyBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedCompany);
+        expectedModel.addCompany(expectedCompany);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }

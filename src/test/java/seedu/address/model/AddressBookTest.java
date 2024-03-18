@@ -65,13 +65,13 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        addressBook.addCompany(ALICE);
         assertTrue(addressBook.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        addressBook.addCompany(ALICE);
         Company editedAlice = new CompanyBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));

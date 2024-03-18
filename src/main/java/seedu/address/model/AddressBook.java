@@ -68,10 +68,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a company to the address book.
+     * The company must not already exist in the address book.
      */
-    public void addPerson(Company p) {
+    public void addCompany(Company p) {
         persons.add(p);
     }
 

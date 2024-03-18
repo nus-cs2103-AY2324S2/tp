@@ -88,7 +88,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Company company) {
+    public boolean hasCompany(Company company) {
         requireNonNull(company);
         return addressBook.hasPerson(company);
     }
@@ -99,8 +99,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Company company) {
-        addressBook.addPerson(company);
+    public void addCompany(Company company) {
+        addressBook.addCompany(company);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

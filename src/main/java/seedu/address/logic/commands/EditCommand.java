@@ -76,7 +76,7 @@ public class EditCommand extends Command {
         Company companyToEdit = lastShownList.get(index.getZeroBased());
         Company editedCompany = createEditedCompany(companyToEdit, editCompanyDescriptor);
 
-        if (!companyToEdit.isSameCompany(editedCompany) && model.hasPerson(editedCompany)) {
+        if (!companyToEdit.isSameCompany(editedCompany) && model.hasCompany(editedCompany)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
