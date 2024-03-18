@@ -46,6 +46,15 @@ public class AppointmentCard extends UiPart<Region> {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
         time.setText(appointment.getDateTime().format(formatter));
     }
+    public Label getName() {
+        return this.name;
+    }
+    public Label getId() {
+        return this.id;
+    }
+    public Label getTime() {
+        return this.time;
+    }
 }
 
 
