@@ -16,13 +16,13 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.EditPatientDescriptor;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Patient;
 
 /**
  * Adds an important date to the specified patient (based on index from the last shown patient list)
  */
-public class AddImportantDateCommand extends Command {
+public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "adde";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -39,22 +39,22 @@ public class AddImportantDateCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Event %1$s successfully added for Patient %2$s with ID %3$s for %4$s";
 
     private final Index index;
-    private final ImportantDate dateToAdd;
+    private final Event dateToAdd;
     private final EditPatientDescriptor editPatientDescriptor;
 
 
     /**
-     * Constructs an AddImportantDateCommand to add the specified {@code importantDate}
+     * Constructs an AddEventCommand to add the specified {@code event}
      * to the Patient with id {@code index}
      *
      * @param index
-     * @param importantDate
+     * @param event
      */
-    public AddImportantDateCommand(Index index, ImportantDate importantDate) {
-        requireAllNonNull(index, importantDate);
+    public AddEventCommand(Index index, Event event) {
+        requireAllNonNull(index, event);
 
         this.index = index;
-        this.dateToAdd = importantDate;
+        this.dateToAdd = event;
         this.editPatientDescriptor = new EditPatientDescriptor();
     }
 
@@ -70,23 +70,23 @@ public class AddImportantDateCommand extends Command {
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
 
-        Set<ImportantDate> newImportantDatesList = new HashSet<>(patientToEdit.getImportantDates());
-        newImportantDatesList.add(this.dateToAdd);
-        editPatientDescriptor.setImportantDate(newImportantDatesList);
+        Set<Event> newEventsList = new HashSet<>(patientToEdit.getEvents());
+        newEventsList.add(this.dateToAdd);
+        editPatientDescriptor.setEvents(newEventsList);
 
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(Model.PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, dateToAdd.name, editedPatient.getName(), index,
-                dateToAdd.importantDate));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, dateToAdd.name, editedPatient.getName(),
+                index.getOneBased(), dateToAdd.date));
     }
 
     /**
      * Returns true if both add important date commands have the same index and important date to add.
      *
      * @param other Another object to compare to.
-     * @return True if the other object is an AddImportantDatesCommand with the same index and important date to add.
+     * @return True if the other object is an AddEventCommand with the same index and important date to add.
      */
     @Override
     public boolean equals(Object other) {
@@ -94,20 +94,20 @@ public class AddImportantDateCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof AddImportantDateCommand)) {
+        if (!(other instanceof AddEventCommand)) {
             return false;
         }
 
-        AddImportantDateCommand otherImportantDateCommand = (AddImportantDateCommand) other;
-        return index.equals(otherImportantDateCommand.index)
-                && dateToAdd.equals(otherImportantDateCommand.dateToAdd);
+        AddEventCommand otherAddEventCommand = (AddEventCommand) other;
+        return index.equals(otherAddEventCommand.index)
+                && dateToAdd.equals(otherAddEventCommand.dateToAdd);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("importantDate", dateToAdd)
+                .add("event", dateToAdd)
                 .toString();
     }
 }

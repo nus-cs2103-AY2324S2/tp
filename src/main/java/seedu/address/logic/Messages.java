@@ -15,8 +15,7 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX = "The patient index provided is invalid";
-    public static final String MESSAGE_INVALID_IMPORTANT_DATE_DISPLAYED_INDEX = "The important date index provided"
-            + "is invalid";
+    public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
     public static final String MESSAGE_PATIENT_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
@@ -39,12 +38,16 @@ public class Messages {
     public static String format(Patient patient) {
         final StringBuilder builder = new StringBuilder();
         builder.append(patient.getName())
-                .append("; Phone: ")
-                .append(patient.getPhone())
-                .append("; Email: ")
-                .append(patient.getEmail())
-                .append("; Address: ")
-                .append(patient.getAddress())
+                .append("; PreferredName: ")
+                .append(patient.getPreferredName())
+                .append("; PatientHospitalId: ")
+                .append(patient.getPatientHospitalId())
+                .append("; FoodPreference: ")
+                .append(patient.getFoodPreference())
+                .append("; FamilyCondition: ")
+                .append(patient.getFamilyCondition())
+                .append("; Hobby: ")
+                .append(patient.getHobby())
                 .append("; Tags: ");
         patient.getTags().forEach(builder::append);
         return builder.toString();
