@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 import scm.address.logic.commands.AddCommand;
 import scm.address.logic.commands.FindCommand;
 import scm.address.logic.parser.exceptions.ParseException;
+import scm.address.model.person.AddressContainsKeywordsPredicate;
 import scm.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -46,6 +47,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> nameKeywords = getKeywords(argMultimap, PREFIX_NAME);
         List<String> addressKeywords = getKeywords(argMultimap, PREFIX_ADDRESS);
         List<String> tagKeywords = getKeywords(argMultimap, PREFIX_TAG);
+
+        NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
+        AddressContainsKeywordsPredicate addressPredicate = new AddressContainsKeywordsPredicate(nameKeywords);
 
         return new FindCommand(new NameContainsKeywordsPredicate(nameKeywords));
     }
