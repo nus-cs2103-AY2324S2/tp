@@ -31,26 +31,35 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
+    public Person(Name name, Phone phone, Email email, Set<Tag> tags, ArrayList<Schedule> schedules) {
+        requireAllNonNull(name, phone, email, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = new Address("");
+        if (!tags.isEmpty()) {
+            this.tags.addAll(tags);
+        }
+        if (!schedules.isEmpty()) {
+            this.schedules.addAll(schedules);
+        }
+    }
+
+    /**
+     * Overloaded constructor to consider if Schedule is empty
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Schedule> schedules) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
-        this.schedules.addAll(schedules);
-    }
-
-    /**
-     * Overloaded constructor to consider if Schedule is empty
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        if (!tags.isEmpty()) {
+            this.tags.addAll(tags);
+        }
+        if (!schedules.isEmpty()) {
+            this.schedules.addAll(schedules);
+        }
     }
 
     public Name getName() {
