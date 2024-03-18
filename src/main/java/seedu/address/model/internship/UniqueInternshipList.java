@@ -31,10 +31,11 @@ public class UniqueInternshipList implements Iterable<Internship> {
 
     /**
      * Returns true if the list contains an equivalent internship as the given argument.
+     * @param toCheck the internship to check for the equality of identity fields
      */
     public boolean contains(Internship toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameInternship);
     }
 
     /**
