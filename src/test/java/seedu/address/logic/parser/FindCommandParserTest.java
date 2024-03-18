@@ -23,6 +23,13 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_prefixWithoutArgs_throwsParseException() {
+        assertParseFailure(parser, " n/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " a/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " n/ a/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validNameArgs_returnsFindCommand() {
         // single space between keywords
         FindCommand expectedFindCommand =

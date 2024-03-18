@@ -124,6 +124,11 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + AVAILABILITY_DESC_AMY,
                 new AddCommand(expectedPerson));
+
+        // no availability
+        Person expectedPersonNoAvailability = new PersonBuilder(AMY).withTags().withAvailabilities().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
+                new AddCommand(expectedPersonNoAvailability));
     }
 
     @Test

@@ -50,7 +50,7 @@ public class Person {
     }
 
     public Set<Availability> getAvailabilities() {
-        return availabilities;
+        return Collections.unmodifiableSet(availabilities);
     }
 
     /**

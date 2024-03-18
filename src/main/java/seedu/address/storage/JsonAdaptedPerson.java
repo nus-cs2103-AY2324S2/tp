@@ -102,11 +102,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
-
-        if (availabilities == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Availability.class.getSimpleName()));
-        }
         final Set<Availability> modelAvailability = new HashSet<>(availabilityList);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAvailability, modelTags);
