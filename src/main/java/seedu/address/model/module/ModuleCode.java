@@ -1,8 +1,5 @@
 package seedu.address.model.module;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 

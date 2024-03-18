@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.AddClassCommand.MESSAGE_ADD_CLASS_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
@@ -11,13 +10,17 @@ import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 
+/**
+ * A class used to handle the deletion of tutorial classes.
+ */
 public class DeleteClassCommand extends Command {
     public static final String MESSAGE_DELETE_CLASS_SUCCESS = "Removed %1$s %2$s!";
     public static final String MESSAGE_MODULE_NOT_FOUND = "%1$s not in list!";
     public static final String MESSAGE_CLASS_NOT_FOUND = "%1$s %2$s not in list!";
     public static final String COMMAND_WORD = "/delete_class";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a class with the module code and tutorial class specified\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes a class with the module code and tutorial class specified\n"
             + "Parameters:" + PREFIX_MODULECODE + "MODULE_CODE (must be a String) "
             + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS (must be a String)"
             + "Example: " + COMMAND_WORD + PREFIX_MODULECODE + " CS2103T "
@@ -41,7 +44,6 @@ public class DeleteClassCommand extends Command {
 
         ModuleCode existingModule = model.findModuleFromList(module);
         if (existingModule == null) {
-            new ListClassesCommand();
             String moduleNotFoundMessage = String.format(MESSAGE_MODULE_NOT_FOUND, module);
             throw new CommandException(moduleNotFoundMessage);
         }
