@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tahsin Hasem Aonim
 
-<img src="images/tahsin.jpg" width="200px">
+<img src="images/tahsinhasem.jpg" width="200px">
 
 [[github](https://github.com/tahsinhasem)]
 [[portfolio](team/tahsinhasem.md)]
