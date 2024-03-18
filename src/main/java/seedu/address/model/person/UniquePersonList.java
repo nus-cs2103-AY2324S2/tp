@@ -33,8 +33,15 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(person -> person.isSamePerson(toCheck) ||
-                person.getPhone().equals(toCheck.getPhone()));
+        return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list contains a person with an equivalent phone number as the given argument.
+     */
+    public boolean containsSamePhone(Person toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(person -> person.getPhone().equals(toCheck.getPhone()));
     }
 
     /**

@@ -98,6 +98,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonWithSamePhone(Person person) {
+        requireNonNull(person);
+        return addressBook.hasPersonWithSamePhone(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

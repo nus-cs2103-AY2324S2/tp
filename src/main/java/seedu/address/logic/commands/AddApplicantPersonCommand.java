@@ -35,7 +35,7 @@ public class AddApplicantPersonCommand extends AddPersonCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasPerson(toAdd) || model.hasPersonWithSamePhone(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
