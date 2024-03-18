@@ -101,7 +101,7 @@ public class Person {
                 .add("name", name).toString();
     }
     
-    boolean hasTask(Task task) {
+    public boolean hasTask(Task task) {
         for(Task t : taskList) {
             if(t.equals(task)) {
                 return true;
