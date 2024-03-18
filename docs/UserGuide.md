@@ -62,18 +62,18 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 Shows a message of how to write commands for all commands or a specfic command.
 
 ### Get help for all commands
-Format: `/help`
+Format: `help`
 
 ### Get help for a specific command
-Format: `/help ; command : [command type]`
+Format: `help-[command type]`
 
 Examples:
-* `/help ; command : pooch-staff`
-* `/help ; command : pooch-supplier`
-* `/help ; command : pooch-maintenance`
-* `/help ; command : delete`
-* `/help ; command : edit`
-* `/help ; command : search`
+* `help-poochstaff`
+* `help-poochsupplier`
+* `help-poochmaintenance`
+* `help-edit`
+* `help-delete`
+* `help-search`
 
 
 ### Adding a contact: `Add`
@@ -223,6 +223,11 @@ Action | Format, Examples
 **Edit** | `/edit ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
 **Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
 **List** | `/list`
-**Help** | `/help`
-**Help Command Format** | `/help ; command : [command]` <br> e.g., `/help ; command : pooch-staff` <br> e.g., `/help ; command : delete`
+**Help** | `help`
+**Help PoochStaff** | `help-poochstaff`
+**Help PoochSupplier** | `help-poochsupplier`
+**Help PoochMaintenance** | `help-poochmaintenance`
+**Help Delete** | `help-delete`
+**Help Edit** | `help-edit`
+**Help Search** | `help-search`
 `
