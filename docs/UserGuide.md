@@ -117,7 +117,7 @@ Format: `/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : 
 
 
 #### Edits a maintainer
-Format: `/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission] }`
+Format: `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission] }`
 
 * Edits the specified `field`(s) of the person with the specified `name`. Note that the specified person must first exist in Pooch Contact Book.
 * The name is a compulsory field that is case-insensitive but space-sensitive.
