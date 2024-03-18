@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,7 +20,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.house.House;
+import seedu.address.model.house.*;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -99,11 +98,13 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        /*
         Street updatedStreet = editPersonDescriptor.getStreet().orElse(personToEdit.getStreet());
         Level updatedLevel = editPersonDescriptor.getLevel().orElse(personToEdit.getLevel());
         Block updatedBlock = editPersonDescriptor.getBlock().orElse(personToEdit.getBlock());
         UnitNumber unitNumber = editPersonDescriptor.getUnitNumber().orElse(personToEdit.getUnitNumber());
         PostalCode postalCode = editPersonDescriptor.getPostalCode().orElse(personToEdit.getPostalCode());
+        */
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedHouse,

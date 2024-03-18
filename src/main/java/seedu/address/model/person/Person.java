@@ -51,7 +51,7 @@ public class Person {
         return email;
     }
 
-    public String getHouse() {
+    public String getHousingType() {
         return housingtype;
     }
 
