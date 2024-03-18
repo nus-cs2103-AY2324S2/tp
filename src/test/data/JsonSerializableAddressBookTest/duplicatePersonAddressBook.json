@@ -5,15 +5,13 @@
     "email": "alice@example.com",
     "roomNumber": "12-12",
     "telegram": "alicePauline",
-    "birthday": "23/12/1990",
-    "tags": [ "friends" ]
+    "birthday": "23/12/1990"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "roomNumber": "12-12",
     "telegram": "alicePauline",
-    "birthday": "23/12/1990",
-    "tags": [ "friends" ]
+    "birthday": "23/12/1990"
   } ]
 }

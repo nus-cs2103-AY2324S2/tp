@@ -6,55 +6,48 @@
     "email": "alice@example.com",
     "roomNumber": "12-12",
     "telegram": "alicePauline",
-    "birthday": "23/12/1990",
-    "tags": [ "friends" ]
+    "birthday": "23/12/1990"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "roomNumber": "02-25",
     "telegram": "bensonMeier",
-    "birthday": "25/02/2001",
-    "tags" : [ "owesMoney", "friends" ]
+    "birthday": "25/02/2001"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "roomNumber": "03-12",
     "telegram": "carlKurz",
-    "birthday": "12/04/1995",
-    "tags" : [ ]
+    "birthday": "12/04/1995"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "roomNumber": "10-10",
     "telegram": "danielMeier",
-    "birthday": "10/10/2002",
-    "tags" : [ "friends" ]
+    "birthday": "10/10/2002"
   }, {
     "name" : "Elle Meyer",
     "phone" : "94822243",
     "email" : "werner@example.com",
     "roomNumber": "02-12",
     "telegram": "elleMeyer",
-    "birthday": "14/02/1999",
-    "tags" : [ ]
+    "birthday": "14/02/1999"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "94822427",
     "email" : "lydia@example.com",
     "roomNumber": "05-12",
     "telegram": "fionaKunz",
-    "birthday": "12/05/2002",
-    "tags" : [ ]
+    "birthday": "12/05/2002"
   }, {
     "name" : "George Best",
     "phone" : "94824142",
     "email" : "anna@example.com",
     "roomNumber": "23-12",
     "telegram": "georgeBest",
-    "birthday": "22/12/1997",
-    "tags" : [ ]
+    "birthday": "22/12/1997"
   } ]
 }

@@ -10,8 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
@@ -30,18 +28,16 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withRoomNumber("12-12").withTelegram("alicePauline").withBirthday("23/12/1990")
             .withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").build();
+            .withPhone("94351253").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withRoomNumber("02-25").withTelegram("bensonMeier").withBirthday("25/02/2001")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withEmail("johnd@example.com").withPhone("98765432").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withRoomNumber("03-12").withTelegram("carlKurz")
             .withBirthday("12/04/1995").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withRoomNumber("10-10").withTelegram("danielMeier")
-            .withBirthday("10/10/2002").withTags("friends").build();
+            .withBirthday("10/10/2002").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822243")
             .withEmail("werner@example.com").withRoomNumber("02-12").withTelegram("elleMeyer")
             .withBirthday("14/02/1999").build();
@@ -63,11 +59,10 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withRoomNumber(VALID_ROOMNUMBER_AMY).withTelegram(VALID_TELEGRAM_AMY)
-            .withBirthday(VALID_BIRTHDAY_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withBirthday(VALID_BIRTHDAY_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withRoomNumber(VALID_ROOMNUMBER_BOB).withTelegram(VALID_TELEGRAM_BOB)
-            .withBirthday(VALID_BIRTHDAY_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+            .withBirthday(VALID_BIRTHDAY_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

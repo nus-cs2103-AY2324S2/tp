@@ -46,9 +46,7 @@ public class Messages {
                 .append("; Telegram: ")
                 .append(person.getTelegram())
                 .append("; Birthday: ")
-                .append(person.getBirthday())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append(person.getBirthday());
         return builder.toString();
     }
 

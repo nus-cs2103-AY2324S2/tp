@@ -2,13 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the logbook.
@@ -25,21 +21,18 @@ public class Person {
     private final RoomNumber roomNumber;
     private final Telegram telegram;
     private final Birthday birthday;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday,
-                  Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, roomNumber, telegram, birthday, tags);
+    public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday) {
+        requireAllNonNull(name, phone, email, roomNumber, telegram, birthday);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.roomNumber = roomNumber;
         this.telegram = telegram;
         this.birthday = birthday;
-        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -66,13 +59,6 @@ public class Person {
         return birthday;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
 
     /**
      * Returns true if both persons have the same name.
@@ -108,14 +94,13 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && roomNumber.equals(otherPerson.roomNumber)
                 && telegram.equals(otherPerson.telegram)
-                && birthday.equals(otherPerson.birthday)
-                && tags.equals(otherPerson.tags);
+                && birthday.equals(otherPerson.birthday);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, roomNumber, telegram, birthday, tags);
+        return Objects.hash(name, phone, email, roomNumber, telegram, birthday);
     }
 
     @Override
@@ -127,7 +112,6 @@ public class Person {
                 .add("roomNumber", roomNumber)
                 .add("telegram", telegram)
                 .add("birthday", birthday)
-                .add("tags", tags)
                 .toString();
     }
 
