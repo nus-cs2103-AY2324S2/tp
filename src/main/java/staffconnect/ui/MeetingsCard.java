@@ -22,7 +22,7 @@ public class MeetingsCard extends UiPart<Region> {
     /**
      * Creates a {@code MeetingCode} with the given {@code Meeting} and index to display.
      */
-    public MeetingsCard(Meeting meeting,int index) {
+    public MeetingsCard(Meeting meeting, int index) {
 
         super(FXML);
         id.setText(index + ".  ");

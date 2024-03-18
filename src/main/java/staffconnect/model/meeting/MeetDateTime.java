@@ -6,7 +6,6 @@ import static staffconnect.commons.util.AppUtil.checkArgument;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Meeting's starting time in the staff book.
@@ -44,7 +43,7 @@ public class MeetDateTime {
     //Wrapper method only unique to this class
     private static boolean isParsable(String test) {
         try {
-            LocalDateTime.parse(test,PROCESS_FORMAT);
+            LocalDateTime.parse(test, PROCESS_FORMAT);
         } catch (DateTimeException e) {
             return false;
         }

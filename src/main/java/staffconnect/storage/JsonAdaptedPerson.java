@@ -144,7 +144,7 @@ class JsonAdaptedPerson {
 
         if (faculty == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                                          Faculty.class.getSimpleName()));
+                    Faculty.class.getSimpleName()));
         }
         if (!Faculty.isValidFaculty(faculty)) {
             throw new IllegalValueException(Faculty.MESSAGE_CONSTRAINTS);
@@ -170,7 +170,7 @@ class JsonAdaptedPerson {
         final Set<Meeting> modelMeetings = new HashSet<>(personMeetings);
 
         Person modelPerson = new Person(modelName, modelPhone, modelEmail, modelModule, modelFaculty, modelVenue,
-                                        modelTags, modelAvailabilities);
+                modelTags, modelAvailabilities);
         modelPerson.setMeetings(modelMeetings);
 
         return modelPerson;

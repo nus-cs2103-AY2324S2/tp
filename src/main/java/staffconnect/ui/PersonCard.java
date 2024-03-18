@@ -3,9 +3,7 @@ package staffconnect.ui;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,7 +12,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import staffconnect.model.meeting.Meeting;
 import staffconnect.model.person.Person;
 
@@ -24,6 +21,7 @@ import staffconnect.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final int ROW_HEIGHT = 43; //row height of each meeting
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -34,8 +32,6 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
-    private static final int ROW_HEIGHT = 43; //row height of each meeting
 
     @FXML
     private HBox cardPane;
