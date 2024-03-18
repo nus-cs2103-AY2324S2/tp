@@ -37,6 +37,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label emailLabel;
+    @FXML
     private Label email;
     @FXML
     private Label githubUsername;
@@ -55,7 +57,9 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText("Phone: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
-        email.setText("Email: " + person.getEmail().value);
+        emailLabel.setText("Email: ");
+        email.setText(person.getEmail().value);
+        //email.setText("Email: " + person.getEmail().value);
         githubUsername.setText("@"+person.getGitHubUsername().username);
         person.getTechStack().stream()
                 .sorted(Comparator.comparing(techStack -> techStack.techStackName))
@@ -64,5 +68,12 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag-> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        email.setOnMouseClicked(event -> {
+            MailApp mailApp = new MailApp();
+            mailApp.setPerson(person);
+            mailApp.handleEmailClicked();
+        });
     }
 }
+

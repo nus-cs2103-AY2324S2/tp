@@ -365,4 +365,9 @@
     -fx-font-size: 11;
 }
 
-
+#email.label {
+ -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
