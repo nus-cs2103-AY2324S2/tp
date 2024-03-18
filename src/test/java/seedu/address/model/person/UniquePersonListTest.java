@@ -373,7 +373,7 @@ public class UniquePersonListTest {
     @Test
     public void containsNric_invalidNric_returnsFalse() {
         uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.containsNric(BOB.getNric().nric));
+        assertFalse(uniquePersonList.containsNric(BOB.getNric().nric));
     }
 
     @Test
