@@ -1,5 +1,6 @@
 package seedu.address.model.order;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.exceptions.OrderNotFoundException;
 import seedu.address.model.person.Person;
 
 /**
@@ -38,6 +40,14 @@ public class OrderList implements Iterable<Order> {
     }
 
     /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean contains(Order toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameOrder);
+    }
+
+    /**
      * Getter method for orderIdCounter.
      * @return The current orderId to be used.
      */
@@ -52,9 +62,8 @@ public class OrderList implements Iterable<Order> {
      */
     public void addOrder(Order toAdd, Person person) {
         requireAllNonNull(toAdd);
-        //make sure that our addordercommand has a means to set the OrderID
+
         orderList.put(toAdd.getId(), toAdd);
-        toAdd.setID(orderIdCounter);
         internalList.add(toAdd);
         person.addOrder(toAdd);
         orderIdCounter++;
@@ -65,10 +74,16 @@ public class OrderList implements Iterable<Order> {
      * @param toDelete The order id of the order that is to be deleted.
      */
     public void deleteOrder(int toDelete) {
+        requireNonNull(toDelete);
+        if (toDelete < 1) {
+            throw new NullPointerException();
+        }
         Order oldOrder = orderList.get(toDelete);
-        Integer oldOrderIndex = internalList.indexOf(oldOrder);
+        if (oldOrder == null) {
+            throw new OrderNotFoundException();
+        }
         orderList.remove(toDelete);
-        internalList.remove(oldOrderIndex);
+        internalList.remove(oldOrder);
     }
 
     /**
@@ -78,13 +93,16 @@ public class OrderList implements Iterable<Order> {
      */
     public void editOrder(int orderId, Order toEdit) {
         requireAllNonNull(orderId, toEdit);
-        Order currOrder = orderList.get(orderId);
-        if (!currOrder.isSameOrder(toEdit)) {
-            Order oldOrder = orderList.get(orderId);
-            int oldOrderIndex = internalList.indexOf(oldOrder);
-            orderList.put(orderId, toEdit);
-            internalList.set(oldOrderIndex, toEdit);
+        if (orderId < 1) {
+            throw new NullPointerException();
         }
+        Order currOrder = orderList.get(orderId);
+        if (currOrder == null) {
+            throw new OrderNotFoundException();
+        }
+        int oldOrderIndex = internalList.indexOf(currOrder);
+        internalList.set(oldOrderIndex, toEdit);
+        orderList.put(orderId, toEdit);
     }
 
     /**
@@ -115,7 +133,25 @@ public class OrderList implements Iterable<Order> {
      * @return the order corresponding to the index
      */
     public Order getOrder(int i) {
-        return orderList.get(i);
+        if (i < 1) {
+            throw new NullPointerException();
+        }
+
+        Order order = orderList.get(i);
+
+        if (order == null) {
+            throw new OrderNotFoundException();
+        }
+
+        return order;
+    }
+
+    public void setOrders(List<Order> orders) {
+        requireAllNonNull(orders);
+        for (Order d: orders) {
+            orderList.put(d.getId(), d);
+        }
+        internalList.setAll(orders);
     }
 
     /**
@@ -139,6 +175,20 @@ public class OrderList implements Iterable<Order> {
     @Override
     public String toString() {
         return internalList.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof OrderList)) {
+            return false;
+        }
+
+        OrderList otherOrderList = (OrderList) other;
+        return internalList.equals(otherOrderList.internalList);
     }
 
     /**
