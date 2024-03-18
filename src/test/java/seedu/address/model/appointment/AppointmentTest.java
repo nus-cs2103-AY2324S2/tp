@@ -100,7 +100,7 @@ public class AppointmentTest {
     @Test
     public void toStringMethod() {
         String expected = Appointment.class.getCanonicalName()
-                +"{nric=" + ALICE_APPT_1.getNric()
+                + "{nric=" + ALICE_APPT_1.getNric()
                 + ", date=" + ALICE_APPT_1.getDate()
                 + ", timePeriod=" + ALICE_APPT_1.getTimePeriod()
                 + ", appointmentType=" + ALICE_APPT_1.getAppointmentType()
