@@ -12,7 +12,8 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Employee in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Employee {
 
@@ -26,12 +27,14 @@ public class Employee {
     private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final UniqueId uid;
 
     /**
      * Every field must be present and not null.
      */
-    public Employee(Name name, Phone phone, Email email, Address address, Team team, Role role, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, team, role, tags);
+    public Employee(Name name, Phone phone, Email email, Address address, Team team, Role role, Set<Tag> tags,
+            UniqueId uid) {
+        requireAllNonNull(name, phone, email, address, team, role, tags, uid);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -39,6 +42,7 @@ public class Employee {
         this.team = team;
         this.role = role;
         this.tags.addAll(tags);
+        this.uid = uid;
     }
 
     public Name getName() {
@@ -65,8 +69,13 @@ public class Employee {
         return role;
     }
 
+    public UniqueId getUid() {
+        return uid;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -108,13 +117,14 @@ public class Employee {
                 && address.equals(otherEmployee.address)
                 && team.equals(otherEmployee.team)
                 && role.equals(otherEmployee.role)
-                && tags.equals(otherEmployee.tags);
+                && tags.equals(otherEmployee.tags)
+                && uid.equals(otherEmployee.uid);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, team, role, tags);
+        return Objects.hash(name, phone, email, address, team, role, tags, uid);
     }
 
     @Override
@@ -127,6 +137,7 @@ public class Employee {
                 .add("team", team)
                 .add("role", role)
                 .add("tags", tags)
+                .add("uid", uid)
                 .toString();
     }
 

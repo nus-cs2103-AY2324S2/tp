@@ -17,6 +17,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
+import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +26,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedEmployee {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Employee's %s field is missing!";
+    public static final String INVALID_FIELD_MESSAGE_FORMAT = "Employee's %s field is invalid!";
 
     private final String name;
     private final String phone;
@@ -33,6 +35,7 @@ class JsonAdaptedEmployee {
     private final String team;
     private final String role;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final UniqueId uid;
 
     /**
      * Constructs a {@code JsonAdaptedEmployee} with the given employee details.
@@ -41,7 +44,8 @@ class JsonAdaptedEmployee {
     public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("team") String team, @JsonProperty("role") String role,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("uid") UniqueId uid) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +55,7 @@ class JsonAdaptedEmployee {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.uid = uid;
     }
 
     /**
@@ -63,6 +68,7 @@ class JsonAdaptedEmployee {
         address = source.getAddress().value;
         team = source.getTeam().teamName;
         role = source.getRole().value;
+        uid = source.getUid();
 
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -70,9 +76,11 @@ class JsonAdaptedEmployee {
     }
 
     /**
-     * Converts this Jackson-friendly adapted employee object into the model's {@code Employee} object.
+     * Converts this Jackson-friendly adapted employee object into the model's
+     * {@code Employee} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted employee.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted employee.
      */
     public Employee toModelType() throws IllegalValueException {
         final List<Tag> employeeTags = new ArrayList<>();
@@ -128,8 +136,18 @@ class JsonAdaptedEmployee {
         }
         final Role modelRole = new Role(role);
 
+        if (uid == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName()));
+        }
+
+        if (uid.isValidUid(uid) == false) {
+            throw new IllegalValueException(
+                    String.format(INVALID_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName()));
+        }
+
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTeam, modelRole, modelTags);
+        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTeam, modelRole, modelTags, uid);
     }
 
 }
