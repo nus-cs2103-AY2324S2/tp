@@ -76,8 +76,13 @@ public class FilterCommand extends Command {
             // Check if the roleName matches filteredRole and stageName matches filteredStage
             boolean roleMatches = applicant.getRole().equals(filteredRole);
             boolean stageMatches = applicant.getStage().equals(filteredStage);
+            if (filteredRole.roleName.isEmpty()) {
+                roleMatches = true;
+            } else if (filteredStage.stageName.isEmpty()) {
+                stageMatches = true;
+            }
 
-            return  roleMatches || stageMatches;
+            return  roleMatches && stageMatches;
         };
         model.updateFilteredPersonList(matchesCriteria);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
