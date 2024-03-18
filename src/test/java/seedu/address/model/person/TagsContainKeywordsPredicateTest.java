@@ -78,4 +78,3 @@ public class TagsContainKeywordsPredicateTest{
         assertEquals(expected, predicate.toString());
     }
 }
-
