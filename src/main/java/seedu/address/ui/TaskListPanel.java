@@ -14,7 +14,7 @@ import seedu.address.model.task.Task;
  * Panel containing the list of persons.
  */
 public class TaskListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "TaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
