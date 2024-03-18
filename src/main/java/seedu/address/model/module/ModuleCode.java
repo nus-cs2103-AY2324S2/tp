@@ -1,5 +1,8 @@
 package seedu.address.model.module;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -121,11 +124,39 @@ public class ModuleCode {
     }
 
     /**
+     * List all the tutorial classes under this module.
+     *
+     * @return String of tutorial classes under this module.
+     */
+    public String listTutorialClasses() {
+        if (tutorialClasses.size() == 0) {
+            return String.format("Tutorials in %s: None!", value);
+        } else {
+            StringBuilder tutorialsString = new StringBuilder(String.format("Tutorials in %s: ", value));
+            for (TutorialClass tutorialClass : tutorialClasses) {
+                tutorialsString.append(" ");
+                tutorialsString.append(tutorialClass.toString());
+            }
+            return tutorialsString.toString().trim();
+        }
+    }
+
+    /**
      * Adds an empty tutorial with the given name into the module.
      *
      * @param tutorialString name of tutorial class to be added.
      */
     public void addTutorialClass(TutorialClass tutorialString) {
         tutorialClasses.add(tutorialString);
+    }
+
+    /**
+     * Deletes a tutorial with the given name from the module.
+     * The tutorial has to exist to be used in this function.
+     *
+     * @param tutorialString name of tutorial class to be deleted.
+     */
+    public void deleteTutorialClass(TutorialClass tutorialString) {
+        tutorialClasses.remove(tutorialString);
     }
 }
