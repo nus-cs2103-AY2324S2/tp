@@ -60,4 +60,35 @@ public class InternshipTest {
         Internship editedBob = new InternshipBuilder(BOB).withCompanyName(VALID_COMPANY_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameInternship(editedBob));
     }
+
+    @Test
+    public void equals() {
+        // same values -> returns true
+        Internship aliceCopy = new InternshipBuilder(ALICE_MICROSOFT).build();
+        assertTrue(ALICE_MICROSOFT.equals(aliceCopy));
+
+        // same object -> returns true
+        assertTrue(ALICE_MICROSOFT.equals(ALICE_MICROSOFT));
+
+        // null -> returns false
+        assertFalse(ALICE_MICROSOFT.equals(null));
+
+        // different type -> returns false
+        assertFalse(ALICE_MICROSOFT.equals(5));
+
+        // different internship -> returns false
+        assertFalse(ALICE_MICROSOFT.equals(BOB));
+
+        // different company name -> returns false
+        Internship editedAlice = new InternshipBuilder(ALICE_MICROSOFT).withCompanyName(VALID_COMPANY_NAME_BOB).build();
+        assertFalse(ALICE_MICROSOFT.equals(editedAlice));
+
+        // different contact name -> returns false
+        editedAlice = new InternshipBuilder(ALICE_MICROSOFT).withContactName("John Doe").build();
+        assertFalse(ALICE_MICROSOFT.equals(editedAlice));
+
+        // different contact email -> returns false
+        editedAlice = new InternshipBuilder(ALICE_MICROSOFT).withContactEmail("johnDoe@gmail.com").build();
+        assertFalse(ALICE_MICROSOFT.equals(editedAlice));
+    }
 }
