@@ -74,6 +74,7 @@ public class AppointmentList implements ReadOnlyAppointmentList {
      * Adds an appointment to the appointment list.
      */
     public void addAppointment(Appointment appointment) {
+        requireNonNull(appointment);
         appointments.add(appointment);
     }
 }

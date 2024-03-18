@@ -1,31 +1,17 @@
 package seedu.address.model.appointment;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.AppointmentBuilder;
-import seedu.address.testutil.PersonBuilder;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.ATTENDED_FIRST_APPOINTMENT;
-import static seedu.address.testutil.TypicalAppointments.ATTENDED_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentList;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+
 
 public class AppointmentListTest {
 
