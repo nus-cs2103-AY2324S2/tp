@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -19,6 +17,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneMatchesPredicate;
+import seedu.address.testutil.FindCommandBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,36 +29,61 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
+        // Check that the Builder is first functioning as normal
+        assertEquals(new FindCommandBuilder().build(), new FindCommandBuilder().build());
+
+        /* -----------------------------------NAME PRED VARIES------------------------------------------*/
+        NameContainsKeywordsPredicate firstNamePredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
+        NameContainsKeywordsPredicate secondNamePredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindCommand findFirstCommand = new FindCommandBuilder().withNamePred(firstNamePredicate).build();
+        FindCommand findSecondCommand = new FindCommandBuilder().withNamePred(secondNamePredicate).build();
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommandBuilder().withNamePred(firstNamePredicate).build();
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
-        // different types -> returns false
+        // different types -> returns false. Tested ONCE.
         assertFalse(findFirstCommand.equals(1));
 
-        // null -> returns false
+        // null -> returns false TEST ONCE
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different names -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+
+        /* vv --------------------------- PHONE PRED VARIES ------------------------------------ */
+        PhoneMatchesPredicate firstPhonePredicate =
+                new PhoneMatchesPredicate("123");
+        PhoneMatchesPredicate secondPhonePredicate =
+                new PhoneMatchesPredicate("789");
+
+        FindCommand findPhoneFirstCommand = new FindCommandBuilder().withPhone(firstPhonePredicate).build();
+        FindCommand findPhoneFirstCopy = new FindCommandBuilder().withPhone(firstPhonePredicate).build();
+        FindCommand findPhoneSecondCommand = new FindCommandBuilder().withPhone(secondPhonePredicate).build();
+
+        // Same object returns true
+        assertEquals(findPhoneFirstCommand, findPhoneFirstCommand);
+
+        // Same values returns true
+        assertEquals(findPhoneFirstCommand, findPhoneFirstCopy);
+
+        // Different phones returns false
+        assertNotEquals(findPhoneFirstCommand, findPhoneSecondCommand);
+
+        /* vv --------------------------- EMAIL PRED VARIES ------------------------------ */
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        FindCommand command = new FindCommand(predicate, , , , );
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -68,7 +93,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        FindCommand command = new FindCommand(predicate, , , , );
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
@@ -77,7 +102,7 @@ public class FindCommandTest {
     @Test
     public void toStringMethod() {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindCommand findCommand = new FindCommand(predicate);
+        FindCommand findCommand = new FindCommand(predicate, , , , );
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
     }
