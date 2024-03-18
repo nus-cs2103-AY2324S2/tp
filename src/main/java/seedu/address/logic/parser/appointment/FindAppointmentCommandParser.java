@@ -9,6 +9,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.FindAppointmentCommand;
 
+/**
+ * Parses input arguments and creates a new FindAppointmentCommand object
+ */
 public class FindAppointmentCommandParser implements Parser<FindAppointmentCommand> {
 
     /**

@@ -39,7 +39,7 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
      *
      * @param keywords The list of keywords used to filter appointments.
      * @return A function taking a {@code Model} and returning a new instance of
-     * {@code AppointmentContainsKeywordsPredicate}.
+     *         {@code AppointmentContainsKeywordsPredicate}.
      */
     public static Function<Model, AppointmentContainsKeywordsPredicate> build(List<String> keywords) {
         return model -> new AppointmentContainsKeywordsPredicate(model, keywords);
@@ -74,8 +74,8 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
             return false;
         }
 
-        AppointmentContainsKeywordsPredicate otherAppointmentContainsKeywordsPredicate = (AppointmentContainsKeywordsPredicate) other;
-        return keywords.equals(otherAppointmentContainsKeywordsPredicate.keywords);
+        AppointmentContainsKeywordsPredicate otherPredicate = (AppointmentContainsKeywordsPredicate) other;
+        return keywords.equals(otherPredicate.keywords);
     }
 
     @Override

@@ -12,6 +12,10 @@ import seedu.address.logic.commands.appointment.AppointmentContainsKeywordsPredi
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Finds and lists all appointments whose associated person's name contains any
+ * of the argument keywords. Keyword matching is case insensitive.
+ */
 public class FindAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "findappt";
