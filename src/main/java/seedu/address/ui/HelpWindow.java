@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.ClearCommand.MESSAGE_CLEAR_HELP;
 import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_HELP;
 import static seedu.address.logic.commands.EditCommand.MESSAGE_EDIT_HELP;
 import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_HELP;
-import static seedu.address.logic.commands.FindCommand.MESSAGE_FIND_HELP;
+import static seedu.address.logic.commands.FilterCommand.MESSAGE_FIND_HELP;
 import static seedu.address.logic.commands.ListCommand.MESSAGE_LIST_HELP;
 
 import java.util.logging.Logger;

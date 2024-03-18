@@ -10,6 +10,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Family family;
     private Set<Tag> tags;
+    private Remark remark;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -46,6 +48,7 @@ public class PersonBuilder {
         family = new Family(DEFAULT_FAMILY);
         tags = new HashSet<>();
         tags.add(DEFAULT_TAG);
+        remark = new Remark("");
     }
 
     /**
@@ -59,6 +62,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         family = personToCopy.getFamily();
         tags = new HashSet<>(personToCopy.getTags());
+        remark = personToCopy.getRemark();
     }
 
     /**
@@ -117,8 +121,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, income, email, address, family, tags);
+        return new Person(name, phone, income, email, address, family, tags, remark);
     }
 
 }

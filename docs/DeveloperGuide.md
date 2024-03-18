@@ -341,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. Name Length is not fully English.
     * 1b1. Realodex throws an error and requests for only English input.
     * 1b2. User enters new data. 
-    * Use case resumes from step 1.
+      * Use case resumes from step 1.
 
 * 1c. Name contains erraneous whitespace.
     * 1c1. Realodex throws a warning and fixes this for user. 
@@ -414,12 +414,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. Realodex shows an empty list. 
   * Use case ends.
 
-**Use case: Find**
+**Use case: Filter**
 
 **MSS**
 
-1.  User requests to find user
-2.  Realodex shows the list of all clients with name including the name input
+1.  User requests to filter user with input substring.
+2.  Realodex shows the list of all clients with name including the input substring.
 
     Use case ends.
 

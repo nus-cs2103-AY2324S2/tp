@@ -83,6 +83,15 @@ Lists all clients in the Realodex.
 
 Format: `list`
 
+### Filtering clients : `filter`
+
+Filters the list of client with an input keyphrase.
+
+Format: `filter KEYPHRASE`
+
+- The search is case-insensitive. e.g `james` will match `James`
+- Partial words will still be matched e.g. `Udh` will match `Udhaya`
+- All persons' names containing the keyword will be returned e.g. `Al` will return `Alicia`, `Allysa`
 
 ### Exiting the program : `exit`
 
