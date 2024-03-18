@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyClassBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -37,6 +38,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, ClassBook
     Optional<ReadOnlyClassBook> readClassBook() throws DataLoadingException;
 
     @Override
-    void saveClassBook(ReadOnlyClassBook classBook) throws IOException;
+    void saveClassBook(ReadOnlyClassBook classBook) throws IOException, IllegalValueException;
 
 }

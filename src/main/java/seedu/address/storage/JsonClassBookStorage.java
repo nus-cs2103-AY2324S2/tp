@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyClassBook;
+import seedu.address.model.person.Classes;
 
 /**
  * A class to access ClassBook data stored as a json file on the hard disk.
@@ -53,15 +55,41 @@ public class JsonClassBookStorage implements ClassBookStorage {
         }
 
         try {
+            createJsonFileForEachCC(jsonClassBook);
             return Optional.of(jsonClassBook.get().toModelType());
         } catch (IllegalValueException e) {
             logger.info("Illegal values found in " + filePath + ": " + e.getMessage());
             throw new DataLoadingException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @Override
+    public void createJsonFileForEachCC(Optional<JsonSerializableClassBook> classBook) throws IOException,
+            IllegalValueException {
+        List<Classes> classList = classBook.get().toModelType().getClassList();
+        for (Classes classes : classList) {
+            String cc = classes.getCourseCode().getCourseCode();
+            String jsonFileName = "data/classbook/" + cc + ".json";
+            FileUtil.createIfMissing(jsonFileName);
         }
     }
 
     @Override
-    public void saveClassBook(ReadOnlyClassBook classBook) throws IOException {
+    public void createJsonFileForEachCC(JsonSerializableClassBook classBook) throws IOException,
+            IllegalValueException {
+        List<Classes> classList = classBook.toModelType().getClassList();
+        for (Classes classes : classList) {
+            String cc = classes.getCourseCode().getCourseCode();
+            String jsonFileName = "data/classbook/" + cc + ".json";
+            FileUtil.createIfMissing(jsonFileName);
+        }
+    }
+
+    @Override
+    public void saveClassBook(ReadOnlyClassBook classBook) throws IOException, IllegalValueException {
         saveClassBook(classBook, filePath);
     }
 
@@ -70,11 +98,12 @@ public class JsonClassBookStorage implements ClassBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveClassBook(ReadOnlyClassBook classBook, Path filePath) throws IOException {
+    public void saveClassBook(ReadOnlyClassBook classBook, Path filePath) throws IOException, IllegalValueException {
         requireNonNull(classBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
+        createJsonFileForEachCC(new JsonSerializableClassBook(classBook));
         JsonUtil.saveJsonFile(new JsonSerializableClassBook(classBook), filePath);
     }
 

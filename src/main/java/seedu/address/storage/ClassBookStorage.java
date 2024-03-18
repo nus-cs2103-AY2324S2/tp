@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyClassBook;
 
 /**
@@ -30,15 +31,20 @@ public interface ClassBookStorage {
      */
     Optional<ReadOnlyClassBook> readClassBook(Path filePath) throws DataLoadingException;
 
+    void createJsonFileForEachCC(Optional<JsonSerializableClassBook> classBook) throws IOException,
+            IllegalValueException;
+
+    void createJsonFileForEachCC(JsonSerializableClassBook classBook) throws IOException,
+            IllegalValueException;
     /**
      * Saves the given {@link ReadOnlyClassBook} to the storage.
      * @param classBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveClassBook(ReadOnlyClassBook classBook) throws IOException;
+    void saveClassBook(ReadOnlyClassBook classBook) throws IOException, IllegalValueException;
 
     /**
      * @see #saveClassBook(ReadOnlyClassBook)
      */
-    void saveClassBook(ReadOnlyClassBook classBook, Path filePath) throws IOException;
+    void saveClassBook(ReadOnlyClassBook classBook, Path filePath) throws IOException, IllegalValueException;
 }

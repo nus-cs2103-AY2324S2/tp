@@ -41,6 +41,11 @@ public class FileUtil {
         }
     }
 
+    public static void createIfMissing(String file) throws IOException {
+        if (!isFileExists(Paths.get(file))) {
+            createFile(Paths.get(file));
+        }
+    }
     /**
      * Creates a file if it does not exist along with its missing parent directories.
      */

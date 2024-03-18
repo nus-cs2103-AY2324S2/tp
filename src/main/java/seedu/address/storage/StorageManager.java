@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyClassBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -99,12 +100,23 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveClassBook(ReadOnlyClassBook classBook) throws IOException {
+    public void createJsonFileForEachCC(Optional<JsonSerializableClassBook> classBook) throws IOException,
+            IllegalValueException {
+        classBookStorage.createJsonFileForEachCC(classBook);
+    }
+
+    @Override
+    public void createJsonFileForEachCC(JsonSerializableClassBook classBook) throws IOException, IllegalValueException {
+        classBookStorage.createJsonFileForEachCC(classBook);
+    }
+
+    @Override
+    public void saveClassBook(ReadOnlyClassBook classBook) throws IOException, IllegalValueException {
         saveClassBook(classBook, classBookStorage.getClassBookFilePath());
     }
 
     @Override
-    public void saveClassBook(ReadOnlyClassBook classBook, Path filePath) throws IOException {
+    public void saveClassBook(ReadOnlyClassBook classBook, Path filePath) throws IOException, IllegalValueException {
         logger.fine("Attempting to write to data file: " + filePath);
         classBookStorage.saveClassBook(classBook, filePath);
     }
