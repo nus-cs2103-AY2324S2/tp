@@ -80,6 +80,7 @@ public class AssignedTasks {
 
         // Add the taskID to tasks
         tasks += " " + taskID;
+        tasks.trim();
         return this;
     }
 
