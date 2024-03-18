@@ -12,6 +12,7 @@ public class CliSyntax {
     public static final PersonType TYPE_TA = PersonType.TA;
     public static final PersonType TYPE_DEFAULT = PersonType.STU;
     public static final Prefix PREFIX_NAME = new Prefix("/n");
+    public static final Prefix PREFIX_ID = new Prefix("/i");
     public static final Prefix PREFIX_PHONE = new Prefix("/p");
     public static final Prefix PREFIX_EMAIL = new Prefix("/e");
     public static final Prefix PREFIX_ADDRESS = new Prefix("/a");
