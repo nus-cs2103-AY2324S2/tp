@@ -16,10 +16,10 @@ import seedu.address.model.person.Note;
  */
 public class NoteCommand extends Command {
 
-    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Remark: %2$s";
+    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Note: %2$s";
 
     private final Name name;
-    private final String note;
+    private final Note note;
     public static final String COMMAND_WORD = "/note";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds note to person.\n"
@@ -31,7 +31,7 @@ public class NoteCommand extends Command {
      * @param name of the person in the filtered person list to edit the note
      * @param note of the person to be updated to
      */
-    public NoteCommand(Name name, String note) {
+    public NoteCommand(Name name, Note note) {
         requireAllNonNull(name, note);
 
         this.name = name;

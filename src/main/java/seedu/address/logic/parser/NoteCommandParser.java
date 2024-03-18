@@ -20,11 +20,11 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_NOTE);
         Name name;
-        String note;
+        Note note;
         try {
             name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-//            note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
-            note = argMultimap.getValue(PREFIX_NOTE).orElse("");
+            note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+//            note = argMultimap.getValue(PREFIX_NOTE).orElse("");
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     NoteCommand.MESSAGE_USAGE), ive);
