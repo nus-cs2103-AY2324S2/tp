@@ -8,13 +8,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 <StackPane styleClass="pane-with-border" prefHeight="60" xmlns="http://javafx.com/javafx/17"
-           xmlns:fx="http://javafx.com/fxml/1">
+           xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #818589;">
     <HBox alignment="CENTER_LEFT" spacing="5">
         <ImageView fitWidth="25" fitHeight="25">
             <Image url="@/images/search_icon.png"/>
         </ImageView>
         <TextField fx:id="commandTextField" prefHeight="45" HBox.hgrow="ALWAYS" onAction="#handleCommandEntered"
-                   promptText="Input command here..." />
+                   promptText="Input command here..." style="-fx-background-color: transparent; -fx-border-color: #818589;" />
     </HBox>
     <padding>
         <Insets bottom="5" left="10" right="10" top="5" />
