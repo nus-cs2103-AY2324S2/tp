@@ -1,5 +1,6 @@
 package tutorpro.model.person.student;
 
+import static org.junit.jupiter.api.Assertions.fail;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_LEVEL_UNI;
@@ -74,5 +75,17 @@ public class StudentTest {
         // different levels -> returns false
         editedAlice = new StudentBuilder(TypicalStudents.ALICE).withLevel(VALID_LEVEL_UNI).build();
         Assertions.assertFalse(TypicalStudents.ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void getCard() {
+        try {
+            new StudentBuilder().build().getCard(1);
+            fail();
+        } catch (ExceptionInInitializerError e) {
+            return;
+        } catch (NoClassDefFoundError e) {
+            return;
+        }
     }
 }

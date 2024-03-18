@@ -1,5 +1,6 @@
 package tutorpro.model.person;
 
+import static org.junit.jupiter.api.Assertions.fail;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static tutorpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import tutorpro.model.tag.Tag;
 import tutorpro.testutil.Assert;
 import tutorpro.testutil.PersonBuilder;
+import tutorpro.testutil.StudentBuilder;
 import tutorpro.testutil.TypicalPersons;
 
 public class PersonTest {
@@ -103,5 +105,17 @@ public class PersonTest {
         Tag tag = new Tag("TAG");
         person.addTags(tag);
         Assertions.assertTrue(person.getTags().contains(tag));
+    }
+
+    @Test
+    public void getCard() {
+        try {
+            new StudentBuilder().build().getCard(1);
+            fail();
+        } catch (ExceptionInInitializerError e) {
+            return;
+        } catch (NoClassDefFoundError e) {
+            return;
+        }
     }
 }
