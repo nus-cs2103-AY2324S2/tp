@@ -78,8 +78,8 @@ public class AddImportantDateCommand extends Command {
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(Model.PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, dateToAdd.name, editedPatient.getName(), index,
-                dateToAdd.importantDate));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, dateToAdd.name, editedPatient.getName(),
+                index.getOneBased(), dateToAdd.importantDate));
     }
 
     /**
