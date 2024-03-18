@@ -3,19 +3,16 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.NetConnect;
-import seedu.address.model.person.Person;
+
 
 public class ExportCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Success! Your contact has been exported as ((filename.csv)) ";
 
-    public static final String MESSAGE_FAILURE= "Failed to export contacts."; //to do better fail message
+    public static final String MESSAGE_FAILURE_EMPTY_LIST = "Failed to export contacts. The contact list is empty.";
+    public static final String MESSAGE_FAILURE_FILE_WRITE = "Failed to export contacts due to file write error.";
 
     private final String filename;
 
@@ -23,7 +20,7 @@ public class ExportCommand extends Command {
      * Creates an ExportCommand to export contact as CV file
      */
     public ExportCommand() {
-        this.filename = "Contact";
+        this.filename = "contacts.csv";
     }
 
     public ExportCommand(String filename) {
@@ -33,10 +30,15 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getFilteredPersonList().isEmpty()) {
+            throw new CommandException(MESSAGE_FAILURE_EMPTY_LIST);
+        }
+
         boolean isSuccessful = model.exportCSV(filename);
 
         if (!isSuccessful) {
-            throw new CommandException(MESSAGE_FAILURE);
+            throw new CommandException(MESSAGE_FAILURE_FILE_WRITE);
         }
         return new CommandResult(MESSAGE_SUCCESS + filename);
 
