@@ -16,25 +16,46 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
-    // Identity fields
+    private final Nric nric;
     private final Name name;
-    private final Phone phone;
-    private final Email email;
-
-    // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-
+    private Phone phone;
+    private Email email = null;
+    private Sex sex;
+    // Data fields
+    private Address address;
+    private Allergies allergies = null;
+    private BloodType bloodType = null;
+    private Country country = null;
+    private final DateOfBirth dateOfBirth;
+    //Medical history
+    private Condition condition = null;
+    private DateOfAdmission dateOfAdmission = null;
+    private Diagnosis diagnosis = null;
+    private final Status status;
+    private Symptom symptom = null;
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status) {
+        //Only the fields that are mandatory are included down here
+        requireAllNonNull(nric, name, phone, address, dateOfBirth, sex);
+        this.nric = nric;
         this.name = name;
         this.phone = phone;
-        this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.status = status;
+    }
+
+    // TODO @laney0808 Create Optional Setters
+    /**
+     * Returns NRIC of patient.
+     * @return
+     */
+    public Nric getNric() {
+        return nric;
     }
 
     public Name getName() {
@@ -49,8 +70,48 @@ public class Person {
         return email;
     }
 
+    public Sex getSex() {
+        return this.sex;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public Allergies getAllergies() {
+        return allergies;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public DateOfAdmission getDateOfAdmission() {
+        return dateOfAdmission;
+    }
+
+    public Diagnosis getDiagnosis() {
+        return diagnosis;
+    }
+
+    public Status getStatus() {
+        return this.status;
+    }
+
+    public Symptom getSymptom() {
+        return symptom;
     }
 
     /**
@@ -62,7 +123,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,8 +131,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -88,13 +148,14 @@ public class Person {
         if (!(other instanceof Person)) {
             return false;
         }
-
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        return nric.equals(otherPerson.nric)
+                && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && dateOfBirth.equals(otherPerson.dateOfBirth)
+                && dateOfAdmission.equals(otherPerson.dateOfAdmission)
+                && sex.equals(otherPerson.sex);
     }
 
     @Override
@@ -105,13 +166,31 @@ public class Person {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
+        // list view
+        return new ToStringBuilder(this).add("nric", nric).add("name", name).add("status", status).toString();
     }
 
+    /**
+     * @return Detailed String of Person
+     */
+    public String toDetailedString() {
+        // detailed view
+        return new ToStringBuilder(this)
+                .add("nric", nric)
+                .add("name", name)
+                .add("tags", tags)
+                .add("phone", phone)
+                .add("email", email)
+                .add("sex", sex)
+                .add("address", address)
+                .add("allergies", allergies)
+                .add("blood type", bloodType)
+                .add("country", country)
+                .add("birthday", dateOfBirth)
+                .add("condition", dateOfAdmission)
+                .add("diagnosis", diagnosis)
+                .add("status", status)
+                .add("symptom", symptom)
+                .toString();
+    }
 }

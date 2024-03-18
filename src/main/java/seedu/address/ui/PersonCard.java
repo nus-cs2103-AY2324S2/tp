@@ -39,9 +39,12 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        //nric.setText(person.getNRIC().value);
-        nric.setText("T01234567A"); // Set static value for UI testing
-        //name.setText(person.getName().fullName + " (" + person.getSex().value + ")")
-        name.setText(person.getName().fullName + " (X)"); // Set static value for UI testing
+        name.setText(person.getName().toString());
+        phone.setText(person.getPhone().toString());
+        address.setText(person.getAddress().toString());
+        email.setText(person.getEmail().toString());
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
