@@ -30,7 +30,8 @@ public class PolicyCommand extends Command {
 
     public static final String MESSAGE_ADD_POLICY_SUCCESS = "Added policy to Person: %1$s";
     public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Removed policy from Person: %1$s";
-    public static final String MESSAGE_PERSON_NOT_CLIENT_FAILURE = "Invalid person. Only clients can have an associated policy";
+    public static final String MESSAGE_PERSON_NOT_CLIENT_FAILURE =
+            "Invalid person. Only clients can have an associated policy";
 
     private final Index index;
     private final Policy policy;
