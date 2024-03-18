@@ -16,6 +16,8 @@ public class ViewCommandParser {
             return new ListCommand();
         } else if (arguments.trim().equals("-statistics")) {
             return new ViewCommand();
+        } else if (arguments.trim().equals("-stats")) {
+            return new ViewCommand();
         } else {
             throw new ParseException("Invalid arguments for 'view' command");
         }
