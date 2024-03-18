@@ -27,7 +27,7 @@ public class ViewCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Constructs a {@code ViewCommand} with the specified index.
+     * Constructs a ViewCommand with the specified index.
      *
      * @param targetIndex Index of the person to view.
      */
@@ -35,6 +35,13 @@ public class ViewCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the view command to display details of the person specified by the index.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return The command result indicating the success of the execution.
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -48,6 +55,12 @@ public class ViewCommand extends Command {
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
     }
 
+    /**
+     * Checks if this ViewCommand is equal to another object.
+     *
+     * @param other The other object to compare with.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -63,6 +76,11 @@ public class ViewCommand extends Command {
         return targetIndex.equals(otherViewCommand.targetIndex);
     }
 
+    /**
+     * Generates a string representation of this ViewCommand.
+     *
+     * @return The string representation of this ViewCommand.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)
