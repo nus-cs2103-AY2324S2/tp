@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 
 /**
- * Adds a employee to the address book.
+ * Adds an employee to the address book.
  */
 public class AddCommand extends Command {
 
@@ -34,7 +34,6 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TASKS + "0 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
