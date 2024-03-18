@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddImportantDateCommand;
+import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTagsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -30,7 +30,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.EditPatientDescriptor;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -83,14 +83,14 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addImportantDate() throws Exception {
+    public void parseCommand_addEvent() throws Exception {
         String name = "Birthday";
         String date = "20-01-2022";
         String args = "1 " + PREFIX_NAME + name + " " + PREFIX_DATETIME + date;
-        AddImportantDateCommand command = (AddImportantDateCommand) parser.parseCommand(
-                AddImportantDateCommand.COMMAND_WORD + " " + args);
+        AddEventCommand command = (AddEventCommand) parser.parseCommand(
+                AddEventCommand.COMMAND_WORD + " " + args);
 
-        assertEquals(new AddImportantDateCommand(INDEX_FIRST_PATIENT, new ImportantDate(name, date)), command);
+        assertEquals(new AddEventCommand(INDEX_FIRST_PATIENT, new Event(name, date)), command);
     }
 
     @Test

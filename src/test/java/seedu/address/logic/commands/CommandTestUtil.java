@@ -34,6 +34,9 @@ public class CommandTestUtil {
     public static final String VALID_ID_BOB = "12234";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_EVENT_NAME = "Birthday";
+    public static final String VALID_EVENT_DATE = "20-02-2022";
+    public static final String VALID_EVENT_DATETIME = "20-02-2022, 12:12 - 15:15";
     public static final String VALID_PREFERRED_NAME_AMY = "Amy";
     public static final String VALID_PREFERRED_NAME_BOB = "Bob";
     public static final String VALID_FOOD_AMY = "Dim sum";
@@ -44,14 +47,17 @@ public class CommandTestUtil {
     public static final String VALID_HOBBY_BOB = "Interested in calligraphy";
     public static final String VALID_TAG_DIABETES = "diabetes";
     public static final String VALID_TAG_DEPRESSION = "depression";
-    public static final String VALID_IMPORTANT_DATE_NAME = "Birthday";
-    public static final String VALID_IMPORTANT_DATE = "20-02-2022";
-    public static final String VALID_IMPORTANT_DATETIME = "20-02-2022, 12:12 - 15:15";
-
     public static final String ID_DESC_AMY = " " + PREFIX_PID + VALID_ID_AMY;
     public static final String ID_DESC_BOB = " " + PREFIX_PID + VALID_ID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String EVENT_DESC_DATE = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
+            + PREFIX_DATETIME + VALID_EVENT_DATE;
+    public static final String EVENT_DESC_DATETIME = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
+            + PREFIX_DATETIME + VALID_EVENT_DATETIME;
+
+    public static final String INVALID_EVENT_DESC = " " + PREFIX_NAME + VALID_EVENT_NAME
+            + PREFIX_DATETIME + "Invalid";
     public static final String PREFERRED_NAME_DESC_AMY = " " + PREFIX_PREFERRED_NAME + VALID_PREFERRED_NAME_AMY;
     public static final String PREFERRED_NAME_DESC_BOB = " " + PREFIX_PREFERRED_NAME + VALID_PREFERRED_NAME_BOB;
     public static final String FOOD_DESC_BOB = " " + PREFIX_FOOD_PREFERENCE + VALID_FOOD_BOB;
@@ -62,10 +68,10 @@ public class CommandTestUtil {
     public static final String HOBBY_DESC_BOB = " " + PREFIX_HOBBY + VALID_HOBBY_BOB;
     public static final String TAG_DESC_DIABETES = " " + PREFIX_TAG + VALID_TAG_DIABETES;
     public static final String TAG_DESC_DEPRESSION = " " + PREFIX_TAG + VALID_TAG_DEPRESSION;
-    public static final String IMPORTANT_DATE_DESC_DATE = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME + " "
-        + PREFIX_DATETIME + VALID_IMPORTANT_DATE;
-    public static final String IMPORTANT_DATE_DESC_DATETIME = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME + " "
-        + PREFIX_DATETIME + VALID_IMPORTANT_DATETIME;
+    public static final String IMPORTANT_DATE_DESC_DATE = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
+        + PREFIX_DATETIME + VALID_EVENT_DATE;
+    public static final String IMPORTANT_DATE_DESC_DATETIME = " " + PREFIX_NAME + VALID_EVENT_NAME + " "
+        + PREFIX_DATETIME + VALID_EVENT_DATETIME;
 
     public static final String INVALID_ID_DESC = " " + PREFIX_PID + "10 a"; // only digits are allowed in ID
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James& Lee Kuang"; // '&' not allowed in names
@@ -79,7 +85,7 @@ public class CommandTestUtil {
     public static final String INVALID_HOBBY_DESC = " " + PREFIX_HOBBY;
     // '*' and spacing not allowed in tags
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hearing loss*";
-    public static final String INVALID_IMPORTANT_DATE_DESC = " " + PREFIX_NAME + VALID_IMPORTANT_DATE_NAME
+    public static final String INVALID_IMPORTANT_DATE_DESC = " " + PREFIX_NAME + VALID_EVENT_NAME
         + PREFIX_DATETIME + "Invalid";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

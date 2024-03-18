@@ -17,16 +17,16 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.DeleteImportantDateCommandParser;
+import seedu.address.logic.parser.DeleteEventCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.patient.EditPatientDescriptor;
-import seedu.address.model.patient.ImportantDate;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.Patient;
 
 /**
  * Deletes a patient identified using it's displayed index from the address book.
  */
-public class DeleteImportantDateCommand extends Command {
+public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "deletee";
 
@@ -40,7 +40,7 @@ public class DeleteImportantDateCommand extends Command {
             + COMMAND_WORD + " 1 "
             + "e/ 1 ";
 
-    public static final String MESSAGE_DELETE_IMPORTANT_DATE_SUCCESS = "Deleted Event: %2$s for Patient: %1$s"
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %2$s for Patient: %1$s"
             + "successfully";
 
     private final Index targetPatientIndex;
@@ -48,12 +48,12 @@ public class DeleteImportantDateCommand extends Command {
     private final EditPatientDescriptor editPatientDescriptor;
 
     /**
-     * Constructs a DeleteImportantDateCommand to delete the specified {@code importantDate} using
+     * Constructs a DeleteEventCommand to delete the specified {@code event} using
      * {@code targetEventIndex} from the Patient with id {@code targetPatientIndex}
      * @param targetPatientIndex
      * @param targetEventIndex
      */
-    public DeleteImportantDateCommand(Index targetPatientIndex, Index targetEventIndex) {
+    public DeleteEventCommand(Index targetPatientIndex, Index targetEventIndex) {
         requireAllNonNull(targetPatientIndex, targetEventIndex);
         this.targetPatientIndex = targetPatientIndex;
         this.targetEventIndex = targetEventIndex;
@@ -69,36 +69,38 @@ public class DeleteImportantDateCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Patient patientToDeleteImportantDate = lastShownList.get(targetPatientIndex.getZeroBased());
-        Set<ImportantDate> importantDatesSet = patientToDeleteImportantDate.getImportantDates();
+        Patient patientToDeleteEvent = lastShownList.get(targetPatientIndex.getZeroBased());
+        Set<Event> eventSet = patientToDeleteEvent.getEvents();
 
-        if (targetEventIndex.getZeroBased() >= importantDatesSet.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_IMPORTANT_DATE_DISPLAYED_INDEX);
+        if (targetEventIndex.getZeroBased() >= eventSet.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Set<ImportantDate> currImportantDatesSet = new HashSet<>(patientToDeleteImportantDate.getImportantDates());
-        List<ImportantDate> currImportantDatesList = new ArrayList<>(currImportantDatesSet);
-        ImportantDate eventToDelete = currImportantDatesList.get(targetPatientIndex.getZeroBased());
-        currImportantDatesList.remove(targetEventIndex.getZeroBased());
-        Set<ImportantDate> newImportantDatesSet = new HashSet<>(currImportantDatesList);
-        Logger logger = LogsCenter.getLogger(DeleteImportantDateCommandParser.class);
-        logger.log(Level.INFO, "old set: " + currImportantDatesSet);
-        logger.log(Level.INFO, "new set: " + newImportantDatesSet);
+        Set<Event> currEventSet = new HashSet<>(patientToDeleteEvent.getEvents());
+        List<Event> currEventList = new ArrayList<>(currEventSet);
+        Event eventToDelete = currEventList.get(targetPatientIndex.getZeroBased());
+        currEventList.remove(targetEventIndex.getZeroBased());
+        Set<Event> newEventSet = new HashSet<>(currEventList);
+        Logger logger = LogsCenter.getLogger(DeleteEventCommandParser.class);
+        logger.log(Level.INFO, "old set: " + currEventSet);
+        logger.log(Level.INFO, "new set: " + newEventSet);
 
-        editPatientDescriptor.setPatientHospitalId(patientToDeleteImportantDate.getPatientHospitalId());
-        editPatientDescriptor.setPreferredName(patientToDeleteImportantDate.getPreferredName());
-        editPatientDescriptor.setFoodPreference(patientToDeleteImportantDate.getFoodPreference());
-        editPatientDescriptor.setFamilyCondition(patientToDeleteImportantDate.getFamilyCondition());
-        editPatientDescriptor.setHobby(patientToDeleteImportantDate.getHobby());
-        editPatientDescriptor.setName(patientToDeleteImportantDate.getName());
-        editPatientDescriptor.setTags(patientToDeleteImportantDate.getTags());
-        editPatientDescriptor.setImportantDate(newImportantDatesSet);
+        editPatientDescriptor.setName(patientToDeleteEvent.getName());
+        editPatientDescriptor.setTags(patientToDeleteEvent.getTags());
+        editPatientDescriptor.setPatientHospitalId(patientToDeleteEvent.getPatientHospitalId());
+        editPatientDescriptor.setPreferredName(patientToDeleteEvent.getPreferredName());
+        editPatientDescriptor.setFoodPreference(patientToDeleteEvent.getFoodPreference());
+        editPatientDescriptor.setFamilyCondition(patientToDeleteEvent.getFamilyCondition());
+        editPatientDescriptor.setHobby(patientToDeleteEvent.getHobby());
+        editPatientDescriptor.setName(patientToDeleteEvent.getName());
+        editPatientDescriptor.setTags(patientToDeleteEvent.getTags());
+        editPatientDescriptor.setEvents(newEventSet);
 
-        Patient editedPatient = createEditedPatient(patientToDeleteImportantDate, editPatientDescriptor);
-        model.setPatient(patientToDeleteImportantDate, editedPatient);
+        Patient editedPatient = createEditedPatient(patientToDeleteEvent, editPatientDescriptor);
+        model.setPatient(patientToDeleteEvent, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_DELETE_IMPORTANT_DATE_SUCCESS,
-                Messages.format(patientToDeleteImportantDate),
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS,
+                Messages.format(patientToDeleteEvent),
                 eventToDelete));
     }
 
@@ -109,13 +111,13 @@ public class DeleteImportantDateCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteImportantDateCommand)) {
+        if (!(other instanceof DeleteEventCommand)) {
             return false;
         }
 
-        DeleteImportantDateCommand otherDeleteImportantDateCommand = (DeleteImportantDateCommand) other;
-        return targetPatientIndex.equals(otherDeleteImportantDateCommand.targetPatientIndex)
-                && targetEventIndex.equals(otherDeleteImportantDateCommand.targetEventIndex);
+        DeleteEventCommand otherDeleteEventCommand = (DeleteEventCommand) other;
+        return targetPatientIndex.equals(otherDeleteEventCommand.targetPatientIndex)
+                && targetEventIndex.equals(otherDeleteEventCommand.targetEventIndex);
     }
 
     @Override

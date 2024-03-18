@@ -19,10 +19,10 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.EditPatientDescriptor;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Hobby;
-import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.PatientHospitalId;
@@ -109,11 +109,11 @@ public class EditCommand extends Command {
             .orElse(patientToEdit.getFamilyCondition());
         Hobby updatedHobby = editPatientDescriptor.getHobby().orElse(patientToEdit.getHobby());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
-        Set<ImportantDate> updatedImportantDates = editPatientDescriptor.getImportantDates()
-                .orElse(patientToEdit.getImportantDates());
+        Set<Event> updatedEvents = editPatientDescriptor.getEvents()
+                .orElse(patientToEdit.getEvents());
 
         return new Patient(originalPatientHospitalId, updatedName, updatedPreferredName, updatedFoodPreference,
-            updatedFamilyCondition, updatedHobby, updatedTags, updatedImportantDates);
+            updatedFamilyCondition, updatedHobby, updatedTags, updatedEvents);
     }
 
     @Override

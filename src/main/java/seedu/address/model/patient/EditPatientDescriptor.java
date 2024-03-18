@@ -22,7 +22,7 @@ public class EditPatientDescriptor {
     private FamilyCondition familyCondition;
     private Hobby hobby;
     private Set<Tag> tags;
-    private Set<ImportantDate> importantDate;
+    private Set<Event> events;
 
     public EditPatientDescriptor() {
     }
@@ -39,7 +39,7 @@ public class EditPatientDescriptor {
         setFamilyCondition(toCopy.familyCondition);
         setHobby(toCopy.hobby);
         setTags(toCopy.tags);
-        setImportantDate(toCopy.importantDate);
+        setEvents(toCopy.events);
     }
 
     /**
@@ -47,7 +47,7 @@ public class EditPatientDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition,
-            hobby, tags, importantDate);
+            hobby, tags, events);
     }
 
     public void setPatientHospitalId(PatientHospitalId id) {
@@ -115,12 +115,12 @@ public class EditPatientDescriptor {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
-    public Optional<Set<ImportantDate>> getImportantDates() {
-        return importantDate != null ? Optional.of(Collections.unmodifiableSet(importantDate)) : Optional.empty();
+    public Optional<Set<Event>> getEvents() {
+        return events != null ? Optional.of(Collections.unmodifiableSet(events)) : Optional.empty();
     }
 
-    public void setImportantDate(Set<ImportantDate> importantDate) {
-        this.importantDate = importantDate != null ? new HashSet<>(importantDate) : null;
+    public void setEvents(Set<Event> events) {
+        this.events = events != null ? new HashSet<>(events) : null;
     }
 
 
@@ -143,7 +143,7 @@ public class EditPatientDescriptor {
             && Objects.equals(familyCondition, otherEditPatientDescriptor.familyCondition)
             && Objects.equals(hobby, otherEditPatientDescriptor.hobby)
             && Objects.equals(tags, otherEditPatientDescriptor.tags)
-            && Objects.equals(importantDate, otherEditPatientDescriptor.importantDate);
+            && Objects.equals(events, otherEditPatientDescriptor.events);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class EditPatientDescriptor {
             .add("familyCondition", familyCondition)
             .add("hobby", hobby)
             .add("tags", tags)
-            .add("importantDate", importantDate)
+            .add("events", events)
             .toString();
     }
 }

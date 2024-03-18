@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Hobby;
-import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.PatientHospitalId;
 import seedu.address.model.patient.PreferredName;
@@ -157,21 +157,21 @@ public class ParserUtil {
         return tagSet;
     }
     /**
-     * Parses a {@param String importantDate} into a {@code ImportantDate}.
+     * Parses a {@param String event} into a {@code Event}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code importantDate} is invalid.
+     * @throws ParseException if the given {@code event} is invalid.
      */
-    public static ImportantDate parseImportantDate(String name, String importantDate) throws ParseException {
+    public static Event parseEvent(String name, String event) throws ParseException {
         String trimmedName = name.trim();
-        String trimmedImportantDate = importantDate.trim();
-        requireAllNonNull(name, importantDate);
+        String trimmedEventDateTimeStr = event.trim();
+        requireAllNonNull(name, event);
 
-        if (!ImportantDate.isValidImportantDate(trimmedImportantDate)) {
-            throw new ParseException(ImportantDate.MESSAGE_CONSTRAINTS);
+        if (!Event.isValidEvent(trimmedEventDateTimeStr)) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
 
-        return new ImportantDate(trimmedName, trimmedImportantDate);
+        return new Event(trimmedName, trimmedEventDateTimeStr);
     }
 
 

@@ -95,7 +95,7 @@ public class PatientTest {
             + ", name=" + ALICE.getName() + ", preferredName=" + ALICE.getPreferredName()
             + ", foodPreference=" + ALICE.getFoodPreference() + ", familyCondition=" + ALICE.getFamilyCondition()
             + ", hobby=" + ALICE.getHobby()
-            + ", tags=" + ALICE.getTags() + ", importantDates=" + ALICE.getImportantDates() + "}";;
+            + ", tags=" + ALICE.getTags() + ", events=" + ALICE.getEvents() + "}";;
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -1,14 +1,15 @@
 {
   "_comment": "AddressBook save file which contains the same Patient values as in TypicalPatient#getTypicalAddressBook()",
   "patients" : [ {
+    "name": "Alice Pauline",
     "patientHospitalId" : "12234",
-    "name" : "Alice Pauline",
     "preferredName" : "Alice",
     "foodPreference" : "Duck rice",
     "familyCondition" : "Have 2 daughters working overseas",
     "hobby" : "Watching Hong Kong drama",
     "tags" : [ "depression" ],
-    "importantDates" : []
+    "importantDates" : [],
+    "events" : []
   }, {
     "patientHospitalId" : "12235",
     "name" : "Benson Meier",
@@ -17,7 +18,7 @@
     "familyCondition" : "Wife in ICU",
     "hobby" : "Listen to Coldplay songs",
     "tags" : [ "diabetes", "cholesterol" ],
-    "importantDates" : [ {
+    "events" : [ {
       "name": "Birthday",
       "dateTime": "20-02-2022"
     }, {
@@ -32,7 +33,7 @@
     "familyCondition" : "Has no children",
     "hobby" : "Likes to play mahjong",
     "tags" : [ ],
-    "importantDates" : []
+    "events" : []
   }, {
     "patientHospitalId" : "12237",
     "name" : "Daniel Meier",
@@ -41,7 +42,8 @@
     "familyCondition" : "Nieces not around Singapore",
     "hobby" : "Cycling",
     "tags" : [ "eczema" ],
-    "importantDates" : []
+    "importantDates" : [],
+    "events" : []
   }, {
     "patientHospitalId" : "12238",
     "name" : "Elle Meyer",
@@ -50,7 +52,7 @@
     "familyCondition" : "Husband working overseas",
     "hobby": "Dancing",
     "tags" : [ ],
-    "importantDates" : []
+    "events" : []
   }, {
     "patientHospitalId" : "12239",
     "name" : "Fiona Kunz",
@@ -59,7 +61,7 @@
     "familyCondition" : "Daughter fights with her every week",
     "hobby" : "dancing",
     "tags" : [ ],
-    "importantDates" : []
+    "events" : []
   }, {
     "patientHospitalId" : "12240",
     "name" : "George Best",
@@ -68,6 +70,6 @@
     "familyCondition" : "no children",
     "hobby" : "reading books",
     "tags" : [ ],
-    "importantDates" : []
+    "events" : []
   } ]
 }

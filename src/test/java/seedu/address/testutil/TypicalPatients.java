@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATETIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_AMY;
@@ -8,9 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATETIME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERRED_NAME_AMY;
@@ -29,16 +29,15 @@ import seedu.address.model.patient.Patient;
  * A utility class containing a list of {@code Patient} objects to be used in tests.
  */
 public class TypicalPatients {
-
     public static final Patient ALICE = new PatientBuilder().withPatientHospitalId("12234").withName("Alice Pauline")
         .withPreferredName("Alice").withFoodPreference("Duck rice")
         .withFamilyCondition("Have 2 daughters working overseas").withHobby("Watching Hong Kong drama")
         .withTags("depression").build();
     public static final Patient BENSON = new PatientBuilder().withPatientHospitalId("12235").withName("Benson Meier")
         .withPreferredName("Benson").withFoodPreference("Kampung Fried Rice").withFamilyCondition("Wife in ICU")
-        .withHobby("Listen to Coldplay songs").withTags("diabetes", "cholesterol").withImportantDates(
-            new String[] { VALID_IMPORTANT_DATE_NAME, VALID_IMPORTANT_DATE_NAME },
-            new String[] { VALID_IMPORTANT_DATE, VALID_IMPORTANT_DATETIME }).build();;
+        .withHobby("Listen to Coldplay songs").withTags("diabetes", "cholesterol").withEvents(
+            new String[] { VALID_EVENT_NAME, VALID_EVENT_NAME },
+            new String[] { VALID_EVENT_DATE, VALID_EVENT_DATETIME }).build();;
     public static final Patient CARL = new PatientBuilder().withPatientHospitalId("12236").withName("Carl Kurz")
         .withPreferredName("Ah Carl").withFoodPreference("Sambal fish").withFamilyCondition("Has no children")
         .withHobby("Likes to play mahjong").build();

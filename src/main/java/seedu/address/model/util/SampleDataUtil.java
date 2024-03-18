@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Hobby;
-import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.PatientHospitalId;
@@ -26,11 +26,12 @@ public class SampleDataUtil {
                 new FoodPreference("Curry chicken"),
                 new FamilyCondition("Stable, Has 2 sons that visits him regularly"),
                 new Hobby("Singing karaoke"),
-                getTagSet("diabetes")),
+                getTagSet("diabetes"), getEventSet(new String[] {"Birthday"}, new String[] {"20-01-2022"})),
             new Patient(new PatientHospitalId("12346"), new Name("Bernice Yu Sheng Huat"), new PreferredName("Bern"),
                 new FoodPreference("Char Kuay Tiao, Black Carrot Cake"),
                 new FamilyCondition("Lives alone, no family members around"), new Hobby("Playing Mahjong"),
-                getTagSet("HighBloodPressure")),
+                getTagSet("HighBloodPressure"),
+                getEventSet(new String[] {"Family Visit"}, new String[] {"30-03-2022, 15:00 - 18:00"})),
             new Patient(new PatientHospitalId("12347"), new Name("Mary Jane"), new PreferredName("Mary"),
                 new FoodPreference("Korean"),
                 new FamilyCondition("Lives with only daughter, quarrels regularly with daughter"),
@@ -69,15 +70,15 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a important dates set containing the list of strings given.
+     * Returns a set of Events containing the list of strings given.
      */
-    public static Set<ImportantDate> getImportantDateSet(String[] names, String[] dates) {
-        ImportantDate[] importantDates = new ImportantDate[names.length];
+    public static Set<Event> getEventSet(String[] names, String[] dates) {
+        Event[] events = new Event[names.length];
         for (int i = 0; i < names.length; i++) {
-            importantDates[i] = new ImportantDate(names[i], dates[i]);
+            events[i] = new Event(names[i], dates[i]);
         }
 
-        return Arrays.stream(importantDates).collect(Collectors.toSet());
+        return Arrays.stream(events).collect(Collectors.toSet());
     }
 
 }

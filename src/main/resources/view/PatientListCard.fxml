@@ -52,6 +52,6 @@
 
     </VBox>
 
-    <VBox fx:id="importantDates" GridPane.columnIndex="1" alignment="CENTER" />
+    <VBox fx:id="events" GridPane.columnIndex="1" alignment="CENTER" />
   </GridPane>
 </HBox>

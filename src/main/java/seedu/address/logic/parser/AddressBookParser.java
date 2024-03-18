@@ -9,12 +9,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddImportantDateCommand;
+import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTagsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteImportantDateCommand;
+import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -65,8 +65,8 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case AddImportantDateCommand.COMMAND_WORD:
-            return new AddImportantDateParser().parse(arguments);
+        case AddEventCommand.COMMAND_WORD:
+            return new AddEventParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -86,8 +86,8 @@ public class AddressBookParser {
         case AddTagsCommand.COMMAND_WORD:
             return new AddTagsCommandParser().parse(arguments);
 
-        case DeleteImportantDateCommand.COMMAND_WORD:
-            return new DeleteImportantDateCommandParser().parse(arguments);
+        case DeleteEventCommand.COMMAND_WORD:
+            return new DeleteEventCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

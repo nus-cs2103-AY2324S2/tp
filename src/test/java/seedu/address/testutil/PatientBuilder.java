@@ -3,10 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.patient.Event;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Hobby;
-import seedu.address.model.patient.ImportantDate;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.PatientHospitalId;
@@ -33,7 +33,7 @@ public class PatientBuilder {
     private FamilyCondition familyCondition;
     private Hobby hobby;
     private Set<Tag> tags;
-    private Set<ImportantDate> importantDates;
+    private Set<Event> events;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -46,7 +46,7 @@ public class PatientBuilder {
         familyCondition = new FamilyCondition(DEFAULT_FAMILY_CONDITION);
         hobby = new Hobby(DEFAULT_HOBBY);
         tags = new HashSet<>();
-        importantDates = new HashSet<>();
+        events = new HashSet<>();
     }
 
     /**
@@ -60,7 +60,7 @@ public class PatientBuilder {
         familyCondition = patientToCopy.getFamilyCondition();
         hobby = patientToCopy.getHobby();
         tags = new HashSet<>(patientToCopy.getTags());
-        importantDates = new HashSet<>(patientToCopy.getImportantDates());
+        events = new HashSet<>(patientToCopy.getEvents());
     }
 
     /**
@@ -120,15 +120,15 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the ImportantDate of the {@code Patient} that we are building,
+     * Sets the Event of the {@code Patient} that we are building,
      * with the name and date/datetime of the event
      *
      * @param names description of important date
-     * @param importantDates array of string of dates
+     * @param events array of string of dates
      * @return return PatientBuilder withImportantDates
      */
-    public PatientBuilder withImportantDates(String[] names, String[] importantDates) {
-        this.importantDates = SampleDataUtil.getImportantDateSet(names, importantDates);
+    public PatientBuilder withEvents(String[] names, String[] events) {
+        this.events = SampleDataUtil.getEventSet(names, events);
         return this;
     }
 
@@ -137,7 +137,7 @@ public class PatientBuilder {
      */
     public Patient build() {
         return new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
-            importantDates);
+            events);
     }
 
 }
