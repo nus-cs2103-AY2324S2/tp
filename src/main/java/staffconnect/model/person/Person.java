@@ -29,7 +29,7 @@ public class Person {
     private final Venue venue;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Availability> availabilities = new HashSet<>();
-    private Set<Meeting> meetings = new HashSet<>();
+    private final Set<Meeting> meetings = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -85,15 +85,17 @@ public class Person {
         return Collections.unmodifiableSet(meetings);
     }
 
-    public void setMeetings(Set<Meeting> toAdd) {
-        meetings = toAdd;
-    }
+
     /*
      * Returns an immutable availability set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Availability> getAvailabilities() {
         return Collections.unmodifiableSet(availabilities);
+    }
+
+    public void setMeetings(Set<Meeting> toAdd) {
+        meetings.addAll(toAdd);
     }
 
     /**
