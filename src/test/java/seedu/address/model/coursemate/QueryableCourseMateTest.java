@@ -1,5 +1,6 @@
 package seedu.address.model.coursemate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -22,8 +23,10 @@ public class QueryableCourseMateTest {
 
     @Test
     public void isName_nameObject_returnsTrue() {
-        QueryableCourseMate queryableCourseMate = new QueryableCourseMate(new Name("John Doe"));
+        Name name = new Name("John Doe");
+        QueryableCourseMate queryableCourseMate = new QueryableCourseMate(name);
         assertTrue(queryableCourseMate.isName());
+        assertEquals(queryableCourseMate.getName(), name);
     }
 
     @Test
@@ -39,8 +42,10 @@ public class QueryableCourseMateTest {
     }
 
     @Test
-    public void isIndex_indexObject_returnsFalse() {
-        QueryableCourseMate queryableCourseMate = new QueryableCourseMate(Index.fromZeroBased(0));
+    public void isIndex_indexObject_returnsTrue() {
+        Index index = Index.fromZeroBased(0);
+        QueryableCourseMate queryableCourseMate = new QueryableCourseMate(index);
         assertTrue(queryableCourseMate.isIndex());
+        assertEquals(queryableCourseMate.getIndex(), index);
     }
 }
