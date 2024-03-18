@@ -38,9 +38,9 @@ public class MarkCommandParser implements Parser<MarkCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG, PREFIX_TAGSTATUS);
         String tagName = argMultimap.getValue(PREFIX_TAG).get();
-        String status = argMultimap.getValue(PREFIX_TAGSTATUS).get();
+        String statusIdentifier = argMultimap.getValue(PREFIX_TAGSTATUS).get();
 
-        TagStatus tagStatus = TagStatus.getTagStatus(status);
+        TagStatus tagStatus = TagStatus.getTagStatus(statusIdentifier);
 
         return new MarkCommand(index, tagName, tagStatus);
     }
