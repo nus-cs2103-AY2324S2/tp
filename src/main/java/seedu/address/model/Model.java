@@ -90,4 +90,12 @@ public interface Model {
     boolean canUndoAddressBook();
 
     void undoAddressBook();
+
+    boolean canRedoAddressBook();
+
+    void redoAddressBook();
+
+    boolean shouldPurgeAddressBook();
+
+    void purgeAddressBook();
 }

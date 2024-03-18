@@ -18,6 +18,9 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
+        if (model.shouldPurgeAddressBook()) {
+            model.purgeAddressBook();
+        }
         model.commitAddressBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }

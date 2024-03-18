@@ -159,8 +159,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void commitAddressBook() {
-        }
+        public void commitAddressBook() {}
 
         @Override
         public boolean canUndoAddressBook() {
@@ -171,6 +170,27 @@ public class AddCommandTest {
         public void undoAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean canRedoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean shouldPurgeAddressBook() {
+            return false;
+        }
+
+        @Override
+        public void purgeAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
