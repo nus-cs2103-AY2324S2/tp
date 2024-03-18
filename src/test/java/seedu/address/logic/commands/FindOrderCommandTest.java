@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
-import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalOrders.COOKIES_ONLY;
 import static seedu.address.testutil.TypicalOrders.CUPCAKES_ONLY;
@@ -61,12 +60,12 @@ public class FindOrderCommandTest {
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredOrderList());
     }
 
     @Test
     public void execute_singleOrderIndex_singleOrderFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
         MatchingOrderIndexPredicate predicate = prepareOrderPredicate("1");
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -76,7 +75,7 @@ public class FindOrderCommandTest {
 
     @Test
     public void execute_multipleOrderIndexes_multipleOrdersFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
         MatchingOrderIndexPredicate predicate = prepareOrderPredicate("1 2");
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
