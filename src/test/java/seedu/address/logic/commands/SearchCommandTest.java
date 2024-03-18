@@ -16,7 +16,6 @@ import seedu.address.logic.commands.SearchCommand.SearchPersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.SearchPersonDescriptorBuilder;
@@ -68,10 +67,11 @@ public class SearchCommandTest {
 
     @Test
     public void execute_matchSubstring() {
-        Person ALEX = new PersonBuilder().withName("ALEX Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withAddress("michegan ave").withComment("Good job").build();
+        Person ALEX = new PersonBuilder().withName("Alex Meyer").withPhone("659482224")
+                .withEmail("alex@example.com").withCountry("US").withComment("Good job").build();
         Person BELLE = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withAddress("michegan ave").withComment("Good work").build();
+                .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
+                .build();
         expectedModel.addPerson(ALEX);
         expectedModel.addPerson(BELLE);
         model = expectedModel;
@@ -100,7 +100,8 @@ public class SearchCommandTest {
     @Test
     public void execute_matchExact() {
         Person BELLE = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withAddress("michegan ave").build();
+                .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
+                .build();
         expectedModel.addPerson(BELLE);
         model = expectedModel;
 
@@ -117,12 +118,27 @@ public class SearchCommandTest {
         expectedModel.updateFilteredPersonList(descriptor.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(ELLE), model.getFilteredPersonList());
+
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        descriptor = new SearchPersonDescriptorBuilder().withStatus("SG").build();
+        command = new SearchCommand(descriptor);
+        expectedModel.updateFilteredPersonList(descriptor.getPredicate());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        descriptor = new SearchPersonDescriptorBuilder().withStatus("PRESCREEN").build();
+        command = new SearchCommand(descriptor);
+        expectedModel.updateFilteredPersonList(descriptor.getPredicate());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, CARL, ELLE), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleFields() {
         Person BELLE = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withAddress("michegan ave").withComment("Good work").build();
+                .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
+                .build();
         expectedModel.addPerson(BELLE);
         model = expectedModel;
 

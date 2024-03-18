@@ -1,10 +1,11 @@
 package seedu.address.model.person;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
@@ -43,9 +44,12 @@ public class ContainsKeywordsPredicate<T> implements Predicate<Person> {
         } else if (prefix.equals(PREFIX_EMAIL)) {
             Optional<Email> email = (Optional<Email>) keywords;
             return person.getEmail().value.equals(email.orElse(person.getEmail()).value);
-        } else if (prefix.equals(PREFIX_ADDRESS)) {
-            Optional<Address> address = (Optional<Address>) keywords;
-            return person.getAddress().value.equals(address.orElse(person.getAddress()).value);
+        } else if (prefix.equals(PREFIX_COUNTRY)) {
+            Optional<Country> address = (Optional<Address>) keywords;
+            return person.getCountry().value.equals(address.orElse(person.getCountry()).value);
+        } else if (prefix.equals(PREFIX_STATUS)) {
+            Optional<Status> status = (Optional<Status>) keywords;
+            return person.getStatus().value.equals(status.orElse(person.getStatus()).value);
         } else if (prefix.equals(PREFIX_COMMENT)) {
             Optional<Comment> comment = (Optional<Comment>) keywords;
             return person.getComment().value.contains(comment.orElse(new Comment("")).value);

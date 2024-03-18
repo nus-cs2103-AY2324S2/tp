@@ -18,13 +18,7 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Comment;
-import seedu.address.model.person.ContainsKeywordsPredicate;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.SearchPredicate;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,7 +87,8 @@ public class SearchCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Country country;
+        private Status status;
         private Comment comment;
         private Set<Tag> tags;
 
@@ -123,12 +118,20 @@ public class SearchCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setCountry(Country country) {
+            this.country = country;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Country> getCountry() {
+            return Optional.ofNullable(country);
+        }
+
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
         }
 
         public void setComment(Comment comment) {
@@ -167,9 +170,9 @@ public class SearchCommand extends Command {
             ContainsKeywordsPredicate<Email> emailSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_EMAIL, this.getEmail());
             predicateList.add(emailSearch);
-            ContainsKeywordsPredicate<Address> addressSearch =
-                    new ContainsKeywordsPredicate<>(PREFIX_ADDRESS, this.getAddress());
-            predicateList.add(addressSearch);
+            ContainsKeywordsPredicate<Country> countrySearch =
+                    new ContainsKeywordsPredicate<>(PREFIX_ADDRESS, this.getCountry());
+            predicateList.add(countrySearch);
             ContainsKeywordsPredicate<Comment> commentSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_COMMENT, this.getComment());
             predicateList.add(commentSearch);

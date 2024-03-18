@@ -62,10 +62,18 @@ public class SearchPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code SearchPersonDescriptor} that we are building.
+     * Sets the {@code Country} of the {@code SearchPersonDescriptor} that we are building.
      */
-    public SearchPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public SearchPersonDescriptorBuilder withCountry(String country) {
+        descriptor.setCountry(new Country(country));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code SearchPersonDescriptor} that we are building.
+     */
+    public SearchPersonDescriptorBuilder withStatus(String status) {
+        descriptor.setStatus(new Status(status));
         return this;
     }
 
