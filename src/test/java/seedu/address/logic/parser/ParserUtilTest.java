@@ -30,6 +30,7 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "12345678";
+    private static final String VALID_PHONE_TWO = "87654321";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_STUDENT_ID = "77888";
@@ -93,15 +94,26 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
+        String phoneString = VALID_PHONE + "," + VALID_PHONE_TWO;
         Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+        Phone expectedPhoneTwo = new Phone(VALID_PHONE_TWO);
+        Phone[] expectedPhoneArray = new Phone[2];
+        expectedPhoneArray[0] = expectedPhone;
+        expectedPhoneArray[1] = expectedPhoneTwo;
+        assertEquals(expectedPhoneArray[0], ParserUtil.parsePhone(phoneString)[0]);
+        assertEquals(expectedPhoneArray[1], ParserUtil.parsePhone(phoneString)[1]);
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE + " , " + VALID_PHONE_TWO + WHITESPACE;
+        Phone expectedPhoneOne = new Phone(VALID_PHONE);
+        Phone expectedPhoneTwo = new Phone(VALID_PHONE_TWO);
+        Phone[] expectedPhoneArray = new Phone[2];
+        expectedPhoneArray[0] = expectedPhoneOne;
+        expectedPhoneArray[1] = expectedPhoneTwo;
+        assertEquals(expectedPhoneArray[0], ParserUtil.parsePhone(phoneWithWhitespace)[0]);
+        assertEquals(expectedPhoneArray[1], ParserUtil.parsePhone(phoneWithWhitespace)[1]);
     }
 
     @Test

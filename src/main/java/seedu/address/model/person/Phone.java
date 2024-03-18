@@ -12,6 +12,10 @@ public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should be an 8 digits positive number with a non-zero number as the first digit.";
+    public static final String INVALID_NUMBER_OF_PHONES =
+            "Two parent phone numbers need to be provided.";
+    public static final String INVALID_EDIT_INPUT =
+            "The valid input for an edit phone input is: {new phone number}, {number of phone number to edit}.";
     public static final String VALIDATION_REGEX = "^[1-9]\\d{7}$";
     public final String value;
 

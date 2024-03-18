@@ -67,18 +67,57 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String phone} into an array of 2 {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code phone} is invalid and if less than 2 phone numbers are provided.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static Phone[] parsePhone(String phones) throws ParseException {
+        requireNonNull(phones);
+        String[] splitPhones = phones.split(",");
+
+        if (splitPhones.length != 2) {
+            throw new ParseException(Phone.INVALID_NUMBER_OF_PHONES);
+        }
+
+        Phone[] phoneArray = new Phone[2];
+        for (int i = 0; i < splitPhones.length; i++) {
+            String trimmedPhone = splitPhones[i].trim();
+            if (!Phone.isValidPhone(trimmedPhone)) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            phoneArray[i] = new Phone(trimmedPhone);
+        }
+
+        return phoneArray;
+    }
+
+    /**
+     * Parses a {@code String phone} into an array of the {@code Phone} to edit and a {@code number} to designate
+     * which parent phone number to edit.
+     *
+     * @throws ParseException if the given {@code phone} is invalid and if the second input is invalid.
+     */
+    public static String[] parsePhoneForEdit(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
+        String[] splitInput = phone.split(",");
+
+        if (splitInput.length != 2) {
+            throw new ParseException(Phone.INVALID_EDIT_INPUT);
+        }
+
+        String trimmedPhone = splitInput[0].trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+
+        String number = splitInput[1].trim();
+        //Checks if it is either "1" or "2"
+        if (!number.equals("1") && !number.equals("2")) {
+            throw new ParseException(Phone.INVALID_EDIT_INPUT);
+        }
+
+        return splitInput;
     }
 
     /**

@@ -38,8 +38,10 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("; Phone: ")
-                .append(person.getPhone())
+                .append("; First parent phone: ")
+                .append(person.getParentPhoneOne())
+                .append("; Second parent phone: ")
+                .append(person.getParentPhoneTwo())
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Address: ")

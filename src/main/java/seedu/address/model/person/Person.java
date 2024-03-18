@@ -19,7 +19,8 @@ public class Person {
     // Identity fields
     private final StudentId studentId;
     private final Name name;
-    private final Phone phone;
+    private final Phone parentPhoneOne;
+    private final Phone parentPhoneTwo;
     private final Email email;
 
     // Data fields
@@ -29,11 +30,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, StudentId studentId, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags, studentId);
+    public Person(Name name, Phone parentPhoneOne, Phone parentPhoneTwo, Email email, Address address,
+                  StudentId studentId, Set<Tag> tags) {
+        requireAllNonNull(name, parentPhoneOne, parentPhoneTwo, email, address, tags, studentId);
         this.studentId = studentId;
         this.name = name;
-        this.phone = phone;
+        this.parentPhoneOne = parentPhoneOne;
+        this.parentPhoneTwo = parentPhoneTwo;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -46,9 +49,11 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Phone getParentPhoneOne() {
+        return parentPhoneOne;
     }
+
+    public Phone getParentPhoneTwo() {return parentPhoneTwo; }
 
     public Email getEmail() {
         return email;
@@ -96,7 +101,8 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
+                && parentPhoneOne.equals(otherPerson.parentPhoneOne)
+                && parentPhoneTwo.equals(otherPerson.parentPhoneTwo)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
@@ -107,14 +113,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, studentId, tags);
+        return Objects.hash(name, parentPhoneOne, parentPhoneTwo, email, address, studentId, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
+                .add("parent phone 1", parentPhoneOne)
+                .add("parent phone 2", parentPhoneTwo)
                 .add("email", email)
                 .add("address", address)
                 .add("student id", studentId)
