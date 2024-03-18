@@ -100,14 +100,14 @@ public class ModelManagerTest {
 
     @Test
     public void findCourseMate_byNameCourseMateNotInContactList_throwsError() {
-        assertThrows(RuntimeException.class,
-                () -> modelManager.findCourseMate(new QueryableCourseMate(new Name("RANDOM_STRING_12KAJ@"))));
+        assertThrows(RuntimeException.class, () ->
+                modelManager.findCourseMate(new QueryableCourseMate(new Name("RANDOM_STRING_12KAJ@"))));
     }
 
     @Test
     public void findCourseMate_byIndexCourseMateNotInContactList_throwsError() {
-        assertThrows(RuntimeException.class,
-                () -> modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(0))));
+        assertThrows(RuntimeException.class, () ->
+                modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(0))));
     }
 
     @Test

@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
 import seedu.address.testutil.CourseMateBuilder;
 
@@ -145,6 +146,10 @@ public class AddCommandTest {
 
         @Override
         public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override public CourseMate findCourseMate(QueryableCourseMate queryableCourseMate) {
             throw new AssertionError("This method should not be called.");
         }
 

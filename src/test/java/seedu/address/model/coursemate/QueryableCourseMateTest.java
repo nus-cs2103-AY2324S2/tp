@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
 
+import seedu.address.commons.core.index.Index;
 
 public class QueryableCourseMateTest {
 

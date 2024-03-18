@@ -60,12 +60,12 @@ public class UniqueCourseMateListTest {
 
     @Test
     public void findCourseMate_courseMateDoesNotExist_throwsCourseMateNotFoundException() {
-        assertThrows(CourseMateNotFoundException.class,
-                () -> uniqueCourseMateList.findCourseMate(new Name("RANDOM_STRING_AJ124AJK")));
+        assertThrows(CourseMateNotFoundException.class, () ->
+                uniqueCourseMateList.findCourseMate(new Name("RANDOMSTRINGAJ124AJK")));
     }
 
     @Test
-    public void findCourseMate_courseMateExists_CourseMateFound() {
+    public void findCourseMate_courseMateExists_courseMateFound() {
         uniqueCourseMateList.add(ALICE);
         assertDoesNotThrow(() -> uniqueCourseMateList.findCourseMate(ALICE.getName()));
     }

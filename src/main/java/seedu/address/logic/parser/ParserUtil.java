@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -104,5 +105,23 @@ public class ParserUtil {
             skillSet.add(parseSkill(skillName));
         }
         return skillSet;
+    }
+
+    /**
+     * Parses {@code String label} into a {@code QueryableCourseMate}.
+     */
+    public static QueryableCourseMate parseQueryableCourseMate(String label) throws ParseException {
+        requireNonNull(label);
+        String trimmedLabel = label.trim();
+
+        if (trimmedLabel.isEmpty()) {
+            throw new ParseException("the query cannot be empty");
+        }
+
+        if (trimmedLabel.charAt(0) == '#') {
+            return new QueryableCourseMate(parseIndex(trimmedLabel.substring(1)));
+        } else {
+            return new QueryableCourseMate(parseName(trimmedLabel));
+        }
     }
 }
