@@ -84,7 +84,7 @@ public class NoteCommand extends Command {
             LocalDate currentDate = LocalDate.now();
             return currentDate.format(DateTimeFormatter.ofPattern("MMMM d, yy"));
         }
-        return null;
+        return "";
     }
 
     @Override
