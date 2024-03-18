@@ -55,7 +55,7 @@ class TagCommandTest {
         String expectedMessage = String.format(
                 TagCommand.MESSAGE_TAG_CONTACT_SUCCESS,
                 Messages.format(editedPerson),
-                "friends, owesmoney");
+                "friends, owesMoney");
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(actualPerson, editedPerson);
