@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Represents an Appointment's Date, startTime and endTime in the address book.
@@ -60,6 +61,17 @@ public class AppointmentTime {
 
     public LocalTime getEndTime() {
         return endTime;
+    }
+
+    public String getFormattedDateTime() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("ha").withLocale(Locale.ENGLISH);
+
+        String dateStr = appointmentDate.format(dateFormatter);
+        String startTimeStr = startTime.format(timeFormatter).toLowerCase();
+        String endTimeStr = endTime.format(timeFormatter).toLowerCase();
+
+        return dateStr + " " + startTimeStr + "-" + endTimeStr;
     }
 
     @Override
