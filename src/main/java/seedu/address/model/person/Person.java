@@ -66,6 +66,10 @@ public class Person {
         this.orders.add(order);
     }
 
+    /**
+     * Deletes an order from the customer's order list.
+     * @param orderId the id of the order to be deleted.
+     */
     public void deleteOrder(int orderId) {
         for (int i = 0; i < orders.size(); i++) {
             if (orders.get(i).getId() == orderId) {
@@ -76,10 +80,19 @@ public class Person {
         throw new OrderNotFoundException();
     }
 
+    /**
+     * Sets the list of orders for the customer.
+     * @param orders the list of the customer's orders.
+     */
     public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
     }
 
+    /**
+     * Edits an order from the customer's order list.
+     * @param orderId the id of the order to be edited.
+     * @param toEdit the new order that is used to replace the old order.
+     */
     public void editOrder(int orderId, Order toEdit) {
         for (int i = 0; i < orders.size(); i++) {
             if (orders.get(i).getId() == orderId) {
