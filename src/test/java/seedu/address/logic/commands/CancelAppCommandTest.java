@@ -52,16 +52,17 @@ public class CancelAppCommandTest {
                 ALICE_APPT_1.getTimePeriod()
         );
 
-        String expectedMessageFirst = String.format(CancelAppCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS,
-                Messages.format(ALICE_APPT));
-        String expectedMessageSecond = String.format(CancelAppCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS,
-                Messages.format(ALICE_APPT_1));
-
-        assertCommandSuccess(cancelFirstAppointment, model, expectedMessageFirst, model);
-        assertCommandSuccess(cancelSecondAppointment, model, expectedMessageSecond, model);
-
         // same object -> returns true
         assertTrue(cancelFirstAppointment.equals(cancelFirstAppointment));
+
+        //same values --> returns true
+        CancelAppCommand cancelFirstAppointmentCopy = new CancelAppCommand(
+                ALICE_APPT.getNric(),
+                ALICE_APPT.getDate(),
+                ALICE_APPT.getTimePeriod()
+        );
+        assertTrue(cancelFirstAppointment.equals(cancelFirstAppointmentCopy));
+
 
         // different types -> returns false
         assertFalse(cancelFirstAppointment.equals(1));
@@ -81,13 +82,10 @@ public class CancelAppCommandTest {
                 ALICE_APPT.getTimePeriod()
         );
 
-        String expectedMessage = String.format(CancelAppCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS,
-                Messages.format(ALICE_APPT));
-
-        assertCommandSuccess(cancelAppCommand, model, expectedMessage, model);
-
         String expected = CancelAppCommand.class.getCanonicalName()
-                + "{appointment=" + ALICE_APPT + "}";
+                + "{nric=" + ALICE_APPT.getNric() + ", "
+                + "date=" + ALICE_APPT.getDate() + ", "
+                + "timePeriod=" + ALICE_APPT.getTimePeriod() + "}";
         assertEquals(expected, cancelAppCommand.toString());
     }
 }

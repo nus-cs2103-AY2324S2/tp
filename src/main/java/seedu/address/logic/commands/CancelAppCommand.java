@@ -80,13 +80,20 @@ public class CancelAppCommand extends Command {
         }
 
         CancelAppCommand otherCancelAppCommand = (CancelAppCommand) other;
-        return apptToCancel.equals(otherCancelAppCommand.apptToCancel);
+
+        // Check if all fields are equal except apptToCancel as not initialised until execute
+        return nricToMatch.equals(otherCancelAppCommand.nricToMatch)
+                && dateToMatch.equals(otherCancelAppCommand.dateToMatch)
+                && timePeriodToMatch.equals(otherCancelAppCommand.timePeriodToMatch);
     }
 
     @Override
     public String toString() {
+        // Build based on all fields except apptToCancel as not initialised until execute
         return new ToStringBuilder(this)
-                .add("appointment", apptToCancel)
+                .add("nric", nricToMatch)
+                .add("date", dateToMatch)
+                .add("timePeriod", timePeriodToMatch)
                 .toString();
     }
 }
