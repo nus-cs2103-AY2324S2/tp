@@ -23,7 +23,9 @@ public class Person {
 
     // Data fields
     private final Address address;
+
     private final Set<Tag> tags = new HashSet<>();
+    private ImagePath image;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +37,17 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.image = new ImagePath();
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ImagePath image) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.image = image;
     }
 
     public Name getName() {
@@ -60,6 +73,8 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    public ImagePath getImage() { return this.image; }
 
     /**
      * Returns true if both persons have the same name.
