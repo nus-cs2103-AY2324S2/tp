@@ -3,8 +3,10 @@ package staffconnect.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static staffconnect.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Meeting's starting time in the staff book.
@@ -12,7 +14,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class MeetDateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "DateTime should be of the correct format dd/mm/yyyy HH:mm";
+    public static final String MESSAGE_CONSTRAINTS = "DateTime should be of the correct format and values dd/mm/yyyy "
+            + "HH:mm";
     public static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}";
 
     private static final DateTimeFormatter PROCESS_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -35,7 +38,17 @@ public class MeetDateTime {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidMeetDateTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && isParsable(test);
+    }
+
+    //Wrapper method only unique to this class
+    private static boolean isParsable(String test) {
+        try {
+            LocalDateTime.parse(test,PROCESS_FORMAT);
+        } catch (DateTimeException e) {
+            return false;
+        }
+        return true;
     }
 
     public LocalDateTime getDateTime() {

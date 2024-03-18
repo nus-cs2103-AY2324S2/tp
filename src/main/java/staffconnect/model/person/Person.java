@@ -95,6 +95,7 @@ public class Person {
     }
 
     public void setMeetings(Set<Meeting> toAdd) {
+        meetings.clear();//Remove all existing entries and assume the new set
         meetings.addAll(toAdd);
     }
 
