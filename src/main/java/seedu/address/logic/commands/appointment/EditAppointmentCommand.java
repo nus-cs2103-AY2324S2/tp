@@ -84,7 +84,7 @@ public class EditAppointmentCommand extends Command {
 
         AppointmentTime updatedAppointmentTime = editAppointmentDescriptor.getAppointmentTime()
                 .orElse(appointmentToEdit.getAppointmentTime());
-        return new Appointment(appointmentToEdit.getPersonId(), updatedAppointmentTime);
+        return new Appointment(appointmentToEdit.getId(), appointmentToEdit.getPersonId(), updatedAppointmentTime);
     }
 
     @Override
