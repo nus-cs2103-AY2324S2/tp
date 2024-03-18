@@ -39,15 +39,15 @@ public class TypicalPersons {
 
     // Doctors
 
-    public static final Person JAMES = new DoctorBuilder().withNric("S1234367A").withName("James Tan")
+    public static final Person DAMES = new DoctorBuilder().withNric("S1234367A").withName("Dames Tan")
             .withDoB("2020-01-03").withPhone("94351223").build();
-    public static final Person JAMES_GOH = new DoctorBuilder().withNric("S1124133A").withName("James Goh")
+    public static final Person DAMES_GOH = new DoctorBuilder().withNric("S1124133A").withName("Dames Goh")
             .withDoB("2010-01-04").withPhone("94353243").build();
-    public static final Person DON = new DoctorBuilder().withNric("T0232948D").withName("Don Cher")
+    public static final Person ERIN = new DoctorBuilder().withNric("T0232948D").withName("Erin Cher")
             .withDoB("2002-01-04").withPhone("98765433").build();
-    public static final Person BROWN = new DoctorBuilder().withNric("S2378593A").withName("Brown Lee")
+    public static final Person FROWN = new DoctorBuilder().withNric("S2378593A").withName("Frown Lee")
             .withDoB("2005-01-03").withPhone("87436749").build();
-    public static final Person RON = new DoctorBuilder().withNric("S2378193A").withName("Ron Tan")
+    public static final Person GON = new DoctorBuilder().withNric("S2378193A").withName("Gon Tan")
             .withDoB("2005-01-02").withPhone("87432349").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -72,10 +72,10 @@ public class TypicalPersons {
                 BOB,
                 CARL,
                 CARL_GOH,
-                DON,
-                JAMES,
-                JAMES_GOH,
-                RON
+                ERIN,
+                DAMES,
+                DAMES_GOH,
+                GON
         ));
     }
 }

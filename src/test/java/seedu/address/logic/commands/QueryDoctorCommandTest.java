@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.DON;
-import static seedu.address.testutil.TypicalPersons.JAMES;
-import static seedu.address.testutil.TypicalPersons.JAMES_GOH;
-import static seedu.address.testutil.TypicalPersons.RON;
+import static seedu.address.testutil.TypicalPersons.DAMES;
+import static seedu.address.testutil.TypicalPersons.DAMES_GOH;
+import static seedu.address.testutil.TypicalPersons.ERIN;
+import static seedu.address.testutil.TypicalPersons.GON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -68,21 +68,21 @@ public class QueryDoctorCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        DoctorNameContainsKeywordsPredicate predicate = preparePredicate("Don Ron");
+        DoctorNameContainsKeywordsPredicate predicate = preparePredicate("Erin Gon");
         QueryDoctorCommand command = new QueryDoctorCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(DON, RON), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ERIN, GON), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_singleKeyword_multipleDoctorsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        DoctorNameContainsKeywordsPredicate predicate = preparePredicate("James");
+        DoctorNameContainsKeywordsPredicate predicate = preparePredicate("Dames");
         QueryDoctorCommand command = new QueryDoctorCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(JAMES, JAMES_GOH), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(DAMES, DAMES_GOH), model.getFilteredPersonList());
     }
 
     @Test
