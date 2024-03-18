@@ -72,4 +72,14 @@ public class ListNoteCommand extends Command {
 
         return new CommandResult(String.format(Messages.MESSAGE_LIST_NOTE_SUCCESS, selectedPerson.getName()));
     }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
+    @Override
+    public String getMessageUsage() {
+        return MESSAGE_USAGE;
+    }
 }
