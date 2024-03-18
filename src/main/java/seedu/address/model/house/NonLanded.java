@@ -1,13 +1,21 @@
 package seedu.address.model.house;
 
-public class NonLanded extends House{
+/**
+ * Represents a non-landed house.
+ */
+public class NonLanded extends House {
+
+    /** The block of the house. */
     public final Block block;
+
+    /** The level of the house. */
     public final Level level;
+
+    /** The unit number of the house. */
     public final UnitNumber unitNumber;
 
-
     /**
-     * Constructs a {@code Level}.
+     * Constructs a non-landed house with block, level, postal code, street, and unit number.
      *
      * @param block      The block of the house.
      * @param level      The level of the house.
@@ -23,7 +31,7 @@ public class NonLanded extends House{
     }
 
     /**
-     * Constructs a {@code Level}.
+     * Constructs a non-landed house with level, postal code, street, and unit number. For condominiums with no block.
      *
      * @param level      The level of the house.
      * @param postalCode The postal code of the house.
