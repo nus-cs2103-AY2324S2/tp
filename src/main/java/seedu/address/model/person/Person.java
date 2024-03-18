@@ -16,6 +16,9 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private static int personId;
+
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -71,11 +74,13 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+
     /** Returns the uniqueId of the person */
     public String getUniqueId() { return uniqueId; }
 
     /** Sets the uniqueId of the person */
     public String setUniqueId(String uniqueId) { return this.uniqueId = uniqueId; }
+
 
     /**
      * Returns true if both persons have the same name.
@@ -125,6 +130,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("subject", subject)
                 .add("tags", tags)
                 .toString();
     }

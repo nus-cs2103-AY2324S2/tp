@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SummaryStatsWindow summaryStatsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        summaryStatsWindow = new SummaryStatsWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +149,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the SummaryStats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSummaryStats() {
+        if (!summaryStatsWindow.isShowing()) {
+            summaryStatsWindow.show();
+        } else {
+            summaryStatsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -184,6 +198,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowSummaryStats()) {
+                handleSummaryStats();
             }
 
             return commandResult;

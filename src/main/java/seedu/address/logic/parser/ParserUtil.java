@@ -113,7 +113,6 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String subject} into a {@code Subject}.
-     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code subject} is invalid.
      */
