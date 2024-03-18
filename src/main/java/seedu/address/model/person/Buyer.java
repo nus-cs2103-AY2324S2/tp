@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import java.util.Set;
 
 import seedu.address.model.house.House;
-import seedu.address.model.house.PostalCode;
 import seedu.address.model.tag.Tag;
 /**
  * Represents a buyer in the address book.

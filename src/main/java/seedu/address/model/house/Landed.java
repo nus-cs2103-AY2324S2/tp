@@ -1,7 +1,5 @@
 package seedu.address.model.house;
 
-import seedu.address.model.person.Person;
-
 public class Landed extends House {
 
     /**

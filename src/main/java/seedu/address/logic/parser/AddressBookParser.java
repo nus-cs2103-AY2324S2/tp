@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddBuyerCommand;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddSellerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;

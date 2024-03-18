@@ -1,8 +1,5 @@
 package seedu.address.model.house;
 
-import seedu.address.model.house.House;
-import seedu.address.model.person.Person;
-
 public class NonLanded extends House{
     public final Block block;
     public final Level level;
