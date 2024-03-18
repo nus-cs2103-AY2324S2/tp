@@ -46,7 +46,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                                 PREFIX_INCOME,
                                 PREFIX_PHONE,
                                 PREFIX_FAMILY,
-                                PREFIX_EMAIL)
+                                PREFIX_EMAIL,
+                                PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -62,9 +63,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = ParserUtil.parseRemark(argMultimap.getRemarkValue(PREFIX_REMARK).get());
 
-        if (tagList.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
         Person person = new Person(name, phone, income, email, address, family, tagList, remark);
 
         return new AddCommand(person);
