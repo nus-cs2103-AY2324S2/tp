@@ -35,6 +35,8 @@ public class OrderBuilder {
      */
     public OrderBuilder(Order orderToCopy) {
         productMap = orderToCopy.getProductMap();
+        id = orderToCopy.getId();
+        person = orderToCopy.getCustomer();
     }
 
     /**
