@@ -141,6 +141,46 @@ public class ContactList implements ReadOnlyContactList {
         courseMates.remove(key);
     }
 
+    //// group-level operations
+
+    /**
+     * Returns true if a courseMate with the same identity as {@code courseMate} exists in the contact list.
+     */
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return groups.contains(group);
+    }
+
+    /**
+     * Adds a group to the contact list.
+     * The group must not already exist in the contact list.
+     */
+    public void addGroup(Group p) {
+        groups.add(p);
+    }
+
+    /**
+     * Replaces the given group {@code target} in the list with {@code editedGroup}.
+     * {@code target} must exist in the contact list.
+     * The group identity of {@code editedGroup} must not be the same as
+     * another existing group in the contact list.
+     */
+    public void setGroup(Group target, Group editedGroup) {
+        requireNonNull(editedGroup);
+
+        groups.setGroup(target, editedGroup);
+    }
+
+    /**
+     * Removes {@code key} from this {@code ContactList}.
+     * {@code key} must exist in the contact list.
+     */
+    public void removeGroup(Group key) {
+        groups.remove(key);
+    }
+
+
+
     //// util methods
 
     @Override

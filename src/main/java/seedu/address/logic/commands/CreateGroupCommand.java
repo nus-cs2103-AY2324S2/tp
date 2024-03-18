@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 
 import java.util.Set;
 
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
@@ -38,7 +40,12 @@ public class CreateGroupCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
+        if (model.hasGroup(toAdd)) {
+            throw new CommandException(Messages.MESSAGE_GROUP_ALREADY_IN_LIST);
+        }
+
+        model.addGroup(toAdd);
         return new CommandResult(String.format("Hello from group: %s, Members: %s",
                 toAdd.getName(), toAdd));
     }

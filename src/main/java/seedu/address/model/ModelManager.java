@@ -116,6 +116,30 @@ public class ModelManager implements Model {
         contactList.setCourseMate(target, editedCourseMate);
     }
 
+    @Override
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return contactList.hasGroup(group);
+    }
+
+    @Override
+    public void deleteGroup(Group target) {
+        contactList.removeGroup(target);
+    }
+
+    @Override
+    public void addGroup(Group group) {
+        contactList.addGroup(group);
+        updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
+    }
+
+    @Override
+    public void setGroup(Group target, Group editedGroup) {
+        requireAllNonNull(target, editedGroup);
+
+        contactList.setGroup(target, editedGroup);
+    }
+
     //=========== Filtered CourseMate List Accessors =============================================================
 
     /**
@@ -141,7 +165,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
-        //  TODO: implement
+        filteredGroups.setPredicate(predicate);
     }
 
     //=========== Most recently processed course mate ========================================================

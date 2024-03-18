@@ -15,6 +15,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<CourseMate> PREDICATE_SHOW_ALL_COURSE_MATES = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Group> PREDICATE_SHOW_ALL_GROUPS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -77,6 +80,31 @@ public interface Model {
      * existing courseMate in the contact list.
      */
     void setCourseMate(CourseMate target, CourseMate editedCourseMate);
+
+    /**
+     * Returns true if a courseMate with the same identity as {@code courseMate} exists in the contact list.
+     */
+    boolean hasGroup(Group group);
+
+    /**
+     * Deletes the given group.
+     * The group must exist in the contact list.
+     */
+    void deleteGroup(Group target);
+
+    /**
+     * Adds the given group.
+     * {@code group} must not already exist in the contact list.
+     */
+    void addGroup(Group group);
+
+    /**
+     * Replaces the given group {@code target} with {@code editedGroup}.
+     * {@code target} must exist in the contact list.
+     * The group identity of {@code editedGroup} must not be the same as another
+     * existing group in the contact list.
+     */
+    void setGroup(Group target, Group editedGroup);
 
     /** Returns an unmodifiable view of the filtered courseMate list */
     ObservableList<CourseMate> getFilteredCourseMateList();

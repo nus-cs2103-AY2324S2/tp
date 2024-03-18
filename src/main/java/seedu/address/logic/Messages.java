@@ -18,6 +18,9 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_GROUP_ALREADY_IN_LIST =
+            "Another group with the same name is already in the list";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

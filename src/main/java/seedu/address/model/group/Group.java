@@ -45,7 +45,7 @@ public class Group extends UniqueCourseMateList {
      * This defines a weaker notion of equality between two groups.
      */
     public boolean isSameGroup(Group otherGroup) {
-        return otherGroup.name == name;
+        return otherGroup.name.equals(name);
     }
 
     /**
@@ -64,6 +64,6 @@ public class Group extends UniqueCourseMateList {
 
         Group otherGroup = (Group) other;
 
-        return (name == otherGroup.name) && super.equals(other);
+        return otherGroup.name.equals(name) && super.equals(other);
     }
 }
