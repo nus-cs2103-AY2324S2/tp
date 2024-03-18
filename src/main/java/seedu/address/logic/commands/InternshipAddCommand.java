@@ -44,7 +44,7 @@ public class InternshipAddCommand extends InternshipCommand {
             + PREFIX_ROLE + " Software Intern";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the internship list";
 
     private final Internship toAdd;
 
