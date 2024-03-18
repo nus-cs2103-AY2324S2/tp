@@ -25,7 +25,7 @@ public class DeleteInterviewCommand extends Command {
 
     public static final String MESSAGE_DELETE_INTERVIEW_SUCCESS = "Interview Deleted ";
 
-    private int targetInt;
+    private Integer targetInt;
 
 
     public DeleteInterviewCommand(int targetInt) {
@@ -51,7 +51,17 @@ public class DeleteInterviewCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return false;
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteInterviewCommand)) {
+            return false;
+        }
+
+        DeleteInterviewCommand otherDeleteInterviewCommand = (DeleteInterviewCommand) other;
+        return targetInt.equals(otherDeleteInterviewCommand.targetInt);
     }
 
     @Override
