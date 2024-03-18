@@ -103,4 +103,5 @@ public class DoctorNameContainsKeywordsPredicateTest {
                 + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
+    
 }
