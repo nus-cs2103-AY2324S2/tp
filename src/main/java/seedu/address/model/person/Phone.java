@@ -17,7 +17,7 @@ public class Phone {
     /**
      * Phone number regex matches the following conditions:
      * 1. Has exactly 3 OR 8 digits exactly
-     * 2. Starts with 6, 8 or 9. We ignore numbers starting with 3 since they're not nubmers that patients would have
+     * 2. Starts with 6, 8 or 9. We ignore numbers starting with 3 since they're not numbers that patients would have
      */
     public static final String VALIDATION_REGEX = "\\b[689]\\d{2}(\\d{5})?\\b";
     public final String value;
