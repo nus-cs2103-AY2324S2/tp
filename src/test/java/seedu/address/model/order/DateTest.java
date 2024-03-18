@@ -59,9 +59,8 @@ public class DateTest {
         Date earlierDate = new Date("2020-01-01");
         Date laterDate = new Date("2020-02-01");
 
-        assertTrue(earlierDate.compareTo(laterDate) < 0, "Expected earlierDate to be less than laterDate");
-        assertTrue(laterDate.compareTo(earlierDate) > 0, "Expected laterDate to be greater than earlierDate");
-        assertEquals(0, earlierDate.compareTo(new Date("2020-01-01")),
-                "Expected dates with the same value to be equal");
+        assertTrue(earlierDate.compareTo(laterDate) < 0);
+        assertTrue(laterDate.compareTo(earlierDate) > 0);
+        assertEquals(0, earlierDate.compareTo(new Date("2020-01-01")));
     }
 }

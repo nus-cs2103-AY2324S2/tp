@@ -64,13 +64,19 @@ public class ListOrderCommand extends Command {
         StringBuilder sb = new StringBuilder();
         sb.append("Orders for the selected person:\n");
 
-        // Sort orders by date using a stream
+        // Sort orders by date
         List<Order> sortedOrders = orders.stream()
                 .sorted(Comparator.comparing(Order::getDate))
                 .collect(Collectors.toList());
 
         for (int i = 0; i < sortedOrders.size(); i++) {
-            sb.append(i + 1).append(". ").append(sortedOrders.get(i).toString()).append("\n");
+            Order order = sortedOrders.get(i);
+            int displayIndex = i + 1;
+            String orderDetails = order.toString();
+
+            sb.append(displayIndex).append(". ")
+                    .append(orderDetails)
+                    .append("\n");
         }
         return sb.toString();
     }
