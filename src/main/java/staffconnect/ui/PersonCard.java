@@ -106,7 +106,6 @@ public class PersonCard extends UiPart<Region> {
             if (empty || meeting == null) {
                 setGraphic(null);
                 setText(null);
-                setPrefHeight(0);
             } else {
                 setGraphic(new MeetingsCard(meeting, getIndex() + 1).getRoot());
             }
