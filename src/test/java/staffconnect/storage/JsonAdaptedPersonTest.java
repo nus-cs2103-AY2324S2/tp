@@ -29,9 +29,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_VENUE = " ";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_AVAILABILITY = "m0n";
-
     private static final String INVALID_MEETING_DESCRIPTION = "*!&@#&*@*&@*";
-
     private static final String INVALID_MEETING_DATE = "12-04-2023 18:00";
 
     private static final String VALID_NAME = BENSON.getName().toString();
@@ -39,13 +37,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_MODULE = BENSON.getModule().toString();
     private static final String VALID_MEETING_DESCRIPTION = "Meet for midterms";
-
     private static final String VALID_MEETING_DATE = "12-04-2023 18:00";
-
-    private static final JsonAdaptedMeeting VALID_MEETING_JSON =
-        new JsonAdaptedMeeting(VALID_MEETING_DESCRIPTION, VALID_MEETING_DATE);
-    private static final List<JsonAdaptedMeeting> VALID_MEETING =
-        Stream.of(VALID_MEETING_JSON).collect(Collectors.toList());
 
     private static final List<JsonAdaptedTag> VALID_TAGS =
         BENSON.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList());
@@ -55,6 +47,10 @@ public class JsonAdaptedPersonTest {
         .stream()
         .map(JsonAdaptedAvailability::new)
         .collect(Collectors.toList());
+    private static final JsonAdaptedMeeting VALID_MEETING_JSON =
+            new JsonAdaptedMeeting(VALID_MEETING_DESCRIPTION, VALID_MEETING_DATE);
+    private static final List<JsonAdaptedMeeting> VALID_MEETING =
+            Stream.of(VALID_MEETING_JSON).collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -179,26 +175,6 @@ public class JsonAdaptedPersonTest {
                                                          VALID_AVAILABILITIES, VALID_MEETING);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
-
-    @Test
-    public void toModelType_invalidMeetingDescription_throwsIllegalValueException() {
-        List<JsonAdaptedMeeting> invalidMeeting = new ArrayList<>(VALID_MEETING);
-        invalidMeeting.add(new JsonAdaptedMeeting(INVALID_MEETING_DESCRIPTION, VALID_MEETING_DATE));
-        JsonAdaptedPerson person =
-            new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE, VALID_FACULTY, VALID_VENUE,
-                                  VALID_TAGS, VALID_AVAILABILITIES, invalidMeeting);
-        assertThrows(IllegalValueException.class, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidMeetingDate_throwsIllegalValueException() {
-        List<JsonAdaptedMeeting> invalidMeeting = new ArrayList<>(VALID_MEETING);
-        invalidMeeting.add(new JsonAdaptedMeeting(VALID_MEETING_DESCRIPTION, INVALID_MEETING_DATE));
-        JsonAdaptedPerson person =
-            new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE,
-                                  VALID_FACULTY, VALID_VENUE, VALID_TAGS, VALID_AVAILABILITIES, invalidMeeting);
-        assertThrows(IllegalValueException.class, person::toModelType);
-    }
     @Test
     public void toModelType_invalidAvailabilities_throwsIllegalValueException() {
         List<JsonAdaptedAvailability> invalidAvailabilities = new ArrayList<>(VALID_AVAILABILITIES);
@@ -209,4 +185,23 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidMeetingDescription_throwsIllegalValueException() {
+        List<JsonAdaptedMeeting> invalidMeeting = new ArrayList<>(VALID_MEETING);
+        invalidMeeting.add(new JsonAdaptedMeeting(INVALID_MEETING_DESCRIPTION, VALID_MEETING_DATE));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE, VALID_FACULTY, VALID_VENUE,
+                        VALID_TAGS, VALID_AVAILABILITIES, invalidMeeting);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidMeetingDate_throwsIllegalValueException() {
+        List<JsonAdaptedMeeting> invalidMeeting = new ArrayList<>(VALID_MEETING);
+        invalidMeeting.add(new JsonAdaptedMeeting(VALID_MEETING_DESCRIPTION, INVALID_MEETING_DATE));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE,
+                        VALID_FACULTY, VALID_VENUE, VALID_TAGS, VALID_AVAILABILITIES, invalidMeeting);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
 }

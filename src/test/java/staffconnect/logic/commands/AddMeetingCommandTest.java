@@ -3,11 +3,11 @@ package staffconnect.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static staffconnect.logic.commands.CommandTestUtil.DIFF_DATE_MEETING;
-import static staffconnect.logic.commands.CommandTestUtil.DIFF_DESCRIPTION_MEETING;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_DATE_MARCH;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MIDTERMS;
 import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING_DATE;
-import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING_DESCRIPTION;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING_APRIL;
+import static staffconnect.logic.commands.CommandTestUtil.VALID_MEETING_FINALS;
 import static staffconnect.logic.commands.CommandTestUtil.assertCommandFailure;
 import static staffconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static staffconnect.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -38,31 +38,32 @@ public class AddMeetingCommandTest {
 
     private static final Model TEST_MODEL = new ModelManager(getTypicalStaffBook(), new UserPrefs());
 
+    private Person buildValidPerson() {
+        Person pickPerson = TEST_MODEL.getFilteredPersonList().get(0);
+        Person validPerson = new Person(pickPerson.getName(), pickPerson.getPhone(), pickPerson.getEmail(),
+                pickPerson.getModule(), pickPerson.getFaculty(), pickPerson.getVenue(),
+                pickPerson.getTags(), pickPerson.getAvailabilities());
+        validPerson.setMeetings(new HashSet<>(List.of(VALID_MEETING)));
+        return validPerson;
+    }
 
     @Test
     public void execute_allFieldsValid_success() {
-        Person validPerson = buildPerson();
+        Person validPerson = buildValidPerson();
+
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(INDEX_FIRST_PERSON, VALID_MEETING);
+
         String expectedMessage = String.format(AddMeetingCommand.MESSAGE_SUCCESS, Messages.format(VALID_MEETING));
+
         Model expectedModel = new ModelManager(new StaffBook(TEST_MODEL.getStaffBook()), new UserPrefs());
         expectedModel.setPerson(TEST_MODEL.getFilteredPersonList().get(0), validPerson);
 
         assertCommandSuccess(addMeetingCommand, TEST_MODEL, expectedMessage, expectedModel);
     }
 
-    private Person buildPerson() {
-        Person pickPerson = TEST_MODEL.getFilteredPersonList().get(0);
-        Person validPerson = new Person(pickPerson.getName(), pickPerson.getPhone(), pickPerson.getEmail(),
-                                        pickPerson.getModule(), pickPerson.getFaculty(), pickPerson.getVenue(),
-                                        pickPerson.getTags(), pickPerson.getAvailabilities());
-        validPerson.setMeetings(new HashSet<>(List.of(VALID_MEETING)));
-        return validPerson;
-    }
-
     @Test
     public void execute_duplicateMeeting_failure() {
-        Person firstPerson = TEST_MODEL.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        firstPerson.setMeetings(new HashSet<>(List.of(VALID_MEETING)));
+        Person firstPerson = buildValidPerson();
 
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(INDEX_FIRST_PERSON, VALID_MEETING);
 
@@ -75,6 +76,7 @@ public class AddMeetingCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(TEST_MODEL.getFilteredPersonList().size() + 1);
+
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(outOfBoundIndex, VALID_MEETING);
 
         assertCommandFailure(addMeetingCommand, TEST_MODEL, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -84,6 +86,7 @@ public class AddMeetingCommandTest {
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(TEST_MODEL, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
+
         // ensures that outOfBoundIndex is still in bounds of staff book list
         assertTrue(outOfBoundIndex.getZeroBased() < TEST_MODEL.getStaffBook().getPersonList().size());
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(outOfBoundIndex, VALID_MEETING);
@@ -96,7 +99,7 @@ public class AddMeetingCommandTest {
         final AddMeetingCommand standardCommand = new AddMeetingCommand(INDEX_FIRST_PERSON, VALID_MEETING);
         // same values -> returns true
         final Meeting copyMeeting =
-            new Meeting(new Description(VALID_MEETING_DESCRIPTION), new MeetDateTime(VALID_MEETING_DATE));
+            new Meeting(new Description(VALID_DESCRIPTION_MIDTERMS), new MeetDateTime(VALID_DATE_MARCH));
         AddMeetingCommand commandWithSameValues = new AddMeetingCommand(INDEX_FIRST_PERSON, copyMeeting);
         assertEquals(standardCommand, commandWithSameValues);
 
@@ -113,10 +116,10 @@ public class AddMeetingCommandTest {
         assertNotEquals(standardCommand, new AddMeetingCommand(INDEX_SECOND_PERSON, VALID_MEETING));
 
         // different description -> returns false
-        assertNotEquals(standardCommand, new AddMeetingCommand(INDEX_FIRST_PERSON, DIFF_DESCRIPTION_MEETING));
+        assertNotEquals(standardCommand, new AddMeetingCommand(INDEX_FIRST_PERSON, VALID_MEETING_FINALS));
 
         // different date -> returns false
-        assertNotEquals(standardCommand, new AddMeetingCommand(INDEX_FIRST_PERSON, DIFF_DATE_MEETING));
+        assertNotEquals(standardCommand, new AddMeetingCommand(INDEX_FIRST_PERSON, VALID_MEETING_APRIL));
     }
 
     @Test

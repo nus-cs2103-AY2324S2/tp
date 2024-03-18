@@ -43,12 +43,16 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("module") String module,
-            @JsonProperty("faculty") String faculty, @JsonProperty("venue") String venue,
+    public JsonAdaptedPerson(
+            @JsonProperty("name") String name,
+            @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email,
+            @JsonProperty("module") String module,
+            @JsonProperty("faculty") String faculty,
+            @JsonProperty("venue") String venue,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("availabilities") List<JsonAdaptedAvailability> availabilities,
-                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
+            @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
 
         this.name = name;
         this.phone = phone;
@@ -78,16 +82,16 @@ class JsonAdaptedPerson {
         faculty = source.getFaculty().toString();
         venue = source.getVenue().value;
         tags.addAll(source.getTags().stream()
-                        .map(JsonAdaptedTag::new)
-                        .collect(Collectors.toList()));
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
 
         availabilities.addAll(source.getAvailabilities().stream()
-            .map(JsonAdaptedAvailability::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedAvailability::new)
+                .collect(Collectors.toList()));
 
         meetings.addAll(source.getMeetings().stream()
-                            .map(JsonAdaptedMeeting::new)
-                            .collect(Collectors.toList()));
+                .map(JsonAdaptedMeeting::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -140,7 +144,7 @@ class JsonAdaptedPerson {
 
         if (faculty == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Faculty.class.getSimpleName()));
+                                                          Faculty.class.getSimpleName()));
         }
         if (!Faculty.isValidFaculty(faculty)) {
             throw new IllegalValueException(Faculty.MESSAGE_CONSTRAINTS);
@@ -160,13 +164,13 @@ class JsonAdaptedPerson {
 
         final Set<Availability> modelAvailabilities = new HashSet<>(personAvailabilities);
         final List<Meeting> personMeetings = new ArrayList<>();
-        for (JsonAdaptedMeeting meeting: meetings) {
+        for (JsonAdaptedMeeting meeting : meetings) {
             personMeetings.add(meeting.toModelType());
         }
         final Set<Meeting> modelMeetings = new HashSet<>(personMeetings);
 
         Person modelPerson = new Person(modelName, modelPhone, modelEmail, modelModule, modelFaculty, modelVenue,
-                                            modelTags, modelAvailabilities);
+                                        modelTags, modelAvailabilities);
         modelPerson.setMeetings(modelMeetings);
 
         return modelPerson;

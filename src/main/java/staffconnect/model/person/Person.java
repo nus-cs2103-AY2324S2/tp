@@ -29,7 +29,6 @@ public class Person {
     private final Venue venue;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Availability> availabilities = new HashSet<>();
-
     private Set<Meeting> meetings = new HashSet<>();
 
     /**
@@ -47,7 +46,9 @@ public class Person {
         this.tags.addAll(tags);
         this.availabilities.addAll(availabilities);
     }
-
+    public Name getName() {
+        return name;
+    }
     public Phone getPhone() {
         return phone;
     }
@@ -105,11 +106,7 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
-    }
-
-    public Name getName() {
-        return name;
+                && otherPerson.getName().equals(getName());
     }
 
     /**

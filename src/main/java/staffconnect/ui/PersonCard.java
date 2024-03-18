@@ -66,15 +66,17 @@ public class PersonCard extends UiPart<Region> {
         venue.setText(person.getVenue().value);
         module.setText(person.getModule().value);
         email.setText(person.getEmail().value);
+
         person.getTags().stream()
-            .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         person.getAvailabilities().stream()
                 .sorted(Comparator.comparing(availability -> availability.value))
                 .forEach(availability -> availabilities.getChildren().add(new Label(availability.value)));
 
-        person.getMeetings().stream().sorted(Comparator.comparing(meeting -> meeting.getStartDate().getDateTime()))
-            .forEach(meeting -> meetingsContainer.getChildren().add(new MeetingsCard(meeting).getRoot()));
+        person.getMeetings().stream()
+                .sorted(Comparator.comparing(meeting -> meeting.getStartDate().getDateTime()))
+                .forEach(meeting -> meetingsContainer.getChildren().add(new MeetingsCard(meeting).getRoot()));
     }
 }

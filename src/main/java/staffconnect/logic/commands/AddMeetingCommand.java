@@ -86,12 +86,12 @@ public class AddMeetingCommand extends Command {
         Name currentName = personToEdit.getName();
         Phone currentPhone = personToEdit.getPhone();
         Email currentEmail = personToEdit.getEmail();
-        Venue currentVenue = personToEdit.getVenue();
         Module currentModule = personToEdit.getModule();
         Faculty currentFaculty = personToEdit.getFaculty();
+        Venue currentVenue = personToEdit.getVenue();
         Set<Tag> currentTags = personToEdit.getTags();
-        Set<Meeting> currentMeetings = new HashSet<>(personToEdit.getMeetings()); //to reduce coupling with Person
         Set<Availability> currentAvailability = personToEdit.getAvailabilities();
+        Set<Meeting> currentMeetings = new HashSet<>(personToEdit.getMeetings()); //to reduce coupling with Person
         Person editedPerson =
             new Person(currentName, currentPhone, currentEmail, currentModule, currentFaculty, currentVenue,
                        currentTags,

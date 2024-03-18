@@ -53,11 +53,10 @@ public class CommandTestUtil {
 
 
 
-    public static final String VALID_MEETING_DESCRIPTION = "Meet for midterms";
-
-    public static final String VALID_DIFF_MEETING_DESCRIPTION = "Meet for finals";
-    public static final String VALID_MEETING_DATE = "12/04/2023 18:00";
-    public static final String VALID_DIFF_MEETING_DATE = "15/04/2024 15:00";
+    public static final String VALID_DESCRIPTION_MIDTERMS = "Meet for midterms";
+    public static final String VALID_DESCRIPTION_FINALS = "Meet for finals";
+    public static final String VALID_DATE_MARCH = "12/03/2023 18:00";
+    public static final String VALID_DATE_APRIL = "15/04/2024 15:00";
 
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -77,9 +76,9 @@ public class CommandTestUtil {
     public static final String AVAILABILITY_DESC_MON = " " + PREFIX_AVAILABILITY + VALID_AVAILABILITY_MON;
     public static final String AVAILABILITY_DESC_THUR = " " + PREFIX_AVAILABILITY + VALID_AVAILABILITY_THUR;
 
-    public static final String DESC_MIDTERM = " " + PREFIX_DESCRIPTION + VALID_MEETING_DESCRIPTION;
+    public static final String DESCRIPTION_MIDTERM = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MIDTERMS;
 
-    public static final String MEETDATE_STARTDATE = " " + PREFIX_STARTDATE + VALID_MEETING_DATE;
+    public static final String DATE_STARTDATE = " " + PREFIX_STARTDATE + VALID_DATE_MARCH;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -101,11 +100,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final Meeting VALID_MEETING =
-        new Meeting(new Description(VALID_MEETING_DESCRIPTION), new MeetDateTime(VALID_MEETING_DATE));
-    public static final Meeting DIFF_DESCRIPTION_MEETING =
-        new Meeting(new Description(VALID_DIFF_MEETING_DESCRIPTION), new MeetDateTime(VALID_MEETING_DATE));
-    public static final Meeting DIFF_DATE_MEETING =
-        new Meeting(new Description(VALID_MEETING_DESCRIPTION), new MeetDateTime(VALID_DIFF_MEETING_DATE));
+        new Meeting(new Description(VALID_DESCRIPTION_MIDTERMS), new MeetDateTime(VALID_DATE_MARCH));
+    public static final Meeting VALID_MEETING_FINALS =
+        new Meeting(new Description(VALID_DESCRIPTION_FINALS), new MeetDateTime(VALID_DATE_MARCH));
+    public static final Meeting VALID_MEETING_APRIL =
+        new Meeting(new Description(VALID_DESCRIPTION_MIDTERMS), new MeetDateTime(VALID_DATE_APRIL));
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
