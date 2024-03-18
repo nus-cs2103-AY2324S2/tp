@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddEventCommandParser" as AddEventCommandParser LOGIC_COLOR
+participant "a:AddEventCommand" as AddEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(adde 1 n/Birthday d/20-01-2022)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(adde 1 n/Birthday d/20-01-2022)
+activate AddressBookParser
+
+create AddEventCommandParser
+AddressBookParser -> AddEventCommandParser
+activate AddEventCommandParser
+
+AddEventCommandParser --> AddressBookParser
+deactivate AddEventCommandParser
+
+AddressBookParser -> AddEventCommandParser : parse(adde 1 n/Birthday d/20-01-2022)
+activate AddEventCommandParser
+
+Create AddEventCommand
+AddEventCommandParser -> AddEventCommand
+activate AddEventCommand
+
+AddEventCommand --> AddEventCommandParser : a
+deactivate AddEventCommand
+
+AddEventCommandParser --> AddressBookParser : a
+deactivate AddEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.'
+AddEventCommandParser -[hidden]-> AddressBookParser
+destroy AddEventCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddEventCommand : execute()
+activate AddEventCommand
+
+AddEventCommand -> Model : setPatient(args)
+activate Model
+
+Model --> AddEventCommand
+deactivate Model
+
+create CommandResult
+AddEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddEventCommand
+deactivate CommandResult
+
+AddEventCommand --> LogicManager : result
+deactivate AddEventCommand
+
+AddEventCommand -[hidden]-> AddressBookParser
+destroy AddEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

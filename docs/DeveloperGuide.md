@@ -383,8 +383,43 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Event, Birthday, which falls on the 20th January.
+Step 2: The user executes the `adde 1 n/Birthday d/20-01-2022` command to add the Event, Birthday, which falls on the 20th January.
 * Upon successful validation, it creates an `AddEventsCommand` instance.
+
+The PlantUML Diagram of this scenario can be found [here](diagrams/AddEventSequenceDiagram.puml).
+
+#### Design Considerations
+
+**Aspect: Handling Repeated Events**
+
+* **Alternative 1 (current choice)**: Repeated events are added as a single event.
+    * Pros: Simplifies event management, avoids redundancy.
+    * Cons: Requires additional logic to detect and merge repeated events.
+      <br></br>
+* **Alternative 2**: Each event is added individually, including duplicates.
+    * Pros: Explicitly shows every event provided.
+    * Cons: May clutter patient data with redundant events.
+
+**Aspect: Cumulative Event Addition**
+
+* **Alternative 1 (current choice)**: Cumulative addition of events to existing set.
+    * Pros: Preserves previous events, allows for gradual building of patient profile.
+    * Cons: Requires additional memory for storing updated events sets.
+      <br></br>
+* **Alternative 2**: Overwrite existing events with new ones.
+    * Pros: Simplifies data handling, avoids events duplication.
+    * Cons: Risk of losing previously assigned events, less flexibility in event management.
+
+**Aspect: Error Handling for Duplicate Events**
+
+* **Alternative 1 (current choice)**: Do not add events already present for the patient.
+    * Pros: Prevents event redundancy, maintains data integrity. Better user experience, do not need to worry about the intricacies of event duplication.
+    * Cons: Users do not explicitly receive direct feedback about skipped events.
+      <br></br>
+* **Alternative 2**: Return error message for duplicate events.
+    * Pros: Notifies user about duplicate inputs, ensures data consistency.
+    * Cons: In the case of the addition of multiple existing or duplicate events, users have to find and remove the duplicated events from the given command, which would be cumbersome especially when there are many events listed in the command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
