@@ -20,10 +20,10 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Rating rating;
 
     /**
      * Name must not be null
@@ -51,6 +51,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void setRating(int rating) {
+        this.rating.setRating(rating);
     }
 
     /**
