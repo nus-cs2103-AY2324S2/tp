@@ -45,6 +45,8 @@ public class Messages {
                 .append(person.getYear())
                 .append("; Major: ")
                 .append(person.getMajor())
+                .append("; Telegram: ")
+                .append(person.getTelegram())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

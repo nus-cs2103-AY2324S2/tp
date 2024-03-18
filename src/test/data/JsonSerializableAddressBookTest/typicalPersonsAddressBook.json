@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "year": "1",
     "major": "Computer Science",
+    "telegram": "alicepauline",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +14,7 @@
     "email" : "johnd@example.com",
     "year": "1",
     "major": "Computer Science",
+    "telegram": "bensonmeier",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +22,7 @@
     "email" : "heinz@example.com",
     "year": "1",
     "major": "Computer Science",
+    "telegram": "carlkurz",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +30,7 @@
     "email" : "corelia@example.com",
     "year": "1",
     "major": "Computer Engineering",
+    "telegram": "danielmeier",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "email" : "werner@example.com",
     "year": "2",
     "major": "Computer Engineering",
+    "telegram": "ellemeyer",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "email" : "lydia@example.com",
     "year": "2",
     "major": "Business Analytics",
+    "telegram": "fionakunz1",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +54,7 @@
     "email" : "anna@example.com",
     "year": "2",
     "major": "Business Analytics",
+    "telegram": "georgebest1",
     "tags" : [ ]
   } ]
 }
