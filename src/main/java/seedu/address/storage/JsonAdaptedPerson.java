@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.student.Matric;
+import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String matric;
+    private final String reflection;
     private final String studio;
 
     /**
@@ -41,6 +43,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("matric") String matric,
+            @JsonProperty("reflection") String reflection,
             @JsonProperty("studio") String studio) {
         this.name = name;
         this.phone = phone;
@@ -50,6 +53,7 @@ class JsonAdaptedPerson {
             this.tags.addAll(tags);
         }
         this.matric = matric;
+        this.reflection = reflection;
         this.studio = studio;
     }
 
@@ -65,6 +69,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         matric = source.getMatric().matricNumber;
+        reflection = source.getReflection().reflection;
         studio = source.getStudio().studio;
     }
 
@@ -112,6 +117,9 @@ class JsonAdaptedPerson {
         if (!Matric.isValidMatric(matric)) {
             throw new IllegalValueException(Matric.MESSAGE_CONSTRAINTS);
         }
+        if (!Reflection.isValidReflection(reflection)) {
+            throw new IllegalValueException(Reflection.MESSAGE_CONSTRAINTS);
+        }
         if (!Studio.isValidStudio(studio)) {
             throw new IllegalValueException(Studio.MESSAGE_CONSTRAINTS);
         }
@@ -122,10 +130,13 @@ class JsonAdaptedPerson {
 
         final Matric modelMatric = new Matric(matric);
 
+        final Reflection modelReflection = new Reflection(reflection);
+
+
         final Studio modelStudio = new Studio(studio);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                          modelTags, modelMatric, modelStudio);
+                          modelTags, modelMatric, modelReflection, modelStudio);
     }
 
 }

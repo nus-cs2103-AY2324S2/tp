@@ -5,6 +5,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "matric" : "A1234567A",
+    "reflection": "R1",
     "studio" : "S1",
     "tags": [ "friends" ]
   }, {
@@ -12,6 +13,7 @@
     "phone": "94351253",
     "address": "4th street",
     "matric" : "A1234567A",
+    "reflection": "R1",
     "studio" : "S1",
     "email": "alice@example.com"
   } ]
