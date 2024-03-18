@@ -48,14 +48,7 @@ public class PersonCard extends UiPart<Region> {
     private Label ward;
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label ward;
-    @FXML
-    private Label admissionDate;
-    @FXML
-    private Label ic;
-    @FXML
-    private Label dob;
+   
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
