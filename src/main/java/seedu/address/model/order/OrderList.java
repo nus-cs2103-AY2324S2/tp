@@ -63,6 +63,7 @@ public class OrderList implements Iterable<Order> {
     public void addOrder(Order toAdd, Person person) {
         requireAllNonNull(toAdd, person);
         toAdd.setCustomer(person);
+        toAdd.setID(orderIdCounter);
         orderList.put(toAdd.getId(), toAdd);
         internalList.add(toAdd);
         person.addOrder(toAdd);
@@ -107,9 +108,18 @@ public class OrderList implements Iterable<Order> {
         }
         Person respectiveCustomer = oldOrder.getCustomer();
         int oldOrderIndex = internalList.indexOf(oldOrder);
+        toEdit.setID(oldOrder.getId());
         internalList.set(oldOrderIndex, toEdit);
         orderList.put(orderId, toEdit);
         respectiveCustomer.editOrder(oldOrder.getId(), toEdit);
+    }
+
+    /**
+     * For testing purposes.
+     */
+    public void clearOrders() {
+        internalList.clear();
+        orderList.clear();
     }
 
     /**
