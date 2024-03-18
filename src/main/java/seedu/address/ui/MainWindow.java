@@ -187,7 +187,9 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
-    public BookingListPanel getBookingListPanel() { return bookingListPanel; }
+    public BookingListPanel getBookingListPanel() {
+        return bookingListPanel;
+    }
 
     /**
      * Executes the command and returns the result.
