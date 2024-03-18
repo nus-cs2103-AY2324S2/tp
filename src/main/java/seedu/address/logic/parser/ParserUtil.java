@@ -41,7 +41,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses the input string containing one or more whitespace-separated indices into an array of {@code Index} objects.
+     * Parses the input string containing one or more whitespace-separated indices into {@code Index} object array.
      * Leading and trailing whitespaces in the input string and around individual indices will be trimmed.
      *
      * @param indicesString the string containing one or more one-based indices separated by whitespace.

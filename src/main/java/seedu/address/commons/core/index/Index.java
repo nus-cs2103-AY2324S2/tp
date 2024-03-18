@@ -1,6 +1,7 @@
 package seedu.address.commons.core.index;
 
 import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
