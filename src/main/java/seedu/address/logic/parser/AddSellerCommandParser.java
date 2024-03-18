@@ -18,8 +18,19 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddSellerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.house.*;
-import seedu.address.model.person.*;
+import seedu.address.model.house.Block;
+import seedu.address.model.house.House;
+import seedu.address.model.house.Landed;
+import seedu.address.model.house.Level;
+import seedu.address.model.house.NonLanded;
+import seedu.address.model.house.PostalCode;
+import seedu.address.model.house.Street;
+import seedu.address.model.house.UnitNumber;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Seller;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,8 +44,8 @@ public class AddSellerCommandParser implements Parser<AddSellerCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddSellerCommand parse(String args) throws ParseException {
-        boolean HASBLOCK = true;
-        boolean HASLEVEL = true;
+        boolean hasBlock = true;
+        boolean hasLevel = true;
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_HOUSINGTYPE, PREFIX_LEVEL,
                         PREFIX_EMAIL, PREFIX_BLOCK, PREFIX_STREET, PREFIX_UNITNUMBER, PREFIX_POSTALCODE, PREFIX_TAG);
@@ -59,21 +70,21 @@ public class AddSellerCommandParser implements Parser<AddSellerCommand> {
 
         //NonLandeds might not have blocks, Landeds definitely do not have blocks.
         if (!argMultimap.getValue(PREFIX_BLOCK).isPresent()) {
-            HASBLOCK = false;
+            hasBlock = false;
         }
 
         //Landeds do not have levels
         if (!argMultimap.getValue(PREFIX_BLOCK).isPresent()) {
-            HASLEVEL = false;
+            hasLevel = false;
         }
 
-        if (HASLEVEL && HASBLOCK) {
+        if (hasBlock && hasLevel) {
             Block block = ParserUtil.parseBlock(argMultimap.getValue(PREFIX_BLOCK).get());
             Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
             House house = new NonLanded(block, level, postalCode, street, unitNumber);
             Person person = new Seller(name, phone, email, housingtype, house, street, postalCode, unitNumber, tagList);
             return new AddSellerCommand(person);
-        } else if (HASLEVEL) {
+        } else if (hasLevel) {
             Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
             House house = new NonLanded(level, postalCode, street, unitNumber);
             Person person = new Seller(name, phone, email, housingtype, house, street, postalCode, unitNumber, tagList);
