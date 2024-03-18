@@ -40,6 +40,8 @@ public class MarkCommandParser implements Parser<MarkCommand> {
         String tagName = argMultimap.getValue(PREFIX_TAG).get();
         String status = argMultimap.getValue(PREFIX_TAGSTATUS).get();
         TagStatus tagStatus;
+
+        // the strings for status can be better abstracted out
         switch (status) {
         case "cg":
             tagStatus = TagStatus.COMPLETE_GOOD;
