@@ -39,6 +39,8 @@ public class ApplicantCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label note;
+    @FXML
     private Label role;
     @FXML
     private Label stage;
@@ -61,5 +63,11 @@ public class ApplicantCard extends UiPart<Region> {
         applicant.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        String noteDate = "";
+        if (!applicant.getNoteDate().isEmpty()) {
+            noteDate = ", " + applicant.getNoteDate();
+        }
+        note.setText(applicant.getNote().value + noteDate);
     }
 }
