@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.logic.commands.MailApp;
+import seedu.address.logic.MailApp;
 import seedu.address.model.person.Person;
 
 /**

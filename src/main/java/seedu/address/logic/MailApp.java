@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+
 import seedu.address.model.person.Person;
 
 public class MailApp {
