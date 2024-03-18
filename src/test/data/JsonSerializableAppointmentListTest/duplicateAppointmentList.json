@@ -1,0 +1,15 @@
+{
+  "appointments" : [ {
+    "appointmentId" : 1,
+    "appointmentDateTime" : "2022-12-12T12:12:00",
+    "studentId" : 1,
+    "appointmentDescription" : "First Appointment",
+    "hasAttended" : false
+  }, {
+    "appointmentId" : 1,
+    "appointmentDateTime" : "2022-12-12T12:12:00",
+    "studentId" : 1,
+    "appointmentDescription" : "First Appointment",
+    "hasAttended" : false
+  } ]
+}

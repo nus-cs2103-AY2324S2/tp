@@ -1,0 +1,28 @@
+{
+  "_comment": "AppointmentList save file which contains the same Person values as in TypicalAppointments#getTypicalAppointmentList()",
+  "appointments" : [ {
+    "appointmentId" : 1,
+    "appointmentDateTime" : "2022-12-12T12:12:00",
+    "studentId" : 1,
+    "appointmentDescription" : "First Appointment",
+    "hasAttended" : false
+  }, {
+    "appointmentId" : 2,
+    "appointmentDateTime" : "2022-12-12T12:12:00",
+    "studentId" : 2,
+    "appointmentDescription" : "Second Appointment",
+    "hasAttended" : false
+  }, {
+    "appointmentId" : 3,
+    "appointmentDateTime" : "2022-12-12T12:12:00",
+    "studentId" : 3,
+    "appointmentDescription" : "Third Appointment",
+    "hasAttended" : false
+  }, {
+    "appointmentId" : 4,
+    "appointmentDateTime" : "2022-12-12T12:12:00",
+    "studentId" : 3,
+    "appointmentDescription" : "Second Appointment",
+    "hasAttended" : false
+  } ]
+}

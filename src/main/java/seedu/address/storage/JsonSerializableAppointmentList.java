@@ -19,7 +19,7 @@ import seedu.address.model.appointment.ReadOnlyAppointmentList;
 @JsonRootName(value = "appointmentList")
 class JsonSerializableAppointmentList {
 
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s).";
 
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
