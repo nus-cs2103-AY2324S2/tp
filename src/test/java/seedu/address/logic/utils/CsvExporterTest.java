@@ -11,11 +11,11 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CSVExporterTest {
+public class CsvExporterTest {
 
     private static final String TEST_FILENAME = "test_export.csv";
 
-    private CSVExporter csvExporter;
+    private CsvExporter csvExporter;
     private UniquePersonList persons;
 
     @BeforeEach
@@ -26,7 +26,7 @@ public class CSVExporterTest {
                 TypicalPersons.DANIEL, TypicalPersons.ELLE, TypicalPersons.FIONA
         ));
         this.persons = persons;
-        csvExporter = new CSVExporter(persons, TEST_FILENAME);
+        csvExporter = new CsvExporter(persons, TEST_FILENAME);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class CSVExporterTest {
     @Test
     public void execute_exportFailure() {
         // Simulate a situation where IOException occurs during file write
-        csvExporter = new CSVExporter(persons, ""); // Provide an invalid filename to trigger IOException
+        csvExporter = new CsvExporter(persons, ""); // Provide an invalid filename to trigger IOException
         csvExporter.execute();
         assertFalse(csvExporter.isSuccessful);
     }

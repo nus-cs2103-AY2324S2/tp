@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.utils.CSVExporter;
+import seedu.address.logic.utils.CsvExporter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -107,7 +107,7 @@ public class NetConnect implements ReadOnlyNetConnect {
      * @return {@code true} if the export operation is successful, {@code false} otherwise.
      */
     public boolean exportCSV(String filename){
-        CSVExporter exporter =  new CSVExporter(persons, filename);
+        CsvExporter exporter =  new CsvExporter(persons, filename);
         exporter.execute();
         return exporter.isSuccessful;
     }

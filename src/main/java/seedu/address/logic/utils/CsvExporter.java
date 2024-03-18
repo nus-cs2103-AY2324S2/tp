@@ -12,13 +12,13 @@ import seedu.address.model.person.UniquePersonList;
  * A utility class for exporting data from an address book to a CSV file.
  * It provides methods to create a CSV file containing the data of persons in the address book.
  */
-public class CSVExporter {
+public class CsvExporter {
 
     private final String filename;
     private final UniquePersonList persons;
     public boolean isSuccessful = false;
 
-    public CSVExporter(UniquePersonList persons, String filename) {
+    public CsvExporter(UniquePersonList persons, String filename) {
         this.persons = persons;
         this.filename = filename;
     }
