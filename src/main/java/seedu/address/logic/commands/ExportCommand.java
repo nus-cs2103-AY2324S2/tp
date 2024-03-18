@@ -14,9 +14,13 @@ public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
 
     public static final String MESSAGE_SUCCESS = "Success! Your contact has been exported as ";
-
     public static final String MESSAGE_FAILURE_EMPTY_LIST = "Failed to export contacts. The contact list is empty.";
     public static final String MESSAGE_FAILURE_FILE_WRITE = "Failed to export contacts due to file write error.";
+
+    public static final String MESSAGE_USAGE = "Usage: export [FILENAME]\n"
+            + "Exports the contact list as a CSV file with the specified filename.\n"
+            + "If no filename is provided, the default filename 'contacts.csv' will be used.\n"
+            + "Example: export my_contacts.csv";
 
     private final String filename;
 

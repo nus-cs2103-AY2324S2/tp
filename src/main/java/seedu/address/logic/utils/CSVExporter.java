@@ -61,7 +61,7 @@ public class CSVExporter {
      * @param person The Person object to be converted.
      * @return A string array representing the data of the Person object.
      */
-    private String[] convertPersonToStringArray(Person person) {
+    public String[] convertPersonToStringArray(Person person) {
         String[] personStringArray = new String[6]; // To be checked
 
         personStringArray[0] = person.getName().toString();
