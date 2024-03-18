@@ -1,46 +1,60 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "friends" ]
+    "uuid" : "00000000-0000-0000-0000-000000000001",
+    "attributes" : [
+      { "name": "Name", "value": "Alice Pauline" },
+      { "name": "Phone", "value": "94351253" },
+      { "name": "Email", "value": "alice@example.com" },
+      { "name": "Address", "value": "123, Jurong West Ave 6, #08-111" }
+      ]
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "uuid" : "00000000-0000-0000-0000-000000000002",
+    "attributes" : [
+      { "name": "Name", "value": "Benson Meier" },
+      { "name": "Phone", "value": "98765432" },
+      { "name": "Email", "value": "johnd@example.com" },
+      { "name": "Address", "value": "311, Clementi Ave 2, #02-25" }
+      ]
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tags" : [ ]
+    "uuid" : "00000000-0000-0000-0000-000000000003",
+    "attributes" : [
+      { "name": "Name", "value": "Carl Kurz" },
+      { "name": "Phone", "value": "95352563" },
+      { "name": "Email", "value": "heinz@example.com" },
+      { "name": "Address", "value": "wall street" }
+    ]
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tags" : [ "friends" ]
+    "uuid" : "00000000-0000-0000-0000-000000000004",
+    "attributes" : [
+      { "name": "Name", "value": "Daniel Meier" },
+      { "name": "Phone", "value": "87652533" },
+      { "name": "Email", "value": "cornelia@example.com" },
+      { "name": "Address", "value": "10th street" }
+    ]
   }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tags" : [ ]
+    "uuid" : "00000000-0000-0000-0000-000000000005",
+    "attributes" : [
+      { "name": "Name", "value": "Elle Meyer" },
+      { "name": "Phone", "value": "9482224" },
+      { "name": "Email", "value": "werner@example.com" },
+      { "name": "Address", "value": "michegan ave" }
+    ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tags" : [ ]
+    "uuid" : "00000000-0000-0000-0000-000000000006",
+    "attributes" : [
+      { "name": "Name", "value": "Fiona Kunz" },
+      { "name": "Phone", "value": "9482427" },
+      { "name": "Email", "value": "lydia@example.com" },
+      { "name": "Address", "value": "little tokyo" }
+    ]
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "tags" : [ ]
+    "uuid" : "00000000-0000-0000-0000-000000000007",
+    "attributes" : [
+      { "name": "Name", "value": "George Best" },
+      { "name": "Phone", "value": "9482442" },
+      { "name": "Email", "value": "anna@example.com" },
+      { "name": "Address", "value": "4th street" }
+    ]
   } ]
 }

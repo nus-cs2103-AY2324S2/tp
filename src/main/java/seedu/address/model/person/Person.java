@@ -61,6 +61,22 @@ public class Person {
         }
     }
 
+    // Constructors for loading purposes
+    public Person(UUID uuid, Name name, Phone phone, Email email, Address address) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.uuid = uuid;
+        this.attributes.put("Name", new NameAttribute("Name", name.toString()));
+        this.attributes.put("Phone", new NameAttribute("Phone", phone.toString()));
+        this.attributes.put("Email", new StringAttribute("Email", email.toString()));
+        this.attributes.put("Address", new StringAttribute("Address", address.toString()));
+    }
+
+    public Person(UUID uuid, Attribute[] attributes) {
+        this.uuid = uuid;
+        for (Attribute attribute : attributes) {
+            this.attributes.put(attribute.getName(), attribute);
+        }
+    }
     public Name getName() { //Earmarked for deprecation - superseded by getAttribute - name should be optional
         if (!attributes.containsKey("Name")) {
             return new Name("<no name>");
@@ -185,10 +201,13 @@ public class Person {
             return true;
         }
 
+        Attribute otherPersonNameAttribute = otherPerson.attributes.get("Name");
+        Attribute thisPersonNameAttribute = this.attributes.get("Name");
+
         return otherPerson != null
-                && otherPerson
-                .attributes.get("Name").getValueAsString().equals(
-                        attributes.get("Name").getValueAsString());
+                && otherPersonNameAttribute != null
+                && thisPersonNameAttribute != null
+                && otherPersonNameAttribute.getValueAsString().equals(thisPersonNameAttribute.getValueAsString());
     }
 
     /**
@@ -282,6 +301,7 @@ public class Person {
         return sb.toString().trim();
     }
 
-    public void setAttribute(String attributeName, Attribute attributeValue) {
+    public Set<Attribute> getAttributes() {
+        return new HashSet<>(attributes.values());
     }
 }
