@@ -141,6 +141,9 @@ public class TypicalPersons {
             .withIllnesses(VALID_ILLNESS_INFECTIOUS, VALID_ILLNESS_GENETIC)
             .build();
 
+    public static final Note NOTE1 = new Note(LocalDateTime.now(), new Description("Headache"));
+    public static final Note NOTE2 = new Note(LocalDateTime.now(), new Description("Covid-19"));
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
