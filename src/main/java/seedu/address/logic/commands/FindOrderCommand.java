@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ID;
 
 import java.util.function.Predicate;
 
@@ -18,9 +18,9 @@ public class FindOrderCommand extends FindCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the details of the order identified "
             + "by the specified index and displays them as a list.\n"
             + "Parameters: "
-            + "[" + PREFIX_ORDER + "ORDER]"
+            + "[" + PREFIX_ORDER_ID + "ORDER]"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ORDER + "19 ";
+            + PREFIX_ORDER_ID + "19 ";
 
     private final Predicate<Order> predicate;
 

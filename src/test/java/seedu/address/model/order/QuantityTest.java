@@ -59,6 +59,6 @@ public class QuantityTest {
         assertFalse(quantity.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(quantity.equals(new Phone("11")));
+        assertFalse(quantity.equals(new Phone("111")));
     }
 }

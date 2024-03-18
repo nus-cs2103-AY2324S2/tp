@@ -67,7 +67,6 @@ public class OrderList implements Iterable<Order> {
         toAdd.setID(orderIdCounter);
         orderList.put(toAdd.getId(), toAdd);
         internalList.add(toAdd);
-        person.addOrder(toAdd);
         orderIdCounter++;
     }
 
