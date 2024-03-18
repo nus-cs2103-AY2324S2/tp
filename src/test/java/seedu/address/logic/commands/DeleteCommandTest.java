@@ -7,6 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonWithName;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALICEMAINTAINER;
+import static seedu.address.testutil.TypicalPersons.ALICESTAFF;
+import static seedu.address.testutil.TypicalPersons.ALICESUPPLIER;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -100,6 +103,29 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(targetName);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetName=" + targetName + "}";
         assertEquals(expected, deleteCommand.toString());
+    }
+
+    @Test
+    public void deleteFormat() {
+        // Normal Person
+        String testNormalString = DeleteMessages.format(ALICE);
+        String expectedNormalString = "Other Contact Alice Pauline";
+        assertEquals(testNormalString, expectedNormalString);
+
+        // Staff
+        String testStaffString = DeleteMessages.format(ALICESTAFF);
+        String expectedStaffString = "Pooch Staff Alice Pauline";
+        assertEquals(testStaffString, expectedStaffString);
+
+        // Maintainer
+        String testMaintainerString = DeleteMessages.format(ALICEMAINTAINER);
+        String expectedMaintainerString = "Maintenance Crew Alice Pauline";
+        assertEquals(testMaintainerString, expectedMaintainerString);
+
+        // Supplier
+        String testSupplierString = DeleteMessages.format(ALICESUPPLIER);
+        String expectedSupplierString = "Supplier Alice Pauline";
+        assertEquals(testSupplierString, expectedSupplierString);
     }
 
     /**
