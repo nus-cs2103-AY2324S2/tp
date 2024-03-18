@@ -131,15 +131,15 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code studentId} is invalid.
      */
-    public static int parseStudentId(String studentId) throws ParseException {
-        requireNonNull(studentId);
-        String trimmedStudentId = studentId.trim();
-        int sid = Integer.parseInt(trimmedStudentId);
-        if (!(sid > 0)) {
-            System.out.println("exception 1");
+    public static int parseStudentId(String sid) throws ParseException {
+        requireNonNull(sid);
+        String trimmedStudentId = sid.trim();
+        int studentId = Integer.parseInt(trimmedStudentId);
+        if (!(studentId > 0)) {
+            System.out.println("constraint 1");
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
-        return sid;
+        return studentId;
     }
 
     /**
@@ -164,19 +164,25 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String studentId} into an {@code int}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code Collection<String> att} into a {@code boolean}.
+     * By default, false will be returned id {@code att} is empty.
      *
-     * @throws ParseException if the given {@code studentId} is invalid.
+     * @throws ParseException if the given {@code att} is invalid.
      */
-    public static boolean parseAttend(String attend) throws ParseException {
-        requireNonNull(attend);
-        String trimmedAttend = attend.trim();
-        boolean att = Boolean.parseBoolean(trimmedAttend);
-//        if (!att) {
-//            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
-//        }
-        return att;
+    public static boolean parseAttend(Collection<String> att) throws ParseException {
+        requireNonNull(att);
+        if (att.isEmpty()) {
+            return false;
+        }
+
+        String trimmedAttend = att.iterator().next().trim();
+        if (!trimmedAttend.equalsIgnoreCase("true") &&
+                !trimmedAttend.equalsIgnoreCase("false")) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return Boolean.parseBoolean(trimmedAttend);
+    }
+
     /**
      * Parses a {@code Collection<String> description} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.

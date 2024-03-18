@@ -38,7 +38,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                 PREFIX_APPOINTMENT_DESCRIPTION);
         int studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
         LocalDateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
-        boolean attend = ParserUtil.parseAttend(argMultimap.getValue(PREFIX_ATTEND).get());
+        boolean attend = ParserUtil.parseAttend(argMultimap.getAllValues(PREFIX_ATTEND));
         //TODO: remove after case log is implemented
         String description = ParserUtil.parseDescription(argMultimap.getAllValues(PREFIX_APPOINTMENT_DESCRIPTION));
 
