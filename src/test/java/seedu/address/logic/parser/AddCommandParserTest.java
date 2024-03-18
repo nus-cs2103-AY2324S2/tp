@@ -84,10 +84,9 @@ public class AddCommandParserTest {
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        assertParseSuccess(parser,
-                           NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB   
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MATRIC_DESC_BOB + REFLECTION_DESC_BOB + STUDIO_DESC_BOB,
-                           new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -204,7 +203,7 @@ public class AddCommandParserTest {
         // no matric number
         Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_FRIEND).withMatric("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + REFLECTION_DESC_AMY,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + REFLECTION_DESC_AMY + STUDIO_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -214,7 +213,7 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_FRIEND).withMatric(VALID_MATRIC_NUMBER_AMY)
                 .withReflection("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + MATRIC_DESC_AMY,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + MATRIC_DESC_AMY + STUDIO_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -224,7 +223,7 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_FRIEND).withMatric(VALID_MATRIC_NUMBER_AMY)
                                                         .withStudio("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + MATRIC_DESC_AMY,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + MATRIC_DESC_AMY + REFLECTION_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -234,7 +233,7 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_FRIEND)
                 .withMatric("").withReflection("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + REFLECTION_DESC_AMY,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + STUDIO_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -245,7 +244,7 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().withMatric(VALID_MATRIC_NUMBER_AMY)
                                                       .withStudio("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MATRIC_DESC_AMY,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MATRIC_DESC_AMY + REFLECTION_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -254,7 +253,7 @@ public class AddCommandParserTest {
         // zero tags; no matric number
         Person expectedPerson = new PersonBuilder(AMY).withTags().withMatric("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + REFLECTION_DESC_AMY,
+                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + REFLECTION_DESC_AMY + STUDIO_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -273,7 +272,7 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags()
                                                       .withMatric("").withStudio("").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                           + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+                           + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + REFLECTION_DESC_AMY,
                            new AddCommand(expectedPerson));
     }
 

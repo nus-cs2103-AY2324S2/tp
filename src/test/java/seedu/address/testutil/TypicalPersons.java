@@ -78,7 +78,8 @@ public class TypicalPersons {
             .withReflection(VALID_REFLECTION_AMY).withStudio(VALID_STUDIO_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withMatric(VALID_MATRIC_NUMBER_BOB).withReflection(VALID_REFLECTION_BOB).withStudio(VALID_STUDIO_BOB).build();
+            .withMatric(VALID_MATRIC_NUMBER_BOB).withReflection(VALID_REFLECTION_BOB)
+            .withStudio(VALID_STUDIO_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

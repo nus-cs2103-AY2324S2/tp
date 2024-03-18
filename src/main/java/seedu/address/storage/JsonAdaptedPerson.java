@@ -136,7 +136,6 @@ class JsonAdaptedPerson {
         final Studio modelStudio = new Studio(studio);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
-               
                           modelTags, modelMatric, modelReflection, modelStudio);
     }
 

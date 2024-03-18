@@ -37,7 +37,6 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                 
                   Set<Tag> tags, Matric matric, Reflection reflection , Studio studio) {
         requireAllNonNull(name, phone, email, address, tags, matric, studio);
         this.name = name;

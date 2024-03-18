@@ -114,7 +114,6 @@ public class EditCommand extends Command {
         Studio updatedStudio = editPersonDescriptor.getStudio().orElse(personToEdit.getStudio());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-               
                           updatedAddress, updatedTags, updatedMatric, updatedReflection, updatedStudio);
     }
 
