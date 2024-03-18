@@ -30,23 +30,42 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPersonCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NUSNET,
-                  PREFIX_ADDRESS, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+              args,
+              PREFIX_NAME,
+              PREFIX_PHONE,
+              PREFIX_EMAIL,
+              PREFIX_NUSNET,
+              PREFIX_ADDRESS,
+              PREFIX_TAG
+        );
 
-        if (!ArgumentMultimap.arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_NUSNET)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!ArgumentMultimap.arePrefixesPresent(
+            argMultimap,
+            PREFIX_NAME,
+            PREFIX_NUSNET
+        ) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-            PREFIX_NUSNET, PREFIX_ADDRESS);
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        NusNet nusNet = ParserUtil.parseNusNet(argMultimap.getValue(PREFIX_NUSNET).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(
+            PREFIX_NAME,
+            PREFIX_PHONE,
+            PREFIX_EMAIL,
+            PREFIX_NUSNET,
+            PREFIX_ADDRESS
+        );
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)
+             .get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)
+             .orElseGet(() -> Phone.PLACEHOLDER));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)
+             .orElseGet(() -> Email.PLACEHOLDER));
+        NusNet nusNet = ParserUtil.parseNusNet(argMultimap.getValue(PREFIX_NUSNET)
+              .get());
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)
+              .orElseGet(() -> Address.PLACEHOLDER));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, nusNet, address, tagList);

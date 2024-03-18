@@ -26,10 +26,10 @@ public class AddPersonCommand extends Command {
             COMMAND_WORD,
             "Adds a person to the address book. ",
             PARAMETER_NAME,
-            PARAMETER_PHONE,
-            PARAMETER_EMAIL,
             PARAMETER_NUSNET,
-            PARAMETER_ADDRESS,
+            PARAMETER_PHONE.asOptional(true),
+            PARAMETER_EMAIL.asOptional(true),
+            PARAMETER_ADDRESS.asOptional(true),
             PARAMETER_TAG.asMultiple(2)
     );
 

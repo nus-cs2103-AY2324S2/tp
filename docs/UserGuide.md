@@ -94,14 +94,19 @@ Adds a student to the address book.
 
 Format: `addstu n/NAME p/PHONE_NUMBER e/EMAIL nn/NUSNET_ID a/ADDRESS [t/TAG]…​`
 
+* Add a student with the given details.
+* The name and nusnet id must be provided. And nusnet id must be unique.
+* All the remaining fields are optional. If not provided, a placeholder value will be used.
+
 <box type="tip" seamless>
 
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
 Examples:
-* `addstu n/John Doe p/98765432 e/johnd@example.com nn/e1234567 a/John street, block 123, #01-01`
-* `add n/Betsy nn/e01234567 Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addstu n/John Doe nn/e1234567 [p/98765432] [e/johnd@example.com] [a/John street, block 123, #01-01]`
+* `addstu n/Betsy Crowe nn/e01234567 t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addstu n/Betsy Crowe nn/e01234567`
 
 ### Listing all students : `list`
 
