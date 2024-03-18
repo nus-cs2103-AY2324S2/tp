@@ -124,9 +124,9 @@ public class AppointmentList implements Iterable<Appointment> {
         requireNonNull(timePeriodToMatch);
 
         for (Appointment appointment : this) {
-            if (appointment.getNric().equals(nricToMatch) &&
-                    appointment.getDate().equals(dateToMatch) &&
-                    appointment.getTimePeriod().equals(timePeriodToMatch)) {
+            if (appointment.getNric().equals(nricToMatch)
+                    && appointment.getDate().equals(dateToMatch)
+                    && appointment.getTimePeriod().equals(timePeriodToMatch)) {
                 return appointment;
             }
         }

@@ -72,5 +72,4 @@ public class Time implements Comparable<Time> {
     public int hashCode() {
         return value.hashCode();
     }
-  
 }

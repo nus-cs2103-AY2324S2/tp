@@ -50,7 +50,7 @@ public class CancelAppCommand extends Command {
     public CancelAppCommand(Nric nricToMatch, Date dateToMatch, TimePeriod timePeriodToMatch) {
         this.nricToMatch = nricToMatch;
         this.dateToMatch = dateToMatch;
-        this.timePeriodToMatch  = timePeriodToMatch;
+        this.timePeriodToMatch = timePeriodToMatch;
         this.apptToCancel = null;
     }
 

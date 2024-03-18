@@ -74,7 +74,6 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
-      
         if (startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
@@ -117,5 +116,4 @@ public class JsonAdaptedAppointment {
         return new Appointment(modelNric, modelDate, modelTimePeriod,
                 modelAppointmentType, modelNote);
     }
-
 }

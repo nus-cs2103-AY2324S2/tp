@@ -109,5 +109,4 @@ public class Appointment {
                 .add("note", note)
                 .toString();
     }
-  
 }

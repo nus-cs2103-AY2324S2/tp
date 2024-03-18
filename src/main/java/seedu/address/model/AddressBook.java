@@ -183,7 +183,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return appointments.asUnmodifiableObservableList();
     }
 
-    public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod){
+    public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
         return appointments.getMatchingAppointment(nric, date, timePeriod);
     }
 

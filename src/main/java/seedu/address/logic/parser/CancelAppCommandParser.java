@@ -6,13 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.date.Date;
 import seedu.address.logic.commands.CancelAppCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new CancelAppCommand object

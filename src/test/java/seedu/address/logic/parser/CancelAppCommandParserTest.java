@@ -1,13 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.date.Date;
-import seedu.address.logic.commands.CancelAppCommand;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
-import seedu.address.testutil.AppointmentBuilder;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_APPOINTMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.END_TIME_DESC_APPOINTMENT_BOB;
@@ -27,6 +19,15 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.date.Date;
+import seedu.address.logic.commands.CancelAppCommand;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.person.Nric;
+import seedu.address.testutil.AppointmentBuilder;
+
 public class CancelAppCommandParserTest {
 
     private final CancelAppCommandParser parser = new CancelAppCommandParser();
@@ -38,7 +39,11 @@ public class CancelAppCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
                         + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB,
-                new CancelAppCommand(expectedAppointment.getNric(), expectedAppointment.getDate(), expectedAppointment.getTimePeriod()));
+                new CancelAppCommand(
+                        expectedAppointment.getNric(),
+                        expectedAppointment.getDate(),
+                        expectedAppointment.getTimePeriod()
+                ));
     }
 
     @Test

@@ -4,8 +4,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.date.Date;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
@@ -136,5 +136,4 @@ public interface Model {
 
     /** Returns an Appointment that matches based on Nric, Date and TimePeriod given **/
     Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod);
-  
 }

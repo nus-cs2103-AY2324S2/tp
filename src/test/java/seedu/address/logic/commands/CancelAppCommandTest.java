@@ -41,8 +41,16 @@ public class CancelAppCommandTest {
     @Test
     public void equals() {
 
-        CancelAppCommand cancelFirstAppointment = new CancelAppCommand(ALICE_APPT.getNric(), ALICE_APPT.getDate(), ALICE_APPT.getTimePeriod());
-        CancelAppCommand cancelSecondAppointment = new CancelAppCommand(ALICE_APPT_1.getNric(), ALICE_APPT_1.getDate(), ALICE_APPT_1.getTimePeriod());
+        CancelAppCommand cancelFirstAppointment = new CancelAppCommand(
+                ALICE_APPT.getNric(),
+                ALICE_APPT.getDate(),
+                ALICE_APPT.getTimePeriod()
+        );
+        CancelAppCommand cancelSecondAppointment = new CancelAppCommand(
+                ALICE_APPT_1.getNric(),
+                ALICE_APPT_1.getDate(),
+                ALICE_APPT_1.getTimePeriod()
+        );
 
         String expectedMessageFirst = String.format(CancelAppCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS,
                 Messages.format(ALICE_APPT));
@@ -67,7 +75,11 @@ public class CancelAppCommandTest {
 
     @Test
     public void toStringMethod() {
-        CancelAppCommand cancelAppCommand = new CancelAppCommand(ALICE_APPT.getNric(), ALICE_APPT.getDate(), ALICE_APPT.getTimePeriod());
+        CancelAppCommand cancelAppCommand = new CancelAppCommand(
+                ALICE_APPT.getNric(),
+                ALICE_APPT.getDate(),
+                ALICE_APPT.getTimePeriod()
+        );
 
         String expectedMessage = String.format(CancelAppCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS,
                 Messages.format(ALICE_APPT));
