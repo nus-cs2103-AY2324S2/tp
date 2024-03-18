@@ -23,16 +23,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final ObservableList<Person> defaultPersons; // serves as an unmodified default state for the students
-    //made these fields public for now to ease debugging. Will change them to private after
-    private final FilteredList<Person> filteredPersons; // stores the current filtered state of the list
-    private final SortedList<Person> sortedPersons; // stores the current sorted state of the list
-
-    private enum ListOperation { // saves the latest state of the list
-        DEFAULT, SORTED, FILTERED
-    }
-
-    private ListOperation lastOperation;
+    private final SortedList<Person> sortedPersons;
+    private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,12 +36,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        defaultPersons = this.addressBook.getPersonList();
         //initially both lists would be the same as the default
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        sortedPersons = new SortedList<>(this.addressBook.getPersonList());
-
-        lastOperation = ListOperation.DEFAULT;
+        sortedPersons = new SortedList<>(filteredPersons);
     }
 
     public ModelManager() {
@@ -135,33 +124,23 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return getCorrectPersonList();
+        return filteredPersons;
     }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-        lastOperation = ListOperation.FILTERED;
     }
 
     @Override
     public void updateSortedPersonListSortAscending() {
         Comparator<Person> ascendingComparator = Comparator.comparingInt(Person::getStarCount);
         sortedPersons.setComparator(ascendingComparator);
-        lastOperation = ListOperation.SORTED;
     }
-
     @Override
     public ObservableList<Person> getCorrectPersonList() {
-        System.out.println(lastOperation);
-        if (lastOperation == ListOperation.SORTED) {
-            return sortedPersons;
-        } else if (lastOperation == ListOperation.FILTERED) {
-            return filteredPersons;
-        } else {
-            return defaultPersons;
-        }
+        return sortedPersons;
     }
 
     @Override
