@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.model.person.fields.Address.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
 import static seedu.address.model.person.fields.Email.PREFIX_EMAIL;
 import static seedu.address.model.person.fields.Name.PREFIX_NAME;
 import static seedu.address.model.person.fields.Phone.PREFIX_PHONE;
@@ -34,6 +35,9 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG).append(s.get()).append(" ")
         );
+        person.getAssets().stream().forEach(
+                s -> sb.append(PREFIX_ASSET).append(s.get()).append(" ")
+        );
         return sb.toString();
     }
 
@@ -47,8 +51,10 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address).append(" "));
         if (descriptor.getTags().isPresent()) {
-            sb.append(PREFIX_TAG);
             descriptor.getTags().get().stream().forEach(s -> sb.append(PREFIX_TAG).append(s.get()).append(" "));
+        }
+        if (descriptor.getAssets().isPresent()) {
+            descriptor.getAssets().get().stream().forEach(s -> sb.append(PREFIX_ASSET).append(s.get()).append(" "));
         }
         return sb.toString();
     }
