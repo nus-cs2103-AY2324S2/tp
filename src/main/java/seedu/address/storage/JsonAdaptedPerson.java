@@ -34,6 +34,9 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTechStack> techStack = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
+    final static String SAMPLE_PROFILE_PICTURE_URL = "https://static.vecteezy.com/system/resources/previews/019/766/19" +
+            "8/non_2x/apple-logo-apple-icon-transparent-free-png.png";
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -134,7 +137,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGitHubUsername, modelTechStack,
-                modelTags);
+                modelTags, SAMPLE_PROFILE_PICTURE_URL);
     }
 
 }

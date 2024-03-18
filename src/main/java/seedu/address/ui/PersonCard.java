@@ -4,10 +4,16 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -45,12 +51,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox tags;
 
+    @FXML
+    private ImageView profilePicture;
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        profilePicture.setImage(new Image(person.getProfilePictureURL()));
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText("Phone: " + person.getPhone().value);
@@ -65,4 +74,18 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag-> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
+    private Image loadImage(String imageUrl) {
+        try {
+            URL url = new URL(imageUrl);
+            URLConnection connection = url.openConnection();
+            try (InputStream inputStream = connection.getInputStream()) {
+                return new Image(inputStream);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

@@ -28,13 +28,16 @@ public class Person {
     private final Set<TechStack> techStack = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
+    private String profilePictureURL;
+
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, GitHubUsername gitHubUsername,
-                  Set<TechStack> techStack, Set<Tag> tags) {
+                  Set<TechStack> techStack, Set<Tag> tags, String profilePictureURL ) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
+        this.profilePictureURL = profilePictureURL;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -54,6 +57,8 @@ public class Person {
     public Email getEmail() {
         return email;
     }
+
+    public String getProfilePictureURL() {return profilePictureURL; }
 
     public Address getAddress() {
         return address;

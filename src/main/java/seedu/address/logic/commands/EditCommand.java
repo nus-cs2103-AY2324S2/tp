@@ -110,9 +110,10 @@ public class EditCommand extends Command {
                 editPersonDescriptor.getGitHubUsername().orElse(personToEdit.getGitHubUsername());
         Set<TechStack> updatedTechStack = editPersonDescriptor.getTechStack().orElse(personToEdit.getTechStack());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        String profilePictureURL = editPersonDescriptor.getProfilePictureURL().orElse(personToEdit.getProfilePictureURL());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGitHubUsername,
-                updatedTechStack, updatedTags);
+                updatedTechStack, updatedTags, profilePictureURL);
     }
 
     @Override
@@ -152,6 +153,8 @@ public class EditCommand extends Command {
         private Set<TechStack> techStack;
         private Set<Tag> tags;
 
+        private String profilePictureURL;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -166,6 +169,7 @@ public class EditCommand extends Command {
             setGitHubUsername(toCopy.gitHubUsername);
             setTechStack(toCopy.techStack);
             setTags(toCopy.tags);
+            setProfilePictureURL(toCopy.profilePictureURL);
         }
 
         /**
@@ -214,6 +218,10 @@ public class EditCommand extends Command {
         public Optional<GitHubUsername> getGitHubUsername() {
             return Optional.ofNullable(gitHubUsername);
         }
+
+        public void setProfilePictureURL(String url) {this.profilePictureURL = url; }
+
+        public Optional<String> getProfilePictureURL() {return Optional.ofNullable(this.profilePictureURL);}
 
         /**
          * Sets {@code techStack} to this object's {@code techStack}.

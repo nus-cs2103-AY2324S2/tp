@@ -83,6 +83,17 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String profilePictureURL} into an {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static String parseProfilePictureURL(String profilePictureURLArgument) {
+        requireNonNull(profilePictureURLArgument);
+        return profilePictureURLArgument.trim();
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
