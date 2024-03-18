@@ -6,6 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.MeetingBelongingToClientPredicate;
 import seedu.address.model.person.Person;
 
 import java.util.List;
@@ -37,6 +38,11 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person selectedClient = lastShownList.get(this.clientIndex.getZeroBased());
+
+        model.updateFilteredPersonList(c -> c.equals(selectedClient));
+        model.updateFilteredMeetingList(new MeetingBelongingToClientPredicate(selectedClient));
+
+
         return new CommandResult(MESSAGE_SUCCESS + this.clientIndex.getOneBased());
     }
 }
