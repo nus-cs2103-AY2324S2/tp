@@ -32,6 +32,8 @@ public class FacultyTest {
         // valid Faculties
         assertTrue(Faculty.isValidFaculty("science")); // ignore capitals
         assertTrue(Faculty.isValidFaculty("Computing"));
+        assertTrue(Faculty.isValidFaculty("SoC")); // another name for the same enum member
+        assertTrue(Faculty.isValidFaculty("soc")); // ignore capitals
         assertTrue(Faculty.isValidFaculty("Arts and Social Sciences")); // long faculty
     }
 
@@ -41,6 +43,10 @@ public class FacultyTest {
 
         // same values -> returns true
         assertEquals(faculty, new Faculty("Computing"));
+
+        // same values with different constructing values -> true
+        assertEquals(faculty, new Faculty("School of Computing"));
+        assertEquals(faculty, new Faculty("SoC"));
 
         // same object -> returns true
         assertEquals(faculty, faculty);
