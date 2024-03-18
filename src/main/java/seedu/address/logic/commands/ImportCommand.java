@@ -129,8 +129,6 @@ public class ImportCommand extends Command {
                 sb.append(personData.get(key));
             }
             sb.append(" ");
-            // tag is a special case, it can have multiple values
-
         }
         return sb.toString();
     }
