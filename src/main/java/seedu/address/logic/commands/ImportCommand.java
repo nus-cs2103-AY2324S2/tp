@@ -46,10 +46,17 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         String newJsonFilePath = "data/importedAddressBook.json";
         // convert csv file at filePath to json file
-        CsvUtil.convertToJSON(filePath, newJsonFilePath);
+//        CsvUtil.convertToJSON(filePath, newJsonFilePath);
         // convert json file to addressBook
         try {
+            // new way to do it
+            // String[] every String is input to the add command
+            // this is doable cos I am able to create a map with all the relevant info
+            // use addcommandparser dont include preamble
+            // execute add command
+            // I need a AddressBookStorage
             AddressBookStorage newAddressBookStorage = new JsonAddressBookStorage(ParserUtil.parseFilePath(newJsonFilePath));
+
             model.setAddressBook(
                     newAddressBookStorage
                             .readAddressBook()

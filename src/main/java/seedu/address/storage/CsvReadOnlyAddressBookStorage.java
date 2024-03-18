@@ -34,17 +34,21 @@ public class CsvReadOnlyAddressBookStorage implements ReadOnlyAddressBookStorage
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
+
+
         Optional<AddressBookStorage> csvAddressBook = CsvUtil.readCsvFile(
                 filePath);
-        if (!csvAddressBook.isPresent()) {
-            return Optional.empty();
-        }
-
-        try {
-            return Optional.of(csvAddressBook.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataLoadingException(ive);
-        }
+//        if (!csvAddressBook.isPresent()) {
+//            return Optional.empty();
+//        }
+//
+//        try {
+//            return Optional.of(csvAddressBook.get().toModelType());
+//        } catch (IllegalValueException ive) {
+//            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+//            throw new DataLoadingException(ive);
+//        }
+        return Optional.empty();
     }
+
 }

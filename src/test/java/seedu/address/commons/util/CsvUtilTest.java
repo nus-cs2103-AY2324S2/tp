@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.DataLoadingException;
@@ -23,7 +24,7 @@ public class CsvUtilTest {
     @Test
     public void readCsvFile_noExceptionThrown() throws IOException {
         Path path = Path.of(filePath);
-        AddressBookStorage actualAddressBookStorage = CsvUtil.readCsvFile(path);
+        Optional<AddressBookStorage> actualAddressBookStorage = CsvUtil.readCsvFile(path);
         ReadOnlyAddressBook newAddressBookStorage = SampleDataUtil.getSampleAddressBook();
 
     }
