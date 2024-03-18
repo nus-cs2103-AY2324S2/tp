@@ -3,13 +3,14 @@ package vitalconnect.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static vitalconnect.logic.Messages.MESSAGE_PERSON_ALREADY_EXIST;
 import static vitalconnect.logic.Messages.MESSAGE_PERSON_NOT_FOUND;
-import static vitalconnect.logic.parser.CliSyntax.*;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_HEIGHT;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static vitalconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import vitalconnect.logic.commands.exceptions.CommandException;
 import vitalconnect.model.Model;
 import vitalconnect.model.person.Person;
-import vitalconnect.model.person.contactinformation.ContactInformation;
 import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.model.person.medicalinformation.MedicalInformation;
 

@@ -7,7 +7,6 @@ import static vitalconnect.logic.commands.CommandTestUtil.DESC_AMY;
 import static vitalconnect.logic.commands.CommandTestUtil.DESC_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
-import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 

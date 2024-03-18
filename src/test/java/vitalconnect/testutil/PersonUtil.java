@@ -1,15 +1,12 @@
 package vitalconnect.testutil;
 
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
-
-import java.util.Set;
 
 import vitalconnect.logic.commands.AddCommand;
 import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import vitalconnect.model.person.Person;
-import vitalconnect.model.allergytag.AllergyTag;
 
 /**
  * A utility class for Person.

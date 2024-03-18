@@ -28,7 +28,8 @@ public class MedicalInformation {
     }
 
     /**
-     * Constructs a MedicalInformation object with the specified height and weight, initializing the allergy tags to an empty set.
+     * Constructs a MedicalInformation object with the specified height and weight,
+     * initializing the allergy tags to an empty set.
      *
      * @param height  the height of the person
      * @param weight  the weight of the person

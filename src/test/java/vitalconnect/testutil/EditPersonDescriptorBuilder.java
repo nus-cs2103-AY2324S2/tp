@@ -1,14 +1,9 @@
 package vitalconnect.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.allergytag.AllergyTag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

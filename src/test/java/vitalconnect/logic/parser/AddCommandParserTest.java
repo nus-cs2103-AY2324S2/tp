@@ -1,41 +1,45 @@
 package vitalconnect.logic.parser;
 
 import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static vitalconnect.logic.commands.CommandTestUtil.*;
+import static vitalconnect.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static vitalconnect.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
+import static vitalconnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
+import static vitalconnect.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static vitalconnect.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
 import static vitalconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static vitalconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static vitalconnect.testutil.TypicalPersons.AMY;
-import static vitalconnect.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.logic.Messages;
 import vitalconnect.logic.commands.AddCommand;
-import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.allergytag.AllergyTag;
-import vitalconnect.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
-//    @Test
-//    public void parse_allFieldsPresent_success() {
-//        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
-//
-//        // whitespace only preamble
-//        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NRIC_DESC_BOB, new AddCommand(expectedPerson));
-//
-//
-//        // multiple tags - all accepted
-//        Person expectedPersonMultipleTags = new PersonBuilder(BOB).build();
-//        assertParseSuccess(parser,
-//                NAME_DESC_BOB + NRIC_DESC_BOB,
-//                new AddCommand(expectedPersonMultipleTags));
-//    }
+    //    @Test
+    //    public void parse_allFieldsPresent_success() {
+    //        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+    //
+    //        // whitespace only preamble
+    //        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
+    //        + NRIC_DESC_BOB, new AddCommand(expectedPerson));
+    //
+    //
+    //        // multiple tags - all accepted
+    //        Person expectedPersonMultipleTags = new PersonBuilder(BOB).build();
+    //        assertParseSuccess(parser,
+    //                NAME_DESC_BOB + NRIC_DESC_BOB,
+    //                new AddCommand(expectedPersonMultipleTags));
+    //    }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
@@ -77,13 +81,13 @@ public class AddCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
     }
 
-//    @Test
-//    public void parse_optionalFieldsMissing_success() {
-//        // zero tags
-//        Person expectedPerson = new PersonBuilder(AMY).build();
-//        assertParseSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY,
-//                new AddCommand(expectedPerson));
-//    }
+    //    @Test
+    //    public void parse_optionalFieldsMissing_success() {
+    //        // zero tags
+    //        Person expectedPerson = new PersonBuilder(AMY).build();
+    //        assertParseSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY,
+    //                new AddCommand(expectedPerson));
+    //    }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {

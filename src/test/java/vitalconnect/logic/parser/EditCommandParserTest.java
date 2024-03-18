@@ -3,7 +3,6 @@ package vitalconnect.logic.parser;
 import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static vitalconnect.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static vitalconnect.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
-import static vitalconnect.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static vitalconnect.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static vitalconnect.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
@@ -13,10 +12,8 @@ import static vitalconnect.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
-import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
 import static vitalconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static vitalconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static vitalconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -29,7 +26,6 @@ import vitalconnect.commons.core.index.Index;
 import vitalconnect.logic.Messages;
 import vitalconnect.logic.commands.EditCommand;
 import vitalconnect.logic.commands.EditCommand.EditPersonDescriptor;
-import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
 import vitalconnect.testutil.EditPersonDescriptorBuilder;
@@ -74,18 +70,11 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_NRIC_DESC, Nric.MESSAGE_CONSTRAINTS); // invalid nric
-//        assertParseFailure(parser, "1" + INVALID_TAG_DESC, AllergyTag.MESSAGE_CONSTRAINTS); // invalid allergytag
+        //assertParseFailure(parser, "1" + INVALID_TAG_DESC, AllergyTag.MESSAGE_CONSTRAINTS); // invalid allergytag
 
         // invalid name followed by valid nric
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + NRIC_DESC_AMY, Name.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
-        // parsing it together with a valid allergytag results in error
-//        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, AllergyTag.MESSAGE_CONSTRAINTS);
-//        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, AllergyTag.MESSAGE_CONSTRAINTS);
-//        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, AllergyTag.MESSAGE_CONSTRAINTS);
-
-        // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_NRIC_DESC,
                 Name.MESSAGE_CONSTRAINTS);
     }
@@ -130,11 +119,11 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-//        // tags
-//        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-//        descriptor = new EditPersonDescriptorBuilder().build();
-//        expectedCommand = new EditCommand(targetIndex, descriptor);
-//        assertParseSuccess(parser, userInput, expectedCommand);
+        //        // tags
+        //        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
+        //        descriptor = new EditPersonDescriptorBuilder().build();
+        //        expectedCommand = new EditCommand(targetIndex, descriptor);
+        //        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -168,14 +157,14 @@ public class EditCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
     }
 
-//    @Test
-//    public void parse_resetTags_success() {
-//        Index targetIndex = INDEX_THIRD_PERSON;
-//        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-//
-//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().build();
-//        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-//
-//        assertParseSuccess(parser, userInput, expectedCommand);
-//    }
+    //    @Test
+    //    public void parse_resetTags_success() {
+    //        Index targetIndex = INDEX_THIRD_PERSON;
+    //        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+    //
+    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().build();
+    //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+    //
+    //        assertParseSuccess(parser, userInput, expectedCommand);
+    //    }
 }

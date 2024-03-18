@@ -142,12 +142,24 @@ public class ParserUtil {
         return allergyTagSet;
     }
 
+    /**
+     * Parses a {@code String height} into a {@code HEIGHT}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code HEIGHT} is invalid.
+     */
     public static Height parseHeight(String height) {
         requireNonNull(height);
         String trimmedHeight = height.trim();
         return new Height(trimmedHeight);
     }
 
+    /**
+     * Parses a {@code String weight} into a {@code WEIGHT}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code WEIGHT} is invalid.
+     */
     public static Weight parseWeight(String weight) {
         requireNonNull(weight);
         String trimmedWeight = weight.trim();

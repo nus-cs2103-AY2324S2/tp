@@ -3,6 +3,7 @@ package vitalconnect.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.ContactInformation;
@@ -11,7 +12,6 @@ import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.allergytag.AllergyTag;
 import vitalconnect.model.person.medicalinformation.Height;
 import vitalconnect.model.person.medicalinformation.MedicalInformation;
 import vitalconnect.model.person.medicalinformation.Weight;
@@ -76,7 +76,8 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code allergyTags} into a {@code Set<AllergyTag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code allergyTags} into a {@code Set<AllergyTag>}
+     * and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
         this.allergyTags = SampleDataUtil.getTagSet(tags);

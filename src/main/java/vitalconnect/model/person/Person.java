@@ -15,9 +15,9 @@ import vitalconnect.model.person.medicalinformation.MedicalInformation;
  */
 public class Person {
     // Information fields
-    private  IdentificationInformation identificationInformation;
-    private  ContactInformation contactInformation;
-    private  MedicalInformation medicalInformation;
+    private IdentificationInformation identificationInformation;
+    private ContactInformation contactInformation;
+    private MedicalInformation medicalInformation;
 
     /**
      * Only identificationInformation is present.

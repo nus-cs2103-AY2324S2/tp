@@ -7,8 +7,6 @@ import static vitalconnect.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static vitalconnect.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static vitalconnect.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;

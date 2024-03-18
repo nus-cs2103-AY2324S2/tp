@@ -1,9 +1,9 @@
 package vitalconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
-import static vitalconnect.logic.parser.CliSyntax.PREFIX_ALLERGYTAG;
 
 import vitalconnect.commons.util.ToStringBuilder;
 import vitalconnect.logic.Messages;
