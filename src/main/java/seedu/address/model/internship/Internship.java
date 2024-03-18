@@ -105,9 +105,13 @@ public class Internship {
 
         Internship otherInternship = (Internship) other;
         return companyName.equals(otherInternship.companyName)
+                && contactName.equals(otherInternship.contactName)
+                && contactEmail.equals(otherInternship.contactEmail)
+                && contactNumber.equals(otherInternship.contactNumber)
                 && location.equals(otherInternship.location)
-                && role.equals(otherInternship.role)
-                && description.equals(otherInternship.description);
+                && applicationStatus.equals(otherInternship.applicationStatus)
+                && description.equals(otherInternship.description)
+                && role.equals(otherInternship.role);
     }
 
     @Override
