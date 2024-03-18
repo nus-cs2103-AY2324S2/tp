@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.module.ModuleMap;
 import seedu.address.model.student.Student;
@@ -29,16 +28,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
     }
 
-    /**
-     * Constructor for AddressBook
-     */
-    public AddressBook() {}
+    private final ModuleMap moduleMap;
+
 
     /**
      * Creates an AddressBook using the Students in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
-        this();
+    public AddressBook(ReadOnlyAddressBook toBeCopied, ModuleMap moduleMap) {
+        this.moduleMap = moduleMap;
         resetData(toBeCopied);
     }
 

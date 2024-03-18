@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Wrapper for a hashmap that stores all Module objects
  */
-public class ModuleMap implements ReadOnlyModuleMap {
+public class ModuleMap {
     private final HashMap<ModuleCode, Module> moduleMap;
 
     public ModuleMap() {
@@ -18,8 +18,10 @@ public class ModuleMap implements ReadOnlyModuleMap {
         moduleMap.put(module.getModuleCode(), module);
     }
 
-    @Override
-    public Map<ModuleCode, Module> getModuleMap() {
-        return Collections.unmodifiableMap(moduleMap);
+    public boolean hasModule(ModuleCode code) {
+        return moduleMap.containsKey(code);
+    }
+    public Module getModule(ModuleCode code) {
+        return moduleMap.get(code);
     }
 }
