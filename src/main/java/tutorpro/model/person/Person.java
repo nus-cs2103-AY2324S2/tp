@@ -6,9 +6,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.scene.layout.Region;
 import tutorpro.commons.util.CollectionUtil;
 import tutorpro.commons.util.ToStringBuilder;
 import tutorpro.model.tag.Tag;
+import tutorpro.ui.PersonCard;
+import tutorpro.ui.UiPart;
 
 /**
  * Represents a Person in the address book.
@@ -118,4 +121,7 @@ public class Person {
                 .toString();
     }
 
+    public UiPart<Region> getCard(int displayIndex) {
+        return new PersonCard(this, displayIndex);
+    }
 }

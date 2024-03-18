@@ -56,7 +56,7 @@ public class SampleDataUtil {
                     getTagSet(), new Level("J1"), getSubjectSet("Physics")),
             new Student(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet(), new Level("UNI"), getSubjectSet("Chemistry, Biology")),
+                    getTagSet(), new Level("UNI"), getSubjectSet("Chemistry", "Biology")),
             new Student(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"),
                     getTagSet(), new Level("K2"), getSubjectSet("Reading")),
@@ -68,7 +68,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
+        for (Person samplePerson : getSampleStudents()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
