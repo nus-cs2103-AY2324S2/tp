@@ -163,7 +163,7 @@ public class DeleteTagsCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetPatientIndex", index)
-                .add("tag", tagsToDelete)
+                .add("tags", tagsToDelete)
                 .toString();
     }
 }
