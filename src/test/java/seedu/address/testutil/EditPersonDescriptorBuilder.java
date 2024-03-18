@@ -95,8 +95,4 @@ public class EditPersonDescriptorBuilder {
         return descriptor;
     }
 
-    public EditPersonDescriptorBuilder withRelationship(String relationship) {
-        descriptor.setRelationship(new Relationship(relationship));
-        return this;
-    }
 }
