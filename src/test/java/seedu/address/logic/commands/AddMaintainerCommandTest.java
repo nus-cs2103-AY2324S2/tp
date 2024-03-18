@@ -23,7 +23,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Maintainer;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 import seedu.address.testutil.MaintainerBuilder;
 
 public class AddMaintainerCommandTest {
@@ -158,6 +161,26 @@ public class AddMaintainerCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person findByName(Name targetName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Maintainer findMaintainerByName(Name targetName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Supplier findSupplierByName(Name targetName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Staff findStaffByName(Name targetName) {
             throw new AssertionError("This method should not be called.");
         }
     }
