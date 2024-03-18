@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -69,20 +69,20 @@ public class ViewCommandTest {
         ViewCommand viewSecondCommand = new ViewCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(viewFirstCommand.equals(viewFirstCommand));
+        assertEquals(viewFirstCommand, viewFirstCommand);
 
         // same values -> returns true
         ViewCommand viewFirstCommandCopy = new ViewCommand(INDEX_FIRST_PERSON);
-        assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
+        assertEquals(viewFirstCommand, viewFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(viewFirstCommand.equals(1));
+        assertNotEquals(1, viewFirstCommand);
 
         // null -> returns false
-        assertFalse(viewFirstCommand.equals(null));
+        assertNotEquals(null, viewFirstCommand);
 
         // different person -> returns false
-        assertFalse(viewFirstCommand.equals(viewSecondCommand));
+        assertNotEquals(viewFirstCommand, viewSecondCommand);
     }
 
     @Test
