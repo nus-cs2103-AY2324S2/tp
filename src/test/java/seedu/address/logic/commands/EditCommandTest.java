@@ -15,6 +15,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -25,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -174,13 +177,60 @@ public class EditCommandTest {
     }
 
     @Test
+    public void getEditedPhone_firstParentPhoneNotNull_returnsFirstParentPhone() {
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        Phone expectedPhone = new Phone("12345678");
+        descriptor.setFirstParentPhone(expectedPhone);
+
+        Optional<Phone> result = descriptor.getEditedPhone();
+
+        assertTrue(result.isPresent());
+        assertEquals(expectedPhone, result.get());
+    }
+
+    @Test
+    public void getEditedPhone_firstParentPhoneNull_returnsSecondParentPhone() {
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        Phone expectedPhone = new Phone("87654321");
+        descriptor.setSecondParentPhone(expectedPhone);
+
+        Optional<Phone> result = descriptor.getEditedPhone();
+
+        assertTrue(result.isPresent());
+        assertEquals(expectedPhone, result.get());
+    }
+
+    @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        EditCommand editCommand = new EditCommand(index, editPersonDescriptor);
-        String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editPersonDescriptor="
-                + editPersonDescriptor + "}";
-        assertEquals(expected, editCommand.toString());
+
+        // Case 1: firstParentPhone is not null
+        EditPersonDescriptor descriptorWithFirstParentPhone = new EditPersonDescriptor();
+        Phone firstParentPhone = new Phone("12345678");
+        descriptorWithFirstParentPhone.setFirstParentPhone(firstParentPhone);
+        EditCommand editCommandWithFirstParentPhone = new EditCommand(index, descriptorWithFirstParentPhone);
+
+        String expectedWithFirstParentPhone = "seedu.address.logic.commands.EditCommand{index="
+                + index
+                + ", editPersonDescriptor="
+                + descriptorWithFirstParentPhone
+                + "}";
+
+        assertEquals(expectedWithFirstParentPhone, editCommandWithFirstParentPhone.toString());
+
+        // Case 2: firstParentPhone is null, secondParentPhone is not null
+        EditPersonDescriptor descriptorWithSecondParentPhone = new EditPersonDescriptor();
+        Phone secondParentPhone = new Phone("87654321");
+        descriptorWithSecondParentPhone.setSecondParentPhone(secondParentPhone);
+        EditCommand editCommandWithSecondParentPhone = new EditCommand(index, descriptorWithSecondParentPhone);
+
+        String expectedWithSecondParentPhone = "seedu.address.logic.commands.EditCommand{index="
+                + index
+                + ", editPersonDescriptor="
+                + descriptorWithSecondParentPhone
+                + "}";
+
+        assertEquals(expectedWithSecondParentPhone, editCommandWithSecondParentPhone.toString());
     }
 
 }

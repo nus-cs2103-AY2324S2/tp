@@ -210,6 +210,7 @@ public class EditCommand extends Command {
                 return Optional.ofNullable(secondParentPhone);
             }
         }
+
         public void setEmail(Email email) {
             this.email = email;
         }

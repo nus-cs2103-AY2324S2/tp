@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -90,6 +91,35 @@ public class ParserUtilTest {
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    }
+
+    @Test
+    public void parsePhoneForEdit_validInput_success() throws Exception {
+        String phone = "12345678, 1";
+        String[] expected = new String[]{"12345678", " 1"};
+
+        assertArrayEquals(expected, ParserUtil.parsePhoneForEdit(phone));
+    }
+
+    @Test
+    public void parsePhoneForEdit_invalidPhone_throwsParseException() {
+        String invalidPhone = "abcd, 1";
+
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhoneForEdit(invalidPhone));
+    }
+
+    @Test
+    public void parsePhoneForEdit_invalidNumberToEdit_throwsParseException() {
+        String invalidEditNumber = "12345678, 3";
+
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhoneForEdit(invalidEditNumber));
+    }
+
+    @Test
+    public void parsePhoneForEdit_incorrectFormat_throwsParseException() {
+        String incorrectFormat = "12345678";
+
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhoneForEdit(incorrectFormat));
     }
 
     @Test
