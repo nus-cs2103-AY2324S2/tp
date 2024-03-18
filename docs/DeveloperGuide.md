@@ -310,7 +310,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 
-* TA Toolkit is a desktop app that helps the user manage a large number of student contacts 
+* TA Toolkit is a desktop app that helps the user manage a large number of student contacts
 across different communication channels efficiently. It is optimised for use via a Command
 Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)
 * It categorises contacts into their tutorial group, allowing for easier management of contacts
@@ -356,7 +356,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The add student command format is invalid.
     * 1a1. TA Toolkit shows an error message.
-  
+
       Use case resumes at step 1.
 
 * 2a. Student already exists in the list of students.
@@ -477,11 +477,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. TA Toolkit shows a message asking whether to replace or keep the existing tag.
         * 2b1a. User decides to replace the existing tag.
             * 2b1a1. TA Toolkit removes the current project team tag from the student.
-              
+
               Use case resumes at step 2.
 
         * 2b1b. User decides to keep the existing tag.
-        
+
           Use case ends.
 
 ---
@@ -641,8 +641,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
 be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  All functions within the application must provide responses to user queries within a timeframe of 2 seconds. 
-5.  The applications does not support concurrent usage by multiple users. 
+4.  All functions within the application must provide responses to user queries within a timeframe of 2 seconds.
+5.  The applications does not support concurrent usage by multiple users.
 6.  The application does not offer support for languages aside from English.
 7.  The application should be able to handle most common user input errors and provide meaningful error messages.
 
