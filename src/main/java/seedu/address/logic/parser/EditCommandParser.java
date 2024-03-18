@@ -34,6 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        System.out.println(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_GITHUB_USERNAME, PREFIX_TECH_STACK, PREFIX_TAG);
@@ -64,8 +65,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_GITHUB_USERNAME).isPresent()) {
-            editPersonDescriptor.setAddress(
-                    ParserUtil.parseAddress(argMultimap.getValue(PREFIX_GITHUB_USERNAME).get()));
+            editPersonDescriptor.setGitHubUsername(
+                    ParserUtil.parseGitHubUsername(argMultimap.getValue(PREFIX_GITHUB_USERNAME).get()));
         }
         parseTechStackForEdit(argMultimap.getAllValues(PREFIX_TECH_STACK))
                 .ifPresent(editPersonDescriptor::setTechStack);
@@ -73,7 +74,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
+        };
 
         return new EditCommand(index, editPersonDescriptor);
     }

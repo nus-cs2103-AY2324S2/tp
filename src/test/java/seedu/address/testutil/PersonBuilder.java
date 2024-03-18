@@ -43,7 +43,6 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         gitHubUsername = new GitHubUsername(DEFAULT_GITHUB_USERNAME);
         techStack = new HashSet<>();
-        techStack.add(new TechStack(DEFAULT_TECH_STACK));
         tags = new HashSet<>();
     }
 

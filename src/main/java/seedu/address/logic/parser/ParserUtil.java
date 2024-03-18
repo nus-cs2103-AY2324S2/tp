@@ -121,6 +121,7 @@ public class ParserUtil {
     public static TechStack parseTechStack(String techStack) throws ParseException {
         requireNonNull(techStack);
         String trimmedTechStack = techStack.trim();
+        System.out.println(trimmedTechStack);
         if (!Tag.isValidTagName(trimmedTechStack)) {
             throw new ParseException(TechStack.MESSAGE_CONSTRAINTS);
         }

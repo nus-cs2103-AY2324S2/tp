@@ -15,13 +15,17 @@ public class TagsContainKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return tagKeywords.stream()
-                .allMatch(keyword ->
-                        person.getTags().stream()
-                                .anyMatch(tag ->
-                                        StringUtil.containsWordIgnoreCase(tag.tagName, keyword)
-                                )
-                );
+        if (tagKeywords.isEmpty()) {
+            return false;
+        } else {
+            return tagKeywords.stream()
+                    .allMatch(keyword ->
+                            person.getTags().stream()
+                                    .anyMatch(tag ->
+                                            StringUtil.containsWordIgnoreCase(tag.tagName, keyword)
+                                    )
+                    );
+        }
     }
 
     @Override

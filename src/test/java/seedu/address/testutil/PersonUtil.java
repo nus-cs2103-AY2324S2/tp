@@ -6,6 +6,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.techstack.TechStack;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -13,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TECH_STACK;
 
 /**
  * A utility class for Person.
@@ -53,10 +55,18 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getGitHubUsername().ifPresent(gitHubUsername -> sb.append(PREFIX_GITHUB_USERNAME)
                 .append(gitHubUsername.username).append(" "));
+        if (descriptor.getTechStack().isPresent()) {
+            Set<TechStack> techStacks = descriptor.getTechStack().get();
+            if (techStacks.isEmpty()) {
+                sb.append(PREFIX_TECH_STACK + " ");
+            } else {
+                techStacks.forEach(s -> sb.append(PREFIX_TECH_STACK).append(s.techStackName).append(" "));
+            }
+        }
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG + " ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
