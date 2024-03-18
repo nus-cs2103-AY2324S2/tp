@@ -89,4 +89,8 @@ public class TutorialClass {
     public int hashCode() {
         return value.hashCode();
     }
+
+    public ArrayList<Person> getStudents() {
+        return students;
+    }
 }
