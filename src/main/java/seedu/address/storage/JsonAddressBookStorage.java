@@ -24,11 +24,17 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     private Path personsFilePath;
 
-    private Path AppointmentFilePath;
+    private Path appointmentFilePath;
+
+    /**
+     * Creates a {@code JsonAddressBookStorage} with the given file paths.
+     * @param personsFilePath the file path for the person data. Cannot be null.
+     * @param AppointmentFilePath the file path for the appointment list data. Can be null.
+     */
 
     public JsonAddressBookStorage(Path personsFilePath, Path AppointmentFilePath) {
         this.personsFilePath = personsFilePath;
-        this.AppointmentFilePath = AppointmentFilePath;
+        this.appointmentFilePath = AppointmentFilePath;
     }
 
     public JsonAddressBookStorage(Path personsFilePath) {

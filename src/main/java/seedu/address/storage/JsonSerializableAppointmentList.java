@@ -1,18 +1,17 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.AppointmentList;
-import seedu.address.model.ReadOnlyAppointmentList;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.AppointmentList;
+import seedu.address.model.ReadOnlyAppointmentList;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -38,7 +37,8 @@ class JsonSerializableAppointmentList {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAppointmentList(ReadOnlyAppointmentList source) {
-        appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new).collect(Collectors.toList()));
+        appointments.addAll(source.getAppointmentList().stream()
+                .map(JsonAdaptedAppointment::new).collect(Collectors.toList()));
     }
 
     /**
