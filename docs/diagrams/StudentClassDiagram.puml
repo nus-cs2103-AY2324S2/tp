@@ -7,10 +7,10 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model as ModelPackage <<Rectangle>>{
 
 Class Student
-Class Address
+Class StudentId
 Class Email
 Class Name
-Class Phone
+Class TelegramHandle
 Class Tag
 Class Timetable
 Class Day
@@ -24,15 +24,15 @@ Class HiddenOutside #FFFFFF
 Student -[hidden]up-> HiddenOutside
 
 Student *--> Name
-Student *--> Phone
+Student *--> StudentId
 Student *--> Email
-Student *--> Address
+Student *--> TelegramHandle
 Student *--> "*" Tag
 Student *--> Timetable
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> StudentId
+StudentId -[hidden]right-> TelegramHandle
+TelegramHandle -[hidden]right-> Email
 
 Timetable *--> "1..7" Day
 Day *--> "0..24" Period
