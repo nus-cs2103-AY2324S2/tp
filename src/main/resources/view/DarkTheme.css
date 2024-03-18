@@ -95,6 +95,8 @@
 
 .list-view {
     -fx-background-insets: 0;
+    -fx-background-color: #ededed;
+    -fx-background-radius: 10;
     -fx-padding: 0;
 }
 
@@ -102,6 +104,7 @@
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-radius: 10;
 }
 
 .list-cell:filled:even {
@@ -112,12 +115,14 @@
     -fx-background-color: #f5f3f2;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
+/*.list-cell:filled:selected {*/
+/*    -fx-border-width: 1.5;*/
+/*    -fx-border-color: red;*/
+/*}*/
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #7333E0;
+    -fx-border-radius: 10;
     -fx-border-width: 2;
 }
 
@@ -283,7 +288,7 @@
   // ================================ */
 
 .scroll-bar {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #EDEDED;
 }
 
 .scroll-bar .thumb {
