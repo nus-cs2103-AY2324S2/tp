@@ -2,9 +2,12 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewCommand ;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ListCommand or ViewCommand object depending on the arguments.
+ */
 public class ViewCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
@@ -22,5 +25,4 @@ public class ViewCommandParser {
             throw new ParseException("Invalid arguments for 'view' command");
         }
     }
-    
 }

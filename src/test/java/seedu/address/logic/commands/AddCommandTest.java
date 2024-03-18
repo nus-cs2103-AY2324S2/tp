@@ -158,7 +158,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override       
+        @Override
         public int getTotalPersons() {
             throw new AssertionError("This method should not be called.");
         }
