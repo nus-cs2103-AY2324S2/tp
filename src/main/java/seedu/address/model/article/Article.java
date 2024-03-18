@@ -15,7 +15,7 @@ public class Article {
     /**
      * Enumeration of Status of an article.
      */
-    private enum Status {
+    public enum Status {
         DRAFT, PUBLISHED, ARCHIVED
     }
 
