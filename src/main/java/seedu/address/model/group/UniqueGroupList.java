@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 
@@ -40,6 +41,19 @@ public class UniqueGroupList implements Iterable<Group> {
     public boolean contains(Group toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameGroup);
+    }
+
+    /**
+     * Finds a group with a given name. Throws an error if the group couldn't be found.
+     */
+    public Group findGroup(Name name) throws GroupNotFoundException {
+        for (Group group: internalList) {
+            if (group.getName().equals(name)) {
+                return group;
+            }
+        }
+
+        throw new GroupNotFoundException();
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 
+import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -11,5 +12,5 @@ import seedu.address.model.UserPrefs;
  */
 public class CreateGroupCommandTest {
 
-    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactList(), new UserPrefs(), new GroupList());
 }

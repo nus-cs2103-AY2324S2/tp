@@ -110,11 +110,6 @@ public class ContactListTest {
         public ObservableList<CourseMate> getCourseMateList() {
             return courseMates;
         }
-
-        @Override
-        public ObservableList<Group> getGroupList() {
-            return groups;
-        }
     }
 
 }

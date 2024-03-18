@@ -115,10 +115,11 @@ public class ModelManagerTest {
         ContactList contactList = new ContactListBuilder().withCourseMate(ALICE).withCourseMate(BENSON).build();
         ContactList differentContactList = new ContactList();
         UserPrefs userPrefs = new UserPrefs();
+        GroupList groupList = new GroupList();
 
         // same values -> returns true
-        modelManager = new ModelManager(contactList, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(contactList, userPrefs);
+        modelManager = new ModelManager(contactList, userPrefs, groupList);
+        ModelManager modelManagerCopy = new ModelManager(contactList, userPrefs, groupList);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -131,12 +132,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different contactList -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentContactList, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentContactList, userPrefs, groupList)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredCourseMateList(new ContainsKeywordPredicate(String.join(" ", keywords)));
-        assertFalse(modelManager.equals(new ModelManager(contactList, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(contactList, userPrefs, groupList)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
@@ -144,6 +145,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setContactListFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(contactList, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(contactList, differentUserPrefs, groupList)));
     }
 }

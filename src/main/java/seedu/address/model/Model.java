@@ -6,7 +6,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
 
 /**
  * The API of the Model component.
@@ -91,6 +93,12 @@ public interface Model {
      * The group must exist in the contact list.
      */
     void deleteGroup(Group target);
+
+    /**
+     * Finds the group based on name.
+     * @throws GroupNotFoundException if group doesn't exist
+     */
+    Group findGroup(Name name) throws GroupNotFoundException;
 
     /**
      * Adds the given group.
