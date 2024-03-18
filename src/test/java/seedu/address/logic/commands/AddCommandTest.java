@@ -158,7 +158,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean exportCSV(String filename) {
+        public boolean exportCsv(String filename) {
             throw new AssertionError("This method should not be called.");
         }
     }

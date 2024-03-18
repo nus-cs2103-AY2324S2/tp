@@ -32,7 +32,7 @@ public class CsvExporterTest {
     @Test
     public void execute_exportSuccess() {
         csvExporter.execute();
-        assertTrue(csvExporter.isSuccessful);
+        assertTrue(csvExporter.getIsSuccessful());
         File exportedFile = new File(TEST_FILENAME);
         assertTrue(exportedFile.exists());
         exportedFile.delete(); // Clean up after test
@@ -43,7 +43,7 @@ public class CsvExporterTest {
         // Simulate a situation where IOException occurs during file write
         csvExporter = new CsvExporter(persons, ""); // Provide an invalid filename to trigger IOException
         csvExporter.execute();
-        assertFalse(csvExporter.isSuccessful);
+        assertFalse(csvExporter.getIsSuccessful());
     }
 
     @Test
