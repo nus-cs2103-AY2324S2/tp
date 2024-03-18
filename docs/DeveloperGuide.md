@@ -194,7 +194,7 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `add /id 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter h/ Watch Drama`
+Step 2: The user executes the `add id/ 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter h/ Watch Drama`
 command to add a new Patient whose patient hospital ID is `12347`,
 with the name `Mary Jane` and preferred name `Mary`, likes to eat `Korean` food and current family condition is 
 `Lives with only daughter` and likes to `Watch drama`.
@@ -363,19 +363,19 @@ The following sequence diagram summarizes what happens when a user executes a De
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.4 Adding Important Dates to a Patient
+### 3.4 Adding an Event to a Patient
 
 #### Introduction
 
-The `AddEvent` class is responsible for adding an Important Date to a patient in the address book. I
+The `AddEventCommand` class is responsible for adding an Event to a patient in the address book.
 
 #### Specifications
 
 * Events, as defined by the `Event` class, contain both the Name of the Event that falls on that date, as well as the Date of the Event and optionally, the Time Period for which the Event is happening.
 
-* The addition of Important Dates is cumulative, and new Important Dates will be added to the existing set of Important Dates for the patient, preserving the previously assigned Important Dates.
+* The addition of Event is cumulative, and new Events will be added to the existing set of Events for the patient, preserving the previously assigned Events.
 
-* If the patient already has a particular Important Date, it will not be added again.
+* If the patient already has a particular Event, it will not be added again.
 
 #### Example Usage Scenario
 
@@ -383,7 +383,7 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday, which falls on the 20th January.
+Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Event, Birthday, which falls on the 20th January.
 * Upon successful validation, it creates an `AddEventsCommand` instance.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -399,7 +399,7 @@ The `EditCommand` class is responsible for editing current patient's information
 * EditCommand, as defined by the `EditCommand` class, contain parameters which consists of:
     *  `INDEX` integer,
     *  `patientHospitalId` integer,
-    * `name`, `preferredName` String with only alphabets character,
+    *  `name`, `preferredName` String with only alphabets character,
     *  `foodPreference`, `familyCondition`, `hobby` and `tag` which are alphanumeric.
 * All fields are optional in the EditCommand except for `INDEX`
 * If any of the fields are repeated during the adding of patient or missing fields, error message will be thrown.
@@ -428,15 +428,15 @@ Step 4: The Patient with specified index will be updated in the list, shown in t
       <br></br>
 *  **Alternative 2**: Uses `patientHospitalId` of a Patient.
     * Pros: Able to uniquely identified each patient.
-      * Cons: Higher chance in typing the wrong `patientHospitalId`.
+    * Cons: Higher chance in typing the wrong `patientHospitalId`.
   
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.6 Deleting Important Date from a Patient
+### 3.6 Deleting an Event from a Patient
 
 #### Introduction
 
-The `DeleteEventCommand` class is responsible for deleting an Important Date from a patient in the address book. I
+The `DeleteEventCommand` class is responsible for deleting an Event from a patient in the address book.
 
 #### Specifications
 
@@ -444,7 +444,7 @@ The `DeleteEventCommand` class is responsible for deleting an Important Date fro
 shown on the UI after using the `list` or `find` command and Indexes of the specified Patient's events as defined in
 the `Index` class.
 
-* Deletion of important date can only happen for a single patient, and a single event at any given time.
+* Deletion of Event can only happen for a single patient, and a single event at any given time.
 
 #### Example Usage Scenario
 
@@ -452,11 +452,11 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Important Date, Birthday,
+Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Event, Birthday,
 which falls on the 20th January.
 * Upon successful validation, it creates an `AddEventsCommand` instance.
 
-Step 3: The use executes the `deletee 1 e/1 command` to delete the Important Date as he realised he keyed in the wrong
+Step 3: The use executes `deletee 1 e/1` to delete the Event as he realised he keyed in the wrong
 date.
 * Upon successful validation,  an `DeleteEventCommand` instance is created.
 
@@ -465,7 +465,7 @@ date.
 **Aspect: Choice of COMMAND_WORD**
 
 * **Alternative 1 (current choice)**: Use `deletee`
-    * Pros: Consistent with `adde` command to add new Important date.
+    * Pros: Consistent with `adde` command to add new Event.
     * Cons: Might be counter-intuitive for user as command is unfamiliar.
       <br></br>
 * **Alternative 2**: `deleteID`
@@ -473,7 +473,48 @@ date.
     * Cons: User might confuse ID as Patient ID and also inconsistency with `adde` command, further confusing user.
 
 --------------------------------------------------------------------------------------------------------------------
-### 3.7 Deleting a Patient
+
+### 3.7 Editing an Event for a Patient
+
+#### Introduction
+
+The `EditEventCommand` class is responsible for editing a specific Event for a patient in the address book.
+
+#### Specifications
+
+* EditEventCommand takes in four parameters: `PATIENT_INDEX`, `EVENT_INDEX`, `EVENT_NAME` and `DATE`.
+  All parameters are compulsory. Optionally, you may include `TIME` in the `DATE` parameter.
+* EditEventCommand will edit the selected `EVENT_INDEX` with a new event.
+* Editing of an event can only happen for a single patient, and a single event at any given time.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes the `adde 1 n/Birthday d/20-01-2022` command to add the Event, Birthday,
+which falls on the 20th January.
+* Upon successful validation, it creates an `AddEventCommand` instance.
+
+Step 3: The user executes `edite 1 e/1 n/New Birthday d/20-01-2023` to edit the Event.
+* Upon successful validation,  an `EditEventCommand` instance is created.
+
+#### Design Considerations
+
+**Aspect: Choice of COMMAND_WORD**
+
+* **Alternative 1 (current choice)**: Use `edite` 
+    * Pros: Consistent with `adde` and `deletee` commands.
+    * Cons: May not be as intuitive for user.
+    <br></br>
+* **Alternative 2**: Use `editID`
+    * Pros: Clearer Syntax.
+    * Cons: Inconsistent with `adde` and `deletee` commands.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.8 Deleting a Patient
 
 #### Introduction
 
@@ -485,7 +526,7 @@ The `DeleteCommand` is responsible for deleting a patient in the address book.
 
 #### Example Usage Scenario
 
-Given below is an example usage scenario.
+Given below is an example usage scenario and how the group creation mechanism behaves at each step.
 
 Step 1: The user accesses the PatientSync application.
 
