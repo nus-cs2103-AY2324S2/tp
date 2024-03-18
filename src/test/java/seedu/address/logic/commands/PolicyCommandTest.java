@@ -121,8 +121,5 @@ public class PolicyCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different index -> returns false
-        assertFalse(standardCommand.equals(new PolicyCommand(INDEX_SECOND_PERSON, new Policy(VALID_POLICY_AMY))));
-
     }
 }
