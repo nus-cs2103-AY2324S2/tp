@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
@@ -82,9 +83,8 @@ public class Order implements Comparable<Order> {
      * @param product Product of which quantity is returned.
      * @return quantity of the product.
      */
-    public Quantity getQuantity(Product product) {
-        Quantity currQuantity = productMap.get(product);
-        return currQuantity;
+    public Optional<Quantity> getQuantity(Product product) {
+        return Optional.ofNullable(productMap.get(product));
     }
 
     /**
@@ -99,20 +99,37 @@ public class Order implements Comparable<Order> {
 
     /**
      * Sets the quantity values of the product in the order.
+     *
      * @param currProduct Product of which quantity to be editted.
-     * @param newQuantity new Quantity of the specified product.
+     * @param newQuantity New Quantity of the specified product.
+     * @return Updated order.
      */
-    public void changeQuantity(Product currProduct, int newQuantity) {
-        Quantity currQuantity = productMap.get(currProduct);
-        currQuantity.setQuantity(newQuantity);
+    public Order changeQuantity(Product currProduct, Quantity newQuantity) {
+        productMap.put(currProduct, newQuantity);
+        return new Order(productMap);
     }
 
     /**
      * Deletes the specified product from the order.
      * @param product Product to be deleted.
+     * @return Updated order.
      */
-    public void deleteProduct(Product product) {
+    public Order deleteProduct(Product product) {
         productMap.remove(product);
+        return new Order(productMap);
+    }
+
+    /**
+     * Updates the specified product from the order.
+     * If new Quantity is zero, the product is removed from the map.
+     * @param currProduct Product to be updated.
+     * @param newQuantity Quantity to update to.
+     * @return Updated order.
+     */
+    public Order updateOrder(Product currProduct, Quantity newQuantity) {
+        return newQuantity.getValue() == 0
+                ? deleteProduct(currProduct)
+                : changeQuantity(currProduct, newQuantity);
     }
 
     /**

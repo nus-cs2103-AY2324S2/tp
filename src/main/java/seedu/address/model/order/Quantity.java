@@ -8,7 +8,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Product quantity should only be a number.";
-    public static final String VALIDATION_REGEX = "\\d";
+
+    /** Accept only non-negative integers*/
+    public static final String VALIDATION_REGEX = "^\\d*$";
+
     private int value;
 
     /**
@@ -18,6 +21,13 @@ public class Quantity {
     public Quantity(@JsonProperty("order") int value) {
 
         this.value = value;
+    }
+
+    /**
+     * Returns true if a given string is a valid phone number.
+     */
+    public static boolean isValidQuantity(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

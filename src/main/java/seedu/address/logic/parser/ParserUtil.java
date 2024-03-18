@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ID;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,7 +10,10 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.Product;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -120,5 +125,61 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a product name {@code String product} into a {@code Product}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code product} is invalid.
+     */
+    public static Product parseProduct(String product) throws ParseException {
+        requireNonNull(product);
+        String trimmedProduct = product.trim();
+        if (!Product.isValidProduct(trimmedProduct)) {
+            throw new ParseException(Product.MESSAGE_CONSTRAINTS);
+        }
+        return new Product(trimmedProduct);
+    }
+
+    /**
+     * Parses a product quantity {@code String quantity} into a {@code Quantity}.
+     * Quantity only accepts non-negative integer values.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(Integer.parseInt(trimmedQuantity));
+    }
+
+    /**
+     * Differentiates order and customer command.
+     *
+     * @param args Input string.
+     * @return true if command contains only customer flag, false if command contains only order flag.
+     * @throws ParseException if both or neither of customer and order flags are found.
+     */
+    public static boolean isCustomer(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_CUSTOMER_ID, PREFIX_ORDER_ID);
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CUSTOMER_ID, PREFIX_ORDER_ID);
+
+        boolean hasCustomer = argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent();
+        boolean hasOrder = argMultimap.getValue(PREFIX_ORDER_ID).isPresent();
+        if (hasCustomer && !hasOrder) {
+            return true;
+        } else if (!hasCustomer && hasOrder) {
+            return false;
+        } else if (hasCustomer && hasOrder) {
+            throw new ParseException(Messages.MESSAGE_COEXISTING_CUSTOMER_AND_ORDER);
+        } else {
+            throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+        }
     }
 }

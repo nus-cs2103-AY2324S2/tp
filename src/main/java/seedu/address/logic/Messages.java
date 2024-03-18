@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,6 +26,9 @@ public class Messages {
 
     public static final String MESSAGE_PHONE_NUMBER_NOT_FOUND = "Phone number provided not found";
     public static final String MESSAGE_ONLY_ONE_FIELD = "Only one field can be provided";
+
+    public static final String MESSAGE_COEXISTING_CUSTOMER_AND_ORDER =
+            "Customer ID and order ID cannot coexist here.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -53,6 +57,13 @@ public class Messages {
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    /**
+     * Formats the {@code person} for display to the user.
+     */
+    public static String format(Order order) {
+        return order.toString();
     }
 
 }
