@@ -120,7 +120,8 @@ public class AddressBookParserTest {
     public void parseCommand_deleteClass() throws Exception {
         final String moduleCode = "CS2103T";
         final String tutorialClass = "T09";
-        AddClassCommand command = (AddClassCommand) parser.parseCommand(AddClassCommand.COMMAND_WORD + " "
+        DeleteClassCommand command = (DeleteClassCommand)
+                parser.parseCommand(DeleteClassCommand.COMMAND_WORD + " "
                 + PREFIX_MODULECODE + moduleCode + " " + PREFIX_TUTORIALCLASS + tutorialClass);
         assertEquals(new DeleteClassCommand(new ModuleCode(moduleCode),
                 new TutorialClass(tutorialClass)), command);
