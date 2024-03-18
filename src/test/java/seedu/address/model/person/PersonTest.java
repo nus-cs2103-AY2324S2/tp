@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -22,6 +23,12 @@ public class PersonTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTasks().remove(0));
+    }
+
+    @Test
+    public void deleteTask() {
+        Person person = new PersonBuilder().withTasks("prepare-presentation").build();
+        assertEquals(new PersonBuilder().build(), person.deleteTask(new Task("prepare-presentation")));
     }
 
     @Test
