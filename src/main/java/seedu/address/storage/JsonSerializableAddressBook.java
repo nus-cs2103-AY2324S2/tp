@@ -18,11 +18,10 @@ import seedu.address.model.person.Person;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-public class JsonSerializableAddressBook {
+class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate module(s).";
-
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
@@ -74,4 +73,5 @@ public class JsonSerializableAddressBook {
         }
         return addressBook;
     }
+
 }

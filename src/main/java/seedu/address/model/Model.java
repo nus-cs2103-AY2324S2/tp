@@ -15,6 +15,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<ModuleCode> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -92,7 +94,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
-
     ObservableList<ModuleCode> getFilteredModuleList();
 
     /**
@@ -105,4 +106,5 @@ public interface Model {
      * Search for person by a given {@code predicate}.
      */
     Person searchPersonByPredicate(Predicate<Person> predicate);
+
 }

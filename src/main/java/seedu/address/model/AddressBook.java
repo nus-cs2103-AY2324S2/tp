@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -18,7 +19,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final ObservableList<ModuleCode> modules;
+    private final ArrayList<ModuleCode> modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        modules = FXCollections.observableArrayList();
+        modules = new ArrayList<>();
     }
 
     public AddressBook() {}
@@ -52,11 +53,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setModules(List<ModuleCode> modules) {
+        requireNonNull(modules);
+        this.modules.clear();
+        this.modules.addAll(modules);
+    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
+
         setPersons(newData.getPersonList());
         setModules(newData.getModuleList());
     }
@@ -82,6 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
+    @Override
     public boolean hasModule(ModuleCode module) {
         requireNonNull(module);
         return modules.contains(module);
@@ -106,6 +114,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a module to the address book.
      * The module must not already exist in the address book. (TODO)
      */
+    @Override
     public void addModule(ModuleCode m) {
         modules.add(m);
     }
@@ -117,13 +126,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
+
         persons.setPerson(target, editedPerson);
     }
-
-    public void setModules(List<ModuleCode> modules) {
-        this.modules.setAll(modules);
-    }
-
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
@@ -147,8 +152,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
     public ObservableList<ModuleCode> getModuleList() {
-        return modules;
+        return FXCollections.observableList(modules);
     }
 
     @Override

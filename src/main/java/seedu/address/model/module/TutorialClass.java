@@ -4,7 +4,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import seedu.address.model.person.Person;
 
@@ -26,16 +25,35 @@ public class TutorialClass {
     public final String value;
     private final ArrayList<Person> students;
 
+    public TutorialClass() {
+        this.value = ""; // Default value for 'value'
+        this.students = new ArrayList<>(); // Initialize students list
+    }
+
+
     /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no students.
      *
-     * @param value of tutorial to be added
+     * @param name of tutorial to be added
      */
-    public TutorialClass(String value) {
-        requireAllNonNull(value);
-        checkArgument(isValidTutorialClass(value), MESSAGE_CONSTRAINTS);
-        this.value = value;
+    public TutorialClass(String name) {
+        requireAllNonNull(name);
+        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
         this.students = new ArrayList<>();
+    }
+
+    /**
+     * A constructor for TutorialClass. Creates a tutorial with the list of students specified.
+     *
+     * @param name of tutorial to be added
+     * @param students to be in the added tutorial
+     */
+    public TutorialClass(String name, ArrayList<Person> students) {
+        requireAllNonNull(name);
+        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
+        this.students = students;
     }
     /**
      * Returns true if a given string is a valid tutorial class code.
@@ -48,11 +66,6 @@ public class TutorialClass {
     public String toString() {
         return value;
     }
-
-    public List<Person> getStudents() {
-        return List.copyOf(students);
-    }
-
 
     @Override
     public boolean equals(Object other) {
