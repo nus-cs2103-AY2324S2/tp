@@ -1,7 +1,14 @@
 package seedu.address.storage;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.storage.StateStorage.clearState;
+import static seedu.address.storage.StateStorage.deleteStateStorage;
+import static seedu.address.storage.StateStorage.loadState;
+import static seedu.address.storage.StateStorage.writeState;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +24,7 @@ public class StateStorageTest {
     }
     @AfterAll
     public static void tearDown() {
-        StateStorage.clearState();
+        clearState();
     }
 
     @Test
@@ -26,31 +33,43 @@ public class StateStorageTest {
     }
 
     @Test
-    public void loadState_emptyFile_successfullyLoaded() {
-        StateStorage.clearState();
+    public void getFilePath_successfullyReturned() {
+        assertNotNull(StateStorage.getFilePath());
+    }
+
+    @Test
+    public void loadState_emptyFile_successfullyLoaded() throws IOException {
+        clearState();
         String expected = "";
-        String actual = stateStorage.loadState();
+        String actual = loadState();
         assertEquals(expected, actual);
     }
 
     @Test
-    public void writeState_successfullyWritten() {
+    public void writeState_successfullyWritten() throws IOException {
         String expected = "test123abc cba321tset";
-        stateStorage.writeState(expected);
-        String actual = stateStorage.loadState();
+        writeState(expected);
+        String actual = loadState();
         assertEquals(expected, actual);
     }
 
     @Test
-    public void overWriteState_successfullyOverWritten() {
+    public void overWriteState_successfullyOverWritten() throws IOException {
         String expected = "test123abc cba321tset";
-        stateStorage.writeState(expected);
-        String actual = stateStorage.loadState();
+        writeState(expected);
+        String actual = loadState();
         assertEquals(expected, actual);
 
         String overWriteString = "newTest";
-        stateStorage.writeState(overWriteString);
-        String actualOverWrittenString = stateStorage.loadState();
+        writeState(overWriteString);
+        String actualOverWrittenString = loadState();
         assertEquals(overWriteString, actualOverWrittenString);
     }
+
+    @Test
+    public void loadFromFile_fileDoesNotExist_HandlesIOException() {
+        deleteStateStorage();
+        assertThrows(IOException.class, () -> loadState());
+    }
+
 }

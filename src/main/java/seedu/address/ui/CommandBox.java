@@ -1,19 +1,29 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.StateStorage;
+
+import java.io.IOException;
+
+import static seedu.address.storage.StateStorage.getFilePath;
+
 
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
 
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
     private final CommandExecutor commandExecutor;
@@ -29,8 +39,14 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
 
-        String lastCommand = StateStorage.loadState();
-        commandTextField.setText(lastCommand);
+        try {
+            String lastCommand = StateStorage.loadState();
+            commandTextField.setText(lastCommand);
+        } catch (IOException e) {
+            logger.warning("State file at " + getFilePath() + " could not be loaded."
+                    + " Starting with an empty command box.");
+        }
+
 
         commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             setStyleToDefault();

@@ -43,13 +43,33 @@ public class StateStorage {
     }
 
     /**
+     * Returns the location of the state file.
+     *
+     * @return The path of the state file.
+     */
+    public static Path getFilePath() {
+        return FILE_PATH;
+    }
+
+    /**
      * Clears all the text in the state storage file.
      */
     public static void clearState() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("");
         } catch (IOException e) {
-            System.out.println("Error clearing state text: " + e.getMessage());
+            logger.info("Error clearing state text: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Deletes the entire state storage file.
+     */
+    public static void deleteStateStorage() {
+        try {
+            Files.delete(FILE_PATH);
+        } catch (IOException e) {
+            logger.info("Error deleting state file: " + e.getMessage());
         }
     }
 
@@ -71,7 +91,7 @@ public class StateStorage {
      *
      * @return The last input in the command box, or and empty string if not found.
      */
-    public static String loadState() {
+    public static String loadState() throws IOException {
         logger.info("Loading state from " + FILE_PATH + "...");
 
         String lastCommand = "";
@@ -80,14 +100,8 @@ public class StateStorage {
 
             while (data != null) {
                 lastCommand = lastCommand + data;
-                if (lastCommand == null) {
-                    break;
-                }
                 data = reader.readLine();
             }
-        } catch (IOException e) {
-            logger.warning("State file at " + FILE_PATH + " could not be loaded."
-                    + " Starting with an empty command box.");
         }
         return lastCommand;
     }
