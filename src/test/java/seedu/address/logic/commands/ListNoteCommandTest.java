@@ -41,7 +41,7 @@ class ListNoteCommandTest {
         ListNoteCommand listNoteCommand = new ListNoteCommand(INDEX_FIRST_PERSON);
 
         Person person = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        String commandMsg = String.format(Messages.MESSAGE_LIST_NOTE_SUCCESS, person.getName());
+        String commandMsg = String.format(ListNoteCommand.MESSAGE_LIST_NOTE_SUCCESS, person.getName());
 
         assertCommandSuccess(listNoteCommand, model, commandMsg, expectedModel);
     }

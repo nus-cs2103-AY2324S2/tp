@@ -68,7 +68,6 @@ public class NoteTest {
             assertEquals(note1.hashCode(), note2.hashCode());
         }
 
-
         @Test
         public void hashCode_different() {
             LocalDateTime dateTime = LocalDateTime.now();
