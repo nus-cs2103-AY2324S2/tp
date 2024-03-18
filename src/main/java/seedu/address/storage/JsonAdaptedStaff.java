@@ -20,6 +20,6 @@ class JsonAdaptedStaff extends JsonAdaptedPerson {
         super(source);
         Staff staff = (Staff) source;
         salary = staff.getSalary().value;
-        employment = staff.getEmployment().employment;
+        employment = staff.getEmployment().value;
     }
 }

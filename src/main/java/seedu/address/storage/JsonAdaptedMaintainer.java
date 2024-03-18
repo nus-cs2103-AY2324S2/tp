@@ -19,7 +19,7 @@ class JsonAdaptedMaintainer extends JsonAdaptedPerson {
     public JsonAdaptedMaintainer(Person source) {
         super(source);
         Maintainer supplier = (Maintainer) source;
-        skill = supplier.getSkill().skill;
-        commission = supplier.getCommission().commission;
+        skill = supplier.getSkill().value;
+        commission = supplier.getCommission().value;
     }
 }

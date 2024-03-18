@@ -19,7 +19,7 @@ class JsonAdaptedSupplier extends JsonAdaptedPerson {
     public JsonAdaptedSupplier(Person source) {
         super(source);
         Supplier supplier = (Supplier) source;
-        product = supplier.getProduct().product;
-        price = supplier.getPrice().price;
+        product = supplier.getProduct().value;
+        price = supplier.getPrice().value;
     }
 }
