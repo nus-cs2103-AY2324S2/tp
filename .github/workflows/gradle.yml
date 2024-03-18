@@ -44,4 +44,4 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         ignore: 
-          - "main/java/ui"
+          - "main/java/seedu/address/ui"
