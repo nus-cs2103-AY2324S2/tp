@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+The Hackathon Participant Management Application is designed to help organizers efficiently manage participant information for hackathons. With features such as finding, sorting, adding, and deleting participants, you can streamline the process of organizing and coordinating your hackathon event.
 
 * Table of Contents
 {:toc}
@@ -29,7 +29,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `Remove 3` : Deletes the 3rd contact shown in the current list.
+     
+   * `Update John Doe number 98765432` : Updates the contact information of the person named "John Doe"
+  
+   * `Comment John Doe`
 
    * `clear` : Deletes all contacts.
 
@@ -76,38 +80,49 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add <name>, <email>, <phone>, <category>`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add John Doe johnd@example.com 98765432 participant`
+* `add Betsy Crowe betsycrowe@example.com 1234567 sponsor`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the address book. 
+Example: `Total: <total number of contact>`
+         The table will show all contacts
+
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person : `update`
 
-Edits an existing person in the address book.
+Update and edit participant contact details.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `update <name> /<field that needs update> <new value>`
+Acceptable values for each parameter
+* `<name>`: case insensitive alphabetic characters, spaces.
+* `<field>`: name, email, phone, category.
+* `<new value>`: follow the format of its field.
+* There should be no “/” in each parameter. There should be only one field rather than multiple fields. Updated information should be different from the original. There should be no contacts with the same information.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+### Comment: `comment`
+Add notes or comments to contacts
+format `comment <name>, <notes>`
+Example:
+`comment John, Allergic to peanuts`
+Acceptable values for each parameter
+`<name>`: case insensitive alphabetic characters, spaces.
+`<note>`: any string
+Precise expected outputs when the command succeeds
+* Your comment “<note>” on <name> is successfully added.
+Precise expected outputs when the command fails
+* Error: please provide a note to the participant. (when note is not provided)
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
@@ -127,19 +142,22 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Removing a person : `Remove`
 
-Deletes the specified person from the address book.
+Remove specific participants from the database.
 
-Format: `delete INDEX`
+Format: `remove <id>`
+Example:
+`remove 1`
+Acceptable values for each parameter
+* `<id>`: the id of the contact in the list
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Precise expected outputs when the command succeeds
+* You have successfully deleted <category> <name>.
+Example: You have successfully deleted participant John Doe.
+Precise expected outputs when the command fails
+* Error: no contact with id <id>. (when name is not in the list)
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -191,8 +209,8 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Remove** | `delete INDEX`<br> e.g., `delete 3`
+**Update** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
