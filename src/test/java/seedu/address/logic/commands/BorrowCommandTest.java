@@ -23,7 +23,7 @@ public class BorrowCommandTest {
     @Test
     public void execute_addBorrowUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withBook(BORROW_STUB).build();
+        Person editedPerson = new PersonBuilder(firstPerson).withBook(BORROW_STUB).withMeritScore(-1).build();
 
         BorrowCommand borrowCommand = new BorrowCommand(INDEX_FIRST_PERSON,
                 new BookList(editedPerson.getBookList().value.bookTitle));
