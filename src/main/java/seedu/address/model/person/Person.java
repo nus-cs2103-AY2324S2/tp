@@ -88,11 +88,11 @@ public class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", getEntry("Name"))
-                .add("phone", getEntry("Phone"))
-                .add("email", getEntry("Email"))
-                .add("address", getEntry("Address"))
-                .add("tags", tags)
+//                .add("name", getEntry("Name"))
+//                .add("phone", getEntry("Phone"))
+//                .add("email", getEntry("Email"))
+//                .add("address", getEntry("Address"))
+//                .add("tags", tags)
                 .toString();
     }
     public EntryList getList() {

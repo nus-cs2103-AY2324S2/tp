@@ -28,24 +28,22 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (argMultimap.getValue(PREFIX_NAME).get().isEmpty()) {
+            throw new ParseException("Name cannot be empty!");
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
         Entry name = ParserUtil.parse("Name", argMultimap.getValue(PREFIX_NAME).get());
-        Entry phone = ParserUtil.parse("Phone", argMultimap.getValue(PREFIX_PHONE).get());
-        Entry email = ParserUtil.parse("Email", argMultimap.getValue(PREFIX_EMAIL).get());
-        Entry address = ParserUtil.parse("Address", argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, tagList);
-        person.addEntry(phone);
-        person.addEntry(email);
-        person.addEntry(address);
 
         return new AddCommand(person);
     }
