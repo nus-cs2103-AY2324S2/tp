@@ -14,13 +14,12 @@ public class ModuleCard extends UiPart<Region> {
     private static final String FXML = "ModuleCard.fxml";
 
     public final ModuleCode moduleCode;
-
+    @FXML
+    protected Label moduleCodeLabel;
+    @FXML
+    protected Label tutorialClassLabel;
     @FXML
     private HBox cardPane;
-    @FXML
-    private Label moduleCodeLabel;
-    @FXML
-    private Label tutorialClassLabel;
 
     /**
      * Creates a {@code ModuleCard} with the given {@code Module}.

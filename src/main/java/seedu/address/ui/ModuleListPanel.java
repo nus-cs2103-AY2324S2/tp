@@ -14,7 +14,7 @@ public class ModuleListPanel extends UiPart<Region> {
     private static final String FXML = "ModuleListPanel.fxml";
 
     @FXML
-    private ListView<ModuleCode> moduleListView;
+    protected ListView<ModuleCode> moduleListView;
 
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
