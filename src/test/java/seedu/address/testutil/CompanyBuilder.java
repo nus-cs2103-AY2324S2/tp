@@ -13,7 +13,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class CompanyBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -26,9 +26,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code CompanyBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public CompanyBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -36,9 +36,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the CompanyBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Company companyToCopy) {
+    public CompanyBuilder(Company companyToCopy) {
         name = companyToCopy.getName();
         phone = companyToCopy.getPhone();
         email = companyToCopy.getEmail();
@@ -48,7 +48,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public CompanyBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -56,7 +56,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public CompanyBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -65,7 +65,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public CompanyBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -73,7 +73,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public CompanyBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }

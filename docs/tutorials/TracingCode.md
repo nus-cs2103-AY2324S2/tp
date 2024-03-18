@@ -196,7 +196,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    public CommandResult execute(Model model) throws CommandException {
        ...
        Person companyToEdit = lastShownList.get(index.getZeroBased());
-       Person editedCompany = createEditedPerson(companyToEdit, editPersonDescriptor);
+       Person editedCompany = createEditedPerson(companyToEdit, editCompanyDescriptor);
        if (!companyToEdit.isSamePerson(editedCompany) && model.hasPerson(editedCompany)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
@@ -207,8 +207,8 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the company data.
-   * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ companies.<br>
+   * it uses the `setCompany()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the company data.
+   * it uses the `updateFilteredCompanyList` method to ask the `Model` to populate the 'filtered list' with _all_ companies.<br>
      FYI, The 'filtered list' is the list of companies resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the companies so that the user can see the edited company along with all other companies. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
      To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of companies is being tracked.
      <puml src="../diagrams/ModelClassDiagram.puml" width="450" /><br>

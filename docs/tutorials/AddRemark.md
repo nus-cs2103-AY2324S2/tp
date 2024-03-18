@@ -226,7 +226,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of company data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the company’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a company.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of company data. We achieve that by working with the `Company` model. Each field in a Company is implemented as a separate class (e.g. a `Name` object represents the company’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a company.
 
 ### Add a new `Remark` class
 
@@ -243,7 +243,7 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each company.
 
-Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
+Simply add the following to [`seedu.address.ui.CompanyCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
 **`PersonCard.java`:**
 

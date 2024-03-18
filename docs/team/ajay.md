@@ -9,7 +9,7 @@ InternBook is a desktop address book application used for managing internship co
 
 Given below are my contributions to the project.
 1) Developed the Getting Started section of the user guide in v1.1
-1) Worked on the edit command in v1.2. This included: 
+2) Worked on the edit command in v1.2. This included: 
    1) Modifying the command to fit the requirements of our project
    2) Refactoring code to change the Person class to the Company class
    3) Deleting the address field since it was redundant

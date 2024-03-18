@@ -21,34 +21,34 @@ import seedu.address.model.person.Company;
  */
 public class TypicalPersons {
 
-    public static final Company ALICE = new PersonBuilder().withName("Alice Pauline")
+    public static final Company ALICE = new CompanyBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
-    public static final Company BENSON = new PersonBuilder().withName("Benson Meier")
+    public static final Company BENSON = new CompanyBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
-    public static final Company CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Company CARL = new CompanyBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
-    public static final Company DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final Company DANIEL = new CompanyBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withTags("friends").build();
-    public static final Company ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Company ELLE = new CompanyBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").build();
-    public static final Company FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Company FIONA = new CompanyBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").build();
-    public static final Company GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+    public static final Company GEORGE = new CompanyBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").build();
 
     // Manually added
-    public static final Company HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Company HOON = new CompanyBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").build();
-    public static final Company IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Company IDA = new CompanyBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Company AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    public static final Company AMY = new CompanyBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Company BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Company BOB = new CompanyBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 

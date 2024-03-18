@@ -31,7 +31,8 @@ IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a re
 
 ### Assisted refactoring
 
-The `address` field in `Person` is actually an instance of the `seedu.address.model.company.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `address` field in `Company` is actually an instance of the `seedu.address.model.company.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+* :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 * :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
@@ -55,7 +56,7 @@ Let’s try removing references to `Address` in `EditPersonDescriptor`.
 
    <box type="tip" seamless>
 
-   **Tip:** Removing usages may result in errors. Exercise discretion and fix them. For example, removing the `address` field from the `Person` class will require you to modify its constructor.
+   **Tip:** Removing usages may result in errors. Exercise discretion and fix them. For example, removing the `address` field from the `Company` class will require you to modify its constructor.
    </box>
 
 1. Repeat the steps for the remaining usages of `Address`

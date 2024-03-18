@@ -20,7 +20,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Company#isSamePerson(Company)
+ * @see Company#isSameCompany(Company)
  */
 public class UniquePersonList implements Iterable<Company> {
 
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Company> {
      */
     public boolean contains(Company toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameCompany);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Company> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedCompany) && contains(editedCompany)) {
+        if (!target.isSameCompany(editedCompany) && contains(editedCompany)) {
             throw new DuplicatePersonException();
         }
 
@@ -90,7 +90,7 @@ public class UniquePersonList implements Iterable<Company> {
      */
     public void setPersons(List<Company> companies) {
         requireAllNonNull(companies);
-        if (!personsAreUnique(companies)) {
+        if (!companiesAreUnique(companies)) {
             throw new DuplicatePersonException();
         }
 
@@ -137,10 +137,10 @@ public class UniquePersonList implements Iterable<Company> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Company> companies) {
+    private boolean companiesAreUnique(List<Company> companies) {
         for (int i = 0; i < companies.size() - 1; i++) {
             for (int j = i + 1; j < companies.size(); j++) {
-                if (companies.get(i).isSamePerson(companies.get(j))) {
+                if (companies.get(i).isSameCompany(companies.get(j))) {
                     return false;
                 }
             }

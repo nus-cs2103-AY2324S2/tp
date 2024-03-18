@@ -23,7 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Company;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CompanyBuilder;
 
 public class AddCommandTest {
 
@@ -35,7 +35,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Company validCompany = new PersonBuilder().build();
+        Company validCompany = new CompanyBuilder().build();
 
         CommandResult commandResult = new AddCommand(validCompany).execute(modelStub);
 
@@ -46,7 +46,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Company validCompany = new PersonBuilder().build();
+        Company validCompany = new CompanyBuilder().build();
         AddCommand addCommand = new AddCommand(validCompany);
         ModelStub modelStub = new ModelStubWithPerson(validCompany);
 
@@ -55,8 +55,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Company alice = new PersonBuilder().withName("Alice").build();
-        Company bob = new PersonBuilder().withName("Bob").build();
+        Company alice = new CompanyBuilder().withName("Alice").build();
+        Company bob = new CompanyBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -173,7 +173,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Company company) {
             requireNonNull(company);
-            return this.company.isSamePerson(company);
+            return this.company.isSameCompany(company);
         }
     }
 
@@ -186,7 +186,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Company company) {
             requireNonNull(company);
-            return personsAdded.stream().anyMatch(company::isSamePerson);
+            return personsAdded.stream().anyMatch(company::isSameCompany);
         }
 
         @Override
