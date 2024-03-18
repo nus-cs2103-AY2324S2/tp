@@ -21,7 +21,6 @@ public class AddApplicantCommand extends Command {
 
     public static final String COMMAND_WORD = "add_applicant";
 
-    //TODO
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to the address book. "
             + "Parameters: "
             + PREFIX_NAME + " NAME "
