@@ -39,7 +39,9 @@ import seedu.address.logic.commands.HelpPoochStaffCommand;
 import seedu.address.logic.commands.HelpPoochSupplierCommand;
 import seedu.address.logic.commands.HelpSearchCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.KeywordPredicate;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -212,6 +214,15 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD) instanceof HelpPoochStaffCommand);
         assertTrue(parser.parseCommand(HelpPoochStaffCommand.COMMAND_WORD + " 3")
                 instanceof HelpPoochStaffCommand);
+    }
+
+    @Test
+    public void parseCommand_search() throws Exception {
+        String keyword = " ; name : Poochie";
+        ArgumentMultimap token = ArgumentTokenizer.tokenize(keyword, PREFIX_NAME);
+        SearchCommand command = (SearchCommand) parser.parseCommand(
+                SearchCommand.COMMAND_WORD + keyword);
+        assertEquals(new SearchCommand(new KeywordPredicate(token)), command);
     }
 
 
