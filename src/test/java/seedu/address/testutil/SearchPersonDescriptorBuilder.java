@@ -32,7 +32,8 @@ public class SearchPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setCountry(person.getCountry());
+        descriptor.setStatus(person.getStatus());
         descriptor.setComment(person.getComment());
         descriptor.setTags(person.getTags());
     }

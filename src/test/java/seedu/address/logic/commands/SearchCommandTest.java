@@ -119,12 +119,12 @@ public class SearchCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(ELLE), model.getFilteredPersonList());
 
-        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        descriptor = new SearchPersonDescriptorBuilder().withStatus("SG").build();
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        descriptor = new SearchPersonDescriptorBuilder().withCountry("SG").build();
         command = new SearchCommand(descriptor);
         expectedModel.updateFilteredPersonList(descriptor.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, DANIEL), model.getFilteredPersonList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         descriptor = new SearchPersonDescriptorBuilder().withStatus("PRESCREEN").build();

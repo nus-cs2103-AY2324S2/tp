@@ -45,8 +45,8 @@ public class ContainsKeywordsPredicate<T> implements Predicate<Person> {
             Optional<Email> email = (Optional<Email>) keywords;
             return person.getEmail().value.equals(email.orElse(person.getEmail()).value);
         } else if (prefix.equals(PREFIX_COUNTRY)) {
-            Optional<Country> address = (Optional<Address>) keywords;
-            return person.getCountry().value.equals(address.orElse(person.getCountry()).value);
+            Optional<Country> country = (Optional<Country>) keywords;
+            return person.getCountry().value.equals(country.orElse(person.getCountry()).value);
         } else if (prefix.equals(PREFIX_STATUS)) {
             Optional<Status> status = (Optional<Status>) keywords;
             return person.getStatus().value.equals(status.orElse(person.getStatus()).value);

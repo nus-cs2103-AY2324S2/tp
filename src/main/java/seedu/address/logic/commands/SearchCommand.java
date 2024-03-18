@@ -1,11 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -18,7 +19,14 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Comment;
+import seedu.address.model.person.ContainsKeywordsPredicate;
+import seedu.address.model.person.Country;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.SearchPredicate;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +42,7 @@ public class SearchCommand extends Command {
             + "Parameters: [" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_COMMENT + "COMMENT] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD
@@ -171,8 +179,11 @@ public class SearchCommand extends Command {
                     new ContainsKeywordsPredicate<>(PREFIX_EMAIL, this.getEmail());
             predicateList.add(emailSearch);
             ContainsKeywordsPredicate<Country> countrySearch =
-                    new ContainsKeywordsPredicate<>(PREFIX_ADDRESS, this.getCountry());
+                    new ContainsKeywordsPredicate<>(PREFIX_COUNTRY, this.getCountry());
             predicateList.add(countrySearch);
+            ContainsKeywordsPredicate<Status> statusSearch =
+                    new ContainsKeywordsPredicate<>(PREFIX_STATUS, this.getStatus());
+            predicateList.add(statusSearch);
             ContainsKeywordsPredicate<Comment> commentSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_COMMENT, this.getComment());
             predicateList.add(commentSearch);
@@ -198,7 +209,7 @@ public class SearchCommand extends Command {
             return Objects.equals(name, otherSearchPersonDescriptor.name)
                     && Objects.equals(phone, otherSearchPersonDescriptor.phone)
                     && Objects.equals(email, otherSearchPersonDescriptor.email)
-                    && Objects.equals(address, otherSearchPersonDescriptor.address)
+                    && Objects.equals(country, otherSearchPersonDescriptor.country)
                     && Objects.equals(comment, otherSearchPersonDescriptor.comment)
                     && Objects.equals(tags, otherSearchPersonDescriptor.tags);
         }
@@ -209,7 +220,7 @@ public class SearchCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("address", address)
+                    .add("country", country)
                     .add("comment", comment)
                     .add("tags", tags)
                     .toString();

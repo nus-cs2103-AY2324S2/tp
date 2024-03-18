@@ -19,7 +19,6 @@ import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.commands.SearchCommand.SearchPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Comment;
-import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
