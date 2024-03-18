@@ -274,7 +274,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* NUS CS2103T Tutors
+* NUS CS2103T Tutors who has to keep track of students' profile and progress during class
 * has a need to manage a significant number of contact
 * manages student's profile such as attendance, grade, etc
 * prefer desktop apps over other types
@@ -282,7 +282,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Central platform for managing students' profiles such as attendance, grades, assessments, etc. 
+**Value proposition**: Makes tutors life easier by increasing convenience of checking progress and compacting all the relevant information for easy access (GitHub PR reviews, Canvas quiz results, iP progress tracker, etc.)
 
 
 ### User stories
