@@ -6,7 +6,6 @@ import static scm.address.logic.parser.CliSyntax.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import scm.address.logic.commands.AddCommand;
@@ -28,14 +27,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(trimmedArgs, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,13 +40,13 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         List<String> nameKeywords = getKeywords(argMultimap, PREFIX_NAME);
         List<String> addressKeywords = getKeywords(argMultimap, PREFIX_ADDRESS);
-        List<String> tagKeywords = getKeywords(argMultimap, PREFIX_TAG);
+        List<String> tagsKeywords = getKeywords(argMultimap, PREFIX_TAG);
 
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
-        AddressContainsKeywordsPredicate addressPredicate = new AddressContainsKeywordsPredicate(nameKeywords);
-        TagsContainKeywordsPredicate tagsPredicate = new TagsContainKeywordsPredicate(nameKeywords);
+        AddressContainsKeywordsPredicate addressPredicate = new AddressContainsKeywordsPredicate(addressKeywords);
+        TagsContainKeywordsPredicate tagsPredicate = new TagsContainKeywordsPredicate(tagsKeywords);
 
-        return new FindCommand(new NameContainsKeywordsPredicate(nameKeywords));
+        return new FindCommand(namePredicate, addressPredicate, tagsPredicate);
     }
 
     /**
