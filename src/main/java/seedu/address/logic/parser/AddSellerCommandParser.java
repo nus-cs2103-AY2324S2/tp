@@ -33,7 +33,7 @@ public class AddSellerCommandParser implements Parser<AddSellerCommand> {
 
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HOUSINGTYPE,
-                PREFIX_POSTALCODE, PREFIX_STREET, PREFIX_UNITNUMBER, PREFIX_TAG)
+                PREFIX_POSTALCODE, PREFIX_STREET, PREFIX_UNITNUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }

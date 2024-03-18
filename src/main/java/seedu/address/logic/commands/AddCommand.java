@@ -34,9 +34,9 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_HOUSINGTYPE + "HDB "
             + PREFIX_STREET + "Clementi Ave 2 "
-            + PREFIX_BLOCK + "Block 311 "
-            + PREFIX_LEVEL + "Level 02"
-            + PREFIX_UNITNUMBER + "Unit 25"
+            + PREFIX_BLOCK + "311 "
+            + PREFIX_LEVEL + "02 "
+            + PREFIX_UNITNUMBER + "25 "
             + PREFIX_POSTALCODE + "578578 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
