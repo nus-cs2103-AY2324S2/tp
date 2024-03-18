@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "matric" : "A1111111A",
     "reflection": "R1",
+    "studio" : "S1",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "matric" : "A2222222A",
     "reflection": "R2",
+    "studio" : "S2",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "address" : "wall street",
     "matric" : "A3333333A",
     "reflection": "R3",
+    "studio" : "S3",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "address" : "10th street",
     "matric" : "A4444444A",
     "reflection": "R4",
+    "studio" : "S4",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "address" : "michegan ave",
     "matric" : "A5555555A",
     "reflection": "R5",
+    "studio" : "S5",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "address" : "little tokyo",
     "matric" : "A6666666A",
     "reflection": "R6",
+    "studio" : "S6",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "address" : "4th street",
     "matric" : "A7777777A",
     "reflection": "R7",
+    "studio" : "S7",
     "tags" : [ ]
   } ]
 }

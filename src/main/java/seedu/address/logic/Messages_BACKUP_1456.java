@@ -46,10 +46,13 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Matriculation Number: ")
                 .append(person.getMatric())
+<<<<<<< HEAD
                 .append("; Reflection: ")
                 .append(person.getReflection())
+=======
                 .append("; Studio: ")
                 .append(person.getStudio())
+>>>>>>> af0683ed861744aa1d2c4f44949a137ed80dd7ff
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

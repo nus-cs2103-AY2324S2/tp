@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,13 +30,16 @@ public class Person {
 
     private final Matric matric;
     private final Reflection reflection;
+    private final Studio studio;
+
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Matric matric, Reflection reflection) {
-        requireAllNonNull(name, phone, email, address, tags, matric);
+                 
+                  Set<Tag> tags, Matric matric, Reflection reflection , Studio studio) {
+        requireAllNonNull(name, phone, email, address, tags, matric, studio);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -43,6 +47,7 @@ public class Person {
         this.tags.addAll(tags);
         this.matric = matric;
         this.reflection = reflection;
+        this.studio = studio;
     }
 
     public Name getName() {
@@ -71,6 +76,10 @@ public class Person {
 
     public Matric getMatric() {
         return matric;
+    }
+
+    public Studio getStudio() {
+        return studio;
     }
 
     public Reflection getReflection() {
@@ -111,13 +120,14 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
                 && matric.equals(otherPerson.matric)
-                && reflection.equals(otherPerson.reflection);
+                && reflection.equals(otherPerson.reflection)
+                && studio.equals(otherPerson.studio);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, matric, reflection);
+        return Objects.hash(name, phone, email, address, tags, matric, reflection, studio);
     }
 
     @Override
@@ -130,6 +140,7 @@ public class Person {
                 .add("tags", tags)
                 .add("matriculation number", matric)
                 .add("reflection", reflection)
+                .add("studio", studio)
                 .toString();
     }
 }

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -21,6 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MATRIC_NUMBER, PREFIX_REFLECTION);
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MATRIC_NUMBER, PREFIX_REFLECTION, PREFIX_STUDIO);
 
         if (!arePrefixesPresent(
                 argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
@@ -47,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
         argMultimap.verifyNoDuplicatePrefixesFor(
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_MATRIC_NUMBER, PREFIX_REFLECTION);
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_MATRIC_NUMBER, PREFIX_REFLECTION, PREFIX_STUDIO);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -55,8 +57,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Matric matric = handleOptionalMatric(argMultimap);
         Reflection reflection = handleOptionalReflection(argMultimap);
+        Studio studio = handleOptionalStudio(argMultimap);
 
-        Person person = new Person(name, phone, email, address, tagList, matric, reflection);
+        Person person = new Person(name, phone, email, address, tagList, matric, reflection, studio);
 
         return new AddCommand(person);
     }
@@ -74,6 +77,14 @@ public class AddCommandParser implements Parser<AddCommand> {
             return new Reflection("");
         } else {
             return ParserUtil.parseReflection(argMultimap.getValue(PREFIX_REFLECTION).get());
+        }
+    }
+
+    private static Studio handleOptionalStudio(ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDIO)) {
+            return new Studio("");
+        } else {
+            return ParserUtil.parseStudio(argMultimap.getValue(PREFIX_STUDIO).get());
         }
     }
 

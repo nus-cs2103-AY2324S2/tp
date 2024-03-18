@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +34,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String matric;
     private final String reflection;
+    private final String studio;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,7 +43,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("matric") String matric,
-            @JsonProperty("reflection") String reflection) {
+            @JsonProperty("reflection") String reflection,
+            @JsonProperty("studio") String studio) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +54,7 @@ class JsonAdaptedPerson {
         }
         this.matric = matric;
         this.reflection = reflection;
+        this.studio = studio;
     }
 
     /**
@@ -66,6 +70,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         matric = source.getMatric().matricNumber;
         reflection = source.getReflection().reflection;
+        studio = source.getStudio().studio;
     }
 
     /**
@@ -115,6 +120,9 @@ class JsonAdaptedPerson {
         if (!Reflection.isValidReflection(reflection)) {
             throw new IllegalValueException(Reflection.MESSAGE_CONSTRAINTS);
         }
+        if (!Studio.isValidStudio(studio)) {
+            throw new IllegalValueException(Studio.MESSAGE_CONSTRAINTS);
+        }
 
         final Address modelAddress = new Address(address);
 
@@ -124,8 +132,12 @@ class JsonAdaptedPerson {
 
         final Reflection modelReflection = new Reflection(reflection);
 
+
+        final Studio modelStudio = new Studio(studio);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelTags, modelMatric, modelReflection);
+               
+                          modelTags, modelMatric, modelReflection, modelStudio);
     }
 
 }

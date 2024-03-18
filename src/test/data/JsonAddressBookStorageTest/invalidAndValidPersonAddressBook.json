@@ -5,6 +5,7 @@
     "email": "hans@example.com",
     "matric": "A1234123X",
     "reflection": "R1",
+    "studio": "S1",
     "address": "4th street"
   }, {
     "name": "Person With Invalid Phone Field",
@@ -12,6 +13,7 @@
     "email": "hans@example.com",
     "matric": "A1234123X",
     "reflection": "R1",
+    "studio": "S1",
     "address": "4th street"
   } ]
 }

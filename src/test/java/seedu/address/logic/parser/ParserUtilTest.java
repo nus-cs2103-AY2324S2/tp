@@ -20,6 +20,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -30,6 +31,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_MATRIC = "zz";
     private static final String INVALID_REFLECTION = "R";
+    private static final String INVALID_STUDIO = "S";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -39,6 +41,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_MATRIC = "A1234567M";
     private static final String VALID_REFLECTION = "R1";
+    private static final String VALID_STUDIO = "S1";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -212,11 +215,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMatric_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseMatric(null));
-    }
-
-    @Test
     public void parseReflection_validReflection_success() throws ParseException {
         Reflection expected = new Reflection(VALID_REFLECTION);
         assertEquals(expected, ParserUtil.parseReflection(VALID_REFLECTION));
@@ -236,5 +234,32 @@ public class ParserUtilTest {
     public void parseReflection_optionalFieldMissing_returnsEmptyStudio() throws ParseException {
         Reflection expected = new Reflection("");
         assertThrows(ParseException.class, () -> ParserUtil.parseReflection(""));
+    }
+
+    @Test
+    public void parseMatric_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMatric(null));
+    }
+
+    @Test
+    public void parseStudio_validStudio_success() throws ParseException {
+        seedu.address.model.student.Studio expected = new Studio(VALID_STUDIO);
+        assertEquals(expected, ParserUtil.parseStudio(VALID_STUDIO));
+    }
+
+    @Test
+    public void parseStudio_invalidStudio_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudio(INVALID_STUDIO));
+    }
+
+    @Test
+    public void parseStudio_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStudio(null));
+    }
+
+    @Test
+    public void parseStudio_optionalFieldMissing_returnsEmptyStudio() throws ParseException {
+        seedu.address.model.student.Studio expected = new Studio("");
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudio(""));
     }
 }

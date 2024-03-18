@@ -15,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
+import seedu.address.model.student.Studio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -65,6 +66,21 @@ public class ParserUtil {
             throw new ParseException(Reflection.MESSAGE_CONSTRAINTS);
         }
         return new Reflection(trimmedReflection);
+    }
+
+    /**
+     * Parses {@code studio} into a {@code Studio} and returns it. Leading and trailing whitespaces will be trimmed.
+     * @param studio the studio to be parsed
+     * @return the parsed studio
+     * @throws ParseException if the specified studio is invalid
+     */
+    public static Studio parseStudio(String studio) throws ParseException {
+        requireNonNull(studio);
+        String trimmedStudio = studio.trim();
+        if (!Studio.isValidStudio(trimmedStudio)) {
+            throw new ParseException(Studio.MESSAGE_CONSTRAINTS);
+        }
+        return new Studio(trimmedStudio);
     }
 
     /**

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -42,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_MATRIC_NUMBER_BOB = "A1234567Z";
     public static final String VALID_REFLECTION_AMY = "R1";
     public static final String VALID_REFLECTION_BOB = "R2";
+    public static final String VALID_STUDIO_AMY = "S1";
+    public static final String VALID_STUDIO_BOB = "S2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -57,6 +60,8 @@ public class CommandTestUtil {
     public static final String MATRIC_DESC_BOB = " " + PREFIX_MATRIC_NUMBER + VALID_MATRIC_NUMBER_BOB;
     public static final String REFLECTION_DESC_AMY = " " + PREFIX_REFLECTION + VALID_REFLECTION_AMY;
     public static final String REFLECTION_DESC_BOB = " " + PREFIX_REFLECTION + VALID_REFLECTION_BOB;
+    public static final String STUDIO_DESC_AMY = " " + PREFIX_STUDIO + VALID_STUDIO_AMY;
+    public static final String STUDIO_DESC_BOB = " " + PREFIX_STUDIO + VALID_STUDIO_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -64,6 +69,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_MATRIC_DESC = " " + PREFIX_MATRIC_NUMBER + "A1234567"; // missing last character
     public static final String INVALID_REFLECTION_DESC = " " + PREFIX_REFLECTION + "R"; // missing number
+    public static final String INVALID_STUDIO_DESC = " " + PREFIX_STUDIO + "S"; // missing last character
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
