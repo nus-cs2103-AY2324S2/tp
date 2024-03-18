@@ -41,7 +41,7 @@ public class FilterCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof FilterCommand)) {
             return false;
         }
 
