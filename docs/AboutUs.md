@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/raysonchia)]
 [[portfolio](team/raysonchia.md)]
 
-* Role: Developer
-* Responsibilities: Developer
+- Role: Developer
+- Responsibilities: Developer
 
 ### Rick Koh
 
@@ -26,17 +26,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/rickkoh)]
 [[portfolio](team/rickkoh.md)]
 
-* Role: QA, Developer
-* Responsibilities: Developer
+- Role: QA, Developer
+- Responsibilities: Developer
 
 ### Aum Sebin
+
 <img src="images/sebin0817.png" width="200px">
 
 [[github](http://github.com/sebin0817)]
 [[portfolio](team/sebin.md)]
 
-* Role: Developer
-* Responsibilities: Developer
+- Role: Developer
+- Responsibilities: Developer
 
 ### Jm San Diego ⚡️
 
@@ -45,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jmsandiegoo)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Developer
+- Role: Developer
+- Responsibilities: Developer
 
 ### Joe Kawai
 
@@ -55,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/joenus)]
 [[portfolio](team/joe.md)]
 
-* Role: Team Lead, Developer
-* Responsibilities: Developer
+- Role: Team Lead, Developer
+- Responsibilities: Developer
