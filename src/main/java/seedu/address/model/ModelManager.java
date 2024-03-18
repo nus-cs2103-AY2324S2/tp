@@ -147,6 +147,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person searchPersonByPredicate(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return filteredPersons.stream().filter(predicate).findFirst().orElse(null);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
